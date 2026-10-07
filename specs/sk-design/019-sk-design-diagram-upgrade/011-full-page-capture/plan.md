@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 11: full-page-capture"
 description: "Add an opt-in --full-page flag to the shared screenshot renderer, reshoot the diagram corpus at true content height, prove the chart skill is untouched, and rerun CAP-001."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "full page capture plan"
 importance_tier: "normal"
 contextType: "general"
 ---

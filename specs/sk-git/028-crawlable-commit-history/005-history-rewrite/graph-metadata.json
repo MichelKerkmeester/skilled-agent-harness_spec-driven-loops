@@ -12,31 +12,29 @@
   "derived": {
     "trigger_phrases": [
       "history rewrite",
-      "rewrite main skilled v4 0 0 0 and",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "rewrite main skilled v4 0 0 0",
+      "history rewrite plan",
+      "history rewrite tasks",
       "history rewrite acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "history rewrite implementation summary"
     ],
     "key_topics": [
       "history",
       "rewrite",
       "main",
       "skilled",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -202,7 +200,7 @@
     ],
     "causal_summary": "New commits carry an address",
     "created_at": "2026-09-11T07:16:30Z",
-    "last_save_at": "2026-10-07T12:55:27.289Z",
+    "last_save_at": "2026-10-07T15:56:49.070Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76bca89d6c96bb6c16a9ef2a7081389e8aa94ea5d6628fca183b41675aee8004",
+    "source_fingerprint": "sha256:cf3318219495d9a137c0a7de8877abbab4188d39303ac26a1766716f0678e9cb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e156648beed1e5ae1c3c97eef1d7d6c8935ead92a334f3c30ec1c40fddf577bf",
-      "plan.md": "fac2da216226399e1482298bf1eb5f15037cc27fd4942c12f394b67a9805d8d8",
-      "tasks.md": "e6f94d14aa29363809c65ddfc0689c834e8596ac0b557b0fdacc83845b1ec5cd",
-      "implementation-summary.md": "02a1c991fc36f197675b781735621779388c315258cac8f5d0634538d58e5384"
+      "spec.md": "e0fa5977c6019057a777bda6fb604ba11f76798876b76c8a37f90e5ad7eb9f1d",
+      "plan.md": "6284096844ff2723d48862f42b0692e1e1f7ce496ce2482bee41719482a248a4",
+      "tasks.md": "7dc0a9d168f24cf9420e08031eda91d0c3f9e32df783fce3f5a20d0d4e74a529",
+      "implementation-summary.md": "e0dc2e0849deb88881b8c71ace26f6842dff6b6dd88738abda8c72adb415740c"
     },
     "last_active_at": null
   }

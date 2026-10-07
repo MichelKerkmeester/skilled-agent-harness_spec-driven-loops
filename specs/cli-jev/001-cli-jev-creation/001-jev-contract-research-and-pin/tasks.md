@@ -2,9 +2,7 @@
 title: "Tasks: Phase 1: jev-contract-research-and-pin"
 description: "Task ledger for the jev contract pin: source map, live install, surface probes, the exit-code matrix, the MCP handshake and the evidence transcription."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
+  - "jev contract research and pin tasks"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

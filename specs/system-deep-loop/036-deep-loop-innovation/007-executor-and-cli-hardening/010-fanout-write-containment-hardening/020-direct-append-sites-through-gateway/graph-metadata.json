@@ -12,17 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "direct append sites through gateway",
-      "every remaining direct state log append in the",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "every remaining direct state log append",
+      "direct append sites through gateway plan",
+      "direct append sites through gateway tasks",
       "direct append sites through gateway acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "direct append sites through gateway implementation summary"
     ],
     "key_topics": [
       "direct",
@@ -33,10 +31,10 @@
       "remaining",
       "state",
       "log",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -196,7 +194,7 @@
     ],
     "causal_summary": "The projection store appends only when the current state log is a durable prefix of the folded projection and otherwise replaces the file, so any row a YAML appended outside the ledger was dropped on the next gateway write",
     "created_at": "2026-09-20T08:33:43.642Z",
-    "last_save_at": "2026-10-07T12:55:36.771Z",
+    "last_save_at": "2026-10-07T15:57:00.949Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b351fa50f3f0bf93564175f5ef91b9ff02088eb91af19db160718f57f437d82d",
+    "source_fingerprint": "sha256:3a3e78811d0b7494dc9da836dc6c517b6c9a29a6f53f9639a476e11797a05b4a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "73cd1ae07b04453ebd75cbbe3e793bfd2bb3a426a55368a41001a43b2dac7f59",
-      "plan.md": "2e832a224b577e2a55198fa86637ff629159cf84528e56fe222a6ad780ee48a9",
-      "tasks.md": "40f8e6dc41863b4247fed46a3d9196947294824a034187c19b2e751906d3ce9d",
-      "implementation-summary.md": "7c02ab30b673d65bd8ccaee5dc77ba89bc67e6b126d848f616770e2555feb4a9"
+      "spec.md": "4c9560d8e55de8ede58a27cf3dd73082f09e8bc5983737da21b0bc52181bfd86",
+      "plan.md": "35db0de9c1f120f8d9c193d222b415d0311fa520b9f9a2bc86931a561c22e315",
+      "tasks.md": "a17fec81e98c0e1c2f236e65d538b05fc99241cb1c2bef02319da2de62696924",
+      "implementation-summary.md": "f034a1c81f0fb58bd4291ece7050f2ed7342a34f31fb085b24526598cd381d1d"
     },
     "last_active_child_id": null,
     "last_active_at": null

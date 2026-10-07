@@ -15,14 +15,10 @@
       "artifact walker",
       "source to target map",
       "registry driven freshness",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "registry walker and proof plan",
+      "registry walker and proof tasks",
+      "registry walker and proof acceptance criteria",
+      "registry walker and proof implementation summary"
     ],
     "key_topics": [
       "derived",
@@ -34,9 +30,9 @@
       "map",
       "driven",
       "freshness",
-      "implementation",
+      "proof",
       "plan",
-      "technical"
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -201,7 +197,7 @@
     ],
     "causal_summary": "Freshness is defended per artifact, and the artifacts are not unproved",
     "created_at": "2026-09-11T06:37:35Z",
-    "last_save_at": "2026-10-07T12:55:47.704Z",
+    "last_save_at": "2026-10-07T15:57:27.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8df6f0e96e568e2bf82057e9a97aa904fc4960f3c3c1b84d258ed9fb06d85436",
+    "source_fingerprint": "sha256:e7ce74fcb52fe9c9be364b1439c5a00441af7a2cfee418d009296e75aacc9a65",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9d618434d41bf56f1e62729a277d52bebf0ffc5fefd769b0a30ac9877c75fa5e",
-      "plan.md": "cd7de1210c0c4b00eaf7caa527bcef99585360f6ec37dac96f43957f044b89aa",
-      "tasks.md": "d87f78ba7bc7c72fcfdde2c1c3e2408cb8468c0ba3ae7212b9261103017f7596",
-      "implementation-summary.md": "e846cb9053129303f7560024ebbc8be6a6afdbb6b9ff7d2e6ba65b0e4e727a29"
+      "plan.md": "2e63bcded7bf88b32ac1c35b0bd748e7cc3adb0474e0a8d879d18b94249b471a",
+      "tasks.md": "312b8e0df9890f03f209df6e26f377ef120bb1b4c865711d29b8d9e62d5b514c",
+      "implementation-summary.md": "6828f1bbb4ce3caef1c0eae59eb6b5f96d511581db2f49b8a181c3722a9ab3de"
     },
     "last_active_at": null
   }

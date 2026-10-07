@@ -5,7 +5,6 @@ trigger_phrases:
   - "cli residue removal tasks"
   - "dead file census tasks"
   - "spec kit check workflow tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

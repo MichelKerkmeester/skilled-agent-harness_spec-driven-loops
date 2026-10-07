@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "median and ladder correction",
       "two of the three fixes in the packet",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "median and ladder correction plan",
+      "median and ladder correction tasks",
       "median and ladder correction acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "median and ladder correction implementation summary"
     ],
     "key_topics": [
       "median",
@@ -31,12 +29,12 @@
       "two",
       "three",
       "packet",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "durable"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -199,7 +197,7 @@
     ],
     "causal_summary": "Two geometry fixes shipped on the strength of my own reading of the captures, because the packet",
     "created_at": "2026-09-10T07:13:30Z",
-    "last_save_at": "2026-10-07T12:55:16.029Z",
+    "last_save_at": "2026-10-07T15:56:39.240Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8676955761fa12e3e770670e4d15e8f16c3a14ac244509e62e1bd6b51b37f316",
+    "source_fingerprint": "sha256:4151e3597fca8b028ca3ad38c852571cf1071e143299e091719dd9254dbb4061",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "09ef762ae98f924b9fe7d91852749a6cee565ce938061d9c6a71905b8d349f0c",
-      "plan.md": "7f9415d3b59d4142003493d371aef7596d7f4d799eaf4ba9f6202f5f21b06f94",
-      "tasks.md": "5791d74cfe29bb1f3baf93bf2c8e580d27c67060a986a9463fd8f3f3d7af5bac",
-      "implementation-summary.md": "f9b538c3214ec9f6c704526b5cb1eedf3d05182e203d87acb3a467683d804ee8"
+      "plan.md": "b995916d7d818a2f3364fd4f9803aafb9e715b7e93a88d8c2ab63435f114d369",
+      "tasks.md": "34c566af835f97f7909baa053c4c6ed2259b406388f81360abe0e2ad81f3d0f8",
+      "implementation-summary.md": "7636ef1727f940ea610deff7a76c6657fa0c78816a6e39e9bb289aec072efd0a"
     },
     "last_active_at": null
   }

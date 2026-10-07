@@ -2,7 +2,6 @@
 title: "Implementation Plan: Phase 1: trigger-index-freshness"
 description: "Regenerate the committed trigger index through /doctor:rebuild, make folder-token-fallback reachable at generation by sharing packetFolderTokens, add the generator's --check as the doctor's staleness evidence, and correct the retrieval lane's documents and version pins."
 trigger_phrases:
-  - "implementation plan"
   - "trigger index regeneration"
   - "folder token fallback"
   - "staleness evidence"

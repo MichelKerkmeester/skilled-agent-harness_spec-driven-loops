@@ -6,7 +6,6 @@ trigger_phrases:
   - "containment reverted patch"
   - "recursion guard macos"
   - "in-process lineage execution"
-  - "implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The cli-jev creation history now lives in its own track, and every live surface that cited the old home was repointed or regenerated. Both packets validate with zero errors, and a repo-wide census finds no remaining citation of the retired path."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "track and packet migration implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

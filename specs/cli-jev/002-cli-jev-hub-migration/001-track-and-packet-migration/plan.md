@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: track-and-packet-migration"
 description: "Move the cli-jev creation packet to a new track root, author the track metadata no scaffolder writes, repair the derived facts the move invalidates, and repoint every live citation before any later phase can cite the new home."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "track and packet migration plan"
 importance_tier: "normal"
 contextType: "general"
 _memory:

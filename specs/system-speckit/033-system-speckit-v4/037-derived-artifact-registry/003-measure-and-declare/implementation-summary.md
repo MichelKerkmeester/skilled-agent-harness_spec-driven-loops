@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The phase has not executed yet. This summary records the pre-implementation state, the files the phase will touch, and the measured baseline no claim may contradict."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "measure and declare implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

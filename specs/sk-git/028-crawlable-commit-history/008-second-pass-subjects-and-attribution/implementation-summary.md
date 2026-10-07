@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "In progress: the second-pass subject plan builder and its tests exist; push, remap and hooks are not yet done."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "second pass subjects and attribution implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -16,10 +16,7 @@
       "generate-command-routers path drift",
       "speckit router contract drift plan",
       "command contract commands filter",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "speckit router contract drift tasks",
       "speckit router contract drift summary",
       "generate-command-routers clean"
     ],
@@ -196,7 +193,7 @@
     ],
     "causal_summary": "`generate-command-routers.cjs --check` exits 1 with three path drifts",
     "created_at": "2026-10-04T05:02:37Z",
-    "last_save_at": "2026-10-04T05:05:04.006Z",
+    "last_save_at": "2026-10-07T15:57:43.905Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a3ae64df140d3e35d4656537da3399b41986a3776cdd55a0d1aa6d19bbe20fd0",
+    "source_fingerprint": "sha256:a557f6941d9ea442c8e640db774ce76188e62901b2412c99ba153c41a250ec5a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "51658e70eefb1754964717fc59d711e8aa7b1ac0e2cafc9d8f9c1427545e44cb",
       "plan.md": "c608f8d761e1997ebf79470d920596a7cf58067376af01bb3208d9a60117bd8d",
-      "tasks.md": "09ff6123b2b90314fbce366f5563739adc49ba9a899cd371e05ee9b3d495d2e6",
+      "tasks.md": "6cd5519ac46f060c6caa9f169eb33a662422996bdd4cd5f7a56e1d25a2c5cd91",
       "implementation-summary.md": "b618e38a4038719a0c160554235242213a9482ea002dd75c232e71ec6b45e352"
     },
     "last_active_at": null

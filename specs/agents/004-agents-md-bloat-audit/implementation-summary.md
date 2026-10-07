@@ -2,7 +2,6 @@
 title: "Implementation Summary: AGENTS.md Bloat Audit"
 description: "A 5-iteration read-only deep-research loop audited the root AGENTS.md and produced a ranked bloat-reduction report; the safe subset was later applied ad-hoc outside this packet's scope."
 trigger_phrases:
-  - "implementation summary"
   - "agents.md bloat audit"
 importance_tier: "normal"
 contextType: "implementation"

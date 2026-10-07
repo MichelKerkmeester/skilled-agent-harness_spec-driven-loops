@@ -2,7 +2,6 @@
 title: "Implementation Summary: hash-verified edits"
 description: "What shipped in this phase, the evidence behind each claim, and what was left undone or unverified."
 trigger_phrases:
-  - "implementation summary"
   - "phase outcome"
   - "verification evidence"
 importance_tier: "important"

@@ -6,7 +6,6 @@ trigger_phrases:
   - "spec doc retrofit"
   - "frontmatter normalization"
   - "greppable spec docs"
-  - "implementation plan"
 importance_tier: "normal"
 contextType: "general"
 ---

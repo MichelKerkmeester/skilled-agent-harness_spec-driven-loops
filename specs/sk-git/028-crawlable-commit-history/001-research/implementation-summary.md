@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Ten DeepSeek iterations settled the commit grammar question with measurements: keep the subject, put the address in a final trailer block, retrofit through a mapping cascade and a mirror rewrite."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "research implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

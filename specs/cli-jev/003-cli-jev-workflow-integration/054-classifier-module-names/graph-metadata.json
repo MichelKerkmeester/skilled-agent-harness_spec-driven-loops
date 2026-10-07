@@ -17,12 +17,9 @@
       "classifier injection screen",
       "classifier module names plan",
       "classifier extraction plan",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "classifier module names tasks",
       "classifier module names acceptance criteria",
-      "implementation summary"
+      "classifier module names implementation summary"
     ],
     "key_topics": [
       "classifier",
@@ -200,7 +197,7 @@
     ],
     "causal_summary": "A reader cannot tell from file names where the classifier runs",
     "created_at": "2026-10-05T08:28:47Z",
-    "last_save_at": "2026-10-07T12:54:57.128Z",
+    "last_save_at": "2026-10-07T15:56:07.061Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47491338299d4953953f5d5b1503fe9f95583f78b3a55e6826179f3ade1952c8",
+    "source_fingerprint": "sha256:20131cab3a2df90adee64459fdd86eae15116c46ae58bf31176b232e9ef887af",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3e7212a8cb1fb52649579c200a42b63d28010d9bb806b70c0eee6296ec89fa66",
       "plan.md": "bb8d38d6872db9cd9ef9951d0c1c70853d57de729f5146ef639f82f35b15533e",
-      "tasks.md": "c9ba324dd3a3c39161cb2b74814f53bb0b04e5f64f90491654561f720ac176e5",
-      "implementation-summary.md": "18fabd9a180ca3da75ab8ef97d3eb74b2163e18b9b4cfe8d578afce3e5fce835"
+      "tasks.md": "8c7c9bba1273179052f2344367aab2885b4faa9670ac5653f2322b211bdfbffc",
+      "implementation-summary.md": "003b5983e015fd7d011602637459eb605210dccf996a8895f6f9247c820ce7a7"
     },
     "last_active_at": null
   }

@@ -2,8 +2,6 @@
 title: "Acceptance Criteria: Phase 10: machine-and-consumer-cutover"
 description: "The criteria this phase must satisfy before it may close: hooks that never dangle, Codex hooks without duplicates, one-line config edits with backups, working consumer projects and no leaked secret, each met, waived or superseded."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
   - "machine cutover acceptance"
   - "global hooks relink criteria"
 importance_tier: "important"

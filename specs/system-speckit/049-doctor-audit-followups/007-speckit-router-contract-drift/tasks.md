@@ -2,10 +2,7 @@
 title: "Tasks: Phase 7: speckit-router-contract-drift"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "speckit router contract drift tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

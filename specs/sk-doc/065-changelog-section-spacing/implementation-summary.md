@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Changelog entries and release notes now put a forced blank line before every top-level section and nothing between the items inside one, and the published v4 Skilled releases match."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "changelog section spacing implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

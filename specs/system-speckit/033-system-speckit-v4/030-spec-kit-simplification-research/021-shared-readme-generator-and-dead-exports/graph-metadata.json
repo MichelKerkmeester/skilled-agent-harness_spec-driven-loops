@@ -22,7 +22,7 @@
       "shared readme generator tasks",
       "remediation tasks",
       "round three tasks",
-      "verification checklist"
+      "shared readme generator criteria"
     ],
     "key_topics": [
       "shared",
@@ -48,7 +48,6 @@
       "goal.md",
       "implementation-summary.md",
       "shared/scripts/env-reader-table.mjs",
-      "shared/readme-env-readers.test.ts",
       "shared/README.md",
       "shared/utils/path-security.ts",
       "runtime/lib/validation/spec-doc-structure.ts",
@@ -97,12 +96,6 @@
         "name": "env-reader-table.mjs",
         "kind": "file",
         "path": "shared/scripts/env-reader-table.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "readme-env-readers.test.ts",
-        "kind": "test",
-        "path": "shared/readme-env-readers.test.ts",
         "source": "derived"
       },
       {
@@ -200,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Child 015 said the README's reader table was generated from the code, but no generator existed in the tree: the table was hand-written from a one-off scan, and its text-helpers row named consumers that do not import the helpers",
     "created_at": "2026-09-07T13:14:46.465Z",
-    "last_save_at": "2026-09-08T15:47:15.234Z",
+    "last_save_at": "2026-10-07T15:57:23.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +214,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a0d252fb0db7fb3978b5d9767963d6a532ea825a164552e7669760758bc54c4",
+    "source_fingerprint": "sha256:0c53f4b86a151b85410d7e2b7ad85d2c62a56841e8ef7bbd1da92936f6046c88",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ce6ea9db5567fb8f5361b04495310bb28a9da1fc1329a68dab8cf037b0337901",
       "plan.md": "9e1d895d3dfd644ed6d91ee381f1c8711ad79a0faff28cefe3ebc4aafefc3ca8",
-      "tasks.md": "3273600447bfe9f5fa244d48c94c38cd955eed43bef09b43da9e1090aac59091",
+      "tasks.md": "b2bd4e1564a99869c7b639c4c4e910d38439b4e40c365a6561da1fcd78fbcb31",
       "implementation-summary.md": "5110f5f8fca8c8d65a1b36d4054fcee9b6bb0e94f8ac19120b9159dbfae35ebf"
     },
     "last_active_child_id": null,

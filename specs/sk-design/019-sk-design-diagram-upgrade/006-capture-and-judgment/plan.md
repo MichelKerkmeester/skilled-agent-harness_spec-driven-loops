@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 6: capture-and-judgment"
 description: "Extend the playbook's persistence contract with a capture-review scenario, define the judged column and the graduation door, and specify the label-mask overflow measurement."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "capture and judgment plan"
 importance_tier: "normal"
 contextType: "general"
 ---

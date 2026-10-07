@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 12: reply rule delegation repair"
 description: "One headline sentence, chosen from what the file already carries, and a sweep that proves it was the only duplicate."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "reply rule delegation repair plan"
 importance_tier: "normal"
 contextType: "general"
 ---

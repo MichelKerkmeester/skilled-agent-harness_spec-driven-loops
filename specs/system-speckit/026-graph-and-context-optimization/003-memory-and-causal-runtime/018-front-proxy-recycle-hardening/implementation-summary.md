@@ -16,10 +16,7 @@ _memory:
     answered_questions:
       - "Defect (c) lease socket-path deferred as a follow-up."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "front proxy recycle hardening implementation summary"
 ---
 # Implementation Summary: Front-Proxy Recycle Hardening
 

@@ -16,13 +16,9 @@
       "pi model provider mapping",
       "flat price fan-out billing",
       "glm fan-out unreachable",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "cli pi devpass glm route plan",
+      "cli pi devpass glm route tasks",
+      "cli pi devpass glm route implementation summary"
     ],
     "key_topics": [
       "cli-pi",
@@ -200,7 +196,7 @@
     ],
     "causal_summary": "The operator asked for a deep-research run on GLM-5.3-Flash at `max` through cli-pi, billed to DevPass, their flat-price LLM Gateway plan",
     "created_at": "2026-09-20T08:33:39.128Z",
-    "last_save_at": "2026-10-03T15:12:17.905Z",
+    "last_save_at": "2026-10-07T15:56:55.312Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62296687cf01e28392daeef07327a254e8ea6401e75a7065474b9e0be1ccea50",
+    "source_fingerprint": "sha256:6cf846a3a795e6691d811a58bc4faab46f4d8292779f0e8b0c6d12f341f1e5c7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d29210258a85972ad53e50e258d94f849494f828eed89159d24b2f534e7d717d",
-      "plan.md": "ee5f84bf53c6525d943c0ae6f1857071d6c828c9a84fd1bc4aa1303a2606452e",
-      "tasks.md": "56e42c46cc81999806bb8096de142814b922d48bde2b102665ca258897786f3f",
-      "implementation-summary.md": "bb72ea01d8d625e923bec89313f93b9e090b1fc79d2e4f4f5b5cbb88ffcc51a5"
+      "plan.md": "771b932e8cda4c67085188b70895f3c2b42bad0993fa11873354dd54bb361416",
+      "tasks.md": "29fcc261aab8e4a82543a6849ad7fdf0fa41551a83abf6985645795dd5438726",
+      "implementation-summary.md": "5f940e88e612b06f7d809a9cbd84a43048da99cdb44dfecd33b1f6ecf98afd53"
     },
     "last_active_child_id": null,
     "last_active_at": null

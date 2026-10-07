@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The two unprefixed reply rules took the communication prefix, every live reference followed, and the frozen reply benchmark stayed valid because a renamed rule is one item under either name."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "communication rule naming implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

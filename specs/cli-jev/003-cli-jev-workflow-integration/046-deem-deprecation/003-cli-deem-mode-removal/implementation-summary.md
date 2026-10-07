@@ -2,10 +2,7 @@
 title: "Implementation Summary: Phase 3: cli-deem-mode-removal"
 description: "Delete the cli-deem mode packet and its copies, and leave cli-classifier a valid parent hub whose only mode is cli-jev. Complete."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "cli deem mode removal implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

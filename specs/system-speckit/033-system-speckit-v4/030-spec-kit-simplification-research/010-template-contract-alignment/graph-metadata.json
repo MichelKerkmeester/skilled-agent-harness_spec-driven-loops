@@ -22,7 +22,7 @@
       "template alignment tasks",
       "contract census tasks",
       "goal flag tasks",
-      "verification checklist"
+      "template alignment criteria"
     ],
     "key_topics": [
       "template",
@@ -57,10 +57,10 @@
       "runtime/cli/tests/template-version-parity.vitest.ts",
       "runtime/cli/tests/level-contract-resolver.vitest.ts",
       "runtime/README.md",
-      "runtime/lib/hooks/README.md",
       "runtime/ENV-REFERENCE.md",
       "runtime/cli/rules/check-ac-coverage.sh",
-      "templates/README.md"
+      "templates/README.md",
+      "templates/EXTENSION-GUIDE.md"
     ],
     "entities": [
       {
@@ -166,6 +166,12 @@
         "source": "derived"
       },
       {
+        "name": "EXTENSION-GUIDE.md",
+        "kind": "doc",
+        "path": "templates/EXTENSION-GUIDE.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The template system's documents described a different system from the one that runs: a cumulative per-level ladder where the real add-on list is flat, a closure document that \"warns\" where the rule fails, a hard block on decision records that no rule enforces, seven documents \"written when you ask\" of which only four had a flag, a `checklist.md` retired months ago, and a manifest taxonomy nothing reads",
     "created_at": "2026-09-07T02:03:48Z",
-    "last_save_at": "2026-09-08T15:47:13.299Z",
+    "last_save_at": "2026-10-07T15:57:22.851Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8995a64ceefd13ddae0dbcd3e6b9689e2d274c941e3ca0cd210acaf177ab3a2",
+    "source_fingerprint": "sha256:755aa159f8917ffb0ef568452188f80201e60787291b67b5099b3ae88b9672c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "44800f81b4120a43e79fbe4ececf209627731abf6ba17563480230030d77ec45",
       "plan.md": "fc827dff406bdbecd88da4641915d0f6681efde256899d74efca781b022ff8e2",
-      "tasks.md": "659fe49a55bc511081db2c71e95c5614c7dae7a0ed44482970ea7ad4f048c44f",
+      "tasks.md": "c6109a1fc083084bc961a8f13fce666ae16a5a83a1069eccf8782a9fc21e6d4c",
       "implementation-summary.md": "27f5b2ed09b8fecb7fbb1a1df2d451b5a7e08f4bcc654c2a8a7932b888f923d1"
     },
     "last_active_at": null

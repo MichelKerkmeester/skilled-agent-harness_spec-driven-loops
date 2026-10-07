@@ -15,14 +15,9 @@
       "sk-create-changelog template rewrite",
       "changelog narrative format",
       "changelog omission rules",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "sk create changelog v4 style plan",
+      "sk create changelog v4 style tasks",
+      "sk create changelog v4 style implementation summary"
     ],
     "key_topics": [
       "changelog",
@@ -34,9 +29,9 @@
       "format",
       "omission",
       "rules",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -57,10 +52,10 @@
       ".skilled/commands/create/assets/create-changelog-confirm.yaml",
       ".hermes/skills/sk-create-changelog/SKILL.md",
       ".hermes/skills/sk-design/SKILL.md",
-      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-doc/manifest.json",
       ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
       "specs/sk-doc/057-sk-create-changelog-v4-style/scratch/check-changelog-structure.py",
-      ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.2.0.md"
+      ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.2.0.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/never-infer-release-line.md"
     ],
     "entities": [
       {
@@ -144,7 +139,7 @@
       {
         "name": "manifest.json",
         "kind": "config",
-        "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-doc/manifest.json",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
         "source": "derived"
       },
       {
@@ -157,6 +152,12 @@
         "name": "v1.3.2.0.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "never-infer-release-line.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/never-infer-release-line.md",
         "source": "derived"
       },
       {
@@ -200,17 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-create-changelog template still models the machine-era changelog format",
     "created_at": "2026-09-22T07:43:08Z",
-    "last_save_at": "2026-09-29T07:45:47.127Z",
+    "last_save_at": "2026-10-07T15:56:45.706Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:689be964ae78a171c5433a7c7309665c8eb212c580730770744310b0b5fb2c05",
+    "source_fingerprint": "sha256:fae538ae4d9b37e31fd0f6e04f2e79337e9530b1ff2aa9d18ceb14318251ad45",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e74902c5ac5245dd201dc941241c829c732e9b7cab29904688b2729282bb36d6",
-      "plan.md": "0d715a19f948097574a9b99794fee24ff8e3aadd3523d80f6edfcf45d1b74741",
-      "tasks.md": "948da7e98e277425e9330debb7edce06a326a7a7b1683e5735bfb74dfcdaab4a",
-      "implementation-summary.md": "b30ab024de5e8b1a8924261958f43debc0fe1c0da31625cf083b69d475aadbef"
+      "plan.md": "b0160786161dd175db9fb01f02f9d921292eb3e33687dee13aaf7eb515784dae",
+      "tasks.md": "eefdd93ca8045defb1662d4d10160b570da56a43fd1e7fe37cc19de75fcdf95a",
+      "implementation-summary.md": "2d24dceccfd06277aa7608ec71131ec09c3bfbec3495fc57619cec2b80d42fa5"
     },
     "last_active_at": null
   }

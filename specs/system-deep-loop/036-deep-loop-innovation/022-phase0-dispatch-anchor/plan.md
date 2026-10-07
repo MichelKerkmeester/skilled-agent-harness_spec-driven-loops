@@ -11,10 +11,7 @@ _memory:
     recent_action: "Authored the plan; implementation complete"
     next_safe_action: "Verify both gates; reconcile docs"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "phase0 dispatch anchor plan"
 ---
 # Implementation Plan: Objective Dispatch-Context Anchor for the deep/* Phase-0 Gate
 

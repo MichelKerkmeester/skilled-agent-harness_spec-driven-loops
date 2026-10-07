@@ -21,8 +21,8 @@
       "research lane tasks",
       "lane launch and monitoring",
       "template system and acceptance criteria lane tasks",
-      "acceptance criteria",
-      "closure gate"
+      "template system and acceptance criteria lane closure",
+      "packet goal"
     ],
     "key_topics": [
       "template",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The root README mentions a resource map as if it were part of every packet, the timeline and roadmap addons are barely mentioned, and three surfaces (tasks checklist, checklist.md, acceptance-criteria.md) claim to gate completion",
     "created_at": "2026-09-06T14:29:32Z",
-    "last_save_at": "2026-09-08T15:47:11.340Z",
+    "last_save_at": "2026-10-07T15:57:18.914Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f992b18f11cb8254e2c6fbc11843f66e4de958d30a4d81e523cf0b5b866fefaa",
+    "source_fingerprint": "sha256:73eb75f791a293cd7d7c5a5ec7d4444ae0d1fe956f02321dfe1cf55948212709",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e7766b34259b6d63281bcdb64af5ca96b2e9d155261c4b6494f9df44237c2041",

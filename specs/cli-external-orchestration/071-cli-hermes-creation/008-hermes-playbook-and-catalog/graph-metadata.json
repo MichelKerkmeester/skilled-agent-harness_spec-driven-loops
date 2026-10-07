@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "hermes playbook and catalog",
       "hermes playbook and catalog a 36 scenario manual",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "hermes playbook and catalog plan",
+      "hermes playbook and catalog tasks",
       "hermes playbook and catalog acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "hermes playbook and catalog implementation summary"
     ],
     "key_topics": [
       "hermes",
@@ -30,13 +28,13 @@
       "catalog",
       "scenario",
       "manual",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal",
+      "durable"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -196,7 +194,7 @@
     ],
     "causal_summary": "The packet had a playbook root with categories and no scenarios, no recorded execution, and no catalog",
     "created_at": "2026-09-14T17:24:49Z",
-    "last_save_at": "2026-10-07T12:54:47.341Z",
+    "last_save_at": "2026-10-07T15:55:51.861Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2825ddfba921ec45a9a058b9de2ac80b909d4d849e4068daa587e1ba51da0cac",
+    "source_fingerprint": "sha256:548c524bed61c326cbf2e801f865262216fc88d92743152000f65a60d3dd2c6e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7510ec500f8cec023c0a929b9420d8ff6b64497cdf8cf11fefe0b6d2dba72ab7",
-      "plan.md": "e98998db7e210e91d29963146cf2d584bad47e6f7759e8c0cb0e69564584acb8",
-      "tasks.md": "c7b7379769488c9d6c1dd0ee532ba61d3314dd269a72341b15748ef70b3ab0fa",
-      "implementation-summary.md": "3ee137933395a27a791a7d304a50b9440dcc8e8a1549637bcee2ff669c1768dc"
+      "plan.md": "1b0efd5100f3bf88e555a2f70f597327d2ee274651a85a692cf2fc702c9b0147",
+      "tasks.md": "e3db1e0f18f831308ff8e52691971f1ecb13ff147c536ef2b036f098d7b80ea9",
+      "implementation-summary.md": "ee4ec0ea4350e696f9582fa7f10aaca388e268fe052c240592e08d7b4a7c7656"
     },
     "last_active_at": null
   }

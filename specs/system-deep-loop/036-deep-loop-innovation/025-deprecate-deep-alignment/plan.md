@@ -11,10 +11,7 @@ _memory:
     recent_action: "Authored the removal plan; delete-then-regenerate order proven"
     next_safe_action: "Confirm whole-suite vitest; commit; push v4 + main"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "deprecate deep alignment plan"
 ---
 # Implementation Plan: Deprecate deep-alignment and Cascade to the Conformance-Benchmark Capability
 

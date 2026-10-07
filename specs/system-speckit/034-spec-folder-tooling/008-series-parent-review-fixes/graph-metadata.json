@@ -14,15 +14,10 @@
       "series parent review fixes",
       "phase 8 series parent review fixes",
       "runnable series parent recipe",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "series parent review fixes acceptance criteria"
+      "series parent review fixes plan",
+      "series parent review fixes tasks",
+      "series parent review fixes acceptance criteria",
+      "series parent review fixes implementation summary"
     ],
     "key_topics": [
       "series",
@@ -31,12 +26,12 @@
       "phase",
       "runnable",
       "recipe",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -210,7 +205,7 @@
     ],
     "causal_summary": "Anyone following the series parent recipe gets three placeholder children that the next steps collide with",
     "created_at": "2026-10-07T09:58:43Z",
-    "last_save_at": "2026-10-07T13:16:58.283Z",
+    "last_save_at": "2026-10-07T15:57:33.498Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +215,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:755157fce1a1fd649ca116fa627e9c03b8403a188e9c5f6ea047179f0b204c6d",
+    "source_fingerprint": "sha256:970bc770162ed4ebfd77a6a24da674dfb90a87b6e772d4bf5e492aa5428bfb52",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eb83757c0f8efd820fced4821ccfd34923947903a8c1aa9cb47d1c07054f6211",
-      "plan.md": "db186f45f7e0132d1e8bac3469c01408a52e543c1374a3d3fcfb6476d35c40a8",
-      "tasks.md": "7dc40363c3a3f85180bdffab87e5dae6b8f21f61f2b06bf130af8b4cdf898ab1",
-      "implementation-summary.md": "cddb383311fe184652c4d668edaa3a41ac17470a0a509a05a4063bbdeee6d9b7"
+      "plan.md": "5a5762e9c579cda92b1ac170ce4d0e51d8227bd6c5b3c3b73f786754cd136c22",
+      "tasks.md": "a041c158120596b41300bccaf60da5e26dcf6818fe857bf2700bd1cb69971a8a",
+      "implementation-summary.md": "e07742ce285779b1a3ff52a81a3583d012b6e3d6affbba7372b6ded6af7ca4ed"
     },
     "last_active_at": null
   }

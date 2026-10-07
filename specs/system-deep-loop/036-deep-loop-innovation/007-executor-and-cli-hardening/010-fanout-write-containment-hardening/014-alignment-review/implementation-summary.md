@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A fifteen-iteration, three-lane alignment review with zero P0 and seven P1, every confirmed finding bound to phases 016 to 020 or recorded as reviewed."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "alignment review implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

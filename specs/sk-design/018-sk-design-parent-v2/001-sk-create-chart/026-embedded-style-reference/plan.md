@@ -2,10 +2,7 @@
 title: "Implementation Plan: embed the stock Style Reference in the chart skill and keep the generator override"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "embedded style reference plan"
 importance_tier: "normal"
 contextType: "general"
 ---

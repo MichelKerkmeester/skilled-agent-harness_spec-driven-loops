@@ -2,10 +2,7 @@
 title: "Tasks: Phase 7: hub-routing-integration"
 description: "Priority-tagged setup, hub-wiring and verification tasks for sk-create-goal routing."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "hub routing integration tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

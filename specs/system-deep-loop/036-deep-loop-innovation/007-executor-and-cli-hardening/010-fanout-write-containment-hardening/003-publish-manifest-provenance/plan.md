@@ -2,10 +2,7 @@
 title: "Implementation Plan: Record executor kind and model in the publish manifest so the attribution table stops reading unknown"
 description: "Read the executor provenance the runner already persists beside each lineage and surface it in the attribution table and a label-keyed map on the merged registry."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "publish manifest provenance plan"
 importance_tier: "normal"
 contextType: "general"
 ---

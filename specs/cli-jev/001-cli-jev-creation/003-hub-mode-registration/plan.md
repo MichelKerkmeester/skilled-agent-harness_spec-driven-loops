@@ -2,9 +2,7 @@
 title: "Implementation Plan: Phase 3: hub-mode-registration"
 description: "Register cli-jev as a transport on every routing surface, teach the dispatch hooks and the compiled-routing compiler to recognise and model it, then rebuild and re-mint so the runtime serves what the files claim."
 trigger_phrases:
-  - "implementation plan"
   - "approach and phases"
-  - "testing strategy"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

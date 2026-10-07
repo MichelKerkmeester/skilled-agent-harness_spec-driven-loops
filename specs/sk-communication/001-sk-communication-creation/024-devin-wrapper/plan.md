@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 024 Devin Wrapper"
 description: "Wire Devin through the CLI-output wrapper by capturing a non-interactive `devin -p` print run, mapping it through the Devin runtime adapter into projectMessage(), re-rendering under the enablement gate, and failing open to the byte-exact original."
 trigger_phrases:
   - "devin-wrapper"
-  - "implementation plan"
   - "devin -p print projection plan"
   - "devin runtime adapter wiring plan"
 importance_tier: "important"

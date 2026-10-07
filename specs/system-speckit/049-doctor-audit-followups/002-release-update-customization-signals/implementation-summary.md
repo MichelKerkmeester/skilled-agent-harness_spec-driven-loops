@@ -2,10 +2,7 @@
 title: "Implementation Summary: Phase 2: release-update-customization-signals"
 description: "The release updater now tells generated files from authored ones, records a base for copied trees, has an explicit prerelease opt-in, and applies update-only units without an alignment run."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "release update customization signals implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

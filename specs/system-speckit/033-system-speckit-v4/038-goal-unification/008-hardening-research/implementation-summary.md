@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Five research iterations and a second five-iteration review named twelve small certain changes and seven advisories; ten of the changes and six of the advisories are built and tested, the rest are the backlog."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "hardening research implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

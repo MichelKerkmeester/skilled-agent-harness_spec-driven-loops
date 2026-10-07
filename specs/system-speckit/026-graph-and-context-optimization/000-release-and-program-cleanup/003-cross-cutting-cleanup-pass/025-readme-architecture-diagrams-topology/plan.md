@@ -4,10 +4,7 @@ template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 description: "Two-phase plan: first research each folder to understand its component relationships, then add diagram + tree to each target README."
 importance_tier: "normal"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "readme architecture diagrams topology plan"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->

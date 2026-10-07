@@ -2,10 +2,7 @@
 title: "Tasks: Phase 14: doctor-env"
 description: "The ordered work for the doctor-env phase: build the three command assets, wire them into the doctor family, then verify with the recorded run and the checks."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "doctor env tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

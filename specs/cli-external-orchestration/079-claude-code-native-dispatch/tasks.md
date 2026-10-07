@@ -2,10 +2,7 @@
 title: "Tasks: Tell Claude Code sessions to dispatch native subagents instead of the cli-claude-code CLI"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "claude code native dispatch tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

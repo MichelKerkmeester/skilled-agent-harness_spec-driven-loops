@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The six agent trees now have a written translation contract, each workflow mode owns its own leaves, and the deep-review bodies no longer demand state keys nothing reads."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "agent mirror parity implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

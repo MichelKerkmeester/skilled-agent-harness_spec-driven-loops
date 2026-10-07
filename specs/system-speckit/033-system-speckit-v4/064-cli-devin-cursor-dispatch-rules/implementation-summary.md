@@ -2,7 +2,6 @@
 title: "Implementation Summary"
 description: "cli-devin and cli-cursor now send only research and review lineages through the fan-out runner and point single build and doc dispatches at the child envelope, matching cli-codex."
 trigger_phrases:
-  - "implementation summary"
   - "cli devin cursor dispatch rules"
   - "cli devin cursor fanout scope evidence"
 importance_tier: "normal"

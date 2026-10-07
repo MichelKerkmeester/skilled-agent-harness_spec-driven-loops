@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "angle driven review",
       "a twenty iteration angle driven review of routing",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "angle driven review plan",
+      "angle driven review tasks",
       "angle driven review acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "angle driven review implementation summary"
     ],
     "key_topics": [
       "angle",
@@ -31,12 +29,12 @@
       "twenty",
       "iteration",
       "routing",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -196,7 +194,7 @@
     ],
     "causal_summary": "Twenty phases of the containment packet changed the deep-loop runtime, its commands, protocols, catalogs, agents and packet docs",
     "created_at": "2026-09-20T08:33:43.794Z",
-    "last_save_at": "2026-10-07T12:55:30.298Z",
+    "last_save_at": "2026-10-07T15:56:49.620Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da120a2dbc2b6be9b8566265987741ffed70c70f4bcc6eb9b4524871c2ee0774",
+    "source_fingerprint": "sha256:e6e6b751fdbacc1298e71152f7157ed28301a9a7d901b435aba53376139855d2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c9986095a992906fd9a1b4ccfe92d9770f0cce784261b7bb4caa9f6b25f49e4b",
-      "plan.md": "fe3aaa350410065a0a1df2afadb70135a5f1da7f262c356beae999185a1c88bf",
-      "tasks.md": "977003711642c8e40cc4d18635b72147b3d6a95864ce3e704d33eaa918d84c6a",
-      "implementation-summary.md": "5745575f2d2e8f1d5965b4b239a555c3355c9e1cd33dcbd1b6b03ae342ef2f4c"
+      "plan.md": "ecfedd1fa456ee4ff9528af599504d69829c1077ffc22e7aea079871c561b6ec",
+      "tasks.md": "385c1dc3d128e7ad2647e73c278ed4cf2ed0370d39e8a0f47f11963889bf21e4",
+      "implementation-summary.md": "787cc0c0ec89f9199db612397d2405a7c24c3014d6eecd180fe52650e71a0557"
     },
     "last_active_child_id": null,
     "last_active_at": null

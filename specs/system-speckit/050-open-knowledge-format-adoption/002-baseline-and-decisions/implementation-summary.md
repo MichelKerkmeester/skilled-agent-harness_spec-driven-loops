@@ -2,10 +2,7 @@
 title: "Implementation Summary: Phase 2: baseline-and-decisions"
 description: "Frozen census at commit 5285608745, the call-site answer, the sk-doc addendum, D1 to D4 drafted and a two-family labeled sample; operator approval of D1 to D4 is the one open item."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "baseline and decisions implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

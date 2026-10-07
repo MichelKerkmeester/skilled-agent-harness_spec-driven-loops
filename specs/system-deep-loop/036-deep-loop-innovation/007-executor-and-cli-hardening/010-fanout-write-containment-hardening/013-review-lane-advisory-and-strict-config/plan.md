@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 6: review-lane-advisory-and-strict-config"
 description: "Map the registry field per loop type in the advisory, make the containment schema strict, and name the failing branch so an unknown key surfaces."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "review lane advisory and strict config plan"
 importance_tier: "normal"
 contextType: "general"
 ---

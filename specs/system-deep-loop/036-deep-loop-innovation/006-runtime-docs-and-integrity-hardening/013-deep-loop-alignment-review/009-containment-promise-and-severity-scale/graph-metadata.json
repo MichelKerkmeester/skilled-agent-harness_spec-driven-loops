@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "containment promise and severity scale",
       "the containment promise says what the runner does",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "containment promise and severity scale plan",
+      "containment promise and severity scale tasks",
       "containment promise and severity scale acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "containment promise and severity scale implementation summary"
     ],
     "key_topics": [
       "containment",
@@ -31,12 +29,12 @@
       "scale",
       "says",
       "runner",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -206,7 +204,7 @@
     ],
     "causal_summary": "Two governed domains each had two authorities pronouncing and nothing reconciling them",
     "created_at": "2026-09-20T08:33:45.038Z",
-    "last_save_at": "2026-10-07T12:55:31.537Z",
+    "last_save_at": "2026-10-07T15:56:50.971Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:439f13238544a3135549d77e14ca03cdfffa9e7f285d899a68ab6dab47f839ec",
+    "source_fingerprint": "sha256:c9c4d384aff805974bb6443842c5930274b33590fd0a65bbede3c9a73e39fe59",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dbac36bcdb9a6144a247021974c6d8aea5adb58aeb34469e416d8a824446d5d9",
-      "plan.md": "a56d88d3d1b8dd6df2984cce508751d676f42b055e22943a109a4ec0d79e9a6a",
-      "tasks.md": "f0caf16be9ee1c0a34045c7131f14f51fe191f7310975ea2dbd3e9643d3285b6",
-      "implementation-summary.md": "275d7f1d1d11fee3ff0aa322265cbcb36bf6bc073194137be8749bc127f5a7cc"
+      "plan.md": "8944d71f25de78af0503abbd3b6c3abe8c10a60a4572644a801d48c3a703a037",
+      "tasks.md": "051c1830df4d6d68cce7e8a93d64d06371cea3533eb37544f5524c135caf53ef",
+      "implementation-summary.md": "5e8d8cb3999f75f7e5115831fbd51f0c27911cda9943f8ac11cf3444e24874a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

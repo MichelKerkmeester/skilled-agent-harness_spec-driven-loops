@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 9: census-hardening"
 description: "Fix paths with spaces in the shared citation parser, measure census accuracy per class on stratified samples, batch the git reads and add a redirect-table rebuild flag."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "census hardening plan"
 importance_tier: "normal"
 contextType: "planning"
 ---

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The local Deem server answers `noul` with `{\"noul\": <number>}` and `score` with a numeric `score`, index-keyed `probabilities` and a `legend`",
     "created_at": "2026-10-02T06:02:31Z",
-    "last_save_at": "2026-10-07T12:54:52.530Z",
+    "last_save_at": "2026-10-07T15:56:02.527Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d5fa4495c4889d9cbe7bb5d97c269d0250dc26c1df353238e1ca2ff922426e8",
+    "source_fingerprint": "sha256:19b968d7a60f09386e02902ed1a7ab991a1d76b63e0ec8caa8b01551653dbdb5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7dff5d3cc0a306dbedb953385a279c99dfb88e4d09535c628c5849c61b14ace0",
       "plan.md": "fca6c8cc3f3cea5b180a4f48346be6b2ce234b5686698bb180d462490069595f",
       "tasks.md": "76502cd26bee2aaf9161e78cc90273c6c5b359ba684c94d2c7a48a1646dd8963",
-      "implementation-summary.md": "2ca6ac797c9bde78b11192f726fc603e7079ba9cb83a511cecfe79cf564676f1"
+      "implementation-summary.md": "2a7fc42d80113335a5673e6f18f0666b844ffaf54e75c9382d005f1a465ed109"
     },
     "last_active_at": null
   }

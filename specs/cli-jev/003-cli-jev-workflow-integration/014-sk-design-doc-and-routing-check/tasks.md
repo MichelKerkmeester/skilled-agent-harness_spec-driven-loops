@@ -2,10 +2,7 @@
 title: "Tasks: Phase 14: sk-design-doc-and-routing-check"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "sk design doc and routing check tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -15,14 +15,12 @@
       "goal durable budget 4000",
       "goal shape validator restore",
       "set string playbook update",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "speckit goal contract tasks",
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "speckit goal contract implementation summary"
     ],
     "key_topics": [
       "goal",
@@ -207,7 +205,7 @@
     ],
     "causal_summary": "The template and playbook tell an agent to resend the full text of goal.md, which includes frontmatter",
     "created_at": "2026-09-11T07:11:48Z",
-    "last_save_at": "2026-09-13T06:53:53.523Z",
+    "last_save_at": "2026-10-07T15:57:28.158Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b38b3418e44649bfceb40222298d6ce235d60ad3990964c3526164ffdbea22a5",
+    "source_fingerprint": "sha256:c7a7ceb68b67726a94ccf39bf3fc3e16cee6d1507ba0583b1ad356b73fec3e7c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3e418027e219335e7d44a1a35ad99bbb4e8ad0abccb8642659c5d6fb95978736",
       "plan.md": "0a2db842bc02f89d3cf8c1f8f06ab9f1e990c7d2c81e96ac67f64ce87d6394cb",
-      "tasks.md": "b26e6d8e2fe585696915dde7c2c996ed534023d6d9215e4b9258fcf205672b42",
-      "implementation-summary.md": "2a40d3a1e2ebd7a2493fada599c678a9d76d6d078c020c0e66d2cb03230d9f5a"
+      "tasks.md": "38ab392c186df19b5f26c6741d8926ae377afee05bdfb9b9d57807dcdd4a7884",
+      "implementation-summary.md": "045ccdea9c0f5a42b8fd71c25c8dab65b69911596ed16e6e055a557754af520d"
     },
     "last_active_at": null
   }

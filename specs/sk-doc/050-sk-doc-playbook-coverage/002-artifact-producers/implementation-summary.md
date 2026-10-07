@@ -2,9 +2,6 @@
 title: "Implementation Summary"
 description: "Records that commit ad9d93df3be delivered the manual testing playbooks for sk-create-benchmark, sk-create-changelog, sk-create-feature-catalog, and the validator evidence that closes this phase."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
   - "artifact-producers playbooks delivered"
 importance_tier: "normal"
 contextType: "general"

@@ -16,13 +16,10 @@
       "distribution strip table",
       "close chart deferrals",
       "card versus table enforcement",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "close the deferrals plan",
+      "close the deferrals tasks",
+      "close the deferrals acceptance criteria",
+      "close the deferrals implementation summary"
     ],
     "key_topics": [
       "chart",
@@ -196,7 +193,7 @@
     ],
     "causal_summary": "The packet closed honestly and left four things written down rather than done",
     "created_at": "2026-09-06T04:34:06Z",
-    "last_save_at": "2026-10-07T12:55:10.102Z",
+    "last_save_at": "2026-10-07T15:56:29.165Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +203,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cef7ad035666cb8c983ece2bc90bfdf82d8cf3db6477dd182c1dc39e06ea13ef",
+    "source_fingerprint": "sha256:8abe8662ba19c9829d7d81c52f732e2dcadb8aa15f69b14c5815bae0bd25adca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "450501dad83ea5bf8a6c6e8c2c33feca9416137c8eb5b87c3f3dd0329fd387ab",
-      "plan.md": "57cd361c45040d4f3e3f8f7b7552b2a02a0e89cbdfa2062deeec14e7db893ad3",
-      "tasks.md": "c6c6dd4fdb8cbbfd3d5c15e328749f0619e9536406872ac9cb74bb813846e9af",
-      "implementation-summary.md": "ae0c3c1b74a7833b5ec7190a83865080e73412bb0931b0698d052e9da9bed560"
+      "plan.md": "0065f57ef23e9515af9de48946dceebf84917b23d85d9efa956041f88aa50586",
+      "tasks.md": "dba64ac6e132f5298947c3bcf8d7810099f74ebd2d92bd95d090459071b941a8",
+      "implementation-summary.md": "fbefbd5cb08ab12ebe22e9287432ba35458e72f7a41253656fe1d1368cd05491"
     },
     "last_active_at": null
   }

@@ -2,10 +2,7 @@
 title: "Implementation Plan: mark policies, tooltip indicator kinds, reference lines and cursor guides"
 description: "mark and indicator policies: assertion first, one form through the gate, then the corpus one form at a time, built by GLM-5.3-Flash through pi and verified by the conductor."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "mark and indicator policies plan"
 importance_tier: "normal"
 contextType: "general"
 ---

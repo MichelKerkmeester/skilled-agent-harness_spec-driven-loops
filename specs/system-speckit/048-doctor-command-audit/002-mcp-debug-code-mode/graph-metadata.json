@@ -14,15 +14,14 @@
       "doctor mcp-debug audit",
       "/doctor:mcp debug relevance",
       "doctor-mcp-debug.yaml",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "doctor mcp-debug audit acceptance"
+      "mcp debug code mode plan",
+      "mcp debug code mode tasks",
+      "doctor mcp-debug audit acceptance",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "mcp debug code mode implementation summary"
     ],
     "key_topics": [
       "doctor",
@@ -33,10 +32,10 @@
       "relevance",
       "doctor-mcp-debug",
       "yaml",
-      "implementation",
+      "code",
+      "mode",
       "plan",
-      "technical",
-      "approach"
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -210,7 +209,7 @@
     ],
     "causal_summary": "`/doctor:mcp debug` diagnoses MCP servers that fail to start or expose no tools",
     "created_at": "2026-10-02T16:10:11Z",
-    "last_save_at": "2026-10-03T11:48:56.184Z",
+    "last_save_at": "2026-10-07T15:57:40.191Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7654925f930c4c2b85850e5296f82e571d095e62b54f4f5d754ea30785d6388",
+    "source_fingerprint": "sha256:34bf956954a71f8b4b324a1bb2351139398ddf11d2e0d34060c747e014846ab1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9f4da6f6f0a3287fddf945af8edd971dd0eb32b8b64b493c753d2f7dc5ffe20a",
-      "plan.md": "755000e4c7300a020fa817558bb938dab5906cec2daa3f03896de2838f30555d",
-      "tasks.md": "fdac4d704f921d4da962738c45e7eb0dc41f899808342cddc48fd333561654d1",
-      "implementation-summary.md": "8d1057f1495e29bd1a27bdea7ee50aab29ae31ea0f48c729c65f1512ef7c38d3"
+      "plan.md": "ff5dd80432221b0c0cd4bc8a278680ff35dd4c4107473400cd73e50166dc133d",
+      "tasks.md": "448d6afe0490f71574157c4501abe68cd513de9dfe238fc625b7b5fe05914f7c",
+      "implementation-summary.md": "1e16611a92c88fe33ddb64e24360af1ee57f250b8c292b0160f298047f880b74"
     },
     "last_active_at": null
   }

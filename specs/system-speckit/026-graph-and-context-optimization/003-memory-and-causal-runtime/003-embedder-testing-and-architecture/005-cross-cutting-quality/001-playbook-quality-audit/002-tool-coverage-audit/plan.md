@@ -2,10 +2,7 @@
 title: "Plan: 017/002 Tool-surface coverage audit"
 description: "Execution plan for tool-surface coverage audit."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "tool coverage audit plan"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->

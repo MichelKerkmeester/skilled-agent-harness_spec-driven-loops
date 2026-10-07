@@ -5,7 +5,6 @@ trigger_phrases:
   - "pi-wrapper"
   - "turn_end mutation validation"
   - "pi print mode wrapper"
-  - "implementation summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

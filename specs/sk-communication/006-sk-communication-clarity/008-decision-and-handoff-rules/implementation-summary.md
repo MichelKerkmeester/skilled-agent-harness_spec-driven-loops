@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Your next reply fixes its reader, prices its work before the first sentence, closes on one shown, concrete action and reports an unconfirmed cause as suspected beside the proof tiers."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "decision and handoff rules implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

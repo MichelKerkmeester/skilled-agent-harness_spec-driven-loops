@@ -26,10 +26,7 @@ _memory:
       - "pi keeps requiring an explicit model: its skill documents no default model and its default provider (google) is not authenticated, so a coded default would guess wrong."
       - "Read-only is enforced only where a CLI has a flag that does not change the rewrite output; the rest rest on the non-mutating prompt plus fail-closed, documented honestly rather than faked."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "runtime contract remediation implementation summary"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Phase 9: runtime contract remediation

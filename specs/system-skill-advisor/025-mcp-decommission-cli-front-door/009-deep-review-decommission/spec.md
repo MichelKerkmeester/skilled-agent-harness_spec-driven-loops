@@ -3,7 +3,7 @@ title: "Feature Specification: Phase 1: deep-review-decommission"
 description: "An author's own residue sweep searches for what it remembers removing, so it cannot find a surface that asserts the retired transport in words the sweep never matched. This phase audits the finished decommission from outside that blind spot, twice."
 trigger_phrases:
   - "deep review decommission"
-  - "an author s own residue sweep searches for"
+  - "an author s own residue sweep searches"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: gate-3-option-merge"
 description: "Merge Gate 3 options C and D into one Related option, relabel Skip from E to D, and carry the wording and the letter through every surface that prints, tests, or parses it, in one commit."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "gate 3 option merge plan"
 importance_tier: "normal"
 contextType: "general"
 ---

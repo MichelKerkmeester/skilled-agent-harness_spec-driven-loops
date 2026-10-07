@@ -12,31 +12,23 @@
   "derived": {
     "trigger_phrases": [
       "017/001 playbook fairness audit",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped",
-      "validation evidence"
+      "fairness audit plan",
+      "fairness audit tasks",
+      "fairness audit implementation summary"
     ],
     "key_topics": [
       "playbook",
       "fairness",
       "audit",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy",
-      "task"
+      "tasks",
+      "implementation",
+      "summary",
+      "inventory",
+      "predicate",
+      "type",
+      "stale",
+      "ground"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +187,7 @@
     ],
     "causal_summary": "Inventory predicate type, stale fixed ground truth, aspirational thresholds, and orphan-row dependencies for every pre-expansion scenario.",
     "created_at": "2026-05-17T12:59:58Z",
-    "last_save_at": "2026-09-11T04:39:23.665Z",
+    "last_save_at": "2026-10-07T15:57:11.134Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98421e6e60c966b179b8374c52f70e08c635090f28fe41121da176a75aa8274c",
+    "source_fingerprint": "sha256:be450c0c731f4b8d7a8c3bdae8b7503737cda9e8a0d6f0ac6b49049eef1e6670",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4d135f73b1d3b77757e57020fbfcd756dcebc96130186619a13f5ce46a3443df",
-      "plan.md": "65b82e96ec79030efe68abf1b43966bb99644a3ab17a3c0cc0a6a2a3c489e1ab",
-      "tasks.md": "6797a8316375a35d748ce7aafe186a58e1026297ffd1a2638288f12288821c8a",
-      "implementation-summary.md": "4a09fc86da0e5d4b7b3d2ecbc419982cbaa5af695ebfccc8dcc0e0093dee99db"
+      "plan.md": "dd42591085e189d0da9941cdc477b9d437f80f09690a4cc4a138f47d5f225d82",
+      "tasks.md": "2eb52ffa5e707c3150a0b3a2fc8465bfa789a7fa395c86706e69f6262d84b673",
+      "implementation-summary.md": "b5f4e937807041fb714160b38c5bf1b2dde9e62598ee174027153712e96f17d9"
     },
     "last_active_child_id": null,
     "last_active_at": null

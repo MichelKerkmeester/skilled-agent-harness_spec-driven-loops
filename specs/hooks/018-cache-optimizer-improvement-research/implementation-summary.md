@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "cache optimizer improvement research implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

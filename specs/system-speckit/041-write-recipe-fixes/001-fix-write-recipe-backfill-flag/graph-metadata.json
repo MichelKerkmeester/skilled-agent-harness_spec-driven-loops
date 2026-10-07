@@ -13,16 +13,9 @@
     "trigger_phrases": [
       "fix write recipe backfill flag",
       "step 5 of the spec folder write recipe",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "fix write recipe backfill flag plan",
+      "fix write recipe backfill flag tasks",
+      "fix write recipe backfill flag implementation summary"
     ],
     "key_topics": [
       "write",
@@ -32,11 +25,11 @@
       "step",
       "spec",
       "folder",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "implementation",
+      "summary",
+      "refreshes"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +191,7 @@
     ],
     "causal_summary": "Step 5 of the spec folder write recipe refreshes a new packet's graph metadata with `backfill-graph-metadata.js --root <folder>`",
     "created_at": "2026-09-28T22:42:13Z",
-    "last_save_at": "2026-10-07T12:55:52.537Z",
+    "last_save_at": "2026-10-07T15:57:39.928Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1b822bbdab63a5f663fd0fdc83c4a05e70a53fb6fd0dc24740fdee4934bbb2c3",
+    "source_fingerprint": "sha256:9d1b3f5a62ee170e81d5f557c2640a3472872365695d6fd20ca8c66ee9ee1270",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "73ad371dc1b3524a7a1c9b198baa6d5c0e2151160f55e25a77f603549e3dfb00",
-      "plan.md": "6d9462efe0064cc567f8723d080a483134b8e26a6e2b79d030e189a4fb65b8a4",
-      "tasks.md": "a1bfc2f0387fc207923f0cb406a4dd16d8cb2728d43069deca476b9fe9751838",
-      "implementation-summary.md": "15b4eab6254cc75a3cd9c9016114b8d2ead0af57b03465d78f6dab624231fbb5"
+      "plan.md": "ebbcb7c6b92850982c2d4eec68fffbcf6b809bc6f2c5ab4f3ddd14e383ea97d7",
+      "tasks.md": "417f21de26590bbcbcdc141e376a941b312e819cb97d81ec3bb13f73c2156206",
+      "implementation-summary.md": "5fb6b44fceacfc1c7a16c0e142dfa31d5d931b56887f709ddbc99ab74d95c278"
     },
     "last_active_at": null
   }

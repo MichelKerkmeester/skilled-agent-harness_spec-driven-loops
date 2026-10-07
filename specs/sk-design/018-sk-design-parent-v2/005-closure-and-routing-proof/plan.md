@@ -2,10 +2,7 @@
 title: "Implementation Plan: closure and routing proof"
 description: "Measure the fleet from the closing state rather than trusting per-phase evidence, repair what the measurements prove wrong inside this packet's blast radius, and reconcile every document that still describes the old shape."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "closure and routing proof plan"
 importance_tier: "normal"
 contextType: "general"
 ---

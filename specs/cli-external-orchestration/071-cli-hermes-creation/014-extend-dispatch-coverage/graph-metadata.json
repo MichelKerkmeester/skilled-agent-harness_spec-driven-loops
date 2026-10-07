@@ -13,16 +13,10 @@
     "trigger_phrases": [
       "extend dispatch coverage",
       "phase 1 made the preflight enforce but two",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "extend dispatch coverage plan",
+      "extend dispatch coverage tasks",
       "extend dispatch coverage acceptance criteria",
-      "implementation summary"
+      "extend dispatch coverage implementation summary"
     ],
     "key_topics": [
       "extend",
@@ -32,11 +26,11 @@
       "preflight",
       "enforce",
       "two",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -200,7 +194,7 @@
     ],
     "causal_summary": "Phase 1 made the preflight enforce, but two runtimes could not reach it and several predicates could be walked past",
     "created_at": "2026-09-15T16:29:32Z",
-    "last_save_at": "2026-10-07T12:54:47.067Z",
+    "last_save_at": "2026-10-07T15:55:57.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +204,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:13e96a870eb96f09d9b813ba0247ee4bb936556f16638cdfa05b1ada8c234a2a",
+    "source_fingerprint": "sha256:4b2a0cd362ec06671f7f89e8d4b384a2528fb586aed5f0f3a7cccd8a08c9eebc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3461077c9604209b4b206f20ad1569d5dc399a6c61ef86e31d2b7b0e789ff5e6",
-      "plan.md": "ea8e7e0db6b64e78e284f915269657f9fedad130ef807243464e0b055afe1e36",
-      "tasks.md": "d696f5c9ebfc2be98b141ad46dcf167ce7549771caf2f624b97ee43c7543d89d",
-      "implementation-summary.md": "a4e7ffe5cd398e6d1836cd1dee988a75539f7c2661706faa189cd33ef1246e60"
+      "plan.md": "23bbc8a93dddf435f5faed27e9998d62b980a77df68d233e9e8c27632a640ab8",
+      "tasks.md": "22ba811b958cee8f764e2394e1e8ee97fcf9e8b8e148efff764d5a7b99bc40a9",
+      "implementation-summary.md": "28dc48f8e0205210912adf58476ffe93d6d94f3c059aeab29c6bb3b605bc9e48"
     },
     "last_active_at": null
   }

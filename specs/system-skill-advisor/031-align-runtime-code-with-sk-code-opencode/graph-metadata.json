@@ -17,12 +17,9 @@
       "advisor code readme gaps",
       "advisor folder merges",
       "advisor alignment loop",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "align runtime code with sk code opencode tasks",
       "align runtime code with sk code opencode acceptance criteria",
-      "implementation summary"
+      "align runtime code with sk code opencode implementation summary"
     ],
     "key_topics": [
       "skill",
@@ -202,7 +199,7 @@
     ],
     "causal_summary": "Code under `.skilled/skills/system-skill-advisor/runtime/` does not follow the sk-code-opencode comment and structure rules in `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md` §2 and §4",
     "created_at": "2026-09-30T05:43:45Z",
-    "last_save_at": "2026-10-07T12:55:42.188Z",
+    "last_save_at": "2026-10-07T15:57:10.558Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +209,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80e5dcedfd0c07a81587ac2e5ae88edb1425ea2b0387bff4466228c736490694",
+    "source_fingerprint": "sha256:ad51229d69bf32a7cf8ba3279ad5a6fd7037830fad9610ff2a1836934177a2ff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e90bce93c2ead0b09903ac8fc8760976a09842b8629969e20018a65ab2db38db",
       "plan.md": "7d8870d1e19003de7317dab1f4f936b806e62712253c3b9174652aa43582ab4e",
-      "tasks.md": "4948afb1c7e742b052c964185eceb8dc171d0624dbb03faef4b6e631696510fe",
-      "implementation-summary.md": "b7f80c355012fc70dbf661179a6af9b079e22d049accefc28fe2cb2db27bd020"
+      "tasks.md": "01901a03a1a2007cd903fd872a79c4a627d37fef623cb56cbf508c3542190b32",
+      "implementation-summary.md": "626634f154d5b145f52adf77e7a8a2aadf31654975681cab33d13db9642f55d7"
     },
     "last_active_at": null
   }

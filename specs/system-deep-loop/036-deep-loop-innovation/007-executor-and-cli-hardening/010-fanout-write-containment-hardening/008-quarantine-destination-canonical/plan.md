@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: quarantine-destination-canonical"
 description: "Canonicalize the quarantine destination before every write and refuse symlinked components, recording refusals on the result instead of throwing."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "quarantine destination canonical plan"
 importance_tier: "normal"
 contextType: "general"
 ---

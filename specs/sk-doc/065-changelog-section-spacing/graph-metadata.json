@@ -17,10 +17,7 @@
       "changelog spacing plan",
       "respace skilled releases",
       "changelog spacing tasks",
-      "implementation summary",
-      "what shipped",
-      "validation evidence",
-      "continuation notes"
+      "changelog section spacing implementation summary"
     ],
     "key_topics": [
       "changelog",
@@ -199,7 +196,7 @@
     ],
     "causal_summary": "The changelog standard put a `---` rule between top-level sections and an `&nbsp;` line between the items inside a section",
     "created_at": "2026-10-05T09:56:58Z",
-    "last_save_at": "2026-10-05T10:11:47.326Z",
+    "last_save_at": "2026-10-07T15:56:49.088Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d41a578acbcc26fd21bce2a5a99960dd1a0c7dd5790348bc82c85309558bf2ee",
+    "source_fingerprint": "sha256:fe68e497a72073537f517c091cfd9ccb3c793c582879736fa6bb878dffdea17b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "837f8d6cdfc76c35362d2e73b0bb59b0804170f5b9008d383504d9cf3ea469bf",
       "plan.md": "db564383032613dbf9d70d7e9f32466690c71bb6e8c5ffee18265f9ea9292d8d",
       "tasks.md": "2584e13b58d9d88350bbddc8d30d51e8e0ac8e0f661955395d86fa0568b15474",
-      "implementation-summary.md": "27b75db0b5b86327747fdf20e16a72d89a7b18b9946ae4b1837459f84f1c2b17"
+      "implementation-summary.md": "94398de2940ac465044ac4ed4b2259cadedddf1cbc0aa4937350bec86e2bb9d8"
     },
     "last_active_at": null
   }

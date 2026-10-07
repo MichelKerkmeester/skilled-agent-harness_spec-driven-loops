@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The injection screen now runs on every runtime whose fetch result reaches a hook, the live-sync hooks run on Cursor, Devin and Hermes, every runtime a hook skips carries a checked reason, and the Jev docs and env surfaces match the code."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "alignment and hook parity implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,10 +2,7 @@
 title: "Tasks: Assess a proposed thinking discipline against AGENTS.md and the repo rules, and integrate what survives the repo-rule decision tests"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "thinking discipline tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

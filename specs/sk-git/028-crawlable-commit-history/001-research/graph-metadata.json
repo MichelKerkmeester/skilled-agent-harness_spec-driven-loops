@@ -15,14 +15,14 @@
       "crawlable commit research",
       "commit identifier minting",
       "history rewrite research",
-      "implementation plan",
-      "technical approach",
       "research lineage plan",
       "fanout research run",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "research tasks",
+      "research acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "commit",
@@ -33,10 +33,10 @@
       "minting",
       "history",
       "rewrite",
-      "implementation",
+      "lineage",
       "plan",
-      "technical",
-      "approach"
+      "fanout",
+      "run"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Nothing in a commit today can be looked up the way `sk-git/028` can",
     "created_at": "2026-09-11T07:16:23Z",
-    "last_save_at": "2026-10-07T12:55:26.781Z",
+    "last_save_at": "2026-10-07T15:56:48.434Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:28dc6806ce188956c2352a7fe0136acf16b993aed055e9a5d204458da4c6a696",
+    "source_fingerprint": "sha256:9fa5e68aa77f2742198d770f7d530767a6b64a09c50b4132e6244c64eadb746e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "90caf4dcb1a49a20501f907e9c0b9ab64389c99c4a45d4e475fe9ccf39a2c729",
-      "plan.md": "60abbc09fb0dbe49a141766004afdcba232bc2990bdf8e379b7c44c1e3e9b282",
-      "tasks.md": "5a97dfc3cf0e61a519aa2ce6f801f62b4e6ab1cae1444f11b269f390f1b1e901",
-      "implementation-summary.md": "16ec047905909bdfcedbfa1672eb4b3f94ab4f0a6d1933b221ae17ef34b7376f",
+      "plan.md": "ffb6f3a9c25360d3720e535cf57ede8fbda96e25205072abfbdf9a2a64234e66",
+      "tasks.md": "d0b80612e32662c7d75a9d02fdd8d7647af97cc4d02781f3b40af0efeeb3a51d",
+      "implementation-summary.md": "65340cb0921d99db50f17a90bd753a77a0ea5d14861dde446909d49662710335",
       "research/research.md": "6231fb735a0dc6dbac9e79a2d3bb35b2f8681bc13c4585085ce3a72e0e073db8"
     },
     "last_active_at": null

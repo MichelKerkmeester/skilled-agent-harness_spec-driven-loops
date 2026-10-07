@@ -22,7 +22,7 @@
       "test repair tasks",
       "freshness fixture tasks",
       "manifest suite tasks",
-      "verification checklist"
+      "test repair criteria"
     ],
     "key_topics": [
       "pre-existing",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Two suites failed before this program and stayed red through it",
     "created_at": "2026-09-07T04:03:53.305Z",
-    "last_save_at": "2026-09-08T15:47:13.751Z",
+    "last_save_at": "2026-10-07T15:57:22.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f231a7d1bba32c937786a1712a307d2a8a52505c768e49f999f9f855b031012d",
+    "source_fingerprint": "sha256:b3d6fd534cfce3c8952e7f2b3a2933a9882dcaec56b51fe405a71f20f71111de",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "13ccfeba75879b706e3d4aa38e0e255b51996567a9fbf36979f8469ac2b02511",
       "plan.md": "8591e2c3e9ee5e5d2bd602620634c6e1dbafa0ecf87bb1976ad546bd86abf4e7",
-      "tasks.md": "c6aa7392def50cf2fadd4ad03accadbe86789bfc254f31d33130cedf96571fdf",
+      "tasks.md": "5b7de88a2681ab18de94644161eff100f46d16dcc1c727eaaac5cd57bc33e900",
       "implementation-summary.md": "ecae4b5804009e35c96fbf9a8a894bf3f26e819089f8ca65464a8c86e41e03a9"
     },
     "last_active_child_id": null,

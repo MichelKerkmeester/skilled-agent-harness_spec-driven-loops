@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 4: injection-screen-research"
 description: "Runs /deep:research in fan-out mode on the Jev fetched-text injection screen: one DeepSeek lineage and one Luna lineage, then merges them into research.md."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "injection screen research plan"
 importance_tier: "normal"
 contextType: "general"
 ---

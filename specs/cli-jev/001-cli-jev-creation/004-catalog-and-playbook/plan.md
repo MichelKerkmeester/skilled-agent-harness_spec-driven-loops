@@ -2,9 +2,7 @@
 title: "Implementation Plan: Phase 4: catalog-and-playbook"
 description: "Author the catalog and the playbook around shell-observable facts, execute every scenario the pin left runnable, record the skips with their blocker, and pass both package validators."
 trigger_phrases:
-  - "implementation plan"
   - "approach and phases"
-  - "testing strategy"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 7: clarify-default-research"
 description: "Runs /deep:research in fan-out mode on the Jev routing clarify default: one DeepSeek lineage and one Luna lineage, then merges them into research.md."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "clarify default research plan"
 importance_tier: "normal"
 contextType: "general"
 ---

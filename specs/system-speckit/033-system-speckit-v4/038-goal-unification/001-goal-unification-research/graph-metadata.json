@@ -15,14 +15,14 @@
       "goal binding research",
       "goal store fate",
       "frontmatter strip research",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "goal unification research tasks",
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "goal unification research implementation summary",
+      "packet goal single source",
+      "goal hook rebuild decision matrix"
     ],
     "key_topics": [
       "goal",
@@ -33,10 +33,10 @@
       "fate",
       "frontmatter",
       "strip",
-      "task",
-      "breakdown",
-      "implementation",
-      "tasks"
+      "tasks",
+      "packet",
+      "durable",
+      "directive"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Seven design decisions must be frozen before any code changes, and each one is a judgment call the repository cannot settle by grep",
     "created_at": "2026-09-11T07:11:47Z",
-    "last_save_at": "2026-09-13T06:53:53.524Z",
+    "last_save_at": "2026-10-07T15:57:28.284Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e131b6d4aa2bd9a6d97ae252078854036d2438289400a2cbf5f00dff956a001f",
+    "source_fingerprint": "sha256:af276674ca362f160963d8f3416eefeaca2c7a00e1e082c9a4e3ec9e602c65d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c1a3a394bb75398880423774a3aaf766215f61ee1929b9694d9a5e23b7902094",
       "plan.md": "2e362c86fcd91429cfff4c67fe12dc579d7534b9bd5f552fb591866ce742106d",
-      "tasks.md": "d1e9ce3053758e21170f9e7dbe5d42126e5743e9cd8161ec6057682959f11df3",
-      "implementation-summary.md": "4617ac71b414c014d5b47aa582b3f2a7737a044d0042ebb878e5ab33b155f581",
+      "tasks.md": "b9446e72f9160d92983906eb9fbd735405fba2ce4932a882d7cb51d7730ca7c5",
+      "implementation-summary.md": "7fe43781b862d1945512dcc78695cec0c2c673b8bd3817f1535f86305855e68d",
       "research/research.md": "f8f2d0c473bc3a68408c37fb690319e40eeeccd17d96ec9466ec467b3164bc29"
     },
     "last_active_at": null

@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "hallucination grader research",
       "five deepseek v4 1 flash and three gpt",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "hallucination grader research plan",
+      "hallucination grader research tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "hallucination grader research implementation summary",
+      "jev hallucination grader improvement",
+      "score-d4-agreement research",
+      "d4 grader default-on"
     ],
     "key_topics": [
       "hallucination",
@@ -33,10 +33,10 @@
       "flash",
       "three",
       "gpt",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Phase 047 measured the Jev hallucination grader at verdict jev: keep K=56 M=56 A=55 B=47 W=8 L=0 F=1 pwin=0.003906, baselines: majority 47 of 56, deterministic check 22 of 56",
     "created_at": "2026-10-02T21:59:45Z",
-    "last_save_at": "2026-10-07T12:54:52.207Z",
+    "last_save_at": "2026-10-07T15:56:02.524Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5cd3c3af639d69add40798317d03cab4d51b46c75eb8659b8f0931cb7e08cdc0",
+    "source_fingerprint": "sha256:dfe6533e79d660ed53d1d214c30ef8f3653de2e23793d05ef303e9aff8f4cb54",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4220573c89485c73cc4caa02273a76702bbdcffe9b12922b799a38e1faf18f71",
-      "plan.md": "09022c060518f5f38b712f16ad0a1bf3d257ad5658c9af19a1e52dd19a5e1c65",
-      "tasks.md": "d235fc62fb2a17dd41cdf06a2f3a3797ea46a523674f0d05b97006ded9fb940d",
-      "implementation-summary.md": "463b0be79d679088449032b07c4b805a5a762ebcc9d742f41236b70e77011866",
+      "plan.md": "d5a594279fc27816d1247cd42d02234f183d2822ad126926e7b24617e271af40",
+      "tasks.md": "e93e28ac39a4fbd37ae361c437ab2533e587b38a5c6a7e26d2098a6f4751e2e1",
+      "implementation-summary.md": "25251001b232cc71ba0c20a7f5d2bacaa3ef31206e00e386198f94c11eec404d",
       "research/research.md": "ae162331cf5bde4b3073f1a2ba57d4d315ec336722c8aea44b69c68ae241fbcd"
     },
     "last_active_at": null

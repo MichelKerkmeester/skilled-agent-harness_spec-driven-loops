@@ -5,7 +5,6 @@ trigger_phrases:
   - "devin-wrapper"
   - "devin -p print projection"
   - "devin runtime adapter wiring"
-  - "implementation summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Deem reaches about 209 files outside `specs/`, and many matches are the English word (`deems`, `deemed`)",
     "created_at": "2026-10-02T07:54:40Z",
-    "last_save_at": "2026-10-07T12:54:52.541Z",
+    "last_save_at": "2026-10-07T15:56:02.315Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:69bbba13235acb07960908f81937da11462ce4a47601658ac1a09573a15b1340",
+    "source_fingerprint": "sha256:1b76fb84edcaaf84c8f175f14c2400435e5c8d2456ebbe4f8ce7c18a2a2bcf9d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fdfc2458e89469a61908e4ec21108be95167eac49082e2a8633a8c8951a60529",
       "plan.md": "9cdbc099366f32f6de024571ce0a9b1e78ee9ba062de59dd1d2d17aa7cb1be1f",
       "tasks.md": "17614c0a2a04ff4817c5fdf7f0e9421f2a53ce520173b7773e20672021776dba",
       "decision-record.md": "6ae6383c1e072e75dfd5d11d48493327394c16605f039941a990570c75ae49fa",
-      "implementation-summary.md": "d23423f48201c2230644f84f03b0998fc9aeed126e1a4c72027bc87f44e40aa4"
+      "implementation-summary.md": "e3c63bbe7cef7c5b0c66cd0d304c78bb6fc270b3986583e018207ee34bdd0c76"
     },
     "last_active_at": null
   }

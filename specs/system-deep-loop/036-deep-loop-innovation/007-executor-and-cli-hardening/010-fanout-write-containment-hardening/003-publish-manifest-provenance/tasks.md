@@ -2,10 +2,7 @@
 title: "Tasks: Record executor kind and model in the publish manifest so the attribution table stops reading unknown"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "publish manifest provenance tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "verdict fallback research",
       "five deepseek v4 1 flash and three gpt",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "verdict fallback research plan",
+      "verdict fallback research tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "verdict fallback research implementation summary",
+      "jev verdict fallback improvement",
+      "score-verdict-fallback research",
+      "reviewer verdict regex miss"
     ],
     "key_topics": [
       "verdict",
@@ -33,10 +33,10 @@
       "flash",
       "three",
       "gpt",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Phase 047 measured the Jev reviewer verdict fallback at verdict jev: keep K=24 M=24 A=24 B=8 W=16 L=0 F=0 pwin=0.00001526, baselines: majority 8 of 24, loose 0 of 24",
     "created_at": "2026-10-02T21:59:46Z",
-    "last_save_at": "2026-10-07T12:54:52.346Z",
+    "last_save_at": "2026-10-07T15:56:06.335Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e38a76fbf76e668cef7674440c13695f590bd73589ecf6cdc5f7d08e415f24a2",
+    "source_fingerprint": "sha256:9d5f101feaf232b807d51868da66e4af9caf369fd42916f9efdf43d8b477e2e7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4ec5364ed3633c20ac0d85966cefe6b7ecb598089499a48fac104b9b65749aa3",
-      "plan.md": "04cf39d796e5b4a80bca7a7a21ded9595b21ed0fb263f535a0cc8ae88c140123",
-      "tasks.md": "800b28ad187de4c7b01171a035b45ec6aa5910f1053ad0ff2bf015ef94e9e188",
-      "implementation-summary.md": "bee3f837f79dcaecd7c68673260adffd18f23cd9d2d29e16309464b954995c7c",
+      "plan.md": "b170bf0d9a235b9941509cd2cf289bae983fe0c8c06014f9a479f8452635de3f",
+      "tasks.md": "929b041eb36c0bf35c473a554b0aab77f0a8cb1a549a4db9fd9368cf47a73440",
+      "implementation-summary.md": "182cf475a22b9654ee4c551b46634fda9e271484df45bfb59f42b7b9ff9129a2",
       "research/research.md": "b0a1f4d02579e68ab969a5f402c1ee1fdf6f5dbc9d23fd7dc2f4a991337f4fb9"
     },
     "last_active_at": null

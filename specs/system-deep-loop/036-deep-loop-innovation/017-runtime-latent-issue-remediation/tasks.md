@@ -11,10 +11,7 @@ _memory:
     recent_action: "Recorded the remediation task breakdown"
     next_safe_action: "Reconcile docs and validate --strict"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "runtime latent issue remediation tasks"
 ---
 # Tasks: System-Deep-Loop Runtime Latent-Issue Remediation
 

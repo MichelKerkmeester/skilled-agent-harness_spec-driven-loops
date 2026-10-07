@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 3: rule-authoring"
 description: "Author the close-out rule against the anatomy contract, then verify it structurally before anything points at it."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "rule authoring plan"
 importance_tier: "normal"
 contextType: "general"
 ---

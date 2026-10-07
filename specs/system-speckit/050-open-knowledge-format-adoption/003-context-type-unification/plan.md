@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 3: context-type-unification"
 description: "One JSON file holds the document and session contextType lists and the importance_tier list; every checker reads it, generators and outlier docs are fixed first, and a warn rule lands silent."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "context type unification plan"
 importance_tier: "normal"
 contextType: "general"
 ---

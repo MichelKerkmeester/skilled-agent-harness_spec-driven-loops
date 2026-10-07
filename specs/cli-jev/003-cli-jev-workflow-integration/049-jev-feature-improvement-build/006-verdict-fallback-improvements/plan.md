@@ -2,10 +2,7 @@
 title: "Implementation Plan: Build: improve the Jev reviewer verdict fallback (025)"
 description: "Fix the producer first with a typed verdict, widen the parser for the real forms it misses, add an abstain outcome, serve one call per miss and add the report identity."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "verdict fallback improvements plan"
 importance_tier: "normal"
 contextType: "general"
 ---

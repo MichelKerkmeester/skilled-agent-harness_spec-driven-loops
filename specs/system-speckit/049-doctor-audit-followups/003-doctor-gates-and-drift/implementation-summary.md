@@ -2,10 +2,7 @@
 title: "Implementation Summary: Phase 3: doctor-gates-and-drift"
 description: "The doctor gates now cover what they claim: the mutation-class guard checks four MCP skills again, the parent-skill suites pass, and route-validate checks workflow activities."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "doctor gates and drift implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Fourteen git behaviors that fail an unattended run were reproduced, ten were fixed at their producers in the hooks, sk-git scripts and bin scripts with harness cases, four were named for the runtime, and a fresh lineage settled clean."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "git workflow run failures implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

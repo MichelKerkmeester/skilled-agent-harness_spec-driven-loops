@@ -2,10 +2,7 @@
 title: "Tasks: Under preserve, an out-of-scope untracked path is advisory and never fails the lane, so a neighbour's new file cannot halt a fan-out"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "never fatal untracked tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

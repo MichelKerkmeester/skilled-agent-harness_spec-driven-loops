@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The deep-loop graph scripts gained a read-only mode that provably leaves the filesystem untouched, the doctor route uses it, and a deep-research run now opens through the gateway, releases its lock, persists its graph, ticks answered questions, lists cited files and stages or tracks no transient state."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "read only and research bookkeeping implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

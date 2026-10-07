@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 14: shorten the decision rule name"
 description: "One rename, six reference sites including two sibling rules, and a check that the file says what the shorter name leaves out."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "shorten decision rule name plan"
 importance_tier: "normal"
 contextType: "general"
 ---

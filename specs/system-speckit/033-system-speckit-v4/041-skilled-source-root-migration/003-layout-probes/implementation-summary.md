@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Nine live probes settled what the .skilled layout decision depends on: a whole-directory .opencode link works for every runtime probed, per-entry links break package-importing opencode plugins, and several gates and a checkout step fail silently."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "layout probes implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

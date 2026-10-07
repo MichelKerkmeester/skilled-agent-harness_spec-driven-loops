@@ -3,7 +3,7 @@ title: "Feature Specification: hold the boundaries that turned out to be reachab
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "holding the boundaries"
-  - "the previous phase closed everything it could and"
+  - "the previous phase closed everything it could"
 importance_tier: "normal"
 contextType: "general"
 ---

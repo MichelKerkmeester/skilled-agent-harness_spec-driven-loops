@@ -4,10 +4,7 @@ description: "Approach and verification gates for the F1 seven-module legacy-com
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/002-legacy-compat-converters"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "legacy compat converters plan"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -22,13 +22,10 @@
       "chart restyle",
       "light dark chart gallery",
       "new chart forms",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "corpus expansion and gallery plan",
+      "corpus expansion and gallery tasks",
+      "corpus expansion and gallery acceptance criteria",
+      "corpus expansion and gallery implementation summary"
     ],
     "key_topics": [
       "chart",
@@ -202,7 +199,7 @@
     ],
     "causal_summary": "The pointer targets are far smaller than the operator's \"sometimes way too small\" suggests",
     "created_at": "2026-09-06T06:24:10Z",
-    "last_save_at": "2026-10-07T12:55:11.062Z",
+    "last_save_at": "2026-10-07T15:56:29.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +209,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e8b99c3f1b89d507f4f15c61742b47f70a5b540f5eb5867bcb07b47d34a1166",
+    "source_fingerprint": "sha256:94923bf9b16d8d49cd601b1b63a4a40ba3c3091a326f05d3b3425b5cf7c05c02",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0a09270ded93409bb1fb316657bd310de82fe82953fde4968fa28d5b1a8e8083",
-      "plan.md": "3e8c9416ac18284009e417b898382060f6736e470dc8fb21fffbc8b40e62fe22",
-      "tasks.md": "b6813160d224133d2b26a3491091ac6b94b2286e65225d023c0d6b7d2bf77d2f",
-      "implementation-summary.md": "c154c04ac380f2b9a41cc724ce6455560f3ca96bd57f11a1194b627c8fa706c5"
+      "plan.md": "6967bce6979596b6a16cc5ed7f3153892d42fa3f4fb5036cda4d1e3eaa910666",
+      "tasks.md": "a574f71b1e5d84e3e1ee912d652e2ea3ae0a913b5a04e9d1ea77a250a95cc767",
+      "implementation-summary.md": "c727c7512944f76fcf5b0a9c51ddb6c42ccd06069aa5fcb8ce9162a0c14405fa"
     },
     "last_active_child_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/002-restyle-and-richer-data",
     "last_active_at": "2026-09-06T09:51:58.308Z"

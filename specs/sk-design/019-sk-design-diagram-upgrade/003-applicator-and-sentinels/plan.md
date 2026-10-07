@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 3: applicator-and-sentinels"
 description: "A sentinel palette block per file plus a ported gate module and a third hand-run applicator that themes the diagram corpus from its own token source."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "applicator and sentinels plan"
 importance_tier: "normal"
 contextType: "general"
 ---

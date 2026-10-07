@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Four operator-review fixes to the chart corpus: aligned numeric headers, a clean tooltip card, no decorative indicators on single-series cards, and a daily-line that reads as a line."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "visual review fixes implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

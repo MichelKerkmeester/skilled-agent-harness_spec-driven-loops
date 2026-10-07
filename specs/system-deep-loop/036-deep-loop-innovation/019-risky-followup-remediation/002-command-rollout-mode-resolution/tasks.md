@@ -11,10 +11,7 @@ _memory:
     recent_action: "Authored the rollout-mode task list"
     next_safe_action: "Execute Phase 1"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "command rollout mode resolution tasks"
 ---
 # Tasks: Command Rollout-Mode Resolution
 

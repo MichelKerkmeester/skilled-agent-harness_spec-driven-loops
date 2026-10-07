@@ -2,10 +2,7 @@
 title: "Implementation Summary: believable figures across all templates, then a restyle proven to have moved no number."
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "restyle and richer data implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

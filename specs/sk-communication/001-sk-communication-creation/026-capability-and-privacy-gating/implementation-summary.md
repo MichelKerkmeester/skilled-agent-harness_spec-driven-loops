@@ -5,7 +5,6 @@ trigger_phrases:
   - "capability-and-privacy-gating"
   - "capability and privacy gate implementation"
   - "pre-projection gate complete"
-  - "implementation summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

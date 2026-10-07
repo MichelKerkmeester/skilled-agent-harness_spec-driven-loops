@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A shell-expanded pathspec no longer draws a sk-git advisory and a cited document no longer tricks the completion sentinel into warning about a packet that has its evidence."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "advisory false alarms implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

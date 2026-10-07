@@ -12,17 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "decouple and rewire",
-      "two hubs still named one packet and the",
+      "two hubs still named one packet",
       "cli-jev decoupling",
       "dispatch packetPath",
       "roster rewiring",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
+      "decouple and rewire plan",
       "dispatch rewiring",
       "generated surfaces",
-      "phase tasks"
+      "phase tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria"
     ],
     "key_topics": [
       "decouple",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "After phase 002 two registries named one packet and the enforcement chain still read the retired path: `dispatch-audit.mjs` resolved the packet `SKILL.md` under `cli-external-orchestration/cli-jev/`, a directory that no longer exists, so `readHardRules` failed open and zero of the eight jev hard rules were enforced at preflight while the packet-bijection test stayed red",
     "created_at": "2026-09-20T11:00:12Z",
-    "last_save_at": "2026-10-07T12:54:47.382Z",
+    "last_save_at": "2026-10-07T15:55:56.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0eac64b9a73a68b77d98bc8c075acd2e2e9361e8de6daa36c740b559284a7cd3",
+    "source_fingerprint": "sha256:27108657a19bef2d9642c4ab559d3e6b480c154334e070fbdbb06f78938f8f21",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fc89768b00718576c9c149311f6a5ac41ed6f9eda64f98767442ab430eeb99cf",
-      "plan.md": "6486f4cb2e1a2b8d559909d71d4d9e4bf597373d78371c0080e5dae39d154757",
-      "tasks.md": "6c995486df1ee110475fa7bb438e83f65501cff1c262e831f3d05ca41da04cd6",
-      "implementation-summary.md": "edda93739370df584e5224d1182709082ce3b775f3cf987907e87a7136bbe380"
+      "spec.md": "ac3ca4b02fa0b003b8753b9578ce7866bcab2d19ddf568d25f7b5d98e3334a78",
+      "plan.md": "9c769f33e70fcc0f77018b51877eb366166cad7c447701199d6364f49f7e4542",
+      "tasks.md": "7315beacdec97aa832e6d2f52111683ca1964ac4a97c18f36d8dfa257e2e33be",
+      "implementation-summary.md": "b825c9ca9b80b29c4325d8828ae8a9a221524a93076213e6dfb071c97a5eb3bb"
     },
     "last_active_at": null
   }

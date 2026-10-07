@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "New Level 2 packets carry phrases about their own work, the acceptance criteria template defaults are flagged by the judge, and the operator-approved cleanup removed the exact template block from 509 files across 375 packets. The trigger index is rebuilt and fresh."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "template phrase census and cleanup implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

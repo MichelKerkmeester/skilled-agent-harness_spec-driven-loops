@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 026 Capability and Privacy Gating"
 description: "Wire the Phase 008 compatibility doctor into every activation path as a typed pre-projection gate, fail closed to the exact original on unknown, stale, or incapable critical facts, and block hosted routing absent a fresh, capable, privacy-approved decision."
 trigger_phrases:
   - "capability-and-privacy-gating"
-  - "implementation plan"
   - "compatibility doctor pre-projection gate"
   - "original-only fail-closed gate"
 importance_tier: "important"

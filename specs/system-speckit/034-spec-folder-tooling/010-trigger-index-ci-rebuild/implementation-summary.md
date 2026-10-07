@@ -2,10 +2,7 @@
 title: "Implementation Summary: Rebuild the trigger index in CI"
 description: "CI now repairs trigger index drift instead of only reporting it, through a rebuild workflow that commits the index when a push leaves it stale, guards against loops and races, and reports a rejected push by naming branch protection."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "trigger index ci rebuild implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

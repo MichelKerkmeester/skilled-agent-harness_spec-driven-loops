@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "one form library",
       "merge assets templates and assets examples into one",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "one form library plan",
+      "one form library tasks",
       "one form library acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "one form library implementation summary"
     ],
     "key_topics": [
       "one",
@@ -32,11 +30,11 @@
       "assets",
       "templates",
       "examples",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +196,7 @@
     ],
     "causal_summary": "The diagram skill splits its 38 worked diagrams into two directories by a distinction nobody uses: `assets/templates/` (4 skin skeletons) and `assets/examples/` (34 finished diagrams, each named with a redundant `example-` prefix)",
     "created_at": "2026-09-11T03:52:47Z",
-    "last_save_at": "2026-10-07T12:55:21.140Z",
+    "last_save_at": "2026-10-07T15:56:43.964Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9264e7e198c6f7ffb91d03352f54c8a5a1f6d0f05fe71cb8e55ae818fc1afe16",
+    "source_fingerprint": "sha256:687bc1d2de2714debf1af29c041d17a9975152c03e32272b4f212d60bfec1a14",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "47d8bd45ef632630b085c56c1b73679b9be71ffc0c89f3f43a743c9acc2a54c8",
-      "plan.md": "8125927a0ae4358da68e2ffc2987298a47ec40cdde0c0712006115f893bd22bd",
-      "tasks.md": "470d0ab251c3d75cbec15f71e3e0eee0c1beddcf082925b97dbe95945c534724",
-      "implementation-summary.md": "a3c1c57d88da27d0f766a501294068a8024829118aae504fdf30cf169e0ef65a"
+      "plan.md": "d2a052009c28a181331fca25e8883cb136bdc68400148dd07b1c7655c781c250",
+      "tasks.md": "13867af3d706081ff15f23ce2bceeadc3700d8fea13c0390c116d9fbfa26bac2",
+      "implementation-summary.md": "1436c28572d39879891179bf6b3b6056f0a5affa06bd9b994c012b99d67f409b"
     },
     "last_active_at": null
   }

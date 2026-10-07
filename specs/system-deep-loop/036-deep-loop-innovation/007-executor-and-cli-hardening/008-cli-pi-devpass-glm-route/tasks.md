@@ -2,10 +2,7 @@
 title: "Tasks: Route the cli-pi GLM-5.3-Flash fan-out literal through the DevPass LLM Gateway"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "cli pi devpass glm route tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

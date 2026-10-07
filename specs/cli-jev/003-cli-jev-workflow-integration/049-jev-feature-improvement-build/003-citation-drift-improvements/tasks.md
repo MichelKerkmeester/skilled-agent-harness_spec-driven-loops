@@ -2,10 +2,7 @@
 title: "Tasks: Build: improve the Jev citation drift scan (032)"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "citation drift improvements tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

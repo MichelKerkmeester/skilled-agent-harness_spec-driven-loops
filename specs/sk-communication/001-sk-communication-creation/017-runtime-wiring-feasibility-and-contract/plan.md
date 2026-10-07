@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 017 Runtime-Wiring Feasibility and Contract"
 description: "Plan the per-runtime feasibility inventory, the hook-to-projection integration contract, and the OpenCode and Pi validation probes that close the phase."
 trigger_phrases:
   - "runtime-wiring-feasibility-and-contract"
-  - "implementation plan"
   - "hook to projection integration contract"
   - "CLI output wrapper seam"
 importance_tier: "important"

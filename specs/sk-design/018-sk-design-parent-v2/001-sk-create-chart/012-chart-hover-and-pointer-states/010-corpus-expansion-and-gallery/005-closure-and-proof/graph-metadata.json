@@ -13,16 +13,10 @@
     "trigger_phrases": [
       "closure and proof",
       "prove the whole packet from its final state",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "closure and proof plan",
+      "closure and proof tasks",
       "closure and proof acceptance criteria",
-      "implementation summary"
+      "closure and proof implementation summary"
     ],
     "key_topics": [
       "closure",
@@ -32,11 +26,11 @@
       "packet",
       "final",
       "state",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +189,7 @@
     ],
     "causal_summary": "Four children changed the corpus from twenty-one forms with placeholder figures to twenty-six with",
     "created_at": "2026-09-06T06:26:46Z",
-    "last_save_at": "2026-10-07T12:55:11.424Z",
+    "last_save_at": "2026-10-07T15:56:34.152Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +199,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8f11f9db029147daa6d1f761c0d168b91d7fa3158200de6fa5cf4f3439d0fa24",
+    "source_fingerprint": "sha256:599b87df3cc61fc415fa0b4b9423316c2ee971972f26e13ead30c9586665425f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c64230a3891f9252748f110e10912756749973e7c65007c5efa08a50e9b4596d",
-      "plan.md": "346646115a8ce2e90d687359e8558a00836788bbe97214f288ace35fedea07ae",
-      "tasks.md": "ba99de39000fb4e55982edc9f67ebaa92e0b5aa08bd86aee82dc6aad24ad5b3e",
-      "implementation-summary.md": "fb69085a00e6fde3d8e4ef885fa4a66ae21781beb6998edef2de021ed75fe3d3"
+      "plan.md": "b1475ac8cac9a65fddefe73fb6de0fe76f82c6c2ea370e22ce63ecfdcc18c98d",
+      "tasks.md": "0c05334fe7af85c8713bf95c01c3ed12a7b25eb1f0761c6af7b221b9ad4fe381",
+      "implementation-summary.md": "cd9e66f7ab90dee805e724ab02639798a6f219bd074b9c8b2e964da328bc9f87"
     },
     "last_active_at": null
   }

@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 12: skill-graph-freshness"
 description: "Audit `/doctor:speckit skill-graph-freshness` against this checkout and apply the evidence-backed keep verdict: the route, its workflow asset, its script, its flags and its presentation row all still match the system they cover."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "skill graph freshness plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -13,10 +13,7 @@ _memory:
     blockers: []
     completion_pct: 0
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "skill doc alignment tasks"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->

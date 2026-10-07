@@ -14,15 +14,11 @@
       "phase 0 gate retire deep loop",
       "DIRECT INVOCATION REQUIRED false block",
       "dispatch-context self-classification gate removal",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "phase 0 gate retirement summary"
+      "cross runtime dispatch plan",
+      "cross runtime dispatch tasks",
+      "phase 0 gate retirement summary",
+      "deep loop dispatch-context gate removed",
+      "DIRECT INVOCATION REQUIRED false block fixed"
     ],
     "key_topics": [
       "phase",
@@ -197,7 +193,7 @@
     ],
     "causal_summary": "Every deep/ command (`review`, `research`, `ai-council`, `alignment`, `agent-improvement`, `model-benchmark`, `skill-benchmark`, `command-benchmark`) and `prompt/improve` opened with a Phase-0 dispatch-context gate",
     "created_at": "2026-08-27T05:27:55.303Z",
-    "last_save_at": "2026-09-11T04:38:33.044Z",
+    "last_save_at": "2026-10-07T15:57:06.025Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:21fab30ea0d2c67aa1afe47e1ee0159318d54a9ef63bbd384ef5caa1d0a04656",
+    "source_fingerprint": "sha256:0c4685dc51c3211944541d174e347969275987b1946b0c2ba0fdf6ffe39f726e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6279398c270dd3817293f7df2ceaad152f2a6251117431cee5e44fe481610abe",
-      "plan.md": "a4daf7bfa6af157b1419094e8f5cb894f842b80943a73b1e05706f2519bb8a72",
-      "tasks.md": "80a362f7a9dd9160bf84d2d0e1f9259225fca05dc498e06a31f273ae031cc462",
+      "plan.md": "1d59d691b385cb69e09caf94046e26067b2cd305887877dedabc26e516d65b4c",
+      "tasks.md": "d2a7892d08dccbc13e3e5def7774a9c9ac2f5b07925efb7e8c9401f25143ad56",
       "implementation-summary.md": "b96f4c5322b4698bc41963e6920bcdfb357e425d61873c7919090827bdcefaa6"
     },
     "last_active_child_id": null,

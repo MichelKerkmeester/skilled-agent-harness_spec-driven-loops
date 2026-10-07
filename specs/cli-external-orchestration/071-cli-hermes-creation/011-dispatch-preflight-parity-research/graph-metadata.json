@@ -12,31 +12,27 @@
   "derived": {
     "trigger_phrases": [
       "dispatch preflight parity research",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "dispatch preflight parity research plan",
+      "dispatch preflight parity research tasks",
       "dispatch preflight parity research acceptance criteria",
-      "implementation summary",
-      "what shipped"
+      "dispatch preflight parity research implementation summary",
+      "cli hard rule severity audit",
+      "dispatch preflight defect table",
+      "cursor opencode preflight parity"
     ],
     "key_topics": [
       "dispatch",
       "preflight",
       "parity",
       "research",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "cli",
+      "hard"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -201,7 +197,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-15T15:46:30Z",
-    "last_save_at": "2026-10-07T12:54:47.151Z",
+    "last_save_at": "2026-10-07T15:55:57.306Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +208,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:bd5493db674e1f39359be402ed571e8479ea56a8a9f94555c18e2ad5ee2e84ad",
+    "source_fingerprint": "sha256:e78c461693b3e98ce0fea526c3d40a2268a86238d8b7209c2827afa1ff95bfcf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d61b598dba250042f43979cfdff27c0165793e8462cc2580be9ffce33feb9fac",
-      "plan.md": "0bd63273e578054ea019cd9ab815b602f42fe5ce26274b450dd2cace2206ebae",
-      "tasks.md": "ad647846df29f3839e053b9f52ee5f2deb945a3032a38a7d4468e47498216e38",
-      "implementation-summary.md": "557f8a39d5736adda4cd50a6bb1b8607730e227fea06eaac5320fa131b680873",
+      "plan.md": "2d2f08d5791cfb4225fb005406a7082b3e529bb56189ae33e7be878537e81c44",
+      "tasks.md": "4a20bb57fbf03d947c3efb527055bbfbd4fb7b90aa6cc3113528838c67081ec0",
+      "implementation-summary.md": "89b322cfc816137ca6a26a8efafcecfb909be6f1c788f8fda22732b80e8b9852",
       "research/research.md": "85f84c823bf0dfea613a05beb662398ad5cc21dee434226d5c277d3399657105"
     },
     "last_active_at": null

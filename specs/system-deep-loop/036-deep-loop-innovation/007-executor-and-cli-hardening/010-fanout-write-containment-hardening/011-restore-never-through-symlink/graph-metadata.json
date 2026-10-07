@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "restore never through symlink",
       "the opt in restore checks the violated path",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "restore never through symlink plan",
+      "restore never through symlink tasks",
       "restore never through symlink acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "restore never through symlink implementation summary"
     ],
     "key_topics": [
       "restore",
@@ -32,11 +30,11 @@
       "checks",
       "violated",
       "path",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +196,7 @@
     ],
     "causal_summary": "Under restore, the baseline write used `writeFileSync` on the violated path",
     "created_at": "2026-09-20T08:33:42.243Z",
-    "last_save_at": "2026-10-07T12:55:35.407Z",
+    "last_save_at": "2026-10-07T15:56:56.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:570d7ad8ab62b950dff00a7b5284fdedc9e921013e8367ce8af175ba6f9381c3",
+    "source_fingerprint": "sha256:81fd4b16945334da74ec01959ac80eaf377f2bb0e3c07f09f4ca6984e7229bbe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "494e764674db91fceacc4ca6905ac820a7bcfc20c7bf12e5b55da55c25a36483",
-      "plan.md": "48a09392bd46efbae9311dc10449d86c7eacca33f7b2df4dbacd3ad0f99dfa3e",
-      "tasks.md": "f5c396925306b3135ebed1759b7916d48f2934112486b05c0f987972faa09925",
-      "implementation-summary.md": "b3bd57f3172e0ac0a32b3f378efa8d28a6247ee68343ebdb5448088278c44a31"
+      "plan.md": "a128250df482a521f680883f88136dbd3dd5f4656fb681a5b92a9dc08081c058",
+      "tasks.md": "8dbc501068d25d84eea6678d88719675fdd194f0fa1e3f947d177db2d5d9703c",
+      "implementation-summary.md": "48e2b3e9b07ee5b99b9446d9a4820f07518520a1d82e694ef64969393a12688d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: close-silent-preflight-holes"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "close silent preflight holes plan"
 importance_tier: "normal"
 contextType: "general"
 ---

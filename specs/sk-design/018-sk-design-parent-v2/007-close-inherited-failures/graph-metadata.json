@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "close inherited failures",
       "the closing phase measured the fleet and found",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "close inherited failures plan",
+      "close inherited failures tasks",
       "close inherited failures acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "close inherited failures implementation summary"
     ],
     "key_topics": [
       "close",
@@ -33,10 +31,10 @@
       "measured",
       "fleet",
       "found",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -197,7 +195,7 @@
     ],
     "causal_summary": "The closing phase measured the fleet and found two gates red",
     "created_at": "2026-09-06T16:22:20Z",
-    "last_save_at": "2026-10-07T12:55:17.077Z",
+    "last_save_at": "2026-10-07T15:56:39.730Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40b3b9c66819061dac778373efd3ecbd75b8c6e8f308c5ce07ac0f0c829a53de",
+    "source_fingerprint": "sha256:4793546eb34c322b8a6c8779058cbc1e5fd73ffb4f63d8174ccd00eb8c202bec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6e500be7fce469219358baa5539aef8ad0088144b52b5d0fd337b8136a53e210",
-      "plan.md": "e3ab8ba17be3cc53ed7ed210d996cdeae24960761021affdc524508754337ad2",
-      "tasks.md": "a4d680ec36d7857085d69d4ff6b93e756b1e20e1c6fa3d657def9348fd112db6",
-      "implementation-summary.md": "eb23de8a3ab843ecb96918551ddfcf339d85873387a4d350c669aed7d2405a79"
+      "plan.md": "f16d6ee001c608ddf9c83f95ff96793856d09a2450c8bd8c79c66956d9cbfda2",
+      "tasks.md": "bd2a962f6c8d2b458c7e7f19034133ca7250a2a19212fcbef9c5f72306182cea",
+      "implementation-summary.md": "fd4283d14d6bb963342e24d205b05dc9c83a4570cdad947c87e78c9c799184e3"
     },
     "last_active_at": null
   }

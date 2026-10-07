@@ -19,10 +19,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "cli pi fanout execution plan"
 ---
 # Implementation Plan: cli-pi Fan-out Execution
 

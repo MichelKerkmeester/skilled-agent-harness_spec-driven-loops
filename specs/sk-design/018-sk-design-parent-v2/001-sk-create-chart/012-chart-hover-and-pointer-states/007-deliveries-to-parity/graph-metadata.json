@@ -13,16 +13,10 @@
     "trigger_phrases": [
       "deliveries to parity",
       "six delivered charts under assets examples carry none",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "deliveries to parity plan",
+      "deliveries to parity tasks",
       "deliveries to parity acceptance criteria",
-      "implementation summary"
+      "deliveries to parity implementation summary"
     ],
     "key_topics": [
       "deliveries",
@@ -34,9 +28,9 @@
       "examples",
       "carry",
       "none",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -195,7 +189,7 @@
     ],
     "causal_summary": "Six delivered charts live under `assets/examples/`, and measured across all six, none carries `data-chart-tooltip`, `data-chart-legend`, `data-chart-dim` or the `:focus:not(:focus-visible)` hygiene line",
     "created_at": "2026-09-05T16:03:58Z",
-    "last_save_at": "2026-10-07T12:55:07.124Z",
+    "last_save_at": "2026-10-07T15:56:28.872Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +199,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2bd027d79ca6490872d8e16e1378d1eb255388fef11b58686b7d52811b0320ea",
+    "source_fingerprint": "sha256:a00a65aac7b3dfbbcaf35fdef9dcf54e726748543cdfc773d97ec2e48020ef39",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a8032a3cc489fcef0f7cc53d2961b0ac6c718b09326e89dfdb2d4e477691ab3c",
-      "plan.md": "c44acf7f53c7688bccc8bc19eba5065c907bdf2ff2b350ad13adad155b77fe35",
-      "tasks.md": "e291f3b9df5cbcfd5bf8c43a35f0933004dba2f5a0a7a01d62431323167489b5",
-      "implementation-summary.md": "6c175b2ef2048da2ad982e2a3796162091278c757ac69503c3bd2c7099fe56fa"
+      "plan.md": "47c35d46056012d23b678b2df0b84342fd43d57a9c4cad88646d38ba3b070f68",
+      "tasks.md": "bcbc5e5d351264bd650202624e270ebe14feccab1b8a0982974e83c1e53dc9ea",
+      "implementation-summary.md": "55ca130845e8a836360f1881a6062a52a8262b999094f710582cce678210960b"
     },
     "last_active_at": null
   }

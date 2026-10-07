@@ -2,10 +2,7 @@
 title: "Implementation Plan: every form can be judged without opening a browser"
 description: "Render all 75 templates and examples across the two canvas modes to PNGs, from a committed script with a coverage check."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "template screenshots plan"
 importance_tier: "normal"
 contextType: "general"
 ---

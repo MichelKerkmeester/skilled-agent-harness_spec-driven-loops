@@ -13,10 +13,7 @@ _memory:
     blockers: []
     completion_pct: 100
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "scripts ownership plan"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->

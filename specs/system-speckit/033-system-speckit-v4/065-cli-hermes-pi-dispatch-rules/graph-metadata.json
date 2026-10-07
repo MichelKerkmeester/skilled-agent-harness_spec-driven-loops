@@ -18,7 +18,6 @@
       "cli hermes pi runtime delegation plan",
       "cli hermes pi dispatch rules tasks",
       "cli hermes pi runtime delegation tasks",
-      "implementation summary",
       "cli hermes pi dispatch rules",
       "cli hermes pi runtime delegation evidence"
     ],
@@ -32,9 +31,9 @@
       "scope",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
-      "evidence"
+      "evidence",
+      "cli-hermes",
+      "cli-pi"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -50,7 +49,6 @@
       ".hermes/skills/cli-hermes/SKILL.md",
       ".hermes/skills/cli-pi/SKILL.md",
       ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
-      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json",
       "specs/system-speckit/033-system-speckit-v4/spec.md",
       "specs/system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules/spec.md"
     ],
@@ -202,7 +200,7 @@
     ],
     "causal_summary": "cli-hermes and cli-pi told an orchestrator, in five places each, to send every dispatch to the shared deep-loop runtime: the core principle, Execution Ownership, Dispatch Lifecycle step 4, ALWAYS rule 2 and a success criterion",
     "created_at": "2026-09-24T09:15:36Z",
-    "last_save_at": "2026-09-24T09:20:28.166Z",
+    "last_save_at": "2026-10-07T15:57:33.443Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1b41cc473f446d8bee1affc352d80a935bcff72eef62708ee30288c06233e3d",
+    "source_fingerprint": "sha256:56f51cdc55886769eb6096415ed887dc7f3f17ac25ba9139b76826e7490272ff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2c5ff770d006e7c6f46871f5e80640139e764344e9cd90f3b8b31b0a39fdd605",
       "plan.md": "3e0b31dbcc26affedbabeaeed954df9a253b6143e593ede8b03ede97cc0b63e2",
       "tasks.md": "3f82335e9c2dffb0fc431e9440718015a19698d615101dc7e02959d74a6c62c2",
-      "implementation-summary.md": "87837372d8e73104a6b709e6d5bca0c6c0ae10012b2f180fdd2323b288075e33"
+      "implementation-summary.md": "a84f136485dced598163913a8facf489b1f56390771e6ac6138dbd6dbb6fd37a"
     },
     "last_active_at": null
   }

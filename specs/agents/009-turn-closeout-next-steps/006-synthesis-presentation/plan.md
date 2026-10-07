@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: synthesis-presentation"
 description: "Four research iterations deciding whether presenting a synthesis earns its own rule, and what each deep-loop mode owes the reader."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "synthesis presentation plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Tasks: Correct the graph metadata backfill command in the spec folder write recipe"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "fix write recipe backfill flag tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

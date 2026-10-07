@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "One version per hub across all five routing artifacts, declared in SKILL.md, with the compiled manifests re-minted."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "version authority implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

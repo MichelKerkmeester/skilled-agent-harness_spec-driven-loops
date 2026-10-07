@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The Hermes contract is pinned live: the sanctioned smoke, --query-file round trip, --yolo write, off-roster exit 1 and run-budget expiry all observed through the operator-authorized LLM Gateway provider; the whole-tree skills symlink was rejected on scan evidence, and the --yolo claim was corrected on evidence: ordinary writes run without the flag, only flagged actions are blocked."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "hermes contract pin implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

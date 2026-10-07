@@ -17,12 +17,9 @@
       "cli-pi deepseek",
       "observation-only leaf",
       "loop adherence",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks"
+      "weak model loop adherence plan",
+      "weak model loop adherence tasks",
+      "weak model loop adherence implementation summary"
     ],
     "key_topics": [
       "deepseek",
@@ -36,7 +33,7 @@
       "cli-pi",
       "observation-only",
       "leaf",
-      "implementation"
+      "plan"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -197,7 +194,7 @@
     ],
     "causal_summary": "Weak models do not obey the deep-loop's observation-only leaf contract, and today the runtime can only catch the breach after the fact — it cannot let such a model succeed",
     "created_at": "2026-08-16T09:11:48.617Z",
-    "last_save_at": "2026-09-11T04:38:29.330Z",
+    "last_save_at": "2026-10-07T15:57:01.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:11fc580b2bab29ac1ca16f7dd3f5ead230a1b75852d2528488158ab5a280b8b3",
+    "source_fingerprint": "sha256:8549bb70e4ba5f771cdeaefbe10694a5d073a6eb771aca8a74644f5c8072280e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "50d124a05fcdfc64f1f7d7579d4cc990cdc24afc063e332cc2f1664056f43b2f",
-      "plan.md": "da4095cb946807ff85cb53af16765aca100e7661ee03407ce73dc0b400af7e38",
-      "tasks.md": "99cba7fe43d6941bb08962ff5d473a900f86f8afc5635befec060d8408c3a43e",
-      "implementation-summary.md": "54ef61481e78f5b91515e10893eb6c8bd98f9fe73e7750ec32aa2408099f33e5"
+      "plan.md": "5ab85a127c3d705aba1fb426f6d5d6f4f343418f59e2cd4fa577cc3424a35f72",
+      "tasks.md": "397ef284ca2db7b2321cca160d50d25a25a159c8290cd73a5fad580a4dc44131",
+      "implementation-summary.md": "6af89f149898b12210e3e550af7ea2c8abebdb5d57d55ef9c8be2b3082984d91"
     },
     "last_active_child_id": null,
     "last_active_at": null

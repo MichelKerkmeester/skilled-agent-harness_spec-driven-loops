@@ -4,10 +4,7 @@ description: "Approach and verification gates for the F3/F4 rollout/flip-tooling
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/004-rollout-flip-tooling"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "rollout flip tooling plan"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

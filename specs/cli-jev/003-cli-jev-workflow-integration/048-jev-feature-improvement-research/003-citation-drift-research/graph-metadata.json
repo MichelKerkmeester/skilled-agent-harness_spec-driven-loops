@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "citation drift research",
       "five deepseek v4 1 flash and three gpt",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "citation drift research plan",
+      "citation drift research tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "citation drift research implementation summary",
+      "jev citation drift improvement",
+      "cite-drift-scan research",
+      "citation drift default-on"
     ],
     "key_topics": [
       "citation",
@@ -33,10 +33,10 @@
       "flash",
       "three",
       "gpt",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Phase 047 measured the Jev citation drift scan at verdict jev: keep K=40 M=40 A=35 B=13 W=22 L=0 TP=26 FP=0 F=3 p=2.384e-7",
     "created_at": "2026-10-02T21:59:44Z",
-    "last_save_at": "2026-10-07T12:54:51.907Z",
+    "last_save_at": "2026-10-07T15:56:02.451Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:534f2f0672b700d8de42c5d935ed08e280e6a0f76cf2fe8e30083d02f0610f21",
+    "source_fingerprint": "sha256:da0547a5316a449204f4a5e9f884323744a5683adf89bf63ab659a99e7ca041d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ce0d49cfaac02e6973039677da8e0ba75d17418cda569ccd0cc0d2dd188de9be",
-      "plan.md": "58ce61e34c113e82753cf12a6ae5751cf6252a579bafbb1743794654f9dcfa37",
-      "tasks.md": "4bad8d84994f02c0e528e7eeb28041aebcd79c67b1cfa5191a5087579156f02a",
-      "implementation-summary.md": "ca822b7b57339df1fa1821f8df42006643a0b3035abb081e4b71d074b416a377",
+      "plan.md": "b36e74a9218bbf52a76bc0deb0dc4774ba1a92406166b2a37168bed3ff6f429a",
+      "tasks.md": "59c4b2559cf2424111552775da698977f9442001307ab35fb02b3618b64238fc",
+      "implementation-summary.md": "de5378d138812e44c1aefe6473aeb3a4217b49f5b3e8c5a107c02634fdc19475",
       "research/research.md": "9d77a5312367faa487b3b6f4122b54acc51015ad54022f17541a2a427d058e66"
     },
     "last_active_at": null

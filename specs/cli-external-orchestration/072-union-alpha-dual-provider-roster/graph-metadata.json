@@ -50,7 +50,9 @@
       ".opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
       ".opencode/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
       ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md",
-      ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md"
+      ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.4.0.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.7.0.md"
     ],
     "entities": [
       {
@@ -99,6 +101,18 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.5.4.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.4.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.4.7.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.7.0.md",
         "source": "derived"
       },
       {
@@ -184,23 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Union Alpha is a free stealth model that both CLIs already see, on two providers at once",
     "created_at": "2026-09-17T12:15:33Z",
-    "last_save_at": "2026-09-18T04:34:07.474Z",
+    "last_save_at": "2026-10-07T15:55:57.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cfe390aa0f90d58f7705d3957f5f967702c2b3b5194203edc2ed826727b3ad28",
+    "source_fingerprint": "sha256:d537b2dd38100efee14f5ca500081c9d8263fd98ab1c5a0ebc54316609ccd6fb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ce923c2e7636d1003349fb5ec40f966b6db6acb448c1441d5029aea59b56b5dd",
       "plan.md": "2dddea3827971b49edaee72b1b17f1943c25d15298a585e425b3b7cbd4142da0",
       "tasks.md": "fda2282b3dc1cf176f2888d6458e41c1ab8bdd8e6102d85790d47292c4ca13a6",
-      "implementation-summary.md": "3f3eac56ad48829c9b01deabe4c4ff66e03939acea3e524028e1df961a17ca13"
+      "implementation-summary.md": "732845ec311b1190c9f8d6ab88241e9c5c352b3b6e71dbea85954372941bd706"
     },
     "last_active_at": null
   }

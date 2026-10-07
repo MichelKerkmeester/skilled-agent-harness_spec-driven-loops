@@ -15,14 +15,12 @@
       "stale source fingerprint",
       "graph metadata drift",
       "derived metadata gate",
-      "implementation plan",
       "spec metadata gate approach",
       "sweep then gate",
       "auto fix derived artifact",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "spec metadata auto remint tasks",
+      "spec metadata auto remint acceptance criteria",
+      "spec metadata auto remint implementation summary"
     ],
     "key_topics": [
       "spec",
@@ -36,7 +34,7 @@
       "drift",
       "derived",
       "gate",
-      "implementation"
+      "approach"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -198,7 +196,7 @@
     ],
     "causal_summary": "Every spec packet carries a `graph-metadata.json` holding a fingerprint of the documents it was derived from, plus fields summarised out of them",
     "created_at": "2026-09-10T20:45:38Z",
-    "last_save_at": "2026-10-07T12:55:01.246Z",
+    "last_save_at": "2026-10-07T15:56:13.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +206,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e30f5c1b495c9827b07f93dd8065792f67c8a22669bb38d8216d3b994518a93",
+    "source_fingerprint": "sha256:6b007e43d8a28c257c6b3594f3d9dd739adddedf3909c442adeadd3b52515971",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7425db3070712c8f9ac1f912ea4d11e33d6cda08560aed83d9875ccb52b2c8b7",
-      "plan.md": "41c580174f324933e44485b4a527911c66ed88f5754faaa0c4b7df3c3b2d1df4",
-      "tasks.md": "2959c3478198a0f7fccaece257f6bc7791fbb63ae9dee95ca4e80069c15a5086",
-      "implementation-summary.md": "cc7f3601243927668627601d09b99694ecdc3c51b2cceb51ac120ccc3b706904"
+      "plan.md": "65a176ac6d61a430785aac2939412343f50e50a7bddfc2fb4503215fd9c14781",
+      "tasks.md": "80ece0c056783041d3a142ae96a4dcacbb84a45d24cdaef8d1d0b8db83085000",
+      "implementation-summary.md": "6252c23296d043e713f5515386c2a0b6adba2fa096173e9a0afe4c1c2c7dbf14"
     },
     "last_active_at": null
   }

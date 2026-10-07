@@ -16,13 +16,12 @@
       "base manifest recording",
       "provenance fingerprint prefilter",
       "prerelease policy",
-      "implementation plan",
       "release engine changes",
       "generated class",
       "base recording",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "release update customization signals tasks",
+      "release update customization signals acceptance criteria",
+      "release update customization signals implementation summary"
     ],
     "key_topics": [
       "release",
@@ -209,7 +208,7 @@
     ],
     "causal_summary": "`release-update.cjs` compares base, local and release blobs per file and derives a unit status from the resulting classes",
     "created_at": "2026-10-03T05:27:40Z",
-    "last_save_at": "2026-10-07T12:55:54.824Z",
+    "last_save_at": "2026-10-07T15:57:41.026Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +218,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5215f4dedb80377929eb79b8963478f0eab92e31a55f6c585b4b13275ef37ed1",
+    "source_fingerprint": "sha256:98f28c3459bd2b1b8654f587a1e43e4201514774c48784fcbbb5ba4392874581",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e2a146303255e1946bdc9b2aa06a3e16e29d36ae272f1ef3366155660c612787",
-      "plan.md": "931cc02cca85844e5027edc9ee855bf50ce56a4f4338c04a922339abc80b56dd",
-      "tasks.md": "ee0e9469457c43287143c72a59aa56bee32be513197ba8acd5a0fb0af077c6eb",
-      "implementation-summary.md": "a78f65f6aaeefba3b73a8631af0f28e69a2ca5cb4685c41b0c0a622b4ddb1a29"
+      "plan.md": "478619eef5531fb4c59876f4722cfade69aea0f78144c4f0b164c29d8afba403",
+      "tasks.md": "e1b955e6d62d6c16bf9408d56114800e1b6270f613fe8fbaff5167ed11bd31f7",
+      "implementation-summary.md": "4d253402bebb20db1c582e18aec7047f74557f6378390322702abd6e70ce56b9"
     },
     "last_active_at": null
   }

@@ -16,9 +16,7 @@
       "worktree node_modules",
       "worktree provisioning plan",
       "worktree provisioning tasks",
-      "implementation summary",
-      "what shipped",
-      "validation evidence"
+      "worktree dependency provisioning implementation summary"
     ],
     "key_topics": [
       "worktree",
@@ -27,12 +25,12 @@
       "dependencies",
       "plan",
       "tasks",
+      "dependency",
       "implementation",
       "summary",
-      "shipped",
-      "validation",
-      "evidence",
-      "provisions"
+      "provisions",
+      "because",
+      "unprovisioned"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -193,7 +191,7 @@
     ],
     "causal_summary": "Creating a worktree provisions its dependencies, because an unprovisioned one fails checks in ways that read as broken code.",
     "created_at": "2026-09-11T19:05:02.173Z",
-    "last_save_at": "2026-10-03T15:44:22.250Z",
+    "last_save_at": "2026-10-07T15:56:49.131Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d139d5ab6045c53a494ef361583817119688663c900c33ad246927c9c3138b4",
+    "source_fingerprint": "sha256:f8edd2f37d44f4438af1e859bebdc17ccd99009079f4789d894acb39374ad290",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "09dfe379319ed9f305d77dfce791d221b6fb5badd56f6f698aabc6dd851a6ed0",
       "plan.md": "36e31e96be6d7d79dd11dedc58438eb2c73c5c83e323907f1a247fa45be4dc1a",
       "tasks.md": "e117c7e4596f78f4139845a969d44a98ca8906155db4e98252edaf5641492e63",
-      "implementation-summary.md": "4e38059a251e2e8eb4f7224febfc3547c6dc48b6ebd704460e282931c2341c6b"
+      "implementation-summary.md": "8cd5d3733ff94eb35ff181311b247b622ef5309691f66f9af0cfbe3a87ffce07"
     },
     "last_active_child_id": null,
     "last_active_at": null

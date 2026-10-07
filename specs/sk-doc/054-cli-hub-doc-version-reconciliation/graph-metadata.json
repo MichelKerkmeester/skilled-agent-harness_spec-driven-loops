@@ -13,16 +13,10 @@
     "trigger_phrases": [
       "cli hub doc version reconciliation",
       "the cli external orchestration hub carries 363 versioned",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "cli hub doc version reconciliation plan",
+      "cli hub doc version reconciliation tasks",
       "cli hub doc version reconciliation acceptance criteria",
-      "implementation summary"
+      "cli hub doc version reconciliation implementation summary"
     ],
     "key_topics": [
       "cli",
@@ -34,9 +28,9 @@
       "orchestration",
       "carries",
       "versioned",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +189,7 @@
     ],
     "causal_summary": "The `cli-external-orchestration` hub carries 363 versioned docs",
     "created_at": "2026-09-09T06:42:07Z",
-    "last_save_at": "2026-10-07T12:55:25.089Z",
+    "last_save_at": "2026-10-07T15:56:45.998Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +199,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:afed503b84a57c6ca2547f8717f0cce30abe4a494e89d2941e5ea26684ac54c7",
+    "source_fingerprint": "sha256:ea1b6fde5d624587634890ef065c590674763077c0002fc0a218ac3182fa2323",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "af5b2bddedac2f5868593b1d4154944bf8f430eeeec2c51d933e42d79c502ab6",
-      "plan.md": "5601296927794cd71b4e1be8cb9510b67c74848c368b7b78718a6380630d6d83",
-      "tasks.md": "e966180a416e15eb9d0d299804903702c7ae7b24d78f2676e4b1c39654e99aca",
-      "implementation-summary.md": "b215cc7f6fbb08cffadc4f410abd8ce8c451da896419f24585970999bcabdd96"
+      "plan.md": "385a8c0b3d1989294e93a056231aa11da0e38760ba0212bbc7c97728597b75b2",
+      "tasks.md": "82ac30d3100d259eda69ad41f2313da62554a2d1f99b7df3e98a793a4e485dda",
+      "implementation-summary.md": "26de0b71a2f324bf52cf9911977c2fa84e87f3cca2822562bd3a972e09634edd"
     },
     "last_active_at": null
   }

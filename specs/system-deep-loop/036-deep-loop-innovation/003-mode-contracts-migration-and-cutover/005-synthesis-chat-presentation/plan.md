@@ -2,10 +2,7 @@
 title: "Implementation Plan: Present synthesized recommendations in chat across the six deep-loop modes"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "synthesis chat presentation plan"
 importance_tier: "normal"
 contextType: "general"
 ---

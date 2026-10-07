@@ -22,7 +22,7 @@
       "orphan removal tasks",
       "lane repair tasks",
       "ci workflow tasks",
-      "verification checklist"
+      "orphan removal criteria"
     ],
     "key_topics": [
       "cli",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Round one certified directories as wired without enumerating their files, and the decommission's orphans survived inside them: an unregistered rule script, a re-export shim, a capture-era helper whose named modules no longer exist, a registry loader the engine never calls, a read-tool wrapper nobody imports, a validation helper only a legacy test loads, a root shim whose one caller bypasses it, and a test that no lane runs",
     "created_at": "2026-09-07T06:23:47.776Z",
-    "last_save_at": "2026-09-08T15:47:14.314Z",
+    "last_save_at": "2026-10-07T15:57:23.197Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc76d504066409aad5b679b275bc892a22d328d5f8bca9f9d8cdc13a847e3460",
+    "source_fingerprint": "sha256:3f2d9af2f9d088418b22ad1768a478049ca16bc1e988389146c23dc0951a4d9f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4cc480ae6bb85edf0838cef6408a2d55aa29593cae5942513e95e547343dfe04",
       "plan.md": "0fffebd3db523472de49064c7d4994f9372c7b504f10be44d5634b30a36611fc",
-      "tasks.md": "25ec5dad0ab9af41bbb5104118882780ddfd8ffac672b21d053b2af68b9456c0",
+      "tasks.md": "382b3ddd58eb8ccfaf1c7b951c4487201caa8e0aae44adc332e87dd32be2a2b5",
       "implementation-summary.md": "dde36c07d2e50f8397cb2283d3db8922694a458896d2cb1881f9493de68c68e7"
     },
     "last_active_child_id": null,

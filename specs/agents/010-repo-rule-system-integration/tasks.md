@@ -2,10 +2,7 @@
 title: "Tasks: Extend the repo-rule system across the wider system and shrink AGENTS.md where content no longer earns a full writeup"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "repo rule system integration tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

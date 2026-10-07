@@ -19,10 +19,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "cli pi fanout execution implementation summary"
 ---
 # Implementation Summary
 

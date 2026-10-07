@@ -19,7 +19,6 @@
       "phase map repair plan",
       "v4 parent data repairs tasks",
       "phase map repair tasks",
-      "implementation summary",
       "phase map repair evidence"
     ],
     "key_topics": [
@@ -193,7 +192,7 @@
     ],
     "causal_summary": "A dry run of the phase-map sync tool on the v4 parent reported a blank line at `spec.md:148` that ended the map after row 38, so rows 40 onward rendered as a paragraph and no tool read them; no row for 039; row 018 still marked draft although its implementation summary records completion; and no rows for the phases added since 055",
     "created_at": "2026-09-24T06:45:23Z",
-    "last_save_at": "2026-09-24T07:18:46.726Z",
+    "last_save_at": "2026-10-07T15:57:33.263Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6ad7c77b3aff280863866a35950653dd917affc068f861c80a1abe63e114831b",
+    "source_fingerprint": "sha256:d49377fe2a115be1d1d990de205684f99e2f44a08b517dc1ddc659f42aa0f816",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f970d6ad2419f2af4187113ae46b72cc426ba22abbe9de20f4120c454dae11da",
       "plan.md": "668370563ff91042a3ad40dfe0f201b94debdb079f060e5868da576c4cc92cb9",
       "tasks.md": "b0aed7177a2554a8405d5505a914fd4d9f4eeb30337e8a658836581a648f5e9f",
-      "implementation-summary.md": "407eff76548fbc83ff30e1e05b720d498c1a37d6581ea74b61d6fb7dad407dd8"
+      "implementation-summary.md": "456899be76a8a6acf840ad7e90f616da77afc88f3f937f4f520173bed4c2a415"
     },
     "last_active_at": null
   }

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Every authored commit now needs a prose body, and the commit-msg hook refuses a commit without one. The skill, its guides, the callers and the tests all say the same thing."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "commit body always required implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

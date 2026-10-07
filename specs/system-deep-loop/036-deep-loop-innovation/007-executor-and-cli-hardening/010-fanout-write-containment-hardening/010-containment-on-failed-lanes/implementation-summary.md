@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Containment runs for every lane the moment its process ends, so a failed or artifact-less lane's out-of-scope writes are reported and quarantined while its verdict stays failed."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "containment on failed lanes implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

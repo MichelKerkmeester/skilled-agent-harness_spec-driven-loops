@@ -2,8 +2,6 @@
 title: "Implementation Plan: Phase 5: playbook-reverification-and-closeout"
 description: "Run the transport's 22 scenarios and the hub's routing corpus from the migrated home, record the runs, reconcile the living docs with what was observed, regenerate the derived surfaces the edits feed, and close the program."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
   - "execution phases"
   - "quality gates"
 importance_tier: "normal"

@@ -12,17 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "search surface",
-      "deliver the search the format promises recipes in",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "deliver the search the format promises recipes",
+      "search surface plan",
+      "search surface tasks",
       "search surface acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "search surface implementation summary"
     ],
     "key_topics": [
       "search",
@@ -31,12 +29,12 @@
       "format",
       "promises",
       "recipes",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +196,7 @@
     ],
     "causal_summary": "A reader who knows a packet or an ordinal has no documented way to get from it to a commit",
     "created_at": "2026-09-11T07:16:28Z",
-    "last_save_at": "2026-10-07T12:55:27.563Z",
+    "last_save_at": "2026-10-07T15:56:48.829Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bc8d1888de0c0ff25715cfc7b0d845b6a79f9c374a43d5b6cd470878149d2f74",
+    "source_fingerprint": "sha256:39a5a106c8687b4c22944a3d83ec9d001983d12ed6854a7744a355dfcb6ca727",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e99f2ffcf6eff5559781f7bd7c58b6b31d8c457affb65af123c645d3a224bb42",
-      "plan.md": "b8da72d322cb7060a3717c237b6152eda40e533c8d44bba60a66a103b16e0d0c",
-      "tasks.md": "18d7c1b13c4e607e22a29a8dd797239bcc344be4f4131cc8f9136ac94b14d833",
-      "implementation-summary.md": "98fdda068ff357d8267949271e84d64df4691273cce0a6823a5f38ca13ebc20a"
+      "spec.md": "b8d4e149e0703d5d4a49af052ea5f5d3ed424ece2a974ea25e639831b582368b",
+      "plan.md": "5b757f12060ba426e83f1d47d46fc5950f9d0363411814f404a4b9462ab16416",
+      "tasks.md": "15a6ffea8fb3278c1acc13a78250f34bb77e345a3231fbb22fd7848ec55f9916",
+      "implementation-summary.md": "16d0f4961ceed25fc826ba882797b97f0eaa805dc0473828ed54ae2a084a8459"
     },
     "last_active_at": null
   }

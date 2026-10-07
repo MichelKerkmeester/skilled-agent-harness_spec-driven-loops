@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Complete at its label gate. score-stop-rater.cjs replays the archived deep-research lineages offline, prints the three zero-call stop methods and their baseline with zero model calls and stops at stop: fewer than 5 confirmed lineages; its 36 tests cover the census, the label gate, the no-headroom arm close and both dormant arms on stubs, and the system-deep-loop docs describe it. Built as 709b1078ee with the compiled-contract fix 24473df4fa."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "stop second rater implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

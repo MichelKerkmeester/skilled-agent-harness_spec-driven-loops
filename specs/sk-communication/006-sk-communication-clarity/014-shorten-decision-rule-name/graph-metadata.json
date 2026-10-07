@@ -13,16 +13,9 @@
     "trigger_phrases": [
       "shorten decision rule name",
       "the decision rule carried the last long name",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "shorten decision rule name plan",
+      "shorten decision rule name tasks",
+      "shorten decision rule name implementation summary"
     ],
     "key_topics": [
       "shorten",
@@ -32,11 +25,11 @@
       "carried",
       "last",
       "long",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "implementation",
+      "summary",
+      "corpus"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -197,7 +190,7 @@
     ],
     "causal_summary": "The decision rule carried the last long name in the corpus at 37 characters, so it was shortened to communication-decisions after checking the file itself says what the shorter name leaves out.",
     "created_at": "2026-09-15T20:10:11Z",
-    "last_save_at": "2026-10-07T12:55:04.928Z",
+    "last_save_at": "2026-10-07T15:56:27.227Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:42330b98b513eba0a0600f09646a73d2635a29c49601dcacd1b8c79a8558a31d",
+    "source_fingerprint": "sha256:6f56c5212f93ebf54821f3421cf8581c660ee2520c8ac5504a5766aec32bfa9d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "005c44092172bf19509143570b13447492268ead454fb69a24310154040a81dc",
-      "plan.md": "71053f227a0f25cae3d6516550f7e66c4cccd9fe1d172a117a2388f064cf49af",
-      "tasks.md": "6e678760a1aeb4557f45ef586349b920e2619d1a3fedbac363154af6866caf49",
-      "implementation-summary.md": "c5c1fe5cd8fed95d283594e4297310f49693ac107c70fc5df3a5a4b452f3d827"
+      "plan.md": "d55fd625b999a5238133098517501e4fad807b41448cc5b733ccc5c2f5ec7a61",
+      "tasks.md": "85a043841c32115bf03f6276fa4de41ae17ea900de4346c5f3a3e94f0b40de32",
+      "implementation-summary.md": "2f0230db781b41d8d17ddd807e93ebc58ee704ce93752773999e6a670b4abe48"
     },
     "last_active_at": null
   }

@@ -11,18 +11,16 @@
   },
   "derived": {
     "trigger_phrases": [
-      "the hub answers from its new home but",
+      "the hub answers from its new home",
       "compiled fleet onboarding",
       "activation manifest",
       "serving closure",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
+      "compiled fleet onboarding plan",
       "phase tasks",
-      "verification checklist",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "phase closeout"
     ],
     "key_topics": [
       "hub",
@@ -36,7 +34,7 @@
       "manifest",
       "serving",
       "closure",
-      "implementation"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -210,7 +208,7 @@
     ],
     "causal_summary": "Before this phase the hub resolved through the legacy path: it was absent from the engine's dispatch map, so `compiled-route.cjs --hub cli-jev` returned the sentinel, `loadHubEngine` threw `unknown hub`, and every compiled-routing view (status, guard, admission, the foundation lockstep suite) treated the hub as unregistered",
     "created_at": "2026-09-20T11:00:13Z",
-    "last_save_at": "2026-10-07T13:01:25.908Z",
+    "last_save_at": "2026-10-07T15:55:56.884Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31ead776daf10d95e27f40ce5c5ce2e9956ad97dcd43463f89706cad011f914d",
+    "source_fingerprint": "sha256:6e7849edb7fbd4a655a75299a917fa3a0a21e7ff72f29c5767542df57f1da4d5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "92e2b055a2ba4bb2f968261f04a4b8253d2f050e60da1b13a68fb33a0b01247a",
-      "plan.md": "8fdc13227505d9b9992fde73c4b06ec2b1834fbda68090a956649152bd8adbe6",
-      "tasks.md": "0a19344a537d1914e21df1528f18f70f282d2f6809f5253ca0f9c488b763d121",
-      "implementation-summary.md": "11ccd169a5437610e43d53b2ce0ef7837a41559b7992fcd255278c3ecc1341fa"
+      "spec.md": "380ec3c3329613b53ef2a575466c62f0cc3470b5a4899e4f319e9b0c0ce54262",
+      "plan.md": "4d2b174edf355fddd5ad4d38916d3e6fa6092b8ed5a5931b7232485d26676fd5",
+      "tasks.md": "ecd72a2ed924840a04e5b285a3e28d41e65dfda9103f445fd533f26412afa7b9",
+      "implementation-summary.md": "66beff6432a02706b05fcc7c26b6ed0abd8968f4a74c0fb12aa55f9255083caf"
     },
     "last_active_at": null
   }

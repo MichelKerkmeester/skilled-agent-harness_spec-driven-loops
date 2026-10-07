@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 010 Adjacent-Span Coalescing"
 description: "Implement a versioned model-facing grouping or alias layer that reduces marker burden and resolves locally to the unchanged canonical map before strict restoration."
 trigger_phrases:
   - "adjacent-span-coalescing"
-  - "implementation plan"
   - "protected marker inflation"
 importance_tier: "important"
 contextType: "implementation"

@@ -15,14 +15,10 @@
       "advisor scorer references",
       "phrase boost bound",
       "embeddings health status",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "status contract and docs plan",
+      "status contract and docs tasks",
+      "status contract and docs acceptance criteria",
+      "status contract and docs implementation summary"
     ],
     "key_topics": [
       "trusted",
@@ -210,7 +206,7 @@
     ],
     "causal_summary": "Five gaps were recorded by the doctor command audit and re-verified at planning time",
     "created_at": "2026-10-03T05:27:37Z",
-    "last_save_at": "2026-10-07T12:55:42.460Z",
+    "last_save_at": "2026-10-07T15:57:10.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8be4b43c51d291104436e9ab3f77f908f752b9a6929cb26fc509e2ef43308054",
+    "source_fingerprint": "sha256:dbee8676a1ed2387cff4f6cebc0d1d0e2f6f885e23e951042d3cd08d4bfd1307",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e4b1df75ed63a2916d16f4133928991e8465a94bc628193e07f4eaa641d62159",
-      "plan.md": "d5cd3b6e889c69e20c826e57c72db80d3fd411d453f24bcd190998bf14effdf1",
-      "tasks.md": "814657b06046f7d2a3beb97833adda0cf6614142d95c60e937a47e08a06ed234",
-      "implementation-summary.md": "01362a54cd34f8df8a6a0ebed13de218f98965c99ecf680c325d1cd00801b291"
+      "plan.md": "edf04921a1ddabb0d06d7ee885169c84fbef4e2a260ce6469b9766db40e7e51b",
+      "tasks.md": "f923f29b6e84265a6ef5deb3c1015f736efab16c830bb0c5b595b14d66bf8d7a",
+      "implementation-summary.md": "b2a8b54071ecd699258c2516921f6106b767f84832e6ef07e599837f6e5d5d44"
     },
     "last_active_at": null
   }

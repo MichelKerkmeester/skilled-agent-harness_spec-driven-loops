@@ -5,7 +5,6 @@ trigger_phrases:
   - "retrieval remediation tasks"
   - "exclusion record tasks"
   - "retrofit move tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

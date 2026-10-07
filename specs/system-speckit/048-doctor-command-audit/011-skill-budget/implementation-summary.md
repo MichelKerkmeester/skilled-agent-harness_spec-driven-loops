@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Closed the skill-budget audit: every named surface was checked against this checkout, the target was run once read-only, and the two mismatches the audit found were fixed in the route entry and the workflow."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "skill budget implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

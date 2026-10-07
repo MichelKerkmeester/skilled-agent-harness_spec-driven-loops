@@ -3,7 +3,7 @@ title: "Feature Specification: embed the stock Style Reference in the chart skil
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "embedded style reference"
-  - "every colour corner and type size in the"
+  - "every colour corner and type size"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -7,7 +7,6 @@ trigger_phrases:
   - "planner-first tasks"
   - "audit tasks"
   - "research tasks"
-  - "implementation tasks"
   - "remediation tasks"
 importance_tier: "important"
 contextType: "implementation"

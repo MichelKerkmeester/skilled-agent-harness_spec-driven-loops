@@ -2,8 +2,6 @@
 title: "Acceptance Criteria: Shared package post-remediation cleanup"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
   - "shared cleanup criteria"
   - "reader table criterion"
 importance_tier: "important"

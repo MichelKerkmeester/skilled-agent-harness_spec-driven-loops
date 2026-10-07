@@ -15,14 +15,10 @@
       "leaf agent direct append",
       "deep-loop agent state jsonl bypass",
       "append gateway agent prompt",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "runtime agent gateway alignment plan",
+      "runtime agent gateway alignment tasks",
+      "gateway alignment decision record",
+      "runtime agent gateway alignment implementation summary"
     ],
     "key_topics": [
       "runtime",
@@ -197,7 +193,7 @@
     ],
     "causal_summary": "The `012-runtime-enablement` work made the typed event ledger authoritative for all eight deep-loop modes and turned each `-state.jsonl` into a pure projection of the ledger",
     "created_at": "2026-08-25T07:11:26.953Z",
-    "last_save_at": "2026-10-03T15:27:59.491Z",
+    "last_save_at": "2026-10-07T15:57:01.419Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cbb0d8dcfd47eb79df066338f9009fb15a7d7ee25a18ca99e26787a8015c8614",
+    "source_fingerprint": "sha256:1e07666254ccf01c8fcdd6ac7a43980851a88adc29d983e3b7f6d830fd599214",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cd84afd1fae1705d9db71607f41af5e6b6199cce6e0d1642d3228bc72900e581",
-      "plan.md": "b36e17d0592a108e899de8e6269bc1f909c3b70b5dda5efcb40d3217535cadb3",
-      "tasks.md": "2311f08240a89a748a533e876dbc436d114628ddad45e4afb3b5872841f0c097",
+      "plan.md": "63a423c5fb6afaf27160c92214749bb67fb6027900cb9e3e993938338de9f706",
+      "tasks.md": "42641820e68d70090392c772842ead449aeca8e53dd702d08dda6b3bea4418c8",
       "decision-record.md": "9dfcc32447a372b2a6ce499d6b5caae9e61ccf087184b4d1005cf2c63b92d7a3",
-      "implementation-summary.md": "30588465b68bd3b7328ffbd500da554af8614c16068bb3c84ebbd883b79e2aee"
+      "implementation-summary.md": "fb19c978c38d98c188815901703fd7ddddc13cb8628ee0c1ecd95aeca92b7f4d"
     },
     "last_active_child_id": null,
     "last_active_at": null

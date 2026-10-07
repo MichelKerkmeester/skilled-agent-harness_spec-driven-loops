@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 10: trigger-index-ci-rebuild"
 description: "Add a GitHub Actions workflow that rebuilds the committed trigger index on pushes to the integration branches, commits it only when it changed, and guards against loops and races, then point the advisory drift message at the new job."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "trigger index ci rebuild plan"
 importance_tier: "normal"
 contextType: "general"
 ---

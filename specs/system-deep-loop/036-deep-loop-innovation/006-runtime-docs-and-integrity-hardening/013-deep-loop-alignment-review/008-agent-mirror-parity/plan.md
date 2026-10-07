@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 8: agent-mirror-parity"
 description: "Document the six-tree translation contract in one crosswalk the agent READMEs cite, give each workflow mode its own leaf set with a collision refusal in the shared generator, and remove the state keys two agent bodies demanded but no consumer reads."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "agent mirror parity plan"
 importance_tier: "normal"
 contextType: "general"
 ---

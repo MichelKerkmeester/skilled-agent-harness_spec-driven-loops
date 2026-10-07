@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "pi transport research",
       "five deepseek v4 1 flash and three gpt",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "pi transport research plan",
+      "pi transport research tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "pi transport research implementation summary",
+      "jev pi transport improvement",
+      "score-pi-transport research",
+      "jev-transport default on"
     ],
     "key_topics": [
       "transport",
@@ -32,11 +32,11 @@
       "flash",
       "three",
       "gpt",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "packet",
+      "goal",
+      "durable"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Phase 037 measured the Jev Pi native classifier transport at verdict pi-transport: adopt K=111 M=111 coverage=100.0 agreement=95.5 medianabsdp=0.0100 p95ms=340/387 costper100=0.0022",
     "created_at": "2026-10-02T21:59:49Z",
-    "last_save_at": "2026-10-07T12:54:55.974Z",
+    "last_save_at": "2026-10-07T15:56:06.600Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f5d297ab15257c03542aaaf964818c274f4b256b3f2a91d5c80694a774215729",
+    "source_fingerprint": "sha256:5015eb31620d4caef0e785434eb1fd14a0e53bff5d21ef12bb06b438aab3adec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4d5668ee215b0721be32d296b6e993a4382dc5017962d5cd081eb8fef405bf0f",
-      "plan.md": "411d59da53481ea52a1b5a9d11c68965ff374a016207331687550dea38f70588",
-      "tasks.md": "3199eb3a0e1d5e98aeb45257f2aa99e80bbc9dfa2840f62d7daea06db4b5b17b",
-      "implementation-summary.md": "b782c22d90f8b4e42db7a8390a3593dc0df966fbf8f15a2d182fe6b495dea097",
+      "plan.md": "e6fd117a932276a121c2e0f89aeb312c321115fc93f521d83dfbb1c4e7f666e8",
+      "tasks.md": "ce22af637d3d54b89e2c6a65f8f2592158801f010caa2d36a6dd2fbdba891b71",
+      "implementation-summary.md": "3c3f3caa5aab85f459189963a51dde23eddbc5ce444f539f153aabeb3ae45fdb",
       "research/research.md": "c571dbc66ff0c479396aaf8b6334c77f8d3c79a469160e1d392da8f93c532a54"
     },
     "last_active_at": null

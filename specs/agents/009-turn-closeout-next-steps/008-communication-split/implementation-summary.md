@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Split the decision-shape sections out of communication.md into their own rule so each half carries its own trigger."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "communication split implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

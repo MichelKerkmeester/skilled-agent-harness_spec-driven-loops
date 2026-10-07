@@ -5,7 +5,6 @@ trigger_phrases:
   - "shared removal tasks"
   - "dead half census tasks"
   - "telemetry directory tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

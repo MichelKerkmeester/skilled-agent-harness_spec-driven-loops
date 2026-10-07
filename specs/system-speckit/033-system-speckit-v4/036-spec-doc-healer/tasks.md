@@ -2,10 +2,7 @@
 title: "Tasks: Restore scaffold values a spec document lost, only where the right value can be proven"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "spec doc healer tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

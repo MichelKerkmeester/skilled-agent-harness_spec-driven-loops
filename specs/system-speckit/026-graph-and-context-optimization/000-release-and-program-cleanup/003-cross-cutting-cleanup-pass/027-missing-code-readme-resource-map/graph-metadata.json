@@ -21,8 +21,8 @@
       "readme resource map tasks",
       "missing code readmes",
       "phase 052 tasks",
-      "implementation summary",
-      "phase 052"
+      "phase 052",
+      "65 target readme manifest"
     ],
     "key_topics": [
       "missing",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The release-cleanup packet needed bounded code-folder README coverage",
     "created_at": "2026-05-02T13:46:02Z",
-    "last_save_at": "2026-09-07T16:17:31.645Z",
+    "last_save_at": "2026-10-07T15:57:10.756Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:1ddd1510e7b80854ba807933402c45ce20bd8f46eeb99241bb48c11cc6817680",
+    "source_fingerprint": "sha256:da5f9cb78878bff3d5c0c54b9609219fcd79607beba2f7c493e7b164e6f12346",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "deff92d354199242db0a0cb1c1760afc73ef89bd21dbc75909aabf809770f03d",
       "plan.md": "92cf4bb5b4ffee47094ceeefe0d5164cae1aff258366569aee61857d54ea5acc",
       "tasks.md": "18a8da036b3d8bb3d5a4febc7fe43d72d7de424d8c6297325559a05d6735fa52",
-      "implementation-summary.md": "0eea7caabc8957bc4b06bc1e078c5591e662fe6c4a39ad04dc816365407be74c",
+      "implementation-summary.md": "92f3fbf518c3aade4804c9a5521ff38e97f44bcb1a8244d30003b326db4d25e9",
       "resource-map.md": "35c53b871894cfb3fe6a77d2d6b5ffd227e6d87987ee7f6a78368adb86e1d7d9"
     },
     "last_active_child_id": null,

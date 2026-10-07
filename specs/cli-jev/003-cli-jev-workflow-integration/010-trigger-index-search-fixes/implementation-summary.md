@@ -2,10 +2,7 @@
 title: "Implementation Summary: Trigger Index Rebuild, Freshness and Build Isolation"
 description: "Complete. The code half is built: two exact-path exemptions, sidecars that follow --out, one shared staleness helper behind the save check and a new --check mode, a report-only CI step, and the opt-in --scoring-only lookup flag the Gate 1 line now passes. The committed index is rebuilt and every acceptance criterion is met."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "trigger index search fixes implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

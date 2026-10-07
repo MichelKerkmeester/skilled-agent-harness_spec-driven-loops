@@ -15,14 +15,12 @@
       "goal hook readme update",
       "goal unification verification",
       "goal unification changelog",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "retirement docs and verification tasks",
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "retirement docs and verification implementation summary"
     ],
     "key_topics": [
       "goal",
@@ -34,9 +32,9 @@
       "unification",
       "verification",
       "changelog",
-      "task",
-      "breakdown",
-      "implementation"
+      "docs",
+      "tasks",
+      "packet"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -49,7 +47,6 @@
       ".opencode/hooks/goal/README.md",
       ".opencode/skills/.state/goal/README.md",
       ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md",
-      "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
       "specs/hooks/009-goal-isolation/decision-record.md",
       ".opencode/hooks/goal/lib/goal-slice.cjs",
       ".opencode/plugins/opencode-goal.js",
@@ -99,12 +96,6 @@
         "name": "feature-catalog.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "CHANGELOG-v4.0.0.0.md",
-        "kind": "doc",
-        "path": "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
         "source": "derived"
       },
       {
@@ -202,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The store, its locks and archive, the hook README and plugin doc, the spec-kit SKILL section and the changelog all describe the old model",
     "created_at": "2026-09-11T07:11:51Z",
-    "last_save_at": "2026-09-13T06:53:53.523Z",
+    "last_save_at": "2026-10-07T15:57:28.635Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5af9862db13d659374a7dc532db5e289949aac0025f41b1a2dbd09eea5874396",
+    "source_fingerprint": "sha256:fd77aa53615443b61f960472a35127ad50d4dbcff1e47d4d16b4981c625838da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "29968ce973d2552394747adae0c7c69eb64dc0be87317c7df9a0cb2f4e4690a1",
       "plan.md": "6cac97bf3cbdad0a406a3c5694ab5c165d9a73abdd0403f341594ebee05cc9eb",
-      "tasks.md": "283b26acec5fdefe86b5b6f750cc7423c18811415806c9332d5c270e6f8056cf",
-      "implementation-summary.md": "43a6b75971831db24e7b8a322d1b394a0efad78cc1a374dce59410e97a3d1290"
+      "tasks.md": "0cc451cb74035088078d534248a627035a4308b110bf2313d0e64aac75afed53",
+      "implementation-summary.md": "c598da95bdc9003ea5c0d612b5fb34cfc8302fde3aa7aaacbadf574ae8c8746b"
     },
     "last_active_at": null
   }

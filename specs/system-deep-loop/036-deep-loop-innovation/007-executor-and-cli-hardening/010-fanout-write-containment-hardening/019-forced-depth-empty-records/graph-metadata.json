@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "forced depth empty records",
       "forced depth validation fails a lane whose state",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "forced depth empty records plan",
+      "forced depth empty records tasks",
       "forced depth empty records acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "forced depth empty records implementation summary"
     ],
     "key_topics": [
       "forced",
@@ -34,9 +32,9 @@
       "lane",
       "whose",
       "state",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -200,7 +198,7 @@
     ],
     "causal_summary": "One alignment-review lane wrote its five iteration records numbered under `run` instead of `iteration`",
     "created_at": "2026-09-20T08:33:43.475Z",
-    "last_save_at": "2026-10-07T12:55:36.410Z",
+    "last_save_at": "2026-10-07T15:57:00.898Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7eb78f79c30f5d0a0b62a371c0ae3d47a7850d640ab54ee00037703a70a18e3b",
+    "source_fingerprint": "sha256:38fcac8ca41035cff5295d87ce6a91eeabfaf8fbc16322ff9c8caa9f9c9852fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "049b30e4ce9b4a035eaecef2a6fd4339f65528135458d2d703011510525ccffb",
-      "plan.md": "84a915287e9a429316a9a842bb621186402858858377cc7dd70011463ad8047e",
-      "tasks.md": "444e96e507d718b461fcbb141e93af643bbb3ab847ef9f5ec4c9733636c3b05d",
-      "implementation-summary.md": "9f1e288ae5b2117546aa9d7ba77c2ede7f8a91f16e11fa42851fd320066a83b8"
+      "plan.md": "3213aebd3778388aaca5b0b9333c9188b4c9430c01b78bc1bce0c7726fc618e0",
+      "tasks.md": "aa32442dd9596233a4ae489eb54d57b0ef73a5fe3c66ad4e6b0d49464acd3f57",
+      "implementation-summary.md": "d99c39d8e20dabc8f93c326ef529a7c9bae22dc8a3976ba391416e35cd3237db"
     },
     "last_active_child_id": null,
     "last_active_at": null

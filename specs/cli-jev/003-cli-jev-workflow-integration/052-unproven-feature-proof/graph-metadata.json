@@ -18,11 +18,9 @@
       "unproven feature proof plan",
       "jev proof test plan",
       "masked-state decision rule",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "unproven feature proof acceptance criteria"
+      "unproven feature proof tasks",
+      "unproven feature proof acceptance criteria",
+      "unproven feature proof implementation summary"
     ],
     "key_topics": [
       "unproven",
@@ -199,7 +197,7 @@
     ],
     "causal_summary": "Spec-track narrowing kept once and stopped on its repeat",
     "created_at": "2026-10-05T04:56:52Z",
-    "last_save_at": "2026-10-07T12:54:57.373Z",
+    "last_save_at": "2026-10-07T15:56:07.082Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:17ab23998f4e57054fba35d0df8d444cdaa368562d5bdb08ccbefd125f935dfd",
+    "source_fingerprint": "sha256:31456a66452255e897e7cdec05ae4402bb26ef62c667c8c8168e4e4275941709",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e22d9f8b400a2343ae7f573be0ffed40cbddb7535d22721a34a6617959e69cd9",
       "plan.md": "778f610ebd4dd4f06ebe5b7ab1caf36d356b7113b3e501ffa15cf40ac974673f",
-      "tasks.md": "2d8897480fe45d453437ca673d3146a51e187b6e2d1d7b67488d4e1d282ec9bc",
-      "implementation-summary.md": "17ebb8e663d77a29426eecd8eecbf38563bd16f4cac38a9d6ce772a6d979116f"
+      "tasks.md": "cb0c586bbb73ed50e8938dc8729a67338258ab5703d0a65776e018c2ec64881e",
+      "implementation-summary.md": "42ddc8c93d038dad3df39916a24b1a52b07a88167be68b88f353add889d66e65"
     },
     "last_active_at": null
   }

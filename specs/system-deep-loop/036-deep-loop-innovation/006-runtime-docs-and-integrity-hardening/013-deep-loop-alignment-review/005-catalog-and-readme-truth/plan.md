@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 4: catalog-and-readme-truth"
 description: "Sweep each of the ten classes to zero in its editable surface, recording the choice where a path is ambiguous and the reason where a residual stays."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "catalog and readme truth plan"
 importance_tier: "normal"
 contextType: "general"
 ---

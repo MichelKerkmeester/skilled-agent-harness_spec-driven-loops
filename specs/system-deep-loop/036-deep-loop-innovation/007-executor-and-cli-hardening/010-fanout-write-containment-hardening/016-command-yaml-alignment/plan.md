@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: command-yaml-alignment"
 description: "Bind the same three loop flags on every fan-out call, drop the leaf-as-loop native branch, fix the prompt-pack wording and prove it with a rendered-call contract test."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "command yaml alignment plan"
 importance_tier: "normal"
 contextType: "general"
 ---

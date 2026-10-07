@@ -5,7 +5,6 @@ trigger_phrases:
   - "test repair tasks"
   - "freshness fixture tasks"
   - "manifest suite tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

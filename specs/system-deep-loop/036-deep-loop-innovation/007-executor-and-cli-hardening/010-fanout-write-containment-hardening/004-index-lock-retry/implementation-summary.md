@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Containment git calls wait out a neighbour's index.lock with bounded backoff, and a loss that outlasts the budget is a ledger warning instead of an invisible empty snapshot."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "index lock retry implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

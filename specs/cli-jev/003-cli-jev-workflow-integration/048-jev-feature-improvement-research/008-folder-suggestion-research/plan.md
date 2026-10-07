@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 8: folder-suggestion-research"
 description: "Runs /deep:research in fan-out mode on the Jev spec-folder suggestion: one DeepSeek lineage and one Luna lineage, then merges them into research.md."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "folder suggestion research plan"
 importance_tier: "normal"
 contextType: "general"
 ---

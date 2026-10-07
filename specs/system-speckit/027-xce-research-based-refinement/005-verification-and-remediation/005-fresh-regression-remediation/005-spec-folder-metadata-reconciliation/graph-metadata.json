@@ -23,8 +23,7 @@
       "ment",
       "tasks",
       "tion",
-      "fresh",
-      "implementation summary"
+      "fresh"
     ],
     "key_topics": [
       "ement",
@@ -36,9 +35,9 @@
       "tasks",
       "tion",
       "fresh",
-      "implementation",
-      "summary",
-      "sub-phase"
+      "sub-phase",
+      "regression",
+      "deep-review"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -184,7 +183,7 @@
     ],
     "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 8 findings (5 P1) in this subsystem, each carried as a task with its registry recommendation. Scaffold only — no fixes applied.",
     "created_at": "2026-07-10T06:24:26.644Z",
-    "last_save_at": "2026-08-30T15:39:34.363Z",
+    "last_save_at": "2026-10-07T15:57:17.963Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +192,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ce280c16407057654ec62280171c5f31b9d60ce86015aa5a836312c1197acd3",
+    "source_fingerprint": "sha256:8663f6090238eb3537bf0c650166163829cfaf1a534efa7b250fac000ee3e688",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fbbba09a2e52603ec5a1befa27ec98e553a466697dbbefb27a3406a9a6ea9fe8",
       "plan.md": "18408257e73fd72a474dd083b02674b65017f09f95c861b8c39ff55fc2fdc299",
       "tasks.md": "22eab32e4195099bf34420238dbb8516f55a4fd7b6246c09e733e2fec269355b",
-      "implementation-summary.md": "6bc9d98dba8ab217a84f37eebdf608222d994a4fc555f1aade0444438b1cb1bb"
+      "implementation-summary.md": "8b0fdefdc8a1cc2d02127ff692a37cf6c3be118181aea916533554172fd88ad3"
     },
     "last_active_child_id": null,
     "last_active_at": null

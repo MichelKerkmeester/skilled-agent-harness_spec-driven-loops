@@ -2,10 +2,7 @@
 title: "Implementation Plan: Let the deep-loop cli-pi executor reach DeepSeek V4.1 Flash through opencode-go"
 description: "Add a provider-prefixed opencode-go DeepSeek literal to the cli-pi roster and let the command builder pass a literal that already names its provider as the full selector."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "cli pi opencode go route plan"
 importance_tier: "normal"
 contextType: "general"
 ---

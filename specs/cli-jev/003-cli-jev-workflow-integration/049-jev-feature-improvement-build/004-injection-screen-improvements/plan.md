@@ -2,10 +2,7 @@
 title: "Implementation Plan: Build: improve the Jev fetched-text injection screen (035)"
 description: "Restore and pin the corpus, add the trust package, move the flag line to 0.6, adopt confirm-then-verify reruns, harden the lexical comparator and test two question variants."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "injection screen improvements plan"
 importance_tier: "normal"
 contextType: "general"
 ---

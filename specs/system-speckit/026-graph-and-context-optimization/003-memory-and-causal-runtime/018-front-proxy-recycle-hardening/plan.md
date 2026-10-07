@@ -15,10 +15,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "front proxy recycle hardening plan"
 ---
 # Implementation Plan: Front-Proxy Recycle Hardening
 

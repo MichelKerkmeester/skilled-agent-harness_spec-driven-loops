@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: chart-review"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "chart review plan"
 importance_tier: "normal"
 contextType: "general"
 ---

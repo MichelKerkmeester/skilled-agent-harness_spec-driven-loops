@@ -16,8 +16,7 @@
       "sweep-track-roots",
       "track-root pre-push gate",
       "track root drift",
-      "SPECKIT_SKIP_PREPUSH_TRACK_GATE",
-      "acceptance criteria"
+      "SPECKIT_SKIP_PREPUSH_TRACK_GATE"
     ],
     "key_topics": [
       "track",
@@ -28,10 +27,10 @@
       "pre-push",
       "gate",
       "drift",
-      "acceptance",
-      "criteria",
       "folder",
-      "directly"
+      "directly",
+      "specs",
+      "sk-doc"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -205,7 +204,7 @@
     ],
     "causal_summary": "A track root is a folder directly under `specs/`, such as `specs/sk-doc/`, that holds numbered packets and lists them in the `childrenids` of its `graph-metadata.json`",
     "created_at": "2026-09-24T09:53:58Z",
-    "last_save_at": "2026-10-06T18:48:06.462Z",
+    "last_save_at": "2026-10-07T15:57:33.471Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +214,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a99c4939b6ac1a3330d247682b4d419171a29667b29a733b4e2ecff04571b919",
+    "source_fingerprint": "sha256:3a0a2d73e6b6e3ea5fec54d97e2e6852757d813896c65450f42c5c5fac9ddd45",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c0c7c7c686d70dfa72dd7dc584fabf36e9a3199bef77df6a4e539d4fa6072d6d",

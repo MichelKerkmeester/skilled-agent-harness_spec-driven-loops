@@ -15,8 +15,7 @@
       "convergence-mode flag dropped",
       "fanout convergence mode plan",
       "fanout convergence mode tasks",
-      "implementation summary",
-      "what shipped"
+      "fanout convergence mode flag implementation summary"
     ],
     "key_topics": [
       "fanout",
@@ -29,8 +28,8 @@
       "tasks",
       "implementation",
       "summary",
-      "shipped",
-      "fan-out"
+      "fan-out",
+      "path"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -189,7 +188,7 @@
     ],
     "causal_summary": "The fan-out path never read --convergence-mode, so every lineage silently took the default while the caller believed convergence was disabled.",
     "created_at": "2026-09-20T08:33:40.225Z",
-    "last_save_at": "2026-10-03T15:23:53.646Z",
+    "last_save_at": "2026-10-07T15:56:49.268Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d2d1819c2df9ab85c9339e27504da6e27772f1feb764c53b4ada23fc6aac0851",
+    "source_fingerprint": "sha256:c4cdd96803d56f03a20d971884b9ad1cec07c6862ae263037fea983ab8b08d1b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f43b1fca38ff20331776285a2fabccca574b42622a73d617a2c9a48bb1e80f50",
       "plan.md": "36e2e4c4ef79cb4081fa04626fbb4af74a4ad404b3af73d9c415b7bef658d2fe",
       "tasks.md": "0488b7536427d74094f5ba91a1709d47073d098e6087a90dd26107dd373931b1",
-      "implementation-summary.md": "c56499472d25fb2bf3e11581045d7e1d94149e70dda991fa83ce61024958e4c9"
+      "implementation-summary.md": "201bd45719e8f22619885e20e77d4c5c2241d6e407a5ee5e9a82e7ff2d9ca68e"
     },
     "last_active_child_id": null,
     "last_active_at": null

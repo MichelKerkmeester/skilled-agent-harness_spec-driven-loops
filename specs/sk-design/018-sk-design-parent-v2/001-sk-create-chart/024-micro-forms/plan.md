@@ -2,10 +2,7 @@
 title: "Implementation Plan: spark, tracker and bar-list forms"
 description: "micro-forms: spark, tracker, bar-list: assertion first, one form through the gate, then the corpus one form at a time, built by GLM-5.3-Flash through pi and verified by the conductor."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "micro forms plan"
 importance_tier: "normal"
 contextType: "general"
 ---

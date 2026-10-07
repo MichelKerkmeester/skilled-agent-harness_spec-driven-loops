@@ -2,10 +2,7 @@
 title: "Implementation Plan: DESIGN.md theming"
 description: "One script derives a gated chart palette, typeface and corner ladder from a v3 Style Reference and writes themed copies with provenance; the checker accepts the design-md system by provenance plus inline gates."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "design md theming plan"
 importance_tier: "normal"
 contextType: "general"
 ---

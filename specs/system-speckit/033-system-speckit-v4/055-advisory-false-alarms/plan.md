@@ -2,10 +2,7 @@
 title: "Implementation Plan: Stop the sk-git pathspec advisory and the completion-evidence sentinel from raising false alarms"
 description: "The sk-git parser marks a command whose pathspec needs shell expansion and two checks honor that mark. The sentinel's folder resolver trims a line suffix and a file name. Each fix carries one test that fails on the old source."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "advisory false alarms plan"
 importance_tier: "normal"
 contextType: "general"
 ---

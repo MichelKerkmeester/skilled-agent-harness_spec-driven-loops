@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: freshness-and-scan-truth"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "freshness and scan truth tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

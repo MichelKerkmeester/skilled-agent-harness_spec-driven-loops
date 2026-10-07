@@ -14,15 +14,10 @@
       "mcp-tooling hub leaf manifest obsidian",
       "hub router vocabulary plugin removal",
       "validate obsidian plugin reduction",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "hub routing and validation acceptance criteria"
+      "hub routing and validation plan",
+      "hub routing and validation tasks",
+      "hub routing and validation acceptance criteria",
+      "hub routing and validation implementation summary"
     ],
     "key_topics": [
       "mcp-tooling",
@@ -36,7 +31,7 @@
       "removal",
       "validate",
       "reduction",
-      "implementation"
+      "routing"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -204,7 +199,7 @@
     ],
     "causal_summary": "Routing runs in two stages, and phase 2 only fixed the second one inside the mode",
     "created_at": "2026-09-11T06:42:01Z",
-    "last_save_at": "2026-10-07T12:55:01.359Z",
+    "last_save_at": "2026-10-07T15:56:13.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +209,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9aaed87484353069f61a7a98bc13cc8fa34d32f2b70f164692e58430c2e60747",
+    "source_fingerprint": "sha256:3bc6ff2e01863b5c5ae68716a435c0d40313dd85919b95bd41d4787aa3665a5a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eb73f2a4d66eec2c768c1f2d3378bed0a51e765d3f854ac5230aea48ebfb2009",
-      "plan.md": "5709b9e9bc1084a67816698eae2cb35209a2a41b72a7950ee2ab55238c352dab",
-      "tasks.md": "05eb24f9bb61f2948068c71c6fca19b628af33e34505a101fdc14dc4c5873087",
-      "implementation-summary.md": "790d13f10bd274c8d7ecb3a2d93c0b51c08f5afd2215be7d4f6abfd61dcc5323"
+      "plan.md": "a77fcaf946043a3e8c67a23893723e59ebefae2bd82b23f44bf65187c0339486",
+      "tasks.md": "9caabb5fd39c9054c1c3e300479099a3b83c7ee2aab93edb71da03f7123ca5af",
+      "implementation-summary.md": "9655b3ca1bb3f7e35204794519fb5a8b1b5d51968e5405cb06c247105f873b79"
     },
     "last_active_at": null
   }

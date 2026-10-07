@@ -2,10 +2,7 @@
 title: "Implementation Plan: reinstate the sk-design parent hub"
 description: "Convert the sk-design root from a standalone skill to a parent hub, move its content down into sk-design-fundamentals as the first mode, and measure the routing effect rather than assume it."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "hub and fundamentals plan"
 importance_tier: "normal"
 contextType: "general"
 ---

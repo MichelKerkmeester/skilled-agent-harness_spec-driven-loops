@@ -2,10 +2,7 @@
 title: "Implementation Plan: Extract the excerpt and transfer it to grouped-bars"
 description: "Copy box-plot.html's hover-card mechanism into grouped-bars.html: the CSS, the empty tooltip group, the card-building script and the listeners-and-pin script, adapted to this form's own data, formatter and node helper. Measure the byte cost."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "excerpt and grouped bars plan"
 importance_tier: "normal"
 contextType: "general"
 ---

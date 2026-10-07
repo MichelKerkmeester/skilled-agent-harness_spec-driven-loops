@@ -2,10 +2,7 @@
 title: "Implementation Summary: Phase 2: scorer-deem-arms"
 description: "Remove every scorer's --deem arm with its tests and docs, so each scorer's default run and --jev arm behave as they did before. Complete."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "scorer deem arms implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

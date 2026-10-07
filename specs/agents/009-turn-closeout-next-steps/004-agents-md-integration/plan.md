@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 4: agents-md-integration"
 description: "Wire the rule at all three integration points, and record the scope widening the operator authorised."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "agents md integration plan"
 importance_tier: "normal"
 contextType: "general"
 ---

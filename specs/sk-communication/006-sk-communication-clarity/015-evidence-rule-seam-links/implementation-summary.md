@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The corpus hub now names a neighbour at each of the four seams it already reached, and two of those links are reciprocal."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "evidence rule seam links implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

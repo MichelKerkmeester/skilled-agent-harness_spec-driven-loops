@@ -2,10 +2,7 @@
 title: "Implementation Plan: Extend the repo-rule system across the wider system and shrink AGENTS.md where content no longer earns a full writeup"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "repo rule system integration plan"
 importance_tier: "normal"
 contextType: "general"
 ---

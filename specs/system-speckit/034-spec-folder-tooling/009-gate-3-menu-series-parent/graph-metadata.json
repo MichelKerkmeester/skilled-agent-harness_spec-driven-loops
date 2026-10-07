@@ -20,9 +20,7 @@
       "gate 3 menu series parent tasks",
       "menu wording tasks",
       "gate 3 menu series parent acceptance criteria",
-      "implementation summary",
-      "what shipped",
-      "validation evidence"
+      "gate 3 menu series parent implementation summary"
     ],
     "key_topics": [
       "gate",
@@ -206,7 +204,7 @@
     ],
     "causal_summary": "The menu text in `spec-gate-core.mjs` offers \"C) Use a related spec folder, including a phase child\" with no series parent, and the Pi dialog says only \"Use a related folder or phase child\"",
     "created_at": "2026-10-07T09:58:44Z",
-    "last_save_at": "2026-10-07T12:55:52.791Z",
+    "last_save_at": "2026-10-07T15:57:34.846Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6076e643cafdc0eefa57a348c206a463303328fafdc4a1def2b0dbcdb1fbefdd",
+    "source_fingerprint": "sha256:ce6e78aef16e3d904dc4967eceb2f794206d7e5d02dfc517a0e2e58a58ff13fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "76cf0e3d7dc2ace42ba6fcc3b160ac3b1908bf9aa7d4a9e78e084effbb399bbb",
       "plan.md": "7a0b5e3cf97c9c58ad284ce06278afb1b2a378e834d351fbe54778423bd40c07",
       "tasks.md": "c80b42d390e1c105d67ff6886b7a889d59cd7093381248ca0fd4fc058f322437",
-      "implementation-summary.md": "07b7a4394b86c6548fa5c1da7ca53bdd70f566299d20b5236197ed9ebe28cb21"
+      "implementation-summary.md": "9bda9762f833a3a1d1ad194e08cd155b82bd85a7aaca34fa401353b2c39adde1"
     },
     "last_active_at": null
   }

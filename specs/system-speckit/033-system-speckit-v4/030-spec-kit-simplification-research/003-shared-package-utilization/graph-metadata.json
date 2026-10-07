@@ -21,8 +21,8 @@
       "research lane tasks",
       "lane launch and monitoring",
       "shared package utilization lane tasks",
-      "acceptance criteria",
-      "closure gate"
+      "shared package utilization lane closure",
+      "packet goal"
     ],
     "key_topics": [
       "shared",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The shared package grew as the neutral layer under a memory server that no longer exists",
     "created_at": "2026-09-06T14:29:32Z",
-    "last_save_at": "2026-09-08T15:47:11.250Z",
+    "last_save_at": "2026-10-07T15:57:18.926Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:139576720b6e7d00d3bc286cc330fc4428fdb87ae907ebac21f7f02d83abfb8b",
+    "source_fingerprint": "sha256:0429e9ff342253af83aad930929bef8f9f14d4d38150f6a43e7a3121dbd986c3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bccbed206039a66fe5da576d4c75e3dab01d503618fcd089acba767ba574be2e",

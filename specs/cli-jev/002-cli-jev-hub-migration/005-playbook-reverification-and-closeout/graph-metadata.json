@@ -15,14 +15,14 @@
       "the migration promised to re run the mode",
       "playbook re-verification",
       "cli-jev closeout",
-      "implementation plan",
-      "technical approach",
       "execution phases",
       "quality gates",
       "phase tasks",
       "task ledger",
-      "verification checklist",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "what was built"
     ],
     "key_topics": [
       "playbook",
@@ -34,9 +34,9 @@
       "mode",
       "re-verification",
       "cli-jev",
-      "implementation",
-      "plan",
-      "technical"
+      "execution",
+      "phases",
+      "quality"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The migration moved the transport, decoupled the old hub, and onboarded the new one to compiled serving, but it never executed the thing those changes exist to protect: the mode's own playbook",
     "created_at": "2026-09-20T11:00:14Z",
-    "last_save_at": "2026-10-07T12:54:47.445Z",
+    "last_save_at": "2026-10-07T15:55:57.078Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c98a41d2957740c5b07b6ca5704a0cd5c3012148c1b42dd839952620545a33e0",
+    "source_fingerprint": "sha256:fa29a356aef5897cb0654d6dc544dc82029a848426ea6001a95bbb2c0c77069f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1227261ab9831972a5c55e2de55fe0841ddf0b1e8a08dc92cb88c463b2e1885f",
-      "plan.md": "9dbbb3f24e1a5b0949a31c6af20bb18e45d36620e0928378705aa3ff39bd4248",
-      "tasks.md": "afc2a5b536b1fc86103cbaa244cc1cec89177b2023b1f4e6eba38fdb594ae679",
-      "implementation-summary.md": "2542bd711faa974abf23b65511bf2295ed9ab66b1bb3f8c894ac303a46a32ce5"
+      "plan.md": "153727ee124835939605cb739d115e9d551574e50bc7447f2aa673aa4bc591e3",
+      "tasks.md": "d75393cf7e5d56e6dddde74f26df6e3605ad0f210282a6217e60a446c7ea74f4",
+      "implementation-summary.md": "be923abc58ae8e43bbaa62f8004d67cfdb3953c679d746bd9b10ed22903d34af"
     },
     "last_active_at": null
   }

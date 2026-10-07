@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "containment on failed lanes",
       "write containment runs for every lane immediately after",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "containment on failed lanes plan",
+      "containment on failed lanes tasks",
       "containment on failed lanes acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "containment on failed lanes implementation summary"
     ],
     "key_topics": [
       "containment",
@@ -33,10 +31,10 @@
       "every",
       "lane",
       "immediately",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +196,7 @@
     ],
     "causal_summary": "The containment block ran only after every verdict gate passed",
     "created_at": "2026-09-20T08:33:42.088Z",
-    "last_save_at": "2026-10-07T12:55:35.037Z",
+    "last_save_at": "2026-10-07T15:56:56.270Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:95dd3f059fdb5bf5a17a08f9d0d8c232659ba004c3e271dd0a89742d3ca75d66",
+    "source_fingerprint": "sha256:cc1d668eee05176ed2ab29a3fd3246dc0996db8caba0e86507ea227738eee15c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "92775f7a17dfcaa820a070a9541a026d56c8297be80be9204384583f6a2b36ba",
-      "plan.md": "a70c9e77b81cab7d5589767864573999b1e6cd8e3635ee212308dabdc2755f7e",
-      "tasks.md": "7293e7dd744b37b81c0339b68358acc35e0fc9561634d566fb5e4e6c02664487",
-      "implementation-summary.md": "13a6dd41dff5ecf442577293991a8f7ea642ee20d2f91b40f2703491a1fdaeaf"
+      "plan.md": "0f6c67a11558a1080f28fc2877615fe2cae995a5b4596939e621078bbda6acca",
+      "tasks.md": "8d2e481b6f5e241481b359fe5c78ac0062628893072667d153524f849e8c64e8",
+      "implementation-summary.md": "d6ce2c2180affb2302f7402b78d37aae29101df5e1ba9f7e6ee97a4bfd660ecd"
     },
     "last_active_child_id": null,
     "last_active_at": null

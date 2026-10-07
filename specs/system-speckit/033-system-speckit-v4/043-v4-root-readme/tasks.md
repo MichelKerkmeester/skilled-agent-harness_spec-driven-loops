@@ -2,9 +2,6 @@
 title: "Tasks: Phase 43: v4-root-readme"
 description: "Task breakdown and verification checklist for root README.md improvements and bloat removal."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
   - "readme tasks"
 importance_tier: "normal"
 contextType: "general"

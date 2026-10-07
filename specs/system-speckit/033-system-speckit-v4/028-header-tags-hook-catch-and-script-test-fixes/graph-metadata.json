@@ -21,8 +21,8 @@
       "exact string replacement gate",
       "remediation tasks",
       "confirmed row application",
-      "acceptance criteria",
-      "closure gate"
+      "header tag fixes shipped",
+      "completeness clamp errexit bug"
     ],
     "key_topics": [
       "shell",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The runtime research confirmed 31 shell scripts and 7 module scripts with header tags the sk-code standards do not document, one hook that swallows every failure, one barrel nobody imports, one comment kept alive by a hygiene marker, and two public CLI scripts with no test at all",
     "created_at": "2026-09-06T08:18:05Z",
-    "last_save_at": "2026-09-11T16:42:48.225Z",
+    "last_save_at": "2026-10-07T15:57:19.120Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6576d06dbc8a48df4e0ec645972a1405edaca2517973e196001949af36e3f691",
+    "source_fingerprint": "sha256:8a9ae6cf7fc847297f18ddfa4b386b54e80920974eba79cc33578bb546c4b2d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5b6d383896b6f72b89811201053cf79057159c7ce716ffdb4f83afba7fcf964c",

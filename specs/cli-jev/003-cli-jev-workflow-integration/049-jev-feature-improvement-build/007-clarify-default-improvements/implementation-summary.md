@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The clarify-default scorer now refuses any row the current router no longer clarifies, before a call."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "clarify default improvements implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

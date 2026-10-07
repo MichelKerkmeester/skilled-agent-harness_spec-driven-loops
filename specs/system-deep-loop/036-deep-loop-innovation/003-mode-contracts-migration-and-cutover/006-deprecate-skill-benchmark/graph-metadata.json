@@ -16,13 +16,12 @@
       "deep-skill-benchmark deprecation",
       "lane c removal",
       "deep-loop five modes",
-      "implementation plan",
       "skill-benchmark removal plan",
       "deep-loop mode removal",
       "command-bridge regeneration",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "deprecate skill benchmark tasks",
+      "deprecate skill benchmark acceptance criteria",
+      "deprecate skill benchmark implementation summary"
     ],
     "key_topics": [
       "deprecate",
@@ -201,7 +200,7 @@
     ],
     "causal_summary": "The `skill-benchmark` lane is carried by the `system-deep-loop` hub as a sixth workflow mode, with a command in five runtime trees, a 56-file script tree, a large fixture corpus, three runtime ledger libraries and its own reference, catalog and playbook documentation",
     "created_at": "2026-09-20T08:33:40.065Z",
-    "last_save_at": "2026-10-07T12:55:30.004Z",
+    "last_save_at": "2026-10-07T15:56:49.569Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +210,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a50dcd72b1ce2a8d7862ed3583f5811b11c57dbf6ec8047ab0b4003595062bb",
+    "source_fingerprint": "sha256:610211c144a1e151d208763c917cf01fd87a9c3b5ad818565d663f973accef0f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "16859970170592488c5654d3136bab355ad1202cc5b1bd676c2197db005a5ac4",
-      "plan.md": "194b845d584bbff13e88a832e1b2a2c2213ac423f42631deb352a8a1a765f668",
-      "tasks.md": "effb18ab577a342f7be2f5f5096ddbf86b1608a4e7caf0375f442d8770ef0bb0",
-      "implementation-summary.md": "5fcc7ad8517ac8b3f043db404134423c50b0956b994cb6f4a39151c302c3f276"
+      "plan.md": "1af7b1eed5f4cafa3c7738d6ed2b6ad6f8d5f238c75a347cecc01a58db2b4653",
+      "tasks.md": "e23b8bbf8918404f3dffc83e9c808a5cdddbb4f652924eea374675c6d4f6551a",
+      "implementation-summary.md": "da873a42ed4ea2be7c9af078cf516581d31d356ff815179b5c0af58b1c794eca"
     },
     "last_active_child_id": null,
     "last_active_at": null

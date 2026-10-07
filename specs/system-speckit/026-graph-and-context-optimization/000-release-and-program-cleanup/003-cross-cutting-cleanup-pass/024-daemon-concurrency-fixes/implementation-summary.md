@@ -3,7 +3,6 @@ template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 title: "Implementation Summary: Iteration-001 Daemon Concurrency Fixes"
 description: "Four daemon-layer races fixed: serialized watcher drain, ordered shutdown, token-checked generation lock, and monotonic cache invalidation. Stress suite still green at 56/56 / 163/163."
 trigger_phrases:
-  - "implementation summary"
   - "daemon concurrency summary"
   - "F-001-A1"
 importance_tier: "normal"

@@ -4,7 +4,6 @@ description: "The criteria this packet must satisfy before it may be closed, eac
 trigger_phrases:
   - "v4 doc freshness acceptance criteria"
   - "release doc verdict closure gate"
-  - "ac traceability"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

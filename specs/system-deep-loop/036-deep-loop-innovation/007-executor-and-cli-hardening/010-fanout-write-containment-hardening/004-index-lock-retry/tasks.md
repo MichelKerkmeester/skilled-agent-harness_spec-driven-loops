@@ -2,10 +2,7 @@
 title: "Tasks: Retry a git call that lost an index.lock race with another session, and record on the ledger when one still failed"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "index lock retry tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

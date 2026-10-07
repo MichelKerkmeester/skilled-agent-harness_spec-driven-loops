@@ -15,14 +15,14 @@
       "advisor closeout",
       "advisor cold boot proof",
       "advisor latency delta",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "verification and closeout plan",
+      "verification and closeout tasks",
+      "verification and closeout acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "verification and closeout implementation summary"
     ],
     "key_topics": [
       "advisor",
@@ -34,9 +34,9 @@
       "proof",
       "latency",
       "delta",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Each earlier phase proves its own claim at the moment it makes it, on a tree that later phases keep changing",
     "created_at": "2026-09-11T06:49:05Z",
-    "last_save_at": "2026-10-07T12:55:41.157Z",
+    "last_save_at": "2026-10-07T15:57:06.787Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:84cdc4d7c96ab977beb72f797d60bb1596ca7e440ade66fd29ddaa2e876423d5",
+    "source_fingerprint": "sha256:25a15baca6dc581c24aea52e18997fa6e7d48c59d84f98af543077c1dca5c0b1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ad1aaf99572c0d8823c8d0249bfa1f8ddd92433e917bae215712e2c68355f94a",
-      "plan.md": "bbe1bc1021c1ce8021970c459f2e715bcc56df7350ec482cf22cd73596413c75",
-      "tasks.md": "6b9b428370d76db6e8e3e8a6a324f5546eefdde1914ee609aae8d1028af9cb1c",
-      "implementation-summary.md": "fbf068ddbb6b41c209869f69b1e9a061688ce9f3d7f97c32383c389bc3d5a59c"
+      "plan.md": "f4de137b9848dec1d292480cf8375f4a532c62079f76618b843d9cdd87d80d03",
+      "tasks.md": "ab52991914360db54dd989eedaa4f3061be7085a5cb82f29f99448afced0a76f",
+      "implementation-summary.md": "5c43777cabb71d68580a8535c78396384d627faa75ea93a774a14eb7c5009b67"
     },
     "last_active_at": null
   }

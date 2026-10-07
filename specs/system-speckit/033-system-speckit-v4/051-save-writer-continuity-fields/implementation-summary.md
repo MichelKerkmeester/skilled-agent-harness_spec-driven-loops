@@ -2,7 +2,6 @@
 title: "Implementation Summary: Phase 51: Save writer continuity fields"
 description: "A full-auto save now writes the continuity fields it carries into the packet that holds the work, keeps every ancestor's pointer leading there, and passes strict validation straight after with no repair step."
 trigger_phrases:
-  - "implementation summary"
   - "save writer continuity fields"
   - "continuity write evidence"
   - "phase parent save routing"

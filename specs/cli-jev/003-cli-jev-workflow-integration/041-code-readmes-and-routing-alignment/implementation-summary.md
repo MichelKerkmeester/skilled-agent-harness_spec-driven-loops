@@ -2,10 +2,7 @@
 title: "Implementation Summary: Phase 41: code-readmes-and-routing-alignment"
 description: "Complete. Eleven code folders gain the code-folder README their canon requires, and the `cli-classifier` hub's routing surfaces take the sk-create-skill shape without moving a route that was correct at baseline: `ROUTER.md` is active over seven intents, both mode section 2s carry the template's one Smart Router Pseudocode block, the `cli-usage` rename leftovers are gone, and the three pre-release version lines move with their changelogs. The build landed as commit `2116de635c` on `worktrees/071-cli-jev-sk-alignment`; two read-only review rounds closed at `VERDICT: PASS`; the landing prep then merged main as `eeefe0c074` and repointed the completion sentinel as `f89ebcb2c3`, and the orchestrator commits these phase docs path-scoped after this pass."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "code readmes and routing alignment implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

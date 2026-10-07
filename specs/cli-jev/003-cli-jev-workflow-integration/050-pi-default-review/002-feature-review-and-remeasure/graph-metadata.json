@@ -13,30 +13,27 @@
     "trigger_phrases": [
       "jev feature review",
       "jev feature remeasure",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "feature review and remeasure plan",
+      "feature review and remeasure tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "feature review and remeasure implementation summary"
     ],
     "key_topics": [
       "jev",
       "feature",
       "review",
       "remeasure",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy"
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -197,7 +194,7 @@
     ],
     "causal_summary": "The nine features with a measured gain or a near miss were last measured through the jev CLI, several on built rows, and 017 dropped from keep to stop on its repeat",
     "created_at": "2026-10-03T17:39:27Z",
-    "last_save_at": "2026-10-03T20:36:29.725Z",
+    "last_save_at": "2026-10-07T15:56:06.861Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +204,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:25dffa2aeb0d5bb3b2caf3b3a14e3399afdd55d3d8e4e6bae290ac5c7cca4b27",
+    "source_fingerprint": "sha256:fe629590497bad20ae0c296767e4a3807e7482b9e1b73d1bc255203aea1cb560",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "878077f90309a5a16e59c3bdc2f4c2a398e4e013504d959200fe6d8b8b459026",
-      "plan.md": "ccf881f9109789c06bfb04b3a464831926ee58d2e7919c090c1195cba7e999e1",
-      "tasks.md": "73d5b6cc8a2f2273fed55c92ea56161a2d81083aa18c89d67a2786eaa6fce22d",
-      "implementation-summary.md": "6039c3e5d62a18f261600267b78570897184dcf217b3bfc07f6c4040a3efb1ba"
+      "plan.md": "bc48a529179efa9443eb2e631179f38f77aa70d99891ac71075417201cc3b0d6",
+      "tasks.md": "9f24ae9c3341c0dfa8db70356846ed85ecd56efefa7517ad968ab83b1de3c317",
+      "implementation-summary.md": "d5850df225a8343f4addc6285e74210ff647873a08a69861f437420f67b8e0f4"
     },
     "last_active_at": null
   }

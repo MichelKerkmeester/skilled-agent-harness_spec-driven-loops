@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Codex 0.160 renamed its shell tool to Bash and five repo Codex hooks stopped firing; they fire again under either name. Codex task dispatch is now n/a on probe evidence, and the JavaScript checklist asks for the header its style guide asks for."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "codex dispatch and checklist implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

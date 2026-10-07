@@ -2,10 +2,7 @@
 title: "Tasks: mark policies, tooltip indicator kinds, reference lines and cursor guides"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "mark and indicator policies tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

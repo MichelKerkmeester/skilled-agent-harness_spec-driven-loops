@@ -16,12 +16,10 @@
       "devin -p print projection",
       "devin runtime adapter wiring",
       "devin projectMessage routing",
-      "implementation plan",
       "devin -p print projection plan",
       "devin runtime adapter wiring plan",
       "devin -p print projection tasks",
-      "devin runtime adapter wiring tasks",
-      "implementation summary"
+      "devin runtime adapter wiring tasks"
     ],
     "key_topics": [
       "devin-wrapper",
@@ -193,7 +191,7 @@
     ],
     "causal_summary": "Devin exposes only input, tool, and session-lifecycle hooks, so no hook rewrites the rendered assistant answer; the CLI-output wrapper is the only integration path",
     "created_at": "2026-08-14T05:42:48.044Z",
-    "last_save_at": "2026-10-03T15:12:03.093Z",
+    "last_save_at": "2026-10-07T15:56:18.685Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e3ae32b2690cc7fedcf200d16b5dce006db9364c765908914f8c72248854f12a",
+    "source_fingerprint": "sha256:b98514622a346f19fd4d4456b93e6eed086edf39d01fdb57ca64f744edc7327e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a469eea5418b1d3d4154659ae8cbcac33c1fa345116289ca36a2ce7e6a78598f",
-      "plan.md": "36523c1775c9e5cebf000c62c1e0eac660335505648e7b11e59e894a44145567",
+      "plan.md": "9b16d00351e0edfb62b035e1d99e8566cb25123611601b7e517a2d2735cb7324",
       "tasks.md": "2bbe0b2245d9ae60bc1cf3f32763c18822a6834deb4e4f427f32640134454dbe",
-      "implementation-summary.md": "929f62f70036ba407b04ef323557842fbdb6b55392bf8198097f86686a88586d"
+      "implementation-summary.md": "4cc49de021ac0f3fdab3f992bbc8d6ce4c77bf5146166fe5d1a0bb27bb519986"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -13,32 +13,23 @@
   },
   "derived": {
     "trigger_phrases": [
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped",
-      "validation evidence",
-      "continuation notes"
+      "cli frontdoor safety plan",
+      "cli frontdoor safety tasks",
+      "cli frontdoor safety implementation summary"
     ],
     "key_topics": [
-      "implementation",
+      "cli",
+      "frontdoor",
+      "safety",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy",
-      "task",
-      "breakdown",
       "tasks",
-      "verification"
+      "implementation",
+      "summary",
+      "remediation",
+      "sub-phase",
+      "fresh",
+      "regression",
+      "deep-review"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,7 +187,7 @@
     ],
     "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 6 CLI front-door findings. Resolved — 5 fixed, 1 refuted-then-hardened; CLI vitest green.",
     "created_at": "2026-07-10T06:23:17.683Z",
-    "last_save_at": "2026-09-11T04:40:17.337Z",
+    "last_save_at": "2026-10-07T15:57:17.394Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce92e263b419b5437d617dbe06e8d0d251ca376ca198dc5a062ab621440a4796",
+    "source_fingerprint": "sha256:a734b8e06a2babf358d105a0a921510c9aae3c8496e71c5e4d80a9286cf46852",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fdc0811aca05ad97ae7bb70a39236921b7cf91aca595923ec8fecf8a91eaaf25",
-      "plan.md": "809048201db61f502471cdc33f29f7880cfd55d9e32cb53525062ea3c1e27a7b",
-      "tasks.md": "94a9c961edf491633f43750f64b2217943f1efff9f7de78122f0097dbaff4732",
-      "implementation-summary.md": "dabd5ff1eadb7ba6a01e354ba2a9674c8034d161c4f2eca635c1cd3c916de4dd"
+      "plan.md": "6dd633e87777b9e6d95bdb2c5cf6f6bdfc4ce12f7541c784ec774ace21f0073d",
+      "tasks.md": "3c1420b605da51e15b654bfd6f5ddef4e565af8b642049f97103bc7ca3e92b99",
+      "implementation-summary.md": "76e2f674265cb88aa5c2ee184112e4ce17d246f47633e85f5a82dd4b629c03b4"
     },
     "last_active_child_id": null,
     "last_active_at": null

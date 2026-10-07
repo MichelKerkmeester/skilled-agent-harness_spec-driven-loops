@@ -2,7 +2,6 @@
 title: "Implementation Plan: Refresh the eight cli runtime READMEs and their folder maps"
 description: "One delegated child per README, dispatched through the shared deep-loop runtime's cli-pi builder, with the main session owning the mechanical cli-pi link repoint and every acceptance check."
 trigger_phrases:
-  - "implementation plan"
   - "cli runtime readme approach"
   - "delegated readme refresh"
 importance_tier: "normal"

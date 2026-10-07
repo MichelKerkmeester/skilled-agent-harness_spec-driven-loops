@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: plugin-doc-removal"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "plugin doc removal tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

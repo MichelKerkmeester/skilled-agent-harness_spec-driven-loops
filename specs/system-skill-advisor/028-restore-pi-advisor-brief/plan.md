@@ -2,10 +2,7 @@
 title: "Implementation Plan: restore the pi skill advisor brief: probe either root name for the warm-CLI assets and key the directive dedup receipt on the full contribution"
 description: "Two hook-source fixes: make the warm-CLI asset probe accept either root name with all paths taken from one found root, and key the pi delivery-dedup receipt on the full delivered contribution; then rebuild the advisor package so the compiled hook the extension imports carries both."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "restore pi advisor brief plan"
 importance_tier: "normal"
 contextType: "general"
 ---

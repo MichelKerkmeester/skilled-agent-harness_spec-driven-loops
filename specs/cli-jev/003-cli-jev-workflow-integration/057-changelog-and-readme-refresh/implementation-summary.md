@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The v4.0.0.3 changelog and the root README now describe the classifier and hooks as they run today: the injection screen on five runtimes, the narrower Pi route, the Codex shell-hook fix and the wider live sync."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "changelog and readme refresh implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

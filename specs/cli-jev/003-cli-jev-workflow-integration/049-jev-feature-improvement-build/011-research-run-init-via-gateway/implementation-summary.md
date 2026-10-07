@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A deep-research run now opens through the append gateway, so its first iteration projects instead of failing."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "research run init via gateway implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

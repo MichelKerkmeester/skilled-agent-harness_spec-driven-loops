@@ -45,8 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "tests/integration/entity-density-commit-hooks.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "entity-density-commit-hooks.vitest.ts",
-        "kind": "test",
-        "path": "tests/integration/entity-density-commit-hooks.vitest.ts",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "key_phrase",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "write-index",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 2026-05-11 deep review of `001-deliver-causal-graph-channel-routing-mvp` produced a CONDITIONAL verdict because of two release-blocking P1s and 39 P2 polish items",
     "created_at": "2026-05-19T15:28:02.707Z",
-    "last_save_at": "2026-08-30T15:39:29.554Z",
+    "last_save_at": "2026-10-07T15:57:11.107Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a9f2465e7341da819f8e9f103a0c23e67735f2288bfcc99271c56a3256b5338",
+    "source_fingerprint": "sha256:26a210d20af600c25ef3a9b8f4a608d373b4cd6de35cd08d3058a37d87dfa15e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ca9d4bc5cfc2a0d3d51a156a2484d6176b0cea22c80298a9503488ddab600188",
       "plan.md": "4d757b37bee283adb9b4abc0d96c034134d6237bd5a4ec2dc11fa6ca6ee0df01",
       "tasks.md": "591674cc6566918cf0335467a24a14b12110016447f6a6545116652f47954df4",
       "decision-record.md": "7131f6b9a60940b282691bbf496fd230eded6ed38c41c6c622d202a86421ad19",
-      "implementation-summary.md": "dfab289335e567451b9eecae5d4037f20ced750c2ab0d2d405658cf65dbef4fa"
+      "implementation-summary.md": "b9db3e1f01829ba53dea9b1973030993149f5cac06f86a59dd4ca57ad6a81eb4"
     },
     "last_active_child_id": null,
     "last_active_at": null

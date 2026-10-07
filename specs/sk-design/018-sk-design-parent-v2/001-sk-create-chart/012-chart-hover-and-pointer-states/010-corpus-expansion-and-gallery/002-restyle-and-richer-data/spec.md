@@ -3,7 +3,7 @@ title: "Feature Specification: Restyle every existing form and replace demo data
 description: "Twenty-one templates carry figures labelled demo, which makes the corpus read as a specimen sheet rather than as work someone would copy. This child replaces those figures with believable ones and then restyles within the tokens the checker already enforces, as two separately gated stages so a restyle can never quietly move a number."
 trigger_phrases:
   - "restyle and richer data"
-  - "twenty one templates carry figures labelled demo which"
+  - "twenty one templates carry figures labelled demo"
 importance_tier: "normal"
 contextType: "general"
 ---

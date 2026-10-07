@@ -2,10 +2,7 @@
 title: "Implementation Plan: Give stacked-area a hover card naming the pointed band"
 description: "Copies the same excerpt as phases 4 and 6 into stacked-area.html, registering the four existing band paths as marks and amending the contract row phase 1 wrote so the corpus's own documentation matches what was actually built."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "stacked area pointed band plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "323 spec documents had lost a required frontmatter value that their own template defines literally. A healer restored it across 137 packets and refused 107 documents whose correct value could not be proven from the document itself."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "spec doc healer implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -15,10 +15,8 @@
       "projectMessage orchestration",
       "provider transport default",
       "communication projection runtime",
-      "implementation plan",
       "architecture decision",
-      "default provider transport",
-      "implementation summary"
+      "default provider transport"
     ],
     "key_topics": [
       "projection-runtime-core",
@@ -30,9 +28,9 @@
       "communication",
       "projection",
       "runtime",
-      "implementation",
-      "plan",
-      "architecture"
+      "architecture",
+      "decision",
+      "adapters"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -191,7 +189,7 @@
     ],
     "causal_summary": "The provider adapters only prepare and parse; there is no default transport implementation, so the executor cannot run out of the box",
     "created_at": "2026-08-14T05:26:32.058Z",
-    "last_save_at": "2026-10-03T15:12:02.700Z",
+    "last_save_at": "2026-10-07T15:56:18.814Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,14 +199,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0f207931f5a8ebb3465ef0c73ac11c23eb476c359969d65b0d1f9e4a78ac2422",
+    "source_fingerprint": "sha256:a681071abc24cf5caf1a2f49f8c97c5ee958b2fb668d901b343513a424265281",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b5095777aeb7af9be9aa1904a33132d523885ebaee2fb8fc322574a512ba7c9b",
-      "plan.md": "88ec17e32466bddd9b602e10ef62f2f97768a373e638ae97b371d942e62a5d4b",
+      "plan.md": "96689042adf9b0d343938639bd72dc08512ccb9281ffc994dfbbd48756385f89",
       "tasks.md": "07a0a87dd0ea47301d26d733d261d5e004ce7d26e39bdb8ef821a88262bbfa5c",
       "decision-record.md": "b8d0a8056cfa48f038a8969f4ecd84ad001b2eeb7db6c524d0beffdb6ec9b736",
-      "implementation-summary.md": "368be3385f65f48c5067b2e88a062e70bf4bfaa0c9e4b505908ee4579a04cd70"
+      "implementation-summary.md": "ece7c9454debc5cfe5cb918bbfa00c2982fa5dc3fdea07ec3bafdca567701c47"
     },
     "last_active_child_id": null,
     "last_active_at": null

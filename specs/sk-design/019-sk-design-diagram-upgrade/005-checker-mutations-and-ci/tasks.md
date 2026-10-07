@@ -2,10 +2,7 @@
 title: "Tasks: Phase 5: checker-mutations-and-ci"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "checker mutations and ci tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

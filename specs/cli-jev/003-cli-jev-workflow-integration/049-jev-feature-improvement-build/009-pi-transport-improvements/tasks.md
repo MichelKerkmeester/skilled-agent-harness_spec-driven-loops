@@ -2,10 +2,7 @@
 title: "Tasks: Build: improve the Jev Pi native classifier transport (037)"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "pi transport improvements tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

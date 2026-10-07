@@ -2,10 +2,7 @@
 title: "Implementation Plan: close every recorded item across the chart phases"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "closeout plan"
 importance_tier: "normal"
 contextType: "general"
 ---

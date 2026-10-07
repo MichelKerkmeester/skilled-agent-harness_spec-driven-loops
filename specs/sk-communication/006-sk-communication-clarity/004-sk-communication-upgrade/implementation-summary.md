@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Implementation summary: one instruction for the rewrite pass, resolved from the wording standard's reply base, an honest change record and the documents that declare the pass."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "sk communication upgrade implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

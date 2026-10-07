@@ -14,15 +14,9 @@
       "pre-existing test failures triage",
       "deep-loop baseline test failures",
       "sk-prompt census path fix",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "pre existing test triage plan",
+      "pre existing test triage tasks",
+      "pre existing test triage implementation summary"
     ],
     "key_topics": [
       "pre-existing",
@@ -34,9 +28,9 @@
       "sk-prompt",
       "census",
       "path",
-      "implementation",
-      "plan",
-      "technical"
+      "pre",
+      "existing",
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -182,7 +176,7 @@
     ],
     "causal_summary": "The 017 remediation established a clean whole-suite gate but left 10 pre-existing test failures untouched — they were failing before any of that work and are independent of it",
     "created_at": "2026-08-26T10:02:59.278Z",
-    "last_save_at": "2026-09-11T04:38:32.316Z",
+    "last_save_at": "2026-10-07T15:57:01.341Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,13 +185,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8525c05a98e9d7acf73c2d056e3da34e2ef089695bf46c601ea356740767c938",
+    "source_fingerprint": "sha256:4a0319ba0a7587ceb2c643197ebd9548758348210e608cb211fe0a5d029305dc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2de685d4f1e36bcc9d3533978b4bb4c500cfad2ed416869cdf4fddb624dbb3f1",
-      "plan.md": "98af5ab8b00f3842b380a8a43fb43dc6a78757c5a9f337ff0fb1cd5d1dca04ee",
-      "tasks.md": "6aa31cccc14b8c6b4dd7bdccf9a8ab9b033dc615c08f7143905a90c9723d45fa",
-      "implementation-summary.md": "bf201b037caf323ff218a3cd73c99210bf2bca7414c2b0821049cbaf421f539f"
+      "plan.md": "f78000725bd88697ea01ed35a344efa0a759e1e915cc19313f6044737fe8752f",
+      "tasks.md": "92c028798fc49d4a1468570faed00c063e0bb3f778ae34156ce853b2933b8515",
+      "implementation-summary.md": "dfa5641912dd081713ebaf606dac12850738f8c759a581c55cc6a72c5ee8a744"
     },
     "last_active_child_id": null,
     "last_active_at": null

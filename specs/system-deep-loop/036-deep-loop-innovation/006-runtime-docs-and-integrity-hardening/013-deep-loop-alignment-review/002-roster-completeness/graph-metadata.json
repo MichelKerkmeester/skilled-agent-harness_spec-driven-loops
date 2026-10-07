@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "roster completeness",
       "every prose roster in the three hubs names",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "roster completeness plan",
+      "roster completeness tasks",
       "roster completeness acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "roster completeness implementation summary"
     ],
     "key_topics": [
       "roster",
@@ -32,11 +30,11 @@
       "three",
       "hubs",
       "names",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -199,7 +197,7 @@
     ],
     "causal_summary": "The external orchestration router listed six CLI kinds in its opening parenthetical, its leaf-set bullets and its disambiguation rule while its own machine block and the registry carried seven; its skill file said six modes in one line and seven in four others",
     "created_at": "2026-09-20T08:33:43.947Z",
-    "last_save_at": "2026-10-07T12:55:30.292Z",
+    "last_save_at": "2026-10-07T15:56:49.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:43d8309f6fe229753cae9b0b52810626daa517077c10254e2a9f19d76a281ad5",
+    "source_fingerprint": "sha256:ef59b974abbb9691389c6e9fa2e0f78ce8f8abfd3a266a29c62527c58fc381d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "60563781e205735874ce751dd18df02ef446554616099535394932f261b05c73",
-      "plan.md": "42afe83700c3c82d901f457e4ba0423802836088d2195f1343709ddffd90ef72",
-      "tasks.md": "19c73b4bb9f55c8b0288d5b8d13b14f029cfdfcf6d652d56eea30e2b2ca7afd7",
-      "implementation-summary.md": "f4eb47e1ab350ee333f3d79e05ac70193e9c1f7d995b83a2d46a46a27faeeb77"
+      "plan.md": "36ad4598fd31c2b9611f7a3fed592641783b67410e95030e5306c22476100559",
+      "tasks.md": "5f361dd032ea1eb45f144aefcbd58708beba0aff14d9e36589b3559c6e15e4fa",
+      "implementation-summary.md": "2ecf42ffa8f063cfc768002e174007e8603af3d348ff1ddb9d576d8925bf8d9a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Ten divergences between the interactive and unattended deep-command surfaces closed, with every remaining difference censused inside the file and machine-checked."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "confirm variant parity implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

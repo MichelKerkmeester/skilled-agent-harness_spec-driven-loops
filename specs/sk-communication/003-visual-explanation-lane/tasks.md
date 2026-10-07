@@ -4,10 +4,7 @@ description: "Ordered tasks to author the explain-visually command, its referenc
 importance_tier: "medium"
 contextType: "general"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "visual explanation lane tasks"
 ---
 # Task Breakdown: Visual Explanation Lane for sk-communication
 

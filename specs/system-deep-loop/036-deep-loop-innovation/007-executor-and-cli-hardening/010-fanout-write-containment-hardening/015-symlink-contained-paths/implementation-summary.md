@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Every byte-moving operation in the containment guard is contained against symlinked components at every level, with no-follow opens and the check-then-create window closed."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "symlink contained paths implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

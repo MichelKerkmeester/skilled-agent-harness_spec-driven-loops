@@ -2,7 +2,6 @@
 title: "Implementation Plan: Phase 7: docs-and-closeout"
 description: "Bring every contract, reference, command doc, catalog, playbook and changelog in line with what phases 003 to 005 shipped, then verify the whole packet and write the closure record."
 trigger_phrases:
-  - "implementation plan"
   - "docs closeout plan"
   - "changelog and version bumps"
   - "closure record"

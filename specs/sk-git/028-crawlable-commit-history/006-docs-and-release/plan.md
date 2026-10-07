@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 6: docs-and-release"
 description: "Two sk-doc dispatches and one conductor edit: the README, changelog and version through create-readme and create-changelog, the delegation-rule paragraph and AGENTS.md row through create-repo-rule revise, and the advisor vocabulary with regenerated manifests through the skill-root metadata gate."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "docs and release plan"
 importance_tier: "normal"
 contextType: "general"
 ---

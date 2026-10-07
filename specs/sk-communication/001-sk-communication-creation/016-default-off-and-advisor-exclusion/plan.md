@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 016 Default-Off and Advisor Exclusion"
 description: "Complete the default-off enablement gate and the adjustable advisor route-exclusion through paired package and advisor verification, a live routing probe, and strict packet closeout."
 trigger_phrases:
   - "default-off-and-advisor-exclusion"
-  - "implementation plan"
   - "enablement gate and advisor exclusion plan"
 importance_tier: "important"
 contextType: "implementation"

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Every runtime copy of the Gate 3 menu now names the series parent under option C and leaves option B for new or unrelated work. One source of truth in spec-gate-core.mjs, pinned by byte tests and swept across the repository."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "gate 3 menu series parent implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Both Pi extension lockfiles now resolve brace-expansion 5.0.12, clearing the four Dependabot alerts on 5.0.9."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "pi extension brace expansion implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

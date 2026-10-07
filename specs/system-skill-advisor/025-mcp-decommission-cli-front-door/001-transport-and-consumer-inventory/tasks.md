@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: transport-and-consumer-inventory"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "transport and consumer inventory tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

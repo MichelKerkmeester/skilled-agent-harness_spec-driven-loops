@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The handoff rule took the shortest name that still says what it governs, and the benchmark learned a third name for the same rule so every frozen reply stays scorable."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "shorten handoff rule name implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -4,10 +4,7 @@ description: "Deterministic line-partition of the 4 Rust docs, then a lockstep r
 importance_tier: "normal"
 contextType: "implementation"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "code opencode rust references plan"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 7 — Split code-opencode Rust References

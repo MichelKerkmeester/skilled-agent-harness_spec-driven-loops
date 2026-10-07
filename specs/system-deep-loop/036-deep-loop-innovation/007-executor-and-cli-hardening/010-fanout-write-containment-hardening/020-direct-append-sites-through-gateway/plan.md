@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: direct-append-sites-through-gateway"
 description: "Give every directly appended event a canonical stem, route the sites through the staged gateway pattern, retire the exemptions and prove survival against a negative control."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "direct append sites through gateway plan"
 importance_tier: "normal"
 contextType: "general"
 ---

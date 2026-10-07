@@ -4,7 +4,6 @@ description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "v4.0.0.3 review tasks"
   - "deep review fan-out tasks"
-  - "verification checklist"
   - "review synthesis tasks"
 importance_tier: "normal"
 contextType: "planning"

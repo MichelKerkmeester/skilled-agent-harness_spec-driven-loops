@@ -2,10 +2,7 @@
 title: "Implementation Plan: Retry a git call that lost an index.lock race with another session, and record on the ledger when one still failed"
 description: "Route every containment git call through a wrapper that retries only index.lock losses with bounded backoff, record exhausted losses, and let the runner surface them as ledger warnings."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "index lock retry plan"
 importance_tier: "normal"
 contextType: "general"
 ---

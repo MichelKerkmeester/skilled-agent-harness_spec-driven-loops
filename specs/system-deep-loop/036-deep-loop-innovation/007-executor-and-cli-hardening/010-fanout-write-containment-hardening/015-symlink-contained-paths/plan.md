@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: symlink-contained-paths"
 description: "Replace the final-component checks with one helper set that contains every component and every open, and close the check-then-create window by re-checking on create."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "symlink contained paths plan"
 importance_tier: "normal"
 contextType: "general"
 ---

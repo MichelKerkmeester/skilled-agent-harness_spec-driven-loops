@@ -2,10 +2,7 @@
 title: "Tasks: fundamentals covers every surface, not only UI"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "fundamentals beyond ui tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

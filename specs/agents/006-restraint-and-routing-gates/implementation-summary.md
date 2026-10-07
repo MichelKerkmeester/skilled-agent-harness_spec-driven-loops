@@ -2,7 +2,6 @@
 title: "Implementation Summary: Pre-Write Restraint and Artifact Routing in AGENTS.md"
 description: "Nine edits landed in root AGENTS.md so the restraint doctrine that already lives inside sk-code fires before the first write, plus three rules that had no home anywhere: test-creation restraint, doctrine amendment, and comprehension routing."
 trigger_phrases:
-  - "implementation summary"
   - "restraint routing"
   - "agents.md"
 importance_tier: "important"

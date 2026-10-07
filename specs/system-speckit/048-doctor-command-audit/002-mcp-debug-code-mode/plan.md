@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 2: mcp-debug-code-mode"
 description: "Audits the /doctor:mcp debug target and applies a fix verdict: the debug workflow now covers only MCP Code Mode and .utcp_config.json, backed by shared doctor checks for build state, seven runtime registrations, UTCP manuals and credential presence."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "mcp debug code mode plan"
 importance_tier: "normal"
 contextType: "general"
 ---

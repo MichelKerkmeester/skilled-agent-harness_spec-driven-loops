@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 018 Projection Runtime Core"
 description: "Build the production projection runtime core: a default ProviderTransport, a top-level projectMessage() orchestration, a default reject-only meaning judge, and root-barrel client presentation exports, with exact-original behavior on every non-accept terminal."
 trigger_phrases:
   - "projection-runtime-core"
-  - "implementation plan"
   - "projectMessage orchestration"
   - "provider transport default"
 importance_tier: "important"

@@ -2,7 +2,6 @@
 title: "Implementation Plan: routing doctrine and discovery vocabulary"
 description: "One always-loaded statement per hub in the artifact the runtime reads, and the deep-loop discovery vocabulary pruned to live families."
 trigger_phrases:
-  - "implementation plan"
   - "routing doctrine"
   - "enforcement trace"
 importance_tier: "normal"

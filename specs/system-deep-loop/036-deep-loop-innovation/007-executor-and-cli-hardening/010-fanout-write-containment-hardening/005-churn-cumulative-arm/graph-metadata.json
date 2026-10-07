@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "churn cumulative arm",
       "the churn detector only counted newly dirty paths",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "churn cumulative arm plan",
+      "churn cumulative arm tasks",
       "churn cumulative arm acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "churn cumulative arm implementation summary"
     ],
     "key_topics": [
       "churn",
@@ -34,9 +32,9 @@
       "newly",
       "dirty",
       "paths",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -200,7 +198,7 @@
     ],
     "causal_summary": "The churn detector compared each heartbeat's newly dirty out-of-lineage paths against a per-window threshold and forgot them immediately after",
     "created_at": "2026-09-20T08:33:41.321Z",
-    "last_save_at": "2026-10-07T12:55:32.889Z",
+    "last_save_at": "2026-10-07T15:56:56.227Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3ffbfaedcf45c2e12039aa33c13e6e50da964bcc7dbce927b10fafe836ab1459",
+    "source_fingerprint": "sha256:ae4adfaac1865d771abe6f556ab2d69dde3d3f1f10777b487a678613c85d8065",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7be9a16f5daf0f06dca23d5ce6b836a30fef35106ff94cb7a47a4e1a16d1d605",
-      "plan.md": "4721f073d53126d00d52ba2c27a5f018ebc7b78c789f5df8ea1a942d562a6a50",
-      "tasks.md": "5007fd3a99a8013fcca2741de47f1516756c9a5c259fa2795903bfa672c687d2",
-      "implementation-summary.md": "2ab5a94df5cafa65836b3e4731ecc4c6db58f1a1aeb5fc70d27b12dca6141518"
+      "plan.md": "118a3da8ad3cbd50306bb3103b5de84b15464f5c9500683a8aa33f9f146bfe7d",
+      "tasks.md": "03ff4083fd5fcce9f0d4bdd89f7a23cb6b2284152cb3d9b5698c5c05008edce2",
+      "implementation-summary.md": "a041d125c7470fd154d273f57a6add85150d1baa1ba064bfc12698330c960da5"
     },
     "last_active_child_id": null,
     "last_active_at": null

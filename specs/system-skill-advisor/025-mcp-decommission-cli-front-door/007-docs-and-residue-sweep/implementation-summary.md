@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The advisor documentation now describes the CLI front door: 0 retired tool ids remain, 12 'MCP server' lines survive as history or flagged defects, and three rewritten playbook procedures ran green from the final state."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "docs and residue sweep implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

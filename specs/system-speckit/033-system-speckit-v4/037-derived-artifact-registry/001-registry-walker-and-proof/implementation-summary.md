@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The phase has not executed yet. This summary records the pre-implementation state, the files the phase will create, and the evidence each completion claim must carry."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "registry walker and proof implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

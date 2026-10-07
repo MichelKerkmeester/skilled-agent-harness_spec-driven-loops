@@ -2,9 +2,6 @@
 title: "Implementation Plan: deep-loop-test-debt"
 description: "Baseline the deep-loop-owned red tests and typecheck errors, fix each at its producer, and rerun the exact failing check plus the whole affected suite before recording the fix."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "testing strategy"
   - "deep loop test debt"
 importance_tier: "normal"
 contextType: "general"

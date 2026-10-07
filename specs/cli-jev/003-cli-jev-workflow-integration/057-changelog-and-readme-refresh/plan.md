@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 57: changelog-and-readme-refresh"
 description: "Check each audit finding against its source, then edit only the flagged sentences in the changelog and README so every classifier and hook claim matches the code."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "changelog and readme refresh plan"
 importance_tier: "normal"
 contextType: "general"
 ---

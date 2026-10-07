@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 7: hub-routing-integration"
 description: "Register sk-create-goal across the sk-doc mode registry, hub router and surface router, then update advisor and human-facing hub metadata. Prove both routing stages with positive, out-of-domain and fixed ten-prompt newcomer replays, and regenerate the leaf manifest from its owner script."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "hub routing integration plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "upgrade research",
       "five iterations of glm 5 3 flash deep",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "upgrade research plan",
+      "upgrade research tasks",
       "upgrade research acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "diagram upgrade research goal",
+      "upgrade research implementation summary"
     ],
     "key_topics": [
       "upgrade",
@@ -32,11 +30,11 @@
       "glm",
       "flash",
       "deep",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -203,7 +201,7 @@
     ],
     "causal_summary": "The diagram skill's rules live in prose with nothing holding them, and the chart skill solved",
     "created_at": "2026-09-10T17:17:40Z",
-    "last_save_at": "2026-10-07T12:55:17.432Z",
+    "last_save_at": "2026-10-07T15:56:40.206Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +213,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:4ec9e088a6acd2243345048e9e3223700fe10faaca25e7b6f753eb9e8976d452",
+    "source_fingerprint": "sha256:f75467de40a2fcacfcdda83c41b3debe1e7e968118889737480e5f1b5ca51676",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cfbb8070be8c8249daa548297c5e247300d2b3f13dd7b5de445bfee72cbea09e",
-      "plan.md": "a1606059cf95e6fd3c6fccb82c9c290c71927e8089f8db2cf626e1b836f93c06",
-      "tasks.md": "1011a9638881802da63e2981f06dad79063e51032c2247e848456ffb8a44d089",
-      "implementation-summary.md": "35d268b70e25dab1bf8eb0890206ab9da00df8f7f75f5ab8045de9723b1a7227",
+      "plan.md": "c4f13b389ad66821e13494656d8aef0c1939efa68cbb7dc133cf850d2506172a",
+      "tasks.md": "6705b89537533460623053b80bba944e65461386d694dd2ce1e7d05192b2166b",
+      "implementation-summary.md": "9438fe940ada3451b1961c9968491815b990d6b05881a93f4775f3f8c5e79b52",
       "research/research.md": "5104677a624467db973ecfd67d6d0c5989fc4bcd18584e5ad28b62d039d0169e"
     },
     "last_active_at": null

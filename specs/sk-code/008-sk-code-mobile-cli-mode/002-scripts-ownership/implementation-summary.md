@@ -13,10 +13,7 @@ _memory:
     blockers: []
     completion_pct: 100
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "scripts ownership implementation summary"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->

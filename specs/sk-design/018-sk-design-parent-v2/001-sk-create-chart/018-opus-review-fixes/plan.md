@@ -2,10 +2,7 @@
 title: "Implementation Plan: fixes from the fresh Opus review of the chart packets"
 description: "Fix the fresh Opus review findings inside the existing chart contracts, proving each checker change with a mutation."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "opus review fixes plan"
 importance_tier: "normal"
 contextType: "general"
 ---

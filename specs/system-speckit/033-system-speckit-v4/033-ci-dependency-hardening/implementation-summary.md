@@ -2,9 +2,6 @@
 title: "Implementation Summary"
 description: "The runs-failed emails stopped at the source: a commit that would fail CI's mirror job can no longer be made, CI fires on the commit that causes drift, and the forty-four open Dependabot alerts are down to zero."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
   - "mirror gate shipped"
   - "dependabot zero"
 importance_tier: "normal"

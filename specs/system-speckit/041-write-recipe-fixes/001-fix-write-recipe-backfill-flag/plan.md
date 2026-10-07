@@ -2,10 +2,7 @@
 title: "Implementation Plan: Correct the graph metadata backfill command in the spec folder write recipe"
 description: "Swap one flag for a positional argument in Step 5 of the write recipe, then prove the command text runs and the old form does not."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "fix write recipe backfill flag plan"
 importance_tier: "normal"
 contextType: "general"
 ---

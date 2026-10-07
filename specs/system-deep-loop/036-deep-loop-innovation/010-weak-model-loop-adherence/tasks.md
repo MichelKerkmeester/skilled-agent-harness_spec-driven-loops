@@ -19,10 +19,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "weak model loop adherence tasks"
 ---
 # Tasks: Weak-Model Loop Adherence
 

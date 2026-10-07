@@ -2,10 +2,7 @@
 title: "Implementation Plan: Jev feature follow-ups"
 description: "The session is master orchestrator."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "followups plan"
 importance_tier: "normal"
 contextType: "general"
 ---

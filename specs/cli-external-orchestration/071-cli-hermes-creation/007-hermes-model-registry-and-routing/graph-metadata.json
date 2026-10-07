@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "hermes model registry and routing",
       "hermes model registry and routing the two id",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "hermes model registry and routing plan",
+      "hermes model registry and routing tasks",
       "hermes model registry and routing acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "hermes model registry and routing implementation summary"
     ],
     "key_topics": [
       "hermes",
@@ -30,13 +28,13 @@
       "registry",
       "routing",
       "two",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal",
+      "durable"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -204,7 +202,7 @@
     ],
     "causal_summary": "Phase 003 wrote the allowlist, but nothing had shown the runner refusing an off-roster id, the prompt-improver eligibility tables did not know `cli-hermes` existed, and the prompt-card drift guard skipped the new packet",
     "created_at": "2026-09-14T17:24:48Z",
-    "last_save_at": "2026-10-07T12:54:47.231Z",
+    "last_save_at": "2026-10-07T15:55:51.858Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9025b473a7f0348a82dff622b7eebb0014e45f864a73d429a25a8de2c6f70e0c",
+    "source_fingerprint": "sha256:9d92d70b5ca91fb8951b84f08ca6ac9874fdb4f1e27a5c9b2d086ac121ac5555",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aee22ddc6101f0a730c5de6b2cfdc1b547b9af40d46f083537ed9544bef5a9b0",
-      "plan.md": "a8abff05222f937dbf76909a096a418ed00a5254f75615e64084ab11889e7760",
-      "tasks.md": "b8974be2844b7e0630dcce50679d83ee8e54ec90337cbcbd1234076a0fb52419",
-      "implementation-summary.md": "9cf3a2191e63f17f8332dcfe723fe0fd2dcead1591966cad84d907a6e0817731"
+      "plan.md": "15c454a5809ae6d4703514145d7df3a15291a7a4817dfa38f15a1412300b7310",
+      "tasks.md": "448d359793abe4e1b5dd5a87d3025415136799d85cf83eb0725ee9bab7eb46f4",
+      "implementation-summary.md": "6cd800da186ed281d53b284d8ed0402293a280f3a7112debe48dbefea29e35e6"
     },
     "last_active_at": null
   }

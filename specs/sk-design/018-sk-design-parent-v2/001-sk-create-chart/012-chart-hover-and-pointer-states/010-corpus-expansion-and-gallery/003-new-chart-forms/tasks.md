@@ -2,10 +2,7 @@
 title: "Tasks: Research and add the chart forms the catalogue is missing"
 description: "Build five new chart forms by adapting the closest existing structure, then admit each to the corpus only once it passes."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "new chart forms tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Tasks: Deprecate the deep-skill-benchmark lane"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "deprecate skill benchmark tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

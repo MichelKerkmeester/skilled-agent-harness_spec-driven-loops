@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 3: measure the residue and declare the unhealable"
 description: "Extend the existing weekly freshness job with JSON output from both repair tools and a declared list of unhealable documents, then record a measured residue baseline instead of asserting a clean tree."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "measure and declare plan"
 importance_tier: "normal"
 contextType: "general"
 ---

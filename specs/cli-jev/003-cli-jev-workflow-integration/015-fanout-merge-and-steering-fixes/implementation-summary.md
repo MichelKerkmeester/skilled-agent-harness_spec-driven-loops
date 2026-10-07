@@ -2,10 +2,8 @@
 title: "Implementation Summary: Fan-out Merge Under-count and Per-Iteration Steering"
 description: "The fan-out merge now rebuilds a short research registry from markdown, graph and delta finding records and counts what it cannot rebuild as a gap. The three rounds' replay sources 134, 105 and 168 findings with gaps of 0, 13 and 38. A CLI lineage's loop prompt now names its steer.md by absolute path."
 trigger_phrases:
-  - "implementation summary"
   - "fanout merge fix status"
   - "steering line status"
-  - "continuation notes"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

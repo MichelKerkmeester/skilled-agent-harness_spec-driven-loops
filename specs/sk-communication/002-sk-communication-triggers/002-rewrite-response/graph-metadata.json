@@ -15,14 +15,9 @@
       "self-rewrite command",
       "in-context plain english",
       "sk-communication trigger",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "rewrite response plan",
+      "rewrite response tasks",
+      "rewrite response implementation summary"
     ],
     "key_topics": [
       "rewrite-response",
@@ -33,10 +28,10 @@
       "english",
       "sk-communication",
       "trigger",
-      "implementation",
+      "rewrite",
+      "response",
       "plan",
-      "technical",
-      "approach"
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -44,8 +39,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".cursor/commands/rewrite-response.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +64,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "rewrite-response.md",
-        "kind": "doc",
-        "path": ".cursor/commands/rewrite-response.md",
         "source": "derived"
       },
       {
@@ -191,11 +179,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-communication projection layer rewrites CLI output through a model, but a user has no way to ask the active AI to re-render its own reply in that plain-English style without invoking any model",
     "created_at": "2026-08-19T04:33:57.686Z",
-    "last_save_at": "2026-09-11T04:35:23.593Z",
+    "last_save_at": "2026-10-07T15:56:22.666Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d80c6028f935d13f203d7bd753a56816f0742323860ca37f4a2eb1a8755bc2b",
+    "source_fingerprint": "sha256:fff5bb36569e4eb1af6b1bcf07cde18444db4d2fd7da995dc72fddbd7ba0b4a5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f811273877ef4b0820d63ed1d632e7edd80b85a2d5a525be629a43c6ff426a07",
-      "plan.md": "26a0404d370384cf2b1ebd5c66863fc6d980343d3d5b73849b1f59d8164ecb84",
-      "tasks.md": "7181f0bc05ccecb53d1aa7f22e5420946345639d240b964c75e0a386b81650e5",
-      "implementation-summary.md": "af1a5a75141c48327b493ae3a6e00be2a1ea180224cd855a7e8f8dbb3a671a02"
+      "plan.md": "c683bfde246ab423c5c99e160da768f0d252665e961d133228bd790591f7bd47",
+      "tasks.md": "2cb7c3343e14c400f2c2ae4ad00f17a8f5af1ca148e0e31a09ee657c9a78d99f",
+      "implementation-summary.md": "6ee245c85b905c16bef32ed759dcb03cabf8c2da8adf50ead3506feb18809309"
     },
     "last_active_child_id": null,
     "last_active_at": null

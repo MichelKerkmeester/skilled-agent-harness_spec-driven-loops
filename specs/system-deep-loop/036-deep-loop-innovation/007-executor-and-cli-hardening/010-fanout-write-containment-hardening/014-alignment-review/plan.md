@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: alignment-review"
 description: "Run three cli-devin DeepSeek lanes of five iterations over the 014 spec folder, merge, verify every P0 and P1 against the tree, and bind each to a phase or a recorded disposition."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "alignment review plan"
 importance_tier: "normal"
 contextType: "general"
 ---

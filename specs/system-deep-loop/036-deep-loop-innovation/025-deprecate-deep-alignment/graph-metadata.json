@@ -14,15 +14,9 @@
       "deprecate deep-alignment deep loop",
       "remove conformance-benchmark command-benchmark cascade",
       "deep-alignment shared conformance engine removal",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "deprecate deep alignment plan",
+      "deprecate deep alignment tasks",
+      "deprecate deep alignment implementation summary"
     ],
     "key_topics": [
       "deprecate",
@@ -197,7 +191,7 @@
     ],
     "causal_summary": "The operator asked to fully deprecate the `deep-alignment` deep-loop mode — command, agent, code, and README references",
     "created_at": "2026-08-27T10:52:03.912Z",
-    "last_save_at": "2026-09-11T04:38:33.448Z",
+    "last_save_at": "2026-10-07T15:57:06.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e782d410fdbf4e986de297d675463de21a3ee2faff5ecabba775bb463737fc2",
+    "source_fingerprint": "sha256:6b81fc6aedf4814146b3b8a5bcbc84c50d584baf97e4218a73aa97e98cdd8fd1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dd5b51d54f2ce3b5f5743ae42be236ea3633844739818a19520b7d3da10c01db",
-      "plan.md": "a314f3227b92d821661fc8aa67bcc5b4a9069dd654b57f2401212d81c3be8b74",
-      "tasks.md": "cb5bce87ba8a0a988fd4110ab5d3f0e0c5910b0938699a2a6395704b1563dd72",
-      "implementation-summary.md": "f0291385188d5657e8286f1307ae113310b0860356c6c1c2e9baab9ae571c349"
+      "plan.md": "8f99281a5090030c8734e8a83dfdeaba9d6324a8b4f9c955bf1f8792be6a6c56",
+      "tasks.md": "deefb8a9bdb5f5d6a19d5f324af7ff63dec86d526041b253666f4d6fbbcb01e5",
+      "implementation-summary.md": "c31e5716abfd3196386b7091d01b1f41be1e587c60a240fa7c5927b8a27e0aeb"
     },
     "last_active_child_id": null,
     "last_active_at": null

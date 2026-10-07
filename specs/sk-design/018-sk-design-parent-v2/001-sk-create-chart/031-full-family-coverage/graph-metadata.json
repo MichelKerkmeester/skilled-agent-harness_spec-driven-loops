@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "full family coverage",
       "the mutation suite covered twelve of the forty",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "full family coverage plan",
+      "full family coverage tasks",
       "full family coverage acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "full family coverage implementation summary"
     ],
     "key_topics": [
       "full",
@@ -33,10 +31,10 @@
       "covered",
       "twelve",
       "forty",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +196,7 @@
     ],
     "causal_summary": "The mutation suite covered twelve of the forty-seven families the corpus check registers: the ones",
     "created_at": "2026-09-09T20:32:05Z",
-    "last_save_at": "2026-10-07T12:55:14.667Z",
+    "last_save_at": "2026-10-07T15:56:34.532Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5cd86b4a4de6547a896da7052a6e5b8ca360a5c1aaf36f9ad2398ff379388c22",
+    "source_fingerprint": "sha256:af843e014d07d45fd079d2bee209cfaeff5529e869fb1c5f322a541ba58c20ca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "90578b0d06cb3d6ab0fd585da7a21e2610a535b5a2beb7888e9c2153d250fb71",
-      "plan.md": "5dc0d8422d31ecd96b59fcaea93bf1409d72294514414f9712b62aba1bd4633a",
-      "tasks.md": "01ff1a20cb5c482ef51ca74470fd4ecd9c027479f65e4d63218b181c0f99595f",
-      "implementation-summary.md": "5a9e4b24a0ea0878b3089843c367db9e80e0e06effe9345b617db6d2dc6fd881"
+      "plan.md": "3b35ecbe519c37106bf15ed7254e292210e8341d4ac29af26cf13072ba683eb0",
+      "tasks.md": "1c98223a6dcdd1dd19c9838009753786636be6833d77d2d2c84a9c2fae91483e",
+      "implementation-summary.md": "3218abec4c564e097c455663f68143ec2b0a91c0136c85b223da714fcda5c4e5"
     },
     "last_active_at": null
   }

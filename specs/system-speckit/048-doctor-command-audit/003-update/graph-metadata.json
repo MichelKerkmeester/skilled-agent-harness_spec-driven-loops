@@ -14,15 +14,15 @@
       "doctor update audit",
       "/doctor:update relevance",
       "doctor-update.yaml",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "doctor update audit acceptance"
+      "update plan",
+      "update tasks",
+      "doctor update audit acceptance",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "doctor update split decision",
+      "doctor-update yaml superseded"
     ],
     "key_topics": [
       "doctor",
@@ -30,13 +30,13 @@
       "relevance",
       "doctor-update",
       "yaml",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing"
+      "tasks",
+      "acceptance",
+      "packet",
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`/doctor:update` was a database rebuild",
     "created_at": "2026-10-02T16:10:13Z",
-    "last_save_at": "2026-10-06T18:50:14.679Z",
+    "last_save_at": "2026-10-07T15:57:40.934Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,14 +223,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6e79afcb799068535e6f2195d7dec1f28ba72fbe09b3bc530e95b199ca86d456",
+    "source_fingerprint": "sha256:09e6f2511cef2051a28865705b4a6a008b09aa429a3e4f39a71cb3e979ad4089",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "68c58bd6a488146e10c3d87168a0a0a8f804119878fa11145b4287f857b9f055",
-      "plan.md": "85277519f5fc3c032eb42fb7969a7255ab25ee37cb0502bfafd88139526d8efe",
-      "tasks.md": "28ca1e8b1f96931a481028624750ed5c66da458561872b0bf0e86c43ca249a14",
+      "plan.md": "55bf2780f334caa6bd8cc37e2996b852fe2afff1760fc37e1c900106ab53864e",
+      "tasks.md": "8a50d68b54c2f1019a3c1b57dcbefe8fdeedb22e5a36a5fed83a3926a45945c2",
       "decision-record.md": "d15f90ded7024ef2560253bbdfbfd78798068b80ef58fd3296714cb4e67ffaa1",
-      "implementation-summary.md": "2792f0cea2351825e516aa9f1ab4b04222523b8b7999e29713ea630a82ca6cae",
+      "implementation-summary.md": "04846cd81ae519a0856abbdfad3bf036248d59e3d458919d9e8c0669eb805cd6",
       "research/research.md": "d609708f8552bde5e29460b5dceee485eb41353ad26d490612ac2a59f6cb3e8b"
     },
     "last_active_at": null

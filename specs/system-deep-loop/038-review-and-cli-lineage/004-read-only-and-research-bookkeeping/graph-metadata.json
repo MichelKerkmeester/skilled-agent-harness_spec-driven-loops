@@ -20,9 +20,9 @@
       "graph database read-only open",
       "research run-open gateway plan",
       "bookkeeping repair plan",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "read only and research bookkeeping tasks",
+      "read only and research bookkeeping acceptance criteria",
+      "read only and research bookkeeping implementation summary"
     ],
     "key_topics": [
       "deep-loop",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The deep-loop graph scripts are not read-only, so no caller can promise they leave the machine unchanged",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-07T12:55:37.470Z",
+    "last_save_at": "2026-10-07T15:57:06.580Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c8d387a8c6ba4ad5af3382905e200ff2e168bec2c659d09c17c7619f2a2bb0ed",
+    "source_fingerprint": "sha256:fe14c488d0aec0c9769e0bf2d7e15d4a2184b672bbb71468e55b656442d6dcee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b0f60e7417ddb402e61295168059df40a27d0e04189b1774906625cdc0f87256",
       "plan.md": "2b9a79c09b8af1847bf1d8bba3634cc357ac9c50edfbb734fcf3d634b7d8b3e9",
-      "tasks.md": "1a929abbd5e25c46de843503f944b1e3e423a981b648349dc76b962cd3e4c29f",
-      "implementation-summary.md": "e614b613380cb339603409978a33752b64703fddcb850f1fa37a923decf52753"
+      "tasks.md": "86cdd6fdfe1674a3c56379a87d9cf2a1a56cb26eab92742bec94be5d31bf2f80",
+      "implementation-summary.md": "5e1d4ce51a3eeda63e5f02679aff91fe68c8e418ae218fe871022bb97296ad59"
     },
     "last_active_at": null
   }

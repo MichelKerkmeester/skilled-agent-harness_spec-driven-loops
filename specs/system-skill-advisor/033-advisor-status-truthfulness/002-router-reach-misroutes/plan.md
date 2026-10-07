@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 2: router-reach-misroutes"
 description: "Rerun the full router-reach fleet against the live advisor, classify the recorded wrong-hub and outranked phrases into reproduced and no-longer-reproduced, then fix only the reproduced cases in the owning skills' routing vocabulary and rerun to zero."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "router reach misroutes plan"
 importance_tier: "normal"
 contextType: "general"
 ---

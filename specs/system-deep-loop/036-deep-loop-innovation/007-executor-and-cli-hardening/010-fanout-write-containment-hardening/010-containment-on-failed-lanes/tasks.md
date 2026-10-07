@@ -2,10 +2,7 @@
 title: "Tasks: Phase 3: containment-on-failed-lanes"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "containment on failed lanes tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -22,7 +22,7 @@
       "lockfile audit fix",
       "mirror gate tasks",
       "dependabot tasks",
-      "verification checklist"
+      "ci dependency hardening acceptance criteria"
     ],
     "key_topics": [
       "mirror",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The operator received a \"runs failed\" email on every push for days",
     "created_at": "2026-09-07T19:44:27Z",
-    "last_save_at": "2026-10-07T12:55:48.265Z",
+    "last_save_at": "2026-10-07T15:57:27.895Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d2153655fcb2e1dc137a15afdb992d4c7a60cdc9178c4801056ae97efec78ac3",
+    "source_fingerprint": "sha256:be59c4081b9b9cf7af448d14975fe0401a3bbcfe99cf4ceee21ae23e3976656a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0846a732537ed19c2d2696d29b61a50000530ee49448a6184ea9a22372e67265",
       "plan.md": "1db388e82382e52b1381ed0c82e233d88aa4caa6e0a41548c29e8f25bbca5553",
-      "tasks.md": "5caaf9dd20b9f02bf46a749199cf5652dfc58fd35be25d40fd43d092266fe50f",
-      "implementation-summary.md": "a862b173db08d1dc82152f7ca24b93973e24aafc3de0f2285d7f7fac3b72d511"
+      "tasks.md": "44893f86a3aa44c9416116dcf759cae1ce879687dbd2c3d9c66d42d519c23a1f",
+      "implementation-summary.md": "13f7dee4cc795a35bc07fb9f57189e3ae79d3bba295c816a9ba1847e55a4c6a4"
     },
     "last_active_at": null
   }

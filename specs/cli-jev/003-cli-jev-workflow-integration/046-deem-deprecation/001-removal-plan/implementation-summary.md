@@ -2,10 +2,7 @@
 title: "Implementation Summary: Phase 1: removal-plan"
 description: "Name every live Deem reference with the phase that removes it, and record the removal decisions, before any file outside this phase changes. Not started."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "removal plan implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

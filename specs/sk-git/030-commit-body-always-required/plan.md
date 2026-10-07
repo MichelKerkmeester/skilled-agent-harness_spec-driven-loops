@@ -2,10 +2,7 @@
 title: "Implementation Plan: Require a commit body on every authored commit"
 description: "Replace the staged-path threshold in the commit-msg hook with an unconditional body requirement, align every doc and caller with it, and prove the change with a before and after control on real commits."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "commit body always required plan"
 importance_tier: "normal"
 contextType: "general"
 ---

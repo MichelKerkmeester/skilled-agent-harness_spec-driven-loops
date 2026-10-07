@@ -22,7 +22,7 @@
       "shared removal tasks",
       "dead half census tasks",
       "telemetry directory tasks",
-      "verification checklist"
+      "shared removal criteria"
     ],
     "key_topics": [
       "shared",
@@ -50,17 +50,17 @@
       "shared/config.ts",
       "shared/gate-3-classifier.ts",
       "runtime/lib/graph/access-telemetry.ts",
-      "shared/config.test.ts",
       "runtime/core/config.ts",
       "shared/types.ts",
       "shared/package.json",
       "shared/tsconfig.json",
-      "shared/embeddings/model-server-constants.test.ts",
       "runtime/cli/lib/semantic-summarizer.ts",
       "runtime/cli/core/workflow.ts",
       "runtime/cli/tests/memory-pipeline-regressions.vitest.ts",
       "runtime/cli/evals/import-policy-allowlist.json",
-      "shared/README.md"
+      "shared/README.md",
+      "shared/algorithms/README.md",
+      "shared/parsing/README.md"
     ],
     "entities": [
       {
@@ -118,12 +118,6 @@
         "source": "derived"
       },
       {
-        "name": "config.test.ts",
-        "kind": "test",
-        "path": "shared/config.test.ts",
-        "source": "derived"
-      },
-      {
         "name": "types.ts",
         "kind": "code",
         "path": "shared/types.ts",
@@ -139,12 +133,6 @@
         "name": "tsconfig.json",
         "kind": "config",
         "path": "shared/tsconfig.json",
-        "source": "derived"
-      },
-      {
-        "name": "model-server-constants.test.ts",
-        "kind": "test",
-        "path": "shared/embeddings/model-server-constants.test.ts",
         "source": "derived"
       },
       {
@@ -206,11 +194,23 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "One Voyage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Roughly forty percent of the shared package was a second package nothing imported: an in-process embeddings library and the ranking, contract and chunking modules built for the memory pipeline, kept alive by a root barrel and by tests written to explain them",
     "created_at": "2026-09-06T23:32:43Z",
-    "last_save_at": "2026-09-08T15:47:13.296Z",
+    "last_save_at": "2026-10-07T15:57:22.699Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef81dce6132219aafe04fbf1ea1dbfa3da460096310994d106704b52529375e0",
+    "source_fingerprint": "sha256:78b2ed893534e559018208b5827a2838fa9b596a869925384d8c6c8290e8f081",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e5cdc71816f47c30fe828e343db1b964cf84d12ed95b3b3ce0e2edf86988cef",
       "plan.md": "24561b59b8578f71323d5c54f2eccb9f57c788f09b9c6c0b23276e7e0ad62678",
-      "tasks.md": "b0a982d195f53d4306dcd56c5dce51354a6dbbaadd60930b1edfc592d1707d45",
+      "tasks.md": "4de66f1aa0bcfc784858e5fb78fedd0b70059c73c923a633ecbcc68ee3e6979b",
       "implementation-summary.md": "7d6360b8f08454a8915b8302fad87f3c93ceea6f85348fe1008bc45c028198dd"
     },
     "last_active_at": null

@@ -3,7 +3,7 @@ title: "Feature Specification: Reword the Step 7 verification gate of the spec f
 description: "The gate told the author to confirm that git status lists only the packet files, which a shared tree never allows, and the recipe's version had drifted from the derived value."
 trigger_phrases:
   - "fix write recipe verification gate"
-  - "the gate told the author to confirm that"
+  - "the gate told the author to confirm"
 importance_tier: "normal"
 contextType: "general"
 ---

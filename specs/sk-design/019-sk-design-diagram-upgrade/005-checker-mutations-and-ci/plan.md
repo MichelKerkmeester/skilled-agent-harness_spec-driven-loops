@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 5: checker-mutations-and-ci"
 description: "Build check-diagram-corpus.cjs's ten families, its mutation suite with the four refusals and completeness triple, and the diagram corpus's first CI gate."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "checker mutations and ci plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Tasks: closure and routing proof"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "closure and routing proof tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

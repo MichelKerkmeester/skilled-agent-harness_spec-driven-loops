@@ -22,7 +22,7 @@
       "command surface realignment tasks",
       "workflow asset rewrite tasks",
       "help printer tasks",
-      "verification checklist"
+      "command surface realignment criteria"
     ],
     "key_topics": [
       "command",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The level contract retired `checklist.md` and made `acceptance-criteria.md` the closure document, and child 010 brought the skill's own documents to that contract",
     "created_at": "2026-09-07T03:35:37.269Z",
-    "last_save_at": "2026-09-08T15:47:13.827Z",
+    "last_save_at": "2026-10-07T15:57:22.927Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +214,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cfdf2e9f47cda9e4631012f6409fd8aa262f713b7e5c82e822ab3b1e2bbb65f0",
+    "source_fingerprint": "sha256:8cef313475765f9da05f6b39666a1ba9e1acb7efc21181a7333679997f9b92f5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f8c2db2a8886f1a00b886e787b797d2a855b1bf844fdced4b1269dfbdd7513ca",
       "plan.md": "98d509566b73b96337783b92a4417f674deb098881c4c4d95a8bdf5b39155995",
-      "tasks.md": "4f64c529b760badc973f21096de0c82042e5baa9879d3f0abf29e6509e876233",
+      "tasks.md": "f7bd05a3c1cc4d7150276cd9723c1fb1c287901ba9b1e8eca523d154ab2118ef",
       "implementation-summary.md": "98ac81669f9e2c396170d51c1fab892e7ded9670e8b74a97b839f0c440acfeb6"
     },
     "last_active_child_id": null,

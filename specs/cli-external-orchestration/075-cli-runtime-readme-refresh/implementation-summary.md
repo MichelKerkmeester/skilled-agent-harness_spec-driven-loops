@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "All eight cli runtime READMEs now carry a directory tree and file/role map naming every subfolder and reference file, and the cli-pi contract pin resolves again after being repointed at its archived packet."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "cli runtime readme refresh implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

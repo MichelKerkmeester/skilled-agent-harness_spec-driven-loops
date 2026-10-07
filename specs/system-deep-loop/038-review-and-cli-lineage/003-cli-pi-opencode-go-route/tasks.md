@@ -2,10 +2,7 @@
 title: "Tasks: Let the deep-loop cli-pi executor reach DeepSeek V4.1 Flash through opencode-go"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "cli pi opencode go route tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,8 +2,6 @@
 title: "Implementation Summary"
 description: "Review leaves are now told the two things the fan-out runner fails them for, and the runtime's determinism tests spawn the vitest binary that actually exists."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
   - "review leaf protocol"
 importance_tier: "normal"
 contextType: "general"

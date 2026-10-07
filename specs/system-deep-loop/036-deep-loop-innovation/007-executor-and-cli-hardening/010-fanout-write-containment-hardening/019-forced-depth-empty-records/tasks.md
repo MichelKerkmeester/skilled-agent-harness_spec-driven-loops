@@ -2,10 +2,7 @@
 title: "Tasks: Phase 4: forced-depth-empty-records"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "forced depth empty records tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

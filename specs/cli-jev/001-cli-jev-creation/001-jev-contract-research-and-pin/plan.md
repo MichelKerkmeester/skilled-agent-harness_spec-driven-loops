@@ -2,9 +2,7 @@
 title: "Implementation Plan: Phase 1: jev-contract-research-and-pin"
 description: "Pin the jev 0.6.2 CLI and jev-mcp contract from the vendored source and a live binary, capture the evidence under scratch/, and transcribe it into packet references tagged by evidence class."
 trigger_phrases:
-  - "implementation plan"
   - "approach and phases"
-  - "testing strategy"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

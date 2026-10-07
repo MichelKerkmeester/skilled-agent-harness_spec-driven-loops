@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: command-yaml-alignment"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "command yaml alignment tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

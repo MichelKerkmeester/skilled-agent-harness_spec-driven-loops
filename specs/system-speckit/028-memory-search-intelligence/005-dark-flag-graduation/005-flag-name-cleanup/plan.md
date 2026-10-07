@@ -15,10 +15,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts"
     completion_pct: 100
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "flag name cleanup plan"
 ---
 # Implementation Plan: Version-Suffix Flag-Name Cleanup
 

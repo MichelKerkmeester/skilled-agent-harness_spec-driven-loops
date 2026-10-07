@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 020 CLI-Output Wrapper Framework"
 description: "Plan the shared CLI-output wrapper framework: a parameterized entrypoint that runs the target runtime in headless, stream, or print mode, captures the assistant output stream incrementally, normalizes it through the per-runtime adapters, feeds the Phase 018 projectMessage() entrypoint, and re-renders the projected text with a fail-open byte-exact original passthrough."
 trigger_phrases:
   - "cli-output-wrapper-framework"
-  - "implementation plan"
   - "wrapper framework plan"
   - "headless stream print capture plan"
 importance_tier: "important"

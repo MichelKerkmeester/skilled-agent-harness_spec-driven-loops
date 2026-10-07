@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The three unproven Jev features are gone from everything outside spec folders: scorers, tests, catalog entries, playbook scenarios, keep-rule gates and changelog claims."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "retire unproven features implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

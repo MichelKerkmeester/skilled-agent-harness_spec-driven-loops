@@ -14,16 +14,14 @@
     "trigger_phrases": [
       "visual polish",
       "a visual polish pass on the chart corpus",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "visual polish plan",
+      "visual polish tasks",
       "visual polish acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "visual polish implementation summary"
     ],
     "key_topics": [
       "visual",
@@ -31,13 +29,13 @@
       "pass",
       "chart",
       "corpus",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal",
+      "durable"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -202,7 +200,7 @@
     ],
     "causal_summary": "Six things make a rendered chart read as a template rather than a product",
     "created_at": "2026-09-08T18:22:02Z",
-    "last_save_at": "2026-10-07T12:55:12.345Z",
+    "last_save_at": "2026-10-07T15:56:34.640Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b775a4c729dc397149a631e7ecf02c162450c4b2c860a663db32d8cf33ad316",
+    "source_fingerprint": "sha256:e3b9040202c250e88e1eda10e3456591ef7c5a2532745ad2144f12d7a0fe2956",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "06f56035fa9446003ac7e72adc66df0ecb8667f41818a2af2f51a5a3e8dff166",
-      "plan.md": "6e7267a1e7fc24ba90f244910cce78da8f960be4a006ae57e61485097d3c388f",
-      "tasks.md": "75df0496ff3ddc6605bc4eaf8a4e3229e71106a086e5ce44d9736acb8578b340",
-      "implementation-summary.md": "766ca16496324827cb6d1f34520e07403f5f09a788afc0c85dc27153f4a3a41e"
+      "plan.md": "59ca3807919984ad306ac6512b54a2a32e8ad98bfd3b6cdabf05aa1a4e0e95e8",
+      "tasks.md": "7c92c77ce48ef128268e50896f1e3e42ca5f41839f894eb3c00464511904ce3b",
+      "implementation-summary.md": "0d60d71c830f2ade2969576bc559dbf85393f3bb22cd7c87aba88f6d6eb54297"
     },
     "last_active_at": null
   }

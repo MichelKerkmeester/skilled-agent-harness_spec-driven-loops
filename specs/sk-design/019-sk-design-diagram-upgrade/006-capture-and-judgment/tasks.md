@@ -2,10 +2,7 @@
 title: "Tasks: Phase 6: capture-and-judgment"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "capture and judgment tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

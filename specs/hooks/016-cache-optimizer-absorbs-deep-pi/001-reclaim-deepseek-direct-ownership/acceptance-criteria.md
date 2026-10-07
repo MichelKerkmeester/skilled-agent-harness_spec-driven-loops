@@ -2,9 +2,7 @@
 title: "Acceptance Criteria: 001-reclaim-deepseek-direct-ownership"
 description: "The criteria this phase must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
+  - "reclaim deepseek direct ownership acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

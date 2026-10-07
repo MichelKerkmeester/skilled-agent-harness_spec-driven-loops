@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Phase 001 authored its research angles and known context and launched a 15-iteration two-lineage fan-out over Hermes Agent; the synthesis and its evidence are recorded here when the run completes."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "deep research implementation summary"
 importance_tier: "normal"
 contextType: "research"
 _memory:

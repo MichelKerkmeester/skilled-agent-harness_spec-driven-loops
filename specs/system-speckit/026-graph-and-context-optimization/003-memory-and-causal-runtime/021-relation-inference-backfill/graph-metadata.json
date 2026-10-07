@@ -18,13 +18,13 @@
       "memory_causal_stats backfill",
       "entity density cache invalidation causal",
       "spec document chain causal edges",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "relation inference backfill plan",
+      "relation inference backfill tasks",
+      "relation backfill decision",
+      "causal backfill wiring choice",
+      "deterministic inference signals",
+      "memory_causal_stats backfill entry point",
+      "relation inference backfill implementation summary"
     ],
     "key_topics": [
       "relation",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "After packet 019, `memorycausalstats.relationCoverage.backfillJob` honestly reports `implemented:false` / `command:null` because no command actually balances relation coverage — the prior `memoryhealth({autoRepair})` hint was a no-op",
     "created_at": "2026-06-04T12:30:00Z",
-    "last_save_at": "2026-09-11T16:42:34.605Z",
+    "last_save_at": "2026-10-07T15:57:11.680Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a03fac36a906236f9ab99788f67d5613bf3c0ae2dd9dcbef2fc7f7026e72fb4",
+    "source_fingerprint": "sha256:959921d9ebbce55e49ccabf6ad9ec80b50f4e3ad604f00f456a178825a4118ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d9d92b85558fd02e57ebb5bf7196e0bcd24fa5a1b0c7197752a545249820953a",
-      "plan.md": "2175361bb3e01351267e8e737ba9b62643cddbe9a388651acca229fa99d5ddff",
-      "tasks.md": "5c56922e252a9b534ed66dba58e9319496ed4fc96549aae75a2e917072a40ca7",
+      "plan.md": "d74c158257fbb460c712d3239c1fb0071a7a10bbba1865f5f91efa74e6757e8f",
+      "tasks.md": "f236663643d3520d8e3a668655d97e3e57f6cdde06873cddc31379e10bfbeaec",
       "decision-record.md": "ff3ef7007233f7fa189131df60e07d59877324f2337fb1c1a3cd735476acda95",
-      "implementation-summary.md": "2392e79f583d2b6c1c5e72cf26a9e36e354d835d04b43fa57c1721981a86cb3b"
+      "implementation-summary.md": "e21957f2d7212a483940efdcc23b72982d7924023898b87a86bb5309e06e85c0"
     },
     "last_active_child_id": null,
     "last_active_at": null

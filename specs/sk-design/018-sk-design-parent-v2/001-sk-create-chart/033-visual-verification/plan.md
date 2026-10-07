@@ -2,10 +2,7 @@
 title: "Implementation Plan: every capture read by a fresh reviewer, and what that found"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "visual verification plan"
 importance_tier: "normal"
 contextType: "general"
 ---

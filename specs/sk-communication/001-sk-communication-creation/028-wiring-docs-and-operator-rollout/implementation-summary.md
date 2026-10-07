@@ -6,7 +6,6 @@ trigger_phrases:
   - "operator enablement guide"
   - "projection rollout runbook"
   - "wired projection rollback"
-  - "implementation summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

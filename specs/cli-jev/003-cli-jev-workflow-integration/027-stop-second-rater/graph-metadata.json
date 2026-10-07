@@ -46,21 +46,20 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts",
       "runtime/scripts/README.md",
       "runtime/README.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
       ".skilled/skills/system-deep-loop/SKILL.md",
       ".skilled/skills/system-deep-loop/runtime/README.md",
       ".skilled/skills/system-deep-loop/runtime/changelog/v1.6.0.0.md",
-      ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md",
       ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
-      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-rater-replay.md",
       ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
       ".hermes/skills/system-deep-loop/SKILL.md",
       "scratch/w4-session/session-evidence.md",
-      "scratch/w4-session/docs/facts.txt"
+      "scratch/w4-session/docs/facts.txt",
+      "scratch/w4-session/logs/recheck-ds.last.txt",
+      "scratch/w4-session/logs/recheck-pi.last.txt",
+      "scratch/w4-session/logs/review-docs-ds.last.txt"
     ],
     "entities": [
       {
@@ -94,18 +93,6 @@
         "source": "derived"
       },
       {
-        "name": "score-stop-rater.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-stop-rater.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": "runtime/scripts/README.md",
@@ -121,12 +108,6 @@
         "name": "v1.6.0.0.md",
         "kind": "doc",
         "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.6.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "stop-rater-replay.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md",
         "source": "derived"
       },
       {
@@ -151,6 +132,24 @@
         "name": "facts.txt",
         "kind": "file",
         "path": "scratch/w4-session/docs/facts.txt",
+        "source": "derived"
+      },
+      {
+        "name": "recheck-ds.last.txt",
+        "kind": "file",
+        "path": "scratch/w4-session/logs/recheck-ds.last.txt",
+        "source": "derived"
+      },
+      {
+        "name": "recheck-pi.last.txt",
+        "kind": "file",
+        "path": "scratch/w4-session/logs/recheck-pi.last.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review-docs-ds.last.txt",
+        "kind": "file",
+        "path": "scratch/w4-session/logs/review-docs-ds.last.txt",
         "source": "derived"
       },
       {
@@ -210,7 +209,7 @@
     ],
     "causal_summary": "A deep-research loop decides when to stop from the model's own `newInfoRatio`, the self-reported share of new information in each iteration",
     "created_at": "2026-09-29T12:42:39Z",
-    "last_save_at": "2026-10-01T18:46:36.710Z",
+    "last_save_at": "2026-10-07T15:56:01.757Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:411c226699daf43ff19acd1dc0335055a81fa694971e21b64d4e924c40ae4336",
+    "source_fingerprint": "sha256:483b4473124f32d3b49fd841f1268e60f8fd74e76ab476619a6918c38a3716db",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b1bcf4e11c8b482f0ece4fa168f68af92abfc4b20e3a9d5f2d7be5650ca371e4",
       "plan.md": "d97847ebd58b1d8f85ffa106ac7e6df28aa22a5ef82366dbda494e3932f74a6a",
       "tasks.md": "430f96e67841c702d98df7050c2ad9edad920174798b9f969c023224f6a6e71f",
-      "implementation-summary.md": "d75263a88208b772ab9154a481b73e6534d5a05ffe574e92fecf2d86df07b670"
+      "implementation-summary.md": "f8a9f83cdde53f21af0d409964d45b71a3e2181d8186dd80a2f9281018e18107"
     },
     "last_active_at": null
   }

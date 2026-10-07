@@ -16,10 +16,7 @@
       "doctor router gates",
       "doctor router gates plan",
       "extractor command exemption plan",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "doctor router gates tasks",
       "doctor router gates summary",
       "extractor command allowed-tools fix"
     ],
@@ -197,7 +194,7 @@
     ],
     "causal_summary": "The sk-create-command template requires a mandatory input gate before the router contract whenever the argument hint declares a required `<argument>`",
     "created_at": "2026-10-04T08:03:02Z",
-    "last_save_at": "2026-10-04T08:08:06.453Z",
+    "last_save_at": "2026-10-07T15:57:43.922Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dfdd1b554b1079924ded6c52188a9ad1ddab6eb1a3be4d297e0858bb86741b22",
+    "source_fingerprint": "sha256:4d4d193e6df88c3d61a1baa4b061579e546d4c4987243413b2ef9b32bf93ba1b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4d7e51c62273a26247ba707ce3c91e7df44cf9b778483867607f1d4c3f253df8",
       "plan.md": "e7cfda52be6789f2222b269f2991220928297b50c2f4b9f5be702e9049b8dc6f",
-      "tasks.md": "2e6d0f029c18127f2c1e6d11284147a412fc53825e24a0ad66cca165b501a09c",
+      "tasks.md": "38225ada7f6fdc7cf5d9f8b532eadd638bc735786388258d6cc7caac90a10de7",
       "implementation-summary.md": "4613e7c2d6a25c1ee5f3dad2e29c831ca85993ca5885f572b828bed4824d088c"
     },
     "last_active_at": null

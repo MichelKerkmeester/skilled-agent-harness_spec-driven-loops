@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "visual verification",
       "the palette was replaced wholesale and the checks",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "visual verification plan",
+      "visual verification tasks",
       "visual verification acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "visual verification implementation summary"
     ],
     "key_topics": [
       "visual",
@@ -31,12 +29,12 @@
       "replaced",
       "wholesale",
       "checks",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -199,7 +197,7 @@
     ],
     "causal_summary": "The palette was replaced wholesale and the checks stayed green throughout, which proves that colour",
     "created_at": "2026-09-10T06:10:51Z",
-    "last_save_at": "2026-10-07T12:55:15.531Z",
+    "last_save_at": "2026-10-07T15:56:39.013Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a1f457f87903f53ee7d80f24b41d2e997a68be7e87aba79d55d1f5e60a45b51",
+    "source_fingerprint": "sha256:0e18215469a6061fddd04d834543a117afcdc1cfc422e4dabdb6cc64bdc88b18",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "20ea6ae865c175ad5911419a668c600f47065ebb499333de6ea7e32da2aed4ab",
-      "plan.md": "642d036fabbb2ead10404a1fa95e96c7647bd8e46d68d249c20c85f134ab1b08",
-      "tasks.md": "940f16c7a5316264b35384ebb7b0e42354ad3af215faec0ccf592584c303f89f",
-      "implementation-summary.md": "dc28a49fb985f0f3bf85ead0f01b518738aab1ff8601c6d66a7e1d6cbe3578d3"
+      "plan.md": "49130d1ce86effbce64040855bfa1ea92ab1d473bf4caad42fee4657563e5863",
+      "tasks.md": "766962aa0670c72597296efab73158a896031eba68f7e5ebc721c19eab6fb945",
+      "implementation-summary.md": "27184b45c0be2fac9d8e475edd0a1462c464b54575c3415a59a319e7729e76f2"
     },
     "last_active_at": null
   }

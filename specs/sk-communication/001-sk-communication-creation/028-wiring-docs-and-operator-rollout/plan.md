@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 028 Wiring Docs and Operator Rollout"
 description: "Author the closing operator documentation for the wired projection: an enablement guide, a rollout runbook, and a rollback path, conformed to the sk-doc reference standard and verified through a fresh-operator walkthrough."
 trigger_phrases:
   - "wiring-docs-and-operator-rollout"
-  - "implementation plan"
   - "operator rollout plan"
 importance_tier: "important"
 contextType: "implementation"

@@ -5,7 +5,6 @@ trigger_phrases:
   - "completion gate tasks"
   - "acceptance closure tasks"
   - "catalog alignment tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

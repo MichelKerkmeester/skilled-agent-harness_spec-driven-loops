@@ -2,10 +2,7 @@
 title: "Implementation Plan: remove em-dashes from authored READMEs"
 description: "Replace 909 prose em-dashes across 147 authored READMEs with the punctuation each sentence wants, leaving vendored content, historical records and not-applicable glyphs alone."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "readme human voice plan"
 importance_tier: "normal"
 contextType: "general"
 ---

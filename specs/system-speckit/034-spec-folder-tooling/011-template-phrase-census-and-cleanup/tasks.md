@@ -2,10 +2,7 @@
 title: "Tasks: Phase 11: template-phrase-census-and-cleanup"
 description: "The task breakdown for the template phrase census and cleanup: the judge class, the seeder, two tools, their tests and the operator-approved apply over the corpus."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "template phrase census and cleanup tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

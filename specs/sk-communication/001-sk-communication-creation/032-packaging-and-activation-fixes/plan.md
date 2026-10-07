@@ -3,7 +3,6 @@ title: "Implementation Plan: Packaging and Activation Fixes"
 description: "Build communication projection during install, ship its wrapper and example, and verify a real LM Studio configuration path."
 trigger_phrases:
   - "packaging-and-activation-fixes"
-  - "implementation plan"
   - "communication projection prepare script"
 importance_tier: "important"
 contextType: "implementation"

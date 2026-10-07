@@ -2,10 +2,7 @@
 title: "Implementation Plan: visual review fixes after the shadcn upgrade"
 description: "Four review fixes applied inside the existing chart contracts: header alignment, tooltip title and wrapping, single-series indicators, daily-line fade and rungs."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "visual review fixes plan"
 importance_tier: "normal"
 contextType: "general"
 ---

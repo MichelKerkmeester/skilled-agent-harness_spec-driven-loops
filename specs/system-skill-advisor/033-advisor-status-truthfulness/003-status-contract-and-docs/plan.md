@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 3: status-contract-and-docs"
 description: "State the trusted-mutation gate on the pages that enforce it, correct the scorer reference against the current source, declare the phrase-boost bound beside the map, settle the routing-phrase source, and add an opt-in fail-soft embeddings health surface to advisor_status."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "status contract and docs plan"
 importance_tier: "normal"
 contextType: "general"
 ---

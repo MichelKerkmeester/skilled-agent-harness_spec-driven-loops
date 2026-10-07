@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 15: evidence rule seam links"
 description: "Read the rule for passages that end at another rule's territory, then name the neighbour there, within a six-line budget."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "evidence rule seam links plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -13,16 +13,9 @@
     "trigger_phrases": [
       "evidence rule seam links",
       "the most referenced rule in the corpus pointed",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "evidence rule seam links plan",
+      "evidence rule seam links tasks",
+      "evidence rule seam links implementation summary"
     ],
     "key_topics": [
       "evidence",
@@ -32,11 +25,11 @@
       "referenced",
       "corpus",
       "pointed",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "implementation",
+      "summary",
+      "nothing"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +188,7 @@
     ],
     "causal_summary": "The most referenced rule in the corpus pointed at nothing, so four other rules named its territory while it never named theirs.",
     "created_at": "2026-09-15T20:24:22Z",
-    "last_save_at": "2026-10-07T12:55:05.279Z",
+    "last_save_at": "2026-10-07T15:56:27.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fb91f5734650c22e22442dccfc43d1237ba946f09a5cd51321d45e798b4640f6",
+    "source_fingerprint": "sha256:6bb7dfee43286347a4fbc7ae07fd2b21ba89288d0df67af7b8fe01efdb3707af",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1d5e004da450102f0ab181b65dacc1fdd1a153ccd706f0bc5007aa783953dbab",
-      "plan.md": "ca93e0dc8a21ad51c9904e16d0486a214f362de036b2a4ca0c973d5fe00487eb",
-      "tasks.md": "7c9168ebbc43ded588bc5ddb66684c6a1fcc7caa210d047ce32933674c66a531",
-      "implementation-summary.md": "2277df3966725ea9a7d8e47c7a5fbe4a74ca8c555d5e26e8c6720c1f12ca959d"
+      "plan.md": "9a7622944b4cb7f64075bde0e70e757ac085213c783fe57bd485664cf6dbbe6a",
+      "tasks.md": "117a13a4500a3595b91d1bb47ed6c03cb62b9cefb2b46ff8eed122ce9df61818",
+      "implementation-summary.md": "bb322b222e8545f23de2911d4420e79382b444f574639899607802967b268bd1"
     },
     "last_active_at": null
   }

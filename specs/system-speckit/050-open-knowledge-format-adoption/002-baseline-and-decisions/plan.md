@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 2: baseline-and-decisions"
 description: "Freeze the census at one commit from git objects, answer the call-site question, inventory sk-doc frontmatter checks and record D1 to D4, with the D3 threshold written before labeling."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "baseline and decisions plan"
 importance_tier: "normal"
 contextType: "general"
 ---

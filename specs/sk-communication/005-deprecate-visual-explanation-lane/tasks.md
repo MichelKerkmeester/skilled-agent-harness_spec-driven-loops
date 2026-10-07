@@ -2,10 +2,7 @@
 title: "Tasks: deprecate the visual explanation lane and its command from sk-communication"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "deprecate visual explanation lane tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

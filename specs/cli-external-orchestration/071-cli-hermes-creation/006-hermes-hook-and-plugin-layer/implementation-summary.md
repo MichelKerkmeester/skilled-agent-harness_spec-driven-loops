@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The repo-guards project plugin bridges the shared guard cores into Hermes: it refuses a self-dispatch, runs the dispatch preflight over terminal commands, nudges on an evidence-free completion claim and freezes the session-start context into the prompt; validated in-process and proven live: a Hermes session's nested hermes chat was refused."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "hermes hook and plugin layer implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

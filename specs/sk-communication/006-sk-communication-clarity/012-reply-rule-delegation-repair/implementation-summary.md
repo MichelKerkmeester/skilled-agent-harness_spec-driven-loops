@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The reply rule stopped opening with a sentence mechanic it delegates, and a sweep over all twelve rules confirms it was the only directive stated twice."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "reply rule delegation repair implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

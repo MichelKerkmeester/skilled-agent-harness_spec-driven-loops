@@ -12,17 +12,11 @@
   "derived": {
     "trigger_phrases": [
       "review remediation",
-      "close all six deep review findings on the",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "close all six deep review findings",
+      "review remediation plan",
+      "review remediation tasks",
       "review remediation acceptance criteria",
-      "implementation summary"
+      "review remediation implementation summary"
     ],
     "key_topics": [
       "review",
@@ -31,12 +25,12 @@
       "six",
       "deep",
       "findings",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -195,7 +189,7 @@
     ],
     "causal_summary": "A five-iteration deep review of the whole sk-communication clarity program returned a CONDITIONAL verdict with two P1 findings and four P2 findings",
     "created_at": "2026-09-14T15:52:21Z",
-    "last_save_at": "2026-10-07T12:55:02.486Z",
+    "last_save_at": "2026-10-07T15:56:27.372Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +199,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:359fb0d4dd0743e970e29164a032537c968654687684349dc63a329e58b06d95",
+    "source_fingerprint": "sha256:64aa91893c95975aa4581b0b4bf8e585a09ef7ea08c5f9e36cc7e13acfc3833c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b2a97d4df097979bab261d49cf387ae36ab5d4c35c642b0911bf91bdb0437f22",
-      "plan.md": "5ac29493a7aaabac99c57eb4a7af8e3c85c455b6e0e0bec06120db29e90159c9",
-      "tasks.md": "3c6ebbce63f12d4e3fcc732ced4a360556bade694e8db88646cf582a33ad95ff",
-      "implementation-summary.md": "eb278facd84f304e5a2d5181d48a3019cfa74ccb0eb88cd960a457335cc83f6d"
+      "spec.md": "436fffe111175dea38a659d1e8e3f624b885e7f319d4b6135ee635af01fb8372",
+      "plan.md": "862449574486964570885e36280feef98a49a0fbb04ebff709eb21a16845c887",
+      "tasks.md": "ec82bc7b317edb31875840a5eefd9093dd37bd9c6c0ff7fbc4783af056bdebaa",
+      "implementation-summary.md": "30fa30decaf3d0b6b8b29f807d84b9329bc1aa74cb671ed2fb77016b1afbeec5"
     },
     "last_active_at": null
   }

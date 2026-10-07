@@ -13,16 +13,10 @@
     "trigger_phrases": [
       "dispatch enforcement ci guard",
       "every defect the earlier phases closed shares one",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "dispatch enforcement ci guard plan",
+      "dispatch enforcement ci guard tasks",
       "dispatch enforcement ci guard acceptance criteria",
-      "implementation summary"
+      "dispatch enforcement ci guard implementation summary"
     ],
     "key_topics": [
       "dispatch",
@@ -35,8 +29,8 @@
       "closed",
       "shares",
       "one",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -197,7 +191,7 @@
     ],
     "causal_summary": "Every defect the earlier phases closed shares one shape: something looked enforced and enforced nothing",
     "created_at": "2026-09-15T16:29:33Z",
-    "last_save_at": "2026-10-07T12:54:47.181Z",
+    "last_save_at": "2026-10-07T15:55:57.340Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +201,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8806cf617c2ef597601c637c27526d4ea45a0a5158a2aa93aed1658547b86b1d",
+    "source_fingerprint": "sha256:6bc9fe3652af2dfa1e57cc6e342815c5d1c73ab480846b3b84169129933684d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1c83f0719b1e6277c65357aee8167453012240d9928a4848ba755b989af2cdd5",
-      "plan.md": "6d4d9964a2b475f173e89c7f5bad644440b216a509b0374ea48e285eea1d6302",
-      "tasks.md": "c7d769ae728de5aa2ef4c05f6c5f4e1e2a13f9d7dee0d4543384862462332b12",
-      "implementation-summary.md": "34fdba21d46d82328685d1461bcf621e6fdc63886005a63d5f5b5ed66ab7a194"
+      "plan.md": "57fa93cb0184652cbfc9736e544a8363c8b69cfeb42e0178bccb11eada4a9f86",
+      "tasks.md": "3c53670a22e2f6937818253eebe22c14c5b53f5358c4fc78c1317d81cbaa6cc4",
+      "implementation-summary.md": "a22d0943317f382a1c474af890c09807e2f58cfa27f4a593d83350942da4f3e5"
     },
     "last_active_at": null
   }

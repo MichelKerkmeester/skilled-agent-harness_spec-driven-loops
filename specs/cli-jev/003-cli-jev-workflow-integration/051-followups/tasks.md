@@ -2,10 +2,7 @@
 title: "Tasks: Jev feature follow-ups"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "followups tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

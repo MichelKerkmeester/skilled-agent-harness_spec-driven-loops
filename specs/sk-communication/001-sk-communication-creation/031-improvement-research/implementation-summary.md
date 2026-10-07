@@ -6,7 +6,6 @@ trigger_phrases:
   - "Phase 031 research completion"
   - "Phase 030 grounded research"
   - "communication projection findings"
-  - "implementation summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

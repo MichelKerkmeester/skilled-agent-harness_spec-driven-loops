@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The repo-root .hermes folder exists with an agents link, generated markdown-only copies of all 56 skills and 12 agent personas, 33 generated prompt templates, the project plugin, the playbook symlink and a sync manifest; a live session reached a repo skill and ran a command template end to end."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "hermes runtime folder implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

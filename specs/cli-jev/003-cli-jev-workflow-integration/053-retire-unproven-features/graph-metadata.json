@@ -17,12 +17,9 @@
       "remove folder suggestion scorer",
       "retire unproven features plan",
       "jev feature removal sweep",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "retire unproven features tasks",
       "retire unproven features acceptance criteria",
-      "implementation summary"
+      "retire unproven features implementation summary"
     ],
     "key_topics": [
       "retire",
@@ -196,7 +193,7 @@
     ],
     "causal_summary": "The repository ships measurement tooling for three features that never beat their baselines",
     "created_at": "2026-10-05T07:20:41Z",
-    "last_save_at": "2026-10-07T12:54:57.108Z",
+    "last_save_at": "2026-10-07T15:56:07.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +203,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:25bdad6e5bdedd8562cc90ad3eb209244c94176432f447099c15195d217b0be9",
+    "source_fingerprint": "sha256:5feaca914f19eeefa57359a9cda42d32ca2b6a1551a279317842567a0983631f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4ce61922d546c4a42e9663ff688e0fdea0777ff293675a82f643c9075e016035",
       "plan.md": "6bd41557b240fb07cba7e40ad210fb2c38d02003492c1b739d689922d07cda28",
-      "tasks.md": "0a5fe6f47a41879c90ec7f8ae7ae2aa9ece9a77f08f8fe8688e49417bc9d26ca",
-      "implementation-summary.md": "43a9dc623de58524453ced30d4393c75f5d702c0799666fdf37392d47ff09d0b"
+      "tasks.md": "5ee06d48eb705856aab6a4f5a05ae6896a37219573e79ae6e156d3c0796bb480",
+      "implementation-summary.md": "89e72b54ce3071c46f7cbc4fbcad0992f27d24163088a106c033425f4bde923f"
     },
     "last_active_at": null
   }

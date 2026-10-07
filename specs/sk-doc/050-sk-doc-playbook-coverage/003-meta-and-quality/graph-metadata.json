@@ -18,9 +18,6 @@
       "plan core",
       "tasks core",
       "meta and quality acceptance criteria",
-      "implementation summary",
-      "what shipped",
-      "validation evidence",
       "meta-and-quality playbooks delivered"
     ],
     "key_topics": [
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "Each of these takes another mode's output as its input",
     "created_at": "2026-09-01T11:48:00Z",
-    "last_save_at": "2026-10-07T12:55:22.205Z",
+    "last_save_at": "2026-10-07T15:56:44.281Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +208,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4aa149e1a4537f3b7749830f9cd299fcb7b8fb7123b9fc01e6d1f391d8b5422c",
+    "source_fingerprint": "sha256:9f7f20bf4d63873c36cdc4bb128c5cb6c70bda739235f24b9f2b1a7a313df208",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3777a5dc101c3c6d4f6ce8e680b725ac94d38b190ef9dc0ee1d846bb12c1e51f",
       "plan.md": "c4bc0cb29d1ff84d4a3aef3c50ab47c2b0c34635d775c57bc60c7ad741364989",
       "tasks.md": "528e62dd50f772c4dc79fb0239108385baf85114b47c9508bc0239f6056ffcbc",
-      "implementation-summary.md": "3977d8548e4176c036b3e5dc9f025cda286565348def51fd35950b5d60860be6"
+      "implementation-summary.md": "3f4afc8f41978ae8dc8c0976c726f35f238b6d2ba469b80e1ea9e96f1255bd28"
     },
     "last_active_child_id": null,
     "last_active_at": null

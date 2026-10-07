@@ -2,10 +2,7 @@
 title: "Tasks: Rewrite sk-create-changelog template and workflow to the v4 narrative style"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "sk create changelog v4 style tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

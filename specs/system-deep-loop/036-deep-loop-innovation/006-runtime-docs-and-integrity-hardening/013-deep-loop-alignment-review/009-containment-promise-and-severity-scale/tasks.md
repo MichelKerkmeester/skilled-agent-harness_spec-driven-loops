@@ -2,10 +2,7 @@
 title: "Tasks: Phase 8: containment-promise-and-severity-scale"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "containment promise and severity scale tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

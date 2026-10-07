@@ -16,13 +16,13 @@
       "tooltip card",
       "legend chips",
       "gallery light column",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "shadcn visual upgrade plan",
+      "shadcn visual upgrade tasks",
+      "shadcn visual upgrade acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "chart",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Phase 13 compared shadcn's chart examples with the standalone corpus and phase 14 adopted the three structural ideas worth keeping: keyed series tokens, local readout knobs and declared curves",
     "created_at": "2026-09-08T05:12:18Z",
-    "last_save_at": "2026-10-07T12:55:11.965Z",
+    "last_save_at": "2026-10-07T15:56:34.593Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0f3b11fc4bf3ce63fd8548fc8faa03fd8fe5bbfb19fda8007738474aeb2550f8",
+    "source_fingerprint": "sha256:465d83f8ab0859511c4b5e228a1481e14bf3562ecd02efbe064881d8833f7432",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "40382947124252eee4e071e982d622c36bb111bc600e1a9440dfe5fea67c470a",
-      "plan.md": "fe49539dbbb1c529f2380b9dafe134f3542e9a45c772076117fb97b469022d9f",
-      "tasks.md": "366b752fc43e6a1e484f4c56ad767dbd49f1637314d2b1a79260c894f63deb6b",
-      "implementation-summary.md": "fd09f841e7e2443b112263e3d66f056e742b67570bd16f524a90daa0083ec766"
+      "plan.md": "2bd4a6ce792ae96e08f614080ff04230f02b8869b2fcacef915814c1e4a9d09f",
+      "tasks.md": "5fa73913f3bd4bd510314fe969481404a88796b505c3dda51d31676d2bf73195",
+      "implementation-summary.md": "c6d96f1b52daf29f3894593e18420a283d6f5717badc2053e932ae117a756ad4"
     },
     "last_active_at": null
   }

@@ -15,14 +15,12 @@
       "goal-pi goal-opencode goal-cursor goal-devin",
       "claude code goal nesting",
       "codex goal nesting",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "runtime surfaces tasks",
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "runtime surfaces implementation summary"
     ],
     "key_topics": [
       "goal",
@@ -204,7 +202,7 @@
     ],
     "causal_summary": "Only opencode has a working goal command",
     "created_at": "2026-09-11T07:11:50Z",
-    "last_save_at": "2026-09-13T06:53:53.524Z",
+    "last_save_at": "2026-10-07T15:57:28.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d46b8c25db47d78f3176f11b05d7a27935f3ed75f799a6d3d411b12e4ce37883",
+    "source_fingerprint": "sha256:e50a8a946c96fa4dc3fd02fcedd840fb7b9c7e87c8810e072981f400fcdffb3f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2d92d37271d1fc4d749c36e16dc63dcec66c15cc4427a49e6c0790a0a1c771d0",
       "plan.md": "0a460bc1297fd1a9fe03704a79929890abad394dc0bcfa657fe5d0f11f785ea4",
-      "tasks.md": "d5e8e460dd47863c4ee94a3ef91fd324ae5f96fcbe5a76a67153bb75cbc223aa",
-      "implementation-summary.md": "b787a7b3c4c8009660499f5f5d2068c05b6f8829c246eb5010ed4bd94a652b8f"
+      "tasks.md": "d98a3452638eb11f6ff7de3e1e01f173fe3e6e95964c0cd46d9ae0205620d5a5",
+      "implementation-summary.md": "5997506538bc9c613bf00264a0ab9fe8d8eb7df2e54c5287471d644a8e49d9e9"
     },
     "last_active_at": null
   }

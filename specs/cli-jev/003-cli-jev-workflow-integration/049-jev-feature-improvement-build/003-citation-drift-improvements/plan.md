@@ -2,10 +2,7 @@
 title: "Implementation Plan: Build: improve the Jev citation drift scan (032)"
 description: "Change the scan's flag to the lowest rerun, split live from constructed reporting, check recorded hashes, send paragraph claims, cache document reads and rerun adaptively in the uncertain band."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "citation drift improvements plan"
 importance_tier: "normal"
 contextType: "general"
 ---

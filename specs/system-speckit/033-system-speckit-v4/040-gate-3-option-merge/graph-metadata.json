@@ -12,17 +12,11 @@
   "derived": {
     "trigger_phrases": [
       "gate 3 option merge",
-      "gate 3 offers five options but c and",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "gate 3 offers five options but c",
+      "gate 3 option merge plan",
+      "gate 3 option merge tasks",
       "gate 3 option merge acceptance criteria",
-      "implementation summary"
+      "gate 3 option merge implementation summary"
     ],
     "key_topics": [
       "gate",
@@ -31,12 +25,12 @@
       "offers",
       "five",
       "options",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -206,7 +200,7 @@
     ],
     "causal_summary": "Gate 3 offers five options today",
     "created_at": "2026-09-14T20:22:06Z",
-    "last_save_at": "2026-10-07T12:55:50.534Z",
+    "last_save_at": "2026-10-07T15:57:29.413Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +210,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ddcc29ea28fed1a95500314dac87f4d8dc65323e682fa8e93e48d51eeb960500",
+    "source_fingerprint": "sha256:98caf8a45a1107368202652c9972cdac33f99c9b062cde33400cc73305c19c6e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e48c7cd05b8b234f76e1fe0c1dce4f9b260a57d1cdae8ddcbdc535a73970eb18",
-      "plan.md": "024037c2661249e7b72e2cee9d77ff10bbc9e8be37fdd90b788bc2d8fbccadaf",
-      "tasks.md": "5a4023be6e9399137dc17189602288980cde3d08159dff205853831a253a1f08",
-      "implementation-summary.md": "7a8bf982edd06b502cb02a41566e1c3cabeed27a6afe7f74e672aba6710f2457"
+      "spec.md": "ef6b92e86d4cd64f0d0b614d5119ae012e0eec2f3c00e67afebbd1566a9e75fb",
+      "plan.md": "4a7b15615c42c2ba7a73a5fce361deffa8661ef3324211c6a6de1ae7c5bb716c",
+      "tasks.md": "b9fbcac7e46a4701449ed383dacb38afa4d199a30d067d052dd823cd8e83a4e4",
+      "implementation-summary.md": "391d4d1e07ae0285a72305dfc0aa21a38a4656392fa38e4c92e714050e7abc5a"
     },
     "last_active_at": null
   }

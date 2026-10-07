@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 8: doctrine-reconciliation"
 description: "Resolve S1-S9 in the direction each already names, edit the losing document or files to match, and graduate S3's dash-fidelity rule and S8's short-connector rule into named checker families."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "doctrine reconciliation plan"
 importance_tier: "normal"
 contextType: "general"
 ---

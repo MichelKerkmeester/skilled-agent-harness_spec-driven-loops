@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The Hermes roster is enforced where a dispatch is built and known where prompt work is routed: the runner refuses an off-roster id in milliseconds, the prompt-improver eligibility tables and the persona-attach table carry a cli-hermes row, the prompt-card drift guard covers the packet, and every --reasoning level answered live."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "hermes model registry and routing implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

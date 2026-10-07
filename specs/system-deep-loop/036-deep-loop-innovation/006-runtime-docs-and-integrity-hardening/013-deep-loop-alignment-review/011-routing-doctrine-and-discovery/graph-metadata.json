@@ -16,13 +16,13 @@
       "always-loaded preamble",
       "retired vocabulary",
       "discovery terms",
-      "implementation plan",
       "enforcement trace",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "acceptance criteria",
-      "closure gate"
+      "routing doctrine and discovery tasks",
+      "routing doctrine and discovery acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "routing",
@@ -35,8 +35,8 @@
       "vocabulary",
       "discovery",
       "terms",
-      "implementation",
-      "plan"
+      "enforcement",
+      "trace"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -53,9 +53,12 @@
       ".opencode/skills/sk-code/hub-router.json",
       ".opencode/skills/sk-doc/hub-router.json",
       ".opencode/skills/cli-external-orchestration/hub-router.json",
+      ".opencode/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+      ".opencode/bin/lib/compiled-routing/003-contract-schemas/schemas/compiled-policy.v1.schema.json",
       ".opencode/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
       ".opencode/skills/sk-design/hub-router.json",
       ".opencode/skills/system-deep-loop/mode-registry.json",
+      ".opencode/bin/lib/compiled-route-manifest.cjs",
       ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs"
     ],
     "entities": [
@@ -114,6 +117,18 @@
         "source": "derived"
       },
       {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-policy.v1.schema.json",
+        "kind": "config",
+        "path": ".opencode/bin/lib/compiled-routing/003-contract-schemas/schemas/compiled-policy.v1.schema.json",
+        "source": "derived"
+      },
+      {
         "name": "root-router-contract.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
@@ -123,6 +138,12 @@
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/compiled-route-manifest.cjs",
         "source": "derived"
       },
       {
@@ -184,29 +205,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every hub that declared both an always-loaded policy and a stage-two preamble stated them",
     "created_at": "2026-09-20T08:33:45.349Z",
-    "last_save_at": "2026-09-25T16:15:23.589Z",
+    "last_save_at": "2026-10-07T15:56:56.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9c540f776dac849163e76fdfd651f14159e65a145977f40b088f063a84d0338d",
+    "source_fingerprint": "sha256:25a2390afed21c7f5c3eaea564a761cf9a3af5a1baba44193ea81d4a5da89309",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4a5b9d82cfab38b495e049f67ef1d60bcd319d33514787da6b15ed6786395b84",
-      "plan.md": "f5a358d457084da85279f671a98531bc9a09b77e10ee74484d953bd56579d8c6",
-      "tasks.md": "fa32ab4eb4800a693b9fb52ff007a741e18efb7229ad85bc12093d8be5cf9d20",
-      "implementation-summary.md": "25d7183e952066f246a769c5d75d4235af7c2d8f04bd010b4a5e0ed76fc68b19"
+      "plan.md": "5d08b98088fd83ab8033d68f7903e5f4a8e27b08ee51ec8f24930a4e56849901",
+      "tasks.md": "4b69ac161ac3f8bd072be1cc5e8b3dad98133ab888c5a545015658e5790c3e6c",
+      "implementation-summary.md": "3068696d939b0f9006e84abe409ffa014b455f0b8a4f00902c18c1dc1810349a"
     },
     "last_active_child_id": null,
     "last_active_at": null

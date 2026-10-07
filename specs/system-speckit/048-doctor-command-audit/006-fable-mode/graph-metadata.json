@@ -14,15 +14,14 @@
       "doctor fable-mode audit",
       "/doctor:speckit fable-mode relevance",
       "doctor-fable-mode.yaml",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "doctor fable-mode audit acceptance"
+      "fable mode plan",
+      "fable mode tasks",
+      "doctor fable-mode audit acceptance",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "fable mode implementation summary"
     ],
     "key_topics": [
       "doctor",
@@ -32,11 +31,11 @@
       "relevance",
       "doctor-fable-mode",
       "yaml",
-      "implementation",
+      "fable",
+      "mode",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -47,11 +46,8 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/commands/doctor/scripts/fable-mode-check.cjs",
-      ".skilled/commands/doctor/assets/doctor-fable-mode.yaml",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
-      "scratch/doctor-run.log",
       "scratch/reality-check.md",
       "scratch/proposal.md"
     ],
@@ -93,18 +89,6 @@
         "source": "derived"
       },
       {
-        "name": "fable-mode-check.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/fable-mode-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-fable-mode.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-fable-mode.yaml",
-        "source": "derived"
-      },
-      {
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
@@ -114,12 +98,6 @@
         "name": "doctor-speckit-presentation.txt",
         "kind": "file",
         "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-run.log",
-        "kind": "file",
-        "path": "scratch/doctor-run.log",
         "source": "derived"
       },
       {
@@ -199,11 +177,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit fable-mode` checks the fable-mode configuration",
     "created_at": "2026-10-02T16:10:17Z",
-    "last_save_at": "2026-10-03T11:48:56.177Z",
+    "last_save_at": "2026-10-07T15:57:40.157Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fcbcf92383622cf80d20091de241fb7c17d3e95a93c1be002d1bf7034c6dde0a",
+    "source_fingerprint": "sha256:89b4326a2013dff2efcdbc502afc5bd230bf7372b27db6fce62e4c56608ddd88",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "efae50045d2cbc54a7083c63482693633fbefdb3b0484ec0af0528c8f7605c88",
-      "plan.md": "088cafe940e5238b7dd91653cc7db72fdae7bdb52b00be9aa9a164858c26e4a5",
-      "tasks.md": "67d4b5638baedcbf72fec9a1d9e081184069efb7d4d3ed0ac1a2267c58d2d9ab",
-      "implementation-summary.md": "772d48474fbe2af27e76b9144d94c398ee0e41ae6939bc8b8c735aa2f9642da3"
+      "plan.md": "c232d419c27daa81335fd22a59b68a5e9abfd7bbdd21fd13e0f7ddffbddaed10",
+      "tasks.md": "ca0d20a9934cfa26c4bae60f158e5e028f8ee4d4029a08dc6052cc7dabbd3f48",
+      "implementation-summary.md": "aa31fd53b92e268608b16ddf612f66325c63c620726ab72e8ef665371d4a2b20"
     },
     "last_active_at": null
   }

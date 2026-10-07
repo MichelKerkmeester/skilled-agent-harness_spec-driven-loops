@@ -12,17 +12,11 @@
   "derived": {
     "trigger_phrases": [
       "close silent preflight holes",
-      "the dispatch preflight is the only surface that",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "the dispatch preflight is the only surface",
+      "close silent preflight holes plan",
+      "close silent preflight holes tasks",
       "close silent preflight holes acceptance criteria",
-      "implementation summary"
+      "close silent preflight holes implementation summary"
     ],
     "key_topics": [
       "close",
@@ -32,11 +26,11 @@
       "dispatch",
       "only",
       "surface",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -199,7 +193,7 @@
     ],
     "causal_summary": "The dispatch preflight is the only surface that can refuse an incorrect `cli-` dispatch before it runs, and six conditions let it approve one silently",
     "created_at": "2026-09-15T16:29:31Z",
-    "last_save_at": "2026-10-07T12:54:46.851Z",
+    "last_save_at": "2026-10-07T15:55:57.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +203,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c5dbb97a1093d129a0eaeed5a6459caedcf447ade376bdde0b12fa446115f77",
+    "source_fingerprint": "sha256:761d588e52af1a5b441c6ca3119124cb93bbb54ac24c757c8e67a1ca8c19398e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ee7191b554719195b648ff3ddc965f938b89300681175b6c76c91d8642f07808",
-      "plan.md": "a36b00999be79e1135f00cea9b9f8d6baf1377831276070aa6631acbe051b420",
-      "tasks.md": "02e201f503e215cb504fede162f5cd401cc6213a7c8e2514d6adfebb48a63f47",
-      "implementation-summary.md": "d8847f916dca6cfeaea63aa60ff26dc42cf33a4fbf37ba53b75c1251103e1889"
+      "spec.md": "02c6f7fdb8a90b0e825d5f94336231a151f1fa4e9ae1060b1285e7189b0ea8ef",
+      "plan.md": "ed1e7eccae7692c8c22e9fbae9a32424e0e0a3fa6f6e36a58c44621211282644",
+      "tasks.md": "5c7b45f4f44301c69f6a286b6cbcc25733dcc0fff58a099d27c378ec3a5b9108",
+      "implementation-summary.md": "f1328e0ce6ebd9fc8f5c5392cd05533593bdf8c5a0518c123dcf6d6b43db6632"
     },
     "last_active_at": null
   }

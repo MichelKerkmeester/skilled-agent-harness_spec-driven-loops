@@ -14,15 +14,11 @@
       "visual explanation lane sk-communication",
       "explain visually command modality depth",
       "rewrite explain-visually depth modality",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "visual explanation lane complete"
+      "visual explanation lane plan",
+      "visual explanation lane tasks",
+      "visual explanation lane complete",
+      "explain-visually command shipped",
+      "modality and depth dials sk-communication"
     ],
     "key_topics": [
       "visual",
@@ -36,7 +32,7 @@
       "depth",
       "rewrite",
       "explain-visually",
-      "implementation"
+      "plan"
     ],
     "importance_tier": "medium",
     "status": "complete",
@@ -44,10 +40,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-communication/SKILL.md",
-      ".opencode/commands/rewrite/explain-visually.md",
-      ".opencode/skills/sk-communication/references/visual-explanation.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -72,24 +65,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "explain-visually.md",
-        "kind": "doc",
-        "path": ".opencode/commands/rewrite/explain-visually.md",
-        "source": "derived"
-      },
-      {
-        "name": "visual-explanation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/references/visual-explanation.md",
         "source": "derived"
       },
       {
@@ -193,11 +168,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Actual Effort",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`sk-communication` adapts an explanation on exactly one axis: register",
     "created_at": "2026-08-28T04:22:57.540Z",
-    "last_save_at": "2026-09-11T04:23:14.533Z",
+    "last_save_at": "2026-10-07T15:56:23.413Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:49fa66ba2a1512dc22a0bbed410b84bcd0382c779de80ca1d695c14d1ed77cb3",
+    "source_fingerprint": "sha256:51dc2fc26ee496df4c3ec106bc209a6e4fa72e46da0c88c7ad4efb8a19013aa1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "61a877941528a9d09bcb9440afd213e4f733571acd87e3d0c03e0a2c2e459f58",
-      "plan.md": "a1d0c3605adc7c2f0513eb088656fd84848a2600904269353a645f1dbe0a7fe2",
-      "tasks.md": "3aa420cd1e0127e4e1a875e5f78823abed617b64f24fa74992bfb0d82fda6d56",
+      "plan.md": "2b14cf75ba0d908bb13c16f4c91da7b912efe595a7bafa8c8d0e0baa5f78096c",
+      "tasks.md": "c8217c283984561b08b64cae960f16d18817e0564291a8f93292f59ea3844a49",
       "implementation-summary.md": "6660ed29c51ef790545ac934ce1301f81cf5712fc099b3282deb77a533ef1093"
     },
     "last_active_child_id": null,

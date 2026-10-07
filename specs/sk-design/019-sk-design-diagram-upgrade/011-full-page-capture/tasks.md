@@ -2,10 +2,7 @@
 title: "Tasks: Phase 11: full-page-capture"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "full page capture tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -3,7 +3,7 @@ title: "Feature Specification: close every recorded item across the chart phases
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "closeout"
-  - "four phases closed with items recorded rather than"
+  - "four phases closed with items recorded rather"
 importance_tier: "normal"
 contextType: "general"
 ---

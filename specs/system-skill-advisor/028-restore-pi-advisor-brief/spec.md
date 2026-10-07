@@ -3,7 +3,7 @@ title: "Feature Specification: restore the pi skill advisor brief: probe either 
 description: "Every pi prompt scores in ~2 ms and fails: the hook's warm-CLI asset probe only looks under the old root while the advisor CLI and its IPC bridge now live under the renamed one. The hook fails open, the brief collapses to the constant directives block, and dedup suppresses the repeat, so no skill suggestion is ever delivered."
 trigger_phrases:
   - "restore pi advisor brief"
-  - "every pi prompt scores in 2 ms and"
+  - "every pi prompt scores in 2 ms"
 importance_tier: "normal"
 contextType: "general"
 ---

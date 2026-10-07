@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Complete at its label gate. score-debug-next-check.mjs prints a zero-call census (seam search with the generated fixture folder and its own files excluded, mined counts), validates an operator fixture outside the repository, scores the four constant answers, and holds a 30-row label gate and a jev_ok payload gate before the Jev or Deem arm. The 2026-09-29 final runs printed stop: fewer than 30 labeled rows, its 31 tests cover the gates, the baselines, both arms and the Keep Rule, and the system-spec-kit docs describe it. Built as ca40e3c2dc."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "debug next check implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

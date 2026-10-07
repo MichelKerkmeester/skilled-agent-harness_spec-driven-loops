@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 4: restore-never-through-symlink"
 description: "Guard the baseline write with lstat so a symlink at the violated path is recorded rather than written through."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "restore never through symlink plan"
 importance_tier: "normal"
 contextType: "general"
 ---

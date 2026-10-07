@@ -15,8 +15,7 @@
       "line savings",
       "agents.md bloat audit plan",
       "deep research bloat",
-      "agents.md bloat audit",
-      "implementation summary"
+      "agents.md bloat audit"
     ],
     "key_topics": [
       "agents",
@@ -27,10 +26,10 @@
       "plan",
       "deep",
       "research",
-      "implementation",
-      "summary",
       "root",
-      "lines"
+      "lines",
+      "bytes",
+      "carries"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -191,7 +190,7 @@
     ],
     "causal_summary": "The root `AGENTS.md` (555 lines, 47,110 bytes) carries internal redundancy (the same rule stated in 2–3 places), distilled duplication of authoritative files whose pointers are broken or verbose, over-long prose blocks, and low-value boilerplate (emoji decoration, inline mechanics)",
     "created_at": "2026-08-07T14:53:51.256Z",
-    "last_save_at": "2026-10-03T15:11:43.286Z",
+    "last_save_at": "2026-10-07T15:55:51.863Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +200,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a57bd0f7af64e686428d1137e7e397b240834dbbe2c9188f37157a42617d64c6",
+    "source_fingerprint": "sha256:6b094e49d0ac252c23d583f9848f33cd2374d2c5be1e31aa08f6fdb87361e435",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8d1e7a941c45a870d1531d7c8047ea63a9fff01ca1c50bb6cead6d2d2128c650",
       "plan.md": "2e6ac50c1510ba09b5f833a7f5cb969f06a64e445afcacf0d53fa43061dcbf7e",
       "tasks.md": "70532b8425d5bcfd2cc473301857de61d3cf3df0d7c4bd69070151ca7198002b",
-      "implementation-summary.md": "f5bfed10f5be6b9b1fa9cb333830302b59449fecbd3b7a820fa9eeb011647e49",
+      "implementation-summary.md": "659795d8cb1e0b5afb28ad5e43470770504c6b4858c97b3d8cf7db31ebb061a1",
       "research/research.md": "c8c52fe44f3e8ef63547355a90279bc6b6de6c06389b0e62a74c4797a4420e0f"
     },
     "last_active_child_id": null,

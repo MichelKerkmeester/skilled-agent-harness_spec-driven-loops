@@ -4,7 +4,6 @@ description: "Task ledger for the playbook re-run, the documentation reconciliat
 trigger_phrases:
   - "phase tasks"
   - "task ledger"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

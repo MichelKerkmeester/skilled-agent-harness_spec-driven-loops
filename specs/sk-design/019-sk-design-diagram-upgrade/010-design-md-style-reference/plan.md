@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 10: design-md-style-reference"
 description: "Build apply-design-md.cjs, its stock reference, and the derivation-gates extension that gates a themed diagram delivery."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "design md style reference plan"
 importance_tier: "normal"
 contextType: "general"
 ---

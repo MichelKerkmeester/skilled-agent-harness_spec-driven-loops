@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 10: version-authority-completion"
 description: "Resolve the sk-doc release question, raise both deferred hubs' followers to their authority, record the packet-version independence, and re-mint the manifests the edits stale."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "version authority completion plan"
 importance_tier: "normal"
 contextType: "general"
 ---

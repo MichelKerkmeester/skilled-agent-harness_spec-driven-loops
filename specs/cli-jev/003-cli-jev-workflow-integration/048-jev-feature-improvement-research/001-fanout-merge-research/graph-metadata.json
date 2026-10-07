@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "fanout merge research",
       "five deepseek v4 1 flash and three gpt",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "fanout merge research plan",
+      "fanout merge research tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "fanout merge research implementation summary",
+      "jev fan-out merge improvement",
+      "fanout merge semantic dedup research",
+      "score-fanout-pairs early stop"
     ],
     "key_topics": [
       "fanout",
@@ -33,10 +33,10 @@
       "flash",
       "three",
       "gpt",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Phase 047 measured the Jev fan-out merge at verdict jev: keep K=60 M=60 A=53 B=12 W=44 L=3 F=3 p=1.232e-10 on 60 recorded fan-out pairs labeled by a delegated arbiter",
     "created_at": "2026-10-02T21:59:42Z",
-    "last_save_at": "2026-10-07T12:54:51.681Z",
+    "last_save_at": "2026-10-07T15:56:02.391Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d683d5afadfd17f0c79c8b73a4aad2feced32751c3daacd8dde90b8ef688a759",
+    "source_fingerprint": "sha256:b34600ed9a97207dcc44a71f7a28a9d861573679c6ce52f04b3be464a3c71bb2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ea3b392f39a635452bc7e6495f9b59e831e343786232ef83e99e80e3460c2751",
-      "plan.md": "8764206642343898f1f417ad1c04b7a272c9745f445d0c1e930b7c59ab20204d",
-      "tasks.md": "2a002f96a3546e4e566c5c694f60976b10022ac4b2b3041058b1ae127b9f0b5c",
-      "implementation-summary.md": "891c765531dd65e7c712905513fcfab5950b1ecc4f0f6fe2055ed20fa7e70eca",
+      "plan.md": "101d6a5aedaa88eb7be22b09eae338a519da0435fdb9fa7797a88b2529fb3e51",
+      "tasks.md": "ef89263922b11b59caf0dd26112df1852221f69c93b1f6a8a965e821cffab127",
+      "implementation-summary.md": "9cbc32855a7d2ef848e0c0ac5157fbc576b3196fff2515d22be3653de071a974",
       "research/research.md": "1ab67144d9e8c7c92e1090ba50d846956de1306ca0a1fb510f1697057837d6f0"
     },
     "last_active_at": null

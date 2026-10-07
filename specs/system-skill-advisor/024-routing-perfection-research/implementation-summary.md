@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Router-declared vocabulary now reaches the stage the advisor scores. Real routing failures fell from 173 to 20, and the gate that had certified the broken state now fails closed and judges by rank."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "routing perfection research implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

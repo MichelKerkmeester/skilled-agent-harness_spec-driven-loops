@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The operator directed that the MiMo model ids move from the v2.5 to the v2.6 generation",
     "created_at": "2026-09-22T07:12:09Z",
-    "last_save_at": "2026-09-30T07:35:41.068Z",
+    "last_save_at": "2026-10-07T15:55:57.792Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2f7f9c9903b51b9bdabe9b09de71d8c36b94df6a118c2f40ed47bba789173129",
+    "source_fingerprint": "sha256:3c1fdc2947860339db14d98109e773de6e960385747cb122cb976ef835b8541a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1fe5693e64b705fb94cb404b6c095c25d9151957f876d7843586701c70779fd9",
       "plan.md": "1e28a9b32c0cd83a1df184940703533d8ccbd1615895bbaf55d6b4d19eae460c",
       "tasks.md": "3cf6adc5825acfef3dd8791e4d32ea3d747e4eea12d80ebfca99af5d813546a5",
-      "implementation-summary.md": "f713dbaac58099cccaf65df7ed5104ea4b548b90caee06ee274b00b143bf8f5e"
+      "implementation-summary.md": "6044aad1926187a0f8e9ef180d81f01d5f8e7bce457e0f417c8332b87d0acd08"
     },
     "last_active_at": null
   }

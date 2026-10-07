@@ -15,14 +15,10 @@
       "skill count scan truth",
       "skill graph freshness panel",
       "degraded sqlite artifact",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "freshness and scan truth plan",
+      "freshness and scan truth tasks",
+      "freshness and scan truth acceptance criteria",
+      "freshness and scan truth implementation summary"
     ],
     "key_topics": [
       "advisor",
@@ -210,7 +206,7 @@
     ],
     "causal_summary": "Four reporting defects were recorded by the doctor command audit and re-verified live while planning this phase",
     "created_at": "2026-10-03T05:27:36Z",
-    "last_save_at": "2026-10-07T12:55:41.792Z",
+    "last_save_at": "2026-10-07T15:57:10.488Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dda4ada9380339c9091a706714a98fb10aff0e1edf983a4ba46c513f458b58f7",
+    "source_fingerprint": "sha256:58467dc12bc8588fd9fcb9abe832bfc295bd526fb9f12a9e45fcadef0b4df75d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7e6f8b79a205cfea358ea3156c9419e391146d6e2855973b92c75abd1d980935",
-      "plan.md": "7be20f6d27fae100a2f07d008f55527a53b32f6b5c33dec734f2630a0eaf9d13",
-      "tasks.md": "b28c415584d61722d0a3a3ddfcce9fe2b37bc691e40224556fb0b520c2e9ff9c",
-      "implementation-summary.md": "83bd2375430b90e8227a59c77d7db830bf9fa2c35b8e7f79c0c1a0260150bb92"
+      "plan.md": "8db0b63e6346ab4c77d261e824770d2dfef63ea4ec1bcee62b20807d1ddc5b82",
+      "tasks.md": "ea549c85330df0759ce651e691827f863fe7afbe233804e9abfb7915b336aef1",
+      "implementation-summary.md": "c20472fe03cba5e722f434d1353e4d8f5f5d9f3063162005a14df3a7e5b94aa4"
     },
     "last_active_at": null
   }

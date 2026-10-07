@@ -2,10 +2,8 @@
 title: "Implementation Plan: Gate DeepSeek cache-compat advice on an explicit wire-protocol opt-in and declare image input for the llmgateway model"
 description: "Replace the name-based DeepSeek protocol inference with an explicit thinkingFormat opt-in, stop manufacturing the wire-format flag in advice and auto-fix, and declare the llmgateway channel's affinity compat and image modality from a live-verified request."
 trigger_phrases:
-  - "implementation plan"
   - "deepseek opt-in gate"
   - "declared capability over heuristic"
-  - "testing strategy"
 importance_tier: "important"
 contextType: "implementation"
 ---

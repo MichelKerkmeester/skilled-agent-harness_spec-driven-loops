@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The mode exists so that one place is accountable for what a frontmatter block must carry",
     "created_at": "2026-09-05T13:26:46Z",
-    "last_save_at": "2026-10-03T15:12:09.491Z",
+    "last_save_at": "2026-10-07T15:56:44.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,7 +218,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b467a1963e167de01ea0b4d57718003a90d9334c397a487391581799eb5caf69",
+    "source_fingerprint": "sha256:7e23ff1fbbe4eda35ddcf4083d136b495736c267209524d06839dcc838175926",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d65217a01737a06a99d18864984b47afa71e4db490aa13791e05f5a1b7d00c4f",

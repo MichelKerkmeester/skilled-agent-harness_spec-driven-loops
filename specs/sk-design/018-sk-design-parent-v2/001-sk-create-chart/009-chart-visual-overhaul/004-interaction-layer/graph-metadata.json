@@ -21,8 +21,8 @@
       "chart interaction tasks",
       "chart tooltip tasks",
       "chart legend tasks",
-      "acceptance criteria",
-      "closure gate"
+      "chart interaction acceptance",
+      "packet goal"
     ],
     "key_topics": [
       "chart",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Twenty chart forms draw values and none of them respond to a pointer",
     "created_at": "2026-09-03T07:46:51.907Z",
-    "last_save_at": "2026-09-06T14:59:18.207Z",
+    "last_save_at": "2026-10-07T15:56:27.698Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0f2f20653235b18ee7d1f1c3977f348e8f321be189c5500802b2c1150826c0d",
+    "source_fingerprint": "sha256:b0e2d2feb5b889869a8c16f46fffc3adff66392d2c7a1d6c9dc898f68d58a992",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dc55a11aa46fa509e0ff1505e299572c08c2af63973777069895944255e50c2e",

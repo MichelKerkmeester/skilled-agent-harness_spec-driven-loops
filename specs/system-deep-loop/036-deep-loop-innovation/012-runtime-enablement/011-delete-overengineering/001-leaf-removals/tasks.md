@@ -4,10 +4,7 @@ description: "Ordered removal manifest for F5/F6/F8 — sever barrels first, the
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/001-leaf-removals"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "leaf removals tasks"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

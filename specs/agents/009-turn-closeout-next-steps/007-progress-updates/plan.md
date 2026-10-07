@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 7: progress-updates"
 description: "Run the four decision tests against the operator's progress-update request before drafting anything, then write only what the verdict admits."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "progress updates plan"
 importance_tier: "normal"
 contextType: "general"
 ---

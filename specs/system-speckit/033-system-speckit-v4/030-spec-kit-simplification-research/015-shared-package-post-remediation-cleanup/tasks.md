@@ -5,7 +5,6 @@ trigger_phrases:
   - "shared cleanup tasks"
   - "profile cluster tasks"
   - "reader table tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

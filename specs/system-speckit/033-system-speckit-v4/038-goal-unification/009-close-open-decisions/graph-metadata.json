@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The four decisions the hardening phase left to the operator, the last review advisories, and the Devin host merge unknown, all closed and pinned by tests.",
     "created_at": "2026-09-11T17:58:04Z",
-    "last_save_at": "2026-09-13T06:53:53.990Z",
+    "last_save_at": "2026-10-07T15:57:28.746Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:857652a21b2ed5549aba2290e16672297d17e7b8b06819cf946c785fd9088c75",
+    "source_fingerprint": "sha256:1b92686ceeb0d4dfaf561b1fe3a6581df89aa4daca2db5c429c6381cd4b34fcc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "02f1f6e1c94b63b88cc7e5ed757cf124e0f6a7894aed43a2e217f267eb301b98",
       "plan.md": "ae350be3e1f68d4093773b941144ad05ff8d3ef29e399943ea78ebc870b6c0b5",
       "tasks.md": "f3140ec0a78b5e54a93248d20e4f3b3b515d57f536ff8d1a837aa03d7c138739",
-      "implementation-summary.md": "f3f86d8f088a2b0eeceb89cf9521433194c1ea5be8361f86908a351795d30372"
+      "implementation-summary.md": "e4a4e27350806e20b6cb87872c2ac7eda360509ef78f23ce286e28b014299971"
     },
     "last_active_at": null
   }

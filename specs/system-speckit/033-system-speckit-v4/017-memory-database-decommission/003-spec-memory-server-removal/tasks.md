@@ -6,7 +6,6 @@ trigger_phrases:
   - "mcp server deletion"
   - "daemon removal"
   - "preserve set"
-  - "task breakdown"
 importance_tier: "normal"
 contextType: "general"
 ---

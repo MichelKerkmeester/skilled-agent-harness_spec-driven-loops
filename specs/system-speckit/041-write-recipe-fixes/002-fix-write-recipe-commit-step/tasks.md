@@ -2,10 +2,7 @@
 title: "Tasks: Bring the commit step of the spec folder write recipe in line with the commit hook"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "fix write recipe commit step tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

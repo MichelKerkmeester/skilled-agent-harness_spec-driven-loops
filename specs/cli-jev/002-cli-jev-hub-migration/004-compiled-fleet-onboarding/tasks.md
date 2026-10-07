@@ -4,7 +4,6 @@ description: "Ordered task list for the hub's compiled-fleet onboarding: freeze 
 trigger_phrases:
   - "phase tasks"
   - "compiled fleet onboarding"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "general"
 _memory:

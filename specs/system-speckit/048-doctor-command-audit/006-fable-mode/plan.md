@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 6: fable-mode"
 description: "Audits the /doctor:speckit fable-mode target and applies a fix verdict: the check requires a caller-supplied artifact directory instead of a missing default, the route forwards the baseline override, and the presentation describes metric drift."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "fable mode plan"
 importance_tier: "normal"
 contextType: "general"
 ---

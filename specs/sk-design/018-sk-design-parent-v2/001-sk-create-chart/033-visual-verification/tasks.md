@@ -2,10 +2,7 @@
 title: "Tasks: every capture read by a fresh reviewer, and what that found"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "visual verification tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

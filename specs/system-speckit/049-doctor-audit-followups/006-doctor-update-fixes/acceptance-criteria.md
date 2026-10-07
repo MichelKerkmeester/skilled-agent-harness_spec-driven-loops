@@ -3,9 +3,6 @@ title: "Acceptance Criteria: Doctor update fixes"
 description: "The criteria this packet must satisfy before it may be closed: one per /doctor:update finding plus the no-regression criterion, each met with observed evidence, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "doctor update acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

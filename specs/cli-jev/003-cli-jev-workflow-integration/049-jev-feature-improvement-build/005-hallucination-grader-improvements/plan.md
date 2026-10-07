@@ -2,10 +2,7 @@
 title: "Implementation Plan: Build: improve the Jev hallucination grader (024)"
 description: "Feed the baseline with allowlists, stop a grader failure from scoring 0.0, give the 5-dimension path the same context and escalation as the D4 path, and report per class."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "hallucination grader improvements plan"
 importance_tier: "normal"
 contextType: "general"
 ---

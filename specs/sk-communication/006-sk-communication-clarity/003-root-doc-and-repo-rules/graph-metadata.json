@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The reply-shape rule takes ten of the twenty-nine adopted candidates, the largest single allocation",
     "created_at": "2026-09-12T12:44:36Z",
-    "last_save_at": "2026-10-07T12:55:02.137Z",
+    "last_save_at": "2026-10-07T15:56:23.949Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1712e59da0ce914f79dec830721d4509f48e10ef8fb66e9bb7eb072dd3f9b1d3",
+    "source_fingerprint": "sha256:209368cac73f342630169279449f4857818843ed99365983792c98b636c7ecb7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2c7e936778cb98ee20ba44a849ab0dc47b53aec6da1311a4ae61fa1804ad097f",
       "plan.md": "dfecbb2fe8e665ff2c27e178fd681ea305ca5348c9a7f4b95b3b3d374671e9a3",
       "tasks.md": "b4133dc9474fb6e15985dbbe32073918fcf90856b50a785b34b77b98eaa29e13",
-      "implementation-summary.md": "b8aa15414c24912e41d869e975a7acf3e0d0eee6836cdab865690cb5ac4289c1"
+      "implementation-summary.md": "e041658d2cb032829ee079a388a917a129b2bad11d9c481f07b4ee8048f95a33"
     },
     "last_active_at": null
   }

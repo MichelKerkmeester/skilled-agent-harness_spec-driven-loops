@@ -12,17 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "metric delta header",
-      "an optional metric and delta block in the",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "an optional metric and delta block",
+      "metric delta header plan",
+      "metric delta header tasks",
       "metric delta header acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "metric delta header implementation summary"
     ],
     "key_topics": [
       "metric",
@@ -30,13 +28,13 @@
       "header",
       "optional",
       "block",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal",
+      "durable"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -199,7 +197,7 @@
     ],
     "causal_summary": "Both research lanes found the same anatomy gap: our scalar and time-series forms carry their reading only as 14px prose while Apple, Vercel and Tremor lead with a value and a signed delta",
     "created_at": "2026-09-08T18:22:03Z",
-    "last_save_at": "2026-10-07T12:55:12.368Z",
+    "last_save_at": "2026-10-07T15:56:34.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d947bc7c8ddef018fc8920dda159ce4961a4c7229e6dd76982322152d0ff76c1",
+    "source_fingerprint": "sha256:90f8d0a4f14721d291159f8365844b70448c9b71e3c66598cc0ff8dfc861f131",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "510c854e10c8b534782351c6c4101043d4107092b8c5f4e7ec7d65950440e09c",
-      "plan.md": "365ff1d9c42716b8ef75fc79d89c1c591eb25293d7cfd47d78fdcee86ab053b5",
-      "tasks.md": "d8593edabd067c49f180c2f444a9446ff77e43c105b48d84c34ce967ce24a65a",
-      "implementation-summary.md": "f88e4c5d540453c93d50e9d3e765055237da442eeae49c4bb5d15a495255fbe5"
+      "spec.md": "35d9d27451acc91043afe811ad8aa033d241309652eaf7df53fde876d6b99512",
+      "plan.md": "d185d5a13ceb44d551f043f3f2bab749fb519f2515dcc32ffcdc048d2e4e1b58",
+      "tasks.md": "c7e5d3e9758063d2510ba960049b4f325d8ff6c92f55e9b0a7c2bb44490852b3",
+      "implementation-summary.md": "862348d9bf54dcb1b5a9fec0366acb5b1423fc70853c6b2e5acc5e558b37a7c5"
     },
     "last_active_at": null
   }

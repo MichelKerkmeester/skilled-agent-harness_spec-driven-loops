@@ -15,14 +15,14 @@
       "goal ADR freeze",
       "session packet binding decision",
       "goal store fate decision",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "decisions and contract freeze tasks",
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "goal ADR",
+      "session packet binding",
+      "goal store fate"
     ],
     "key_topics": [
       "goal",
@@ -36,7 +36,7 @@
       "decision",
       "store",
       "fate",
-      "task"
+      "contract"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Phases 003 through 007 each depend on a decision no single phase can make alone",
     "created_at": "2026-09-11T07:11:47Z",
-    "last_save_at": "2026-09-13T06:53:53.522Z",
+    "last_save_at": "2026-10-07T15:57:28.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:543303dbdfdb346137f5cc31649d91346d8fb93b718b051fdeee00e31ce2f243",
+    "source_fingerprint": "sha256:f88cc741aff0f6f144932e293af0bf2c69377be7cc9351960cbece6489b7f2ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cae877cf02101e15f92f9adecbf8166916e1201823b677a50710470b52aa99a8",
       "plan.md": "55db740286242707d0092defff8712ae70a08f6dfaf45827ed2b445fb72289b1",
-      "tasks.md": "cea245026ffeb612b64a5540d93b6b24774d3043aa2085e5aaff2742d732a85c",
+      "tasks.md": "d3cf9d12d1a465e5dc0cc1a7f6f5bd5c92372af1eb6caa5c1e48370bd7e62a35",
       "decision-record.md": "a8105d2314f238b12a990bbc083ebcd1f27371fa17481aebe1ae277ce51a6745",
-      "implementation-summary.md": "89875c182d5ea57ce8a99ef0caa70b747754d251f397bbe4b341370a9b13b5f6"
+      "implementation-summary.md": "3eff0eb5e27eca748cc6ccc1cc47f442c3eddaa8bde0f9041a9bb89ba9e19b87"
     },
     "last_active_at": null
   }

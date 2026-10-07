@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The citation drift scan keeps its keep verdict on 55 Jev calls where it needed 121, and its flip count fell from 3 to 0."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "citation drift improvements implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

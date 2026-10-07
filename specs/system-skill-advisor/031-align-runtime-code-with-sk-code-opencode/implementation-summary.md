@@ -2,10 +2,7 @@
 title: "Implementation Summary: system-skill-advisor runtime alignment"
 description: "The skill-advisor runtime now meets sk-code-opencode: headers, numbered sections, code READMEs, single-file folders folded, dead stress-test code removed and test helpers moved under tests/."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "align runtime code with sk code opencode implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Records the fix verdict for the speckit-retrieval doctor target, the files changed, the batch gates that passed and the subsystem findings left open."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "speckit retrieval implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

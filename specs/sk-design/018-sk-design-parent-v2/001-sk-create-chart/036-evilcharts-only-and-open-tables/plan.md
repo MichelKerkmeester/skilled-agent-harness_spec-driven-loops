@@ -2,10 +2,7 @@
 title: "Implementation Plan: one style reference, no examples, open tables, a gallery that sizes its frames"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "evilcharts only and open tables plan"
 importance_tier: "normal"
 contextType: "general"
 ---

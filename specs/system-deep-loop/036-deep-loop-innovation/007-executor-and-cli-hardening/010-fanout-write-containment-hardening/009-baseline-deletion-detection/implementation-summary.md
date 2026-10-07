@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A baseline untracked file the lane deleted is detected with its hash, restored from the captured copy under restore, or recorded as unrecoverable."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "baseline deletion detection implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

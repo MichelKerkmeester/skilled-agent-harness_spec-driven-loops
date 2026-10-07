@@ -59,8 +59,8 @@
       "probes/untracked-ignored-files.md",
       ".pi/models.json",
       ".opencode/package.json",
-      ".opencode/bun.lock",
-      ".opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts"
+      ".opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts",
+      ".opencode/skills/system-deep-loop/runtime/database/README.md"
     ],
     "entities": [
       {
@@ -172,15 +172,15 @@
         "source": "derived"
       },
       {
-        "name": "bun.lock",
-        "kind": "file",
-        "path": ".opencode/bun.lock",
-        "source": "derived"
-      },
-      {
         "name": "session-start-context.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/runtime/database/README.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 004 cannot choose what `.opencode/` becomes until nine runtime and git behaviors are measured, and the two research phases left every one of them open",
     "created_at": "2026-09-16T17:54:06Z",
-    "last_save_at": "2026-09-16T20:08:44.874Z",
+    "last_save_at": "2026-10-07T15:57:29.143Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b19cb34433297e07b84b7fd795003e54876b30f47a17938955b34096c4b15c20",
+    "source_fingerprint": "sha256:f89d9e1fa0d96c35a8431b050ac76cd67d41319ff1a26dbce8bbf4f956a30a34",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "24038cf0165d6e2b00908092d3f07038441254e225729ab32c84c9ba8bc9f62f",
       "plan.md": "2ff366ec5a28c871c14ee76fcec9e6d6ebd02ee66cc5b352f267a42890c8987d",
       "tasks.md": "b3416f23600c894119047cbfd7c3b03618ed26650a07e755102f7fa2646bb660",
-      "implementation-summary.md": "71b8af641174d699de03b0199663745c84ce0ea0de20d3079117f49fd9b39025"
+      "implementation-summary.md": "49be5a20578af72e883c9608c893a513c67137f704596c7009c5eb9cb15bfb75"
     },
     "last_active_at": null
   }

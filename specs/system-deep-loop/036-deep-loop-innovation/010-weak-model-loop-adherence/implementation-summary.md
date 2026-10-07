@@ -21,10 +21,7 @@ _memory:
     answered_questions:
       - "Hard pre-write jail not needed: prompt-hardening drove DeepSeek breaches to zero"
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "weak model loop adherence implementation summary"
 ---
 # Implementation Summary
 

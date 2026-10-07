@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The attribution table and merged registry now name each lineage's executor kind, model and reasoning effort from the invocation metadata the runner already writes."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "publish manifest provenance implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

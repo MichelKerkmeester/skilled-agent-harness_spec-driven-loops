@@ -15,14 +15,14 @@
       "frontmatter value measurement",
       "warning recall matrix",
       "off-list rate",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "context type hardening plan",
+      "context type hardening tasks",
+      "context type hardening acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "context type hardening summary"
     ],
     "key_topics": [
       "context",
@@ -36,7 +36,7 @@
       "matrix",
       "off-list",
       "rate",
-      "implementation"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Phase 003 measured the cleanup: 33 distinct spec-doc values became 12, and 102 off-list values became 0",
     "created_at": "2026-10-04T12:00:32Z",
-    "last_save_at": "2026-10-07T12:55:55.923Z",
+    "last_save_at": "2026-10-07T15:57:44.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,12 +217,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5158fae8d8dc77eb70cabbd63043caed42254ad6df4dfb902723d669a77c62f4",
+    "source_fingerprint": "sha256:cca7a8bd3fd98bdbf3e0f3e1295cd23cd83c5fc948205dfab8fadd8c1974f057",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e911aa9089a68de5772b240eb8924b71642bb66f59473a7484d704080e4dae24",
-      "plan.md": "ac39587d53fd5590bc5e439bbdc709af61a10ee77aa25c21d90fb5523af9f92b",
-      "tasks.md": "f50364f00c2c2636d4948c33d76938b9758dc63c07eaf8382fddf4a11102cb44",
+      "plan.md": "c3afb152a079cee4747ffefcf6f0ec4a3ccfeaabcc6585ff07bce63b68e1113c",
+      "tasks.md": "9c57c97f8bea0f0860403cee6edae091ba13bbe42d9f1d91502652f9b707eeda",
       "implementation-summary.md": "a3804524160aefaa92ba31c4b2bfba020761217c06a340a27c3ac6e15593bdcb"
     },
     "last_active_at": null

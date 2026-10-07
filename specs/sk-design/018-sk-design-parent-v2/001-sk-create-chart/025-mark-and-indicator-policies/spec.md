@@ -3,7 +3,7 @@ title: "Feature Specification: mark policies, tooltip indicator kinds, reference
 description: "Per-form declarations the research asked for: a sparse-point policy, a meaningful-zero signed-area policy, per-series tooltip indicator kinds, declared reference lines, and a cursor guide earned by density, each held by a checker family."
 trigger_phrases:
   - "mark and indicator policies"
-  - "per form declarations the research asked for a"
+  - "per form declarations the research asked"
 importance_tier: "normal"
 contextType: "general"
 ---

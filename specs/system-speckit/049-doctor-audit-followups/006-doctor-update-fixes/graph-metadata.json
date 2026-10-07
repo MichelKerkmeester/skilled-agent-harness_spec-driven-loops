@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`/doctor:update` is not safe to build on yet",
     "created_at": "2026-10-03T21:06:40Z",
-    "last_save_at": "2026-10-04T01:14:57.887Z",
+    "last_save_at": "2026-10-07T15:57:44.197Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c46c2794a162c29616c2befb749d1939769d3f7478d48f3f0293b65d3b131d75",
+    "source_fingerprint": "sha256:622af826ab9179f381308773c8b7863c119fe6331395942a74b196316c0780cf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0d2b5ac87989ca88acf75e27fa20e0a0f4610ad7ab921508a29603c54beaed02",

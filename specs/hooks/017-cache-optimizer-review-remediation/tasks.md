@@ -2,10 +2,7 @@
 title: "Tasks: cache optimizer review remediation"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "cache optimizer review remediation tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

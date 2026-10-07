@@ -21,8 +21,8 @@
       "lineage prompt fix plan",
       "v4.0.0.3 remediation tasks",
       "review finding fix tasks",
-      "verification checklist",
-      "v4 0 0 3 review remediation acceptance criteria"
+      "v4 0 0 3 review remediation acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
       "review",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "On the default convergence policy, every `/deep:review` iteration writes `type:\"event\"` rows that `append-mode-event.cjs` rejects with exit 1",
     "created_at": "2026-10-06T10:15:27Z",
-    "last_save_at": "2026-10-07T12:55:52.923Z",
+    "last_save_at": "2026-10-07T15:57:33.747Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,12 +223,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:14b8c60b7a1621bd4f03b90805992db53e296c8836a12612ae765a20d110eca7",
+    "source_fingerprint": "sha256:36044e419b9b18e4f30e0e21b1f148285be00db89bfdae5edf5f80ed428f4731",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "29a8b19e5aff0e5b1dd5028468b560514e9cfc09530af0279f1f93568cbff892",
       "plan.md": "2b9dfcd8211a04aac87b111436d5ec72055b4f7a63d92580a33bcc01697ce513",
-      "tasks.md": "ecdc3a4396f76441822a080dc3c2d33c73fe69d6f97b92ab05b90d494f3edad4",
+      "tasks.md": "6e8cc7062bd215a2d266db204414599533dd7557d5b083ec861d7d50b1479cb7",
       "decision-record.md": "56cd001859a41bbb41615fb81f7c43ae5b7d3b46944350bfb2ce463e54af4fa3",
       "implementation-summary.md": "25632b57d3eb4aa4d880e69310998a3f702da06ddcf7ee9f47cd2632addbdcb8",
       "research/research.md": "312413b0cfc6284d56bcff8c9b1f07ca52b1476a346053c2334bd95844b876f3"

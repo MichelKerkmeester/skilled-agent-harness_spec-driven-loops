@@ -13,16 +13,13 @@
     "trigger_phrases": [
       "fanout merge improvements",
       "the fan out merge scorer reports jev against",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "fanout merge improvements plan",
+      "fanout merge improvements tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "fanout merge improvements implementation summary"
     ],
     "key_topics": [
       "fanout",
@@ -33,10 +30,10 @@
       "reports",
       "jev",
       "against",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +195,7 @@
     ],
     "causal_summary": "Feature 030 measured keep at A=53 of 60, but only against a baseline that answers \"different\" on every cross-body pair, and a lexical rule ties Jev at 53",
     "created_at": "2026-10-03T05:30:02Z",
-    "last_save_at": "2026-10-07T12:54:55.887Z",
+    "last_save_at": "2026-10-07T15:56:06.544Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2898725d08b4d2636a09be763c1267c23a768bb70aa9de21b43e83218e9a449d",
+    "source_fingerprint": "sha256:edee4b567693df5a9d82476a44597f02ad67ebd3189d37d81364264b978c0392",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "398548e3614f798deb7e89ba7872232d6dfe50d3e1142163868b033e276a585d",
-      "plan.md": "d40426b7ad016dfc300f064aa48dcba9e9bce8c529bfcaf6ae668ec87f66153c",
-      "tasks.md": "27fcb0c14eaa083f36b535a66206b77834a4df8e60ee54a421c70a8896a71fda",
-      "implementation-summary.md": "14806fea092690b28f1c1f56be870475f0f91f3009c58c0c65f00c9aab2ce741"
+      "plan.md": "09a61217169032addb62e8cbabdef0d9e685a03e82fda2bef057b724dece5e5c",
+      "tasks.md": "0773cdd2d42e9b0e3200613581043852b4a270ed7adbf2e61ac3bb6212dcae8e",
+      "implementation-summary.md": "16876c5e0c0ea22006818650e9016181dd4591bacf7d739ff4587d6ecf328631"
     },
     "last_active_at": null
   }

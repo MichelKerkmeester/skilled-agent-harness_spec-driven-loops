@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: okf-deep-research"
 description: "Run ten deep-research iterations through the deep-research loop on the cli-pi executor, review each return as the orchestrator, and synthesize a ranked adopt, adapt or reject list."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "okf deep research plan"
 importance_tier: "normal"
 contextType: "general"
 ---

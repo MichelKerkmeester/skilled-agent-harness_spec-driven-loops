@@ -5,7 +5,6 @@ trigger_phrases:
   - "local-provider-loader"
   - "local provider loader implementation"
   - "localProvider easy config complete"
-  - "implementation summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

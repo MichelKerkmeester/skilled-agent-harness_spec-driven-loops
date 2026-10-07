@@ -3,7 +3,7 @@ title: "Implementation Summary: 007 Search RAG Measurement-Driven Implementation
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 description: "Phase E completed measurement-driven decisions for W3-W7."
 trigger_phrases:
-  - "implementation summary"
+  - "search rag measurement implementation implementation summary"
 importance_tier: "high"
 contextType: "implementation"
 _memory:

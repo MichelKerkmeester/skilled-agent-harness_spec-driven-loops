@@ -3,7 +3,7 @@ title: "Feature Specification: Build: improve the Jev spec-folder suggestion (02
 description: "The folder suggestion scorer shows each option with its real description, measures whether the right folder was offered at all, and records what it scored."
 trigger_phrases:
   - "folder suggestion improvements"
-  - "the folder suggestion scorer shows each option with"
+  - "the folder suggestion scorer shows each option"
 importance_tier: "normal"
 contextType: "general"
 ---

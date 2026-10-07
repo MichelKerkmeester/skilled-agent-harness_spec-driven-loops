@@ -5,7 +5,6 @@ trigger_phrases:
   - "ci push triggers tasks"
   - "remediation tasks"
   - "round three tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

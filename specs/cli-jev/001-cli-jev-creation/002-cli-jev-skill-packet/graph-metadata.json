@@ -12,17 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "cli jev skill packet",
-      "the hub needs a packet that tells a",
-      "implementation plan",
+      "the hub needs a packet that tells",
       "approach and phases",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
+      "cli jev skill packet tasks",
       "cli jev skill packet acceptance criteria",
       "packet goal",
       "durable directive",
-      "completion criteria"
+      "completion criteria",
+      "goal binding",
+      "cli jev skill packet implementation summary"
     ],
     "key_topics": [
       "cli",
@@ -32,11 +30,11 @@
       "hub",
       "needs",
       "tells",
-      "implementation",
-      "plan",
       "approach",
       "phases",
-      "testing"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -197,7 +195,7 @@
     ],
     "causal_summary": "The hub routes to executables whose contracts live in their own documentation",
     "created_at": "2026-09-20T07:39:06Z",
-    "last_save_at": "2026-10-07T12:54:47.473Z",
+    "last_save_at": "2026-10-07T15:55:57.411Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d60006350e441422524301bba45b94b21ef87a512c7ece6f39fb2a841342d0f",
+    "source_fingerprint": "sha256:4f0faaf37a4034f467236729c1d281ce0f246965d01afb3736add25bb29d7a1c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3e63d04c38169d6c73166b0cca4a924334f169d94ed829c0c8fca1568c97e944",
-      "plan.md": "4cbbd1c2680880d6b1915776681b097e43f0eab0bdd6feec54e5c052307907f5",
-      "tasks.md": "41026a7381bf190628bbcb7f48096c0d7e30e8d3aa1d3785c7f5c64113f9fc47",
-      "implementation-summary.md": "ad3e481121ce1d819c2589477b8969978731646454947d01a399242c2700178f"
+      "spec.md": "040c825498563ea844091f4c4af298922f3f46ac3163e340d58276d379c7ae8a",
+      "plan.md": "78cba98215b78bc3b269dbd7b893f0d0a6c4a89f5dd7c092ad62f897452be3bc",
+      "tasks.md": "009c498aba63cf690461c247393b4cc4cc0410bd8f8de7c00cd8de12930d10fd",
+      "implementation-summary.md": "5ef84b0251cda28951662c334db5217f6647cc28e1c82f3a260bbfec97845b8f"
     },
     "last_active_at": null
   }

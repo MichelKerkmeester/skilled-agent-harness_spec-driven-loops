@@ -2,7 +2,6 @@
 title: "Implementation Summary: prove the pointer contract, run the failure mutation, and close the packet's acceptance criteria"
 description: "The render gate ran from the final state and passed, the AC-006 mutation was watched failing on the real heat-matrix.html and restored with byte-identical proof, all 11 acceptance criteria dispositioned, AC-002 waived by ADR-006 on observed evidence, and the packet's documents now agree on what shipped."
 trigger_phrases:
-  - "implementation summary"
   - "closure phase summary"
   - "mutation proof"
   - "render gate evidence"

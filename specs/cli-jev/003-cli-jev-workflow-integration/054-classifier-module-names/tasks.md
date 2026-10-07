@@ -2,10 +2,7 @@
 title: "Tasks: Phase 54: classifier-module-names"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "classifier module names tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

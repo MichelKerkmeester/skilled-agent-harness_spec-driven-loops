@@ -2,10 +2,7 @@
 title: "Implementation Summary: sk-design-md-generator as the EXTRACT mode"
 description: "The md generator becomes a mode of the sk-design hub, 7,942 files move as renames, and the routing regression phase 002 introduced closes."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "md generator as mode implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

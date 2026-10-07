@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A Jev `choice` or `noul` call with no transport named now goes to Pi when Pi can answer it, and to the jev CLI otherwise, with no extra output."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "pi default transport implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

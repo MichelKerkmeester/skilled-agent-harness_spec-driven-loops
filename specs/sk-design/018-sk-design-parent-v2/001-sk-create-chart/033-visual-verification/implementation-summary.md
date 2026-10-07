@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Every capture read by a reviewer who did not make the change; twelve defects the green checks had no opinion about."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "visual verification implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,9 +2,6 @@
 title: "Implementation Summary"
 description: "The deep-loop-owned red tests in the spec-kit CLI suite are green, the runtime typecheck reports zero errors without a loosened compiler option, and the compiled command contracts match their sources again."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
   - "deep loop test debt"
 importance_tier: "normal"
 contextType: "general"

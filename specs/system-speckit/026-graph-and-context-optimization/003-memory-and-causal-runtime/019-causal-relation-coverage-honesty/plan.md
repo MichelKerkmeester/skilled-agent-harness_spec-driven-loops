@@ -15,10 +15,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "causal relation coverage honesty plan"
 ---
 # Implementation Plan: Causal Relation-Coverage Reporting Honesty
 

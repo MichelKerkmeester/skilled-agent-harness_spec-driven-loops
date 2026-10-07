@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The prompt-improve surface now carries a route-scoped model-eligibility contract, in the canonical agent definition and in the skill a caller can run without the agent."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "prompt improver model eligibility implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

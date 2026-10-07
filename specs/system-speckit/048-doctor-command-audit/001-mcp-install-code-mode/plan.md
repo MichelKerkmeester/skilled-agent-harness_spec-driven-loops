@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: mcp-install-code-mode"
 description: "Audit `/doctor:mcp install` against this checkout, then apply the evidence-backed verdict: keep the route and narrow it to MCP Code Mode and `.utcp_config.json`."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "mcp install code mode plan"
 importance_tier: "normal"
 contextType: "general"
 ---

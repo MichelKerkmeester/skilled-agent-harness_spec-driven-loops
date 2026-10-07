@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "folder suggestion research",
       "five deepseek v4 1 flash and three gpt",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "folder suggestion research plan",
+      "folder suggestion research tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "folder suggestion research implementation summary",
+      "jev folder suggestion improvement",
+      "score-alignment-suggestion research",
+      "spec folder alignment jev"
     ],
     "key_topics": [
       "folder",
@@ -33,10 +33,10 @@
       "flash",
       "three",
       "gpt",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Phase 047 measured the Jev spec-folder suggestion at verdict jev: keep K=40 M=40 A=39 B=30 W=10 L=1 F=0 p=0.0059 baseline=top, target right 0 of 40",
     "created_at": "2026-10-02T21:59:48Z",
-    "last_save_at": "2026-10-07T12:54:55.829Z",
+    "last_save_at": "2026-10-07T15:56:06.631Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:391830ad8c284f281c3eeb265088fd4a40d2ddec4827d1cf52142fc0d7c102cc",
+    "source_fingerprint": "sha256:9d1b33849c360adf40ba05aac8a9b8d88de6c3bb95ec8030f392e59e95d693bb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5cf5280828df5164188c4bff574af07a80dceecc1792e2a22ca47bc1d766a7fe",
-      "plan.md": "e6d8ed4901ee3dc2454273af80338889e3939d7887b698c2e7355a43858a37b0",
-      "tasks.md": "46415684faa0b1516d2a7ccd08e84c8b86c2586cee93d639baa51037a496148c",
-      "implementation-summary.md": "9ab0187ffa356877155c94c4563f160c79da103acde3b080ca3fbbfbdaebe1d8",
+      "plan.md": "2b0d00374dd32c2bd50041a8cbb6192a3cafecaa583e1b6e44b6f80c3f59fa58",
+      "tasks.md": "26de1d59ab0824ed6b2c7bc76fcc60445fd642b77f5d7195057d608971832ee2",
+      "implementation-summary.md": "313961732f414210e7ecbcd18ce59703e664d76abd507e713f34183882715520",
       "research/research.md": "6f86f23b5ae5958f476dfe9fa3e2b5bc9776dba0f55d1ba1141af47f1f811a80"
     },
     "last_active_at": null

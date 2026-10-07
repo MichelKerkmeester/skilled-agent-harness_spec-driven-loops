@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The /doctor:speckit fable-mode check now requires a caller-supplied deep-loop artifact directory instead of a default target that does not exist, forwards the baseline override the route always accepted, and describes itself as a metric-drift report; verdict: fix."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "fable mode implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

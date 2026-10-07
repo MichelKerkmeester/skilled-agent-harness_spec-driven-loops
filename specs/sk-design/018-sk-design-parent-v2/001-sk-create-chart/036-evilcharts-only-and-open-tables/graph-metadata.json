@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "evilcharts only and open tables",
       "the packet carried two style references and one",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "evilcharts only and open tables plan",
+      "evilcharts only and open tables tasks",
       "evilcharts only and open tables acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "evilcharts only and open tables implementation summary"
     ],
     "key_topics": [
       "evilcharts",
@@ -35,8 +33,8 @@
       "style",
       "references",
       "one",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -197,7 +195,7 @@
     ],
     "causal_summary": "The stock palette has been derived from evilcharts since v2.1.0.0 and `--default` has themed from",
     "created_at": "2026-09-10T07:41:56Z",
-    "last_save_at": "2026-10-07T12:55:16.289Z",
+    "last_save_at": "2026-10-07T15:56:39.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b0e56f7087220738fabb3d9fe3a462353c1c0098d21c20e38e98d803cfd48fa3",
+    "source_fingerprint": "sha256:6855115e5655854ba672f29b3c2da62ea3aaac40d3b362a85050390b3497c810",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4322dbb8df3398de1d8aac54f20e53935de08f0c4c0882bb4a13ab9b5c5e2f0d",
-      "plan.md": "660ca85c91006a156e9a5f6871c3c72afc568f2c67a93fa2e4ad65dd349b4497",
-      "tasks.md": "fec796aa4128d9a984c8a70b34f03a22eff8b4ef645b85a61d0ead4ae939ee7d",
-      "implementation-summary.md": "fd4ccf4a879101ba66129acb941950a5211b9a11d80bb8ba360147bda48cf347"
+      "plan.md": "e74e9e4de4d8dfcea8f00a36adcf7072fc0c90b898a958d4d0784fb4a49ab755",
+      "tasks.md": "b40caa26f0d55767bd9415ee4b4fe7e2f0abc699679dfb5e1b20ea87404c5f39",
+      "implementation-summary.md": "fb1e4bc2d70f2fb68d7cefa3e68a078b6af30189d60e1f3bee2121fb0a461d88"
     },
     "last_active_at": null
   }

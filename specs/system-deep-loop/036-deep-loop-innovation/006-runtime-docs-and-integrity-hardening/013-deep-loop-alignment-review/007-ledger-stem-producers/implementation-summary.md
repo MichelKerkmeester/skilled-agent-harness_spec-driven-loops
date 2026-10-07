@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Reconciled the registered ledger vocabulary with what actually reaches the ledger: a declared census, an enforcing checker, and two loud refusals where the old behaviour was silence."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "ledger stem producers implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

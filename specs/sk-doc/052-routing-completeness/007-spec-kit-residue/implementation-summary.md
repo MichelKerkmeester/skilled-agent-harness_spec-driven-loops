@@ -2,7 +2,6 @@
 title: "Implementation Summary: Phase 7: spec-kit-residue"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation summary"
   - "adr disposition"
   - "coverage graph repoint"
   - "injectable project root"

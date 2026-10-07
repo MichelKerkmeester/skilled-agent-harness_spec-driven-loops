@@ -2,10 +2,7 @@
 title: "Tasks: Runtime surfaces"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "runtime surfaces tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

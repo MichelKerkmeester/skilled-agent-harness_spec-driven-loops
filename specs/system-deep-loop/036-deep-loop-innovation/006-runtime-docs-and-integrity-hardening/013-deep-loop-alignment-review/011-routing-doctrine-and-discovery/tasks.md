@@ -2,9 +2,7 @@
 title: "Tasks: routing doctrine and discovery vocabulary"
 description: "Task breakdown for one always-loaded policy per hub and the discovery-vocabulary prune."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
+  - "routing doctrine and discovery tasks"
 importance_tier: "normal"
 contextType: "implementation"
 ---

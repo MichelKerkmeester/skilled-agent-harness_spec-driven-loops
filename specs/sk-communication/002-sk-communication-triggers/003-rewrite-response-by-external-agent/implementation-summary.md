@@ -2,7 +2,7 @@
 title: "Implement [sk-communication/002-sk-communication-triggers/003-rewrite-response-by-external-agent/implementation-summary]"
 description: "Command 2 shipped and verified: one-shot engine-choice projection with a guaranteed flip-off, no shipped-package edits."
 trigger_phrases:
-  - "implementation summary"
+  - "rewrite response by external agent implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

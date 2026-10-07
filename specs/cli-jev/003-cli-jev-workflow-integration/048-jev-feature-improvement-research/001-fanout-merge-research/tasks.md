@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: fanout-merge-research"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "fanout merge research tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

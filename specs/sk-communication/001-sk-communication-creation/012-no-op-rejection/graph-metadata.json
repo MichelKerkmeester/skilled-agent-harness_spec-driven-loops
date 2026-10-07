@@ -13,8 +13,7 @@
     "trigger_phrases": [
       "no-op-rejection",
       "unchanged echo acceptance",
-      "projection quality",
-      "implementation plan"
+      "projection quality"
     ],
     "key_topics": [
       "no-op-rejection",
@@ -23,12 +22,12 @@
       "acceptance",
       "projection",
       "quality",
-      "implementation",
-      "plan",
       "validator",
       "short-circuits",
       "restored",
-      "text"
+      "text",
+      "sourcetext",
+      "accepting"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -155,7 +154,7 @@
     ],
     "causal_summary": "The validator short-circuits when `restored.text === sourceText`, accepting the echo without running structure or semantic stages",
     "created_at": "2026-08-13T04:05:03.668Z",
-    "last_save_at": "2026-10-03T15:12:00.861Z",
+    "last_save_at": "2026-10-07T15:56:17.877Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -163,11 +162,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:59a2f2138e44c649cecfa8720e0e1bfc909a71f295305f948015e923ad0b980d",
+    "source_fingerprint": "sha256:883f8a0a734ccb95a3c9780cf39b6b53c97aa22e334094fcf998099945da76e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "57513e4c9d427397af843c383412a1d2e8b17320dfc1724d68b3dd647cd45474",
-      "plan.md": "291c86396601f3d58a2839197ab9b931fa583ea4f824ae2439d56d111adbfaf0",
+      "plan.md": "7ac580ff47980c12ba52cfc30e8b42f564123981af0619591a46ea03a070d195",
       "tasks.md": "6c2cb0f32be4344fb1c3c90447058e44635aacc0054ec20e3a17b044076c800d"
     },
     "last_active_child_id": null,

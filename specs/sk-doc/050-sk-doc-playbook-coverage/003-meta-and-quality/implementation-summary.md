@@ -2,9 +2,6 @@
 title: "Implementation Summary"
 description: "Records that commit ad9d93df3be delivered the manual testing playbooks for sk-create-manual-testing-playbook, sk-create-quality-control, sk-create-skill, and the validator evidence that closes this phase."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
   - "meta-and-quality playbooks delivered"
 importance_tier: "normal"
 contextType: "general"

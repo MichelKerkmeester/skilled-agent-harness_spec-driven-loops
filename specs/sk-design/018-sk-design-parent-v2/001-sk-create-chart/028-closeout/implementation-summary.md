@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Everything the chart phases recorded as not-done is closed, and what remains is a boundary rather than a gap."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "closeout implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

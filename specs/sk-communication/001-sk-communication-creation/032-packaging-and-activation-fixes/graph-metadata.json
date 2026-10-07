@@ -14,12 +14,10 @@
       "packaging-and-activation-fixes",
       "communication projection packaging",
       "LM Studio enablement example",
-      "implementation plan",
       "communication projection prepare script",
       "communication projection package activation",
       "architecture decision",
       "LM Studio endpoint normalization",
-      "implementation summary",
       "communication projection activation complete"
     ],
     "key_topics": [
@@ -30,11 +28,11 @@
       "studio",
       "enablement",
       "example",
-      "implementation",
-      "plan",
       "prepare",
       "script",
-      "package"
+      "package",
+      "activation",
+      "architecture"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -194,7 +192,7 @@
     ],
     "causal_summary": "Make communication projection build on install, ship its operator entry points, and provide a loader-valid LM Studio example.",
     "created_at": "2026-08-15T09:21:20.673Z",
-    "last_save_at": "2026-10-03T15:12:06.515Z",
+    "last_save_at": "2026-10-07T15:56:23.147Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a08418adf20c00163bf54d0d00bf23edcb8d0fa39d05fda8c1eb542990f08f9",
+    "source_fingerprint": "sha256:0ef15faaeef20cee4677fc20d030f5c13f2bbbfddc282db5b61255030f62aa1e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "252909080cccbf07ba839999e646010538369c804030ac9ffe3ebdc86a366d95",
-      "plan.md": "ced6e63a942cc6bae5f7c18abe64c48473c97a96e6a37aea729d128496029fe8",
+      "plan.md": "9bd664db92ab9b6b457b43807498bdbe3ff869abb20b6be07a8264bd0bb87a84",
       "tasks.md": "251c036d63e3e581b22c286c4e61765bb62ec9389757752d05cb1acceb5e0160",
       "decision-record.md": "bb8ab30ccd41eebb4be0c7da4a2ba65f3cf27c131f7e45475e4038ddeca511c0",
-      "implementation-summary.md": "69d6bc67005325d4534ee3dec24a4f5af21e6c3514e7dad169215dac328c3085"
+      "implementation-summary.md": "c320afe99f3baff36ab6e6cb9de7fa3864e46ff010999b0ec6b69b410d85442c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,10 +2,7 @@
 title: "Implementation Plan: screenshot library of well-designed charts from external sources"
 description: "Capture public chart galleries headlessly in both schemes, triage on contact sheets, keep and index the strong ones."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "external reference library plan"
 importance_tier: "normal"
 contextType: "general"
 ---

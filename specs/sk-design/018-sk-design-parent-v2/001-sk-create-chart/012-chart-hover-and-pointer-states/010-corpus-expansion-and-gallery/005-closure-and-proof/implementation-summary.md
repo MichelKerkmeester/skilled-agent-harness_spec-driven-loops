@@ -2,10 +2,7 @@
 title: "Implementation Summary: proof from the final state, and reconciliation of every document describing a corpus that has changed."
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "closure and proof implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

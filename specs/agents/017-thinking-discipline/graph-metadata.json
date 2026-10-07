@@ -15,14 +15,11 @@
       "assess a proposed thinking discipline against agents md",
       "settled and reopened",
       "reopen a settled conclusion",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "thinking discipline plan",
+      "thinking discipline tasks",
+      "thinking discipline implementation summary",
+      "thinking discipline coverage map",
+      "settled and reopened decision tests"
     ],
     "key_topics": [
       "thinking",
@@ -35,8 +32,8 @@
       "reopened",
       "reopen",
       "conclusion",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -204,7 +201,7 @@
     ],
     "causal_summary": "The operator proposed a nine-point \"Thinking discipline\": check the request, finish one approach, stop after one check, doubt is not evidence, don't revise just to agree, new evidence reopens the case, verify against real checks, don't perform caution, and correct only material earlier errors",
     "created_at": "2026-10-07T05:03:30Z",
-    "last_save_at": "2026-10-07T07:30:08.832Z",
+    "last_save_at": "2026-10-07T15:55:51.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +211,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:fe5d722bcce51e182b3e795068f5f2b327a8247ca2319250a791b75eb2b8d466",
+    "source_fingerprint": "sha256:ccbfaad1038435107b53ac9fa53898c86873c52e449412cc6bce6565fdbea448",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "605372f22a821538d71aca8c5d69d34257751d4b2e5b590a2e71a99126f2d32b",
-      "plan.md": "0bb959e8adcb8a172c78fac153c52d1f6c926854089245b794300a8fcb4fc92c",
-      "tasks.md": "321d39afefc49275018ae377dac0efcb3047b45c26cdb0397d77f6511df65353",
-      "implementation-summary.md": "b6df5b37111e9f134e17253e6125f65baaf85357c3210385aa81ee0c93259e0a",
+      "plan.md": "965f66bee495bc6bd44d92d972bec9f96bd85fe31ea08dbb5effe681ad51c7a7",
+      "tasks.md": "32527e026e13aa81507f2ccfc883f42af52c2c2ed5ec6e2e9d6410e0430bbe40",
+      "implementation-summary.md": "1dbafc301ff00e5b20fc364fc2b39be2440b6eef38d7cbcd173cf2f479c807d9",
       "research/research.md": "8b6bd77ca48b66f049bbd436c3d02be829e7a4cbbaa69677f49d125df38d95d1"
     },
     "last_active_at": null

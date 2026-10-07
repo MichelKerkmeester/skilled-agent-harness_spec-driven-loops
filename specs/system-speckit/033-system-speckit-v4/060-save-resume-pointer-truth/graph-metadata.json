@@ -20,7 +20,6 @@
       "planner mode docs plan",
       "save resume pointer tasks",
       "track root store only tasks",
-      "implementation summary",
       "track root store only evidence"
     ],
     "key_topics": [
@@ -209,7 +208,7 @@
     ],
     "causal_summary": "After a save, the writer walks up from the saved packet and rewrites the pointer in every phase-parent ancestor's `graph-metadata.json`, including the track root, the spec-less folder directly under `specs/`",
     "created_at": "2026-09-24T05:57:52Z",
-    "last_save_at": "2026-09-24T06:17:58.657Z",
+    "last_save_at": "2026-10-07T15:57:33.237Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +217,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:86d73734c995db11a9ab8484d70d0a1afeda98820095216a9fba6774892b16f1",
+    "source_fingerprint": "sha256:e98ada13980a63f2894aa5989ba3be41d2f06ed90248578297042033ff155738",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1482f65ae7297161a2f3acd0022809fef8de7957fb9d2f45d646246ed04e3cf1",
       "plan.md": "4aad35b815f373c8740807897bc78f6c01cb7fde5c8c86fcc113ca6eccad485b",
       "tasks.md": "147d8e4b2233f39c695b75e7ce3e16005832fa8fabb0a776bed449f59540348a",
-      "implementation-summary.md": "a5e56022b7fe96982bd555cc1fe11c7321db9761cee0442773d6a8d5e4331fff"
+      "implementation-summary.md": "5560a1ef01e2a5872d6bddf0a39befa8b8ca75f108df30ab189994fe4df99958"
     },
     "last_active_at": null
   }

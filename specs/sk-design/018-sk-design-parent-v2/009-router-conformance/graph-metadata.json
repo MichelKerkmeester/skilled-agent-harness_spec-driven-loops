@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "router conformance",
       "the sk design root router passes its contract",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "router conformance plan",
+      "router conformance tasks",
       "router conformance acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "router conformance implementation summary"
     ],
     "key_topics": [
       "router",
@@ -31,12 +29,12 @@
       "root",
       "passes",
       "contract",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -197,7 +195,7 @@
     ],
     "causal_summary": "The `sk-design` root router passes its contract validator and still does not read like any other",
     "created_at": "2026-09-06T17:43:45Z",
-    "last_save_at": "2026-10-07T12:55:17.232Z",
+    "last_save_at": "2026-10-07T15:56:39.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e12ac3f9adde5bd57f88ae1315daa29f73a4e5f50fe561a7b551c5cf594acdc0",
+    "source_fingerprint": "sha256:afbbdf6e4bb38ecf66b6b22bfcd12b150fbd62de62df9d43972947453ce68433",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e8dd52410e52d70b0491ce799ba47a0e23d70415589eccd540ac17db88cdf10",
-      "plan.md": "c4915954dec3f3266a17997e063ba26c8b52c5731220485bcc4c4d201bd82186",
-      "tasks.md": "59be95db6d463676e3d6e5db0affcbf2e1a29f643ab098c27112027605553537",
-      "implementation-summary.md": "908e47e601ab18ad9ca27e8745d9d3fa4072e3ab7b19eeb97cd0ab5fb64501e0"
+      "plan.md": "a48033975d4a6c1f54f2fa2931ca19b34f96a76ea6ddb2f4548939f577b084b1",
+      "tasks.md": "5e67bac19d9a91725fbc3210dadad9d51aa6f576d875aee1ef170d0ef40ad0f3",
+      "implementation-summary.md": "18c5d62fbb39c5593f99204ce9fe4c09f0fdeb30c6dd8cfbb3cb88eddf7ca3a5"
     },
     "last_active_at": null
   }

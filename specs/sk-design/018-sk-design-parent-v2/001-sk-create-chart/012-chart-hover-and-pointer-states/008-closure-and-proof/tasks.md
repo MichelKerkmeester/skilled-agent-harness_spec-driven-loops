@@ -2,10 +2,7 @@
 title: "Tasks: Prove the pointer contract, run the failure mutation, and close the packet's acceptance criteria"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "closure and proof tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

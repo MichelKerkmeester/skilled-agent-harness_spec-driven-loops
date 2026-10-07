@@ -2,9 +2,7 @@
 title: "Implementation Summary"
 description: "Creating a worktree now installs the nine dependency trees it needs, because an unprovisioned one failed in ways that read as broken code."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
+  - "worktree dependency provisioning implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

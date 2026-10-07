@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The /doctor:speckit deep-loop target keeps its route and now names the live status, query and convergence scripts, the current runtime script interface and the real packet-local state-log path, while the runtime's non-read-only database access is recorded as a finding."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "deep loop implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,10 +2,7 @@
 title: "Implementation Plan: Prove the targets, the rules and the gallery from the final state"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "closure and proof plan"
 importance_tier: "normal"
 contextType: "general"
 ---

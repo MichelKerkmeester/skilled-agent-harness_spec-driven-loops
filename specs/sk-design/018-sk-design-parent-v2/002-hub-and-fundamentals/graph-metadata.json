@@ -12,17 +12,11 @@
   "derived": {
     "trigger_phrases": [
       "hub and fundamentals",
-      "the smallest possible hub assembled from content the",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "the smallest possible hub assembled from content",
+      "hub and fundamentals plan",
+      "hub and fundamentals tasks",
       "hub and fundamentals acceptance criteria",
-      "implementation summary"
+      "hub and fundamentals implementation summary"
     ],
     "key_topics": [
       "hub",
@@ -31,12 +25,12 @@
       "possible",
       "assembled",
       "content",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -201,7 +195,7 @@
     ],
     "causal_summary": "`sk-design` is a standalone skill: a 501-line `SKILL.md` at the root doing both the routing and the",
     "created_at": "2026-09-06T13:52:15Z",
-    "last_save_at": "2026-10-07T12:55:16.790Z",
+    "last_save_at": "2026-10-07T15:56:39.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6a7fd7049614a26c331e583ec5373e282204cf58d9b56c0f4ea2c28fa2cfcc3e",
+    "source_fingerprint": "sha256:e8fba8ea52f98e4af1b0504372ba24134a337674825a9553102838b963275091",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c961e010f987c99137f5c23d6b2870000f5c7a439c3392f0fbf16150866d5966",
-      "plan.md": "91f66260566ac3f8d90efc5fc0f5f7cc66ba2f77708f8e027cb38da46748864b",
-      "tasks.md": "3d2b7610a4637168d75d38ff75bb2aaf3fc4671cdf7bbe72717364a414bd32e6",
-      "implementation-summary.md": "959e886168e8c2c4fcd9a24aef473997849eb56bf9e992e9ae304600139095e2"
+      "spec.md": "162ea531e484490e383a167c70f478588d16b4980fd4dec0fcdedbb15b576516",
+      "plan.md": "c2276f8e61e48399fa911371e801943ba2a4c730f68daee14ae2d0155ed26c1d",
+      "tasks.md": "6e5fe42aad15ef22408a891cc242bd34aa2d9e7b61cc01304559e897486aaf85",
+      "implementation-summary.md": "246c26d1552a4e3c977df9d8617c6758df0d49bbcfee8e804a995ce3333876d8"
     },
     "last_active_at": null
   }

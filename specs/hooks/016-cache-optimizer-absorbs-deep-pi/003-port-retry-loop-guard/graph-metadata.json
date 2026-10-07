@@ -14,15 +14,15 @@
       "pi cache break",
       "cache optimizer loops",
       "phase 3 cache optimizer",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "acceptance criteria"
+      "port retry loop guard plan",
+      "port retry loop guard tasks",
+      "port retry loop guard acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "phase outcome",
+      "verification evidence"
     ],
     "key_topics": [
       "cache",
@@ -30,13 +30,13 @@
       "optimizer",
       "loops",
       "phase",
-      "implementation",
+      "port",
+      "retry",
+      "loop",
+      "guard",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "A retry loop is expensive in a way that is invisible until the bill arrives: the same request is",
     "created_at": "2026-09-08T17:57:03Z",
-    "last_save_at": "2026-10-03T15:29:45.832Z",
+    "last_save_at": "2026-10-07T15:56:13.717Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3294f831f1eb19f9bacead94187d503d5b8a5562232ea090dffe787fb8db209a",
+    "source_fingerprint": "sha256:9cebe39d5dd4f7a5a162f8e6b6fd0e21415ba4f84e8b7b4c7f46ca925e2bd459",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e9b3d1cc90a5c03580555dae3efa06b8e2b4b167596bd65fc811416382d0850d",
-      "plan.md": "5694a347ca773b5adef2ffd20d11cb7397a81e5ff14379ff1bbf822168dc87ed",
-      "tasks.md": "c018d01ee72708721ef57fce55fb967e2ac2ec4cc1dcba089cdfba0cc01cf147",
-      "implementation-summary.md": "5960abea4575ea8e852164312c988b7fa5c53d28342c4dbaa4e6fa978c5d9fc9"
+      "plan.md": "b439dc4ca96bdb0e91bd60df2905f0a21f8a5d832cd112d155e2dddaaeea29e7",
+      "tasks.md": "f68bc3f154c705556bffbd1b0a6b31e60893f8859fcbbfbf8d6db4d6e616c9dc",
+      "implementation-summary.md": "c6be04f8145e4092794961edeede93308f8ea4b5186ed8eaa752d441ab8a390e"
     },
     "last_active_at": null
   }

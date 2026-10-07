@@ -15,10 +15,7 @@
       "doctor commands release notes",
       "changelog update plan",
       "v4.0.0.3 entry edit plan",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "changelog v4003 update tasks",
       "v4.0.0.3 changelog update summary",
       "doctor release notes shipped"
     ],
@@ -31,10 +28,10 @@
       "plan",
       "entry",
       "edit",
-      "task",
-      "breakdown",
-      "implementation",
-      "tasks"
+      "v4003",
+      "tasks",
+      "summary",
+      "shipped"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -193,7 +190,7 @@
     ],
     "causal_summary": "The v4.0.0.3 entry never mentions a doctor command, although every doctor command changed since v4.0.0.2",
     "created_at": "2026-10-04T08:50:16Z",
-    "last_save_at": "2026-10-04T08:55:13.413Z",
+    "last_save_at": "2026-10-07T15:57:44.084Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:689cfc9849c4fdf1a8272955b9f02296e01357251f3a36f14c6a03edc90a1a8c",
+    "source_fingerprint": "sha256:bb0a491ba6a0137f9412bb2d3682107fcd59e163d16903944069b664906742a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6f140e0d97120acd29df818b9c40a24230a26194be1a5a038d40bad559c3b8c5",
       "plan.md": "81bf42207fdd412d7d8309c8eaeeb2b656080288a8a5df308b7a5a2d47b290cc",
-      "tasks.md": "ee8cffc44ef244d4d4be105affb4f486fb36d2adb5e28499fd7a682ec566e80a",
+      "tasks.md": "564667ecc0f72cb3198e6f4db4603f34563b805d4a022d53133033af51a32088",
       "implementation-summary.md": "1650fb30e8f84b6d0d93097c74db8e0b3bbb972f58c587eada9ea6dae4a9d33f"
     },
     "last_active_at": null

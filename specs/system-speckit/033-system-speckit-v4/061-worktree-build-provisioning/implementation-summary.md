@@ -2,7 +2,6 @@
 title: "Implementation Summary"
 description: "Provisioning a worktree now builds the two packages whose output runtime suites import, targets the worktree it runs in rather than the primary checkout, and an unprovisioned checkout fails those suites with the command that fixes it."
 trigger_phrases:
-  - "implementation summary"
   - "worktree build provisioning"
   - "provision builds missing outputs evidence"
 importance_tier: "normal"

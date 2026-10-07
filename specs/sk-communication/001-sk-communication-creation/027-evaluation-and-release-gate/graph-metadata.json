@@ -15,14 +15,12 @@
       "non-inferiority rollout gate",
       "reject-only evaluation consult",
       "rollout readiness evidence",
-      "implementation plan",
       "non-inferiority consult and rollout gate plan",
       "non-inferiority consult and rollout gate tasks",
       "architecture decision",
       "reject-only consult and dated rollout gate",
       "reject-only evaluation consult complete",
-      "release gate complete",
-      "implementation summary"
+      "release gate complete"
     ],
     "key_topics": [
       "evaluation-and-release-gate",
@@ -34,9 +32,9 @@
       "consult",
       "readiness",
       "evidence",
-      "implementation",
       "plan",
-      "tasks"
+      "tasks",
+      "architecture"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +193,7 @@
     ],
     "causal_summary": "The evaluation harness can already produce a blind non-inferiority verdict and the release gate can already block on dated evidence, but the production projection path does not yet consult the verdict before offering projection for a runtime / prompt-profile combination, and rollout is not yet gated on that evidence",
     "created_at": "2026-08-14T05:53:50.234Z",
-    "last_save_at": "2026-10-03T15:12:05.953Z",
+    "last_save_at": "2026-10-07T15:56:22.465Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e5a550ed9f77222a41b4dc1f7e3d5ce512a600f7060aa0aae0dfac69e58f580",
+    "source_fingerprint": "sha256:6e9ac94b4e4ad03fda24dd217e949e03e77359be4e5585743a44eeb4b90f193a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "17e1b511dc890cc92693631ff1d5389d12ce6b10eb1198b1d8c72b57b7b7b56c",
-      "plan.md": "3c6b4b9dd811f8d932deeb08c592a774abfe43cf03f38d272853c37239e1b82b",
+      "plan.md": "7b73c9faca3d9a2b739f643e2aa72199e4f708d39794c14616cda86a9b6ef280",
       "tasks.md": "0a682f79d583d9b249055be16d87e5b4b0336347e9726afb12ff072a8f341255",
       "decision-record.md": "03fad2f6997020e6a067bdf6e04fe31cc017ac9333c4817ad81e0861ef75debc",
-      "implementation-summary.md": "b2662561bce1d41b7b341ca0a86bf1006a9caaf2052aa5ea92bc8dea4c493be1"
+      "implementation-summary.md": "f54372a46c8ac56d859ec1c5da9e7a9065033ab3393f0fc6859d01ae19f85504"
     },
     "last_active_child_id": null,
     "last_active_at": null

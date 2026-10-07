@@ -2,10 +2,7 @@
 title: "Implementation Summary: Phase 13: shadcn-reference-research"
 description: "Six cited research angles against a frozen shadcn corpus: keep the corpus's question-first forms and role palette, adopt token indirection, local tooltip knobs and explicit curve variants; four items wait on policy."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "shadcn reference research implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

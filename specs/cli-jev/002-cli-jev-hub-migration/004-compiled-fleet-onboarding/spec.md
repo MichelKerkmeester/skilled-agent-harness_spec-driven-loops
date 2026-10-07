@@ -2,7 +2,7 @@
 title: "Feature Specification: Phase 4: compiled-fleet-onboarding"
 description: "The hub answers from its new home but resolves through the legacy path, so its routing still runs on prose while the fleet it belongs to serves compiled policy. This phase registers the hub in the engine dispatch map and every cohort copy, builds its rollout child, mints its activation manifest in both the runtime and authored trees, and proves the sixth hub serves, fails closed and rolls back."
 trigger_phrases:
-  - "the hub answers from its new home but"
+  - "the hub answers from its new home"
   - "compiled fleet onboarding"
   - "activation manifest"
   - "serving closure"

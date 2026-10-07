@@ -2,10 +2,7 @@
 title: "Implementation Summary: chart and diagram as sk-design modes"
 description: "sk-create-chart and sk-create-diagram move from the documentation hub to the design hub, and four phrases that reached nobody at baseline are fixed by putting vocabulary where the scorer actually looks."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "chart and diagram cutover implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

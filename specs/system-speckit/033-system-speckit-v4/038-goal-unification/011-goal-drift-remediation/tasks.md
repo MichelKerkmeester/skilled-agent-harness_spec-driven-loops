@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: goal-drift-remediation"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "goal drift remediation tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

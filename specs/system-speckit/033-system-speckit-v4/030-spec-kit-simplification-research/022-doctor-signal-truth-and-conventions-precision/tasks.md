@@ -5,7 +5,6 @@ trigger_phrases:
   - "doctor retrieval signals tasks"
   - "remediation tasks"
   - "round three tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

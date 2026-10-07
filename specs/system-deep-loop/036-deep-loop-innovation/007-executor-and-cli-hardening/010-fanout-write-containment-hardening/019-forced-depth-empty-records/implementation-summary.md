@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Forced-depth validation fails on an empty usable record set and the appender refuses an unnumbered iteration record."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "forced depth empty records implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

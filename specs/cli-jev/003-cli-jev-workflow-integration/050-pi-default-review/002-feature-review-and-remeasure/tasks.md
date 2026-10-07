@@ -2,10 +2,7 @@
 title: "Tasks: Phase 2: Review, test, re-measure and fix nine Jev features"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "feature review and remeasure tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

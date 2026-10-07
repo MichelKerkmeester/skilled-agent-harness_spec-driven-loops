@@ -12,17 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "applicator and sentinels",
-      "a sentinel palette block per file and an",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "a sentinel palette block per file",
+      "applicator and sentinels plan",
+      "applicator and sentinels tasks",
       "applicator and sentinels acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "sentinel applicator",
+      "applicator and sentinels implementation summary"
     ],
     "key_topics": [
       "applicator",
@@ -32,11 +30,11 @@
       "block",
       "per",
       "file",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -201,7 +199,7 @@
     ],
     "causal_summary": "`DIAGRAMPALETTE:BEGIN skin=light|dark|terminal … :END` blocks, one per file, in the four templates",
     "created_at": "2026-09-10T17:17:42Z",
-    "last_save_at": "2026-10-07T12:55:19.390Z",
+    "last_save_at": "2026-10-07T15:56:39.525Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73d1a3f9ce78de31d8aebb327ba493504f8cf150a89b012f2389f583e57a987a",
+    "source_fingerprint": "sha256:b94326c213104b84a236acffb65d136816af241e1c1119a17c188051085c4010",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5270745d9a36533963f3213ed82625d694b8397e630859cf8699ee801d257201",
-      "plan.md": "9372e08680ef4435468752cd1e36bf723b78ecf810729c551ad0e46badccfdee",
-      "tasks.md": "162420807c6962f2d79f323ee0aac446128fdebd2a1577d55933ecfcc3997470",
-      "implementation-summary.md": "56d478437dde859d9798ffed75639f45bac70a1b87f0ad4dd4409b7a04c2af0c"
+      "spec.md": "d46539d27c28b0c2d0bef6ecf3aac90955ecd327eed0e62afa8976deff4d86a1",
+      "plan.md": "35e569d1fe60b76c5ca1fc7cc17752bd33ea940dcd3250cc9a4a1c59e0334d6b",
+      "tasks.md": "3d2a0c84c867f6544430d964d830a8201b1efdceb839f05196b40a6fffa511bf",
+      "implementation-summary.md": "677512b18799e484d09c91df9c9a645b7c89fb42cfeb70e2c753f91f1e4bdddf"
     },
     "last_active_at": null
   }

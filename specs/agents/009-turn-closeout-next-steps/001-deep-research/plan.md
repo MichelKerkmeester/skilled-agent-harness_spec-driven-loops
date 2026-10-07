@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: deep-research"
 description: "Four read-only research iterations establishing whether a turn close-out obligation may exist as a repo rule, dispatched through cli-pi on DeepSeek Flash at max effort."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "deep research plan"
 importance_tier: "normal"
 contextType: "general"
 ---

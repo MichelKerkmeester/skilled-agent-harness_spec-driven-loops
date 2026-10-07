@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Two unread manifest fields and two hidden scaffold marker blocks are gone; the one marker that was secretly load-bearing is replaced by real protocol subsections in the Level 3+ plan template."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "manifest dead fields and coaching markers implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

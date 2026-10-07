@@ -22,7 +22,7 @@
       "scaffold placeholder truth tasks",
       "remediation tasks",
       "round three tasks",
-      "verification checklist"
+      "scaffold placeholder truth criteria"
     ],
     "key_topics": [
       "scaffold",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The scaffolder replaced every `[YOURVALUEHERE: x]` slot with the feature name, so a phase parent's open questions and predecessor became its own name, and the placeholder rule, which detects only that token class, saw nothing",
     "created_at": "2026-09-07T13:14:43.901Z",
-    "last_save_at": "2026-09-08T15:47:14.819Z",
+    "last_save_at": "2026-10-07T15:57:23.310Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,12 +218,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a0d785808bca13fff343596c34408461332aeacb8fd3e89ddc4f5496d6499f29",
+    "source_fingerprint": "sha256:3e47c6094e1c9093f867cca04b0a5d63122b11368f0a2bfe97380ca350d92d9a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c19a1a1b5555a9db283a60ec45e2fb2c288be7f1109ac76b85724ea53383c2ef",
       "plan.md": "2e640044663dc104532bb008b64265ef718c3aceaf447fa98d4fcbbc5c3df1de",
-      "tasks.md": "2a031eae9183b50dadf76b2679982a5f9f5e2b8cb5dde4a9683178ccea13cb5c",
+      "tasks.md": "6f402fb7399f4519dd431307fe34f80c01b525d76702adeb49bbb972ca0ab1bc",
       "implementation-summary.md": "a7df63a26732897344d9b275d97ba91e30ec4268559a2657fec99f94d046723a"
     },
     "last_active_child_id": null,

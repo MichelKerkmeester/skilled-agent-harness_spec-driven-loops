@@ -2,10 +2,7 @@
 title: "Tasks: Phase 11: skill-budget"
 description: "The ordered work for the skill-budget phase: inventory the target, run it read-only, record the verdict, apply the two fixes, and verify with the manifest, YAML, mirror and guard checks."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "skill budget tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

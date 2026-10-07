@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 5: verification"
 description: "Verify the whole rule set from its final state rather than trusting the edits that produced it."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "verification plan"
 importance_tier: "normal"
 contextType: "general"
 ---

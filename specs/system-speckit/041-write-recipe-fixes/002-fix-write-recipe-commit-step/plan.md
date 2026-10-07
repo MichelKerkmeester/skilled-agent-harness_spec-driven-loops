@@ -2,10 +2,7 @@
 title: "Implementation Plan: Bring the commit step of the spec folder write recipe in line with the commit hook"
 description: "Rewrite the commit bullets of Step 7, and prove the new wording by running the commit-msg hook on message files built the old way and the new way."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "fix write recipe commit step plan"
 importance_tier: "normal"
 contextType: "general"
 ---

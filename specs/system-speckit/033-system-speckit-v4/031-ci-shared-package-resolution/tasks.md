@@ -4,7 +4,6 @@ description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "ci resolution tasks"
   - "workflow fix tasks"
-  - "verification checklist"
   - "run failed diagnosis"
 importance_tier: "normal"
 contextType: "implementation"

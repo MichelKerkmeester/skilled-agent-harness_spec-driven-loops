@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 022 Codex Wrapper"
 description: "Wire Codex output projection through the Phase 020 CLI-output wrapper, map the JSON-stream envelope through the Codex runtime adapter, and verify the enablement gate and fail-open fallback."
 trigger_phrases:
   - "codex-wrapper"
-  - "implementation plan"
   - "codex output projection"
   - "codex json stream envelope"
 importance_tier: "important"

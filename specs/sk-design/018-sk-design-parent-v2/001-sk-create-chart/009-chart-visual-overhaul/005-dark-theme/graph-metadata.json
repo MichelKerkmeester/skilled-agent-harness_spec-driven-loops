@@ -21,8 +21,8 @@
       "chart dark theme tasks",
       "dark palette tasks",
       "palette block amendment tasks",
-      "acceptance criteria",
-      "closure gate"
+      "chart dark theme acceptance",
+      "packet goal"
     ],
     "key_topics": [
       "chart",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Twenty chart forms, six family deliveries and three palette proof sheets all paint on a warm paper surface",
     "created_at": "2026-09-03T07:52:32.972Z",
-    "last_save_at": "2026-09-11T16:41:58.031Z",
+    "last_save_at": "2026-10-07T15:56:27.742Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bb091d329a59ac769cb5cd3082b4f3709a09082c824effd682793adecf0c73f2",
+    "source_fingerprint": "sha256:4d88b4384b4b86ee61f91c454816f982472236f7344cd0bde5767c9a2bb64db6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "db46d8b7e8eb3e536461a7e29421a716e814e9d01ea0d8addf985c61a906fa47",

@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 13: goal-chat-send-shape"
 description: "Teach the chat slice renderer to drop heading section numbers, then state the chat slice and the 4,000-character send cap on every surface an agent reads before it sends a goal, and regenerate the snapshot, mirror, index and metadata those edits touch."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "goal chat send shape plan"
 importance_tier: "normal"
 contextType: "general"
 ---

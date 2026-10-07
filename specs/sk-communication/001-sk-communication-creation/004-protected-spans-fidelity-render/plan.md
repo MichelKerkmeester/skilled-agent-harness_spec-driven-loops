@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 004 Protected Spans, Fidelity, and Render"
 description: "Implement protect non-negotiable content, validate rewritten candidates deterministically, and choose a safe presentation mode. using the shared immutable-state architecture."
 trigger_phrases:
   - "protected-spans-fidelity-render"
-  - "implementation plan"
   - "portable cli projection"
 importance_tier: "important"
 contextType: "implementation"

@@ -5,7 +5,6 @@ trigger_phrases:
   - "codex-wrapper"
   - "codex output projection"
   - "codex exec json stream"
-  - "implementation summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

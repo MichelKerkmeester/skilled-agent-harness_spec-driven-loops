@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "sk-git 1.6.0.0 is released in its README and changelog, the advisor knows the commit-identity vocabulary, the delegation rule freezes the orchestrator during a lineage, and AGENTS.md names commit identity beside branch naming."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "docs and release implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

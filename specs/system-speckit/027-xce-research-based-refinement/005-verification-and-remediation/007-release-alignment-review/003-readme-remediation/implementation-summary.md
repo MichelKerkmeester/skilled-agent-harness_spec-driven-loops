@@ -23,10 +23,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "readme remediation implementation summary"
 ---
 # Implementation Summary: README Currency Remediation (Track A)
 

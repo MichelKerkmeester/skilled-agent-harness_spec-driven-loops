@@ -2,10 +2,7 @@
 title: "Tasks: Require a commit body on every authored commit"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "commit body always required tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

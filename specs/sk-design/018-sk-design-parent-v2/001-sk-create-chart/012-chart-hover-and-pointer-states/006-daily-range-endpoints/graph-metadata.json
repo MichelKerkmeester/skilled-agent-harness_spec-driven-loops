@@ -15,14 +15,10 @@
       "daily range carries no interaction register at all",
       "daily-range tooltip",
       "daily-range hygiene line",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "daily range endpoints plan",
+      "daily range endpoints tasks",
+      "daily range endpoints acceptance criteria",
+      "daily range endpoints implementation summary"
     ],
     "key_topics": [
       "daily",
@@ -35,8 +31,8 @@
       "tooltip",
       "hygiene",
       "line",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -196,7 +192,7 @@
     ],
     "causal_summary": "`daily-range` carries no interaction register at all today",
     "created_at": "2026-09-05T16:03:58Z",
-    "last_save_at": "2026-10-07T12:55:07.096Z",
+    "last_save_at": "2026-10-07T15:56:27.773Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +202,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ad7f7c168aae0923afe7c4d490b162341c1e9a9a87a2a8ef3ef12792304075a",
+    "source_fingerprint": "sha256:dd76c9ddcb88d0082bcef01c5b359a5a36a8804215ebc4ba86b5cf1e8dbfbecc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2899df8c89d3af1ed2816637280cc395e98f0cc078a573321dc0cdd2eb46711a",
-      "plan.md": "71c1cba7f002b79d38121676a17ab3901ed3f484ff5a5e77101b8d08968efbf7",
-      "tasks.md": "bb0173a5cb7d20c52fe580c25ee1dfd4ebe0400890e57c47ba6501f6e6b04045",
-      "implementation-summary.md": "9509e1c8a0e4673ebd7761f1bd24b6acc924f057b368c9ed1d3297fd3ca20544"
+      "plan.md": "4e2db4b3de6824edcb57a167ff423a0d116ba1168c1bd0b499cf5b3d778a4142",
+      "tasks.md": "5297b333294a075dd59c962dedb27448b5e44b79486b3ce8972c122c0f128dd4",
+      "implementation-summary.md": "058459d8c11e5f839d0725c4e1ab9b0b9f9c31fff66c7dc7db262bd837d604da"
     },
     "last_active_at": null
   }

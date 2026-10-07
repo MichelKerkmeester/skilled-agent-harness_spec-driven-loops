@@ -2,7 +2,6 @@
 title: "Implementation Summary"
 description: "False-now documentation drift was corrected or confirmed in place for the four scoped surfaces, with historical records left untouched."
 trigger_phrases:
-  - "implementation summary"
   - "false-now doc corrections"
   - "retention forgetting"
 importance_tier: "normal"

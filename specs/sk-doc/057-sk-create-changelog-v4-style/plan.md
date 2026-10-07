@@ -2,10 +2,7 @@
 title: "Implementation Plan: Rewrite sk-create-changelog template and workflow to the v4 narrative style"
 description: "Rewrites the changelog template around the two-tier v4 narrative shape, then aligns the SKILL.md contract, the reference set and both command YAMLs with it. The existing HVR scanner and a structural check pass enforce voice and shape."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "sk create changelog v4 style plan"
 importance_tier: "normal"
 contextType: "general"
 ---

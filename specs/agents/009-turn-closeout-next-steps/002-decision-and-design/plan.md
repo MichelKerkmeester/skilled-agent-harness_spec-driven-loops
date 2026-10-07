@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 2: decision-and-design"
 description: "Run the four decision tests against the research findings, fix the shape, and escalate what only the operator may decide."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "decision and design plan"
 importance_tier: "normal"
 contextType: "general"
 ---

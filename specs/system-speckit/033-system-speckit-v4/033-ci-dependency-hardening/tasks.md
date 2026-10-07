@@ -4,8 +4,6 @@ description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "mirror gate tasks"
   - "dependabot tasks"
-  - "verification checklist"
-  - "task dependencies"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Implementation Plan: cache optimizer measurement and pricing fixes"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "cache optimizer measurement fixes plan"
 importance_tier: "normal"
 contextType: "general"
 ---

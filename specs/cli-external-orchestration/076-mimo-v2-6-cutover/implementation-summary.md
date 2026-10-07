@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Every living MiMo reference — skill documents, the pi settings' enabledModels, the deep-loop enforcement pair with its mirrors and tests, and the pi HerMeS pairing roster — now reads the v2.6 generation, and the two renamed ids resolve under the official Xiaomi Direct provider because the definitions the upstream xiaomi catalog still lacked arrived in .pi/models.json."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "mimo v2 6 cutover implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

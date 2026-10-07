@@ -14,15 +14,14 @@
       "doctor skill-graph-freshness audit",
       "/doctor:speckit skill-graph-freshness relevance",
       "doctor-skill-graph-freshness.yaml",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "doctor skill-graph-freshness audit acceptance"
+      "skill graph freshness plan",
+      "skill graph freshness tasks",
+      "doctor skill-graph-freshness audit acceptance",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "skill graph freshness implementation summary"
     ],
     "key_topics": [
       "doctor",
@@ -32,11 +31,11 @@
       "relevance",
       "doctor-skill-graph-freshness",
       "yaml",
-      "implementation",
+      "skill",
+      "graph",
+      "freshness",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -51,7 +50,6 @@
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
       ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite",
       "scratch/reality-check.md",
-      "scratch/doctor-run.log",
       "scratch/proposal.md",
       ".skilled/skills/cli-classifier/graph-metadata.json",
       ".skilled/skills/system-skill-advisor/runtime/database/.gitignore",
@@ -119,12 +117,6 @@
         "name": "reality-check.md",
         "kind": "doc",
         "path": "scratch/reality-check.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-run.log",
-        "kind": "file",
-        "path": "scratch/doctor-run.log",
         "source": "derived"
       },
       {
@@ -204,11 +196,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit skill-graph-freshness` checks whether the skill graph is current",
     "created_at": "2026-10-02T16:10:25Z",
-    "last_save_at": "2026-10-03T11:48:56.177Z",
+    "last_save_at": "2026-10-07T15:57:40.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6e2352da484b8f5bf3f5af541be4fa0cd55ecb74e7ede55b98632392e50640d",
+    "source_fingerprint": "sha256:dc72cc515fde9b77865ae60727ebe399b2ee68434b6f3a5793ddca1413b6834b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b69a13c92d594033c9eef5bd7319d7336aa5e35c1dddd428e848a92da5bca9bd",
-      "plan.md": "9280b57a9076e5893b442619a8b06400b444884b7a4983b128db80c5a1d56aa6",
-      "tasks.md": "702e7d80544dbfa09390182fe3ffd8e1c03c6ee869e29a5529419dbd4385ebef",
-      "implementation-summary.md": "f9e3a936fd3429de0fa878de5e509ca9bc0386af71afb7155df2660cb3235d3b"
+      "plan.md": "139f85e4b3d66736972e525773453934dd555501b33da20fcdb63c15d7ecbc69",
+      "tasks.md": "bc6f7c0beb32498778c7c81e204950f024f4b2c21d3715c442db31a657553b2c",
+      "implementation-summary.md": "f1e627c2f99a17e41c6560184e1f0248a2197e125524a5832e1d0bc13672077f"
     },
     "last_active_at": null
   }

@@ -13,16 +13,13 @@
     "trigger_phrases": [
       "manual review remediation",
       "every one of the 34 per file findings",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "manual review remediation plan",
+      "manual review remediation tasks",
       "manual review remediation acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "manual review remediation implementation summary"
     ],
     "key_topics": [
       "manual",
@@ -33,10 +30,10 @@
       "per",
       "file",
       "findings",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -199,7 +196,7 @@
     ],
     "causal_summary": "The manual review read all 38 corpus files and rendered each fresh, finding 34 numbered defects",
     "created_at": "2026-09-11T03:52:45Z",
-    "last_save_at": "2026-10-07T12:55:20.880Z",
+    "last_save_at": "2026-10-07T15:56:43.964Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3e92de8e88485579a6000987985669d3c96771148a49a95d35d1286ada3ba8a",
+    "source_fingerprint": "sha256:721108b7bcf980af103183b1b26240297bbbb4d4a6d26bbc9e767e60e744b14c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "03266b60945d66072f1ec858e4241634ed0a6f9dfee963e7134fc4eb8d26775d",
-      "plan.md": "bf8e12d9f889993f2e2c907fabd646e989fd1c274599c0b0a2ccde4877d0e193",
-      "tasks.md": "8f609875d249bd951b01d141ba95efbfa82b1dcd5e1090b7fc8f2ecb38c60954",
-      "implementation-summary.md": "481bf986025eb9ed5801fc72c0b5b765c0a0c498009c2f00e468e7b8a937fc58"
+      "plan.md": "800940157c4d2af9005ae8c45a75512c7160d03ee93ef11c09fd05ddaf3ef47c",
+      "tasks.md": "bbde30da44b4815e1aa7ba365b796e82346501d0e8e85e086bcff42b3a8113ea",
+      "implementation-summary.md": "cda9da4ffbf8bab34959e2c251fb9fc953c8aa0e8a6056aef25d7a1359a6665b"
     },
     "last_active_at": null
   }

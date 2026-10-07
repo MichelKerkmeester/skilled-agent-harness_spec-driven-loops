@@ -2,9 +2,7 @@
 title: "Tasks: Phase 4: catalog-and-playbook"
 description: "Task ledger for the feature catalog and the manual testing playbook: four category files with implementation anchors, twenty-two scenarios as one file per scenario, and a run report that records its own skips."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
+  - "catalog and playbook tasks"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

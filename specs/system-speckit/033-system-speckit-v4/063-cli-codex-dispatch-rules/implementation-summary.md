@@ -2,7 +2,6 @@
 title: "Implementation Summary"
 description: "cli-codex now sends only research and review lineages through the fan-out runner, points single build and doc dispatches at the child envelope, and warns that a sandboxed child cannot run checks that start tsx."
 trigger_phrases:
-  - "implementation summary"
   - "cli codex dispatch rules"
   - "cli codex sandbox eperm evidence"
 importance_tier: "normal"

@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "alignment review",
       "a fifteen iteration alignment review of the remediated",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "alignment review plan",
+      "alignment review tasks",
       "alignment review acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "alignment review implementation summary"
     ],
     "key_topics": [
       "alignment",
@@ -30,13 +28,13 @@
       "fifteen",
       "iteration",
       "remediated",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal",
+      "durable"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -196,7 +194,7 @@
     ],
     "causal_summary": "The fan-out containment packet changed the deep-loop runtime, its command YAMLs, the deep-research references and compiled contract, and the skill documentation around them across thirteen phases and one remediation round",
     "created_at": "2026-09-20T08:33:42.703Z",
-    "last_save_at": "2026-10-07T12:55:35.910Z",
+    "last_save_at": "2026-10-07T15:57:00.405Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6997071e6779e22f0df4e6909edc41ceec900825b3bfa0c104739f5d0f9557df",
+    "source_fingerprint": "sha256:85e6aa08c053b48afcffe7044602d9cceae080501c7c6640c7e77442e8f933f6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eaf59f96e7a5ae7e19088992d272d8fb98e92e75428229f6d718d82768bdef15",
-      "plan.md": "7625fcbef244182cd48e5b8de61e061caea68120263cdae071aaa9518d6ffea6",
-      "tasks.md": "2c597f87534aa3ba722a73877b967b6c47ffa8cccbe298c99ebfcae8013d06f5",
-      "implementation-summary.md": "90fd30542c463fabf032fb4678e47581fe1ede13be7fbc8b2c2f12829bbc5701"
+      "plan.md": "b439a35540702a8dfa446659f9dba40a46fb9f8918f32c2ad9e43a5297886b9b",
+      "tasks.md": "5205ad29934bf8b2dc61fe0725a078de5bc6257a6d10d4f8666d0c6246aff467",
+      "implementation-summary.md": "c3ecd6432966608c78c8219f0b4c3fe44ee3564dfbc4bcd8974bc81dc13f55a9"
     },
     "last_active_child_id": null,
     "last_active_at": null

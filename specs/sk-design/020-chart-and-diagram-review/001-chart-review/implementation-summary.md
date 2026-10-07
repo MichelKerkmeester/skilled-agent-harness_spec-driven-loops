@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Four-iteration deep review of sk-design-chart; verdict CONDITIONAL, findings verified in the parent synthesis."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "chart review implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

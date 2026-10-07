@@ -2,10 +2,7 @@
 title: "Tasks: Phase 4: agents-md-integration"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "agents md integration tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

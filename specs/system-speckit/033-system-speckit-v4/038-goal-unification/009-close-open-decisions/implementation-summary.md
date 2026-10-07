@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The four operator decisions, the last review advisories and the Devin host unknown are all closed, each pinned by a test; nothing is deferred."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "close open decisions implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

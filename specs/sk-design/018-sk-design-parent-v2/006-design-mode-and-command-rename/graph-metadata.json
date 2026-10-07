@@ -12,17 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "design mode and command rename",
-      "chart and diagram live under sk design but",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "chart and diagram live under sk design",
+      "design mode and command rename plan",
+      "design mode and command rename tasks",
       "design mode and command rename acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "design mode and command rename implementation summary"
     ],
     "key_topics": [
       "design",
@@ -32,11 +30,11 @@
       "chart",
       "diagram",
       "live",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -205,7 +203,7 @@
     ],
     "causal_summary": "Chart and diagram live under `sk-design` but still carry `sk-create-` in their mode names and",
     "created_at": "2026-09-06T16:22:19Z",
-    "last_save_at": "2026-10-07T12:55:17.054Z",
+    "last_save_at": "2026-10-07T15:56:39.909Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9be0182035324b4a31bdcf3e9aab4096459d4ccc0586cba543470baf8341ef3",
+    "source_fingerprint": "sha256:2e58e0d310cb4884c6130c81b14f188ba5ebf8502147ff52af8d9f0e08f3a304",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "64ed20a48ecdab116bd7c41787e48c757996bc6585d0ab229b82edfce6680e13",
-      "plan.md": "6279a360aa088d617e1f47de8ded07d41dad35b858384ebd45534bea441a4cbb",
-      "tasks.md": "26c913a42bea877b6e99f303c0bfc0468c1ba1e9d1762664d50694b7790b1396",
-      "implementation-summary.md": "77291dccc67a661e676f803f849aa008c7e1be33e6d34539937f07d50eb68c91"
+      "spec.md": "46516b01b8d410f5604358a1b7d3c18b0c7175e53c2549dc850d7fd1d1cdd4d2",
+      "plan.md": "79b8477901521e268cb4879fc8139e9fe6c871029c7702d413a4c3975b3a6183",
+      "tasks.md": "5e5207fb4cac3606d733542aa2d9bacc1f57ae4ebe753236eefbf51845df0209",
+      "implementation-summary.md": "576a10e659304d18e452ed0e207f6d3d608b06dce5e78f66baa741530aecf843"
     },
     "last_active_at": null
   }

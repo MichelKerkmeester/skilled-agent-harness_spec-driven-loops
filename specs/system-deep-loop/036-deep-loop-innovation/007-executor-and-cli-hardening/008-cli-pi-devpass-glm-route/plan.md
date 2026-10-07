@@ -2,10 +2,7 @@
 title: "Implementation Plan: Route the cli-pi GLM-5.3-Flash fan-out literal through the DevPass LLM Gateway"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "cli pi devpass glm route plan"
 importance_tier: "normal"
 contextType: "general"
 ---

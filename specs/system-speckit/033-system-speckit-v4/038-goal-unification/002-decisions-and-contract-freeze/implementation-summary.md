@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Eight goal-unification decisions frozen as ADRs from the two-lineage research synthesis, with the parent goal reconciled to them."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "decisions and contract freeze implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

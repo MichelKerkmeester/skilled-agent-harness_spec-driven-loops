@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 4: corpus-and-catalog"
 description: "Repaint the 34 examples and four templates through the extended applicator, re-shoot 39 captures, and move the selection guide into a bidirectionally-verified catalog."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "corpus and catalog plan"
 importance_tier: "normal"
 contextType: "general"
 ---

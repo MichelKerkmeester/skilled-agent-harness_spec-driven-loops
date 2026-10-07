@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Four runtimes now bind or inject the packet goal through one core: OpenCode gains bind, resent and packet actions, Pi and Cursor gain the resend reminder, Devin gains an injection adapter, and Claude Code and Codex keep their native goal command."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "runtime surfaces implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

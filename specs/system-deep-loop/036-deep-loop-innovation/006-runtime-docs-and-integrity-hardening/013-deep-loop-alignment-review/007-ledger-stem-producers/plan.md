@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 6: ledger-stem-producers"
 description: "Declare the per-stem producer census beside each frozen stem array, enforce it with a checker over the nine producer surfaces, and make the two places where the operative dialect differed from the registered one state their position loudly."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "ledger stem producers plan"
 importance_tier: "normal"
 contextType: "general"
 ---

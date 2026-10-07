@@ -4,10 +4,7 @@ description: "Approach and verification gates for the F5/F6/F8 leaf-removal wave
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/001-leaf-removals"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "leaf removals plan"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

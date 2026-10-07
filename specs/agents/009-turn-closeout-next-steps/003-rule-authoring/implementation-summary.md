@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Authored the close-out and question-asking repo rule, checked for structure, collisions and the punctuation ban."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "rule authoring implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

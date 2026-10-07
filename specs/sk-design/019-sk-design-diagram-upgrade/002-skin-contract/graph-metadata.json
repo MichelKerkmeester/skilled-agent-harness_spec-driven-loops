@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "skin contract",
       "sign the seven contract decisions the research surfaced",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "skin contract plan",
+      "skin contract tasks",
       "skin contract acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "skin contract decisions",
+      "skin contract implementation summary"
     ],
     "key_topics": [
       "skin",
@@ -32,11 +30,11 @@
       "decisions",
       "research",
       "surfaced",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -202,7 +200,7 @@
     ],
     "causal_summary": "Sign the seven decisions: the 4px exemption list resolving `SKILL.md:403` against `:337`; marker vocabulary and id-uniqueness scope; node and coral-element markup conventions; the self-contained bar (lean: keep the fonts link plus fallback chains); the emphasis mapping for an accent at 2.86:1 against a 3.0 gate; token-source scope with `#3d4460` promoted to a named role; the variant lattice",
     "created_at": "2026-09-10T17:17:41Z",
-    "last_save_at": "2026-10-07T12:55:17.203Z",
+    "last_save_at": "2026-10-07T15:56:39.835Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3498da51a6787ef00504653b5cba830bcb2fd1b28596e1727eb8c452a6b3e7dc",
+    "source_fingerprint": "sha256:331547936a42bbaa6c0ff3dfaa49568440627a76fe662510e3650e4ad31cd5f9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8ebce02734d360adbd4e73003c376a3e8510c58d79a7eec64f5a0909e8966bc9",
-      "plan.md": "c38be620af9d8afd0316cdd10544c24e7bef289b9a9bd3712dd40a8d4a23501d",
-      "tasks.md": "704091cbb538f50bb460c5d7ba5934a33eea1dcc747abba42d47e297c79d8dcc",
-      "implementation-summary.md": "2c7f767cd106b855331f41f597509685ca721c4b7f472ff0c968ecf4dcf9b99b"
+      "plan.md": "0e4d3cfbb927539ad62b00ed471544c89f8c5af4e6ac32555b2c38cdd9e0d73d",
+      "tasks.md": "3ff8dfdc226a6e616cba7f78e34441fc54fae0647288ec45eac0d2eeb22c48dd",
+      "implementation-summary.md": "00ae8f7b2f26a6a04bfebc4070747e1bdaee8aedc93d95e0fd5716ae7cc5660a"
     },
     "last_active_at": null
   }

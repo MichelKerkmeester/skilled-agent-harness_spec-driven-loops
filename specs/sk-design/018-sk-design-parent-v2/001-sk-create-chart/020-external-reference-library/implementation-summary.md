@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "52 captures of well-designed charts from 39 public sources, indexed with what each is worth borrowing."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "external reference library implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

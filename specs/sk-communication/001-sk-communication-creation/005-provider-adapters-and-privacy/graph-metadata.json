@@ -14,7 +14,6 @@
       "provider-adapters-and-privacy",
       "portable cli projection",
       "implementation phase",
-      "implementation plan",
       "architecture decision",
       "use model-scoped adapters behind a privacy-first router",
       "implementation status",
@@ -30,12 +29,12 @@
       "projection",
       "implementation",
       "phase",
-      "plan",
       "architecture",
       "decision",
       "model-scoped",
       "adapters",
-      "behind"
+      "behind",
+      "privacy-first"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,7 +196,7 @@
     ],
     "causal_summary": "Add model-scoped hosted and local provider adapters behind privacy-first routing and explicit egress consent",
     "created_at": "2026-08-11T10:04:30Z",
-    "last_save_at": "2026-10-03T15:12:00.148Z",
+    "last_save_at": "2026-10-07T15:56:18.168Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,11 +207,11 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:dea517d4766497e2c65136b03ffe7ef5d5b0ee77692e5801fb0dc39946723226",
+    "source_fingerprint": "sha256:036f99b4477399fb247dcaab544c6dc106c06c1b646168016bd8af0d42634f6b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9dee715d5a6d992e5eb5cc2f86b5e148c4bf08cdfe8a09a37d0706cea25c9f49",
-      "plan.md": "52282cd601e9e76abc1932d24e5f4e843f1bb64141610b3123dc90aec9a76ad1",
+      "plan.md": "e952fb649923f9229c6ee497c470e5dfde9d58be95a5db68c7482bf45e2d02d5",
       "tasks.md": "e4e8f481a401aea3fe2e59655485c6d4a3e68c1720f7389ee6c732ccff7287d8",
       "decision-record.md": "680883d20767bafb9d4a07c97f2d4e55d3f1ac18fb030fc7898265a130426608",
       "implementation-summary.md": "cd42a9f557ee2c13e8a1ad5df1589e95fc65bb1355f7b6a8096e9bbaf68025e2",

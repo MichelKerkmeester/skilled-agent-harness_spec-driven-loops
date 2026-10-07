@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Every prose surface that enumerated six external CLI modes now names cli-hermes, the hub and packet READMEs describe the shipped state, the deep-command contracts are recompiled, and the parent passes the recursive strict gate."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "docs governance and closeout implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

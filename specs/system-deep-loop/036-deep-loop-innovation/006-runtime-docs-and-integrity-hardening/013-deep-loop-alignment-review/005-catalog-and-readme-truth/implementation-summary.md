@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Ten classes of contradicted documentation closed across sixty-two files, each class swept to zero rather than its cited instance."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "catalog and readme truth implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

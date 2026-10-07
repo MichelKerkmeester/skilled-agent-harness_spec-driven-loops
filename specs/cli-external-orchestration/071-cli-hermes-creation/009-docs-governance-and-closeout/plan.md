@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 8: docs-governance-and-closeout"
 description: "Grep every surface for the six mode names, add the seventh in place, refresh the packet README from the template, recompile the deep-command contracts whose sources changed, and close the parent with the recursive strict gate."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "docs governance and closeout plan"
 importance_tier: "normal"
 contextType: "general"
 ---

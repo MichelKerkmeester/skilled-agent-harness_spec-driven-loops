@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The empty-registry advisory reads the right field per loop type and the containment schema rejects unknown keys by name."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "review lane advisory and strict config implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

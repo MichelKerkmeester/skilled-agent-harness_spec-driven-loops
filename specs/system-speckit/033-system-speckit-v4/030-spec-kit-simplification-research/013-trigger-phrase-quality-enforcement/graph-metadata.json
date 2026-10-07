@@ -22,7 +22,7 @@
       "phrase quality tasks",
       "judge module tasks",
       "diagnostics bucket tasks",
-      "verification checklist"
+      "phrase quality criteria"
     ],
     "key_topics": [
       "trigger",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The convention said to declare phrases of two or more tokens and never to index bare numbers or generic words, and nothing enforced the first two rules anywhere: the committed index carried 352 single-token keys across 826 documents, 42 of them only numbers, and sweep-produced fragments such as `ation` passed the judge, the validator, the generator and the doctor",
     "created_at": "2026-09-07T06:03:20.451Z",
-    "last_save_at": "2026-09-08T15:47:13.820Z",
+    "last_save_at": "2026-10-07T15:57:23.186Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,12 +217,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c4d101f6d5b8a7dafdf41db15600400c4a803bc4ffaa75a11cd35e05138e1c88",
+    "source_fingerprint": "sha256:881d22b202413c14b46812b7a23f58cf6e47f145a14bdc270d74fb38ea969fc4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b49d1aa55d7d44059f3b8bd449d855b4ed15ffb6506559774ef673d178da6f98",
       "plan.md": "6a7c8f94312c86c70e4147187751eb88b1d2b0cef121bc2153ba8e1ade6d67dd",
-      "tasks.md": "8085858d39986487edf8025a6db7d4cb2109619408bf4b32075d1fc7b285d886",
+      "tasks.md": "06ade4237d00622adadb22c7df75370d69d218e9fc0621fcd6601c62aeedc8d0",
       "implementation-summary.md": "98840ba7ff9817e9faea5dae91f3db49690f5aad8e5c4a0f86f42a0a9cfd1de9"
     },
     "last_active_child_id": null,

@@ -55,12 +55,12 @@
       "rules/check-links.sh",
       "lib/validator-registry.json",
       "tests/validate-runs-every-registry-rule.vitest.ts",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/notion-bases-relation-rollup.md",
       "rules/check-placeholders.sh",
       ".opencode/skills/system-spec-kit/runtime/cli/rules/check-links.sh",
       ".opencode/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
       ".opencode/skills/system-spec-kit/references/workflows/rename-pattern.md",
-      ".opencode/skills/system-spec-kit/runtime/cli/rules/README.md"
+      ".opencode/skills/system-spec-kit/runtime/cli/rules/README.md",
+      ".opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md"
     ],
     "entities": [
       {
@@ -136,12 +136,6 @@
         "source": "derived"
       },
       {
-        "name": "notion-bases-relation-rollup.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/notion-bases-relation-rollup.md",
-        "source": "derived"
-      },
-      {
         "name": "check-placeholders.sh",
         "kind": "script",
         "path": "rules/check-placeholders.sh",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`rules/check-links.sh`'s own header states it plainly: \"A standalone scan run on demand: it has no validator-registry row, so validate.sh never sources it\" (`check-links.sh:5-6`)",
     "created_at": "2026-09-07T15:05:48Z",
-    "last_save_at": "2026-09-08T15:47:15.806Z",
+    "last_save_at": "2026-10-07T15:57:23.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9768a1506b94528c3e0f5ed5fc134c4b3d81a5f50ac47ab465da4c19411253ff",
+    "source_fingerprint": "sha256:567607eee034c0ab048ff890c397aa6144d3fa4f30e00164cc024560fb08306f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9dfc9f61af19b2a10314f0b807b1014c513beeca535402e22f67c7dfdd00efdb",
       "plan.md": "e2a002f380b20325ba050364430a3f65817c6e0afe5e1b2f09696714b7503cfb",
       "tasks.md": "5a659c629aaf69b720e223cca2a007527eebbed14c747969dd729496a04353af",
-      "implementation-summary.md": "9ae3617d6f6b79561ccdc750399f5787b91240e5dcd4706bd07de19a9576e2f8"
+      "implementation-summary.md": "f8391157c36e76bb7130fd4b5effedb68f11a02bb4c9f9816767dce584d40591"
     },
     "last_active_at": null
   }

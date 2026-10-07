@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The cli-jev closeout: every mode list in the repository now names the transport, the hub catalog's falsified zero-axis claims are corrected, the parent packet carries its phase map and decisions, and the recursive strict gate closes the packet."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "docs governance and closeout implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

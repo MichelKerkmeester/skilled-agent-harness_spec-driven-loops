@@ -2,7 +2,6 @@
 title: "Implementation Plan: Phase 2: release-update-customization-signals"
 description: "Add a generated-file class and regenerate-after-apply handling to the release engine, record the base at install, evaluate provenance_fingerprint as a pre-filter, settle the prerelease policy, and allow update-only applies without an alignment run."
 trigger_phrases:
-  - "implementation plan"
   - "release engine changes"
   - "generated class"
   - "base recording"

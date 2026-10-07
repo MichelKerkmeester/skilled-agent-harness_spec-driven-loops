@@ -13,16 +13,10 @@
     "trigger_phrases": [
       "communication split",
       "split communication md two ways prose craft keeps",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "communication split plan",
+      "communication split tasks",
       "communication split acceptance criteria",
-      "implementation summary"
+      "communication split implementation summary"
     ],
     "key_topics": [
       "communication",
@@ -32,11 +26,11 @@
       "prose",
       "craft",
       "keeps",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -197,7 +191,7 @@
     ],
     "causal_summary": "`communication.md` bundled three different trigger conditions under one",
     "created_at": "2026-09-11T17:16:17Z",
-    "last_save_at": "2026-10-07T12:54:42.492Z",
+    "last_save_at": "2026-10-07T15:55:51.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +201,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:535766bccc093a35769c4d60752b0594a177ff2526249d241eb419a9c8148f53",
+    "source_fingerprint": "sha256:f8c511940ee0c9b467636dcdfb6f38da18b107f31d82c5eef79bdb1b28e2e4ee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a48e560416e3593d59274aadad6996add67e8cdbf7fba94ebe0de147024a7bef",
-      "plan.md": "66210852764df1f0e90900632d1f0d4a23ce79e62082f2776da68dc4ff8d5330",
-      "tasks.md": "26a875522c2d99d9de64ed09e321209f2f6394c0edfa512a28a092db6027178e",
-      "implementation-summary.md": "90b18ac08d0e9540ab108103f3777fdc1986b7dcdfc3d453b8585167b7079838"
+      "plan.md": "6af76d42d8857ade80f23d8b517fb1963ff830dd01ff201e008b3e0d02f8611c",
+      "tasks.md": "4f505e3f4b91fe26003aad75ec36ea576040dec3a1e8e20b3abb518dd6f65922",
+      "implementation-summary.md": "6a7da0b1204287484c8d229a619cc18eac7988c150ebddf86527658f1cd47a1e"
     },
     "last_active_at": null
   }

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The goal template, the set-string playbook, the contract JSON and the validator now agree: frontmatter never leaves the file, a parent durable slice warns past 3000 and fails past 4000, and a binding row must point at a child goal that exists."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "speckit goal contract implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

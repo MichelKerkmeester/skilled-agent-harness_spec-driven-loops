@@ -4,7 +4,6 @@ description: "Concrete internal spec packet paths were removed from public-facin
 trigger_phrases:
   - "public docs"
   - "internal spec references"
-  - "implementation summary"
 importance_tier: "important"
 contextType: "general"
 _memory:

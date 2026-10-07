@@ -26,10 +26,7 @@ _memory:
       - "The runtime resolves folder/name.md as /folder:name, so the move alone changes the invocation; the reference edits keep the docs accurate."
       - "Only functional invocation references were updated; historical spec docs and phase-folder names that contain the old string were intentionally left as records."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "command namespace rename implementation summary"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Phase 7: rewrite command namespace rename

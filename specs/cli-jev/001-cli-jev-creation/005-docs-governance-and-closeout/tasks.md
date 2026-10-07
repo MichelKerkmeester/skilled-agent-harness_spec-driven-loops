@@ -2,10 +2,7 @@
 title: "Tasks: Phase 5: docs-governance-and-closeout"
 description: "Task ledger for the closeout: roster and catalog truth, parent metadata, the phase-004 pair, this phase's documents, then the recursive gate with the trigger index and continuity last."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "docs governance and closeout tasks"
 importance_tier: "normal"
 contextType: "general"
 _memory:

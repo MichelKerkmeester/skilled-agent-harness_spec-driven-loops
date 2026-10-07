@@ -2,10 +2,7 @@
 title: "Implementation Summary: close every deferral the packet left"
 description: "Repaired the three tables whose card could outrun them, added the two corpus rules that make the property enforceable rather than discovered, watched every new branch fail before trusting it, and closed the last item as a design the corpus declines rather than work it postpones."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "close the deferrals implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

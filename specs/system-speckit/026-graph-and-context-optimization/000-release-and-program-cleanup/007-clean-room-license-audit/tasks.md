@@ -4,10 +4,7 @@ description: "Task list for the P0 license-audit gate."
 importance_tier: "important"
 contextType: "implementation"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "clean room license audit tasks"
 ---
 # Tasks: Clean-Room License Audit (012/001)
 

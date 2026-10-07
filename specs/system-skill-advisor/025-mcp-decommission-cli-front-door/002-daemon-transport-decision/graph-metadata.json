@@ -15,14 +15,14 @@
       "advisor socket protocol",
       "hook latency baseline",
       "daemon versus stateless",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "daemon transport decision plan",
+      "daemon transport decision tasks",
+      "daemon transport decision acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "daemon transport decision implementation summary"
     ],
     "key_topics": [
       "advisor",
@@ -35,7 +35,7 @@
       "baseline",
       "versus",
       "stateless",
-      "implementation",
+      "transport",
       "plan"
     ],
     "importance_tier": "normal",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The resident daemon is why a prompt-time recommendation is fast: SQLite is warm and the embedder is already loaded",
     "created_at": "2026-09-11T06:48:56Z",
-    "last_save_at": "2026-10-07T12:55:39.898Z",
+    "last_save_at": "2026-10-07T15:57:06.455Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bb1f16001633c751ec9ce2b2feed82d0b7fd3c419f8bd4736fbcaff8b58071f4",
+    "source_fingerprint": "sha256:a9e39a3ca5083a3da34b1112eb72366bcc71403d222a118f0127d026c07ae5e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "33ef05a12f6b0a9690349b5727e3934c10d70712edae9bf4aafb9325ad399a53",
-      "plan.md": "4c971b76bb6b197228d91a279cb3f0458b2575feffd1494aa0aeeafa2445f503",
-      "tasks.md": "f3447296b47405ee9746ab933cec39e3651beb451a9b244584f3b0e3e7d0c987",
-      "implementation-summary.md": "3e92a34b0e122de99b90cd94700387bb45f959e39c61ff26ab92a1b53d3fb0de"
+      "plan.md": "3e7dc391e785dec98ac8527f12dfec3a2a15b6eb9e6955aafb1bb08c880de949",
+      "tasks.md": "4cd7f447700984ff67628543fda037dbd03f1a5b9c28e3b353fcbef0a000f376",
+      "implementation-summary.md": "efe03797df80314ae010a8a69fad7bde660ca57c2ab81600e7d01d82387e4328"
     },
     "last_active_at": null
   }

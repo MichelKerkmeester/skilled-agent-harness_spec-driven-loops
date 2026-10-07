@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The hallucination grader keeps its keep verdict on the repeat run, and a new cascade arm keeps too, sending only 30 of 56 rows to the model."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "hallucination grader improvements implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

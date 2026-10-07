@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 2: extend-dispatch-coverage"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "extend dispatch coverage plan"
 importance_tier: "normal"
 contextType: "general"
 ---

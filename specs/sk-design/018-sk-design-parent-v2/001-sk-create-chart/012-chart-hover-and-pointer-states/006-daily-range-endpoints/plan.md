@@ -2,10 +2,7 @@
 title: "Implementation Plan: Give daily-range its first pointer contract, low and high, never a midpoint"
 description: "Copies the excerpt into daily-range.html, the one form in this trio with no interaction register today, adds the focus-ring hygiene line it is missing and registers each drawable bar with two fixed rows, low and high, never a midpoint."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "daily range endpoints plan"
 importance_tier: "normal"
 contextType: "general"
 ---

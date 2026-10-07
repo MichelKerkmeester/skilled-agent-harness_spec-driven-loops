@@ -4,10 +4,7 @@ description: "Approach and verification gates for reducing authority-registry.ts
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/005-authority-registry-cas-reduction"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "authority registry cas reduction plan"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

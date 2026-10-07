@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Every direct state-log append in the deep-loop YAMLs now goes through the gateway under a canonical stem, the exemptions are gone, and a projection refresh cannot drop a row."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "direct append sites through gateway implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

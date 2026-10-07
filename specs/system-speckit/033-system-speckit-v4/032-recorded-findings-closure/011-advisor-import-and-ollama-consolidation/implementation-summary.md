@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "One Ollama transport now serves both the daemon adapter and the legacy provider, and every advisor import of @spec-kit/shared carries the .js extension, pinned by a test."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "advisor import and ollama consolidation implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

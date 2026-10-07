@@ -24,10 +24,7 @@ _memory:
     answered_questions:
       - "R2: drop unused database params vs thread the handle — dropped the one dead param (smallest safe diff); causal-edges.ts unchanged since its module-global design already guarantees one connection."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "consolidation hardening implementation summary"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Consolidation Cycle Hardening

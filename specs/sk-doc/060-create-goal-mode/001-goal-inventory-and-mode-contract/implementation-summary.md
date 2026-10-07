@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "What phase 001 of the sk-create-goal mode packet produced: the measured goal corpus, the goal anatomy, the ownership boundary, the decision tests and the target tree."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "goal inventory and mode contract implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

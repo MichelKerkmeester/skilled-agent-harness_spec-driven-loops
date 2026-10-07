@@ -2,10 +2,7 @@
 title: "Tasks: Gate DeepSeek cache-compat advice on an explicit wire-protocol opt-in and declare image input for the llmgateway model"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "compat opt in and image declaration tasks"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -2,10 +2,7 @@
 title: "Tasks: cli hub doc version reconciliation"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "cli hub doc version reconciliation tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

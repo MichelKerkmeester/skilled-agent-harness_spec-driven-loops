@@ -11,10 +11,7 @@ _memory:
     recent_action: "Authored the plan; implementation complete"
     next_safe_action: "Run whole-suite gates; commit"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "cross runtime dispatch plan"
 ---
 # Implementation Plan: Retire the deep/* Dispatch-Context (Phase-0) Gate
 

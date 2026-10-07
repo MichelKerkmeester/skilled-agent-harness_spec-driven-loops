@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 16: code standards alignment"
 description: "Read every added line against two authorities, change only what genuinely misses, and record a reason for each decline."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "code standards alignment plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Implementation Summary: router conformance"
 description: "What shipped, what it cost, and what the gates could not have told anyone."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "router conformance implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

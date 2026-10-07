@@ -4,10 +4,7 @@ description: "Steps to read external/LICENSE and produce the clean-room allow-li
 importance_tier: "important"
 contextType: "implementation"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "clean room license audit plan"
 ---
 # Plan: Clean-Room License Audit (012/001)
 

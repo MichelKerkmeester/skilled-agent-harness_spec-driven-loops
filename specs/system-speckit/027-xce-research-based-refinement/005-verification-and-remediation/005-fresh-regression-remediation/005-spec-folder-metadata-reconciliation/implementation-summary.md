@@ -7,7 +7,6 @@ trigger_phrases:
   - "remediation"
   - "005"
   - "fresh"
-  - "implementation summary"
   - "spec"
 importance_tier: "important"
 contextType: "general"

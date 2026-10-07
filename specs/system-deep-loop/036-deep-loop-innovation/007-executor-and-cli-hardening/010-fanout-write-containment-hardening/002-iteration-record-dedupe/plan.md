@@ -2,10 +2,7 @@
 title: "Implementation Plan: Deduplicate iteration state records by iteration and prefer the routed record, so a completed lane is not rejected"
 description: "Collapse duplicate iteration records by number in the forced-depth validator, prefer the gateway-written copy, and make the references name the gateway."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "iteration record dedupe plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,8 +2,6 @@
 title: "Acceptance Criteria: CLI decommission orphan removal"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
   - "orphan removal criteria"
   - "test lanes green criterion"
 importance_tier: "important"

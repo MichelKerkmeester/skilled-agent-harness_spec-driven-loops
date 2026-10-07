@@ -2,10 +2,7 @@
 title: "Tasks: Phase 2: extend-dispatch-coverage"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "extend dispatch coverage tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

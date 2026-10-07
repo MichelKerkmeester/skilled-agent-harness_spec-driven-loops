@@ -12,31 +12,30 @@
   "derived": {
     "trigger_phrases": [
       "repo wide goal research",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "repo wide goal research plan",
+      "repo wide goal research tasks",
       "packet goal",
       "durable directive",
-      "completion criteria"
+      "completion criteria",
+      "goal binding",
+      "repo wide goal research implementation summary",
+      "goal contradiction register",
+      "goal surfaces inventory",
+      "goal documentation drift"
     ],
     "key_topics": [
       "repo",
       "wide",
       "goal",
       "research",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy"
+      "tasks",
+      "packet",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -202,7 +201,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-12T04:14:32Z",
-    "last_save_at": "2026-10-07T12:55:48.142Z",
+    "last_save_at": "2026-10-07T15:57:28.612Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +212,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ba12dbcd7e842da29740f5220ba855692748791164737f1e0b025b2683e08ce2",
+    "source_fingerprint": "sha256:2a62e9ff184514ecd7a0d20d7df67647046127b710b47907c53075131449862f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "36207230020e239c495c0e511bacee48bd63667a96711a12eea4ab6961764c76",
-      "plan.md": "ae54d9764199dbb2429e0b154a5e1d201c5c27ab641da476019ba97bb44e4e07",
-      "tasks.md": "d7bb302bfc727edc43f8bb12e606ce07be24545487db1b9fa98cf1ed1a12bccd",
-      "implementation-summary.md": "bd854c7e10ed999f6535742867b9ce8890fa1c9d21e83ac0bc9ddff382415c17",
+      "plan.md": "28a7daea90df1e707e04a867ae56a27adba674e649c7d48a4f0e02ecb5dd72d8",
+      "tasks.md": "4f55920195937a126d134b37aec9cd10db5163cd88475f435114a20f4a28a833",
+      "implementation-summary.md": "b1aa54c42383dc7781658bc74ed208927b384edc4ec9d84ed9e1d557e7733161",
       "research/research.md": "506d69a1f5be53e6ce83baeda27b4b4b6630b3d51dc01a9e239c606bd32a965e"
     },
     "last_active_at": null

@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: freshness-and-scan-truth"
 description: "Make advisor_status surface index-level staleness from stored content hashes, count skill roots instead of recursive metadata fixtures, and teach the doctor freshness panel to report a compiled graph older than its sources and a degraded absent-SQLite diff."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "freshness and scan truth plan"
 importance_tier: "normal"
 contextType: "general"
 ---

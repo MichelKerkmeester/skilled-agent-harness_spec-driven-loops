@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 13: shadcn-reference-research"
 description: "Six research angles run as one deep-research lineage against a frozen local shadcn corpus, producing cited findings and a sorted decision list; no template or checker changes."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "shadcn reference research plan"
 importance_tier: "normal"
 contextType: "general"
 ---

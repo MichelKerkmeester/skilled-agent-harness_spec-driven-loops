@@ -2,10 +2,7 @@
 title: "Implementation Plan: Bring the six chart deliveries to parity with their parent templates' pointer contracts"
 description: "Copies the pointer-interaction code three parent templates already ship, and the code phase 004 lands in a fourth, into their corresponding deliveries, then declares the remaining two deliveries inert with their parent's own stated reason."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "deliveries to parity plan"
 importance_tier: "normal"
 contextType: "general"
 ---

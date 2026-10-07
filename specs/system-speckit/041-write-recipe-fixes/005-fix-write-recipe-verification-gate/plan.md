@@ -2,10 +2,7 @@
 title: "Implementation Plan: Reword the Step 7 verification gate of the spec folder write recipe"
 description: "Reword one gate line so it checks the staged set, and bring the recipe version to the derived value."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "fix write recipe verification gate plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,7 +2,6 @@
 title: "Implementation Summary"
 description: "Both skills' contracts, references, command docs, catalogs, playbooks and changelogs now describe what phases 003 to 005 shipped, and the closure record names what was deferred and why."
 trigger_phrases:
-  - "implementation summary"
   - "docs closeout"
   - "closure record"
   - "release changelogs"

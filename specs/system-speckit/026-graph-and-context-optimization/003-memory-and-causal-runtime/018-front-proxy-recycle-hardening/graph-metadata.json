@@ -18,13 +18,9 @@
       "daemon recycle hang",
       "cold start timeout proxy",
       "lazy init process exit daemon",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "front proxy recycle hardening plan",
+      "front proxy recycle hardening tasks",
+      "front proxy recycle hardening implementation summary"
     ],
     "key_topics": [
       "front",
@@ -198,7 +194,7 @@
     ],
     "causal_summary": "A 2026-06-04 incident left `mk-spec-memory` stuck at `connecting…` in new sessions after an operator externally SIGTERM-killed the daemon child during a from-source DB rebuild",
     "created_at": "2026-06-04T09:30:00Z",
-    "last_save_at": "2026-09-11T04:39:44.459Z",
+    "last_save_at": "2026-10-07T15:57:11.568Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d8465a6a50a1c30a6de5ca0b63315a5facd362c962f8795653791330d733a07c",
+    "source_fingerprint": "sha256:187b91f271047c0bc1dcfc8c03696f3a9d164383568105eb753d87d497c5e3a2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f8ac70fd6e704b43628b22fb0cc697a9731d46ccce0172554b9135765d17ee88",
-      "plan.md": "997838e511f3859d1b09efff4defc86e117e1a19668ae05854b42e7d7ad0a851",
-      "tasks.md": "f0e8fdbdd5241074b1375cb1eafae6f8c0f3ee945fcfdb9a5dfb1444f82bba05",
-      "implementation-summary.md": "2b5af5fd7db2f7645569ff4d8629b0ea4f418e413cdf4bd5c557a153146a4971"
+      "plan.md": "ca213b63e20a00e1e70168c568f512ca521be1f98d98babed7a2ce2648e46404",
+      "tasks.md": "a5099c81dc001d3f4ecf2fdc0b3fbacfd6e7cfae054574d608817a15cc5cb870",
+      "implementation-summary.md": "b5b56e9996b4a0853b603a6ab4480afd4d569d4f3e54ef63f54d917ca93997eb"
     },
     "last_active_child_id": null,
     "last_active_at": null

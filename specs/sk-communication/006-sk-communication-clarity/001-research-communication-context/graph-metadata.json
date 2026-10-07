@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Three external communication sources sit in `../context/` and none has been read against this",
     "created_at": "2026-09-12T12:44:34Z",
-    "last_save_at": "2026-10-07T12:55:01.652Z",
+    "last_save_at": "2026-10-07T15:56:23.875Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:36244342391d5aa29daa4a3a409bf14c5cca130b58d66f07f062e970cff655b0",
+    "source_fingerprint": "sha256:dc03b3a4ae70813b19d3bb1322e8102aad2b0e32df8d58017543718da68a916b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "38442cf4fc1ce1f88ad68d2b6eaf28773515229e8e75751d13ea9c3ff4a2497f",
       "plan.md": "cbf09edd675cb34e2ba343aa005fc58127bd76bebf7788f62148a7e055f003a6",
       "tasks.md": "fb73d7d5527c60a1b4f6ac70500143fe86ddf79f8b57d495da5e805bf5019ddb",
-      "implementation-summary.md": "b7534aaa8310a2a84c26be7f9dacc094e3d1abc77f2211db95997cb0567cec51",
+      "implementation-summary.md": "0a5e653d40a12f52cdea9c79b30a4f801f016383684459a12d8ff153418c503e",
       "research/research.md": "91f49ef27f333c09bef7ef33bd4e9b6135709159dea8066dc33538d559e061d9"
     },
     "last_active_at": null

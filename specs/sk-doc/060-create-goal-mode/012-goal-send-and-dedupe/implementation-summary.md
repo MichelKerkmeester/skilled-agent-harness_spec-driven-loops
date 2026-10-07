@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A parent goal sent in chat now carries only its directive. One rule in sk-create-goal says what it never contains, the templates lost their author instructions, and system-spec-kit's phase workflows point to /create:goal instead of restating the rules."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "goal send and dedupe implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

@@ -2,10 +2,7 @@
 title: "Tasks: Phase 8: doctor-ownership-split"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "doctor ownership split tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

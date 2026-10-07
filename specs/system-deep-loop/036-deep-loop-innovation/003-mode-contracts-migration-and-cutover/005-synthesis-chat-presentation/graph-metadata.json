@@ -13,16 +13,10 @@
     "trigger_phrases": [
       "synthesis chat presentation",
       "give each deep loop mode a required content",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "synthesis chat presentation plan",
+      "synthesis chat presentation tasks",
       "synthesis chat presentation acceptance criteria",
-      "implementation summary"
+      "synthesis chat presentation implementation summary"
     ],
     "key_topics": [
       "synthesis",
@@ -34,9 +28,9 @@
       "mode",
       "required",
       "content",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -200,7 +194,7 @@
     ],
     "causal_summary": "A run could spend twenty minutes producing a ranked set of findings and then report an iteration count, four file paths and a status token",
     "created_at": "2026-09-20T08:33:39.910Z",
-    "last_save_at": "2026-10-07T12:55:27.751Z",
+    "last_save_at": "2026-10-07T15:56:49.398Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +204,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9974b654c5147882fd6793629f29ca22b6a2468d69fce6b05714c4335eea8f82",
+    "source_fingerprint": "sha256:7563723fc8818c324585e72fc001fe7039d862d136b37d4aa0a727089d2f6e24",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e442fc9d7b8cda14a8b9d6d537fef2b9dc9e04101ca5736f3ecb0b6d3eb3243c",
-      "plan.md": "c75fb2185a1946afe207bb13f45f9f421301c3d9a2e8e3a8b13e309879bdbb72",
-      "tasks.md": "5f250aae3363d005ef7e5ae973dcabff7af11a3f0a87324e39eb80fa81642784",
-      "implementation-summary.md": "0a99b15fe68c76334d3d47a50d9f05e2fd9ca0cc9d4f1b2bd4922f54fb093517"
+      "plan.md": "02a82fadb781b7d7c45f788d49c73a2fe58bd0eaabccc774213e8c35ae5a94f1",
+      "tasks.md": "a8d281c8a02e8fe86dc0a2d22ea0f554610ef6fdd4fb89a673262918def26b86",
+      "implementation-summary.md": "40c026fc3a8c6f69070354696d4218b0c49b0007a1bcb66d84bb84052a4e0015"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -5,7 +5,6 @@ trigger_phrases:
   - "evaluation-and-release-gate"
   - "reject-only evaluation consult complete"
   - "release gate complete"
-  - "implementation summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

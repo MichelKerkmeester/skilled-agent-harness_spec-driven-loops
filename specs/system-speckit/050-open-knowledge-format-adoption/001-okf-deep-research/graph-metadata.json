@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "okf deep research",
       "ten iteration deep research comparing how system spec",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "okf deep research plan",
+      "okf deep research tasks",
       "okf deep research acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "okf deep research implementation summary"
     ],
     "key_topics": [
       "okf",
@@ -33,10 +31,10 @@
       "comparing",
       "system",
       "spec",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -206,7 +204,7 @@
     ],
     "causal_summary": "No one has compared system-spec-kit against the Open Knowledge Format (OKF) with evidence",
     "created_at": "2026-10-04T05:36:11Z",
-    "last_save_at": "2026-10-07T12:55:55.311Z",
+    "last_save_at": "2026-10-07T15:57:44.282Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +216,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:38f1fbe620090f777978f5964ffa5fdf41287814476134e6630948cfe8b3ab6c",
+    "source_fingerprint": "sha256:bbf1c343dda41a4b90509595219de4e1e8e5fe8a04251ab7f9c3c0b0a6b3bdd2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c671037c795ce5c6eef2798381acfc918b84d0af14c222db97357d373030b020",
-      "plan.md": "4d4042038f33f1e48579d024c473392356cd3bfb2137fec74c430f7504705897",
-      "tasks.md": "1833259b6eef02830e18c9ee5d5c6f8afc4f5daa5ede4ba5abe36a76896729ea",
-      "implementation-summary.md": "133febe4a5ffbdb3b1473800e63fe19e6fbc74465705232eb3f6e107d2c8a84c",
+      "plan.md": "88112f8db6584c737d63df8dd941aea6858cc37446c71d249d0ccc5dfdef348c",
+      "tasks.md": "5067a33d8baff7279d8b4fb38def1d2255480985f70124b7f18a31579e3484cd",
+      "implementation-summary.md": "bf82c2df7cb97d8cf682c337848f3df031b8dc79cb69dcdde8c9ef5a95afa3c1",
       "research/research.md": "dc94928f76ef505bf41763f507339840c00472de651bc2963d557ce99b98a424"
     },
     "last_active_at": null

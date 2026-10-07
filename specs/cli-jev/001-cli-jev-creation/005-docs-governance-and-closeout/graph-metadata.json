@@ -15,14 +15,14 @@
       "docs governance",
       "recursive strict validation",
       "roster mentions",
-      "implementation plan",
       "approach and phases",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "docs governance and closeout acceptance criteria"
+      "docs governance and closeout tasks",
+      "docs governance and closeout acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "docs governance and closeout implementation summary"
     ],
     "key_topics": [
       "cli-jev",
@@ -34,9 +34,9 @@
       "validation",
       "roster",
       "mentions",
-      "implementation",
-      "plan",
-      "approach"
+      "approach",
+      "phases",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The mode is registered, routed and guarded, but the documents a reader consults first were written before it existed",
     "created_at": "2026-09-20T07:39:08Z",
-    "last_save_at": "2026-10-07T12:54:47.462Z",
+    "last_save_at": "2026-10-07T15:55:57.370Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:00f0e65fda8839ef6f591b3c6b296eba67d7121905515f6ea0ca2dd0a445ef03",
+    "source_fingerprint": "sha256:6b29e67509d85d442de1e8759c7b4354ad5017ea36470a1bef5c576b515c015a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c6572ebd721997e129d86759df89d993a56309cf0c21fa558a74ee9e64cb13d2",
-      "plan.md": "fcf93d9fa19fd416eb2391491e0846fe46332ba508652d413d099539691508ad",
-      "tasks.md": "640165adf8bdd64880459c8f3450432f7532f349bb3349366ad8af8a448b0ba9",
-      "implementation-summary.md": "6abd159fd11a10beae266d518759a6a8f27b2e55b2ff7bf7523a48dae8a71354"
+      "plan.md": "517eebcc4efdb658f5f3491ab6d180c9b24dc88026b6c3de59f711b9a22440af",
+      "tasks.md": "eb0a330f2dff51c75341ec67dc7a386a25d2985310ae87cc562ac14f9960096b",
+      "implementation-summary.md": "ed7c8c90be57b3eb91e770ccbb9b97567a14e69401fbe67fb5fd85e643196fa6"
     },
     "last_active_at": null
   }

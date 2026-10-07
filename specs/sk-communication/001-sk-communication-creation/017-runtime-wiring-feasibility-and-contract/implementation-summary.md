@@ -3,7 +3,6 @@ title: "Implementation Summary: Phase 017 Runtime-Wiring Feasibility and Contrac
 description: "The design phase is complete: the feasibility matrix and the hook-to-projection integration contract are finalized and validated by the successful 018-028 implementation, with the manual OpenCode live-render check recorded as the sole documented follow-up."
 trigger_phrases:
   - "runtime-wiring-feasibility-and-contract"
-  - "implementation summary"
   - "hook to projection integration contract"
   - "runtime wiring feasibility validated"
 importance_tier: "important"

@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 8: router-reach"
 description: "Audit the `/doctor:speckit router-reach` route, workflow and script against this checkout, decide keep, fix or retire, and apply the fix verdict to the probe, the route, the workflow, the presentation and the route validator."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "router reach plan"
 importance_tier: "normal"
 contextType: "general"
 ---

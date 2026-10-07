@@ -18,11 +18,11 @@
       "greppable spec docs",
       "frontmatter normalization",
       "spec doc retrofit",
-      "implementation plan",
-      "task breakdown",
       "grep convention doc retrofit acceptance criteria",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "grep",
@@ -34,9 +34,9 @@
       "docs",
       "frontmatter",
       "normalization",
-      "implementation",
-      "plan",
-      "task"
+      "acceptance",
+      "criteria",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Once retrieval is ripgrep, retrieval quality is a property of the corpus rather than of a ranking",
     "created_at": "2026-09-02T11:04:54Z",
-    "last_save_at": "2026-10-07T12:55:45.192Z",
+    "last_save_at": "2026-10-07T15:57:18.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b9ec53c7f707fa21e3412cbc5088b74ca48925194e3a54ca66e8beafb1fbbb4f",
+    "source_fingerprint": "sha256:fb3ed77dd0e512f63c713f27f58fe1fd83b1ce8840f6ee33b1848e3fa92a04bd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "08d6d3f2f342bcd8093d3bd2de87f622771da699a12f028ff081e9f305e0042a",
-      "plan.md": "f79ec3818bcc9087f22ba5f1778e0eb26eaf29b6203cf7d69a936ba34faf1d7a",
-      "tasks.md": "f7dbee70836ea9a4245cb86559b1a2dc36853da6b3070ad3ff154688df22a419",
-      "implementation-summary.md": "5ab4a1844326e3117029b54b96aeb102787005568cc9d31a89aa4c9953047b83"
+      "plan.md": "5ff69538a300071f478d5b4af27c0a11bd553182751eed8e231ca1f2692c3cb9",
+      "tasks.md": "14883f0b7cc4a6931a440dc63eb65e241a020bbc0ea5d011260bb768c996f773",
+      "implementation-summary.md": "31ec51ef8aa86f20f8d614968ecb699fc4080a68e8da59bca4c0e71ef995cb33"
     },
     "last_active_child_id": null,
     "last_active_at": null

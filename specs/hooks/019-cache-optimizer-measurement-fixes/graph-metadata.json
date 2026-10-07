@@ -13,16 +13,13 @@
     "trigger_phrases": [
       "cache optimizer measurement fixes",
       "an eight iteration three model research loop found",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "cache optimizer measurement fixes plan",
+      "cache optimizer measurement fixes tasks",
       "cache optimizer measurement fixes acceptance criteria",
-      "prefix gate withdrawal decision"
+      "prefix gate withdrawal decision",
+      "cross-turn stability decision record",
+      "withdrawn acceptance criterion",
+      "cache optimizer measurement fixes implementation summary"
     ],
     "key_topics": [
       "cache",
@@ -35,8 +32,8 @@
       "research",
       "loop",
       "found",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -198,7 +195,7 @@
     ],
     "causal_summary": "An eight-iteration, three-model research loop found that the cache extension cannot tell a real",
     "created_at": "2026-09-09T12:46:42Z",
-    "last_save_at": "2026-10-07T12:55:01.402Z",
+    "last_save_at": "2026-10-07T15:56:13.974Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed726722aacee25681bf7273da0990f5e7d84841cb23e7ad0a73418f8c16c466",
+    "source_fingerprint": "sha256:83b41ddd265b735c2947f209b602ad3ef77d5dddfa9351c75c48e75e61cd2abf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c16714c3673064e8773a4d6d5501735dd436f31a421f69ce4ba1285045e2211",
-      "plan.md": "01a4756748366dd74175a5e175fef2e8b12e5a09270369702a7c8e97ee49aa20",
-      "tasks.md": "bfcd167c60d86c3bb448df7147c56bc934f3c1614be5477f65cec4fdfaf4bf96",
+      "plan.md": "6039fc3e6d4babe7e1eb09cd769aa5d526ec626cb6d106675be626b6b3735fa2",
+      "tasks.md": "e14c5c7c1c0b0e874b25fa0e656ba456e120b30be3b1bc384f4358e1fadcfb0a",
       "decision-record.md": "637f03b706eae97f3f1b8acaec80ef895a602e0e92796d049d6ebd6afe47df04",
-      "implementation-summary.md": "7570eb9dc86e32dc5060b0fe458944c161b74be8ef107ad93dd8d76849377cfb"
+      "implementation-summary.md": "86c2b75b28d3d599cd9a4ea954922e14057c576c794fb3df01ade526687dbb72"
     },
     "last_active_at": null
   }

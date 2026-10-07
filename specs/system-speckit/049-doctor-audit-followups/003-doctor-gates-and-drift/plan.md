@@ -2,7 +2,6 @@
 title: "Implementation Plan: Phase 3: doctor-gates-and-drift"
 description: "Restore the mutation-class guard's coverage with a guard-owned manifest, fix the parent-skill fixture module resolution, extend route-validate to workflow activities, and correct the doctor's texts, counts and closed-packet statements."
 trigger_phrases:
-  - "implementation plan"
   - "guard manifest"
   - "fixture resolution"
   - "route validator activities"

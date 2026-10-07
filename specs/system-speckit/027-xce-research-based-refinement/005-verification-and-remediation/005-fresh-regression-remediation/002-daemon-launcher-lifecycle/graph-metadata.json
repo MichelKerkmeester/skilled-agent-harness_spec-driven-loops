@@ -13,32 +13,23 @@
   },
   "derived": {
     "trigger_phrases": [
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped",
-      "validation evidence",
-      "continuation notes"
+      "daemon launcher lifecycle plan",
+      "daemon launcher lifecycle tasks",
+      "daemon launcher lifecycle implementation summary"
     ],
     "key_topics": [
-      "implementation",
+      "daemon",
+      "launcher",
+      "lifecycle",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy",
-      "task",
-      "breakdown",
       "tasks",
-      "verification"
+      "implementation",
+      "summary",
+      "remediation",
+      "sub-phase",
+      "fresh",
+      "regression",
+      "deep-review"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -191,7 +182,7 @@
     ],
     "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 15 findings (4 P1) in this subsystem, each carried as a task with its registry recommendation. Scaffold only — no fixes applied.",
     "created_at": "2026-07-10T06:21:39.605Z",
-    "last_save_at": "2026-09-11T04:40:17.428Z",
+    "last_save_at": "2026-10-07T15:57:12.944Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +191,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:367a1a43cc82241fe54028cc90846454e786e55383439fb73af69059444577c4",
+    "source_fingerprint": "sha256:228163f4001c5c3ca77062464a45e4c901d890f0fa771dd2db16a4c3bae96c08",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "706844a089af064fbda878adcce69c4b8dd9d09f4d4f4ecfc5b80fe0ab4698fd",
-      "plan.md": "6fd5b78ce25c84a25e34660ad7d8306ef3d54a224a5f25803fe3bbe7d4bf979a",
-      "tasks.md": "34fd4dfd49d9899c0908f08261623830758977fc33fc30661768e1f8e347df8b",
-      "implementation-summary.md": "5da6039242be98da3468dbc77ddeb982e40282f4c70c918aab1a4fe5361fae5f"
+      "plan.md": "06fe7b766c035483f48b1345faac4c379860e683d480a6ee15f2ef659d83bd9f",
+      "tasks.md": "a59325f65d7d8e069e67c2e5536bb7c8c5e6d387ea2b6e765d4cb722467e7305",
+      "implementation-summary.md": "def8626da66fe4c582c01b244ebd7b28de98f7a076af214e8c60f4ba19a6bcc4"
     },
     "last_active_child_id": null,
     "last_active_at": null

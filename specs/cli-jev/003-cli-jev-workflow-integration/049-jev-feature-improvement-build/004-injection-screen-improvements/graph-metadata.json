@@ -12,17 +12,14 @@
   "derived": {
     "trigger_phrases": [
       "injection screen improvements",
-      "the injection screen scores only a corpus it",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "the injection screen scores only a corpus",
+      "injection screen improvements plan",
+      "injection screen improvements tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "injection screen improvements implementation summary"
     ],
     "key_topics": [
       "injection",
@@ -31,12 +28,12 @@
       "scores",
       "only",
       "corpus",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -199,7 +196,7 @@
     ],
     "causal_summary": "Feature 035 kept strongly, but commit `b0f89ee5f07` untracked its corpus, so the run cannot be reproduced",
     "created_at": "2026-10-03T05:30:05Z",
-    "last_save_at": "2026-10-07T12:54:56.234Z",
+    "last_save_at": "2026-10-07T15:56:06.605Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9e54e010a4bd61b56ebd2be147c74494d143b66b113018c3c8f3a0beb10e85c",
+    "source_fingerprint": "sha256:461d4fb3a3212a1bab5b024b62cd5d814140fb890d1949b9d4892f5ceb9f0855",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1f43630aa196ee596fd072af9334ce80163f56db029d164c685b1724586d6ccd",
-      "plan.md": "55ff4d0c9ac1a765c38ab29c76db0dc824e5b0f14c448476637dd147aa1d5bb0",
-      "tasks.md": "e554792515fa69225eb517bc7e56b1879a4261e78c19c20d0d31a15f922c9bd7",
-      "implementation-summary.md": "f938626e6c7f384797831009dba307a7d1bd387c944efc4f5d6f7ca2eadf46e4"
+      "spec.md": "a8c920fd0969851925307ccc0fddb1eaf2e895d194523887af97bb9a83f15198",
+      "plan.md": "f19d63cf079cf792083acb809ed9ac901a14010c5e2ecdf36e4677aa4a850712",
+      "tasks.md": "711c8d8767fa06b0b9ff34076199178c67b191f2f8efdef53665c07809500598",
+      "implementation-summary.md": "d806726629f01a243f3c572198a0318d8e2f5333a0f5aeafd621b60b50012402"
     },
     "last_active_at": null
   }

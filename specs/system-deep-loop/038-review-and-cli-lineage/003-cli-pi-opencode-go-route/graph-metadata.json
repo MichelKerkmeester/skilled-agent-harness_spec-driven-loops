@@ -13,16 +13,9 @@
     "trigger_phrases": [
       "cli pi opencode go route",
       "the deep loop cli pi executor maps deepseek",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "cli pi opencode go route plan",
+      "cli pi opencode go route tasks",
+      "cli pi opencode go route implementation summary"
     ],
     "key_topics": [
       "cli",
@@ -33,10 +26,10 @@
       "executor",
       "maps",
       "deepseek",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -198,7 +191,7 @@
     ],
     "causal_summary": "`PIMODELPROVIDERS` maps the bare `deepseek-v4.1-flash` literal to `llmgateway`, and one literal maps to one provider, so `/deep:review` and `/deep:research` with `--executor=cli-pi` can only reach DeepSeek V4.1 Flash through DevPass",
     "created_at": "2026-10-02T18:36:37Z",
-    "last_save_at": "2026-10-07T12:55:36.797Z",
+    "last_save_at": "2026-10-07T15:57:05.717Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:177e018c27ce3651701fdcfaa7efcf81e79f12a0cf3ac23aeceb5b4e3b80dc8f",
+    "source_fingerprint": "sha256:fe4f2c74e675421969381e2aa59f29f981386cfc6805f7b03854248bd1246195",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ab3bb9bb33cfcbfdda276a1668703e71edea25d1382c40f2ce695867aca0c7e2",
-      "plan.md": "4820bf5e33a9712303eb98b1b5d07610f7366402150449b8cd434ebc019bfa21",
-      "tasks.md": "88b683c46b7ca05c7ff35edab8fcd41ee71798dff85b50ee34c7bc79099c6674",
-      "implementation-summary.md": "026470256953f6466d6d7b05bd5c3b735ca6885bb6e65a331d00c28e941c292c"
+      "plan.md": "eee4d8b3d4533178878ad7ddbc8194ec0dfecb8ca7ff5a12ef81ded4e35d1316",
+      "tasks.md": "9fccc723b9ec0195c790767d8d8bd28040dd3a365b8e0de090ad8ced8bf1cd31",
+      "implementation-summary.md": "400a83b3c9e88ff2baab3673633fb1e51cb66c92b9e17664855e93458476cb89"
     },
     "last_active_at": null
   }

@@ -2,10 +2,7 @@
 title: "Tasks: Build: improve the Jev completion-claim audit (026)"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "completion claims improvements tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

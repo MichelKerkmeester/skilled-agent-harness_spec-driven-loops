@@ -2,10 +2,7 @@
 title: "Implementation Plan: Assess a proposed thinking discipline against AGENTS.md and the repo rules, and integrate what survives the repo-rule decision tests"
 description: "Map the nine points to existing rules, get two external reviews, run the residue through the four repo-rule decision tests, then make the one edit the operator picks."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "thinking discipline plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 023 Pi Wrapper"
 description: "Validate whether a Pi turn_end handler can mutate the rendered bubble, then wire Pi output projection through the validated path (a turn_end extension or the Phase 020 CLI-output wrapper in pi print mode) gated on isProjectionEnabled() with the byte-exact original fallback."
 trigger_phrases:
   - "pi-wrapper"
-  - "implementation plan"
   - "pi output projection plan"
   - "turn_end mutation validation plan"
   - "pi print mode wrapper plan"

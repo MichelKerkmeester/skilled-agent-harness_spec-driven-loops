@@ -2,10 +2,7 @@
 title: "Tasks: Align system-spec-kit runtime code with sk-code-opencode"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "align runtime code with sk code opencode tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

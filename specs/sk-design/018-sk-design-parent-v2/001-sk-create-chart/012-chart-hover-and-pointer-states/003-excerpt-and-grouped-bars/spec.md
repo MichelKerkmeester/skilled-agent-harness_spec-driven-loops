@@ -3,7 +3,7 @@ title: "Feature Specification: Extract the excerpt and transfer it to grouped-ba
 description: "box-plot.html carries a working hover-and-pin mechanism nothing else in the corpus reuses, because there is no shared runtime. This phase proves the mechanism transfers by copying it into grouped-bars, the simplest of the six forms gaining a tooltip, and measures what one copy costs."
 trigger_phrases:
   - "excerpt and grouped bars"
-  - "box plot html carries a working hover and"
+  - "box plot html carries a working hover"
 importance_tier: "normal"
 contextType: "general"
 ---

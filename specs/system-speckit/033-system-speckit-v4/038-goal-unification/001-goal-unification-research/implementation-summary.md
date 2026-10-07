@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Fifteen sequential research iterations across two models produced a decision-ready synthesis for goal unification, with every D1-D8 option ranked, cited and cross-verified."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "goal unification research implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

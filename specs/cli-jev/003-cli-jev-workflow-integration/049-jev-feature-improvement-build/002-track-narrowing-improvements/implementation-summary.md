@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The track-narrowing scorer now pins what it measured and can replay a recorded run exactly, and its first repeat run shows the 017 keep did not hold: on today's 270-row corpus Jev stops on margin, with a bootstrap interval that spans zero.."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "track narrowing improvements implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

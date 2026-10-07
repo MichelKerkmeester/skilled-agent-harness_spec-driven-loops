@@ -11,10 +11,7 @@ _memory:
     recent_action: "Authored the dependency/Node-ABI phased plan"
     next_safe_action: "Phase 1: audit + decide the canonical version"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "dependency and node abi alignment plan"
 ---
 # Implementation Plan: better-sqlite3 Version + Node-ABI Alignment
 

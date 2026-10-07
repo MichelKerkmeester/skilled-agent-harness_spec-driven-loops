@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Five research iterations on what a transport removal teaches: the fallback-only failure class, eight classes of residue and which instrument finds each, and a checklist ordered so each step fails cheaply."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "deep research residue implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

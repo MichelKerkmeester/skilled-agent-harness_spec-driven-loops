@@ -2,10 +2,7 @@
 title: "Implementation Plan: Build: improve the Jev completion-claim audit (026)"
 description: "Improve the deterministic sentinel first (closing-window anchor, context filters, `complete`), repair the scorer's three defects, document a pre-registered threshold with a holdout flag and cost in the rule, wire Cursor and settle Pi visibility.."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "completion claims improvements plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "corpus and catalog",
       "the derivation driven repaint of every example fresh",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "corpus and catalog plan",
+      "corpus and catalog tasks",
       "corpus and catalog acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "corpus repaint catalog",
+      "corpus and catalog implementation summary"
     ],
     "key_topics": [
       "corpus",
@@ -33,10 +31,10 @@
       "every",
       "example",
       "fresh",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -204,7 +202,7 @@
     ],
     "causal_summary": "Repaint 1,577 literals and four template roots through the applicator's copies, promoted after",
     "created_at": "2026-09-10T18:45:27Z",
-    "last_save_at": "2026-10-07T12:55:19.497Z",
+    "last_save_at": "2026-10-07T15:56:39.820Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da2c5218574884320062ce2081579bc411a94034215e5c1bc063f5f5133da627",
+    "source_fingerprint": "sha256:2d7f6d032943257b39d4bc5746933b7a808779b2ce1f5eb5dc47cd82cf11e53e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a7a21e381dc1fcaf52ce1becbf4906d14d91e1bd8bd52ffc10a71153aef6c39d",
-      "plan.md": "82a7e0d21754f57af3107b7c74275b37381a5894b22397f1a1133b8d816e6d12",
-      "tasks.md": "652e722a88019c13637c142c5aa51fccbfe271fb5f004a9852b6df92ee39fb70",
-      "implementation-summary.md": "fb627d61765624c56192da4d4438579ac693947db877d8c769846f6bde8c1351"
+      "plan.md": "4da146a9b507d54d14b2711e8b2feccd832cdba4a767e2cd27764852e685e057",
+      "tasks.md": "745d680264178e7db9555cf1e8d97289f9698c47626cfa0d538e3c3b59ff3df2",
+      "implementation-summary.md": "2902fab6100e7aa9752a860589701c4ae0e18e5cda6d0b1dfac978aafe54d372"
     },
     "last_active_at": null
   }

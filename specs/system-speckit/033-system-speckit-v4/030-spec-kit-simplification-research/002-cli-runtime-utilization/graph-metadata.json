@@ -21,8 +21,8 @@
       "research lane tasks",
       "lane launch and monitoring",
       "cli runtime utilization lane tasks",
-      "acceptance criteria",
-      "closure gate"
+      "cli runtime utilization lane closure",
+      "packet goal"
     ],
     "key_topics": [
       "cli",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The CLI package holds roughly thirty directories, a registry that lists fourteen entry points, and a README that describes it as context generation",
     "created_at": "2026-09-06T14:29:31Z",
-    "last_save_at": "2026-09-08T15:47:10.981Z",
+    "last_save_at": "2026-10-07T15:57:18.620Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b57cc8ea72822076528fe5b59d9ae8c520242366aa90735030e4d7754da09449",
+    "source_fingerprint": "sha256:9761718aab5e1378e2699cf9cae31da1b76278f1559e55eaa916f5b3c77b4ada",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "84d58dd801778746cbe29590498459887d0f48e22fbc58719966537b5a0a4af0",

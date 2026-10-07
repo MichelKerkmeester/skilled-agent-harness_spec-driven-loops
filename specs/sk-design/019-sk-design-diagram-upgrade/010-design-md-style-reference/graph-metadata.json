@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "design md style reference",
       "theme a diagram delivery from a local v3",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "design md style reference plan",
+      "design md style reference tasks",
       "design md style reference acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "design-md style reference",
+      "design md style reference implementation summary"
     ],
     "key_topics": [
       "design",
@@ -32,11 +30,11 @@
       "diagram",
       "delivery",
       "local",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -206,7 +204,7 @@
     ],
     "causal_summary": "The diagram skill has one colour system: `assets/color/diagram-palette.json`, applied by `apply-diagram-tokens.cjs`",
     "created_at": "2026-09-11T03:52:48Z",
-    "last_save_at": "2026-10-07T12:55:21.244Z",
+    "last_save_at": "2026-10-07T15:56:43.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:334f2b3f983eb13084bbf1753695ff428491cb20abfe82043fef831d609f3f70",
+    "source_fingerprint": "sha256:ec7a916404247e17a1a870f959b3690e413fbda97e5e28b1eec5f3bb280667ec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9ae8ae19f4241e762c7077025ddfc2f1ec3ef15b502698d763aeda4ab8c96877",
-      "plan.md": "1363e65f9d95fa4ca10139da4027a23ef37efd2dfe30a6d86e8c5ecf5b5820a9",
-      "tasks.md": "8c614c8a3aff11497811ce870be3024488841065b32db7724f05752c92bc63a8",
-      "implementation-summary.md": "31f66195c068419ec989769e867c6836873ea8ea985443a4269b113b225ce694"
+      "plan.md": "cee8a57d11d5609657fe75100f786d375804f98b2e228e50c0fa3e2e8d7f5f69",
+      "tasks.md": "11e02bf637a65ea1d74a4e16ca30f85d0e4d3a174377a847aebb36e108c27c10",
+      "implementation-summary.md": "ab0071cc7d1d5b2fdd9d94a56d1c8f0a2f3a742340347530f78b82546e5ac39a"
     },
     "last_active_at": null
   }

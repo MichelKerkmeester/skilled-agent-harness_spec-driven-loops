@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 005 Provider Adapters and Privacy"
 description: "Implement add model-scoped hosted and local provider adapters behind privacy-first routing and explicit egress consent. using the shared immutable-state architecture."
 trigger_phrases:
   - "provider-adapters-and-privacy"
-  - "implementation plan"
   - "portable cli projection"
 importance_tier: "important"
 contextType: "implementation"

@@ -15,14 +15,14 @@
       "cli-hermes hub mode",
       "register cli-hermes",
       "hermes hard rules",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "cli hermes skill packet plan",
+      "cli hermes skill packet tasks",
+      "cli hermes skill packet acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "cli hermes skill packet implementation summary"
     ],
     "key_topics": [
       "cli-hermes",
@@ -34,9 +34,9 @@
       "hermes",
       "hard",
       "rules",
-      "implementation",
+      "cli",
       "plan",
-      "technical"
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "No packet described how to dispatch Hermes, which flags a dispatch must carry, which operator steps the repo cannot perform, or which models are allowed",
     "created_at": "2026-09-14T17:24:46Z",
-    "last_save_at": "2026-10-07T12:54:42.755Z",
+    "last_save_at": "2026-10-07T15:55:51.868Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dcee67661687b964cfda80314d9ef1dcf73d88a1ac4dd07f6cf794b6ad1cfba8",
+    "source_fingerprint": "sha256:e6577c6a355752c0f48444ff3586a75aa874ba2c0e9b01c4a875ac5a06e49afd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "00faeddcc6ab2c17bd3f65fb80700d61368cd3678d5376df1cfddaaa2d4c6837",
-      "plan.md": "6ef1f96e810a7d7328dd7d6bedf81e373ddd6d367a082cf883e14d5eb0286872",
-      "tasks.md": "b34c9f00282694c85d75fd26e196ff4c60e4536d7c3c32830e8e7158121b036d",
-      "implementation-summary.md": "6861664ff786d6a51d07c010a95746e86c7fad4ec82f7f3237e5da0955d5926c"
+      "plan.md": "bafd5fb1f2f1b26b89bf29eb38aa94e78ee9c1b2243f1de04e10b348868e7471",
+      "tasks.md": "5a9ee6159999ac935576cf9d2ac993160e0a565ce7372814f61dbae3e71ba490",
+      "implementation-summary.md": "08f75202f1f5726ce8c8c65e228113c5052d2ce5432debf545980b220ae0010d"
     },
     "last_active_at": null
   }

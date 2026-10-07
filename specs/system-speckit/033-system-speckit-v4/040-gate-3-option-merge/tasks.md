@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: gate-3-option-merge"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "gate 3 option merge tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

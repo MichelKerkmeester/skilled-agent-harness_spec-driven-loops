@@ -15,14 +15,10 @@
       "recommendations in chat",
       "deep loop results display",
       "hvr in a reply",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "synthesis presentation plan",
+      "synthesis presentation tasks",
+      "synthesis presentation acceptance criteria",
+      "synthesis presentation implementation summary"
     ],
     "key_topics": [
       "synthesis",
@@ -36,7 +32,7 @@
       "display",
       "hvr",
       "reply",
-      "implementation"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -196,7 +192,7 @@
     ],
     "causal_summary": "A deep-loop run can spend twenty minutes producing a ranked set of recommendations and then report an iteration count, four file paths and a status token",
     "created_at": "2026-09-11T14:02:46Z",
-    "last_save_at": "2026-10-07T12:54:42.555Z",
+    "last_save_at": "2026-10-07T15:55:51.861Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +202,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6518aee61fd0ffafe149a49657c56329989b2a056e15e0efa81f1358565f24e5",
+    "source_fingerprint": "sha256:cd4e251134d87e93050732847732fedc448bdd63945cdfd778c121f1883a0654",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "79c54c70d7dab893d90b88803c475950f1eda91c265b4d67a4f8912c1c22f1e2",
-      "plan.md": "bd486f858a669b19eba8a0f78faffc4dbbdff69012beb6d554506638f9f76381",
-      "tasks.md": "99e7f8112c76b622f82d7e391ec3def392543322d5b3518e10d77881cea8feaf",
-      "implementation-summary.md": "405899be172e587aecd80421d0de14100efdb7745285e7df723708b5da402d0e"
+      "plan.md": "f902d187542911680d4fa407933743d4fd760cf069803e6e45f4964c66cbc41c",
+      "tasks.md": "f01b611403ec1af6afea9dd497cfff6a24973c459048474ac1bc2fcfb3c0cd8e",
+      "implementation-summary.md": "343115b790ac0f64882ca17fac34c697641ac92703d36b307f732e2452e3d954"
     },
     "last_active_at": null
   }

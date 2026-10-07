@@ -2,10 +2,7 @@
 title: "Tasks: Give stacked-area a hover card naming the pointed band"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "stacked area pointed band tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

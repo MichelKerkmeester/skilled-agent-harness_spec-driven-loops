@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "reducer ordered lists",
       "the deep research reducer writes the findings registry",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "reducer ordered lists plan",
+      "reducer ordered lists tasks",
       "reducer ordered lists acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "reducer ordered lists implementation summary"
     ],
     "key_topics": [
       "reducer",
@@ -33,10 +31,10 @@
       "writes",
       "findings",
       "registry",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -200,7 +198,7 @@
     ],
     "causal_summary": "The retained SWE-2 lineage finished three iterations with 25 finding records in its deltas and numbered findings in its iteration files, yet its registry held no findings",
     "created_at": "2026-09-20T08:33:41.475Z",
-    "last_save_at": "2026-10-07T12:55:32.971Z",
+    "last_save_at": "2026-10-07T15:56:56.086Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1da5468ccf19807fe26c2a0e7d569f363a3fba447dde955dc9abb38687c7b487",
+    "source_fingerprint": "sha256:a94137e5e3b371d82275aadd31db8cebb6dc1979791c7c33f89332de669210f4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "adc7f9228d91cc3e007d49523634496f2af8fc297bd9b0798496aa11bf0695bd",
-      "plan.md": "90ca0e08069e2601e93f102331e398c7dee173a737ab1872dc472dc8d65d9922",
-      "tasks.md": "fe9a4234861cb4b8cd4fb45e1c487fdf2771473c1d3e9e0d567d83c92c6bb026",
-      "implementation-summary.md": "7663d2ef4a21354c980120481545dfe95f005cdde322119cabe196037ddbdfcc"
+      "plan.md": "0ba6dfd7cf9f033fcd0d9ce3462e3cdc2d81f4d5adb88f20af6e488476a50065",
+      "tasks.md": "87e573390571347f63db35264553a982f6ae82e96340068b4f8a6f0bae755004",
+      "implementation-summary.md": "c42be87a9cd2434f3b772050182e6948566663ba051599b2e42c7477d3f59466"
     },
     "last_active_child_id": null,
     "last_active_at": null

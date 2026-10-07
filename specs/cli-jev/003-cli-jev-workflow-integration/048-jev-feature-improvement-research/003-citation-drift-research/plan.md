@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 3: citation-drift-research"
 description: "Runs /deep:research in fan-out mode on the Jev citation drift scan: one DeepSeek lineage and one Luna lineage, then merges them into research.md."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "citation drift research plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 2: track-narrowing-research"
 description: "Runs /deep:research in fan-out mode on the Jev spec-track narrowing: one DeepSeek lineage and one Luna lineage, then merges them into research.md."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "track narrowing research plan"
 importance_tier: "normal"
 contextType: "general"
 ---

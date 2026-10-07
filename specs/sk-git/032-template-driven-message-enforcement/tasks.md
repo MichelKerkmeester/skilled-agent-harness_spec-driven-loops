@@ -2,10 +2,7 @@
 title: "Tasks: Template-driven, repo-agnostic enforcement of commit messages and PR descriptions"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "template driven message enforcement tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

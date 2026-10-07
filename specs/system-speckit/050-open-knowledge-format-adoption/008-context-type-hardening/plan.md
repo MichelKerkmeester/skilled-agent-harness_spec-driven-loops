@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 8: context-type-hardening"
 description: "Measure the shared contextType list going forward: generator and model-writer off-list rates, warning recall and precision over a planted matrix, and false alarms over the corpus."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "context type hardening plan"
 importance_tier: "normal"
 contextType: "planning"
 ---

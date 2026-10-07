@@ -2,7 +2,6 @@
 title: "Implementation Summary"
 description: "The committed trigger-index manifest now lists the same skipped paths whether or not the checkout is installed and built, so regenerations stop flipping entries by machine."
 trigger_phrases:
-  - "implementation summary"
   - "corpus manifest build state"
   - "walker skip list evidence"
 importance_tier: "normal"

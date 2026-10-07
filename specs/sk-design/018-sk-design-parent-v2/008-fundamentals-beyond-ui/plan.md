@@ -2,10 +2,7 @@
 title: "Implementation Plan: fundamentals covers every surface, not only UI"
 description: "Name the surfaces the fundamentals mode serves, say what differs between them, and put the vocabulary where the advisor actually reads it."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "fundamentals beyond ui plan"
 importance_tier: "normal"
 contextType: "general"
 ---

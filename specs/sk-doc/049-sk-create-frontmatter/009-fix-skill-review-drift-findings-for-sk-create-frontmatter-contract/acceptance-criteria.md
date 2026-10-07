@@ -2,9 +2,6 @@
 title: "Acceptance Criteria: Phase 9: fix the skill-review drift findings in the sk-create-frontmatter contract"
 description: "The criteria this phase must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
   - "contract drift closure"
 importance_tier: "important"
 contextType: "implementation"

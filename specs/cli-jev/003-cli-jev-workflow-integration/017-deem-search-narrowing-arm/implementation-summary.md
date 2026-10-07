@@ -2,10 +2,7 @@
 title: "Implementation Summary: Phase 17: deem-search-narrowing-arm"
 description: "score-track-narrowing.mjs measures offline whether a Deem or Jev pick of the spec track beats ripgrep and the trigger-index lookup at naming the right track. The live Deem run printed verdict deem: stop (margin), 10 right against ripgrep's 68 of 256. The one live Jev run printed verdict jev: keep, 97 right against 68, for jev 0.6.2, provider official and model jev-1.13.0. Built and committed as f7ae1ff44c, 14 of 14 acceptance criteria Met."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "deem search narrowing arm implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

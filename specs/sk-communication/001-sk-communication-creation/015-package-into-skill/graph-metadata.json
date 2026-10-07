@@ -14,7 +14,6 @@
       "package-into-skill",
       "cli communication projection relocation",
       "package relocation evidence",
-      "implementation plan",
       "package relocation plan",
       "package relocation tasks",
       "implementation status",
@@ -28,9 +27,9 @@
       "relocation",
       "package",
       "evidence",
-      "implementation",
       "plan",
       "tasks",
+      "implementation",
       "status",
       "current"
     ],
@@ -190,7 +189,7 @@
     ],
     "causal_summary": "The package lived under a generic `packages/` root even though it is owned and consumed exclusively by the sk-communication skill, unlike system skills (for example, system-spec-kit) that bundle their code inside the skill directory",
     "created_at": "2026-08-13T17:02:13.812Z",
-    "last_save_at": "2026-10-03T15:12:01.853Z",
+    "last_save_at": "2026-10-07T15:56:18.354Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,11 +198,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d3308ec22cca0fb31145ec08cecff95e3642ae19bfe41e4f172c1355fe2dbe1",
+    "source_fingerprint": "sha256:54563abd731160e1e1eed9cfd6b71696855e6ac73f8074df8505706645bc2ced",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6f15056bf5ae4cd633f9718181c55d6aead131ce65a61f54a743e5c7c70ffe81",
-      "plan.md": "f6fd9e488715e6357e773b81ad7a68755c0fbc6ab29a4f309532a2c9ab2776a9",
+      "plan.md": "262ccaca4c8bdf8d3bb8e9e3fb6054cafc2b57abf971598569c28dfe078e9326",
       "tasks.md": "03b127b55a3f80a391182746ced75981d0baa5fb34c1ae83905d0e28f4088f2b",
       "implementation-summary.md": "64c2e11b84917ec5322bfa943b5464d7fbf73d36f70e6172024827953f7c5736"
     },

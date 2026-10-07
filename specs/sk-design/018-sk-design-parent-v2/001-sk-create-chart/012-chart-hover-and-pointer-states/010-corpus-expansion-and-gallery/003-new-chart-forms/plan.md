@@ -2,10 +2,7 @@
 title: "Implementation Plan: Research and add the chart forms the catalogue is missing"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "new chart forms plan"
 importance_tier: "normal"
 contextType: "general"
 ---

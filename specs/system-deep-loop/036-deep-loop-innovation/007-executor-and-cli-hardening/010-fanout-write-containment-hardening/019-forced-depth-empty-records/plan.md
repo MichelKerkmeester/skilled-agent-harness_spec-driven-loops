@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 4: forced-depth-empty-records"
 description: "Fail an empty usable set under forced depth, refuse unnumbered iteration records at the appender, and prove both at every call site."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "forced depth empty records plan"
 importance_tier: "normal"
 contextType: "general"
 ---

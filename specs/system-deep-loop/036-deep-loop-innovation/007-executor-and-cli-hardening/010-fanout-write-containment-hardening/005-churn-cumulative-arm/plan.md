@@ -2,10 +2,7 @@
 title: "Implementation Plan: Give the shared-checkout churn detector a cumulative arm so slow drift trips it"
 description: "One running total inside the existing churn sampler, one fan-out config field, and two ledger fields. The burst arm, the latch and the sampling cadence are untouched."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "churn cumulative arm plan"
 importance_tier: "normal"
 contextType: "general"
 _memory:

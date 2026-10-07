@@ -2,10 +2,7 @@
 title: "Tasks: fixes from the fresh Opus review of the chart packets"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "opus review fixes tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

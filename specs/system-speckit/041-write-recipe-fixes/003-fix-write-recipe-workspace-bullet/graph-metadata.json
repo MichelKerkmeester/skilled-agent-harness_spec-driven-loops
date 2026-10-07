@@ -12,17 +12,10 @@
   "derived": {
     "trigger_phrases": [
       "fix write recipe workspace bullet",
-      "the first bullet of step 7 cited a",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "the first bullet of step 7 cited",
+      "fix write recipe workspace bullet plan",
+      "fix write recipe workspace bullet tasks",
+      "fix write recipe workspace bullet implementation summary"
     ],
     "key_topics": [
       "write",
@@ -32,11 +25,11 @@
       "first",
       "step",
       "cited",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "implementation",
+      "summary",
+      "spec"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -197,7 +190,7 @@
     ],
     "causal_summary": "The first bullet of Step 7 in the spec folder write recipe read `Stay on main (no feature branches per memory rule)`",
     "created_at": "2026-09-29T06:53:11Z",
-    "last_save_at": "2026-10-07T12:55:52.589Z",
+    "last_save_at": "2026-10-07T15:57:40.066Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d561e2bac178ea7abb1a7d989401926c1ffd6f9b4c6f64abd36b04d442a3fcb2",
+    "source_fingerprint": "sha256:655ef3044afb69d7abd9e45cd76cea79639a6b78e3e19c320dcf9b19b5adac80",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "933ad37de6c068584a3382b7916cf0742f5c38843a7b946776913eccd09c5edc",
-      "plan.md": "45e4f1f42c0fe6e7c0b08cec08942592a4b128f9c1f784b2ba866d65df106521",
-      "tasks.md": "862da2bf780746755de5af3e872ea71031a6cbf0f1f2618358f483948a72d933",
-      "implementation-summary.md": "156293e58b7bdb4f324765fea0484d214c9e3226298f6d6619fc0124ddcfc8a0"
+      "spec.md": "ab6465ade845e44b1fdbef1ee8ff407a6a058e9959aa93ea718eb1d257fc20e3",
+      "plan.md": "dd77f844ec528a1f9b044366b381be55c45ab5ff4a856925676707b18da7b01f",
+      "tasks.md": "fc6a75082de1f92f5f771b9332b09d8980fd697d8ad378749c942e81645575af",
+      "implementation-summary.md": "8c80619cc30e28091a7ce31bafb7c296025e4689547bf7be13a7dbfc5f395085"
     },
     "last_active_at": null
   }

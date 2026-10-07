@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 6: goal-conformance-check"
 description: "This plan defines four goal conformance checks, isolated fixtures and a read-only corpus report. The implementation route stays conditional on phase 001."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "goal conformance check plan"
 importance_tier: "normal"
 contextType: "general"
 ---

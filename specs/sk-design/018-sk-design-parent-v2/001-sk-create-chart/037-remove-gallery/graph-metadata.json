@@ -13,30 +13,28 @@
     "trigger_phrases": [
       "remove gallery",
       "the operator asked for the gallery to go",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "remove gallery plan",
+      "remove gallery tasks",
       "remove gallery acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "remove gallery implementation summary"
     ],
     "key_topics": [
       "remove",
       "gallery",
       "operator",
       "asked",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -198,7 +196,7 @@
     ],
     "causal_summary": "The gallery framed the corpus twice over and needed a height handshake in every template to show",
     "created_at": "2026-09-10T10:17:17Z",
-    "last_save_at": "2026-10-07T12:55:16.467Z",
+    "last_save_at": "2026-10-07T15:56:39.368Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:26de11d092da982fb88dcf9265623a3fac4b7580014ea3bcf94f23c6f2e84c32",
+    "source_fingerprint": "sha256:8e960d09c84d882afabf6a14eadfa04c3c716342b4472728a35f80f5dd3b8913",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b75327e0679ecbe4abbf32e19ec59cb3a959bea06228a738aed4cab06652de47",
-      "plan.md": "a028cf29985455f8b496dd40afd617c1fbdf84debf708cfa5c9b7f2f756da53a",
-      "tasks.md": "c282e592b588a6a0286364fc0d60302555bcf9289c55a1a7e3bcf524199947dd",
-      "implementation-summary.md": "e05bbe168de7ef836e343f1115a55388e3bcc626ba337820d85e553ea98607d0"
+      "plan.md": "329b27c819d43f2f846a606e6dd836654b52e3a9f8802664787ac1b4a35511cf",
+      "tasks.md": "87bcd2ad7f2c1794d78105c8a3655d3bbd50f4a5ccbbf6c42c7ad200f3ff574c",
+      "implementation-summary.md": "71c6789281fe0cbbfe569cc1d1852a97a4b8140a73a2cb4d338ea69b3af06a83"
     },
     "last_active_at": null
   }

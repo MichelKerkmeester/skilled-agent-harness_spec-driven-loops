@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 10: review-remediation"
 description: "Confirm the three already-fixed review findings and land the three still-open code items: a direct test file and two explanatory comments."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "review remediation plan"
 importance_tier: "normal"
 contextType: "general"
 ---

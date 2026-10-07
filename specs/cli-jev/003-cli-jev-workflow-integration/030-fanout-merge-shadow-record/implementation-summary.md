@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Complete at its label gate. score-fanout-pairs.cjs prints the pair census of the recorded fan-out lineage registries with zero model calls, reports the merge's own decision on each near-line and cross-body pair with dedup on and off, writes a 60-row pair sheet outside the repository and stops at stop: fewer than 40 labeled pairs until the operator labels 40 pairs, 10 of them cross-body; past the gate its --jev and --deem arms print one verdict per backend column under the Keep Rule fixed in section 4. Its 42 tests cover both classes, the merge oracle, the label gate, both gates, the Keep Rule and the requalify lines, and no run has printed a verdict line. Built as fe84dd1899."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "fanout merge shadow record implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

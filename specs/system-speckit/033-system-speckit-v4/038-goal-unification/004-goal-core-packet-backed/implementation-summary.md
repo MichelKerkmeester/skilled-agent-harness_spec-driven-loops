@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "goal-core now binds a session to a packet and renders the brief from that packet's goal.md, with frontmatter stripped, a resend hash, and a locked log append; the legacy record keeps only pointer, liveness and telemetry."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "goal core packet backed implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

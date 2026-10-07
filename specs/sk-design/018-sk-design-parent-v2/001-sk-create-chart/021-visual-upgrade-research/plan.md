@@ -2,10 +2,7 @@
 title: "Implementation Plan: deep research on the external reference library for visual upgrades"
 description: "Run the deep-research fan-out runner with two CLI lineages over one five-angle brief, then synthesise across lanes."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "visual upgrade research plan"
 importance_tier: "normal"
 contextType: "general"
 ---

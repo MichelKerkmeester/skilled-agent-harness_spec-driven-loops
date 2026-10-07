@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: git-workflow-run-failures"
 description: "A five-iteration analysis lineage reproduced fourteen run-failing git behaviors, three serial cli-pi dispatches fixed the ten that live in the hooks, sk-git scripts and bin scripts, and a fresh lineage settled clean afterwards."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "git workflow run failures plan"
 importance_tier: "normal"
 contextType: "general"
 ---

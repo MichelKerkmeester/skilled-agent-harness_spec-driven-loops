@@ -2,10 +2,7 @@
 title: "Implementation Plan: a standing mutation suite for the corpus checker, and CI"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "mutation suite plan"
 importance_tier: "normal"
 contextType: "general"
 ---

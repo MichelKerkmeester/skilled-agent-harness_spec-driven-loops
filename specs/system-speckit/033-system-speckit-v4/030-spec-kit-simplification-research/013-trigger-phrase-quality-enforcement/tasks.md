@@ -5,7 +5,6 @@ trigger_phrases:
   - "phrase quality tasks"
   - "judge module tasks"
   - "diagnostics bucket tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

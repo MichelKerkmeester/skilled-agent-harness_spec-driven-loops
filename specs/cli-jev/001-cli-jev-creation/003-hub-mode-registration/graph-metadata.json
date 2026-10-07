@@ -12,17 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "hub mode registration",
-      "a packet that no routing surface names is",
-      "implementation plan",
+      "a packet that no routing surface names",
       "approach and phases",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
+      "hub mode registration tasks",
       "hub mode registration acceptance criteria",
       "packet goal",
       "durable directive",
-      "completion criteria"
+      "completion criteria",
+      "goal binding",
+      "hub mode registration implementation summary"
     ],
     "key_topics": [
       "hub",
@@ -32,11 +30,11 @@
       "routing",
       "surface",
       "names",
-      "implementation",
-      "plan",
       "approach",
       "phases",
-      "testing"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -210,7 +208,7 @@
     ],
     "causal_summary": "Four independent mechanisms decide whether a mode is reachable: the per-hub gate reads the registry, the hub router scores signals, the dispatch audit decides which packet governs a command, and the compiled policy is what the runtime actually serves",
     "created_at": "2026-09-20T07:39:06Z",
-    "last_save_at": "2026-10-07T12:54:47.525Z",
+    "last_save_at": "2026-10-07T15:55:57.506Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8069df77fba8999f0d5e8979f1ec4ee37bbdc4d287c37af262bfd971ac0d82c4",
+    "source_fingerprint": "sha256:1c3fc8ada583801681afa3e09a917885bcb16a270bf3524f11334e575695b651",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7107ff940f620b01eed3e2c0a28f6ffd3ba08a15344be9b5b6b0da64d070dda9",
-      "plan.md": "4996fec29e41c294b6c8f8864824233c9d866a67cffe0f3d50a2f2f7888b966b",
-      "tasks.md": "8a95e9b08c72f43a01722d3db71c8ad409f8696a37adbd6e0e50c2627161c492",
-      "implementation-summary.md": "71875e74c90f6d960b03307513705991491ff16a4cd35c7895ca7503bcfee2f8"
+      "spec.md": "370e5d3e24d83f62f8d505b781fb3c1ce40216cd7ee31da8e7e0518c41a06a52",
+      "plan.md": "9e3d7c41b7de1c311e0d4d3455623e834934e4fef23279facfd83888bc906cb2",
+      "tasks.md": "19120c361d9827d8034d2743d2e63626478558d8a9dff9640c93c05c3ef87ef7",
+      "implementation-summary.md": "c0b38272ac821d5838e2df88829610a020b6f3f346c288ca5cdc6f5e168c44f0"
     },
     "last_active_at": null
   }

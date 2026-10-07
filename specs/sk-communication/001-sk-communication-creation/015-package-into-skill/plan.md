@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 015 Package Relocation Into Skill"
 description: "Complete the package-relocation boundary through a rename-preserving git mv, skill-doc reference updates, independent verification, and strict packet closeout."
 trigger_phrases:
   - "package-into-skill"
-  - "implementation plan"
   - "package relocation plan"
 importance_tier: "important"
 contextType: "implementation"

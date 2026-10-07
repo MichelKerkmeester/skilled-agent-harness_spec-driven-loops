@@ -3,7 +3,6 @@ title: "Tasks: Plugin scanner readiness"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "plugin scanner readiness tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "general"
 ---

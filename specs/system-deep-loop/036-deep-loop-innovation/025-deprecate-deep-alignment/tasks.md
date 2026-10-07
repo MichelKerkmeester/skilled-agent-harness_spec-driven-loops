@@ -11,10 +11,7 @@ _memory:
     recent_action: "Authored the task list; Phase 1-3 tasks complete except the push"
     next_safe_action: "Confirm whole-suite vitest; commit; push v4 + main"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "deprecate deep alignment tasks"
 ---
 # Task Breakdown: Deprecate deep-alignment and Cascade to the Conformance-Benchmark Capability
 

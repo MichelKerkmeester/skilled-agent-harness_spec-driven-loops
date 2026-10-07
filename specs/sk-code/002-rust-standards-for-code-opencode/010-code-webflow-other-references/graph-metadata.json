@@ -14,15 +14,9 @@
       "018 phase 010 split code-webflow other references",
       "code-webflow debugging css javascript hygiene",
       "webflow reference split debugging_workflows",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "code webflow other references plan",
+      "code webflow other references tasks",
+      "code webflow other references implementation summary"
     ],
     "key_topics": [
       "phase",
@@ -35,7 +29,7 @@
       "hygiene",
       "webflow",
       "reference",
-      "implementation",
+      "code",
       "plan"
     ],
     "importance_tier": "normal",
@@ -194,7 +188,7 @@
     ],
     "causal_summary": "Eight code-webflow non-implementation docs exceed 500 lines (largest: debuggingworkflows 1940)",
     "created_at": "2026-07-11T17:01:18.234Z",
-    "last_save_at": "2026-10-03T15:23:19.711Z",
+    "last_save_at": "2026-10-07T15:56:13.136Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37bfa276406df75f30d0f0a68c23c6a508a02e289e0ed2196c7e2c9abf4945f7",
+    "source_fingerprint": "sha256:84f8a737af27a5088b8ea18bab8d5b91b065c414d4ea39301125280744b2a86b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2204fd231eae81b8da9f10c6ab2b0fa4e17de087abe33ecc442159ccb2ee28fc",
-      "plan.md": "2649ccea2e14d059f47ec0987eac51a14f181a5160e672c3cd9735301227c5d4",
-      "tasks.md": "f3bf88c0fae67b1c21e4025a1d6f8c9a024e55cf870568ee37b62092c0d98011",
-      "implementation-summary.md": "cc849f3d32a14a0634a446de22bdf81fba3163f20df397252a8a496e33f5b0cd"
+      "plan.md": "f7cc809674c2e94d5c7d491d381f7e3ad0a81144d3c66df183066ffdd2338b8c",
+      "tasks.md": "8890ccdd92fd63350bf205f9c9d54911f54bdba1f9efee510ed7a208b5d44cd5",
+      "implementation-summary.md": "c7f0f6ba49ee1853681192dc0ae44306d70aa77ba0f3589c31da5099b5dd4144"
     },
     "last_active_child_id": null,
     "last_active_at": null

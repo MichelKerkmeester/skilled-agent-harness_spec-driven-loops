@@ -2,7 +2,6 @@
 title: "Implementation Plan: False-Now Documentation Corrections"
 description: "Apply minimal documentation and code-comment alignment for four confirmed false-now surfaces, then verify with targeted greps and strict spec validation."
 trigger_phrases:
-  - "implementation plan"
   - "false-now doc corrections"
   - "retention forgetting flag"
   - "Track C supersession"

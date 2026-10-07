@@ -2,10 +2,7 @@
 title: "Tasks: reinstate the sk-design parent hub"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "hub and fundamentals tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

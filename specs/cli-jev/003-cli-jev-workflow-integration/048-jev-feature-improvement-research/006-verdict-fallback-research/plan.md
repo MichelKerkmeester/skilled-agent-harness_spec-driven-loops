@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 6: verdict-fallback-research"
 description: "Runs /deep:research in fan-out mode on the Jev reviewer verdict fallback: one DeepSeek lineage and one Luna lineage, then merges them into research.md."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "verdict fallback research plan"
 importance_tier: "normal"
 contextType: "general"
 ---

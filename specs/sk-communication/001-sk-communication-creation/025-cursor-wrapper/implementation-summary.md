@@ -5,7 +5,6 @@ trigger_phrases:
   - "cursor-wrapper"
   - "cursor output wrapper"
   - "cursor-agent stdout projection"
-  - "implementation summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

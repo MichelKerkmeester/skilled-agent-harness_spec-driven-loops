@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The fan-out merge scorer now reaches the same verdict on 124 Jev calls where it needed 181."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "fanout merge improvements implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

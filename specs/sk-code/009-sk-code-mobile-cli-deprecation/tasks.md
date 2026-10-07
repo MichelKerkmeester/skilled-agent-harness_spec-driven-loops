@@ -2,10 +2,7 @@
 title: "Tasks: Deprecate the sk-code-mobile-cli surface packet and sweep its references"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "sk code mobile cli deprecation tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

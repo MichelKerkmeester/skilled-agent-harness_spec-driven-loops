@@ -2,7 +2,6 @@
 title: "Implementation Summary: Phase 5: playbook-reverification-and-closeout"
 description: "Both corpora executed from the migrated home with observed verdicts, their runs recorded, the living docs reconciled to what was observed, the derived surfaces regenerated, and the program closed."
 trigger_phrases:
-  - "implementation summary"
   - "what was built"
   - "verification evidence"
 importance_tier: "normal"

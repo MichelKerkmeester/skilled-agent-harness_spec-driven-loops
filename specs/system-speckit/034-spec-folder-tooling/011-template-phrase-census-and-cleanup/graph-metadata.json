@@ -14,15 +14,10 @@
       "template phrase census and cleanup",
       "phase 11 template phrase census and cleanup",
       "acceptance criteria template default",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "template phrase census and cleanup acceptance criteria"
+      "template phrase census and cleanup plan",
+      "template phrase census and cleanup tasks",
+      "template phrase census and cleanup acceptance criteria",
+      "template phrase census and cleanup implementation summary"
     ],
     "key_topics": [
       "template",
@@ -33,10 +28,10 @@
       "acceptance",
       "criteria",
       "default",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -204,7 +199,7 @@
     ],
     "causal_summary": "A packet that keeps a template's default trigger phrases is indexed under words that describe the template, not the work",
     "created_at": "2026-10-07T09:58:46Z",
-    "last_save_at": "2026-10-07T13:18:55.831Z",
+    "last_save_at": "2026-10-07T15:57:35.008Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +209,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c746568b9df0dbaec9ee66a7a171d70a9a50953c30b915c5489c444c912188a",
+    "source_fingerprint": "sha256:f0823dff6f353e0785ef36fe088cfccfbe88a6b96ea348e6ec0c656f785bd560",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9719574c99eff2043033a7ebc97cb22a0fc7eb47157a32ef28dbbf86b861f15e",
-      "plan.md": "a96a43416a3bea858e81ab5a493ab13d872a6a58018d80d0e933cddf55a1e075",
-      "tasks.md": "8d4381debd49c5180dfb07d1e65a92758640caaeac7e04be7255a307c143532b",
-      "implementation-summary.md": "8923612ee7ccb4c7738b7ba0b83995905faba42bd21f8c5e40d84a0f34eec2d0"
+      "plan.md": "e50994c97f2480b5a90aa15d6e799b55f7596e50773d88798b52b961f55f21aa",
+      "tasks.md": "63135921306694f4cde131ad3182847166cb06c88980f13f4cbf397616798e33",
+      "implementation-summary.md": "d3fb0bc638c3450b999f8a4ec838fa735db7363324893d74c932bacbe7b02915"
     },
     "last_active_at": null
   }

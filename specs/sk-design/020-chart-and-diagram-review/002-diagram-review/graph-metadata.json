@@ -12,31 +12,24 @@
   "derived": {
     "trigger_phrases": [
       "diagram review",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "diagram review plan",
+      "diagram review tasks",
       "diagram review acceptance criteria",
-      "implementation summary",
-      "what shipped"
+      "diagram review implementation summary"
     ],
     "key_topics": [
       "diagram",
       "review",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy",
-      "task",
-      "breakdown"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "broken",
+      "missing",
+      "inefficient",
+      "sentences"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -197,7 +190,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-11T17:13:03Z",
-    "last_save_at": "2026-10-07T12:55:21.645Z",
+    "last_save_at": "2026-10-07T15:56:43.580Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +200,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47a5a36da19c7ce367181e8a1345031ccc44f526619189206295c5e43063e399",
+    "source_fingerprint": "sha256:70a39886d8ae705df0820595138f8e6a1fceb0bf70a2464c1376c46c229e7520",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d1e0a48c4d0904776a513df1068c29f7463a4a671585f19bb64c97b10cb7469a",
-      "plan.md": "3125a6e2fbc792ad374bc970ac3e19d024322398764a359323a88c765b9ad04e",
-      "tasks.md": "9f3674cd760a6895caf6459865171d15b9f5d012abf1bb05b6cbc2721882ae14",
-      "implementation-summary.md": "4e895606d07614484cfe9e0122988e367629d91cd6839d5ff91c6fe5edd9b1db"
+      "plan.md": "3ba170869afe88894645911626454888979056665544fa868d40bd2865e84dcc",
+      "tasks.md": "e4eb3c6e5e4a2cafabd1925a53c6892defd4699d87c77b802a3198c6feb2ecfc",
+      "implementation-summary.md": "02803ae61d7457e6e59d70712ccb16d9ed2c5d8abd101836ebebfb39d2eb5451"
     },
     "last_active_at": null
   }

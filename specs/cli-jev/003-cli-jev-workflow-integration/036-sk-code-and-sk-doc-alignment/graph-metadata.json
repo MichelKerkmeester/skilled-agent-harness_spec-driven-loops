@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "changelog/v4.2.0.0.md",
       "benchmark/reports/README.md",
       "manual-testing-playbook/manual-testing-playbook.md",
       ".skilled/skills/cli-classifier/benchmark/injection-screen/README.md",
-      ".skilled/skills/sk-communication/benchmark/reply-harness/README.md",
       "scratch/audit/findings.md",
-      ".skilled/hooks/goal/lib/build-verifier-fixture.cjs",
-      ".skilled/hooks/goal/lib/count-pi-goal-nudges.mjs",
-      ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs",
       ".skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs",
-      ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
-      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs"
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs",
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs",
+      ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+      ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/alias-still-resolves.md",
+      ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-pair-replay.md",
+      ".skilled/skills/cli-classifier/benchmark/reports/README.md"
     ],
     "entities": [
       {
@@ -100,12 +100,6 @@
         "source": "derived"
       },
       {
-        "name": "v4.2.0.0.md",
-        "kind": "doc",
-        "path": "changelog/v4.2.0.0.md",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": "benchmark/reports/README.md",
@@ -124,33 +118,9 @@
         "source": "derived"
       },
       {
-        "name": "build-verifier-fixture.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/goal/lib/build-verifier-fixture.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "count-pi-goal-nudges.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/goal/lib/count-pi-goal-nudges.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-verifier-labeled-set.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs",
-        "source": "derived"
-      },
-      {
         "name": "lint-goal-criteria.cjs",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-goal-lint.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs",
         "source": "derived"
       },
       {
@@ -160,15 +130,45 @@
         "source": "derived"
       },
       {
-        "name": "score-clarify-default.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
-        "source": "derived"
-      },
-      {
         "name": "score-verdict-fallback.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-d4-agreement.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-injection-screen.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "alias-still-resolves.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/alias-still-resolves.md",
+        "source": "derived"
+      },
+      {
+        "name": "judgment-request-routes-to-transport.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pair-replay.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-pair-replay.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The cli-jev 003 packet shipped 130 files between `f9d701bd13` and `089693d899`, and a read-only audit on 2026-09-30 found conformance gaps against the two skills that own their standards",
     "created_at": "2026-09-30T11:42:55Z",
-    "last_save_at": "2026-09-30T13:11:53.777Z",
+    "last_save_at": "2026-10-07T15:56:02.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37df2de53ef887af4f6020e58126b5dd1945cb4b72df5451c37df01d3715a7c3",
+    "source_fingerprint": "sha256:11e83c2eab48bb51fd00b42867fb9f91d4dd508f45781b94ec6819058cd6c4ef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "05326d1ed4b0aa508d21b4d76958d48e1562417ec359f9af02ddb4890a51c232",

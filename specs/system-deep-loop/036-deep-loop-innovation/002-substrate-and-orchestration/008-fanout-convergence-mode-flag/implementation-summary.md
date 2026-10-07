@@ -2,8 +2,7 @@
 title: "Implementation Summary"
 description: "A documented flag the fan-out path never read now reaches the lineage it was always meant to configure."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
+  - "fanout convergence mode flag implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

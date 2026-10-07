@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 3: update"
 description: "Audit `/doctor:update` against this checkout, redesign it as the release-aware updater with `/doctor:rebuild` carrying the database rebuild, then apply and verify both."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "update plan"
 importance_tier: "normal"
 contextType: "general"
 ---

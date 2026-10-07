@@ -2,10 +2,7 @@
 title: "Implementation Summary: Phase 45: deem-live-runs"
 description: "Every scorer's Deem arm runs once on the local server, and the three recorded cli-deem findings are fixed. In progress."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "deem live runs implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

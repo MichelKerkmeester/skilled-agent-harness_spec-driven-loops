@@ -13,16 +13,12 @@
     "trigger_phrases": [
       "sk create readme writing style",
       "sk create readme lacks the writing style rules",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "sk create readme writing style plan",
+      "sk create readme writing style tasks",
       "sk create readme writing style acceptance criteria",
-      "sk-create-readme problem section decision"
+      "sk-create-readme problem section decision",
+      "readme problem-first adr",
+      "sk create readme writing style implementation summary"
     ],
     "key_topics": [
       "readme",
@@ -30,13 +26,13 @@
       "style",
       "lacks",
       "rules",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "sk-create-readme",
+      "problem",
+      "section"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -206,7 +202,7 @@
     ],
     "causal_summary": "The root README rework produced formatting patterns the skill never documented: decorative section emoji on a marketing front page versus semantic-only emoji elsewhere, headings that name the feature and its benefit, inventories where every item carries a description and a per-feature H2 structure for large documents",
     "created_at": "2026-09-20T12:52:07Z",
-    "last_save_at": "2026-10-07T12:55:25.868Z",
+    "last_save_at": "2026-10-07T15:56:46.517Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c3d7b1e1d8db997cb004feec795dcf72ca97709a92ce60f6a84bb7a48b5eaf7f",
+    "source_fingerprint": "sha256:295027ea48c2a692e70d27d7e41157b100dcf25e98449a81fa4f0466cd9d992c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f42fad7fbfb7361cce7d0f1f97efe784543440d3942a98fbff5b89cfefd249f0",
-      "plan.md": "1048abd6456eb76df911beb8a9abc851de8f32ff4d21aa8049d2d2da5f270d4e",
-      "tasks.md": "637ac55c9a328248822f554a8bba3ff1a63ba9db3ddc5677d2fe189a2cb88f87",
+      "plan.md": "97b862a85b5837f71b7d0f0b0f058a766fc969d538ef54bd4a8dedc592534947",
+      "tasks.md": "99e3316f719dc8fdaf4e3664268b69db1ed58f3ecfcd0ac4f38ce63e829f27ec",
       "decision-record.md": "07dd688b90bfdda7c6ee03078cbd2145c04214b3380145480c4f6d192f1f9210",
-      "implementation-summary.md": "3d71962299298c2018f10d2d563226f945a1f9626c384bfa85b102e366e3098c"
+      "implementation-summary.md": "e0644555ce2430801e74967f19564570add4cb1a2584ca28d6e0d6059e013935"
     },
     "last_active_at": null
   }

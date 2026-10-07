@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 3: leaf-manifest-and-doctrine-reachability"
 description: "Resolve symlinks in the generator, report the links that cannot be leaves, and give the gate the same traversal."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "leaf manifest and doctrine reachability plan"
 importance_tier: "normal"
 contextType: "general"
 ---

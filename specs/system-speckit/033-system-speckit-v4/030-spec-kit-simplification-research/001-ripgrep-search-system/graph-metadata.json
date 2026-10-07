@@ -21,8 +21,8 @@
       "research lane tasks",
       "lane launch and monitoring",
       "ripgrep search system lane tasks",
-      "acceptance criteria",
-      "closure gate"
+      "ripgrep search system lane closure",
+      "packet goal"
     ],
     "key_topics": [
       "ripgrep",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The lexical retrieval system replaced a database this year, and its generator, lookup, command, Gate 1 usage and documentation have never been audited together",
     "created_at": "2026-09-06T14:29:30Z",
-    "last_save_at": "2026-09-08T15:47:10.995Z",
+    "last_save_at": "2026-10-07T15:57:18.823Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:723ded4e2cdf6cd1e9b0e8b81244d2e502efe02531c244d14cea9f71fe17c5b1",
+    "source_fingerprint": "sha256:7e741ef559d1354956b4c9a74c80f3270c7ca3e95cdb7964419f384b94292510",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "47304249c5ec6b1226276f74535f43909de843a1403f0faea08625881716cb01",

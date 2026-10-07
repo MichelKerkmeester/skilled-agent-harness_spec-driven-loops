@@ -2,10 +2,7 @@
 title: "Implementation Plan: shadcn adoptions"
 description: "Land the three shadcn adoptions phase 13 judged worth carrying as declared, checker-held contracts across the 26 standalone chart templates, without touching the decisions the research said to keep."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "shadcn adoptions plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -3,7 +3,7 @@ title: "Feature Specification: Phase 10: review-remediation"
 description: "Close all six deep-review findings on the sk-communication clarity program: confirm the three already-fixed items and add the three still-open code items."
 trigger_phrases:
   - "review remediation"
-  - "close all six deep review findings on the"
+  - "close all six deep review findings"
 importance_tier: "normal"
 contextType: "general"
 ---

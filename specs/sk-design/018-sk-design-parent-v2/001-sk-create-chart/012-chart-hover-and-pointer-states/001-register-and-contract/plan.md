@@ -2,10 +2,7 @@
 title: "Implementation Plan: The register and the recorded contract"
 description: "Add a fourth interaction register, data-chart-inert, to check-corpus.cjs as two branches folded into the existing interaction checks, and record all 21 forms' pointer contracts, the touch decision and the corrected claims in the two reference documents. Nothing is annotated in this phase."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "register and contract plan"
 importance_tier: "normal"
 contextType: "general"
 ---

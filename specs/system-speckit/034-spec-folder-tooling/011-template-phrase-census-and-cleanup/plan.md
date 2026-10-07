@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 11: template-phrase-census-and-cleanup"
 description: "Flag the acceptance criteria template defaults in the phrase judge, seed packet-specific phrases into new acceptance-criteria files, and add a read-only census plus a dry-run-first cleanup whose approved apply replaced the exact template block in 509 files across 375 packets."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "template phrase census and cleanup plan"
 importance_tier: "normal"
 contextType: "general"
 ---

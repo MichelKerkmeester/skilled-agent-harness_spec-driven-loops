@@ -14,15 +14,13 @@
       "local-provider-loader",
       "enablement.local.json localProvider",
       "local LLM easy config build",
-      "implementation plan",
       "localProvider easy config loader",
       "local LLM auto-used",
       "localProvider loader tasks",
       "architecture decision",
       "shared loader and fail-closed local provider config",
       "local provider loader implementation",
-      "localProvider easy config complete",
-      "implementation summary"
+      "localProvider easy config complete"
     ],
     "key_topics": [
       "local-provider-loader",
@@ -33,10 +31,10 @@
       "llm",
       "easy",
       "config",
-      "implementation",
-      "plan",
       "loader",
-      "auto-used"
+      "auto-used",
+      "tasks",
+      "architecture"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +193,7 @@
     ],
     "causal_summary": "`createOllamaModelRecord`, `createLlamaCppModelRecord`, the OpenAI-compatible and Ollama-native adapters, and `createLocalHttpTransport` are all shipped and tested, but no entry point builds the `projectMessage` input from them",
     "created_at": "2026-08-14T17:53:14.584Z",
-    "last_save_at": "2026-10-03T15:12:06.496Z",
+    "last_save_at": "2026-10-07T15:56:22.706Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:931222617eaba27e8009df87b6446e948467518e3d2eec5b508a16d4313cff7c",
+    "source_fingerprint": "sha256:6b3bb5124d46fada0451f53fa97cde05721cd44fe4d4222e1dced65027b5283b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0901372fd00cf64bb1813f28a96f4aae9b6a764dc21d56713a49bae32a55a8f2",
-      "plan.md": "55ab4f8c0779d1d737d901257290aa37fe71ef2dd829840f933ca3616c7bcbb9",
+      "plan.md": "1896bd2a651b80af128736651c55f494bfcf2650ba9d6d5626ffdc04f53ae541",
       "tasks.md": "267cc7b89840d55357ffaf05c8dc9c9f313e6cb0936071b270c70d7cc6bda6e3",
       "decision-record.md": "75eb6d371ccd8f09e04de71069c54e480b627616d7174aa02a226dbd3cdd759e",
-      "implementation-summary.md": "b41f5c86f1b91fe5f7e391a3acda12f4b1f4f49c6b8ead9e661eec287c9f6235"
+      "implementation-summary.md": "63cc33dd0b089d8afe77bdb8460888b863f5f1a2b11d8bac2841a07f04df35de"
     },
     "last_active_child_id": null,
     "last_active_at": null

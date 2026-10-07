@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Every family the corpus check registers now has a mutation case, and the suite fails if that stops being true."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "full family coverage implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

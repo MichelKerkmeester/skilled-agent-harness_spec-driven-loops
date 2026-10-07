@@ -13,16 +13,9 @@
     "trigger_phrases": [
       "layer 3 own paths baseline",
       "the dispatch safety net asked for a clean",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "layer 3 own paths baseline plan",
+      "layer 3 own paths baseline tasks",
+      "layer 3 own paths baseline implementation summary"
     ],
     "key_topics": [
       "layer",
@@ -34,9 +27,9 @@
       "net",
       "asked",
       "clean",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +191,7 @@
     ],
     "causal_summary": "The cli-opencode skill requires a recovery baseline before any non-interactive `opencode run` with `--dangerously-skip-permissions` in a deep-loop dispatch",
     "created_at": "2026-09-29T07:29:10Z",
-    "last_save_at": "2026-10-07T12:54:47.665Z",
+    "last_save_at": "2026-10-07T15:55:57.835Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7a9a72365f48bf4c9653785f457c9c98dc91fa67739c45c32f5c4e09e68137a2",
+    "source_fingerprint": "sha256:4ecb34f317e10618523a5105d3fce08e2b35f3d6a743d7d2f5c7e245e07f8771",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c6aa931abd1d4b8dd769c0e721c19d7bcdc84cfa9aeee21779c7535775aced96",
-      "plan.md": "dac441defe3f40fe15dd3d3ec06f8d01fe68fd78f706a7dd2b47dc947d348cb5",
-      "tasks.md": "075b06f3c8fe6a32472e61a88671f12e0f5940c860b8d146cf4b18261893b1fa",
-      "implementation-summary.md": "afc6beffbb45d3b14d375f3f8f726a40c872c3d403a5ac97575175b59980baf8"
+      "plan.md": "706c548e3ad4d3c7beb157cde41e957d965d7d7d464325832e1cc9361118e531",
+      "tasks.md": "fdafb7c377975e1c0606f6bc89bfccfd840960a20d0dcfeebbc9baf790683d90",
+      "implementation-summary.md": "22eee8a6350d6ce098afcb1d6f85d7acf8c74ccb23f42507e3780c4edb5a61cb"
     },
     "last_active_at": null
   }

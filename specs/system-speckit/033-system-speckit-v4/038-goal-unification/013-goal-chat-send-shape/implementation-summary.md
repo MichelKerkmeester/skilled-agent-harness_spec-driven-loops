@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A parent goal resent in chat is now the chat slice: no frontmatter, comments, anchors, dividers or section numbers, and never more than 4,000 characters. Every surface an agent reads before sending says so, and the renderer drops heading numbers."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "goal chat send shape implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

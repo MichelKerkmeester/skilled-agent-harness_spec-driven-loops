@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Six lifecycle workflow twins became three single assets with an execution-mode branch and one shared save-context tail; every consumer re-pointed, parity and mirrors green."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "lifecycle command asset merge implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

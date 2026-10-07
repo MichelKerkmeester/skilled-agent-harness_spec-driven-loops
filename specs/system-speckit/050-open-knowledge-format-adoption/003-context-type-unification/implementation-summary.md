@@ -2,7 +2,6 @@
 title: "Implementation Summary"
 description: "One file now holds the contextType and importance_tier lists for spec docs and skill docs, and four checkers read it instead of keeping their own copies."
 trigger_phrases:
-  - "implementation summary"
   - "shared frontmatter value list"
   - "contextType unification"
   - "frontmatter values warn rule"

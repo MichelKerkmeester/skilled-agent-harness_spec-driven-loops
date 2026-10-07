@@ -13,16 +13,10 @@
     "trigger_phrases": [
       "light dark gallery",
       "one page carrying every chart form twice once",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "light dark gallery plan",
+      "light dark gallery tasks",
       "light dark gallery acceptance criteria",
-      "implementation summary"
+      "light dark gallery implementation summary"
     ],
     "key_topics": [
       "light",
@@ -35,8 +29,8 @@
       "chart",
       "form",
       "twice",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +189,7 @@
     ],
     "causal_summary": "Every file in the corpus carries a dark palette block behind `prefers-color-scheme`, and the checker",
     "created_at": "2026-09-06T06:26:46Z",
-    "last_save_at": "2026-10-07T12:55:11.293Z",
+    "last_save_at": "2026-10-07T15:56:34.130Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +199,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a28835877d6bfb399b0b4ae295f2900513ef84088d67c9d3f4b04f66b6419330",
+    "source_fingerprint": "sha256:0201bb1e1c208bd225798b851a2e25feb3a984bc5018d52b6d518a3e0ce064e9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b97825ad9bad6e4ac38249749f2e309ce91b44b8f8f5cf452b7842c2c9db31e9",
-      "plan.md": "09c7ee4d8574f2809b30649eac1bb3f94179985af847f10b477cf0203e353023",
-      "tasks.md": "b3f3709ad177cda1855a30f1b0eba31a9299848dc272f103d6b2d404643194ac",
-      "implementation-summary.md": "d5212fa29eaadb35d786109d0a7a8339484c40dba0cad8e4311f421a1c07ff14"
+      "plan.md": "36071e752e1f9768b76962a97a1b96c794d18d49958eb3d4c9935374a7dd20f6",
+      "tasks.md": "8e1046ab25fa586e08985b5d826ec694c3aa81ccdba0211e5fa136e11c4a0b5a",
+      "implementation-summary.md": "2a1680dbe971ba5c866eba1063b729efe6079f7bd43641fcee4929767a11c931"
     },
     "last_active_at": null
   }

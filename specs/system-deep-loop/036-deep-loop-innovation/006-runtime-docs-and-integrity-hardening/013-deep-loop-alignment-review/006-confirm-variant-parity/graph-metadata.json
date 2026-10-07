@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "confirm variant parity",
       "the confirm variants of deep research and deep",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "confirm variant parity plan",
+      "confirm variant parity tasks",
       "confirm variant parity acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "confirm variant parity implementation summary"
     ],
     "key_topics": [
       "confirm",
@@ -31,12 +29,12 @@
       "variants",
       "deep",
       "research",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -204,7 +202,7 @@
     ],
     "causal_summary": "The review measured seven divergences between the confirm and auto variants of the two deep commands",
     "created_at": "2026-09-20T08:33:44.564Z",
-    "last_save_at": "2026-10-07T12:55:30.911Z",
+    "last_save_at": "2026-10-07T15:56:50.819Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2c8312210e308eb933e36b46ea4e0ca13c1f4866f115fd8ecc105e299cdc2627",
+    "source_fingerprint": "sha256:df58150ca60ae44ceda78a4d53fbcb96397bf0f00eefe1ca5f40aeedef2e4111",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "55f2c02aceded87ff8f4de5398e71d77aa531c7d54fd758a7118f176f7f643fe",
-      "plan.md": "08c40f9b03b8ffa25f28a333f9cc61d42fa1451e85cd66a7073b8cce5b8ef72b",
-      "tasks.md": "a121d73614ef93c47fd58906126e30f2eea6fc710b2abc2107c068550149b1d2",
-      "implementation-summary.md": "44d8402879dbc4b5ee97ad0db398a8166c930b824aaaf8647935715500305589"
+      "plan.md": "dcd3c6dffb5a325f51a9ddaeabc05ea714e6ead0acaf90fb53140b0ec90441ce",
+      "tasks.md": "6f55eb00dcb024597cb66109b7f3e84d63de23b15919e01aa6deb6690ca49711",
+      "implementation-summary.md": "491b273bc9bff31848703e64a5c186d5b93a72db8b48f488471548bdfa2490ae"
     },
     "last_active_child_id": null,
     "last_active_at": null

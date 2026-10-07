@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The follow-ups the 050 review left are built, and the code of every killed or retired Jev feature is deleted."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "followups implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

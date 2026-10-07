@@ -2,10 +2,7 @@
 title: "Tasks: Phase 6: fable-mode"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "fable mode tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

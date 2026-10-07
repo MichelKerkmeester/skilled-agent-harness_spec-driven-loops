@@ -15,14 +15,14 @@
       "advisor runtime directory",
       "mcp-server rename",
       "advisor path migration",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "runtime package rename plan",
+      "runtime package rename tasks",
+      "runtime package rename acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "runtime package rename implementation summary"
     ],
     "key_topics": [
       "advisor",
@@ -33,10 +33,10 @@
       "mcp-server",
       "path",
       "migration",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The directory name is the last thing in the package still claiming an MCP server",
     "created_at": "2026-09-11T06:49:03Z",
-    "last_save_at": "2026-10-07T12:55:40.750Z",
+    "last_save_at": "2026-10-07T15:57:06.417Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6c961c2c15c6c56837aff0b11ab041dc48bdaa333a075a70b84c6839cd000ead",
+    "source_fingerprint": "sha256:96efc5b19dae4ddf03f446b5326bd15e4921014645b26f6589d12a32129aa399",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ad9f9d18e21985ad43e8d270b4232c7f56275d7253216314e609d2c1d8e3d18a",
-      "plan.md": "623be3502e9a0671d7dbb59e7536509be62e612f06a0036e968e8b3273adcb7d",
-      "tasks.md": "dbc2f006eff5759eda32e4de64029466791990a4700a6bf149f6e301d5c262c0",
-      "implementation-summary.md": "7432d0d2c6bbf14af1e2198c4a72615868e1c4305c783fbe0190f30582469142"
+      "plan.md": "c643d40f307ca107285c6fabf286dbdab9252714208c6cf9ca543d364482f235",
+      "tasks.md": "ee0b4172f2c8aa0b32167ccb105baf55b32ade27b5407140e64601ba71f16782",
+      "implementation-summary.md": "562b19f03d34f5c8715f9d797e15580cd100080faf68cdc186fb8ed7e4b051e4"
     },
     "last_active_at": null
   }

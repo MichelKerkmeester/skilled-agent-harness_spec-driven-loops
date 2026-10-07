@@ -2,7 +2,6 @@
 title: "Implementation Summary: sk-code-obsidian hub wiring"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation summary"
   - "sk-code-obsidian hub wiring"
   - "obsidian surface routing live"
 importance_tier: "important"

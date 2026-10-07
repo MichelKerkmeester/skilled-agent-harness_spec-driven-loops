@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 2: transactional re-mint"
 description: "Snapshot the gate's own output paths before the repair call, restore both the worktree files and their index entries on any non-zero exit, document the widening in both gates and refuse a staged derived file that carries non-generated history."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "transactional remint plan"
 importance_tier: "normal"
 contextType: "general"
 ---

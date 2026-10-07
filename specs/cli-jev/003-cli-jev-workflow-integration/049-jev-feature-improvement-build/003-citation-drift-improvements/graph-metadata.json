@@ -13,16 +13,13 @@
     "trigger_phrases": [
       "citation drift improvements",
       "the scan flags on the evidence it already",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "citation drift improvements plan",
+      "citation drift improvements tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "citation drift improvements implementation summary"
     ],
     "key_topics": [
       "citation",
@@ -32,11 +29,11 @@
       "flags",
       "evidence",
       "already",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "packet",
+      "goal",
+      "durable"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +195,7 @@
     ],
     "causal_summary": "Feature 032 kept on its 40-row benchmark, but the modal flag misses a catch that flagging on the lowest rerun makes for free",
     "created_at": "2026-10-03T05:30:04Z",
-    "last_save_at": "2026-10-07T12:54:56.142Z",
+    "last_save_at": "2026-10-07T15:56:06.339Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:59e2bee1be9f3142109d4f3ccebd7621f3c8c07d096610cc2c31453729205d4a",
+    "source_fingerprint": "sha256:8ae51491c12090b6b09b0348866544cf0aef553fa3b5ea77acbce6c511bd0b9a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "50eefe5ba85d97faa5f586734dc5e3f0801f968404f8745223b01f75aca63aac",
-      "plan.md": "d72c5b7752b34f71f6262112b5fe69a5219a00a399bef033267b6f1322fcd779",
-      "tasks.md": "63a044c2da96a3f749cabffcc79e59efc058eeed83526232c6400cdf0a6a4f89",
-      "implementation-summary.md": "1c995cec3d48077972a101e2d837f6859ead8052b5946225f692f331493c62b9"
+      "plan.md": "483e6a474a9f44c6ae75d27289f4332497f63f07dcb8b7b926ace41181cc5dba",
+      "tasks.md": "96838d75219c16fb0c5641c2c6b002fd72c674c43a4a764c1d2f3c23e9881321",
+      "implementation-summary.md": "cdfdf11fc778b27939b1280fa6c6e1ba5513f3543c0542479d0f112a056443ac"
     },
     "last_active_at": null
   }

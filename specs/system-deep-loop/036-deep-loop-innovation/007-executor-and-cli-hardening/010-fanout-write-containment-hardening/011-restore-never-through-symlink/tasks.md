@@ -2,10 +2,7 @@
 title: "Tasks: Phase 4: restore-never-through-symlink"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "restore never through symlink tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

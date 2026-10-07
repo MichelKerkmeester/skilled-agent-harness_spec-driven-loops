@@ -4,7 +4,6 @@ description: "Task list for the decoupling verification, the dispatch-chain rewi
 trigger_phrases:
   - "phase tasks"
   - "decouple and rewire"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "general"
 _memory:

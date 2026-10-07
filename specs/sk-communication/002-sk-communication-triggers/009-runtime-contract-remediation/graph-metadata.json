@@ -14,15 +14,9 @@
       "runtime contract remediation",
       "external cli model default",
       "local mode static text projection",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "runtime contract remediation plan",
+      "runtime contract remediation tasks",
+      "runtime contract remediation implementation summary"
     ],
     "key_topics": [
       "runtime",
@@ -44,11 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli-engines.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/runtime/local-projection.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/bin/external-cli-project.mjs",
-      ".opencode/commands/rewrite/response-by-external-agent.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -73,30 +63,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli-engines.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli-engines.ts",
-        "source": "derived"
-      },
-      {
-        "name": "local-projection.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/runtime/local-projection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "external-cli-project.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/bin/external-cli-project.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "response-by-external-agent.md",
-        "kind": "doc",
-        "path": ".opencode/commands/rewrite/response-by-external-agent.md",
         "source": "derived"
       },
       {
@@ -194,11 +160,35 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A review of the shipped packet found four contract defects:",
     "created_at": "2026-08-20T20:00:33.153Z",
-    "last_save_at": "2026-09-11T04:35:24.813Z",
+    "last_save_at": "2026-10-07T15:56:23.255Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b45ab4e36968a3f5e64fa2006e7fe5f8cd76cf0adfa1c85e347f6c644d4cc76a",
+    "source_fingerprint": "sha256:4dd9b97b6c1f89eeba27130a49e6f5117490a1fa025169406772b0186cf7d8fe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d05064aeb9debf040bfee07763a07abdf404222904e9f3a683669760224b5e3f",
-      "plan.md": "eda3ddd729a7964449c9516d8b670cff39455d2aeffee396d7dbdb1669a4de33",
-      "tasks.md": "4d7b5373721870ef6f31c5a28a035652587ee7790231346462e927cb0b9b6b8a",
-      "implementation-summary.md": "f7af2cc5b1d3cea1a8638387f3763bef2031b564173a598b88daf624580cde66"
+      "plan.md": "3700064acd7510414b9f8477e9e31b53d15fc0da4cf3d9c3a36db7ff2090c1db",
+      "tasks.md": "1a4e1a0c8c291c5e91b2b4275243257a9bdc527920f14a730090bdf13ff34a7f",
+      "implementation-summary.md": "e11fb486b1b2895340c986eb2867393e557367ba5af50e15d62f18ddc7938b6d"
     },
     "last_active_child_id": null,
     "last_active_at": null

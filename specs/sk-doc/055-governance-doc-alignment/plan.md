@@ -2,10 +2,7 @@
 title: "Implementation Plan: Governance documentation alignment: 006-resume queue plus router and root-doc research"
 description: "Restore 006 to a validated state, then research the reply-shape router and the root instruction document under a recorded GLM-5.3-Flash dispatch contract, acting only after the sequencing question is answered."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "governance doc alignment plan"
 importance_tier: "normal"
 contextType: "general"
 ---

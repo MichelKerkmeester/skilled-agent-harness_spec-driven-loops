@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The Pi classifier transport keeps its adopt verdict on a fresh same-day paired run with both arms on Typesafe's own host, so only the transport differs."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "pi transport improvements implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

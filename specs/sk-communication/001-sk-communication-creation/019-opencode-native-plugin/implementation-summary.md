@@ -3,7 +3,6 @@ title: "Implementation Summary: Phase 019 OpenCode Native Plugin"
 description: "The first working runtime is wired: an OpenCode plugin registers the chat.message hook, gates projection behind isProjectionEnabled() and a per-plugin kill-switch, and holds the byte-exact original in message-id keyed state for restore."
 trigger_phrases:
   - "opencode-native-plugin"
-  - "implementation summary"
   - "mk-communication-projection plugin"
   - "chat.message hook projection"
 importance_tier: "important"

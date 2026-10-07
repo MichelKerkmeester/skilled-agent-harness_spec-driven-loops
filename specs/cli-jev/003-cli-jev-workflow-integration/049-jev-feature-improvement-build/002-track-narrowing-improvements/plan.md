@@ -2,10 +2,7 @@
 title: "Implementation Plan: Build: improve the Jev spec-track narrowing (017)"
 description: "Harden the narrowing scorer's record (row-set and model pin, no `--out` overwrite) and add reporting: decided-subset accuracy, margin slack, a per-track table, extra arms from recorded calls, and a bootstrap interval over a repeat run.."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "track narrowing improvements plan"
 importance_tier: "normal"
 contextType: "general"
 ---

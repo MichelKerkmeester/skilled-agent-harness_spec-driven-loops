@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Produce a grounded and ranked recommendation set that identifies what to improve next, why each improvement matters, and the rough effort required",
     "created_at": "2026-08-15T05:31:15.872Z",
-    "last_save_at": "2026-09-11T16:41:53.952Z",
+    "last_save_at": "2026-10-07T15:56:22.653Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:59a89aa5e2eca76db64232ebdfd126cf00b9ae7742b531a4abbccd50c5e769f4",
+    "source_fingerprint": "sha256:58c587c6ca338ad65c31400627b30848e6d9d5393df7ce490053fb547b586c57",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "117bbf95116ebe58e74bdb9056b884549c11fb9ac160e076059f02ce4fb6532e",
       "plan.md": "7eee39e4767db938014ec551480b06fe0b84d377d3f2ab1108328cae2c3b5958",
       "tasks.md": "5d2c5df6ac53000fd7976c181ddca3e188189b84df486af31c1096b8328a7e8d",
-      "implementation-summary.md": "1ae2175c0ff79a2919279e0e9cf92b5894b658ef71c4a4f46e4d34ab6c7dd883",
+      "implementation-summary.md": "5b692aa9e0c43a6fa25c34ddce52a9ceed7e100821bebaab34dfd9a1efd4545c",
       "research/research.md": "d7c443ead52fc9ba8fe2f1e8efa1aa92d3e9f78394c1981dbb33cbbd86bb5cbc"
     },
     "last_active_child_id": null,

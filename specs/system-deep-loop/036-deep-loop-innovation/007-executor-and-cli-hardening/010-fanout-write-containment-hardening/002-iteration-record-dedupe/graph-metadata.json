@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "iteration record dedupe",
       "the forced depth validator collapses duplicate iteration records",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "iteration record dedupe plan",
+      "iteration record dedupe tasks",
       "iteration record dedupe acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "iteration record dedupe implementation summary"
     ],
     "key_topics": [
       "iteration",
@@ -34,9 +32,9 @@
       "collapses",
       "duplicate",
       "records",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -202,7 +200,7 @@
     ],
     "causal_summary": "Two of four research lanes, on two executor kinds, finished all three iterations and were still rejected with `duplicate state records for iterations: 1,2,3,1,2,3`",
     "created_at": "2026-09-20T08:33:40.855Z",
-    "last_save_at": "2026-10-07T12:55:32.770Z",
+    "last_save_at": "2026-10-07T15:56:56.064Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:331de323beb4dea63286fe189ca822cc6b5553654dcaec024fc451a09c08457d",
+    "source_fingerprint": "sha256:dffe00b44d9f45dee94970b136572e7b95912b4bfc2d32a3bde1b4d367673509",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a8eec746adc340e686e0d2e5133f120f1977f53dbd24803fe376f9cd8c35f363",
-      "plan.md": "cef173645b4cfca5683f249375f8e81003d37fbec3458b19e03cc340b06cd275",
-      "tasks.md": "773b6a57492f8a2c48232afa03a8d9bb50b817fe1a1e39388e08ffd2a473b2e6",
-      "implementation-summary.md": "17e8b482ec4286b839bec6b3d411ec460bb26e766b559052254ec29c53868625"
+      "plan.md": "c194a9d532af87d1fe4fd765c6e25b109db163b64d590f0024824755321a9061",
+      "tasks.md": "2dc2774e0bc9f02d598b5c2c358a6bb63d9dab75731c14f969267ddd1609b7fa",
+      "implementation-summary.md": "d6ab767156447aa5f3b0bcac0da3afbd768af11b55999c995db51cab95fe4f82"
     },
     "last_active_child_id": null,
     "last_active_at": null

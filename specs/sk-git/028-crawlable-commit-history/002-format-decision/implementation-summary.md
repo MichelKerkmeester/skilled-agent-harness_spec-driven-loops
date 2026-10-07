@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Five approved decisions freeze the commit grammar: a repository-wide ordinal, the packet path in Spec:, a hook whitelist that lands first, a stamper that re-mints on cherry-pick, and no new repo rule."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "format decision implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,10 +2,7 @@
 title: "Tasks: Phase 6: ledger-stem-producers"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "ledger stem producers tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

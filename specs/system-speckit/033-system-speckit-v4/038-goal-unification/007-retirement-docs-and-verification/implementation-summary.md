@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The legacy goal store is demoted with a migration note, every goal document describes the packet-bound model, and a full verification sweep plus a deep review closed the packet with five P1 findings fixed."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "retirement docs and verification implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,10 +2,7 @@
 title: "Implementation Plan: a case for every family, and a guard that keeps it that way"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "full family coverage plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The approved grammar is now code: the commit-msg hook whitelists and polices the new trailers, an allocator mints ordinals under a lock, a prepare-commit-msg hook stamps them, and the sk-git skill says so, all with harnesses."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "contract and hook implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

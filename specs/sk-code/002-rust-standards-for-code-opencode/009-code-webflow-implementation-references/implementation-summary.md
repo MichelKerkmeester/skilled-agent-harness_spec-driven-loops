@@ -14,10 +14,7 @@ _memory:
     completion_pct: 100
     status: "Complete"
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "code webflow implementation references implementation summary"
 ---
 # Implementation Summary
 

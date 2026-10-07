@@ -3,7 +3,7 @@ title: "Feature Specification: Fix: fan-out runner, merge and lineage prompt"
 description: "A fan-out run merges every finding a lineage writes, fails fast on a refusal that cannot change, and its lineages neither halt for an absent operator nor write outside their folder."
 trigger_phrases:
   - "fanout runner and prompt fixes"
-  - "a fan out run merges every finding a"
+  - "a fan out run merges every finding"
 importance_tier: "normal"
 contextType: "general"
 ---

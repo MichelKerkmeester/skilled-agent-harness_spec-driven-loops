@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Step 7 of the spec folder write recipe now matches the commit hook: no attribution trailer, a subsystem scope, a prose body and a Spec trailer."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "fix write recipe commit step implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

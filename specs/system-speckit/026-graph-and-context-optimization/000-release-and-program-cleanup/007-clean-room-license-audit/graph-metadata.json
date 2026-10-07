@@ -14,15 +14,14 @@
       "012 license audit",
       "clean room license",
       "external-project license",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "012/001 decision record"
+      "clean room license audit plan",
+      "clean room license audit tasks",
+      "012/001 decision record",
+      "clean-room license adr",
+      "polyform noncommercial audit",
+      "012/001 implementation summary",
+      "license audit summary",
+      "clean-room approved"
     ],
     "key_topics": [
       "license",
@@ -30,13 +29,13 @@
       "clean",
       "room",
       "external-project",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing"
+      "tasks",
+      "decision",
+      "record",
+      "clean-room",
+      "adr",
+      "polyform"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -45,8 +44,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".claude/settings.local.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -77,12 +75,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -192,11 +184,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "pt-02 §12 ranks license contamination from direct External Project reuse as a P0 risk",
     "created_at": "2026-04-25T10:48:06.447Z",
-    "last_save_at": "2026-09-11T04:38:55.988Z",
+    "last_save_at": "2026-10-07T15:57:11.385Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +204,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6fba2361f0df511ad7a12cfeaca9d910116580167eaa2ce123a3afcb0b39134",
+    "source_fingerprint": "sha256:9d81db6470fe984f484a01bc7df61220da13e5912fbbcb0e199f854d5fa6ce86",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ee1b3ea18db59b5b0d20de7fc0b78ca419118ddb6061b058c17199b64f6a454d",
-      "plan.md": "93cec0626dad7d334cbe53b113cc62f054922a7e24c6e943ae604fe9708f885c",
-      "tasks.md": "e2c2f95c6b2f54cf70101c2f23fba19e3d0d9348051233f874c9bbaec0e8e1bc",
+      "plan.md": "36c805f334ec3d2e9f5531a7c78135d6270b81eb4bf9084460bf2d816c8b567f",
+      "tasks.md": "2e740c00d68a738761fbada35182ca2a6e493121ef57ccc000bc6a04f34c7149",
       "decision-record.md": "d21905c0ae2d8789a17d7857e45df829e44cca4a946a4aeb63808b6f19049b2f",
       "implementation-summary.md": "522fa94d8725285832ff3de95237273471f13746b4f52428e92e5bee831df140"
     },

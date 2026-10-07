@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 2: Review, test, re-measure and fix nine Jev features"
 description: "One fresh Opus reviewer works the nine features in turn: read, test, re-measure, fix, re-measure again when a fix changes the protocol."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "feature review and remeasure plan"
 importance_tier: "normal"
 contextType: "general"
 ---

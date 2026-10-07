@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The skill-advisor launcher now installs the system-spec-kit workspace before building its runtime, so a fresh clone starts the daemon without manual installs."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "fresh clone bootstrap implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

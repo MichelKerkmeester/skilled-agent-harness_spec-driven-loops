@@ -12,17 +12,10 @@
   "derived": {
     "trigger_phrases": [
       "restore pi advisor brief",
-      "every pi prompt scores in 2 ms and",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "every pi prompt scores in 2 ms",
+      "restore pi advisor brief plan",
+      "restore pi advisor brief tasks",
+      "restore pi advisor brief implementation summary"
     ],
     "key_topics": [
       "restore",
@@ -31,12 +24,12 @@
       "every",
       "prompt",
       "scores",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "implementation",
+      "summary",
+      "since",
+      "source-root"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -196,7 +189,7 @@
     ],
     "causal_summary": "Since the source-root migration, the pi prompt-advisor hook fails on every prompt in ~2 ms without contacting anything: its warm-CLI fallback probe looks only under `<root>/.opencode/bin/`, but the advisor shim and the launcher-IPC bridge now live under `<root>/.skilled/bin/`",
     "created_at": "2026-09-22T07:01:40Z",
-    "last_save_at": "2026-10-07T12:55:41.732Z",
+    "last_save_at": "2026-10-07T15:57:06.772Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d7be3011a3fa2714041368b8bcc01588d5aec2791e5643dcc73264eb2982ea2b",
+    "source_fingerprint": "sha256:b5af8d0ca5202bc826d20c5621fcea6c6cb33b989a964ae4eae4dd2dad53bf49",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "303808c739133599853f01e20a328be34c8e3dac9765d8038d801f0cde7884a1",
-      "plan.md": "9a0922025cde5767008bb7411e96dece0e3d5673138bf52afb58aa79ae1c865c",
-      "tasks.md": "4127abdcab4befb05c075775838dd7c3754b2541546e4deda2d0cf2c13f69d42",
-      "implementation-summary.md": "f6f6aab9fad0a5a35c73df44338a43aa192cc00859cd57243e89d69a6e5621e1"
+      "spec.md": "84d1f4d5b9006b8b3d9ffa7102989128c5187d21226df3724edfa58926e2a021",
+      "plan.md": "e58d4cd5d8ab152a51c50053ef6a9a4bdb3cc361515cfc77c85722864eb96577",
+      "tasks.md": "c1ea190b16926e2d113ebb72e084de9f96952de53748dca7d052db5762a96df7",
+      "implementation-summary.md": "397493dd80997358b1dc8c99d5ca59bc054a8553bca289cca9352fc1fd811a5e"
     },
     "last_active_at": null
   }

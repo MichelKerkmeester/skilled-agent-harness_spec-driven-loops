@@ -2,10 +2,7 @@
 title: "Tasks: Reword the status and push rows of the spec folder write recipe post-checks"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "fix write recipe post checks tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

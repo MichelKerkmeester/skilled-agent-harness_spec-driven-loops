@@ -2,9 +2,7 @@
 title: "Tasks: Phase 3: hub-mode-registration"
 description: "Task ledger for registering and wiring cli-jev: the transport registry entry and axis, every routing surface, the dispatch-audit shape, eight implemented checks with fixtures, the compiler's transport support and the serving re-mint."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
+  - "hub mode registration tasks"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

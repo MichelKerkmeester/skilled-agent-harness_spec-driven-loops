@@ -15,12 +15,10 @@
       "compatibility doctor pre-projection gate",
       "privacy-fact freshness gate",
       "original-only fail-closed gate",
-      "implementation plan",
       "architecture decision",
       "doctor binding gate and fail-closed original selection",
       "capability and privacy gate implementation",
-      "pre-projection gate complete",
-      "implementation summary"
+      "pre-projection gate complete"
     ],
     "key_topics": [
       "capability-and-privacy-gating",
@@ -32,9 +30,9 @@
       "freshness",
       "original-only",
       "fail-closed",
-      "implementation",
-      "plan",
-      "architecture"
+      "architecture",
+      "decision",
+      "binding"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -193,7 +191,7 @@
     ],
     "causal_summary": "The projection seams built in Phases 019-025 gate on enablement and fail open to the byte-exact original on error, but none of them yet consult the compatibility doctor before projecting",
     "created_at": "2026-08-14T05:50:33.697Z",
-    "last_save_at": "2026-10-03T15:12:03.899Z",
+    "last_save_at": "2026-10-07T15:56:22.364Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +201,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f069f63a835f736ad4d22ea9a08e0ecf3a76825bf95945da35cac7996439c6de",
+    "source_fingerprint": "sha256:7f50ee3dad9d5990db2c043d15b25ffaa1bb3bfe11f17ebc34ae39cf53f91d8b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bcfafccf30d99d616c8a25c719be75348b5fb10d482ce4af982ed23a38ee3dda",
-      "plan.md": "c8247422337a8ff8a4030cbdfa09397027b3484b7b363d7cc59f1b055f58f2b9",
+      "plan.md": "25ab9fda96a32acc8e3a1938d9f074566d92519d66875b1413a478bf96935a99",
       "tasks.md": "bcceeec61c7b1bffc516dc50d8af18e10aac39f332e8356e4d4512df20624c85",
       "decision-record.md": "b4aff5f1458e2c310105036190c974dc49e6446ecca99eb0b13d85cde2021cc5",
-      "implementation-summary.md": "1ddca326be4e282f699ca5e6787e8882f809b242072a982761e82a1772d4b37b"
+      "implementation-summary.md": "ee09bcc32cda98bd1ec0c290d5eb65aefd18e09dfd3bf98f66a701448dc3a67d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,10 +2,7 @@
 title: "Implementation Summary: reinstate the sk-design parent hub"
 description: "sk-design becomes a parent hub again, with its former root content moved down into sk-design-fundamentals as the first mode, and the routing effect measured rather than assumed."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "hub and fundamentals implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

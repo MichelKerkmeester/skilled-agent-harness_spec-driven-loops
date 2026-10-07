@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 10: skill-advisor"
 description: "Audit `/doctor:speckit skill-advisor` against this checkout, then repair the workflow, its route entry and the presentation in place. The audit checked every path, command, flag and assertion the workflow names; the repairs move the workflow to the CLI front door, make the declared command lines runnable, correct the boost ranges and the phase 0 assertions, and label the target's setup prompt."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "skill advisor plan"
 importance_tier: "normal"
 contextType: "general"
 ---

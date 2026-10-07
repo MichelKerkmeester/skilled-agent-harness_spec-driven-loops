@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The Gate-3 menu stops riding every write-intent turn and is delivered once, at the first real mutation, through each runtime's strongest channel; Pi answers through an interactive dialog."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "gate 3 mutation time delivery implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

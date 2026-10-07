@@ -4,7 +4,6 @@ description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "v4.0.0.3 remediation tasks"
   - "review finding fix tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "planning"
 ---

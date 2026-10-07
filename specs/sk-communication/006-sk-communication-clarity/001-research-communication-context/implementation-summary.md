@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Two model-family lineages classed every rule in three communication sources against the repository stack, with cited evidence."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "research communication context implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

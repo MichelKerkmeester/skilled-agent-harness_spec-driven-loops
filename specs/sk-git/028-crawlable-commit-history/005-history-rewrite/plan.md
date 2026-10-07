@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 5: history-rewrite"
 description: "Five scripts and one gated window: a frozen plan from a pinned SHA, a mirror rewrite with invariants rehearsed at full scale, a citation remap from the commit map, a branch stamper for the lines left behind, and a force-push that waits for a written rollback and a fresh yes."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "history rewrite plan"
 importance_tier: "normal"
 contextType: "general"
 ---

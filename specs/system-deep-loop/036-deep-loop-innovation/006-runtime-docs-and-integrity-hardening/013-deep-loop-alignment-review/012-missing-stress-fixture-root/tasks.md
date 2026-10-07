@@ -2,10 +2,7 @@
 title: "Tasks: Phase 12: missing-stress-fixture-root"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "missing stress fixture root tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

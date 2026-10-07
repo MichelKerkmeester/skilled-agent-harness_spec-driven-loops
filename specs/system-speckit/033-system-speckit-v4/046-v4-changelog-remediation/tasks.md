@@ -2,10 +2,7 @@
 title: "Tasks: v4 changelog remediation (the 045 research pass)"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "v4 changelog remediation tasks"
 importance_tier: "normal"
 contextType: "implementation"
 ---

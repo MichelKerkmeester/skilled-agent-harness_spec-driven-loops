@@ -2,8 +2,6 @@
 title: "Implementation Plan: Phase 1: research"
 description: "One cli-pi lineage running DeepSeek V4.1 Flash at max thinking through the LLM gateway for ten forced iterations, one angle each, over the sk-git commit contract and the live history."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
   - "research lineage plan"
   - "fanout research run"
 importance_tier: "normal"

@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 9: one-form-library"
 description: "Merge assets/templates/ and assets/examples/ into assets/diagrams/, rewrite the applicator and checker to key on filename instead of directory, and repoint every file the inventory below found."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "one form library plan"
 importance_tier: "normal"
 contextType: "general"
 ---

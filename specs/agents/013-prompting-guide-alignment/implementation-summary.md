@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "AGENTS.md, four repo rules, the rule router and sk-prompt now agree with themselves and with the current Claude and GPT-6 prompting guides, after three model lenses and a line-by-line check of every finding; GPT-6 Luna joined the cli-devin roster to make the second lens possible."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "prompting guide alignment implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

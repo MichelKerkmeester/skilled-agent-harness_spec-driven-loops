@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`AGENTS.md` Gate 1 mandates `memorymatchtriggers(prompt)` on every user message, and that tool is",
     "created_at": "2026-09-02T11:04:48Z",
-    "last_save_at": "2026-10-07T12:55:43.154Z",
+    "last_save_at": "2026-10-07T15:57:18.412Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:127f881dfbfdbcb6e44812cb7836b2c130ad73b30ef13830a10bf1acd344b331",
+    "source_fingerprint": "sha256:61a0e8784dfd7c25bef24057f159a01662f92dbc00c37e1f4bd95a7e2f93d857",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0a5cfa28bbae8090b809ee22c3fc8e1079ae96a8dd715917d99d0e0fb2d76523",
       "plan.md": "a8435e392195bd32dbaf8b6653c737b1c68a8f8d49bca2f5fd7eef4b642c4c16",
       "tasks.md": "ca8024b5e5a58f41fce67b7727a3ea2856374ef54871090e5c1ddddb9bc0265c",
-      "implementation-summary.md": "dd35b8028ea8c54992ec0ccae762acf4b9d4c05c1b2ecd81a217149e814d7b2f"
+      "implementation-summary.md": "b421e485b233e702b648a732840efb78756351ba13321603d2c81866d682b765"
     },
     "last_active_child_id": null,
     "last_active_at": null

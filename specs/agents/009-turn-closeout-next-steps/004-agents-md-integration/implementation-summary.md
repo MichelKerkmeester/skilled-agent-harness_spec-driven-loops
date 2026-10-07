@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Wired the close-out rule into REPO RULES.md and AGENTS.md with equal counts and zero broken links."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "agents md integration implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

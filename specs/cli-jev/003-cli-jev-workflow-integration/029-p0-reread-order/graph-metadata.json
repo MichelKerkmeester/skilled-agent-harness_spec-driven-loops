@@ -46,8 +46,6 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts",
       ".skilled/skills/system-deep-loop/SKILL.md",
       "runtime/README.md",
       "runtime/scripts/README.md",
@@ -55,12 +53,12 @@
       ".skilled/skills/system-deep-loop/runtime/README.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
       ".skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md",
-      ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md",
       ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
-      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/severity-replay.md",
       ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
       ".skilled/commands/deep/assets/compiled/deep-ai-council.contract.md",
-      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json"
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+      "scratch/w4-session/docs/facts.txt",
+      "scratch/w4-session/session-evidence.md"
     ],
     "entities": [
       {
@@ -94,18 +92,6 @@
         "source": "derived"
       },
       {
-        "name": "score-severity-replay.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-severity-replay.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/system-deep-loop/SKILL.md",
@@ -121,12 +107,6 @@
         "name": "v1.8.0.0.md",
         "kind": "doc",
         "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "severity-replay.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md",
         "source": "derived"
       },
       {
@@ -151,6 +131,18 @@
         "name": "manifest.json",
         "kind": "config",
         "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "facts.txt",
+        "kind": "file",
+        "path": "scratch/w4-session/docs/facts.txt",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
         "source": "derived"
       },
       {
@@ -206,11 +198,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A deep-review P0 blocks release",
     "created_at": "2026-09-29T12:42:41Z",
-    "last_save_at": "2026-10-03T21:30:53.338Z",
+    "last_save_at": "2026-10-07T15:56:01.960Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0f0339d0217bd8ea5ca621c7abd83ec1324e05191c51f6daf5b9773cc4a12bf0",
+    "source_fingerprint": "sha256:94a49638fdd3d683eb4c71ea227734c9c59f89c4617bc880eea2b607052d98ae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "39f8e3009ebb1ac7a80d3ffabcac1af82107cd4dcfaa1546b359e70b196dc279",
       "plan.md": "d9cc898ca2cb5f22b84311683cd401b55622dada691c234f18173076392bc396",
       "tasks.md": "5812bf7eb56ab86161e810cb3fb11897ca911e1cb3f48ed5b233e7d346ef4623",
-      "implementation-summary.md": "d74817a9ceca89b0df8b4a2363110b53e3db25d8b7f44d2a12c2908e62fa02aa"
+      "implementation-summary.md": "9921f8f4bbf9259f202db5a6e5a19085ec5513513f875f4e526bd8564e69b279"
     },
     "last_active_at": null
   }

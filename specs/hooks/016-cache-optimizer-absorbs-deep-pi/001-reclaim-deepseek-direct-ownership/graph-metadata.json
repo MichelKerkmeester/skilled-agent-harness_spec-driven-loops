@@ -15,14 +15,14 @@
       "remove isdeeppiowned carve-out",
       "shared ownership fixture removal",
       "atomic ownership flip",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "reclaim deepseek direct ownership plan",
+      "reclaim deepseek direct ownership tasks",
+      "reclaim deepseek direct ownership acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "phase outcome"
     ],
     "key_topics": [
       "reclaim",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`isDeepPiOwned` (`index.ts:1462`) returns true for exactly `provider === 'deepseek'` with id",
     "created_at": "2026-09-08T17:57:01Z",
-    "last_save_at": "2026-10-03T15:29:38.358Z",
+    "last_save_at": "2026-10-07T15:56:13.583Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ebd55067d9695489ec8b79bb2ff06cb857b0304846d2677dcebb3e9a9a560ed0",
+    "source_fingerprint": "sha256:b9731bcc650344a3af04ecab39f2b6482289a08aeb33ff1d4936c0d966eec91a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "809cde6319e00ab77ae1d2a6d49d52ea76fd64f9cf3bb3c5485dc687616b509e",
-      "plan.md": "2fdbb4f30207f402d7dd7ae2cef3b02786b6fbc9c669ef75bf44633df3fe1914",
-      "tasks.md": "1cf9023752676ad2f755dab83c4e252184912a5fd5472c76dd1a37d58eb414cc",
-      "implementation-summary.md": "bc8b7552ff3d592d6fed5e9e764aa979dee38d4d0805076e1152f43d8fee0fff"
+      "plan.md": "3d729dd36e7b314848a984c3dc02c20fdd87cd80d6b0707c5443ac47fe78222b",
+      "tasks.md": "2621d013bfef4cc8e71b91f8093405eb515a3355e4f65d0b19fd67671d583d5b",
+      "implementation-summary.md": "466a1cb2a680dff77bb4ac3dea08843d61c3421b636d215109ec2aa5399bc7d0"
     },
     "last_active_at": null
   }

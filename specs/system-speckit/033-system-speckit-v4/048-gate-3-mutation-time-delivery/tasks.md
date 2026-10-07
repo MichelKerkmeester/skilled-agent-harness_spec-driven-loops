@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: gate-3-mutation-time-delivery"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "gate 3 mutation time delivery tasks"
 importance_tier: "important"
 contextType: "implementation"
 ---

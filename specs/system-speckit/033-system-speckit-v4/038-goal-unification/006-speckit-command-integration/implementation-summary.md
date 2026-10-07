@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The speckit workflows now bind, resend, remind and log against the packet goal.md, AGENTS.md carries the always-on goal posture, and the natural-language phrases route to the same behavior."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "speckit command integration implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

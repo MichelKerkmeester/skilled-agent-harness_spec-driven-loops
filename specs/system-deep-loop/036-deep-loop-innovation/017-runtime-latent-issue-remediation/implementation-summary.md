@@ -21,10 +21,7 @@ _memory:
       - "Executor? Sonnet 5 at xhigh, 8-workstream disjoint-file fan-out."
       - "Ledger-bypass handling? Option C — default-on structural ledger-backing gate with kill-switch."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "runtime latent issue remediation implementation summary"
 ---
 # Implementation Summary: System-Deep-Loop Runtime Latent-Issue Remediation
 

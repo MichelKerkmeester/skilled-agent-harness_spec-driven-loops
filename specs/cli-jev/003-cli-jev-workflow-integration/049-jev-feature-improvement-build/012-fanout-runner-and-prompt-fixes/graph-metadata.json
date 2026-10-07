@@ -12,17 +12,14 @@
   "derived": {
     "trigger_phrases": [
       "fanout runner and prompt fixes",
-      "a fan out run merges every finding a",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "a fan out run merges every finding",
+      "fanout runner and prompt fixes plan",
+      "fanout runner and prompt fixes tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "fanout runner and prompt fixes implementation summary"
     ],
     "key_topics": [
       "fanout",
@@ -33,10 +30,10 @@
       "merges",
       "every",
       "finding",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -206,7 +203,7 @@
     ],
     "causal_summary": "Phase 048 hit four more fan-out faults",
     "created_at": "2026-10-03T05:30:11Z",
-    "last_save_at": "2026-10-07T12:54:56.689Z",
+    "last_save_at": "2026-10-07T15:56:06.891Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:71808bd8dde97e4e4559a0a1ea1a5abd56c91d33536c0b2a21950f1d4788813d",
+    "source_fingerprint": "sha256:df3da94909278a194487c3806699a4c3605793010c849fbb2530c1403f1d426d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d7b306a62174649fdbebaeda5f4e5e6394a629069a2909e4a93f3bb354174783",
-      "plan.md": "b6aa8f25b10c15b39fdf18ab894a18125910d670718de4717e580d9ce3d9d068",
-      "tasks.md": "59f5952f10c09c285f3acf8db0ba8990f9c32e9494c7f43a78e492728685ab7a",
-      "implementation-summary.md": "584fa0899da203c6b1cc321b545319668948983e62291a87b0321f3a3e2867dd"
+      "spec.md": "76414ed85a7cc04c9c26fad3ec0abd3e07a95a7b8b442f49b3014bdef5de948c",
+      "plan.md": "50bcbab9139f7e2c46f9ce76d30d8d89f772e05fe511391e5f1880976ea7672b",
+      "tasks.md": "c1fa4aa34032d13f58a6369e7f3181ba44c81dd8cb6802881ba8cf90cb50daad",
+      "implementation-summary.md": "54397f5050e906c4d7009196e2bc8721cf573253d74ae131def7b75173e3d42b"
     },
     "last_active_at": null
   }

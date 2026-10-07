@@ -3,7 +3,6 @@ title: "Implementation Summary: Missing Code READMEs Resource Map"
 description: "Corrected Phase 052 to the exact 65-folder manifest and created validated code READMEs."
 trigger_phrases:
   - "missing code readmes resource map"
-  - "implementation summary"
   - "phase 052"
 importance_tier: "normal"
 contextType: "implementation"

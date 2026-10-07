@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 3: cli-hermes-skill-packet"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "cli hermes skill packet plan"
 importance_tier: "normal"
 contextType: "general"
 ---

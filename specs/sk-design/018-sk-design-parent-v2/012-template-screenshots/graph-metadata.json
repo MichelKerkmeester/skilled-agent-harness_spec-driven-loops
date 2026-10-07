@@ -12,17 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "template screenshots",
-      "both canvas modes ship html that has to",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "both canvas modes ship html that has",
+      "template screenshots plan",
+      "template screenshots tasks",
       "template screenshots acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "screenshot decisions",
+      "leaf surface boundary",
+      "headless colour scheme"
     ],
     "key_topics": [
       "template",
@@ -31,12 +31,12 @@
       "modes",
       "ship",
       "html",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Both canvas modes ship HTML that has to be opened in a browser to be judged",
     "created_at": "2026-09-06T20:37:15Z",
-    "last_save_at": "2026-10-07T12:55:17.474Z",
+    "last_save_at": "2026-10-07T15:56:40.219Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8c8fa3a177c62eb8361abab4b783da0fd657bf2e146c4540fb0ced10c630c211",
+    "source_fingerprint": "sha256:40c626760bb2b6265409305db219973222e500ddd67ab5077752e5e5a96490b6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6c04ece355f004d4e2b4be35267b513d825d574a065d5b8c9b48d562046a1d10",
-      "plan.md": "a447b8d0df9e8eb3563b8a1a5da00f1abc206894e066beb93a1031b70f5c924b",
-      "tasks.md": "8f17df84a371827ca71633c4beee672605c6e80c8134f998bdee60fdf3afc671",
+      "spec.md": "a4f2a826930192154bc8e78c324082517bf70f62c44d886bcbdebcb13c6b6068",
+      "plan.md": "825123b0779b3825fc5e8c120a3903cbee2b4b527456589c7600ffbeecbcf887",
+      "tasks.md": "a03e8e5c2f019afc4262453d471a3192bbd900be4e7057bc2919a6eb6f9dd6f8",
       "decision-record.md": "20d51ab978075d378c3f5a677efb25b07b7db50357247fd2d3c5d81b4c6ec330",
-      "implementation-summary.md": "7df5c4e7be1099f2b7924c75828d8e7be894bc32a5f407c32950b467a6ace6bf"
+      "implementation-summary.md": "efd6c04cb5cebbfef7dd49f7226d832b635920e2e61c0ac453ee6f6674db12bd"
     },
     "last_active_at": null
   }

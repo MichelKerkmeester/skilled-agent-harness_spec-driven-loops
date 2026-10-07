@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 027 Evaluation and Release Gate"
 description: "Wire the blind non-inferiority evaluation into the production projection path as a reject-only consult and gate the multi-runtime rollout on dated non-inferiority, smoke, and canary evidence."
 trigger_phrases:
   - "evaluation-and-release-gate"
-  - "implementation plan"
   - "non-inferiority consult and rollout gate plan"
 importance_tier: "important"
 contextType: "implementation"

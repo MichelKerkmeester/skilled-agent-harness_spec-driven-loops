@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "What the machine cutover changed: the seven global git hooks, the Codex hook registration, three home files, four consumer links, and the evidence that each one resolves the new source root."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "machine and consumer cutover implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

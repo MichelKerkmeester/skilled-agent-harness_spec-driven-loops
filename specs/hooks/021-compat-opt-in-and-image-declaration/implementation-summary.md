@@ -2,11 +2,8 @@
 title: "Implementation Summary"
 description: "A channel's capabilities are now declared, never inferred from a model's name. The cache optimizer stops telling DeepSeek-named models to adopt a wire format they never opted into, and the llmgateway channel declares the two things a live request proved it supports: session-affinity headers and image input."
 trigger_phrases:
-  - "implementation summary"
   - "deepseek compat opt-in"
   - "llmgateway image declaration"
-  - "validation evidence"
-  - "continuation notes"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

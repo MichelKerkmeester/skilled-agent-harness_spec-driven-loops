@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Every one of the 15 unmeasured Jev features now has a result its own scorer printed: 11 live Jev verdicts and 4 zero-call bounds. Five keep, four kill, two stop on margin, four show no headroom."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "measure every jev feature implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

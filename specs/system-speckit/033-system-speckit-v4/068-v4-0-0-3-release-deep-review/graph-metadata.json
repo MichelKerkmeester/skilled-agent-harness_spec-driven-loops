@@ -21,8 +21,8 @@
       "review synthesis plan",
       "v4.0.0.3 review tasks",
       "deep review fan-out tasks",
-      "verification checklist",
-      "review synthesis tasks"
+      "review synthesis tasks",
+      "v4 0 0 3 release deep review acceptance criteria"
     ],
     "key_topics": [
       "deep",
@@ -34,8 +34,8 @@
       "lineages",
       "synthesis",
       "tasks",
-      "verification",
-      "checklist",
+      "acceptance",
+      "criteria",
       "released"
     ],
     "importance_tier": "normal",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "v4.0.0.3 was released after 633 commits across about 45 spec packets",
     "created_at": "2026-10-05T21:03:37Z",
-    "last_save_at": "2026-10-07T12:55:57.402Z",
+    "last_save_at": "2026-10-07T15:57:35.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +214,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b5e6e5cdf589d878c5e48fb65c16f7d4a286486773d75f12584c08a0887a5267",
+    "source_fingerprint": "sha256:cb2ff3ccaf9e6e12ac01c9e179fa69e8fe1738d9ded68993a5066fa721553adb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1904136b6056b291d7b52408de27d9b813c3e3cbb811af37754d54560446b8fc",
       "plan.md": "940b1671ac8bb68f0ad8337ebde88313921b9aa875c063d92f8d4781f6abbe82",
-      "tasks.md": "9ea9c65f46e117dba608aba81c7a0101023a75e6019bf2f033eb6ff7e4cc16b7",
+      "tasks.md": "3372059c22e26a272c6c08f9c81391322b74995f4125dee14b3f6070124f8053",
       "implementation-summary.md": "865dede08cdfaf94a1d73c0aa071ab1e4acb6c5064b09d8a85491981b09cff58"
     },
     "last_active_at": null

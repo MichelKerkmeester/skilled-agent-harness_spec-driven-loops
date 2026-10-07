@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: angle-driven-review"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "angle driven review tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

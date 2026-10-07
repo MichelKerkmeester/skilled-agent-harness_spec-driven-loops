@@ -2,10 +2,7 @@
 title: "Implementation Plan: give the moved modes and commands the hub's name"
 description: "Rename both moved modes and their commands to the hub they now belong to, as renames, with every live reference following and the routing re-measured."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "design mode and command rename plan"
 importance_tier: "normal"
 contextType: "general"
 ---

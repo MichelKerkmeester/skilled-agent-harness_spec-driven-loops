@@ -20,7 +20,6 @@
       "next action verb list",
       "continuity reader tasks",
       "flow list parsing tasks",
-      "implementation summary",
       "next safe action verbs evidence"
     ],
     "key_topics": [
@@ -197,7 +196,7 @@
     ],
     "causal_summary": "Of 2484 continuity blocks in tracked implementation summaries outside `zarchive`, only 180 passed the reader's checks",
     "created_at": "2026-09-24T04:52:36Z",
-    "last_save_at": "2026-09-24T05:01:27.493Z",
+    "last_save_at": "2026-10-07T15:57:33.240Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b99bfc92a176e62ec01538f311f1b9518551ef0e31c815f947475ab565c57170",
+    "source_fingerprint": "sha256:06aab2a190cd90baf6711fafa4af33183b53e2bf4fb99ef665d4322290b5959a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "df21ba116b88dcaf4c8a0daf9535601409407b8b87391f373bbec69d9b6476cd",
       "plan.md": "07e7d4b81fb9e13f63528e83f88f4d81a2cb87415f71e3c2a77177f586c75ee9",
       "tasks.md": "5b6cc60841e9b73cf845fba23923c62990e235accec3a456e3ba500c5098eeb9",
-      "implementation-summary.md": "d756c380c7e886209db49b327a1d973405dcc05dcd808d2fd53ac4215758766b"
+      "implementation-summary.md": "cc903e544dfc94a442ff39bf2cdc8f4e14697886374051378a11d93e3d94e874"
     },
     "last_active_at": null
   }

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The sk-code hub no longer advertises or routes the retired Pi Remote Mobile-CLI surface: 85 tracked entries removed, every live reference swept, and the compiled-routing closure re-minted green."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "sk code mobile cli deprecation implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

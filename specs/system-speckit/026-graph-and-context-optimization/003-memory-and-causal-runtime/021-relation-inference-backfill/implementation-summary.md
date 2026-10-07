@@ -16,10 +16,7 @@ _memory:
     answered_questions:
       - "Similarity/contradiction signals are deferred best-effort extensions; the two deterministic signals satisfy all P0 requirements."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "relation inference backfill implementation summary"
 ---
 # Implementation Summary: Relation-Inference Backfill
 

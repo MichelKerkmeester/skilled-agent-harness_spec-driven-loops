@@ -2,10 +2,7 @@
 title: "Implementation Plan: Prove the pointer contract, run the failure mutation, and close the packet's acceptance criteria"
 description: "Runs the render check from the final state, executes the AC-006 mutation, walks the remaining criteria by hand, and writes the evidence into acceptance-criteria.md and the packet's completion metadata."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "closure and proof plan"
 importance_tier: "normal"
 contextType: "general"
 ---

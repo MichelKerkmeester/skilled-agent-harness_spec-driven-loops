@@ -17,12 +17,10 @@
       "speckit.hooks git config",
       "doctor git plan",
       "gate config helper plan",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "doctor git tasks",
       "doctor git acceptance criteria",
-      "doctor git summary"
+      "doctor git summary",
+      "git hook gate settings shipped"
     ],
     "key_topics": [
       "doctor",
@@ -199,7 +197,7 @@
     ],
     "causal_summary": "Every optional gate in the shipped hooks had a `SPECKITSKIP` variable, and a variable lasts one command",
     "created_at": "2026-10-04T07:07:48Z",
-    "last_save_at": "2026-10-07T12:55:55.082Z",
+    "last_save_at": "2026-10-07T15:57:44.169Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +207,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6142079934e14ba4712c1a65bb7c2418f1bcfa73337d041105e7eb8dad3f277b",
+    "source_fingerprint": "sha256:6f05b348f60cf98bb166c33235e26717666e2ae052440a9c7bb933960a81f9c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f048a89648482465d3b2bfbe6b8e08ffe5cc432511f4d113d6b9e95da18989cc",
       "plan.md": "c3a3c7f46e758d9bcc4184917cda846da638bf2409c7dc375054ce24f94571e4",
-      "tasks.md": "7b307fa5629eb6868c22a68471e24f41e2c9b396270d83d0eb68758b073522df",
+      "tasks.md": "a5b710b264751297440062938dd8f183219bd5997c835c8bdb7d3154afeb29a8",
       "implementation-summary.md": "92757f44a780b5f6d1f2dd1ef9107a34f46e091c53886f66575c34bb09076bce"
     },
     "last_active_at": null

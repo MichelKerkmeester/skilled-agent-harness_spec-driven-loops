@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A deep-research fan-out now runs through the faults 048 hit without manual repair."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "fanout runner and prompt fixes implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

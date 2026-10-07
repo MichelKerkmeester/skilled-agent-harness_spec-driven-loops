@@ -13,16 +13,13 @@
     "trigger_phrases": [
       "pi transport improvements",
       "the transport honors the caller s provider can",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "pi transport improvements plan",
+      "pi transport improvements tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "pi transport improvements implementation summary"
     ],
     "key_topics": [
       "transport",
@@ -30,13 +27,13 @@
       "honors",
       "caller",
       "provider",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing"
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -204,7 +201,7 @@
     ],
     "causal_summary": "Feature 037 adopted the Pi transport by one row, on a comparison whose CLI arm was a day older and used another provider",
     "created_at": "2026-10-03T05:30:09Z",
-    "last_save_at": "2026-10-07T12:54:56.536Z",
+    "last_save_at": "2026-10-07T15:56:06.755Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e98934fb26ab6b2f3781209c9b0bc99626e8053e21e9d24975f3bbdac04785e",
+    "source_fingerprint": "sha256:25850fe2f806e9c1421e5051586ed0fcf2172dd9ddfd36f61f8c9a0d7f437800",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bce5736f3cef5af07bd391ca8abf7e85ec9c1ddd64b78c6c3e0647e379ea4182",
-      "plan.md": "5b5c656d4c4db85f56e5d4dc5e8b1d977b4d007bf88640588b7a5ef1677d5773",
-      "tasks.md": "554b582742ef8596e39f71cec581e6f9ee48f2a9c7a49a91af5948e7e2fea659",
-      "implementation-summary.md": "19a6c171844dc1b519fc075cca90ae6fbc867e3c4484ea73cae212c0e38199ec"
+      "plan.md": "c6cadc591c27b9eb8e92e11c441b210d5d004b047b0824c0fe10418c912a9355",
+      "tasks.md": "4744ef188b5b104f47c177bb8993d65ca4e428a537ec9a3f06ca51fcde664a39",
+      "implementation-summary.md": "3fd542935e38fd5fd8571a38aad2b6d9cb9a6d39b0d7588732538564cf950152"
     },
     "last_active_at": null
   }

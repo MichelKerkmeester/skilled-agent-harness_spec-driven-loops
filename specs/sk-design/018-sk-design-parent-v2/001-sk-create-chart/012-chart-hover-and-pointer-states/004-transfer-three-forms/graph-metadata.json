@@ -15,14 +15,10 @@
       "three of the seven partial forms already carry",
       "stacked-bars tooltip transfer",
       "bar-line-composed tooltip transfer",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "transfer three forms plan",
+      "transfer three forms tasks",
+      "transfer three forms acceptance criteria",
+      "transfer three forms implementation summary"
     ],
     "key_topics": [
       "transfer",
@@ -35,8 +31,8 @@
       "stacked-bars",
       "tooltip",
       "bar-line-composed",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -197,7 +193,7 @@
     ],
     "causal_summary": "`stacked-bars`, `daily-line` and `bar-line-composed` each carry a legend, a dim or both, but none of the three opens a hover card",
     "created_at": "2026-09-05T16:03:56Z",
-    "last_save_at": "2026-10-07T12:55:06.979Z",
+    "last_save_at": "2026-10-07T15:56:27.757Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +203,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7ed1cec016b77358e836a4d4f1db4f144fa709dc18d92f88c3b8e50220046480",
+    "source_fingerprint": "sha256:2a13fa9809b57a638dba5d083908f5a8ac92c23245ad69520fc44f6d44107dd5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e4d0986e5a12cb808e70b9f6ec10b5b5c93580cc5ccf5c3919b40b5e97091a49",
-      "plan.md": "a19b576e311cd14b339aec9e117e5a8d176a4e9ed7ba6618bfa2bef5e8aa1239",
-      "tasks.md": "6deca0a98ad7e4631def10e6fe7849f718520c1d715f0f48cf5ac6f0655a2277",
-      "implementation-summary.md": "9abe0294b85a8e2853727b2e55d497ff255e3dca8a5aeb9823fdd0456dfd2f49"
+      "plan.md": "ed98a6b2b839fd33bf6a34969a8aad98764e00be8403b0ad7dc4727d755ba8c3",
+      "tasks.md": "2d9c553edc03a11bed36233c12a737d823580499fdfb6ac11591ba319a72e396",
+      "implementation-summary.md": "3da68dafa72873e4c68bcddbe29a46867c47e02f354308a1b411d981e0a56f24"
     },
     "last_active_at": null
   }

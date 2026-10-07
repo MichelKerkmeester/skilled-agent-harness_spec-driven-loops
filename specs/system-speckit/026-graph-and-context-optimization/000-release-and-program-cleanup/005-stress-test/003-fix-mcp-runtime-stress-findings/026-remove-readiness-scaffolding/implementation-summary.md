@@ -6,7 +6,6 @@ trigger_phrases:
   - "026-remove-readiness-scaffolding"
   - "readiness scaffolding cleanup"
   - "embedding readiness deprecation"
-  - "implementation summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

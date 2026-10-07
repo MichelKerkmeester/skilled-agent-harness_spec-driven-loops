@@ -2,10 +2,7 @@
 title: "Tasks: Phase 4: catalog-and-readme-truth"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "catalog and readme truth tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

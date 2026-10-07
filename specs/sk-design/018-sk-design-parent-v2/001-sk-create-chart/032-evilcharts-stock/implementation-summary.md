@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The corpus is derived from evilcharts now, on a warmed dark ground, and the ranked ladder no longer ships two bars a reader cannot tell apart."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "evilcharts stock implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

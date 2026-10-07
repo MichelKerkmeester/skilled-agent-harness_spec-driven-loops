@@ -4,10 +4,7 @@ description: "Implementation steps for edge reason/step + blast_radius enrichmen
 importance_tier: "important"
 contextType: "implementation"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "edge explanation impact uplift plan"
 ---
 # Plan: 012/003
 

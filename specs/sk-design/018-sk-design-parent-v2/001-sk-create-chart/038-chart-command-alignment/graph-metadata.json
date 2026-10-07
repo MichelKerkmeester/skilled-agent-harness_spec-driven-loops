@@ -12,17 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "chart command alignment",
-      "the design chart command named a directory the",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "the design chart command named a directory",
+      "chart command alignment plan",
+      "chart command alignment tasks",
       "chart command alignment acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "chart command alignment implementation summary"
     ],
     "key_topics": [
       "chart",
@@ -31,12 +29,12 @@
       "design",
       "named",
       "directory",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -200,7 +198,7 @@
     ],
     "causal_summary": "The command that routes to the chart corpus had drifted from it",
     "created_at": "2026-09-10T11:10:19Z",
-    "last_save_at": "2026-10-07T12:55:16.505Z",
+    "last_save_at": "2026-10-07T15:56:39.283Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bc878f2c1ac5fa11b13c0727ea97c5211ae316d4c30ebe55f2d33ddc6ad4a919",
+    "source_fingerprint": "sha256:eb9d61aaa09214d61a16fc05be30fd2fafcc26999a838ee638fc137e62cd03c2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d3c46716d2cc4ec327264209cabebf793b39b3b6d91bff9297e697a7aa09a104",
-      "plan.md": "10a98fa3c6c091ebe2455e0dc9209b16a9cedf2890dee032a75450d83d476287",
-      "tasks.md": "ba83e95385709a687f148c968348dbcd71a3da182d34cfdf011e0e94a3d23458",
-      "implementation-summary.md": "45b024446c33c534d5027ee0409a6421cdb1abb74044f0bf5dd6646e0d42349a"
+      "spec.md": "1258b951ba4a6d1421349bcfa85bd489da96007c0c94f7737c805e3cd9d1fcac",
+      "plan.md": "80d1f5056c1417142f59eac7047f2c9e8a3e1c110bf133f2f7f7e123afb3d697",
+      "tasks.md": "a8a72445b9799b479abb29cecbea53aaa7dd6d1c43dc00d95aa8811ce3a2ee11",
+      "implementation-summary.md": "9ae82fbc7e81c2c6ad8dec7f88c795f141f22e5f6e72a39fddc230aeb9ece99d"
     },
     "last_active_at": null
   }

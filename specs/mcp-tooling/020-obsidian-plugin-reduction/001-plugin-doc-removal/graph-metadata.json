@@ -14,15 +14,10 @@
       "delete obsidian plugin doc sets",
       "mcp-obsidian plugin file removal",
       "which obsidian plugin files are removed",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "plugin doc removal acceptance criteria"
+      "plugin doc removal plan",
+      "plugin doc removal tasks",
+      "plugin doc removal acceptance criteria",
+      "plugin doc removal implementation summary"
     ],
     "key_topics": [
       "delete",
@@ -35,8 +30,8 @@
       "removal",
       "files",
       "removed",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -197,7 +192,7 @@
     ],
     "causal_summary": "Twelve of the mode's fourteen dedicated plugin doc sets are unwanted",
     "created_at": "2026-09-11T06:41:59Z",
-    "last_save_at": "2026-10-07T12:55:01.273Z",
+    "last_save_at": "2026-10-07T15:56:13.657Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +202,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9a963e91cd2626a8dc44941c423b3af8854126422c1b0f67847162995b7ad6fa",
+    "source_fingerprint": "sha256:7b9352a3e961f2d9036fbc14c53a82010f332d61e86c93243d5ae7832b6902cf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9d4ca384c8ec3c3a64b9a0f87400b5134ad57f0c607927d49b9afc6fc356c08d",
-      "plan.md": "6a3588050042f667494e3f5089ff128cae087fb24edc6c515b54b96b3468b563",
-      "tasks.md": "c4c070f66404fe3523e0540dec1c0b7f243e0096913d66b86e2e7ff86408198e",
-      "implementation-summary.md": "bb06f1d9bbb9943fd18a7b006fb73bede36a324af5c0cb64b6b341067564880e"
+      "plan.md": "405ae90bc6f9d8b144ad69c778efe64add178b5a0dcdf8daeb8bcbdeb47d2397",
+      "tasks.md": "0876c5d86651fa82d61e3a050a22d70c64fca9f47f31eabac5b47aa931b3b17e",
+      "implementation-summary.md": "4cef48b74a3929886b2f304dd509acfa2f23573fddc12da1b0cc283ad64d0b5d"
     },
     "last_active_at": null
   }

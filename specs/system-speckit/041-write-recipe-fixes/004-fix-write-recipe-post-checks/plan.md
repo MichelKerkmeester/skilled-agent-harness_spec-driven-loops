@@ -2,10 +2,7 @@
 title: "Implementation Plan: Reword the status and push rows of the spec folder write recipe post-checks"
 description: "Reword two rows of section 4 so they can be ticked in any workspace, and check each claim by searching the recipe and the doc roots."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "fix write recipe post checks plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -16,9 +16,7 @@
       "codex cli wrapper",
       "codex exec json stream",
       "runtime wrapper projection",
-      "implementation plan",
-      "codex json stream envelope",
-      "implementation summary"
+      "codex json stream envelope"
     ],
     "key_topics": [
       "codex-wrapper",
@@ -31,8 +29,8 @@
       "json",
       "stream",
       "runtime",
-      "implementation",
-      "plan"
+      "envelope",
+      "exposes"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -190,7 +188,7 @@
     ],
     "causal_summary": "Codex exposes only input, tool, and lifecycle hooks, and none of them can rewrite the rendered answer, so there is no native seam to project Codex output in place",
     "created_at": "2026-08-14T05:42:55.586Z",
-    "last_save_at": "2026-10-03T15:12:03.075Z",
+    "last_save_at": "2026-10-07T15:56:18.584Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e312e722117426aad86634c0947ee810bcc65a59e80aac28cc6fd93fd8edddc0",
+    "source_fingerprint": "sha256:abfcf69e0624ef864776b25059d73530ed172317d38d2c77bc9005aa31bea36b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7d0790d8ab9dd7b0cae011c97b171510c86e67b0309f434ab80de2ee8a4b0e21",
-      "plan.md": "42333f7a1a44028a68180b3e5e44df7dfa5cd4b9178ca1e3acb0957300138ae4",
+      "plan.md": "960a8bbdac353d64b5c26916c8e0c9d16e6b962a808c335cf61cb0479dc3b6fe",
       "tasks.md": "3f0869f97e72f449023ca076265e2bd4b8f4477cdd3ce7b443fef519e106c957",
-      "implementation-summary.md": "16c2c30ccea9dc5cf1d1961dfb045ab8346d6f9efa18a064345f8c8c81f50062"
+      "implementation-summary.md": "a40c0b1ab01cb436eb6097b180ec2ac3b18c5299aa6296ba015b84ae2282ddf4"
     },
     "last_active_child_id": null,
     "last_active_at": null

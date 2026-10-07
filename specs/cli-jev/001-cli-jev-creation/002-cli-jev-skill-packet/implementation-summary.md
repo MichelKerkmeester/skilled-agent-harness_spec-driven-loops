@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The cli-jev packet exists: a transport SKILL.md with eight declared hard rules, four references that carry the pinned contract, a question-shaping card, a changelog and a benchmark baseline — every rule declared with the implementation that enforces it."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "cli jev skill packet implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The completion sentinel now catches a real completion claim without a single false fire on the 047 rows, where the old regex caught none and fired falsely 7 times."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "completion claims improvements implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

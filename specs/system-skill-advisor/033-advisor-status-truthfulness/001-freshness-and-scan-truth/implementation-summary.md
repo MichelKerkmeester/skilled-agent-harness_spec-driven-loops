@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "advisor_status and skill_graph_status now agree on index staleness through one shared hash recipe, skillCount counts skill roots, and the doctor freshness panel names a stale compiled graph and a degraded absent-SQLite diff."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "freshness and scan truth implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

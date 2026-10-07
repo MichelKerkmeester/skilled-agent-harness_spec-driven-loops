@@ -2,10 +2,7 @@
 title: "Implementation Plan: Give every mark a pointer target of at least 24 CSS pixels and enforce it"
 description: "Replace per-mark hit testing with a nearest-mark resolver on the nine forms whose marks sit under the pointer floor, then add the corpus rule that keeps it true. Records the measurement trap that made the first baseline wrong and the settled-render claim that did not survive testing."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "pointer target size plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -20,9 +20,7 @@
       "execfilesync migration",
       "temporary git index scan",
       "plugin scanner readiness tasks",
-      "verification checklist",
-      "implementation summary",
-      "what shipped"
+      "plugin scanner readiness implementation summary"
     ],
     "key_topics": [
       "plugin",
@@ -54,8 +52,7 @@
       ".skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-system.cjs",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/test-frontmatter-backfill.js",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
-      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
-      "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-local.md"
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json"
     ],
     "entities": [
       {
@@ -143,12 +140,6 @@
         "source": "derived"
       },
       {
-        "name": "deem-local.md",
-        "kind": "doc",
-        "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-local.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -201,11 +192,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "GitHub issue #49 invites this repository into `hashgraph-online/awesome-ai-plugins`, whose merge gate runs the HOL plugin scanner and requires a score of at least 80 with no high or critical findings",
     "created_at": "2026-10-01T18:43:04Z",
-    "last_save_at": "2026-10-01T18:47:22.154Z",
+    "last_save_at": "2026-10-07T15:57:43.981Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:659c21a5ac29971dceb15d065ac8381ad473d2340bcb45ee1d48970147737d51",
+    "source_fingerprint": "sha256:e6059a8b034933e29bc6541a1f1eb75bd9d6a1b79920307b049d0dd388c1723e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b5bd000cef5e57ec82b682a67dedb0774584e39f0ccb3a020607eede8d38e66e",
       "plan.md": "33689e78c0729bf65e9b1ac8a2fa13cb484ccfb50775d060e595602b745e6085",
-      "tasks.md": "d7650f1f47e02104ebc9b79857ec5b1e7ae6f6d74344b56d2df858a0389146ce",
-      "implementation-summary.md": "72c91cd55da09159597715c339ac26786f8c03ff7355886398ed4bba137225da"
+      "tasks.md": "cc949c1e45c61a0b5cea2b3d59a209978ba4f36987f65ec129d075f498a46f61",
+      "implementation-summary.md": "cf427d010d1905f7b093733daf10dd3ad4851bb2c6c829790f053ba2035167b9"
     },
     "last_active_at": null
   }

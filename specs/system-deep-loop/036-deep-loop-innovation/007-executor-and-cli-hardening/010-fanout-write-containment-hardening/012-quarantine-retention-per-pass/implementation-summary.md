@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Each containment pass keeps its own quarantine evidence under a pass-keyed directory; nothing an earlier pass wrote is ever replaced."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "quarantine retention per pass implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -21,10 +21,7 @@ _memory:
       - "Does the leaf call the gateway or write state directly? Calls the gateway."
       - "What does --event-json take? One JSON record, not the multi-line delta."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "runtime agent gateway alignment implementation summary"
 ---
 # Implementation Summary
 

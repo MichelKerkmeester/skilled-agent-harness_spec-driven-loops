@@ -13,16 +13,9 @@
     "trigger_phrases": [
       "fix remaining advisor defects",
       "the 028 dedup fix half landed the changed",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "fix remaining advisor defects plan",
+      "fix remaining advisor defects tasks",
+      "fix remaining advisor defects implementation summary"
     ],
     "key_topics": [
       "remaining",
@@ -32,11 +25,11 @@
       "half",
       "landed",
       "changed",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "implementation",
+      "summary",
+      "half-landed"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -208,7 +201,7 @@
     ],
     "causal_summary": "The 028 dedup fix half-landed",
     "created_at": "2026-09-22T12:49:47Z",
-    "last_save_at": "2026-10-07T12:55:41.317Z",
+    "last_save_at": "2026-10-07T15:57:06.554Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7ecd5ac88a34425da23f2c37fa293732312d1d3910d4c17cd56a447763100c50",
+    "source_fingerprint": "sha256:45afdcc40d52ddc7c887fab9c04e14739b30a41fdbefc97a004669d7aa724199",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a25fbdbb0eeb6ad28ba7de1cb2767df9a98cf41619c950341ccd2947909b8fd3",
-      "plan.md": "dc7b661b29b59c20b00d5e95e2b6b7d2a726bcd5af31be6ab7fd814401f03dfd",
-      "tasks.md": "b53414ec2cbff834cbd1bf464d501e5606ed5877d68ade6e6e7608f8b52169af",
-      "implementation-summary.md": "f4d066767960e09ca2e15457746dd352301a63491e936b76dc3d9408fec40c92"
+      "plan.md": "7b6a7a48036d1fc7166251a4783599a48e35029bb68b39ff7349146877457485",
+      "tasks.md": "a59ff4099193fd2ebe809f6f390474b3a2649ac4554f07e6b32d41c08f8a6867",
+      "implementation-summary.md": "0e3d82eaa2c811f7c182e3aa711776cf8a7b28ebcfacdebcd27a03656a784998"
     },
     "last_active_at": null
   }

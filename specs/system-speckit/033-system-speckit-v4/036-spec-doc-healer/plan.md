@@ -2,10 +2,7 @@
 title: "Implementation Plan: Restore scaffold values a spec document lost, only where the right value can be proven"
 description: "Draw the line between a value a template defines and a value a person wrote, restore only the first, and make the dry run the census so measurement and fix come from one tool."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "spec doc healer plan"
 importance_tier: "normal"
 contextType: "general"
 ---

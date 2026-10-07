@@ -2,10 +2,7 @@
 title: "Tasks: Annotate the six inert forms"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "annotate inert forms tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

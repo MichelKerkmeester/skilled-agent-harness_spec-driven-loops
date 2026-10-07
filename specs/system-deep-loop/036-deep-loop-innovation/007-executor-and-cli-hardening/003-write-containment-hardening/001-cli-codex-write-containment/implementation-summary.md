@@ -2,7 +2,6 @@
 title: "Implementation Summary: codex Write-Containment Guard"
 description: "What was built for the codex post-dispatch write-containment guard, with verification evidence and the Part B finding."
 trigger_phrases:
-  - "implementation summary"
   - "codex write containment"
   - "containment guard"
 importance_tier: "normal"

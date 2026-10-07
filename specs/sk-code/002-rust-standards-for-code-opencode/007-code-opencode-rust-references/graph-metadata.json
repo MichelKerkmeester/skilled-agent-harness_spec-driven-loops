@@ -14,15 +14,9 @@
       "018 phase 007 split rust references",
       "code-opencode rust reference hygiene",
       "rust style_guide quick_reference split",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "code opencode rust references plan",
+      "code opencode rust references tasks",
+      "code opencode rust references implementation summary"
     ],
     "key_topics": [
       "phase",
@@ -32,11 +26,11 @@
       "code-opencode",
       "reference",
       "hygiene",
-      "implementation",
+      "code",
+      "opencode",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -194,7 +188,7 @@
     ],
     "causal_summary": "Four `code-opencode` Rust docs exceed 500 lines — `references/rust/styleguide.md` (1987), `references/rust/quickreference.md` (1571), `references/rust/qualitystandards.md` (1475), and `assets/checklists/rustchecklist.md` (1005)",
     "created_at": "2026-07-11T16:27:46.397Z",
-    "last_save_at": "2026-10-03T15:23:08.677Z",
+    "last_save_at": "2026-10-07T15:56:13.137Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8874194e157ae5f9ae061fcbfae7790758e62efb314eab711c8d55182b95d7cd",
+    "source_fingerprint": "sha256:55213c073818e05f123ce8c4bd8ab5c034d8f02a0c5a30d9705b53d293e74aa1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c4ea830a9c66f892648edd5266539e0b377d46d78dbfdc4e6e74431f0e72417f",
-      "plan.md": "3244435b74e7ef34b11e39c0607385b13ee9edc1ebbbf9f1b27aee396b227333",
-      "tasks.md": "55e363be37b5755a921af8fda3d93efeb79c8f73fa93fe55cca93a2635c27063",
-      "implementation-summary.md": "9498f213ce90a17ba8501503046ab50ddc64d36cb65a220760ece2d3ee5b1afe"
+      "plan.md": "c4cb9f38fbf816031c6cd2f5391b53b7850c780499366b5268f9e9e398c93b0d",
+      "tasks.md": "166351b11a85e40cb0d2cfdd349736b4d684ef56891d230fcbde11d0706c5782",
+      "implementation-summary.md": "0620916a90494e61e60f450f7a0b31f426f1c736dc9029ab2903d2f4f10ac617"
     },
     "last_active_child_id": null,
     "last_active_at": null

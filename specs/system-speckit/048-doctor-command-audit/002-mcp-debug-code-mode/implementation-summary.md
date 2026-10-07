@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The /doctor:mcp debug target now checks only Code Mode: the launcher, the embedded server build, the root UTCP config and the seven runtime registrations that wire it, with credentials reported by name and presence only."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "mcp debug code mode implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

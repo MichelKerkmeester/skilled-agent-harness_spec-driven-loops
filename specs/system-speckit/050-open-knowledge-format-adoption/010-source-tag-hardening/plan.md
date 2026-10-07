@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 10: source-tag-hardening"
 description: "Read whole tag paths, give gitignored folders one result everywhere, and measure SOURCE_TAGS accuracy on a stratified sample and recall on planted tags."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "source tag hardening plan"
 importance_tier: "normal"
 contextType: "planning"
 ---

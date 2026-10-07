@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 4: compiled-fleet-onboarding"
 description: "Build the hub's compiled rollout, wire it into every surface the six-hub fleet enumerates, mint and record its activation in both the runtime and authored trees, and prove serving, fail-closed and rollback with the fleet's own tools before the hub's own doc pass and re-gates."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "compiled fleet onboarding plan"
   - "compiled fleet onboarding"
   - "activation manifest"
   - "serving closure"

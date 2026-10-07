@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The four deep-loop command YAMLs pass one runner contract, no YAML runs the leaf agent as a full loop, and the prompt packs name the gateway as the state log's only writer."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "command yaml alignment implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

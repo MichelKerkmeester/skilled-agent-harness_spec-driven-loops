@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The stock chart register is the cursor Style Reference: palette source, every stock block, typeface and corner ladder derived from it under the corpus gates."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "cursor stock register implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

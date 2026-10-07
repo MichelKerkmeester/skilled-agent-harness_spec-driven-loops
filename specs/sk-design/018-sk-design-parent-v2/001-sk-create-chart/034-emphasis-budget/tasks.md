@@ -2,10 +2,7 @@
 title: "Tasks: emphasis budget and the second visual verification round"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "emphasis budget tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

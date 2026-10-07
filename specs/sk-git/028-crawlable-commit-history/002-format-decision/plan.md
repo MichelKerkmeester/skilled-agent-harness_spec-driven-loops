@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 2: format-decision"
 description: "Two lenses on one grammar: the research proposal, an adversarial review from a second model family, the repository as judge, and the operator as the final gate."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "format decision plan"
 importance_tier: "normal"
 contextType: "general"
 ---

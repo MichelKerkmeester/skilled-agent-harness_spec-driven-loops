@@ -12,17 +12,10 @@
   "derived": {
     "trigger_phrases": [
       "communication rule naming",
-      "two of the four rules that fire on",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "two of the four rules that fire",
+      "communication rule naming plan",
+      "communication rule naming tasks",
+      "communication rule naming implementation summary"
     ],
     "key_topics": [
       "communication",
@@ -32,11 +25,11 @@
       "four",
       "rules",
       "fire",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "implementation",
+      "summary",
+      "reply"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +188,7 @@
     ],
     "causal_summary": "Two of the four rules that fire on a reply do not carry the communication prefix the other two carry, so the reply-governing set is not visible by name. This phase renames both and repoints every live reference.",
     "created_at": "2026-09-15T18:05:02Z",
-    "last_save_at": "2026-10-07T12:55:02.001Z",
+    "last_save_at": "2026-10-07T15:56:27.262Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8b6c824ce2cef96adcac999ba72ef1a5d7e90008e9577fa3c59460e1f2c035f",
+    "source_fingerprint": "sha256:e97992a5a5a8a93a112221afa66c2347690a9a9cac3567a3da1d993cea373991",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6b7f955002cc3bb6ee4e9f41902e40302914019491b733e522ebe1e156039daa",
-      "plan.md": "1eb6e634ce3ce02183a1e2a6082aa61274a7740d75f2d76dd0473d969b47bb54",
-      "tasks.md": "73d4133746763deef938c71f090599c8721cf40b52ee9ffc4884bef1f48c6293",
-      "implementation-summary.md": "ae69305d61eeb5ccf4c35fce51d223381bcbd340f46b75e20fe9ea2d67562d3e"
+      "spec.md": "6f3576c98573d29c097218ab1556f33e9af804c8f530a06fdf93ae078133e30f",
+      "plan.md": "bab77c49c1150ec72423b2998b7a63f8b5633d0013a20d0958604d1fa48dfabb",
+      "tasks.md": "488f9129e626cdcd87c08d3fcd61cbf38f87000c5cfd7511aa2e98f1c8f4ebfb",
+      "implementation-summary.md": "bd15ac7b018a9f96136e5b6bbc11c689cda1a92cf7425748190f2df93db8c1f6"
     },
     "last_active_at": null
   }

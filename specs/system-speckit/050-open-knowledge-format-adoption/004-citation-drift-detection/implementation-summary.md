@@ -2,7 +2,6 @@
 title: "Implementation Summary"
 description: "The citation scanner now reads spec docs as well as skill docs and tells a renamed file from a deleted one, so the census separates moved citations from broken ones."
 trigger_phrases:
-  - "implementation summary"
   - "citation drift census"
   - "moved gone past end citations"
   - "cite drift redirect table"

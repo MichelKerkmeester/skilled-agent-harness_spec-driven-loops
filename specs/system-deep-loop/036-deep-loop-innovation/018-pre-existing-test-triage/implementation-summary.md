@@ -15,10 +15,7 @@ _memory:
     answered_questions:
       - "Which pre-existing failures are code-fixable now? Only the sk-prompt census path."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "pre existing test triage implementation summary"
 ---
 # Implementation Summary: Pre-Existing Runtime Test-Failure Triage
 

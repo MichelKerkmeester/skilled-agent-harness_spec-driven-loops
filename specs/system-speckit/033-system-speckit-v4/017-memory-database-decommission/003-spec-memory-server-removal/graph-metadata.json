@@ -17,12 +17,11 @@
       "daemon removal",
       "subsystem decommission",
       "preserve set",
-      "implementation plan",
-      "task breakdown",
       "spec memory server removal acceptance criteria",
       "packet goal",
       "durable directive",
-      "completion criteria"
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "spec",
@@ -36,7 +35,7 @@
       "decommission",
       "preserve",
       "set",
-      "implementation"
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -210,7 +209,7 @@
     ],
     "causal_summary": "The subsystem's cost is structural, not incidental: a background service that flaps, 41 tools loaded",
     "created_at": "2026-09-02T11:04:52Z",
-    "last_save_at": "2026-10-07T12:55:44.483Z",
+    "last_save_at": "2026-10-07T15:57:18.755Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2785ea2877f1b7d1faef6b782daaaedb3beb0226872bc4eb24f9e1d6d42b7155",
+    "source_fingerprint": "sha256:7c20800bf797621c9b9ef3875b5ab3f8cb90ad04a4645d92bff41f2a7800d641",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6cc3f83002766484aeeccf2ad9d9508c1545427aa68c72fc4df24b88b4ee590c",
-      "plan.md": "4f8c33e5786f60d781a7af8db78c2fc4e2e7b633fe56d382fc197977b56b9525",
-      "tasks.md": "b1ae400af24bfece26945cc70640ec02e4e1e24c40250c1f0ddd92f9d16558a4",
-      "implementation-summary.md": "c533bed2c71664495a8a7c57bd65ddf2e10e8c45413138a8c20b28a39479eefc"
+      "plan.md": "0af8211b52b6aee54ff90e6588208b38a17bfa5b77981ed7b9b34fc7c119a49e",
+      "tasks.md": "81b3918aff9abf762e470a97aa16ee475cc4559176df615cdd4160a181857a02",
+      "implementation-summary.md": "901d4dfaa70dcb0fd1e9e2c14b1525d11ff6bdba0f0aee1fbb081928cf277172"
     },
     "last_active_child_id": null,
     "last_active_at": null

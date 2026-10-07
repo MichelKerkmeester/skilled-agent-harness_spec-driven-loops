@@ -2,7 +2,6 @@
 title: "Implementation Summary: 023D Doctor Model Swap UX"
 description: "CocoIndex now exposes stale CLI installs, non-commercial model defaults, fingerprint drift, and model-swap reindex cost through `ccc doctor`."
 trigger_phrases:
-  - "implementation summary"
   - "ccc doctor"
   - "023D"
 importance_tier: "high"

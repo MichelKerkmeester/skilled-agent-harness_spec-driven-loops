@@ -15,14 +15,11 @@
       "pi lineage orphan requeue",
       "deepseek cli-pi stall",
       "non-streaming executor fanout",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "cli pi fanout execution plan",
+      "cli pi fanout execution tasks",
+      "cli-pi fan-out execution",
+      "cli-pi fan-out decision record",
+      "cli pi fanout execution implementation summary"
     ],
     "key_topics": [
       "cli-pi",
@@ -35,7 +32,7 @@
       "stall",
       "non-streaming",
       "executor",
-      "implementation",
+      "cli",
       "plan"
     ],
     "importance_tier": "high",
@@ -197,7 +194,7 @@
     ],
     "causal_summary": "Amendment (from Phase-1 reproduction)",
     "created_at": "2026-08-16T13:47:37.884Z",
-    "last_save_at": "2026-10-03T15:27:29.740Z",
+    "last_save_at": "2026-10-07T15:57:01.120Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +204,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9a1eaa452170ad96a59f9ed671ceaccbcc7f0e530e64ebeb85ac8d07427bdc9d",
+    "source_fingerprint": "sha256:145d1f43b10ed72c50b4c49f2e42bc6237ccd8a5945a3ed887bc96a4c6bdafa6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "58c7b649fedfa20d961a4d08d983f85b75edce19f00835820aca6c6e048fb843",
-      "plan.md": "fe65e92aa8ce08c25dde6725da307ae10a30f61ae2ad7b736bed38fcfd0b7c47",
-      "tasks.md": "bdf128274fb68249b1c6f657d9769cd98894e58ea11517355aece9da5b659768",
+      "plan.md": "d7e0a8853481b79220a71bd6267eaf8e8f8d1ddbb0164e4d63c418d74cda41a5",
+      "tasks.md": "7c2b0ca973da74dc268f4c0812aa65a30124ea1899b152ba883196454ef6f887",
       "decision-record.md": "2df94fee1809c8f6d4409bb31afca54e9a319749871cd954a1ae9618a7511ef3",
-      "implementation-summary.md": "e58e298d6778fd18a468fb9792be17789786c0568932d5600bb46207a0c84d75"
+      "implementation-summary.md": "210b223fea278aad9dfb3b79a0c1a8302fb5d059bbdad882c81326ba60dc87b6"
     },
     "last_active_child_id": null,
     "last_active_at": null

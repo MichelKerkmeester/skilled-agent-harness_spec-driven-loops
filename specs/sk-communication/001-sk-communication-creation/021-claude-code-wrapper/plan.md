@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 021 Claude Code Wrapper"
 description: "Plan the Claude stream-json adapter mapping, the CLI-output wrapper wiring into projectMessage(), and the enablement-gated fail-open fallback verification."
 trigger_phrases:
   - "claude-code-wrapper"
-  - "implementation plan"
   - "stream-json adapter"
   - "Claude output projection wrapper"
 importance_tier: "important"

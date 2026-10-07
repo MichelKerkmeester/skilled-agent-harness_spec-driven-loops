@@ -4,10 +4,7 @@ description: "Display-only badges on MemoryResultEnvelope."
 importance_tier: "important"
 contextType: "implementation"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "memory causal trust display plan"
 ---
 # Plan: 012/005
 

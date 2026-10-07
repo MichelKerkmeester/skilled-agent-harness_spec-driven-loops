@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "cli-jev is registered as the hub's eighth mode and its first transport: declared through the transport-axis extension, routed by a four-alias signal, enforced by eight implemented checks, compiled into a fresh serving policy, and covered by a canary case that proves the alias does not capture out-of-domain prompts."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "hub mode registration implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

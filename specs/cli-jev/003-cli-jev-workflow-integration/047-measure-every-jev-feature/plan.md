@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 47: measure-every-jev-feature"
 description: "Runs each of the 15 unmeasured scorers on confirmed labels and records its verdict or stop line. Labels come from the delegated arbiter, thin corpora get fixture sets, and live calls go through the Jev official provider."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "measure every jev feature plan"
 importance_tier: "normal"
 contextType: "general"
 ---

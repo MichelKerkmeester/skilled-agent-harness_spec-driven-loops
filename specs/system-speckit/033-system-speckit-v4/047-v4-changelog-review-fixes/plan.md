@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: v4-changelog-review-fixes"
 description: "Applies the eight machine-checkable LUNA-review findings to the v4 changelog as one atomic, uniquely-anchored edit pass, then re-proves every standing 046 gate, records the count deltas, and closes with the bookkeeping, validation and one local commit."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "v4 changelog review fixes plan"
 importance_tier: "normal"
 contextType: "general"
 ---

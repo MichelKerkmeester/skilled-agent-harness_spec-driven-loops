@@ -17,7 +17,7 @@
       "sk-communication trigger",
       "rewrite response by external agent plan",
       "rewrite response by external agent tasks",
-      "implementation summary"
+      "rewrite response by external agent implementation summary"
     ],
     "key_topics": [
       "rewrite-response-by-external-agent",
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "sk-communication ships off by default with no operator surface to run its projection once against a chosen engine",
     "created_at": "2026-08-19T04:54:45.825Z",
-    "last_save_at": "2026-10-03T15:12:06.154Z",
+    "last_save_at": "2026-10-07T15:56:22.793Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:405900250bf4483118b92327166df5ceec0df04bab840f2769042a60139796db",
+    "source_fingerprint": "sha256:987b0f2a5c6a9d56bdd598fa23d8d27637bb7394e4b7392f9ea2c3a4eaed0301",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f827385ea7ac27469f033f9f73afcf090d2ffbcd03a779f0372b51a5432ce90f",
       "plan.md": "7275ec467129516b92fcc237fd4b9dab59d70262f57f01b144e373167202d370",
       "tasks.md": "57540f285ca7a0f50114504c39211a231b603467e4f3f16bd5e172b9f53921ba",
-      "implementation-summary.md": "76608c8d990c14da24af786582c18862512bbafacca15e304cbc6203f1484fff"
+      "implementation-summary.md": "6d4686f33b07d19416797170c77175b72d83bcfd13b6eb501413389530392cbd"
     },
     "last_active_child_id": null,
     "last_active_at": null

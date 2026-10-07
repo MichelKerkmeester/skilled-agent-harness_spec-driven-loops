@@ -4,7 +4,6 @@ description: "Scanner sourceSignature persistence, Claude hook settings normaliz
 trigger_phrases:
   - "claude hook findings summary"
   - "026/009/006 summary"
-  - "implementation summary"
 importance_tier: "important"
 contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"

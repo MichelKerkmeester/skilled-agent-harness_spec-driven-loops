@@ -2,10 +2,7 @@
 title: "Implementation Plan: the visual explanation lane renders where a reader can see it"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "visual explanation output medium plan"
 importance_tier: "normal"
 contextType: "general"
 ---

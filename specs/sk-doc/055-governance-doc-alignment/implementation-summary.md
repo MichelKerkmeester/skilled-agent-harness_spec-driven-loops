@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "AGENTS.md and the rule router aligned with what exists, after two GLM research streams, with a ninth checker test that keeps the router index honest."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "governance doc alignment implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,10 +2,7 @@
 title: "Tasks: Give daily-range its first pointer contract, low and high, never a midpoint"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "daily range endpoints tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

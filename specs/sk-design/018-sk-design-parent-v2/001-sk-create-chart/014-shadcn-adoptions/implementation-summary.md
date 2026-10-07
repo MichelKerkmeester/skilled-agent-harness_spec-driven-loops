@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Three checker-held chart contracts now keep named series, tooltip readouts and time-path curves explicit across the standalone corpus."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "shadcn adoptions implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

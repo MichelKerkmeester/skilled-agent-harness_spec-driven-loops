@@ -2,7 +2,6 @@
 title: "Implementation Summary: Answer the actual request — one home for the avoidance family"
 description: "Six user-reported avoidance behaviors audited against the ruleset landed as one new repo rule, two router rows, and one sentence — so a warning nobody asked for, a quieter version of the ask, an invented constraint, a dressed-up refusal, and a stall dressed as diligence all read as the same failure."
 trigger_phrases:
-  - "implementation summary"
   - "agent avoidance anti-patterns"
   - "answer the actual request"
 importance_tier: "important"

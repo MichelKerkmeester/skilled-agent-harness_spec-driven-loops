@@ -2,10 +2,7 @@
 title: "Implementation Summary: five forms added under a stated admission rule, each adapted from the closest existing structure."
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "new chart forms implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

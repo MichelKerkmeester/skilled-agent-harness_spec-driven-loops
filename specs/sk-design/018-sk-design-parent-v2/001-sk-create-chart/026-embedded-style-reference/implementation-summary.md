@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The chart packet now carries the Style Reference its stock palette was derived from, with the generator override unchanged."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "embedded style reference implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

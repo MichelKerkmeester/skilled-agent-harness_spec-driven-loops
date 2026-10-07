@@ -14,13 +14,7 @@
       "review leaf protocol",
       "lineage path verbatim",
       "stop reason max iterations",
-      "hostile locale child vitest",
-      "implementation plan",
-      "technical approach",
-      "task breakdown",
-      "implementation tasks",
-      "implementation summary",
-      "what shipped"
+      "hostile locale child vitest"
     ],
     "key_topics": [
       "review",
@@ -197,7 +191,7 @@
     ],
     "causal_summary": "Two review lineages were rejected because the leaf retyped its artifact directory's track segment, one because it reached the iteration cap without recording a stop reason, and three runtime determinism tests failed on a nested vitest path the workspace hoist removed. The leaf prompt, the agent contract and the tests now say and do what the runner checks.",
     "created_at": "2026-09-20T08:33:39.429Z",
-    "last_save_at": "2026-10-03T15:12:18.638Z",
+    "last_save_at": "2026-10-07T15:57:00.415Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f5549122f893db05d1edeac7659814cd74cf0cbd478d3a289dd87faf06986f1d",
+    "source_fingerprint": "sha256:4659d4b3c9b45f0e749f0ecfe72a115358823cfb615fb85bae05ab9470af5979",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7f735b6bd06c937512c2a200f61971257bac74f613b2b6c1a0e5416bae0fb223",
-      "plan.md": "e08b41cfcd46ed16810ef820c3afa8098899fd911c532052d9574baa46293c59",
-      "tasks.md": "cb1c44016dbefa460fd165a750a1f5a0f7302868a6c7dbda7be4239f589d2944",
-      "implementation-summary.md": "570c2ebc97e024bf544beecd6a9413ffad2ebb3b7df32a01597640df3021bfb3"
+      "plan.md": "bcc3db47aa8d86d75650234dddb0856e47bd4afd0efb44cb92ea0a79d0207a40",
+      "tasks.md": "c664a84b7cdcc1bf49421bfd9a998abca39f28505fc3849f49570797aa49478e",
+      "implementation-summary.md": "8f0602b6691c3be6441bf766e9041c45c3043d57901b8d0ed08f7ea8ac7621a8"
     },
     "last_active_child_id": null,
     "last_active_at": null

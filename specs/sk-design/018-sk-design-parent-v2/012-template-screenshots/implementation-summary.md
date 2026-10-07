@@ -2,10 +2,7 @@
 title: "Implementation Summary: the template screenshots"
 description: "Seventy-five rendered pictures, a coverage check, and a leaf-surface mistake a gate caught."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "template screenshots implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

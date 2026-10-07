@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A lane that records each iteration twice now validates; the gateway-written copy is retained and the references name the gateway."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "iteration record dedupe implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

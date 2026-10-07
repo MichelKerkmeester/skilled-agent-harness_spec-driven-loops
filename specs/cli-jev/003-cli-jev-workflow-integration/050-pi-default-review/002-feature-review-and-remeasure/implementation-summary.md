@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A fresh Opus 5.5 reviewer at xhigh reviewed, tested and re-measured the nine features over the Pi default."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "feature review and remeasure implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

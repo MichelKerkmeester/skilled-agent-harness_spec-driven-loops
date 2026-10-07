@@ -2,10 +2,7 @@
 title: "Tasks: chart and diagram as sk-design modes"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "chart and diagram cutover tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

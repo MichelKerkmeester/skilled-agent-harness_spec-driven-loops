@@ -24,7 +24,7 @@
       "refreshgraphmetadata reindexspecdocs runenrichmentbackfill",
       "v3.4.1.0 save flow",
       "026-graph-and-context-optimization",
-      "implementation plan"
+      "planner-first memory save plan"
     ],
     "key_topics": [
       "004-memory-save-rewrite",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`/memory:save` mutated by default, did work that had nothing to do with the caller's intent, and still honored an artifact family that had supposedly been retired",
     "created_at": "2026-04-15T10:00:01Z",
-    "last_save_at": "2026-09-07T16:10:18.588Z",
+    "last_save_at": "2026-10-07T15:57:11.232Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:136adb922c7ebf4b590986cf54f9a0499c35383812c02255f7b28c9fb7a87509",
+    "source_fingerprint": "sha256:a6f597723000eefc411f90f9cf7aabba991f7e047a617ccdd05c7216eaca44d6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4329df78dd284d574d58bcebd7a2765cbd1d4c74ab787011f16857abe58091a0",
-      "plan.md": "9fb3c953cd50d62a3678f58352e356231f87a89618220602698fe92af6cb08b2",
-      "tasks.md": "33f5f2cd9e15d4455ccc6d0acda03f2f8b203cc6586031edb5938bbaae8b4542",
+      "plan.md": "7fbb39506461d749554163b7caab1a0070d46c6ad52c1519e68ba74fe6d8267a",
+      "tasks.md": "255d4556f14c8bcf22ef387bb16673822c73b9373b455d3c81fc793b183953fc",
       "decision-record.md": "ddc1aa7e8adb1ef2ad0eb766d9f8af042599309f0cb75e76aa59ca9535f56085",
-      "implementation-summary.md": "03690dfa1eb8b62ba9df3be8cb4b46fc8eaf0bf44f6bfd77600f8e6ff58b6e07"
+      "implementation-summary.md": "41bf726255b87dd44dc2bf5edd1da85e3631a66d3b6bdbb770803d3107ce9588"
     },
     "last_active_child_id": null,
     "last_active_at": null

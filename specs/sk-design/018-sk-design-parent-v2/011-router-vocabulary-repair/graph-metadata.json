@@ -13,17 +13,15 @@
   "derived": {
     "trigger_phrases": [
       "router vocabulary repair",
-      "the sk design router declares 55 keywords its",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "the sk design router declares 55 keywords",
+      "router vocabulary repair plan",
+      "router vocabulary repair tasks",
       "router vocabulary repair acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "router vocabulary repair implementation summary"
     ],
     "key_topics": [
       "router",
@@ -32,12 +30,12 @@
       "design",
       "declares",
       "keywords",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -202,7 +200,7 @@
     ],
     "causal_summary": "The sk-design router declares 55 keywords its own scoring vocabulary never sees",
     "created_at": "2026-09-06T20:37:14Z",
-    "last_save_at": "2026-10-07T12:55:17.286Z",
+    "last_save_at": "2026-10-07T15:56:40.060Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6fc37eb66852fcf56d212e23993985407083fd6d47cf991b46e324afb39b195e",
+    "source_fingerprint": "sha256:90dd1f73ae31e9d78fb4290c58677255a27d3c4216416169da80efb818c0b882",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f8b26fd873d244ddc65833c36c4e6695037b4b0db20ab8b5c959c6dc58504eab",
-      "plan.md": "61df70aa8b90beeae617e995b4b4e141b736b1676d4543ad626bc21363230a45",
-      "tasks.md": "129a35569eb6754befd6043bc0728cbd27ad56fea0709da6b5a08ad63924c3d6",
-      "implementation-summary.md": "eb2e0c82dac388d864a864900c0f6fe97ccedc50d7967a170ecb85c67525eb76"
+      "spec.md": "613e903fb72d9d0b319506c390b41d41c0a6dbeb88823cde54d44317693a71ef",
+      "plan.md": "bcad95911e9ce87eb52e24ae69d628a9d14c5761506c3eaa92055e6006147ed5",
+      "tasks.md": "71ac4de53022db8d161af0ff15bfba8c5b406a8e4eae648576350f1414a276d0",
+      "implementation-summary.md": "4ec9d631679350f68a0cc9ef824342f4862ebd9b9f51adae89d80496b0251f1e"
     },
     "last_active_at": null
   }

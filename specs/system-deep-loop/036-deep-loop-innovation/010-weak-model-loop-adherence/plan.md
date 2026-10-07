@@ -19,10 +19,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "weak model loop adherence plan"
 ---
 # Implementation Plan: Weak-Model Loop Adherence
 

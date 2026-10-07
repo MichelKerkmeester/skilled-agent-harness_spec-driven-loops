@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 012 No-Op Rejection"
 description: "Implement an explicit no-improvement policy for unchanged and threshold-defined near-echo candidates, with typed reasons and safe fallback."
 trigger_phrases:
   - "no-op-rejection"
-  - "implementation plan"
   - "unchanged echo acceptance"
 importance_tier: "important"
 contextType: "implementation"

@@ -12,17 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "citation drift detection",
-      "extend the existing citation scanner to spec and",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "extend the existing citation scanner to spec",
+      "citation drift detection plan",
+      "citation drift detection tasks",
       "citation drift detection acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "decision record",
+      "threshold proposal retired",
+      "anchor phase removed"
     ],
     "key_topics": [
       "citation",
@@ -32,11 +32,11 @@
       "existing",
       "scanner",
       "spec",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`cite-drift-scan.mjs` reads tracked skill docs only",
     "created_at": "2026-10-04T08:04:51Z",
-    "last_save_at": "2026-10-07T12:55:55.710Z",
+    "last_save_at": "2026-10-07T15:57:44.491Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e954787e639f125806c885f4c5e8758270b14e0b70fbc1991f65782ab2f85c8a",
+    "source_fingerprint": "sha256:722215fcfeff0837c08a0393f1bb7f8b73a95e13260d0b4a4faa8129f2a23781",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "23fd3057cbdeacc0a3a197ca88753c87fd8b55a4c09a6cef52fbb504bdfc5c78",
-      "plan.md": "939b24fd25e35edf3975cd5edc7283a0092064244321d8b057be5fdb147cabe1",
-      "tasks.md": "264fd532835b4f22537017ad9fe436f7ab7daab1acf1aff1bb634c13c480afa0",
+      "spec.md": "e64a72f3e2a5f504faef450e2885f2a593f828ae82908dbfb816631aba2ce537",
+      "plan.md": "568f518d860c17d9e4c65a8599fa975320fe5be5d272528d290accd17d677659",
+      "tasks.md": "8e5bf8808d2ac76a1fa0dd879d2455ad488ddf1bd5bafcaef7d21de310f05290",
       "decision-record.md": "ac9a3ef15e56d1ff0385ac7e6c174eaf1b71a0b4a324eba1551cb35c3b4e4777",
-      "implementation-summary.md": "b345549a18f2332c85bb7dcf221e15f0a268fc26a5fd6fc345986e455fad4385"
+      "implementation-summary.md": "24194c63c5482ede2440c1222a1fb927f3f01cc23c1d5fa5d34be05e2499d02f"
     },
     "last_active_at": null
   }

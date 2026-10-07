@@ -2,10 +2,7 @@
 title: "Implementation Plan: Bump brace-expansion in two Pi extension lockfiles to close four Dependabot alerts"
 description: "Remove the nested brace-expansion entry from each lockfile and let npm re-resolve it within its declared range."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "pi extension brace expansion plan"
 importance_tier: "normal"
 contextType: "general"
 ---

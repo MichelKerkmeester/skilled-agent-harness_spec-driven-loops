@@ -11,10 +11,7 @@ _memory:
     recent_action: "Authored the triage plan"
     next_safe_action: "Commit the census fix + triage"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "pre existing test triage plan"
 ---
 # Implementation Plan: Pre-Existing Runtime Test-Failure Triage
 

@@ -2,10 +2,7 @@
 title: "Implementation Plan: Fix advisor launcher bootstrap on a fresh clone"
 description: "Make the advisor launcher bootstrap install the system-spec-kit workspace before building its runtime, so a fresh clone starts cleanly."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "fresh clone bootstrap plan"
 importance_tier: "normal"
 contextType: "general"
 ---

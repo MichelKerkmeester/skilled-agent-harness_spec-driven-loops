@@ -2,10 +2,7 @@
 title: "Tasks: Restore the pi advisor dedup return, renew the drifted advisor battery and close the stale documentation surfaces"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "fix remaining advisor defects tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

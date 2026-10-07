@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 2: hub-scaffold-and-mode-migration"
 description: "Author the hub skeleton first so the packet has a destination, move the mode into it by git mv, retag it as the hub's transport, then re-author every doc that names the packet's home. The old hub keeps its registration until phase 003, so the mode answers from the new home while the old row is still present."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "hub scaffold and mode migration plan"
   - "hub scaffold"
 importance_tier: "normal"
 contextType: "general"

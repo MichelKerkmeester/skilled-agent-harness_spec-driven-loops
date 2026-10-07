@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 11: skill-budget"
 description: "Audit /doctor:speckit skill-budget against this checkout, decide keep, fix or retire from observed evidence, and apply the verdict: record the audit-script invocation in the route entry and name python3 as the interpreter in the workflow."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "skill budget plan"
 importance_tier: "normal"
 contextType: "general"
 ---

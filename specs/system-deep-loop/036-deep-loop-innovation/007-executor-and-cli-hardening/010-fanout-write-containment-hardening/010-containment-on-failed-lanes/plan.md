@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 3: containment-on-failed-lanes"
 description: "Run containment in the lifecycle step that follows the lane process, ahead of every verdict gate, and prove it on failed and artifact-less stub lanes."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "containment on failed lanes plan"
 importance_tier: "normal"
 contextType: "general"
 ---

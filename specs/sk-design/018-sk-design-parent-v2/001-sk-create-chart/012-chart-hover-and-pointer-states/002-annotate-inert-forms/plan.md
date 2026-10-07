@@ -2,10 +2,7 @@
 title: "Implementation Plan: Annotate the six inert forms"
 description: "Add data-chart-inert, with its reason, to the figure wrapper of the six templates whose static figure already carries every value they encode. No code changes, no CSS changes, no script changes."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "annotate inert forms plan"
 importance_tier: "normal"
 contextType: "general"
 ---

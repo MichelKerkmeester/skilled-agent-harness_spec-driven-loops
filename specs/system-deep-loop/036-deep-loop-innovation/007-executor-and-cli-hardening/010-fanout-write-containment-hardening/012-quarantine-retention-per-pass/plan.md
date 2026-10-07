@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 5: quarantine-retention-per-pass"
 description: "Key the quarantine tree and patch names by pass, create every file exclusively, and route the patch through the canonicality refusal."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "quarantine retention per pass plan"
 importance_tier: "normal"
 contextType: "general"
 ---

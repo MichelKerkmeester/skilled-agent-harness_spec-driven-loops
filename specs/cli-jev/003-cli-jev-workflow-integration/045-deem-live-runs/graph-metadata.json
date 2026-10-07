@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Until phase 044 every `noul` and `score` call through `cli-deem` exited 1, so no scorer's Deem arm has a measured result, and the one local run of 006's arm failed all 196 calls",
     "created_at": "2026-10-02T07:13:43Z",
-    "last_save_at": "2026-10-07T12:54:52.474Z",
+    "last_save_at": "2026-10-07T15:56:02.559Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fcdf9c5be63ef702f09817c625eee95e50cabf2a064613f81839b083d90d28be",
+    "source_fingerprint": "sha256:c333299f3185a62e74fd1272c88dca49bd742040b19cb39196540dbe25d92712",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9db6c59d55705b3244828c5704e563ab9de712df4d6110f845f2d234a64a1839",
       "plan.md": "3c7d2ac042fa10d89a586d7a052894855612705b97ac23826015ce7507d3a974",
       "tasks.md": "b9bc14cb33e885a0ccf1269e3949baf327481679ee20eed0b65407244412a888",
       "decision-record.md": "ae7f69eba8b967d1afa4ceec5ba54a17cf971a5bf08192a9b63f97a5c559305e",
-      "implementation-summary.md": "a04caa3ada9707dc699a96f4a48d20d084b882c8ed042e34fc7d0531bb1087d2"
+      "implementation-summary.md": "8feeb7cb68186e797ba84fc7d5ca9e7e163845660e869a66dcc10be37872856b"
     },
     "last_active_at": null
   }

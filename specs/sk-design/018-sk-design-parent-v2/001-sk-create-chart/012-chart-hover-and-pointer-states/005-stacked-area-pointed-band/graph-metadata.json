@@ -15,14 +15,10 @@
       "stacked area carries a legend and a dim",
       "stacked-area tooltip",
       "pointed band readout",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "stacked area pointed band plan",
+      "stacked area pointed band tasks",
+      "stacked area pointed band acceptance criteria",
+      "stacked area pointed band implementation summary"
     ],
     "key_topics": [
       "stacked",
@@ -35,8 +31,8 @@
       "stacked-area",
       "tooltip",
       "readout",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -195,7 +191,7 @@
     ],
     "causal_summary": "`stacked-area` carries a legend and a dim but no tooltip",
     "created_at": "2026-09-05T16:03:57Z",
-    "last_save_at": "2026-10-07T12:55:07.133Z",
+    "last_save_at": "2026-10-07T15:56:27.771Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +201,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:01de0bda4a8ee28863a0ea474bd71e518ed42f6b6216bc74a75c0c4f1a67179d",
+    "source_fingerprint": "sha256:a524e3c37e62c2e3f52866e274ac9818a7687d420583c0cdde598022cef9bdd7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3b8cfcc9d8cce308066566a8c803360f36cd081a41621584e3a35db32f824393",
-      "plan.md": "09902f65a23904b30302b80e2f983f5ad28e1199ba039acd5766a649d13d7d49",
-      "tasks.md": "76385f999f6b10a57c75c2ae06f3ef5ddcac27fa26b5b41dcc9f59163801a514",
-      "implementation-summary.md": "8597428a10441ecd24b692f73b5cf344e7833c04b6ef5e60622aacafb0774be6"
+      "plan.md": "c91bf6e0af1377fbcc4b7ce605374b8f3c46d2b447b27fcc209d6a7b2f7a2ca6",
+      "tasks.md": "583fafd9e9e25e0ab7e478c21d9ad81934f7a8a172dee94447456aa5a5f49b28",
+      "implementation-summary.md": "2b575166acf9c48e6d6c3a8d1819f26900098fecc16eb4fb70b3ec06d0a985d1"
     },
     "last_active_at": null
   }

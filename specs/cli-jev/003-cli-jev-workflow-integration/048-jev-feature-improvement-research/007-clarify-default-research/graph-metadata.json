@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "clarify default research",
       "five deepseek v4 1 flash and three gpt",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "clarify default research plan",
+      "clarify default research tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "clarify default research implementation summary",
+      "jev clarify default improvement",
+      "score-clarify-default research",
+      "routing clarify none_of_these"
     ],
     "key_topics": [
       "clarify",
@@ -33,10 +33,10 @@
       "flash",
       "three",
       "gpt",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Phase 047 measured the Jev routing clarify default at verdict jev: keep K=54 M=54 A=28 B=15 W=17 L=4 F=10 p=0.003599, baseline: first alternative right on 15 of 54",
     "created_at": "2026-10-02T21:59:47Z",
-    "last_save_at": "2026-10-07T12:54:52.444Z",
+    "last_save_at": "2026-10-07T15:56:06.332Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:55f6e8a73a46a58eb366330fec161c80abdf3b29ad048d4f76c8baecb96567a1",
+    "source_fingerprint": "sha256:f3581d1fd0ef749b935b32ed24056db3dabb6e44c21d3766cbf36926814905ee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3a3b0c2a90a99a343c12c987e03554cbec925ba4aecfdd162f4bd89055c72ce5",
-      "plan.md": "67dd1584c793f66016a8f17e6cb7f22fa7727ebaa60fef9d9dffb6f47f7545f4",
-      "tasks.md": "3efe98cece6615e7fa02c81ac2d1e75fd4543b2f32ea1e4844250384ab56762c",
-      "implementation-summary.md": "35b4a5298b06ad16d02caf54ff3f4eaed5187e5eeb03840512d4624719686e25",
+      "plan.md": "0eae6151f5bd6ffdfc4d6ee2f65213ac6f7b796f538eeba0cb5c158c433ac36e",
+      "tasks.md": "e2d9e7966f3506e2c5b8cac1328acc82c6a0218f3196746440595190ffcbe451",
+      "implementation-summary.md": "bb4339117a7a88496a621fe0526bea50be6dd876a3080c01a55672f007293d22",
       "research/research.md": "d785c091753ccf0a92194325bc5567535a921808cd9d47e03b7e28e0718b2e2c"
     },
     "last_active_at": null

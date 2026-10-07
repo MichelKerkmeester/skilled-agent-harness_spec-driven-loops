@@ -14,15 +14,10 @@
       "cli runtime readme refresh",
       "runtime readme folder map",
       "cli-pi stale contract pin",
-      "implementation plan",
       "cli runtime readme approach",
       "delegated readme refresh",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "cli runtime readme refresh tasks",
+      "cli runtime readme refresh implementation summary"
     ],
     "key_topics": [
       "cli",
@@ -35,8 +30,8 @@
       "stale",
       "contract",
       "pin",
-      "implementation",
-      "plan"
+      "approach",
+      "delegated"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -48,7 +43,6 @@
       ".skilled/skills/cli-external-orchestration/cli-claude-code/README.md",
       ".hermes/skills/cli-pi/SKILL.md",
       ".skilled/skills/cli-external-orchestration/cli-hermes/README.md",
-      ".skilled/skills/cli-external-orchestration/cli-jev/README.md",
       ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
       ".skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-templates.md",
       "specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/verify.sh",
@@ -60,7 +54,8 @@
       ".skilled/skills/sk-doc/scripts/validate_document.py",
       ".skilled/skills/cli-external-orchestration/cli-codex/README.md",
       ".skilled/skills/cli-external-orchestration/cli-cursor/README.md",
-      ".skilled/skills/cli-external-orchestration/cli-devin/README.md"
+      ".skilled/skills/cli-external-orchestration/cli-devin/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/README.md"
     ],
     "entities": [
       {
@@ -210,7 +205,7 @@
     ],
     "causal_summary": "Every runtime packet under `.skilled/skills/cli-external-orchestration/` ships a `README.md`, and they",
     "created_at": "2026-09-20T10:58:00Z",
-    "last_save_at": "2026-09-20T11:53:26.056Z",
+    "last_save_at": "2026-10-07T15:55:57.595Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac8f1d6af815cb2746dde90c2e71a2fb53cc399df0ef8ec11c7d7746d119d260",
+    "source_fingerprint": "sha256:59580ccc5f9a0b686c0d4e46ffe13a9cd8ff75ab8f45da3e0d1fb530f434de89",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9f10cc55254458c3a4940d185e18ebac1f1114a234708403f43224043a2f2929",
-      "plan.md": "e274d446ffadbe960fadffeebee22e89c6e0e49e0fc9b9da12d00d08043afa0b",
-      "tasks.md": "0987d6f41f5b93a9d91b316cee9505e9a61f8987e6ac405b9d5d167c028b8e9a",
-      "implementation-summary.md": "05fc2215c6530abba4ff1610cc3ba2a6a6ac0e35cdd8abafb14d451731ac188a"
+      "plan.md": "5821161dc3453759a8a3b454baf056609c7928754fa93db31e7651b8f18b8ee1",
+      "tasks.md": "92e438f9e20eca27654364ad1ebe3bbb638aacf6fc78f5f4d0ad6c18dee28fd0",
+      "implementation-summary.md": "6c8d536152c85b7789b4cd6c50374c7869cd2fc8f5b6922830bd806bd9280f7c"
     },
     "last_active_at": null
   }

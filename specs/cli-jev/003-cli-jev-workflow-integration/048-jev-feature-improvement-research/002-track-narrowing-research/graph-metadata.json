@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "track narrowing research",
       "five deepseek v4 1 flash and three gpt",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "track narrowing research plan",
+      "track narrowing research tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "track narrowing research implementation summary",
+      "jev track narrowing improvement",
+      "score-track-narrowing research",
+      "gate 1 track narrowing default-on"
     ],
     "key_topics": [
       "track",
@@ -33,10 +33,10 @@
       "flash",
       "three",
       "gpt",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Phase 047 measured the Jev spec-track narrowing at verdict jev: keep K=256 M=256 A=97 B=68 W=78 L=49 F=47 p=0.006330, p50 330 ms, p95 391 ms",
     "created_at": "2026-10-02T21:59:43Z",
-    "last_save_at": "2026-10-07T12:54:51.733Z",
+    "last_save_at": "2026-10-07T15:56:02.307Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:1b19a9de683be8dd3e79e2c847eb89194256e6fcdd284746647b69248cf199e8",
+    "source_fingerprint": "sha256:9e41d9b7d9c8dd0eeb12c7bc4a0bec4dc7134061ce84e5b8e9ed27bdfb9bf814",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "02595384e9883965b1e098520d0f14151459b0efe6390bd0fc076bf1b63f0aa9",
-      "plan.md": "e91c3536a3ebed2814ef0f666218c2303371567e0f9c5c7e9882cad907d044f3",
-      "tasks.md": "0db8ad54f26a67db832ee75f7ac002a409b4e66bb8e7ba540f6b070620edecc2",
-      "implementation-summary.md": "2bb63ffba5b855c741a6b6ce17a76e0aa3bd06e9422bb0db14b8a00ef1ac00d7",
+      "plan.md": "5f166c0170c44fc5c8ff5106fb87bab688e03a4c1aac0c4c343efdd3eec2ebe1",
+      "tasks.md": "845802faaede9717ba3a000da4bfae043f333dd0c0c5e330a0e4432327e7e86f",
+      "implementation-summary.md": "1ba53d3de53155cacacfed2bf1860f49ea7459b27cd5edddaa045937bd9eab71",
       "research/research.md": "a0dbd149168e64ee7303c0b62fd20a2abc704e212068ef4c590ab01e793f189e"
     },
     "last_active_at": null

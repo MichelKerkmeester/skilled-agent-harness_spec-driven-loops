@@ -16,10 +16,7 @@ _memory:
     answered_questions:
       - "Suppress the conflicting backfill emission rather than alter the contradiction-detection labeling; the contradicts direction is intentional."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "relation backfill review remediation implementation summary"
 ---
 # Implementation Summary: Relation-Backfill Review Remediation
 

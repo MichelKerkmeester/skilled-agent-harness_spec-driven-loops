@@ -15,14 +15,14 @@
       "citation accuracy per class",
       "paths with spaces",
       "redirect table rebuild",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "census hardening plan",
+      "census hardening tasks",
+      "census hardening acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "decision record"
     ],
     "key_topics": [
       "census",
@@ -36,7 +36,7 @@
       "redirect",
       "table",
       "rebuild",
-      "implementation"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The census classified 140,287 citations and showed 27,320 as moved, but its accuracy per class rests on 8 moved rows checked by hand",
     "created_at": "2026-10-04T12:00:33Z",
-    "last_save_at": "2026-10-07T12:55:56.077Z",
+    "last_save_at": "2026-10-07T15:57:44.510Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +220,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8136069315cf85ab2d329f419e3f0c95f287968002926155a7141f7bbdcc710d",
+    "source_fingerprint": "sha256:65dbdef01ba396c5a22d66f788002da16e464ce196c20782f2946e20d318bd46",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "91708c81eeccb6c7079adacd771f643ebae98a849c8a0e72aeae4a5fd34cd28c",
-      "plan.md": "a95433993899a662d0860ca390aa37313c6a237efe51b9e9816bf80b3040dede",
-      "tasks.md": "e3cb877b306626c8b04c95e6bb27ba6f4aa669a01560eb63a0ff66c288376f5a",
+      "plan.md": "dd2cf5915daa761de380552bd0918a41421253a8712162c75f7d6c4ddcd40b80",
+      "tasks.md": "d325a6d8d6bd7bae0c262d4776ff8a4c43a2be93dc5d0490fafc76b0075c4487",
       "decision-record.md": "bc774d53649d6cd1d4ac9b0f80eb5aead3b6b1caa0292166d7143ee0d4750297",
       "implementation-summary.md": "803ddee6d0480bc81ac86cde372e5b3a4c8abce0f7e55b59f30c636bd2fd1b74"
     },

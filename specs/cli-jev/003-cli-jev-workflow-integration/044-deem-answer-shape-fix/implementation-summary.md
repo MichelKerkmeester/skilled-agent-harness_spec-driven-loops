@@ -2,10 +2,7 @@
 title: "Implementation Summary: Phase 44: deem-answer-shape-fix"
 description: "cli-deem now reads the noul and score answers the local Deem server sends, and 027's and 026's scorers read judgment output where real cli-deem and jev print it, so their Deem and Jev arms can measure."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "deem answer shape fix implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

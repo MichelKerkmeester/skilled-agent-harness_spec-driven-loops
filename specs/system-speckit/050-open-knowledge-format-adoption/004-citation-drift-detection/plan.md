@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 4: citation-drift-detection"
 description: "Extend cite-drift-scan.mjs in place with a corpus option, a moved class from a checked-in redirect table and a basename-only class; keep the default run zero-model and write-free; add a doctor summary."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "citation drift detection plan"
 importance_tier: "normal"
 contextType: "general"
 ---

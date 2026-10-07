@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A 36-scenario cli-hermes playbook executed twice (first pass 17 of 19 with two failures that became runtime fixes, second pass 22 of 22), 14 hermetic stress cells, and a fail-closed feature catalog with symbol-level anchors."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "hermes playbook and catalog implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

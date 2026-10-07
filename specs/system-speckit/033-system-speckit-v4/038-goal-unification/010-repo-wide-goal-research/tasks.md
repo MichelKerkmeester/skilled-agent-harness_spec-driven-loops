@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: repo-wide-goal-research"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "repo wide goal research tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

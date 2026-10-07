@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The per-lineage worktree mechanism is removed; every lane runs in the shared checkout under preserve-by-default containment, proven by the suite, the wrapper tests and a live run."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "worktree removal implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

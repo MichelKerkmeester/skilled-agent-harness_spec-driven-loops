@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The trusted gate, the scorer citations, the phrase-boost bound, the routing-phrase source and an opt-in embeddings health surface are now stated where operators read them, and the health surface is reachable through the CLI."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "status contract and docs implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

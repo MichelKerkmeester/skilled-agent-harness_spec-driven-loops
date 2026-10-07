@@ -2,8 +2,6 @@
 title: "Acceptance Criteria: Phase 8: drift after closure"
 description: "The criteria this phase must satisfy before it may be closed, each one met on observed evidence with a file and line the coverage rule can read."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
   - "drift after closure criteria"
   - "gate rerun evidence"
 importance_tier: "important"

@@ -15,14 +15,12 @@
       "changelog doctor git hooks gap",
       "changelog research plan",
       "v4.0.0.3 research plan",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "changelog v4003 research tasks",
       "v4.0.0.3 changelog research summary",
       "changelog doctor git hooks findings",
       "v4.0.0.3 changelog gaps",
-      "doctor changelog research"
+      "doctor changelog research",
+      "git hook changelog coverage"
     ],
     "key_topics": [
       "changelog",
@@ -32,11 +30,11 @@
       "hooks",
       "gap",
       "plan",
-      "task",
-      "breakdown",
-      "implementation",
+      "v4003",
       "tasks",
-      "verification"
+      "summary",
+      "findings",
+      "gaps"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -208,7 +206,7 @@
     ],
     "causal_summary": "The v4.0.0.3 entry was last edited on 2026-10-02",
     "created_at": "2026-10-04T08:12:36Z",
-    "last_save_at": "2026-10-04T08:40:05.735Z",
+    "last_save_at": "2026-10-07T15:57:44.079Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,12 +216,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9ce344115ad7af023d20716916c1a032938922c563bc8a8fba6389e59a13337c",
+    "source_fingerprint": "sha256:8e1e48de70114ba4b94ca3c1b6ba5fd98253babcb5cfb71d9440497335791373",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6acd45b3a0785e097c161743228e8edea16db13f26dfa83af8248e28a62cf357",
       "plan.md": "883ae7817f715e7c52594bc7d165e1536bcb51ac1a98266da44513ed96bf29ee",
-      "tasks.md": "427253e0ad9cd874eee9bbea4c3cb7e33c0d448b8472c4b8af99262f0de49353",
+      "tasks.md": "d3523bd596e16a4400986a75ad19955a91f9bccf43165ff085a6931823a50d1a",
       "implementation-summary.md": "920d6e9577a7f0a60326d8900f616eb943267c9ab8cd5cd6ad3ea1ee0d215fad",
       "research/research.md": "cf877608146b3addb01975a2b96dca62c8cf0677788419eaa35d2805b148a3f9"
     },

@@ -13,16 +13,9 @@
     "trigger_phrases": [
       "reply rule delegation repair",
       "the reply rule opened by stating one idea",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "reply rule delegation repair plan",
+      "reply rule delegation repair tasks",
+      "reply rule delegation repair implementation summary"
     ],
     "key_topics": [
       "reply",
@@ -33,10 +26,10 @@
       "stating",
       "one",
       "idea",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +188,7 @@
     ],
     "causal_summary": "The reply rule opened by stating one idea per sentence, a mechanic it delegates to the prose rule three lines later, so the split it describes was contradicted by its own headline.",
     "created_at": "2026-09-15T19:04:44Z",
-    "last_save_at": "2026-10-07T12:55:02.087Z",
+    "last_save_at": "2026-10-07T15:56:26.981Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c4b97be6a3e7f0a5f62f951b5cc5463f1addc53282b1a46de52e7e6a855eed62",
+    "source_fingerprint": "sha256:9722162f553de5584cfa642c76d5ad4a9b7bc85588de2e1a7b870c0becf8c845",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0f00837a805116e46335fcdae06c421748efe07de0d9d9087b6192ba072612b7",
-      "plan.md": "9abc1e6aa9c00e93bf99dc7e656cd72ac738fcda9d656f54cd9b9d403ce6a887",
-      "tasks.md": "4ade2aab4b63cba1eb68c197100c2482e78ca7a1073793b3db57eab80ace0313",
-      "implementation-summary.md": "6716ebfbb0352975c1a6a58f3538b778d3e389b2987741d8e538af27e62a0d36"
+      "plan.md": "dd0ac56523784c3882c0094cb042de31b7e1024fc2e0d980ef30dac2185cc754",
+      "tasks.md": "f9f2df1cc04693d80b5c7551b1fc97e62139b05a5270963b7c4aff07e7b98871",
+      "implementation-summary.md": "fbee8bfa1ab19dca670e0b1cac04086374fc95ff58dbe65a300050a34d300b63"
     },
     "last_active_at": null
   }

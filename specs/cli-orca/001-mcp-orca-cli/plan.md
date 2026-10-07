@@ -2,7 +2,6 @@
 title: "Implementation Plan: Port Orca CLI into mcp-tooling"
 description: "An evidence-gated implementation sequence for adding the official Orca CLI skill as a workflow member of the existing mcp-tooling hub."
 trigger_phrases:
-  - "implementation plan"
   - "Orca CLI technical approach"
   - "mcp-tooling hub integration"
   - "Orca routing verification"

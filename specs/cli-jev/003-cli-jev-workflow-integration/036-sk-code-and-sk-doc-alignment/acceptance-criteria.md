@@ -3,7 +3,6 @@ title: "Acceptance Criteria: Phase 36: sk-code-and-sk-doc-alignment"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "alignment acceptance criteria"
-  - "closure gate"
   - "drift and validator criteria"
   - "stderr tag criteria"
   - "alignment waiver adr"

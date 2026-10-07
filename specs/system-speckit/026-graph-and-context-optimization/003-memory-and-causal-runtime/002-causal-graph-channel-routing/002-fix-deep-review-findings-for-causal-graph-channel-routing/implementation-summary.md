@@ -7,7 +7,6 @@ trigger_phrases:
   - "channel"
   - "routing"
   - "002"
-  - "implementation summary"
   - "fix"
 importance_tier: "normal"
 contextType: "implementation"

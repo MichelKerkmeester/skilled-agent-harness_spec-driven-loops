@@ -2,10 +2,7 @@
 title: "Implementation Plan: Restore the pi advisor dedup return, renew the drifted advisor battery and close the stale documentation surfaces"
 description: "This implements three repairs: the restored full-delivery return in the pi dedup decision, one-root path resolution in the CLI fallback and the root probes in the Claude hook and the OpenCode plugin, plus a renewed advisor battery and updated documentation. The pi dedup suite runs as a negative control against 028's source and the advisor runtime battery runs against baselines renewed by the capture tools."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "fix remaining advisor defects plan"
 importance_tier: "normal"
 contextType: "general"
 ---

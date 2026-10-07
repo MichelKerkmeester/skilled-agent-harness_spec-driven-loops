@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The catalog says what commit identity is, playbook scenario GIT-044 proves the three queries, and the conductor ran them on a stamped fixture commit. No index was built because git log answers every query."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "search surface implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

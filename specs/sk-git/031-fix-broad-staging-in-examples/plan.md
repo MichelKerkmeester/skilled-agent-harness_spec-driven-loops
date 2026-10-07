@@ -2,10 +2,7 @@
 title: "Implementation Plan: Replace broad staging in sk-git examples with explicit paths"
 description: "Rewrite three staging lines to stay within the author's files, classify the other broad-staging hits, and bring all three file versions to the derived values."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "fix broad staging in examples plan"
 importance_tier: "normal"
 contextType: "general"
 ---

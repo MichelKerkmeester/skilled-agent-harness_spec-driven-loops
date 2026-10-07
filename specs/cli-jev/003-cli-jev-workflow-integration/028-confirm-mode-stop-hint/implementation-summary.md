@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Complete at its label gate. score-stop-hint.cjs reads one stop-rater report, prints per-column hint counts and one Keep Rule verdict per column, calls no model in any mode, and stops at stop: rater report has no confirmed gold; its 28 tests cover the reader, the hint counter, both skip lines, every verdict outcome and the no-call guard, and the system-deep-loop docs describe it. Built as 97200ea481."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "confirm mode stop hint implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

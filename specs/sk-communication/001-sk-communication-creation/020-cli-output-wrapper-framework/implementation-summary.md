@@ -3,7 +3,6 @@ title: "Implementation Summary: Phase 020 CLI-Output Wrapper Framework"
 description: "The shared CLI-output wrapper framework is built: a parameterized entrypoint that runs the target runtime in its declared headless, stream, or print mode, captures the assistant output stream, normalizes it through the per-runtime adapters, feeds projectMessage(), and re-renders the projected text with a fail-open byte-exact original passthrough."
 trigger_phrases:
   - "cli-output-wrapper-framework"
-  - "implementation summary"
   - "wrapper framework"
   - "capture normalize project render"
   - "byte-exact passthrough"

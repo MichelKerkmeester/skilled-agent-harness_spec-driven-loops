@@ -2,10 +2,7 @@
 title: "Tasks: Phase 5: verification"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "verification tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

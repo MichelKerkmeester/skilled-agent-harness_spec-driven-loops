@@ -4,10 +4,7 @@ description: "Task checklist with evidence for the code-opencode Rust reference 
 importance_tier: "normal"
 contextType: "implementation"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "code opencode rust references tasks"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 7 — Split code-opencode Rust References

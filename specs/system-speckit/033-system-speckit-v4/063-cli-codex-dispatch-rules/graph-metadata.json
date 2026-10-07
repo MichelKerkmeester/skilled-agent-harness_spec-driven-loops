@@ -19,7 +19,6 @@
       "cli codex fanout scope plan",
       "cli codex dispatch rules tasks",
       "cli codex fanout scope tasks",
-      "implementation summary",
       "cli codex sandbox eperm evidence"
     ],
     "key_topics": [
@@ -47,7 +46,6 @@
       ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
       ".hermes/skills/cli-codex/SKILL.md",
       ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
-      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json",
       "specs/system-speckit/033-system-speckit-v4/spec.md",
       "specs/system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs/spec.md"
     ],
@@ -199,7 +197,7 @@
     ],
     "causal_summary": "ALWAYS rule 2 and the Execution Ownership section told an orchestrator to delegate every orchestrated Codex dispatch to `fanout-run.cjs`",
     "created_at": "2026-09-24T06:59:47Z",
-    "last_save_at": "2026-09-24T07:36:36.830Z",
+    "last_save_at": "2026-10-07T15:57:33.266Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8d8a79f9d2005f3f0e9f9f6e5682d83418ec24d756f380e42ea7a1db2d94decc",
+    "source_fingerprint": "sha256:7ee68967f2feecfd023b2bce57a4ade1c433535fd91595a89200448b064890f3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c93ecf9afae11e3c5d7a27e9eaec7af163da372358f9a20b3ca39bfb5ab81271",
       "plan.md": "5b1b33721e6cb252bc6b870a0c6a1d81a1d6d51540da51912ad4d2edf67a1c97",
       "tasks.md": "05a9d38540d73908189994e564c41c3a2b32dc758c9c37f2200e42034a4b9161",
-      "implementation-summary.md": "e09c2d968bca3a4903d076f33852a330df50cb06e8ee52b9622cbb8ca7052005"
+      "implementation-summary.md": "04dfeee91af10c2234d98a098c2e83b9667f9dd0462653d0505e5521d5059557"
     },
     "last_active_at": null
   }

@@ -2,7 +2,6 @@
 title: "Implementation Plan: Phase 1: skill-and-command-removal"
 description: "Remove the skill, both rewrite commands, runtime mirrors and OpenCode projection plugin, then clear active integration references. Verify that the retained advisor route-exclusion mechanism and mirror generators still pass their focused checks."
 trigger_phrases:
-  - "implementation plan"
   - "skill removal approach"
   - "rewrite command removal checks"
   - "mirror sync verification"

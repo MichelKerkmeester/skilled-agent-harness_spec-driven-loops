@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Seven defects earlier phases recorded as another surface's problem, closed at their producers, so the packet's own decision that nothing is deferred holds."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "recorded adjacent defects implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,10 +2,7 @@
 title: "Tasks: a custom evilcharts Style Reference the corpus can be themed from"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "evilcharts style reference tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

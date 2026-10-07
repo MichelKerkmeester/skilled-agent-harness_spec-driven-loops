@@ -19,10 +19,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "runtime agent gateway alignment tasks"
 ---
 # Tasks: Runtime Agent Gateway Alignment
 

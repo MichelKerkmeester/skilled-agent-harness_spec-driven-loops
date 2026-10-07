@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 2: deep-loop-executor-support"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "deep loop executor support plan"
 importance_tier: "normal"
 contextType: "general"
 ---

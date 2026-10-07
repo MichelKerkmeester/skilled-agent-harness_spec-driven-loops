@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 13: shorten the handoff rule name"
 description: "One rename, four reference sites, and a benchmark that has to keep scoring replies written under two earlier names."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "shorten handoff rule name plan"
 importance_tier: "normal"
 contextType: "general"
 ---

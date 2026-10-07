@@ -2,10 +2,7 @@
 title: "Implementation Plan: Build: improve the Jev spec-folder suggestion (022)"
 description: "Fix the describer's basename collision, add candidate recall and a save-path split, honor a pre-declared comparator, pin the run's inputs and report a confidence-gated arm."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "folder suggestion improvements plan"
 importance_tier: "normal"
 contextType: "general"
 ---

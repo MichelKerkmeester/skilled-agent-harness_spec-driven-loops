@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Symlinked references are leaves like any other, twelve doctrine files are reachable, and unreachable links are reported."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "leaf manifest and doctrine reachability implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

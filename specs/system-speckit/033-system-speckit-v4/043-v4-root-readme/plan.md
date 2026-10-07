@@ -2,8 +2,6 @@
 title: "Implementation Plan: Phase 43: v4-root-readme"
 description: "Phased refinement of the root README.md to eliminate bloat, re-home misplaced sections, fix agent/skill inventories, populate empty FAQs, and apply Human Voice Rules."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
   - "readme plan"
   - "hvr cleanup plan"
 importance_tier: "normal"

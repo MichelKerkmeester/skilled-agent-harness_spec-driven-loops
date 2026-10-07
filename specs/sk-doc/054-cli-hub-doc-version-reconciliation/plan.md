@@ -2,10 +2,7 @@
 title: "Implementation Plan: cli hub doc version reconciliation"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "cli hub doc version reconciliation plan"
 importance_tier: "normal"
 contextType: "general"
 ---

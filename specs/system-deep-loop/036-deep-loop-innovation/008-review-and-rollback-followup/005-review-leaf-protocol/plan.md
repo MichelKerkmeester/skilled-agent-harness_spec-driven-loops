@@ -2,8 +2,6 @@
 title: "Implementation Plan: review-leaf-protocol"
 description: "State the two runner-enforced duties in the lineage prompt and the agent contract, sync mirrors and the compiled contract, and fix the determinism tests' child spawn path."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
   - "review leaf protocol"
 importance_tier: "normal"
 contextType: "general"

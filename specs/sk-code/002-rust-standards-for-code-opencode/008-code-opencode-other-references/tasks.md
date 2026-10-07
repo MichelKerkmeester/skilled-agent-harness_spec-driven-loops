@@ -4,10 +4,7 @@ description: "Task checklist with evidence for the code-opencode non-Rust + shar
 importance_tier: "normal"
 contextType: "implementation"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "code opencode other references tasks"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 8 — Split code-opencode Other-Language & Shared References

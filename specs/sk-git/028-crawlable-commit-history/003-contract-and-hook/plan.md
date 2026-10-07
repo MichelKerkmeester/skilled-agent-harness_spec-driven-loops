@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 3: contract-and-hook"
 description: "Four cli-pi dispatches on DeepSeek V4.1 Flash, in the order the decisions fixed: hook whitelist and harness, ordinal allocator and harness, stamper hook and harness, then the skill documents through sk-doc."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "contract and hook plan"
 importance_tier: "normal"
 contextType: "general"
 ---

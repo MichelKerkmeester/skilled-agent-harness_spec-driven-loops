@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 013 Capability-Evidence Unblock"
 description: "Capture and record fresh provider control evidence, apply it through the existing capability merge and compiler, and prove supported reachability plus fail-closed reversal."
 trigger_phrases:
   - "capability-evidence-unblock"
-  - "implementation plan"
   - "control knobs fail-closed"
 importance_tier: "important"
 contextType: "implementation"

@@ -6,7 +6,6 @@ trigger_phrases:
   - "gate 1 rewire"
   - "continuity writer"
   - "memory tool call sites"
-  - "implementation plan"
 importance_tier: "normal"
 contextType: "general"
 ---

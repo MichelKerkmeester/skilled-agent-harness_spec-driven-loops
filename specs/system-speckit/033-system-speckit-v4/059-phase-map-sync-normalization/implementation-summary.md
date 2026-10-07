@@ -2,7 +2,6 @@
 title: "Implementation Summary"
 description: "The phase-map sync tool now leaves rows that already agree with their child, writes a status rather than a note, warns about rows it cannot see, and reports completion_pct mismatches instead of rewriting spec.md files no reader uses."
 trigger_phrases:
-  - "implementation summary"
   - "phase map sync normalization"
   - "completion pct report only evidence"
 importance_tier: "normal"

@@ -2,10 +2,7 @@
 title: "Plan: 017/003 Scenario expansion"
 description: "Execution plan for scenario expansion."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "scenario expansion plan"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->

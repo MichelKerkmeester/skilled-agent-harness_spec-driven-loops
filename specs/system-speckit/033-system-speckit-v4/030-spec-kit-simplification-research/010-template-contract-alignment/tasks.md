@@ -5,7 +5,6 @@ trigger_phrases:
   - "template alignment tasks"
   - "contract census tasks"
   - "goal flag tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

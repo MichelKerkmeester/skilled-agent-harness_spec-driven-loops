@@ -2,10 +2,7 @@
 title: "Implementation Plan: Close every deferral the packet left: repair the pointer-only readings, enforce the readout rule, and require a contract row per form"
 description: "Repair the two forms whose card reveals readings their table never carried, give stacked-area the totals row its card reads out, then turn the property into two corpus rules and watch each one fail before trusting it. Closes the no-script item as a decision rather than future work."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "close the deferrals plan"
 importance_tier: "normal"
 contextType: "general"
 ---

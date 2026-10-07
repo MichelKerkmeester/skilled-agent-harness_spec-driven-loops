@@ -2,10 +2,7 @@
 title: "Tasks: a phrase the router declares reaches the hub"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "router vocabulary repair tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

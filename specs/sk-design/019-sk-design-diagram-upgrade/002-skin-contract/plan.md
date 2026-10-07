@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 2: skin-contract"
 description: "Signs seven skin-contract decisions against phase 1's reconciled research, specifies the derivation record's shape, and collapses four duplicated contracts to one locus each. No code changes; every deliverable is a decision or a record."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "skin contract plan"
 importance_tier: "normal"
 contextType: "general"
 ---

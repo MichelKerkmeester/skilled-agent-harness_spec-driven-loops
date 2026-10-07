@@ -3,7 +3,7 @@ title: "Feature Specification: Bring the md generator in as a mode of sk-design"
 description: "Move 7,946 files as renames, fold a second advisor identity into the hub, rewrite twenty live path references while leaving thirty historical ones alone, and close the routing regression the hub conversion introduced."
 trigger_phrases:
   - "md generator as mode"
-  - "move 7 946 files as renames fold a"
+  - "move 7 946 files as renames fold"
 importance_tier: "normal"
 contextType: "general"
 ---

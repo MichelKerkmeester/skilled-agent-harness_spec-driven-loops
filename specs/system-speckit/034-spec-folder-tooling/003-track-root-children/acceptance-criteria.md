@@ -4,7 +4,6 @@ description: "The criteria this packet must satisfy before it may be closed, eac
 trigger_phrases:
   - "track root children_ids"
   - "track-root pre-push gate"
-  - "acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

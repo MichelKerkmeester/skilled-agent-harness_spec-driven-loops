@@ -2,10 +2,7 @@
 title: "Implementation Plan: Audit the agent behavior ruleset against six agent-avoidance anti-patterns and give the uncovered family one home"
 description: "Audit-first doctrine change: one new repo-rules file owning the avoidance family, two router rows in REPO RULES.md, one sentence in evidence-and-proof.md §10. Additive only, no AGENTS.md touch."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "agent avoidance anti patterns plan"
 importance_tier: "normal"
 contextType: "general"
 ---

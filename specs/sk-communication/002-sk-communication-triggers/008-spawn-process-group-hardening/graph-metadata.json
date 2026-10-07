@@ -14,15 +14,9 @@
       "spawn process group hardening",
       "cli process group kill",
       "orphaned subprocess teardown",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "spawn process group hardening plan",
+      "spawn process group hardening tasks",
+      "spawn process group hardening implementation summary"
     ],
     "key_topics": [
       "spawn",
@@ -34,9 +28,9 @@
       "orphaned",
       "subprocess",
       "teardown",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "supporting",
     "status": "complete",
@@ -44,9 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -71,18 +63,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli.ts",
-        "source": "derived"
-      },
-      {
-        "name": "cli.test.ts",
-        "kind": "test",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts",
         "source": "derived"
       },
       {
@@ -192,11 +172,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The phase-006 spawn boundary killed only the direct child on timeout",
     "created_at": "2026-08-20T05:12:58.967Z",
-    "last_save_at": "2026-09-11T04:35:24.728Z",
+    "last_save_at": "2026-10-07T15:56:23.223Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7420a3d13a413d55993705f8d4cbfc7615abea12f661fcff095adfc743aaf52e",
+    "source_fingerprint": "sha256:fdc6c909f3f405e77ca7ba964b8563e26aaa592bfa942ddc3e9ddec174421626",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9a479d2facaf4ea2fb81fed5a56db2150b44a8089dbd8fa92bb0fd2f6a5700a1",
-      "plan.md": "047eb7efac1305c3250cdb9a1327a15842b5c3e3de93c22f5aaadc7982d13d27",
-      "tasks.md": "2e9c274133edf36d73864cfb3a2bbe6ae8a3dbfe2de3d12882dae8184f61750c",
-      "implementation-summary.md": "e71568a86bc7a0713592efef67cac952e94ae8bf372eee9f4bb6e74f35429823"
+      "plan.md": "2cd4dd6ff728e32782ac52a5b2053b3f2a0d600f40741ef7c72f3f7c241a85ae",
+      "tasks.md": "0a083ac85d429bf99bb46ddcb50707248863acee11db1f2cda3f756dd375626c",
+      "implementation-summary.md": "82fe30e0e637acc9069b2b691ac863578857c5c9ce585363a128e579055981f7"
     },
     "last_active_child_id": null,
     "last_active_at": null

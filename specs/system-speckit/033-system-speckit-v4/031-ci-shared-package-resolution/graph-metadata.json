@@ -22,7 +22,7 @@
       "mirror regeneration",
       "ci resolution tasks",
       "workflow fix tasks",
-      "verification checklist"
+      "run failed diagnosis"
     ],
     "key_topics": [
       "shared",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Since 2026-09-06 every push to `main` or `skilled/v4.0.0.0` failed four workflows and mailed the operator each time",
     "created_at": "2026-09-07T05:42:08.045Z",
-    "last_save_at": "2026-09-11T16:42:48.597Z",
+    "last_save_at": "2026-10-07T15:57:24.001Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bae580e883cd6ff9ff3b638e8ab969c86b62f1763b80d494bf3e2e4a03075d89",
+    "source_fingerprint": "sha256:cd6ccf158d4267a064876995b39290a445ac0bd76416b85318c0c797cf248eab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "83fe74ce7cbf6573fb5200eeba8288f2f36a92b95401487611e22a4359872ee8",
       "plan.md": "940652c10de6d36b21ed6ce42639fc42ac5f0f907c1d0dfdc171a254bf57a48b",
-      "tasks.md": "09feeccd9ed3ff80660361b07db514036be7737b00869e15827c546a74294e3a",
+      "tasks.md": "e403ae2f7f3cad20aceefa3fcba102050cd05066b34a8cf958932bc08e27f144",
       "implementation-summary.md": "e35740cf89b15c71e39613f5afed1be45e58a299132a38e51a7f375b354b499e"
     },
     "last_active_child_id": null,

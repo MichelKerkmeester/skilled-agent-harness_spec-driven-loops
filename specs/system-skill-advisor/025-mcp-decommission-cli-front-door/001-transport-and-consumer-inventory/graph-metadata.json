@@ -15,14 +15,14 @@
       "advisor caller inventory",
       "advisor preserve set",
       "transport surface classification",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "transport and consumer inventory plan",
+      "transport and consumer inventory tasks",
+      "transport and consumer inventory acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "transport and consumer inventory implementation summary"
     ],
     "key_topics": [
       "advisor",
@@ -34,9 +34,9 @@
       "transport",
       "surface",
       "classification",
-      "implementation",
+      "consumer",
       "plan",
-      "technical"
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Later phases delete a transport, repoint callers and sweep documents",
     "created_at": "2026-09-11T06:48:55Z",
-    "last_save_at": "2026-10-07T12:55:37.880Z",
+    "last_save_at": "2026-10-07T15:57:06.185Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c42edae9edd1d4014170c3f93b0acbf26af9990156741ce2b20eb89a36a6dfc",
+    "source_fingerprint": "sha256:f8c9d306c5ff27aa49ada00821cf4c53bd9b59cc18067e5f2120d27695c23b76",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1a5513a41b3b36a39bc0788efde579258713bf29bf7771c8255d8a8efce0c6c5",
-      "plan.md": "e4628b4f1e08168879dd499dd810b3bd171fe76c0c3db42c8465b8442673bc71",
-      "tasks.md": "14680b0169807cfb74ebbcf7d9a5e0e044535d3685e570d6431d42829c2e8954",
-      "implementation-summary.md": "49305b324bf9004371f9fd83f63f79442a2389182107649f4ece5400fa8de712"
+      "plan.md": "ba42829fea0c28d561a1bb4cccdff2f7d248309baa5e00adbf0e9987aa844ace",
+      "tasks.md": "3d39c5dddbf4691989607ff4fda770374960a034b506448645f597e42292d296",
+      "implementation-summary.md": "a25f88ab499942b24405097e508c0aed4120febb21073fc1d198641f2230a5cc"
     },
     "last_active_at": null
   }

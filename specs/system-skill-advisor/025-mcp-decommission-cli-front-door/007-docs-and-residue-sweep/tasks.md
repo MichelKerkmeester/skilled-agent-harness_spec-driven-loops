@@ -2,10 +2,7 @@
 title: "Tasks: Phase 7: docs-and-residue-sweep"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "docs and residue sweep tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

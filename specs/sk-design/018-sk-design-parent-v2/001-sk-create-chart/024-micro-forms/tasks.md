@@ -2,10 +2,7 @@
 title: "Tasks: spark, tracker and bar-list forms"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "micro forms tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

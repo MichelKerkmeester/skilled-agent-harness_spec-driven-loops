@@ -2,10 +2,7 @@
 title: "Implementation Plan: cursor bundle as the stock chart register"
 description: "Derive the stock palette from the cursor reference with the corpus gates, regenerate every stock block canonically, and prove it with the existing families."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "cursor stock register plan"
 importance_tier: "normal"
 contextType: "general"
 ---

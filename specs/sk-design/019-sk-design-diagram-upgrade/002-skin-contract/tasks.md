@@ -2,10 +2,7 @@
 title: "Tasks: Phase 2: skin-contract"
 description: "Task Format: T### [P?] Description (file path) — executor: operator | GLM-5.3-Flash max via cli-pi (DevPass) | human review"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "skin contract tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

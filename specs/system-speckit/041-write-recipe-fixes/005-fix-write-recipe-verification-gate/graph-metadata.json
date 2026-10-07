@@ -12,17 +12,10 @@
   "derived": {
     "trigger_phrases": [
       "fix write recipe verification gate",
-      "the gate told the author to confirm that",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "the gate told the author to confirm",
+      "fix write recipe verification gate plan",
+      "fix write recipe verification gate tasks",
+      "fix write recipe verification gate implementation summary"
     ],
     "key_topics": [
       "write",
@@ -32,11 +25,11 @@
       "told",
       "author",
       "confirm",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "implementation",
+      "summary",
+      "last"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -195,7 +188,7 @@
     ],
     "causal_summary": "The last line of Step 7 in the spec folder write recipe said to confirm that `git status --short` only includes the intended packet files before commit",
     "created_at": "2026-09-29T07:19:57Z",
-    "last_save_at": "2026-10-07T12:55:53.137Z",
+    "last_save_at": "2026-10-07T15:57:40.023Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b0303723f325ffd80fe87617b1ab06a58b930e711249bad9098251857ed99b84",
+    "source_fingerprint": "sha256:79c7b3bf874413458381c23d4e330e4e5004eddaea22ee1542e1c6ca14e91561",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "24f0f9094916e0d2cbcbb110e62e526e10f62cb97bcbe26856f3c2956e9b1c2e",
-      "plan.md": "1681bb90beb47a56a4fd3211dd38a1a0861c05e49116ac35f7c69f5fc01028d9",
-      "tasks.md": "24944059075afbf081accff6fd8b3710d8419c537ee1c5202fd6736a900d5945",
-      "implementation-summary.md": "a4e926a668e127c5c42ddd6c00b5817ac901e8bbb950073faa04d3e78a5b1538"
+      "spec.md": "5e50d01c4d2cda7ab3bf30d495625a4b9d8b1febb5235fb18511d0480892ceb9",
+      "plan.md": "d759f71cb9e3a99543b2707280795071cf286559d6ecae02042fae81e61a84b8",
+      "tasks.md": "5186ef5dbd6834d8e2efe41cc60d579905862262c2b150c5f142a2fda94d9915",
+      "implementation-summary.md": "5e33e4dd8cbff8d6483b945e2a73e22d59c31ace505447e70eae1d9b4055c7ab"
     },
     "last_active_at": null
   }

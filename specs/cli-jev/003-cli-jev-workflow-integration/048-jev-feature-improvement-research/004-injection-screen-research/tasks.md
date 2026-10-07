@@ -2,10 +2,7 @@
 title: "Tasks: Phase 4: injection-screen-research"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "injection screen research tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

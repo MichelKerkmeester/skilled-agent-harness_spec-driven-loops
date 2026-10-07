@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "One verdict and one owning document per communication candidate, with every contested case settled by an Accepted ADR."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "synthesis and decisions implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

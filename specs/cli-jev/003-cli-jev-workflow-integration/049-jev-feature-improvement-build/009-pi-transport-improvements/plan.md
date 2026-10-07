@@ -2,10 +2,7 @@
 title: "Implementation Plan: Build: improve the Jev Pi native classifier transport (037)"
 description: "Fix the adapter's provider handling and kill-switch precedence, cache its runtime and pin the Pi version, then repair the benchmark so both arms run fresh the same day with usage and digests recorded, plus an escalation arm.."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "pi transport improvements plan"
 importance_tier: "normal"
 contextType: "general"
 ---

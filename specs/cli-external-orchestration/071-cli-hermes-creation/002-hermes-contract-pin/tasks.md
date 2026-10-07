@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: hermes-contract-pin"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "hermes contract pin tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

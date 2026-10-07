@@ -13,16 +13,9 @@
     "trigger_phrases": [
       "code standards alignment",
       "an audit of the code this program added",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "code standards alignment plan",
+      "code standards alignment tasks",
+      "code standards alignment implementation summary"
     ],
     "key_topics": [
       "code",
@@ -30,13 +23,13 @@
       "alignment",
       "audit",
       "program",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing"
+      "tasks",
+      "implementation",
+      "summary",
+      "against",
+      "opencode",
+      "surface"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +188,7 @@
     ],
     "causal_summary": "An audit of the code this program added against the OpenCode surface standards and the restraint rule. One documentation gap was real, one suspected dead branch was not, and four candidate cuts were checked and declined.",
     "created_at": "2026-09-15T20:39:52Z",
-    "last_save_at": "2026-10-07T12:55:05.289Z",
+    "last_save_at": "2026-10-07T15:56:27.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:808b126d7138a96360b40627439845223c0a59cb5d223fdce3815186947f0e22",
+    "source_fingerprint": "sha256:148c6a3afc0d7c1b46f51642f2b6234f4eb647b165d195851190a10df120b135",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "02e2932ec9879391780aa15f953e654855c1d99cf810b55e07ad0b2b33fd1045",
-      "plan.md": "b91eff06440f33fbacb0b9f1e6bce8578ffbf05e8ea15ec522b1e4bf66f870b3",
-      "tasks.md": "c65868b853380392a7e02e974a3f425b74e6df8e68a9d48ba6104fa7720eea44",
-      "implementation-summary.md": "d2ba540d172488ab1063363b3e26edf1e6c7b6e957425e3e391ec1e2f949cb1d"
+      "plan.md": "69e8855bdb1ccc3c478b44654b855f1f43a899d9a81a6d038356a7f8a1bb5c15",
+      "tasks.md": "70c37ea1744a5a1b38c70d2078662ae3551249cfaa802e5ee1ade974138709dc",
+      "implementation-summary.md": "69d89047d754434c72072db55bca25d5dd400883182050002299d380060deeb0"
     },
     "last_active_at": null
   }

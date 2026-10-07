@@ -2,10 +2,7 @@
 title: "Tasks: Phase 2: port-cache-economics"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "port cache economics tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

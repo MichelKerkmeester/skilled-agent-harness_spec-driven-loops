@@ -15,14 +15,9 @@
       "skill advisor bootstrap build failure",
       "cannot find name process spec-kit shared",
       "github issue 27 missing package.json",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "fresh clone bootstrap plan",
+      "fresh clone bootstrap tasks",
+      "fresh clone bootstrap implementation summary"
     ],
     "key_topics": [
       "advisor",
@@ -196,7 +191,7 @@
     ],
     "causal_summary": "GitHub issue #27 reports that the MCP launchers cannot build on a fresh clone",
     "created_at": "2026-10-01T15:53:46Z",
-    "last_save_at": "2026-10-06T18:48:27.308Z",
+    "last_save_at": "2026-10-07T15:57:06.621Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9fd6bfeca1edbd5e00e405443d44e677b014ea7c690d0c646b89ab852838b425",
+    "source_fingerprint": "sha256:e3450f1027ee108e276c528fd3732b23619cc9e824abd430d2c771ecf5ff3c3a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ec7513beea9f82c030c09c292f1484c1e9290ba57ac84bbca54637fbe4ee2289",
-      "plan.md": "8595444656c79ed293090679211158e4facaf7ceb69daf161773dc10e54f3399",
-      "tasks.md": "27b6b7d5ea9ff923916076dfdcae8ae94c7f9a11de9b6d02cdc0b2738ad09453",
-      "implementation-summary.md": "999a650edb376bbd685ddc3878b7b27d855eccf156345404eeabb1979aca863e"
+      "plan.md": "77dbb5889347c76c34c53f5446759b6f6b3e1b69d1d156965c9beac50f2fb300",
+      "tasks.md": "34463badc897fadd507dd4bb3759f675498727529c4e91dd12b6b29b37411d1d",
+      "implementation-summary.md": "4988fe6388825824222fd8d7c344685b6fd29a5ee8d9bb500a98552b458bfff1"
     },
     "last_active_at": null
   }

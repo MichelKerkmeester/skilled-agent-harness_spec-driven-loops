@@ -17,12 +17,9 @@
       "live sync hook parity",
       "hook parity plan",
       "injection screen adapters plan",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "alignment and hook parity tasks",
       "alignment and hook parity acceptance criteria",
-      "implementation summary"
+      "alignment and hook parity implementation summary"
     ],
     "key_topics": [
       "jev",
@@ -200,7 +197,7 @@
     ],
     "causal_summary": "`ENV-REFERENCE.md` named the files that read each Jev switch before phase 54 moved them, and several READMEs described retired or moved code",
     "created_at": "2026-10-05T09:05:04Z",
-    "last_save_at": "2026-10-07T12:54:57.344Z",
+    "last_save_at": "2026-10-07T15:56:07.081Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9eaded25f2c0606df3cf1690d13353fe0cc35696039d2bd68fc1bbe602008fe",
+    "source_fingerprint": "sha256:3b26d6249a4859db7f85250a9cbaceef2c756702eee5ebd6c5040a1d5e694d08",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "75666a84a1593767ff0a16575a793bbd95a6d45a988eb66408f29548ddc9cf04",
       "plan.md": "932ca3f589b264e99c88b5a4a974a2890c92316641e1e90f605ffdbc75a3d481",
-      "tasks.md": "64ba3a39d082ba0d47734184c4e0910e5592288915d397870e8b5718e788d0f8",
-      "implementation-summary.md": "3eb8136ceeab33301deba359e0c7aed98937c067c49e3969bcc73c5bde9a7a61"
+      "tasks.md": "4cba821726f5d8acae01c0ae5ceebeccbdc130133060f7411b64915b958c2404",
+      "implementation-summary.md": "cd8f3cb315fd026d6d42f4cd0b296a0a744bddfec106dff4796c5f5c19956732"
     },
     "last_active_at": null
   }

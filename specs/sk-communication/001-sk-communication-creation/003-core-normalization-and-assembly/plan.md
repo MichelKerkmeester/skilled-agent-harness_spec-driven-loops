@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 003 Core Normalization and Assembly"
 description: "Implement the runtime-neutral core that normalizes events and assembles one deterministic message without changing canonical state."
 trigger_phrases:
   - "core-normalization-and-assembly"
-  - "implementation plan"
   - "portable cli projection"
 importance_tier: "important"
 contextType: "implementation"

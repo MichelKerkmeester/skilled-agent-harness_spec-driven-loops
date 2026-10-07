@@ -2,10 +2,7 @@
 title: "Implementation Plan: Restyle every existing form and replace demo data with realistic figures"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "restyle and richer data plan"
 importance_tier: "normal"
 contextType: "general"
 ---

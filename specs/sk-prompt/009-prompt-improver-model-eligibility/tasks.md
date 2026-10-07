@@ -2,10 +2,7 @@
 title: "Tasks: Restrict which models may act as the prompt-improve agent"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "prompt improver model eligibility tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

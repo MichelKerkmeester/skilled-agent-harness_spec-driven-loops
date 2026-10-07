@@ -15,14 +15,12 @@
       "llmgateway deepseek fanout",
       "pi model provider mapping deepseek",
       "opencode-go usage limit fan-out",
-      "implementation plan",
       "devpass deepseek route plan",
       "provider map flip",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "devpass deepseek tasks"
+      "devpass deepseek tasks",
+      "devpass deepseek shipped",
+      "pi provider map moved",
+      "fan-out route deepseek"
     ],
     "key_topics": [
       "cli-pi",
@@ -199,7 +197,7 @@
     ],
     "causal_summary": "The operator asked for a second research round on DeepSeek V4 Flash at `max` through cli-pi",
     "created_at": "2026-09-20T08:33:39.580Z",
-    "last_save_at": "2026-10-03T15:12:18.162Z",
+    "last_save_at": "2026-10-07T15:56:55.308Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d3c4d38ad638fdf416f1dd94a5668f195e96ec973f1dac71cf21e0d29801cdb",
+    "source_fingerprint": "sha256:bbddeabd8174392f05241b355bc2c8279db96d115b0982ba9d07ec53358919ae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "af484ce11256e7c8ede87ea79642c5d89dd869f799db26c633872f7b1dcae581",
-      "plan.md": "7f8b07be2e282b02761ac30790787efdff8663e30008b59a16a111060c9722af",
-      "tasks.md": "3ddfcdfa6b541a65e7a2d17359b5c52fba0ee1cfeb5eac427e3987329d424c30",
-      "implementation-summary.md": "37f57aa81933b8196b20f210ee27f9dfc3fa0e171578ee1d1494602178a1764d"
+      "plan.md": "33e22bc194f06f3efbda41749f469c3c4e937fbc08fb19613fcd1ec6e082a6d4",
+      "tasks.md": "e61872dddebf0c4eb5dae570c3d270a64ae849f9948b51571e47adfb8e560185",
+      "implementation-summary.md": "ed581cbaee2f18997fb1bd6744c41c02f901bffe31bc26c4e9f6582387ec1cd8"
     },
     "last_active_child_id": null,
     "last_active_at": null

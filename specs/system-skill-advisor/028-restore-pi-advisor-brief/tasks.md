@@ -2,10 +2,7 @@
 title: "Tasks: restore the pi skill advisor brief: probe either root name for the warm-CLI assets and key the directive dedup receipt on the full contribution"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "restore pi advisor brief tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

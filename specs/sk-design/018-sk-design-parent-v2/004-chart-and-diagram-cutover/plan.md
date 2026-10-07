@@ -2,10 +2,7 @@
 title: "Implementation Plan: chart and diagram as sk-design modes"
 description: "Move sk-create-chart and sk-create-diagram from the documentation hub to the design hub in one commit across both hubs, and prove the routing by replay rather than by registry."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "chart and diagram cutover plan"
 importance_tier: "normal"
 contextType: "general"
 ---

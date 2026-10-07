@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The skill, commands and runtime integration are removed; phase 1 records retained routing and mirror checks."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "skill and command removal implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

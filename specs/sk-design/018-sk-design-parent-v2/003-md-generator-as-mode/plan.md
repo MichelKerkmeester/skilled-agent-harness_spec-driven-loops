@@ -2,10 +2,7 @@
 title: "Implementation Plan: sk-design-md-generator as the EXTRACT mode"
 description: "Merge the md generator into the sk-design hub as its EXTRACT mode, fold its advisor identity into the hub's, and close the routing regression the hub conversion introduced."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "md generator as mode plan"
 importance_tier: "normal"
 contextType: "general"
 ---

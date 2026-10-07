@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The four decision tests refused an eleventh repo rule for forward-looking progress updates and routed the obligation to AGENTS.md, where one drafted bullet awaits the operator."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "progress updates implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

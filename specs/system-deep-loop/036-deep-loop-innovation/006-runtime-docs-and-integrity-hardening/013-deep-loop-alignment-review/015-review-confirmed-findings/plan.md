@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: review-confirmed-findings"
 description: "Close each confirmed finding at its producer, and narrow the resolver so the fix for one finding cannot introduce another."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "review confirmed findings plan"
 importance_tier: "normal"
 contextType: "general"
 ---

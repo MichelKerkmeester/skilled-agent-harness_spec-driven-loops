@@ -2,10 +2,8 @@
 title: "Implementation Summary"
 description: "Commit messages, PR descriptions and new branch names are now checked against rules blocks inside each repository's own sk-git templates, at commit, push, agent and CI time, with no bypass."
 trigger_phrases:
-  - "implementation summary"
   - "message contract shipped"
   - "template-driven enforcement evidence"
-  - "continuation notes"
 importance_tier: "normal"
 contextType: "general"
 _memory:

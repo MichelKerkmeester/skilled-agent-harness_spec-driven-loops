@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 2: protocol-and-catalog-alignment"
 description: "Copy the containment paragraph into the review protocol, correct the catalog to the registry, recompile the contract."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "protocol and catalog alignment plan"
 importance_tier: "normal"
 contextType: "general"
 ---

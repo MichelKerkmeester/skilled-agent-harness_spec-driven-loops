@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 8: containment-promise-and-severity-scale"
 description: "Correct each promise to what the code does, state the shape-only contract where three different readers meet it, and report an out-of-scale severity instead of absorbing it."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "containment promise and severity scale plan"
 importance_tier: "normal"
 contextType: "general"
 ---

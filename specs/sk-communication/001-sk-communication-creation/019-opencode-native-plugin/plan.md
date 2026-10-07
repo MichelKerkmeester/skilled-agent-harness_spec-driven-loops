@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 019 OpenCode Native Plugin"
 description: "Wire the first working runtime by authoring an OpenCode plugin that registers the chat.message hook, gates projection behind the enablement flag and the shared kill-switch, and holds the byte-exact original for restore."
 trigger_phrases:
   - "opencode-native-plugin"
-  - "implementation plan"
   - "chat.message hook projection plan"
   - "mk-communication-projection plugin plan"
 importance_tier: "important"

@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "publish manifest provenance",
       "the fan out merge reads each lineage s",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "publish manifest provenance plan",
+      "publish manifest provenance tasks",
       "publish manifest provenance acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "publish manifest provenance implementation summary"
     ],
     "key_topics": [
       "publish",
@@ -32,11 +30,11 @@
       "merge",
       "reads",
       "lineage",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +196,7 @@
     ],
     "causal_summary": "The attribution table printed `unknown` in the Kind and Model column for every lineage of a completed run",
     "created_at": "2026-09-20T08:33:41.013Z",
-    "last_save_at": "2026-10-07T12:55:32.707Z",
+    "last_save_at": "2026-10-07T15:56:56.129Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c0217f3e0ae6dca11f91bd517c45fb85dd8f345859e0a24530c9b6faecca9d89",
+    "source_fingerprint": "sha256:0828137d388ef1396b8d066a52ad8fec193ab076665f1e9ac9af071b009824a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "daffc7467703d031b4a4d1ee96d1272de4e52bb88d4ab20fa1f1c268a04f8ee7",
-      "plan.md": "eeed827fcee8f3cf2976a8b439dddbdaeb545479d02b181eecf1e7e0d431495c",
-      "tasks.md": "38f23902a8ef24adfddbc479b0d83eeb04f1ed196ed298cdc025a13e9d263523",
-      "implementation-summary.md": "0f1a9e93d95d8999182de96e38067fe99770381a8d0917b1db0a64b99f5231c0"
+      "plan.md": "8cf70f6383ab6ebcd518687c9a5b43311a7a7dae5631ad887081aec30f10f4e8",
+      "tasks.md": "638f65fb0edec9f6c2b36c07e13da2824ede5919c701f404596dce60dea1504f",
+      "implementation-summary.md": "991b953956054afb0fb6c4ab5db5f55e1ad50263386251e487cc8b2c3a0e80fe"
     },
     "last_active_child_id": null,
     "last_active_at": null

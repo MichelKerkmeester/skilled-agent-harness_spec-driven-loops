@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 7: manual-review-remediation"
 description: "Fix all 34 manual-review findings (F1-F34) at their current file and line, each resolved to a role its file's skin already declares, verified lane by lane."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "manual review remediation plan"
 importance_tier: "normal"
 contextType: "general"
 ---

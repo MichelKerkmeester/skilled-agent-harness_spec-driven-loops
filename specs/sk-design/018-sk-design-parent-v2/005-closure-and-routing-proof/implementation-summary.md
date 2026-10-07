@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The closing measurement found three claims that were true when each phase made them and false at the end, two of them invisible to the validator nominally responsible."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "closure and routing proof implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

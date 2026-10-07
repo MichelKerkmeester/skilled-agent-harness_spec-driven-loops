@@ -4,10 +4,7 @@ description: "Ordered removal manifest for F3 — sever doc cross-refs first, th
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/004-rollout-flip-tooling"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "rollout flip tooling tasks"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

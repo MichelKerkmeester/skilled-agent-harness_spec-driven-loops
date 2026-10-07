@@ -12,31 +12,24 @@
   "derived": {
     "trigger_phrases": [
       "decision and design",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "decision and design plan",
+      "decision and design tasks",
       "decision and design acceptance criteria",
-      "implementation summary",
-      "what shipped"
+      "decision and design implementation summary"
     ],
     "key_topics": [
       "decision",
       "design",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy",
-      "task",
-      "breakdown"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "broken",
+      "missing",
+      "inefficient",
+      "sentences"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +188,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-11T10:54:56Z",
-    "last_save_at": "2026-10-07T12:54:42.470Z",
+    "last_save_at": "2026-10-07T15:55:51.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +198,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eed33d0c41165a864c9eb335d12484d2b7a3dcfe947f4f177f0f1e30ef27a335",
+    "source_fingerprint": "sha256:aff8bd3c909446c6ba3b96a27a2366af95126a5156401630c35ba55237c4e5f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a04ab70f8912fc988358aa667a3810a3ef323be9da10450ea4a7230d6fb460b0",
-      "plan.md": "20409fc7eebbefa7fc4f8c7f9ad5685ddb87c13a83a63dbe8e8278590703ecdf",
-      "tasks.md": "7f2fceea309d12903613a3711fd4e9c2fb847f52ef3d25548be2ed42240c0e4e",
-      "implementation-summary.md": "0282c2fc1b04c3c9017a0672fdab774e6c8c2598fb15ab68792b27a26347a6bb"
+      "plan.md": "75bbc047ee1d0c227991419805f7adf7b1efa08d50c7a4ee6248aea5bc867912",
+      "tasks.md": "c802bad42ed7ca3baa7abff1a811365eabd3457142653bcf735556c79db7fee2",
+      "implementation-summary.md": "5227f960ff9e95ea28a452f6d5f838981946a6d244f00c6034f8f4b80b0bf4e1"
     },
     "last_active_at": null
   }

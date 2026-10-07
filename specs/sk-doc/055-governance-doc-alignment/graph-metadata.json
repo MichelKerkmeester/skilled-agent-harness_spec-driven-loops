@@ -16,13 +16,13 @@
       "root doc staleness",
       "006 resume queue",
       "governance-doc-alignment",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "governance doc alignment plan",
+      "governance doc alignment tasks",
+      "governance doc alignment acceptance criteria",
+      "055 decision record",
+      "swarm review superseded",
+      "execution evidence over prose review",
+      "governance doc alignment implementation summary"
     ],
     "key_topics": [
       "governance",
@@ -34,9 +34,9 @@
       "resume",
       "queue",
       "governance-doc-alignment",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The 006 clarity program paused with its validation state unproven: a swarm rewrote twelve documents, and the repair pass that would confirm them was killed partway",
     "created_at": "2026-09-13T11:50:18Z",
-    "last_save_at": "2026-10-07T12:55:25.329Z",
+    "last_save_at": "2026-10-07T15:56:46.275Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1881c63cb0c6eb33aa57fb03d7ff5c63d950551f0094b8a178af072d2680d6e2",
+    "source_fingerprint": "sha256:91f60504d3050fa5da538d734d5bf7016745f7504f531e4e7f4f4842f63d5c3a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c842c157614e1fd1460ba61b191dc06168e301810f0e48c44ad860f539a8dce5",
-      "plan.md": "32177ebdd8dcbb19aab4d92b734a4546ff15a68379b0c6cad2caf47595849c34",
-      "tasks.md": "4bcfe8b9489df55a35d3fdd462f1e0e3a8b2772ce1ab2920333dc5238f03e278",
+      "plan.md": "e08df7e78410d5e1a7a2ec93fbc14b29b66db9ea17b4e85f2b29c42c362ea1d6",
+      "tasks.md": "505c762c301709c7220974aa7e17b6fabcd513955f5c394a6e230f6a58a0a3e3",
       "decision-record.md": "2203d47bf3d42214310bfe090ad7c8cb0e720a9b94927f500b68c88cd1506e3d",
-      "implementation-summary.md": "64b0536fbaeba055f7b4f6bcccec2298bb47f31e7b0d5c22c0b860d81a5d84f2"
+      "implementation-summary.md": "4482c8c6dff05739612238c648022e0bfe31de96578f2afb051634021c63596e"
     },
     "last_active_at": null
   }

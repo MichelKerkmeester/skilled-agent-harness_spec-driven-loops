@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 009 Prompt Token-Contract"
 description: "Implement the versioned prompt token contract, synthetic-marker example, and fixed-corpus preservation check through the existing provider message assembly."
 trigger_phrases:
   - "prompt-token-contract"
-  - "implementation plan"
   - "token-aware prompt profile"
 importance_tier: "important"
 contextType: "implementation"

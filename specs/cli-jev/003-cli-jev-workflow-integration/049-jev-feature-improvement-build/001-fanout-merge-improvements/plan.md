@@ -2,10 +2,7 @@
 title: "Implementation Plan: Build: improve the Jev fan-out merge (030)"
 description: "Extend the fan-out pair scorer with two extra baselines, a two-call early stop with a symmetric tiebreak, a self-describing report and a cut sweep."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "fanout merge improvements plan"
 importance_tier: "normal"
 contextType: "general"
 ---

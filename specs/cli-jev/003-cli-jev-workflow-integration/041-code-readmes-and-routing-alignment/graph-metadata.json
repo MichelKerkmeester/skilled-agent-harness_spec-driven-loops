@@ -48,9 +48,6 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/cli-classifier/shared/scripts/README.md",
-      ".skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/README.md",
-      "runtime/scripts/completion-claim-audit/README.md",
-      "runtime/scripts/debug-next-check/README.md",
       ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/README.md",
       ".skilled/skills/cli-classifier/ROUTER.md",
       ".skilled/skills/cli-classifier/SKILL.md",
@@ -58,9 +55,12 @@
       ".skilled/skills/cli-classifier/mode-registry.json",
       ".skilled/skills/cli-classifier/README.md",
       ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
-      ".skilled/skills/cli-classifier/cli-deem/SKILL.md",
       ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
-      ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md"
+      ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md",
+      ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/alias-still-resolves.md",
+      ".skilled/skills/cli-classifier/changelog/v0.6.0.0.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-classifier/manifest.json",
+      ".hermes/skills/cli-classifier/SKILL.md"
     ],
     "entities": [
       {
@@ -142,6 +142,24 @@
         "source": "derived"
       },
       {
+        "name": "alias-still-resolves.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/alias-still-resolves.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.6.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/changelog/v0.6.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-classifier/manifest.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -188,29 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Part",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Eleven code folders this packet created or filled carry no `README.md`: `cli-classifier` `shared/scripts`, `shared/scripts/tests`, `cli-deem/scripts`, `cli-deem/scripts/tests`, `benchmark/pi-transport/tests` and `benchmark/injection-screen/tests`; system-spec-kit `runtime/scripts/compaction-recall`, `runtime/scripts/completion-claim-audit` and `runtime/scripts/debug-next-check`; and sk-doc `sk-create-goal/scripts/tests` and `sk-create-with-human-voice/scripts/tests`",
     "created_at": "2026-09-30T21:17:20Z",
-    "last_save_at": "2026-10-01T18:28:41.345Z",
+    "last_save_at": "2026-10-07T15:56:02.307Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e79721a35d383903dbf86c35ef9c88983830954687764f4c0dd867aea83e0bc5",
+    "source_fingerprint": "sha256:8c6a004c61df974aec4f9340100117bbad0668595baada499aa400f839a74f48",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "16e9763c9bb3b9e75318edf538689a40772a7c7a8aa6eff8f9b615dec302343e",
       "plan.md": "5d17bfb02a52ddd5b236d4d62cfae591c3132a13a3b4bddeee48271f31947335",
       "tasks.md": "d1b43f4fd23ff68e86b09188924e17e98967e6fb5e71c27a55469dcf3196f01e",
-      "implementation-summary.md": "debc0f5f0601771c1d1efeb21c4f6325f7d72bb09de3fc9a0e7068e56c6a9c07"
+      "implementation-summary.md": "f39d701566c7fb9387d30b5f4bd584b7e7be3f80100c2851d51ef4820a385baf"
     },
     "last_active_at": null
   }

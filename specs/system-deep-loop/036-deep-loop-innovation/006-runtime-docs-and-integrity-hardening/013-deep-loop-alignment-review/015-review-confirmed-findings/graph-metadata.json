@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "review confirmed findings",
       "the six findings the post work review confirmed",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "review confirmed findings plan",
+      "review confirmed findings tasks",
       "review confirmed findings acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "review confirmed findings implementation summary"
     ],
     "key_topics": [
       "review",
@@ -31,12 +29,12 @@
       "six",
       "post",
       "work",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -201,7 +199,7 @@
     ],
     "causal_summary": "A ten-iteration review of the program found seven defects in work every phase had already called verified",
     "created_at": "2026-09-20T08:33:45.976Z",
-    "last_save_at": "2026-10-07T12:55:32.308Z",
+    "last_save_at": "2026-10-07T15:56:55.855Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a2b64f78d46871630b50fe41831934571f7cdc5ea1baeef4349d518dce6b55e9",
+    "source_fingerprint": "sha256:2a550571825b52ace2bebf875239fea548bd21f30745989bfa390ec1f1896d94",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f344f299f5ae52db9ba816cc9d1f354356d2114163fce4d91db33bf886174dc0",
-      "plan.md": "9bd608f30138bded45d623e60d10d6e7f5ea81f4717745123e739eb3fde5d61b",
-      "tasks.md": "e6dcc502cd21d7d3a9fe672f16a14a19a7e0fa8625b4a779224c1e77f7fc957a",
-      "implementation-summary.md": "44b0830a135b823ca07a1f462b3b095af1cab3bd5ae0dbb94026347890c55045"
+      "plan.md": "675519c07d55e2a79dc94d1eb9dd4fb69017ddeabdf19937af39c99c289dbbb8",
+      "tasks.md": "8b32f33e5f02d14c120d3f01f9787687356480cfdb4f99193027815a1d66fa0d",
+      "implementation-summary.md": "00fb822bb89145da273d624db3fbd07b6daa74f49bf4bec1cb5bd2e6b26fa2f6"
     },
     "last_active_child_id": null,
     "last_active_at": null

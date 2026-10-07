@@ -53,13 +53,6 @@
       "shared/README.md",
       ".opencode/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts",
       ".opencode/skills/system-spec-kit/shared/embeddings/providers/ollama.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/utils/skill-markdown.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/doc-frontmatter.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/__tests__/semantic-shadow-cosine.vitest.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/skill-graph/refresh-roundtrip.vitest.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/semantic-shadow-ablation.vitest.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/fixtures/seed-skill-embeddings.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/lane-weight-sweep.vitest.ts",
       ".claude/settings.json"
     ],
     "entities": [
@@ -118,48 +111,6 @@
         "source": "derived"
       },
       {
-        "name": "skill-markdown.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/utils/skill-markdown.ts",
-        "source": "derived"
-      },
-      {
-        "name": "doc-frontmatter.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/doc-frontmatter.ts",
-        "source": "derived"
-      },
-      {
-        "name": "semantic-shadow-cosine.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/__tests__/semantic-shadow-cosine.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "refresh-roundtrip.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/skill-graph/refresh-roundtrip.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "semantic-shadow-ablation.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/semantic-shadow-ablation.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "seed-skill-embeddings.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/fixtures/seed-skill-embeddings.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lane-weight-sweep.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/lane-weight-sweep.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "settings.json",
         "kind": "config",
         "path": ".claude/settings.json",
@@ -206,11 +157,53 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Finding R5-01 (`specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/003-shared-package-utilization/research/lineages/deepseek-v4-flash-shared-package/research.md:25`) found two parallel live implementations of the same Ollama embedding backend, both reached from the same daemon flow: `shared/embeddings/adapters/ollama.ts` (366 lines) and `shared/embeddings/providers/ollama.ts` (424 lines), together ~790 lines with two separate contracts and two config surfaces",
     "created_at": "2026-09-07T15:05:52Z",
-    "last_save_at": "2026-09-08T15:47:16.865Z",
+    "last_save_at": "2026-10-07T15:57:24.215Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b070e2de410167963528f88e599e2e63cee5378d2a137509cdaa04d1da0e1e46",
+    "source_fingerprint": "sha256:691df864adf63eea5f32a67ce6d860bdca9e95c8ba0a1fbc909d8121b04090dd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ee285faf3a9669477e68a40038ed3b4bb2162f332c8ca26a14571dbb304261fc",
       "plan.md": "8152825d5b22ae9be7f520f3bd08ee104c03e0e3aba1261ebb5becfd58d03cb6",
       "tasks.md": "d4738d6ad049d987973674ffb1c03c01a69e6040e2728a9b7613bcf0b9e8f84d",
       "decision-record.md": "dc290767dd94cd62cf99b32b3ca1babd7b250b4eee2a56064a62da48e90b77ce",
-      "implementation-summary.md": "eba928e6d3c232ba059f0ffff2f662fb3d149243f5520cf957fc600ecea23c39"
+      "implementation-summary.md": "853de31fc73022cd8dc8c77e0c92f36e02e833269430fc09839f7af3f8c76ad6"
     },
     "last_active_at": null
   }

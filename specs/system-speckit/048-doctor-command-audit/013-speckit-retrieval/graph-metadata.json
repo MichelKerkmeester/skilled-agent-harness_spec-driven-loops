@@ -14,15 +14,14 @@
       "doctor speckit-retrieval audit",
       "/doctor:speckit speckit-retrieval relevance",
       "doctor-speckit-retrieval.yaml",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "doctor speckit-retrieval audit acceptance"
+      "speckit retrieval plan",
+      "speckit retrieval tasks",
+      "doctor speckit-retrieval audit acceptance",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "speckit retrieval implementation summary"
     ],
     "key_topics": [
       "doctor",
@@ -32,11 +31,11 @@
       "relevance",
       "doctor-speckit-retrieval",
       "yaml",
-      "implementation",
+      "retrieval",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -47,7 +46,6 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "scratch/doctor-run.log",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
       ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
@@ -91,12 +89,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-run.log",
-        "kind": "file",
-        "path": "scratch/doctor-run.log",
         "source": "derived"
       },
       {
@@ -200,11 +192,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit speckit-retrieval` checks the trigger index and the ripgrep retrieval recipes",
     "created_at": "2026-10-02T16:10:27Z",
-    "last_save_at": "2026-10-03T11:48:56.188Z",
+    "last_save_at": "2026-10-07T15:57:40.589Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:94d946f15ee23a6e882a3ab81afcdd1a82a71cad24941a346c4ece4e6c796513",
+    "source_fingerprint": "sha256:68350ee84a3cad4cc02f875c70621e86baea4406b84d557a3b412111f9e14be8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "40b06ac7f712a9b95a25e99436f51ac24e855cafc0d4d4ffd71aaba4d3cf0af1",
-      "plan.md": "fdf8bde2cacd4eeaa026ed6b2a86c97f48038326eceaeb89ac4b9120a9232995",
-      "tasks.md": "3dd7ce6b977d7274b3b301d750f36921a923fe7c22b6c94d6d3116530410acf0",
-      "implementation-summary.md": "4d77c85c5edbc497586ec97f01d71ab856196d2a1e638cf2cd75e3154bca8d17"
+      "plan.md": "2a6cc8d67800421af2e393d18a2eecc686f2263cb2c0eb1d3d39a2250ede589d",
+      "tasks.md": "003458b46722b5be54983b8838993e9cb0f362167c2223b68c7df37cd6754a52",
+      "implementation-summary.md": "40bdd30fd9bb85c7376b743b288f26d72908ad0ff3d32f1a72d7a4423089db40"
     },
     "last_active_at": null
   }

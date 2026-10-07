@@ -2,10 +2,7 @@
 title: "Implementation Plan: the sk-design root router reads like its peers"
 description: "Move the intent-model code block into its own machine-readable section, declare DEFAULT_RESOURCE, renumber, and rewrite the closing section as the bulleted contract every peer carries."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "router conformance plan"
 importance_tier: "normal"
 contextType: "general"
 ---

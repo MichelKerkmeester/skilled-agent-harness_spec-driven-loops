@@ -2,10 +2,7 @@
 title: "Implementation Plan: Deprecate the sk-code-mobile-cli surface packet and sweep its references"
 description: "De-register the removed surface across every hub routing surface, regenerate each derived artifact with its own generator, then re-mint the compiled-routing closure and prove both routing stages still work."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "sk code mobile cli deprecation plan"
   - "hub de-registration"
 importance_tier: "normal"
 contextType: "general"

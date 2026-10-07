@@ -12,17 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "holding the boundaries",
-      "the previous phase closed everything it could and",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "the previous phase closed everything it could",
+      "holding the boundaries plan",
+      "holding the boundaries tasks",
       "holding the boundaries acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "holding the boundaries implementation summary"
     ],
     "key_topics": [
       "holding",
@@ -31,12 +29,12 @@
       "phase",
       "closed",
       "everything",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -199,7 +197,7 @@
     ],
     "causal_summary": "The previous phase closed everything it could and recorded five things as boundaries a check cannot",
     "created_at": "2026-09-09T19:23:24Z",
-    "last_save_at": "2026-10-07T12:55:14.507Z",
+    "last_save_at": "2026-10-07T15:56:34.429Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a18d4899f60f3dbbe1960835c990d2eed00bc7d8cdaaedd10bb9941e9665b152",
+    "source_fingerprint": "sha256:69abeffb3d7157c76383a7675f03342179f6806aaee13403caa0fa88c4557bc4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "30ccf111ee1b7c5927eefbebf7dd4e75b26265bb2f3aec48604ea7aa80070a53",
-      "plan.md": "47f0d9f897ccd31bc895fd9a9c701b059fb2bc7539f606a12e46a9b690eb6f65",
-      "tasks.md": "93173ce1fc7aa10aa2a6cbea092b3a3a06184a7d196998484c330f1eb0b0c79a",
-      "implementation-summary.md": "22f65e5c9b6a28abdc6791d60f01a78e545bb8ee262952eb2f83ada727d1f17d"
+      "spec.md": "0286872bb99d63ce10fc7e0209f4ef69e6f7de36653bcdd241f3cab63300ac02",
+      "plan.md": "783eba28ad03f2f30d3c41b6c519c8fe4254268f8682770327868e363cc959c6",
+      "tasks.md": "8cae91ccd49d33edc20dc547b78662a06a531e85f7836995fe216baa367f9ab7",
+      "implementation-summary.md": "3ea86652102eb0c13c93d54633ffdb0b8027b1a59c862e571d80eb01a7aa8149"
     },
     "last_active_at": null
   }

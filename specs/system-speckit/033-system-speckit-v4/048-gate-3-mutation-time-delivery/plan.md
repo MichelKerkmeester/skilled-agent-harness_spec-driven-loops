@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: gate-3-mutation-time-delivery"
 description: "Move the Gate 3 question from turn time to mutation time: remove per-turn menu emission from every classify adapter, deliver once per session through each runtime's strongest channel (a native pi dialog, deny-or-context elsewhere), persist the emission marker so stateless per-event runtimes can suppress repeats, and let a not-yet-created packet path bind."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "gate 3 mutation time delivery plan"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Implementation Plan: Phase 5: docs-governance-and-closeout"
 description: "Make every reader-facing mode list true, complete the parent metadata, then close the packet on the recursive strict gate, a regenerated trigger index and a continuity save."
 trigger_phrases:
-  - "implementation plan"
   - "approach and phases"
-  - "testing strategy"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

@@ -13,30 +13,28 @@
     "trigger_phrases": [
       "emphasis budget",
       "the repaint in v2 1 0 0 landed",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "emphasis budget plan",
+      "emphasis budget tasks",
       "emphasis budget acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "emphasis budget implementation summary"
     ],
     "key_topics": [
       "emphasis",
       "budget",
       "repaint",
       "landed",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -203,7 +201,7 @@
     ],
     "causal_summary": "The rule that data never wears the ink arrived mid-round in the packet before this one, and the",
     "created_at": "2026-09-10T06:51:50Z",
-    "last_save_at": "2026-10-07T12:55:15.729Z",
+    "last_save_at": "2026-10-07T15:56:39.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9570c275f1ffe35cb5ea6919ae33ff207bbacc4202f4921f069c6af70e42580b",
+    "source_fingerprint": "sha256:95ec6111c9f3bf8b4685975541a5db2bfe6feb4c0584d890e3a5fc669289ca01",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0968e7220012371ffa4608c5325263da021ad0e65457fdb012f5c0e24bbac992",
-      "plan.md": "d2bbf01e120b85175d3fba2894ac14c8c3edbe21475b2709f118f51d4d6e48bc",
-      "tasks.md": "f11952c24867e750eff1b82b014fc70e0a64bdc941e544665d061bebc0130bb5",
-      "implementation-summary.md": "bdc2f13f1c8e75927b5da90dde1a6d5e808393cb34e619a0b5331827c0173773"
+      "plan.md": "70b1f54f3afa7bb08e5bfa7c57d20413f0d0659b55a89872d51f11d90d61c333",
+      "tasks.md": "f44864764f0ea74f8a5d0a61071745a9ce01514bf27fdc5e9c797fedeeb33a21",
+      "implementation-summary.md": "606726dfae821a0856e08fcaed046e8ec3e3ec5e1db1ab1c3d3a29f5e705ec8c"
     },
     "last_active_at": null
   }

@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: second-pass-subjects-and-attribution"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "second pass subjects and attribution tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Both loop protocols carry the containment rules and the hub catalog describes the five modes and five hubs the registry and manifest define."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "protocol and catalog alignment implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

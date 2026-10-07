@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The quarantine writer canonicalizes every destination and refuses symlinked components, so a lane cannot redirect the runner's evidence writes."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "quarantine destination canonical implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

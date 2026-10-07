@@ -12,17 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "track and packet migration",
-      "the cli jev creation packet sat inside the",
+      "the cli jev creation packet sat inside",
       "packet migration",
       "cli-jev track",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "track and packet migration plan",
+      "track and packet migration tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "track and packet migration implementation summary"
     ],
     "key_topics": [
       "track",
@@ -34,9 +32,9 @@
       "sat",
       "inside",
       "cli-jev",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +196,7 @@
     ],
     "causal_summary": "The cli-jev creation packet (former `specs/cli-external-orchestration/074-cli-jev-creation`) records the history of a mode that is being promoted out of the cli-external-orchestration family into its own hub",
     "created_at": "2026-09-20T11:00:11Z",
-    "last_save_at": "2026-10-07T12:54:47.197Z",
+    "last_save_at": "2026-10-07T15:55:57.165Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6c34f236b50b29976a1427ff514dca88e1bbe2f05fd0e5967d149bc7602ae811",
+    "source_fingerprint": "sha256:41dc78f0b50482d8e3dbb68d1811b3020112dcd3d7ca8a1e70bb92a841855561",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "468d21b042cab6a04eb533f55476eda9ac3e152468eb35c5501bf9c525057b24",
-      "plan.md": "737c86ef3c243fc22656397868e03e6903ce261d9958c5a72c36ee07140aa7cb",
-      "tasks.md": "e19a302e18b2f733771941db7154f8011d7013aa44872306938e1f4ad2cd0c6f",
-      "implementation-summary.md": "9fb8a7375c0c88725af8c1711a0616cb3616b3545fcd7c21460a48337e40ce59"
+      "spec.md": "b571914eefb3e06385be0f73702925ae41f8dcbb044b08de4ac2d73aaa6ff759",
+      "plan.md": "5015e1a9dd9f0e4c85233513207f3edaa0513fd04759e5be41db05e6b40ed74c",
+      "tasks.md": "59c1f7120d452a639ff8cec94c884645d1c100b5f0a7e6414e59cef95bbb8dd1",
+      "implementation-summary.md": "2511e265b37b1d8a1e8f939be317854dd0f87460f0546802215c1df5a81999e2"
     },
     "last_active_at": null
   }

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Two post-check rows of the spec folder write recipe now hold in any workspace, and the push row points at the Workspace bullet instead of naming main."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "fix write recipe post checks implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

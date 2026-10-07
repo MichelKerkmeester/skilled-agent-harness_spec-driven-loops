@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: hermes-hook-parity"
 description: "Bridge the remaining cores in four dispatch groups on cli-pi (DeepSeek V4.1 Flash, max, LLM Gateway): tool-call guards, session-start and cleanup, goal core and vision, prompt-time. After each group the conductor runs the harness, the validator and a live session; a defect goes back as a one-change fix dispatch."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "hermes hook parity plan"
 importance_tier: "normal"
 contextType: "general"
 ---

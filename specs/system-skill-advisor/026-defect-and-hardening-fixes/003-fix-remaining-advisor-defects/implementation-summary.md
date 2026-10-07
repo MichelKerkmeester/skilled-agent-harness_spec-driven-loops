@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A changed pi contribution delivers its full brief again, the advisor battery runs with 0 failed tests, every renamed environment variable is read once and the stale documentation surfaces match the code. A follow-up deletes the dead tri-daemon drill and repairs the CI corpus gate path."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "fix remaining advisor defects implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

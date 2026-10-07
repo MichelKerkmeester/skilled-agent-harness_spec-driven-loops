@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 14: doctor-env"
 description: "Build `/doctor:env` through sk-create-command as a thin router with a workflow and presentation asset. The command audits the live switch reference at run time, reports set or unset state per source, classifies each switch, and writes one confirmed preference to an eligible destination."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "doctor env plan"
 importance_tier: "normal"
 contextType: "general"
 ---

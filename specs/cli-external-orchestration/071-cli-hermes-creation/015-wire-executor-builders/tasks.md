@@ -2,10 +2,7 @@
 title: "Tasks: Phase 3: wire-executor-builders"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "wire executor builders tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

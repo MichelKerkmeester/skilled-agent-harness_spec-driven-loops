@@ -17,12 +17,10 @@
       "doctor deep-loop command",
       "doctor ownership split plan",
       "doctor route command owner",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "doctor ownership split tasks",
       "doctor ownership split acceptance criteria",
-      "doctor ownership split summary"
+      "doctor ownership split summary",
+      "doctor skill-advisor rebuild shipped"
     ],
     "key_topics": [
       "doctor",
@@ -36,7 +34,7 @@
       "plan",
       "route",
       "owner",
-      "task"
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -200,7 +198,7 @@
     ],
     "causal_summary": "`/doctor:speckit` was one router for nine targets, and eight of them belonged to other owners: four to the skill advisor's routing quality, one each to the deep loop and the runtime mirrors, one to the parent-hub canon and one to a Fable 5 metrics check nobody used",
     "created_at": "2026-10-04T06:09:43Z",
-    "last_save_at": "2026-10-07T12:55:55.030Z",
+    "last_save_at": "2026-10-07T15:57:44.145Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +208,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e7a265e081c3e9a724cb8f23f9ea4c74611f0fc3af7d32f0fa764f8be8afdb5c",
+    "source_fingerprint": "sha256:4c5ea2f590efe08e78d2b4cd7be694500f86b39da3d7515769657b93d7e4bb98",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "be76d687803dbf6bab1b12824accaf8fc5ab536efb0c264a145fade7e72db05d",
       "plan.md": "f06550bd2cfc3efb97580f7ef14f7638836e123d5598e6e7320168c83841c102",
-      "tasks.md": "0244e501c5a3247809e9a1e1646e7b6d56ba3cc9359c9ebd979730f8e9f391c4",
+      "tasks.md": "0bfe925587c3b4a9b58ef70a8e3b264886ad4760ad2f8b10d9bbdd45600599ce",
       "implementation-summary.md": "a1af6f00a71fe88e6d4bf3b3b345bab2da6eae9968fa1f765d2ca73cdae00e00"
     },
     "last_active_at": null

@@ -14,15 +14,10 @@
       "command rollout mode resolution",
       "stale source digest deep review",
       "resolveMode fix fallback",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "deep review rollout fallback decision"
+      "command rollout mode resolution plan",
+      "command rollout mode resolution tasks",
+      "deep review rollout fallback decision",
+      "validate-rollout evidence governance"
     ],
     "key_topics": [
       "command",
@@ -36,7 +31,7 @@
       "review",
       "resolvemode",
       "fallback",
-      "implementation"
+      "plan"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -198,7 +193,7 @@
     ],
     "causal_summary": "The compiled command contracts for `deep/review`, `deep/research`, and `deep/ai-council` are stale — their source digest no longer matches the compiled artifact (`STALESOURCEDIGEST`), so `check-contract-drift` fails",
     "created_at": "2026-08-26T11:00:43.034Z",
-    "last_save_at": "2026-09-11T16:42:28.348Z",
+    "last_save_at": "2026-10-07T15:57:01.053Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ea28aa0b52615c871eb6599057eaa9641361c4b839b9f3c918ea74210607afb",
+    "source_fingerprint": "sha256:bd256507447f48e550f11a5c9794962a348328101e1f36cc928d5ccb11d141e7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2d399be718b3cf8a16a3ac3c290579509d7653677d0b23d74aadbf5262e8e9dd",
-      "plan.md": "2a4fcf2e1328ac474d999350e9ac4b90be46495d02a3a394d49653b2aba97e71",
-      "tasks.md": "e5b2a79eca71b17015b19f557ef290d6bc691801d8019f157a48a75a521006b1",
+      "plan.md": "18945a1aa5b7f019c31ceced77fd90ab7a3b1ae9a6ebc6c2ddff0df1f80f52e9",
+      "tasks.md": "f44f619b2f93cbbdc680e25532251a355678988df8b0077359e7d1e1365a28ef",
       "implementation-summary.md": "40ef9d9bdaa60a32789f2b11037401de2c7fcc80ee202c0636e9cf3190be2ecc"
     },
     "last_active_child_id": null,

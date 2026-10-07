@@ -2,7 +2,6 @@
 title: "Implementation Summary"
 description: "The v4 parent's phase map is one table again: the blank line that hid rows 40 onward is gone, rows 39 and 56 to 62 are added, and rows 018 and 041 match their children's own data."
 trigger_phrases:
-  - "implementation summary"
   - "v4 parent data repairs"
   - "phase map repair evidence"
 importance_tier: "normal"

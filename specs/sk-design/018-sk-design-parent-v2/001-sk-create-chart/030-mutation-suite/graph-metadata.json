@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "mutation suite",
       "the corpus check is 3 435 lines forty",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "mutation suite plan",
+      "mutation suite tasks",
       "mutation suite acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "mutation suite implementation summary"
     ],
     "key_topics": [
       "mutation",
@@ -31,12 +29,12 @@
       "check",
       "lines",
       "forty",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -200,7 +198,7 @@
     ],
     "causal_summary": "The corpus check is 3,435 lines, forty-two families and about 7,300 assertions, and it is the",
     "created_at": "2026-09-09T20:01:11Z",
-    "last_save_at": "2026-10-07T12:55:14.474Z",
+    "last_save_at": "2026-10-07T15:56:34.358Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ca12dcd95410cff9988776c75d210dfd4b72259fec56284236bd9291e6da427",
+    "source_fingerprint": "sha256:27d841ba64be509e9d0cf3fdeeff0a99f00b82d22fc230a8c83c4e6d590e47e6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6c1d458b1f2b1994e766b749e2e0c75c4ab3a6ff36c70283c2be72d797919874",
-      "plan.md": "e29366591fdd8f1c68f7bb863e5d49f7fb5e64d81730ed530ae5d050bc59859e",
-      "tasks.md": "3bf503ccb30c328be873853c735d573bc4b4edbad2f8943de210e9b1b2c1890d",
-      "implementation-summary.md": "f01e8f2d8a03217538c841e685ce74ca08a17df180eddb5cf5790cb137665065"
+      "plan.md": "18a1f44e8f789cc3e469d761b0ca779fb9a4562b0ff344f651aa5d713754e57e",
+      "tasks.md": "1cbfe935969198aa7b09147b930374e25afe13b43bc7006811f9439d6d3896d9",
+      "implementation-summary.md": "f04213c166ab799265e454a033a5ec868741f7f581e833bdcfefc4b9b2786d2f"
     },
     "last_active_at": null
   }

@@ -21,8 +21,8 @@
       "newcomer reachability tasks",
       "routing alias tasks",
       "reachability checklist",
-      "acceptance criteria",
-      "closure gate"
+      "reachability closure",
+      "phase 010 goal"
     ],
     "key_topics": [
       "newcomer",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The mode's vocabulary was the contract's vocabulary",
     "created_at": "2026-09-06T06:39:02.253Z",
-    "last_save_at": "2026-10-03T15:12:09.253Z",
+    "last_save_at": "2026-10-07T15:56:44.312Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b1672de278407486e2f8e15db9deda8e392ee33146029ceeb86335c7d5338478",
+    "source_fingerprint": "sha256:dbdcc8988cc16966651cdedb65fe45a696cea73a79768a29be481ebda98cfc6f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5f908d07ad1543177d86441ab13b290d041f3fb55f120695a71d927647779133",

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The 26 standalone chart forms, six deliveries and the gallery now carry the shadcn visual register: card footer, bare axes, rounded marks, gradient areas, an HTML tooltip card, legend chips and a scheme pin the gallery honours."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "shadcn visual upgrade implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

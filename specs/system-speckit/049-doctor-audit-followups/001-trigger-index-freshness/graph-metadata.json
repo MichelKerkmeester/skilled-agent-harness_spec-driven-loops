@@ -16,13 +16,13 @@
       "retrieval conventions symlink",
       "ripgrep version pin",
       "byte-identical regeneration",
-      "implementation plan",
       "trigger index regeneration",
       "folder token fallback",
       "staleness evidence",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "trigger index freshness tasks",
+      "trigger index freshness acceptance criteria",
+      "decision record",
+      "continuity key files handoff"
     ],
     "key_topics": [
       "trigger",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`generate-trigger-index.mjs --check --json` exits 1 on this checkout: the committed index is stale (176 documents differ, 175 indexed paths are missing, 23,052 documents scanned in the planning run) and the corpus manifest hash has moved past the index's",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-07T12:55:54.580Z",
+    "last_save_at": "2026-10-07T15:57:41.019Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f887d1fd4f9e247f77c233e07966ff787a031e28e982d1b454589662ce03fcdf",
+    "source_fingerprint": "sha256:d02ee97191b283eab963969f22ff519febfe0c1202f6d8dc0a0246da01b15fc9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c6742fb4c79935f38ff3527577d74f716867799e3e09c8cba2f44953a72d08f1",
-      "plan.md": "814dd9280cbdd42d137be4a53ae560a63eb2a7a0945ed1784ea90159cda7fa47",
-      "tasks.md": "9fc40a3842db551c3eae9f868c737e4ad08e01e3d057d1a18c098f62f832c391",
+      "plan.md": "c8f475c91ce6e363dd5215ca741d1db319500a22a16514d9a7c3c15259409d5e",
+      "tasks.md": "4b44fa8be48466afa804c005580382498c05846c477c5576ad0c11f86e881a8e",
       "decision-record.md": "e430c1af861544c9682ee770427d8ceebacbf38a119f8a81759c2906c0799190",
-      "implementation-summary.md": "b090a3b91909e32bebf2842702ccef505ee50f7f41159630b8146de085c19b6f"
+      "implementation-summary.md": "1d59b2e1e2ccc2c58108e0dc037b73d3d353af5440eafbc40edb355207201aad"
     },
     "last_active_at": null
   }

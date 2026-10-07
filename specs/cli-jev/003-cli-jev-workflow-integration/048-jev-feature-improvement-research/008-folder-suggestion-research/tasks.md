@@ -2,10 +2,7 @@
 title: "Tasks: Phase 8: folder-suggestion-research"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "folder suggestion research tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

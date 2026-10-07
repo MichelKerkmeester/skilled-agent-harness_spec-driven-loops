@@ -2,7 +2,6 @@
 title: "Implementation Summary: AGENTS.md Communication Quality Section"
 description: "Added a dedicated Communication Quality section to the universal AGENTS.md and reconciled the Codex voice spec, lifting only net-new craft principles from the 003 context."
 trigger_phrases:
-  - "implementation summary"
   - "communication quality"
   - "agents.md"
 importance_tier: "normal"

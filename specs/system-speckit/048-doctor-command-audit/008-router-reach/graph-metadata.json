@@ -14,15 +14,14 @@
       "doctor router-reach audit",
       "/doctor:speckit router-reach relevance",
       "doctor-router-reach.yaml",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "doctor router-reach audit acceptance"
+      "router reach plan",
+      "router reach tasks",
+      "doctor router-reach audit acceptance",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "router reach implementation summary"
     ],
     "key_topics": [
       "doctor",
@@ -32,11 +31,11 @@
       "relevance",
       "doctor-router-reach",
       "yaml",
-      "implementation",
+      "router",
+      "reach",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -48,7 +47,6 @@
       "goal.md",
       "implementation-summary.md",
       "scratch/reality-check.md",
-      "scratch/doctor-run.log",
       "scratch/proposal.md",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
       ".skilled/commands/doctor/_routes.yaml",
@@ -98,12 +96,6 @@
         "name": "reality-check.md",
         "kind": "doc",
         "path": "scratch/reality-check.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-run.log",
-        "kind": "file",
-        "path": "scratch/doctor-run.log",
         "source": "derived"
       },
       {
@@ -201,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit router-reach` checks that every declared dispatch rule is reachable",
     "created_at": "2026-10-02T16:10:20Z",
-    "last_save_at": "2026-10-03T11:48:56.177Z",
+    "last_save_at": "2026-10-07T15:57:40.349Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a2c145b261d136bbe805ac0ab2d105d660755a50e66b1793c2e020b7fb423ca",
+    "source_fingerprint": "sha256:3b547f36e7f809be3fad31696d159b8e76877cf73ce0d3c415f8ce68a42528b1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e4d883076e735214bfc0a14034fcb5273992fb0f6d9b87ad9e3ce29517eb6839",
-      "plan.md": "43c00eda9e9b8d03eaa92073def3ee599382718d3cf7ba56e4238f81878e5f5b",
-      "tasks.md": "d41a8729d7c88b3228987cbe89529c5a558821befc33aac2dd943c292f70a201",
-      "implementation-summary.md": "357a6f823125917dfbfc94f40a2bf1c48076edd9f798856fc84fcdc2a68ab71d"
+      "plan.md": "a659cd3d6ebe07b4eb1e9d33784e0153e7445e5f493bd453d1953d1e17793ded",
+      "tasks.md": "b48f0d5fcea1737329ab1b8527b2c9209d384592fc4318a78709723e72c541d8",
+      "implementation-summary.md": "b2961a7d96a94e3de9e2b463303d4ceaec15f952e56b66d0aaaf045d07f4dfc8"
     },
     "last_active_at": null
   }

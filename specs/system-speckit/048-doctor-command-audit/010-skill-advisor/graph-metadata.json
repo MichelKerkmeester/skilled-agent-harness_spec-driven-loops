@@ -14,15 +14,14 @@
       "doctor skill-advisor audit",
       "/doctor:speckit skill-advisor relevance",
       "doctor-skill-advisor.yaml",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "doctor skill-advisor audit acceptance"
+      "skill advisor plan",
+      "skill advisor tasks",
+      "doctor skill-advisor audit acceptance",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "skill advisor implementation summary"
     ],
     "key_topics": [
       "doctor",
@@ -32,11 +31,11 @@
       "relevance",
       "doctor-skill-advisor",
       "yaml",
-      "implementation",
+      "skill",
+      "advisor",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -47,11 +46,9 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/commands/doctor/assets/doctor-skill-advisor.yaml",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
       "scratch/reality-check.md",
-      "scratch/doctor-run.log",
       "scratch/proposal.md",
       ".skilled/commands/doctor/speckit.md",
       ".skilled/bin/skill-advisor.cjs",
@@ -95,12 +92,6 @@
         "source": "derived"
       },
       {
-        "name": "doctor-skill-advisor.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-skill-advisor.yaml",
-        "source": "derived"
-      },
-      {
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
@@ -116,12 +107,6 @@
         "name": "reality-check.md",
         "kind": "doc",
         "path": "scratch/reality-check.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-run.log",
-        "kind": "file",
-        "path": "scratch/doctor-run.log",
         "source": "derived"
       },
       {
@@ -201,11 +186,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit skill-advisor` checks and repairs the skill advisor",
     "created_at": "2026-10-02T16:10:23Z",
-    "last_save_at": "2026-10-03T11:48:56.193Z",
+    "last_save_at": "2026-10-07T15:57:40.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e8c3374ccf9eb6c0becd84466b8ee1ed8eade58935da3c520a609608c4cfb1be",
+    "source_fingerprint": "sha256:cad717387f9277d458c58f581f425b14a7c87c61d33a8d32045c3fa0975cb690",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "308fab621bf2fc590145d33b8a85a24651aa3e1b81dd2bc83c7ee9f6e7c93098",
-      "plan.md": "78d75a53848900fb6e5274bb09dc47d9196b241190bf8f023e7a15cde8ed4c83",
-      "tasks.md": "cc22bda5588940f690f15ee15dcd437f8976934ad4b65c589442ecc3b434f184",
-      "implementation-summary.md": "099ddd539df6a6c5f55a7c9a76321f2c11da5d59dcc3ed5694600954f2b537b3"
+      "plan.md": "414cf4495d08da8007412762b9a120396dec3b8a8ea6eee783e09c300dd8a173",
+      "tasks.md": "c66feccacc0d7c1c910ae93b16bc3c6d019d625c9f90f08c4b7244280ac76295",
+      "implementation-summary.md": "21ffa3b909627a2a04a189b781668c65cb4b09a6b4e807846cb5a3b26bc5d88c"
     },
     "last_active_at": null
   }

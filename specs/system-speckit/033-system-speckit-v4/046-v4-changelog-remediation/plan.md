@@ -2,10 +2,7 @@
 title: "Implementation Plan: v4 changelog remediation (the 045 research pass)"
 description: "Implements the 045 research report's deferred implementation pass: the Section 10 patch list in its own order, then the Section 7 order and the Section 9 outline, with the count record and the 045 quality gates. Sentinel-gated; corrections before structure so the report's line anchors hold."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "v4 changelog remediation plan"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Built /doctor:env as a thin router, workflow and presentation asset that audits the live switch reference, reports set or unset state and writes only an operator-confirmed preference."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "doctor env implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

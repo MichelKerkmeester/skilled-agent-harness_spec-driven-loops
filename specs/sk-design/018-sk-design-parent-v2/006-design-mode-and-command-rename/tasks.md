@@ -2,10 +2,7 @@
 title: "Tasks: give the moved modes and commands the hub's name"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "design mode and command rename tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

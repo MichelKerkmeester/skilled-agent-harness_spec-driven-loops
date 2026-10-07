@@ -2,7 +2,6 @@
 title: "Implemen [system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite/plan]"
 description: "Milestoned delivery (M1-M10) for the planner-first /memory:save contract: audit + retirement of the legacy [spec]/memory/*.md write path, 20-iteration relevance research, planner contract + fallback implementation, routing/quality/reconsolidation/enrichment trim, follow-up API extraction, verification, release alignment, and deep-review remediation."
 trigger_phrases:
-  - "implementation plan"
   - "memory save planner first"
   - "planner-first memory save plan"
   - "save flow trim plan"

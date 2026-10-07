@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The repo-guards Hermes plugin now bridges every repo hook core Hermes's plugin API can reach: prompt-time advisor brief and spec gate, post-edit quality, task-dispatch and MCP route guards, the shared goal core, session-start advisories, session cleanup and vision evidence, implemented on cli-pi with DeepSeek V4.1 Flash and proven live in seven scenarios."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "hermes hook parity implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

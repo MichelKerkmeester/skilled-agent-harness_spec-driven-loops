@@ -4,10 +4,7 @@ description: "Task checklist with evidence for the code-webflow implementation r
 importance_tier: "normal"
 contextType: "implementation"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "code webflow implementation references tasks"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 9 — Split code-webflow Implementation References

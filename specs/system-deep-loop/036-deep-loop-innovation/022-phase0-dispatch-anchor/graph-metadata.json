@@ -14,15 +14,11 @@
       "phase 0 dispatch anchor deep review",
       "DIRECT INVOCATION REQUIRED false block",
       "ARGS_PRESENT dispatch-context authorization",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "phase 0 dispatch anchor summary"
+      "phase0 dispatch anchor plan",
+      "phase0 dispatch anchor tasks",
+      "phase 0 dispatch anchor summary",
+      "DISPATCH-CONTEXT authorization prefix",
+      "deep review direct invocation false block fix"
     ],
     "key_topics": [
       "phase",
@@ -196,7 +192,7 @@
     ],
     "causal_summary": "The deep/ commands (`review`, `research`, `ai-council`, `alignment`) open with a Phase-0 dispatch-context gate whose block reads \"⛔ DIRECT INVOCATION REQUIRED — no review iteration executed\"",
     "created_at": "2026-08-27T03:18:13.515Z",
-    "last_save_at": "2026-09-11T04:38:32.844Z",
+    "last_save_at": "2026-10-07T15:57:05.624Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e30a0aa168c3bee86b5471fb79c5666001acd9f0377d6324104f3ad93e32fcad",
+    "source_fingerprint": "sha256:2fc9c8319a9f146939415b134bbe4f6dd028a3706371840e5097b289493f1e6a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "704631de9d98ff90927f8ccca72c21609f34cac833f2c2b398a83cb524e375b1",
-      "plan.md": "1dca4232124bdae430c783539a82c5d9ca147e1a2b34235f6b22dfbf8f150e48",
-      "tasks.md": "0f84d967469901eb468025bb3663265c0354fd3186ddd1d6ba3bd00181c9cb59",
+      "plan.md": "999fd8b3964e41c049db5c6a8e97fa93bd407b5f1632f1b7750f2d7291310db6",
+      "tasks.md": "d591fde26978eca387932e8790b3f665b63d59facd3d89bffa402f88c9b00b0c",
       "implementation-summary.md": "5bf334595c67c8bce9829fe6d3c9e0274aac43dff016ff237a902ada9f1d0a01"
     },
     "last_active_child_id": null,

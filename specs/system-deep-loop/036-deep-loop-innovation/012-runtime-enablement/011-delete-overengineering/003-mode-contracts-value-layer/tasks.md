@@ -4,10 +4,7 @@ description: "Ordered removal manifest for F2 — relocate the one live-consumer
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/003-mode-contracts-value-layer"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "mode contracts value layer tasks"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

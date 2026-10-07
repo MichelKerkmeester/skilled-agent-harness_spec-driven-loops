@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The cli-claude-code self-invocation guard now tells a Claude Code session to dispatch a native subagent and how to pin its model and effort."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "claude code native dispatch implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

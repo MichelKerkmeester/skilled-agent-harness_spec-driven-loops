@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: synthesis-presentation"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "synthesis presentation tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

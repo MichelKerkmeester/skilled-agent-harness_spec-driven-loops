@@ -51,7 +51,6 @@
       "runtime/cli/spec/create.sh",
       "templates/core/plan.md.tmpl",
       "templates/EXTENSION-GUIDE.md",
-      "runtime/cli/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
       "templates/README.md",
       ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
       ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh",
@@ -117,12 +116,6 @@
         "name": "EXTENSION-GUIDE.md",
         "kind": "doc",
         "path": "templates/EXTENSION-GUIDE.md",
-        "source": "derived"
-      },
-      {
-        "name": "scaffold-golden-snapshots.vitest.ts.snap",
-        "kind": "file",
-        "path": "runtime/cli/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
         "source": "derived"
       },
       {
@@ -202,11 +195,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`templates/spec-kit-docs.json` carries a `creationTrigger` and an `absenceBehavior` field on every one of its 16 `documents[]` entries (32 key occurrences, `spec-kit-docs.json:26-117`), and `EXTENSION-GUIDE.md:33-36` already states in its own maintainer instructions that \"nothing reads it at runtime: the scaffolder and the validator both work from the `levels` rows below.",
     "created_at": "2026-09-07T15:05:51Z",
-    "last_save_at": "2026-09-08T15:47:16.601Z",
+    "last_save_at": "2026-10-07T15:57:24.070Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:479e47a194d0a5720f245f3544bb82f901ce5b6bc46906d72f010c8963b0ba9b",
+    "source_fingerprint": "sha256:c4cc3eb6678df63f964035eb55b2115eb535cde6747dd61d7b8fbc82805f1689",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b3b457baa22ca950331d258485637c13378cb0975446dd8acb65af5475584ca4",
       "plan.md": "ae1dc3c4ab46d11101eac6c320b8a80ef8dc7be57cc304a283f8ea0e5c5f2f85",
       "tasks.md": "76d3959659e740972bf38de72c82cbd9e431936d3db7d34db8b2b7b705002e77",
-      "implementation-summary.md": "a8d6d186cae3018b7c9bd881253bdb90bce4009bc713d95c3bb739b2552e3cef"
+      "implementation-summary.md": "e4cda9f16ee1243642d423b26903a85317a5be5dfbfb687a9ce35174376994c3"
     },
     "last_active_at": null
   }

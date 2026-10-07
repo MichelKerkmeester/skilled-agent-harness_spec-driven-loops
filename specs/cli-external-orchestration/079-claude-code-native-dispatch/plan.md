@@ -2,10 +2,7 @@
 title: "Implementation Plan: Tell Claude Code sessions to dispatch native subagents instead of the cli-claude-code CLI"
 description: "Three wording changes in the cli-claude-code skill that point a Claude Code session to native subagents and to agent definitions for a pinned effort."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "claude code native dispatch plan"
 importance_tier: "normal"
 contextType: "general"
 ---

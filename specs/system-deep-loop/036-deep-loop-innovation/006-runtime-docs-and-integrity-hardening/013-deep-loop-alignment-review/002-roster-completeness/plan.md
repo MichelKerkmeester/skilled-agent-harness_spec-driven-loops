@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: roster-completeness"
 description: "Name every registered kind in every roster and replace hand-written counts with their source."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "roster completeness plan"
 importance_tier: "normal"
 contextType: "general"
 ---

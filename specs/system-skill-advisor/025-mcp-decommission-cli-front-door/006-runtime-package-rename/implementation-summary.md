@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The advisor package directory is runtime/, the old name is gone from every path that resolves at runtime, and both prompt hooks answer from the renamed tree."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "runtime package rename implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "agent mirror parity",
       "six runtime trees ship the same twelve agents",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "agent mirror parity plan",
+      "agent mirror parity tasks",
       "agent mirror parity acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "agent mirror parity implementation summary"
     ],
     "key_topics": [
       "agent",
@@ -35,8 +33,8 @@
       "same",
       "twelve",
       "agents",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -210,7 +208,7 @@
     ],
     "causal_summary": "Six trees mirror the same twelve agents, and the translation between them was undocumented and partly lossy",
     "created_at": "2026-09-20T08:33:44.884Z",
-    "last_save_at": "2026-10-07T12:55:31.524Z",
+    "last_save_at": "2026-10-07T15:56:50.973Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:66721ca2e9865c100d98192d637c5411d121be372a3a9f822153c06b4eb8fe58",
+    "source_fingerprint": "sha256:6c24b3ffa1a69b8ba958c22efdcc8fdc760f4b78c25b2d48be8737d5238487d9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "12196a41ab1c2a58dcce194fa3c07b435b3241bdf8f52dcebfdf3eff8968e51f",
-      "plan.md": "58bce6e782b778fc8c2b77bd7182cc580c4c318cdd568035f28fa74c7897fa6c",
-      "tasks.md": "50809e0c7af19ec1356f8dbfd38b65ed40507684ee639795ee25552b340a3187",
-      "implementation-summary.md": "05787f43de9ae5787f95896b3a68076f98a318dd9c92749a7f456c13ac9f28cb"
+      "plan.md": "3b7927a0345d5e3b303b4477c387316fdff7b696426fd8ee981fdd64a38e62c8",
+      "tasks.md": "f76e119f9839e8bccdaffe137e4d8c3f5b6d67943d4852fae8c97a63c8d5da49",
+      "implementation-summary.md": "a38bd93c0929e48e10285558c9b0a3484ebaca0be9dbfd9b2aaaaec028623975"
     },
     "last_active_child_id": null,
     "last_active_at": null

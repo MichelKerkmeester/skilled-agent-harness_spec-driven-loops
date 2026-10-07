@@ -12,17 +12,11 @@
   "derived": {
     "trigger_phrases": [
       "register and contract",
-      "check corpus cjs has no way for a",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "check corpus cjs has no way",
+      "register and contract plan",
+      "register and contract tasks",
       "register and contract acceptance criteria",
-      "implementation summary"
+      "register and contract implementation summary"
     ],
     "key_topics": [
       "register",
@@ -31,12 +25,12 @@
       "corpus",
       "cjs",
       "way",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -196,7 +190,7 @@
     ],
     "causal_summary": "`check-corpus.cjs` recognizes three interaction registers, `data-chart-tooltip`, `data-chart-legend` and `data-chart-dim`, and enforces hygiene, state and formatting rules against them",
     "created_at": "2026-09-05T16:03:54Z",
-    "last_save_at": "2026-10-07T12:55:06.725Z",
+    "last_save_at": "2026-10-07T15:56:27.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +200,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:931cbcfb0a7d4dc354fc917cab2f8f47b8fea4a3ce9607a389700dd1ea3eeadd",
+    "source_fingerprint": "sha256:9bd33d3f47a59a8482fc332642c722a07f8e3b45920ac9f0cba5c219a3b8dc4c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ca51b28e96e03eec7e0d0fc494882ab4327c0a0d74139905c4f453c4cb4d37e8",
-      "plan.md": "b81afb34804a3390656c1bd6732073c11d237a6bdc48125e602f4e20cefe1644",
-      "tasks.md": "0f30a3efd81602a4e32b188d18f2236e5758d82bc8ce6fb159c808bad80e73ef",
-      "implementation-summary.md": "30db647e99f7336d88a04dac2de1d7928ac7492b2fbc515c901043067f12eb06"
+      "spec.md": "b1ab9d60abd85c38e2ef03b59cfa03f1d92ce0051f80c02f033367ad21adae46",
+      "plan.md": "8941363aa2e3a4bb7a3fdf91fc2483014b5c4e5dc2ab84da2c7b905a7a0363cc",
+      "tasks.md": "d9aaaaed337bb739e090972eb5108141be14ba967e3d9b8be47eed7d19044c45",
+      "implementation-summary.md": "43ff2f6bfb6c4112bea4eafd31f0a29ef0e344a51d9e3637d0c61be2818c358e"
     },
     "last_active_at": null
   }

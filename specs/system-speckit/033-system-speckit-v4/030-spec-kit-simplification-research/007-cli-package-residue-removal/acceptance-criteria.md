@@ -2,8 +2,6 @@
 title: "Acceptance Criteria: CLI package residue removal"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
   - "cli residue removal criteria"
   - "residue census criterion"
 importance_tier: "important"

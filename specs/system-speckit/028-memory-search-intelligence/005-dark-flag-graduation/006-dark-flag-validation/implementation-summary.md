@@ -11,10 +11,7 @@ _memory:
     blockers: []
     notes: "All five clusters graduate-ready. Verdict: PASS. 0 P0, 1 P1, 3 P2 findings."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "dark flag validation implementation summary"
 ---
 
 # Implementation Summary: Dark Flag Validation

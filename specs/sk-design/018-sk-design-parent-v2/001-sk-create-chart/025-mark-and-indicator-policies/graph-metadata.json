@@ -12,17 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "mark and indicator policies",
-      "per form declarations the research asked for a",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "per form declarations the research asked",
+      "mark and indicator policies plan",
+      "mark and indicator policies tasks",
       "mark and indicator policies acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "mark and indicator policies implementation summary"
     ],
     "key_topics": [
       "mark",
@@ -33,10 +31,10 @@
       "declarations",
       "research",
       "asked",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -199,7 +197,7 @@
     ],
     "causal_summary": "Mark choices that carry meaning are still implicit per template: whether a short series shows its points, whether an area may split at zero, whether a composed form's line is shown with a bar-shaped swatch in the tooltip, whether a target or event line exists, and whether a dense multi-series form guides the cursor",
     "created_at": "2026-09-08T18:22:04Z",
-    "last_save_at": "2026-10-07T12:55:12.147Z",
+    "last_save_at": "2026-10-07T15:56:34.313Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5fcde7c9c8fce6aa1220d76683285e94d4839369861ecf1d52501dbc61ac1bbb",
+    "source_fingerprint": "sha256:deb0011c2d37de5292f573f3b6887c55e066ecc314783cda7c4bc1057e5cbcbe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9146724e01eb6b75fa67fe7046e55e63e949eea869e98dd1f87eee9b21c9b3e8",
-      "plan.md": "7721d5d55ef65a7a93bc58e12e0906a71b1dbdf38d79a59a5e6041a053d6b7f7",
-      "tasks.md": "6d64d46920a42f34f1fd362b42052cc75d83e4359c5d3dd73091432496178903",
-      "implementation-summary.md": "9fd53a294b4bdefaa85673e21c11ed553bb42a77b372c7a2fa65cdbd18b1e4d2"
+      "spec.md": "f4b778662e44e79e675edc865987e2254e812d35babd24a0a86e825b30cee53c",
+      "plan.md": "490a0c0c0b638f48d3e0441071cec4984378180b2eae2cabbb75348830a80556",
+      "tasks.md": "538e4123c6b1204812fa0faa793f39f53cf4950a81e3eec494630696914e8392",
+      "implementation-summary.md": "e7521caeeb9d1477e595b2c04f708704a3d23d49bf5764336e25fb82dc131fc9"
     },
     "last_active_at": null
   }

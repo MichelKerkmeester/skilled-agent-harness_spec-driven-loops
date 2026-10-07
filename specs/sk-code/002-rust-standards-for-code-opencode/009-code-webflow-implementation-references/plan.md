@@ -4,10 +4,7 @@ description: "Deterministic split of 11 code-webflow implementation docs + tool-
 importance_tier: "normal"
 contextType: "implementation"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "code webflow implementation references plan"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 9 — Split code-webflow Implementation References

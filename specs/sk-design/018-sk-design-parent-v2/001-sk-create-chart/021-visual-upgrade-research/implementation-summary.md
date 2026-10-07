@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Cross-lane synthesis of the visual-upgrade research: luna complete, glm one of five, eight ranked items, and a containment incident recorded."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "visual upgrade research implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

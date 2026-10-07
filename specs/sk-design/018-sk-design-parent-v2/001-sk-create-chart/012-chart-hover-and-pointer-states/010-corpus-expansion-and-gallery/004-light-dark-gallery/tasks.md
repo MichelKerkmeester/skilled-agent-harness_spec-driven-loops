@@ -2,10 +2,7 @@
 title: "Tasks: Generate one gallery page rendering every form in both colour schemes"
 description: "Generate the gallery from the corpus, add the rule that keeps it honest, and watch that rule fail in both directions."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "light dark gallery tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The v4 changelog remediated per the accepted 045 research report: corrections, count dispositions, structural re-order, gates held, skeleton deltas recorded."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "v4 changelog remediation implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -13,16 +13,12 @@
     "trigger_phrases": [
       "cache optimizer improvement research",
       "the pi cache extension recently absorbed three capabilities",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "cache optimizer improvement research plan",
+      "cache optimizer improvement research tasks",
+      "cache optimizer improvement research implementation summary",
+      "pi cache extension findings",
+      "cache measurement provenance",
+      "prefix lifting stability"
     ],
     "key_topics": [
       "cache",
@@ -34,9 +30,9 @@
       "absorbed",
       "three",
       "capabilities",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +191,7 @@
     ],
     "causal_summary": "The Pi cache extension recently absorbed three capabilities and had three defects fixed, but no one",
     "created_at": "2026-09-09T09:11:34Z",
-    "last_save_at": "2026-10-07T12:55:00.613Z",
+    "last_save_at": "2026-10-07T15:56:13.229Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +201,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f5432cbfe26f9b58ba4c533292a36a2c11de167e676e99cdccce166b76b44beb",
+    "source_fingerprint": "sha256:78758112957e217d36aea88fec4d9d8867a712b761e54ab3e14a3a613aaa00c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e4644fdd919e16c64587cab550dbb943ac8621232c82838a8afc79dd9ff183d4",
-      "plan.md": "91c1d94346f795462cbf5cd92df3e364a12c725f7346d4bd9993b5fe08c7c366",
-      "tasks.md": "a14b81097bc1c31de28e5da46d328d5e17becc903a603c4cd166ee82e6198430",
-      "implementation-summary.md": "2f5c66ff784e75284403b83d46c174225ce0567a21f36c3f7b8e73c57110be77",
+      "plan.md": "d8b8c1f799fbf1191474285298c055a4f953c49a0a492bcb984544ba9a668b52",
+      "tasks.md": "04ea7b239ee804d4b3f32085a6e0fc14dfd08063d2ba8607c46fb4f3f0333375",
+      "implementation-summary.md": "e4a147c593bd80db13c268b1f052d6decc6b0c8ce2f23e8f1a01f7f390ee303b",
       "research/research.md": "dd48cf721a764cb165a8478eac1f134a1fe1837422a00652a680bc0ff36e7555"
     },
     "last_active_at": null

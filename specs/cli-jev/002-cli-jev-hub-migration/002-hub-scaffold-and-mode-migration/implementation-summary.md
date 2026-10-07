@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The Jev transport now answers from a hub of its own. `.skilled/skills/cli-jev/` declares the registry pair and passes the doctor with 0 warnings, the packet lives at `cli-usage/` with its rename recorded, and the mode's own docs name the new home."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "hub scaffold and mode migration implementation summary"
   - "cli-jev hub"
 importance_tier: "normal"
 contextType: "general"

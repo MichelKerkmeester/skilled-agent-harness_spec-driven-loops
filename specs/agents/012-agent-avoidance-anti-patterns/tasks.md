@@ -2,10 +2,7 @@
 title: "Tasks: Audit the agent behavior ruleset against six agent-avoidance anti-patterns and give the uncovered family one home"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "agent avoidance anti patterns tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

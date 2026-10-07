@@ -2,10 +2,7 @@
 title: "Implementation Plan: close every gate this packet left red"
 description: "Move four playbook fixtures onto the hub that owns their mode, give a compiled-routing scenario the criteria heading its contract requires, and repair two malformed spec documents."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "close inherited failures plan"
 importance_tier: "normal"
 contextType: "general"
 ---

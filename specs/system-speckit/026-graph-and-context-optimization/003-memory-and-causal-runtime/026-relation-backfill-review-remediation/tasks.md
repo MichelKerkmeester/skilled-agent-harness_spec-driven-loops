@@ -15,10 +15,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "relation backfill review remediation tasks"
 ---
 # Task Breakdown: Relation-Backfill Review Remediation
 

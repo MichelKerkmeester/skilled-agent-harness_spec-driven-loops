@@ -2,10 +2,7 @@
 title: "Implementation Summary: system-spec-kit runtime alignment"
 description: "The spec-kit runtime and shared package now meet sk-code-opencode: headers, numbered sections, code READMEs, no double-underscore folders, every test under a tests/ tree, and the completion sentinel moved into hooks/lib."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "align runtime code with sk code opencode implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

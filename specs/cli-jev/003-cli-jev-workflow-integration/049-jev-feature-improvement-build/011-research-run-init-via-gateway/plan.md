@@ -2,10 +2,7 @@
 title: "Implementation Plan: Fix: deep-research run open"
 description: "Mirror packet 039 for deep-research: the run-open step records `run_initialized` through the append gateway, the census marks it spoken, and fan-out lineages take the same path.."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "research run init via gateway plan"
 importance_tier: "normal"
 contextType: "general"
 ---

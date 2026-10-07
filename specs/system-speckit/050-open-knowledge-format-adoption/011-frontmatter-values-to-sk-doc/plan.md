@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 11: frontmatter-values-to-sk-doc"
 description: "Move the document values and tiers into sk-create-frontmatter/assets, keep the session list as a literal in spec-kit, and repoint the four readers with a runtime read that works from source and from dist."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "frontmatter values to sk doc plan"
 importance_tier: "normal"
 contextType: "planning"
 ---

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A local DESIGN.md applicator now produces deterministic, gated chart deliveries without changing the stock corpus."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "design md theming implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

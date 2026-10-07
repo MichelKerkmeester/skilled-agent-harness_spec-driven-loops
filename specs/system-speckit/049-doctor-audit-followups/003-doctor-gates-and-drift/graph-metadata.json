@@ -16,13 +16,13 @@
       "parent skill fixtures",
       "route validate activities",
       "env reference count",
-      "implementation plan",
       "guard manifest",
       "fixture resolution",
       "route validator activities",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "doctor gates and drift tasks",
+      "doctor gates and drift acceptance criteria",
+      "decision record",
+      "skill budget handoff"
     ],
     "key_topics": [
       "doctor",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nine defects recorded across the audit remain open",
     "created_at": "2026-10-03T05:27:41Z",
-    "last_save_at": "2026-10-07T12:55:55.108Z",
+    "last_save_at": "2026-10-07T15:57:41.031Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09e389b2e378ddb8749e0e3bc2c021e880ae3c4514f64866e423f79e2672a5ea",
+    "source_fingerprint": "sha256:cd8febb05b409d69b6d4990f3ae3a2a7d1d41a212d4311339a5df5ff10892e3f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a787caa3754704ff331c38c6c338aecdb1a703f47c5856717e80092e03b52806",
-      "plan.md": "fc7f8420ed646647c56e40a684611c77504a23f57d526317022bed1402a17b3f",
-      "tasks.md": "d779410d9d9d0aa173d828fcff7ea1511984afc92d318f62329ce5e007f320d7",
+      "plan.md": "4619d281242fe70ce5047c46cae2e1758b543a1a32a7ce5a617a692960e0e8f1",
+      "tasks.md": "78fba583049373c2d39799f09fbff1ccafd3e29a10ee446e91cad9278861d2b9",
       "decision-record.md": "3ea81a72b4475911680ff6aef876c3d0a74f7ee7675ad34ce770c57041b8e567",
-      "implementation-summary.md": "91dccfad44ad68eda93608d1cf623c8f2a302dc5748b5fc98d29ead16a95e82a"
+      "implementation-summary.md": "c6902a9f6f7b7aba6a1b8da5d2e1f5ae9505c5b5e2f67721ec52123bbe1eafa4"
     },
     "last_active_at": null
   }

@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 002 Contracts and Fixtures"
 description: "Bootstrap the standalone TypeScript package and implement the shared versioned contracts, reference corpus, and golden fixtures under the immutable-state architecture."
 trigger_phrases:
   - "contracts-and-fixtures"
-  - "implementation plan"
   - "portable cli projection"
 importance_tier: "important"
 contextType: "implementation"

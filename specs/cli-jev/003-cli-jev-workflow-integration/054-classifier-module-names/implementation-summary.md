@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Every Jev code path outside cli-classifier now sits in a classifier- file named after its host, and the injection screen hook carries the same prefix."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "classifier module names implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

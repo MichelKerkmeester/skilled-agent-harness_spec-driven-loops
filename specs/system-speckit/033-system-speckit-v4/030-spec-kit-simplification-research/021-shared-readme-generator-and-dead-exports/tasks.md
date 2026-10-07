@@ -5,7 +5,6 @@ trigger_phrases:
   - "shared readme generator tasks"
   - "remediation tasks"
   - "round three tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

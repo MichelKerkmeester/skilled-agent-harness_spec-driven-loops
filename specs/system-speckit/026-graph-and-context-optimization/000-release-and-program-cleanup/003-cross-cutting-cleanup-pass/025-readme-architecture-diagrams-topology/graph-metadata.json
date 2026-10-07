@@ -16,13 +16,9 @@
       "box-art diagram",
       "code folder readme",
       "architecture readme",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "readme architecture diagrams topology plan",
+      "readme architecture diagrams topology tasks",
+      "readme architecture diagrams topology implementation summary"
     ],
     "key_topics": [
       "architecture",
@@ -33,10 +29,10 @@
       "code",
       "folder",
       "readme",
-      "implementation",
+      "diagrams",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -197,7 +193,7 @@
     ],
     "causal_summary": "Only `shared/README.md` has both an ASCII box-art architecture diagram and a directory topology tree",
     "created_at": "2026-05-02T00:00:00Z",
-    "last_save_at": "2026-09-11T04:38:45.855Z",
+    "last_save_at": "2026-10-07T15:57:10.443Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c9041830f970a1c35ca312e506d5e78d8e26e781e2db748cf2371435ceb66cf9",
+    "source_fingerprint": "sha256:fae8ecc5208da15f8e5e4fa6331c3a980b8167e022f91bc3a78235210022823f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cae05ab98fddb9d1d30b8d7a784bbb8358426b072c5a1afd1f745a306c5236e9",
-      "plan.md": "f46f49b7cf55bf2fe9aa8da2df1580d2fced4f6a35ee548fd91d1cded8f5c5aa",
-      "tasks.md": "1ab8533bef768241b4a4e1702f35ef0fd00d63ec135216e93adce2bdb696c3a6",
-      "implementation-summary.md": "9d32f2dc1b13fdc59e5872893fab23f292028438719f7447a853f74ae33bcb64"
+      "plan.md": "2a33fe289d12d0c0245c98d52ec949b0c92b24a7e9a061495d3792bb98c50de4",
+      "tasks.md": "a1937b26156162a8655cfbd728160976872ef3eecc971e0749b580070ff63170",
+      "implementation-summary.md": "6d7f020e6f889de2f2d4f4944aac215c56cc0a1aac4b467bf3da9d4b5cd92df7"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Four package-root walks became one compiled shared module with a parity test; the repository and shell resolvers survive on their own boundaries, and the README says which and why."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "root resolver consolidation implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

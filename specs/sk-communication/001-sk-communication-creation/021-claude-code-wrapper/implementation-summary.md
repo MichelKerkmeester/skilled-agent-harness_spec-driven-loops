@@ -6,7 +6,6 @@ trigger_phrases:
   - "claude code headless projection"
   - "stream-json adapter"
   - "Claude output projection wrapper"
-  - "implementation summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

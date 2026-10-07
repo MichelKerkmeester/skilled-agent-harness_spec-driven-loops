@@ -13,10 +13,7 @@ _memory:
     blockers: []
     completion_pct: 0
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "skill doc alignment plan"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->

@@ -2,10 +2,7 @@
 title: "Implementation Plan: Make the lineage reducer extract numbered findings and flag a fulfilled lane whose registry stays empty"
 description: "Let the reducer treat a missing strategy anchor as a warning that still writes the registry, and warn on the ledger when a fulfilled lane registered nothing its deltas recorded."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "reducer ordered lists plan"
 importance_tier: "normal"
 contextType: "general"
 ---

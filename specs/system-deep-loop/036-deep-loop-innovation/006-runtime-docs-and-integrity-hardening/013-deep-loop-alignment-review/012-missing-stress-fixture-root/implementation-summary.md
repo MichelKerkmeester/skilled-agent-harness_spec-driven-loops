@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The pruned 060 stress-test fixture is back in the six runtime tree shapes this repository ships, and the shared sandbox script now builds a sandbox in which the scenarios' helper steps actually run."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "missing stress fixture root implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

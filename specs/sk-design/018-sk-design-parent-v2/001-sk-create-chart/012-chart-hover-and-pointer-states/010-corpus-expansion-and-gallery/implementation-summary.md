@@ -2,10 +2,7 @@
 title: "Implementation Summary: corpus expansion and gallery"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "corpus expansion and gallery implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

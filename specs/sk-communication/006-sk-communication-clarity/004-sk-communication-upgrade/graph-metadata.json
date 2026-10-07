@@ -22,7 +22,7 @@
       "skill upgrade tasks",
       "engine item tasks",
       "command mirror sync",
-      "acceptance criteria"
+      "engine item criteria"
     ],
     "key_topics": [
       "sk-communication",
@@ -46,10 +46,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      "research/research.md",
-      ".opencode/skills/sk-communication/SKILL.md",
-      ".opencode/commands/rewrite/response.md",
-      ".opencode/commands/rewrite/response-by-external-agent.md"
+      "research/research.md"
     ],
     "entities": [
       {
@@ -86,24 +83,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "response.md",
-        "kind": "doc",
-        "path": ".opencode/commands/rewrite/response.md",
-        "source": "derived"
-      },
-      {
-        "name": "response-by-external-agent.md",
-        "kind": "doc",
-        "path": ".opencode/commands/rewrite/response-by-external-agent.md",
         "source": "derived"
       },
       {
@@ -195,11 +174,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This phase's own research run replaced its premise",
     "created_at": "2026-09-12T12:44:37Z",
-    "last_save_at": "2026-09-15T05:36:44.554Z",
+    "last_save_at": "2026-10-07T15:56:24.066Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d279cd1f26c3ded792ba5e7bd5bf37410a725b188ff59f40fab75bc813c9ff25",
+    "source_fingerprint": "sha256:b3720d32e36a2b7d9baf8c16330328439035e28498fa8b5dc6221edfaf98d63a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "515cfc107a5b987974bf4c06477722ced273d24e3d5a92d82cf608984f36fe67",
       "plan.md": "c40bb9e89fc39620fcfaaadfb259cd417c70931eecb6d7949a545df0ce35f128",
       "tasks.md": "75fc719e377da22734bc2a89748dd63a6a8943a77a906f6af07c419341576790",
-      "implementation-summary.md": "54de58f6982939716aa2abd8f47f1b4472975998b6db4cc4f3aaadec20b55c1e",
+      "implementation-summary.md": "2db0ad699674c0c674e8404a53aac69beb4c6d200205ccce27219a8d1eed0f6f",
       "research/research.md": "f6de0c65bd242a0acce50a7d77c475b80fad64b01afdd4cd81cf6b25c17fb4f3"
     },
     "last_active_at": null

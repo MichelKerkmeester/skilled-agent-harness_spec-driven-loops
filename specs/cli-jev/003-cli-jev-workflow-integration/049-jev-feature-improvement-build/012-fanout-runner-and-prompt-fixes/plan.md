@@ -2,10 +2,7 @@
 title: "Implementation Plan: Fix: fan-out runner, merge and lineage prompt"
 description: "Widen the merge's finding-text fields, make the runner fail fast on a projection refusal, and add three lines to the deep-research iteration prompt pack.."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "fanout runner and prompt fixes plan"
 importance_tier: "normal"
 contextType: "general"
 ---

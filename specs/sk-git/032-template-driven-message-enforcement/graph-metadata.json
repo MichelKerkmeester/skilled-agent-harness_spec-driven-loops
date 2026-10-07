@@ -23,10 +23,10 @@
       "message contract implementation plan",
       "commit-msg validator port",
       "pr body ci check",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "template driven message enforcement tasks",
+      "template driven message enforcement acceptance criteria",
+      "message contract decision record",
+      "template carries the contract"
     ],
     "key_topics": [
       "template-driven",
@@ -214,7 +214,7 @@
     ],
     "causal_summary": "The sk-git commit contract is written three times: as prose in `SKILL.md` and `assets/commit-message-template.md`, and as hardcoded regexes in `.skilled/scripts/git-hooks/commit-msg`",
     "created_at": "2026-10-01T17:03:25Z",
-    "last_save_at": "2026-10-07T12:55:27.591Z",
+    "last_save_at": "2026-10-07T15:56:49.215Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -225,14 +225,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4528c36b30badc3d486e0f7754cc0d8c8a123444bf965d7b3eaddfad4d22467a",
+    "source_fingerprint": "sha256:61ed158021735e9fbb57206918cec234ea04c0e17bf65a287ed783af663c8aa0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bf5796a37a373cb91115dbf825983ef60b97c2a82cd1457c53f3669cf91a5989",
       "plan.md": "fe3fb5545f78ae80d5d38064642ce054651ef786ffad83df214a349be301e9da",
-      "tasks.md": "b1def416119b91847f14e541b9dc3670a9cde3a4849a4f2a3cc4b13a7aa3f5ea",
+      "tasks.md": "c60689580f7d034bd35ec53e58056f8a301164e5d3100cc417bba8fe94e28df9",
       "decision-record.md": "30569418c2e34a16b3e7e0fef73d2e546c3eaad54c5d3d03eb01f3070872e228",
-      "implementation-summary.md": "897476dab4f6f2179eb7d6bf064544cee465b1315972c88d4d2de171a628007d"
+      "implementation-summary.md": "7fbd041a59e666576edca15e4aa08721f4cd0418db47c35ff0aa84b215850deb"
     },
     "last_active_at": null
   }

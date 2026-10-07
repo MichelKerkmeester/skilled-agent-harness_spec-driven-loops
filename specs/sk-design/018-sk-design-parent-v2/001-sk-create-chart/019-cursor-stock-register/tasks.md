@@ -2,10 +2,7 @@
 title: "Tasks: cursor bundle as the stock chart register"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "cursor stock register tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

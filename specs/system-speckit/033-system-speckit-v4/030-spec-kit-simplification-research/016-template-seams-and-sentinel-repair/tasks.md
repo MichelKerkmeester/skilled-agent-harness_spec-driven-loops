@@ -5,7 +5,6 @@ trigger_phrases:
   - "seams repair tasks"
   - "sentinel tasks"
   - "runtime suite repair tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

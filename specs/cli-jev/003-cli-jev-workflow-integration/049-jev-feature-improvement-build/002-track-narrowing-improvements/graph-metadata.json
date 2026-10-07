@@ -13,16 +13,13 @@
     "trigger_phrases": [
       "track narrowing improvements",
       "the narrowing scorer pins what it measured keeps",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "track narrowing improvements plan",
+      "track narrowing improvements tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "track narrowing improvements implementation summary"
     ],
     "key_topics": [
       "track",
@@ -32,11 +29,11 @@
       "pins",
       "measured",
       "keeps",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "packet",
+      "goal",
+      "durable"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -196,7 +193,7 @@
     ],
     "causal_summary": "Feature 017 kept at 97 against 68 of 256 with only 3.4 rows of margin slack",
     "created_at": "2026-10-03T05:30:03Z",
-    "last_save_at": "2026-10-07T12:54:55.935Z",
+    "last_save_at": "2026-10-07T15:56:06.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +203,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e02da38ec471a08aafe0939b0f98a8e00f45ca43e44d1108c912e2079392dc41",
+    "source_fingerprint": "sha256:e9a0881dcabebc5a1c777add69d329054b3583fb994516b55eaa969f138eb629",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1f606f755a6bb7919c05620669f65a70bf010de2494f6424a357480ea0c0e226",
-      "plan.md": "71d143c20a383bcf8ff445421a94404d47224ec80eb2edf6ac95f358c5db6c23",
-      "tasks.md": "9b49c84dc628dcb03a337dbee34a01101e7ad995b10409c29e309af35a6cae9f",
-      "implementation-summary.md": "458c442216155567fb96861bfb6d348383292642961a8c9411e7db866bce7b61"
+      "plan.md": "2d29e6f363d3a883abd85438de07644426a2a72840438bf292c80c29f3c22d5d",
+      "tasks.md": "d12fbbc041ee772cf2cdc3066af932883d8e306f26ce42ad9419df8e9ca9c12c",
+      "implementation-summary.md": "98e03f41f8e95a274ecd720dfc8cc11d44cb17167abde080d5402d3882f5f1f7"
     },
     "last_active_at": null
   }

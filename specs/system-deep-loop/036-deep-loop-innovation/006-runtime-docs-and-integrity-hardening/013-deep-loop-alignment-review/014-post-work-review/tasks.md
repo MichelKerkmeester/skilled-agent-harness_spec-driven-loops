@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: post-work-review"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "post work review tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

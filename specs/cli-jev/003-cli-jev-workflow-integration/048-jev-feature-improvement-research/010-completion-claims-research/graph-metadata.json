@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "completion claims research",
       "five deepseek v4 1 flash and three gpt",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "completion claims research plan",
+      "completion claims research tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "completion claims research implementation summary",
+      "jev completion claim audit improvement",
+      "score-completion-claims research",
+      "completion evidence sentinel regex recall"
     ],
     "key_topics": [
       "completion",
@@ -33,10 +33,10 @@
       "flash",
       "three",
       "gpt",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Phase 047 measured the Jev completion-claim audit at verdict jev: stop (margin) K=110 M=110 A=102 B=93 W=13 L=4 F=0 pwin=0.02452",
     "created_at": "2026-10-02T21:59:49Z",
-    "last_save_at": "2026-10-07T12:54:56.168Z",
+    "last_save_at": "2026-10-07T15:56:06.608Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2966dbe68fced35dbcdbbb058e16d6212a56ba9c7d8c50d37d3e040171d9aebc",
+    "source_fingerprint": "sha256:764fc5903dcc4ca522cc8449fa93e2d6925d3a8a1606c433b1f8d377eb68f561",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5b6bd791f79544b9ff25f52a9e80473bb01a9cc340534db7e373b03c5f45053c",
-      "plan.md": "1a53bbc44c6da6a000b280af29a21f4e305531589566730a251a12796327c408",
-      "tasks.md": "d1fb330164a11ed09bfc35d3bb42a6e75cd7c31e9fa5c75f40b58a2c107ecb53",
-      "implementation-summary.md": "fe88d2253ca19cafe319bbfd43aaed6ade04c614eff95f0d31263a6c62903768",
+      "plan.md": "3fbdc647b6f8f676950dfcdb0febc13992b47c47f1d393675e9c092ac03fc714",
+      "tasks.md": "0122c123b3348e8674803edab4f6087b34c86fd4fc7194aaee9c829eed183473",
+      "implementation-summary.md": "0deda482c708340f6e82304020f4c7523a13d8628c27f030f0fea84ada642045",
       "research/research.md": "85efd70f8df782729f7655cfe35495790c3e4a16a68317dac90448a7719063a1"
     },
     "last_active_at": null

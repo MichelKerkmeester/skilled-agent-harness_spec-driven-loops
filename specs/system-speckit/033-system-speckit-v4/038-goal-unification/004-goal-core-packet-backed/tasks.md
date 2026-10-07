@@ -2,10 +2,7 @@
 title: "Tasks: Goal core packet-backed"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "goal core packet backed tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

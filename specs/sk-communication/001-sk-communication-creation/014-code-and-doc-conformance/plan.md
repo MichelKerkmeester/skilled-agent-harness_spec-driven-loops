@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 014 Code and Documentation Conformance"
 description: "Complete the package documentation conformance boundary through exhaustive folder coverage, reference-standard operator docs, independent validation, and strict packet closeout."
 trigger_phrases:
   - "code-and-doc-conformance"
-  - "implementation plan"
   - "package documentation conformance"
 importance_tier: "important"
 contextType: "implementation"

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A baseline restore never writes through a symlink at the violated path; the refusal is recorded and the lane's outcome is unchanged."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "restore never through symlink implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

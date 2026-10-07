@@ -24,10 +24,7 @@ _memory:
     answered_questions:
       - "Whether the documented-dead SPECKIT_PIPELINE_V2 and the eval-harness SPECKIT_EVAL_V2 config knobs are in scope, they are not"
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "flag name cleanup implementation summary"
 ---
 # Implementation Summary
 

@@ -2,10 +2,7 @@
 title: "Implementation Plan: Enlarge every pointer target, restyle all forms with richer data, expand the catalogue with new chart types, and ship one light and dark gallery"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "corpus expansion and gallery plan"
 importance_tier: "normal"
 contextType: "general"
 ---

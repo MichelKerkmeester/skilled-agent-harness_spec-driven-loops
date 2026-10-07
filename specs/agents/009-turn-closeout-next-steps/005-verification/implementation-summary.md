@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Re-ran every programme check from the final state and re-applied five contracts that had reverted to HEAD."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "verification implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

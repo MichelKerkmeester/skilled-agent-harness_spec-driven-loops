@@ -2,8 +2,6 @@
 title: "Acceptance Criteria: Rule headers, registry coverage and playbook paths"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
   - "registry coverage test criteria"
   - "round three criteria"
 importance_tier: "important"

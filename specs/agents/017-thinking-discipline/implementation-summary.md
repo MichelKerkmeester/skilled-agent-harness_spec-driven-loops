@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A new §7 in uncertainty-and-honesty.md says when a settled conclusion may be reopened, AGENTS.md §3 points at it, and Gate 3 was trimmed back under the Devin prefix."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "thinking discipline implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

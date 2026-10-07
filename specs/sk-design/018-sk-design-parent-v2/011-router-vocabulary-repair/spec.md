@@ -3,7 +3,7 @@ title: "Feature Specification: Make the phrases the router declares actually rea
 description: "The sk-design router declares 55 keywords its own scoring vocabulary never sees. Probing fifteen of them found eleven that do not reach the hub: eight reach nobody at all, including `what should this look like`, which is the canonical design question"
 trigger_phrases:
   - "router vocabulary repair"
-  - "the sk design router declares 55 keywords its"
+  - "the sk design router declares 55 keywords"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -15,14 +15,10 @@
       "wrong hub phrases",
       "outranked routing phrases",
       "live fleet rerun",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "router reach misroutes plan",
+      "router reach misroutes tasks",
+      "router reach misroutes acceptance criteria",
+      "router reach misroutes implementation summary"
     ],
     "key_topics": [
       "router",
@@ -36,7 +32,7 @@
       "live",
       "fleet",
       "rerun",
-      "implementation"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -202,7 +198,7 @@
     ],
     "causal_summary": "The source audit's fleet run reported `checked=7 hub(s), wrong-hub=14, outranked=18, no-reach=221, allowed=8, probe-error=0`, `advisor generation: unknown`, `RESULT: FAILED` (`specs/system-speckit/048-doctor-command-audit/008-router-reach/scratch/doctor-run.log:303-305`)",
     "created_at": "2026-10-03T05:27:36Z",
-    "last_save_at": "2026-10-07T12:55:42.191Z",
+    "last_save_at": "2026-10-07T15:57:10.746Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +208,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d29ccf2d86fdbbf56f95ef4fc99308d5ea0510d3e70673bb9351d89699940f9d",
+    "source_fingerprint": "sha256:f840c5a2bda93114465cdb0318f17cb0b55f6de4a811ee31545f1e3364573aee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a69895777b732228d6f68f6af2d635aa9558a7764dd0cac02fb6b5f28264de7e",
-      "plan.md": "ef5a3b1b12c0bfbdcb16d3355efc867c53f060b0412a00372bab982bbe16a241",
-      "tasks.md": "472336ad7496db07efb109c3353b0f2cc995e2cbcfd3553b3dea2b4584b8c489",
-      "implementation-summary.md": "482090bb437912c067e33eec0f6778617c6de8138136a090098bff049d75453c"
+      "plan.md": "54bafe8e9d56cc048f760633679db847ac5b14c542b7d1683d3055ae32afeb24",
+      "tasks.md": "e920a8dc0cd7caa0d6ead5beaff596d1a2328e4648634f4c90b82b6a0a66f889",
+      "implementation-summary.md": "333868b8d6a2522326b9dede08d5d803850e2c9e218d6a294249197538dddc4d"
     },
     "last_active_at": null
   }

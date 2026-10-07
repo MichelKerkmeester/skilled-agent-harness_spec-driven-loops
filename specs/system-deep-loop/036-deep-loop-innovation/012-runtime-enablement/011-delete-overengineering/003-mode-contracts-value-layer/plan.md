@@ -4,10 +4,7 @@ description: "Approach and verification gates for the F2 mode-contracts value-la
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/003-mode-contracts-value-layer"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "mode contracts value layer plan"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

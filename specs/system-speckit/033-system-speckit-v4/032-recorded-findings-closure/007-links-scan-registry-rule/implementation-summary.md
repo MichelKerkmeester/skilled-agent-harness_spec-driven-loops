@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The wikilink scan is now the LINKS_VALID registry rule that every validate run sources, runs in a tenth of a second, and the four broken memory-note links it reported are gone."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "links scan registry rule implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,10 +2,7 @@
 title: "Tasks: shadcn visual upgrade"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "shadcn visual upgrade tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

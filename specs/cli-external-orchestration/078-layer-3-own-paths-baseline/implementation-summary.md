@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The cli-opencode dispatch safety net now snapshots the target's own in-flight paths and records the hash, instead of asking for a clean or fully committed tree."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "layer 3 own paths baseline implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

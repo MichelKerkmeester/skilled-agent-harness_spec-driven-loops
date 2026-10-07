@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 025 Cursor Output Wrapper"
 description: "Wire Cursor into the Phase 020 CLI-output wrapper, confirm the cursor-agent print flag, route captured stdout through the Cursor runtime adapter and projectMessage(), and fail open to the byte-exact original."
 trigger_phrases:
   - "cursor-wrapper"
-  - "implementation plan"
   - "cursor output wrapper"
 importance_tier: "important"
 contextType: "implementation"

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The decision rule took the last short name the corpus was missing, after its own opening lines were checked for the meaning the shorter name gives up."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "shorten decision rule name implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,10 +2,7 @@
 title: "Tasks: Phase 5: embeddings"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "embeddings tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

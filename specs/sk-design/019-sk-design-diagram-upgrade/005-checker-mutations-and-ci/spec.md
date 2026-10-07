@@ -3,7 +3,7 @@ title: "Feature Specification: Phase 5: checker-mutations-and-ci"
 description: "The diagram corpus checker, its mutation suite with the four refusals and the completeness triple, and a blocking CI gate."
 trigger_phrases:
   - "checker mutations and ci"
-  - "the diagram corpus checker its mutation suite with"
+  - "the diagram corpus checker its mutation suite"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,7 +2,6 @@
 title: "Implementation Summary: DevPass DeepSeek fan-out route"
 description: "The deep-loop fan-out now reaches DeepSeek V4 Flash through the operator's flat-price DevPass plan instead of an opencode-go window that had closed, by moving one provider-map value and every comment, test pin and roster row that described the old route."
 trigger_phrases:
-  - "implementation summary"
   - "devpass deepseek shipped"
   - "pi provider map moved"
   - "fan-out route deepseek"

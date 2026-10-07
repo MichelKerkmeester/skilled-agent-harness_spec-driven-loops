@@ -16,13 +16,9 @@
       "spawnSync codex ETIMEDOUT",
       "deep review codex timeout",
       "fanout codex unauthorized",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "codex lineage auth isolation plan",
+      "codex lineage auth isolation tasks",
+      "impl summary core"
     ],
     "key_topics": [
       "codex",
@@ -35,7 +31,7 @@
       "timeout",
       "fanout",
       "unauthorized",
-      "implementation",
+      "isolation",
       "plan"
     ],
     "importance_tier": "normal",
@@ -195,7 +191,7 @@
     ],
     "causal_summary": "A per-lineage CODEX_HOME isolates the credential file along with the session state, so every codex fan-out lineage authenticates as nobody and burns its whole timeout in a 401 reconnect loop.",
     "created_at": "2026-08-30T15:39:22.458Z",
-    "last_save_at": "2026-10-03T15:12:19.508Z",
+    "last_save_at": "2026-10-07T15:57:06.052Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +201,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a336b003c13c4a096cac33b65019b607ec15730841abb77b25d926727e147c0d",
+    "source_fingerprint": "sha256:4ac2eed97c5e63251bf2c61b23a1797ccc93b7e380917597ff518d4844091fad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f1ccd873e0499f22534247875a130161d2f391f6226f726ecff3353d450b5471",
-      "plan.md": "0236f5df9c215f31ebf699f73f365722634ea38e602c945a0b8383f6b96f9bc9",
-      "tasks.md": "6a9dc77c63a0e6958b6c415114fe518788fca6f6a1d0dd0311f72be48eb272ba",
+      "plan.md": "a9a66a918cd36ca47a03f2294d41e3c32f2be5203a6c252c739131ff8e9199b3",
+      "tasks.md": "ec8be1f29ec4937708dc4551522afb1b24fd0cd4408b4cd4718d8755c0f0a7cd",
       "implementation-summary.md": "46d55c611c2236466c4e09269e18519e30228cc6ef7f15e56c3dd4498eddee78"
     },
     "last_active_child_id": null,

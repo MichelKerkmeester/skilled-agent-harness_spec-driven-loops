@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "What shipped for the fan-out write containment hardening: preserve-by-default containment with baseline-targeted restore, separated lane outcomes, per-lineage worktrees on by default with a per-attempt isolation tally, and a report-only watch of the shared checkout for isolated lanes whose process cwd stays in it."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "fanout write containment hardening implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

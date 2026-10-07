@@ -21,7 +21,7 @@
       "gateway contract remediation adr",
       "single canonical state-write path decision",
       "projection refresh vs gateway receipt decision",
-      "implementation summary"
+      "gateway contract remediation implementation summary"
     ],
     "key_topics": [
       "gateway",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Ten confirmed findings, all cited to shipped source in `014`'s registry:",
     "created_at": "2026-08-25T17:42:50.623Z",
-    "last_save_at": "2026-10-03T15:12:19.737Z",
+    "last_save_at": "2026-10-07T15:57:01.487Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:42bafcf3e630c46ec46fb46b148d401c33e073e858fef66ee1c9c3fa6f892276",
+    "source_fingerprint": "sha256:aec87523e53a29d34df7a3e0ad56ced73eead7e8f9a5471fc7cfcba6366e7a75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f285e281679096d352fd8ce3d0755d6fbe9529680fef88fbe8e6219e2f3b0851",
       "plan.md": "3a978090d42c9c41226d78ebce0685aa823a1643fc802ed2dbcf1972ecb128a9",
       "tasks.md": "315a61f1531c119466869a9777227559acd68bf78902b1e82268954ac83eb0c5",
       "decision-record.md": "9331ce8bc93a409b6fded0e2084cb0bba2d8bdf815b78aa76e6fd963921632ec",
-      "implementation-summary.md": "46c396874d87114e5b3a1e1f12721ba836e86e28d03260cc0d37b9a5ca4e5887"
+      "implementation-summary.md": "4b83e402148f1285133491bc4ffe47ba120638dc6ec968763b9fc2a0aa41e2b4"
     },
     "last_active_child_id": null,
     "last_active_at": null

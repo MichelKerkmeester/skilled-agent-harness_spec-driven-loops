@@ -12,31 +12,24 @@
   "derived": {
     "trigger_phrases": [
       "agents md integration",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "agents md integration plan",
+      "agents md integration tasks",
       "agents md integration acceptance criteria",
-      "implementation summary",
-      "what shipped"
+      "agents md integration implementation summary"
     ],
     "key_topics": [
       "agents",
       "integration",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy",
-      "task",
-      "breakdown"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "broken",
+      "missing",
+      "inefficient",
+      "sentences"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +188,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-11T10:54:57Z",
-    "last_save_at": "2026-10-07T12:54:42.336Z",
+    "last_save_at": "2026-10-07T15:55:51.868Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +198,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9441fc8f0aa6db8b262691e1a5ae76699008b94061ffe429e962e6a25e814130",
+    "source_fingerprint": "sha256:bd4f80a231c83b976a90a253e2ee68cde56382e85ad9e144726649f3afa771f9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3d05d6a5eb4e4a0f80bdb79d10093ed5767a7ad06cd1b42d9c0b56dae8e6d154",
-      "plan.md": "d860e206eca632c825ddd25799c6c542ceae4e8f0f4ca8b897cd59fcd4e534df",
-      "tasks.md": "9735c1fe1cbd9d102e40fd1fb9298fdfeb078a598008cfe0df0649663ba37a12",
-      "implementation-summary.md": "c3bdd419aa13333d7cdb2fbd9454f7e1e99ff9b77c50e85777f03475415cdbb4"
+      "plan.md": "3614a9ef67f50b165a0575e95ef8009bc01b78f4feec4ed65956b9ba6214c70f",
+      "tasks.md": "9c8b92b6975aba24a98c172ae83898cb29ce5c1cd41e691fe294beffbfd4c4dd",
+      "implementation-summary.md": "5bc1076b29929e1da7732c4e886ce0a48da2a8f577f121f059b058d96eb44964"
     },
     "last_active_at": null
   }

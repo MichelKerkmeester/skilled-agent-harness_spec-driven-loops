@@ -13,16 +13,9 @@
     "trigger_phrases": [
       "claude code native dispatch",
       "the cli claude code self invocation guard said",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "claude code native dispatch plan",
+      "claude code native dispatch tasks",
+      "claude code native dispatch implementation summary"
     ],
     "key_topics": [
       "claude",
@@ -34,9 +27,9 @@
       "invocation",
       "guard",
       "said",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +191,7 @@
     ],
     "causal_summary": "The guard in `.skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md` refuses self-invocation and says only \"use native capabilities\"",
     "created_at": "2026-10-03T21:11:45Z",
-    "last_save_at": "2026-10-07T12:54:47.632Z",
+    "last_save_at": "2026-10-07T15:55:57.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6cbed583ef37421b30db058ef2dbdcd6c9fe2aeb92a2ee0facbba2678222d64c",
+    "source_fingerprint": "sha256:6afcda34462e4f799ed95c893251ca9c697da0d0cf049a6799cf4e96713c2e37",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "89601cbea041bf900625ec183c7eeddb3233584efaa8d4ea1e73eabc1b6501fd",
-      "plan.md": "8bd8a2316548c1c7ca89ca4f5bcf08680c889d19f72696891df57a6d525b963e",
-      "tasks.md": "fbcacc52c90cbd253d6f856f092a4a8f69cf0a3c7d65e0984b17104469407af6",
-      "implementation-summary.md": "02eb4d9eae433c0526ce24ae649f82dfebaa03fe01c7614985a9f1779cba7dbb"
+      "plan.md": "430deafd00d04c221b9878dd8a70e23e0c64641a3f5f3b88e1ba5346f3a9d6b1",
+      "tasks.md": "9031661bdc12d3d1422c7e46cef91a415e4b530067b45b74384485654f2bf246",
+      "implementation-summary.md": "9296f8bf87a83054d3efffc2b20bc077df5e6bfdc0dda21dea3cccbc30de2c68"
     },
     "last_active_at": null
   }

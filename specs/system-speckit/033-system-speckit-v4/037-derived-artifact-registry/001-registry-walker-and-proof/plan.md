@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: registry, walker and proof"
 description: "Write one declarative registry for the three derived artifacts, one walker that normalizes the three wrapped tools' exit vocabulary and one staling case per entry so the mapping is proved rather than assumed."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "registry walker and proof plan"
 importance_tier: "normal"
 contextType: "general"
 ---

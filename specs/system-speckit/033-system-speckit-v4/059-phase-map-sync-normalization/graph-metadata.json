@@ -20,7 +20,6 @@
       "completion pct report only plan",
       "phase map sync tasks",
       "completion pct report only tasks",
-      "implementation summary",
       "completion pct report only evidence"
     ],
     "key_topics": [
@@ -199,7 +198,7 @@
     ],
     "causal_summary": "Run on the v4 parent, `sync-phase-map-status.ts` proposed 38 map-row changes",
     "created_at": "2026-09-24T05:27:03Z",
-    "last_save_at": "2026-09-24T05:55:05.845Z",
+    "last_save_at": "2026-10-07T15:57:33.007Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:566ee93f67767322ddbb83989fcdde3ba7d6c04056788ec6fd78991ef73da8f2",
+    "source_fingerprint": "sha256:a1fc3440b9d76ecbd9e5e8a5ff0e8dbca85833054715be03d5d9e79e16b632e0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c84514f139af7533d42ebbb05426e9234c1a7223986913f35354f666d7d29689",
       "plan.md": "52e424494a788714d61fcae0ca40a6d53728501bc46e70df2b252fe539e3a8b0",
       "tasks.md": "7fbffddb9ee878597210ddebd5948496768c0f127567704ef568470019e6947d",
-      "implementation-summary.md": "4aee9094959434e0adacd585beb2f7cf4934ad2971417ccb603b882dbd8b35a2"
+      "implementation-summary.md": "a70f0be1e1b99ed48abf3d3a9b31e42d7f2146a29e62a760551c6388f4fa92c2"
     },
     "last_active_at": null
   }

@@ -3,7 +3,7 @@ title: "Feature Specification: Phase 1: git-workflow-run-failures"
 description: "Find every git workflow that can fail an automated run in this repository, reproduce each, and adjust sk-git and the hooks so a run survives them, with a test or a recorded reproduction per adjustment."
 trigger_phrases:
   - "git workflow run failures"
-  - "find every git workflow that can fail an"
+  - "find every git workflow that can fail"
 importance_tier: "normal"
 contextType: "general"
 ---

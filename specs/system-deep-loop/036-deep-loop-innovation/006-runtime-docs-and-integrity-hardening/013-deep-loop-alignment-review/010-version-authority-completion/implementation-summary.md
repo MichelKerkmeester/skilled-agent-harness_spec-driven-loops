@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The two deferred hubs carry one version each across five routing artifacts, sk-doc's missing release entry is authored, and the sk-code packet versions are recorded as independent with their reason."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "version authority completion implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

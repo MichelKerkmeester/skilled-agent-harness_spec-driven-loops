@@ -13,16 +13,13 @@
     "trigger_phrases": [
       "full page capture",
       "the shared screenshot renderer crops every corpus form",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "full page capture plan",
+      "full page capture tasks",
       "full page capture acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "full page capture implementation summary"
     ],
     "key_topics": [
       "full",
@@ -35,8 +32,8 @@
       "every",
       "corpus",
       "form",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -204,7 +201,7 @@
     ],
     "causal_summary": "`render-screenshots.cjs` captures every form at a fixed `1280x900` Chrome window with no full-page option (confirmed empirically in this authoring pass: two-pass measurement shows Chrome's `--screenshot` flag always outputs exactly the requested `--window-size`, never auto-trimmed to content)",
     "created_at": "2026-09-11T03:52:48Z",
-    "last_save_at": "2026-10-07T12:55:21.567Z",
+    "last_save_at": "2026-10-07T15:56:43.810Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f909200de25a5cea3324f23375933546ea2cb78aa540714117fadcf631cf224",
+    "source_fingerprint": "sha256:6138c92878e563339ebae8cc0b89dda227bd05d33c798355bcc46cf4909a10a6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7263206ba23c41ddd3954c842828177222eda86527109ddfaba30823db94311a",
-      "plan.md": "18f96213621ff977c9b82b191f25a33e3dfa3bd7b6dbf75e72fd9ba7c1c6e729",
-      "tasks.md": "22b8f1632554d5e1166018fc0e540d7660206447dd1e6f4869af24fb7e81e93d",
-      "implementation-summary.md": "5208c869f76295086cf52f50a9cc0b27c4506bbd31d0c97ef269a60fa5e371d6"
+      "plan.md": "c191b2f88c1721a4155d7f075f17c44c07460a9426803450a336a35ac9fe5aa9",
+      "tasks.md": "0121dd67d571dc47329b6fd0286a855f601c57b40eaf40594eaba87836eb0fda",
+      "implementation-summary.md": "792120c07b968883a5f423e27078c30ca043307ca957ca20a7a5abbf74feb3f5"
     },
     "last_active_at": null
   }

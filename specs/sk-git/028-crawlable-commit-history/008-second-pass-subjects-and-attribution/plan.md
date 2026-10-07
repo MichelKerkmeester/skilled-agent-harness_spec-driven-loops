@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: second-pass-subjects-and-attribution"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "second pass subjects and attribution plan"
 importance_tier: "normal"
 contextType: "general"
 ---

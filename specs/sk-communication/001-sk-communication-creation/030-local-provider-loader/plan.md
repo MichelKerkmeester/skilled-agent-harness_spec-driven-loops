@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 030 Local Provider Loader"
 description: "Add a shared local-provider config loader under src/config that turns the operator's enablement.local.json localProvider block into the full projection wiring, wire the OpenCode plugin and the CLI-output wrapper bin to it, and fail closed to the exact original on any absent or malformed provider config."
 trigger_phrases:
   - "local-provider-loader"
-  - "implementation plan"
   - "localProvider easy config loader"
   - "local LLM auto-used"
 importance_tier: "important"

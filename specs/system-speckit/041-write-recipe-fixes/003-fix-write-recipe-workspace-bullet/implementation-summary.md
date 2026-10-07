@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The workspace bullet of Step 7 in the spec folder write recipe now states the sk-git rule and points at its owner instead of citing a memory note."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "fix write recipe workspace bullet implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

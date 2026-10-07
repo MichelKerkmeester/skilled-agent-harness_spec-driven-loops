@@ -15,14 +15,13 @@
       "a session resent a parent goal in chat",
       "goal chat slice",
       "parent goal chat send cap",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "goal chat send shape plan",
+      "goal chat send shape tasks",
+      "goal chat send shape acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal chat send shape implementation summary"
     ],
     "key_topics": [
       "goal",
@@ -34,9 +33,9 @@
       "parent",
       "slice",
       "cap",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -205,7 +204,7 @@
     ],
     "causal_summary": "A session bound to a phase parent edited a criterion and resent the parent `goal.md` in chat",
     "created_at": "2026-09-16T18:28:40Z",
-    "last_save_at": "2026-10-07T12:55:50.078Z",
+    "last_save_at": "2026-10-07T15:57:29.052Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37177e9c1b36daa2fa2bb667c1f57f15ffe3c588931fa8bfbe2cb53a954d087a",
+    "source_fingerprint": "sha256:63da86a8f3355cd0b076c43b8d85fe69471d1726d526b3cc8c32ce21d5ff9fdf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "92fb770e0e49cc0ddbc8cde985df5a86608eef50ef4e12426da11e712676f10d",
-      "plan.md": "62b6b30cf64c565401019b01a7646e0686cc336ab451ef5e973b0410929ce5ee",
-      "tasks.md": "dea570189204da0c02d32b2ebdc61d61051db8141042bce25ae787fdd9a5b408",
-      "implementation-summary.md": "4de149315f0b079f1739161a6ee2cf86ee57e6213ab65fc1bf2454673ca46492"
+      "plan.md": "3ebd70d3546c8e2199e45691374d31be305d7285266450c34fd6953b4bf97df5",
+      "tasks.md": "1206efd1cef1611c4ebe06121482149b5fcf7738a7bbff9c70a53c2652a0ba65",
+      "implementation-summary.md": "c78384d3ef75fcb87c97811fafe8c4b7ddda76a73e8a1d461a3a8a1f30e1e9f2"
     },
     "last_active_at": null
   }

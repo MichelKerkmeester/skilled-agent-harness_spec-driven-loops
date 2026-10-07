@@ -13,16 +13,10 @@
     "trigger_phrases": [
       "shadcn reference research",
       "six research angles against a frozen local copy",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "shadcn reference research plan",
+      "shadcn reference research tasks",
       "shadcn reference research acceptance criteria",
-      "implementation summary"
+      "shadcn reference research implementation summary"
     ],
     "key_topics": [
       "shadcn",
@@ -34,9 +28,9 @@
       "frozen",
       "local",
       "copy",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -197,7 +191,7 @@
     ],
     "causal_summary": "Our 26 chart forms were authored without reference to how the most-used open chart library in the same design tradition solves the same problems",
     "created_at": "2026-09-07T12:45:39Z",
-    "last_save_at": "2026-10-07T12:55:11.775Z",
+    "last_save_at": "2026-10-07T15:56:34.692Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +202,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:da159f82c52aba681c5e0ef129219903d9f9cf2f70374f67d6e0259e014da4c4",
+    "source_fingerprint": "sha256:0d2d3d555050420b6cf790b80471f2309794e66a5f39455385287c7f26585d57",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9a22723cac6be67c51855b112322b48ede400f10483ee2ad9e6872b76c2656de",
-      "plan.md": "75c91f2329e83d23d4eac3ef1f5de91d3ab42ecc028174e546beccd406854689",
-      "tasks.md": "a6bb640be0583b198c5de5365188e8a48e299a9c3b1f5ef5e07e585786e9d262",
-      "implementation-summary.md": "917ec46341157227de661bf803bebe905c1e660907fad706ff74d303980e7ab4",
+      "plan.md": "c91db83e5680f223859cfa481d6116d8aacef1796d510c3459a8de42cd856225",
+      "tasks.md": "49f277f67983dba1da02f97fb484a0bca088300ca7698d29bcb1e4b1673d114e",
+      "implementation-summary.md": "fe3ef18f4d56b91506ff4540aadcbd063ab5d9212e22effea980b5791824977a",
       "research/research.md": "12dfc31416087301855ecb3a7ee155398879856c265fde7855f11fbfa98d41c9"
     },
     "last_active_at": null

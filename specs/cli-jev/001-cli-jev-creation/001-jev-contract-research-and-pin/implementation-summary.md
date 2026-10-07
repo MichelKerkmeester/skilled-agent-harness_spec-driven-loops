@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The jev 0.6.2 contract is pinned against the live binary and the vendored source: subcommands, flags, exit taxonomy, provider table and the MCP tool surface, each claim tagged source-read or live-verified, with the unauthenticated paths proven and the authenticated ones recorded as unconfirmed."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "jev contract research and pin implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

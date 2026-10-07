@@ -2,7 +2,6 @@
 title: "Implementation Summary"
 description: "upgrade-level.sh now adds whole sections, puts a new document's level marker under its H1 and stamps it with the packet's identity, so a freshly upgraded packet passes strict validation instead of failing with malformed docs."
 trigger_phrases:
-  - "implementation summary"
   - "upgrade level section fragments"
   - "upgrade-level validation evidence"
 importance_tier: "normal"

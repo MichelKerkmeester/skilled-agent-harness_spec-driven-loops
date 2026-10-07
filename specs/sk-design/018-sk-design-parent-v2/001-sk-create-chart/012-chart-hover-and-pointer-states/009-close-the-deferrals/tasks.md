@@ -2,10 +2,7 @@
 title: "Tasks: Close every deferral the packet left: repair the pointer-only readings, enforce the readout rule, and require a contract row per form"
 description: "Repair three tables so no card outruns its data, add the two corpus rules that make the property enforceable, watch each rule fail before trusting it, then close every open item the parent packet carried."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "close the deferrals tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

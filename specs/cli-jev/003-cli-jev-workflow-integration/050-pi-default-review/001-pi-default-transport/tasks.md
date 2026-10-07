@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: Make Pi the default Jev transport when it is available"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "pi default transport tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

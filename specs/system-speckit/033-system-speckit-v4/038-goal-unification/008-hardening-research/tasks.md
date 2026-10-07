@@ -2,10 +2,7 @@
 title: "Tasks: Hardening research"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "hardening research tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

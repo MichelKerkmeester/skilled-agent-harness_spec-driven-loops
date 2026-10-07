@@ -16,13 +16,10 @@
       "pi spec gate dialog",
       "mutation-time prompt",
       "gate 3 suppression",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "gate 3 mutation time delivery plan",
+      "gate 3 mutation time delivery tasks",
+      "gate 3 mutation time delivery acceptance criteria",
+      "gate 3 mutation time delivery implementation summary"
     ],
     "key_topics": [
       "gate",
@@ -34,9 +31,9 @@
       "mutation-time",
       "prompt",
       "suppression",
-      "implementation",
-      "plan",
-      "technical"
+      "mutation",
+      "time",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -210,7 +207,7 @@
     ],
     "causal_summary": "The Gate 3 question is delivered by appending a four-option menu to the user's own turn whenever the classifier reads write intent, and the gate almost never closes",
     "created_at": "2026-09-22T06:21:55Z",
-    "last_save_at": "2026-10-07T12:55:51.783Z",
+    "last_save_at": "2026-10-07T15:57:33.227Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +217,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db9dc09f1099b5c2ba6be1ed245aaabcabdbc62be198638fbe36e7a0d3d01ca9",
+    "source_fingerprint": "sha256:1fdd752318e1f58dccf44ef2f5f6d40c97ab0b3eb0fa8c95c03e14457cb28344",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "163bd5af56d9e90addf4adeecc1b3f962f8ed67eb693f9b4085aa166cfc9ee6c",
-      "plan.md": "fe748a015ba90f27daf8b78eebe87de1c02b133a4e8d5c92ac5cc1f70a920ae0",
-      "tasks.md": "e7ecbce28c918cafdb755351be8ed4a6c96b08cdc2356c626e54cd7d743031b4",
-      "implementation-summary.md": "73e6e5c8521cb431186940cf5658128cea95ee81008f59a57ce655e5e1b7bf70"
+      "plan.md": "05273c79d2d907b886fe87fa410c8a7d01a0fe08c4f632c0875aada6470bc28a",
+      "tasks.md": "078838aae49c3428b036ca1e4afbeee6855ef609f29722572af0f4ded32220cb",
+      "implementation-summary.md": "a89ba557e7bf3eda5855ef5e5a99df01a7d1e6f2b69a5c297ffc3bb6501fb914"
     },
     "last_active_at": null
   }

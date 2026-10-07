@@ -2,10 +2,7 @@
 title: "Implementation Plan: visual polish pass on the chart corpus"
 description: "Six polish moves across the 33 corpus files, each with a checker assertion where one can hold it, built by GLM-5.3-Flash through pi and verified by the conductor with the render gate."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "visual polish plan"
 importance_tier: "normal"
 contextType: "general"
 ---

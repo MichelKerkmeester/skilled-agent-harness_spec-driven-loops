@@ -3,7 +3,6 @@ title: "Implementation Plan: 007 Search RAG Measurement-Driven Implementation"
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2"
 description: "Five sequential workstreams use hypothesis, baseline, additive variant, re-measurement, and decision."
 trigger_phrases:
-  - "implementation plan"
   - "w3 trust tree"
 importance_tier: "high"
 contextType: "implementation"

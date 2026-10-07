@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: post-work-review"
 description: "Ten angles, one per iteration, each naming a mechanism the program added and asking whether the tree supports what was claimed about it."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "post work review plan"
 importance_tier: "normal"
 contextType: "general"
 ---

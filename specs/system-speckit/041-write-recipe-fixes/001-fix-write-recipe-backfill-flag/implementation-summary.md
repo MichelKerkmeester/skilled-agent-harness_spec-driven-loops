@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Step 5 of the spec folder write recipe now passes the packet folder as the backfill script's target, so the command runs as written instead of exiting 1."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "fix write recipe backfill flag implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

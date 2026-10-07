@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Ten adversarial iterations over the alignment program's own claims, by a model that did none of the work."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "post work review implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

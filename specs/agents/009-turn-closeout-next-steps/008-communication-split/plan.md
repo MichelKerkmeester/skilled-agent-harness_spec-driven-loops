@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: communication-split"
 description: "Split the communication rule two ways so each half carries the trigger it actually needs."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "communication split plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -5,7 +5,6 @@ trigger_phrases:
   - "command surface realignment tasks"
   - "workflow asset rewrite tasks"
   - "help printer tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

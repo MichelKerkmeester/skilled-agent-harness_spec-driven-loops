@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The chart corpus reads as a product card: clean source line, taller plots, folded table, finding cue, compact numbers with units, and a contract that matches the shipped fade, built by GLM-5.3-Flash from five short briefs."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "visual polish implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

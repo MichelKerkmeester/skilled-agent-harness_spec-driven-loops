@@ -16,13 +16,9 @@
       "agent description length",
       "advisor routing keywords",
       "audit description surface",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "description budget plan",
+      "description budget tasks",
+      "description budget implementation summary"
     ],
     "key_topics": [
       "description",
@@ -210,7 +206,7 @@
     ],
     "causal_summary": "Seven authored descriptions sit over their soft target and the project total runs 1,251 characters over its 5,600 ceiling",
     "created_at": "2026-10-03T05:27:42Z",
-    "last_save_at": "2026-10-03T11:48:56.194Z",
+    "last_save_at": "2026-10-07T15:56:48.748Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +215,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec6fae3c6a57b513114b2b719b657c3806c3d95b228ff47f3e5d5625efa77dd1",
+    "source_fingerprint": "sha256:76ca6f73740819c79fa06a5b345b24e65e52b38a5f9a53b6491feb3a75f575cc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4633d71d2bab81b62e7a09c444b3e6f0c773b02bb0a5bc3606f71394bc17e365",
-      "plan.md": "d66f99d975f9514fef7af802c50152acfe0cd240475dba50f61f1f676bf6ffe9",
-      "tasks.md": "2215b1828a5aad0a1fa91ccdb0c556f466a0fb246f8a70ede3721dfe5f245f2b",
-      "implementation-summary.md": "7f435b0857af6810d8a1972be57679916c72670b422888e442355abef4c300c9"
+      "plan.md": "d0d906fa0fbd58d82d2f9c4c74bca5ffc6af39a25b1a928df4f9cc7dbd0f8c3d",
+      "tasks.md": "e876d8a0337fc3cf704fd58e28395087c3e45369eefeb66c85ade9ee6f5fc052",
+      "implementation-summary.md": "55cb7002ea3ff179bcf1ef2dd6936e41366108637867aa667c318e1edda77054"
     },
     "last_active_at": null
   }

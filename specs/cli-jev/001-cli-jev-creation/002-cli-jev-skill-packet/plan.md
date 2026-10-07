@@ -2,9 +2,7 @@
 title: "Implementation Plan: Phase 2: cli-jev-skill-packet"
 description: "Author the cli-jev packet from phase 001's pinned contract: a transport SKILL.md whose rules name their enforcing checks, four references that carry the contract without restating it, and the supporting assets a mode folder needs."
 trigger_phrases:
-  - "implementation plan"
   - "approach and phases"
-  - "testing strategy"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

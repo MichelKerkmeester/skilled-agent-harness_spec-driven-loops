@@ -2,10 +2,7 @@
 title: "Implementation Plan: Make Code Mode buildable from a fresh clone and validate its UTCP config"
 description: "Track the embedded Code Mode server manifest, teach install.sh to build dist, correct validate_config.py's per-type and credential-prefix checks, and make the doctor's Codex and build-currentness checks truthful."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "code mode fresh clone build plan"
 importance_tier: "normal"
 contextType: "general"
 ---

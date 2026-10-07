@@ -2,10 +2,7 @@
 title: "Implementation Plan: Build: improve the Jev routing clarify default (020)"
 description: "Make the clarify scorer replay each row on the pinned routers before scoring, record its instrument, report by class and hub against stronger baselines, and stop after two agreeing orders.."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "clarify default improvements plan"
 importance_tier: "normal"
 contextType: "general"
 ---

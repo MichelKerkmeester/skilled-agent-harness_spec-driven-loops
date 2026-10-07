@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The chart packet's twenty-two releases now number below 1.0, and the four live surfaces that still named files the corpus cleanup deleted have been reconciled."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "prerelease versioning and residue implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

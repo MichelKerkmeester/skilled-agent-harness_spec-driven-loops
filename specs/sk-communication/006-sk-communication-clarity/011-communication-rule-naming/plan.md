@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 11: communication rule naming"
 description: "Rename the two unprefixed reply rules, repoint every live reference, and prove completeness with the corpus checker rather than with a grep alone."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "communication rule naming plan"
 importance_tier: "normal"
 contextType: "general"
 ---

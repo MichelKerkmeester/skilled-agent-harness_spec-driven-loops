@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The /create:changelog skill writes release notes in the v4 exemplar's narrative style, and a later concision pass made its entries and its own docs shorter, with each fact said once and no rule lost."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "sk create changelog v4 style implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

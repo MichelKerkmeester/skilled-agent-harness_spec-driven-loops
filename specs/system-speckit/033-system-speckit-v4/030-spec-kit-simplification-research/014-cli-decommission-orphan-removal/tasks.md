@@ -5,7 +5,6 @@ trigger_phrases:
   - "orphan removal tasks"
   - "lane repair tasks"
   - "ci workflow tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

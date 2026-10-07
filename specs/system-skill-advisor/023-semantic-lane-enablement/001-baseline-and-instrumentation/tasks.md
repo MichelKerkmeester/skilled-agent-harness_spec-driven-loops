@@ -5,7 +5,6 @@ trigger_phrases:
   - "baseline tasks"
   - "coverage measurement"
   - "status instrumentation"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "general"
 _memory:

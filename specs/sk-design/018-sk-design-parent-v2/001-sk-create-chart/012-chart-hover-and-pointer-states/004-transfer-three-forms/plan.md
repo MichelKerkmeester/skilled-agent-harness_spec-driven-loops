@@ -2,10 +2,7 @@
 title: "Implementation Plan: Transfer the pointer mechanism to stacked-bars, daily-line and bar-line-composed"
 description: "Copies the proven box-plot pointer excerpt into three templates unchanged, registering each form's own marks against its own readout, with a byte-delta measurement and a negative control per file."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "transfer three forms plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Implementation Summary: the design mode and command rename"
 description: "Both moved modes and both commands take the hub name, 249 files move as renames, and the routing comes back byte-identical."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "design mode and command rename implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

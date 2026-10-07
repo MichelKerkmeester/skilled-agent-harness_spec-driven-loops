@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "injection screen research",
       "five deepseek v4 1 flash and three gpt",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "injection screen research plan",
+      "injection screen research tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "injection screen research implementation summary",
+      "jev injection screen improvement",
+      "fetched text injection screen research",
+      "webfetch injection screen default-on"
     ],
     "key_topics": [
       "injection",
@@ -33,10 +33,10 @@
       "flash",
       "three",
       "gpt",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Phase 047 measured the Jev fetched-text injection screen at verdict jev: keep K=90 M=90 A=81 B=56 W=30 L=5 TP=31 FP=5 F=0 p=0.00001118, brier 0.0652",
     "created_at": "2026-10-02T21:59:44Z",
-    "last_save_at": "2026-10-07T12:54:51.875Z",
+    "last_save_at": "2026-10-07T15:56:02.503Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:397d43212bddc047d313a49e80cb5701c7f5b9c93d4eba924ed628052d566c34",
+    "source_fingerprint": "sha256:4ae65486b99cb3e1d25a65979bbc2c5cb29c608574fdc34430a43c690e342560",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "35b17a716afcb3d9c19daae17ea0a930f9bafaa6b2a7ce91807202fa6d6f3891",
-      "plan.md": "30a2b3cf7de5490eb0fa5c822d6560df1a46dd72add1b323017205a2edf9dcec",
-      "tasks.md": "a2672ff2d074428b22d00a9b871373f4b5dc934a244bafd2fdf0dcc5dd9c2a2d",
-      "implementation-summary.md": "2d3b6d52408ce8c1f3a010cc686aa4b072d0cff0f051de00ddf093ea5e1792a8",
+      "plan.md": "25fa6b4f17a78222b6da1595934ba88d704fb0a1a02b3f156a4ddf39530a7fe4",
+      "tasks.md": "7d75ef7967516ced045685c0bcb38ef336e377660c04017bf6c56931fe3ffa0c",
+      "implementation-summary.md": "ba2eac700da3047a494ba884c18e29358a6a6dc654684ad0801f85afc4eb39d6",
       "research/research.md": "16f0a410ab23b563f81b42c8b2c24895e988115a3cc2fd9ac97cb5d017bfed27"
     },
     "last_active_at": null

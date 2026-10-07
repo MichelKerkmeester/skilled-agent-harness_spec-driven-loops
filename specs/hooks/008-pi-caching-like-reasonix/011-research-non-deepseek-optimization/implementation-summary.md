@@ -2,7 +2,6 @@
 title: "Implementation Summary: Non-DeepSeek Optimization Research"
 description: "A 10-iteration forced-depth read-only deep-research loop audited pi-cache-optimizer's non-DeepSeek surface and produced 15 priority-ranked findings; a concurrent unrelated dispatch collision caused and recovered a real write-containment false-positive revert."
 trigger_phrases:
-  - "implementation summary"
   - "non-deepseek optimization research"
 importance_tier: "normal"
 contextType: "implementation"

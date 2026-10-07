@@ -13,16 +13,13 @@
     "trigger_phrases": [
       "jev follow-ups",
       "citation drift advisory check",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "followups plan",
+      "followups tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "followups implementation summary"
     ],
     "key_topics": [
       "jev",
@@ -31,12 +28,12 @@
       "drift",
       "advisory",
       "check",
-      "implementation",
+      "followups",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "packet",
+      "goal",
+      "durable"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "Phase 050 kept Pi as the default and left open items",
     "created_at": "2026-10-03T21:08:42Z",
-    "last_save_at": "2026-10-04T12:12:03.127Z",
+    "last_save_at": "2026-10-07T15:56:06.961Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7fde84911537d057e3ab5299de06d68a38390a157b4cd77a748fcec849b0c644",
+    "source_fingerprint": "sha256:828c7861783a34660887a014e557af5623c5149b66740958bee4fe968d14fcb5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c5063646c024f4c0414636cf60803f972fc912d1ef7f3e7b3250f17971dbc897",
-      "plan.md": "fb9b934798347662af263e29ca8799038ea3191618f00aded1532124ecd4f2bd",
-      "tasks.md": "8a232d07609e222392a0210c681751dbd86634127c2ee6c858870e148d4dafb5",
-      "implementation-summary.md": "a774f0036278bdc8c911c266409c834533ef5c628e2c6cb731f31ba71f713935"
+      "plan.md": "b555b52f8931d86dc629f3c2994aaeb9480ef8e01a6b5a30f12ccb050e0fb449",
+      "tasks.md": "81e12613a8edc0dcbfa92e483b19d08d889f75ade75a715581e3ddc8bfb9f6e8",
+      "implementation-summary.md": "e7bb582ae7dafc32f7ed90616ce4d47e1d54892c123a7c3889a1bf02e7493cb0"
     },
     "last_active_at": null
   }

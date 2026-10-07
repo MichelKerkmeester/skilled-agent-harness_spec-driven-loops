@@ -2,10 +2,7 @@
 title: "Tasks: Perfect skill routing across the fleet: why an advertised phrase fails to arrive"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "routing perfection research tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Implementation Plan: Codex Lineage Credential Isolation"
 description: "Documents the credential-isolation fix attempted for the codex fan-out 401 lineage failure: link the operator's auth.json into the relocated CODEX_HOME, or refuse before spawning when no credential resolves. A fresh security-and-correctness review returned FAIL, and the change was reverted. This plan records what was built and why it did not survive review."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "codex lineage auth isolation plan"
 importance_tier: "normal"
 contextType: "general"
 ---

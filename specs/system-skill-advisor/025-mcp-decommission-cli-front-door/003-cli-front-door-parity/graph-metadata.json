@@ -15,14 +15,14 @@
       "advisor cli parity",
       "advisor exit taxonomy",
       "advisor cli contract",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "cli front door parity plan",
+      "cli front door parity tasks",
+      "cli front door parity acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "cli front door parity implementation summary"
     ],
     "key_topics": [
       "advisor",
@@ -33,10 +33,10 @@
       "exit",
       "taxonomy",
       "contract",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The CLI works today but is not yet something the rest of the repository can be pointed at with confidence",
     "created_at": "2026-09-11T06:48:58Z",
-    "last_save_at": "2026-10-07T12:55:40.192Z",
+    "last_save_at": "2026-10-07T15:57:06.290Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:27dd6a830add894a2d2b5541b10a3a0a01c59e7780d66c5634e8f1cf82a7550d",
+    "source_fingerprint": "sha256:5243888946c3721ad0d35dd15db23af8f2ae2cc1c933042206c010cb1a0375f9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4cb033510692b8153ee0e33b856496e0245327894378939922c6e6d4f1f807c7",
-      "plan.md": "2b94a1ed2862cd6a0cd6b0ba6b5c52e505c9a4eac5f3e2470495657a00be0f14",
-      "tasks.md": "1b722bc4847167d5375c7103fca353a0e63f5ec21f0662e377f2f3a1e030438e",
-      "implementation-summary.md": "55e418e07593c3e7a1123d2dffd03c3f9d1012a2a2883c06aaa62a0bf265267c"
+      "plan.md": "daf0661db1898204fe6f0c7091fc74aed7850ff08405081cf4a7821f6ce32ed8",
+      "tasks.md": "d0291e234c65548627fb7a73ecc81cb86d78342f7fe96dd00688259d24051db7",
+      "implementation-summary.md": "11be0c9b98398cbd459a386a0ed2812324efa137ac95a0d70d6186438e62b674"
     },
     "last_active_at": null
   }

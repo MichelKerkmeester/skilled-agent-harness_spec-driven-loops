@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 006 Runtime Adapters and Clients"
 description: "Implement integrate the projection core with six clis through their safest supported event and presentation boundaries. using the shared immutable-state architecture."
 trigger_phrases:
   - "runtime-adapters-and-clients"
-  - "implementation plan"
   - "portable cli projection"
 importance_tier: "important"
 contextType: "implementation"

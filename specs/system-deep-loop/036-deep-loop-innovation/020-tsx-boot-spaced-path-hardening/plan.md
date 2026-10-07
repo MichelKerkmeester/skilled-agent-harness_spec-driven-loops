@@ -11,10 +11,7 @@ _memory:
     recent_action: "Authored the phased plan; implementation complete"
     next_safe_action: "Verify both gates; reconcile docs"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "tsx boot spaced path hardening plan"
 ---
 # Implementation Plan: tsx Boot + Containment-Root Hardening
 

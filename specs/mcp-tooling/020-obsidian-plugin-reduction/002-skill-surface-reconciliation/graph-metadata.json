@@ -14,15 +14,10 @@
       "mcp-obsidian router intents",
       "reconcile obsidian skill docs after plugin removal",
       "obsidian resource map cleanup",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "skill surface reconciliation acceptance criteria"
+      "skill surface reconciliation plan",
+      "skill surface reconciliation tasks",
+      "skill surface reconciliation acceptance criteria",
+      "skill surface reconciliation implementation summary"
     ],
     "key_topics": [
       "mcp-obsidian",
@@ -197,7 +192,7 @@
     ],
     "causal_summary": "After phase 1 the mode's own documents are wrong",
     "created_at": "2026-09-11T06:42:00Z",
-    "last_save_at": "2026-10-07T12:55:01.358Z",
+    "last_save_at": "2026-10-07T15:56:13.818Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +202,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8af179bbf27d2aa266566a610d14d0a3592898aa30e3eb9e72ccfdad6dbd1b3b",
+    "source_fingerprint": "sha256:6dc9bd9f78b0fef955c53ffdb43fe63cc68c4efd2f3fd856eabdd50d0453f8ba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fe966fec31e3ce6095e163fbf0c90e7f7e8066f9e13da2090381340a7bedca4e",
-      "plan.md": "511dff5f911fcb9cdc221f48c4eddf69f815b719442c2d76ce1d617d27a114df",
-      "tasks.md": "1248e454930225efe3340cc828c48eb1c1324d5487954796b0758e0c16782012",
-      "implementation-summary.md": "16730ed7f104c44678d7faf8fa04ea9401ba789d568cc2ab38bded1b8c68b5d4"
+      "plan.md": "8ccf4f9115372cdf10810b86ce6431c0f74ae18045c0ec41ecd3e7e07dd94830",
+      "tasks.md": "6d759706d8c8b52b2b16659dcd83f36cc16e5c742831699ed2814f40fc4e3aaf",
+      "implementation-summary.md": "78aef5552ab139b16710ad9ad41b062998ddff60a5f81b50c291027d2aa6bca6"
     },
     "last_active_at": null
   }

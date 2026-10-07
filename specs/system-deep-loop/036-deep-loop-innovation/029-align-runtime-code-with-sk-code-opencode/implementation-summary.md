@@ -2,10 +2,7 @@
 title: "Implementation Summary: system-deep-loop runtime alignment"
 description: "The deep-loop runtime now meets sk-code-opencode: headers, numbered sections, code READMEs, three folder merges and an ARCHITECTURE.md, plus the checker flags, loop driver and template the two sibling packets reused."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "align runtime code with sk code opencode implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

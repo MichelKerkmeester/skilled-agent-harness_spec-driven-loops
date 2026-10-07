@@ -15,10 +15,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "causal relation coverage honesty tasks"
 ---
 # Task Breakdown: Causal Relation-Coverage Reporting Honesty
 

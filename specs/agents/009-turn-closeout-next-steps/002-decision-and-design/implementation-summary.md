@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The decision tests refused a rule file; the operator override and the scope widening are recorded as decisions."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "decision and design implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

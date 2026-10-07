@@ -2,10 +2,7 @@
 title: "Implementation Plan: Improve sk-create-readme writing-style guidance"
 description: "Prose additions to six guidance files plus a changelog entry, carrying the root README's proven patterns into the skill's rules."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "sk create readme writing style plan"
 importance_tier: "normal"
 contextType: "general"
 ---

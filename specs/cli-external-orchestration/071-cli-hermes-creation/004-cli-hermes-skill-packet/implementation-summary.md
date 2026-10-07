@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The cli-hermes skill packet exists with eight hard rules and seven references, and it is the seventh registered mode of cli-external-orchestration, reachable through both routing stages and passing both hub checkers."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "cli hermes skill packet implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

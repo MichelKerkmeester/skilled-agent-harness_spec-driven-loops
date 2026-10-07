@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The .skilled layout is decided: one relative .opencode -> .skilled link, a frozen 25-step cutover with checks and rollbacks, and a keep-list, all accepted after a GPT-5.6 review whose seven findings were applied."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "migration design implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

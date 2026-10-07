@@ -21,8 +21,8 @@
       "md-generator gate option plan",
       "sk-design routing replay plan",
       "compiled-route-admission sk-design",
-      "task breakdown",
-      "implementation tasks"
+      "sk design doc and routing check tasks",
+      "sk design doc and routing check acceptance criteria"
     ],
     "key_topics": [
       "sk-design",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Rule 6 at `.skilled/skills/sk-design/SKILL.md:202-203` says \"Never quote a compiled routing decision for this hub",
     "created_at": "2026-09-27T11:50:20Z",
-    "last_save_at": "2026-10-07T12:54:52.351Z",
+    "last_save_at": "2026-10-07T15:56:01.964Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a9dd79cb1574d6b5b7cab15796de0f7ad885de93cb34c9f1d7b180e608487f7",
+    "source_fingerprint": "sha256:1ed4738eebc15ea85b89921326b1b0ec94be4ca4bb27501525c7f9f280e291a7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9028c366db54950d34b2f18912718cfda23dcaf6baa52e0dac80c932c2dde592",
       "plan.md": "1f554a668ffe810352719887d88e7e7062247a58731c449728efafe416b61c34",
-      "tasks.md": "f770551ac7fb95d09b6f97cd7fa07d0fee0ea78a148aa768b84835410d2e7ee3",
+      "tasks.md": "bf7d438432f2da1b1692f4dde6bb9dfe0f312e1c89a925b169021b231b0b169a",
       "implementation-summary.md": "a53147221cf626e51adefe8138c3b6fb395948f4a1081f5d4680b8311fb463f7"
     },
     "last_active_at": null

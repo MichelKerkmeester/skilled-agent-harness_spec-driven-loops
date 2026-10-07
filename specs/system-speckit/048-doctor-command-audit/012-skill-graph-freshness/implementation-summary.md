@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Keep verdict for `/doctor:speckit skill-graph-freshness`: the route, its workflow asset, its read-only script, its flags and its presentation row all still match the system they cover, so the verdict was applied by changing nothing."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "skill graph freshness implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

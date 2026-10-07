@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The transport has a feature catalog and a 22-scenario manual testing playbook: every scenario written around an observable a shell produces, 20 executed as part of this work and 2 recorded as skips at close, later closed by the authenticated verification."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "catalog and playbook implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

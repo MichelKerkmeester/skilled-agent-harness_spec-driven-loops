@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A reply harness with a pre-change baseline and a negative control ran once: the rules lifted the weighted score from 0.60 to 0.74 with no dimension falling, and two rules showed no measurable effect."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "verification and rollout implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

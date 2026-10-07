@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 3: orchestrate-mirror-alignment"
 description: "Grant the tool in the source, state the per-runtime name once in the shared body, regenerate the mirrors, and prove parity with the checker."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "orchestrate mirror alignment plan"
 importance_tier: "normal"
 contextType: "general"
 ---

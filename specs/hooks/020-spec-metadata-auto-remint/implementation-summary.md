@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "450 packets carried a stale derived-metadata fingerprint. The sweep cleared them, a commit-time gate keeps them clear, and two runtime fixes stop the tooling reporting correctly-excluded folders as failures under a message that named the wrong condition."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "spec metadata auto remint implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

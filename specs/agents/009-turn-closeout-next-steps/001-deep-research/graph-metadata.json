@@ -15,14 +15,10 @@
       "decision tests evidence",
       "existing home for close-out",
       "structured question tool",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "deep research plan",
+      "deep research tasks",
+      "deep research acceptance criteria",
+      "deep research implementation summary"
     ],
     "key_topics": [
       "close-out",
@@ -197,7 +193,7 @@
     ],
     "causal_summary": "The operator wants every turn to end with what they have to do next, and wants a structured question used where a choice is needed",
     "created_at": "2026-09-11T10:54:55Z",
-    "last_save_at": "2026-10-07T12:54:42.577Z",
+    "last_save_at": "2026-10-07T15:55:51.869Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +203,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b98e1c06c04d4478761a62e3aaaafbd3504aa8cda73204386af57c72bf3a4a61",
+    "source_fingerprint": "sha256:3e2b12d3ca12a4c75fa4ce7409c40128f0d276fdf5cec4e70e5b6dce737e5179",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "35da76bfb5a18543f28234a61eb6674576b3f66b13a3baf054a4a98549b70a4f",
-      "plan.md": "07219388e7d3d85453ffb25c6b3044fc65b62e05b991ada560bc8496aca393be",
-      "tasks.md": "6a46d618b5a7e763cbe59dd3d3cc423a2260162f54e994ee5c3c6e68d28d0f6a",
-      "implementation-summary.md": "aeb068ec904f838dcfd96b534aae5c27db669b1f66ff5bcf5d996b6904a84ed7"
+      "plan.md": "5845763366a5f76cef9fdf198c241e91140f4387893e12e54fc8737d01f7bf93",
+      "tasks.md": "7085d4681dee0c575d2ac11362287ce0a473e60f392528c0d07dd0a5cf420bbd",
+      "implementation-summary.md": "4e37c181a5517c7682d75aacdbe0e567616e209d0a2d2d2bcc4fbf4871208665"
     },
     "last_active_at": null
   }

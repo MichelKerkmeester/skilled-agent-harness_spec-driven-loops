@@ -13,16 +13,9 @@
     "trigger_phrases": [
       "fix broad staging in examples",
       "a release example staged everything with git add",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "fix broad staging in examples plan",
+      "fix broad staging in examples tasks",
+      "fix broad staging in examples implementation summary"
     ],
     "key_topics": [
       "broad",
@@ -33,10 +26,10 @@
       "staged",
       "everything",
       "git",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -197,7 +190,7 @@
     ],
     "causal_summary": "The sk-git skill says never to run `git add -A`, `git add .` or a broad `git add <folder>` while the tree holds unrelated changes, and to stage explicit paths instead (`commit-workflows.md`, \"Step 7: Scoped-Staging Discipline\")",
     "created_at": "2026-09-29T07:19:57Z",
-    "last_save_at": "2026-10-07T12:55:27.625Z",
+    "last_save_at": "2026-10-07T15:56:49.198Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0324eb4bc735ba7f47063b4f3272e45e68074ad1345e2d890cf7f3c0d34af3a9",
+    "source_fingerprint": "sha256:fb989dd6ca9f8b5bdbf51231b3f1c9292219e2d0e2911ffd151ce58a6befbb6d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7767b6ba60b1be7329329110e439246689688bc31776a05f31cc2492c9abc134",
-      "plan.md": "8885625f4d22a29430fc8a546ca2b8c2b40a1a3fdefbbe8a922f737b3d9e6592",
-      "tasks.md": "f4181032bc186369ef57f2ff5aedbfbe456aaedc2d0ee670e4ac6387a6eb2657",
-      "implementation-summary.md": "427575e8f854ef9061cdb46771e42e3e36105893eebbc904a56f8d54ad1bc758"
+      "plan.md": "adefd48df84a9dd8a4eda47152ea6f35f9f4b392aadc903ed99eaf16dec0cb86",
+      "tasks.md": "6cd8f9a5529a93ab1e8eda473d03f674bbf1c91349269cfdbbb7f4b09eb5a63d",
+      "implementation-summary.md": "b526f4eec4d5b71ced0cff6849953d1bcceb75cb2543df400baeb513ee0d287c"
     },
     "last_active_at": null
   }

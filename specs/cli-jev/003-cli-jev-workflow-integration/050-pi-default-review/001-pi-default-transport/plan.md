@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: Make Pi the default Jev transport when it is available"
 description: "The transport gains an automatic route used when no transport is named."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "pi default transport plan"
 importance_tier: "normal"
 contextType: "general"
 ---

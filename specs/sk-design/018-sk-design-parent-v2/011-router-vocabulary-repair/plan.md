@@ -2,10 +2,7 @@
 title: "Implementation Plan: a phrase the router declares reaches the hub"
 description: "Probe the 55 keywords the sk-design router declares that its scoring vocabulary never sees, repair the 11 that genuinely fail, and remove the chart vocabulary sk-doc kept."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "router vocabulary repair plan"
 importance_tier: "normal"
 contextType: "general"
 ---

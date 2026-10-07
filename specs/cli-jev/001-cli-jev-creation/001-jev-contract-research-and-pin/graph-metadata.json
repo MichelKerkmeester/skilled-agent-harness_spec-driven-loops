@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "jev contract research and pin",
       "every claim the cli jev packet makes about",
-      "implementation plan",
       "approach and phases",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
+      "jev contract research and pin tasks",
       "jev contract research and pin acceptance criteria",
       "packet goal",
       "durable directive",
-      "completion criteria"
+      "completion criteria",
+      "goal binding",
+      "jev contract research and pin implementation summary"
     ],
     "key_topics": [
       "jev",
@@ -34,9 +32,9 @@
       "cli",
       "packet",
       "about",
-      "implementation",
-      "plan",
-      "approach"
+      "approach",
+      "phases",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -201,7 +199,7 @@
     ],
     "causal_summary": "The hub is about to route work to a binary it does not control, and the only available accounts of that binary are a vendor README, a vendored source tree, and the binary itself",
     "created_at": "2026-09-20T07:39:05Z",
-    "last_save_at": "2026-10-07T12:54:47.514Z",
+    "last_save_at": "2026-10-07T15:55:57.424Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7758c3c2667264d4a76ff67aa30aee00ac468d133af42373060e017829829a62",
+    "source_fingerprint": "sha256:715f1055b4a94eea2fa4619b4722bb813ff5fdfff51bfac0a1d8df50fd590ab2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "279dfa90ddb09426bfd5bb002b5ff7e6150f8339822d2f18627a5698e895f1c4",
-      "plan.md": "0335d8630b8dfc05d8e25f2fb9c164479c53ee2a4f5b9c458df1fcc676829364",
-      "tasks.md": "50df3e9c888ba1cafef59467431c2c78aecc3dc84d5ec30adcff49e30e9a9521",
-      "implementation-summary.md": "979b6b7dffd308890bba22210be281937475d8d19299debc3fbfe1c8fa7c8b9d"
+      "plan.md": "c92b5898ff59ceff93b78c84f5d6196eb2b6fd142ff63dccf67e566be6f9d135",
+      "tasks.md": "e87934668beede3788f9e7347fd93583f7ffb68dd7bbe04e1d1646919fc34272",
+      "implementation-summary.md": "90c09d82a76941adee8d86ae19e48297e37892d03ee593ad3427bdae9d33cfef"
     },
     "last_active_at": null
   }

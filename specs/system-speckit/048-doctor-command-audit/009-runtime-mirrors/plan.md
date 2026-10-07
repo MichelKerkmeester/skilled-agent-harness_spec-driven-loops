@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 9: runtime-mirrors"
 description: "Audit the `/doctor:speckit runtime-mirrors` route, workflow and route entry against this checkout, decide keep, fix or retire, and apply the fix verdict to the route invocations, the workflow checker inventory and result contract, and the presentation menu."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "runtime mirrors plan"
 importance_tier: "normal"
 contextType: "general"
 ---

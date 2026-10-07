@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 4: deep-loop"
 description: "Audit `/doctor:speckit deep-loop` against this checkout, then apply the evidence-backed verdict: keep the route and correct its workflow, route entry and presentation text."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "deep loop plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Tasks: Phase 47: measure-every-jev-feature"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "measure every jev feature tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

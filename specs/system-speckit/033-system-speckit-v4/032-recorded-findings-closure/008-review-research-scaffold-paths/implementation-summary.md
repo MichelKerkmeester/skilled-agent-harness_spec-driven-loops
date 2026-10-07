@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The scaffolder now creates review and research packets: two new templates, nested documents at their manifest paths, placeholders filled one directory down, and goldens that validate both strict."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "review research scaffold paths implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,10 +2,7 @@
 title: "Tasks: Prove the targets, the rules and the gallery from the final state"
 description: "Prove the packet from its final state and reconcile every document that still describes the corpus as it was."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "closure and proof tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

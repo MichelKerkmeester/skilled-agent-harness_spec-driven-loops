@@ -3,7 +3,6 @@ title: "Implementation Summary: Packaging and Activation Fixes"
 description: "Completed communication projection install builds, packed operator entry points, and loader-valid LM Studio activation."
 trigger_phrases:
   - "packaging-and-activation-fixes"
-  - "implementation summary"
   - "communication projection activation complete"
 importance_tier: "important"
 contextType: "implementation"

@@ -13,16 +13,9 @@
     "trigger_phrases": [
       "pi extension brace expansion",
       "two pi extension lockfiles pin brace expansion 5",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "pi extension brace expansion plan",
+      "pi extension brace expansion tasks",
+      "pi extension brace expansion implementation summary"
     ],
     "key_topics": [
       "extension",
@@ -31,12 +24,12 @@
       "two",
       "lockfiles",
       "pin",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "implementation",
+      "summary",
+      "github",
+      "reports"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -196,7 +189,7 @@
     ],
     "causal_summary": "GitHub reports four open Dependabot alerts, two high and two moderate, for `brace-expansion` 5.0.9 in the lockfiles of two Pi extensions",
     "created_at": "2026-10-05T07:28:02Z",
-    "last_save_at": "2026-10-07T12:54:47.757Z",
+    "last_save_at": "2026-10-07T15:55:57.839Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3af41697b6e5728ab1b55406605d8ebf408767bddd1b43f21f465296a1cb0dc9",
+    "source_fingerprint": "sha256:805924c8d3aa428bdbd739c8cea36f6992330ed9787b147c2395c2c0645cfed0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5cf2530e863507669db8cdff73718dfc2eba337f0e188a5136f75ff7a7d6e2f9",
-      "plan.md": "c98758a9d768eae8d25c0c90499b47067272d9a0794260cffea3ae2bc75693a6",
-      "tasks.md": "c654face4cf0c7751381763100daeadfbb686b59cd33636a5917db736fc91607",
-      "implementation-summary.md": "e8a68be6f8fb7dd322a88f887b787674626c95c0d2bcf71dea81284228342bf4"
+      "plan.md": "72787077f5b3e262791f5d42b25e4ad20307d69ebc666cfb9834c83be2b56a34",
+      "tasks.md": "9e33aa47a142172a1a1ac38375b3289354ba0e12e994b507305b625e28877ddb",
+      "implementation-summary.md": "d679830a8e3b30a36a7fa79226215fce1dfddfdcf27cba9749f6cd809fb70f8d"
     },
     "last_active_at": null
   }

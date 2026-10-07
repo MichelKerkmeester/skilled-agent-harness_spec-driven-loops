@@ -2,10 +2,7 @@
 title: "Implementation Plan: Reword the workspace bullet of the spec folder write recipe commit step"
 description: "Reword one bullet of Step 7 to match sk-git, and check each claim in it against the sk-git files instead of trusting a reading."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "fix write recipe workspace bullet plan"
 importance_tier: "normal"
 contextType: "general"
 ---

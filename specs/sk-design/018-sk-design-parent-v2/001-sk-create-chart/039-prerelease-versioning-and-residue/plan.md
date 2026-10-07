@@ -2,7 +2,6 @@
 title: "Implementation Plan: Chart versions move below 1.0, and the cleanup's residue closes"
 description: "A scripted renumber of twenty-two changelog files with a v-prefix-only citation rewrite, an anchor reset driven through the shared version engine on an explicit path list, and three surface repairs the corpus cleanup left behind."
 trigger_phrases:
-  - "implementation plan"
   - "chart renumber approach"
   - "anchor reset plan"
   - "version engine scoped apply"

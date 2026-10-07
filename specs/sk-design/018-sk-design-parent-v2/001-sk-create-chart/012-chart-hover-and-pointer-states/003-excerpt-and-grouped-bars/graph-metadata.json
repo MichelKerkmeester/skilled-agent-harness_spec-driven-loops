@@ -12,17 +12,11 @@
   "derived": {
     "trigger_phrases": [
       "excerpt and grouped bars",
-      "box plot html carries a working hover and",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "box plot html carries a working hover",
+      "excerpt and grouped bars plan",
+      "excerpt and grouped bars tasks",
       "excerpt and grouped bars acceptance criteria",
-      "implementation summary"
+      "excerpt and grouped bars implementation summary"
     ],
     "key_topics": [
       "excerpt",
@@ -34,9 +28,9 @@
       "carries",
       "working",
       "hover",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -196,7 +190,7 @@
     ],
     "causal_summary": "`box-plot.html` carries a complete, working hover card, a click-to-pin path, a reduced-motion guard and a no-script fallback, all self-contained, because `REQ-008` forbids any file in this corpus from depending on a shared runtime",
     "created_at": "2026-09-05T16:03:56Z",
-    "last_save_at": "2026-10-07T12:55:07.087Z",
+    "last_save_at": "2026-10-07T15:56:27.705Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +200,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f69781792fbef239209df0e145f989a45929b7d0cd5e1919d4816a27895ed55c",
+    "source_fingerprint": "sha256:0e084fb674870394916df4be4152acedf43df62b533387aea89a8f8d6ef03c4b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "29730b095b3c423cf59ef598bae167048865aaeba9b2494583d897a69750df85",
-      "plan.md": "d6e7a227a8e0f6e090c67c5fb74c381af4aea4e96f7e3ffd2f852f027e7968ae",
-      "tasks.md": "47d3a11eef11b125863f41d1edaf4e188dd42e177183628ec887156b7c784535",
-      "implementation-summary.md": "4a3fe5b05fa11243f04d8a5afd7902395ef9811ba7cabde232bdf5318363ee58"
+      "spec.md": "9a66d97e48974ada4c12162799bd05c0d21c8f4a4fc9b667c635d73806893f35",
+      "plan.md": "91b56b9ebc76bc3bfe0293ed23df2d52f17da0836653b283530bcbf67e177df7",
+      "tasks.md": "54e7912b139293e9d96173e5b4ffd4ac0a9ed240758cabc1484946f9260fdf61",
+      "implementation-summary.md": "b71d503eafa704db91927e1e03845064e8df59050e79a46de6797444056a6c6a"
     },
     "last_active_at": null
   }

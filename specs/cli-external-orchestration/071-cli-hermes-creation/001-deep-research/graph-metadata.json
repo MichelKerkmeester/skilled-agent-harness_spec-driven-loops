@@ -19,10 +19,10 @@
       "hermes research plan",
       "deep research fan-out cli-devin",
       "forced depth two lineages",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "deep research tasks",
+      "deep research acceptance criteria",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
       "hermes",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nothing in this repository says what Hermes Agent can do as a dispatch target, how its repo-local configuration, skills, hooks, plugins and MCP host compare with the six runtimes already integrated, or whether its headless mode is fit for deep-loop fan-out",
     "created_at": "2026-09-14T16:04:03Z",
-    "last_save_at": "2026-10-07T12:54:42.947Z",
+    "last_save_at": "2026-10-07T15:55:51.878Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,13 +223,13 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:d5e7ce36d3c0f27f37d5234329d884d12eeef0534c3d32800b67203d355bef60",
+    "source_fingerprint": "sha256:cf2b82c565d1eb587bbb57ac4dda66b0bfe907268a628a1dea9e6d8bd21411b4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2dc6932ba937f9450d218594a57a935661e28b60edd3a0d7c9e4ab4d0da62290",
       "plan.md": "5b32200672ba543c7475a49d40724c0f885861ed83f17363387fb79b015bacd3",
-      "tasks.md": "04a202d42537610b5bf02f87a249a2dccd4df089a947ed229f9e49e7679eac97",
-      "implementation-summary.md": "49fedbd8e6ea3eb3cdd18e981ea257b5e9eb341af85d214d5076b8227e8a356e",
+      "tasks.md": "58e68137004718b31fd6aeaa9eb4334730efa108de4ca8abecd80307fb6a2faa",
+      "implementation-summary.md": "61410a7990681119906a1438e22574fc4447de92fc15f9f70aa18c870715e926",
       "research/research.md": "a9013e6b14de46751c51fd4050a57dc3aeccef0c98b6ab888618a12d77b902e3",
       "resource-map.md": "a4a1c9398694017d656697b97c18dd1d33333123878754ebd95e9e469f4612c2"
     },

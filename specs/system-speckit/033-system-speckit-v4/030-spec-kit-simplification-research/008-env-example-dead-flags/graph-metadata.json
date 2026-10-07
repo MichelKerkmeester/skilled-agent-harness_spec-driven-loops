@@ -22,7 +22,7 @@
       "env dead flags tasks",
       "env census tasks",
       "template cleanup tasks",
-      "task dependencies"
+      "packet goal"
     ],
     "key_topics": [
       "env",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The root env template documented 216 variables",
     "created_at": "2026-09-06T20:44:28Z",
-    "last_save_at": "2026-09-08T15:47:11.729Z",
+    "last_save_at": "2026-10-07T15:57:22.271Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1946ba43c72b28b00450a3c06212dfc73dfdacdbfd334321601fc44d002d7c06",
+    "source_fingerprint": "sha256:f63d2d801f0be27642aa232ad815cb1700a32155a5351c8ae3abd2bf5e464b03",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "da539a43116d76ac7b88c01b2cc082c03dcdde6c187613b8a21fe5ec00a243be",
       "plan.md": "8060baf63b6cdb73fbb8cee83ec2973182eb6b4acedb3e328bd0a08caf995bda",
-      "tasks.md": "7d2c80e4cf470b06a06a215671eb96a260a595e9265d0f5d502f638f1e3fe454",
+      "tasks.md": "b6ec6db5805c1a302be8b10064244e1698d30fbbef3bd55da6cb10ee4e63f9ce",
       "implementation-summary.md": "f4c95af5c8ae0a101820096ffddb1df96b6d116f416ea8af6e223db2f39cb609"
     },
     "last_active_at": null

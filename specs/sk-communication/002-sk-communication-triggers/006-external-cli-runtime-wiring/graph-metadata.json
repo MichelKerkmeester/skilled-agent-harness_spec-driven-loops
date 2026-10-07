@@ -14,15 +14,9 @@
       "external-cli runtime wiring",
       "external-cli entrypoint",
       "per-engine cli command table",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "external cli runtime wiring plan",
+      "external cli runtime wiring tasks",
+      "external cli runtime wiring implementation summary"
     ],
     "key_topics": [
       "external-cli",
@@ -33,10 +27,10 @@
       "cli",
       "command",
       "table",
-      "implementation",
+      "external",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,10 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-communication/cli-communication-projection/bin/external-cli-project.mjs",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/runtime/external-cli-projection.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli-engines.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -72,24 +63,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "external-cli-project.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/bin/external-cli-project.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "external-cli-projection.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/runtime/external-cli-projection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "cli-engines.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli-engines.ts",
         "source": "derived"
       },
       {
@@ -193,11 +166,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 005 delivered the external-cli provider as a tested package path, but command 2's Branch B still dispatches to a cli- skill ad-hoc",
     "created_at": "2026-08-19T07:26:19.954Z",
-    "last_save_at": "2026-09-11T04:35:23.767Z",
+    "last_save_at": "2026-10-07T15:56:23.182Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab3d40495951b0335151a7e6a3d3cb69cd88ec1230519f6ad6710bfc7e7c635a",
+    "source_fingerprint": "sha256:45dd2add7f19d7558c085f800322d18ed53eb9c73c67a43df8921084a8380e40",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5d75b4b3051b7204231a11c7c6e6cfd484be0d7a97260243586641c460563b65",
-      "plan.md": "247db57ac65d824ffba8571d675b12a45dd89c14e2dfb4de42ee7627b73cb5c9",
-      "tasks.md": "10e51f2a965add4e25980c558c73b077518d9e9e963d39d1dae37af466558d7c",
-      "implementation-summary.md": "4da0edb94b419f1761e85826500b00fb3ce4a6f02e9839cab7971c7e6f08480e"
+      "plan.md": "98ac73b78f51773e422487ce4924f946d9726d9e22504d232838f4d531a0537f",
+      "tasks.md": "113e887ec949eb24b9f9f5a786201dfff17ae1e35184772d57f092ae4582ffe6",
+      "implementation-summary.md": "5e5f699a0e60de0e00895fb3a463651ad48818c1a738a087bc220cb2c850d916"
     },
     "last_active_child_id": null,
     "last_active_at": null

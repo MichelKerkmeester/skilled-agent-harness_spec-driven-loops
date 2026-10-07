@@ -2,7 +2,6 @@
 title: "Implementation Summary: Phase 4: compiled-fleet-onboarding"
 description: "The hub is now the sixth member of the compiled fleet: registered in the engine dispatch map and every cohort copy, owner of a rollout child and a fresh activation manifest in both the runtime and authored trees, serving a compiled route under an unset flag, failing closed under the kill-switch, and reversible byte-exactly to the legacy sentinel."
 trigger_phrases:
-  - "implementation summary"
   - "compiled fleet onboarding"
   - "phase closeout"
 importance_tier: "normal"

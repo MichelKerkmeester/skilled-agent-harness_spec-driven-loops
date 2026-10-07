@@ -4,10 +4,7 @@ description: "Edge explanation + blast_radius uplift."
 importance_tier: "important"
 contextType: "implementation"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "edge explanation impact uplift tasks"
 ---
 # Tasks: 012/003
 

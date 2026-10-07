@@ -2,7 +2,6 @@
 title: "Implementation Plan: Deprecate the deep-skill-benchmark lane"
 description: "Remove the skill-benchmark workflow mode from every reachable surface: five runtime command trees, the hub registry and router pair, the advisor command-bridge projection, the lane's script and asset trees, and three runtime ledger libraries, while leaving other packets' report evidence and the two surviving improvement lanes intact."
 trigger_phrases:
-  - "implementation plan"
   - "skill-benchmark removal plan"
   - "deep-loop mode removal"
   - "command-bridge regeneration"

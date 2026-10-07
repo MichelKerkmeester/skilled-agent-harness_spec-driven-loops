@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The system-spec-kit documentation grew through the memory-database era and the CLI move from `scripts/` to `runtime/cli/`",
     "created_at": "2026-09-06T07:54:24Z",
-    "last_save_at": "2026-09-08T18:23:48.026Z",
+    "last_save_at": "2026-10-07T15:57:19.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3ff5a88cd7d046d84cb04aa899fcc41cb682260dd99fa1bc8cd92665b7ccf1c1",
+    "source_fingerprint": "sha256:7bae43e99baa7e72580990ed2cd0de073912bdfe80dc65e9c2ad85b0adea15ac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f27ad284939f36231465f8f00aca01cc4a6856d2b9ca6efbf389eecdac945994",

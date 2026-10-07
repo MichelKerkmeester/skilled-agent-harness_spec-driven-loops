@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The corpus check now has a mutation suite of its own and a blocking gate in CI."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "mutation suite implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

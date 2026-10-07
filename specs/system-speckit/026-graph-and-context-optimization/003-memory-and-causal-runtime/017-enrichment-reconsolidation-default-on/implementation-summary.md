@@ -22,10 +22,7 @@ _memory:
     answered_questions:
       - "All 3 flags default-on with opt-out env; enrichment async/deferred."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "enrichment reconsolidation default on implementation summary"
 ---
 # Implementation Summary: Enrichment + Reconsolidation Default-On (Async)
 

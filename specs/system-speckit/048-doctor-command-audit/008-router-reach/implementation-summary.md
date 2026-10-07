@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Fix verdict for `/doctor:speckit router-reach`: the probe fails closed on a degraded advisor response, `--concurrency` reaches the script, the target is visible in the startup menu, and the route validator reads that menu."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "router reach implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

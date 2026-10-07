@@ -2,7 +2,6 @@
 title: "...-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite/implementation-summary]"
 description: "Packet closeout for the /memory:save planner-first default: audit + retirement, relevance research, planner + trim implementation, transcript-grounded verification, and deep-review remediation all documented in one surface."
 trigger_phrases:
-  - "implementation summary"
   - "004-memory-save-rewrite"
   - "memory save planner first closeout"
   - "planner-first save closeout"

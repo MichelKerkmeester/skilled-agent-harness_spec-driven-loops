@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Every hub states one always-loaded policy in the artifact the runtime reads, the deep-loop discovery vocabulary names only live families, and four hubs are re-minted."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "routing doctrine and discovery implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

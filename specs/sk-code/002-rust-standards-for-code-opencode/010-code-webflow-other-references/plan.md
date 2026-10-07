@@ -4,10 +4,7 @@ description: "Deterministic split of 8 code-webflow docs + tool-driven lockstep 
 importance_tier: "normal"
 contextType: "implementation"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "code webflow other references plan"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 10 — Split code-webflow Other References

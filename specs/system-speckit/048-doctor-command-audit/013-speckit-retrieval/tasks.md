@@ -2,10 +2,7 @@
 title: "Tasks: Phase 13: speckit-retrieval"
 description: "Ordered audit tasks for the speckit-retrieval target: inventory, read-only run, verdict, applied fixes and the parity proof."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "speckit retrieval tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

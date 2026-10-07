@@ -2,10 +2,7 @@
 title: "Implementation Summary: sk-doc Validator Notices and Dead Playbook Citations"
 description: "Complete. validate_document.py now says when it falls back to README rules, quick_validate.py blocks a non-qualified MCP token for skills as for commands, and four dead playbook citations are repointed or removed."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "sk doc validator and reference fixes implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

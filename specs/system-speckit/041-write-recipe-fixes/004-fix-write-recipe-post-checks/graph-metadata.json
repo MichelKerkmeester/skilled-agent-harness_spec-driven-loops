@@ -13,16 +13,9 @@
     "trigger_phrases": [
       "fix write recipe post checks",
       "two post check rows of the write recipe",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "fix write recipe post checks plan",
+      "fix write recipe post checks tasks",
+      "fix write recipe post checks implementation summary"
     ],
     "key_topics": [
       "write",
@@ -32,11 +25,11 @@
       "two",
       "check",
       "rows",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "implementation",
+      "summary",
+      "section"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -195,7 +188,7 @@
     ],
     "causal_summary": "Section 4 of the spec folder write recipe listed `git status clean (only the new packet files)` and `git push origin main success`",
     "created_at": "2026-09-29T07:01:31Z",
-    "last_save_at": "2026-10-07T12:55:52.719Z",
+    "last_save_at": "2026-10-07T15:57:40.064Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c20e270d75edbba8e2d7b42322bc6bade6172016b20c71c915a8f42f13b91f5",
+    "source_fingerprint": "sha256:6fb7880ade30b59ac7a4b2f99de8ded612f5445fc0674e8254b882942d6100f7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b500b1edf7904061ac820b9f7b5a77a48e15d481833902087ccc770ce27127aa",
-      "plan.md": "6daf08a36544b8904616cebf111a1b1e62f699d5a86119b28fd5c63d8f37edcf",
-      "tasks.md": "bad40207554e98f7b78e511ace000a9de975ceedbc052e0997edfe45e042be66",
-      "implementation-summary.md": "4dff0651321fe57a9caed4b091557dbea36d04c7f022255965c53db977d6474f"
+      "plan.md": "f856970fb9f395be39e0f0ad382594d9eb43f091661dde7dcca429d97a614ab2",
+      "tasks.md": "e93a957fa2e3e7615b8291b9b0dd1a472e68f10387639fde695790365f97e6bd",
+      "implementation-summary.md": "b94c6e310a86f99cdd1528a1c4132558fe1b0ff6fdb95a8a9e4f27b093f2dfc0"
     },
     "last_active_at": null
   }

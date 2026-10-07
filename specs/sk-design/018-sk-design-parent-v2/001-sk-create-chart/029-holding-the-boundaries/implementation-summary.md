@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Four of the five recorded boundaries turned out reachable and are now held; the fifth is settled by measurement."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "holding the boundaries implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

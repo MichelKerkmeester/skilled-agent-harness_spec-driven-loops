@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Every reference and asset in the system-spec-kit corpus is now routed by intent: nineteen browse-only leaves joined the resource map through seven extended and four new intents, nothing removed."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "references corpus routing implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

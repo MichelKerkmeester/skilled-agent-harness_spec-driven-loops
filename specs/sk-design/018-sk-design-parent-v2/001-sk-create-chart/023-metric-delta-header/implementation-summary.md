@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Eight forms lead with a value, a signed delta and the period; every form declares whether it does, and the value is always a number in the table."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "metric delta header implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

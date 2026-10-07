@@ -12,31 +12,27 @@
   "derived": {
     "trigger_phrases": [
       "runtime surface parity research",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "runtime surface parity research plan",
+      "runtime surface parity research tasks",
       "runtime surface parity research acceptance criteria",
-      "implementation summary",
-      "what shipped"
+      "runtime surface parity research implementation summary",
+      "devin commands gap",
+      "command mirror matrix",
+      "runtime mirror drift detection"
     ],
     "key_topics": [
       "runtime",
       "surface",
       "parity",
       "research",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "devin",
+      "commands"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -210,7 +206,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-15T15:52:44Z",
-    "last_save_at": "2026-10-07T12:54:47.101Z",
+    "last_save_at": "2026-10-07T15:55:57.040Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +217,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0ec6a09f7161cdddf4836f7b3aea913803b6baa1bce5603fad0b8c1fbc6326bb",
+    "source_fingerprint": "sha256:64d5f58a338843323fc8cbe2bc3942712fcd728674ba651d27079b4cd14aa98e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f7689ca60ab7b5b6ef161db098ef412e61cc3048a27a149982f728613c8e1b38",
-      "plan.md": "0f16a0d595c24a89f9f854915187f5c95bc114c98929e622287668123a2f90c3",
-      "tasks.md": "66d55b9754a7be6175c915b01f581a314eaca3b08cce1a68d7c15e4e3aff8f87",
-      "implementation-summary.md": "ac6bf53599e9d0bab0c453e2ee95af2a8299827b33551c25c0b3efdb656747de",
+      "plan.md": "e99ce9d926683e815fedc7ff60d7fc64ef25deed8957948d7b0be0ed9b8dfb1b",
+      "tasks.md": "bc32cfabfe9eef85f2aa1dfba4cfd944b47350f4152d2510b1f6291985415b54",
+      "implementation-summary.md": "a4ea9791d0a756c60f904f557c942a1568566d833c48d6f2b018a328d502ebe7",
       "research/research.md": "c751425d10e1ae1c3c948b7c884d9c30f076108aa0a3ef62547d272b9fd5e3d7"
     },
     "last_active_at": null

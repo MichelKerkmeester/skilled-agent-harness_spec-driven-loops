@@ -3,7 +3,7 @@ title: "Feature Specification: metric and delta header block for scalar and time
 description: "An optional metric-and-delta block in the header zone of scalar and time-series forms: a 24 to 28px value from the data block, a signed 12px delta in verdant or crimson, a period label, and a direction cue, with the new size added to the published type scale and every value still in the chart table."
 trigger_phrases:
   - "metric delta header"
-  - "an optional metric and delta block in the"
+  - "an optional metric and delta block"
 importance_tier: "normal"
 contextType: "general"
 ---

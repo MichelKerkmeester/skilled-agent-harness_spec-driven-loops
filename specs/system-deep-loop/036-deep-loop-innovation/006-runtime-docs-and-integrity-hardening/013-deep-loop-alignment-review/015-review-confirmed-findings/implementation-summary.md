@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Six review findings closed, including a guard of my own that passed clean over seven real emissions, and a fix whose own false positive an independent pass caught."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "review confirmed findings implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

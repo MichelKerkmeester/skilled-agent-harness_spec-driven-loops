@@ -2,7 +2,6 @@
 title: "Implementation Plan: Phase 5: source-resolver"
 description: "A warn-only validate.sh rule resolves [SOURCE: path:line] tags in new research and review artifacts through sk-doc's citation resolver, behind a creation-date cutoff."
 trigger_phrases:
-  - "implementation plan"
   - "source tags rule plan"
   - "source tag cutoff"
   - "citation resolver reuse"

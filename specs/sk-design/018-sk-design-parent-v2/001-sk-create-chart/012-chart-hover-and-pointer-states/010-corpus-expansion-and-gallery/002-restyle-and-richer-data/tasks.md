@@ -2,10 +2,7 @@
 title: "Tasks: Restyle every existing form and replace demo data with realistic figures"
 description: "Two gated stages: believable figures into all twenty-one templates, then a restyle that provably moved no number."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "restyle and richer data tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

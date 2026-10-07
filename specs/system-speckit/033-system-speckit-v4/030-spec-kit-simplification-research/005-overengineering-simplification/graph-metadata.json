@@ -21,8 +21,8 @@
       "research lane tasks",
       "lane launch and monitoring",
       "overengineering simplification lane tasks",
-      "acceptance criteria",
-      "closure gate"
+      "overengineering simplification lane closure",
+      "packet goal"
     ],
     "key_topics": [
       "overengineering",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Thirty-nine validator rules, a six-runtime hook matrix, hundreds of reference and catalog documents, and root documents that carry spec-kit procedure: the skill has grown by accretion, and the cost in reads, steps and maintenance has never been weighed against what each piece protects",
     "created_at": "2026-09-06T14:29:33Z",
-    "last_save_at": "2026-09-08T15:47:11.277Z",
+    "last_save_at": "2026-10-07T15:57:18.914Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef8619bd1894fadf146483c2213168ad044f9cebc2b41a495d9b766d194699fa",
+    "source_fingerprint": "sha256:3c8781fc266f66ee3e58bc0c943783429d5afe5d5b1e475c2ea6538045ff8128",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bc0771b7d81d014d3455f96d597e6acfb6552e436790a0478865b8570ec36260",

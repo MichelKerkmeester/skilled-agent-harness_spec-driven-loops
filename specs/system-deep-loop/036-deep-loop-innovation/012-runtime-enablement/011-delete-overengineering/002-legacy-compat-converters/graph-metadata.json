@@ -14,15 +14,11 @@
       "legacy compat converters delete",
       "per-mode legacy compatibility removal",
       "ledger schema legacy upcasters delete",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "phase 002 legacy compat converters"
+      "legacy compat converters plan",
+      "legacy compat converters tasks",
+      "phase 002 legacy compat converters",
+      "per-mode legacy compatibility removed",
+      "ledger schema upcasters removed"
     ],
     "key_topics": [
       "legacy",
@@ -35,8 +31,8 @@
       "ledger",
       "schema",
       "upcasters",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -194,7 +190,7 @@
     ],
     "causal_summary": "Wave 2 of the over-engineering removal program: delete the seven per-mode legacy-format converters (F1) — decide<Mode>Compatibility + upcastLegacy<Mode>Record and their legacy-compatibility.ts modules — now the ledger is the single writer, and their now-dead test blocks. The deep-research variant is live (append-mode-event.cjs) and stays, along with the shared tests/helpers/legacy-real-log.ts fixture it depends on.",
     "created_at": "2026-08-24T17:06:19.066Z",
-    "last_save_at": "2026-09-11T04:38:31.325Z",
+    "last_save_at": "2026-10-07T15:57:00.916Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9cda5e8b13294fc1d33ee5eaad24508225d9f45f201097518e82bb9f63e0764d",
+    "source_fingerprint": "sha256:3f67330e9f4d7b0116cebf11cced6492a200008453fe90c03b7d4f53bd5af599",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9acc853407e483b34a146e64b1393c83ca1fd231fe947046113f60e7d781eade",
-      "plan.md": "fff8a8a7bdbf121767e459c6d4de2f3af95dbece8022f012badb7efd6469b495",
-      "tasks.md": "40e88a4ac3e812c107c86296424fcbe19f142285d1727fe2ec1566a00603c8b8",
+      "plan.md": "3aac90a025b9ab15269db9e47f5e82f329707ca3a63e165b8d8288a2ae4ab5b0",
+      "tasks.md": "812bae880715825eb71020475c691ec16ed765583d4a9e78ccc66c8eb43fb715",
       "implementation-summary.md": "98c8957bce2a9d2f3c349cd611c0d42a3752687f1b8cf8017455a2ff89983693"
     },
     "last_active_child_id": null,

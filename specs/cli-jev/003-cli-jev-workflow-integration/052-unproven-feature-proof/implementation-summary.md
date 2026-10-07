@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The three unproven Jev features now share one keep rule, the folder suggestion keep did not survive a masked-state ablation, and the clarify census measured the real clarify rate."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "unproven feature proof implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

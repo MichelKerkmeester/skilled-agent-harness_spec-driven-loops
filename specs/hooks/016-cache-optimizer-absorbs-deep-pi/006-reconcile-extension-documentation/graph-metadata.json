@@ -15,14 +15,14 @@
       "plugins inventory update",
       "root readme pi extensions",
       "documentation matches shipped state",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "reconcile extension documentation plan",
+      "reconcile extension documentation tasks",
+      "reconcile extension documentation acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "phase outcome"
     ],
     "key_topics": [
       "reconcile",
@@ -36,7 +36,7 @@
       "matches",
       "shipped",
       "state",
-      "implementation"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -52,7 +52,6 @@
       ".pi/settings.json",
       ".pi/extensions/pi-cache-optimizer/README.md",
       ".pi/SYNC.md",
-      ".pi/npm/package.json",
       ".opencode/skills/README.txt"
     ],
     "entities": [
@@ -114,12 +113,6 @@
         "name": "SYNC.md",
         "kind": "doc",
         "path": ".pi/SYNC.md",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".pi/npm/package.json",
         "source": "derived"
       },
       {
@@ -199,11 +192,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Measured before this phase was written, the documentation surface is not where one would guess:",
     "created_at": "2026-09-08T18:00:24Z",
-    "last_save_at": "2026-10-03T15:29:57.101Z",
+    "last_save_at": "2026-10-07T15:56:13.713Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:70714e34e17dbaf66ad1329351b29dda38ad800aac63a4852a4a9ebfb499151f",
+    "source_fingerprint": "sha256:8bac89fd1eb9ac834f400cae060b4a86f5f3f7b979289fe3a7915e8d0a73fbcf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0080fc36b2b566161285eab857fdde4d357082f2ac6e91107851ac13f584677c",
-      "plan.md": "31a012eda2fa84edfa86ad83fc1f6b04110f3bcf8ec36077ba2bd68cc31beaea",
-      "tasks.md": "d361fde89cdf7c36c3bc7148ef3a85d9e9844c0040fda8f137eb9b42b1a85286",
-      "implementation-summary.md": "a40980ea90cd8bff5f73fabb7c4b8f3976140e9610f5a06f2409206e61b83b9a"
+      "plan.md": "f2146632d1c895beafb612be076f329cf63184d3e3c2be3e4ac6c678a148ffdb",
+      "tasks.md": "b1d16548db417ed3a3c91b614b1eb26013db20af346c6c8baf6fdf5531e25b8e",
+      "implementation-summary.md": "17a1c23e65f115ddf0217ed997ac0e67e6eb4a1f9e4f62f1e2bc544cf49dfefd"
     },
     "last_active_at": null
   }

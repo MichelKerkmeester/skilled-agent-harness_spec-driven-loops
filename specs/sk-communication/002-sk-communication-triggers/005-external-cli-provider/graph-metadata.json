@@ -15,14 +15,9 @@
       "cli provider family",
       "external agent projection provider",
       "cli transport",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "external cli provider plan",
+      "external cli provider tasks",
+      "external cli provider implementation summary"
     ],
     "key_topics": [
       "external-cli",
@@ -33,10 +28,10 @@
       "agent",
       "projection",
       "transport",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,20 +39,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/providers/presets.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/providers/types.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/providers/adapters.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/providers/registry.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/providers/index.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/transports/index.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/test/providers/external-cli.test.ts",
-      ".opencode/skills/sk-communication/feature-catalog/provider-and-privacy/external-cli-provider.md",
-      ".opencode/skills/sk-communication/feature-catalog/feature-catalog.md",
-      ".opencode/skills/sk-communication/manual-testing-playbook/fidelity-and-privacy/external-cli-provider-fallback.md",
-      ".opencode/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -82,78 +64,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli.ts",
-        "source": "derived"
-      },
-      {
-        "name": "presets.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/providers/presets.ts",
-        "source": "derived"
-      },
-      {
-        "name": "types.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/providers/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "adapters.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/providers/adapters.ts",
-        "source": "derived"
-      },
-      {
-        "name": "registry.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/providers/registry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/providers/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "cli.test.ts",
-        "kind": "test",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts",
-        "source": "derived"
-      },
-      {
-        "name": "external-cli.test.ts",
-        "kind": "test",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/test/providers/external-cli.test.ts",
-        "source": "derived"
-      },
-      {
-        "name": "external-cli-provider.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/feature-catalog/provider-and-privacy/external-cli-provider.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature-catalog.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/feature-catalog/feature-catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "external-cli-provider-fallback.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/manual-testing-playbook/fidelity-and-privacy/external-cli-provider-fallback.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -203,11 +113,83 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Command 2's cli- engine path is pure command-level orchestration",
     "created_at": "2026-08-19T06:20:53.378Z",
-    "last_save_at": "2026-09-11T04:35:23.791Z",
+    "last_save_at": "2026-10-07T15:56:23.152Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0fb4661834fb23cb13c2f42123db854ab789164dfe3960b6c9f8aece7a8b2e87",
+    "source_fingerprint": "sha256:dd9444b2e7d4697bf297fad0594d6d98f1f98e7083c79f34a6127125db73f211",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fa7e4b28fa804c547b323f0662318d31b2759a9e9b4b928db9d2232b776b1f0b",
-      "plan.md": "f7c68eee137856c377ca8e912a2caa23bd62c8aad69f0607b4f0abc5aaa5fb30",
-      "tasks.md": "03c86fc73b0f46559132edf2b60e17b60224df29b24ad7bf2cc6a46c78ea162e",
-      "implementation-summary.md": "ce1414a6cb7017c6ad47679ecbc5724dfb5994e5d663f9b0b639303926e341c8"
+      "plan.md": "c0e3061cc59e713131db4ce0d117ea8aefb7abdd88e64946dbbfd4bdb67d7459",
+      "tasks.md": "d306c24211ee163a1fefd7689dc3fec4e421f6f7f053a801ab281db306133b15",
+      "implementation-summary.md": "0ceea857ee23660c6a29104ed31ec19255c29070776350bffb48ec20bc49980f"
     },
     "last_active_child_id": null,
     "last_active_at": null

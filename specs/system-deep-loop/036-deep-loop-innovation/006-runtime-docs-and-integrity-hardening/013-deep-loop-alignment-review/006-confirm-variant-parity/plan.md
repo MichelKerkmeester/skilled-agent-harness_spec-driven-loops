@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 5: confirm-variant-parity"
 description: "Restore each auto step into its confirm twin where the interactive flow reaches it, correct the auto variant where the auto side held the defect, and write a machine-checked census for every remaining difference."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "confirm variant parity plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,9 +2,6 @@
 title: "Tasks: deep-loop-test-debt"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
   - "deep loop test debt"
 importance_tier: "normal"
 contextType: "general"

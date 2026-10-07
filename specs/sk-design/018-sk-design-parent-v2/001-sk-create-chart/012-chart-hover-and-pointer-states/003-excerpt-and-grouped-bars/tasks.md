@@ -2,10 +2,7 @@
 title: "Tasks: Extract the excerpt and transfer it to grouped-bars"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "excerpt and grouped bars tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

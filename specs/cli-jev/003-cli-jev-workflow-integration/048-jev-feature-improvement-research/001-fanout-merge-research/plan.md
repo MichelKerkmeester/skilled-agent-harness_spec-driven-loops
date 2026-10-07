@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: fanout-merge-research"
 description: "Runs /deep:research in fan-out mode on the Jev fan-out merge: one DeepSeek lineage and one Luna lineage, then merges them into research.md."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "fanout merge research plan"
 importance_tier: "normal"
 contextType: "general"
 ---

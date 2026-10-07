@@ -2,10 +2,7 @@
 title: "Implementation Summary: the router vocabulary repair"
 description: "Eleven phrases the router advertised reached nobody, and the packet's own baseline never sampled one of them."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "router vocabulary repair implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

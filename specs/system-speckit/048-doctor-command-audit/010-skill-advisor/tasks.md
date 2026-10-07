@@ -2,10 +2,7 @@
 title: "Tasks: Phase 10: skill-advisor"
 description: "The ordered work for the skill-advisor audit: inventory the route and workflow against the checkout, apply the fix verdict to the workflow, route and presentation, then verify and close the packet."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "skill advisor tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

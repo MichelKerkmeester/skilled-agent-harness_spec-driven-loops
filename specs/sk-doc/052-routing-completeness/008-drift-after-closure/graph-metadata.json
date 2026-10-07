@@ -54,13 +54,13 @@
       ".opencode/skills/system-spec-kit/runtime/cli/tests/inline-gate-renderer.vitest.ts",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/cli-external-orchestration/graph-metadata.json",
-      ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/python-ts-parity.vitest.ts",
       "research/gate-a-rerun-2026-09-05.tsv",
       "research/gate-a-rerun-2026-09-05-after-keyword-fix.tsv",
       "research/gate-b-rerun-2026-09-05.tsv",
       "runtime/cli/templates/inline-gate-renderer.sh",
-      "runtime/cli/lib/template-utils.sh"
+      "runtime/cli/lib/template-utils.sh",
+      "runtime/cli/spec/create.sh",
+      "runtime/cli/spec/validate.sh"
     ],
     "entities": [
       {
@@ -142,18 +142,6 @@
         "source": "derived"
       },
       {
-        "name": "skill_advisor.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
-        "source": "derived"
-      },
-      {
-        "name": "python-ts-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/python-ts-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "gate-a-rerun-2026-09-05.tsv",
         "kind": "file",
         "path": "research/gate-a-rerun-2026-09-05.tsv",
@@ -206,11 +194,23 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A packet that closes on measured numbers stays true only while its inputs hold still",
     "created_at": "2026-09-05T13:40:04Z",
-    "last_save_at": "2026-09-11T16:42:14.506Z",
+    "last_save_at": "2026-10-07T15:56:44.664Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,7 +222,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:027d10fa14f9db459386b4771db7cef2e153d5d9a1d50e62ba57df2b0851910c",
+    "source_fingerprint": "sha256:4c9ecd3dd2c58c5a0f6fba5e36bc34ce80c2dfbf5a9911636677c6405fb2010d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2b4b1a60ab6bb652197e29ca0118c1bd424cc58ba5ef232400537a02709c3822",

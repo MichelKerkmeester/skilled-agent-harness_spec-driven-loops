@@ -2,10 +2,7 @@
 title: "Tasks: the two geometry fixes that did not work"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "median and ladder correction tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

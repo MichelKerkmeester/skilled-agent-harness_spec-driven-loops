@@ -15,14 +15,14 @@
       "cli-jev playbook",
       "transport feature inventory",
       "jev validation scenarios",
-      "implementation plan",
       "approach and phases",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
+      "catalog and playbook tasks",
       "catalog and playbook acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "catalog and playbook implementation summary"
     ],
     "key_topics": [
       "cli-jev",
@@ -34,9 +34,9 @@
       "jev",
       "validation",
       "scenarios",
-      "implementation",
-      "plan",
-      "approach"
+      "approach",
+      "phases",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "A transport mode is invisible until something goes wrong",
     "created_at": "2026-09-20T07:39:07Z",
-    "last_save_at": "2026-10-07T12:54:47.444Z",
+    "last_save_at": "2026-10-07T15:55:57.348Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e214293eab097e8051e05aa687507593518aa5f189c10da8b12c795dc9e31814",
+    "source_fingerprint": "sha256:46618c39fe6bf8ef4d2ee077ca6d3b9cb81cd062765918ac2340d7ecf93bad1a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "66f95b0b84399614fc576a1b93afe91e229e888952cc0edd636d0652eda959e7",
-      "plan.md": "bccf98aeeacd056dfe7afc91cd765de938128d6b5befc4773cd3d59f11edb8a6",
-      "tasks.md": "e2b003c1cf61bdd76a12e991b3f81f64c3fda02de15c5f9a4c8862d49b96b68f",
-      "implementation-summary.md": "d54486820e4f717fe82543742cd1376ec77e2c97adafc1457d7fb0570a309e41"
+      "plan.md": "97dddb3aa6151eef5c2e6c9df19d2f82d03f615f5e6b2889b6276eb139af7a35",
+      "tasks.md": "b54cd76edcec7d3090e1ce114c18b7c8a97f8a333b3caa0a089e5b890491f8c6",
+      "implementation-summary.md": "59218ddd059a0291584a3d775af283571b1ec1607796547672c26980327173ea"
     },
     "last_active_at": null
   }

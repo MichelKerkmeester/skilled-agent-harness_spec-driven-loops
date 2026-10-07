@@ -18,9 +18,6 @@
       "plan core",
       "tasks core",
       "artifact producers acceptance criteria",
-      "implementation summary",
-      "what shipped",
-      "validation evidence",
       "artifact-producers playbooks delivered"
     ],
     "key_topics": [
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "Each of these derives a document from something that already exists, so their failure mode is drift: the artifact stops describing its source and nobody notices, because it still looks like a valid document",
     "created_at": "2026-09-01T11:48:00Z",
-    "last_save_at": "2026-10-07T12:55:22.203Z",
+    "last_save_at": "2026-10-07T15:56:44.266Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +208,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b4036d7b6da24ba448a414ea756015c305b540aba434ed26339c77cb797c335f",
+    "source_fingerprint": "sha256:dac694656332dd74fd44db7c15edf22c7eda4a9f55929a34d6cf76c756383866",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "06e6f82ca60a6e6896158d3d778ad522987978779512416cdb3ace65ecb6eddb",
       "plan.md": "66e3686b33f40630e6befe8cebadf887cb6ae394132a2fee77f89f043ea2c30b",
       "tasks.md": "8d885147fa3435029835385788aa5e1030d194136752fb9e8bd1c1598a218fea",
-      "implementation-summary.md": "713e9ac5cde6fe2ab5124b411af1681d3a9c962566524d03ceb1a64617dc5325"
+      "implementation-summary.md": "8421c14b69831d6a056dca68d8a963d68d2e4957b1854c374b2449d1ab4e28e2"
     },
     "last_active_child_id": null,
     "last_active_at": null

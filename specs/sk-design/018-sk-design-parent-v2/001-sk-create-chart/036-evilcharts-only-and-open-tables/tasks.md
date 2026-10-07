@@ -2,10 +2,7 @@
 title: "Tasks: one style reference, no examples, open tables, a gallery that sizes its frames"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "evilcharts only and open tables tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

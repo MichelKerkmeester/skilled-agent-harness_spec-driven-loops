@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: recorded-adjacent-defects"
 description: "Close each recorded defect at its producer, verify each with a control that fails before the change, and leave nothing recorded as another surface's problem."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "recorded adjacent defects plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The Step 7 gate of the spec folder write recipe now checks the staged set instead of git status, and the recipe's version matches the derivation."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "fix write recipe verification gate implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

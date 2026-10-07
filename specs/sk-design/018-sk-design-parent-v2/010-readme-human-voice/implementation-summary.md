@@ -2,10 +2,7 @@
 title: "Implementation Summary: readme human voice"
 description: "What shipped, what it cost, and what the gates could not have told anyone."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "readme human voice implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

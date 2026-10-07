@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Every git hook and CI workflow now matches changes under .skilled/ as well as .opencode/, and a gate script missing from this repository blocks or warns instead of passing, proven by an independent check, a broken-move drill and the hook test scripts in CI, and published with CI adding no failure to the recorded baseline."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "gate and ci readiness implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

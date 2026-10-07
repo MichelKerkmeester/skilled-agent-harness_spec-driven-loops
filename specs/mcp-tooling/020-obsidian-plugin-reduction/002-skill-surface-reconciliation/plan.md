@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 2: skill-surface-reconciliation"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "skill surface reconciliation plan"
 importance_tier: "normal"
 contextType: "general"
 ---

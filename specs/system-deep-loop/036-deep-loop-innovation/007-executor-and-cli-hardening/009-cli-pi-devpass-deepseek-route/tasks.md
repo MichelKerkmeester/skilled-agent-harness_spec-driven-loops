@@ -2,9 +2,6 @@
 title: "Tasks: Route the cli-pi DeepSeek V4 Flash fan-out literal through the DevPass LLM Gateway"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
   - "devpass deepseek tasks"
 importance_tier: "normal"
 contextType: "general"

@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "closure and routing proof",
       "every phase in this packet reported success against",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "closure and routing proof plan",
+      "closure and routing proof tasks",
       "closure and routing proof acceptance criteria",
-      "closure decisions"
+      "closure decisions",
+      "rejected edges gate",
+      "strict gate invocation",
+      "flowchart fixture supersession",
+      "closure and routing proof implementation summary"
     ],
     "key_topics": [
       "closure",
@@ -34,9 +32,9 @@
       "reported",
       "success",
       "against",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -203,7 +201,7 @@
     ],
     "causal_summary": "Every phase in this packet closed against evidence it gathered itself, at the moment it ran",
     "created_at": "2026-09-06T13:52:17Z",
-    "last_save_at": "2026-10-07T12:55:17.361Z",
+    "last_save_at": "2026-10-07T15:56:40.225Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0f07de73de5d234905a158b12682262d78ff88eef04e6b0a0f173268b5d39cf5",
+    "source_fingerprint": "sha256:a418ba54a1dc7e7f314274126e87ca943ad7c59b92e27e30f3a266e2b24778d6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8c3a4259d83d5e390d47d0b22b924061de34840fccf056aee812c16e3776d01a",
-      "plan.md": "cf3854e25b1540a77ce22644c629f135532108155ed760e1836dfa5b38ef2692",
-      "tasks.md": "b19f190d8417c0da0db619e58b78f1a03223e19e1e1932b3fafafc0cf8919718",
+      "plan.md": "1c6c409834663f931d5659879e3f51cc5a309a417246f40561ea5110000f42e1",
+      "tasks.md": "f3aa14bae26082d19bc7a44b04a922c55f3a2a13bd29d8cc24159ef8510d6831",
       "decision-record.md": "41c2332e2e3cb4de68de83fa06afa6b1cd094ed599af42a580b1354dfb3cf626",
-      "implementation-summary.md": "f53a36c965d261c1fc7a9491cae57852979486d3c4c52636e6666697fad7d2a5"
+      "implementation-summary.md": "dd5f9bbdaf3c53cf4b873f25a592b9b4fc40740840703064c404a55acd6eaa0e"
     },
     "last_active_at": null
   }

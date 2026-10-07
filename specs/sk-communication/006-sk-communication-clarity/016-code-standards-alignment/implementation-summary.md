@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "One documentation gap closed, one guard added, and four restraint candidates declined with reasons. The audit's own wrong cut is recorded because only running the code caught it."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "code standards alignment implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

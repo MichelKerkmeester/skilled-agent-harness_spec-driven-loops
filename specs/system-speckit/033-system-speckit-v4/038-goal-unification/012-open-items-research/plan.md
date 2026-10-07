@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: open-items-research"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "open items research plan"
 importance_tier: "normal"
 contextType: "general"
 ---

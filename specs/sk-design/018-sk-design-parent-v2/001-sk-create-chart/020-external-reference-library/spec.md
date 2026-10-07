@@ -3,7 +3,7 @@ title: "Feature Specification: screenshot library of well-designed charts from e
 description: "A screenshot library of well-designed charts from public component libraries, chart libraries, design systems and editorial chart products, captured in both colour schemes with an index of what each one is worth borrowing."
 trigger_phrases:
   - "external reference library"
-  - "a screenshot library of well designed charts from"
+  - "a screenshot library of well designed charts"
 importance_tier: "normal"
 contextType: "general"
 ---

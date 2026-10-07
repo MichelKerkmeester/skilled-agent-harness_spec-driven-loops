@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Research on deep-loop result presentation; verdict deep-loop-contracts-only, so no repo rule was authored."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "synthesis presentation implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

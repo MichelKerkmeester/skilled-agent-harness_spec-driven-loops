@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "cli-hermes is the eighth executor kind in the deep-loop runtime, with a fail-closed builder, a two-id roster, audit and dispatch-audit coverage and unit tests; one live lineage ran end to end and surfaced the pace finding: a Hermes research iteration needs 1500 seconds or more."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "deep loop executor support implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

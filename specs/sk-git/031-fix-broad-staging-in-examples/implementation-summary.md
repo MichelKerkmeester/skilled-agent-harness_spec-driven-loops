@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Three sk-git examples now stay within the author's files like the scoped-staging rule says, and all three files' versions match the derivation."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "fix broad staging in examples implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

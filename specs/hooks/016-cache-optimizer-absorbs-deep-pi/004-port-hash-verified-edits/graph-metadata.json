@@ -14,15 +14,15 @@
       "pi cache hash-verified",
       "cache optimizer edits",
       "phase 4 cache optimizer",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "acceptance criteria"
+      "port hash verified edits plan",
+      "port hash verified edits tasks",
+      "port hash verified edits acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "phase outcome",
+      "verification evidence"
     ],
     "key_topics": [
       "cache",
@@ -30,13 +30,13 @@
       "optimizer",
       "edits",
       "phase",
-      "implementation",
+      "port",
+      "hash",
+      "verified",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Exact-string editing has a failure mode that is silent and destructive: the model reads a file,",
     "created_at": "2026-09-08T17:57:03Z",
-    "last_save_at": "2026-10-03T15:29:49.495Z",
+    "last_save_at": "2026-10-07T15:56:13.263Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38a162d747b1a7d848027e323c2eaf598f58a1336054264f11bd82c0e95b0c67",
+    "source_fingerprint": "sha256:3f862c42941b4b2ff225dac7979509647677d2b78a63bbebf25a454ffc807493",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c7be8db489902c6a4dc1c1d9c2f5086635075d1c844a71228577cfaf0d633522",
-      "plan.md": "49eb3fc623d624f7e6fa3bcbf84333583b51bae4934f430e7f63ce7b8e01cee3",
-      "tasks.md": "e7f88a019a93e5bb377090f6c7ebad4f11065d37183d41aebc18ab132697e368",
-      "implementation-summary.md": "5386390bf28ed30e42a6de1932b473163237537738e1949774b41543fb976a88"
+      "plan.md": "b8c3e7b56c3af19a810a3173736cf8958a992ed01dc5e6654283688bf174f396",
+      "tasks.md": "02505ee31790c729354df7c646a0e32e0b00cedd64a2fee64f684118e14f01a5",
+      "implementation-summary.md": "bbdc026f132985bed8896a72d3ebcaaf23aadfc6436ea2b7d1380ed8b076c978"
     },
     "last_active_at": null
   }

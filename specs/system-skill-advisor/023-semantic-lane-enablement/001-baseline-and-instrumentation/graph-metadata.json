@@ -22,7 +22,7 @@
       "baseline tasks",
       "coverage measurement",
       "status instrumentation",
-      "verification checklist"
+      "baseline and instrumentation acceptance criteria"
     ],
     "key_topics": [
       "advisor",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Three numbers this packet is built on are either unmeasured or wrong",
     "created_at": "2026-09-02T22:17:10Z",
-    "last_save_at": "2026-10-07T12:55:37.136Z",
+    "last_save_at": "2026-10-07T15:57:06.037Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:10544f37194222480c4281b407f9e2fe940fd94a6855cea8b62337ed5facc9c5",
+    "source_fingerprint": "sha256:17527b435a92e8b37e62ee7a55bcc789164888120b8bd276b5ad45433f71f880",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "778bdda673ceccfc8c447dbb76caf6af9f98f56df18b075ef855173e25288d3e",
       "plan.md": "6484f90cc538095515d12cdd64975c8c0b5155fd68a671e3d9e92d2909b332a6",
-      "tasks.md": "6d28bf61a43daf0a93a4cedc3961643a44e56f2d2fb288095d92f7cf7ba912bc"
+      "tasks.md": "a2dceca77ba4f0b734709200f96d2cb1bb7c7e99e1cf550a80e5530f845513b5"
     },
     "last_active_child_id": null,
     "last_active_at": null

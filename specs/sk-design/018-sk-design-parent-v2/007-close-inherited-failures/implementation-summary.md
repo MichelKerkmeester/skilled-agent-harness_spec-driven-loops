@@ -2,10 +2,7 @@
 title: "Implementation Summary: closing the inherited failures"
 description: "Four red gates, four different causes, none of them large, and one of them was never the defect it reported."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "close inherited failures implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

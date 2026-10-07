@@ -20,9 +20,9 @@
       "deepseek alignment loop driver",
       "comment-only diff filter",
       "one file per brief loop",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "align runtime code with sk code opencode tasks",
+      "align runtime code with sk code opencode acceptance criteria",
+      "align runtime code with sk code opencode implementation summary"
     ],
     "key_topics": [
       "deep",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Code under `.skilled/skills/system-deep-loop/runtime/` does not follow the sk-code-opencode comment and structure rules in `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md` §2 and §4",
     "created_at": "2026-09-30T05:43:46Z",
-    "last_save_at": "2026-10-07T12:55:37.869Z",
+    "last_save_at": "2026-10-07T15:57:06.681Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0de53d73869c7f2875ab8a653f02e159920720c4eb5b6919f12bfee473c2d849",
+    "source_fingerprint": "sha256:00c71448a227629a45791fb0ae12d524b7508d5d4994de1e42a8aef25f62409d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "145e4f70495b87177fdef412633d343f68a6b8b25917665878fb8ff08e9a6881",
       "plan.md": "4681a61bfec39fb90e1bbfad97ec896e408f543d5d9f1ca1a81e3d52a0be43f5",
-      "tasks.md": "5e27b9b16a75067c3055f39387e67fc6143c1e7253acffa97df61b860f421ebe",
-      "implementation-summary.md": "bc19d3e6596486521788044f1d0aa7699fc7862ebd2441d434e615a06d426c7a"
+      "tasks.md": "e24f62af31e4153eba8b67ed405555e1ab6d61093f57c278892a30e9265bbc7c",
+      "implementation-summary.md": "420b09bb4455eb5383197c84b4bafdbd56ad5ef1e0fba21d5f574308c904b762"
     },
     "last_active_at": null
   }

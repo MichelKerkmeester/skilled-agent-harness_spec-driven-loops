@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 6: hermes-model-registry-and-routing"
 description: "Prove the roster gate with runner output, register the mode in every copy of the prompt-knowledge layer, extend the drift guard to the new packet, and check each reasoning level live. No new code paths: the allowlist from phase 003 is exercised, not changed."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "hermes model registry and routing plan"
 importance_tier: "normal"
 contextType: "general"
 ---

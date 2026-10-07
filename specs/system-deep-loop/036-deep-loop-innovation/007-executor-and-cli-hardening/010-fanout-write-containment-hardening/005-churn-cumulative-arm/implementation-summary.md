@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The churn detector now keeps a running total of newly dirty out-of-lineage paths across heartbeats, so a neighbour that dirties one path per heartbeat trips it where the per-window count never could."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "churn cumulative arm implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

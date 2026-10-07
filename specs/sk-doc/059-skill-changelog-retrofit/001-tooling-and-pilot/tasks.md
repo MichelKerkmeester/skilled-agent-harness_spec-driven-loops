@@ -4,7 +4,6 @@ description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "changelog retrofit tasks"
   - "changelog pilot tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -13,30 +13,27 @@
     "trigger_phrases": [
       "pi default transport",
       "jev transport auto",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "pi default transport plan",
+      "pi default transport tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "pi default transport implementation summary"
     ],
     "key_topics": [
       "default",
       "transport",
       "jev",
       "auto",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy"
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -52,15 +49,13 @@
       ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
       ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs",
       ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
-      ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
-      ".skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs",
-      ".skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs",
       ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs",
       ".skilled/skills/cli-classifier/shared/scripts/README.md",
       ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
-      ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md"
+      ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+      ".skilled/skills/cli-classifier/feature-catalog/feature-catalog.md",
+      ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-integration.md"
     ],
     "entities": [
       {
@@ -130,30 +125,6 @@
         "source": "derived"
       },
       {
-        "name": "score-track-narrowing.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-completion-claims.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-severity-replay.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-debug-next-check.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs",
-        "source": "derived"
-      },
-      {
         "name": "score-pi-transport.mjs",
         "kind": "file",
         "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
@@ -184,6 +155,12 @@
         "source": "derived"
       },
       {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +183,29 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Pi transport answered with 95.1% agreement with the jev CLI in about half the p95 time, yet it runs only when a caller sets `JEVTRANSPORT=pi`",
     "created_at": "2026-10-03T17:39:27Z",
-    "last_save_at": "2026-10-03T19:32:34.014Z",
+    "last_save_at": "2026-10-07T15:56:06.895Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:100fae07c69cc31eec0b0e370a153fc6bf5aae357384ad4d7c9643aa6939bd43",
+    "source_fingerprint": "sha256:01b986bdd3e96670b9634041e6f76b997ff8143c915c50bb998d7963edf81515",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9fbf54cecb2670e75128098fd66e800600b8087f9cdf544f053fada4977a442b",
-      "plan.md": "ee89f54cde937c09279f3a2fbe11545e4fe5d052d3f98fe2b4a079e8321ea6ee",
-      "tasks.md": "e68ed6750971bf9aa2600e279aa45e04d3cf98f2d2ea121200b36470d5dab34e",
-      "implementation-summary.md": "8a945682a05a25afff38bae1758fab001d4c32d7c9e9b263745ea7d48733de9d"
+      "plan.md": "4c37f144a862c2ff5d458f18ff33937fa597f86a50c589551f42069e05170877",
+      "tasks.md": "063363e38e33226b3cd212576b1f5a8a84e227db1b8bdb6aa49b406e9548481e",
+      "implementation-summary.md": "7069c33800873b16ca368b77b20ae492efb33c31e4f88076c07a53fb80462780"
     },
     "last_active_at": null
   }

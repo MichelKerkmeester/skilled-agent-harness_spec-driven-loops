@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "context type unification",
       "make one allowed contexttype list govern spec docs",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "context type unification plan",
+      "context type unification tasks",
       "context type unification acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "shared frontmatter value list",
+      "contextType unification",
+      "frontmatter values warn rule"
     ],
     "key_topics": [
       "context",
@@ -35,8 +35,8 @@
       "govern",
       "spec",
       "docs",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`shared/context-types.ts` is the declared single source of truth with four values (`implementation`, `research`, `planning`, `general`) and two aliases (`decision` to `planning`, `discovery` to `general`), and the `sk-doc` contract lists the same four",
     "created_at": "2026-10-04T08:04:51Z",
-    "last_save_at": "2026-10-07T12:55:55.645Z",
+    "last_save_at": "2026-10-07T15:57:44.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a40a919fccf783b07a03a8cd554246251d2788e8073279ce4f7572d7e019c351",
+    "source_fingerprint": "sha256:994868bd2387eae46d50f7cd779f081fb571f06a8da49ad40ba70dda4e1fd655",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0affb60cd8932ed3d0f4560c19dc5c9df2d0261ab5db8064a31fc3214d3cfb14",
-      "plan.md": "d127595c8eb37df89ff4115686da86da51fc4eeaf9d0c1bbe9916db997a98bd7",
-      "tasks.md": "57232d61181d524eb743049ce61fd6a21384ff92c1f94801777e5a949c209386",
-      "implementation-summary.md": "9bfb6d6bb5a906ca910e0a28942ff0962582eed2d561bd1edafed8d2a787694a"
+      "plan.md": "fb2fae59ac313c6498cc84e6ef57bb00cf1be8f5c7ec3fdf2ebe3e285bd570f3",
+      "tasks.md": "ee147f5a09d5b747a5d1836ffc03a7e2f5d32c92f9bfd39d2a1664cec96fcbbd",
+      "implementation-summary.md": "98ecc646e5e9f40541204ef4f494691a6a2e89dd8491f3d413ddb2281fcc787f"
     },
     "last_active_at": null
   }

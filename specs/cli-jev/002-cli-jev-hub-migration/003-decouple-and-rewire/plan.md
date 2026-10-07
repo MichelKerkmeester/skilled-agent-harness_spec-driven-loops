@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 3: decouple-and-rewire"
 description: "Verify the decoupling a parallel writer landed, then close the enforcement hole first: move the audit row and both hook suites to cli-jev/cli-usage and prove it with a live preflight refusal. Rewire the rosters through their mirror contract, reset the hub's release line to 0.1.0.0, and re-derive each generated surface with its own sanctioned writer."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "decouple and rewire plan"
   - "dispatch rewiring"
   - "generated surfaces"
 importance_tier: "normal"

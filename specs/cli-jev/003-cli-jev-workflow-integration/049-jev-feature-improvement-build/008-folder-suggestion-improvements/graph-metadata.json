@@ -12,17 +12,14 @@
   "derived": {
     "trigger_phrases": [
       "folder suggestion improvements",
-      "the folder suggestion scorer shows each option with",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "the folder suggestion scorer shows each option",
+      "folder suggestion improvements plan",
+      "folder suggestion improvements tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "folder suggestion improvements implementation summary"
     ],
     "key_topics": [
       "folder",
@@ -31,12 +28,12 @@
       "scorer",
       "shows",
       "option",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -196,7 +193,7 @@
     ],
     "causal_summary": "Feature 022 kept against the top-listed alternative, because the fixture's target is wrong on every row",
     "created_at": "2026-10-03T05:30:08Z",
-    "last_save_at": "2026-10-07T12:54:56.327Z",
+    "last_save_at": "2026-10-07T15:56:06.837Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +203,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:703294bcf0644d4eb90591f46a49278daf5f392d8c8f804aa26511b4298b96f6",
+    "source_fingerprint": "sha256:8912e501e8ee1215b6c7ccedf54ba1d2490d8ba63eb1279a721e7b5740b85ffd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f55fb14912b0debbfdf24a85091c2bbe14401cb0813d4ccfe53b87484743ded8",
-      "plan.md": "ba5de3910448a001bdb54445bf6284cd27b97828ea54bbbd3246aab45677e571",
-      "tasks.md": "19096763764d92193751221834ff27f8ebcdaa4e573dbf6b4aa3e30cf0b86af6",
-      "implementation-summary.md": "1bcba0971a3acd8fbaef2e6b76025bf34272cd4bef48d9101d564c12b1550db5"
+      "spec.md": "1924ba888e281c77c58340a690d84e825c2b1012ba96f1f9a0fbf9c041dae81f",
+      "plan.md": "4ae8f090b26c0d59644ef857bb6dff9897872381c1f715425f604622f4002529",
+      "tasks.md": "a0197ae1f202ae7607412115ecb681217007e2183c28c41a1d338212a520169c",
+      "implementation-summary.md": "83a1a98903f0cceb066da8253812875d30b226e69f045a56810e0610a7227554"
     },
     "last_active_at": null
   }

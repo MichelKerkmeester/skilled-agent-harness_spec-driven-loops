@@ -2,10 +2,7 @@
 title: "Implementation Plan: Scope the cli-opencode Layer 3 baseline to the dispatch target's own paths"
 description: "Reword four Layer 3 statements in one reference and one rule in the skill file so the baseline covers the target's own paths, then set the reference's version."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "layer 3 own paths baseline plan"
 importance_tier: "normal"
 contextType: "general"
 ---

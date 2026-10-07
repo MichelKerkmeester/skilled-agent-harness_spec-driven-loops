@@ -20,10 +20,7 @@ _memory:
       - "Research executor? GLM-5.2-high via cli-devin, 10 iterations, stop-policy max-iterations."
       - "Research focus? Fresh broad hunt for new issues, excluding 014/016 known findings."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "system deep loop review implementation summary"
 ---
 # Implementation Summary: System-Deep-Loop Broad Deep-Review
 

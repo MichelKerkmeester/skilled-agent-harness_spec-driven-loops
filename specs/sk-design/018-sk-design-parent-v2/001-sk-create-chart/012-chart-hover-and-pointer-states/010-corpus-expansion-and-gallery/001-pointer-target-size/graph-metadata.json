@@ -13,16 +13,10 @@
     "trigger_phrases": [
       "pointer target size",
       "six hundred and fourteen of the corpus 695",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "pointer target size plan",
+      "pointer target size tasks",
       "pointer target size acceptance criteria",
-      "implementation summary"
+      "pointer target size implementation summary"
     ],
     "key_topics": [
       "pointer",
@@ -32,11 +26,11 @@
       "hundred",
       "fourteen",
       "corpus",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -196,7 +190,7 @@
     ],
     "causal_summary": "`markable()` sets `data-mark` on the visible geometry, so the pointer target is the drawn mark and",
     "created_at": "2026-09-06T06:26:42Z",
-    "last_save_at": "2026-10-07T12:55:10.108Z",
+    "last_save_at": "2026-10-07T15:56:34.081Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +200,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aef3da39cb491332713cd30357fbe280aa6be29ddfb418b494cbd01f835dbc3c",
+    "source_fingerprint": "sha256:2a6b6a0190223b1d150076ebf53c08e3b220b8837cb213e35a4a938e72e85b92",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ea096b9c1e5ae93f9f1db5360962e053970333da05be3bd2f1614d63100a09e0",
-      "plan.md": "72cab55524d0cb61aec88202e07f850166f7bbb9e139fc9a76185e74ef42c668",
-      "tasks.md": "82eeddff55492b68711ab24900e94b915cdf12fed6098d8d9684995a385fae3f",
-      "implementation-summary.md": "ed39f9470cac1b57a8d1fdd59383ea52bcfee74595f70a6bfb46a31f8451b1c6"
+      "plan.md": "4103e6777f2441b5032327a44032a1c976e655a9f0278c651eb6d5f12bf5af98",
+      "tasks.md": "422a27f3aa784ea6be7e39d4cdb08c97ec2fe502f362d493d820deba3c16df18",
+      "implementation-summary.md": "a6daa3f8694aecd4f1f48a4533eababcd6d0dfb204aa5f7ffa98b46b8d8f1d2d"
     },
     "last_active_at": null
   }

@@ -2,7 +2,6 @@
 title: "Implementation Summary"
 description: "Hermes was the seventh runtime phase 048 missed, and the de-emission had quietly left it with a gate that opened and never spoke; the plugin now delivers the notice at the first write, the surfaces that still described turn-time injection are corrected, and the two Pi spec-gate extensions finally have a type check."
 trigger_phrases:
-  - "implementation summary"
   - "hermes gate delivery"
   - "stale surface corrections"
   - "pi typecheck gate"

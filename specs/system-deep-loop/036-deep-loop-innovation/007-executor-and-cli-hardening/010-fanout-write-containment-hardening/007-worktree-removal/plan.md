@@ -2,10 +2,7 @@
 title: "Implementation Plan: Remove the per-lineage worktree mechanism, its modules, wiring, tests and plan, now that attribution is not a requirement"
 description: "Delete the worktree modules, their tests and their wiring; collapse lineage paths to the shared-checkout mapping; prove it with the suite, the wrapper tests and a live run."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "worktree removal plan"
 importance_tier: "normal"
 contextType: "general"
 ---

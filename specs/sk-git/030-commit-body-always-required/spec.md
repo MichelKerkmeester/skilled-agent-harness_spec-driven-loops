@@ -2,7 +2,7 @@
 title: "Feature Specification: Require a commit body on every authored commit"
 description: "sk-git required a commit body only when four or more paths were staged, so small commits went in with a subject alone and lost their reason. This packet makes the body mandatory for every authored commit and has the commit-msg hook refuse a commit without one."
 trigger_phrases:
-  - "sk git required a commit body only when"
+  - "sk git required a commit body only"
   - "commit body always required"
   - "commit-msg body gate"
 importance_tier: "normal"

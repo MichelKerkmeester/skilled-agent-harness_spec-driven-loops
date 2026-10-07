@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A fresh clone can now install, build and start the embedded Code Mode server, and the UTCP preflight and doctor report the shipped config truthfully."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "code mode fresh clone build implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

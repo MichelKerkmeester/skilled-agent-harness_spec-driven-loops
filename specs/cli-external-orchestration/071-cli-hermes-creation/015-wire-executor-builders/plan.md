@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 3: wire-executor-builders"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "wire executor builders plan"
 importance_tier: "normal"
 contextType: "general"
 ---

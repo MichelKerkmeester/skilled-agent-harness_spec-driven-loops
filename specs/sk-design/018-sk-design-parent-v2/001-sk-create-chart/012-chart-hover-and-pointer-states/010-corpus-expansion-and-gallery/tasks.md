@@ -2,10 +2,7 @@
 title: "Tasks: Enlarge every pointer target, restyle all forms with richer data, expand the catalogue with new chart types, and ship one light and dark gallery"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "corpus expansion and gallery tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

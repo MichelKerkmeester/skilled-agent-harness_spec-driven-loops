@@ -12,17 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "closeout",
-      "four phases closed with items recorded rather than",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "four phases closed with items recorded rather",
+      "closeout plan",
+      "closeout tasks",
       "closeout acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "closeout implementation summary"
     ],
     "key_topics": [
       "closeout",
@@ -32,11 +30,11 @@
       "items",
       "recorded",
       "rather",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -199,7 +197,7 @@
     ],
     "causal_summary": "Four phases closed with items recorded rather than done",
     "created_at": "2026-09-09T17:46:09Z",
-    "last_save_at": "2026-10-07T12:55:12.308Z",
+    "last_save_at": "2026-10-07T15:56:34.463Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a948a3a31bbfc8004e5a60471e06fcffc28f0dd4bf6a3b1affbaf301a6e79bf",
+    "source_fingerprint": "sha256:de836b8424e655f6f15b2da33cc271ec530d5bc2863b09b698b72c4109845cc2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "55f0cdbf629a9abdc59ad046d402378ed1ca37e6b12253957693741f3ee9631f",
-      "plan.md": "12612f9f644a68e3e85ab16d0883a6b208bf28d65f22223071ea40cb65d07f3c",
-      "tasks.md": "c528200d97bfd072e7a4f36938cd45e713488ea9627d43c5a4ae7c7e3750f0a9",
-      "implementation-summary.md": "3648824cc39fbd4f003b8896c3beab14a880d2eb3641840d1e8086b4c97c7dcb"
+      "spec.md": "64713fd2956e475583e97f059a8a177ef2e973848dfe4ba47a282d26fc376e4b",
+      "plan.md": "2d29660a91ecb7801ce308ceb75457fe2ba64476ac28d8db5ac32f40b855edc9",
+      "tasks.md": "01ae606692280b333f1e1fa23361f3cda50420c88b868c3439b13cf0db468226",
+      "implementation-summary.md": "8d1bd87ce6990066f3ae388bf5c2e868e2870b67a640ba5c012f47565b0920cb"
     },
     "last_active_at": null
   }

@@ -19,10 +19,9 @@
       "scope inflation stalling",
       "answer the actual request",
       "ruleset honesty audit",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy"
+      "agent avoidance anti patterns plan",
+      "agent avoidance anti patterns tasks",
+      "agent avoidance anti patterns acceptance criteria"
     ],
     "key_topics": [
       "agent",
@@ -199,7 +198,7 @@
     ],
     "causal_summary": "A pasted user report (Reddit r/ClaudeAI thread \"Claude's habit of inventing rules to avoid helping\", full text supplied by the operator; the thread itself is fetch-blocked) catalogs six agent behaviors that all read as diligence and all function as avoidance: (1) unsolicited warnings wrapped around mundane requests, (2) silent reinterpretation into a \"safer\" version of the ask, (3) restrictions cited that do not exist and quietly change under pushback, (4) refusals dressed as policy whose real answer is \"I just don't want to\", (5) \"done\" claims that become honest only after interrogation, and",
     "created_at": "2026-09-18T08:12:37Z",
-    "last_save_at": "2026-10-07T12:54:42.708Z",
+    "last_save_at": "2026-10-07T15:55:51.870Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +208,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ca7a79080694416b6c4b40777416928198d03e0306443ca2a228ad04f6cec2e",
+    "source_fingerprint": "sha256:e0b9414bc1aff9d8932f80306b8941b97859e3096305c498747f13e6c7960916",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "308fd525625b7f522daa8aaa5ebd8b62efbd5e27de9f33cfd9139e4ae4eb8c62",
-      "plan.md": "ca39d5497121f59cb935b825040592f79b1b2c892e15664cfeccf199834cd32b",
-      "tasks.md": "98763b4548bc8f8221b6d1a301411ecf7e3420d03bbfa8d0ebffa3a5b6a23061",
-      "implementation-summary.md": "b092823bbc029b803880f4633a5311629ab4ccd2cfe0a057f15386fabf5e9565"
+      "plan.md": "0294001ae5fb174abae7e3e8b97689a8ba2cde55329c8bf28f5ae5ba04d572be",
+      "tasks.md": "881849aca59e9ad7adc563c1093dcd0cb04dd67b29f7712ba5bcae53fabaf1a3",
+      "implementation-summary.md": "7eeb31412bb54623a4443e14290d6dd0fdada5abc6c5bfb3aba280aa03f7c3cd"
     },
     "last_active_at": null
   }

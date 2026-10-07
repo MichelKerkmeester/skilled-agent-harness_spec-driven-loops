@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 2: baseline-deletion-detection"
 description: "Mark untracked baseline entries, walk the baseline for paths that vanished, and restore from the captured copy or record the loss."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "baseline deletion detection plan"
 importance_tier: "normal"
 contextType: "general"
 ---

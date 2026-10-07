@@ -13,8 +13,7 @@
     "trigger_phrases": [
       "prompt-token-contract",
       "token-aware prompt profile",
-      "projection quality",
-      "implementation plan"
+      "projection quality"
     ],
     "key_topics": [
       "prompt-token-contract",
@@ -23,12 +22,12 @@
       "profile",
       "projection",
       "quality",
-      "implementation",
-      "plan",
       "wire",
       "body",
       "one",
-      "system"
+      "system",
+      "instruction",
+      "plus"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -155,7 +154,7 @@
     ],
     "causal_summary": "The wire body is one system instruction plus one user message containing the whole encoded text; the instruction references values the model cannot see and never states the token contract",
     "created_at": "2026-08-13T04:05:03.043Z",
-    "last_save_at": "2026-10-03T15:11:59.580Z",
+    "last_save_at": "2026-10-07T15:56:17.395Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -163,11 +162,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:4555ce87adf85842e9027463684c17a926a7044a476eb11124730d71b53e665a",
+    "source_fingerprint": "sha256:d85550178dd56bfb25be21db3a7e4732601105832c552b5144e12aadc8b3fbd0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "282c3fce15f6f2d806d60e00bc69b56706620e352914011f948315ff2ba432a0",
-      "plan.md": "a07fa4c1bc402eb94677e2149f13b9467a224db6e91e2a9a4c6f06d7bc5c72b0",
+      "plan.md": "13b24897a564544f0828c5cf2d4995011440a87094c9fa265f4c29cc236628dc",
       "tasks.md": "b4de73b7573221e1b58f68d8ce66a5275888f14a827fceb1a262d8af4d759992"
     },
     "last_active_child_id": null,

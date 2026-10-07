@@ -2,10 +2,7 @@
 title: "Implementation Plan: Perfect skill routing across the fleet: why an advertised phrase fails to arrive"
 description: "Prove membership causal, repair the gate that could not see the failure, close the one hub whose reachability was unverified, then carry each router's declared vocabulary into the stage the advisor scores."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "routing perfection research plan"
 importance_tier: "normal"
 contextType: "general"
 ---

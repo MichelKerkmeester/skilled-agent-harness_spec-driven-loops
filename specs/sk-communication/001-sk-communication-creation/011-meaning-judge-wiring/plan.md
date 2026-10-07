@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 011 Meaning-Judge Wiring"
 description: "Compose the production provider, validator, local reject-only judge, and render path with exact-original behavior for every negative or unavailable judge outcome."
 trigger_phrases:
   - "meaning-judge-wiring"
-  - "implementation plan"
   - "reject-only meaning gate"
 importance_tier: "important"
 contextType: "implementation"

@@ -12,17 +12,11 @@
   "derived": {
     "trigger_phrases": [
       "chart and diagram cutover",
-      "two packets leave a documentation hub for a",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "two packets leave a documentation hub",
+      "chart and diagram cutover plan",
+      "chart and diagram cutover tasks",
       "chart and diagram cutover acceptance criteria",
-      "implementation summary"
+      "chart and diagram cutover implementation summary"
     ],
     "key_topics": [
       "chart",
@@ -33,10 +27,10 @@
       "leave",
       "documentation",
       "hub",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -201,7 +195,7 @@
     ],
     "causal_summary": "`sk-create-chart` and `sk-create-diagram` live in a documentation hub whose other thirteen modes",
     "created_at": "2026-09-06T13:52:16Z",
-    "last_save_at": "2026-10-07T12:55:16.889Z",
+    "last_save_at": "2026-10-07T15:56:39.655Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fd32aeffa4c20442a81ccb42b799673662ec91f458c3cf951108fb8dc614ce0a",
+    "source_fingerprint": "sha256:42b2a3622eb9f391c515cc0e395362627c4990d88c800e30f015f238a8a0e24c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d8bc22b587df6227911876a4b293670a5ba366bdfe00796d29b3b7661bfaf6c6",
-      "plan.md": "f0a88a1027b67ac235bd1716a2e461e108ce62bcfe0116d76bc648f50e5e6ff7",
-      "tasks.md": "03bfc02689fa9bc4cd67bf9c57c1f43588ae5edec1ba01f47827b9b908fdd3df",
-      "implementation-summary.md": "ad62865e316dad4e51df0fb9e9906b9bd7951d807e69fca52cf7f1cfb1c30988"
+      "spec.md": "c5dec1613f1ab66e42458697c781cbd37981bc6ec19be3f216757dc2e363decd",
+      "plan.md": "931df8286b5450de2a3b4ed1ef8c2f6f49ecda244a23bf7a37fa408c1339ee25",
+      "tasks.md": "d89e5236b90fae1ff8bce5793b28f2761a730c49a6a237e1657f1442e5b5d0df",
+      "implementation-summary.md": "95626c95b4f234415ff180cab9d9e9340123b272b980a93447f3956dfb22af8e"
     },
     "last_active_at": null
   }

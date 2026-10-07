@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A six-iteration audit of the completed decommission returned CONDITIONAL: nothing blocking, nine required corrections, eight advisories, every one reproduced against the tree."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "deep review decommission implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,10 +2,7 @@
 title: "Tasks: Phase 2: baseline-and-decisions"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "baseline and decisions tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

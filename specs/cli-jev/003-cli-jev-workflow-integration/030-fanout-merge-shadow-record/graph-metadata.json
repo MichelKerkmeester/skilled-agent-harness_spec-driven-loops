@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A fan-out run merges its lineages' findings in `fanout-merge.cjs`",
     "created_at": "2026-09-29T12:42:42Z",
-    "last_save_at": "2026-09-30T07:29:11.255Z",
+    "last_save_at": "2026-10-07T15:56:02.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b2f4a0b85c1908b89bad30265d0d16c32b785ade87fae0f0c8e00025f792f7ab",
+    "source_fingerprint": "sha256:b63b302a146c729bcf4ec18a899a317ebe5ec6ae352f13d661764314a3c2c264",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "37ecd15b7df7df8f363125676d3a379cc28574548485927b69d1d3af815cb0d3",
       "plan.md": "b992a89ecc30f051861e302538915e55b53ea992aed278878abfba4a4ed0240d",
       "tasks.md": "df14953f4ee464ba44b4bb9da55e10716dc6d5426e681a17fd163154f80c2801",
-      "implementation-summary.md": "b80c991ebdde36d0051808881682485f9d7a68ccfb6f69f552c61b588cb181b9"
+      "implementation-summary.md": "d614985a52b015913ebcf34f6d42ea37fd741f3ec13a2588c445e23ab1d1b496"
     },
     "last_active_at": null
   }

@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "capture and judgment",
       "the permanent human half a formalized capture review",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "capture and judgment plan",
+      "capture and judgment tasks",
       "capture and judgment acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "capture judgment discipline",
+      "capture and judgment implementation summary"
     ],
     "key_topics": [
       "capture",
@@ -32,11 +30,11 @@
       "half",
       "formalized",
       "review",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -199,7 +197,7 @@
     ],
     "causal_summary": "The playbook scenario formalized: a skin-pinned third capture that must differ from the first, the settled double-capture, and the judged checklist — type fit, the remove test, taste, the visible 6–10px label gap, the deserved focal element, the unavoidable-box exception",
     "created_at": "2026-09-10T18:45:29Z",
-    "last_save_at": "2026-10-07T12:55:19.777Z",
+    "last_save_at": "2026-10-07T15:56:43.346Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8d606384707800c7a18f81f6b2e1c4f8a136d45ad6c123ebdb2089a532c959c8",
+    "source_fingerprint": "sha256:b056fdd7259133faa45869cf17091abd7da5a5db5eea76c877ecf6e446823934",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8551836df15eaa5781ef99773c4bc0f1eb66c21f97220edf5ffba04444c5f36a",
-      "plan.md": "5d525a6949aee30c197c0ebee0c29b28814e7f06224d017fe6f2ca65a0a5b2bd",
-      "tasks.md": "97449d4f8614a31499969b91dd8add8bd39b0ff04eed85dbe175ae4dce86c8cf",
-      "implementation-summary.md": "e2021cab9702d62e4c24359af73938ae8a1e40db40f59a1e615882fc7b05f995"
+      "plan.md": "3165ce7a8ff3ce903b93b5c75b5a66b201423bc9f7210671e38fe72797ba1a13",
+      "tasks.md": "e1a9ecd1315cb8fabf39f210971e6107721c17f51c8f448af5e84f85153856f4",
+      "implementation-summary.md": "94b956b0abf37cc663fe99e378e8ce5c4a2b4025c7bbb093ebd8f72bcb5eab2e"
     },
     "last_active_at": null
   }

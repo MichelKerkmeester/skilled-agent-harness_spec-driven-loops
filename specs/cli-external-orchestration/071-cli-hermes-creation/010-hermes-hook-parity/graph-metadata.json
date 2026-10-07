@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "hermes hook parity",
       "hermes hook parity the repo guards plugin bridges",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "hermes hook parity plan",
+      "hermes hook parity tasks",
       "hermes hook parity acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "hermes hook parity implementation summary"
     ],
     "key_topics": [
       "hermes",
@@ -32,11 +30,11 @@
       "guards",
       "plugin",
       "bridges",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -201,7 +199,7 @@
     ],
     "causal_summary": "A Hermes session ran seven of the repo's twenty-two hook packages",
     "created_at": "2026-09-15T05:17:36Z",
-    "last_save_at": "2026-10-07T12:54:47.387Z",
+    "last_save_at": "2026-10-07T15:55:57.387Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9b89b821c15b2b7e2bdacdcc230e652e8709b935f4bfc783f3f2147ff87e3f3b",
+    "source_fingerprint": "sha256:4bd71e254f458de1bdc83ecf4a84db7b1cf9c53f7ecfd7b1724a191a38d0072b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "69ce9a87b0a6795f74c622a32cbf64293f453ac32ce5873c379bca51c3a49107",
-      "plan.md": "1ddd6da5b7070eff3dfe352aa2732be0bf8ae3b2de39214d150f9743f2b7d326",
-      "tasks.md": "09e9e030bca0ad0665917f19ad40f102ad5eb7e166942e743f08bfbacd2e3bfa",
-      "implementation-summary.md": "f689eac3606da4ee5470aa2e664dc44131a0895607b41ec133966c411782e840"
+      "plan.md": "80428a6b8215b476c97fe833d858b2461dc88befa794b84263a1675fa9ab26e6",
+      "tasks.md": "fa3af7234f479cd9b495978efff89ef3496ed9b306e60ecb9850b92139c79ed7",
+      "implementation-summary.md": "a95c94220a46fd40ea5190c4ab3958c67f24a0556c7dfbc1a59da6bcc84bc9d2"
     },
     "last_active_at": null
   }

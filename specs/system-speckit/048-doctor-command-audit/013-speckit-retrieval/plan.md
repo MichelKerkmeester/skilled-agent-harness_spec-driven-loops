@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 13: speckit-retrieval"
 description: "Audits /doctor:speckit speckit-retrieval against this checkout, applies the smallest fix for every claim that no longer matches, and records subsystem defects as findings rather than fixes."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "speckit retrieval plan"
 importance_tier: "normal"
 contextType: "general"
 ---

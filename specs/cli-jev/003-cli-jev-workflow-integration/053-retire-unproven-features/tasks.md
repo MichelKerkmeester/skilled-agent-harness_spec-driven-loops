@@ -2,10 +2,7 @@
 title: "Tasks: Phase 53: retire-unproven-features"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "retire unproven features tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -12,17 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "docs and closeout",
-      "update the contracts references catalogs and changelogs in",
-      "implementation plan",
+      "update the contracts references catalogs and changelogs",
       "docs closeout plan",
       "changelog and version bumps",
       "closure record",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "docs and closeout tasks",
       "docs and closeout acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "docs closeout"
     ],
     "key_topics": [
       "docs",
@@ -31,12 +31,12 @@
       "references",
       "catalogs",
       "changelogs",
-      "implementation",
       "plan",
       "changelog",
       "version",
       "bumps",
-      "closure"
+      "closure",
+      "record"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Behavior that ships without its contract text, catalog entry and changelog leaves two skills documenting different rules, which is the drift this program set out to remove",
     "created_at": "2026-10-04T08:04:54Z",
-    "last_save_at": "2026-10-07T12:55:55.784Z",
+    "last_save_at": "2026-10-07T15:57:44.453Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a856121f0a9d88388d9de4f6ebbb657cdbba394fcf4fb04bceb15da669795dc",
+    "source_fingerprint": "sha256:dcdd463e0b03e8980a3aabdd6e439f4b87cbc3197abe8db8ed3128ee29654aac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b00e663f5251633be4851743cca65a8ce683a03f42903bb9b0b18906ffe4a50f",
-      "plan.md": "14cc6df16c12e99bcd9d25339d49e2f633891c7de87eb6a49790108b58eb4663",
-      "tasks.md": "e7cc7d17813727c2bb457b1193e9d493bcc035b74a013aec2fd07e02e2828850",
-      "implementation-summary.md": "d00be0d62b50b91e3bc5cec77786f67a70d7d154dcb193b479e25c48a45c1b63"
+      "spec.md": "f7ca7011190fc473faf2bf8ff0cd485f31dc214b874ad36d8d07bb45b05403be",
+      "plan.md": "1927cfa5a79c95629c34dcf4f9fd6a37b6c6800f0cbf662008437e5cb7ebde07",
+      "tasks.md": "3386da78eb9f95df5bb391b643f534adf26e14cf95709d2f1692884c71ea614c",
+      "implementation-summary.md": "fdb55df91d2c2623a2ccc6db8ff35003b5b0ad530cd53f4a34807dc6b6e6d340"
     },
     "last_active_at": null
   }

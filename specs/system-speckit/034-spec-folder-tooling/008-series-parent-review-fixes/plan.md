@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 8: series-parent-review-fixes"
 description: "Fix the twelve Phase 7 review findings and the two close-out gaps: make the series parent recipe run as written, finish the doc sweep, harden the listing and the phrase source, reconcile the Phase 6 records and pass the configured reasoning effort to cli-pi."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "series parent review fixes plan"
 importance_tier: "normal"
 contextType: "general"
 ---

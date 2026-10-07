@@ -25,10 +25,7 @@ _memory:
       - "External agents route as hosted-retained; inference-control capabilities are attested because the transport honors them via the composed prompt, not a remote wire field."
       - "The per-engine command mapping is caller-supplied; the subprocess is behind an injected boundary, so no test spawns a live CLI."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "external cli provider implementation summary"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Phase 5: external-cli provider

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "sk-git worktree provisioning now installs a package whose only dependencies are @spec-kit/* links, so sk-doc gets its @spec-kit/shared link. The fix and three harness assertions are verified, and the approved one-time repair gave this worktree its sk-doc link."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "worktree provision shared link implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

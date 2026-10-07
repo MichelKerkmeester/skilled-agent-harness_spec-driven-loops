@@ -15,14 +15,14 @@
       "cache savings estimate",
       "prefix churn detection",
       "cache optimizer stats cost",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "port cache economics plan",
+      "port cache economics tasks",
+      "port cache economics acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "phase outcome"
     ],
     "key_topics": [
       "cache",
@@ -36,7 +36,7 @@
       "optimizer",
       "stats",
       "cost",
-      "implementation"
+      "port"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`CacheStats` (`index.ts:265`) holds `day`, `totalRequests`, `hitRequests`, `cachedInputTokens`,",
     "created_at": "2026-09-08T17:57:02Z",
-    "last_save_at": "2026-10-03T15:29:41.787Z",
+    "last_save_at": "2026-10-07T15:56:13.728Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de24963a0cef3874f393d1938a99b570132a6b39075ce75271390b268b36523e",
+    "source_fingerprint": "sha256:a8644dfdf09727152ea97813642b1e644aacbf3473981d176b05e36698aa841e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c867240aed016aa48155afa9418c08b8dfdd76a8660f03cbb7946f6de12ee7b0",
-      "plan.md": "390593e79ab0b2a0e630dca107fd20ff74f11ff15567e38ba1211fef8f0261e4",
-      "tasks.md": "32e12417285b909e3c9b7bafe523bc0a49e8ae4a230e3c103510ede323c34e8d",
-      "implementation-summary.md": "07e8e090313655586a442ae3a0d39d0de43ea4260d206937745c492a114f464a"
+      "plan.md": "d03cd45cebe0c0bf3ac6de961fb8f860b9d7fbf5ea53eeec403af5ad0d8e7724",
+      "tasks.md": "425332dd66cc7b29329d65d715dd9d24a0b38c382dd4d484b285b159dd435a00",
+      "implementation-summary.md": "1d89d2b7e8dba2b51e15d05cf77b4628783a6aec27cfa11738d525c8c9f52aa8"
     },
     "last_active_at": null
   }

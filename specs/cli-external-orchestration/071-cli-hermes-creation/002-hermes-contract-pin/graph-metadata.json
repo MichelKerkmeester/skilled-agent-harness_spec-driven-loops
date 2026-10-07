@@ -12,31 +12,28 @@
   "derived": {
     "trigger_phrases": [
       "hermes contract pin",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "hermes contract pin plan",
+      "hermes contract pin tasks",
       "hermes contract pin acceptance criteria",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "hermes contract pin implementation summary"
     ],
     "key_topics": [
       "hermes",
       "contract",
       "pin",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy",
-      "task"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -196,7 +193,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-14T17:24:44Z",
-    "last_save_at": "2026-10-07T12:54:42.821Z",
+    "last_save_at": "2026-10-07T15:55:51.867Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +204,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:17d65d2037888af1deb1e4c167f0cb0eaf6aa9edc7d0b1f9b5486029cbc26891",
+    "source_fingerprint": "sha256:d4e72b3e40342942e019b98c1c2329bb8c4cb98b31fe6b15a39b68da6f2555fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "49fa5e086887811779187a1efa71b8dc842e790c159e0000d4c49406680d0613",
-      "plan.md": "78d2e88399979405a55fc9adeb62caf576a5f674601870eea906c3a3b6a82050",
-      "tasks.md": "9fb91d632f6c4c9b7aac87b83cb5aa7ac36bf2f4f4e5b4b2c821fe41162ad2af",
-      "implementation-summary.md": "4dc4a8f490c5b93adbccab752cdeed38888db48d27e417b7129d1cd50ffb3a69"
+      "plan.md": "e5ef9e67df5add08b5af11d54db44a34b7f077f670bdae1e17b66d072b0aaf3e",
+      "tasks.md": "c5b779abf4f65b7ff5c7c5ba11b3be76f28bbc24e4a4ad3bf098c36fd8e39ba1",
+      "implementation-summary.md": "2dfe09c7f228988828a17ed55e4c76ff6545ebe6b26124fe57ae9374c36d1017"
     },
     "last_active_at": null
   }

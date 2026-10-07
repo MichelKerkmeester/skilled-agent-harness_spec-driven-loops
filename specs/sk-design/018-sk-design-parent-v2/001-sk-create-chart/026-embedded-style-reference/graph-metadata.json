@@ -12,17 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "embedded style reference",
-      "every colour corner and type size in the",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "every colour corner and type size",
+      "embedded style reference plan",
+      "embedded style reference tasks",
       "embedded style reference acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "embedded style reference implementation summary"
     ],
     "key_topics": [
       "embedded",
@@ -33,10 +31,10 @@
       "corner",
       "type",
       "size",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +196,7 @@
     ],
     "causal_summary": "Every colour, corner and type size in the corpus is a gated derivation of one Style Reference, and",
     "created_at": "2026-09-09T15:42:19Z",
-    "last_save_at": "2026-10-07T12:55:12.319Z",
+    "last_save_at": "2026-10-07T15:56:34.365Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:28c7bb7a3fa7fc659c39be7fabee4d7046118f9695c85cb55186e7179f91f73e",
+    "source_fingerprint": "sha256:00c7f76a61dedcffe7959b72f3bbca5adf7783a70b3d2012289e709c5093f7a2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c2d40cfec42b85ae921d7ff58cf193cba8933babb0976353c4f09f3e96044488",
-      "plan.md": "9c39376f0715386b333e8ea4a0a1fe45842008ad0db0d8df297cac9b7d807d0a",
-      "tasks.md": "d14271d0ebc5d9f4e9370377f5d029bc7796fcf4eb6ae03b3e094c3ac911cc9c",
-      "implementation-summary.md": "85cb670ec1e010f8024860683ce0323f9858194d0c2c8bbdf7f073b8b6aca7f2"
+      "spec.md": "99425ab0917dac196acae39e9535b47e9bc7c227c38ed051e55aa3f76bfda1be",
+      "plan.md": "dc1cb286f08e1ae3cd08dd5aa8f9f506c70ffff27535ca0d1dffd954282d4013",
+      "tasks.md": "f868ac2bb385e5b0e099c13503e7ff62c0ab7063675b9f79fb831a6f784bf75f",
+      "implementation-summary.md": "7453d4a57b0ca6eb3ed2ca8efe28c56ec2ab4875b1c5776be0303fb6aa693d36"
     },
     "last_active_at": null
   }

@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: deep-review-decommission"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "deep review decommission plan"
 importance_tier: "normal"
 contextType: "general"
 ---

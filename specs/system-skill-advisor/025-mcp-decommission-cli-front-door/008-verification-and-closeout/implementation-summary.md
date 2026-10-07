@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Every claim the packet makes, re-proven from the final state, with the two that do not hold named rather than closed with a caveat."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "verification and closeout implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

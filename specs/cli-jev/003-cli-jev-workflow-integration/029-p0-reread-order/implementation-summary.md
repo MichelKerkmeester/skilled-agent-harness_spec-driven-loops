@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Complete at its label gate. score-severity-replay.cjs counts the archived P0 findings and their transitions with zero model calls, writes the P0 label sheet outside the repository and stops at stop: fewer than 20 labeled P0 negatives until the operator labels 20 P0 negatives; past the gate its --jev and --deem arms print one verdict per backend column under the Keep Rule. The 33 tests cover the census, the label gate, both gates, the Keep Rule, the reread order and the funnel, and no run has printed a verdict line. Built as 2239858286."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "p0 reread order implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

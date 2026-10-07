@@ -2,10 +2,7 @@
 title: "Tasks: the visual explanation lane renders where a reader can see it"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "visual explanation output medium tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

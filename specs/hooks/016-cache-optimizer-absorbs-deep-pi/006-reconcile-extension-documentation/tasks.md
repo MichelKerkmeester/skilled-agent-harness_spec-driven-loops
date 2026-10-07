@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: reconcile-extension-documentation"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "reconcile extension documentation tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

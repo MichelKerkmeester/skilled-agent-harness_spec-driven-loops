@@ -12,17 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "leaf manifest and doctrine reachability",
-      "the leaf manifest generator resolves symlinked references so",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "the leaf manifest generator resolves symlinked references",
+      "leaf manifest and doctrine reachability plan",
+      "leaf manifest and doctrine reachability tasks",
       "leaf manifest and doctrine reachability acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "leaf manifest and doctrine reachability implementation summary"
     ],
     "key_topics": [
       "leaf",
@@ -33,10 +31,10 @@
       "resolves",
       "symlinked",
       "references",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -200,7 +198,7 @@
     ],
     "causal_summary": "The generator skipped any directory entry that was not a plain file, and a symlink never reports as one, so every symlinked reference was invisible",
     "created_at": "2026-09-20T08:33:44.259Z",
-    "last_save_at": "2026-10-07T12:55:30.797Z",
+    "last_save_at": "2026-10-07T15:56:50.009Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a0806d0f9682a22665dd6a7ccc66efb68dfebd620d12b3ec3ad453b1c543e51d",
+    "source_fingerprint": "sha256:226b27dcf0f742b93a061aca7206ef00af42b76df770a95f73cf65c13605c16d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "64e65a38ea10feda66e25ee46ffaffc036131c84915306278ba8ff1e091071e5",
-      "plan.md": "ca63cf8369130d27a2d725c1f620075aa8f51c081c0bc35eba53a25def146126",
-      "tasks.md": "f345a4e3cd41c47c4fd6551788bf29a10250305b97330f35caaf2321d066d7a9",
-      "implementation-summary.md": "77405221b5f7210b65afe8031161db1160b092e9e7f4c25b5843c8841e0a0432"
+      "spec.md": "15900fde33a8f79c66b33b6f00614a67d487c99b19448ec9d5a951f913fa4e74",
+      "plan.md": "f8998ae1a6068e69df2f94f6638ad2d59f860382010e99b762c40f72a5cb61f7",
+      "tasks.md": "3d6f5a799e5a87cf5956ad88894bed25826e722060948b2948e1d241467b6116",
+      "implementation-summary.md": "293e67242ead7ea1fc021a86512029a1b3b61e680ad8ad4344902ea11802a535"
     },
     "last_active_child_id": null,
     "last_active_at": null

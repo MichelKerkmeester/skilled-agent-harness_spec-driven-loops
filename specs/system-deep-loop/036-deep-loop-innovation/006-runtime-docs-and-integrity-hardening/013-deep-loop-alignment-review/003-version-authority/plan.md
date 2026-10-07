@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 2: version-authority"
 description: "Declare SKILL.md the authority per hub, raise the other four artifacts to it, define the schema field once, and re-mint the manifests the edits stale."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "version authority plan"
 importance_tier: "normal"
 contextType: "general"
 ---

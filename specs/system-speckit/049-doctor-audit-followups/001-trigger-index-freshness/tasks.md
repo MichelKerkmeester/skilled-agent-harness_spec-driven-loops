@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: trigger-index-freshness"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "trigger index freshness tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

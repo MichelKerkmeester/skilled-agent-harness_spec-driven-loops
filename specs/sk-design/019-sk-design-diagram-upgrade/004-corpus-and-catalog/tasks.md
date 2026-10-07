@@ -2,10 +2,7 @@
 title: "Tasks: Phase 4: corpus-and-catalog"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "corpus and catalog tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

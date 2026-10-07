@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "shadcn adoptions",
       "make the three shadcn chart decisions worth keeping",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "shadcn adoptions plan",
+      "shadcn adoptions tasks",
       "shadcn adoptions acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "shadcn adoptions implementation summary"
     ],
     "key_topics": [
       "shadcn",
@@ -32,11 +30,11 @@
       "decisions",
       "worth",
       "keeping",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -202,7 +200,7 @@
     ],
     "causal_summary": "Phase 13 judged shadcn's chart decisions against the 26-form standalone corpus and found three worth carrying: semantic token indirection with per-key colours, local tooltip formatter and key-alias knobs, and explicit curve intent (linear, step, monotone) where a time form draws a path",
     "created_at": "2026-09-07T19:55:17Z",
-    "last_save_at": "2026-10-07T12:55:11.824Z",
+    "last_save_at": "2026-10-07T15:56:34.665Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9fa79df924c1e4e3d6f296222065a69a77c94afae5bb546aae581bd42c1ee939",
+    "source_fingerprint": "sha256:e9469df7be92da8d46ef24937c33b0f7d3804fcff4cd9b2f33a238696e7699df",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e9994ed78b8acece9774ea71fc5fd8969452978fa4b4b6945311cbdc324938c8",
-      "plan.md": "3e559e0a895c5b2503e1708949d7f4d9b3c9607b1ff63c557f817960321f35a4",
-      "tasks.md": "68ab199b2c612514ae4d3b6c43ba02554295cd0f99f46345f8814dda19cddde1",
-      "implementation-summary.md": "c690cc81f8f0d4b816ea6b20ac2508826f23a77893a4e112afcd7c41330b9df1"
+      "plan.md": "5a3193a3abdaccf58395aee18b0922b45cd43be379705318a0688820a98eafbe",
+      "tasks.md": "e5ce739c380f6505c689c32d4718a0459a446d07e1fa2b3d482f587c2823b38a",
+      "implementation-summary.md": "1f058864317e334d9360ba891effcb6630f97b954160d9ea64746a829f5f2ef1"
     },
     "last_active_at": null
   }

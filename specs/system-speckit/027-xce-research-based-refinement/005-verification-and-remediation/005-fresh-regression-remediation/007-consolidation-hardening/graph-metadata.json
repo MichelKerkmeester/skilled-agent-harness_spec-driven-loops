@@ -16,15 +16,9 @@
       "consolidation hardening",
       "consolidation write-lock ordering",
       "consolidation db handle consistency",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "consolidation hardening plan",
+      "consolidation hardening tasks",
+      "consolidation hardening implementation summary"
     ],
     "key_topics": [
       "consolidation",
@@ -33,12 +27,12 @@
       "ordering",
       "handle",
       "consistency",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "implementation",
+      "summary",
+      "remediate",
+      "two"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,7 +190,7 @@
     ],
     "causal_summary": "Remediate the two deep-review consolidation.ts findings deferred from 001 as a structural refactor: the read-only contradiction scan holds the BEGIN IMMEDIATE write lock (blocking other writers ~5s/cycle), and the DB handle is threaded inconsistently (latent atomicity risk). Both on the default-ON weekly consolidation cycle, so they need their own concurrency safety gate.",
     "created_at": "2026-06-16T00:00:00Z",
-    "last_save_at": "2026-09-11T04:40:17.617Z",
+    "last_save_at": "2026-10-07T15:57:17.877Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c9ed9603ba6b5dddb1e908f5173989d84b0d853076c2c3335f014881befe68cb",
+    "source_fingerprint": "sha256:e26eb4c4cc754b4ab742184f3bcdc1da7a6fcf5c6510e76afeb9022f90d97e78",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ca6cf88480eb4ae9349715f94e09a920ad56d0318057b5f6a82472ab3b4e1538",
-      "plan.md": "9e0f11db49ad031fe42b3c8173403d2cf77f32030303b47cb689640c273d1306",
-      "tasks.md": "0f48bb251465bd472bd9a89d3242fb604a0d3cf04e2cf5aba450508c9853115a",
-      "implementation-summary.md": "49db6ab155ccc2847ac770817a166f82245c4f454f9eb9e4f3406ed44e801aed"
+      "plan.md": "fd6f672b3a92a7a768d67290d34bd3fa7cf1d1341387cc8eebbf61951b98b22c",
+      "tasks.md": "cb907f1fcd528c550b1b6695f626c73425c4f817e4e4a9ce0c49c4d7fbd07df8",
+      "implementation-summary.md": "01de14a1e1a76c103741b6dacebb42eea0fc30c7114d2a54ef4515fd43373fa6"
     },
     "last_active_child_id": null,
     "last_active_at": null

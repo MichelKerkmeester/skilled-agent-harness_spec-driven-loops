@@ -6,7 +6,6 @@ trigger_phrases:
   - "ripgrep retrieval conventions"
   - "parity harness"
   - "exactTriggerSearch parity"
-  - "implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -232,7 +232,7 @@
     ],
     "causal_summary": "The fan-out runner snapshots dirty paths outside the lineage directory before dispatch, and after the lane it treats every tracked file that changed outside that directory as the leaf's write",
     "created_at": "2026-09-20T08:33:39.751Z",
-    "last_save_at": "2026-10-07T12:55:36.678Z",
+    "last_save_at": "2026-10-07T15:56:55.367Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -245,14 +245,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:f99d0cafa870318c3ef92c7185828a5f314874d8e21036dc8bbe62a96012c3e9",
+    "source_fingerprint": "sha256:e9a6a776d6498679117c8fdccd98cee815a921c36436ae9cd88ec85010e86304",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2819b356cad2e46df089f768b72852468b8340affa652939828aa8048a1182b9",
       "plan.md": "81e38bf445f70b74794a012682c1a8e0e8f4025c841987544ab43c47001f60a2",
       "tasks.md": "c15696faa84c91c1b9ba9d4e89fa008d697e261cfd1ac6dc70215dedecb5e71a",
       "decision-record.md": "36be90bbb27dfe386354c034a20359da1a1f53ad0055c349b4cdbcb90798c3ba",
-      "implementation-summary.md": "f3cf875345a8ee792d954a70cb695137bdfbc654ae9ad23610259a56768dbac1",
+      "implementation-summary.md": "7736b615c077aaf908184b91634979f16a637e51c256ce8813ba64ce382874fa",
       "handover.md": "7417207652b8a441342e36ba599978be11e14abb361b25de5241df76a32ccc6c"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/014-alignment-review",

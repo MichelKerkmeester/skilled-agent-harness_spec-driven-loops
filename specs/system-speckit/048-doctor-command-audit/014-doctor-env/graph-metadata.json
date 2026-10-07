@@ -14,15 +14,14 @@
       "doctor env command",
       "guided env setup",
       "/doctor:env",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "doctor env command acceptance"
+      "doctor env plan",
+      "doctor env tasks",
+      "doctor env command acceptance",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "doctor env implementation summary"
     ],
     "key_topics": [
       "doctor",
@@ -30,13 +29,13 @@
       "command",
       "guided",
       "setup",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing"
+      "tasks",
+      "acceptance",
+      "packet",
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -209,7 +208,7 @@
     ],
     "causal_summary": "Every switch that turns a hook, gate or runtime feature off, or changes its default, is an environment variable or git config key documented in `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md`, a 472-line reference",
     "created_at": "2026-10-02T16:10:28Z",
-    "last_save_at": "2026-10-03T11:48:56.173Z",
+    "last_save_at": "2026-10-07T15:57:40.693Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1d383e32a98745a7f062ff7880a8c4eba89cf8ea4b6e1c0eaa6c9fa4000ee10f",
+    "source_fingerprint": "sha256:d1a0d6cc44720d7fa698c8cacf0ebb2369dc91c287a38794b1041a16050fba26",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ecf4f245343fe2e34e2cd95af66eba2d5ca842d1097ec7891efadf46ff00b273",
-      "plan.md": "5758a68169947fba4527376991dd7c435aaccf932ecd330abf039dacdc00fc8c",
-      "tasks.md": "9d04cf5da4f05861d946324db95d374359d37e0f7f48cbe452d6dc90a760fa16",
-      "implementation-summary.md": "4d35e2b9aabf6e592db5bf20bf7f9a9a3fd93d3209f8e4c69e5b9254d7a3902a"
+      "plan.md": "facd5e95d378fc0baa3fe17e0eddcd7620d701c9fe3b8d67b351d33e6b63d0f6",
+      "tasks.md": "4e350f3aae00cbf3cfcc089d317ca8eb8e8576c866beb18cab93c1b02651b359",
+      "implementation-summary.md": "c8399da0e2a450dfa44f06cf8c84146fab21b5d5e2f9cf55a04024282eb07e1f"
     },
     "last_active_at": null
   }

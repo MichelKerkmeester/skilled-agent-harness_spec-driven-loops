@@ -2,7 +2,6 @@
 title: "Implementation Summary"
 description: "The continuity reader now accepts flow-style YAML lists and the opening words hand-written blocks use, so valid blocks rose from 180 to 1047 of 2484 without rewriting any of them."
 trigger_phrases:
-  - "implementation summary"
   - "continuity reader flow lists"
   - "next safe action verbs evidence"
 importance_tier: "normal"

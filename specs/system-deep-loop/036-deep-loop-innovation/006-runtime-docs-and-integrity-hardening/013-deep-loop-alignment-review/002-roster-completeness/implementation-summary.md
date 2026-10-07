@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Every roster in the three hubs names the kinds the executor config registers, with counts replaced by their source."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "roster completeness implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

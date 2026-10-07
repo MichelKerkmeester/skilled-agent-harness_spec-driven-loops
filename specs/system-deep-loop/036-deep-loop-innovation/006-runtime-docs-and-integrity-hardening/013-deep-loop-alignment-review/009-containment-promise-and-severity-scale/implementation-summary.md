@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The containment promise and the verdict contract now describe their mechanisms, and a severity outside the scale is reported instead of vanishing below every real tier."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "containment promise and severity scale implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

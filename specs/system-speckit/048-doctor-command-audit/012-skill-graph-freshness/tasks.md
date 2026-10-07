@@ -2,10 +2,7 @@
 title: "Tasks: Phase 12: skill-graph-freshness"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "skill graph freshness tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

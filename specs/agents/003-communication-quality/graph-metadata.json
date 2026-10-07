@@ -14,8 +14,7 @@
       "communication quality",
       "agents.md",
       "agents.md plan",
-      "voice reconciliation",
-      "implementation summary"
+      "voice reconciliation"
     ],
     "key_topics": [
       "communication",
@@ -24,12 +23,12 @@
       "plan",
       "voice",
       "reconciliation",
-      "implementation",
-      "summary",
       "guidance",
       "root",
       "scattered",
-      "compressed"
+      "compressed",
+      "across",
+      "two"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,7 +38,6 @@
       "tasks.md",
       "implementation-summary.md",
       "AGENTS.md",
-      ".codex/AGENTS.md",
       "specs/agents/003-communication-quality/spec.md",
       "specs/agents/003-communication-quality/plan.md",
       "specs/agents/003-communication-quality/tasks.md",
@@ -195,7 +193,7 @@
     ],
     "causal_summary": "Communication guidance in the root `AGENTS.md` is scattered and compressed across §1 (Two registers, Communication, Documentation & Honesty), §4, and §7, with no single home",
     "created_at": "2026-08-07T07:39:47.413Z",
-    "last_save_at": "2026-10-03T15:11:43.714Z",
+    "last_save_at": "2026-10-07T15:55:51.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d97a268d2ef9b849d2aa6e636c5f1110bc32e9e706e3942477617024e39b37b",
+    "source_fingerprint": "sha256:03e4e1653916cbd07de676738310548747269a2f85ef673ea110b88edc38f3c7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a5151f6746591221409895f47f9a9d21311327c0fcbb6827fa4aa6eec76c44c5",
       "plan.md": "3cae9a2eeb4f059f66c1eaeb16fc1a37e00ea3742cdccc82d1b0ce8dba1b44cf",
       "tasks.md": "3c40487d9bb1ebc93ec05c912510a345f00f557000e8dfb02e6de7998948002b",
-      "implementation-summary.md": "bd4c5f53fd9e0ba2437751fa7d88f26b97df4d8213fc6093840dfd9485c6c7e1"
+      "implementation-summary.md": "6f3056ef46ff6888bcc8a3fa8587c13152bea53f35be8f2089ae20cc26e2c7b8"
     },
     "last_active_child_id": null,
     "last_active_at": null

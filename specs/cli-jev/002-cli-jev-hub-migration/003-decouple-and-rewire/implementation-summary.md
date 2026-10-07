@@ -2,7 +2,6 @@
 title: "Implementation Summary: Phase 3: decouple-and-rewire"
 description: "The old hub is back to seven workflow modes, the dispatch chain resolves cli-jev/cli-usage and refuses a rule-violating jev command at preflight again, the rosters and generated surfaces name the new home, and the hub's own release line is 0.1.0.0."
 trigger_phrases:
-  - "implementation summary"
   - "decouple and rewire"
   - "phase closeout"
 importance_tier: "normal"

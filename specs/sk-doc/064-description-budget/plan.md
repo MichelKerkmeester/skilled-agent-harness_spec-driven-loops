@@ -2,10 +2,7 @@
 title: "Implementation Plan: Bring skill and agent descriptions back under the description budget"
 description: "Trims the seven over-soft descriptions to their soft targets with candidate text measured at planning time, then runs a rule-bound pass over the remaining fleet toward the 5,600-character ceiling, checking advisor routing before and after every cut. Two wording fixes follow: the audit's stated surface and the rejected :auto invocation in two sk-doc references."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "description budget plan"
 importance_tier: "normal"
 contextType: "general"
 ---

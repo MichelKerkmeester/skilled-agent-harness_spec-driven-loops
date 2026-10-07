@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 12: missing-stress-fixture-root"
 description: "Recover the pruned fixture corpus from git history, reshape it to the six current runtime agent trees, and repair the sandbox setup script until a sandbox built by the script alone can run the scenarios' helper steps."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "missing stress fixture root plan"
 importance_tier: "normal"
 contextType: "general"
 ---

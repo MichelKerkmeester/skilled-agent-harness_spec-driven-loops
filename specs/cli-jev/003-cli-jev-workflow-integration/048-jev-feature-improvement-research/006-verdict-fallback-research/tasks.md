@@ -2,10 +2,7 @@
 title: "Tasks: Phase 6: verdict-fallback-research"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "verdict fallback research tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

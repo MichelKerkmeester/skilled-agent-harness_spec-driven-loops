@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Five scripts turn the frozen plan into a rehearsed rewrite: 9,123 commits stamped on a mirror with six invariants passing, 109 tags following their commits, and 1,704 citations ready to remap. Only the operator's window remains."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "history rewrite implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,10 +2,7 @@
 title: "Implementation Summary: Phase 1: trigger-index-freshness"
 description: "The committed trigger index is fresh again, its phrase-quality bucket can carry every class, and the retrieval doctor judges staleness by content instead of mtime."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "trigger index freshness implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

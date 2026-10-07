@@ -5,7 +5,6 @@ trigger_phrases:
   - "registry coverage test tasks"
   - "remediation tasks"
   - "round three tasks"
-  - "verification checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

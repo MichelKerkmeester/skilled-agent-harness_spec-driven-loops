@@ -2,10 +2,7 @@
 title: "Tasks: Phase 57: changelog-and-readme-refresh"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "changelog and readme refresh tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -13,16 +13,9 @@
     "trigger_phrases": [
       "fix write recipe commit step",
       "step 7 of the write recipe told authors",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "fix write recipe commit step plan",
+      "fix write recipe commit step tasks",
+      "fix write recipe commit step implementation summary"
     ],
     "key_topics": [
       "write",
@@ -31,12 +24,12 @@
       "step",
       "told",
       "authors",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "implementation",
+      "summary",
+      "spec",
+      "folder"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -197,7 +190,7 @@
     ],
     "causal_summary": "Step 7 of the spec folder write recipe told authors to write a subject shaped `feat|chore|fix(<packet>): <short description>` and to add a `Co-Authored-By` trailer",
     "created_at": "2026-09-29T06:08:24Z",
-    "last_save_at": "2026-10-07T12:55:52.561Z",
+    "last_save_at": "2026-10-07T15:57:40.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ddfc8c1c5a18f39ef2e82b9cd55648ae91eeb54f2945cd8c8c33ea40a6ac78a",
+    "source_fingerprint": "sha256:53feceae8cac03ceeed11172fb323b915321fe18d6fa44f8de4ad3ce634a33e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "92f6a1dd1bfa4167cc2b5bf9bfe79a65164dc38b900d2669ad9b8366537142e5",
-      "plan.md": "54de077d07028dc8dca1e8ff2b9e13da57a990304107967483de5a28214d641e",
-      "tasks.md": "f9b96a612834630bb048e0f093d1892e869e75d68643a85de62d96924c04f496",
-      "implementation-summary.md": "1ab92255dc015f100d55cf0d7d194c932da2cd53f9d1742c2526bb9985c96cd3"
+      "plan.md": "e1adb09552136e00f22580ebe471d59759718c221947d6706350fa270561f6fd",
+      "tasks.md": "f5662a3701c8102cc8ac40ba5da5063158775ba872707c9366f39311365d70e1",
+      "implementation-summary.md": "1d154904689112e33050070d897a36ec1cf42a213f33dfcfd2461a2812080af3"
     },
     "last_active_at": null
   }

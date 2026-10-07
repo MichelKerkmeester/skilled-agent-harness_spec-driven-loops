@@ -46,8 +46,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".claude/settings.local.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -72,12 +71,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Hook testing surfaced three defects",
     "created_at": "2026-04-23T10:15:00.000Z",
-    "last_save_at": "2026-08-30T15:39:32.077Z",
+    "last_save_at": "2026-10-07T15:57:12.857Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ad700d055c2159cf6217e1a9fc541822903386e974e4b979b4a16be2992881c5",
+    "source_fingerprint": "sha256:8365dab057e291ee448b526a73bcd4288be8c9541edcefbf8243333b1626ac64",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "afc04a59709284cf1421b43f6c3fc29bba51e9f3a16d84f96802e614984eaf05",
       "plan.md": "d6a557ea18e776eaa488376dcf173c81dca5366a89a44f92c597e77caa7c0415",
       "tasks.md": "531d1aef20bb48b7714909b1e856ea93c0056f4497902ce73a144ef1ef88c831",
-      "implementation-summary.md": "38d740a2e3120750b8910d6fb61b2870edfb0ddb5538548ff6db889b1f5e5f5d"
+      "implementation-summary.md": "e8e4f3da7582d0a46158ebeee3b5482ba594c6386176a2e83b6ac96eaf12b613"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,10 +2,7 @@
 title: "Implementation Summary [template:level-2/implementation-summary.md]"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "deliveries to parity implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

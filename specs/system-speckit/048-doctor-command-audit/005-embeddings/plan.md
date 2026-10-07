@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 5: embeddings"
 description: "Audit `/doctor:speckit embeddings` against this checkout, then apply the evidence-backed verdict: retire the route and its workflow asset, and remove the live references that would otherwise advertise a command that no longer exists."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "embeddings plan"
 importance_tier: "normal"
 contextType: "general"
 ---

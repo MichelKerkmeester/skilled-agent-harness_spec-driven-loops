@@ -11,10 +11,7 @@ _memory:
     recent_action: "Implemented + verified; tasks complete"
     next_safe_action: "Reconcile docs; commit"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "tsx boot spaced path hardening tasks"
 ---
 # Tasks: tsx Boot + Containment-Root Hardening
 

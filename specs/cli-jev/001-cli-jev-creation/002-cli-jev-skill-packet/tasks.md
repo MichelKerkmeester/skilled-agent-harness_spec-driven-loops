@@ -2,9 +2,7 @@
 title: "Tasks: Phase 2: cli-jev-skill-packet"
 description: "Task ledger for authoring the cli-jev packet: the transport SKILL.md with its eight enforced rules, four contract references, the question-shaping card, changelog and benchmark baseline."
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
+  - "cli jev skill packet tasks"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

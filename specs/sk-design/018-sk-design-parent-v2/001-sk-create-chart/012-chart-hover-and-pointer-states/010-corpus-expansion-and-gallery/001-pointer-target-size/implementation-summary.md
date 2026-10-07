@@ -2,10 +2,7 @@
 title: "Implementation Summary: give every mark a reachable pointer target"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "pointer target size implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

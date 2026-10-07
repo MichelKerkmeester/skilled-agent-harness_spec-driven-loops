@@ -2,10 +2,7 @@
 title: "Tasks: Deduplicate iteration state records by iteration and prefer the routed record, so a completed lane is not rejected"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "iteration record dedupe tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

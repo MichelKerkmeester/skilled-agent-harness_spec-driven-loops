@@ -7,10 +7,7 @@ _memory:
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "opencode"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "dark flag validation plan"
 ---
 
 # Plan: Dark Flag Validation

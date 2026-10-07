@@ -14,7 +14,6 @@
       "adjacent-span-coalescing",
       "protected marker inflation",
       "projection quality",
-      "implementation plan",
       "architecture decision",
       "model-facing representation"
     ],
@@ -25,12 +24,12 @@
       "inflation",
       "projection",
       "quality",
-      "implementation",
-      "plan",
       "architecture",
       "decision",
       "model-facing",
-      "representation"
+      "representation",
+      "collectprotectedranges",
+      "includes"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -188,7 +187,7 @@
     ],
     "causal_summary": "`collectProtectedRanges` includes structural blocks, commands, list markers, links, URLs, flags, hashes, variables, numbers, and identifiers; ranges are overlap-filtered but never merged",
     "created_at": "2026-08-13T04:05:03.213Z",
-    "last_save_at": "2026-10-03T15:12:00.924Z",
+    "last_save_at": "2026-10-07T15:56:17.762Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,11 +196,11 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:1b32a9a607c0e81517750d0a2e5d38de69373614e42d2d2d266865b0e70b9060",
+    "source_fingerprint": "sha256:7b9f9eecbd10bb24515669f9d8aa866e7aba0cf1abaef3b663166f288678dd7a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "829afcf52fa38381a74cb60c3e199adc5a2fc012efec3497537ea642d2673197",
-      "plan.md": "ad84ef89362e48b1e7d6d76b49937c6b82165a682f7d6015d5278ae52f5e5b33",
+      "plan.md": "d983feae3c515207c7fe3970b4a327ccf14f35e955cfa022c8b3f40fc0f57df2",
       "tasks.md": "5bade2e10267c81476532f280ead361dabc5e39c6a7fa94bcefd3a8e7b4ad62e",
       "decision-record.md": "70dee3b01445d40d55ef7988732432256e0a921e72dd9055b8d647b01eb27962"
     },

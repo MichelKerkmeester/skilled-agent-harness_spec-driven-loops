@@ -15,14 +15,14 @@
       "advisor transport delete",
       "advisor registration removal",
       "advisor launcher supervisor",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "mcp transport removal plan",
+      "mcp transport removal tasks",
+      "mcp transport removal acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "mcp transport removal implementation summary"
     ],
     "key_topics": [
       "advisor",
@@ -33,10 +33,10 @@
       "registration",
       "launcher",
       "supervisor",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The MCP layer is a pass-through that costs a declaration in five runtime config roots, an SDK dependency, a bridge process for OpenCode, and an MCP-shaped JSON-RPC framing that the CLI has to speak to reach its own daemon",
     "created_at": "2026-09-11T06:49:01Z",
-    "last_save_at": "2026-10-07T12:55:40.246Z",
+    "last_save_at": "2026-10-07T15:57:06.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d7e21c981c8d12a460128f11bf9ea65fa071c302f5022caf49d20f782a530d86",
+    "source_fingerprint": "sha256:31a16b037868e8a60d075beee578f7b879512623660606890b97978a0ac5ee31",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "86f5461a3f09566fd3e874bdcfaceb7115539b932c050c8963f6371094163968",
-      "plan.md": "d2ae23464253bdb8a9eb16738a302c9d56fa72919329e2b8d8d66d3481ca3d76",
-      "tasks.md": "93787ff61e35675e5ceacebc9a11ec8114d9ca0a8b546ca9992dbf2316563d7f",
-      "implementation-summary.md": "f3ad8ed3a0b172f692d9126d429d29517c562daa93ea3bfd90bf9de48cd060f4"
+      "plan.md": "2d3f986325e13f43b1de2be725156256527f61e51908c25c6c2f94bc882d2382",
+      "tasks.md": "cf1fd8ef15b00e70266101bf85e09c4f81b75d8c0ac0e1f19b948a8f36809cab",
+      "implementation-summary.md": "8031a86bb8a5cfce3663d55a86b428fc1042476526b1926af89b79f154d901d0"
     },
     "last_active_at": null
   }

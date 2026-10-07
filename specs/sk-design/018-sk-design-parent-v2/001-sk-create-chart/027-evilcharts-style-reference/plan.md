@@ -2,10 +2,7 @@
 title: "Implementation Plan: a custom evilcharts Style Reference the corpus can be themed from"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "evilcharts style reference plan"
 importance_tier: "normal"
 contextType: "general"
 ---

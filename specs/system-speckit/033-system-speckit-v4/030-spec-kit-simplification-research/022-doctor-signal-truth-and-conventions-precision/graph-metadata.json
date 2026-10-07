@@ -22,7 +22,7 @@
       "doctor retrieval signals tasks",
       "remediation tasks",
       "round three tasks",
-      "verification checklist"
+      "doctor signal criteria"
     ],
     "key_topics": [
       "doctor",
@@ -47,7 +47,6 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".codex/AGENTS.md",
       ".opencode/commands/doctor/assets/doctor-speckit-retrieval.yaml",
       ".opencode/commands/doctor/_routes.yaml",
       "references/retrieval/retrieval-conventions.md",
@@ -91,12 +90,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "AGENTS.md",
-        "kind": "doc",
-        "path": ".codex/AGENTS.md",
         "source": "derived"
       },
       {
@@ -200,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The doctor retrieval target declared nine staleness signals and computed six: no activity produced a fresh manifest, ran the recipe without `--no-config`, or scanned anchors, and the lookup pass policy named a frozen prompt set no activity read",
     "created_at": "2026-09-07T13:14:47.205Z",
-    "last_save_at": "2026-09-08T15:47:15.253Z",
+    "last_save_at": "2026-10-07T15:57:23.703Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +214,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b2803e8b687b6af3b82fb9e473e3a586921f583a34d8c5d61262cd3630f895c",
+    "source_fingerprint": "sha256:93d074a0a41c371eb7932b9ef1b2fe788756da1363388b37b5421bf2c4c83a7d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "14af646e99f63bffbb6c6caf40fa71d2e5869829434195cd9dcde140e12569cf",
       "plan.md": "730ece22df109e1f066309fdde34a48a5deeacbe4f2fb0b81fdba87694d3b65c",
-      "tasks.md": "d8fccd0d8dd64fb4b87b613929c92da03fa19a757cdf9da7dcde63fee48be46c",
+      "tasks.md": "97284dec854a8c99e4b888e069be14ccf2edc6aa7bbecdc96d701345e261c420",
       "implementation-summary.md": "67057d639f192a646dd8336452987699d707d51e8523f638e392ede5c9772c8f"
     },
     "last_active_child_id": null,

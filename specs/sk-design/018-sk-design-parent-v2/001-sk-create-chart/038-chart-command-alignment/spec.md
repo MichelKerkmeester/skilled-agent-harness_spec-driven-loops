@@ -3,7 +3,7 @@ title: "Feature Specification: align the design chart command with the corpus it
 description: "The /design:chart command named a directory the corpus no longer ships, two YAML filenames that never existed, a presentation file under a name it does not have, a form count three short, and the wrong parent skill for its mode."
 trigger_phrases:
   - "chart command alignment"
-  - "the design chart command named a directory the"
+  - "the design chart command named a directory"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Ten deep-research iterations on Open Knowledge Format versus system-spec-kit, verified by the orchestrator and cross-checked by an independent reviewer; verdicts handed to the design phase."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "okf deep research implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

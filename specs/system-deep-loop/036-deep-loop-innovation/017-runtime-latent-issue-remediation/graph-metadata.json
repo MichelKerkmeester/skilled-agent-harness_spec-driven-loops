@@ -14,15 +14,12 @@
       "system-deep-loop runtime remediation",
       "016 findings remediation",
       "append gateway fail-closed fix",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "runtime latent-issue remediation"
+      "runtime latent issue remediation plan",
+      "runtime latent issue remediation tasks",
+      "runtime latent-issue remediation",
+      "verify-then-fix fan-out",
+      "pre-dispatch budget cap",
+      "runtime latent issue remediation implementation summary"
     ],
     "key_topics": [
       "system-deep-loop",
@@ -32,11 +29,11 @@
       "append",
       "gateway",
       "fail-closed",
-      "implementation",
+      "latent",
+      "issue",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "latent-issue"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -197,7 +194,7 @@
     ],
     "causal_summary": "The 016 broad audit surfaced one confirmed P0 and roughly nineteen P1 findings across the shipped system-deep-loop runtime",
     "created_at": "2026-08-26T07:42:50.946Z",
-    "last_save_at": "2026-10-03T15:28:15.195Z",
+    "last_save_at": "2026-10-07T15:57:01.374Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +204,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f1589517c40dc1fc8684d2acb3da9e6bf1fd4d9297b7634e9eee6d66257fd96",
+    "source_fingerprint": "sha256:4e5c1ec531a1a846b568f3880e1cb282cd178dcf7aa1b57b733110b161ba74e3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "80eb7ad7278eb119bb426e8b648b7f7d4f0855c40de9a93971193cd75d04bc4e",
-      "plan.md": "5ed06fbd1581e9a49482b3dc08a878ee34667b522e43bd5b6e3d4f6206fdde64",
-      "tasks.md": "577205aaa056acb278e57c986a2fb719ad24478e461d8971283c964871f70b01",
+      "plan.md": "4f5cc628e454c3083ee72f17e57c20512ae572e8e6966d03a78b1a6b6cc204c4",
+      "tasks.md": "44d5211b342dd336a253aa3e3c9b12e8c4aabcf7529589c6b2a5d67df121f8a7",
       "decision-record.md": "c2b3b2355150fb8485c7228e2583a33a5c84f46225159dee9b45311563f76c10",
-      "implementation-summary.md": "8758fc3af00a49d31f752b259aaca3d29565a5c1aaba78faf0c167dc38d0385d"
+      "implementation-summary.md": "d32b89a8bc1d50bcb2d74a0b1a2e2c651d282a02d52be1af24e6f8d8bf5d69e5"
     },
     "last_active_child_id": null,
     "last_active_at": null

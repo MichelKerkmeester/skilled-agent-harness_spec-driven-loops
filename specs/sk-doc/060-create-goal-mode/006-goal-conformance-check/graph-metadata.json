@@ -16,13 +16,13 @@
       "goal template placeholder check",
       "goal completion criteria count",
       "goal corpus report",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
+      "goal conformance check plan",
       "goal conformance tasks",
       "binding coverage fixture",
-      "goal placeholder check"
+      "goal placeholder check",
+      "read-only goal corpus scan",
+      "goal conformance check acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
       "goal",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The current validator measures the durable-slice budget and checks that listed binding rows resolve, but it returns when the binding anchor is absent and does not compare rows with phase children on disk (.skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:1050-1080)",
     "created_at": "2026-09-25T18:48:50Z",
-    "last_save_at": "2026-10-07T12:55:25.812Z",
+    "last_save_at": "2026-10-07T15:56:44.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,11 +212,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:96cffa66700727ed2bce66acfc96dbe068d98db539a2a6519e869cd82473ceeb",
+    "source_fingerprint": "sha256:5b1eff63bda7be86b7110506638f43b4c69b78142834a811d349287925c12b06",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a9d698b7a0d7e878b91322b5d14ec1e5c8b3fb3c489a8e826eff19dc2ca410c4",
-      "plan.md": "a4f2102cd28333eee54d671946fbb4cddf414d758850ccef14dd74c21eb3afa8",
+      "plan.md": "10353b0223b2d21fe1f49e5377e8a57898e1c95b87542020f3d47948262c8b7f",
       "tasks.md": "02aa4d681715d75d3ec4d36448f5713a3bf4589ffb3a7a15bd2ce62bdfff9f62",
       "implementation-summary.md": "b98fd05d5ae5e5e2fccd927d7c5d48ea604f776d99af10d54cba0cc375f4c7eb"
     },

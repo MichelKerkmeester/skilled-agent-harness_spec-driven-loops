@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The folder suggestion keeps its keep verdict with every option now described by path, and the report pins and checks what it measured."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "folder suggestion improvements implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

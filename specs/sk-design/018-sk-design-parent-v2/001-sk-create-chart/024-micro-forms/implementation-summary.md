@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Spark, tracker and bar-list: three question-first forms the library had and the catalogue lacked, each passing every existing family."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "micro forms implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

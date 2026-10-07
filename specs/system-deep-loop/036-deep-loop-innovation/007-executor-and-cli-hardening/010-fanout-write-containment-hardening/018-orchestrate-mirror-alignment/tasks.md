@@ -2,10 +2,7 @@
 title: "Tasks: Phase 3: orchestrate-mirror-alignment"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "orchestrate mirror alignment tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

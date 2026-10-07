@@ -11,10 +11,7 @@ _memory:
     recent_action: "Branches inserted + proven; tasks complete pending whole-suite gates"
     next_safe_action: "Run whole-suite gates; commit"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "executor kind routing tasks"
 ---
 # Tasks: Deterministic Single-Executor Dispatch for cli-cursor/devin/pi
 

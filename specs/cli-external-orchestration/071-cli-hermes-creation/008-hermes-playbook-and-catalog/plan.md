@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 7: hermes-playbook-and-catalog"
 description: "Author the playbook to the Pi package shape, execute every live scenario, feed the failures back into the runtime and plugin, then re-execute everything on the corrected contract; author the catalog from the shipped source with symbol anchors and validate both packages fail-closed."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "hermes playbook and catalog plan"
 importance_tier: "normal"
 contextType: "general"
 ---

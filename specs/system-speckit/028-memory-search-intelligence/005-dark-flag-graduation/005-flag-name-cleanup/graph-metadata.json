@@ -16,13 +16,9 @@
       "speckit flag name cleanup",
       "env flag no version number",
       "live vs archived rename boundary",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "flag name cleanup plan",
+      "flag name cleanup tasks",
+      "flag name cleanup implementation summary"
     ],
     "key_topics": [
       "version",
@@ -182,7 +178,7 @@
     ],
     "causal_summary": "Twelve live SPECKIT feature flags carry a `V1` version suffix in their environment-variable name",
     "created_at": "2026-06-24T06:24:03.473Z",
-    "last_save_at": "2026-09-11T04:40:42.157Z",
+    "last_save_at": "2026-10-07T15:57:18.028Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,13 +187,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:641be13f9cb06acd53fa2fb445df1c471461077c3b64877fd70bf686ae7d5c2f",
+    "source_fingerprint": "sha256:cab85f07c205cdaafaf43681a7b966f24332a0191521a367e8835127fa1ec635",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "948cd08764ef11003feac66809e86d364e156856d4bf1eafd3b4e4cb23f4a3d0",
-      "plan.md": "649042cf3dd445b50f80be33ed32297d8a59ec0cd9bf29f20596ef01719e25ab",
-      "tasks.md": "074f6a34e76df75423fb56e6eb7848cb335d2793af25ab0ba9ac2e99510896ab",
-      "implementation-summary.md": "3b5020c9905035ffd6e42f54331d16cdca9ceaac60f6441804302e7fa364b00a"
+      "plan.md": "7bff9117862683bd3ffc66833b934915db9b6a761b5a4a60349101d43db09644",
+      "tasks.md": "b111e73cd57c4d4a1e36c87771ce98aa9f6577649f505a026e7b8b8833da2034",
+      "implementation-summary.md": "a23e20ed747e04a515c20ae45be9e862fa76226151ad4b387031ea19814e923f"
     },
     "last_active_child_id": null,
     "last_active_at": null

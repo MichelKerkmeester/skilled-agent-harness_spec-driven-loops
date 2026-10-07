@@ -2,10 +2,7 @@
 title: "Tasks: Phase 13: goal-chat-send-shape"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "goal chat send shape tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

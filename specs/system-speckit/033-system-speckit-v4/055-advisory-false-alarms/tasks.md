@@ -2,10 +2,7 @@
 title: "Tasks: Stop the sk-git pathspec advisory and the completion-evidence sentinel from raising false alarms"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "advisory false alarms tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

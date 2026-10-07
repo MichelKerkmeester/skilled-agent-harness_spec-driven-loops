@@ -2,10 +2,7 @@
 title: "Implementation Plan: shadcn visual upgrade"
 description: "Apply eight measured visual moves from shadcn's frozen chart examples across the 26 standalone templates, the deliveries and the gallery, retune the checker's visual families to the new values, and regenerate the screenshots."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "shadcn visual upgrade plan"
 importance_tier: "normal"
 contextType: "general"
 ---

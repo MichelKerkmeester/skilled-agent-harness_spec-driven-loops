@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "How the moved source root was proved and published: canary probes on seven runtimes, thirteen local gates, a residue scan with a planted control, and the push to both branches with its CI verdict."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "verification and rollout implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

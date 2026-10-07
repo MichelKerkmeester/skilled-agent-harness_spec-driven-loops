@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 008 Packaging and Release Hardening"
 description: "Implement package the system with explicit provider privacy choices, a tested compatibility matrix, diagnostics, rollback, and six-runtime release gates. using the shared immutable-state architecture."
 trigger_phrases:
   - "packaging-and-release-hardening"
-  - "implementation plan"
   - "portable cli projection"
 importance_tier: "important"
 contextType: "implementation"

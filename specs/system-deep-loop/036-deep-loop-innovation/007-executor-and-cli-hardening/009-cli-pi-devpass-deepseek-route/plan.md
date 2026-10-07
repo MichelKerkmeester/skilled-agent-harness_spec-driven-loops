@@ -2,10 +2,8 @@
 title: "Implementation Plan: Route the cli-pi DeepSeek V4 Flash fan-out literal through the DevPass LLM Gateway"
 description: "One map value moves from opencode-go to llmgateway; every comment, test pin and roster row that asserted the old mapping follows, and the route is proven by a direct dispatch before the fan-out relies on it."
 trigger_phrases:
-  - "implementation plan"
   - "devpass deepseek route plan"
   - "provider map flip"
-  - "testing strategy"
 importance_tier: "normal"
 contextType: "general"
 ---

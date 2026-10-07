@@ -14,15 +14,14 @@
       "doctor skill-budget audit",
       "/doctor:speckit skill-budget relevance",
       "doctor-skill-budget.yaml",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "doctor skill-budget audit acceptance"
+      "skill budget plan",
+      "skill budget tasks",
+      "doctor skill-budget audit acceptance",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "skill budget implementation summary"
     ],
     "key_topics": [
       "doctor",
@@ -32,11 +31,11 @@
       "relevance",
       "doctor-skill-budget",
       "yaml",
-      "implementation",
+      "skill",
+      "budget",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -48,7 +47,6 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/commands/doctor/assets/doctor-skill-budget.yaml",
-      "scratch/doctor-run.log",
       ".skilled/commands/doctor/scripts/audit_descriptions.py",
       ".skilled/commands/doctor/_routes.yaml",
       "scripts/README.md",
@@ -101,12 +99,6 @@
         "name": "doctor-skill-budget.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/assets/doctor-skill-budget.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-run.log",
-        "kind": "file",
-        "path": "scratch/doctor-run.log",
         "source": "derived"
       },
       {
@@ -204,11 +196,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit skill-budget` reports skill description budgets",
     "created_at": "2026-10-02T16:10:24Z",
-    "last_save_at": "2026-10-03T11:48:56.194Z",
+    "last_save_at": "2026-10-07T15:57:40.497Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c966fe1a05c6196018b46abafcbd1f750264d8d83fed3c47b2262e9225ec0a4a",
+    "source_fingerprint": "sha256:9194a5ffc5fa6052b72797b1468b9f6e53687e6850868350407720f076ea534b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "71404044b58622106e6b02059cb95bc2c8ca666272376ecf179bb5e3ff809494",
-      "plan.md": "b35609b94b0f76475990e50bbe2e6d4f476f2c4dfa3397f6746ca343575ee155",
-      "tasks.md": "cc622bc41c6b8a590dcee82f969bd71b9b44630fcc9333ebcdce10f44e114013",
-      "implementation-summary.md": "70f052095098a9f955a777530844079d9add8c0e187f25978f228372a079806c"
+      "plan.md": "42aec0fabb025d0d3619cca310e83a1b670b23d43bf556b835e70159590e9918",
+      "tasks.md": "47ab4ecf6081a03d0368eaf4f900b55cbef8162c1bf50d0a619e5fa72173ae0e",
+      "implementation-summary.md": "a69f43b2863ceba295c47366d23a333bfbb75866b46aa1e252674fbd5590ddd3"
     },
     "last_active_at": null
   }

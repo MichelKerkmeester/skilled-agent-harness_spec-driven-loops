@@ -2,10 +2,7 @@
 title: "Implementation Plan: emphasis budget and the second visual verification round"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "emphasis budget plan"
 importance_tier: "normal"
 contextType: "general"
 ---

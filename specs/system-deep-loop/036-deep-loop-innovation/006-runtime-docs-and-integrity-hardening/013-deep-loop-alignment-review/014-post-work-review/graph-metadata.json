@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "post work review",
       "ten adversarial review iterations by swe 2 max",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "post work review plan",
+      "post work review tasks",
       "post work review acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "post work review implementation summary"
     ],
     "key_topics": [
       "post",
@@ -33,10 +31,10 @@
       "iterations",
       "swe",
       "max",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -197,7 +195,7 @@
     ],
     "causal_summary": "Thirteen phases changed one hundred and fifty files on the claim that each surface now says what the code does",
     "created_at": "2026-09-20T08:33:45.822Z",
-    "last_save_at": "2026-10-07T12:55:32.369Z",
+    "last_save_at": "2026-10-07T15:56:55.434Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98e86e314ed7e438cd6b1677de656ea2921ba75ac161df62db7dcf7a68228821",
+    "source_fingerprint": "sha256:f4abf19d0d4a1ecda764d7310aa6c7857e574dbe17fa8d23f72be163488d248c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4115e9a43614c5ff5ed65a2256dce0247d2e3242b2bb7e727c29cec6332720df",
-      "plan.md": "7d247edde686a0bfb6c5555c6a5d5a6a1097ca96c461084415878e67134dab17",
-      "tasks.md": "22ada4cff2232d92aecbbae80cd984226e3dd2782e29289895f36f16f8e0bdfd",
-      "implementation-summary.md": "b212bb1790d87a6fb8c44d53e5f306ba39d8424c1b8653bd20a4a640d0082c7b"
+      "plan.md": "de7e108954b2c4d0ab6486c85153a6065448f82054b46d7150ea157c870ae52f",
+      "tasks.md": "1a497098abe925c222f361407b7c0a16888a5c4a1a80db640942c4a11dad526d",
+      "implementation-summary.md": "1b07d7b72251640ea3be67cd9a7953f36cc291a0c4fe2d1cea7282d36df11d52"
     },
     "last_active_child_id": null,
     "last_active_at": null

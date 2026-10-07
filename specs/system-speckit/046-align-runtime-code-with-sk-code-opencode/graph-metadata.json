@@ -18,11 +18,9 @@
       "spec-kit runtime alignment",
       "spec-kit folder merges",
       "scoped test gate",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "align runtime code with sk code opencode acceptance criteria"
+      "align runtime code with sk code opencode tasks",
+      "align runtime code with sk code opencode acceptance criteria",
+      "align runtime code with sk code opencode implementation summary"
     ],
     "key_topics": [
       "spec",
@@ -210,7 +208,7 @@
     ],
     "causal_summary": "Code under `.skilled/skills/system-spec-kit/runtime/` does not follow the sk-code-opencode comment and structure rules in `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md` §2 and §4",
     "created_at": "2026-09-30T05:43:46Z",
-    "last_save_at": "2026-10-07T12:55:56.568Z",
+    "last_save_at": "2026-10-07T15:57:44.261Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +218,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e749617ae12e49b0576c954279e2848470f86595b7aa03bfbc92a1509996b357",
+    "source_fingerprint": "sha256:4355143e6d8fa7e6debf93642ab1b2b329c0489790fc6edb44ed4b2b9496dcb4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8fcebfaf76bafc66f203249fcc8d674d99efe0357c34eb543536f4f2eb2ca7ac",
       "plan.md": "eaf427c68fdbb408661c83c6d834a48bb9ad13bd60bd02d7017e97ae63d22992",
-      "tasks.md": "ab90462d95e65015967d15efcec3e55da5125dfb871a4b8122a07660c9976c11",
-      "implementation-summary.md": "033d074764e9ac6ea9344ea65fb136529ddb5afecd902b681debbe79ef238842"
+      "tasks.md": "c463a8c9da235a95a11cee0c38cfb5306020313114ce84cbe731f25b3bdffb47",
+      "implementation-summary.md": "96078e191241921d8be09272327c5a52ee2cda45f9bef86c8d1f1097b6f3f918"
     },
     "last_active_at": null
   }

@@ -2,10 +2,7 @@
 title: "Tasks: metric and delta header block for scalar and time-series forms"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "metric delta header tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

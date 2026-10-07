@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 5: hallucination-grader-research"
 description: "Runs /deep:research in fan-out mode on the Jev hallucination grader: one DeepSeek lineage and one Luna lineage, then merges them into research.md."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "hallucination grader research plan"
 importance_tier: "normal"
 contextType: "general"
 ---

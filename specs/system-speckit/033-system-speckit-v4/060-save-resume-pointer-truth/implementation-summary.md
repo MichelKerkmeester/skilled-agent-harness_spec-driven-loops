@@ -2,7 +2,6 @@
 title: "Implementation Summary"
 description: "A save no longer rewrites a track root's shared graph-metadata.json, because the track's pointer now lives in the telemetry store the resume ladder reads first; --help and seven save and resume docs now say what each planner mode writes and when resume follows a pointer."
 trigger_phrases:
-  - "implementation summary"
   - "save resume pointer truth"
   - "track root store only evidence"
 importance_tier: "normal"

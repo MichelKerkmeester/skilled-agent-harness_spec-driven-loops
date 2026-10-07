@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The skill-benchmark lane is removed from every reachable surface: five runtime command trees, the system-deep-loop registry and router pair, the advisor command-bridge projection, its script and fixture trees, and three runtime ledger libraries. The hub now registers five workflow modes instead of six."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "deprecate skill benchmark implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

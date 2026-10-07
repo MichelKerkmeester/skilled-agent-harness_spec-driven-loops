@@ -6,7 +6,6 @@ trigger_phrases:
   - "accepted GROK synthesis"
   - "localProvider loader design"
   - "local LLM research completion"
-  - "implementation summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

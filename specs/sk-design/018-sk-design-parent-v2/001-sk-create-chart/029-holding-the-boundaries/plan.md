@@ -2,10 +2,7 @@
 title: "Implementation Plan: hold the boundaries that turned out to be reachable"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "holding the boundaries plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Implementation Summary: fundamentals beyond UI"
 description: "Three surfaces that reached nobody now route, the canvas modes kept every phrase, and one ordering contest is recorded rather than won."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "fundamentals beyond ui implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

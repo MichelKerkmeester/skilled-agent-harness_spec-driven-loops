@@ -53,14 +53,14 @@
       ".opencode/bin/mcp-code-mode-launcher.cjs",
       ".opencode/skills/system-spec-kit/runtime/cli/pi/README.md",
       ".opencode/bin/system-skill-advisor-launcher.cjs",
-      ".opencode/skills/mcp-code-mode/mcp-server/dist/index.js",
       ".opencode/skills/system-deep-loop/runtime/database/council-graph.sqlite",
       ".skilled/bin/mcp-code-mode-launcher.cjs",
       "runtime/cli/pi/README.md",
       ".skilled/skills/system-spec-kit/runtime/cli/pi/README.md",
       "scratch/home-census-raw.tsv",
       "scratch/home-census-classified.tsv",
-      "scratch/consumer-links-raw.tsv"
+      "scratch/consumer-links-raw.tsv",
+      "scratch/residue-census-raw.tsv"
     ],
     "entities": [
       {
@@ -136,12 +136,6 @@
         "source": "derived"
       },
       {
-        "name": "index.js",
-        "kind": "code",
-        "path": ".opencode/skills/mcp-code-mode/mcp-server/dist/index.js",
-        "source": "derived"
-      },
-      {
         "name": "council-graph.sqlite",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/runtime/database/council-graph.sqlite",
@@ -163,6 +157,12 @@
         "name": "consumer-links-raw.tsv",
         "kind": "file",
         "path": "scratch/consumer-links-raw.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "residue-census-raw.tsv",
+        "kind": "file",
+        "path": "scratch/residue-census-raw.tsv",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Git cannot move what lives outside it",
     "created_at": "2026-09-16T17:54:10Z",
-    "last_save_at": "2026-09-19T15:59:01.542Z",
+    "last_save_at": "2026-10-07T15:57:32.400Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f8109e3073463d571e44dc3d13936982bf6784b2ba9345513af151f8fd0a95e",
+    "source_fingerprint": "sha256:27d81a8d4c062c82aa9db215cb2926942a9dfbf285e05d01a4af6bdf0535fd41",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b552375dfaeb5efca9f6f46ae84ac05f4cc7eaf219f636b64b935fff68da9ccb",
       "plan.md": "fb7d7c705d8de7f6ad5e3d79a0d75b4b389da5f059158c84642cd50de562c3aa",
       "tasks.md": "d0233a2683e07f525d893b7968c4046a2da3ac8ab04f4e24d124f91b24be2094",
-      "implementation-summary.md": "3d098d8169d5ac528919d1c00a8ae999be6a0a3698fd63f05ebe92996369d709"
+      "implementation-summary.md": "584f2cfc9dee6e97e9890ad82452fec88026a110e12afeb2fc1c20379fe5e791"
     },
     "last_active_at": null
   }

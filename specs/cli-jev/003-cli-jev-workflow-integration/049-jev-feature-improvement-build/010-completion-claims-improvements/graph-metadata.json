@@ -13,16 +13,13 @@
     "trigger_phrases": [
       "completion claims improvements",
       "the completion sentinel catches the claims it can",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "completion claims improvements plan",
+      "completion claims improvements tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "completion claims improvements implementation summary"
     ],
     "key_topics": [
       "completion",
@@ -30,13 +27,13 @@
       "improvements",
       "sentinel",
       "catches",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing"
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -205,7 +202,7 @@
     ],
     "causal_summary": "Feature 026 stopped on margin, two rows short, against a sentinel regex that catches none of the 10 labeled claims and fires falsely 7 times",
     "created_at": "2026-10-03T05:30:10Z",
-    "last_save_at": "2026-10-07T12:54:56.538Z",
+    "last_save_at": "2026-10-07T15:56:06.888Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2c4563703b6bde902d7725b7c776a7192d2628e1d7db89b5106989b7902c87ca",
+    "source_fingerprint": "sha256:b05e15a035d210190f5b51848bdf6641ad09250c3f6bb4256152e3095ce7506d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9dc437607b8481a7da73739f6e9d346a1f8ddb0ddf8b6d092722355935b18034",
-      "plan.md": "ed595c0d4636e1f2c9cd764e1c86b096c5d4f4af413a105132f2ed4c50b6464c",
-      "tasks.md": "01772caab75a2b2794c10a3789afd9281dabf60f033e906fa300fd6ac041ecdd",
-      "implementation-summary.md": "37a37d5141e686f3f4cb5e8e2855a76c39fc5dd230dd2955b60dedc7f2fb033f"
+      "plan.md": "e824f93b4fc95278b1e8bca1763922a3ee27f8be7dcc3168aa485ced58d54e54",
+      "tasks.md": "36f856e3f91f9e806b97ce1beefd5fbb3b35a0f6e497430443b9205a452db3ac",
+      "implementation-summary.md": "2410c336ade4e30dc2f3cf7fdcd98e5a4ecf4d9cfa4ac109c7c973f1ef406f38"
     },
     "last_active_at": null
   }

@@ -2,10 +2,7 @@
 title: "Tasks: Phase 1: mcp-install-code-mode"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "mcp install code mode tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

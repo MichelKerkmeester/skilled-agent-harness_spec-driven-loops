@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The series parent recipe now runs as written, every stale copy of the rule names the exception, the listing strips control bytes, the Phase 6 records match what shipped and cli-pi receives the configured effort. The committed trigger index is rebuilt and fresh."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "series parent review fixes implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -15,14 +15,14 @@
       "commit-id allocator",
       "prepare-commit-msg stamper",
       "sk-git commit contract update",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "contract and hook plan",
+      "contract and hook tasks",
+      "contract and hook acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "contract and hook implementation summary"
     ],
     "key_topics": [
       "commit-msg",
@@ -34,9 +34,9 @@
       "sk-git",
       "commit",
       "contract",
-      "implementation",
+      "hook",
       "plan",
-      "technical"
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The contract exists only in a decision record",
     "created_at": "2026-09-11T07:16:26Z",
-    "last_save_at": "2026-10-07T12:55:27.111Z",
+    "last_save_at": "2026-10-07T15:56:48.737Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:36afca2103a6276ff9ad2aaf8cbfe6fda2213fbe97cd772a5177ee4f9699aa71",
+    "source_fingerprint": "sha256:4d7fb0c73d6f46bc05cb60f096765475ede90fa49a90820b012efcb5a47106d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a850677eef8234ba73665b5819cd2e07f6153892dfe1d93c7d420e554d283e51",
-      "plan.md": "0d6585196af3302f5ccc698b41aba2860be33aa0cdce4f6ab2e001844c90d90d",
-      "tasks.md": "c835a88426a767b84102c3ae7a8f8e15777e9135b94916ae05a77324044f4d78",
-      "implementation-summary.md": "e2c843f9ab213e20c2175ce7993842307013d5af68bab25f2d9760e08117809d"
+      "plan.md": "938001f1589ef5459383228d4a4362eb99b2720541078b816eb1d692a74ca56a",
+      "tasks.md": "9113b40c3312ecdcdef022def9eb6bd0446945724469977ca75990ffc5e67fc8",
+      "implementation-summary.md": "7d413bc0a41764db8a28fd3d90f01a6c4c53e823d1a26a4aa129863de8a7d684"
     },
     "last_active_at": null
   }

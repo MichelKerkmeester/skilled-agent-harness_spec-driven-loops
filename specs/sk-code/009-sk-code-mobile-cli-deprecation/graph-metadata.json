@@ -13,16 +13,11 @@
     "trigger_phrases": [
       "the sk code hub still registers and advertises",
       "sk-code-mobile-cli deprecation",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
+      "sk code mobile cli deprecation plan",
       "hub de-registration",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "sk code mobile cli deprecation acceptance criteria"
+      "sk code mobile cli deprecation tasks",
+      "sk code mobile cli deprecation acceptance criteria",
+      "sk code mobile cli deprecation implementation summary"
     ],
     "key_topics": [
       "code",
@@ -32,11 +27,11 @@
       "advertises",
       "sk-code-mobile-cli",
       "deprecation",
-      "implementation",
+      "mobile",
+      "cli",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "de-registration",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -210,7 +205,7 @@
     ],
     "causal_summary": "The `sk-code` parent hub registers `sk-code-mobile-cli` as a read-only surface packet for",
     "created_at": "2026-09-19T09:02:48Z",
-    "last_save_at": "2026-10-07T13:01:29.438Z",
+    "last_save_at": "2026-10-07T15:56:18.052Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +215,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:81315915a402b834ece024a6e78b80d4590ff54d09295a11f9818d399e58563d",
+    "source_fingerprint": "sha256:552a86fba457143ca2f0bb98c8c9f975af9a628994b9da1b60fc2ad9e612713a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cee15c602ddc024f8fa368db087c5122f67a1ddc2602dbdea7bab785e87e0a90",
-      "plan.md": "e86ac50d39f0ab5cc9826ff63d15d03b7911501fab04ae1512ef3b47d008a5ca",
-      "tasks.md": "7eb65ba99eb1629dc2f3cbf12540637d98199125c8e495e538b289444254f6a8",
-      "implementation-summary.md": "2929a5d15a95e6683e841c285d2ffece99964614f30dbf42410739b38ea89171"
+      "plan.md": "53ccc68163f4a602293eefc60bea15d5f8dbf741fbe67b742f8677dbf020df02",
+      "tasks.md": "9c0234899695f7f5400f31d6438088942c1f90671aa89a22bfddd00d2b14221f",
+      "implementation-summary.md": "795322274ed3ad02745740643024a7430e2da61c067a2b937298bb4f390ec62e"
     },
     "last_active_at": null
   }

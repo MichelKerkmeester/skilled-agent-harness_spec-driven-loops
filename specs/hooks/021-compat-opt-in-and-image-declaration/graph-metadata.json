@@ -16,13 +16,11 @@
       "manufactured thinkingFormat deepseek",
       "llmgateway image input omitted",
       "pi cache optimizer warning",
-      "implementation plan",
       "deepseek opt-in gate",
       "declared capability over heuristic",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "compat opt in and image declaration tasks",
+      "deepseek compat opt-in",
+      "llmgateway image declaration"
     ],
     "key_topics": [
       "deepseek-like",
@@ -203,7 +201,7 @@
     ],
     "causal_summary": "`llmgateway/deepseek-v4.1-flash` produces a blocking-looking warning at every Pi launch:",
     "created_at": "2026-09-11T07:59:30Z",
-    "last_save_at": "2026-09-11T08:06:00.835Z",
+    "last_save_at": "2026-10-07T15:56:13.767Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f20350f485ed4ad3351aef81be165e3bb0c1b6c671718649d8dcf02915fcf6d",
+    "source_fingerprint": "sha256:332001254db1bdda81a952e84d2f894a67c58369a949ac3cc0f10b031cadb2fe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1b2915a31ca4baea21569919c54edd7f700d3b7804d32c3d5454d4b8a9b92caa",
-      "plan.md": "c601444505aad39aca175ede02c49ad7fb4960a98c75531896902649b533605d",
-      "tasks.md": "7e0dea0dcf700299bcafcb99e6e8fd2a2a582803555d81d8737a696cfe8e1fe2",
-      "implementation-summary.md": "02e99599e26d8d44b756ba7e8f1a932aaf1df790caee7025b5174210c8084c60"
+      "plan.md": "899ae99f650bbc91ae0eba7c3f3ff1eb6018ee4aa4b949aa0ba9ce9d69b473cf",
+      "tasks.md": "576400ac2a4ab2b101dd4c0925c0e78a8f0c5b110ef2a72365b0488eae9f20d0",
+      "implementation-summary.md": "db9fbaec7d82cd1b78d994d2517448c25743aefcf02a0c0d5cb1d552b568707f"
     },
     "last_active_at": null
   }

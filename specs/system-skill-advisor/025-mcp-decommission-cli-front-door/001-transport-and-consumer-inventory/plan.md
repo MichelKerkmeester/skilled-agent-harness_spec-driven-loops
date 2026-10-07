@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 1: transport-and-consumer-inventory"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "transport and consumer inventory plan"
 importance_tier: "normal"
 contextType: "general"
 ---

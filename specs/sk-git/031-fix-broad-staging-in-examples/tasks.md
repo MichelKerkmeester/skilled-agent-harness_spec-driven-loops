@@ -2,10 +2,7 @@
 title: "Tasks: Replace broad staging in sk-git examples with explicit paths"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "fix broad staging in examples tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

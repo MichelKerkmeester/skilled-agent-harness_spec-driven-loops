@@ -15,14 +15,14 @@
       "retire vendored fork",
       "deep-pi reference sweep",
       "boundary runner removal",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "remove deep pi plan",
+      "remove deep pi tasks",
+      "remove deep pi acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "phase outcome"
     ],
     "key_topics": [
       "remove",
@@ -36,7 +36,7 @@
       "boundary",
       "runner",
       "removal",
-      "implementation"
+      "deep"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The extension directory is 53 tracked files and a large vendored dependency tree that nothing",
     "created_at": "2026-09-08T17:57:04Z",
-    "last_save_at": "2026-10-03T15:29:53.106Z",
+    "last_save_at": "2026-10-07T15:56:13.649Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f7b89fe7c60c3e0c464ceed24c8313cda23aedbf87829b646f5ab749a7f2465b",
+    "source_fingerprint": "sha256:be3dcc193887b3b2bddfd53911c786388b9c3f0042c04cd59e9e22a4a9d79bc6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5359fb9785b800c9202de0ab3193ea344747811fdcc7f36e7f275f7bb45b0876",
-      "plan.md": "828be4d86adc9426b00ce288f7fb45bb807892f116d1d4abeae3a7961eb7a944",
-      "tasks.md": "e0c92c0eb3b619c42d0d6255e853f8bec8536e3ded45e9f2cdb3ed6f20f1e589",
-      "implementation-summary.md": "8301ece0f0a58edeb89c1348f7342bf01c00b4db0c505fc0366ce4e34ca5de3f"
+      "plan.md": "de9b073cb88e0e7ea5f1cb03738dba39008db9020c2770ac4f338671825d6f03",
+      "tasks.md": "bec0d16db2ba42d0b265be2076bdc04e57cad33fafca668e1fced5b7fdaf56d6",
+      "implementation-summary.md": "bfda9cf98021ebf5ba58bc97e34d75f2ce5631abb0958348823600ce89cba385"
     },
     "last_active_at": null
   }

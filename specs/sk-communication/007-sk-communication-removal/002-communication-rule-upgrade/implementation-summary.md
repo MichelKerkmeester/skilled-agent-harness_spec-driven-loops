@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Communication rules guide plain-language re-rendering and connected prose; all phase acceptance and verification gates pass."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "communication rule upgrade implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

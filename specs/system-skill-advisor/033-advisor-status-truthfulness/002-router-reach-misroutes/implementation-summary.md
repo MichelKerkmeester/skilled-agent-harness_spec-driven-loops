@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A live full-fleet router-reach run found no wrong-hub or outranked phrase, all 32 recorded misroutes no longer reproduce, and no routing vocabulary changed."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "router reach misroutes implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

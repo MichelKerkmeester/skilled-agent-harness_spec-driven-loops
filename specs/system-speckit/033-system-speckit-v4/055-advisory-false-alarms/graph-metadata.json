@@ -12,17 +12,10 @@
   "derived": {
     "trigger_phrases": [
       "advisory false alarms",
-      "two advisories warned about problems that did not",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "two advisories warned about problems that did",
+      "advisory false alarms plan",
+      "advisory false alarms tasks",
+      "advisory false alarms implementation summary"
     ],
     "key_topics": [
       "advisory",
@@ -33,10 +26,10 @@
       "warned",
       "about",
       "problems",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -195,7 +188,7 @@
     ],
     "causal_summary": "The sk-git advisory hook warned that `git add -- $A/...` matched no files when the files existed",
     "created_at": "2026-09-23T19:09:39Z",
-    "last_save_at": "2026-10-07T12:55:51.794Z",
+    "last_save_at": "2026-10-07T15:57:32.866Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a5f1b043f45e3a17a27790af8f28145903dc1717e32a3d1b9d06f74a8e35045",
+    "source_fingerprint": "sha256:78b4e7b0e9278c80a58df5238c9394143ae1846aa97af14ae363b0c4b1457635",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7293ec8871772ecd1972bb1b9f3343691329d11d3cc757c502397c1c74277473",
-      "plan.md": "f1c9f3c3e680a053ebecc88909850bec6b0b7c0fd3df48ebbb2b7799c0447d86",
-      "tasks.md": "83de3672f0fda18542f408996f1f800bf6a40300ed6759a4b64cfe3b1c22e21e",
-      "implementation-summary.md": "aad7f281d984b0f7c0c955be55c207cc86495dbc69819e10259ebb60cdd263cd"
+      "spec.md": "baeb9515e73132e6fb6986288d7621476e792536ea3deab2c8dab08bd582b0d2",
+      "plan.md": "082cd39bd9af22679ef91298c1230ea8bfa367774ee9de23fb77bce50f55ed09",
+      "tasks.md": "c6550a63051dc31aedcbf59e12e5716cef20ed1d7c4123a41ca3ee323b2b0bbd",
+      "implementation-summary.md": "83ec5f5900387f019ec4fd5bf39f46088e470defacdea50a9102b29b19233c47"
     },
     "last_active_at": null
   }

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The injection screen keeps its keep verdict at the new 0.6 flag line, with false positives down from 5 to 3."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "injection screen improvements implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

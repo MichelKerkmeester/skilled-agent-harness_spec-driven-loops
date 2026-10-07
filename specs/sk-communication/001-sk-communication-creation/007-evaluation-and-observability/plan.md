@@ -3,7 +3,6 @@ title: "Implementation Plan: Phase 007 Evaluation and Observability"
 description: "Implement measure whether output feels 1:1 with the reference while proving fidelity, latency, cost, privacy, and operational behavior. using the shared immutable-state architecture."
 trigger_phrases:
   - "evaluation-and-observability"
-  - "implementation plan"
   - "portable cli projection"
 importance_tier: "important"
 contextType: "implementation"

@@ -5,7 +5,6 @@ trigger_phrases:
   - "env dead flags tasks"
   - "env census tasks"
   - "template cleanup tasks"
-  - "task dependencies"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Fix verdict for `/doctor:speckit runtime-mirrors`: the route invokes both Pi checkers, the Codex hooks check runs with the worktree allowance, the workflow runs the command-catalog checker and defines an error result, and the target is visible in the startup menu."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "runtime mirrors implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

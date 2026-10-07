@@ -2,10 +2,7 @@
 title: "Implementation Summary: Phase 4: references-sweep-and-verification"
 description: "Clear every remaining live Deem reference, add the changelog entries for the removal, and prove the whole removal from the final state. Complete."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "references sweep and verification implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

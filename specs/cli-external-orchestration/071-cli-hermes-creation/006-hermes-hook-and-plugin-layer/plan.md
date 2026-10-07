@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 5: hermes-hook-and-plugin-layer"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "hermes hook and plugin layer plan"
 importance_tier: "normal"
 contextType: "general"
 ---

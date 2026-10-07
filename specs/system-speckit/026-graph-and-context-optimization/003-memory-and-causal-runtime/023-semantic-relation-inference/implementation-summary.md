@@ -7,7 +7,6 @@ trigger_phrases:
   - "context"
   - "optimization"
   - "003"
-  - "implementation summary"
   - "023"
   - "semantic"
 importance_tier: "important"

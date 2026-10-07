@@ -4,10 +4,7 @@ description: "How the modality dial and the depth dial become one command plus a
 importance_tier: "medium"
 contextType: "general"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "visual explanation lane plan"
 ---
 # Implementation Plan: Visual Explanation Lane for sk-communication
 

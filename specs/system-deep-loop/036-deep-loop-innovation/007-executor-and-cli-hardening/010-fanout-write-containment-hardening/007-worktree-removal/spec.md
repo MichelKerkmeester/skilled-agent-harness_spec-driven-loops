@@ -3,7 +3,7 @@ title: "Feature Specification: Remove the per-lineage worktree mechanism, its mo
 description: "The per-lineage worktree mechanism is removed from the deep-loop fan-out runtime: every lineage runs in the shared checkout and preserve-by-default containment is the only guard."
 trigger_phrases:
   - "worktree removal"
-  - "the per lineage worktree mechanism is removed from"
+  - "the per lineage worktree mechanism is removed"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,7 @@
 title: "Tasks: Phase 4: dispatch-enforcement-ci-guard"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "dispatch enforcement ci guard tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

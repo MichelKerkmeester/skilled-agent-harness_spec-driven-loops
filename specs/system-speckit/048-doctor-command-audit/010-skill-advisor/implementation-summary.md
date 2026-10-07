@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Audit /doctor:speckit skill-advisor against this checkout and repair its addressing: the workflow now uses the advisor CLI, the route declares runnable commands, and the drifted assertions are corrected."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "skill advisor implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

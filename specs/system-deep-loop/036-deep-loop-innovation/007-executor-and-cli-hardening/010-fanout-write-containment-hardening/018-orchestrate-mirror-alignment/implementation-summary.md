@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The orchestrate agent grants its delegation tool in the source and every mirror declares it in its runtime's vocabulary, with all mirror gates green."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "orchestrate mirror alignment implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

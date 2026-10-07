@@ -3,7 +3,7 @@ title: "Feature Specification: Phase 7: docs-and-closeout"
 description: "Update the contracts, references, catalogs and changelogs in both skills and close the program."
 trigger_phrases:
   - "docs and closeout"
-  - "update the contracts references catalogs and changelogs in"
+  - "update the contracts references catalogs and changelogs"
 importance_tier: "normal"
 contextType: "general"
 ---

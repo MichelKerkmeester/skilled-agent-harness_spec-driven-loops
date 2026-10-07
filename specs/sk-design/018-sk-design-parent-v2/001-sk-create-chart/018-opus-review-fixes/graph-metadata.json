@@ -13,16 +13,9 @@
     "trigger_phrases": [
       "opus review fixes",
       "a fresh opus review of the three chart",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "opus review fixes plan",
+      "opus review fixes tasks",
+      "opus review fixes implementation summary"
     ],
     "key_topics": [
       "opus",
@@ -30,13 +23,13 @@
       "fresh",
       "three",
       "chart",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing"
+      "tasks",
+      "implementation",
+      "summary",
+      "independent",
+      "packets",
+      "found"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +191,7 @@
     ],
     "causal_summary": "An independent Opus review of packets 015, 016 and 017 found that the checker's design-md branch skipped every gate when a role was not a six-digit hex, that two of the cursor default's series were the same green, that the reference described a series rule the mapper did not implement, that three evidence cells in 016 pointed at wrong lines and a stale capture, and that multi-series tooltip cards named the series in the header and \"Value\" on the row instead of the category and the series",
     "created_at": "2026-09-08T08:14:39Z",
-    "last_save_at": "2026-10-07T12:55:11.603Z",
+    "last_save_at": "2026-10-07T15:56:33.968Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:64d4154c221d8859ae902e1feb36dd19271e511784e4281f053a962875ba09ef",
+    "source_fingerprint": "sha256:4861e9402c8d549dd234cae256527a1ffd77b08e64207f86249290c559ceaa3d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "31aa8c22c9e03a9614ab1bf0e74efd4e120104eceffe8a5db20759ab3f2baf2a",
-      "plan.md": "3df089dbee093b37072c72f733b381db3c93b84520f8a3cd961e73eb1e9f95c8",
-      "tasks.md": "cf175e2efeb99bb3c700ac6ad2b03f5ad25b7c405529197eb985f3923107615f",
-      "implementation-summary.md": "fe22db1479094401a8a4c751fa319db2d596a30adeea019f1fca9873a6c3d092"
+      "plan.md": "77e652a44f59e19e9d277b493f40548eb8c85a5cfc6adeb9ed82c4b96cafd679",
+      "tasks.md": "a2e5b07a1e8f42c8f2217bf2773cfd17cae55ac4542fb9e01bda6ab2070e0963",
+      "implementation-summary.md": "7baa27508c7226f6a2eae9d6c3f2f153dbbad45cfd49207f540a4256a5d509e3"
     },
     "last_active_at": null
   }

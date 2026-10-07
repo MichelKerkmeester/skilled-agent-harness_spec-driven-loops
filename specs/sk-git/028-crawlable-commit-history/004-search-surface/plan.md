@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 4: search-surface"
 description: "One sk-doc dispatch extends the commit workflows catalog entry and adds a playbook scenario that proves the three queries, and the conductor runs the queries on a stamped fixture commit."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "search surface plan"
 importance_tier: "normal"
 contextType: "general"
 ---

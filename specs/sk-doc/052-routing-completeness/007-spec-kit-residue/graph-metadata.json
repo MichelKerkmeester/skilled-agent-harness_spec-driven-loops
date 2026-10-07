@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The suite does not complete",
     "created_at": "2026-09-02T16:34:09Z",
-    "last_save_at": "2026-10-07T12:55:22.815Z",
+    "last_save_at": "2026-10-07T15:56:44.629Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9ac67bd529ef59c68ac6da05121054cdc956acef2b9d15b364f832204dce36c1",
+    "source_fingerprint": "sha256:c082706688e1b8b50e02bf4e4b388cfa41d2767cd82b9b3f4d459e603b9d5986",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b6734f01c178774f03857b3ed9bb64339b8f2a408f4b9e9f20ba54dcc1faa346",
       "plan.md": "804d00fdf338df814002cef82732aada51554a342a7a363f13d5ea9c10f3c05f",
       "tasks.md": "e279f299835597a84da2181545356b7d5256ff2eca8e1d6ac5592cfc4e4e7ffb",
       "decision-record.md": "dc348705fa36f7b1a91997784b2f9ed4e51881e75d9da78777afde405d38e1ba",
-      "implementation-summary.md": "30c36de8899046f8be425774fa7d3ca852204d9a7ba701a1ad69658ada00941f"
+      "implementation-summary.md": "e91f8e82d70d3fb117397a76bc0395bcdda7ee4ba17c320e322eb093d913d222"
     },
     "last_active_child_id": null,
     "last_active_at": null

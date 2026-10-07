@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "review lane advisory and strict config",
       "the empty registry advisory reads the registry field",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "review lane advisory and strict config plan",
+      "review lane advisory and strict config tasks",
       "review lane advisory and strict config acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "review lane advisory and strict config implementation summary"
     ],
     "key_topics": [
       "review",
@@ -34,9 +32,9 @@
       "registry",
       "reads",
       "field",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -200,7 +198,7 @@
     ],
     "causal_summary": "The empty-registry advisory checked `keyFindings` for every loop type, but a review registry carries `openFindings`, so both lanes of the ten-iteration review, holding 24 and 8 open findings, raised `lineageregistryempty`",
     "created_at": "2026-09-20T08:33:42.550Z",
-    "last_save_at": "2026-10-07T12:55:35.517Z",
+    "last_save_at": "2026-10-07T15:57:00.119Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ad1bd2aa10d0783bea0739b26a94d798d0003239caf2d01848561c770e64e785",
+    "source_fingerprint": "sha256:f6a6b9375655d30f3368355d740ccd6c7c475f024116476a7053a34d97ac7148",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2a8fc8e855e442b5cf2e076e44852acdd75dbd5ba187a78b0414dbb7036fa842",
-      "plan.md": "20fe77b83403ea495121a68b7771b87af572bf5d279f2f58a83e45159b730ee6",
-      "tasks.md": "dda133c4f146faa8f91aea80c65ba13a982c87a67e2d8daa5c96ab09aba10789",
-      "implementation-summary.md": "99e56a250662abeb8eaaa67192cf37066a0cc06a8722d4b0a4900738d945789a"
+      "plan.md": "d1620fffaca205a41991cde264c37308b731274936bed20f14f1de2c2ddca38c",
+      "tasks.md": "aa3e5a02dc6d86f40741716043ac9d4bd695672d4f942e15ed76c355c88010ae",
+      "implementation-summary.md": "bfcaa4db1710473bbbe7f832b1b61f6291dba58c2076419165704b790e00966e"
     },
     "last_active_child_id": null,
     "last_active_at": null

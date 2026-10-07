@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A second Style Reference, written from the evilcharts stylesheet, gives the theming override a worked case."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "evilcharts style reference implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

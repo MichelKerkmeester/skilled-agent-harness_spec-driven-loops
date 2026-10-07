@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "Four read-only research iterations answered the four decision tests for a close-out rule; verdict AGENTS.md-row."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "deep research implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

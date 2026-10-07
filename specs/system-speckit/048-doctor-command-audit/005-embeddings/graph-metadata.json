@@ -14,15 +14,14 @@
       "doctor embeddings audit",
       "/doctor:speckit embeddings relevance",
       "doctor-embeddings.yaml",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "doctor embeddings audit acceptance"
+      "embeddings plan",
+      "embeddings tasks",
+      "doctor embeddings audit acceptance",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "embeddings implementation summary"
     ],
     "key_topics": [
       "doctor",
@@ -32,11 +31,11 @@
       "relevance",
       "doctor-embeddings",
       "yaml",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "acceptance",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -54,7 +53,6 @@
       ".skilled/commands/speckit/README.txt",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
       ".skilled/commands/README.txt",
-      "scratch/doctor-run.log",
       "scratch/reality-check.md",
       "scratch/proposal.md"
     ],
@@ -132,12 +130,6 @@
         "source": "derived"
       },
       {
-        "name": "doctor-run.log",
-        "kind": "file",
-        "path": "scratch/doctor-run.log",
-        "source": "derived"
-      },
-      {
         "name": "reality-check.md",
         "kind": "doc",
         "path": "scratch/reality-check.md",
@@ -202,11 +194,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit embeddings` reports the embedding provider and the shared model-server status",
     "created_at": "2026-10-02T16:10:16Z",
-    "last_save_at": "2026-10-03T11:48:56.184Z",
+    "last_save_at": "2026-10-07T15:57:40.820Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7635ddf6e8e59083e34bced906d541ea40b8097a9fbbfa061655d0b4cb717b52",
+    "source_fingerprint": "sha256:482d70eb21bf1e3cc3d1bd7af94f4183b48d817750f9f62f19684def0d11aafd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8a83bf90a56d2298b89ed19459c2a810e423b9fe3d1ede0fe55e9229573d7d42",
-      "plan.md": "8a718dd6ba1e672df742935fd5ab37a9c495b8620b6992f346483dfb90b5f4ce",
-      "tasks.md": "0d58bacaac8f3390bb033cde1bd4f951b718ac20792ac744796fab5f009358e2",
-      "implementation-summary.md": "13d9d434d6d8ceda4bd7ca6d542f4fc71a08c4de79e2288abf376b530a336331"
+      "plan.md": "bd1b0b6399c92927c8400a98916aa41da44741d5d7bb41c0ea8299b663b0e008",
+      "tasks.md": "33c805fa26a4aaa6475c7f0d5ce613e559fb53589a1d45c52d92a66f5fa06ade",
+      "implementation-summary.md": "e343e48dfc4f63522091ee329b1f97a1538cb0eec5dcfd6deaa800bdfa5c7e3e"
     },
     "last_active_at": null
   }

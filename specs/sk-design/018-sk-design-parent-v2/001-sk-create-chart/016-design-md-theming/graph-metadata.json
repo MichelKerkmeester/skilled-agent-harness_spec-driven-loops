@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "chart from design md",
       "theme charts from style reference",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "design md theming plan",
+      "design md theming tasks",
       "design md theming acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "design md theming implementation summary"
     ],
     "key_topics": [
       "chart",
@@ -31,12 +29,12 @@
       "charts",
       "style",
       "reference",
-      "implementation",
+      "theming",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -206,7 +204,7 @@
     ],
     "causal_summary": "`sk-design-md-generator` measures a live site into a v3 Style Reference, a `DESIGN.md` whose colour table, typography section and radius table hold every value verbatim",
     "created_at": "2026-09-08T06:21:09Z",
-    "last_save_at": "2026-10-07T12:55:12.021Z",
+    "last_save_at": "2026-10-07T15:56:34.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e2201702eeb8c4e83bf105c5b00629d6e8a3316284dfc9f01a35e0757af20a3",
+    "source_fingerprint": "sha256:79212b8f90a6d7623b19d637660a7c8bf003c144100aa4fb70516eaec95a5b95",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c6751c6021da820c15ef9c5ad67c35e6ac5c486bcb51e36eda7f6134618a0c58",
-      "plan.md": "ba7c19366721abcbc202a6305a0325e14b3ffd47fe0872c3e0818d6990e54ff3",
-      "tasks.md": "2eab9a675e11c584a139f7b34f1821d929e95f7e2b0ffc641a9e19128c75fe89",
-      "implementation-summary.md": "0122826325d38a0a98e9f140fbb2e135c5d236f2d26636bf7b3ecefdab678ab1"
+      "plan.md": "f049c3a2cf9ccf4e6c85c18485288e736dc8f7bd7a0083f960be4e93093c7643",
+      "tasks.md": "f2eb6c37f9953aa59fb85c57113910f7d4e7225ba040e141d28444e7828cc4c9",
+      "implementation-summary.md": "6077539c208ac935de1ede93085e4325d2419defe09e87e48145cd7498e96bea"
     },
     "last_active_at": null
   }

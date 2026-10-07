@@ -12,31 +12,27 @@
   "derived": {
     "trigger_phrases": [
       "deep research residue",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "deep research residue plan",
+      "deep research residue tasks",
       "packet goal",
       "durable directive",
-      "completion criteria"
+      "completion criteria",
+      "goal binding",
+      "deep research residue implementation summary"
     ],
     "key_topics": [
       "deep",
       "research",
       "residue",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy",
-      "task"
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -199,7 +195,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-11T17:15:41Z",
-    "last_save_at": "2026-10-07T12:55:41.390Z",
+    "last_save_at": "2026-10-07T15:57:06.707Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f89f2ee432343b86ef7ece25ddbc4976917168b1c5870ed6cc49b0cb53a10949",
+    "source_fingerprint": "sha256:5cdaa9c8ff6df2d39c44b23618bc6c29861f82ed6093695a6979dbaea0d7ad15",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9a3fa4af25be91f5f2972026cf9f0606ebeeb3392e4ca0dd479d3fba1a31cc0e",
-      "plan.md": "1673a84ddbdebdffc097caccb17ec21f1a47a64ede0f6c9191224b6dc7cff4db",
-      "tasks.md": "7329e2c79e78e473e0197cbd954ca2c9de9b5d31e5a2ea18563c3e2cbd9d66c0",
-      "implementation-summary.md": "ac6c20aeb5a00e1c8dc0e7b186e80b893e5f2b6e8bba5492d3b34c208d709134"
+      "plan.md": "999e45424bc813c9ba650162e3ccbc12c94a468ca9da365117ccf766a0fe846f",
+      "tasks.md": "a6e7424817eccffd45c3709dd4b05430447d0c902783f64ca7eb6948340260fc",
+      "implementation-summary.md": "869036e87715b5bade606c340c3af499abb4df87c64cc0d67ed26294dd3cc6db"
     },
     "last_active_at": null
   }

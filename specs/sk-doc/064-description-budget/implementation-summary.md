@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "No description is over its soft target and the project total of 6,331 now sits under the operator-raised 6,400 ceiling: seven over-soft items were trimmed with routing unchanged, and the ceiling moved from 5,600 to 6,400 by operator decision."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "description budget implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

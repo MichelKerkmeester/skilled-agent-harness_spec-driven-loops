@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 7: parent-skill"
 description: "Audit `/doctor:speckit parent-skill` against this checkout, then apply the evidence-backed verdict: keep the route and align its workflow invariant, phase-0 order, checker documentation and presentation row with the checks that actually run."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "parent skill plan"
 importance_tier: "normal"
 contextType: "general"
 ---

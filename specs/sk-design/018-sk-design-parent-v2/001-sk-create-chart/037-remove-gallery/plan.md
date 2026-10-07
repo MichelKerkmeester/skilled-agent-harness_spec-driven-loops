@@ -2,10 +2,7 @@
 title: "Implementation Plan: remove the gallery and re-render every capture"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "remove gallery plan"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -3,7 +3,7 @@ title: "Feature Specification: Phase 1: second-pass-subjects-and-attribution"
 description: "Second rewrite pass: every subject normalized to the grammar with a packet keyword, one Spec line per touched packet, and every Co-Authored-By, Claude-Session and Anthropic attribution line stripped from history and forbidden by the hooks."
 trigger_phrases:
   - "second pass subjects and attribution"
-  - "second rewrite pass every subject normalized to the"
+  - "second rewrite pass every subject normalized"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -3,7 +3,7 @@ title: "Feature Specification: Give the moved modes and their commands the hub's
 description: "Chart and diagram live under `sk-design` but still carry `sk-create-` in their mode names and `/create:` in their commands, which names the hub they left. Phase 004 decided the rename was cost without benefit; the operator has since decided the legib"
 trigger_phrases:
   - "design mode and command rename"
-  - "chart and diagram live under sk design but"
+  - "chart and diagram live under sk design"
 importance_tier: "normal"
 contextType: "general"
 ---

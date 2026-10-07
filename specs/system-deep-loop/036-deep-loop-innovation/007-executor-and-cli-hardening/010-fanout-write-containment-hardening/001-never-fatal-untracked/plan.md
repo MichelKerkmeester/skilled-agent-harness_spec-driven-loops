@@ -2,10 +2,7 @@
 title: "Implementation Plan: Under preserve, an out-of-scope untracked path is advisory and never fails the lane, so a neighbour's new file cannot halt a fan-out"
 description: "Change one partition in the containment guard so a preserved untracked path is an advisory under preserve, proven by unit tests per mode and a runner stub lane."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "never fatal untracked plan"
 importance_tier: "normal"
 contextType: "general"
 ---

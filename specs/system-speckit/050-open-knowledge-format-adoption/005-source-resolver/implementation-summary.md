@@ -2,7 +2,6 @@
 title: "Implementation Summary"
 description: "validate.sh now warns when a [SOURCE: path:line] tag in a new research or review artifact names a gone file, a moved file or a line past the end."
 trigger_phrases:
-  - "implementation summary"
   - "source tags rule"
   - "source tag cutoff"
   - "invented source line warning"

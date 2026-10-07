@@ -2,10 +2,7 @@
 title: "Tasks: Give the deep-loop runtime a read-only mode and repair deep-research bookkeeping"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "read only and research bookkeeping tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,7 +2,6 @@
 title: "Implementation Summary"
 description: "cli-hermes and cli-pi now send only research and review lineages to the shared runtime and say how a single build or doc dispatch runs, so no cli packet tells an orchestrator to route every dispatch through a runner that refuses most of them."
 trigger_phrases:
-  - "implementation summary"
   - "cli hermes pi dispatch rules"
   - "cli hermes pi runtime delegation evidence"
 importance_tier: "normal"

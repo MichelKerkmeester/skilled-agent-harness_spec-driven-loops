@@ -2,10 +2,7 @@
 title: "Implementation Plan: the two geometry fixes that did not work"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "median and ladder correction plan"
 importance_tier: "normal"
 contextType: "general"
 ---

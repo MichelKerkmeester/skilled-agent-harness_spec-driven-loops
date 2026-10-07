@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "cursor stock register",
       "make the cursor style reference the stock chart",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "cursor stock register plan",
+      "cursor stock register tasks",
       "cursor stock register acceptance criteria",
-      "packet goal"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "cursor stock register implementation summary"
     ],
     "key_topics": [
       "cursor",
@@ -31,12 +29,12 @@
       "style",
       "reference",
       "chart",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -198,7 +196,7 @@
     ],
     "causal_summary": "The operator asked for the best Style Reference in the library to be the initial default styling of charts",
     "created_at": "2026-09-08T10:05:17Z",
-    "last_save_at": "2026-10-07T12:55:12.230Z",
+    "last_save_at": "2026-10-07T15:56:34.592Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:12cf8532ba1e4f9b947be10e010ecb0fbd04309890860645aab3e6117c2e63f7",
+    "source_fingerprint": "sha256:3355a8a90969b201f5149345bdcc5ece8f823f78c6e4c33fcf63b15f7dfd30b0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6f1e3a167245188cf42a400cc5cb63330a9f484749a9d98b1369776a142e19c5",
-      "plan.md": "fc9b0fec755559028b49d2d6f0a06db327e4ec06e8a10fca858a4a6b565adc41",
-      "tasks.md": "bc17c16ff99567013c08aad46c36e065925738541f416794a635f074e1d2d185",
-      "implementation-summary.md": "17cc162b9abd714223afc8439e9ba086b1fae62c750f1a2413799801bee58120"
+      "plan.md": "28e242ec05fdf18f17f6ca6bda31936faacc56ae4422e0d208fe46ebde9c919c",
+      "tasks.md": "209c8a3ad15ca920c06dd238f3bf9c972dd20bec8643e6279bef9c56369d8544",
+      "implementation-summary.md": "88be8ebd43563a2337a80f9a8858ed02c0a4ba21109674ea6588cb08c8619cad"
     },
     "last_active_at": null
   }

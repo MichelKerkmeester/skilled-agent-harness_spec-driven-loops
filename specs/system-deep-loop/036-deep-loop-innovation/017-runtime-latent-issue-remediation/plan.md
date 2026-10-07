@@ -11,10 +11,7 @@ _memory:
     recent_action: "Authored the verify-then-fix plan; baseline captured, fan-out launched"
     next_safe_action: "Review each workstream diff against source, then re-run the whole suite vs baseline"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "runtime latent issue remediation plan"
 ---
 # Implementation Plan: System-Deep-Loop Runtime Latent-Issue Remediation
 

@@ -2,10 +2,7 @@
 title: "Tasks: Phase 56: codex-dispatch-and-checklist"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "codex dispatch and checklist tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

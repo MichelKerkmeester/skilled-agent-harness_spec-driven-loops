@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A neighbour's new file no longer halts a fan-out lane under preserve; the guard records it as an advisory and the lane's verdict stands."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "never fatal untracked implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

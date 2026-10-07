@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "A leaf-written strategy file without anchor markers no longer costs a lane its findings registry, and a fulfilled lane that registered nothing is named on the ledger."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "reducer ordered lists implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

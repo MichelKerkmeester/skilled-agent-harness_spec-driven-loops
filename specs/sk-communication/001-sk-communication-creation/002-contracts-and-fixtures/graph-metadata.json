@@ -14,7 +14,6 @@
       "contracts-and-fixtures",
       "portable cli projection",
       "implementation phase",
-      "implementation plan",
       "architecture decision",
       "fixture-first contract package",
       "implementation status",
@@ -30,12 +29,12 @@
       "projection",
       "implementation",
       "phase",
-      "plan",
       "architecture",
       "decision",
       "fixture-first",
       "contract",
-      "package"
+      "package",
+      "status"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +194,7 @@
     ],
     "causal_summary": "Define the versioned contracts and golden fixtures that every core, provider, and runtime adapter must share",
     "created_at": "2026-08-11T10:04:28Z",
-    "last_save_at": "2026-10-04T09:18:09.359Z",
+    "last_save_at": "2026-10-07T15:56:17.678Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,11 +205,11 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:a9f98309893882fd1a96ca8943ab13867766debbb59e6d685f355659e1827093",
+    "source_fingerprint": "sha256:11f7bc86e717196371028c529a4b2cb72d48359976f0b8e2871ca7e70a92dfea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b7ac15bd650f0f7b473ced5515b1daabfb34f996759f15e5c272b87dc2909ad2",
-      "plan.md": "fd4788ee146a5930dbc9044beea6b178d519bdc8ee968815a7a2631ad14d3969",
+      "plan.md": "d832a49ffc044a8b0bab50128fc2e82286c778d50c95172e1c5244dccbce5087",
       "tasks.md": "5dc018e8f1cb4e75b7d72b564344aab3ee871225ade95d8d4e9692221e30443b",
       "decision-record.md": "a5a48a39ce49f2d9493c34015c9653c4684ad74a63b0ce7c877d2a5836ffcf8f",
       "implementation-summary.md": "182a51caf772acd1f99cdba144788081ca9eacf6a40917e881128666b83eabe3",

@@ -2,10 +2,7 @@
 title: "Implementation Summary"
 description: "The reviewer verdict fallback keeps its keep verdict on 25 Jev calls where it needed 73, with the same line: 16 wins, no losses and no flips."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "verdict fallback improvements implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
