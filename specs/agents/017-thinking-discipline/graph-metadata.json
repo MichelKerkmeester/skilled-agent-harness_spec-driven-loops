@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/017-thinking-discipline",
+  "spec_folder": "agents/017-thinking-discipline",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "thinking discipline",
+      "assess a proposed thinking discipline against agents md",
+      "settled and reopened",
+      "reopen a settled conclusion",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "thinking",
+      "discipline",
+      "assess",
+      "proposed",
+      "against",
+      "agents",
+      "settled",
+      "reopened",
+      "reopen",
+      "conclusion",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".skilled/repo-rules/uncertainty-and-honesty.md",
+      ".devin/config.json",
+      ".devin/SYNC.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
+      "research/reviews/deepseek-v4.1-flash-max.md",
+      "research/reviews/gpt-6-luna-max-fast.md",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md",
+      ".cursor/rules/sk-vision.md",
+      ".cursor/rules/skill-routing.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "uncertainty-and-honesty.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/uncertainty-and-honesty.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.json",
+        "kind": "config",
+        "path": ".devin/config.json",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".devin/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-runtime-mirrors.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deepseek-v4.1-flash-max.md",
+        "kind": "doc",
+        "path": "research/reviews/deepseek-v4.1-flash-max.md",
+        "source": "derived"
+      },
+      {
+        "name": "gpt-6-luna-max-fast.md",
+        "kind": "doc",
+        "path": "research/reviews/gpt-6-luna-max-fast.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-tests.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.md",
+        "kind": "doc",
+        "path": ".cursor/rules/sk-vision.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-routing.md",
+        "kind": "doc",
+        "path": ".cursor/rules/skill-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Making Devin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator proposed a nine-point \"Thinking discipline\": check the request, finish one approach, stop after one check, doubt is not evidence, don't revise just to agree, new evidence reopens the case, verify against real checks, don't perform caution, and correct only material earlier errors",
+    "created_at": "2026-10-07T05:03:30Z",
+    "last_save_at": "2026-10-07T07:30:08.832Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:fe5d722bcce51e182b3e795068f5f2b327a8247ca2319250a791b75eb2b8d466",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "605372f22a821538d71aca8c5d69d34257751d4b2e5b590a2e71a99126f2d32b",
+      "plan.md": "0bb959e8adcb8a172c78fac153c52d1f6c926854089245b794300a8fcb4fc92c",
+      "tasks.md": "321d39afefc49275018ae377dac0efcb3047b45c26cdb0397d77f6511df65353",
+      "implementation-summary.md": "b6df5b37111e9f134e17253e6125f65baaf85357c3210385aa81ee0c93259e0a",
+      "research/research.md": "8b6bd77ca48b66f049bbd436c3d02be829e7a4cbbaa69677f49d125df38d95d1"
+    },
+    "last_active_at": null
+  }
+}

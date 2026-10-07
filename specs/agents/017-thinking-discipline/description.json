@@ -1,0 +1,28 @@
+{
+  "specFolder": "agents/017-thinking-discipline",
+  "description": "Assess a proposed thinking discipline against AGENTS.md and the repo rules, and integrate what survives the repo-rule decision tests",
+  "keywords": [
+    "assess",
+    "proposed",
+    "thinking",
+    "discipline",
+    "against",
+    "agents",
+    "repo",
+    "rules",
+    "integrate",
+    "survives",
+    "repo-rule",
+    "decision",
+    "tests"
+  ],
+  "lastUpdated": "2026-10-07T05:03:30.378Z",
+  "specId": "017",
+  "folderSlug": "thinking-discipline",
+  "parentChain": [
+    "agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
