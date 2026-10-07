@@ -1,6 +1,8 @@
 ---
 title: "Tasks: Dark Flag Validation"
 description: "Deep-review audit tasks for the five graduate-ready dark-flag clusters."
+importance_tier: "important"
+contextType: "review"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/006-dark-flag-validation"

@@ -21,6 +21,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:summary -->
 ## Summary
 
 - **Total references**: 32
@@ -30,9 +31,11 @@ _memory:
 - **Generated**: 2026-04-29T10:10:00+02:00
 
 > **Production runtime equivalence preserved.** Removed scaffolding was no-op post T016-T019 lazy-loading migration.
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:scripts -->
 ## 1. Scripts (production)
 
 | Path | Action | Status | Note |
@@ -45,9 +48,11 @@ _memory:
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` | Updated | OK | Removed dead readiness-flag dependency for hint generation |
 | `.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts` | Updated | OK | Removed warmup readiness marker |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts` | Updated | OK | Removed scheduler readiness wait |
+<!-- /ANCHOR:scripts -->
 
 ---
 
+<!-- ANCHOR:tests -->
 ## 2. Tests
 
 | Path | Action | Status | Note |
@@ -71,9 +76,11 @@ _memory:
 | `.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts` | Updated | OK | Removed mock |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts` | Updated | OK | Removed mock |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts` | Updated | OK | Removed mock |
+<!-- /ANCHOR:tests -->
 
 ---
 
+<!-- ANCHOR:specs -->
 ## 3. Specs
 
 | Path | Action | Status | Note |
@@ -83,11 +90,14 @@ _memory:
 | `tasks.md` | Created | OK | Task ledger |
 | `implementation-summary.md` | Created | OK | Disposition |
 | `.../026/description.json` | Created | OK | Continuity index |
+<!-- /ANCHOR:specs -->
 
 ---
 
+<!-- ANCHOR:meta -->
 ## 4. Meta
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.../026/graph-metadata.json` | Created | OK | Graph rollout metadata |
+<!-- /ANCHOR:meta -->

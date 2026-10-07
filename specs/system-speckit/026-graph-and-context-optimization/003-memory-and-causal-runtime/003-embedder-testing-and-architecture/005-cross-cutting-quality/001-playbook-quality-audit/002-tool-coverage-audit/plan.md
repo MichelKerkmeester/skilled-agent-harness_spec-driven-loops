@@ -3,6 +3,8 @@ title: "Plan: 017/002 Tool-surface coverage audit"
 description: "Execution plan for tool-surface coverage audit."
 trigger_phrases:
   - "tool coverage audit plan"
+importance_tier: "important"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->

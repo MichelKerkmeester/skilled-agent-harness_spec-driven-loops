@@ -20,7 +20,9 @@ _memory:
     completion_pct: 85
     open_questions: []
     answered_questions: []
-trigger_phrases: []
+trigger_phrases:
+  - "doc truth completion and mirrors"
+  - "doc truth completion claim runtime mirror reconciliation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Doc-Truth, Completion-Claim & Runtime-Mirror Reconciliation

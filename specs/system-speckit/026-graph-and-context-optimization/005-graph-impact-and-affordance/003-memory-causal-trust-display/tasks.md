@@ -6,10 +6,12 @@ contextType: "implementation"
 trigger_phrases:
   - "memory causal trust display tasks"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: 012/005
 
 <!-- SPECKIT_LEVEL: 2 -->
 
+<!-- ANCHOR:tasks -->
 | ID | Task | Phase | Status |
 |----|------|-------|--------|
 | T-005-A1 | Read `causal-edges.ts:82-94` to confirm columns | A | pending |
@@ -27,9 +29,14 @@ trigger_phrases:
 | T-005-D3 | Static check: relation list unchanged | D | pending |
 | T-005-D4 | `validate.sh --strict` | D | pending |
 | T-005-D5 | Populate `implementation-summary.md` | D | pending |
+<!-- /ANCHOR:tasks -->
 
+<!-- ANCHOR:dependencies -->
 ## Dependencies
 - 012/001 license audit complete
+<!-- /ANCHOR:dependencies -->
 
+<!-- ANCHOR:cross-refs -->
 ## References
 - spec.md, plan.md, checklist.md
+<!-- /ANCHOR:cross-refs -->

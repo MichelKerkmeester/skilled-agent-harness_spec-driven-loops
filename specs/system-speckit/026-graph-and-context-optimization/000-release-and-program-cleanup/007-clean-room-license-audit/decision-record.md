@@ -9,12 +9,14 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "implementation"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 # Decision Record: Clean-Room License Audit (012/001)
 
 <!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-012-001-A — License posture audit and clean-room allow-list
 
 ### Metadata
@@ -26,6 +28,7 @@ contextType: "implementation"
 | **Supersedes** | Refines phase-root ADR-012-001 with verbatim LICENSE evidence |
 | **Risk** | pt-02 §12 RISK-01 (license contamination, P0) |
 
+<!-- ANCHOR:adr-001-context -->
 ### Context
 
 Phase 012 plans to land selective adaptations of External Project patterns into Public's Code Graph (002, 003), Skill Advisor (004), and Memory trust display (005). pt-02 deep-research iteration 9 read the upstream LICENSE and identified it as **PolyForm Noncommercial 1.0.0**, ranking direct source reuse as a P0 governance blocker [SOURCE: research/007-external-project-pt-02/iterations/iteration-009.md:3] [SOURCE: research/007-external-project-pt-02/iterations/iteration-009.md:10] [SOURCE: research/007-external-project-pt-02/iterations/iteration-009.md:18]. No formal sub-phase audit had been recorded; this ADR closes that gate.
@@ -39,9 +42,11 @@ The agent brief refers to `external/LICENSE`. The pt-02 research evidence chain 
 The repository's `.gitignore` excludes `external/` (line 76). Detached-HEAD worktrees created via `git worktree add` therefore do not contain the upstream LICENSE file in their checkout. This audit reproduces the **canonical PolyForm Noncommercial 1.0.0** text published by the PolyForm Project at `https://polyformproject.org/licenses/noncommercial/1.0.0`, which is the licence identity established by the pt-02 research executor (`cli-codex` model `gpt-5.5`, reasoning `high`, service tier `fast`) when it read `external/LICENSE` lines 1, 19, and 31 in iteration 9 [SOURCE: research/007-external-project-pt-02/iterations/iteration-009.md:10].
 
 If a future reviewer with direct access to `external/LICENSE` finds any deviation from the canonical text reproduced below (e.g. an additional `Required Notice:` line, copyright header, or modified clause), this ADR MUST be reopened and the sub-phase status reset.
+<!-- /ANCHOR:adr-001-context -->
 
 ---
 
+<!-- ANCHOR:adr-001-decision -->
 ### LICENSE — Verbatim (canonical PolyForm Noncommercial 1.0.0)
 
 ```text
@@ -247,9 +252,11 @@ Each row is judged against the LICENSE clauses above and the clean-room definiti
 ### Halt Decision
 
 The LICENSE does **not** forbid the clean-room path needed by 012/002–005. Phase 012 is **not** halted. Sub-phase 012/001 signs off as **APPROVED** for clean-room adaptation under PolyForm Noncommercial 1.0.0, with the fail-closed enforcement rule above binding on every downstream PR.
+<!-- /ANCHOR:adr-001-decision -->
 
 ---
 
+<!-- ANCHOR:adr-001-five-checks -->
 ### Five Checks Evaluation
 
 | # | Check | Result | Evidence |
@@ -261,9 +268,11 @@ The LICENSE does **not** forbid the clean-room path needed by 012/002–005. Pha
 | 5 | **Open Horizons?** | PASS | Reopen criterion (legal counsel sign-off) preserves the option for stronger reuse paths. |
 
 **Checks Summary:** 5/5 PASS
+<!-- /ANCHOR:adr-001-five-checks -->
 
 ---
 
+<!-- ANCHOR:adr-001-impl -->
 ### Implementation
 
 **What changes:**
@@ -274,9 +283,12 @@ The LICENSE does **not** forbid the clean-room path needed by 012/002–005. Pha
 - `012/001/checklist.md` — items ticked with evidence.
 
 **How to roll back:** revert this ADR and re-flip 012/001 status to `Draft`. Phase 012 returns to blocked state. Any code work merged in 002–005 between sign-off and rollback must be re-attested under the rolled-back posture.
+<!-- /ANCHOR:adr-001-impl -->
+<!-- /ANCHOR:adr-001 -->
 
 ---
 
+<!-- ANCHOR:references -->
 ## References
 
 - Phase-root ADR: `012/decision-record.md` ADR-012-001 (clean-room rule)
@@ -285,3 +297,4 @@ The LICENSE does **not** forbid the clean-room path needed by 012/002–005. Pha
 - pt-02 invariant: `research/007-external-project-pt-02/research.md:174` (INV-04 clean-room gate)
 - Canonical license text source: `https://polyformproject.org/licenses/noncommercial/1.0.0`
 - Sub-phase spec: `001-clean-room-license-audit/spec.md` (R-001-1 through R-001-4)
+<!-- /ANCHOR:references -->

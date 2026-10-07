@@ -20,7 +20,9 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
-trigger_phrases: []
+trigger_phrases:
+  - "daemon launcher lifecycle"
+  - "daemon launcher lifecycle remediation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Daemon Launcher & Lifecycle Remediation

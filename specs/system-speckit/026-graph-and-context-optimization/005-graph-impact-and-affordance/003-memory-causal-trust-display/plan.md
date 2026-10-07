@@ -6,10 +6,12 @@ contextType: "implementation"
 trigger_phrases:
   - "memory causal trust display plan"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan: 012/005
 
 <!-- SPECKIT_LEVEL: 2 -->
 
+<!-- ANCHOR:phases -->
 ## Steps
 
 ### A. Compute badges
@@ -34,12 +36,19 @@ trigger_phrases:
 13. Static check: relation type list unchanged
 14. `validate.sh --strict`
 15. Populate `implementation-summary.md`
+<!-- /ANCHOR:phases -->
 
+<!-- ANCHOR:dependencies -->
 ## Dependencies
 - 012/001 license audit complete
+<!-- /ANCHOR:dependencies -->
 
+<!-- ANCHOR:effort -->
 ## Effort
 S-M (2-4h)
+<!-- /ANCHOR:effort -->
 
+<!-- ANCHOR:references -->
 ## References
 - spec.md (this folder), tasks.md, checklist.md
+<!-- /ANCHOR:references -->

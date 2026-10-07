@@ -5,6 +5,7 @@ description: "Two-phase plan: first research each folder to understand its compo
 importance_tier: "normal"
 trigger_phrases:
   - "readme architecture diagrams topology plan"
+contextType: "implementation"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->

@@ -6,10 +6,12 @@ contextType: "implementation"
 trigger_phrases:
   - "edge explanation impact uplift plan"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan: 012/003
 
 <!-- SPECKIT_LEVEL: 2 -->
 
+<!-- ANCHOR:phases -->
 ## Steps
 
 ### A. Edge metadata
@@ -35,13 +37,20 @@ trigger_phrases:
 14. Run code-graph vitest suite — confirm no regression
 15. `validate.sh --strict`
 16. Populate `implementation-summary.md`
+<!-- /ANCHOR:phases -->
 
+<!-- ANCHOR:dependencies -->
 ## Dependencies
 - 012/001 license audit completion (P0)
 - 012/002 phase runner — recommended but not strictly required (this sub-phase doesn't depend on phase boundaries)
+<!-- /ANCHOR:dependencies -->
 
+<!-- ANCHOR:effort -->
 ## Effort
 M (4-6h)
+<!-- /ANCHOR:effort -->
 
+<!-- ANCHOR:references -->
 ## References
 - spec.md (this folder), tasks.md, checklist.md
+<!-- /ANCHOR:references -->

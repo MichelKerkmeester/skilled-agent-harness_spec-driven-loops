@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Wave 3 of the over-engineering removal program: delete the F2 mode-contracts VALUE engine (conformance.ts, strict-gate-validator.ts, compatibility-policy.ts, substrate-ports.ts) and its test, sever index.ts to types-only, keep mode-contract-types.ts (imported import type by all 8 reducers). One export — matchesPreparedAuthorizationDecision — has a live consumer outside the deletion set and is relocated, not deleted.",
     "created_at": "2026-08-24T17:06:19.403Z",
-    "last_save_at": "2026-10-07T15:57:00.860Z",
+    "last_save_at": "2026-10-07T16:25:49.965Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:66f56d35ff0fbfff0a0911bf47443ed037da646cd7fe96425aaab19e1fe7fda7",
+    "source_fingerprint": "sha256:024061bebde87d577d05ee3302e964f1c791a2f14a519cfc8787eb9fc8e4ae77",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ef60acae0c387a2fd96a173ef08c79ee34efff4455be19b170d1080345d6b991",
-      "plan.md": "561c195e0494bd5c6c7f5db2cb166a01de41556621197df70cebdb54398eca9c",
-      "tasks.md": "2983022980d4ef82ae6d9468d35ad060848a74702a7cef348a57614645e1d3b6",
+      "plan.md": "845254e046d36dec3772b0572817d773b5d34d5791c43ffccbe5209d84c6c05f",
+      "tasks.md": "651fce4e64333ed626d683595279a34d8e547ee1ff307540ce7b8029799ad9cb",
       "implementation-summary.md": "a7e143f6d8e198f67ecfa8ed4829ce9b45ea24b6bf81ab5c9b82f9911d298600"
     },
     "last_active_child_id": null,

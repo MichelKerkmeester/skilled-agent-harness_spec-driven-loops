@@ -5,6 +5,7 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/005-authority-registry-cas-reduction"
 trigger_phrases:
   - "authority registry cas reduction tasks"
+importance_tier: "critical"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

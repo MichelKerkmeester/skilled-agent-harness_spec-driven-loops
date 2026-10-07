@@ -26,6 +26,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Clean-Room License Audit (012/001)
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -3,6 +3,8 @@ title: "Plan: 017/003 Scenario expansion"
 description: "Execution plan for scenario expansion."
 trigger_phrases:
   - "scenario expansion plan"
+importance_tier: "important"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->

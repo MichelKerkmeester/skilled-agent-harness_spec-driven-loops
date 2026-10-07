@@ -3,6 +3,8 @@ title: "Plan: 017/001 Playbook fairness audit"
 description: "Execution plan for playbook fairness audit."
 trigger_phrases:
   - "fairness audit plan"
+importance_tier: "important"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->

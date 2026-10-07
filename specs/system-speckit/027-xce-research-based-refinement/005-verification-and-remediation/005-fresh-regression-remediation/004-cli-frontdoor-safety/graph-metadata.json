@@ -13,6 +13,8 @@
   },
   "derived": {
     "trigger_phrases": [
+      "cli frontdoor safety",
+      "cli front door safety remediation",
       "cli frontdoor safety plan",
       "cli frontdoor safety tasks",
       "cli frontdoor safety implementation summary"
@@ -21,15 +23,15 @@
       "cli",
       "frontdoor",
       "safety",
+      "front",
+      "door",
+      "remediation",
       "plan",
       "tasks",
       "implementation",
       "summary",
-      "remediation",
       "sub-phase",
-      "fresh",
-      "regression",
-      "deep-review"
+      "fresh"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -187,7 +189,7 @@
     ],
     "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 6 CLI front-door findings. Resolved — 5 fixed, 1 refuted-then-hardened; CLI vitest green.",
     "created_at": "2026-07-10T06:23:17.683Z",
-    "last_save_at": "2026-10-07T15:57:17.394Z",
+    "last_save_at": "2026-10-07T16:26:20.077Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +198,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a734b8e06a2babf358d105a0a921510c9aae3c8496e71c5e4d80a9286cf46852",
+    "source_fingerprint": "sha256:9414b548131fa5410adab363b62535d864df869c3c2c861c96dbf99204e29c29",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fdc0811aca05ad97ae7bb70a39236921b7cf91aca595923ec8fecf8a91eaaf25",
+      "spec.md": "7747610a2a42b940e13e18c5afefc07d66e16f733f745b0c557948e6a51fc0d2",
       "plan.md": "6dd633e87777b9e6d95bdb2c5cf6f6bdfc4ce12f7541c784ec774ace21f0073d",
       "tasks.md": "3c1420b605da51e15b654bfd6f5ddef4e565af8b642049f97103bc7ca3e92b99",
       "implementation-summary.md": "76e2f674265cb88aa5c2ee184112e4ce17d246f47633e85f5a82dd4b629c03b4"

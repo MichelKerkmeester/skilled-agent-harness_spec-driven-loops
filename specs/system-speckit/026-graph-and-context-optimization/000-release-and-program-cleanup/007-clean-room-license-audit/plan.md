@@ -6,10 +6,12 @@ contextType: "implementation"
 trigger_phrases:
   - "clean room license audit plan"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan: Clean-Room License Audit (012/001)
 
 <!-- SPECKIT_LEVEL: 2 -->
 
+<!-- ANCHOR:phases -->
 ## Steps
 
 1. Read `external/LICENSE` in full
@@ -24,13 +26,20 @@ trigger_phrases:
 5. Cross-link from `012/decision-record.md` ADR-012-001
 6. Populate `implementation-summary.md` with audit outcome + sign-off record
 7. Run `validate.sh --strict`
+<!-- /ANCHOR:phases -->
 
+<!-- ANCHOR:halt-criterion -->
 ## Halt Criterion
 If LICENSE forbids the clean-room path needed by 012/002-005, halt the entire 012 phase and escalate to user.
+<!-- /ANCHOR:halt-criterion -->
 
+<!-- ANCHOR:effort -->
 ## Effort
 S (1-2h)
+<!-- /ANCHOR:effort -->
 
+<!-- ANCHOR:references -->
 ## References
 - spec.md (this folder), checklist.md (this folder)
 - 012/spec.md, 012/decision-record.md
+<!-- /ANCHOR:references -->

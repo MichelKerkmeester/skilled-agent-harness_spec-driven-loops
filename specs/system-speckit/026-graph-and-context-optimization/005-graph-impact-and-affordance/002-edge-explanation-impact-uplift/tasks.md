@@ -6,10 +6,12 @@ contextType: "implementation"
 trigger_phrases:
   - "edge explanation impact uplift tasks"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: 012/003
 
 <!-- SPECKIT_LEVEL: 2 -->
 
+<!-- ANCHOR:tasks -->
 | ID | Task | Phase | Status |
 |----|------|-------|--------|
 | T-003-A1 | Extend metadata writer with `reason` + `step` | A | complete — `structural-indexer.ts` metadata helper writes both fields |
@@ -28,9 +30,14 @@ trigger_phrases:
 | T-003-D2 | Run existing code-graph vitest suite | D | blocked — `npx vitest` attempted network fetch and local Vitest is absent |
 | T-003-D3 | `validate.sh --strict` | D | blocked — strict validator fails on pre-existing scaffold/template mismatches and missing local `tsx` runtime |
 | T-003-D4 | Populate `implementation-summary.md` | D | complete |
+<!-- /ANCHOR:tasks -->
 
+<!-- ANCHOR:dependencies -->
 ## Dependencies
 - 012/001 license audit complete
+<!-- /ANCHOR:dependencies -->
 
+<!-- ANCHOR:cross-refs -->
 ## References
 - spec.md, plan.md, checklist.md
+<!-- /ANCHOR:cross-refs -->

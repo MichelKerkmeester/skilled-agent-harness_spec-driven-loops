@@ -3,6 +3,8 @@ title: "Tasks: 017/003 Scenario expansion"
 description: "Task checklist for scenario expansion."
 trigger_phrases:
   - "scenario expansion tasks"
+importance_tier: "important"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->

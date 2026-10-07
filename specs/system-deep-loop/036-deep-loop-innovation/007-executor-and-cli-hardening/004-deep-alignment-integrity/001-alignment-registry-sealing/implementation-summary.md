@@ -1,6 +1,8 @@
 ---
 title: "Implementation Summary: deep-alignment registry seal-state"
 description: "Shipped the overall.sealed fix so a deep-alignment run that halts before synthesis no longer strands its fail-closed seed as an authoritative verdict."
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/001-alignment-registry-sealing"

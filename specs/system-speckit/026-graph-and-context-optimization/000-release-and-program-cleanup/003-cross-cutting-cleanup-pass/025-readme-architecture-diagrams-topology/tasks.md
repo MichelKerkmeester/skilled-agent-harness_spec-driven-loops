@@ -5,6 +5,7 @@ description: "17 files need diagrams/trees. Tasks grouped by code area."
 importance_tier: "normal"
 trigger_phrases:
   - "readme architecture diagrams topology tasks"
+contextType: "implementation"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->

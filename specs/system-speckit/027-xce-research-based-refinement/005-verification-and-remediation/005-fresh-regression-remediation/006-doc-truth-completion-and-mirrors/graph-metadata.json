@@ -13,6 +13,8 @@
   },
   "derived": {
     "trigger_phrases": [
+      "doc truth completion and mirrors",
+      "doc truth completion claim runtime mirror reconciliation",
       "doc truth completion and mirrors plan",
       "doc truth completion and mirrors tasks",
       "doc truth completion and mirrors implementation summary"
@@ -22,14 +24,14 @@
       "truth",
       "completion",
       "mirrors",
+      "claim",
+      "runtime",
+      "mirror",
+      "reconciliation",
       "plan",
       "tasks",
       "implementation",
-      "summary",
-      "remediation",
-      "sub-phase",
-      "fresh",
-      "regression"
+      "summary"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -189,7 +191,7 @@
     ],
     "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 42 findings (21 P1) in this subsystem, each carried as a task with its registry recommendation. Scaffold only — no fixes applied.",
     "created_at": "2026-07-10T06:23:51.463Z",
-    "last_save_at": "2026-10-07T15:57:17.739Z",
+    "last_save_at": "2026-10-07T16:26:20.116Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,10 +200,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cbacc34539b18b88cce2eb65beef3765cb81340459b7fb8d551206e9f7d59a58",
+    "source_fingerprint": "sha256:1ad9f429a64f4ceb1b3750694c0d20c694836245c62928d279067f160623a3bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3b0eb583d1b939386287605b9675dde56f513eb93edc5cea5bc23e27c91594b0",
+      "spec.md": "72329f3c98453df7cc56348fac4f4381e2567f4ba7a906d17278a62f6fa6e2d8",
       "plan.md": "90290ae83199ad6592414c46ed9b4733748a75551932f1a60158dc8789073925",
       "tasks.md": "4a1d68ceb77e5f84c3f34bbf61185be670fda334a0e044fa311a444c360de108",
       "implementation-summary.md": "cde330db787b2de3ca96e3cc5c0b42dc8b9e0979f7ca35a852f23e6550996aa8"

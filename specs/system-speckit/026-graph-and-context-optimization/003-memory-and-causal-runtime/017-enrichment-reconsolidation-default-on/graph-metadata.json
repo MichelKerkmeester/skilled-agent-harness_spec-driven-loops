@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Three save-time \"planner-first\" features ship behind opt-in flags that default to OFF",
     "created_at": "2026-06-04T04:55:00Z",
-    "last_save_at": "2026-10-07T15:57:11.602Z",
+    "last_save_at": "2026-10-07T16:25:50.068Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:355a58a5abe26bf388424d3219fa47ad9ebfbe906ac2bc874980f3d1b216789d",
+    "source_fingerprint": "sha256:cbc37be859c72b1ef796e1360b84fbcd1b9c1efefaba4115b684694bd838a589",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a3fbb4d130fe843d483317d86267e4ed2dce9e0e1d0ae0aa4b13cd2a09b34f10",
       "plan.md": "798b83d5cba10b86c7278b0f607f31862c8bcaaf42272611efad9332106cf602",
       "tasks.md": "f881f4e13863d9f6196833154ee4b68dafb00305d8918d8169abea091e2073d3",
-      "implementation-summary.md": "d6c65c0475355a5851b2ad70ffaa87a3f7f152b85c65381079f6506c30fa9cfc"
+      "implementation-summary.md": "5409914c3fdebdcf80f91bcda7c9dfedd323d3b16fb158db220f2d25a0e68ec5"
     },
     "last_active_child_id": null,
     "last_active_at": null

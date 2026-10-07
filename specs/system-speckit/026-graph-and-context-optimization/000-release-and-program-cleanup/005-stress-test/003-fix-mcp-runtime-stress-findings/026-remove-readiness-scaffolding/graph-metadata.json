@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Packet `005-vestigial-embedding-readiness-gate-removal` (commit `e91d2c7c2`) deleted the readiness gate at `memory-search.ts:927-932` but kept the surrounding scaffolding untouched as out-of-scope:",
     "created_at": "2026-04-29T09:30:00.000Z",
-    "last_save_at": "2026-10-07T15:57:10.928Z",
+    "last_save_at": "2026-10-07T16:25:49.975Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +202,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:74fc50681958e84b63ce3981abbfb950bbc13811cbde310fb33a43effecba272",
+    "source_fingerprint": "sha256:f0c84a864ad97868f8b6a9816a06723b88738d09f02205199c30e43a2224f404",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "313148cc779f47cc1390b9ce9833f9aaff46c739ea302b60117fb390af33bc95",
       "plan.md": "5882e697889f1daff163acf784a23ea2b7b9c640a52c27a3a6ffc76f4f309885",
       "tasks.md": "51ab6620ea96afa5ced97c2041e2fdfca0a26c7c539fd12ea9207f0089ccf3d5",
       "implementation-summary.md": "484ac5017ae9b6c22ad0785a62a034505769b6526388ea27555f842b22c24828",
-      "resource-map.md": "5f3cba021d102fe23a47bc8879b0baa375222ce6047a6c9087ac9c59b9c118fa"
+      "resource-map.md": "e9b6d4f358211d158592ed75be6697b9a7854b54ddd6d12a1f8fa3b9d3ee4757"
     },
     "last_active_child_id": null,
     "last_active_at": null

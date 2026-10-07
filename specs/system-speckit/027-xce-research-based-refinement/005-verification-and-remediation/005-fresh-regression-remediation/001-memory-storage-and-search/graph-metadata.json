@@ -13,6 +13,8 @@
   },
   "derived": {
     "trigger_phrases": [
+      "memory storage and search",
+      "memory store search save write path remediation",
       "memory storage and search plan",
       "memory storage and search tasks",
       "memory storage and search implementation summary"
@@ -21,15 +23,15 @@
       "memory",
       "storage",
       "search",
+      "store",
+      "save",
+      "write",
+      "path",
+      "remediation",
       "plan",
       "tasks",
       "implementation",
-      "summary",
-      "remediation",
-      "sub-phase",
-      "fresh",
-      "regression",
-      "deep-review"
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -157,7 +159,7 @@
     ],
     "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 34 findings (5 P1) in this subsystem, each carried as a task with its registry recommendation. Scaffold only — no fixes applied.",
     "created_at": "2026-07-10T06:23:50.979Z",
-    "last_save_at": "2026-10-07T15:57:12.944Z",
+    "last_save_at": "2026-10-07T16:26:20.118Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -166,10 +168,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1727a5ae231c487cf43b3cbaed29bd70acda3415765a56be855fe21aae85875d",
+    "source_fingerprint": "sha256:9f1cc35d75ce8e1520ce365fb99ae3511108838702fc139a9126bb29c3b86277",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "468d94f9a516c728293298a3aff097aa931090b7010fa99df396592f09b442f5",
+      "spec.md": "fac5cc88922b6cb6d7fea79a733f9ca9e5904d09b0f90cf11d402d7bb92ff100",
       "plan.md": "740e059c19f77d1c638faccd09ea71c54bf98f730aae74363d18cba4e87e5ea2",
       "tasks.md": "799d85a5c3aebe82aa5252600b344137cb5842653e2f654c7b99f7bca3643e83",
       "implementation-summary.md": "6ae36fa7b443fc65b680772c699b068779406d2b37f66dca673b2d182a7b5c13"

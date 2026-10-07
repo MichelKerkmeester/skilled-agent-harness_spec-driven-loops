@@ -1,6 +1,8 @@
 ---
 title: "Tasks: deep-alignment registry seal-state"
 description: "Task breakdown for the sealed-registry fix, mapped to REQ-001..007."
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/001-alignment-registry-sealing"

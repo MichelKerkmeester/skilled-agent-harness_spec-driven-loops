@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Add reason/step fields to edge metadata + display; enrich blast_radius with depth groups, risk levels, min-confidence filter, ambiguity candidates, structured failure-fallback. No SQLite migration.",
     "created_at": "2026-04-25T10:48:07.859Z",
-    "last_save_at": "2026-10-07T15:57:11.515Z",
+    "last_save_at": "2026-10-07T16:43:24.099Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f927dced86a1f6ac49fcfb4b4cafb531aa823df955d8048baf2da89d289dfc7c",
+    "source_fingerprint": "sha256:a30c934cdec3f8a221bac1cfc7e2e5a8c4b5ad32cf0938551507a55cfc604a0f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4e16a1601f7988f1e8e5efd846dd0f98abda5673a9f8a462fa52158545f4aec9",
-      "plan.md": "21fbd965c2bd93d8647dc9db63bbfc46dde227a7b2c95b2b5a85439c4687044b",
-      "tasks.md": "1bd11e3cca853e03183f48c4a7a853eba735f326068cff03be3cab0f85eb3321",
-      "implementation-summary.md": "f026c0326ded16972242839fa3619c21c87c501128b669c4e40d16cdfb27c570"
+      "spec.md": "3ff7f37554db9fa2d4d5401a8d4d4af23761765770e97075426f5a26685cce0d",
+      "plan.md": "a20e5dc23d894dab0036b1d12b73bf6df2ca3b16e636ea175bf69350f29be21e",
+      "tasks.md": "bab7910bc57d6a9a140f774b8c480a204f14000f4c869f54eb9574f17250b48a",
+      "implementation-summary.md": "c4c0c4355bdaf8eab3dc38bafda1f37505072ea195e4075cb30809fa3eeca020"
     },
     "last_active_child_id": null,
     "last_active_at": null

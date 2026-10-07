@@ -24,12 +24,14 @@ _memory:
       - "tasks.md"
       - "checklist.md"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Code Graph Edge Explanation + Impact Uplift (012/003)
 
 <!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 | Field | Value |
 |-------|-------|
@@ -38,17 +40,21 @@ _memory:
 | **Status** | Draft (blocked on 012/001) |
 | **Created** | 2026-04-25 |
 | **Branch** | `012/003-code-graph-edge-explanation-and-impact-uplift` |
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 **Problem:** Public's edge metadata in `code_edges.metadata` carries `confidence`, `detectorProvenance`, `evidenceClass` (verified at `code-graph-db.ts:92` + emitted at `structural-indexer.ts:85-94`) but no `reason`/`step` fields explaining WHY a relation was inferred. `computeBlastRadius` (`query.ts:862-909`) groups by depth but lacks risk levels, min-confidence filtering, ambiguity surfacing, and structured failure states.
 
 **Purpose:** Add owner-local explanation fields to edge metadata; enrich `blast_radius` output without schema migration.
+<!-- /ANCHOR:problem -->
 
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -72,9 +78,11 @@ _memory:
 | `mcp_server/code_graph/lib/code-graph-context.ts` | MODIFY | Propagate enriched fields through context payloads |
 | `feature_catalog/analysis/` | NEW entry | blast_radius uplift |
 | `manual_testing_playbook/analysis/` | NEW entry | blast_radius testing flow |
+<!-- /ANCHOR:scope -->
 
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 | ID | Requirement |
@@ -87,9 +95,11 @@ _memory:
 | R-003-6 | Failures return structured `failureFallback` object — never bare error strings |
 | R-003-7 | NO SQLite schema migration — JSON metadata only |
 | R-003-8 | Backward compat: old callers that don't request new fields still get prior shape |
+<!-- /ANCHOR:requirements -->
 
 ---
 
+<!-- ANCHOR:verification -->
 ## 5. VERIFICATION
 
 - [ ] Unit test: edge metadata round-trip with `reason`/`step`
@@ -101,12 +111,15 @@ _memory:
 - [ ] Integration: `code_graph_query` end-to-end with new fields
 - [ ] `validate.sh --strict` passes
 - [ ] sk-doc DQI ≥85 on feature_catalog + playbook entries
+<!-- /ANCHOR:verification -->
 
 ---
 
+<!-- ANCHOR:references -->
 ## 6. REFERENCES
 - 012/spec.md §3 (scope), §4 (R-003 row)
 - 012/decision-record.md ADR-012-002 (sub-phase decomposition), ADR-012-003 (route/tool/shape deferred — relevant to scope boundary), ADR-012-004 (mutating rename rejected — relevant to read-only impact tool)
 - pt-02 §4 (Code Graph findings — Confidence edges, Explanation gap, Public blast radius rows)
 - pt-02 §11 Packet 2
 - Verified anchors: `code-graph-db.ts:92` (JSON metadata column), `structural-indexer.ts:85-94` (metadata writer), `query.ts:862-909` (computeBlastRadius), `query.ts:978-981` (query output)
+<!-- /ANCHOR:references -->

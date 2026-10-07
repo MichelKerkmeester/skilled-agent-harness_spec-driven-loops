@@ -1,6 +1,8 @@
 ---
 title: "Implementation Summary: 017/002 Tool-surface coverage audit"
 description: "Results for tool-surface coverage audit."
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/002-tool-coverage-audit"

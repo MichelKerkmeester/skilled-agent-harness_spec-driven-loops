@@ -20,15 +20,19 @@ _memory:
       - "tasks.md"
       - "checklist.md"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: 012/003
 
 <!-- SPECKIT_LEVEL: 2 -->
 
+<!-- ANCHOR:status -->
 ## Status
 **Complete & verified (010/007/T-B, 2026-04-25).** Code, targeted tests, and packet docs were shipped during the original implementation. Final verification was deferred at first because local Node dependencies were missing in the original worktree; Wave-3 integration (010/007/T-B) ran the canonical commands and captured real evidence.
 
 **Wave-3 canonical verification:** `tsc --noEmit` exit 0; `vitest run` 9 passed | 1 skipped (10), 90 passed | 3 skipped (93), 1.34s — the 003 surfaces (`code-graph-context-handler.vitest.ts`, `code-graph-indexer.vitest.ts`, `code-graph-query-handler.vitest.ts`) are inside the 9 PASSED files with all 003 cases passing. `validate.sh --strict` FAILED on cosmetic template-section conformance only (deferred P2; not a contract violation). Closes R-007-7, R-007-20.
+<!-- /ANCHOR:status -->
 
+<!-- ANCHOR:what-built -->
 ## What Was Built
 - `structural-indexer.ts` now writes graph-local `reason` and `step` fields into the existing `code_edges.metadata` JSON payload. The existing `confidence`, `detectorProvenance` and `evidenceClass` fields remain unchanged.
 - Relationship query output now includes `reason` and `step` per edge, beside the existing confidence and evidence fields.
@@ -39,7 +43,9 @@ _memory:
 - Added per-packet docs:
   - `.opencode/skills/system-spec-kit/feature_catalog/analysis/08-code-graph-edge-explanation-blast-radius-uplift.md`
   - `.opencode/skills/system-spec-kit/manual_testing_playbook/analysis/026-code-graph-edge-explanation-blast-radius-uplift.md`
+<!-- /ANCHOR:what-built -->
 
+<!-- ANCHOR:decisions -->
 ## Risk Classification Rules Decided
 Final graph-local `riskLevel` rules:
 
@@ -51,7 +57,9 @@ Final graph-local `riskLevel` rules:
 | Depth-one affected file count 0-3 | `low` |
 
 This closes the original count-10 gap by classifying exactly ten depth-one affected files as `medium`. Ambiguity remains `high` regardless of fanout.
+<!-- /ANCHOR:decisions -->
 
+<!-- ANCHOR:verification -->
 ## Verification Evidence
 
 ### Wave-3 canonical evidence (010/007/T-B, 2026-04-25)
@@ -100,8 +108,11 @@ $ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
 | Static schema check | PASS | `code-graph-db.ts` was not modified; `code_edges` schema remains `metadata TEXT`. |
 | Branch setup | n/a | Wave-3 integration ran on a writable detached-HEAD worktree; the original "Operation not permitted" was a worktree-isolation artefact, not a content issue. |
 | Commit | OPERATOR-PENDING | 010/007/T-B is the doc-evidence sync batch; the operator commits doc edits on the detached HEAD with conventional message `docs(010/007/T-B): sync verification evidence ...`. |
+<!-- /ANCHOR:verification -->
 
+<!-- ANCHOR:references -->
 ## References
 - spec.md, plan.md, tasks.md, checklist.md (this folder)
 - 012/decision-record.md ADR-012-002, ADR-012-003, ADR-012-004
 - pt-02 §11 Packet 2
+<!-- /ANCHOR:references -->

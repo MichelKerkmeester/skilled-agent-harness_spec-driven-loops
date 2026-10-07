@@ -5,6 +5,7 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/003-mode-contracts-value-layer"
 trigger_phrases:
   - "mode contracts value layer tasks"
+importance_tier: "important"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

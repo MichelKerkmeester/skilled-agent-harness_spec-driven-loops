@@ -194,7 +194,7 @@
     ],
     "causal_summary": "pt-02 §12 ranks license contamination from direct External Project reuse as a P0 risk",
     "created_at": "2026-04-25T10:48:06.447Z",
-    "last_save_at": "2026-10-07T15:57:11.385Z",
+    "last_save_at": "2026-10-07T16:43:24.102Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,14 +204,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9d81db6470fe984f484a01bc7df61220da13e5912fbbcb0e199f854d5fa6ce86",
+    "source_fingerprint": "sha256:ecda02dec87ad593082b3d7fdfb39ffa6c0b71e639d7125483a8919c2eaaf933",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ee1b3ea18db59b5b0d20de7fc0b78ca419118ddb6061b058c17199b64f6a454d",
-      "plan.md": "36c805f334ec3d2e9f5531a7c78135d6270b81eb4bf9084460bf2d816c8b567f",
-      "tasks.md": "2e740c00d68a738761fbada35182ca2a6e493121ef57ccc000bc6a04f34c7149",
-      "decision-record.md": "d21905c0ae2d8789a17d7857e45df829e44cca4a946a4aeb63808b6f19049b2f",
-      "implementation-summary.md": "522fa94d8725285832ff3de95237273471f13746b4f52428e92e5bee831df140"
+      "spec.md": "68a46ea0dd6076b6bf8c411af5f74938f0726dd5caaf51eb7abb3bd8cd3d6c31",
+      "plan.md": "2180fa22e987bf093dc327c3d470e728c55c300b500e85c8154f9acba696ea61",
+      "tasks.md": "fe08673c16140753347983b67c0fb5a4cc47ec9878246b6ba54555325203e257",
+      "decision-record.md": "836ec273a4aafcee1c2402f4532e24b440b60adec331057fc74c38738558cfb1",
+      "implementation-summary.md": "e2f1133c7941831c11c6b41dcf5bf6dd83c67ac6b5c6ba0bd0fbe7af0b67c85e"
     },
     "last_active_child_id": null,
     "last_active_at": null

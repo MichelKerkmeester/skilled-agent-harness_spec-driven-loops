@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Wave 1 of the over-engineering removal program: delete the three lowest-risk, zero-caller leaves (F5 hierarchical-budgets shadow-adapters, F6 receipts legacy-recovery manifest, F8 dead AUTHORITY_FLIP_COMMON constants) and their tests, severing barrel exports first. No live-loop adjacency.",
     "created_at": "2026-08-24T17:06:18.731Z",
-    "last_save_at": "2026-10-07T15:57:00.705Z",
+    "last_save_at": "2026-10-07T16:25:49.965Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e83cb99c8fd820b19a761b232624deda274a0e55fc47af77221a1cc3c202ea7",
+    "source_fingerprint": "sha256:b03959f7a4050f8a2fd175520e1bd0cacb5635712b8d135e6d269fc2458ceef0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "332a65264424a9cbbb373b7a57df2072747695c7797203074275d094b8775d78",
-      "plan.md": "362ea7b61f6226a3917f949329555e49f383feffc5e0a5f93cf27f6d847904ab",
-      "tasks.md": "9b1696e2edbfd6b669e8fb27f81ddab3559dd1ad91816f9c7077e759cb471cf4",
+      "plan.md": "71d1cab68365aedacddcb13ba8f365416549dce38b2bffa65b0d1e4ca60ebed5",
+      "tasks.md": "0677fc4c30b55fa7ca79ccaffde2724f5617917c4f2921bd578bb358e332bd4c",
       "implementation-summary.md": "3ed1c537899e4814f1fa36319a0c8e1375492c164c105e2cf00ed82ccdd10a28"
     },
     "last_active_child_id": null,

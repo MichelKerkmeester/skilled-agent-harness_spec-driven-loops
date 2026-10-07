@@ -5,6 +5,19 @@ description: "Summary of architecture diagram and topology tree additions across
 importance_tier: "normal"
 trigger_phrases:
   - "readme architecture diagrams topology implementation summary"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology"
+    last_updated_at: "2026-10-07T16:30:00Z"
+    last_updated_by: "claude-opus-5.5"
+    recent_action: "Added the missing continuity block"
+    next_safe_action: "None, all 17 target files are done"
+    blockers: []
+    key_files: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
@@ -36,9 +49,9 @@ Added ASCII box-art architecture diagrams (Unicode box-drawing characters) and d
 ## Decisions
 
 - **Diagram style:** Matches `shared/README.md:46-78` box-drawing characters (`┌┐└┘──│◄►▲`)
-- **Diagram placement:** After overview prose, before `<!-- /ANCHOR:overview -->` closing marker for standard-format READMEs; after H2 heading prose for non-standard formats
+- **Diagram placement:** After overview prose, before the overview anchor's closing marker for standard-format READMEs; after H2 heading prose for non-standard formats
 - **Tree placement:** In Structure section for files with existing structure sections; after the diagram in overview for files without structure sections
-- **Diagram wrapping:** Architecture diagrams are not wrapped in `<!-- ANCHOR:architecture -->` markers to keep READMEs simple and match the `shared/README.md` pattern (which also doesn't wrap its diagram in anchors)
+- **Diagram wrapping:** Architecture diagrams are not wrapped in architecture anchor markers to keep READMEs simple and match the `shared/README.md` pattern (which also doesn't wrap its diagram in anchors)
 <!-- /ANCHOR:decisions -->
 
 <!-- ANCHOR:artifacts -->

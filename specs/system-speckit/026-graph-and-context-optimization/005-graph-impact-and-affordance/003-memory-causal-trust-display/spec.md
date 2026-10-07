@@ -23,12 +23,14 @@ _memory:
       - "tasks.md"
       - "checklist.md"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Memory Causal Trust Display (012/005)
 
 <!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 | Field | Value |
 |-------|-------|
@@ -37,17 +39,21 @@ _memory:
 | **Status** | Complete & partially verified (010/007/T-B, 2026-04-25) |
 | **Created** | 2026-04-25 |
 | **Branch** | `012/005-memory-causal-trust-display` |
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 **Problem:** `MemoryResultEnvelope` exposes `confidence` and `trace.graphContribution` but no unified trust/freshness badge surface. Memory's existing causal-edge schema (`lib/storage/causal-edges.ts:82-94`) already stores `strength`, `evidence`, `source_anchor`, `target_anchor`, `extracted_at`, `created_by`, `last_accessed`. `lib/search/causal-boost.ts:327-338` (`computeTraversalFreshnessFactor`) already implements freshness decay using `FRESHNESS_DECAY_WINDOW_MS`. The data exists; the display doesn't.
 
 **Purpose:** Add display-only `trustBadges` to memory search results. Pure presentation layer. No schema change. No new relation types. No code-fact storage.
+<!-- /ANCHOR:problem -->
 
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -70,9 +76,11 @@ _memory:
 | `mcp_server/lib/response/profile-formatters.ts` | MODIFY | Propagate badges into search results |
 | `feature_catalog/memory-quality-and-indexing/` | NEW entry | Trust display |
 | `manual_testing_playbook/memory-quality-and-indexing/` | NEW entry | Badge testing |
+<!-- /ANCHOR:scope -->
 
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 | ID | Requirement |
@@ -84,9 +92,11 @@ _memory:
 | R-005-5 | Backward compat: callers that don't expect `trustBadges` get unchanged shape (additive only) |
 | R-005-6 | Memory does NOT receive Code Graph structural facts (verified by static check) |
 | R-005-7 | Display placement decision recorded in implementation-summary.md (open question per 012/spec.md) |
+<!-- /ANCHOR:requirements -->
 
 ---
 
+<!-- ANCHOR:verification -->
 ## 5. VERIFICATION
 
 - [ ] Unit test: badge population from fixture causal edges
@@ -97,9 +107,11 @@ _memory:
 - [ ] Integration: memory_search returns `trustBadges` in envelope
 - [ ] `validate.sh --strict` passes
 - [ ] sk-doc DQI ≥85 on feature_catalog + playbook entries
+<!-- /ANCHOR:verification -->
 
 ---
 
+<!-- ANCHOR:related-docs -->
 ## 6. REFERENCES
 - 012/spec.md §3 (scope), §4 (R-005 row)
 - 012/decision-record.md ADR-012-005
@@ -107,3 +119,4 @@ _memory:
 - pt-02 §11 Packet 4
 - pt-02 §12 RISK-06
 - Verified anchors: `lib/storage/causal-edges.ts:82-94` (schema), `lib/search/causal-boost.ts:327-338` (`computeTraversalFreshnessFactor` decay logic), `formatters/search-results.ts`, `lib/response/profile-formatters.ts`
+<!-- /ANCHOR:related-docs -->

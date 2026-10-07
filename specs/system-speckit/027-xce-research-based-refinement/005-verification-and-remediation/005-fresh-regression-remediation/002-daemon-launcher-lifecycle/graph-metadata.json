@@ -13,6 +13,8 @@
   },
   "derived": {
     "trigger_phrases": [
+      "daemon launcher lifecycle",
+      "daemon launcher lifecycle remediation",
       "daemon launcher lifecycle plan",
       "daemon launcher lifecycle tasks",
       "daemon launcher lifecycle implementation summary"
@@ -21,11 +23,11 @@
       "daemon",
       "launcher",
       "lifecycle",
+      "remediation",
       "plan",
       "tasks",
       "implementation",
       "summary",
-      "remediation",
       "sub-phase",
       "fresh",
       "regression",
@@ -182,7 +184,7 @@
     ],
     "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 15 findings (4 P1) in this subsystem, each carried as a task with its registry recommendation. Scaffold only — no fixes applied.",
     "created_at": "2026-07-10T06:21:39.605Z",
-    "last_save_at": "2026-10-07T15:57:12.944Z",
+    "last_save_at": "2026-10-07T16:26:20.117Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,10 +193,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:228163f4001c5c3ca77062464a45e4c901d890f0fa771dd2db16a4c3bae96c08",
+    "source_fingerprint": "sha256:166ad63644c06a849376de24553f4ad99730e57aa3dc3ed9e8f57a33cb568279",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "706844a089af064fbda878adcce69c4b8dd9d09f4d4f4ecfc5b80fe0ab4698fd",
+      "spec.md": "8fbee7d4568190725432ac8693485f44266e9156b3cfb259395157231517d08f",
       "plan.md": "06fe7b766c035483f48b1345faac4c379860e683d480a6ee15f2ef659d83bd9f",
       "tasks.md": "a59325f65d7d8e069e67c2e5536bb7c8c5e6d387ea2b6e765d4cb722467e7305",
       "implementation-summary.md": "def8626da66fe4c582c01b244ebd7b28de98f7a076af214e8c60f4ba19a6bcc4"

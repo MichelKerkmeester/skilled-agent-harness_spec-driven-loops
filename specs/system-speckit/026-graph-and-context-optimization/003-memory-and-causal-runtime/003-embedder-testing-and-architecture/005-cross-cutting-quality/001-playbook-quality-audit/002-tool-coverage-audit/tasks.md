@@ -3,6 +3,8 @@ title: "Tasks: 017/002 Tool-surface coverage audit"
 description: "Task checklist for tool-surface coverage audit."
 trigger_phrases:
   - "tool coverage audit tasks"
+importance_tier: "important"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->

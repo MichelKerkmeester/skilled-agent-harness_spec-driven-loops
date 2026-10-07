@@ -23,12 +23,14 @@ _memory:
       - "tasks.md"
       - "checklist.md"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Clean-Room License Audit (012/001)
 
 <!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## Metadata
 
 | Field | Value |
@@ -38,17 +40,21 @@ _memory:
 | **Level** | 2 |
 | **Status** | Complete |
 | **Audit Verdict** | **APPROVED — clean-room adaptation under PolyForm Noncommercial 1.0.0** |
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:status -->
 ## Status
 
 **Complete (with caveat).** P0 governance gate cleared. Phase 010 (formerly 012; phase-naming alias documented in 010/006) is **not** halted. Sub-phases 002–005 may proceed under the clean-room rule and fail-closed enforcement defined in `decision-record.md` ADR-012-001-A.
 
 **Post-scrub caveat (R-007-1, closed 2026-04-25 by 010/007/T-B):** During Wave-3 integration, the External Project name was scrubbed from the codebase, removing the need to publish a verbatim LICENSE quote at all. The `decision-record.md` ADR-012-001-A still records the canonical PolyForm Noncommercial 1.0.0 text for historical traceability, but the audit's clean-room verdict no longer depends on the verbatim quote — the scrub itself eliminates the licence-engagement risk class. This implementation-summary's references to "verbatim LICENSE quote" remain accurate as a historical artefact but should not be read as an ongoing gating requirement. P0 LICENSE-quote finding (originally in the 010 deep-review pass) is therefore RESOLVED by scrub, not by quote.
+<!-- /ANCHOR:status -->
 
 ---
 
+<!-- ANCHOR:license-posture -->
 ## License Posture
 
 The upstream `external/LICENSE` (path corrected from the brief's `external/LICENSE` per pt-02 evidence chain) is **PolyForm Noncommercial 1.0.0**, identified by the pt-02 deep-research executor (`cli-codex` model `gpt-5.5`, reasoning `high`, service tier `fast`) in iteration 9 [SOURCE: research/007-external-project-pt-02/iterations/iteration-009.md:10].
@@ -64,9 +70,11 @@ The upstream `external/LICENSE` (path corrected from the brief's `external/LICEN
 | Risk class | pt-02 §12 RISK-01, severity P0 — closed by this audit |
 
 The licence does **not** prohibit reading the upstream source as architectural reference, citing it in research with `[SOURCE: external/...]` markers, or producing fresh Public-side implementations from a behavioural specification. It does prohibit any commercial use of the source itself, any verbatim copy, and any translated copy that preserves substantial similarity.
+<!-- /ANCHOR:license-posture -->
 
 ---
 
+<!-- ANCHOR:allow-list-classification -->
 ## Allow-List Classification
 
 All five in-scope adaptation patterns are **ALLOWED** under clean-room. Row 003-edge-metadata is **CONDITIONAL** on Public deriving the column shape from its own ADR rather than from the upstream `relationships` schema. **No row is BLOCKED.**
@@ -81,9 +89,11 @@ All five in-scope adaptation patterns are **ALLOWED** under clean-room. Row 003-
 | 005 | Memory trust display badges (existing causal-edges columns) | ALLOWED (clean-room) | No upstream source involvement — purely Public-internal |
 
 Full classification rationale and the verbatim LICENSE quote live in `decision-record.md` ADR-012-001-A.
+<!-- /ANCHOR:allow-list-classification -->
 
 ---
 
+<!-- ANCHOR:fail-closed-rule -->
 ## Fail-Closed Rule (binding for all 012 PRs)
 
 > **Any PR that copies External Project source code, schema text, or implementation-specific logic — verbatim, transliterated, or paraphrased to the point of substantial similarity — is auto-rejected unless an explicit external legal review approves it. The author bears the burden of proof; reviewers default to rejection. There is no "small-snippet exception" or "obvious-implementation exception".**
@@ -93,9 +103,11 @@ Enforcement (fully specified in `decision-record.md`):
 2. Reviewers verify the attestation, spot-check 1–2 changed files against upstream, and reject on doubt.
 3. If post-merge audit finds copied content, offending commits MUST be reverted and the phase reopened with legal review.
 4. Only an external counsel sign-off recorded as a new ADR superseding ADR-012-001-A can lift the clean-room boundary. AI agents MUST NOT lift it autonomously.
+<!-- /ANCHOR:fail-closed-rule -->
 
 ---
 
+<!-- ANCHOR:sign-off -->
 ## Sign-Off
 
 | Role | Decision | Date | Notes |
@@ -104,9 +116,11 @@ Enforcement (fully specified in `decision-record.md`):
 | Phase 012 orchestrator (downstream) | **PENDING** — orchestrator records its own merge sign-off when integrating this branch | — | This sub-phase intentionally does not touch phase-root files per the agent brief's "Files you may NOT touch" list. |
 
 **External legal counsel review:** NOT REQUIRED for the audit-approved clean-room path. REQUIRED before any future deviation that would copy upstream source/schema/logic.
+<!-- /ANCHOR:sign-off -->
 
 ---
 
+<!-- ANCHOR:what-built -->
 ## Files Changed
 
 | File | Action | Purpose |
@@ -117,9 +131,11 @@ Enforcement (fully specified in `decision-record.md`):
 | `012/001-clean-room-license-audit/checklist.md` | Modified | All P0 and Phase-Hand-off items ticked with evidence. |
 
 Phase-root files (`012/spec.md`, `012/plan.md`, `012/tasks.md`, `012/checklist.md`, `012/decision-record.md`, `012/implementation-summary.md`) and other sub-phases (`002`–`006`) were intentionally NOT touched per the agent brief's scope-lock.
+<!-- /ANCHOR:what-built -->
 
 ---
 
+<!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
 The audit ran as a single autonomous pass under the clean-room rule:
@@ -131,9 +147,11 @@ The audit ran as a single autonomous pass under the clean-room rule:
 5. Classified each 002–005 adaptation pattern against the licence clauses and the clean-room definition.
 6. Authored the fail-closed rule with reviewer-side enforcement mechanics.
 7. Attempted `validate.sh --strict` on the sub-phase folder; the autonomous-worktree sandbox denied script execution (only one validate.sh allow-rule exists in `.claude/settings.local.json`, scoped to a different spec folder). Execution flagged as **OPERATOR-PENDING** and pre-flight self-check documented below.
+<!-- /ANCHOR:how-delivered -->
 
 ---
 
+<!-- ANCHOR:decisions -->
 ## Key Decisions
 
 | Decision | Why |
@@ -143,9 +161,11 @@ The audit ran as a single autonomous pass under the clean-room rule:
 | Use `external/LICENSE` (no `external-project/` subdir) as the source-of-record path | pt-02 evidence chain consistently cites this path. Brief's `external/LICENSE` is normalized in this ADR. |
 | Add a binding fail-closed rule with reviewer-side enforcement | Audit alone is insufficient; downstream PRs need a default-reject posture and an attestation contract. Aligns with phase-root ADR-012-001 consequences. |
 | Mark 003 edge-metadata pattern CONDITIONAL | Public's column shape must derive from its own ADR rather than the upstream `relationships` schema to keep the boundary defensible. |
+<!-- /ANCHOR:decisions -->
 
 ---
 
+<!-- ANCHOR:verification -->
 ## Verification
 
 | Check | Result |
@@ -178,9 +198,11 @@ Pre-flight self-check confirms every Level-2-content requirement is satisfied (t
 - Verbatim LICENSE quote is wrapped in a fenced ```text block to keep its content out of markdown parsing (note: post-scrub, the LICENSE quote is no longer a gating artefact — see Status §"Post-scrub caveat (R-007-1)").
 
 The cosmetic template-section debt is tracked as deferred cleanup (see 010/007 P2 carry-overs); it does not block sub-phase sign-off, integration, or the phase 010 closeout.
+<!-- /ANCHOR:verification -->
 
 ---
 
+<!-- ANCHOR:limitations -->
 ## Known Limitations
 
 1. **Verbatim text reproduced from canonical source, not the actual `external/LICENSE` file.** The detached-HEAD worktree does not contain the gitignored `external/` directory. The reproduction is from the canonical PolyForm Noncommercial 1.0.0 text published by the PolyForm Project, identified-as-applied by the pt-02 research executor in iteration 9. Any reviewer with direct access to `external/LICENSE` who finds a deviation (e.g. a `Required Notice:` line, modified clause, or different licence version) MUST re-open this ADR.
@@ -188,9 +210,11 @@ The cosmetic template-section debt is tracked as deferred cleanup (see 010/007 P
 3. **External legal counsel sign-off is not held by this ADR.** The clean-room verdict relies on a structural reading of the PolyForm Noncommercial 1.0.0 clauses; it does not constitute legal advice. Lifting the clean-room boundary (e.g. to allow source vendoring) requires external counsel review recorded as a superseding ADR.
 4. **`validate.sh --strict` returns FAILED on cosmetic template-section conformance (Wave-3 canonical, 010/007/T-B 2026-04-25).** Not a contract violation — see §Verification — validate.sh. Tracked as deferred P2 cleanup; does not block sub-phase sign-off.
 5. **Commit is operator-pending.** The same sandbox denies `git add` / `git commit`. Deliverables are written to disk in the worktree but unstaged. The orchestrator should run, from the worktree root, the equivalent of: `git add .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/001-clean-room-license-audit/{decision-record.md,implementation-summary.md,checklist.md,tasks.md}` and then `git commit -m "feat(012/001): clean-room license audit — APPROVED per LICENSE assessment"`.
+<!-- /ANCHOR:limitations -->
 
 ---
 
+<!-- ANCHOR:references -->
 ## References
 
 - `decision-record.md` — verbatim LICENSE text + allow-list table + fail-closed rule + halt analysis (this folder)
@@ -198,3 +222,4 @@ The cosmetic template-section debt is tracked as deferred cleanup (see 010/007 P
 - Phase-root: `012/spec.md` §6 (risks), `012/decision-record.md` ADR-012-001
 - pt-02 risk basis: `research/007-external-project-pt-02/iterations/iteration-009.md:3,10,18` and `deltas/iter-009.jsonl`
 - Canonical licence text: `https://polyformproject.org/licenses/noncommercial/1.0.0`
+<!-- /ANCHOR:references -->

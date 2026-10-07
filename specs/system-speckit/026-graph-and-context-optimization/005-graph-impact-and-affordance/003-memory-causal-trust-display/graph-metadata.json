@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Display-only trust badges (confidence, extraction_age, last_access_age, orphan, weight_history) on MemoryResultEnvelope. NO schema change. NO new relations. NO storage of code/process/tool facts.",
     "created_at": "2026-04-25T10:48:09.300Z",
-    "last_save_at": "2026-10-07T15:57:12.885Z",
+    "last_save_at": "2026-10-07T16:43:24.100Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:17882e74f99a2620a264e387ccd4a1a24411014fc038c86278da9c2de9e02372",
+    "source_fingerprint": "sha256:8466077da67e25cfba5f9ff6c8ccf85f2028cef9ee973ad1db8462f7c80247ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d6a29933d5e02d62664017b774e02a267c6bd22cd8118d9893bd5a553564e518",
-      "plan.md": "8550e551135e5f04d2ac85c286926ccf49fbcaca2d121c93bf2dc3e76b4131ae",
-      "tasks.md": "2a6e252232f05888d28390e4475e6acfbaef4c0e9109c32e78d5132dd73fea35",
+      "spec.md": "48c6f18453cc1f35447a66d04a429a10a39f5a88895ccdaf880ddf54a7472bdf",
+      "plan.md": "e498b0325dbfc1324a56863e6109fb000ebe6cb4175b03380806947d7c8a801b",
+      "tasks.md": "36d28d1b64ef2cfab8312f0d7394c2b5735852048c2221bb13798ce96d911c63",
       "implementation-summary.md": "f2df06037513f27e2ba63bfc0ea30b7542014fc46801d7f631aac00438cb9edf"
     },
     "last_active_child_id": null,

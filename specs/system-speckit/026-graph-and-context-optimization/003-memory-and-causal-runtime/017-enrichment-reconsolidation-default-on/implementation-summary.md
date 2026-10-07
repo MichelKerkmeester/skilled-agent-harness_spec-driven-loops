@@ -1,5 +1,8 @@
 ---
 title: "Implementation Summary: Enrichment + Reconsolidation Default-On (Async)"
+description: "Post-insert enrichment, save reconsolidation and quality auto-fix now default to on with an opt-out env each, and enrichment runs in the background so saves stay fast."
+importance_tier: "important"
+contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/017-enrichment-reconsolidation-default-on"

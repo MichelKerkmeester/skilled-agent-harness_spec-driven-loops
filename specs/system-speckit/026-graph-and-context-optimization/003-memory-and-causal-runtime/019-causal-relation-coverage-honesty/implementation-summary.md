@@ -31,7 +31,7 @@ trigger_phrases:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Status** | In Progress — deployment pending |
+| **Status** | In Progress |
 | **Date** | 2026-06-04 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->

@@ -21,7 +21,9 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
-trigger_phrases: []
+trigger_phrases:
+  - "cli frontdoor safety"
+  - "cli front door safety remediation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: CLI Front-Door Safety Remediation
