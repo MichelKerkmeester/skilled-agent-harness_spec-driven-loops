@@ -183,6 +183,7 @@ Trigger: a session bound to a spec packet, on every turn.
 - **Follow the brief's intent, not just its letter.** When you deviate, record why. The undocumented deviation is the sin, not the deviation.
 - **Produce the smallest complete result early.** A complete in-scope artifact beats scaffolding or fallback paths the target does not need.
 - **Recheck your work when something changes**: a new fact, a failed check or a risk still open. Catch your own mistakes before asking for help.
+- **Settled stays settled.** Reopen a checked conclusion only for a reason you can name, such as a failing check, a contradicting fact, a counterexample or a changed state. Pushback with no new fact is not one: first check whether they could be right, and ask what backs it only if you cannot. Detail: [`uncertainty-and-honesty.md`](.skilled/repo-rules/uncertainty-and-honesty.md) §7.
 - **Plan before acting** on multi-step work: name the files, the tools and the observable check before the first edit.
 - **Do not stop early.** No "natural checkpoint" or "future work" on incomplete work when a safe path forward exists.
 - **Do not ask permission to continue an already-approved, in-scope step.** This never waives a mandatory wait: Gate 3, PLAN-WORKFLOW LOCK approval, the worktree-versus-branch choice, the remote-push go-ahead and the blast-radius stop-for-yes all still block. The §2 child-dispatch exemption is the one exception.
