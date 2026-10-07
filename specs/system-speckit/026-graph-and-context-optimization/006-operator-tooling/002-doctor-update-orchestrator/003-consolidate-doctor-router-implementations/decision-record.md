@@ -2,7 +2,27 @@
 title: "Decision Record: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-skill-advisor-routing-engine-consolidation/decision-record]"
 description: "Architectural Decision Records for the /doctor router consolidation: Option C boundary, manifest-file split, argv-positional UX, two-phase rollout, flag-parsing order."
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record-core | v2.2 -->"
-trigger_phrases: []
+trigger_phrases:
+  - "doctor router consolidation decision record"
+  - "option c consolidation boundary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations"
+    last_updated_at: "2026-05-11T16:00:00Z"
+    last_updated_by: "spec-author"
+    recent_action: "Recorded the doctor router consolidation ADRs"
+    next_safe_action: "None recorded"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "003-consolidate-doctor-router-implementations-decision-record"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Decision Record: Doctor Router Phase 1
 
@@ -11,6 +31,7 @@ trigger_phrases: []
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Option C (10 → 3 .md) is the chosen consolidation boundary
 
 **Status:** Accepted (2026-05-11)
@@ -38,6 +59,9 @@ trigger_phrases: []
 
 ---
 
+<!-- /ANCHOR:adr-001 -->
+
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Routing manifest lives in a separate `_routes.yaml`, not inlined in the router .md
 
 **Status:** Accepted (2026-05-11)
@@ -62,6 +86,9 @@ trigger_phrases: []
 
 ---
 
+<!-- /ANCHOR:adr-002 -->
+
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Argv-positional dispatch (`/doctor <target>`) is the primary UX; `--target=<name>` is a compatibility alias
 
 **Status:** Accepted (2026-05-11)
@@ -86,6 +113,9 @@ trigger_phrases: []
 
 ---
 
+<!-- /ANCHOR:adr-003 -->
+
+<!-- ANCHOR:adr-004 -->
 ## ADR-004: Two-phase rollout — Phase 1 additive (no deletes), Phase 2 hard cutover
 
 **Status:** Accepted (2026-05-11)
@@ -113,6 +143,9 @@ trigger_phrases: []
 
 ---
 
+<!-- /ANCHOR:adr-004 -->
+
+<!-- ANCHOR:adr-005 -->
 ## ADR-005: Flag-parsing order — target FIRST, flags SECOND (no global flag pre-parse)
 
 **Status:** Accepted (2026-05-11)
@@ -126,3 +159,5 @@ trigger_phrases: []
 **Rationale:**
 1. **Disjoint flag spaces:** `--scope` means different things in `code-graph` vs `deep-loop`. `--server` only exists for `/doctor:mcp`. `--confidence-threshold` only exists for `causal-graph`. Global pre-parse can't decide which schema to apply.
 2. **Silent corruption risk:** if `--scope=both` is pre-parsed when target is unknown, it could later be bound to `code-graph` (where `--scope` accepts different values), silently corrupting the invocation.
+
+<!-- /ANCHOR:adr-005 -->

@@ -1,12 +1,28 @@
+---
+title: "Feature Specification: Fix Doctor Bootstrap Symlink Restart Loop"
+description: "Remove the doctor bootstrap branch that recreated the legacy singular skill symlink and forced a restart loop, while keeping the genuine legacy-directory migration and the post-build restart."
+trigger_phrases:
+  - "doctor bootstrap symlink restart loop"
+  - "doctor update restart required"
+  - "legacy skill compatibility symlink"
+importance_tier: "normal"
+contextType: "implementation"
+---
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
 # Feature Specification: Fix Doctor Bootstrap Symlink Restart Loop
 
+<!-- ANCHOR:metadata -->
 > **Parent:** `026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator`
 > **Level:** 1 (single-file behavior fix, < 100 LOC)
 > **Date:** 2026-06-08
 > **Status:** Implemented
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 1. Problem
 
 `/doctor:update` never reached its database rebuild. Phase 0 (`doctor-runtime-bootstrap.sh`)
@@ -29,7 +45,9 @@ every runtime launcher and MCP config resolves the canonical plural path `.openc
 directly (verified in `.mcp.json`, `opencode.json`, `mk-spec-memory-launcher.cjs`). The only
 references to the singular `.opencode/skill/` path are prose inside spec `graph-metadata.json`
 `causal_summary` fields — not runtime path resolution.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## 3. Scope
 
 **In scope**
@@ -52,7 +70,9 @@ references to the singular `.opencode/skill/` path are prose inside spec `graph-
   the build case; left unchanged.
 - The Phase 8 `directory_layout_bridge` migration path in the YAML (separate, signal-gated
   mechanism that only runs during an explicit migration).
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:requirements -->
 ## 4. Requirements
 
 - **R1** — A cloud-synced repo with the v3.4 plural layout MUST complete Phase 0 with
@@ -61,10 +81,13 @@ references to the singular `.opencode/skill/` path are prose inside spec `graph-
 - **R3** — A genuine fresh install (missing `dist`) MUST still report `restart_required=true`
   via the build step.
 - **R4** — Both repository copies of the script remain byte-identical.
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
 ## 5. Acceptance
 
 - `bash -n` passes on both copies.
 - Running the bootstrap against the current layout yields
   `"restart_required": false, "actions": []` and does not create `.opencode/skill`.
 - The only remaining `restart_required=true` in the script is the dist-build branch.
+<!-- /ANCHOR:success-criteria -->

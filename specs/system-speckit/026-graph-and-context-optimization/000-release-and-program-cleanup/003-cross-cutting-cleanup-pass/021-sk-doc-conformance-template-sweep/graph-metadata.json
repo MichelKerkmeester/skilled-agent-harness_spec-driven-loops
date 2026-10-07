@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The user spotted format drift in two cited manualtestingplaybook examples (`system-spec-kit/mcpserver/skilladvisor/` and `.../codegraph/`)",
     "created_at": "2026-05-18T08:15:53.141Z",
-    "last_save_at": "2026-09-07T16:10:03.865Z",
+    "last_save_at": "2026-10-07T19:39:49.123Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:c56c56793278e758be6223da3b4feb5cfd3d2b02e44a7a89226c93a2dca0cdf0",
+    "source_fingerprint": "sha256:eefc0338d93ef518313c4b692384ea95de5ad3cc13bce33ce925b8d88bf5ce07",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "461de5fd7d2ddb5a4f5ef2b42e29db9f0c8aa2fa1389e9fa38655bdf2eff57a2",
@@ -220,7 +220,7 @@
       "tasks.md": "e3aaa5017e2782914ba38aeaf9d9ae81879fd01387c567846b31674f0d82f436",
       "decision-record.md": "0cb0d95af1b86375a090185b40f23152cdfb8718be0510bf9c95348eebd02365",
       "implementation-summary.md": "d95128656dd9022122246aedb439c525603a3b2c0031107f7a8d56c3d3c0ceff",
-      "handover.md": "314a132a243b14590870a40af605bdae9421ab41359b72e80133b2724e447a4d"
+      "handover.md": "32ad6aa0a1b99d4eb84f0eda888b484cd85004f6db2159307c48af06fa530bf2"
     },
     "last_active_child_id": null,
     "last_active_at": null

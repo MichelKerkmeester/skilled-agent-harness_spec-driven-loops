@@ -12,28 +12,41 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
+    "trigger_phrases": [
+      "doctor bootstrap symlink restart loop",
+      "doctor update restart required",
+      "legacy skill compatibility symlink",
+      "doctor bootstrap symlink fix",
+      "doctor restart loop plan",
+      "legacy directory migration branches",
+      "doctor bootstrap task list",
+      "symlink branch removal checklist",
+      "doctor runtime bootstrap verification",
+      "doctor bootstrap symlink summary",
+      "restart loop fix shipped",
+      "bootstrap restart required removed"
+    ],
     "key_topics": [
-      "feature",
-      "specification",
       "doctor",
       "bootstrap",
       "symlink",
       "restart",
       "loop",
-      "implementation",
+      "required",
+      "legacy",
+      "skill",
+      "compatibility",
       "plan",
-      "tasks",
-      "summary"
+      "directory",
+      "migration"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -58,12 +71,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-runtime-bootstrap.sh",
-        "kind": "script",
-        "path": ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
         "source": "derived"
       },
       {
@@ -133,6 +140,36 @@
         "source": "derived"
       },
       {
+        "name": "Tasks: Fix Doctor Bootstrap Symlink Restart Loop",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "-",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "importance_tier:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "contextType:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -155,17 +192,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Why Whenever",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Feature Specification: Fix Doctor Bootstrap Symlink Restart Loop",
+    "causal_summary": "Remove the doctor bootstrap branch that recreated the legacy singular skill symlink and forced a restart loop, while keeping the genuine legacy-directory migration and the post-build restart.",
     "created_at": "2026-07-10T06:24:11.204Z",
-    "last_save_at": "2026-09-03T22:52:51.104Z",
+    "last_save_at": "2026-10-07T20:36:11.904Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -174,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:33fd6939870fe0ba800abc5c8a1ca62986a9bcaade9b093a633e12149dfd55fd",
+    "source_fingerprint": "sha256:fa7db3a12b56ca6369dbdf46285fec7d43ec10cb8f15bb44354e415482c89a1c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d808354aee8cf5502c32d3abd287a6f87e786fa983af82850f538a8ed310e93f",
-      "plan.md": "97d8f41d86ee21d1848acc8a96601f811267d785007176c160c9626bacb7f278",
-      "tasks.md": "2ffde3d36e412359a942849322fbdf123b735d1e5ad7a18b15b4448f2dea5d9c",
-      "implementation-summary.md": "047186513d797081285b9492c93a8b7361c72b26e7c159c6fc29167c7ec68540"
+      "spec.md": "7f90c067ba8c484bd1bd1c5861bc08173408995f3b49aa0c76d58ced5c2efda6",
+      "plan.md": "ddb0739f60935a708e13afd3b623a6832a720426cc12b53d3c94db7a8c50f7b2",
+      "tasks.md": "eed4c7a6f705b6dc3b79588c2b26bba452e4e64c2189e88b00f98f1aeeb004e0",
+      "implementation-summary.md": "7448e5952451d6ae8da651f8610711b3fa4d3174f5596b2bc6a8c3890e01a73d"
     },
     "last_active_child_id": null,
     "last_active_at": null

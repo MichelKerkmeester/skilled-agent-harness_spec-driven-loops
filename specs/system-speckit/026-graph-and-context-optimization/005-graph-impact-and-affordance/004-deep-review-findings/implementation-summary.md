@@ -38,6 +38,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 
+<!-- ANCHOR:what-built -->
 ## Status
 **Wave 1 fully integrated.** T-A, T-B, T-C, T-D, T-E, T-F all complete and on main.
 
@@ -48,6 +49,9 @@ _memory:
 - **T-E (test rig fix — DI strategy):** `fetchTrustBadgeSnapshots` exposes optional `dbGetter` parameter (defaults to `requireDb`). Three previously-skipped trust-badges tests unskipped (3/3 pass). **Precision correction (008/D15):** of those 3, two exercise the SQL-derivation pipeline directly via the DI getter and one is the explicit-pass-through test (formatter-only, DB-independent). Latent production bug fixed: `resultIds.map(String)` at bind time so `CAST(rid.memory_id AS TEXT)` matches TEXT-typed `causal_edges.{source_id,target_id}` columns (better-sqlite3 was binding JS numbers as REAL → `'11.0'` instead of `'11'`). Formatter return type harmonized to T-D's `TrustBadgeFetchResult` shape during integration; tests now dereference `fetchResult.snapshots.get(...)`. Closes R-007-13.
 - **T-F (doc cleanup + query.ts micro-fixes + cache invalidation):** memory_search cache key includes causal-edge generation counter (folded only when `enableCausalBoost=true`); INSTALL_GUIDE Python smoke-test path fixed; tool count canonicalized to 51 (`TOOL_DEFINITIONS.length`) across all umbrella docs with explicit deferred-handlers-do-not-count note; broken `FEATURE_CATALOG_IN_SIMPLE_TERMS` link removed; `structural-indexer.ts` `runPhases` wrapped in try/catch/finally so error outcome metric emits; `query.ts` detects true overflow by comparing full-BFS-traversal size against `limit` BEFORE slicing (semantically equivalent to `limit + 1` — the BFS frontier is already over-collected, so no extra SQL request is needed; 008/D8 doc-fix correction), preserves seed nodes on multi-subject sibling failures, adds stable `failureFallback.code` + new `spec_kit.graph.blast_radius_failure_total` metric, and dedupes 4 switch branches via shared edge mapper; affordance debug counters (received/accepted/dropped_unsafe/dropped_empty/dropped_unknown_skill) added to TS + Python; 006/006 alias note for renumber. Closes R-007-12, 16, 17, 18, P2-2, P2-4, P2-5, P2-6, P2-7, P2-9, P2-12.
 
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:decisions -->
 ## Findings Closed
 
 ### R-007-2 — `detect_changes` MCP wiring decision (T-A)
@@ -66,3 +70,5 @@ _memory:
 | File | Change |
 |------|--------|
 | `mcp_server/code_graph/tools/code-graph-tools.ts` | Added `'detect_changes'` to `TOOL_NAMES`; imported `handleDetectChanges`; added `case 'detect_changes'` dispatcher with `parseArgs` |
+
+<!-- /ANCHOR:decisions -->

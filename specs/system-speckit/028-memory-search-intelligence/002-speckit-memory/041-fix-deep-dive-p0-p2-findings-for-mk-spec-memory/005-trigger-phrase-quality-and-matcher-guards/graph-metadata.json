@@ -45,8 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "handlers/quality-loop.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "quality-loop.ts",
-        "kind": "code",
-        "path": "handlers/quality-loop.ts",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The trigger-phrase corpus is dominated by junk: 45% of 165,979 phrase occurrences are single words (\"feature\" x2,072, \"specification\" x2,034, \"system-spec-kit\" x1,922, even \"zarchive\" x848), and a live resume-style prompt returned 5/5 zarchive hits via single-word matches at weight 0.8 (deep-dive report §1; findings ledger L4)",
     "created_at": "2026-07-03T09:44:20Z",
-    "last_save_at": "2026-08-30T15:39:35.374Z",
+    "last_save_at": "2026-10-07T21:11:57.949Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +205,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e904718cb6ce92547fe5262923b9bde8fbc13863e79d322f1e0b0206af57675e",
+    "source_fingerprint": "sha256:112bbb58a5dab0fee19197212aa87e2ddb77e8a0821014603a24b835ff8f0b75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0ff43c79f9f80cdd484518219e00e483b1b571356a13dddcce449de49e8b0297",
-      "plan.md": "1c93eadeda1a0780db7e952cf4dcd832465653d2efdc5ffe927a2f535ea4eea0",
-      "tasks.md": "e0536dc8154f858702ed3fd9195dc73a5fb9fa44fb5b9fad8b9e1480a32623bb",
-      "decision-record.md": "166962f99f7878dbdfdc802dd3f2589f003e945d29da3a41aadea6952987da48",
+      "spec.md": "6a2855cf15c5633facf314240312dc6197f18d4ef14d83d8262e4103ef160e29",
+      "plan.md": "f2bc9a48c9d1dd1ad31c74f55b0e208aad27cf0304cf1ccd980f9b2765c219a2",
+      "tasks.md": "4db5748a64c6bc4a11694bcb36378d9ea967c6d93fb9b47df76263ecbd5edf73",
+      "decision-record.md": "569a558245c252c11afb852576b7c3bbb805a9848bcf0df0cd09179bd2752b85",
       "implementation-summary.md": "4e5f93ddb8eaf853ac29e8ac843d218a4baa82b8bd49c88c113254d8c060b69d"
     },
     "last_active_child_id": null,

@@ -1,3 +1,12 @@
+---
+title: "Tasks: Docs and Closeout"
+description: "Task list for the fanout parity docs-and-closeout phase: confirm prior phases landed, author the closeout, reconcile the parent, and verify."
+trigger_phrases:
+  - "fanout parity docs closeout tasks"
+  - "fanout parity closeout checklist"
+importance_tier: "medium"
+contextType: "implementation"
+---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 

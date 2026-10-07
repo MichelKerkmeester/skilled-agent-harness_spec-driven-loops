@@ -45,8 +45,6 @@
       "implementation-summary.md",
       "resource-map.md",
       ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-      ".opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts",
-      "scripts/tests/review-research-paths.vitest.ts",
       "shared/review-research-paths.cjs"
     ],
     "entities": [
@@ -84,12 +82,6 @@
         "name": "review-research-paths.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "review-research-paths.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts",
         "source": "derived"
       },
       {
@@ -193,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two contract violations in the deep-review/deep-research skill output:",
     "created_at": "2026-04-29T09:50:00.000Z",
-    "last_save_at": "2026-08-30T15:39:28.592Z",
+    "last_save_at": "2026-10-07T19:47:37.435Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +205,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:9aa23a823fe73429f9bbba92bf5dbce5fa24aab0c9b16eac7def0c02e077d2bc",
+    "source_fingerprint": "sha256:ed94ec8fac3eaa97abcd616c1c9e3d92a1361c769bab6201de2291e463df5691",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "321183c8c96dc527d42fbf8ad0240b2478b0f0a663ac0a6ab2e0296f38384cee",
       "plan.md": "09abc4f97b386c7236841d9f66de16acdf7f1f7cd163ba528c6be1b782279b02",
       "tasks.md": "cc41a8ae86d0984bdbb8bad20a854340238bf63b26124d2bbdabd8099742d3e2",
       "implementation-summary.md": "e95df93e9d43db5563da90a1e04690b9f48e05c6e8da9f0d2e1ccb72f27f5419",
-      "resource-map.md": "25cc561ab2857d9c59cada39ac31c460da46f3472799ca7d5ad96bb037e83b95"
+      "resource-map.md": "e474a23bc092079ae0beb28d53c51d2087bfa3812cf5767d76d5d47e6ad7d566"
     },
     "last_active_child_id": null,
     "last_active_at": null

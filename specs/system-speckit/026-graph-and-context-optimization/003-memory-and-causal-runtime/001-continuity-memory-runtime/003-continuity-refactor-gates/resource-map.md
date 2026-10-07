@@ -19,11 +19,15 @@ _memory:
 
 trigger_phrases: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: resource-map | v1.1 -->
 
 # Phase 006 Canonical Continuity Refactor - Resource Map
 
+<!-- ANCHOR:summary -->
 This resource map is the quick-reference index for the live packet-006 implementation surface. It focuses on the files and directories that now define canonical continuity behavior, not the older rollout staging language.
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:skills -->
 ## 1. Core Runtime Surfaces
 
 | Surface | Key Files | Purpose |
@@ -35,6 +39,9 @@ This resource map is the quick-reference index for the live packet-006 implement
 | Coverage graph | `mcp_server/handlers/coverage-graph/`, `mcp_server/lib/coverage-graph/` | Research and review loop coverage tracking and convergence signals |
 | Feedback and shadow evaluation | `mcp_server/lib/feedback/` | Learned-signal logging and shadow-only evaluation helpers |
 
+<!-- /ANCHOR:skills -->
+
+<!-- ANCHOR:scripts -->
 ## 2. Authoring and Validation Surfaces
 
 | Surface | Key Files | Purpose |
@@ -44,6 +51,9 @@ This resource map is the quick-reference index for the live packet-006 implement
 | Public import boundary | `mcp_server/api/` | Stable runtime surface for non-runtime callers |
 | Shared modules | `shared/` | Neutral code used by both scripts and runtime |
 
+<!-- /ANCHOR:scripts -->
+
+<!-- ANCHOR:documents -->
 ## 3. Documentation Surfaces
 
 | Surface | Key Files | Purpose |
@@ -53,6 +63,9 @@ This resource map is the quick-reference index for the live packet-006 implement
 | Subdirectory READMEs | `mcp_server/**/README.md` | Directory-level ownership, purpose, and related-module pointers |
 | Packet docs | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` under packet 006 and phase subfolders | Packet-local execution truth |
 
+<!-- /ANCHOR:documents -->
+
+<!-- ANCHOR:tests -->
 ## 4. Verification Surfaces
 
 | Check | Command | Purpose |
@@ -62,6 +75,8 @@ This resource map is the quick-reference index for the live packet-006 implement
 | Handler cycles | `node .opencode/skills/system-spec-kit/scripts/dist/evals/check-handler-cycles-ast.js` | Detect circular imports in `mcp_server/handlers/` |
 | Boundary enforcement | `node .opencode/skills/system-spec-kit/scripts/dist/evals/check-architecture-boundaries.js` | Enforce package boundary rules |
 | Packet validation | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict <phase-folder>` | Enforce packet completeness and markdown contracts |
+
+<!-- /ANCHOR:tests -->
 
 ## 5. Current-Reality Notes
 

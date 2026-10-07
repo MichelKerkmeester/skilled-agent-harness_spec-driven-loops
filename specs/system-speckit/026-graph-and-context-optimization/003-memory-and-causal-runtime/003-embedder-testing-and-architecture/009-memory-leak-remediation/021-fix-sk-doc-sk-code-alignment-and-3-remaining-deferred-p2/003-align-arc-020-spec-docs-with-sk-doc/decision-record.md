@@ -29,6 +29,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: RUN TARGETED SK-DOC SWEEP WITH MECHANICAL FIXES ONLY
 
 **Status:** Accepted
@@ -54,6 +55,7 @@ Use scanner-backed checks for H2 casing, ADR evidence rows, continuity required 
 No logic files or executable shell behavior change. If a strict validation regression appears after a fix, revert that file and record a deferral instead of widening scope.
 
 ---
+<!-- /ANCHOR:adr-001 -->
 
 ## VERIFICATION NOTES
 

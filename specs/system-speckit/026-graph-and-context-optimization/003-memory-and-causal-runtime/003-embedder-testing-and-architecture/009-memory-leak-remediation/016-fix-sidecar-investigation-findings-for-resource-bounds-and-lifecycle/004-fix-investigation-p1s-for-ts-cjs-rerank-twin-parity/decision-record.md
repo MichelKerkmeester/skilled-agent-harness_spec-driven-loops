@@ -28,6 +28,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Canonical toBackendKind Location
 
 **Status:** Accepted
@@ -52,6 +53,8 @@ Keep `toBackendKind` implementation canonical in `sidecar-client.ts:175-183`. Th
 
 ---
 
+<!-- /ANCHOR:adr-001 -->
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: SidecarClientOptions Production/Test Split
 
 **Status:** Accepted
@@ -78,6 +81,8 @@ Split `SidecarClientOptions` into two interfaces:
 
 ---
 
+<!-- /ANCHOR:adr-002 -->
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Canonical Empty Revision Semantic
 
 **Status:** Accepted
@@ -102,6 +107,8 @@ Both JS and Python implementations treat empty `RERANK_MODEL_REVISION` string as
 
 ---
 
+<!-- /ANCHOR:adr-003 -->
+<!-- ANCHOR:adr-004 -->
 ## ADR-004: JS Ledger Locking Policy
 
 **Status:** Accepted
@@ -128,6 +135,8 @@ Add advisory file locking to JS ledger writes using `.lock` file pattern with ex
 
 ---
 
+<!-- /ANCHOR:adr-004 -->
+<!-- ANCHOR:adr-005 -->
 ## ADR-005: 64KB Health Body Cap Parity
 
 **Status:** Accepted
@@ -152,6 +161,8 @@ Raise Python health payload cap from 8KB to 64KB to match JS implementation. Add
 
 ---
 
+<!-- /ANCHOR:adr-005 -->
+<!-- ANCHOR:adr-006 -->
 ## ADR-006: Structured Process Liveness Python Mirror
 
 **Status:** Accepted
@@ -176,6 +187,8 @@ Change Python `processLiveness` return type from `Literal["alive", "dead", "eper
 - Parity with JS contract maintained
 
 ---
+
+<!-- /ANCHOR:adr-006 -->
 
 ## Summary
 

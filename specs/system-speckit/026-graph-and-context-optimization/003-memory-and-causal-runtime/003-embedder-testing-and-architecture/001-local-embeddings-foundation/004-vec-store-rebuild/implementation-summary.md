@@ -48,7 +48,7 @@ _memory:
 | **Spec Folder** | 004-vec-store-rebuild |
 | **Completed** | 2026-05-12 (memory side); cocoindex side pending |
 | **Level** | 1 |
-| **Status** | In Progress (75%) — memory ✓, cocoindex pending `/mcp reconnect cocoindex_code` |
+| **Status** | In Progress (memory rebuilt; cocoindex search blocked by upstream msgspec truncation) |
 <!-- /ANCHOR:metadata -->
 
 ---

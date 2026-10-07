@@ -2,8 +2,7 @@
 title: "Session Handover Document: embedder outage resolved — for the 028→006 reorg/reindex agent"
 description: "Handover to the reorg/reindex agent: the repo-wide embedding outage it hit was NOT a broken lib/embedders adapter — it was the auto-cascade sqlite3/PATH bug, now fixed in 009. Its 83 moved-tree rows backfill automatically."
 trigger_phrases:
-  - "session"
-  - "handover"
+  - "embedder auto resolution fix handover"
   - "reindex embeddings blocked"
   - "embedder outage resolved"
 importance_tier: "important"

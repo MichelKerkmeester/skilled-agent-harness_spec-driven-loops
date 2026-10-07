@@ -43,7 +43,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 | **Spec Folder** | 002-mcp-runtime-improvement-research |
 | **Created** | 2026-04-27 |
 | **Level** | 1 |
-| **Status** | In Progress (scaffolded; deep research dispatch pending) |
+| **Status** | In Progress |
 | **Iteration Cap** | 10 |
 | **Executor** | cli-codex (gpt-5.5, reasoning_effort=high, service_tier=fast, sandbox=workspace-write) |
 <!-- /ANCHOR:metadata -->

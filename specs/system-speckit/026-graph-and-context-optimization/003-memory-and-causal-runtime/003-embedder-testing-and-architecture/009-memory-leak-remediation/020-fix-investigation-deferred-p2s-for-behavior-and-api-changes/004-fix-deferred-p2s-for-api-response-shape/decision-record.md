@@ -29,6 +29,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: MOVE TEST-ONLY ENV HELPER BEHIND TESTABLES MODULE
 
 **Status:** Accepted
@@ -51,7 +52,9 @@ Keep `buildSidecarEnv` implemented in `sidecar-client.ts` as an internal helper,
 Production consumers should not import `buildSidecarEnv`. Grep found no live source consumer of the production export; the same token in `ensure-rerank-sidecar.cjs` is a separate launcher-local helper, not a client import.
 
 ---
+<!-- /ANCHOR:adr-001 -->
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: ONE-RELEASE RESPONSE ALIAS COMPATIBILITY
 
 **Status:** Accepted
@@ -75,7 +78,9 @@ Expose canonical camelCase response field names and keep deprecated legacy alias
 For this release cycle, both legacy and canonical names resolve to the same values. The legacy names are deprecated and scheduled for removal after the compatibility window. The warning text contains only field names, not payload values.
 
 ---
+<!-- /ANCHOR:adr-002 -->
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: PENDING-MAP DISCRIMINATOR NARROWING
 
 **Status:** Accepted
@@ -98,6 +103,7 @@ Replace unsafe pending-map casts with a discriminated pending-entry shape and ru
 Valid pending entries resolve as before. Malformed pending entries reject with `SidecarClientError` code `sidecar-pending-entry-invalid` instead of reaching an unchecked cast. No sibling consumer files needed changes, so no F99 escalation was required.
 
 ---
+<!-- /ANCHOR:adr-003 -->
 
 ## VERIFICATION NOTES
 

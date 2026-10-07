@@ -29,6 +29,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: CONFIG HASH INPUT SANITIZATION POLICY
 
 **Status:** Proposed
@@ -55,7 +56,9 @@ Validate hash-relevant config values before canonical string construction. Rejec
 This is a hard rejection for malformed hash inputs. Valid existing string configs keep the same hash.
 
 ---
+<!-- /ANCHOR:adr-001 -->
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: SHARED SIDECAR ENV ALLOWLIST WITH DROP-WARNING MIGRATION
 
 **Status:** Proposed
@@ -83,7 +86,9 @@ Use one shared sidecar env allowlist for launcher and in-process client filterin
 This is a soft behavior change: now-rejected env keys are dropped with a warning instead of forwarded.
 
 ---
+<!-- /ANCHOR:adr-002 -->
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: CONFIG PREFIX OVERLAP PRECEDENCE
 
 **Status:** Proposed
@@ -110,6 +115,7 @@ Use the more-specific prefix when two prefixes map to the same sidecar setting. 
 This is a soft behavior change. Conflicts continue to start, but stderr announces that `SPECKIT_*` won.
 
 ---
+<!-- /ANCHOR:adr-003 -->
 
 ## DEFERRED
 

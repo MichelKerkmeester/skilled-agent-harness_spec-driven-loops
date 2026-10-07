@@ -22,7 +22,7 @@
       "batch learning idempotency",
       "learning feedback loop repair tasks",
       "feedback ledger sweep tasks",
-      "fsrs last_review format"
+      "learning feedback loop repair decision"
     ],
     "key_topics": [
       "learning",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The memory learning loop is starved of usage signal: only 65 of 33,101 index rows have ever recorded an access, and `trackAccess` is default-off (`memory-search.ts:909`) with zero production enablers, so the loop receives almost no fuel today",
     "created_at": "2026-07-03T09:44:23Z",
-    "last_save_at": "2026-09-03T22:23:46.740Z",
+    "last_save_at": "2026-10-07T21:11:59.429Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3c56eed859d291babc8148dc8334d42ffbcdc5beedde23b232962d0369e4097b",
+    "source_fingerprint": "sha256:cfcacec6ae56faf1d3e9b99a1d3799cfaf7e6e0c87b10bad038973cbdc440afe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2702c9e7dd05aff8953161366c01edb3b92257f50c70cabd589d0d977bff912b",
       "plan.md": "a9e5956feac325ba7f3bf25cd9817aeb6b0391483b741b47211426549f4f8e8e",
       "tasks.md": "69e74223d0c0689df73977de8050df7080a68a95b75c311520f1b41bd2f13255",
-      "decision-record.md": "2a8cf372087f33e2a9c605b3df68c74343201bb93dfea31714ab71271b61f20a",
+      "decision-record.md": "ee587ae5dce2e008d9d6b102f2f4cacbd8b627704b6400b54953876780ca9a08",
       "implementation-summary.md": "170b3b20dbfa9a44b99aae9ad92f11bc9085c9b348dca02ac3ad8b2fefe7aad3"
     },
     "last_active_child_id": null,

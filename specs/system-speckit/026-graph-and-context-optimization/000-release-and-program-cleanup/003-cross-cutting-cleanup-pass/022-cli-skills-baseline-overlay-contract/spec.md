@@ -15,6 +15,7 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 1. PROBLEM AND PURPOSE
 
 The 5 CLI orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) currently mention specific overlay skills (`sk-code-review`, `sk-code-opencode`) by name when describing how dispatched sessions should load code-quality standards. This is brittle: the moment a different stack is in play (Webflow, React/Next.js, Go) the dispatch prompt instructs the dispatched session to load the wrong overlay.
@@ -23,6 +24,9 @@ The `review` agent already solved this with a baseline+overlay standards contrac
 
 ---
 
+<!-- /ANCHOR:problem -->
+
+<!-- ANCHOR:scope -->
 ## 2. SCOPE
 
 **In scope** (10 files, ~15 edits):
@@ -34,6 +38,9 @@ The `review` agent already solved this with a baseline+overlay standards contrac
 
 ---
 
+<!-- /ANCHOR:scope -->
+
+<!-- ANCHOR:requirements -->
 ## 3. REQUIREMENTS
 
 | ID | Priority | Requirement | Acceptance |
@@ -46,6 +53,9 @@ The `review` agent already solved this with a baseline+overlay standards contrac
 
 ---
 
+<!-- /ANCHOR:requirements -->
+
+<!-- ANCHOR:success-criteria -->
 ## 4. SUCCESS CRITERIA
 
 - All 5 CLI SKILL.md files contain the canonical baseline+overlay rule
@@ -54,6 +64,8 @@ The `review` agent already solved this with a baseline+overlay standards contrac
 - Validator outcomes match expectations
 
 ---
+
+<!-- /ANCHOR:success-criteria -->
 
 ## 5. RELATED DOCUMENTS
 

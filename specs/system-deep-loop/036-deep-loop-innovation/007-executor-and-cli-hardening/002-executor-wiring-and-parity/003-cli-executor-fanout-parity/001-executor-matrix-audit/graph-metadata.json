@@ -15,6 +15,11 @@
       "cli provider model support matrix",
       "fanout executor gap register",
       "which cli models work in the fanout",
+      "executor matrix audit plan",
+      "executor support matrix freeze",
+      "executor gap register plan",
+      "executor matrix audit tasks",
+      "executor matrix audit checklist",
       "executor matrix audit progress",
       "fanout executor gap register status"
     ],
@@ -191,7 +196,7 @@
     ],
     "causal_summary": "The fan-out advertises seven executor kinds, but no single document states which (cli, provider, model, mode) combinations",
     "created_at": "2026-07-29T08:25:14.328Z",
-    "last_save_at": "2026-09-03T22:52:43.135Z",
+    "last_save_at": "2026-10-07T20:30:34.069Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31b1f54309d6c3a4f05f2b2ce2a214e8b0c686d2b77cd014d51c2526eedeb25b",
+    "source_fingerprint": "sha256:6b7ae09c62ede9cf1cead00f417d4d000575ad144b367a2afdab7922ba6f1a25",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3716dd3767a943cfcd8bfcf63bf86988f4e62c1d9db54c81f2103b39b018a134",
-      "plan.md": "74e6099c06eaab83dee8cae68b471052322dd9a905cf80a90192c0c85f52b0a9",
-      "tasks.md": "9898bb6d5292b788ae9ee2be1c0a94caed3782db3c30904f6c67dea089031ceb",
+      "plan.md": "4d5267b565480c7af7275795789c3ed2e15ff8654032d55fc71220bbaae4f3fc",
+      "tasks.md": "e425b503f329d77acd773b39241c5cdc02da9af81293b07a2355f951fa32ba12",
       "implementation-summary.md": "e68c738cf1f2a2f4ea3f00e8c7127711b56a0f54467573121eecc0b59cde1b48"
     },
     "last_active_child_id": null,

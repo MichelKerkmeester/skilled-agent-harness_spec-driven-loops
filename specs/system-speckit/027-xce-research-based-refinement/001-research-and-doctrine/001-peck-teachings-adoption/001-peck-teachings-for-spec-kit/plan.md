@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit"
     last_updated_at: "2026-06-02T08:38:07Z"
     last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    recent_action: "No continuity update was recorded"
+    next_safe_action: "None recorded"
     blockers: []
     key_files: []
     session_dedup:

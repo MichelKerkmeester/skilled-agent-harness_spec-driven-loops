@@ -29,6 +29,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: resource-map-core | v2.2 -->
 
+<!-- ANCHOR:scripts -->
 ## Source code
 
 | Path | Action | Cluster | Notes |
@@ -45,6 +46,9 @@ _memory:
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts` | Modified | 7 | 3-tier FTS5 → BM25 → Grep fallback on quality:"gap". |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts` | Modified | 7 | Quality-gap fallback routing metadata. |
 
+<!-- /ANCHOR:scripts -->
+
+<!-- ANCHOR:tests -->
 ## Tests
 
 | Path | Action | Notes |
@@ -56,12 +60,18 @@ _memory:
 | `.opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts` | Modified | Adjacency for the new relation-coverage tracker. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/query-router.vitest.ts` | Modified | Quality-gap fallback regression coverage. |
 
+<!-- /ANCHOR:tests -->
+
+<!-- ANCHOR:documents -->
 ## Documentation
 
 | Path | Action | Notes |
 |------|--------|-------|
 | `.opencode/commands/memory/search.md` | Modified | Custom-answer routing documented (REQ-014); naming disambiguation (REQ-017). |
 
+<!-- /ANCHOR:documents -->
+
+<!-- ANCHOR:specs -->
 ## Spec docs (this packet)
 
 | Path | Action | Notes |
@@ -76,6 +86,9 @@ _memory:
 | `changelog.md` | Created | Per-packet changelog (this release). |
 | `resource-map.md` | Created | This file. |
 
+<!-- /ANCHOR:specs -->
+
+<!-- ANCHOR:summary -->
 ## Counts
 
 - **Source files modified**: 7
@@ -88,6 +101,8 @@ _memory:
 - **Estimated LOC**: ~196 source insertions / 19 deletions, plus test files
 - **Reqs closed**: 13/13 P1/P2 + REQ-012 + REQ-016 = 15 total
 - **Deferred**: 0
+
+<!-- /ANCHOR:summary -->
 
 ## Verification surfaces
 

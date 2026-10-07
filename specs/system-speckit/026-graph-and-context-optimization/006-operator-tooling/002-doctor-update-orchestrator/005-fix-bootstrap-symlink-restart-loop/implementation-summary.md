@@ -1,9 +1,22 @@
+---
+title: "Implementation Summary: Fix Doctor Bootstrap Symlink Restart Loop"
+description: "Removed the symlink-recreation branch that looped the doctor update into restart-required, synced both repo copies, and verified the live bootstrap returns restart_required false."
+trigger_phrases:
+  - "doctor bootstrap symlink summary"
+  - "restart loop fix shipped"
+  - "bootstrap restart required removed"
+importance_tier: "normal"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
 # Implementation Summary: Fix Doctor Bootstrap Symlink Restart Loop
 
 > **Spec:** `./spec.md` | **Date:** 2026-06-08 | **Status:** Complete & verified
 
 ---
 
+<!-- ANCHOR:what-built -->
 ## What Changed
 
 `.opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh` (versioned surface +
@@ -41,7 +54,9 @@ fi
 The `--help` usage text was updated from "Creates the legacy bridge" to "Migrates a legacy
 directory". The dist-build branch's `restart_required=true` is retained (a freshly built MCP
 server genuinely needs re-registration).
+<!-- /ANCHOR:what-built -->
 
+<!-- ANCHOR:decisions -->
 ## Why
 
 Whenever `.opencode/skill` was absent, branch 3 re-created it and forced
@@ -49,7 +64,9 @@ Whenever `.opencode/skill` was absent, branch 3 re-created it and forced
 Nothing depends on the singular path — all launchers and MCP configs resolve the plural
 `.opencode/skills/` directly — so the symlink is an unnecessary compatibility shim and
 recreating it must never gate a restart.
+<!-- /ANCHOR:decisions -->
 
+<!-- ANCHOR:verification -->
 ## Evidence
 
 **Singular-path audit** — only matches were prose in `graph-metadata.json` `causal_summary`
@@ -76,10 +93,13 @@ path.
 | `diff` both copies | IDENTICAL (sync invariant held) |
 | Live bootstrap run | `restart_required:false`, `actions:[]`, no symlink |
 | Remaining `restart_required=true` | 1 occurrence — the dist-build branch only |
+<!-- /ANCHOR:verification -->
 
+<!-- ANCHOR:limitations -->
 ## Follow-ups
 
 - No git commit/push performed (repository git policy is read-only for the assistant). Commit
   commands for both repos are provided in the session handoff.
 - The `RESTART CONTRACT` text in `doctor_update.yaml` / command markdown was intentionally left
   unchanged — still accurate for the build-restart case.
+<!-- /ANCHOR:limitations -->

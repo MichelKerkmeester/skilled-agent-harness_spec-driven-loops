@@ -21,6 +21,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:summary -->
 ## Summary
 
 - **Total references**: 8
@@ -33,6 +34,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:scripts -->
 ## 1. Scripts
 
 | Path | Action | Status | Note |
@@ -41,6 +45,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:scripts -->
+
+<!-- ANCHOR:specs -->
 ## 2. Specs
 
 | Path | Action | Status | Note |
@@ -53,9 +60,14 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:specs -->
+
+<!-- ANCHOR:meta -->
 ## 3. Meta
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.../010/graph-metadata.json` | Created | OK | Graph rollout metadata |
 | `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | Analyzed | OK | Lines 1830-1835 referenced for T016-T019 lazy-loading context (NOT modified — out of scope) |
+
+<!-- /ANCHOR:meta -->

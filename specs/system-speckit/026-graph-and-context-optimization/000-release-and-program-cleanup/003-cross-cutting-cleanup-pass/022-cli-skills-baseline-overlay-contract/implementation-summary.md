@@ -35,6 +35,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:what-built -->
 ## What Was Built
 
 5 CLI orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) now mirror the `review.md` baseline+overlay standards contract. Each SKILL.md gained an identical numbered ALWAYS rule titled "Code Standards Loading (codebase-agnostic baseline+overlay contract)" instructing dispatched sessions to load `sk-code` baseline first, detect stack/codebase signals, load exactly one matching `sk-code-*` overlay, and apply precedence rules.
@@ -43,6 +44,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
 10 files, 15 edits. Pure documentation rewrite — no behavior changes, no schema changes, no moves/deletes.
@@ -51,6 +55,9 @@ Pattern: lifted the canonical sentence form verbatim from `review.md` line 31 / 
 
 ---
 
+<!-- /ANCHOR:how-delivered -->
+
+<!-- ANCHOR:decisions -->
 ## Key Decisions
 
 | Decision | Rationale |
@@ -62,6 +69,9 @@ Pattern: lifted the canonical sentence form verbatim from `review.md` line 31 / 
 
 ---
 
+<!-- /ANCHOR:decisions -->
+
+<!-- ANCHOR:verification -->
 ## Verification
 
 - 5/5 CLI SKILL.md contain "Code Standards Loading (codebase-agnostic baseline+overlay contract)" canonical rule
@@ -71,12 +81,17 @@ Pattern: lifted the canonical sentence form verbatim from `review.md` line 31 / 
 
 ---
 
+<!-- /ANCHOR:verification -->
+
+<!-- ANCHOR:limitations -->
 ## Known Limitations
 
 1. **hook_contract.md missing_required_section: overview** — pre-existing validator quirk; the file lacks an Overview H2 section. T-refs in packet 040 covered system-spec-kit/references and sk-code-review/references but did NOT touch cli-codex/references. Out of scope for packet 041 (which only changes one example string in a JSON code block).
 2. **Downstream copies of TEMPLATE 5** — local copies users may have made of cli-opencode TEMPLATE 5 still contain the old hardcoded mentions. The canonical template is fixed; consumers should refresh.
 
 ---
+
+<!-- /ANCHOR:limitations -->
 
 ## Cross-References
 

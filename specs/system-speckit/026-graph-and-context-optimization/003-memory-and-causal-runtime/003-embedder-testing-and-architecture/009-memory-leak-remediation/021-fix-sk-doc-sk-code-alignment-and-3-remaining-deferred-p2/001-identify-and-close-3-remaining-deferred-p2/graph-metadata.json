@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 015 investigation found 68 P2 findings",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-08-30T15:39:31.514Z",
+    "last_save_at": "2026-10-07T19:59:57.850Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b19f2dcfe110f9e396e299d1a333617563fe61e30b08f9326478281203743757",
+    "source_fingerprint": "sha256:e6445932ee46d41d0b3f0aa6ffea05cf85b58227532444ab9af59e54e822fddc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e582a1c9c535c1e6082b1219d66655ab778cd9bd267711f9756713e03f9e3edb",
       "plan.md": "8edf6c5f22c7fd96c6e8ce856be44983134b776171ac576e334278d4845b15e3",
       "tasks.md": "16aad843b23288971e35581a3b5d592040ca000e7bb4f262a94b0ab7ca175b61",
-      "decision-record.md": "70b8e4591f4b2e27d9bee3a906ecf795c44414a70fb36e809a6bd8b7d32275b3",
+      "decision-record.md": "77321e175ec4e95ea57520b6c7e4b893a174411897aa30314b12ff727c0f4589",
       "implementation-summary.md": "964b439510585b264b5403ee01c546b046953090c2537f55062ba3219e278ad4"
     },
     "last_active_child_id": null,

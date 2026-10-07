@@ -30,6 +30,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Test-Only Router Seam
 
 **Status:** Accepted
@@ -51,6 +52,8 @@ Move the aggregate `__embedderExecutionRouterTestables` object to `execution-rou
 
 ---
 
+<!-- /ANCHOR:adr-001 -->
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Two-Level Dimension Fallback with Mismatch Warning
 
 **Status:** Accepted
@@ -72,6 +75,8 @@ Resolve dimensions from explicit/configured input first, then from the startup d
 
 ---
 
+<!-- /ANCHOR:adr-002 -->
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Best-Effort Shutdown Hooks
 
 **Status:** Accepted
@@ -92,6 +97,8 @@ Keep shutdown hooks as best-effort process cleanup, register one shared signal h
 - SIGINT, SIGTERM, and SIGHUP share one registration path and behavior.
 
 ---
+
+<!-- /ANCHOR:adr-003 -->
 
 ## Summary
 

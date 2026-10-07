@@ -24,11 +24,13 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 
 # Handover: checkpoint-v2 + 013 Phase-4 roadmap
 
 > **One-line:** checkpoint-v2 CODE (Phases 1-7) is fully on `main` and a multi-lens review returned **SAFE TO DEPLOY (P0/P1 none)** — but it is **NOT live-verified** (daemon still runs the old `dist/`). E (MCP front-proxy) is designed + packet scaffolded. F (memory bugs) is committed. G cleanups, the live-verify, and E implementation remain.
 
+<!-- ANCHOR:handover-summary -->
 ## SESSION UPDATE — 2026-06-01 late (autonomous)
 
 The "NOT live-verified" caveat below is now RESOLVED, and the live verification surfaced a real bug.
@@ -39,6 +41,9 @@ The "NOT live-verified" caveat below is now RESOLVED, and the live verification 
 - **D P2 fast-follows — P2-1/P2-2/P2-4 DONE** (`501e50b662` fsync stale-.bak; `d6ec6f5167` journal-demote determinism; `3f5e26639a` .unclean-shutdown gitignore). **P2-3** (`.needs-rebuild` sentinel) deferred — the degraded derived-index state self-heals on the next `memory_index_scan`, so it is a low-value optimization, not a correctness fix.
 - **Daemon note:** the live `mk-spec-memory` daemon RSS-recycled and severed repeatedly this session (the exact item-E bug) and my in-session MCP stayed down — all D/G verification was done via daemon-independent one-shot Node harnesses against `dist/` (faithful: same storage/handler code, minus the recycle layer).
 
+<!-- /ANCHOR:handover-summary -->
+
+<!-- ANCHOR:context-transfer -->
 ## Operator goal (verbatim)
 "get long-term best solution for all roadmap items, work we planned to 100% completion and verification" — using **cli-opencode gpt-5.5-fast --variant high** + **agent workflows**, prioritizing effectiveness + quality. The roadmap = the 013 Phase-4 follow-ups: **D** checkpoint-v2, **E** MCP front-proxy, **F** memory-system bugs, **G** cleanups.
 
@@ -78,6 +83,9 @@ F1 `embedding-reconcile.ts` `computeSuccessCoverage` dropped the buggy empty-`ve
 - `…/cp-v2-worktree-f` (F) — committed; prunable.
 - All background dispatches/workflows complete (last: `w95h3dpg3` final D review).
 
+<!-- /ANCHOR:context-transfer -->
+
+<!-- ANCHOR:session-notes -->
 ## Carried constraints (VERBATIM — still in effect)
 - **NEVER `git add -A`** — main advanced via concurrent parallel-session commits this session (deep-improvement, sk-code). Commit with EXPLICIT paths, direct to `main`.
 - **NEVER raw-SQL-delete** memory rows — sanctioned `memory_delete()` / MCP only.
@@ -89,6 +97,9 @@ F1 `embedding-reconcile.ts` `computeSuccessCoverage` dropped the buggy empty-`ve
 ## Verification protocol (proven this session)
 Per code phase: implement in `cp-v2-worktree` (RM-8 + the 3 node_modules symlinks: `mcp_server/node_modules`, `system-spec-kit/node_modules`, `system-spec-kit/shared/dist`) via gpt-5.5-fast/high, OR orchestrator-direct for repeatedly-flaky areas → independent review (cli-codex `gpt-5.5` `-c model_reasoning_effort=xhigh -c service_tier=fast --sandbox read-only`, OR a multi-lens review **workflow**) → `npm run typecheck` 0 + targeted `vitest` in the worktree → parallel-safety (`git diff <base>..HEAD` + `status` clean for the files) → `cp` worktree→main → tsc in main → commit explicit paths. **The multi-lens review workflow caught a silent-data-loss bug that 3 single-codex passes missed — use it for crash-safety-critical changes.** cli-opencode dispatch: `opencode run --model openai/gpt-5.5-fast --variant high --agent general --format json --dir <worktree> --dangerously-skip-permissions "$(cat prompt)" </dev/null` (xhigh is NOT valid on opencode's gpt-5.5; that's the codex/copilot route).
 
+<!-- /ANCHOR:session-notes -->
+
+<!-- ANCHOR:next-session -->
 ## EXACT NEXT ACTION (post-compaction)
 1. (optional housekeeping) prune `cp-v2-worktree` + `cp-v2-worktree-f` (work committed).
 2. **D live-verify**: rebuild `dist/` + restart the daemon; `checkpoint_create` on the live DB (expect no `Invalid string length`); `checkpoint_restore` round-trip; `memory_health` consistent. Then reconcile 002 docs + `validate.sh --strict` on 002.
@@ -96,6 +107,8 @@ Per code phase: implement in `cp-v2-worktree` (RM-8 + the 3 node_modules symlink
 4. **E implementation**: gpt-5.5 phased from `003/plan.md` + multi-lens review + RSS-recycle live-verify.
 5. (optional) fix the 4 D P2 fast-follows.
 6. Final `/memory:save`.
+
+<!-- /ANCHOR:next-session -->
 
 ## Execution-ready commands (grounded this session)
 Run build/test inside `.opencode/skills/system-spec-kit/mcp_server/`.

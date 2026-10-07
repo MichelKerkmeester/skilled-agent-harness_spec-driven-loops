@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Cocoindex's `DEFAULTINCLUDEDPATTERNS` (and the project-level `.cocoindexcode/settings.yml` mirroring it) include `.md`, `.mdx`, `.txt`, `.rst`",
     "created_at": "2026-05-13T06:50:00Z",
-    "last_save_at": "2026-08-30T15:39:29.713Z",
+    "last_save_at": "2026-10-07T19:52:25.633Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T06:55:00Z",
     "source_docs": [
@@ -195,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04068fa76f9b41cfc70b7d65e7d3ab5616142a3e80babe8155a6c875a8858fed",
+    "source_fingerprint": "sha256:5e95bcdfa44ad01cd13b37dacfb4c69775b2f1cc5ad639ec0f8b694adc35bdae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "16d4179aa714d83aecbbae79169463ffdd1a1886e1bb7bfd3af3a4ca907ecab0",
       "plan.md": "5eecdf2715980b22a930eb918d57e42c366e1f4666f4a1f4adaf91fd71eb76e1",
       "tasks.md": "508e2dd42f62f8cdbfeb58602752872888efaaf7c570cb0426fd47ffb8c2a0e9",
-      "implementation-summary.md": "b1f65e43cd76c0ffd1dd30e183340a3b9b39cb0bd8cdfbcb9c0b5d5153c52c12"
+      "implementation-summary.md": "d61c5c3c6ec6a7f1fcfd8d1166f30a90780ff8d3eb3dcfd67b863a5c9801346d"
     },
     "last_active_child_id": null,
     "last_active_at": null

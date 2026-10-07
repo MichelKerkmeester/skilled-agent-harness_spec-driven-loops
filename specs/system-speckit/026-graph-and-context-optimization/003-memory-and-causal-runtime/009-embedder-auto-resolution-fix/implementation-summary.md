@@ -2,11 +2,9 @@
 title: "Implementation Summary: Robust embedding-provider auto-resolution fix"
 description: "Summary of the node:sqlite factory metadata-read fix, regression test, verification, and interim-pin revert."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "embedder"
+  - "embedder auto resolution fix summary"
   - "auto-resolution"
-  - "factory"
+  - "node:sqlite factory fix"
 importance_tier: "important"
 contextType: "general"
 _memory:

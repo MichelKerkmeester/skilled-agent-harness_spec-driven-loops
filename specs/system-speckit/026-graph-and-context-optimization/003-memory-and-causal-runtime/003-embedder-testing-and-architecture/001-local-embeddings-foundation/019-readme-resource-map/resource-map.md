@@ -34,6 +34,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 
+<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 Found 522 README.md files across the full repository tree (excluding `node_modules`, `.venv`, `dist`, `.git`, `external`). Of these, 7 are **MAJOR** (headline narrative out of sync with the 014 post-state), contributing roughly 800 KB of stale content across the most-read docs in the project. 1 is a borderline minor/clean case flagged for a second look. The remaining 514 READMEs are directory-level indexes in spec folders, skill subdirectories, test fixtures, and z_archive — none of them discuss embedding infrastructure and are all CLEAN.
@@ -44,7 +45,9 @@ Found 522 README.md files across the full repository tree (excluding `node_modul
 3. `.opencode/skills/system-spec-kit/README.md` — the 81 KB framework manual; Voyage as "Recommended", missing `llama-cpp`, 1024d as default vector dimension.
 
 **Cross-cutting pattern:** Every README that describes the embedding provider story is out of sync. None of them mention `llama-cpp` or the local-first cascade. The `barter/` subdirectory contains independent copies of the same READMEs (same staleness, same fixes needed) — see §4.
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:readmes -->
 ## 2. INVENTORY
 
 | # | Path | Size | Last Modified | Verdict | Priority |
@@ -130,3 +133,4 @@ Found 522 README.md files across the full repository tree (excluding `node_modul
   > `If no API key is set, the memory engine auto-detects **HuggingFace Local** embeddings`
   **Why stale:** Voyage listed as "recommended". DB path uses legacy `context-index.sqlite` without the `__provider__model__dim__dtype` suffix. The "auto-detects HF Local" claim is out of date — it auto-detects llama-cpp first.
   **Suggested replacement:**
+<!-- /ANCHOR:readmes -->

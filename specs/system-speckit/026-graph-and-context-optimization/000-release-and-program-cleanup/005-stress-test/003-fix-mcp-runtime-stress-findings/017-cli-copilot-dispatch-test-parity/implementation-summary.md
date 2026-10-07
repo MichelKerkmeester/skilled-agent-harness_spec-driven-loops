@@ -22,9 +22,9 @@ _memory:
       - "tasks.md"
       - "checklist.md"
     session_dedup:
-      fingerprint: null
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "017-cli-copilot-dispatch-test-parity-impl-2026-04-27"
-      parent_session_id: "014-mcp-runtime-stress-remediation-deep-review-2026-04-27"
+      parent_session_id: null
     completion_pct: 100
     open_questions: []
     answered_questions:

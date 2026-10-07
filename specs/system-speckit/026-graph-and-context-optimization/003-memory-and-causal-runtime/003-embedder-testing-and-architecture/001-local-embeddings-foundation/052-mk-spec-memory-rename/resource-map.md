@@ -27,6 +27,7 @@ _memory:
     answered_questions: []
 ---
 
+<!-- SPECKIT_TEMPLATE_SOURCE: resource-map | v1.1 -->
 # Resource Map: `spec_kit_memory` → `mk-spec-memory`
 
 > **Built by main-agent deep-dive on 2026-05-14T23:30Z**, then revised as the authoritative manifest after execution completed on 2026-05-14T23:48Z. Original 027/001 spec identified 166 raw occurrences; this map narrows to operational-vs-historical buckets that match what was actually changed.
@@ -45,6 +46,7 @@ Source roots: `.opencode/`, `.claude/`, `.codex/`, `.gemini/`, repo root. Exclud
 
 ---
 
+<!-- ANCHOR:config -->
 ## Layer 1 — Runtime configs (6 files, server key renamed)
 
 | File | Old key | New key |
@@ -57,6 +59,7 @@ Source roots: `.opencode/`, `.claude/`, `.codex/`, `.gemini/`, repo root. Exclud
 | `.vscode/mcp.json` | `"spec_kit_memory"` / direct-to-dist server entry | `"mk-spec-memory"` with `.opencode/bin/mk-spec-memory-launcher.cjs` |
 
 The Gemini change is the load-bearing one — Gemini's policy parser splits on `mcp_` and treats underscores in server names as policy-ambiguous.
+<!-- /ANCHOR:config -->
 
 ---
 
@@ -102,6 +105,7 @@ Line 894: `new Server({ name: 'mk-spec-memory', version: '1.7.2' }, ...)`. Build
 
 ---
 
+<!-- ANCHOR:scripts -->
 ## Layer 6 — Launcher binary
 
 - `.opencode/bin/spec-kit-memory-launcher.cjs` → `.opencode/bin/mk-spec-memory-launcher.cjs` (git mv)
@@ -110,6 +114,7 @@ Line 894: `new Server({ name: 'mk-spec-memory', version: '1.7.2' }, ...)`. Build
 - Runtime configs updated to call the renamed binary
 
 Mirrors the mk-code-index Option A precedent from packet 010.
+<!-- /ANCHOR:scripts -->
 
 ---
 
@@ -121,6 +126,7 @@ Mirrors the mk-code-index Option A precedent from packet 010.
 
 ---
 
+<!-- ANCHOR:scripts-2 -->
 ## Layer 8 — Substrate stress harness + sandbox runner
 
 `mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs` and `_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs` both:
@@ -130,6 +136,7 @@ Mirrors the mk-code-index Option A precedent from packet 010.
 - `clients` and `toolNameSets` dicts use underscore JS-identifier keys `mk_spec_memory: ...`
 
 Companion vitest `shared-daemon-runner-helpers.vitest.ts` rewritten to use underscore-form dict keys for valid JS object shorthand.
+<!-- /ANCHOR:scripts-2 -->
 
 ---
 

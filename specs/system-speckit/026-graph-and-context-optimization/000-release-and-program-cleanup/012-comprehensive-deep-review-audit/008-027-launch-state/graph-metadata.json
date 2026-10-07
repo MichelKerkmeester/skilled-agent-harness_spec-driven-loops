@@ -13,7 +13,11 @@
     "trigger_phrases": [
       "027 launch audit",
       "phase parent readiness",
-      "spec folder naming"
+      "spec folder naming",
+      "027 launch state review plan",
+      "phase parent readiness plan",
+      "027 launch state review tasks",
+      "phase parent readiness tasks"
     ],
     "key_topics": [
       "launch",
@@ -24,21 +28,35 @@
       "spec",
       "folder",
       "naming",
-      "xce-research-based-refinement",
-      "just",
-      "launched",
-      "child"
+      "state",
+      "review",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -76,20 +94,84 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "027 (`xce-research-based-refinement`) just launched as a phase parent with 9 child phases",
     "created_at": "2026-06-04T18:53:35.322Z",
-    "last_save_at": "2026-08-30T15:39:28.974Z",
+    "last_save_at": "2026-10-07T19:46:19.289Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:a7f30d53ddc35aebcf0f2ba29f37f7a3494c20f7d5b965b1f74beaa9c2f2b2e8",
+    "source_fingerprint": "sha256:518ec4ca3519ad6dab61c1218c185beda24e53c3787ed946d8f0059d764e6922",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b5829a136ad7629fb77fd826e9cfce2507e9f3aef3777c8a416fdb1efe864945"
+      "spec.md": "b5829a136ad7629fb77fd826e9cfce2507e9f3aef3777c8a416fdb1efe864945",
+      "plan.md": "6084b40b36ad4c26cf073142cdc0be8974b1b5be8beca625dffd8c63663031f4",
+      "tasks.md": "2dd012ba5acf6d626508b35b3ead3ab079d9a6afe311beeba0c74c5450847a8c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`sidecar-client.ts` retained several P1 issues from arc 010/001 deep research: production constructor options still blurred into test-only knobs (F18), `EmbedOptions` existed twice (F20), trivial single-call helper indirection hid the flow (F25), termination still split signal/exit sequencing across duplicate paths (F57), response handling used unsafe post-parse assertions instead of discriminator narrowing (F62), `ready()` had no production role in the sidecar execution path (F73), and `embed()` validation was a nested cascade (F91)",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-08-30T15:39:31.383Z",
+    "last_save_at": "2026-10-07T19:55:03.942Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1e5c3b54a11ada3b800677d23b21eaa93b91c0cb1d08a907c665ada5a6b46a7",
+    "source_fingerprint": "sha256:7c05dd5c46c03f3573ecc76bbefa6aa03f2098c763f27177885797813c395dfd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "93ee074af9743b61cea6e925b70c4b4b908ad102030ef0f5ee09b1982ac171c4",
       "plan.md": "2852a0534378c057c8a1ee4b6f4581f7569e8c9d1a5e89ee41889839f44568c6",
       "tasks.md": "cc6b90bc0cdc642dbf38384e697b3410d405c49c9071708172bb6a4f38ba3da0",
-      "decision-record.md": "49b94db067fc967e1ed43a396752ace1162cd7b6a23260a659079ef67c51e5f1",
+      "decision-record.md": "07db65553378fd8573f690f40088147bc1e99bd2cbcf56a3c56cfc8871468370",
       "implementation-summary.md": "e9506cc78f47fa1f29bb8d8f75d114be45216811ea64d703c428a688f56cb062"
     },
     "last_active_child_id": null,

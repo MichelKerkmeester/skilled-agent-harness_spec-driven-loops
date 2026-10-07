@@ -29,6 +29,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Structured Parent Liveness for Worker Polling
 
 **Status:** Accepted
@@ -50,6 +51,8 @@ Replace boolean `parentProcessAlive()` with `parentProcessLiveness()` returning 
 
 ---
 
+<!-- /ANCHOR:adr-001 -->
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Pre-Parse Failure Id Policy
 
 **Status:** Accepted
@@ -71,6 +74,8 @@ Never emit synthetic `id: 0` for worker parse failures. If malformed input inclu
 
 ---
 
+<!-- /ANCHOR:adr-002 -->
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Provider Promise Rejection Eviction
 
 **Status:** Accepted
@@ -91,6 +96,8 @@ Wrap the cached provider creation promise with a rejection branch that clears `p
 - Fixture tests cover both retry-after-rejection and success-cache permanence.
 
 ---
+
+<!-- /ANCHOR:adr-003 -->
 
 ## Summary
 

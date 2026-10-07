@@ -192,7 +192,7 @@
     ],
     "causal_summary": "`.opencode/scripts/git-hooks/lib/memory-drift-marker.sh` (143 lines) detects `.opencode/specs`",
     "created_at": "2026-07-09T20:28:44.767Z",
-    "last_save_at": "2026-09-07T16:18:11.666Z",
+    "last_save_at": "2026-10-07T21:24:17.019Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:983672386014c9c424808e3c935822eedd437c47b22a9f2a22136517d69ae0af",
+    "source_fingerprint": "sha256:6a383c3ee568f0a8fbb32af0feb8b83aea5b4a20d7bf850f8a6645c8dd4965a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f57193e1241625e8cd4843eb562254b007d8ef812cc6a439e3982c48893dfe3c",
       "plan.md": "cafe26f54c50bba7f5ebcc96cf738d8923504563d34f4f994a148cd86a2b8932",
       "tasks.md": "48af9985bf16dca1c9d7fe77841fe1403d312181dc2b52ba2717ecc076556dbe",
-      "decision-record.md": "2a85363cde575c9d2efed7b0dd5ac849d6a9ba40ee56b80b41fcae9094d05330",
+      "decision-record.md": "090c95b7273d0d24c058ee8cd325348671ec37abd2c65b8121e6135f18f2509d",
       "implementation-summary.md": "a4827fc427c5f6e4450e3315f06e284357010df6ccaeddaff447ebbafe25b0fc"
     },
     "last_active_child_id": null,

@@ -25,6 +25,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:summary -->
 ## Summary
 
 - **Total references**: 32
@@ -36,8 +37,11 @@ _memory:
 > Action vocabulary: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated`.
 > Status: `OK` (exists on disk) · `MISSING` (referenced but absent) · `PLANNED` (intentional future path).
 
+<!-- /ANCHOR:summary -->
+
 ---
 
+<!-- ANCHOR:readmes -->
 ## 1. READMEs
 
 | Path | Action | Status | Note |
@@ -49,8 +53,11 @@ _memory:
 | `.opencode/skills/system-spec-kit/templates/level_3+/README.md` | Updated | OK | Optional Files subsection. |
 | `.opencode/skills/system-spec-kit/README.md` | Updated | OK | Template architecture section. |
 
+<!-- /ANCHOR:readmes -->
+
 ---
 
+<!-- ANCHOR:documents -->
 ## 2. Documents
 
 | Path | Action | Status | Note |
@@ -59,8 +66,11 @@ _memory:
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/path-references-audit` (md) | Analyzed | OK | Reference shape (categories + table columns) inspiration. |
 | `.opencode/skills/system-spec-kit/templates/addendum/phase/phase-child-header.md` | Analyzed | OK | Consulted for the phase-child metadata rows. |
 
+<!-- /ANCHOR:documents -->
+
 ---
 
+<!-- ANCHOR:skills -->
 ## 3. Skills
 
 | Path | Action | Status | Note |
@@ -82,8 +92,11 @@ _memory:
 | `.opencode/skills/system-spec-kit/templates/level_1/implementation-summary.md` | Analyzed | OK | Impl summary shape reference. |
 | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Analyzed | OK | Level-detection + section-count logic consulted to diagnose validator output. |
 
+<!-- /ANCHOR:skills -->
+
 ---
 
+<!-- ANCHOR:specs -->
 ## 4. Specs
 
 | Path | Action | Status | Note |
@@ -102,16 +115,22 @@ _memory:
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/` | Analyzed | OK | Source of the path-references-audit artifact used as reference shape. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/` (parent spec folder) | Analyzed | OK | Confirmed existing phase inventory (001–011) and claimed number 012. |
 
+<!-- /ANCHOR:specs -->
+
 ---
 
+<!-- ANCHOR:scripts -->
 ## 5. Scripts
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts` | Updated | OK | Append `'resource-map.md'` to `SPEC_DOCUMENT_FILENAMES` so memory classification treats it as a canonical spec doc. |
 
+<!-- /ANCHOR:scripts -->
+
 ---
 
+<!-- ANCHOR:config -->
 ## 6. Config
 
 | Path | Action | Status | Note |
@@ -120,10 +139,14 @@ _memory:
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/002-resource-map-deep-loop-fix-creation/graph-metadata.json` | Created | OK | Listed above under Specs; appears here for completeness of config-like JSON. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/description.json` | Analyzed | OK | Parent packet metadata inspected; not yet updated with child 012 (parent-topology backfill deferred to P2). |
 
+<!-- /ANCHOR:config -->
+
 ---
 
+<!-- ANCHOR:meta -->
 ## 7. Meta
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `CLAUDE.md` | Updated | OK | Documentation Levels block mentions the new optional cross-cutting doc. |
+<!-- /ANCHOR:meta -->

@@ -21,6 +21,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:summary -->
 ## Summary
 
 - **Total references**: 13
@@ -28,18 +29,22 @@ _memory:
 - **Missing on disk**: 0
 - **Scope**: Files created or updated during packet `026/011/025-memory-search-degraded-readiness-wiring` (commit `bd0de4b6b`) plus cited type contracts.
 - **Generated**: 2026-04-29T10:10:00+02:00
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:scripts -->
 ## 1. Scripts
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts` | Created | OK | Shared `mapGraphReadinessToTelemetry()` helper consumed by handler + W10 |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | Updated | OK | Threaded `degradedReadiness` into `buildSearchDecisionEnvelope` (~line 1166); imports `getGraphReadinessSnapshot` + mapper |
+<!-- /ANCHOR:scripts -->
 
 ---
 
+<!-- ANCHOR:tests -->
 ## 2. Tests
 
 | Path | Action | Status | Note |
@@ -47,18 +52,22 @@ _memory:
 | `.opencode/skills/system-spec-kit/mcp_server/tests/graph-readiness-mapper.vitest.ts` | Created | OK | Unit tests: 4 freshness states (fresh/stale/empty/error) → `degraded` derivation |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts` | Updated | OK | TC-3 expected_fail removed; mocks `getGraphReadinessSnapshot`, asserts envelope's `degradedReadiness.freshness` |
 | `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts` | Updated | OK | Snapshot path uses shared helper; richer `handleCodeGraphQuery` payload path stays inline |
+<!-- /ANCHOR:tests -->
 
 ---
 
+<!-- ANCHOR:scripts-2 -->
 ## 3. Cited Contracts
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` | Cited | OK | `getGraphReadinessSnapshot()` + `GraphReadinessSnapshot` type — non-mutating reader |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts` | Cited | OK | `DegradedReadinessTelemetry` interface (lines 31-42) consumed by mapper |
+<!-- /ANCHOR:scripts-2 -->
 
 ---
 
+<!-- ANCHOR:specs -->
 ## 4. Specs
 
 | Path | Action | Status | Note |
@@ -68,11 +77,14 @@ _memory:
 | `tasks.md` | Created | OK | Task ledger |
 | `implementation-summary.md` | Created | OK | Disposition + tsc-race incident note |
 | `.../025/description.json` | Created | OK | Continuity index |
+<!-- /ANCHOR:specs -->
 
 ---
 
+<!-- ANCHOR:meta -->
 ## 5. Meta
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.../025/graph-metadata.json` | Created | OK | Graph rollout metadata; depends_on 023 (PP-1) |
+<!-- /ANCHOR:meta -->

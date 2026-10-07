@@ -1,3 +1,12 @@
+---
+title: "Implementation Plan: Docs and Closeout"
+description: "Close the fan-out parity packet: author the closeout summary, reconcile the parent to Complete, and name the frozen executor matrix the canonical parity reference. Docs and metadata only."
+trigger_phrases:
+  - "fanout parity docs closeout plan"
+  - "fanout parity closeout summary"
+importance_tier: "medium"
+contextType: "implementation"
+---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

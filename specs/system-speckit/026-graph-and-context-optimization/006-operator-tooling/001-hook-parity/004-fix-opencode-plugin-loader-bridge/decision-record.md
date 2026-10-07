@@ -72,10 +72,10 @@ Treat `.opencode/plugins/` as a flat plugin-entrypoint directory. In OpenCode 1.
 - **Positive**: The contract documentation becomes a reusable reference for any future OpenCode plugin authoring or upgrade probe.
 - **Negative**: Phase 1 must complete before Phase 2 can begin; partial-knowledge implementation risks shipping against assumption.
 
-<!-- /ANCHOR:adr-001 -->
+<!-- /ANCHOR:adr-001-consequences -->
 
 ---
-<!-- /ANCHOR:adr-001-consequences -->
+<!-- /ANCHOR:adr-001 -->
 ### ADR-002: Remediation outcome selection (A / B / C)
 
 **Status**: Accepted.

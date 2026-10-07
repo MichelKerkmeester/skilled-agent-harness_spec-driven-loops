@@ -42,11 +42,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "formatters/search-results.ts",
-      "schemas/tool-input-schemas.ts",
-      "tests/memory/trust-badges.test.ts",
-      "handlers/index.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -71,30 +67,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": "schemas/tool-input-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "trust-badges.test.ts",
-        "kind": "test",
-        "path": "tests/memory/trust-badges.test.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "handlers/index.ts",
         "source": "derived"
       },
       {
@@ -192,11 +164,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Findings Closed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cache-key",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "full-traversal-then-slice",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 010 sub-phases 001-006 shipped under sandbox-blocked verification",
     "created_at": "2026-04-25T13:51:18.730Z",
-    "last_save_at": "2026-08-30T15:39:32.023Z",
+    "last_save_at": "2026-10-07T20:08:47.625Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76d454a9b6a4fc6a71789cc02c8f8785b4bf0a37966171149d034e13db73729e",
+    "source_fingerprint": "sha256:a8089a0e310e461cfd6d4e09bdf18ba768c5ea5305b693a3f806fa6ab631340f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2f9103548a779e348de746db4982e5a3ff45095b1ce07256e12f19b9ab762e2d",
-      "plan.md": "986fec3039e685538cb1f081697dd5444143aea2875883def6f4158b86cc502c",
-      "tasks.md": "ae29bb194db063aa614c7477730afe115590f5f2a12ac9d1cec9340c559a8a86",
-      "implementation-summary.md": "77c4577e81e15e25485537aad5916ce7895a8ba25ccd5df3c74d28fa76ac5304"
+      "plan.md": "b757f786d3faa3319b9c88ca48ca8d35a7004388059845e839affab038a2a65c",
+      "tasks.md": "5b0749f2fefef129a204d2920d56991515191b99d9175a3ec2ba754a527ad3b6",
+      "implementation-summary.md": "3ec4a5a873ea7c1bdc429b7e18f2d015c381472dcfbf2408b7da6d90c719439c"
     },
     "last_active_child_id": null,
     "last_active_at": null

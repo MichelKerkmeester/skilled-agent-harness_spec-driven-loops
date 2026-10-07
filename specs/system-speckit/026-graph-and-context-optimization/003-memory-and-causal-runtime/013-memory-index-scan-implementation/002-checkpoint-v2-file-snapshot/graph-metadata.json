@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`checkpointcreate` takes a full rollback snapshot before risky migrations by serializing the entire database with one `JSON.stringify(snapshot)` call (`lib/storage/checkpoints.ts:1604`)",
     "created_at": "2026-06-01T16:00:00.000Z",
-    "last_save_at": "2026-09-11T16:42:34.007Z",
+    "last_save_at": "2026-10-07T20:08:46.282Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:f2e5b7d79856a94c7f391af1dd18f77e43b84d57659ce6b77742504b014994e3",
+    "source_fingerprint": "sha256:7ed34611ccd8cc23f2710b29bbfdc72890056553b597ba0abfe84c9cdef1f202",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "065b120b12548deca957ae63f8c5858f989a37e47d8d9eb075ce3acd088ce6c5",
@@ -218,7 +218,7 @@
       "tasks.md": "d7b0f87254087c4f5a2593b8497f3e87361921a9f0f4d5b78c9176510da0c354",
       "decision-record.md": "143e86fee2a9281f62a6de069f2fc34d34dee2d35b928a7a83347ac1fb11b8be",
       "implementation-summary.md": "1c656dcc183ec8be0544d8d7d35695291ebec2aa49d0ecb5a43d01a42b8777bb",
-      "handover.md": "a1311d24763bc52cbbf0ae178fda087f07aa11a37a192aee287beffd4a60cc7e"
+      "handover.md": "02f1450ac8dc424bf9e892e21897439566669232a6184f06d260e0d72db091b1"
     },
     "last_active_child_id": null,
     "last_active_at": null

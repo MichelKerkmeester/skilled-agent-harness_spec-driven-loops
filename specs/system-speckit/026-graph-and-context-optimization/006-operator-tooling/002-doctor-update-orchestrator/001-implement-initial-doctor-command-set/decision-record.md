@@ -48,6 +48,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: memory_index_scan transaction model
 
 **Status**: **CONFIRMED — per-batch (per-file) transactions** (verified 2026-05-09 Phase A.1)
@@ -75,6 +76,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:adr-001 -->
+
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Pre-rebuild snapshots
 
 **Council question**: Should the orchestrator snapshot every SQLite file before starting, or rely on each subsystem's own snapshot mechanism?
@@ -91,6 +95,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:adr-002 -->
+
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Lock contention with active MCP clients
 
 **Council question**: How does the orchestrator detect and respond to other MCP clients holding SQLite WAL locks?
@@ -107,6 +114,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:adr-003 -->
+
+<!-- ANCHOR:adr-004 -->
 ## ADR-004: Partial-failure recovery
 
 **Council question**: If `memory_index_scan` halts at minute 8 of 12, what's the recovery contract?
@@ -123,6 +133,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:adr-004 -->
+
+<!-- ANCHOR:adr-005 -->
 ## ADR-005: Concurrent dispatch protection
 
 **Council question**: How do we prevent two `/doctor:update` invocations at the same time?
@@ -139,6 +152,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:adr-005 -->
+
+<!-- ANCHOR:adr-006 -->
 ## ADR-006: Tier-aware interactive mode (superseded)
 
 **Council question**: How much prompting should bare `/doctor:update` use?
@@ -161,6 +177,9 @@ This historical ADR was reduced by ADR-010: bare commands keep the tier-aware pr
 
 ---
 
+<!-- /ANCHOR:adr-006 -->
+
+<!-- ANCHOR:adr-007 -->
 ## ADR-007: Cancellation semantics
 
 **Council question**: User Ctrl-Cs at minute 8 of memory rebuild. What's the cancellation contract?
@@ -179,6 +198,9 @@ This historical ADR was reduced by ADR-010: bare commands keep the tier-aware pr
 
 ---
 
+<!-- /ANCHOR:adr-007 -->
+
+<!-- ANCHOR:adr-008 -->
 ## ADR-008: Version migration legacy files
 
 **Council question**: A user at 3.3.0.0 has `memory.db` (legacy, 0 bytes). Does `/doctor:update` delete it?
@@ -195,6 +217,9 @@ This historical ADR was reduced by ADR-010: bare commands keep the tier-aware pr
 
 ---
 
+<!-- /ANCHOR:adr-008 -->
+
+<!-- ANCHOR:adr-009 -->
 ## ADR-009: External second-opinion (optional)
 
 **Status**: Open.
@@ -206,6 +231,8 @@ This historical ADR was reduced by ADR-010: bare commands keep the tier-aware pr
 **Default if not dispatched**: Document waiver here with rationale (e.g., "internal council convergence was strong; external dispatch deferred to follow-on packet if Q3 ADR-001 finding contradicts the council's per-batch assumption").
 
 ---
+
+<!-- /ANCHOR:adr-009 -->
 
 ## Cross-cutting Notes
 
@@ -219,6 +246,7 @@ This historical ADR was reduced by ADR-010: bare commands keep the tier-aware pr
 
 ---
 
+<!-- ANCHOR:adr-010 -->
 ## ADR-010: Mode reduction to interactive-only doctor commands
 
 **Status**: Decided.
@@ -236,3 +264,5 @@ This historical ADR was reduced by ADR-010: bare commands keep the tier-aware pr
 - Mode-suffixed doctor invocations are invalid.
 - YAML references use bare asset names such as `doctor_memory.yaml` and `doctor_update.yaml`.
 - Playbook scenarios that existed only for deleted autonomous or skip-status modes are removed in sibling packet `002-sandbox-testing-playbook` ADR-008.
+
+<!-- /ANCHOR:adr-010 -->

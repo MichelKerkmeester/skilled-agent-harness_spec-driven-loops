@@ -21,6 +21,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:summary -->
 ## Summary
 
 - **Total references**: 11
@@ -31,6 +32,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:tests -->
 ## 1. Tests
 
 | Path | Action | Status | Note |
@@ -39,6 +43,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:tests -->
+
+<!-- ANCHOR:scripts -->
 ## 2. Scripts (cited boundaries)
 
 > Read but NOT modified by 023; mocked or invoked by the test.
@@ -52,6 +59,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:scripts -->
+
+<!-- ANCHOR:specs -->
 ## 3. Specs
 
 | Path | Action | Status | Note |
@@ -64,8 +74,13 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:specs -->
+
+<!-- ANCHOR:meta -->
 ## 4. Meta
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.../023/graph-metadata.json` | Created | OK | Graph rollout metadata |
+
+<!-- /ANCHOR:meta -->

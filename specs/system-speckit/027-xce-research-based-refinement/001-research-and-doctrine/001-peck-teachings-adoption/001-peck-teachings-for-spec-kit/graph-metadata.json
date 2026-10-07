@@ -46,10 +46,7 @@
       "tasks.md",
       "implementation-summary.md",
       "research/research.md",
-      "peck-teachings-analysis.md",
-      "scripts/utils/template-structure.js",
-      "scripts/lib/validator-registry.json",
-      "scripts/spec/validate.sh"
+      "peck-teachings-analysis.md"
     ],
     "entities": [
       {
@@ -86,24 +83,6 @@
         "name": "peck-teachings-analysis.md",
         "kind": "doc",
         "path": "peck-teachings-analysis.md",
-        "source": "derived"
-      },
-      {
-        "name": "template-structure.js",
-        "kind": "code",
-        "path": "scripts/utils/template-structure.js",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": "scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": "scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -195,11 +174,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "clone",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "user",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The user asked whether the external repo `gytis-ivaskevicius/peck` contains any teachings that could",
     "created_at": "2026-06-02T08:38:07Z",
-    "last_save_at": "2026-08-30T15:39:33.164Z",
+    "last_save_at": "2026-10-07T21:19:52.769Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +206,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e893b16d903bdab4cfa8fbdc31bdc08fd9fdb651cababf93c792ed16dac127a8",
+    "source_fingerprint": "sha256:49e4ba45fa6bcaa0c04f1edcac5c290e634d3385271f7474946ccaa4eb9ec9ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7f4b274ab2c26db096a2c7a4b6a73f7ad28d4f8b902caa5f7136de594f5cb4ef",
-      "plan.md": "2e07855cd04ac886be153611dc78fff20a6367cb46b14749e97b48e758e55e4d",
-      "tasks.md": "e6e35a1d699e5aac6632a8f75b67545490338f46a34e8c7d037cca59cfa3914a",
+      "plan.md": "843ca73de54ebf052847b3750fdc0c236388061660b256bb67b0622624b04b81",
+      "tasks.md": "ecddaa9a056d110e26ccaa86e64fc44ae0bdec676fcee4c7912916ae29030dab",
       "implementation-summary.md": "4a18b1dda6adde913dd445dbea1d9eb64e06995add141a1369ba28c757086011",
       "research/research.md": "89156db06c7bcb38503bc81c65d197d16b801adbb77fd0a1ad8f5be733264160"
     },

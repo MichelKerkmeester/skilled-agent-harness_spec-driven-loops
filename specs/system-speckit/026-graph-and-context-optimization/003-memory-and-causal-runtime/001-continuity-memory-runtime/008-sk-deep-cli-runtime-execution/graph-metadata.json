@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Merged packet covering the CLI executor arc: 001-executor-feature (ex-018, native + cli-codex) plus 002-runtime-matrix (ex-019 + cli-gemini + cli-claude-code). Shared executor-config.ts, dispatch YAML branching, per-kind flag validation.",
     "created_at": "2026-04-18T14:39:22.815Z",
-    "last_save_at": "2026-08-30T15:39:29.488Z",
+    "last_save_at": "2026-10-07T19:51:20.567Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5fcae49e6fca8426602f4ee5dadaf37683c2a8821dfed6c736efc43dba9e1d89",
+    "source_fingerprint": "sha256:ce662cd045a6ed542e51d28c8818e81e90fb6312596b9387eae901c332e9a914",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "98ab867121ae0927547e195848dad99132f8150c0f560ba4f4d476a8e197360f",
-      "plan.md": "4ee3e4fbd0cf76262709db96f146395d7b0bf403869413ebcf278d854faa6bd3",
-      "tasks.md": "e6d9b32af6702508cc4c04783607271f2e17e66476371297e834565ff505a7d5",
-      "implementation-summary.md": "a0e4ddac9575d9aaee5946bc9b3f38340b900621df5b3cb90602debd7983087e"
+      "spec.md": "9ddba04a3f8a32641fd456274b04031086afcfbeefa395e29e09ccfec2802b56",
+      "plan.md": "41ecbb9a0843d3605b8681a290c15bce541b07cb8fb71d19844ca551d40fea01",
+      "tasks.md": "c4784e790b482e5cc94eac8eafe36ee3e55a7692abf2f6936063adefce4165f5",
+      "implementation-summary.md": "593e2c580a72052a52d04825b54966cb30b4526c5780da5fa847bc44abaa0eb4"
     },
     "last_active_child_id": null,
     "last_active_at": null

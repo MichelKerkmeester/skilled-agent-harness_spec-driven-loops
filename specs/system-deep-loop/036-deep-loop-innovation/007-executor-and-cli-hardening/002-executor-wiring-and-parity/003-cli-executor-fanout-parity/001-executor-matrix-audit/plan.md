@@ -1,3 +1,13 @@
+---
+title: "Implementation Plan: Deep-loop Executor / Provider / Model Matrix Audit"
+description: "Read-only audit that freezes the authoritative (cli × provider × model × mode) support matrix for the deep-loop fan-out and a gap register with a disposition per gap. No runtime code changes."
+trigger_phrases:
+  - "executor matrix audit plan"
+  - "executor support matrix freeze"
+  - "executor gap register plan"
+importance_tier: "high"
+contextType: "planning"
+---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

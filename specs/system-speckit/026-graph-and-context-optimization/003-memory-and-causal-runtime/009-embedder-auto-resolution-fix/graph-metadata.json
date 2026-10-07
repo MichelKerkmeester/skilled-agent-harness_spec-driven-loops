@@ -14,15 +14,15 @@
       "embedder auto resolution fix",
       "factory node:sqlite metadata read",
       "revert embeddings provider ollama pin",
-      "implementation",
-      "plan",
-      "embedder",
+      "embedder auto resolution fix plan",
       "auto-resolution",
-      "factory",
-      "tasks",
+      "node:sqlite factory fix",
+      "embedder auto resolution fix tasks",
       "node:sqlite",
-      "summary",
-      "session"
+      "embedder auto resolution fix decision record",
+      "factory metadata probe",
+      "node sqlite vs better sqlite3",
+      "embedder auto resolution fix summary"
     ],
     "key_topics": [
       "embedder",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Phase 008 proved why `EMBEDDINGSPROVIDER=auto` silently degrades to the unhealthy `hf-local` fallback even though ollama is up and owns the active vector shard: `factory.ts` reads the active-embedder metadata by shelling out to a bare `sqlite3` binary (`querySqliteScalar` → `execFileSync('sqlite3', …)`), and that helper returns `null` on any error, including `ENOENT`",
     "created_at": "2026-05-27T13:26:56.638Z",
-    "last_save_at": "2026-09-11T16:42:33.985Z",
+    "last_save_at": "2026-10-07T20:08:43.388Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,15 +214,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:ddf858441532aa7ab7d7ae4b3a4deb1f8d0b1445c21399ee24302c4f5890452b",
+    "source_fingerprint": "sha256:a4cb3935622adf6bb684c926adb0d59ac85fa311b8c97d27375bceb12eca31ad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "94eef99e1c12327d743bc48fad08cb0b0718b3b3061018c64b4729ca27a4b2f0",
-      "plan.md": "8d070aa8aa78b75c14b6ecc56bdc4fa2d9f9939d3df98608c1b1ecf284003ef8",
-      "tasks.md": "cf15d7585ec999c97d5010cb9d27e4770d2cdf24c9ebfa7172f04e504dac690f",
-      "decision-record.md": "aca7ccbbf0d743cb764dbed7afb4a7ac60cb42d90f5fa1a2a4ea52bfa890dfea",
-      "implementation-summary.md": "d78eef67fda83a0d92c2eb335c0afd8d8b6743ef6077f54d33973679c131d0e5",
-      "handover.md": "0ee04c6629003809310247f2c85de22bad97d43f76994b7fc7ae36a7f5d22e57"
+      "plan.md": "b4f21262b297a901b7fd08e88ff5cfec8f7f3d7d2b048c4532ed84acf6712905",
+      "tasks.md": "6d56dc133f5287e94f1519c14078c0f23eb6e130491fb4fe7b37aca4a8403f6e",
+      "decision-record.md": "7822c20f6697b50663f6acd460a103f0460b359d50a46acbae1544a51fa217c2",
+      "implementation-summary.md": "da796fa1f4289649bb91fff387e356e9dccdde35e801e1db01acbf67c80fc562",
+      "handover.md": "6f1160fc8624491bc52c81852c9a84c6985a5328b17d71453c1278a72ca53b51"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,11 +2,9 @@
 title: "Implementation Plan: Robust embedding-provider auto-resolution fix"
 description: "Plan for replacing the factory sqlite3 shell-out with a node:sqlite read and generalizing provider/shard resolution, then reverting the interim ollama pin."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "embedder"
+  - "embedder auto resolution fix plan"
   - "auto-resolution"
-  - "factory"
+  - "node:sqlite factory fix"
 importance_tier: "important"
 contextType: "general"
 _memory:

@@ -12,22 +12,26 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
+    "trigger_phrases": [
+      "changelog accuracy reaudit",
+      "changelog drift re-audit",
+      "changelog accuracy research record"
+    ],
     "key_topics": [
-      "spec",
       "changelog",
       "accuracy",
+      "reaudit",
+      "drift",
       "re-audit",
-      "deep",
       "research",
-      "folder-alignment",
-      "audit",
-      "20-iteration",
-      "5-way-parallel",
-      "gpt-5",
-      "5-fast-high"
+      "record",
+      "independent",
+      "changelogs",
+      "003-memory-and-causal-runtime",
+      "track",
+      "against"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "planned",
     "key_files": [
       "spec.md",
@@ -113,19 +117,19 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Spec: 026 Changelog Accuracy Re-Audit",
+    "causal_summary": "Independent re-audit of 20 changelogs in the 003-memory-and-causal-runtime track against their referenced spec folders, recording ACCURATE, MINOR-DRIFT and MAJOR-DRIFT verdicts plus in-session fixes for real drift.",
     "created_at": "2026-07-10T06:19:18.252Z",
-    "last_save_at": "2026-09-11T16:42:29.752Z",
+    "last_save_at": "2026-10-07T19:47:38.637Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:984c72105eb74448a54edc8ffa530761464fadf5e6c31574f2a5330fe95dd506",
+    "source_fingerprint": "sha256:f13265fdb89aa77a66ddbd0d3633f566348b15f1d77ada36c59e5a1a794f3a82",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d64f7601227b562027536a07c9fcb777271a24b5b880adb58c3b53a25ce8c0f3",
+      "spec.md": "c988f65451b4fd86e1a7c2b12b153455b15edc12cd15979c660c10482cb0c18a",
       "research/research.md": "2446e28b42b4381baf2b94f8eff0c79449027ec7f709718a536a3883bdb18056"
     },
     "last_active_child_id": null,

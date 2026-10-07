@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The rerank sidecar ledger currently records sidecar rows without process-owner identities",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-08-30T15:39:31.422Z",
+    "last_save_at": "2026-10-07T19:59:45.963Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a266ca4b6f6464a660f7d522673269316cb86d89e404665d0f0046dbdd62a25",
+    "source_fingerprint": "sha256:d1cc489c344e604e6cbfbdb9772f0c06316a2df8a2ae0b50d4da86f9ef5fce84",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "90aaae20152f5d0302cc29b4195de9947aadfe5e59c24371b92f83507b4a0ca5",
       "plan.md": "e9d7baeb341489cc82124c62543b10b20011f23c350843e65ef6d3635e06bd4d",
       "tasks.md": "fac161547c74ac078fd363dd35aa01e847bcfb8db923c6599addac147737d634",
-      "decision-record.md": "f5cfd075095eb5f676c552bf25b519ea8e4652790b0aa2064d2c4615e20c3154",
+      "decision-record.md": "20ef9e3dab8015ec1972f3e5a39bcca82062f04ebd14031f894109aa2a2cd3ab",
       "implementation-summary.md": "e75dfab2e32468a4811ab514d5c9d1f2bfcb6aaf10f212b57ab6c565d2edf299"
     },
     "last_active_child_id": null,

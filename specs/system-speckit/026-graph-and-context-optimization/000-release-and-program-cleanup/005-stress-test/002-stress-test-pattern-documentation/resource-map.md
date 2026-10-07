@@ -21,6 +21,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:summary -->
 ## Summary
 
 - **Total references**: 19
@@ -31,6 +32,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:readmes -->
 ## 1. READMEs
 
 | Path | Action | Status | Note |
@@ -40,6 +44,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:readmes -->
+
+<!-- ANCHOR:documents -->
 ## 2. Documents
 
 | Path | Action | Status | Note |
@@ -55,6 +62,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:documents -->
+
+<!-- ANCHOR:specs -->
 ## 3. Specs
 
 | Path | Action | Status | Note |
@@ -68,6 +78,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:specs -->
+
+<!-- ANCHOR:meta -->
 ## 4. Meta
 
 | Path | Action | Status | Note |
@@ -75,3 +88,5 @@ _memory:
 | `.../009/graph-metadata.json` | Created | OK | Graph rollout metadata |
 | `.opencode/skills/sk-doc/SKILL.md` | Analyzed | OK | Reference for DQI rules |
 | `.opencode/skills/system-spec-kit/feature_catalog/memory-quality-and-indexing/` | Analyzed | OK | Pattern reference |
+
+<!-- /ANCHOR:meta -->

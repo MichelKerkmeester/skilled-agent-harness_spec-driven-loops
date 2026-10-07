@@ -13,7 +13,11 @@
     "trigger_phrases": [
       "mcp session review",
       "tool schema parity audit",
-      "context-server audit"
+      "context-server audit",
+      "mcp session index schema review plan",
+      "tool schema parity review plan",
+      "mcp session index schema review tasks",
+      "tool schema parity review tasks"
     ],
     "key_topics": [
       "mcp",
@@ -24,21 +28,35 @@
       "parity",
       "audit",
       "context-server",
-      "lifecycle",
-      "incremental",
-      "indexing",
-      "ingest"
+      "index",
+      "plan",
+      "tasks",
+      "lifecycle"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -76,20 +94,84 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Deeply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "schema-to-handler",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The MCP session lifecycle, incremental indexing, ingest, embedder management, the context-server entrypoint/dispatch, and the tool-schema layer all changed across 026",
     "created_at": "2026-06-04T18:53:35.319Z",
-    "last_save_at": "2026-08-30T15:39:28.954Z",
+    "last_save_at": "2026-10-07T19:50:59.181Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:8da87345ca26da8c854f2e1b8f545118ef232f19665b96b4e22996e7aa716b07",
+    "source_fingerprint": "sha256:6405eb80edca62f8b6b73d0a7e0277757e79f6663abf7570db35969e411049d5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d08899adc05178c81c677c6ec08618aa215a88d44317b485a64224eef6d5bf5e"
+      "spec.md": "d08899adc05178c81c677c6ec08618aa215a88d44317b485a64224eef6d5bf5e",
+      "plan.md": "55218450299ecb74f93f04e43f2503076b3a0f630b38d8c71a105a16c8f7b443",
+      "tasks.md": "604949ea0a47712d6818a20f264a7d1c5ee49cd9a0b2d97617a0fccea20ec9cc"
     },
     "last_active_child_id": null,
     "last_active_at": null

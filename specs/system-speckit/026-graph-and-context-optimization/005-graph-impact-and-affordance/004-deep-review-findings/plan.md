@@ -13,10 +13,14 @@ contextType: "implementation"
 
 <!-- SPECKIT_LEVEL: 2 -->
 
+<!-- ANCHOR:summary -->
 ## 1. STRATEGY
 
 Group the 21 P1 + 12 actionable P2 findings into 6 themed task batches. Sequence by dependency: T-A (MCP wiring decision) gates T-B (evidence sync). T-C/D/E/F are independent and parallelizable.
 
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:phases -->
 ## 2. THEMED TASK BATCHES
 
 ### T-A — `detect_changes` MCP wiring decision (P1, blocks T-B for sub-phases 002+006)
@@ -67,6 +71,9 @@ Group the 21 P1 + 12 actionable P2 findings into 6 themed task batches. Sequence
 - Effort: L (4-6h)
 - Findings closed: R-007-12, R-007-16, R-007-17, R-007-18, R-007-P2-2, R-007-P2-4, R-007-P2-5, R-007-P2-6, R-007-P2-7, R-007-P2-12
 
+<!-- /ANCHOR:phases -->
+
+<!-- ANCHOR:dependencies -->
 ## 3. SEQUENCING
 
 ```
@@ -94,12 +101,17 @@ With parallelism (T-A → {T-B + T-C + T-D + T-E in parallel} → T-F): ~13-17h
 Fully sequential: ~17-26h
 ```
 
+<!-- /ANCHOR:dependencies -->
+
+<!-- ANCHOR:testing -->
 ## 4. EXIT CRITERIA
 
 - All R-007-* tasks marked complete with evidence pointers
 - Re-run /deep:start-review-loop:auto (3 iterations is enough for a remediation verify pass): P0=0, P1≤2, P2 documented
 - Phase 010 closeout summary updated to reflect post-remediation state
 - Push all changes to main with conventional-commit messages
+
+<!-- /ANCHOR:testing -->
 
 ## 5. REFERENCES
 

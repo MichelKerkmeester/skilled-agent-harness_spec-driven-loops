@@ -15,6 +15,7 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 | Field | Value |
@@ -26,6 +27,9 @@ contextType: "implementation"
 
 ---
 
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:phases -->
 ## 2. EXECUTION
 
 1. Insert canonical "Code Standards Loading (codebase-agnostic baseline+overlay contract)" rule as the next ALWAYS item before `### NEVER` (or `### CONCURRENCY LIMIT` for cli-copilot) in each of 5 CLI SKILL.md files.
@@ -40,6 +44,9 @@ contextType: "implementation"
 
 ---
 
+<!-- /ANCHOR:phases -->
+
+<!-- ANCHOR:dependencies -->
 ## 3. DEPENDENCIES
 
 - Donor pattern: `.opencode/agents/review.md`
@@ -47,6 +54,11 @@ contextType: "implementation"
 
 ---
 
+<!-- /ANCHOR:dependencies -->
+
+<!-- ANCHOR:rollback -->
 ## 4. ROLLBACK
 
 `git restore` on the 10 files reverts all changes. No moves, deletes, or schema changes.
+
+<!-- /ANCHOR:rollback -->

@@ -21,6 +21,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:summary -->
 ## Summary
 
 - **Total references**: 11
@@ -28,27 +29,33 @@ _memory:
 - **Missing on disk**: 0
 - **Scope**: Files modified during packet `026/011/024-harness-telemetry-export-mode` (commit `c4f738b1d`) plus cited contracts.
 - **Generated**: 2026-04-29T10:10:00+02:00
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:tests -->
 ## 1. Tests
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts` | Updated | OK | Added optional `telemetry?` field to `SearchQualityChannelOutput`; propagated through `SearchQualityChannelCapture` and `SearchQualityCaseResult`; added `options.telemetryExportPath` writing 3 sibling JSONL files |
 | `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts` | Created | OK | Telemetry-mode test: TC-1 in-memory preservation, TC-2 JSONL export shape, TC-3 no-export-without-path |
+<!-- /ANCHOR:tests -->
 
 ---
 
+<!-- ANCHOR:scripts -->
 ## 2. Scripts (cited contracts)
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts` | Cited | OK | `SearchDecisionEnvelope` type imported into harness |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/shadow/shadow-sink.ts` | Cited | OK | `ShadowDeltaRecord` type imported into harness |
+<!-- /ANCHOR:scripts -->
 
 ---
 
+<!-- ANCHOR:specs -->
 ## 3. Specs
 
 | Path | Action | Status | Note |
@@ -58,12 +65,15 @@ _memory:
 | `tasks.md` | Created | OK | Task ledger |
 | `implementation-summary.md` | Created | OK | Disposition + back-compat verification |
 | `.../024/description.json` | Created | OK | Continuity index |
+<!-- /ANCHOR:specs -->
 
 ---
 
+<!-- ANCHOR:meta -->
 ## 4. Meta
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.../024/graph-metadata.json` | Created | OK | Graph rollout metadata |
 | `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts` | Analyzed | OK | Read-only contract reference (intentionally NOT modified) |
+<!-- /ANCHOR:meta -->

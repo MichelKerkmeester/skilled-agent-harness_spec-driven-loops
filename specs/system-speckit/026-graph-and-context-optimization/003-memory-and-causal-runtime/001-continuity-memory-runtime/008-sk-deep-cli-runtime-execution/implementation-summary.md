@@ -23,6 +23,7 @@ _memory:
 ## Status
 **Shipped** — both child packets merged to `main` 2026-04-18.
 
+<!-- ANCHOR:what-built -->
 ## What Shipped
 
 ### 001-executor-feature (ex-018)
@@ -41,6 +42,9 @@ _memory:
 - Per-kind YAML dispatch branches in all 4 YAMLs
 - Cross-CLI delegation documented
 
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:verification -->
 ## Test Metrics (combined)
 - Tests passing: 116 (up from 54 pre-feature)
 - Test files: 13 (up from 5)
@@ -51,15 +55,20 @@ _memory:
 
 30-iter deep-research via `cli-codex gpt-5.4 high fast` dogfood produced 12 R-IDs (R1-R12) in `research/017-sk-deep-cli-runtime-execution-pt-01/research.md`. Those closed in `../002-cli-executor-remediation/`.
 
+<!-- /ANCHOR:verification -->
+
 ## Changelogs
 
 - `.opencode/changelog/12--sk-deep-research/v1.10.0.0.md`
 - `.opencode/changelog/13--sk-deep-review/v1.7.0.0.md`
 - `.opencode/changelog/01--system-spec-kit/v3.4.0.2.md` (executor wiring)
 
+<!-- ANCHOR:how-delivered -->
 ## Consolidation Provenance
 
 This top-level packet is a post-ship consolidation of the ex-`017-sk-deep-cli-runtime-execution/001-executor-feature` and ex-`017-sk-deep-cli-runtime-execution/002-runtime-matrix` packets into a single thematic arc. No source code changed during consolidation. Only folder structure and cross-references were updated.
+
+<!-- /ANCHOR:how-delivered -->
 
 ---
 

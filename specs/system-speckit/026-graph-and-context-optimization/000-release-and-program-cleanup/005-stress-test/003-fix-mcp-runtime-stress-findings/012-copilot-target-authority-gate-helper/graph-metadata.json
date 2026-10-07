@@ -184,7 +184,7 @@
     ],
     "causal_summary": "The v1.0.2 stress-test rerun cell `runs/I1/cli-copilot-1` scored 2/8: cli-copilot mutated `009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/graph-metadata.json` without operator authorization",
     "created_at": "2026-04-27T20:00:00Z",
-    "last_save_at": "2026-10-04T09:20:11.659Z",
+    "last_save_at": "2026-10-07T19:39:56.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +193,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6c2a93712db9164432025c4228e82f955915a796c7d36e6edee9100dcfee75f",
+    "source_fingerprint": "sha256:f5b55660164d938460c0b290c5fc7b67eb820a2c7ea7cf4d18683cf62340ff16",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bf0d5fbccc7c67c709e29ae17169d65bf0a9b4ba0fee61ac89ff52781518fec4",
+      "spec.md": "1c6d16e0e286dec258030520d2b6e4c5901816c5416f6187d93ae7bf89bab1c5",
       "plan.md": "398d4d9e37992aeac7bda2d6d009fa3c59c31ab05577dbec861031036bc1bc07",
       "tasks.md": "69d1a640594624890405ce399f97a439f3b5c2f0049f177b79c4e741ad74ba41",
-      "implementation-summary.md": "084cb8d119de41bc577002598eb620173573307ab4d18f516ad026715a929e29"
+      "implementation-summary.md": "ae5169005bffc006a21cdfe17dc0f35de144e40a71e781cd3e30ed5d87ead89f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -6,18 +6,22 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "implementation"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Manual Playbook Sweep Findings Remediation
 
 <!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
+<!-- ANCHOR:summary -->
 ## Approach
 
 For each FAIL scenario, this plan states: the observed symptom (from the scenario's own Evidence/VERDICT text), a root-cause hypothesis, the files most likely responsible (per the scenario's own Failure Triage pointers where present), and a proposed fix direction. Entries are grouped by theme where a shared root cause is plausible. **No fix has been implemented yet** — this is planning only, per REQ scope. Each hypothesis must be re-verified against real code before any change lands (a dispatch's self-reported root cause is a hypothesis, not a fact).
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:affected-surfaces -->
 ## Group A: Feature-flag / kill-switch propagation bugs
 
 FIVE findings now show the same shape: a boolean env flag doesn't actually control its feature's effect, despite unit tests passing. This is a strong signal there may be ONE shared root cause (e.g. a common flag-reading utility that's broken, or a caching layer that ignores flag state) rather than 5 independent bugs -- worth checking for a shared pattern before fixing each individually. Members: REQ-110 (SPECKIT_GRAPH_UNIFIED), REQ-113 (SPECKIT_MEMORY_ADAPTIVE_RANKING), REQ-200 (ENABLE_BM25), REQ-211 (SPECKIT_CAUSAL_BOOST / isCausalBoostEnabled), REQ-212 (SPECKIT_COMMUNITY_SEARCH_FALLBACK), REQ-214 (isContextHeadersEnabled / contextual tree injection) -- SIX findings now, strong signal of a shared root cause worth investigating as ONE fix before touching each site individually.
@@ -84,3 +88,4 @@ Three findings all touch the Stage-2 scoring/fusion pipeline; worth investigatin
 
 ### REQ-016 — `memory_context` specFolder/intent mismatch
 - **Fix direction**: Check intent resolution when specFolder is provided without explicit intent.
+<!-- /ANCHOR:affected-surfaces -->

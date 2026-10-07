@@ -25,6 +25,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. ARC OVERVIEW
 
 | Sequence | Child | Shipped | Key Artifacts |
@@ -34,6 +35,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:architecture -->
 ## 2. CROSS-CUTTING INVARIANTS
 
 1. YAML owns state, convergence, and dispatch — executor is HOW, YAML is WHAT
@@ -44,8 +48,12 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:architecture -->
+
+<!-- ANCHOR:dependencies -->
 ## 3. CROSS-REFERENCES
 
 - Research root: `research/017-sk-deep-cli-runtime-execution-pt-01/` (30-iter deep-research dogfood that seeded the 018-cli-executor-remediation packet)
 - Downstream remediation: `../002-cli-executor-remediation/` (closes R1-R12)
 - Related changelogs: `.opencode/changelog/12--sk-deep-research/v1.10.0.0.md`, `.opencode/changelog/13--sk-deep-review/v1.7.0.0.md`
+<!-- /ANCHOR:dependencies -->

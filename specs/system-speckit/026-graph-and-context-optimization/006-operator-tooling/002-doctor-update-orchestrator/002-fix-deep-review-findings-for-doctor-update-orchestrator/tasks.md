@@ -28,14 +28,17 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 
+<!-- ANCHOR:notation -->
 | Prefix | Meaning |
 |--------|---------|
 | `[ ]` | Pending |
 | `[x]` | Completed |
 | `[~]` | Deferred (with note) |
+<!-- /ANCHOR:notation -->
 
 ---
 
+<!-- ANCHOR:phase-1 -->
 ## Phase A — Doc Honesty (cli-codex gpt-5.5 high fast)
 
 - [ ] T-A01 Run `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{...}' .opencode/specs/.../001-implement-initial-doctor-command-set` → fixes description.json.specFolder
@@ -56,6 +59,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:phase-1 -->
+
+<!-- ANCHOR:phase-2 -->
 ## Phase B — Security Hardening (cli-codex gpt-5.5 high fast)
 
 - [ ] T-B01 In `.opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh`: remove `--no-audit` flag from any `npm install` invocation; if audit failures would block bootstrap, add explicit `npm audit --audit-level=high` step after install
@@ -66,6 +72,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:phase-2 -->
+
+<!-- ANCHOR:phase-3 -->
 ## Phase C — Cross-Runtime Mirror (cli-codex gpt-5.5 high fast)
 
 - [ ] T-C01 For each `cmd` in `{memory, causal-graph, deep-loop, cocoindex, update}`: create `.claude/commands/doctor/<cmd>.md` from `.opencode/commands/doctor/<cmd>.md`, adjusting frontmatter for Claude conventions (mainly `allowed-tools` shape)
@@ -77,6 +86,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:phase-3 -->
+
+<!-- ANCHOR:phase-4 -->
 ## Phase D — P2 Cleanup (cli-codex gpt-5.5 high fast)
 
 - [ ] T-D01 Refresh `_memory.continuity.last_updated_at` field to today's ISO date across affected packet docs (R9-P2-003, R9-P2-004 — only update those flagged as stale by iter-009)
@@ -90,6 +102,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:phase-4 -->
+
+<!-- ANCHOR:completion -->
 ## Final Verification + Close-Out
 
 - [ ] T-V01 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator --strict` exits 0
@@ -102,8 +117,13 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:completion -->
+
+<!-- ANCHOR:cross-refs -->
 ## Cross-References
 
 - **Spec**: `spec.md`
 - **Plan**: `plan.md`
 - **Source-of-truth for findings**: `../review/review-report.md` (commit `8d794afad`)
+
+<!-- /ANCHOR:cross-refs -->

@@ -41,7 +41,7 @@ _memory:
 | **Spec Folder** | 010-cocoindex-code-only-patterns |
 | **Completed** | 2026-05-13 (settings shipped); rebuild in flight |
 | **Level** | 1 |
-| **Status** | In Progress (50%) — settings.yml + source defaults updated, daemon restarted, clean rebuild started; verification pending rebuild completion |
+| **Status** | In Progress (settings updated; clean rebuild in flight) |
 <!-- /ANCHOR:metadata -->
 
 ---

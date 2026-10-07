@@ -14,6 +14,7 @@ contextType: "planning"
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. APPROACH
 
 Five sequential cli-codex dispatches with gpt-5.5 reasoning=high service_tier=fast, each scoped to one batch from sibling packet 021's review findings (post user Q1=A / Q2=yes reclassification). Per-batch prompt-pack enforces RM-8 BANNED OPERATIONS (no `rm`/`mv`/`git rm`/`sed -i` outside the declared file scope; scope violations → in-finding record, not executed). Each batch ends with a grep-based acceptance check before the next batch starts.
@@ -21,9 +22,11 @@ Five sequential cli-codex dispatches with gpt-5.5 reasoning=high service_tier=fa
 Closing: a confirmatory `/deep:start-review-loop:auto` re-run against the same scope as 021 to confirm the FAIL → PASS transition.
 
 This follows the `013/003` precedent: cli-codex batched remediation worked there with zero out-of-scope writes across 28-min walltime per batch.
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:architecture -->
 ## 2. PER-BATCH DISPATCH CONTRACTS
 
 ### Batch 1 — 014/017 narrative correction (4-6 findings, ~10 min)
@@ -123,9 +126,11 @@ Acceptance: Re-run `vitest` for the touched test files; all PASS. `rg 'all-MiniL
 ### Confirmatory re-review
 
 After batches 1-5 land, dispatch `/deep:start-review-loop:auto` against the same scope as packet 021 used. Target spec folder: a new sibling phase `023-post-remediation-re-review` (Level 2). Expected verdict: PASS or PASS-with-advisories (no P0/P1).
+<!-- /ANCHOR:architecture -->
 
 ---
 
+<!-- ANCHOR:quality-gates -->
 ## 3. RM-8 / DESTRUCTIVE-SCOPE GUARD
 
 | Layer | Status | Notes |
@@ -134,9 +139,11 @@ After batches 1-5 land, dispatch `/deep:start-review-loop:auto` against the same
 | 2 — Worktree isolation | Optional | Each batch's diff small enough to inspect manually before next |
 | 3 — Commit baseline | Captured per batch | `git rev-parse HEAD` before dispatch; commit after grep-acceptance passes |
 | 4 — Model fallback | N/A | cli-codex + gpt-5.5 high fast is the chosen executor |
+<!-- /ANCHOR:quality-gates -->
 
 ---
 
+<!-- ANCHOR:testing -->
 ## 4. SUCCESS CRITERIA TRACEABILITY
 
 | SC | Verification |
@@ -145,3 +152,4 @@ After batches 1-5 land, dispatch `/deep:start-review-loop:auto` against the same
 | SC-002 | `023-post-remediation-re-review/review/review-report.md` verdict ∈ {PASS, PASS-with-advisories} |
 | SC-003 | Final `git status --porcelain` outside 022/023 packets matches baseline |
 | SC-004 | Sum of per-batch elapsed seconds ≤ 10800s |
+<!-- /ANCHOR:testing -->

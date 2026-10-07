@@ -21,6 +21,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:summary -->
 ## Summary
 
 - **Total references**: 18
@@ -28,25 +29,31 @@ _memory:
 - **Missing on disk**: 0
 - **Scope**: Files modified during packet `026/011/028-deep-review-research-skill-contract-fixes` (commit `649b46576`).
 - **Generated**: 2026-04-29T10:10:00+02:00
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:scripts -->
 ## 1. Scripts
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` | Updated | OK | `resolveArtifactRoot` flat-first: empty rootDir → flat; flat-config matching target → reuse flat; non-matching prior content → allocate `pt-NN` |
+<!-- /ANCHOR:scripts -->
 
 ---
 
+<!-- ANCHOR:tests -->
 ## 2. Tests
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts` | Updated | OK | 7 cases: 1 root flat + 1 child flat first-run + 1 nested flat + 1 reuse-flat-on-match + 1 reuse pt-NN + 1 branch on flat-different-target + 1 branch on prior pt-NN-different-target |
+<!-- /ANCHOR:tests -->
 
 ---
 
+<!-- ANCHOR:commands -->
 ## 3. Commands (skill workflow YAMLs)
 
 | Path | Action | Status | Note |
@@ -55,18 +62,22 @@ _memory:
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Updated | OK | Same step added |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Updated | OK | Same step added |
 | `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Updated | OK | Same step added |
+<!-- /ANCHOR:commands -->
 
 ---
 
+<!-- ANCHOR:skills -->
 ## 4. Skills (SKILL.md updates)
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.opencode/skills/sk-deep-review/SKILL.md` | Updated | OK | Flat-first prose update at "State Packet Location" section |
 | `.opencode/skills/sk-deep-research/SKILL.md` | Updated | OK | Flat-first prose update at "State Packet Location" section |
+<!-- /ANCHOR:skills -->
 
 ---
 
+<!-- ANCHOR:documents -->
 ## 5. Documents (skill references)
 
 | Path | Action | Status | Note |
@@ -74,9 +85,11 @@ _memory:
 | `.opencode/skills/sk-deep-review/references/state_format.md` | Updated | OK | Flat-first prose update |
 | `.opencode/skills/sk-deep-research/references/state_format.md` | Updated | OK | Flat-first prose update |
 | `.opencode/skills/system-spec-kit/references/structure/folder_structure.md` | Updated | OK | "Naming" + "Flat-first convention (post-028)" + "Required resolver" prose updates |
+<!-- /ANCHOR:documents -->
 
 ---
 
+<!-- ANCHOR:specs -->
 ## 6. Specs
 
 | Path | Action | Status | Note |
@@ -86,12 +99,15 @@ _memory:
 | `tasks.md` | Created | OK | Task ledger |
 | `implementation-summary.md` | Created | OK | Disposition |
 | `.../028/description.json` | Created | OK | Continuity index |
+<!-- /ANCHOR:specs -->
 
 ---
 
+<!-- ANCHOR:meta -->
 ## 7. Meta
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.../028/graph-metadata.json` | Created | OK | Graph rollout metadata |
 | Source bug evidence: commit `6a8095907 feat(026/000/005/005)` | Cited | OK | Operator dropped iteration trail when `git add review-report.md` did not include sibling files — motivates Fix 1 (auto-stage at synthesis end) |
+<!-- /ANCHOR:meta -->

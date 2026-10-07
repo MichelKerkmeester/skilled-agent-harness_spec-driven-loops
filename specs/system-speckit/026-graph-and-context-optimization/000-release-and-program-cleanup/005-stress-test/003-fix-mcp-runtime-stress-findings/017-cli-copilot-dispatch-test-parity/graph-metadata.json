@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The 011 deep-review report (`../011-research-post-stress-finding-followups/review/review-report.md`) §4 surfaced F-004 [P2]:",
     "created_at": "2026-04-27T18:30:00Z",
-    "last_save_at": "2026-10-04T09:20:14.718Z",
+    "last_save_at": "2026-10-07T19:39:57.383Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:913cda4262e9c622d87e26a5afef733dcdb7744b5a1450176ca403cbbe940d6a",
+    "source_fingerprint": "sha256:8e2aebe4f354933132b9cf6a4f29c6e34135e41eb03340e9f127911425b84b5e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a64db809d5f96c1be76ec400f043927a2be0c69b9f6bcfc83cf4963c90d4268e",
+      "spec.md": "8ea071f151e97b240adb76bf4a3abd4df93f30b61e5f3d81bb4c7c75f13abe47",
       "plan.md": "cc156b67df5c297721e325038c07c6bc0555223ee75f3bca4bd0f3ee8869e759",
       "tasks.md": "f174dd490a6912180c040a8e2f98af62d49f092f429b4305ee1787add9177719",
-      "implementation-summary.md": "5875248804e55b2fe3db5b3aaff3c1cf36dc7b6bbb9ef16dfa4baacc9df89f10"
+      "implementation-summary.md": "36859b85227a1eff94985142964872024bdaaf613cef903a1f85e35cc5193864"
     },
     "last_active_child_id": null,
     "last_active_at": null

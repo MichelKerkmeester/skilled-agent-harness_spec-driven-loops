@@ -29,6 +29,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Delete Only Proven-Dead Barrel Exports
 
 **Status:** Accepted
@@ -49,6 +50,8 @@ Remove barrel exports with no direct consumers in current source or regression t
 
 ---
 
+<!-- /ANCHOR:adr-001 -->
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Defer Behavior-Changing Security P2s
 
 **Status:** Accepted
@@ -69,6 +72,8 @@ Defer P2 security/hardening findings that would alter accepted environment varia
 
 ---
 
+<!-- /ANCHOR:adr-002 -->
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Keep Test Harness Exports When Tests Are Out of Scope
 
 **Status:** Accepted
@@ -89,6 +94,8 @@ Do not remove exports or options that current regression tests use unless no tes
 
 ---
 
+<!-- /ANCHOR:adr-003 -->
+<!-- ANCHOR:adr-004 -->
 ## ADR-004: Close Stale Findings by Current-Source Absence
 
 **Status:** Accepted
@@ -106,3 +113,5 @@ Mark findings closed when the named helper or branch no longer exists in the cur
 ### Consequences
 - Several findings are closed as baseline-current rather than by new code hunks.
 - The checklist records them explicitly so closure accounting stays honest.
+
+<!-- /ANCHOR:adr-004 -->

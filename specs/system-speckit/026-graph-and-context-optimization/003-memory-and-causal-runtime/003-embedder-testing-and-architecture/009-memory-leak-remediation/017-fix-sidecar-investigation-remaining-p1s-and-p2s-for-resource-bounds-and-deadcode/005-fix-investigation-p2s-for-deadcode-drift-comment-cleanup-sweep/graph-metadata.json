@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Arc 010/001 recorded 68 P2 cleanup findings across embedder module surfaces",
     "created_at": "2026-05-23T06:55:12Z",
-    "last_save_at": "2026-08-30T15:39:31.398Z",
+    "last_save_at": "2026-10-07T19:55:05.433Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:16ceff0831f4fced81d8377c872da752aa7517884193ecad427c6e8cbaa7bb28",
+    "source_fingerprint": "sha256:b2cc781eed1e590a258282308eebd1f1716ebc259c3b8866fcc964f28ab43d18",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f94d689ba81f8328a9e62b6641ffd457e17d6e868f99c86e6d74e180fa567a3d",
       "plan.md": "d3a9084a606b68a688b4ce447cc04e31663f8212ad59c8d7bde8e489a14cedec",
       "tasks.md": "5503e646a89a8b90bad67539ee76ae291f542632869a86265479c9ffca3c99b1",
-      "decision-record.md": "ed4d8e98407e476b2d3f3c9add4bb9f152afb6844e913e02c5004832e756dcfd",
+      "decision-record.md": "92c6c5101a685edfb1990d27525feeb4e125287c194b89122fa45ebee8f2a84c",
       "implementation-summary.md": "08c0bb3654e20d535f5528084a3d77275ce1592b2b598198e98f52782766800a"
     },
     "last_active_child_id": null,

@@ -33,12 +33,15 @@ purpose: "Resume document for the orchestrator session running Gates A→F via c
 session_role: orchestrator (claude-opus-4-6 in Claude Code)
 worker: cli-codex gpt-5.4 high fast (primary) gpt-5.4 high (fallback after 3 codex failures)
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
+
 # Phase 018 Live Handover
 
 **If you are reading this after a context compaction**, this is your current state. Read sections 1–4 first, then act.
 
 ---
 
+<!-- ANCHOR:handover-summary -->
 ## 1. Current Pipeline State
 
 | Gate | Status | Background ID | Commit | Notes |
@@ -63,6 +66,9 @@ worker: cli-codex gpt-5.4 high fast (primary) gpt-5.4 high (fallback after 3 cod
 
 ---
 
+<!-- /ANCHOR:handover-summary -->
+
+<!-- ANCHOR:next-session -->
 ## 2. Active Background Tasks + Cron Jobs
 
 **Codex execution**:
@@ -75,6 +81,9 @@ worker: cli-codex gpt-5.4 high fast (primary) gpt-5.4 high (fallback after 3 cod
 
 ---
 
+<!-- /ANCHOR:next-session -->
+
+<!-- ANCHOR:context-transfer -->
 ## 3. Critical Context (Don't Forget)
 
 ### Codex sandbox limitation
@@ -92,3 +101,4 @@ Default worker is **cli-codex gpt-5.4 high fast**. Fall back to **cli-copilot gp
 
 1. **3 consecutive failed cli-codex attempts** on the same gate (exit non-zero, sandbox block, or cancellation envelope without producing useful work)
 2. **cli-codex hangs >15 min with 0 bytes of output** AND no file changes on disk in the target gate folder
+<!-- /ANCHOR:context-transfer -->

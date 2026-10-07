@@ -14,6 +14,7 @@ contextType: "review"
 
 ---
 
+<!-- ANCHOR:phase-2 -->
 ## TASK BREAKDOWN
 
 | ID | Task | Status | Owner | Evidence |
@@ -42,3 +43,4 @@ contextType: "review"
 - T-010 blocks T-011
 - T-011 blocks T-012
 - T-012, T-013 are terminal verification steps
+<!-- /ANCHOR:phase-2 -->

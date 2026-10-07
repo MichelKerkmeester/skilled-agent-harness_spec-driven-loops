@@ -46,7 +46,8 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/node_modules/vitest/vitest.mjs"
     ],
     "entities": [
       {
@@ -77,6 +78,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/node_modules/vitest/vitest.mjs",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Alternatives Considered",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Nine deferred P2 findings remain in the rerank sidecar launcher durability surface",
     "created_at": "2026-05-26T16:49:55.586Z",
-    "last_save_at": "2026-08-30T15:39:31.479Z",
+    "last_save_at": "2026-10-07T19:59:53.372Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +207,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8aef2c7e5693e65aff3ead4beaa4228d90e4d17f7e5e8b6a8b167350562291ab",
+    "source_fingerprint": "sha256:68c98e7b72fffbc0cbea3b4a8abc50b9bc2d40ffc8f365251076fff7508f7223",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c866f023cdf46028295273f3f6ec3e0a10567235f4cc761d5ea80e1577f7c85a",
       "plan.md": "68b497f9d251dcf44c8585c94e6d4db96247c005063ac9170f4aedf5294d85ad",
       "tasks.md": "1e384acd023828ce33e09b0c3133556fb4c3c613c45a1b5bab95749b5a9dcdae",
-      "decision-record.md": "6f9483a829bb24208a543c862f15136c603cd16e7c6279df198008b80043bacd",
+      "decision-record.md": "ed4f776576e7b2a51da4470cb1436127bbdab216e43ddd3e5166fd5084d837ca",
       "implementation-summary.md": "5af17f46e3b2a35000270cb2e13e3750dcf88593c64a82b998ee15b6cf092161"
     },
     "last_active_child_id": null,

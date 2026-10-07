@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The 006 + 007 packets shipped working lease enforcement, but reviewers identified 9 P1 correctness gaps clustered in three themes: (1) race-window correctness — code-graph and spec-memory launchers can both pass the lease check then race the write, the SIGTERM handler in spec-memory clears the lease 5s after signal regardless of whether the child has exited, and env-var parsing accepts `'no'`/`'off'`/`'FALSE'`/empty as \"enabled\"; (2) error-surface correctness — `isLeaseHeld()` re-throws EPERM (different uid → guard bypass), `busytimeout=5000` is set AFTER `journalmode=WAL` (the WAL switch race",
     "created_at": "2026-05-18T06:19:31Z",
-    "last_save_at": "2026-09-07T16:17:50.072Z",
+    "last_save_at": "2026-10-07T19:54:56.554Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:69315a9dd21102548c1e5ffe76390425c0238124c3b3401caf2af6784a56590e",
+    "source_fingerprint": "sha256:bf6ba67a3a5439a74df47eba622da6df32cc161f173701a7058d1515a2c0a1a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "53b44c9011329f30e846c717b94edffd911d1438ecc0a027678841978b0f9242",
-      "plan.md": "d1734dc96cb1acf8d68eb6f4b3eb2e73c0ed3dccb08929b6d7b936a12dea95c9",
-      "tasks.md": "e0ccf8b9d5cbef813070b38823bfa0c7e2405dd225c9d69ad448d4fda32c245d",
+      "plan.md": "875dd346b9ef23a1a6d5f7751fcda2ba021dd406970391cb88d10fccf33aa2bb",
+      "tasks.md": "a6fc1f2067de2f3d336c4ea68580f556a527df51dcbe1c5b1ce12a45ab659cac",
       "implementation-summary.md": "8344ccf66e245eb13ed7cc838210a88e660249de86a0688e19fa7e24d39557d0"
     },
     "last_active_child_id": null,

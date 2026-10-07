@@ -107,7 +107,6 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-<!-- /ANCHOR:phase-2-appendix -->
 <!-- ANCHOR:phase-2-appendix -->
 ### Phase 2 Appendix: findings from the resumed sweep (post wave-7 remediation close-out)
 
@@ -151,7 +150,7 @@ contextType: "implementation"
 - [x] T-0484 Fix skill-advisor stdin-mode top result reporting `source: "local"` instead of expected `"native"` (0484) — FIXED, VERIFIED. Added a visible stderr warning (`_warn_native_fallback`) for the native-unavailable default fallback in `skill_advisor.py`, so a silent local-scoring fallback is now surfaced rather than hidden. Verified: full python test suite run directly (`python3 tests/python/test_skill_advisor.py`) shows 58/58 pass, including a new `T243-SA-021` test specifically covering this fallback-and-warn behavior.
 - [x] T-0485 Fix skill-advisor threshold-flag not differentiating output + non-JSON preface line breaking machine parseability (0485) — FIXED, VERIFIED. (a) Recomputed and applied CLI threshold filtering to native legacy recommendations (`filter_recommendations(...)` now called in `recommend_with_native_advisor`) -- the Group A flag-propagation pattern, fixed. (b) stdout JSON purity was already correct on re-check, no change needed for that half. Verified: same 58/58 full python suite pass as T-0484 (same file, same verification run).
 - [x] T-0483 Fix skill-advisor python-compat regression suite failing 20/100 evaluated cases (0483) — FIXED, VERIFIED, confirmed shared root cause with T-0481/T-0484/T-0485 as hypothesized. Fixed in `skill_advisor.py` + `skill_advisor_regression.py`. Verified by re-running the EXACT regression-suite command from the scenario doc: **100/100 cases now pass** (was 20/100 failing), `overall_pass: true`, exit 0 -- the native/local mislabeling and threshold-flag fixes resolved these failures as a shared root cause, exactly as predicted.
-
+<!-- /ANCHOR:phase-2-appendix -->
 
 - [ ] All Phase 1 findings have a Phase 2 fix task
 - [ ] No `[B]` blocked tasks remaining (0032, 0062 currently blocked pending re-verification)

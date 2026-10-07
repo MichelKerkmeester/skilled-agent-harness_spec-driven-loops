@@ -30,6 +30,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: resource-map-core | v2.2 -->
 
+<!-- ANCHOR:scratch-data -->
 ## Scratch data
 
 | Path | Action | Notes |
@@ -39,6 +40,9 @@ _memory:
 | `scratch/classification-inventory.json` | Created | 4-bucket classification including suite-import failures. |
 | `scratch/vitest-postfix.json` | Created | Full post-recovery vitest JSON, 11,657 passed / 0 failed / 232 skipped / 11 todo. |
 
+<!-- /ANCHOR:scratch-data -->
+
+<!-- ANCHOR:tests -->
 ## Fixture-drift fixes
 
 | Surface | Action |
@@ -52,6 +56,9 @@ _memory:
 | `.opencode/plugins/spec-kit-compact-code-graph.js` | Updated bridge imports to `../skills/...`. |
 | `.opencode/plugins/spec-kit-skill-advisor.js` | Updated bridge and advisor source paths to `../skills/...`. |
 
+<!-- /ANCHOR:tests -->
+
+<!-- ANCHOR:runtime-regression-annotations -->
 ## Parked runtime-regression annotations
 
 | Surface | Action |
@@ -61,6 +68,9 @@ _memory:
 | `mcp_server/code_graph/tests/**` | Code graph scope/verify regressions parked. |
 | `scripts/tests/**` | Validation/docs/runtime-contract regressions parked or environment-skipped. |
 
+<!-- /ANCHOR:runtime-regression-annotations -->
+
+<!-- ANCHOR:metadata-and-docs -->
 ## Metadata and docs
 
 | Path | Action |
@@ -75,6 +85,9 @@ _memory:
 | `changelog.md` | Created packet changelog. |
 | `resource-map.md` | Created this file. |
 
+<!-- /ANCHOR:metadata-and-docs -->
+
+<!-- ANCHOR:counts -->
 ## Counts
 
 - **Assertion failures classified**: 197.
@@ -84,3 +97,5 @@ _memory:
 - **Environmental failures skipped**: 15.
 - **Flaky failures**: 0.
 - **Post-recovery baseline**: 11,657 passed / 0 failed / 232 skipped / 11 todo.
+
+<!-- /ANCHOR:counts -->

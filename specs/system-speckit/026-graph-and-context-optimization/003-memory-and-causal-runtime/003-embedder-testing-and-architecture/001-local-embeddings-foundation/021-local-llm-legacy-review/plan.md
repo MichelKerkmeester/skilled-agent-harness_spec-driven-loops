@@ -15,6 +15,7 @@ contextType: "review"
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. APPROACH
 
 A single autonomous `/deep:start-review-loop:auto` run is dispatched against this packet, with cli-codex (gpt-5.5, reasoning=high, service_tier=fast) as the per-iteration executor. The skill's built-in state machine handles iteration looping, convergence detection, and the read-only prompt-pack constraints; this plan documents the dispatch contract and the post-run verification.
@@ -27,9 +28,11 @@ The pre-flight scan (Phase 1 of session planning) identified ~147 active-file re
 - Per-packet `description.json` / `graph-metadata.json` files with possibly stale model strings
 
 Convergence tightened to `0.05` (vs default 0.10) to prevent premature stop on the wide-shallow surface — residue hunts produce many low-finding-rate iterations early.
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:architecture -->
 ## 2. DISPATCH CONTRACT
 
 ### Slash command
@@ -62,9 +65,11 @@ PRE-BOUND SETUP ANSWERS:
 - `--service-tier=fast` — required per standing memory rule (maps to codex `-c service_tier="fast"`)
 - `--reasoning-effort=high` — user-specified
 - Dimensions trimmed to 3 (security excluded — minimal signal for this hunt); `correctness` covers dead-code + config-drift, `traceability` covers stale-docs + outdated-defaults, `maintainability` covers fixture-rot + asset-rot
+<!-- /ANCHOR:architecture -->
 
 ---
 
+<!-- ANCHOR:quality-gates -->
 ## 3. RM-8 / DESTRUCTIVE-SCOPE GUARD
 
 | Layer | Status | Notes |
@@ -73,9 +78,11 @@ PRE-BOUND SETUP ANSWERS:
 | 2 — Worktree isolation | Optional, skipped | Review is read-only against external surfaces; only writes within `015-*/review/` |
 | 3 — Commit baseline | `5e7095d3336510b5756ba5cac383a8e08d1d79db` | Recovery anchor captured |
 | 4 — Model fallback | N/A | cli-codex + gpt-5.5 high fast is the chosen executor |
+<!-- /ANCHOR:quality-gates -->
 
 ---
 
+<!-- ANCHOR:phases -->
 ## 4. WORKFLOW OVERVIEW
 
 | Step | Owner | Action | Output |
@@ -88,9 +95,11 @@ PRE-BOUND SETUP ANSWERS:
 | 6 | Skill | Convergence detection + synthesis | `review/review-report.md` |
 | 7 | Main agent | Verify report; hand-validate ≥3 P1 findings | verification annotations |
 | 8 | Main agent | Update `implementation-summary.md` with verdict + next-step | continuity refresh |
+<!-- /ANCHOR:phases -->
 
 ---
 
+<!-- ANCHOR:testing -->
 ## 5. POST-RUN VERIFICATION
 
 - `review/review-report.md` exists and non-empty
@@ -99,6 +108,7 @@ PRE-BOUND SETUP ANSWERS:
 - ≥3 P1 findings hand-validated against source (file:line evidence is real)
 - `git status --porcelain` shows no surprise mutations outside `021-local-llm-legacy-review/`
 - Recovery anchor SHA `5e7095d3336510b5756ba5cac383a8e08d1d79db` is still HEAD or ancestor of HEAD
+<!-- /ANCHOR:testing -->
 
 ---
 

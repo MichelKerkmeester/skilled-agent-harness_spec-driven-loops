@@ -22,6 +22,7 @@ _memory:
 
 All tasks shipped. This top-level is a pointer; child packets hold the task ledgers.
 
+<!-- ANCHOR:cross-refs -->
 ## Child Task Ledgers
 
 - **001-executor-feature** (ex-018, merged) — 14 tasks across Phase A-E (schema, prompt-pack, YAML branch, review mirror, docs + tests). See `implementation-summary.md §Sub-phase summaries ###001-executor-feature`.
@@ -30,3 +31,4 @@ All tasks shipped. This top-level is a pointer; child packets hold the task ledg
 ## Downstream
 
 - `../002-cli-executor-remediation/tasks.md` — R1-R12 remediation tasks (38 tasks across 8 waves)
+<!-- /ANCHOR:cross-refs -->

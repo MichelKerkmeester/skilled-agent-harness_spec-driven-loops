@@ -29,8 +29,10 @@ _memory:
       - "Did all 30 P1 findings resolve cleanly? YES (12 doc honesty via Batch A; 4 security via Batch B; 3 traceability+mirror via Batch C; 11 P2 via Batch D)"
       - "Did RM-8 scope hygiene hold under sequential cli-codex dispatches? YES (zero out-of-scope writes; all batches stayed within their allowed-write list)"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: 003 RM-8 013 Remediation (~100% complete)
 
+<!-- ANCHOR:what-built -->
 ## What Was Built
 
 | Batch | Cluster | Findings closed | Wall-clock | Token usage |
@@ -65,6 +67,9 @@ _memory:
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/Dockerfile` — base `debian:bookworm` → `debian:bookworm-slim`
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/harness/{reset-state.sh, capture-evidence.sh, run-all.sh}` — sandbox guard now returns 125 / SKIP verdict instead of silent success
 
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:verification -->
 ## Verification
 
 | Check | Result |
@@ -90,6 +95,8 @@ _memory:
 | ADR-010-obsolete YAML mentions in 001 IMS Track B1 | removed ✓ |
 | RM-8 scope hygiene | **zero out-of-scope writes** across all 4 batches |
 
+<!-- /ANCHOR:verification -->
+
 ## Findings closure tally
 
 | Severity | Pre-remediation | Closed by 003 | Deferred | Open after 003 |
@@ -100,6 +107,7 @@ _memory:
 
 **Expected 013 verdict after re-review**: PASS or PASS-with-advisories (`hasAdvisories=true` if the 2 deferred P2 remain open).
 
+<!-- ANCHOR:limitations -->
 ## Deferred items (formal record)
 
 1. **R8-P2-001**: "Gemini runtime doctor commands use inconsistent `.toml` format vs `.md` format"
@@ -107,6 +115,8 @@ _memory:
 
 2. **R9-P2-006**: small doc-code drift in parent `handover.md`
    - Resolution: Deferred to follow-on packet. Parent `handover.md` was deliberately not in Batch D's allowed-write list to keep batches surgical. The drift is minor (specific symbol references that may not match current state).
+
+<!-- /ANCHOR:limitations -->
 
 ## RM-8 Mitigation Verification
 

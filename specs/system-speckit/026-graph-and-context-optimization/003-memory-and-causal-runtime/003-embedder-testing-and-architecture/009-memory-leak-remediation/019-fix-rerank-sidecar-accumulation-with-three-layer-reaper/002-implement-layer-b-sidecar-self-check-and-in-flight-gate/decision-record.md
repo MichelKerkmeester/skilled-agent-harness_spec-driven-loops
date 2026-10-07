@@ -29,6 +29,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Lifespan-Managed Async Reaper
 
 **Status:** Accepted
@@ -49,7 +50,9 @@ Run the reaper as a FastAPI lifespan-managed `asyncio.create_task(reaper_loop())
 - Later launcher phases do not need to know app internals.
 
 ---
+<!-- /ANCHOR:adr-001 -->
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Pending Shutdown When Requests Are In Flight
 
 **Status:** Accepted
@@ -70,7 +73,9 @@ Use a shared `InFlightGate` counter around `/warmup` and `/rerank`. If owner-dea
 - `/health` remains outside the gate because it is a probe and does not refresh idle.
 
 ---
+<!-- /ANCHOR:adr-002 -->
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Packet Telemetry Env Name Refinement
 
 **Status:** Accepted
@@ -90,7 +95,9 @@ Use `RERANK_SIDECAR_REAPER_TELEMETRY_PATH` in `rerank_sidecar.py`, defaulting to
 - ADR-006 remains conceptually intact: separate lifecycle JSONL telemetry with structured owner evidence.
 
 ---
+<!-- /ANCHOR:adr-003 -->
 
+<!-- ANCHOR:adr-004 -->
 ## ADR-004: Legacy Empty-Owner Rows Do Not Trigger App Self-Reap Yet
 
 **Status:** Accepted
@@ -111,6 +118,7 @@ The app self-reaper requires at least one owner state before Layer B `all-owners
 - The decision is intentionally packet-local and can be revisited after launcher phases complete.
 
 ---
+<!-- /ANCHOR:adr-004 -->
 
 ## Summary
 

@@ -15,7 +15,11 @@
       "drift sweep across subsystems",
       "follow-on to 020 embedder default drift fix",
       "10-iter audit cli-opencode deepseek",
-      "016/002/021 audit"
+      "016/002/021 audit",
+      "hardcoded default audit plan",
+      "deep research loop plan",
+      "hardcoded default audit tasks",
+      "deep research audit verification tasks"
     ],
     "key_topics": [
       "hardcoded-default",
@@ -34,13 +38,69 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "research/deep-research-config.json",
+      "research/deep-research-strategy.md",
+      "research/deep-research-state.jsonl",
+      "research/findings-registry.json",
+      "research/deep-research-dashboard.md",
+      "research/iterations/iteration-001.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": "research/deep-research-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
         "source": "derived"
       },
       {
@@ -78,20 +138,78 @@
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "10-iter deep-research dispatch via cli-opencode + deepseek-v4-pro auditing all subsystems for the same hardcoded-default anti-pattern that 020 just closed in the spec-memory embedder. Scope: code (TS + Python + Rust), config (JSON/YAML/TOML), READMEs, INSTALL_GUIDE.md, doctor commands, skill docs, ENV_REFERENCE.md, agent definitions, manifests. Goal: enumerate every inline default that should be registry-derived (or env-var-driven) and identify ADR-implementation drift like the BAAI / jina-embeddings-v3 leftovers that triggered the 2026-05-23 incident.",
     "created_at": "2026-05-23T11:55:15.467Z",
-    "last_save_at": "2026-08-30T15:39:30.375Z",
+    "last_save_at": "2026-10-07T19:56:33.414Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:16e1e9ca7c53d95f3aeefe73db26a9384359e3bcff4cbb1b21b8f3fd7e44a299",
+    "source_fingerprint": "sha256:d46e9278a3cfd9f0e07959bbd297d93e2d8f552a9ffe23b1ee85aa9b08091521",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "da66f2dd096851aec99112de0b52d6778fdb4b76dac391da424ed995e1b54d34"
+      "spec.md": "da66f2dd096851aec99112de0b52d6778fdb4b76dac391da424ed995e1b54d34",
+      "plan.md": "297cd95e8b679df85f184c889c4f8e4fcb08ef610d835b287465aba2c3ed87c1",
+      "tasks.md": "d232676c6c420ed8deb03e96751c5b7b80ad81a9911f2cc66ca2e2eb0d3b675f"
     },
     "last_active_child_id": null,
     "last_active_at": null

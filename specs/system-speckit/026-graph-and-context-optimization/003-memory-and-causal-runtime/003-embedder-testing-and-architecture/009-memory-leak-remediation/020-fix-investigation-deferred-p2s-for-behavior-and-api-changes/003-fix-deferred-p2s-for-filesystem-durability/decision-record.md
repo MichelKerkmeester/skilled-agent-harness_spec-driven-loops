@@ -29,6 +29,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: DIRECTORY FSYNC AFTER ATOMIC RENAME
 
 **Status:** Accepted
@@ -54,7 +55,9 @@ Unchanged: crash before rename may leave a temp file; crash during unsupported p
 Successful writes may now fail if directory fsync fails. That is intentional because the write cannot honestly claim durable persistence.
 
 ---
+<!-- /ANCHOR:adr-001 -->
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: CRYPTO-RANDOM TEMP FILE SUFFIXES
 
 **Status:** Accepted
@@ -80,7 +83,9 @@ Unchanged: `wx` remains the final collision guard.
 Temp file names change but are internal. Existing final state file paths remain unchanged.
 
 ---
+<!-- /ANCHOR:adr-002 -->
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: STATE DIRECTORY VALIDATION BOUNDARY
 
 **Status:** Accepted
@@ -106,7 +111,9 @@ Unchanged: callers can still use the default launcher state directory when no en
 Operators using relative or outside-home `RERANK_SIDECAR_STATE_DIR` must move to an absolute under-home path.
 
 ---
+<!-- /ANCHOR:adr-003 -->
 
+<!-- ANCHOR:adr-004 -->
 ## ADR-004: OWNER-ONLY LOG FILES AND STABLE FD STDIO
 
 **Status:** Accepted
@@ -132,7 +139,9 @@ Unchanged: log writes themselves are not fsync-on-every-line durable.
 Other users on the same machine may no longer read sidecar logs without owner mediation.
 
 ---
+<!-- /ANCHOR:adr-004 -->
 
+<!-- ANCHOR:adr-005 -->
 ## ADR-005: HEALTH PAYLOAD NORMALIZATION
 
 **Status:** Accepted
@@ -158,7 +167,9 @@ Unchanged: the health endpoint still reflects current process reachability rathe
 Callers using old ad hoc field names must read the normalized names.
 
 ---
+<!-- /ANCHOR:adr-005 -->
 
+<!-- ANCHOR:adr-006 -->
 ## ADR-006: INTERNAL DEPENDENCY INJECTION WITH STABLE PUBLIC API
 
 **Status:** Accepted
@@ -186,6 +197,7 @@ Unchanged: production callers keep the same API and default dependencies.
 Public imports and normal call sites remain stable.
 
 ---
+<!-- /ANCHOR:adr-006 -->
 
 ## VERIFICATION NOTES
 

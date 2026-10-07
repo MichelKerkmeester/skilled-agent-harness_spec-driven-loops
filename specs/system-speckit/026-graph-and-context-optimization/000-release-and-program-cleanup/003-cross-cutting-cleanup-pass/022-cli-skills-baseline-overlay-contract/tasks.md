@@ -15,6 +15,7 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:phase-1 -->
 ## Phase 1: Canonical-rule inserts (5 SKILL.md files)
 
 - [x] T-001 Insert canonical rule as ALWAYS item 9 in `.opencode/skills/cli-claude-code/SKILL.md`
@@ -23,6 +24,9 @@ contextType: "implementation"
 - [x] T-004 Insert canonical rule as ALWAYS item 8 in `.opencode/skills/cli-copilot/SKILL.md`
 - [x] T-005 Insert canonical rule as ALWAYS item 12 in `.opencode/skills/cli-opencode/SKILL.md`
 
+<!-- /ANCHOR:phase-1 -->
+
+<!-- ANCHOR:phase-2 -->
 ## Phase 2: Direct-mention replacements
 
 - [x] T-006 cli-codex/references/hook_contract.md line 112: `sk-code-opencode` → `sk-code` in advisor-brief example
@@ -34,9 +38,14 @@ contextType: "implementation"
 - [x] T-012 cli-opencode/manual_testing_playbook/prompt-templates/003-template-applied-to-real-dispatch.md line 49: prompt body 2 lines updated (replace_all=true matched both contract bullet + table cell)
 - [x] T-013 cli-opencode/assets/prompt_templates.md TEMPLATE 5 lines 193, 196-197: canonical Code Review prompt template updated
 
+<!-- /ANCHOR:phase-2 -->
+
+<!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
 - [x] T-014 Sweep — `sk-code-review` / `sk-code-opencode` matches in active CLI skill files limited to NEVER-clause anti-pattern examples
 - [x] T-015 Canonical insert presence count: 5/5 SKILL.md contain "Code Standards Loading (codebase-agnostic baseline+overlay contract)"
 - [x] T-016 `validate_document.py` per modified file: 9/10 VALID; 1 INVALID (hook_contract.md) with pre-existing `missing_required_section: overview` quirk not introduced by this packet
 - [x] T-017 Cross-skill consistency: canonical insert text identical across all 5 SKILL.md files
+
+<!-- /ANCHOR:phase-3 -->

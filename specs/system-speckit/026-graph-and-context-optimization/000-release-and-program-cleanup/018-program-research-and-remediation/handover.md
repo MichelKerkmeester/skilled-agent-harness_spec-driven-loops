@@ -2,10 +2,13 @@
 title: "Handover: Remaining 026 Measurement Experiments"
 trigger_phrases: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
+
 # Handover: Remaining 026 Measurement Experiments
 
 > Supplementary handover. The committed code fixes are done and live; what remains is **runs** (experiments), not fixes. Full backlog with commands: `research/measurement-backlog.md`. Synthesis: `research/research.md`.
 
+<!-- ANCHOR:handover-summary -->
 ## What this session shipped ("fix all" net)
 
 - **4 verified code fixes shipped + live**: causal link/unlink graph-cache invalidation, MiniMax `--variant` forwarding, launcher-ipc-bridge fixture `lib/` copy, code-graph `depthTruncated` signal. Both runtime dists (mk-spec-memory, code-graph) activated.
@@ -14,6 +17,9 @@ trigger_phrases: []
 - **Packet metadata + conformance cleaned up**: description.json + graph-metadata.json generated; docs template-conformed.
 - **Experiment backlog made actionable**: ranked, with commands + diagnosed blockers (`research/measurement-backlog.md`).
 
+<!-- /ANCHOR:handover-summary -->
+
+<!-- ANCHOR:context-transfer -->
 ## What remains: the measurement experiments (runs, not fixes)
 
 ### Done
@@ -26,6 +32,10 @@ trigger_phrases: []
 - **Items 1 + 3: q8/fp16 dtype bench (angle 12) and hf-local RSS calibration (angle 13)** need `onnxruntime-common` repaired first. Diagnosed 2026-06-06: `require.resolve('onnxruntime-common')` → MODULE_NOT_FOUND though `@huggingface/transformers` resolves, so the hf-model-server enters `state='error'` and the bench self-skips. hf-local embedding is non-functional on this host; the system runs on the ollama leg of the local-first cascade.
 - **Do not** repair this casually against the shared daemon mid-session — do it on a host where the embedding stack can be re-verified afterwards, then run `cd mcp_server && SPECKIT_LIVE_MODEL_TEST=1 node scripts/bench-dtype-q8-fp16.cjs`.
 
+<!-- /ANCHOR:context-transfer -->
+
+<!-- ANCHOR:next-session -->
 ## Suggested next step
 
 Item 4 is done (2026-06-06). Next: item 5 (skill-advisor calibration — shadow-delta data exists, needs the report harness wired) or item 2 (cloud A/B) if cloud keys are available. Defer items 1/3 until `onnxruntime-common` is repaired on a verifiable host. Also consider a small fix packet for the verified watcher-rename embedding-loss defect surfaced by the item-4 experiment.
+<!-- /ANCHOR:next-session -->

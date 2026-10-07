@@ -28,10 +28,12 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 # Handover — 029 Deep-Research Remediation (careful-queue tail)
 
 > **Read this first, then STOP and confirm understanding before acting** (per the project compaction/handover protocol). State as of commit `e3da7ab22d`, pushed.
 
+<!-- ANCHOR:handover-summary -->
 ## 0. WHERE THE PROGRAM STANDS
 
 Both original goals are RESOLVED:
@@ -42,6 +44,9 @@ Both original goals are RESOLVED:
 
 Branch `028-mcp-to-cli-tool-transition` is pushed and current on GitHub (the push gate was opened by the operator; the remote repo was renamed to `opencode--skilled-agent-loops-with-spec-kit-memory`). The root README was restored to the spec-memory-first framing and aligned with all 027 features (`e9288e22e6`).
 
+<!-- /ANCHOR:handover-summary -->
+
+<!-- ANCHOR:context-transfer -->
 ## 1. HARD CONSTRAINTS (unchanged, non-negotiable)
 
 - Branch `028-mcp-to-cli-tool-transition`; NEVER merge/push to main.
@@ -75,6 +80,9 @@ Branch `028-mcp-to-cli-tool-transition` is pushed and current on GitHub (the pus
 
 Verify-first found tri-107/081/139 + L2-F4 ALREADY-CORRECT (no edit needed). The AI Council report (`ai-council/council-report.md`) set the roadmap; the operator routed the 3 packet-scale builds + the defer-by-design bucket to a dedicated follow-on.
 
+<!-- /ANCHOR:context-transfer -->
+
+<!-- ANCHOR:next-session -->
 ## 3. REMAINING WORK — all routed to a dedicated follow-on packet (operator decision 2026-06-13)
 
 This session ground out the original-backlog careful tail (10 commits, gpt-5.5-fast xhigh verify-first — see §2.5). What CLOSED:
@@ -95,6 +103,7 @@ What REMAINS — three packet-scale builds + a defer-by-design bucket, folded in
 
 Structure the follow-on as design units (vector-truth, shadow/feedback+replay, launcher parity) per the AI Council report at `ai-council/council-report.md`. Recorded non-blocking verifier nits carry too: tri-140 regression-only coverage; L2 F2/F3 (orchestrator ignores recovery.status; refusal-by-throw remnants).
 
+<!-- ANCHOR:session-notes -->
 ## 4. OPERATIONAL NOTES
 
 - DB healthy; single-writer lock live. Transparent daemon recycle applies to spec-memory only; code-index/advisor adopt dist changes at next respawn; launcher `.cjs` changes need a fresh launcher process.
@@ -103,8 +112,11 @@ Structure the follow-on as design units (vector-truth, shadow/feedback+replay, l
 - The scripts workspace `package.json` is gitignored by design; durable test-path wiring lives in the tracked `mcp_server/package.json` (`test:spec-validation`).
 - Operator follow-ups still queued: Task #57 (before-vs-after.md expansion), 145-spec dedupe check, Dependabot 12 moderate on default branch, optional README badge-URL update to the renamed repo.
 
+<!-- /ANCHOR:session-notes -->
+
 ## 5. HOW TO RESUME
 
 1. Re-read this handover; summarize understanding; wait for operator confirm (compaction protocol).
 2. Confirm DB health (`node .opencode/bin/spec-memory.cjs memory_stats --json '{}' --format json --timeout-ms 120000`) and exactly one `context-server.js` daemon.
 3. Pick the next unit from §3 in risk order (L7 clusters and L2 four are the meatiest; tri-033 is the first L5 careful). Per finding: re-confirm still-real if code moved → implement (hand/fence by class) → fresh Fable adversarial re-verify against the original proof → scoped lane commit → disposition update → push (gate is open).
+<!-- /ANCHOR:next-session -->

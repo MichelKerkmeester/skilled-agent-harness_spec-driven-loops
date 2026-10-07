@@ -43,7 +43,7 @@ _memory:
 | **Spec Folder** | 007-rollback-and-mode-gate |
 | **Completed** | 2026-07-28 |
 | **Level** | 2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Closeout checked** | 2026-08-15 at HEAD `b14b87acf2f1333aa8aa6322dcc32fcdcbdf30d7` |
 | **Posture** | Additive-dark with legacy authority unchanged |
 <!-- /ANCHOR:metadata -->

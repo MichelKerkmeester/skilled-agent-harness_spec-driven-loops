@@ -40,7 +40,7 @@ _memory:
 | **Completed** | Partial implementation 2026-06-19 |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In progress - fusion lane cut; hierarchy and benchmark pending |
+| **Status** | In Progress |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -25,6 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 
 # Handover: memory_index_scan Self-Maintaining Index
 
@@ -32,6 +33,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:handover-summary -->
 ## 1. WHERE WE ARE (ground truth)
 
 | Item | State | Location / Hash |
@@ -47,8 +49,11 @@ _memory:
 | Daemon running | NEW source (013) live | `dist/` rebuilt + restarted; pid 23371; ollama embedder healthy |
 | 012/013 reindex | DONE | 012 fresh; 013 = 6 clean success rows; dup cruft repaired (`failedVectors` 36→6) |
 
+<!-- /ANCHOR:handover-summary -->
+
 ---
 
+<!-- ANCHOR:context-transfer -->
 ## 2. WHAT SHIPPED (all in daemon source, not yet live)
 
 ### Phase 1 — Coalescing Contract + Health + Orphan Sweep
@@ -83,8 +88,11 @@ Files: `lib/storage/incremental-index.ts`, `handlers/memory-index.ts`, `core/db-
 | `incremental-index-move-reconcile.vitest.ts` | 2 | move reconciliation: unique match + non-unique guard |
 | **Total** | **19/19** | all green at merge |
 
+<!-- /ANCHOR:context-transfer -->
+
 ---
 
+<!-- ANCHOR:next-session -->
 ## 3. IMMEDIATE NEXT STEPS
 
 > ✅ **COMPLETED 2026-05-31** — all steps below were executed: `dist/` rebuilt (it was stale), daemon restarted (pid 23371, ollama embedder healthy), 012/013 reindexed, and 30 duplicate index rows from the provider migration repaired. Steps retained below for the record.
@@ -134,8 +142,11 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
 ```
 Expected: Errors 0, Warnings 0 (already PASSED; this is a final smoke check).
 
+<!-- /ANCHOR:next-session -->
+
 ---
 
+<!-- ANCHOR:session-notes -->
 ## 4. GOTCHAS FOR NEXT SESSION
 
 **Worktree node_modules setup (for future code dispatches):**
@@ -158,6 +169,8 @@ Never run `npm run build` (emits to `dist/` which the live daemon reloads from).
 
 **P3 triggers NOT implemented (deferred):**
 The full P3.4 trigger set (lazy reconcile-on-File-not-found in `search-results.ts`, file-watcher queue integration, post-commit stale marker in the git hook) was not implemented this session. The core concurrency and move reconciliation are done. If these triggers are needed, they should be a Phase 4 or separate packet.
+
+<!-- /ANCHOR:session-notes -->
 
 ---
 

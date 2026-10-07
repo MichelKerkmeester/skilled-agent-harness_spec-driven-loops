@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The search-quality harness at `mcpserver/stresstest/search-quality/` is intentionally database-agnostic and result-oriented:",
     "created_at": "2026-04-29T08:45:00.000Z",
-    "last_save_at": "2026-08-30T15:39:28.547Z",
+    "last_save_at": "2026-10-07T19:47:33.284Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,14 +200,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:55daad2fa0953d40df74ade17403132c240b7e483ea802cbb185d25809a510d7",
+    "source_fingerprint": "sha256:0ca28bdb8a086669e78dd26284f8877280255e9e38b38e8acc8a6911f3b9b023",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4fa7d016dae508f153cdf2ab234dde34d6f7689d99dd82a5b462ce8806daca56",
       "plan.md": "7c54d7fa499cf2bca2dc00b41fb6e5cab1b2e1cfc9a6d6f5689d55207fce12cb",
       "tasks.md": "5d1e6a47d1686d0c3eb44f7d69824c63c7e95587afb40700e7e69c4d35ddab94",
       "implementation-summary.md": "a1a6181c586313394a8f983964b257361f4507ef030b35e0c52c4892bc98ff06",
-      "resource-map.md": "1cc35fddd843aefc91b8da9740237e19589d00981ede56877768196713185eca"
+      "resource-map.md": "fc9c52f3f21ca2e1dd3702c6f3c601276ca610268c5f82a9d57371277210854d"
     },
     "last_active_child_id": null,
     "last_active_at": null

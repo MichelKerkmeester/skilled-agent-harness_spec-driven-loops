@@ -2,7 +2,27 @@
 title: "Decision Record: Doctor Cutover Phase 2 [system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/004-cutover-doctor-router-from-legacy-files/decision-record]"
 description: "Architectural Decision Records for the hard cutover phase: delete strategy, sed strategy, advisor rebuild order, historical annotation scope, and runtime mirror boundaries."
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record-core | v2.2 -->"
-trigger_phrases: []
+trigger_phrases:
+  - "doctor router cutover decision record"
+  - "hard delete legacy command files"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/004-cutover-doctor-router-from-legacy-files"
+    last_updated_at: "2026-05-11T17:00:00Z"
+    last_updated_by: "spec-author"
+    recent_action: "Recorded the doctor cutover ADRs"
+    next_safe_action: "None recorded"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "004-cutover-doctor-router-from-legacy-files-decision-record"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Decision Record: Doctor Cutover Phase 2
 
@@ -11,6 +31,7 @@ trigger_phrases: []
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Hard delete legacy command files; no shim aliases
 
 **Status:** Accepted (2026-05-11)
@@ -25,6 +46,9 @@ trigger_phrases: []
 
 ---
 
+<!-- /ANCHOR:adr-001 -->
+
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Use in-place sed substitutions instead of regenerating the playbook
 
 **Status:** Accepted (2026-05-11)
@@ -39,6 +63,9 @@ trigger_phrases: []
 
 ---
 
+<!-- /ANCHOR:adr-002 -->
+
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Advisor rebuild happens after deletes and reference rewrites
 
 **Status:** Accepted (2026-05-11)
@@ -53,6 +80,9 @@ trigger_phrases: []
 
 ---
 
+<!-- /ANCHOR:adr-003 -->
+
+<!-- ANCHOR:adr-004 -->
 ## ADR-004: Historical updates in 013 are minimal annotations, not full rewrites
 
 **Status:** Accepted (2026-05-11)
@@ -67,6 +97,9 @@ trigger_phrases: []
 
 ---
 
+<!-- /ANCHOR:adr-004 -->
+
+<!-- ANCHOR:adr-005 -->
 ## ADR-005: Exclude `.codex` from the delete sweep
 
 **Status:** Accepted (2026-05-11)
@@ -78,3 +111,5 @@ trigger_phrases: []
 **Rationale:** A separate delete would either be redundant or risk following symlinks in a way that obscures the actual source of truth.
 
 **Consequences:** Verification covers `.codex` through the final grep gate, not through a separate file delete step.
+
+<!-- /ANCHOR:adr-005 -->

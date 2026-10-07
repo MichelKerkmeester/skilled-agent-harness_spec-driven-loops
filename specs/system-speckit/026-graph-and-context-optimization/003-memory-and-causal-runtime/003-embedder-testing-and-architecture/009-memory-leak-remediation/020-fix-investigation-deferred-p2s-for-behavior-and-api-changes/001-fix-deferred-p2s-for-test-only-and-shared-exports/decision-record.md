@@ -29,6 +29,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: COLLAPSE TEST-ONLY BARREL EXPORTS TO DIRECT IMPORTS
 
 **Status:** Accepted
@@ -49,3 +50,4 @@ Refactor the `system-spec-kit` registry test to import `listSupportedDimensions`
 - Tests keep validating registry/type behavior through source modules.
 - Public barrel surface becomes smaller.
 - No live `system-spec-kit` consumer imports the deleted barrel members; typecheck and embedders vitest passed after deletion.
+<!-- /ANCHOR:adr-001 -->

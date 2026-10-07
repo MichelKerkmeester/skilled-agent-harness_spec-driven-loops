@@ -13,7 +13,11 @@
     "trigger_phrases": [
       "interconnected mcp audit",
       "code-graph skill-advisor review",
-      "deep-loop-runtime review"
+      "deep-loop-runtime review",
+      "interconnected mcps review plan",
+      "code graph skill advisor review plan",
+      "interconnected mcps review tasks",
+      "code graph skill advisor review tasks"
     ],
     "key_topics": [
       "interconnected",
@@ -23,16 +27,18 @@
       "skill-advisor",
       "review",
       "deep-loop-runtime",
-      "system-spec-kit",
-      "interconnects",
-      "feature",
-      "specification",
-      "mcps"
+      "mcps",
+      "plan",
+      "code",
+      "graph",
+      "skill"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       ".opencode/skills/system-skill-advisor/SKILL.md"
     ],
     "entities": [
@@ -40,6 +46,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -83,20 +101,84 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "system-spec-kit interconnects with the code-graph MCP, the skill-advisor MCP, and the deep-loop-runtime",
     "created_at": "2026-06-04T18:53:35.322Z",
-    "last_save_at": "2026-08-30T15:39:28.970Z",
+    "last_save_at": "2026-10-07T19:46:16.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:c9029a81439b67982c8c2e2693bb6d52bae0a28c28c462382ba14b6a24a3eebd",
+    "source_fingerprint": "sha256:0270ff20261e77f9ee6ae02b1a67bc831bb8aafc7b1b834bc956e59251a01f6b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7eb1ab5809697e3d976697b621a797fd96778ff81864e11130fe0ab079b52d4f"
+      "spec.md": "7eb1ab5809697e3d976697b621a797fd96778ff81864e11130fe0ab079b52d4f",
+      "plan.md": "8bf8a22fa01d2c397fc09a96301543940aba87eec167bd0d6537303fd364be45",
+      "tasks.md": "0ce4d9bbf18763a5abfcde392b64f6be6d05195eb4556856e129e874ec0f85e1"
     },
     "last_active_child_id": null,
     "last_active_at": null

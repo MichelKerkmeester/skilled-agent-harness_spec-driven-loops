@@ -1,3 +1,12 @@
+---
+title: "Tasks: Deep-loop Executor / Provider / Model Matrix Audit"
+description: "Task list for the read-only executor/provider/model matrix audit: capture the config surface, classify lineage builders, assemble the matrix, assign a disposition to every gap, and freeze."
+trigger_phrases:
+  - "executor matrix audit tasks"
+  - "executor matrix audit checklist"
+importance_tier: "high"
+contextType: "planning"
+---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 

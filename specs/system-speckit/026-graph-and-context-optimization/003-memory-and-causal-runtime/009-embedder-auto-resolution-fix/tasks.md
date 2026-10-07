@@ -2,10 +2,8 @@
 title: "Tasks: Robust embedding-provider auto-resolution fix"
 description: "Task list for the node:sqlite factory fix, regression test, verification, and interim-pin revert."
 trigger_phrases:
-  - "tasks"
-  - "embedder"
+  - "embedder auto resolution fix tasks"
   - "auto-resolution"
-  - "factory"
   - "node:sqlite"
 importance_tier: "important"
 contextType: "general"

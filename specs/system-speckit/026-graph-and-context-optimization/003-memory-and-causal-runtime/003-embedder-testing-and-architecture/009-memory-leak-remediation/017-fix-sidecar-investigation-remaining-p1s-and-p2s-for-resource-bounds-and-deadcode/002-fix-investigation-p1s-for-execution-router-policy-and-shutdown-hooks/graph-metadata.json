@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`execution-router.ts` has 7 P1 findings from arc 010/001 deep-research",
     "created_at": "2026-05-23T06:21:18Z",
-    "last_save_at": "2026-08-30T15:39:31.375Z",
+    "last_save_at": "2026-10-07T19:55:02.445Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c4572d6e5b3061d4cf8f4c337e4cde56a3f37da19f0a8b12280076d84d0751c",
+    "source_fingerprint": "sha256:a44a450235ad5e0ec20b19161e51524be0c250a1e9127b0449f84d9181837d3c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c57ab5da4ae960ae88ec2ef1f0fb62bf384944ac1bb7f5244de564364540bf98",
       "plan.md": "8c400600b8f9e72daec51c16cccf9571ccc45d7572233ea05bbeacbfa11d2f5b",
       "tasks.md": "de1dc51d6535f70598c5420b01044d7e216732a2cfb7ecb18c9c006e74668445",
-      "decision-record.md": "27b6f744bced7463e9a57d31a475a25a8ebb1b63ec728ce251c1bb54d1225550",
+      "decision-record.md": "06eb60fbda3eb364afafbe9fd1ec7229dbbfcac371c312b9b2e21e9941a0f0cb",
       "implementation-summary.md": "d4df30c5bdee6b44b42d30274a0a4aa43e400f4e82e92354ee57043f88417bdd"
     },
     "last_active_child_id": null,

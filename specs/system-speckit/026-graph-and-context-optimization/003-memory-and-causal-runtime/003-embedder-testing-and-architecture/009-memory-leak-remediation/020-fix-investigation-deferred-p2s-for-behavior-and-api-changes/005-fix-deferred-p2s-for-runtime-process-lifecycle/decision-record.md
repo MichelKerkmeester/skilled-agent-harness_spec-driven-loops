@@ -29,6 +29,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: GATE PAUSED REINDEX STARTUP BEHIND TESTABLES
 
 **Status:** Accepted
@@ -51,7 +52,9 @@ Production `startReindex()` always queues and starts work. The paused `autoStart
 Production callers get immediate enqueue behavior. Tests that need a queued-but-paused job import `__embedderReindexTestables.startReindex()`.
 
 ---
+<!-- /ANCHOR:adr-001 -->
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: KEEP AND DOCUMENT CANCELLATION LIFECYCLE
 
 **Status:** Accepted
@@ -74,7 +77,9 @@ Keep `cancelJob()` exported from `reindex.ts` because `.opencode/skills/system-s
 `cancelJob(jobId, db?)` remains available for existing barrel consumers. This packet does not add a new MCP-facing cancel endpoint.
 
 ---
+<!-- /ANCHOR:adr-002 -->
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: FAIL FAST ON MISSING DATABASE DIRECTORY
 
 **Status:** Accepted
@@ -97,7 +102,9 @@ Validate the main database directory before reindex job construction and resume.
 File-backed SQLite databases continue to work. `:memory:` databases are unsupported for reindex startup/resume.
 
 ---
+<!-- /ANCHOR:adr-003 -->
 
+<!-- ANCHOR:adr-004 -->
 ## ADR-004: DUPLICATE SIGNALS NO-OP WHILE SHUTDOWN IS IN FLIGHT
 
 **Status:** Accepted
@@ -120,7 +127,9 @@ Keep the F53 best-effort shutdown hook model, but add a `shutdownSignalInFlight`
 Hooks register once. The first SIGINT/SIGTERM/SIGHUP starts best-effort cleanup and replays the signal after the promise settles. Duplicate re-entry during that window is a warning-only no-op.
 
 ---
+<!-- /ANCHOR:adr-004 -->
 
+<!-- ANCHOR:adr-005 -->
 ## ADR-005: DIRECT PROVIDER CREDENTIAL CACHE INVALIDATES ON ADAPTER ROTATION
 
 **Status:** Accepted
@@ -144,6 +153,7 @@ Track the active adapter key in `execution-router.ts`. When `getEmbedderAdapter(
 Direct provider credential staleness is bounded until the next adapter resolution after a provider/model rotation. Sidecar worker credential refresh remains out of scope for this bucket and may require a later sidecar-specific packet.
 
 ---
+<!-- /ANCHOR:adr-005 -->
 
 ## VERIFICATION NOTES
 

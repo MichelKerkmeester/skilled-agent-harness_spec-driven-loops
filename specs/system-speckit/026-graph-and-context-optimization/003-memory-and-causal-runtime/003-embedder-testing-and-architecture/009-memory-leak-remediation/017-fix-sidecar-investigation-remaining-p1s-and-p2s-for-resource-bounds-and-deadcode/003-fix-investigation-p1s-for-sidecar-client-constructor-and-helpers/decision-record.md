@@ -28,6 +28,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Production/Test Constructor Option Split
 
 **Status:** Accepted
@@ -48,6 +49,8 @@ Keep `SidecarClientOptions` production-only and accept test-only injection field
 
 ---
 
+<!-- /ANCHOR:adr-001 -->
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Canonical EmbedOptions Location
 
 **Status:** Accepted
@@ -68,6 +71,8 @@ Export `EmbedOptions` from `sidecar-client.ts` and import that type in `executio
 
 ---
 
+<!-- /ANCHOR:adr-002 -->
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Grace-Period Termination Helper
 
 **Status:** Accepted
@@ -88,6 +93,8 @@ Use one `terminateChildWithGracePeriod(child, gracePeriodMs)` helper that sends 
 
 ---
 
+<!-- /ANCHOR:adr-003 -->
+<!-- ANCHOR:adr-004 -->
 ## ADR-004: Discriminator-Narrowed Response Handling
 
 **Status:** Accepted
@@ -108,6 +115,8 @@ Parse stdout lines into `unknown`, verify object/id/type shape, then switch on t
 
 ---
 
+<!-- /ANCHOR:adr-004 -->
+<!-- ANCHOR:adr-005 -->
 ## ADR-005: Remove SidecarClient.ready()
 
 **Status:** Accepted
@@ -127,6 +136,8 @@ Delete `SidecarClient.ready()` and have `SidecarClient` implement the adapter su
 - The registry-facing adapter contract still retains readiness for non-sidecar adapters; this packet only narrows `SidecarClient`.
 
 ---
+
+<!-- /ANCHOR:adr-005 -->
 
 ## Summary
 

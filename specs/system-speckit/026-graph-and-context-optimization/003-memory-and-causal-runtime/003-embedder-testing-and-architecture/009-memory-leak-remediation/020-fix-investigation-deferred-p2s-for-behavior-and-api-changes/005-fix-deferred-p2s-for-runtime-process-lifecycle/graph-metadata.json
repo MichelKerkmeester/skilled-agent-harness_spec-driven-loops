@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Five deferred P2 findings remained in runtime/process lifecycle code",
     "created_at": "2026-05-23T10:49:04Z",
-    "last_save_at": "2026-08-30T15:39:31.495Z",
+    "last_save_at": "2026-10-07T19:59:56.336Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a38fb20dc41568d16dffa7770a6ecdf75cf603883ffca7527935e03490e9622",
+    "source_fingerprint": "sha256:63d4a69bda55bcda33418b6af73683115044c96d44d8d3ef6c9af3f196f7d7d6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4ae1964229dc82d1cd54c69a452a401d103b9a2bed0bd80c315e97175454a526",
       "plan.md": "d599f1a2c00d0ec970821b49f6cfd8450c0644b69316adc64442915ae3a4f43c",
       "tasks.md": "52b2db17f117302b2a8a1c352f57dc72464ade9e5f7639f5c6d7a146d76f230d",
-      "decision-record.md": "712aab9d0e26762090f73b3ddbdd981681d0d93958de87edce0ffa1e77bcafc8",
+      "decision-record.md": "f68726983a00ce83f331fd367829842d1ec99da183d078b743885b8c2b75a17b",
       "implementation-summary.md": "48b14862974f6c223b7888bfd79622404d7acc4d12f36760f3fb8db8977e2cd5"
     },
     "last_active_child_id": null,

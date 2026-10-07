@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-deep-review-017-021-remediation |
-| **Status** | In Progress — implementation work pending |
+| **Status** | not-started — findings carried as tasks; no fixes applied |
 | **Level** | 3 |
 | **Created** | 2026-06-17 |
 | **Source reviews** | 017 (CONDITIONAL) · 018 / 019 / 020 / 021 (PASS) |

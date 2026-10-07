@@ -29,6 +29,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Health-Gated Layer D Reap
 
 **Status:** Accepted
@@ -48,7 +49,9 @@ Both launchers reap only when every registered owner is dead and the sidecar `/h
 - Live healthy sidecars survive even when owner metadata is imperfect.
 
 ---
+<!-- /ANCHOR:adr-001 -->
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Missing Owner List Means Debug-Safe Skip
 
 **Status:** Accepted
@@ -68,7 +71,9 @@ Rows missing the `owners` field are skipped by launcher pre-flight. Rows with ex
 - JS preserves `ownersListPresent` internally when serializing kept debug rows.
 
 ---
+<!-- /ANCHOR:adr-002 -->
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: JS Uses Current PID Identity Semantics
 
 **Status:** Accepted
@@ -88,7 +93,9 @@ The JS launcher reads `ps -p <current pid> -o lstart=,comm=` for owner identity 
 - JS and Python owner records are semantically equivalent.
 
 ---
+<!-- /ANCHOR:adr-003 -->
 
+<!-- ANCHOR:adr-004 -->
 ## ADR-004: Fixture Matrix Is the Cross-Runtime Contract
 
 **Status:** Accepted
@@ -106,3 +113,4 @@ Vitest reads the same `reaper-ledger-cases.json` consumed by `test_sidecar_ledge
 ### Consequences
 - Adding a future liveness reason requires updating both runtimes and the fixture.
 - The implementation summary must record JS and Python verdicts for all fixture cases.
+<!-- /ANCHOR:adr-004 -->

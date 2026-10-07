@@ -145,6 +145,12 @@
         "source": "derived"
       },
       {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -175,19 +181,13 @@
         "source": "derived"
       },
       {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Title",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Alternatives Considered",
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-05-02T09:34:31Z",
-    "last_save_at": "2026-09-07T16:17:40.641Z",
+    "last_save_at": "2026-10-07T19:50:31.273Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0659907b80ec4e1c56bc576ca5e5b079b081ae289f40cbff72b3c0dd2232560b",
+    "source_fingerprint": "sha256:a9cbb390856f1f206cb9aa449ed1846425ee4ecf45014f4b7418a99995895435",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8a8c58c9348c191b34896f18ff5ecc5f5d281a8ca39e91b9737bab150d3d2d5b",
-      "plan.md": "4bc3adad7ad4fef030c6156767a92b9348395e2a21f95e605c0d605e41f3a16f",
-      "tasks.md": "df67f3592bee8a3a460005a979e52d981345311fa538c0db43f6c079c368e292",
+      "plan.md": "66f364e76bfdec4a1fc97bfdf64392cbee8c80c9eb01bd91d6b4f4d83f74a2d2",
+      "tasks.md": "3179caf4f2ebd474c099ba669330a23378e9ec6f0cfdbc96bc306034dde394b0",
       "decision-record.md": "985cda5323ee1dcab56f3e8cbc55e5fe85255dffa1bc8edb331f3657e4b17ae3",
-      "implementation-summary.md": "841406ffbd86d41441831db845ecb1482dae6d10efa1bbb120646c37424f9937"
+      "implementation-summary.md": "92054949490a6b0fc44ef67885a9844b9d25c35b91485cb601bc7de969599350"
     },
     "last_active_child_id": null,
     "last_active_at": null

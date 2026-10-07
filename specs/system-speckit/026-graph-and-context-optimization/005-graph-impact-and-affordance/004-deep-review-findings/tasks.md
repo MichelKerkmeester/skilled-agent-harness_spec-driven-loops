@@ -22,6 +22,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 
+<!-- ANCHOR:phase-1 -->
 ## T-A — `detect_changes` MCP Wiring Decision (P1)
 
 > Tier 2 state-hygiene note (2026-04-28): rows previously marked `pending` were stale. `implementation-summary.md` records T-A through T-F as integrated; this ledger is backfilled to match that authoritative closeout.
@@ -31,6 +32,9 @@ _memory:
 | R-007-2 | Decide: wire `detect_changes` as MCP tool OR mark internal-only across all docs | done | Branch decision; affects T-B |
 | R-007-14 | Sync chosen path across `code_graph/tools/code-graph-tools.ts`, `tool-schemas.ts`, `schemas/tool-input-schemas.ts`, `handlers/index.ts`, 6 umbrella docs | done | After R-007-2 |
 
+<!-- /ANCHOR:phase-1 -->
+
+<!-- ANCHOR:phase-2 -->
 ## T-B — Verification Evidence Sync (P1, after T-A)
 
 | ID | Task | Status | Notes |
@@ -43,6 +47,9 @@ _memory:
 | R-007-20 | Update 003 checklist to remove premature PASS marks | done | |
 | R-007-21 | Update 005 checklist to remove premature PASS marks | done | |
 
+<!-- /ANCHOR:phase-2 -->
+
+<!-- ANCHOR:phase-3 -->
 ## T-C — Public API Surface Gaps (P1, parallel with T-D/E/F)
 
 | ID | Task | Status | Notes |
@@ -50,6 +57,9 @@ _memory:
 | R-007-6 | Add `minConfidence` to `tool-input-schemas.ts` strict Zod, `tool-schemas.ts` JSON, allowed-parameter ledger; extend `tool-input-schema.vitest.ts` | done | |
 | R-007-10 | Decide: expose `affordances` via advisor-recommend input schema OR document compile-time-only; sync `advisor-tool-schemas.ts` + `advisor-recommend.ts` | done | |
 
+<!-- /ANCHOR:phase-3 -->
+
+<!-- ANCHOR:phase-4 -->
 ## T-D — Sanitization Hardening (P1+P2)
 
 | ID | Task | Status | Notes |
@@ -65,12 +75,18 @@ _memory:
 | R-007-P2-10 | Memory: sanitize/cap explicit `extractionAge`/`lastAccessAge` strings (`formatters/search-results.ts:239-243`) | done | P2 — `ALLOWED_AGE_LABEL` regex + `MAX_AGE_LABEL_LENGTH` cap |
 | R-007-P2-11 | Memory: trace flag `{attempted, derivedCount, failureReason}` for badge derivation (`formatters/search-results.ts:271-275, 348-350`) | done | P2 — `MemoryResultTrace.trustBadgeDerivation` populated when `includeTrace` |
 
+<!-- /ANCHOR:phase-4 -->
+
+<!-- ANCHOR:phase-5 -->
 ## T-E — Test Rig Fixes (P1, parallel)
 
 | ID | Task | Status | Notes |
 |----|------|--------|-------|
 | R-007-13 | Trust-badges: rewrite mock-resolution via DI override or real-DB fixture; unskip describe block (`tests/memory/trust-badges.test.ts:77`) | done | P1 — addresses Wave-3 known follow-up |
 
+<!-- /ANCHOR:phase-5 -->
+
+<!-- ANCHOR:phase-6 -->
 ## T-F — Doc + Label Cleanup (P1+P2)
 
 | ID | Task | Status | Notes |
@@ -86,6 +102,8 @@ _memory:
 | R-007-P2-7 | Extract shared relationship-edge mapper from 4 switch branches (`query.ts:1229, 1258, 1287, 1315`) | done | P2 |
 | R-007-P2-9 | Affordance debug counters for received/accepted/dropped-unsafe/dropped-empty/dropped-unknown (`affordance-normalizer.ts:153-157`, `skill_graph_compiler.py:407`) | done | P2 |
 | R-007-P2-12 | Add phase-naming alias note (012 → 010) in 6 sub-phase doc headers OR normalize labels | done | P2 |
+
+<!-- /ANCHOR:phase-6 -->
 
 ## Cross-cutting tasks
 
@@ -110,7 +128,10 @@ T-A (R-007-2) → T-A (R-007-14) → T-B (all 7 tasks)
                                                  R-007-X1 → X2 → X3
 ```
 
+<!-- ANCHOR:cross-refs -->
 ## References
 
 - spec.md, plan.md, checklist.md (this folder)
 - 006/review/phase-review-summary.md (cross-sub-phase findings)
+
+<!-- /ANCHOR:cross-refs -->

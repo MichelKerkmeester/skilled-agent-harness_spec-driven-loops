@@ -49,7 +49,6 @@
       "opencode.json",
       ".claude/mcp.json",
       ".codex/config.toml",
-      "dist/context-server.js",
       ".opencode/commands/doctor/_routes.yaml"
     ],
     "entities": [
@@ -99,12 +98,6 @@
         "name": "config.toml",
         "kind": "file",
         "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.js",
-        "kind": "code",
-        "path": "dist/context-server.js",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Update Server",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current configured server alias forces a 22-character fully qualified prefix, `mcpmkspecmemory`, into every Claude-style tool reference",
     "created_at": "2026-05-13T09:00:44Z",
-    "last_save_at": "2026-08-30T15:39:30.063Z",
+    "last_save_at": "2026-10-07T19:52:59.698Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +209,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:fa6f646e02bee147aa9ef378c346deb3729188ac3fa6988acef4cbe985dd41be",
+    "source_fingerprint": "sha256:b9563b02ae094479ce367bb0cbeeace414533257df4e46cedd8f1335db85da7a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f553b67cd8b404bd83983faa22923e1ac0799253abc38d7797d57df4626c75e1",
       "plan.md": "2e659b4eeb8342d2868f2a75ba6b0f23895009e332077b5323b87f1813c70439",
       "tasks.md": "5702b77718daaba1ad27fba1e8e66068e26eb3ceb25d7e6284f11ff439c4251b",
       "implementation-summary.md": "92e94b16511800f94d2d6702d032a4fc952b031b40acfdd6839e2385079e71a7",
-      "resource-map.md": "da36a8df869007b96d09257d6ca7b3ec1ab7d078baad04752b4c0eb58449fff8"
+      "resource-map.md": "b877a91796deb7d3d05706f1348c47b9f0271b4e8c198a0a0ec69a9f7c0dfa9f"
     },
     "last_active_child_id": null,
     "last_active_at": null

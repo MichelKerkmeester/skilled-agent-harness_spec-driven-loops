@@ -28,20 +28,26 @@ _memory:
 
 > **Consolidation note (2026-04-18).** This packet merges the former Phase 018 (native plus cli-codex) with the former Phase 019 (cli-copilot plus cli-gemini plus cli-claude-code) into a single CLI runtime executor arc. Both ship the same executor-selection surface for `sk-deep-research` and `sk-deep-review` workflow YAMLs. Historical detail lives in the child packets under `001-executor-feature/` and `002-runtime-matrix/`.
 
+<!-- ANCHOR:metadata -->
 | Field | Value |
 |---|---|
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | ../001-foundational-runtime/spec.md |
 | **Successor** | ../003-system-hardening/spec.md |
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 1. PROBLEM STATEMENT
 
 `sk-deep-research` and `sk-deep-review` originally hardcoded `model: opus` at YAML dispatch and forbade direct CLI-in-a-loop (SKILL.md:46-50). The CLI executor is a tool inside the command's workflow, not a replacement. This packet makes executor selection a first-class, YAML-owned dispatch branch.
 
 ---
 
+<!-- /ANCHOR:problem -->
+
+<!-- ANCHOR:scope -->
 ## 2. SCOPE
 
 ### 001-executor-feature (ex-018)
@@ -62,6 +68,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:scope -->
+
+<!-- ANCHOR:success-criteria -->
 ## 3. SUCCESS CRITERIA
 
 1. Native path regression: identical byte-for-byte iteration output to pre-feature
@@ -72,6 +81,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:success-criteria -->
+
+<!-- ANCHOR:related-docs -->
 ## 4. CHILD PACKET MAPPING
 
 | Child | Ex-Phase | Deliverable |
@@ -84,3 +96,4 @@ _memory:
 ## 5. DOWNSTREAM
 
 - `018-cli-executor-remediation/` (ex-020) remediates R1-R12 findings from the 30-iter deep-research dogfood pass against this packet's research root (`../../research/017-sk-deep-cli-runtime-execution-pt-01/`)
+<!-- /ANCHOR:related-docs -->

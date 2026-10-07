@@ -30,6 +30,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Ratify Binding Reaper Foundation ADRs
 
 **Status:** Accepted
@@ -57,3 +58,4 @@ Later launcher and app phases can depend on stable Python helpers and fixture se
 - `../../004-rerank-sidecar-accumulation-investigation-and-reaper-design/001-investigate-and-design-reaper-architecture/decision-record.md`
 - `../../004-rerank-sidecar-accumulation-investigation-and-reaper-design/001-investigate-and-design-reaper-architecture/research/research.md`
 - `../../002-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity/decision-record.md`
+<!-- /ANCHOR:adr-001 -->

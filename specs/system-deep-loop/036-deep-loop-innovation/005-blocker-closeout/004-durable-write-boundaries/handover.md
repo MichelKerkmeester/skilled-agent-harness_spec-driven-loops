@@ -6,12 +6,15 @@ trigger_phrases: []
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.2 -->
 
+<!-- ANCHOR:handover-summary -->
 **Status:** Closed. The code is implemented, hardened, and adversarially verified; the aggregate gate ran to completion with every failure attributed away from this work; and all six previously-accepted deferrals were closed on 2026-08-18. `tasks.md` and `checklist.md` are both at zero open items and strict validation exits 0. One unrelated finding stays tracked: the writer-lock reclaim race, which reproduces at base.
 
 Worktree: `.worktrees/0129-system-deep-loop-036-remediation-execution`, branch `system-deep-loop/0129-036-remediation-execution`, on top of origin tip `2d12dfc5f5`.
+<!-- /ANCHOR:handover-summary -->
 
 ---
 
+<!-- ANCHOR:context-transfer -->
 ## 1. What is DONE and verified
 
 All 18 findings fixed. Gateway-only fenced mutation enforced at RUNTIME:
@@ -25,9 +28,11 @@ All 18 findings fixed. Gateway-only fenced mutation enforced at RUNTIME:
 - 024's 8 owned test suites in isolation → **223/223 pass** (hardening leaf + independent Sonnet verify at 221 pre-hardening).
 - Child `validate.sh --strict` → Errors 0, Warnings 0.
 - Adversarial verify (Sonnet, independent actor): 2 P1s found, both resolved (P1-1 = the runtime-hardening now done; P1-2 = the open item below). No P0s. Comment hygiene clean, scope clean.
+<!-- /ANCHOR:context-transfer -->
 
 ---
 
+<!-- ANCHOR:context-transfer-2 -->
 ## 2. OPEN ITEMS — must close before landing
 
 ### 2A. Full-suite regression aggregate (P1-2) — the ONLY blocker
@@ -48,9 +53,11 @@ The 021 RED baseline is `148 files / 3,992 tests / 3,986 pass / 6 fail in 3 file
 - `tests/integration/review-depth-convergence.vitest.ts` (1 fail) — review-workflow content drift (a `searchLedger` prose assertion) from a concurrent doc change at HEAD `2d12dfc5f5`. Not 024.
 
 A "no new failures vs baseline" claim = the final failing set is exactly these 4 files.
+<!-- /ANCHOR:context-transfer-2 -->
 
 ---
 
+<!-- ANCHOR:next-session -->
 ## 3. LAND RECIPE (once 2A is green)
 1. Re-sync is NOT needed unless landing on a newer origin tip; the leak-guard lander fetches fresh origin itself.
 2. Re-confirm child `validate.sh --strict` → Errors 0.
@@ -62,15 +69,19 @@ A "no new failures vs baseline" claim = the final failing set is exactly these 4
    - **EXCLUDE** `runtime/database/*` (council-graph.sqlite, deep-loop-graph.sqlite, observability-events.jsonl are test-run byproducts — not named, so the leak-guard drops them). Also exclude the ambient `specs/descriptions.json` + parent `036/graph-metadata.json` metadata churn.
    - Lander: `zsh /tmp/ks/land-wt0129.sh <paths-file> <msg-file>` (temp GIT_INDEX_FILE from fresh origin FETCH_HEAD, stages only named prefixes, guards 0 deletions + all-under-prefix, commit-tree, braced push with `SPECKIT_ALLOW_REMOTE_PUSH=1`). Draft commit message is at `/tmp/ks/msg-036-024.txt`.
 4. After land: mark the child Status Complete + reconcile completion metadata; re-sync worktree.
+<!-- /ANCHOR:next-session -->
 
 ---
 
+<!-- ANCHOR:next-session-2 -->
 ## 4. Restore the build in a fresh session
 The full 110-file dirty build is on `wip/024-build-checkpoint` (`fbd39097909`). To resume:
 `git -C <worktree> stash apply fbd39097909` onto a clean tree, OR reset the worktree to it. The dirty worktree currently already holds this state — do NOT `git reset --hard` / re-sync it (that discards the build; the checkpoint is the recovery).
+<!-- /ANCHOR:next-session-2 -->
 
 ---
 
+<!-- ANCHOR:next-session-3 -->
 ## 5. After 024 lands — the rest of the WS1 036 runtime chain
 Per the updated goal prompt (STEP 0 scaffold is DONE — do NOT re-scaffold; 021-032 committed, 021 Complete):
 - **026-alignment-coverage** (unblocks once 024's `leaf-artifact-writer.ts` closed parser lands — 024 owns it structurally; 026 layers slice-binding).
@@ -78,14 +89,18 @@ Per the updated goal prompt (STEP 0 scaffold is DONE — do NOT re-scaffold; 021
 - Per-child discipline (hard): confirm findings vs HEAD first → LUNA-xhigh build via cli-codex → SOL/Sonnet adversarial verify → tsc + serial vitest green vs the 021 baseline → leak-guard land. Executor policy: builds = GPT-5.6-LUNA xhigh (cli-codex workspace-write); confirm/verify = GPT-5.6-SOL cli-codex fast + Sonnet; NEVER cli-opencode; SERIAL dispatch.
 
 Also still open in the broader program (sk-doc, not runtime): 022/003 (full structural sweep, ruling locked), 023/002+003, 024/002+003, sk-code/021/002-005.
+<!-- /ANCHOR:next-session-3 -->
 
 ---
 
+<!-- ANCHOR:session-notes -->
 ## 6. Session ledger (what landed to origin/skilled/v4.0.0.0 THIS session)
 All adversarially verified pre-land: 025/002 `9307faa895` · 022/001 `79d5d0b62a` · 022/002 `8a68a760f2` · 025/003 `9d18d3f44b` · 025/004 `40fc8a83a0` (025 skill-doc-currency family COMPLETE). Plus the standing goal prompt was rewritten to drop the stale STEP 0 (scaffold is done).
+<!-- /ANCHOR:session-notes -->
 
 ---
 
+<!-- ANCHOR:session-notes-2 -->
 ## 7. Closed — no residuals remain (2026-08-18)
 
 Sections 1-6 above are the landing history. Every deferral this packet carried is
@@ -116,7 +131,9 @@ CHK-022 (manifest now names the callable gateway seam, red-before/green-after
 test), CHK-111 (fencing overhead measured: 10.40 ms mean, 5.9% of an append),
 CHK-120 (rollback rehearsed — see below), CHK-132 (calibration block verified
 byte-identical across 12 siblings).
+<!-- /ANCHOR:session-notes-2 -->
 
+<!-- ANCHOR:session-notes-3 -->
 ## 8. The one thing to carry forward
 
 The rollback rehearsal failed, and that is the most useful thing in this packet.
@@ -130,3 +147,4 @@ it. Full record: `scratch/chk-120-rollback-rehearsal.md`.
 One finding stays open and is tracked, not hidden: the writer-lock reclaim race
 in `scratch/open-finding-writer-lock-reclaim.md`. It reproduces at base and is
 not caused by this work.
+<!-- /ANCHOR:session-notes-3 -->

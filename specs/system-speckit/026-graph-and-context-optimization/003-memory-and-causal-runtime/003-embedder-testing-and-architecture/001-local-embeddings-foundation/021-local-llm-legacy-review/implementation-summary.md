@@ -37,9 +37,12 @@ _memory:
 
 ---
 
+<!-- ANCHOR:what-built -->
 ## 1. WHAT CHANGED
 
 A new Level-2 review packet (`021-local-llm-legacy-review/`) was scaffolded under `026-graph-and-context-optimization/` and a **10-iteration `/deep:start-review-loop:auto` run** was executed against the full repo via cli-codex (gpt-5.5, reasoning=high, service_tier=fast, 900s/iter timeout). The run reduced from the originally planned 20 iters to 10 per user request mid-run (iters 1-2 preserved across the restart via a skip-existing guard). Output: `review/review-report.md` (188 lines, full 10-section structure) + `review/resource-map.md` + per-iter findings at `review/iterations/iteration-00{1..10}.md` + state log `review/deep-review-state.jsonl`. Zero git commits, zero mutations outside the packet — HEAD is still `5e7095d3336510b5756ba5cac383a8e08d1d79db` (recovery anchor).
+
+<!-- /ANCHOR:what-built -->
 
 ---
 
@@ -82,6 +85,7 @@ This is a **doc/code divergence**: the 014 implementation-summaries claim llama-
 
 ---
 
+<!-- ANCHOR:verification -->
 ## 5. HAND-VALIDATION (≥3 P1 sample)
 
 Spot-checked via direct `sed -n` reads — all evidence is real, no hallucinations:
@@ -91,8 +95,11 @@ Spot-checked via direct `sed -n` reads — all evidence is real, no hallucinatio
 - `install_guides/README.md:671` — exact match `export VOYAGE_EMBEDDINGS_MODEL=voyage-3.5  # Default`; lines 675, 678 also confirm `text-embedding-3-small  # Default` and `nomic-ai/nomic-embed-text-v1.5  # Default` are equally stale ✓
 - `factory.ts:819-825` (the P0) — exact match `const llamaCppAvailability = getLlamaCppAvailability(); if (llamaCppAvailability.available) { return { name: 'llama-cpp', reason: 'Default local provider (llama-cpp GGUF q8)', }; }` ✓
 
+<!-- /ANCHOR:verification -->
+
 ---
 
+<!-- ANCHOR:how-delivered -->
 ## 6. RM-8 SCOPE DISCIPLINE
 
 | Check | Status |
@@ -102,6 +109,8 @@ Spot-checked via direct `sed -n` reads — all evidence is real, no hallucinatio
 | No `rm`/`sed -i`/`mv`/`git rm` invoked by codex agents | ✓ |
 | All iteration writes confined to `015-*/review/iterations/iteration-NNN.md` | ✓ |
 | Files modified outside packet | All pre-existing parallel-track work from session start (per memory rule "worktree cleanliness is never a blocker") |
+
+<!-- /ANCHOR:how-delivered -->
 
 ---
 

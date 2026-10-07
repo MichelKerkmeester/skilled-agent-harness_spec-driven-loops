@@ -33,6 +33,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:summary -->
 ## Summary
 
 - **Total references**: 49
@@ -44,6 +45,9 @@ _memory:
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
 > **Status vocabulary**: `OK` (exists on disk) · `MISSING` (referenced but absent) · `PLANNED` (intentional future path).
 
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:readmes -->
 ## 1. READMEs
 
 | Path | Action | Status | Note |
@@ -51,6 +55,9 @@ _memory:
 | `.opencode/skills/sk-deep-research/README.md` | Updated | OK | Restored child-run examples and packet-location language to owner-local `research/` folders. |
 | `.opencode/skills/sk-deep-review/README.md` | Updated | OK | Restored child-run examples and packet-location language to owner-local `review/` folders. |
 
+<!-- /ANCHOR:readmes -->
+
+<!-- ANCHOR:commands -->
 ## 3. Commands
 
 | Path | Action | Status | Note |
@@ -60,6 +67,9 @@ _memory:
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Updated | OK | Review auto loop now keeps packet writes under resolved `{artifact_dir}`. |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Updated | OK | Review confirm flow now keeps prompts and packet outputs under resolved `{artifact_dir}`. |
 
+<!-- /ANCHOR:commands -->
+
+<!-- ANCHOR:agents -->
 ## 4. Agents
 
 | Path | Action | Status | Note |
@@ -73,6 +83,9 @@ _memory:
 | `.gemini/agents/deep-review.md` | Updated | OK | Gemini mirror aligned with the restored review packet contract. |
 | `.codex/agents/deep-review.toml` | Updated | OK | Codex mirror aligned with the restored review packet contract. |
 
+<!-- /ANCHOR:agents -->
+
+<!-- ANCHOR:skills -->
 ## 5. Skills
 
 | Path | Action | Status | Note |
@@ -96,6 +109,9 @@ _memory:
 | `.opencode/skills/sk-deep-research/assets/deep_research_dashboard.md` | Updated | OK | Dashboard text now reflects owner-local packet roots. |
 | `.opencode/skills/system-spec-kit/references/structure/folder_structure.md` | Updated | OK | Folder-structure reference now documents the restored root-local vs child-local policy. |
 
+<!-- /ANCHOR:skills -->
+
+<!-- ANCHOR:specs -->
 ## 6. Specs
 
 | Path | Action | Status | Note |
@@ -115,6 +131,9 @@ _memory:
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/tasks.md` | Updated | OK | Dependency chain now names phase 001 as the prerequisite rollback. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/checklist.md` | Updated | OK | Verification language now matches the restored owner-local packet contract. |
 
+<!-- /ANCHOR:specs -->
+
+<!-- ANCHOR:tests -->
 ## 8. Tests
 
 | Path | Action | Status | Note |
@@ -122,3 +141,4 @@ _memory:
 | `.opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts` | Created | OK | Adds resolver coverage for root, child, nested, and rerun reuse behavior. |
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Updated | OK | Research parity assertions now expect local-owner child packet wording. |
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | Updated | OK | Review parity assertions now expect local-owner child packet wording and `{artifact_dir}` output paths. |
+<!-- /ANCHOR:tests -->

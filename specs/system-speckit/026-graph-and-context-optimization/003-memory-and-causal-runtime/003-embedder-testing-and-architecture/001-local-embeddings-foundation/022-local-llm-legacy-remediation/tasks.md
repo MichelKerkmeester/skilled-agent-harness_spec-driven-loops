@@ -14,6 +14,7 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:phase-2 -->
 ## TASK BREAKDOWN
 
 | ID | Task | Status | Owner | Evidence |
@@ -72,3 +73,4 @@ contextType: "implementation"
 | 5 | ~30 min | ~3 min (vitest) | <1 min | ~34 min |
 | Re-review | ~50 min (10 iters + synth) | ~2 min (validation) | <1 min | ~53 min |
 | **Total** | | | | **~161 min ≈ 2h 40m** |
+<!-- /ANCHOR:phase-2 -->

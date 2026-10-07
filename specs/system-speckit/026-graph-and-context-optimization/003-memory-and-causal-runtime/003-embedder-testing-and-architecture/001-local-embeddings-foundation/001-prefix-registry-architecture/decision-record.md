@@ -41,12 +41,14 @@ file is informational at L1 (not validator-required) but kept for traceability. 
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Model-Keyed Prefix Registry with Env Override
 
 **Date**: 2026-05-12
 **Status**: Accepted
 **Deciders**: Project owner (user); claude-opus-4-7 (main agent)
 
+<!-- ANCHOR:adr-001-context -->
 ### Context
 
 `HfLocalProvider` (TypeScript, `shared/embeddings/providers/hf-local.ts`) and `cocoindex_code/shared.py` both hardcode the **Nomic** prefix convention (`search_document: ` / `search_query: `). The prefix is prepended on every encode call regardless of which model is actually loaded.
@@ -63,7 +65,9 @@ Different embedding model families use different prefix conventions:
 | bge-m3 (BAAI) | _(none)_ | _(none)_ |
 
 Feeding the wrong prefix doesn't crash — it just silently degrades retrieval quality by ~5-8% on standard benchmarks (MTEB, MTEB-CoIR). The user's Setup A migration (Voyage → local) requires running EmbeddingGemma for memory and Qwen3-Embedding for code, both of which would inherit the wrong Nomic prefix under the current code.
+<!-- /ANCHOR:adr-001-context -->
 
+<!-- ANCHOR:adr-001-decision -->
 ### Decision
 
 Introduce a **model-keyed registry + env-var override** in both surfaces:
@@ -82,7 +86,9 @@ Introduce a **model-keyed registry + env-var override** in both surfaces:
   - `create_embedder()` calls the resolver instead of inline `if model_name in _QUERY_PROMPT_MODELS`
 
 The legacy `TASK_PREFIX` export is preserved for back-compat with three external consumers (`shared/embeddings.ts`, `shared/index.ts`, `mcp_server/lib/providers/embeddings.ts`); their refactor is a follow-on packet.
+<!-- /ANCHOR:adr-001-decision -->
 
+<!-- ANCHOR:adr-001-alternatives -->
 ### Alternatives Considered
 
 1. **Keep hardcoded prefix, document the limitation**
@@ -108,7 +114,9 @@ The legacy `TASK_PREFIX` export is preserved for back-compat with three external
    - Empty-string fallback (safe — never wrong, just suboptimal for prefix-sensitive models)
    - Pros: common cases just work; one-line PR to add a new model; env override for custom; safe default
    - Cons: registry needs maintenance (low — ~5 entries/year expected)
+<!-- /ANCHOR:adr-001-alternatives -->
 
+<!-- ANCHOR:adr-001-consequences -->
 ### Consequences
 
 **Positive:**
@@ -123,3 +131,5 @@ The legacy `TASK_PREFIX` export is preserved for back-compat with three external
 
 **Neutral:**
 - Legacy `TASK_PREFIX` export retained → no breakage in existing consumers. Eventual cleanup is a follow-on packet, not blocking this work.
+<!-- /ANCHOR:adr-001-consequences -->
+<!-- /ANCHOR:adr-001 -->

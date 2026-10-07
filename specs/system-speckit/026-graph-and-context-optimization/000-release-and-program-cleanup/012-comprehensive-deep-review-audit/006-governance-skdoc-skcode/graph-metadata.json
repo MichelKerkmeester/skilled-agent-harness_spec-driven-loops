@@ -13,7 +13,11 @@
     "trigger_phrases": [
       "constitutional rule audit",
       "sk-doc drift",
-      "sk-code drift"
+      "sk-code drift",
+      "governance skdoc skcode drift review plan",
+      "constitutional standards drift plan",
+      "governance skdoc skcode drift review tasks",
+      "constitutional standards drift tasks"
     ],
     "key_topics": [
       "constitutional",
@@ -22,17 +26,19 @@
       "sk-doc",
       "drift",
       "sk-code",
-      "rules",
-      "govern",
-      "spec-kit",
-      "behavior",
-      "define",
-      "documentation"
+      "governance",
+      "skdoc",
+      "skcode",
+      "review",
+      "plan",
+      "standards"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/skills/sk-code/SKILL.md"
     ],
@@ -41,6 +47,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -84,20 +102,84 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The constitutional rules govern spec-kit behavior, and sk-doc / sk-code define documentation and code standards",
     "created_at": "2026-06-04T18:53:35.321Z",
-    "last_save_at": "2026-08-30T15:39:28.967Z",
+    "last_save_at": "2026-10-07T19:44:24.554Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:3912b145903ad4cc059238a66eac1b4ae7c2150e6cbea7665e8cc2ea8497888a",
+    "source_fingerprint": "sha256:aca82be380188cc616880571479625daadd3ba00212a452589beca7232a0f8fe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "23011af2ecb4e7c151811117213f95f61489cdc315e1d360983ec35b11e4854a"
+      "spec.md": "23011af2ecb4e7c151811117213f95f61489cdc315e1d360983ec35b11e4854a",
+      "plan.md": "f999e338222cc0d0e3b20546cff3e797bff773cdb064f27fa95af2746818b65a",
+      "tasks.md": "06b32939cd6685a8c4489e1da11bc8b364382527630f086102818714c8794d5f"
     },
     "last_active_child_id": null,
     "last_active_at": null

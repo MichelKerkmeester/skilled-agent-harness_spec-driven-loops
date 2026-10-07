@@ -34,12 +34,16 @@ template_source: "SPECKIT_TEMPLATE_SOURCE: handover-core | v2.2"
 
 ---
 
+<!-- ANCHOR:overview -->
 ## OVERVIEW
 
 This packet ran a coordinated sk-doc conformance sweep across 14 manual_testing_playbook directories, 5 feature_catalog directories, 28 reference markdown files, and the templates folder cleanup. The sweep used a hybrid execution model: deterministic sed/awk for mechanical text substitutions (95% of work) and parallel cli-codex gpt-5.5 high fast dispatches for content-heavy restructures.
 
 ---
 
+<!-- /ANCHOR:overview -->
+
+<!-- ANCHOR:what-was-delivered -->
 ## WHAT WAS DELIVERED
 
 ### Tier 2a — 8 playbooks RCAF-conformant (mechanical sed)
@@ -91,6 +95,9 @@ Across cli-claude-code, cli-codex, cli-gemini, cli-opencode, mcp-chrome-devtools
 
 ---
 
+<!-- /ANCHOR:what-was-delivered -->
+
+<!-- ANCHOR:context-transfer -->
 ## KEY DECISIONS
 
 See `decision-record.md` for full ADR-001..ADR-006. Highlights:
@@ -104,6 +111,9 @@ See `decision-record.md` for full ADR-001..ADR-006. Highlights:
 
 ---
 
+<!-- /ANCHOR:context-transfer -->
+
+<!-- ANCHOR:known-limitations -->
 ## KNOWN LIMITATIONS
 
 1. **Pre-existing strict-mode validator warnings on 040 packet** (3 warnings + 1 error): SECTION_COUNTS regex doesn't recognize the canonical Level 3 spec template's acceptance-scenario shape; AI_PROTOCOL pattern detection sees the spec doc but misses the embedded protocol; custom `ai-protocol` ANCHOR. These are documented in implementation-summary.md from session start. Not blocking — content is correct.
@@ -116,6 +126,9 @@ See `decision-record.md` for full ADR-001..ADR-006. Highlights:
 
 ---
 
+<!-- /ANCHOR:known-limitations -->
+
+<!-- ANCHOR:next-session -->
 ## NEXT STEPS
 
 | Step | Owner | Action |
@@ -128,6 +141,9 @@ See `decision-record.md` for full ADR-001..ADR-006. Highlights:
 
 ---
 
+<!-- /ANCHOR:next-session -->
+
+<!-- ANCHOR:cross-references -->
 ## Cross-References
 
 - **Specification**: spec.md
@@ -138,3 +154,5 @@ See `decision-record.md` for full ADR-001..ADR-006. Highlights:
 - **Audit Findings**: audit-findings.md
 - **Implementation Summary**: implementation-summary.md
 - **Approved External Plan**: `/Users/michelkerkmeester/.claude/plans/not-all-manual-testing-prancy-biscuit.md`
+
+<!-- /ANCHOR:cross-references -->

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The 027/002 phases 017-021 shipped working, tested code, but the 50-pass review surfaced a set of confirmed residual issues: one bounded shell-exposure P1 in the `/memory:search` command contract, several maintainability/observability/test-debt P2s in the search and reindex/maintenance code, and pervasive spec-folder doc drift where canonical docs still describe scaffold/planned state while the implementation-summaries record completed work",
     "created_at": "2026-06-17T20:05:00.777Z",
-    "last_save_at": "2026-09-11T16:42:38.335Z",
+    "last_save_at": "2026-10-07T21:19:57.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,15 +209,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:013c9bf2ddc537e0bc87691b01990d07e327becf0feca5b0aed3a9cb963e1bc9",
+    "source_fingerprint": "sha256:4600c36eb12d1efb7d1c8e6b4071a32fd64410a1ad4c1f0770cbce995bb7cac5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3309c2c7a4690bac7595d6b4aacfb4915d537dec49cd538f8a545a8bb8212d81",
       "plan.md": "3a7c43d0d89c94285d890f0f50c75bd60a68aadbeb8b9da7af5b07cf49a97298",
       "tasks.md": "ddbf5cfa8580e60b702961e39b61fc31452a82a8a4bfd851e960b916556b9b86",
       "decision-record.md": "a7cdbc9bddac249dfeceafaa2c926ff0255d6d25951b6b080086630fb324c6e8",
-      "implementation-summary.md": "b001403299074c797f8bf1937f0753cc2f6ecd239eb6025e16c7a3d11a93ff8b",
-      "handover.md": "9d67017c09ff403d02301e890a350c176f1f86ead29dca43f5aad05265e5de59"
+      "implementation-summary.md": "ed29540f3816908ef415baff4ea7936875c134d851b6b610dedd3e0848468af3",
+      "handover.md": "22fed80c23c08f23aa83b9c9e2b52c56d96ab98d9d21a6b6701aa6d8bc5ba49c"
     },
     "last_active_child_id": null,
     "last_active_at": null

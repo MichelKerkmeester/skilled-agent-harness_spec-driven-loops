@@ -197,7 +197,7 @@
     ],
     "causal_summary": "F44 and F109 were deferred by arc 017/005 because current tests imported production-dead symbols through public barrels",
     "created_at": "2026-05-23T10:01:51Z",
-    "last_save_at": "2026-08-30T15:39:31.464Z",
+    "last_save_at": "2026-10-07T19:59:50.450Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d54c7bae6899622d3f067372fb6348767edae19e4b62b4c5d14105f7d146522",
+    "source_fingerprint": "sha256:fd9265f48e42559d436e1d1ebbec648494328d932c04bc92121f678d5bfd4f32",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1732a732ab71dd4ab1694651a32b2f646c7eb99f776c8f07edbcd0d4156973ea",
       "plan.md": "f3e67a4e4c78880ff5a879336510ccfe5dd4c4a918adad90fff27cdd4f2c9834",
       "tasks.md": "e05e6dbc3d28da7cdbf440feb0b314891a8716a0ee43b9cf7e3ca2035c0e8b83",
-      "decision-record.md": "2b2c387f93efb4508e3c5546a205fc6c8f5c87805b1d8c2f9ae2691b1fcaae90",
+      "decision-record.md": "f192005b95555fe6f0605d881cfd4b90768a7735e75d56d900c95635d6464b36",
       "implementation-summary.md": "8e33b6fe501cf0d6c1b1129e5f2060a81edb9288b0ab702c316fdf8013c7fc88"
     },
     "last_active_child_id": null,

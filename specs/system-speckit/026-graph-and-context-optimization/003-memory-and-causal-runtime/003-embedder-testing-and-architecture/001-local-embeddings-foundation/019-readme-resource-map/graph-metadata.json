@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Inventory every README in the repo, identify staleness against the 014 line, and apply the edits to align canonical READMEs with current code state.",
     "created_at": "2026-05-13T15:30:00Z",
-    "last_save_at": "2026-08-30T15:39:29.794Z",
+    "last_save_at": "2026-10-07T19:52:56.955Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-13T15:30:00Z",
     "source_docs": [
@@ -209,14 +209,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:de6a424d37d89b61f42c77a399a7426412ec5f8a90dfc1ce11eebfee87e9f1c6",
+    "source_fingerprint": "sha256:40c0269570e02fd5f9e0b5fbe00ea26213af14f9099bf03dc39626e53ae70312",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "daa481d998163bcce447ae4200db88c3580e4af486c5164cfb2bf85c8a6a9450",
       "plan.md": "1eb568b839fbd7e600b9df83b9bcbb1c7c8b5a299ef9d8778224bcd484ba2fc8",
       "tasks.md": "95ca763af3e08acad783bf127a7ce6aba2b02efa57df2adbe3917a48b50fad9c",
       "implementation-summary.md": "341a5fe8485df6dc43e9b4cbfc62d3958d25fc2179215f7ed39d38309a4ebbaf",
-      "resource-map.md": "29e68f0dca99a8715cab41425ba4c7874884bebdf843d6fbe8cd42f7494557b4"
+      "resource-map.md": "05ea64735175396533973f906dcdbc607d627c31a826a2d80835f045c40c4d30"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -35,6 +35,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
+<!-- ANCHOR:metadata -->
 ## Metadata
 
 | Field | Value |
@@ -46,9 +47,11 @@ _memory:
 | **Original scope** | 5 batched cli-codex dispatches purging Nomic/MiniLM defaults + replacing hardcoded sqlite paths |
 | **Actual scope** | Substrate repair after the original validation run revealed every memory_save returned generic E081 |
 | **Follow-up packet** | 032-substrate-repair-followups (5 approved children for the remaining work) |
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:what-built -->
 ## What Was Built
 
 The 022 plan called for 5 batched dispatches to purge Nomic/MiniLM/legacy-ONNX residue. When the playbook validation ran (15 scenarios via cli-opencode + kimi-k2.6), every single save-heavy scenario failed identically with `E081 "An unexpected error occurred"`. That blocked the original remediation work and surfaced a chronic substrate failure that had been hiding behind a generic error envelope. Scope shifted from "model name cleanup" to "fix the substrate that prevents all writes."
@@ -102,8 +105,11 @@ The underlying bug is the implicit coupling in `requiresGovernedIngest()` at `sc
 
 Also: deleted the pre-existing stale `.env.local` that pinned CocoIndex to Qwen3-Embedding-4B; that file's wrong override was a secondary contributor to the substrate confusion.
 
+<!-- /ANCHOR:what-built -->
+
 ---
 
+<!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
 The 022 plan called for autonomous cli-codex execution from the start. Reality required a more interactive arc:
@@ -117,8 +123,11 @@ The 022 plan called for autonomous cli-codex execution from the start. Reality r
 
 Verified post-shipment: `memory_search` returns hybrid vector+FTS results with proper similarity scores. `memory_save` without `retentionPolicy: "ephemeral"` reaches the quality-gate stage with structured rejections (no more E081). CocoIndex daemon back to reachable. 190 of 214 historical failed embeddings recovered.
 
+<!-- /ANCHOR:how-delivered -->
+
 ---
 
+<!-- ANCHOR:decisions -->
 ## Key Decisions
 
 | Decision | Why |
@@ -129,8 +138,11 @@ Verified post-shipment: `memory_search` returns hybrid vector+FTS results with p
 | Defer ADR-002 to a separate packet rather than apply inline | ADR-002 is a behavior change to the governance layer + needs a default-TTL constant + vitest coverage. Tracked as 032/001-governance-retention-decouple instead of mixing it into the 022 hot-fix work. |
 | Document the H4 root cause as a separate `post-execution-followup.md` instead of editing the original convergence.md | Preserves the historical record of what the council got right (H1, H2) and what it missed (H4). Future readers can see the full investigative arc. |
 
+<!-- /ANCHOR:decisions -->
+
 ---
 
+<!-- ANCHOR:verification -->
 ## Verification
 
 | Check | Result |
@@ -145,8 +157,11 @@ Verified post-shipment: `memory_search` returns hybrid vector+FTS results with p
 | 24-- scenarios re-validated end-to-end | DEFERRED to 032/002-rerun-24-scenarios-suite |
 | Strict-validate 022 | PENDING — run after this backfill lands |
 
+<!-- /ANCHOR:verification -->
+
 ---
 
+<!-- ANCHOR:limitations -->
 ## Known Limitations
 
 1. **`npm run build` in `mcp_server/` is broken** by 3 missing-module errors on `@modelcontextprotocol/sdk/*`. Unrelated to 022 work but affects the dist regeneration path for future fixes. Tracked in `032/003-mcp-server-build-fix`.
@@ -155,6 +170,8 @@ Verified post-shipment: `memory_search` returns hybrid vector+FTS results with p
 4. **24-- playbook scenarios haven't been re-run** to confirm the post-fix substrate produces real PASS/FAIL signal. Workaround verification was done with smoke saves; full suite re-run tracked in `032/002-rerun-24-scenarios-suite`.
 5. **ADR-002 Option A not yet implemented.** Approved by user but deferred to `032/001-governance-retention-decouple` to give it proper test coverage. Until then, `retentionPolicy: "ephemeral"` still trips the governance trigger (just visibly now, via E085 instead of E081).
 6. **Original 022 model-name-purge scope** was not executed. Most of the targets (Nomic, MiniLM, legacy-ONNX) were already cleaned up in earlier 014 phases (011, 012, 014). Any genuine residue should be picked up by a separate audit packet, not retroactively shoehorned into 022.
+
+<!-- /ANCHOR:limitations -->
 
 ---
 

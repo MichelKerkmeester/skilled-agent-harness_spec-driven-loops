@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Arc 020 closed the deferred-P2 behavior and API changes, but its child packet docs need a final sk-doc structure sweep before arc 021 can close",
     "created_at": "2026-05-23T14:00:00Z",
-    "last_save_at": "2026-08-30T15:39:31.527Z",
+    "last_save_at": "2026-10-07T20:00:00.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b0d7b051c42c4e00cb81c8ac9ca956e0ea20030d6bcacfe963df5ec68d0d85c1",
+    "source_fingerprint": "sha256:dfdf01550e7b844625a0c1eff7822a515121731110ff81bf0619381111cce851",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4d510235f1a493d71c40c56c836a96e838c02a8e8a86d85f0a778b4c0ad48de2",
       "plan.md": "5db39a7206f895c27da799615f6fc9715c75e2f072d29c7065c5295fc2ebf43f",
       "tasks.md": "3291edc49ccdee9d38cdb904cba8a388fc296558d916fab1982c439387e3e117",
-      "decision-record.md": "f0ae55070a9e4b8aaafdcb3baebe4153bce262b342edda48c9c2485f1b88509a",
+      "decision-record.md": "7919eadaf449e26e917a5e12391dc838babb054f811f597322ff2af9348b1683",
       "implementation-summary.md": "35030d8e0ac60ac0aea949f4197dc5d68892ba4d806a3091047ba8c74ce628d6"
     },
     "last_active_child_id": null,

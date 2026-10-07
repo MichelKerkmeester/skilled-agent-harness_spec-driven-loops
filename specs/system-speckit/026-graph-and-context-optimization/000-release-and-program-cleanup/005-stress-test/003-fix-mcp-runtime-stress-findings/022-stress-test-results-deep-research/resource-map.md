@@ -21,6 +21,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:summary -->
 ## Summary
 
 - **Total references**: 24
@@ -31,6 +32,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:documents -->
 ## 1. Documents
 
 > Research artifacts (workflow-owned). Action `Created` for self-output; `Cited` for evidence sources.
@@ -45,6 +49,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:documents -->
+
+<!-- ANCHOR:specs -->
 ## 2. Specs
 
 | Path | Action | Status | Note |
@@ -57,6 +64,9 @@ _memory:
 
 ---
 
+<!-- /ANCHOR:specs -->
+
+<!-- ANCHOR:meta -->
 ## 3. Meta
 
 | Path | Action | Status | Note |
@@ -75,3 +85,5 @@ _memory:
 | `mcp_server/lib/search/search-decision-envelope.ts` | Cited | OK | Envelope contract, RQ3 envelope coverage |
 | `mcp_server/lib/search/rerank-gate.ts` | Cited | OK | RQ4 W4 trigger distribution analysis |
 | `mcp_server/stress_test/search-quality/harness.ts` | Cited | OK | RQ3 harness telemetry export gap |
+
+<!-- /ANCHOR:meta -->

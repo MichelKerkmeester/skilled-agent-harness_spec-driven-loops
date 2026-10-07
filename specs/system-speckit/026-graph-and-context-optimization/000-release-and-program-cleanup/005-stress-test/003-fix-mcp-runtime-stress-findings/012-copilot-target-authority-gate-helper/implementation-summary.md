@@ -23,9 +23,9 @@ _memory:
       - "tasks.md"
       - "checklist.md"
     session_dedup:
-      fingerprint: null
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "012-copilot-target-authority-gate-helper-impl-2026-04-27"
-      parent_session_id: "011-research-post-stress-finding-followups-2026-04-27"
+      parent_session_id: null
     completion_pct: 100
     open_questions: []
     answered_questions:

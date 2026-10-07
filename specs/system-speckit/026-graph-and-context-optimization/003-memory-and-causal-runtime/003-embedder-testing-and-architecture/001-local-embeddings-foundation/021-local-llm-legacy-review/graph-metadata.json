@@ -51,10 +51,7 @@
       "review/deep-review-state.jsonl",
       ".codex/config.toml",
       ".claude/mcp.json",
-      "lib/eval/memory-state-baseline.ts",
-      "scripts/memory/cleanup-index-scope-violations.ts",
-      "shared/embeddings/profile.ts",
-      "scripts/setup/install.sh"
+      "shared/embeddings/profile.ts"
     ],
     "entities": [
       {
@@ -112,27 +109,9 @@
         "source": "derived"
       },
       {
-        "name": "memory-state-baseline.ts",
-        "kind": "code",
-        "path": "lib/eval/memory-state-baseline.ts",
-        "source": "derived"
-      },
-      {
-        "name": "cleanup-index-scope-violations.ts",
-        "kind": "code",
-        "path": "scripts/memory/cleanup-index-scope-violations.ts",
-        "source": "derived"
-      },
-      {
         "name": "profile.ts",
         "kind": "code",
         "path": "shared/embeddings/profile.ts",
-        "source": "derived"
-      },
-      {
-        "name": "install.sh",
-        "kind": "script",
-        "path": "scripts/setup/install.sh",
         "source": "derived"
       },
       {
@@ -200,11 +179,29 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "verdict",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-packet",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "packet",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 014 shipped a default-LLM and embedding-stack migration (Voyage → EmbeddingGemma-300m hf-local q8 for Memory MCP; google/embeddinggemma-300m sentence-transformers for CocoIndex; llama-cpp demoted to opt-in with auto-migrate; ONNX rejected)",
     "created_at": "2026-05-13T13:07:10Z",
-    "last_save_at": "2026-08-30T15:39:29.816Z",
+    "last_save_at": "2026-10-07T19:54:05.768Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e9d2f0d5af70c3950861a2577bd347a4f0b1a4d5e177742f30610d30c839b824",
+    "source_fingerprint": "sha256:ca1fa8381bd57d5d46267e63ed6e78229fd8b2edb403cacf3d6e8ccc6551138b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d6f649f33756a77e8019b394bb718ae21f519efabcc271097d7d58c9bf4ee8e2",
-      "plan.md": "eb5f61c18a03530ba5f8ae602536b0c21d8749b1b746ddd842d1c5cecb4e8b73",
-      "tasks.md": "f1bd7f44e2d5367d3cd234c8c749cc414b43f67087fadc63b45495fa27361e62",
-      "implementation-summary.md": "4a73f8f1ea18ac18a83293dfc2c28193e33e8d4f07da1e4af6f4d58e22f87bd4"
+      "plan.md": "6a95c7acce87e721b1e8f68b3899f18fe2dec9b920d18ae8efb7845c8a0b5646",
+      "tasks.md": "40765408ed3b5b568e0c37321b203b84b39a994a12175cb4e698d6ab503eaf8b",
+      "implementation-summary.md": "69eafda89748f491af5a627108cd87da8a58ab475ad5d9f478be1d17bc99646d"
     },
     "last_active_child_id": null,
     "last_active_at": null

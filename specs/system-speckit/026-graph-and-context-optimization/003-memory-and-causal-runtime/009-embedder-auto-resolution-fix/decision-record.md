@@ -1,6 +1,34 @@
+---
+title: "Decision Record: SQLite reader for the factory metadata probe"
+description: "Decision record for the factory active-embedder metadata probe: a read-only node:sqlite DatabaseSync read replaces the better-sqlite3 recommendation and the sqlite3 shell-out."
+trigger_phrases:
+  - "embedder auto resolution fix decision record"
+  - "factory metadata probe"
+  - "node sqlite vs better sqlite3"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix"
+    last_updated_at: "2026-05-27T13:20:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Recorded the node:sqlite factory metadata read decision"
+    next_safe_action: "None recorded"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "009-embedder-auto-resolution-fix-decision-record"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
 # Decision Record: SQLite reader for the factory metadata probe
 
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
+
+<!-- ANCHOR:adr-001 -->
 
 ## ADR-009-01: Use `node:sqlite`, not `better-sqlite3`, for active-embedder metadata reads
 
@@ -11,6 +39,7 @@
 | **Deciders** | main_agent (Opus), cli-codex gpt-5.5 (008 research) |
 | **Context packet** | 009-embedder-auto-resolution-fix |
 
+<!-- ANCHOR:adr-001-context -->
 ### Context
 
 Phase 008 root-caused the `auto`→`hf-local` degradation to `factory.ts` reading active-embedder metadata via `execFileSync('sqlite3', …)`, which returns `null` on `ENOENT` when `sqlite3` is not on the daemon's restricted `PATH`. The 008 ranked recommendation was to replace the shell-out with a **Node SQLite read using `better-sqlite3`** ("already a server dependency").
@@ -23,18 +52,27 @@ Verification during 009 implementation planning showed that recommendation does 
 - `shared/package.json` deps are intentionally light (`@huggingface/transformers` only). Adding a native module to that layer is a deliberate dependency-surface change with a per-platform build cost.
 - The daemon's Node is **v25** and exposes the built-in **`node:sqlite`** (`DatabaseSync`); the codebase's read-only idiom (`new Database(path, { readonly: true, fileMustExist: true })`) maps cleanly onto it.
 
+<!-- /ANCHOR:adr-001-context -->
+
+<!-- ANCHOR:adr-001-decision -->
 ### Decision
 
 Use the built-in **`node:sqlite` `DatabaseSync`** (opened read-only) for the factory's active-embedder metadata probes. Do **not** add `better-sqlite3` to the `shared` layer.
 
 Import `node:sqlite` **defensively** (lazy/guarded) so that on a Node runtime without it (`<22.5`, below the `>=20.11` `engines` floor) the probe warns once and returns `null`, letting the existing cascade continue — the same outcome a fresh host already gets, so no regression.
 
+<!-- /ANCHOR:adr-001-decision -->
+
+<!-- ANCHOR:adr-001-consequences -->
 ### Consequences
 
 - **Positive:** zero new runtime dependencies in `shared`; no native-module build; no module-resolution boundary problem; removes the `PATH`/`sqlite3` dependency that was the root cause.
 - **Negative:** the new probe path requires Node ≥22.5 (above the documented `>=20.11` floor). Mitigated by the defensive import + graceful-null fallback. `node:sqlite` also emits an `ExperimentalWarning` (acceptable; can be suppressed at the call site if noisy).
 - **Follow-on:** stop swallowing probe errors silently (008 §7) — emit a single `console.warn` on read failure so future PATH/DB issues surface.
 
+<!-- /ANCHOR:adr-001-consequences -->
+
+<!-- ANCHOR:adr-001-alternatives -->
 ### Alternatives rejected
 
 | Alternative | Why rejected |
@@ -43,3 +81,6 @@ Import `node:sqlite` **defensively** (lazy/guarded) so that on a Node runtime wi
 | Keep the `sqlite3` shell-out | It *is* the bug (ENOENT on restricted PATH) |
 | Inject `SPEC_KIT_DB_DIR`/`MEMORY_DB_PATH` in MCP config (008 fix c) | Config-fragile, repo-layout-specific, and still depends on `sqlite3` being executable |
 | Launcher passes resolved DB dir (008 fix a) | Helps launch-context drift but does not remove the missing-`sqlite3` dependency |
+
+<!-- /ANCHOR:adr-001-alternatives -->
+<!-- /ANCHOR:adr-001 -->

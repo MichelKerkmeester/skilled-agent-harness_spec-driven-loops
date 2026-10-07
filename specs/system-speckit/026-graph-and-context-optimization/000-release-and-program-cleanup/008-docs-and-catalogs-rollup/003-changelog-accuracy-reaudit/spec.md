@@ -1,11 +1,24 @@
+---
+title: "Spec: 026 Changelog Accuracy Re-Audit"
+description: "Independent re-audit of 20 changelogs in the 003-memory-and-causal-runtime track against their referenced spec folders, recording ACCURATE, MINOR-DRIFT and MAJOR-DRIFT verdicts plus in-session fixes for real drift."
+trigger_phrases:
+  - "changelog accuracy reaudit"
+  - "changelog drift re-audit"
+  - "changelog accuracy research record"
+importance_tier: "normal"
+contextType: "research"
+---
+
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Spec: 026 Changelog Accuracy Re-Audit
 
 <!-- SPECKIT_LEVEL: research -->
 
+<!-- ANCHOR:problem -->
 ## Problem
 
 After seven new leaf changelogs were authored in the 003-memory-and-causal-runtime track (packets 020 through 026), there was no independent check that each changelog accurately reflects its referenced spec folder (file lists, verification numbers, commit hashes, Level, and the spec-folder path).
+<!-- /ANCHOR:problem -->
 
 ## Approach
 

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The v1.0.3 stress test (Phase H) tried to capture full live-handler `SearchDecisionEnvelope` rows by importing `handleMemorySearch` directly and invoking it with corpus inputs",
     "created_at": "2026-04-29T08:45:00.000Z",
-    "last_save_at": "2026-08-30T15:39:28.536Z",
+    "last_save_at": "2026-10-07T19:40:00.175Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:2fe0d204d0f081c1b28c9bc06873fa85d66363703e15834f4f3794ba2ab840dc",
+    "source_fingerprint": "sha256:b167cc69aab00044436d1b81e542ed72d5b435cca22cdd8483d6746c599fb152",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a61b305f4a46378c9c8645cf66924dad7773431e261f88eb7bdf18e489b10900",
       "plan.md": "75b5407e5c58b75decbce3dbcee4aef68505eecde332afa24190b11c10276420",
       "tasks.md": "2a4646715ba5a55bec8bfee8bf59935598babb149da75ae2cdd10dce7406be9c",
       "implementation-summary.md": "eaaaacbdc02e8f27f45b9433199cc8cd545dfa673e583185e8020768353abbcd",
-      "resource-map.md": "34cefb37d08fc2a99fed19159d2a06e3d7101f5386971416be3582e3fb48402b"
+      "resource-map.md": "71073d1206a42a893ac00c22c33dca5e264a505ad1a21b9443af12a0c1b89474"
     },
     "last_active_child_id": null,
     "last_active_at": null

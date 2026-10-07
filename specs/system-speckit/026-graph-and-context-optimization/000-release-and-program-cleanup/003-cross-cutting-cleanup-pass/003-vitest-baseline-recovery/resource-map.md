@@ -12,6 +12,7 @@ contextType: "general"
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: resource-map-core | v2.2 -->
 
+<!-- ANCHOR:triage-data -->
 ## Triage data
 
 | Path | Action | Notes |
@@ -20,6 +21,9 @@ contextType: "general"
 | `scratch/vitest-baseline-post-recovery.json` | Created | Post-fix run; 11,612 passing / 196 failing / 35 skipped. |
 | `scratch/triage-inventory.json` | Created | Per-test classification into 4 buckets (drift/regression/environmental/flaky). |
 
+<!-- /ANCHOR:triage-data -->
+
+<!-- ANCHOR:tests -->
 ## Fixture-drift fixes (sample paths — full list in scratch/triage-inventory.json)
 
 Each fix carries a `// drift: <packet>` comment naming the originating packet:
@@ -28,6 +32,9 @@ Each fix carries a `// drift: <packet>` comment naming the originating packet:
 - `mcp_server/skill_advisor/tests/scorer/projection-fallback-049-005.vitest.ts`
 - 16 other test files across `skill_advisor/tests/scorer/`, `tests/hooks/`, `tests/scaffold/`, `tests/alignment/`, `tests/code-graph/`.
 
+<!-- /ANCHOR:tests -->
+
+<!-- ANCHOR:annotations-applied -->
 ## Annotations applied (no behavior change)
 
 | Bucket | Annotation pattern | Count |
@@ -35,12 +42,18 @@ Each fix carries a `// drift: <packet>` comment naming the originating packet:
 | environmental | `it.skip` + `// REASON: <env requirement>` | 28 |
 | runtime-regression | `it.fails.skip` + `// followup: 026/000/002-vitest-baseline-recovery-followup` | 152 |
 
+<!-- /ANCHOR:annotations-applied -->
+
+<!-- ANCHOR:meta -->
 ## Changelog correction
 
 | Path | Action | Notes |
 |------|--------|-------|
 | `.opencode/skills/system-spec-kit/changelog/v3.4.1.0.md` | Modified | Verification table row "Core test suites (vitest)" replaced with measured baseline (post-recovery 11,612 passing / 196 failing / 35 skipped). Pointer to this packet for triage detail. |
 
+<!-- /ANCHOR:meta -->
+
+<!-- ANCHOR:specs -->
 ## Spec docs (this packet)
 
 | Path | Action | Notes |
@@ -55,6 +68,9 @@ Each fix carries a `// drift: <packet>` comment naming the originating packet:
 | `changelog.md` | Created | Per-packet changelog (this release). |
 | `resource-map.md` | Created | This file. |
 
+<!-- /ANCHOR:specs -->
+
+<!-- ANCHOR:counts -->
 ## Counts
 
 - **Tests classified**: 198 (4 buckets).
@@ -66,6 +82,9 @@ Each fix carries a `// drift: <packet>` comment naming the originating packet:
 - **Spec docs (this packet)**: 9.
 - **Total file touches**: ~50 (test files modified + spec docs + scratch artifacts).
 
+<!-- /ANCHOR:counts -->
+
+<!-- ANCHOR:verification-surfaces -->
 ## Verification surfaces
 
 - Pre-recovery vitest baseline: 11,587 passing / 198 failing / 33 skipped.
@@ -73,6 +92,11 @@ Each fix carries a `// drift: <packet>` comment naming the originating packet:
 - Strict spec validation: exit 0.
 - v3.4.1.0 changelog row corrected.
 
+<!-- /ANCHOR:verification-surfaces -->
+
+<!-- ANCHOR:follow-up -->
 ## Follow-up
 
 The 196 remaining failures are tracked via annotation comments (`// followup: 026/000/002-vitest-baseline-recovery-followup`). Operators can `grep -rn 'followup: 026/000/007'` to inventory the deferred work. The follow-up packet itself is not scaffolded in this release.
+
+<!-- /ANCHOR:follow-up -->

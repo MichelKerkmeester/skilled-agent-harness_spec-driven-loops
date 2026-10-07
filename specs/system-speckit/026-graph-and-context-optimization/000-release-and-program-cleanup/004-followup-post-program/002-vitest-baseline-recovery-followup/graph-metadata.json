@@ -53,7 +53,6 @@
       "resource-map.md",
       "scratch/p0-findings-from-h.md",
       "scratch/deleted-tests-from-h.md",
-      ".opencode/skills/system-spec-kit/changelog/v3.4.1.0.md",
       "scratch/vitest-current-baseline.json",
       "scratch/current-failure-inventory.json",
       "scratch/classification-inventory.json",
@@ -101,12 +100,6 @@
         "name": "deleted-tests-from-h.md",
         "kind": "doc",
         "path": "scratch/deleted-tests-from-h.md",
-        "source": "derived"
-      },
-      {
-        "name": "v3.4.1.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/changelog/v3.4.1.0.md",
         "source": "derived"
       },
       {
@@ -204,11 +197,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Sibling packet `003-vitest-baseline-recovery` (Unit F) expected 196 deferred failures to be discoverable through `// followup: 026/000/002-vitest-baseline-recovery-followup` annotations",
     "created_at": "2026-05-09T00:00:00Z",
-    "last_save_at": "2026-09-07T16:17:33.728Z",
+    "last_save_at": "2026-10-07T19:39:51.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +217,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:2dd8b9a9567b81dd517d26bf90fdfb4b249aabce120657d60ad636f8daba61ab",
+    "source_fingerprint": "sha256:5cf00b9084fe7bc3945ddc16f0b94effc75e8c9bb235a3df1e2282d64ac70dec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1412082e4869bb194302f84b4e8275e29bf06d264a03534b01535d13e8a1de73",
       "plan.md": "e8dbfcb91a4371b2a979916853ef855e597da98546f263670ced1ab071500c4f",
       "tasks.md": "cbc9dd187a46f72a4843b3e92d0cb2b22b51f686ed921981f0369fd26d39ac8a",
       "implementation-summary.md": "644d16cf980aec3f96fd4819cf89bb0f1511eb4e59391486735cd677f8e1d82f",
-      "resource-map.md": "0301c9cd02e03dd49c1f6ef1992c1b548e8add10b31abdd0ecd5b9a7b9440054"
+      "resource-map.md": "5ce46e71a5e37f7488055492d04fe4e52c68412464cac94e1762aa7380dc43b1"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -13,7 +13,11 @@
     "trigger_phrases": [
       "audit root cause research",
       "drift root cause",
-      "deep-loop reliability blast radius"
+      "deep-loop reliability blast radius",
+      "audit root cause research plan",
+      "deep review synthesis research plan",
+      "audit root cause research tasks",
+      "deep review synthesis research tasks"
     ],
     "key_topics": [
       "audit",
@@ -25,20 +29,34 @@
       "reliability",
       "blast",
       "radius",
-      "8-slice",
-      "deep-review",
-      "system-spec-kit"
+      "plan",
+      "deep",
+      "review"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -76,20 +94,72 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Investigate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cited",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "An 8-slice deep-review audit of system-spec-kit and 026 surfaced ~50 distinct findings (3 P0, ~40 P1)",
     "created_at": "2026-06-04T18:53:35.323Z",
-    "last_save_at": "2026-08-30T15:39:28.977Z",
+    "last_save_at": "2026-10-07T19:46:21.748Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:43d5b8079275fb7ae0e457c2b1fdf9c49d21061250ec9a5d4c78aefa645fedc5",
+    "source_fingerprint": "sha256:4edcd9c71db9eaff71a9127e2857cebc5ef46fa7d246a8f87bd8769c1af98190",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5ec22ad70d307b74860333aa213d40c60217a7d01cba7615f9735178f1603a20"
+      "spec.md": "5ec22ad70d307b74860333aa213d40c60217a7d01cba7615f9735178f1603a20",
+      "plan.md": "cb74c628bdc5d9d6ffc37ceeb184ad151ca5daf879d2425db81b28d6d476f687",
+      "tasks.md": "268df069744334c6d561ed56e0d217fe3bb25860b12e2c5bc8c29b4594283acc"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Manual cleanup on 2026-05-24 found repeated orphan MCP stacks under Codex.app and stale Claude Code launcher children",
     "created_at": "2026-05-24T06:58:36Z",
-    "last_save_at": "2026-10-04T09:22:55.399Z",
+    "last_save_at": "2026-10-07T20:08:41.790Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:6d3810b92c0c6a3d6a0ab2a8ccae4b3745f2e5fda0ab51d8af85861e27377a14",
+    "source_fingerprint": "sha256:9071f47f1660069e8de25adb13a1df5c4930f6866a4a4c6b15c20026afb85614",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "34dfd9978535d4da994610bdccc1046a0637356eda7688c6a204b02c28d00d89",
       "plan.md": "bc90d442a5dec1a03b5525189c0425c018a89abadaa2b0d0a9838812e5032a8d",
       "tasks.md": "fe6d9865868e29e70a415a487239bf7a1c69454c640e1b14e28e19dd66e7d5a6",
       "decision-record.md": "a922fcc0ca5436f721ed064be553799f2f811030c9927d11df5c6a1fc9b41806",
-      "implementation-summary.md": "6352ade5fc36bef9412571d7b9cd16f2e9c11d2ada85edcf768c30cb9b416d44",
+      "implementation-summary.md": "fe0f8b28d01d7a3d76d87139ab6dc56fcb82b0470dca71562b57e4cac88fd1d3",
       "handover.md": "eb3f395a6f58fe2586622dbc1a81fc0bd6f768379ded411826662ff6c283ab6d"
     },
     "last_active_child_id": null,

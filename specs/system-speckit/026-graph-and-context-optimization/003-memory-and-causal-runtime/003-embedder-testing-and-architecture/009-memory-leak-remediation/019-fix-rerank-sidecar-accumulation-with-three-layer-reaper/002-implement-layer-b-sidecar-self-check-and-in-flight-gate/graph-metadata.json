@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The rerank FastAPI sidecar can remain alive after owners disappear because the current app has no background owner-liveness self-check, no app-level in-flight request gate, no idle timeout backstop, and no process-lifecycle telemetry",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-08-30T15:39:31.429Z",
+    "last_save_at": "2026-10-07T19:59:47.460Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dcff10af064fc0bc639c71e14ce17470da4de9e6e1de9cf58fe625bca035742e",
+    "source_fingerprint": "sha256:2ec12c9511f3a3a67773ef54ea0a5dfaea181b8c85a9ebf33700968cb5087d4d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "19d6724d4c688e67153d878646501158ced39e625b054edbab1ed323701c1bde",
       "plan.md": "d4284361ca36ebce4b53b2b73055f7e5d5ce51f4745f619eae4a2bdc659456ee",
       "tasks.md": "15bb3deea6e1c70e5a0a843ec4e62fbf17968e27085d16bb2a4270c3e606bbd6",
-      "decision-record.md": "6e50c95256aef1a615963c9ee3126a12d4b9f0b2ce925d24bd4e67de4f035570",
+      "decision-record.md": "d1886608c8f66b03cee9e952c0c8879dd0e1da32e881447a9e0abfdd1fd7abe2",
       "implementation-summary.md": "71d7cadd37c93848335a23b546064b8ab9809d43b9a0ab1922a6608a12858921"
     },
     "last_active_child_id": null,

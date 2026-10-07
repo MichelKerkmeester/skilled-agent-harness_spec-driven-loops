@@ -21,6 +21,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:summary -->
 ## Summary
 
 - **Total references**: 23
@@ -28,9 +29,11 @@ _memory:
 - **Missing on disk**: 0
 - **Scope**: Files created during packet `026/011/027-memory-context-structural-channel-research` (commit `cb19d4cb3`) plus cited evidence sources.
 - **Generated**: 2026-04-29T10:10:00+02:00
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:documents -->
 ## 1. Documents
 
 | Path | Action | Status | Note |
@@ -40,9 +43,11 @@ _memory:
 | iteration files (5 sibling files in research/iterations/) | Created | OK | Per-iter externalized findings (5 files) |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-fix-mcp-runtime-stress-findings/022-stress-test-results-deep-research/research/research-report.md` | Cited | OK | Phase J context (predecessor research) |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion/findings-v1-0-3.md` | Cited | OK | v1.0.3 corpus referenced for RQ1 false-positive analysis |
+<!-- /ANCHOR:documents -->
 
 ---
 
+<!-- ANCHOR:scripts -->
 ## 2. Cited Scripts (read-only research evidence)
 
 | Path | Action | Status | Note |
@@ -55,9 +60,11 @@ _memory:
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts` | Cited | OK | Envelope contract for RQ3 routing-trace coverage |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts` | Cited | OK | QueryPlan: intent + selectedChannels + skippedChannels + routingReasons |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts` | Cited | OK | Existing intent classifier reference |
+<!-- /ANCHOR:scripts -->
 
 ---
 
+<!-- ANCHOR:specs -->
 ## 3. Specs
 
 | Path | Action | Status | Note |
@@ -67,9 +74,11 @@ _memory:
 | `tasks.md` | Created | OK | Task ledger |
 | `implementation-summary.md` | Created | OK | Disposition |
 | `.../027/description.json` | Created | OK | Continuity index |
+<!-- /ANCHOR:specs -->
 
 ---
 
+<!-- ANCHOR:meta -->
 ## 4. Meta
 
 | Path | Action | Status | Note |
@@ -79,3 +88,4 @@ _memory:
 | `.../027/research/deep-research-state.jsonl` | Created | OK | State log: init + 5 iters + synthesis_complete |
 | `.../027/research/deltas/iteration-001..005.jsonl` | Created | OK | Per-iter delta records (5 files) |
 | Phase E gold battery measurements | Cited | OK | `.../000-release-cleanup/005-review-remediation/004-search-rag-measurement-implementation/measurements/` referenced for RQ1 baseline |
+<!-- /ANCHOR:meta -->

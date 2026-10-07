@@ -52,12 +52,7 @@
       "tasks.md",
       "implementation-summary.md",
       "resource-map.md",
-      ".opencode/commands/memory/search.md",
-      "handlers/causal-graph.ts",
-      "handlers/memory-context.ts",
-      "lib/search/query-router.ts",
-      "lib/search/folder-discovery.ts",
-      "lib/causal/relation-coverage.ts"
+      "lib/search/folder-discovery.ts"
     ],
     "entities": [
       {
@@ -91,39 +86,9 @@
         "source": "derived"
       },
       {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
-      {
-        "name": "causal-graph.ts",
-        "kind": "code",
-        "path": "handlers/causal-graph.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-context.ts",
-        "kind": "code",
-        "path": "handlers/memory-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "query-router.ts",
-        "kind": "code",
-        "path": "lib/search/query-router.ts",
-        "source": "derived"
-      },
-      {
         "name": "folder-discovery.ts",
         "kind": "code",
         "path": "lib/search/folder-discovery.ts",
-        "source": "derived"
-      },
-      {
-        "name": "relation-coverage.ts",
-        "kind": "code",
-        "path": "lib/causal/relation-coverage.ts",
         "source": "derived"
       },
       {
@@ -203,11 +168,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implemented Clusters",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 005 audited `/memory:search` against the indexed-continuity runtime and catalogued 17 defects spanning retrieval, output rendering, and the causal-graph subcommand",
     "created_at": "2026-05-08T21:00:00Z",
-    "last_save_at": "2026-08-30T15:39:29.459Z",
+    "last_save_at": "2026-10-07T19:50:36.756Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +212,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:b536faf8a48ade0096e060de34402e42f2ed776d6e1eb10d1ff9113cb26967f1",
+    "source_fingerprint": "sha256:d61d37ab300e496baf0afc654db37cde24b2f0a04e561f73132505a5b7c184b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cf66ec7e7b1948b86ce1596a06dc76fc238cb980f897c2359e35d81f91d38622",
       "plan.md": "2de7ba4fcb4c64d059001ee8ddafc83e7c5cdbc85202cf42bc014f09c572c3b1",
       "tasks.md": "72f0920fe368a5c8d1c94a06dcf4036ecabc3082650efd51ebfa4b75bee043c5",
       "implementation-summary.md": "d282f0ebd542afcde157590e0867236576757662c4edd09c83688a649e6b7748",
-      "resource-map.md": "3847e6c6e9236f8e410d28fd0e9860b6ef57ce78a8de6ed36d7bf32a4b5223d6"
+      "resource-map.md": "9c781d9947b7a7a4a93e4441d8eb004b2818ca04a37190d1ed9a16028d58a832"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -30,6 +30,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-000 -->
 ## ADR-000: Reconcile before implementation
 
 **Status:** Accepted
@@ -57,9 +58,11 @@ This decision changes only packet-local evidence production. It has no runtime c
 - The only DEFERRED row is F35 at `017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/005-fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep/checklist.md:84`.
 
 ---
+<!-- /ANCHOR:adr-000 -->
 
 ## Per-Finding ADRs
 
+<!-- ANCHOR:adr-001 -->
 ### ADR-001: Close F35 — misleading cardinality error message in reindex.ts
 
 **Status:** Accepted
@@ -94,6 +97,7 @@ Embedding batch entry missing at index ${index}: row=undefined, embedding=undefi
 - Verification: `node mcp_server/node_modules/vitest/vitest.mjs run mcp_server/tests/embedders/` → 4 files / 54 tests PASS on first run (no F48 flake retry needed)
 
 ---
+<!-- /ANCHOR:adr-001 -->
 
 ## DEFERRED
 

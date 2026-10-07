@@ -29,6 +29,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: sk-code alignment via JSDoc and TSDoc sweep, no logic changes
 
 **Status:** Accepted
@@ -52,6 +53,7 @@ Align the two target files by adding documentation artifacts only: a CommonJS mo
 Runtime semantics stay unchanged. Any accidental executable diff is reverted before verification continues, and a non-F48 verification failure halts the packet for DEFERRED documentation rather than expanding scope.
 
 ---
+<!-- /ANCHOR:adr-001 -->
 
 ## Verification Notes
 
