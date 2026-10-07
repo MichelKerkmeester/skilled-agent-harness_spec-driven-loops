@@ -1,8 +1,8 @@
 name: Dependabot Auto-merge
 # Dependabot security updates open a fix PR for each new advisory. This turns on
-# auto-merge for the narrowest safe slice of those PRs: the grouped npm security
-# update, and only when every bump in it is a patch release. GitHub then merges
-# it once the required checks pass. Every other Dependabot PR waits for a person.
+# auto-merge for the narrowest safe slice of those PRs: an npm security update,
+# and only when every bump in it is a patch release. GitHub then merges it once
+# the required checks pass. Every other Dependabot PR waits for a person.
 on:
   pull_request:
     types: [opened, reopened, synchronize]
@@ -23,8 +23,15 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Enable auto-merge for a security patch group
-        if: steps.meta.outputs.dependency-group == 'npm-security' && steps.meta.outputs.update-type == 'version-update:semver-patch'
+      # A fix for one package in one directory arrives ungrouped rather than in
+      # npm-security. It is still a security update: every npm version update
+      # matches the catch-all npm-runtime group, so only a security fix lands
+      # outside both groups.
+      - name: Enable auto-merge for an npm security patch
+        if: >-
+          steps.meta.outputs.package-ecosystem == 'npm_and_yarn'
+          && (steps.meta.outputs.dependency-group == 'npm-security' || steps.meta.outputs.dependency-group == '')
+          && steps.meta.outputs.update-type == 'version-update:semver-patch'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}
