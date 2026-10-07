@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "completion claims improvements",
+      "the completion sentinel catches the claims it can",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "completion",
+      "claims",
+      "improvements",
+      "sentinel",
+      "catches",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions",
+      "testing"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -49,10 +49,6 @@
       ".cursor/hooks.json",
       ".skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs",
       ".skilled/skills/system-spec-kit/runtime/tests/completion-evidence-sentinel.vitest.ts",
-      ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
-      ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/README.md",
-      ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts",
-      ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/labels-happy-rows.jsonl",
       ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
       ".cursor/hooks/completion-evidence-response.mjs",
       ".skilled/skills/system-spec-kit/runtime/hooks/cursor/README.md",
@@ -111,30 +107,6 @@
         "source": "derived"
       },
       {
-        "name": "score-completion-claims.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "completion-claim-audit.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "labels-happy-rows.jsonl",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/labels-happy-rows.jsonl",
-        "source": "derived"
-      },
-      {
         "name": "hook-registry.json",
         "kind": "config",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
@@ -144,6 +116,12 @@
         "name": "completion-evidence-response.mjs",
         "kind": "file",
         "path": ".cursor/hooks/completion-evidence-response.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/cursor/README.md",
         "source": "derived"
       },
       {
@@ -205,11 +183,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Improve",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Feature 026 stopped on margin, two rows short, against a sentinel regex that catches none of the 10 labeled claims and fires falsely 7 times",
     "created_at": "2026-10-03T05:30:10Z",
-    "last_save_at": "2026-10-03T08:47:36.939Z",
+    "last_save_at": "2026-10-07T12:54:56.538Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,10 +215,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6f92c4ffb8d678b8c360b678752e83f17ac1e8ab45a25204bfc60fa8ca89521",
+    "source_fingerprint": "sha256:2c4563703b6bde902d7725b7c776a7192d2628e1d7db89b5106989b7902c87ca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "55aeaac121493a41bcb658a5cfead09aa2ec760a81e366250468660a58d33ac0",
+      "spec.md": "9dc437607b8481a7da73739f6e9d346a1f8ddb0ddf8b6d092722355935b18034",
       "plan.md": "ed595c0d4636e1f2c9cd764e1c86b096c5d4f4af413a105132f2ed4c50b6464c",
       "tasks.md": "01772caab75a2b2794c10a3789afd9281dabf60f033e906fa300fd6ac041ecdd",
       "implementation-summary.md": "37a37d5141e686f3f4cb5e8e2855a76c39fc5dd230dd2955b60dedc7f2fb033f"

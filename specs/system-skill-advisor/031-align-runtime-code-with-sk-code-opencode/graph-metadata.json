@@ -21,8 +21,8 @@
       "implementation tasks",
       "verification checklist",
       "task dependencies",
-      "acceptance criteria",
-      "closure gate"
+      "align runtime code with sk code opencode acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
       "skill",
@@ -52,8 +52,7 @@
       "lib/README.md",
       "runtime/README.md",
       "tests/fixtures/README.md",
-      "tests/README.md",
-      "specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-opencode/scratch/baseline/advisor-test.log"
+      "tests/README.md"
     ],
     "entities": [
       {
@@ -102,12 +101,6 @@
         "name": "ARCHITECTURE.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-test.log",
-        "kind": "file",
-        "path": "specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-opencode/scratch/baseline/advisor-test.log",
         "source": "derived"
       },
       {
@@ -199,11 +192,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Code under `.skilled/skills/system-skill-advisor/runtime/` does not follow the sk-code-opencode comment and structure rules in `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md` §2 and §4",
     "created_at": "2026-09-30T05:43:45Z",
-    "last_save_at": "2026-09-30T22:06:51.595Z",
+    "last_save_at": "2026-10-07T12:55:42.188Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +212,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aaefc1dbb1acabf1a7fab1bfbfa9e81c85f7959526f7f6fc55f944bcfee3df28",
+    "source_fingerprint": "sha256:80e5dcedfd0c07a81587ac2e5ae88edb1425ea2b0387bff4466228c736490694",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e90bce93c2ead0b09903ac8fc8760976a09842b8629969e20018a65ab2db38db",

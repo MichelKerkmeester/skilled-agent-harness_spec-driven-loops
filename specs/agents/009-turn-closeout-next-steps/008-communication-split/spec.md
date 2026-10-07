@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: communication-split"
 description: "Split communication.md two ways: prose craft keeps the file and its broad trigger, and the decision-shape sections move to a new rule with a narrower trigger."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "communication split"
+  - "split communication md two ways prose craft keeps"
 importance_tier: "normal"
 contextType: "general"
 ---

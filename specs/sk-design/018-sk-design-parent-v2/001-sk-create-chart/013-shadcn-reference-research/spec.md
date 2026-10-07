@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 13: shadcn-reference-research"
 description: "Six research angles against a frozen local copy of shadcn's 70 charts, asking what transfers to a standalone-HTML corpus that bans React, Recharts and Tailwind outright. Decisions transfer, code never."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "shadcn reference research"
+  - "six research angles against a frozen local copy"
 importance_tier: "normal"
 contextType: "general"
 ---

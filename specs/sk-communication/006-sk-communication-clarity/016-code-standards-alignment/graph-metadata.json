@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "code standards alignment",
+      "an audit of the code this program added",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "code",
+      "standards",
+      "alignment",
+      "audit",
+      "program",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions",
+      "testing"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "An audit of the code this program added against the OpenCode surface standards and the restraint rule. One documentation gap was real, one suspected dead branch was not, and four candidate cuts were checked and declined.",
     "created_at": "2026-09-15T20:39:52Z",
-    "last_save_at": "2026-10-03T15:43:56.802Z",
+    "last_save_at": "2026-10-07T12:55:05.289Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:435dd2a2cd4d8e4ffff0adfcd5f503154793861c8b41fac44a77eb30802513e8",
+    "source_fingerprint": "sha256:808b126d7138a96360b40627439845223c0a59cb5d223fdce3815186947f0e22",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "29aa455d18786025a99916e43327c73d95de9e64795299edf7551f06040187bf",
+      "spec.md": "02e2932ec9879391780aa15f953e654855c1d99cf810b55e07ad0b2b33fd1045",
       "plan.md": "b91eff06440f33fbacb0b9f1e6bce8578ffbf05e8ea15ec522b1e4bf66f870b3",
       "tasks.md": "c65868b853380392a7e02e974a3f425b74e6df8e68a9d48ba6104fa7720eea44",
       "implementation-summary.md": "d2ba540d172488ab1063363b3e26edf1e6c7b6e957425e3e391ec1e2f949cb1d"

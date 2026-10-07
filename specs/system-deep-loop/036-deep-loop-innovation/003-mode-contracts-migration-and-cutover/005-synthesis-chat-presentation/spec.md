@@ -2,10 +2,8 @@
 title: "Feature Specification: Present synthesized recommendations in chat across the six deep-loop modes"
 description: "Give each deep-loop mode a required content field in its completion message, so a finished run reports what it found instead of a path and a count."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "synthesis chat presentation"
+  - "give each deep loop mode a required content"
 importance_tier: "normal"
 contextType: "general"
 ---

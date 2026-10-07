@@ -20,9 +20,9 @@
       "hook trust block",
       "deepseek dispatch units",
       "git hook fix tasks",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability"
+      "git hook review fixes acceptance criteria",
+      "git hook review fixes summary",
+      "hook trust block shipped"
     ],
     "key_topics": [
       "git",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The hooks are installed machine-wide through `core.hooksPath`, but they choose their source root from a file inside whatever repository they fire in, so a cloned repository can make them run its own code on `pull`, `commit` or `push`",
     "created_at": "2026-10-02T07:45:23Z",
-    "last_save_at": "2026-10-02T09:15:29.526Z",
+    "last_save_at": "2026-10-07T12:55:27.957Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +215,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fbc64e8b169fbd35fd41abb2a1ba2f20f6434ec42a7b9e99dd0fd26dd96553ec",
+    "source_fingerprint": "sha256:f3f124c0eeb5539a41da3784e93a47cd866badd781c8151c78ed64b8a811c91a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "752795b5e45d531a10a5c8fe86ceac7c069760d4bbfea1271e44ef45aa88b1c3",

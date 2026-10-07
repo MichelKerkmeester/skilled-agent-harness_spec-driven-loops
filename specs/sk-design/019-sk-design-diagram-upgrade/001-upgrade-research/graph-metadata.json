@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "upgrade research",
+      "five iterations of glm 5 3 flash deep",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "upgrade research acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "upgrade",
+      "research",
+      "five",
+      "iterations",
+      "glm",
+      "flash",
+      "deep",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The diagram skill's rules live in prose with nothing holding them, and the chart skill solved",
     "created_at": "2026-09-10T17:17:40Z",
-    "last_save_at": "2026-10-03T15:44:29.759Z",
+    "last_save_at": "2026-10-07T12:55:17.432Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +215,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9b4d20a3f8a2fafc32130bb08639be3b850f7393beb82877933f74bc929f1b02",
+    "source_fingerprint": "sha256:4ec9e088a6acd2243345048e9e3223700fe10faaca25e7b6f753eb9e8976d452",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "33374b8785bff5ae095b9da093e32d9083582831deebc042a555e3ed1e28a7cd",
+      "spec.md": "cfbb8070be8c8249daa548297c5e247300d2b3f13dd7b5de445bfee72cbea09e",
       "plan.md": "a1606059cf95e6fd3c6fccb82c9c290c71927e8089f8db2cf626e1b836f93c06",
       "tasks.md": "1011a9638881802da63e2981f06dad79063e51032c2247e848456ffb8a44d089",
       "implementation-summary.md": "35d268b70e25dab1bf8eb0890206ab9da00df8f7f75f5ab8045de9723b1a7227",

@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: one style reference, no examples, open tables, a gallery that sizes its frames"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "evilcharts only and open tables acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

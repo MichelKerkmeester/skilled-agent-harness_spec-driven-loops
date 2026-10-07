@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The repository's instruction surfaces predate the current vendor prompting guides",
     "created_at": "2026-09-24T08:05:49Z",
-    "last_save_at": "2026-09-24T15:45:59.449Z",
+    "last_save_at": "2026-10-07T12:54:42.837Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e530c18ab071d6fc5ba4c99d4425677f02e1b5fdf9118344761504aef39bd16d",
+    "source_fingerprint": "sha256:6dd27b54df94ab1c96db8f12b356ad4f6da9113ce6d1156de4a28726eb5c3ab2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f33205c60ef4ae43e648ce57c9ce8805c0dadff0dca1606d8cb1e1905890cd89",

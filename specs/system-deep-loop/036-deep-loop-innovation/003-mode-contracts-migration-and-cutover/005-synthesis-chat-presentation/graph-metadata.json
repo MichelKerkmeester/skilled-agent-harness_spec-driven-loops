@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "synthesis chat presentation",
+      "give each deep loop mode a required content",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "synthesis chat presentation acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "synthesis",
+      "chat",
+      "presentation",
+      "give",
+      "deep",
+      "loop",
+      "mode",
+      "required",
+      "content",
       "implementation",
       "plan",
-      "technical",
-      "approach"
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "A run could spend twenty minutes producing a ranked set of findings and then report an iteration count, four file paths and a status token",
     "created_at": "2026-09-20T08:33:39.910Z",
-    "last_save_at": "2026-10-03T15:12:14.498Z",
+    "last_save_at": "2026-10-07T12:55:27.751Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1f61a9bfb44485c5eaba3a4e39b6871ebbb264eb89dddcb00e64dc0fd783a030",
+    "source_fingerprint": "sha256:9974b654c5147882fd6793629f29ca22b6a2468d69fce6b05714c4335eea8f82",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8c8f2835722e79ac736f8306de165a8ef86dccb00a0792cee33c2dd548f97e07",
+      "spec.md": "e442fc9d7b8cda14a8b9d6d537fef2b9dc9e04101ca5736f3ecb0b6d3eb3243c",
       "plan.md": "c75fb2185a1946afe207bb13f45f9f421301c3d9a2e8e3a8b13e309879bdbb72",
       "tasks.md": "5f250aae3363d005ef7e5ae973dcabff7af11a3f0a87324e39eb80fa81642784",
       "implementation-summary.md": "0a99b15fe68c76334d3d47a50d9f05e2fd9ca0cc9d4f1b2bd4922f54fb093517"

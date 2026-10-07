@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: review-confirmed-findings"
 description: "The six findings the post-work review confirmed, including one this session first refuted and an independent pass overturned."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "review confirmed findings"
+  - "the six findings the post work review confirmed"
 importance_tier: "normal"
 contextType: "general"
 ---

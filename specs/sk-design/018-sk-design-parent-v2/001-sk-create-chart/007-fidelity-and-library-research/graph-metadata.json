@@ -21,8 +21,8 @@
       "chart fidelity tasks",
       "chart research tasks",
       "renumber tasks",
-      "acceptance criteria",
-      "closure gate"
+      "fidelity and library research acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
       "sk-create-chart",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Three reference overviews start at `## 0",
     "created_at": "2026-09-02T18:50:53Z",
-    "last_save_at": "2026-09-11T16:41:58.341Z",
+    "last_save_at": "2026-10-07T12:55:07.047Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6bbda1d4b277031e8ab81bd3de923ee0c91cd2ba98ee2543e1f53b2c12ce386d",
+    "source_fingerprint": "sha256:a60c1d79e72fb017f67f61e1281dcf4102d6ef0949d7b7f132dc5c1f2ff559cd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a0c82c6178065a7e6012040f8b9c1730a4998b4f204ddebc7d3ec344dfe7ef78",

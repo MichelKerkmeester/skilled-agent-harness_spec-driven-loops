@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "shorten handoff rule name",
+      "the handoff rule s filename was the longest",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "shorten",
+      "handoff",
+      "rule",
+      "name",
+      "filename",
+      "longest",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The handoff rule's filename was the longest in the corpus at 38 characters, twice the length of its siblings, so it was shortened to communication-handoff.",
     "created_at": "2026-09-15T19:38:34Z",
-    "last_save_at": "2026-09-15T19:41:12.437Z",
+    "last_save_at": "2026-10-07T12:55:04.851Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e5ef26512223873dacc7fe323a290cc3d21c459eea1aeff6efe94b42f2a5cf0",
+    "source_fingerprint": "sha256:38f634c219c9fd3d262fd852ffdbfc60da57def7acf9b7f2f2b9f23a58f6a727",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bee260fbe05cb390bd1f777aef687d14944a026a8b362ccfbe1a28af3736b543",
+      "spec.md": "560105053e837e08ad4b941b8275d2c1f9f4d3ff1f6069b0e5f84e72f8f05fff",
       "plan.md": "96ed27afffc984935ec19501c1e63f75229bff93d046fb3242af3318bc7bd45b",
       "tasks.md": "7d7d759c6d4a56aa3822225eebf3f6909b18323334b1ab03a46bb9ba4f62c930",
       "implementation-summary.md": "bd4b32fc96a018b445d1711a8bbe96dd1aed4ac53c28aef5b3a96b1c1780e87a"

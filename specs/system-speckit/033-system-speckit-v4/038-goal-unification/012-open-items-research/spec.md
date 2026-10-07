@@ -2,10 +2,7 @@
 title: "Feature Specification: Phase 1: open-items-research"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "open items research"
 importance_tier: "normal"
 contextType: "general"
 ---

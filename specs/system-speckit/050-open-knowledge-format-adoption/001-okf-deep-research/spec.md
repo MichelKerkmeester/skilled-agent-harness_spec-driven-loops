@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: okf-deep-research"
 description: "Ten-iteration deep research comparing how system-spec-kit works today with Google's Open Knowledge Format, plus online source discovery, ending in a ranked adopt, adapt or reject verdict."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "okf deep research"
+  - "ten iteration deep research comparing how system spec"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,8 @@
 title: "Feature Specification: Tell Claude Code sessions to dispatch native subagents instead of the cli-claude-code CLI"
 description: "The cli-claude-code self-invocation guard said to use native capabilities but not how, so a Claude Code session tried the CLI route before dispatching a subagent."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "claude code native dispatch"
+  - "the cli claude code self invocation guard said"
 importance_tier: "normal"
 contextType: "general"
 ---

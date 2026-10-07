@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Prove the targets, the rules and the gallery from the final state"
 description: "Five criteria: the corpus gated from its final state, every new rule watched failing, the packet validated, the parent reconciled, and nothing pushed."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "closure and proof acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

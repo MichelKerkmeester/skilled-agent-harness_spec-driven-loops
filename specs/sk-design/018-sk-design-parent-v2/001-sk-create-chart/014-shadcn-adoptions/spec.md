@@ -2,10 +2,8 @@
 title: "Feature Specification: shadcn adoptions"
 description: "Make the three shadcn chart decisions worth keeping—keyed series tokens, local readout knobs and declared curve intent—explicit and checker-held across the standalone chart corpus."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "shadcn adoptions"
+  - "make the three shadcn chart decisions worth keeping"
 importance_tier: "normal"
 contextType: "general"
 ---

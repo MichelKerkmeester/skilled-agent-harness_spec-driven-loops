@@ -2,10 +2,8 @@
 title: "Feature Specification: cache optimizer review remediation"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "cache optimizer review remediation"
+  - "an independent review of the cache extension found"
 importance_tier: "normal"
 contextType: "general"
 ---

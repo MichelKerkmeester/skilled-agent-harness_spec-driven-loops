@@ -2,10 +2,8 @@
 title: "Feature Specification: Bring the six chart deliveries to parity with their parent templates' pointer contracts"
 description: "Six delivered charts under assets/examples carry none of the pointer markers their own parent templates use. This phase transfers the working tooltip mechanism into four of them and declares the remaining two inert, closing the gap the research found but the recommendation left unsized."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "deliveries to parity"
+  - "six delivered charts under assets examples carry none"
 importance_tier: "normal"
 contextType: "general"
 ---

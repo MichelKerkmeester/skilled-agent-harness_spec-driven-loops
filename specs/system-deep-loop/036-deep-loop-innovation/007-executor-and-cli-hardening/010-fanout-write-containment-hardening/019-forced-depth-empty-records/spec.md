@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 4: forced-depth-empty-records"
 description: "Forced-depth validation fails a lane whose state log holds no usable iteration records, and the state-record appender refuses an iteration record without a positive integer iteration number."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "forced depth empty records"
+  - "forced depth validation fails a lane whose state"
 importance_tier: "normal"
 contextType: "general"
 ---

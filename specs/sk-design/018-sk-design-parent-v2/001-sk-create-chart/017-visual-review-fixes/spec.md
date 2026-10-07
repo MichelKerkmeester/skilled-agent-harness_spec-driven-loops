@@ -2,10 +2,8 @@
 title: "Feature Specification: visual review fixes after the shadcn upgrade"
 description: "Operator review of the shadcn visual upgrade: numeric table headers right-aligned with their cells, the tooltip card freed of the native browser title and of wrapping labels, single-series cards without decorative indicators, and daily-line reworked so the line is the mark."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "visual review fixes"
+  - "operator review of the shadcn visual upgrade numeric"
 importance_tier: "normal"
 contextType: "general"
 ---

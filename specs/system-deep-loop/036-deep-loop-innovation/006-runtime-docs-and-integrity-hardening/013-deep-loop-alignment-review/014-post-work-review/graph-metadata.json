@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "post work review",
+      "ten adversarial review iterations by swe 2 max",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "post work review acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "post",
+      "work",
+      "review",
+      "ten",
+      "adversarial",
+      "iterations",
+      "swe",
+      "max",
       "implementation",
       "plan",
       "technical",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Thirteen phases changed one hundred and fifty files on the claim that each surface now says what the code does",
     "created_at": "2026-09-20T08:33:45.822Z",
-    "last_save_at": "2026-09-25T16:15:23.135Z",
+    "last_save_at": "2026-10-07T12:55:32.369Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6dcc6893ee8c10b5d19fc34e22e7a7d701b4982bd503735dadb90f37716f8bf3",
+    "source_fingerprint": "sha256:98e86e314ed7e438cd6b1677de656ea2921ba75ac161df62db7dcf7a68228821",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1f6ddce94221a796cc3730fb84583409c2f9a5992363c96a8f14a36db09e3fb9",
+      "spec.md": "4115e9a43614c5ff5ed65a2256dce0247d2e3242b2bb7e727c29cec6332720df",
       "plan.md": "7d247edde686a0bfb6c5555c6a5d5a6a1097ca96c461084415878e67134dab17",
       "tasks.md": "22ada4cff2232d92aecbbae80cd984226e3dd2782e29289895f36f16f8e0bdfd",
       "implementation-summary.md": "b212bb1790d87a6fb8c44d53e5f306ba39d8424c1b8653bd20a4a640d0082c7b"

@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "command yaml alignment",
+      "all four deep loop command yamls pass the",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "command yaml alignment acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "command",
+      "yaml",
+      "alignment",
+      "four",
+      "deep",
+      "loop",
+      "yamls",
+      "pass",
       "implementation",
       "plan",
       "technical",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The four command YAMLs drove the fan-out runner with different loop flags: none passed the convergence mode the runner reads, and the confirm review YAML passed neither threshold nor stop policy",
     "created_at": "2026-09-20T08:33:43.014Z",
-    "last_save_at": "2026-09-25T16:15:28.155Z",
+    "last_save_at": "2026-10-07T12:55:35.917Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5cff8898aafea939149119c6ce31d025c4385c5d1758994d1546f7d49b596462",
+    "source_fingerprint": "sha256:b1147cbaff992561a0a06476eb5079a5f3b930a23eb805569f40d5e08d8ee8ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "85c668ee5231a32dc2dc310c76fb895d93e738ce6b2d392603a380d08c417b3a",
+      "spec.md": "88c4585a54766b05a87242ee77ae382bdeeeaf3a2941032203d6db8832a01650",
       "plan.md": "afde75bac69ef079d9257b98523ab64ac00a0ebb99396d3f195112a69325b225",
       "tasks.md": "7b21af8feff277ed9fcdba07b03a6085f5c7130d83bd52a28a228d84554d3f5a",
       "implementation-summary.md": "cbe1440c4c97c21133bae830878316793b906f528f4ea03cbcd1a8ea8b745608"

@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "track narrowing improvements",
+      "the narrowing scorer pins what it measured keeps",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "track",
+      "narrowing",
+      "improvements",
+      "scorer",
+      "pins",
+      "measured",
+      "keeps",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -46,8 +46,6 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts",
       "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md"
     ],
     "entities": [
@@ -79,18 +77,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "score-track-narrowing.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-track-narrowing.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Feature 017 kept at 97 against 68 of 256 with only 3.4 rows of margin slack",
     "created_at": "2026-10-03T05:30:03Z",
-    "last_save_at": "2026-10-03T10:32:51.371Z",
+    "last_save_at": "2026-10-07T12:54:55.935Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +206,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cb84f7010c1019a25c81c60e071c1539fbdf6b76c0234f505e130c7167413c39",
+    "source_fingerprint": "sha256:e02da38ec471a08aafe0939b0f98a8e00f45ca43e44d1108c912e2079392dc41",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c50f516561ed6a44b1a3122c08327846923e796a4ce300e61bca1bedce31104a",
+      "spec.md": "1f606f755a6bb7919c05620669f65a70bf010de2494f6424a357480ea0c0e226",
       "plan.md": "71d143c20a383bcf8ff445421a94404d47224ec80eb2edf6ac95f358c5db6c23",
       "tasks.md": "9b49c84dc628dcb03a337dbee34a01101e7ad995b10409c29e309af35a6cae9f",
       "implementation-summary.md": "458c442216155567fb96861bfb6d348383292642961a8c9411e7db866bce7b61"

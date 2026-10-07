@@ -2,10 +2,8 @@
 title: "Feature Specification: Build: improve the Jev spec-track narrowing (017)"
 description: "The narrowing scorer pins what it measured, keeps every run, reports by track with its margin slack, and shows what one call or a shortlist would cost in accuracy."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "track narrowing improvements"
+  - "the narrowing scorer pins what it measured keeps"
 importance_tier: "normal"
 contextType: "general"
 ---

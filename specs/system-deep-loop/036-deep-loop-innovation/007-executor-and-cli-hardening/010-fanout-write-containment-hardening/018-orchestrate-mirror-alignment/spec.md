@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 3: orchestrate-mirror-alignment"
 description: "The orchestrate agent's OpenCode source grants the delegation tool in its permission block and every runtime mirror declares that tool in its own vocabulary, with the mirror-sync checker green."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "orchestrate mirror alignment"
+  - "the orchestrate agent s opencode source grants the"
 importance_tier: "normal"
 contextType: "general"
 ---

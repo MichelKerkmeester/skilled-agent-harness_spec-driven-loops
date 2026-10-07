@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "template screenshots",
+      "both canvas modes ship html that has to",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "template screenshots acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "template",
+      "screenshots",
+      "canvas",
+      "modes",
+      "ship",
+      "html",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Both canvas modes ship HTML that has to be opened in a browser to be judged",
     "created_at": "2026-09-06T20:37:15Z",
-    "last_save_at": "2026-09-06T21:05:39.587Z",
+    "last_save_at": "2026-10-07T12:55:17.474Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bec83a7b15823cd7618c5859f9928207054a7c07f9674720d9d8495c2bfa81fc",
+    "source_fingerprint": "sha256:8c8fa3a177c62eb8361abab4b783da0fd657bf2e146c4540fb0ced10c630c211",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c327bcc8ad3bc1a177f47ce3443511fa2683574e17725bb15f142fccaec3af90",
+      "spec.md": "6c04ece355f004d4e2b4be35267b513d825d574a065d5b8c9b48d562046a1d10",
       "plan.md": "a447b8d0df9e8eb3563b8a1a5da00f1abc206894e066beb93a1031b70f5c924b",
       "tasks.md": "8f17df84a371827ca71633c4beee672605c6e80c8134f998bdee60fdf3afc671",
       "decision-record.md": "20d51ab978075d378c3f5a677efb25b07b7db50357247fd2d3c5d81b4c6ec330",

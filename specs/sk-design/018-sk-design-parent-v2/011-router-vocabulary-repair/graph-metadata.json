@@ -12,10 +12,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "router vocabulary repair",
+      "the sk design router declares 55 keywords its",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -23,21 +21,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "router vocabulary repair acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "router",
+      "vocabulary",
+      "repair",
+      "design",
+      "declares",
+      "keywords",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The sk-design router declares 55 keywords its own scoring vocabulary never sees",
     "created_at": "2026-09-06T20:37:14Z",
-    "last_save_at": "2026-09-07T04:56:58.754Z",
+    "last_save_at": "2026-10-07T12:55:17.286Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5615face701b3eaa33e3d0ca7eb209562921c4b109320e793ccb33a3101bf816",
+    "source_fingerprint": "sha256:6fc37eb66852fcf56d212e23993985407083fd6d47cf991b46e324afb39b195e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7a9f9e17fe8494b3c8bb11a14beb82891a525adfb43eac76288480c7ac0d0e72",
+      "spec.md": "f8b26fd873d244ddc65833c36c4e6695037b4b0db20ab8b5c959c6dc58504eab",
       "plan.md": "61df70aa8b90beeae617e995b4b4e141b736b1676d4543ad626bc21363230a45",
       "tasks.md": "129a35569eb6754befd6043bc0728cbd27ad56fea0709da6b5a08ad63924c3d6",
       "implementation-summary.md": "eb2e0c82dac388d864a864900c0f6fe97ccedc50d7967a170ecb85c67525eb76"

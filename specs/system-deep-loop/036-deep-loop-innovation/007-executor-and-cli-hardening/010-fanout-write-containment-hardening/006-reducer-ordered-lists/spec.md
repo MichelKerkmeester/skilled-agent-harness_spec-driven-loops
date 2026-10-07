@@ -2,10 +2,8 @@
 title: "Feature Specification: Make the lineage reducer extract numbered findings and flag a fulfilled lane whose registry stays empty"
 description: "The deep-research reducer writes the findings registry even when a leaf-authored strategy file lacks the anchor markers, and a fulfilled lane whose registry is empty while its deltas hold findings is flagged on the fan-out ledger."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "reducer ordered lists"
+  - "the deep research reducer writes the findings registry"
 importance_tier: "normal"
 contextType: "general"
 ---

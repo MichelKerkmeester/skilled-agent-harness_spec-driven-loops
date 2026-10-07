@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "v4 changelog review fixes",
+      "the 046 remediation shipped complete and the luna",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "changelog",
+      "review",
+      "remediation",
+      "shipped",
+      "complete",
+      "luna",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 046 remediation shipped Complete, and the LUNA 5.6 MAX FAST review of its output (13 findings, verdict: mostly reads like the README author but would not ship unchanged) recorded one high and twelve medium-or-low findings",
     "created_at": "2026-09-21T15:57:35Z",
-    "last_save_at": "2026-09-21T18:21:36.839Z",
+    "last_save_at": "2026-10-07T12:55:51.089Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8ab0c9dc859561c4a98a2e4652904faba94b21d43b418c7c54002b02653fc7f",
+    "source_fingerprint": "sha256:5f65f63c4a5a58e98c6797ec4e10c32e13b7d4f2729013897a165529e37f3078",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c0f1a2dc89c9e48c140c9eb60106eb17a255ae3ca98d8d9d61ef6d4ac0bb6d03",
+      "spec.md": "81fcbffcce8370c0b63de793ebbf2ad3b668777c7774ca5211f5cd19493908cf",
       "plan.md": "9738c935e6843df61afb07a96986c011967e010c935695868f43c78f6980fca4",
       "tasks.md": "b3f1b4498845d8a43e5b0d96d7ef20138f279206a5e1045e85feb649a203de67",
       "implementation-summary.md": "c92a8fd58f61ba8a528d829a37df7625c6286cbc23503459283a0420ca9bcc0f"

@@ -11,10 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "sk git required a commit body only when",
       "commit body always required",
       "commit-msg body gate",
       "implementation plan",
@@ -22,21 +19,24 @@
       "architecture decisions",
       "testing strategy",
       "task breakdown",
-      "implementation tasks"
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "commit body always required acceptance criteria"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "git",
+      "required",
       "commit",
       "body",
+      "only",
       "always",
-      "required"
+      "commit-msg",
+      "gate",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "`SKILL.md` section 6 asked for a commit body only when a commit staged four or more paths, and the `commit-msg` hook enforced exactly that by counting staged files",
     "created_at": "2026-09-28T20:37:18Z",
-    "last_save_at": "2026-09-28T20:54:16.776Z",
+    "last_save_at": "2026-10-07T13:01:33.207Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +215,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4cb533c71980728722d662b2956464add6784ce54e0b1cf779be0592008875f3",
+    "source_fingerprint": "sha256:e85951f0ed7297dbbd2ccc02e64df07de900ae4b566f8c561514895f1b2c7f15",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e701e3cad1768ffe197bb00b8f5cf4b2069a100db7eac17db7536c7e6dd8f18e",
+      "spec.md": "67f7d820b973405a8e141a57690166f6940287f6263e44cb1b671b0f6b6a8c05",
       "plan.md": "2733e47d74025b860d9517e9a72f25801bb2edccfff7389b319acd5ca6f9717c",
       "tasks.md": "19aa8bc0d0ee835614b1c99bf17543de715ddcc729d76a60e5e7dba954e87ee3",
       "implementation-summary.md": "d85ccc1a54e65273abc5c6eeac8f15d41ee21931be21839f2db2479559a9ae76"

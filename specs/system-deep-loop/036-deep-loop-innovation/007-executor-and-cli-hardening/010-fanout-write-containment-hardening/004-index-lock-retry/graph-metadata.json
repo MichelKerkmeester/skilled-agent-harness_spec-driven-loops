@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "index lock retry",
+      "a git call inside write containment that loses",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "index lock retry acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "index",
+      "lock",
+      "retry",
+      "git",
+      "call",
+      "inside",
+      "write",
+      "containment",
+      "loses",
       "implementation",
       "plan",
-      "technical",
-      "approach"
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Every git call in the containment guard returned an empty result on any non-zero exit and discarded stderr, and every caller read empty as a clean tree",
     "created_at": "2026-09-20T08:33:41.166Z",
-    "last_save_at": "2026-09-25T16:15:28.103Z",
+    "last_save_at": "2026-10-07T12:55:32.942Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d935ddb54c918937debb892fa9c8682129667e00ad947678c5f4eb453dc1d17",
+    "source_fingerprint": "sha256:70ca0371e2ed9afc1958775c6af494cf0cf7d541bc236a0114408879a4bed3ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "27aed031bb2c167ae81bbdf83ba7a5b89419093d89c519508fb7ceb44544ffd8",
+      "spec.md": "f29ea742e65d1f77f1ecf0542820761dfc2242fa0db36dc2f708e571f9b87062",
       "plan.md": "cd496b32fc2993261d05424f8584f67166f8bb845b7786a80cfb335275e5ad9e",
       "tasks.md": "a2203b0f780195b4572f09585df38907801cae4f097d617147ca2e4e048b0353",
       "implementation-summary.md": "22aa1904744f07902178cb008688f9ee39782a242036b5d57c42333bc3fa3ec0"

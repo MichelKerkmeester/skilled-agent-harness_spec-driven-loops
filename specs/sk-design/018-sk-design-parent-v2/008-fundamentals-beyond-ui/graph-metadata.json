@@ -12,10 +12,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "fundamentals beyond ui",
+      "sk design fundamentals reads as a ui skill",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -23,21 +21,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "fundamentals beyond ui acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "fundamentals",
+      "beyond",
+      "design",
+      "reads",
+      "skill",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions",
+      "testing"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`sk-design-fundamentals` reads as a UI skill",
     "created_at": "2026-09-06T16:22:20Z",
-    "last_save_at": "2026-09-06T20:26:18.926Z",
+    "last_save_at": "2026-10-07T12:55:17.474Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a849c86b9c3d0234adb643f365833abaccfbefe093982fc9a73a69c6287ee12",
+    "source_fingerprint": "sha256:5141c0a7211aadc48609a6b730b45924049cf0965d810f3b5daf1ad8439c0f22",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "00e9c088fe9284409047e25e76f932de01a9cfcbe07af039d447be3ff5990ebe",
+      "spec.md": "e385d8bd71b6d158ce4a6901670dd2acbbc98dafadeebe1a371bd6eb2e30a305",
       "plan.md": "c899799c6f5f3a89a881f4e6511d1cca27c2e4c74df53b9a0723f1c426a4dabd",
       "tasks.md": "b5c9cb76885530af4c5d05a93260d7fe2e4bbba6eaa58b6e414e143b1ebafc6b",
       "decision-record.md": "e8ef13b6797f14478dd18d18b17c9242bbac68d43ab33ae7229ff4c423ea7d42",

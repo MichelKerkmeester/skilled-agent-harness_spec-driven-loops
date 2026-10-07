@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: embed the stock Style Reference in the chart skill and keep the generator override"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "embedded style reference acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

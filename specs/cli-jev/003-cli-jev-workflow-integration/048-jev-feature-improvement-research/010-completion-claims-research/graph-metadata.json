@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "completion claims research",
+      "five deepseek v4 1 flash and three gpt",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "completion",
+      "claims",
+      "research",
+      "five",
+      "deepseek",
+      "flash",
+      "three",
+      "gpt",
       "implementation",
       "plan",
       "technical",
@@ -48,7 +48,6 @@
       "implementation-summary.md",
       "research/research.md",
       "research/findings-registry.json",
-      ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
       "research/lineages/deepseek/deep-research-state.jsonl",
       "research/lineages/luna/deep-research-state.jsonl",
       ".cursor/hooks.json",
@@ -101,12 +100,6 @@
         "name": "findings-registry.json",
         "kind": "config",
         "path": "research/findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "score-completion-claims.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
         "source": "derived"
       },
       {
@@ -204,11 +197,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 047 measured the Jev completion-claim audit at verdict jev: stop (margin) K=110 M=110 A=102 B=93 W=13 L=4 F=0 pwin=0.02452",
     "created_at": "2026-10-02T21:59:49Z",
-    "last_save_at": "2026-10-03T03:08:31.227Z",
+    "last_save_at": "2026-10-07T12:54:56.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,10 +218,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0bf1bcf0280fda172daa5cf0f4bfd86b48eada2929c88238de7c4d9cd6e865d0",
+    "source_fingerprint": "sha256:2966dbe68fced35dbcdbbb058e16d6212a56ba9c7d8c50d37d3e040171d9aebc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "029bc78ff06694126bd9ff6f094f9784d0498bc1f4c286b6533f6e9adcc82cf9",
+      "spec.md": "5b6bd791f79544b9ff25f52a9e80473bb01a9cc340534db7e373b03c5f45053c",
       "plan.md": "1a53bbc44c6da6a000b280af29a21f4e305531589566730a251a12796327c408",
       "tasks.md": "d1fb330164a11ed09bfc35d3bb42a6e75cd7c31e9fa5c75f40b58a2c107ecb53",
       "implementation-summary.md": "fe88d2253ca19cafe319bbfd43aaed6ade04c614eff95f0d31263a6c62903768",

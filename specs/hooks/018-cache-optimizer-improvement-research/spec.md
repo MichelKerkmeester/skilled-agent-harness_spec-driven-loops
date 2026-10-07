@@ -2,10 +2,8 @@
 title: "Feature Specification: cache optimizer improvement research"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "cache optimizer improvement research"
+  - "the pi cache extension recently absorbed three capabilities"
 importance_tier: "normal"
 contextType: "general"
 ---

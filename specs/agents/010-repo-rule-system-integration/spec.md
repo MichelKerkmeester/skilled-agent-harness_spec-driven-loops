@@ -2,10 +2,8 @@
 title: "Feature Specification: Extend the repo-rule system across the wider system and shrink AGENTS.md where content no longer earns a full writeup"
 description: "Three-lineage research into how the repo-rule system should extend across the wider system, and which parts of AGENTS.md no longer earn a full writeup in an always-loaded document."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "repo rule system integration"
+  - "three lineage research into how the repo rule"
 importance_tier: "normal"
 contextType: "general"
 ---

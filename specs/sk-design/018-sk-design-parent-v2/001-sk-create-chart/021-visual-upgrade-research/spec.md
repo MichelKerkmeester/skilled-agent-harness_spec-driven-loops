@@ -2,10 +2,8 @@
 title: "Feature Specification: deep research on the external reference library for visual upgrades"
 description: "Two parallel five-iteration deep-research lineages, GPT-5.6 Luna via codex and GLM-5.3-Flash via pi over DevPass, judge the chart corpus against the external reference library across five visual angles and rank what to upgrade in templates, assets and the chart skill."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "visual upgrade research"
+  - "two parallel five iteration deep research lineages gpt"
 importance_tier: "normal"
 contextType: "general"
 ---

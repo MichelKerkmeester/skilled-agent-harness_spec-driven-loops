@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: cursor bundle as the stock chart register"
 description: "Acceptance criteria for making the cursor Style Reference the stock chart register."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "cursor stock register acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

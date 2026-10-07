@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "cache optimizer improvement research",
+      "the pi cache extension recently absorbed three capabilities",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "cache",
+      "optimizer",
+      "improvement",
+      "research",
+      "extension",
+      "recently",
+      "absorbed",
+      "three",
+      "capabilities",
       "implementation",
       "plan",
-      "technical",
-      "approach"
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The Pi cache extension recently absorbed three capabilities and had three defects fixed, but no one",
     "created_at": "2026-09-09T09:11:34Z",
-    "last_save_at": "2026-09-09T12:08:31.187Z",
+    "last_save_at": "2026-10-07T12:55:00.613Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:3867ff50910933585ff97519a202abbf3b9c40541b6dcb4927bcc4cfd025ea7e",
+    "source_fingerprint": "sha256:f5432cbfe26f9b58ba4c533292a36a2c11de167e676e99cdccce166b76b44beb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8261488f0cd014cab2dbec04e2293420a452e9bb1a26867e2d345acdebea1419",
+      "spec.md": "e4644fdd919e16c64587cab550dbb943ac8621232c82838a8afc79dd9ff183d4",
       "plan.md": "91c1d94346f795462cbf5cd92df3e364a12c725f7346d4bd9993b5fe08c7c366",
       "tasks.md": "a14b81097bc1c31de28e5da46d328d5e17becc903a603c4cd166ee82e6198430",
       "implementation-summary.md": "2f5c66ff784e75284403b83d46c174225ce0567a21f36c3f7b8e73c57110be77",

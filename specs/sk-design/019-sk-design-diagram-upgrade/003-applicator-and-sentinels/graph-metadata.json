@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "applicator and sentinels",
+      "a sentinel palette block per file and an",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "applicator and sentinels acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "applicator",
+      "sentinels",
+      "sentinel",
+      "palette",
+      "block",
+      "per",
+      "file",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`DIAGRAMPALETTE:BEGIN skin=light|dark|terminal … :END` blocks, one per file, in the four templates",
     "created_at": "2026-09-10T17:17:42Z",
-    "last_save_at": "2026-09-11T08:31:26.988Z",
+    "last_save_at": "2026-10-07T12:55:19.390Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c36498c714cc697e3d33188d58ee987b92cf1107fd04537f406178482f1d754d",
+    "source_fingerprint": "sha256:73d1a3f9ce78de31d8aebb327ba493504f8cf150a89b012f2389f583e57a987a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6758b86187a90af7e4686c8d705cb413233730d37848606b100f5c9ff6cc5f70",
+      "spec.md": "5270745d9a36533963f3213ed82625d694b8397e630859cf8699ee801d257201",
       "plan.md": "9372e08680ef4435468752cd1e36bf723b78ecf810729c551ad0e46badccfdee",
       "tasks.md": "162420807c6962f2d79f323ee0aac446128fdebd2a1577d55933ecfcc3997470",
       "implementation-summary.md": "56d478437dde859d9798ffed75639f45bac70a1b87f0ad4dd4409b7a04c2af0c"

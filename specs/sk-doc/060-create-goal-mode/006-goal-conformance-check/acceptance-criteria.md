@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Phase 6: goal-conformance-check"
 description: "Six unmet criteria govern fixture behavior, budget reuse, corpus reporting and the phase handoff."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "goal conformance check acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

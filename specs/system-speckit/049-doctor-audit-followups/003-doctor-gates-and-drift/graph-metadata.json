@@ -53,14 +53,14 @@
       ".skilled/commands/doctor/scripts/route-validate.sh",
       ".skilled/commands/doctor/scripts/README.md",
       ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
-      ".skilled/commands/doctor/assets/doctor-rebuild-presentation.txt",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/metrics/fable-baseline.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/metrics/README.md",
       "specs/system-speckit/048-doctor-command-audit/003-update/spec.md",
       "specs/system-speckit/048-doctor-command-audit/013-speckit-retrieval/implementation-summary.md",
-      ".skilled/scripts/git-hooks/tests/pre-commit.test.sh"
+      ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+      "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/commands/doctor/assets/doctor-mcp-install.yaml"
     ],
     "entities": [
       {
@@ -136,12 +136,6 @@
         "source": "derived"
       },
       {
-        "name": "doctor-rebuild-presentation.txt",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/assets/doctor-rebuild-presentation.txt",
-        "source": "derived"
-      },
-      {
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
@@ -154,15 +148,21 @@
         "source": "derived"
       },
       {
-        "name": "fable-baseline.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/metrics/fable-baseline.json",
-        "source": "derived"
-      },
-      {
         "name": "pre-commit.test.sh",
         "kind": "script",
         "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-mcp-install.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-mcp-install.yaml",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nine defects recorded across the audit remain open",
     "created_at": "2026-10-03T05:27:41Z",
-    "last_save_at": "2026-10-03T17:17:50.068Z",
+    "last_save_at": "2026-10-07T12:55:55.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0aa5308518d143a4c121ae0167ec635196b989718cb4725b92d9c54a3e396d64",
+    "source_fingerprint": "sha256:09e389b2e378ddb8749e0e3bc2c021e880ae3c4514f64866e423f79e2672a5ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a787caa3754704ff331c38c6c338aecdb1a703f47c5856717e80092e03b52806",

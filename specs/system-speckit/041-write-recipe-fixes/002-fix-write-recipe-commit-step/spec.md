@@ -2,10 +2,8 @@
 title: "Feature Specification: Bring the commit step of the spec folder write recipe in line with the commit hook"
 description: "Step 7 of the write recipe told authors to add a Co-Authored-By trailer and to scope by packet, and the commit-msg hook refuses the first and sk-git forbids the second."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "fix write recipe commit step"
+  - "step 7 of the write recipe told authors"
 importance_tier: "normal"
 contextType: "general"
 ---

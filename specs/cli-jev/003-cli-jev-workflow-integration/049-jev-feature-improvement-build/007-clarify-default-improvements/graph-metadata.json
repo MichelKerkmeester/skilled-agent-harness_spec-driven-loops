@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "clarify default improvements",
+      "the clarify scorer scores only rows that still",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "clarify",
+      "default",
+      "improvements",
+      "scorer",
+      "scores",
+      "only",
+      "rows",
+      "still",
       "implementation",
       "plan",
       "technical",
@@ -46,8 +46,6 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/fixtures/047-020-recorded-picks.jsonl",
       "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/007-clarify-default-research/research/research.md"
     ],
@@ -80,18 +78,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "score-clarify-default.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-clarify-default.test.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs",
         "source": "derived"
       },
       {
@@ -195,11 +181,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Feature 020 kept mostly as a none-of-these detector: 12 of 17 wins are abstentions, and always answering none (34 of 54) beats Jev (28)",
     "created_at": "2026-10-03T05:30:07Z",
-    "last_save_at": "2026-10-03T12:43:33.154Z",
+    "last_save_at": "2026-10-07T12:54:56.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +207,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e115a07cd74871bfaa4164b73e92b5e28ff2af81b830584f3514c97a188b983b",
+    "source_fingerprint": "sha256:753973b5f397cac6c919ff0d5a4d7d6bbbf8ca9ea4fb7d915c8781bddc9f6339",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a353d7bfa697219092f5aa341f4faecf9f187932acb6d85f3f75e6586e5ed165",
+      "spec.md": "7c5ee5fcb234538be8301da9d30e20afb9e1f277d3617443a123ae0b2214f818",
       "plan.md": "7d871cb566fe50bce0d17568ac46f965e044029d855a1a98104bf6b71c624c4a",
       "tasks.md": "ca62a27290fdcf8b9b6133f80023bcedcfd32e6e1c873b32d6eaf47896f9a6d8",
       "implementation-summary.md": "8d37d2c5ea2447d3cc891360294ba798e6a39bf23bb559fedc9ae5788426d6ae"

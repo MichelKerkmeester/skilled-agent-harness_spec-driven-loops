@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-deprecate-visual-explanation-lane"
+    packet_pointer: "sk-communication/005-deprecate-visual-explanation-lane"
     last_updated_at: "2026-09-12T10:14:52Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"

@@ -51,10 +51,8 @@
       "scripts/README.md",
       "scratch/mutations.md",
       "scratch/baseline.md",
-      ".opencode/skills/sk-design/sk-design-chart/assets/gallery.html",
       ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
       ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md",
-      ".opencode/skills/sk-design/sk-design-chart/changelog/v1.3.0.0.md",
       "scratch/inventory.md",
       "scratch/codex-luna-last-message.md"
     ],
@@ -120,12 +118,6 @@
         "source": "derived"
       },
       {
-        "name": "gallery.html",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-chart/assets/gallery.html",
-        "source": "derived"
-      },
-      {
         "name": "check-corpus.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
@@ -135,12 +127,6 @@
         "name": "template-contract.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.3.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.3.0.0.md",
         "source": "derived"
       },
       {
@@ -202,11 +188,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Measure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 13 compared shadcn's chart examples with the standalone corpus and phase 14 adopted the three structural ideas worth keeping: keyed series tokens, local readout knobs and declared curves",
     "created_at": "2026-09-08T05:12:18Z",
-    "last_save_at": "2026-09-08T06:32:19.375Z",
+    "last_save_at": "2026-10-07T12:55:11.965Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +215,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:030ee9589d56235c71d3b23d931fd34ba29c00995e5f8f0309f31a9321e5efec",
+    "source_fingerprint": "sha256:0f3b11fc4bf3ce63fd8548fc8faa03fd8fe5bbfb19fda8007738474aeb2550f8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "40382947124252eee4e071e982d622c36bb111bc600e1a9440dfe5fea67c470a",

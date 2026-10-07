@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "skin contract",
+      "sign the seven contract decisions the research surfaced",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "skin contract acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "skin",
+      "contract",
+      "sign",
+      "seven",
+      "decisions",
+      "research",
+      "surfaced",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Sign the seven decisions: the 4px exemption list resolving `SKILL.md:403` against `:337`; marker vocabulary and id-uniqueness scope; node and coral-element markup conventions; the self-contained bar (lean: keep the fonts link plus fallback chains); the emphasis mapping for an accent at 2.86:1 against a 3.0 gate; token-source scope with `#3d4460` promoted to a named role; the variant lattice",
     "created_at": "2026-09-10T17:17:41Z",
-    "last_save_at": "2026-09-10T22:25:21.211Z",
+    "last_save_at": "2026-10-07T12:55:17.203Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79fddef821b048779758b3c9927b637b8a2d95e2aeff05a720de9e112c947a30",
+    "source_fingerprint": "sha256:3498da51a6787ef00504653b5cba830bcb2fd1b28596e1727eb8c452a6b3e7dc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "01bb954d8d5288d5a9bfb37441a9fc7b5342caec60a238cb7793a38f27821073",
+      "spec.md": "8ebce02734d360adbd4e73003c376a3e8510c58d79a7eec64f5a0909e8966bc9",
       "plan.md": "c38be620af9d8afd0316cdd10544c24e7bef289b9a9bd3712dd40a8d4a23501d",
       "tasks.md": "704091cbb538f50bb460c5d7ba5934a33eea1dcc747abba42d47e297c79d8dcc",
       "implementation-summary.md": "2c7f767cd106b855331f41f597509685ca721c4b7f472ff0c968ecf4dcf9b99b"

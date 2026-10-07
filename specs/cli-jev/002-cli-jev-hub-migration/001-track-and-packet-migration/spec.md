@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: track-and-packet-migration"
 description: "The cli-jev creation packet sat inside the cli-external-orchestration family and its every generated surface pointed at that home. This phase moves the packet to its own track, authors the track metadata, repairs the derived facts a move invalidates, and repoints every live citation."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "track and packet migration"
+  - "the cli jev creation packet sat inside the"
   - "packet migration"
   - "cli-jev track"
 importance_tier: "normal"

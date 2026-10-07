@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "acceptance criteria"
+      "source inventory and placement acceptance criteria"
     ],
     "key_topics": [
       "chart",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The source repository is already shaped like a skill",
     "created_at": "2026-09-02T07:56:48Z",
-    "last_save_at": "2026-09-06T14:59:17.306Z",
+    "last_save_at": "2026-10-07T12:55:06.536Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:06bb25cba076b92d1574d31465b90e27437e63e86df3ee96162e55ac052b15ca",
+    "source_fingerprint": "sha256:055ea59effefcad84fb9986f807a21c76fe746be47dd5de5dcd35a198ca8c98d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "464aec1c534c59ea42a4cf6b809154dd639cec4894ebff0a40fa87b464bde187",

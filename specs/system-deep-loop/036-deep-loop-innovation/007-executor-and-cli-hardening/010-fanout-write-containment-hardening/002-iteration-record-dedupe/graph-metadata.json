@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "iteration record dedupe",
+      "the forced depth validator collapses duplicate iteration records",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "iteration record dedupe acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "iteration",
+      "record",
+      "dedupe",
+      "forced",
+      "depth",
+      "validator",
+      "collapses",
+      "duplicate",
+      "records",
       "implementation",
       "plan",
-      "technical",
-      "approach"
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Two of four research lanes, on two executor kinds, finished all three iterations and were still rejected with `duplicate state records for iterations: 1,2,3,1,2,3`",
     "created_at": "2026-09-20T08:33:40.855Z",
-    "last_save_at": "2026-09-25T16:15:23.157Z",
+    "last_save_at": "2026-10-07T12:55:32.770Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:07238ec741eeeb2a08ed4d986df483a68689016781c2b838f7bc1b6ec38c3331",
+    "source_fingerprint": "sha256:331de323beb4dea63286fe189ca822cc6b5553654dcaec024fc451a09c08457d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "795e1daf43e310253f4946859bdef305fda4f48f9ef48201605666f313b2c33e",
+      "spec.md": "a8eec746adc340e686e0d2e5133f120f1977f53dbd24803fe376f9cd8c35f363",
       "plan.md": "cef173645b4cfca5683f249375f8e81003d37fbec3458b19e03cc340b06cd275",
       "tasks.md": "773b6a57492f8a2c48232afa03a8d9bb50b817fe1a1e39388e08ffd2a473b2e6",
       "implementation-summary.md": "17e8b482ec4286b839bec6b3d411ec460bb26e766b559052254ec29c53868625"

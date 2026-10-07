@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: gate-3-option-merge"
 description: "Gate 3 offers five options, but C and D say the same thing: use another packet than the current one, differing only in whether that packet is a phase child. The corpus is already inconsistent about how many options exist."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "gate 3 option merge"
+  - "gate 3 offers five options but c and"
 importance_tier: "normal"
 contextType: "general"
 ---

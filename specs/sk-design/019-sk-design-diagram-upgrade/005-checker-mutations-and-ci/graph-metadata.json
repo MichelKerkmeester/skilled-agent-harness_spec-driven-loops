@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "checker mutations and ci",
+      "the diagram corpus checker its mutation suite with",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "checker mutations and ci acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "checker",
+      "mutations",
+      "diagram",
+      "corpus",
+      "mutation",
+      "suite",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`check-diagram-corpus.cjs` with the families phase 002 contracted: accessibility and metadata, no-external with a one-entry allowlist as net-new work (no documented exception precedent exists to port), the 4px grid per the signed exemption list, orthogonal connectors with the type allowlist, marker trio and unique ids at the decided scope, gates against sentinel blocks across three grounds, the derivation re-derivation, the catalog in both directions",
     "created_at": "2026-09-10T18:45:28Z",
-    "last_save_at": "2026-09-10T23:14:04.403Z",
+    "last_save_at": "2026-10-07T12:55:19.820Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e50b56a9565e100b4462568d7158b01ba0a3630cc92fc4f04f745defaec2faf4",
+    "source_fingerprint": "sha256:44166d494fd6199b5b2358b9421a45a59196d4759cd2816146abc4e725e2fd55",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c64e93533c8e4f707abedff1ef353d9e2ab5f5254144dbc4304342d9101d8aa1",
+      "spec.md": "7ed1e8f99a30e62c936db79f38c1a79f66e7a86c339d94cd98665c379cf9f7cb",
       "plan.md": "83cc8b1187b80c7e7e668b1ee55acc340b0f3e35a785c26b7c6e8e13cc35e306",
       "tasks.md": "ee0dce6c5cc7a58691ce2a1be543e7f228310eff1df3e9bb2a6da41062328af4",
       "implementation-summary.md": "3436ac99626c1082c5da274abe6fef7aaab6f4f49b4f7cca80ae2914f41707bb"

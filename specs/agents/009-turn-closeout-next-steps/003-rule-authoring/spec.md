@@ -2,10 +2,7 @@
 title: "Feature Specification: Phase 3: rule-authoring"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "rule authoring"
 importance_tier: "normal"
 contextType: "general"
 ---

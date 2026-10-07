@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "acceptance criteria"
+      "translation and voice acceptance criteria"
     ],
     "key_topics": [
       "translate",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Roughly 15,000 Chinese characters sit across six authored documents, the largest being the source `SKILL.md` at 8,304",
     "created_at": "2026-09-02T07:56:49Z",
-    "last_save_at": "2026-09-06T14:59:17.452Z",
+    "last_save_at": "2026-10-07T12:55:06.401Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:263092cf77c37c5398d208f74b87428f2501adc6f12f9c45936252747ac52204",
+    "source_fingerprint": "sha256:7b2863bd4a0fdad9ae102907e8d00b94a5c070ca1c67beca0deedc0a1ea1bcab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "09ff0265d1598e8884917d9f7f3f896592914c1f95159175c3ddcfc415b82709",

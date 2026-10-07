@@ -49,7 +49,6 @@
       "runtime/hooks/pi/spec-gate-enforce.ts",
       ".opencode/plugins/system-spec-gate.js",
       ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
-      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs",
       ".skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-classify.ts",
       ".skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts",
       ".skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts",
@@ -60,7 +59,8 @@
       ".skilled/skills/system-spec-kit/runtime/hooks/README.md",
       ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md",
-      "specs/system-speckit/033-system-speckit-v4/spec.md"
+      "specs/system-speckit/033-system-speckit-v4/spec.md",
+      "runtime/tests/spec-gate-pi-extension.vitest.ts"
     ],
     "entities": [
       {
@@ -109,12 +109,6 @@
         "name": "spec-gate-core.mjs",
         "kind": "file",
         "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec-gate-core.test.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Gate 3 question is delivered by appending a four-option menu to the user's own turn whenever the classifier reads write intent, and the gate almost never closes",
     "created_at": "2026-09-22T06:21:55Z",
-    "last_save_at": "2026-09-23T06:38:52.110Z",
+    "last_save_at": "2026-10-07T12:55:51.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7740ae3f94b4c3a58409ded8d998fb83844a6884a84f8f3a6ce33a5bfca06d77",
+    "source_fingerprint": "sha256:db9dc09f1099b5c2ba6be1ed245aaabcabdbc62be198638fbe36e7a0d3d01ca9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "163bd5af56d9e90addf4adeecc1b3f962f8ed67eb693f9b4085aa166cfc9ee6c",

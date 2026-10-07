@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "cli hub doc version reconciliation",
+      "the cli external orchestration hub carries 363 versioned",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "cli hub doc version reconciliation acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "cli",
+      "hub",
+      "doc",
+      "version",
+      "reconciliation",
+      "external",
+      "orchestration",
+      "carries",
+      "versioned",
       "implementation",
       "plan",
-      "technical",
-      "approach"
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `cli-external-orchestration` hub carries 363 versioned docs",
     "created_at": "2026-09-09T06:42:07Z",
-    "last_save_at": "2026-09-09T06:46:19.118Z",
+    "last_save_at": "2026-10-07T12:55:25.089Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76d0f9b59b775d1003c4c0bd185d1ce8c223f7fcdf067b4e9ea21abae35b8d92",
+    "source_fingerprint": "sha256:afed503b84a57c6ca2547f8717f0cce30abe4a494e89d2941e5ea26684ac54c7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3389310d6363249b9f405ad6159b7db19ac42e1dd92723dbc9c353ef30f01188",
+      "spec.md": "af5b2bddedac2f5868593b1d4154944bf8f430eeeec2c51d933e42d79c502ab6",
       "plan.md": "5601296927794cd71b4e1be8cb9510b67c74848c368b7b78718a6380630d6d83",
       "tasks.md": "e966180a416e15eb9d0d299804903702c7ae7b24d78f2676e4b1c39654e99aca",
       "implementation-summary.md": "b215cc7f6fbb08cffadc4f410abd8ce8c451da896419f24585970999bcabdd96"

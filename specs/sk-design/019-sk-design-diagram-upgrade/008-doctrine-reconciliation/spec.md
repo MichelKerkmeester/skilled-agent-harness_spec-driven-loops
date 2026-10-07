@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 8: doctrine-reconciliation"
 description: "The manual review's nine systemic patterns (S1-S9) each get one signed direction, the losing document or files are edited to match, and the two checkable patterns graduate into named corpus-checker families."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "doctrine reconciliation"
+  - "the manual review s nine systemic patterns s1"
 importance_tier: "normal"
 contextType: "general"
 ---

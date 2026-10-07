@@ -11,10 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "hermes contract pin",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +19,24 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "hermes contract pin acceptance criteria",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "hermes",
+      "contract",
+      "pin",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions",
+      "testing",
+      "strategy",
+      "task"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-14T17:24:44Z",
-    "last_save_at": "2026-10-03T15:11:43.868Z",
+    "last_save_at": "2026-10-07T12:54:42.821Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5591c98685206996bb191017aacee4b4e223eac1dab091d4a64730366dcf9b52",
+    "source_fingerprint": "sha256:17d65d2037888af1deb1e4c167f0cb0eaf6aa9edc7d0b1f9b5486029cbc26891",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "80721e78dfbc82215703528f56c92b354ab565fef5d2e094b5ae780d7fdc47d2",
+      "spec.md": "49fa5e086887811779187a1efa71b8dc842e790c159e0000d4c49406680d0613",
       "plan.md": "78d2e88399979405a55fc9adeb62caf576a5f674601870eea906c3a3b6a82050",
       "tasks.md": "9fb91d632f6c4c9b7aac87b83cb5aa7ac36bf2f4f4e5b4b2c821fe41162ad2af",
       "implementation-summary.md": "4dc4a8f490c5b93adbccab752cdeed38888db48d27e417b7129d1cd50ffb3a69"

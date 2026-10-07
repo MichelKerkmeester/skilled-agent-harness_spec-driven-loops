@@ -2,10 +2,8 @@
 title: "Feature Specification: Remove the per-lineage worktree mechanism, its modules, wiring, tests and plan, now that attribution is not a requirement"
 description: "The per-lineage worktree mechanism is removed from the deep-loop fan-out runtime: every lineage runs in the shared checkout and preserve-by-default containment is the only guard."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "worktree removal"
+  - "the per lineage worktree mechanism is removed from"
 importance_tier: "normal"
 contextType: "general"
 ---

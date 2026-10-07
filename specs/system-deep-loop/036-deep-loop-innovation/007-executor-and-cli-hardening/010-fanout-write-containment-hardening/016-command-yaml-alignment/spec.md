@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: command-yaml-alignment"
 description: "All four deep-loop command YAMLs pass the convergence threshold, stop policy and convergence mode to the fan-out runner, no YAML dispatches the leaf agent as a full-loop executor, and the prompt packs describe the state-log gateway the runtime implements."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "command yaml alignment"
+  - "all four deep loop command yamls pass the"
 importance_tier: "normal"
 contextType: "general"
 ---

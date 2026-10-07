@@ -2,10 +2,8 @@
 title: "Feature Specification: visual polish pass on the chart corpus"
 description: "A visual polish pass on the chart corpus from the operator review and the two-lane research: the authoring note leaves the visible source line, plots grow toward the reference 16:9 proportion, the data table sits behind a disclosure, the finding carries a direction cue, ticks and cards format large numbers compactly with units, and the contract text matches the shipped fade."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "visual polish"
+  - "a visual polish pass on the chart corpus"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 9: one-form-library"
 description: "Merge assets/templates/ and assets/examples/ into one assets/diagrams/, dropping the template/example split and every prefix that names it, and repoint everything that still names the old paths."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "one form library"
+  - "merge assets templates and assets examples into one"
 importance_tier: "normal"
 contextType: "general"
 ---

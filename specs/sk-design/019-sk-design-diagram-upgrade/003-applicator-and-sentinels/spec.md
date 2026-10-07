@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 3: applicator-and-sentinels"
 description: "A sentinel palette block per file and an applicator that themes the diagram corpus from its own token source, reproducing the stock bytes with `--default`."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "applicator and sentinels"
+  - "a sentinel palette block per file and an"
 importance_tier: "normal"
 contextType: "general"
 ---

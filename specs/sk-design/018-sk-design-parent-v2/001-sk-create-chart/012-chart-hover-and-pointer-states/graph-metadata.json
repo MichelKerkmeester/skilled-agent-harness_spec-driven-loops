@@ -33,7 +33,7 @@
       "chart hover tasks",
       "pointer contract task order",
       "chart interaction phase tasks",
-      "acceptance criteria"
+      "chart hover and pointer states acceptance criteria"
     ],
     "key_topics": [
       "chart",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The corpus answers a pointer inconsistently, and the inconsistency is not a design decision",
     "created_at": "2026-09-05T11:11:08Z",
-    "last_save_at": "2026-09-06T14:59:17.019Z",
+    "last_save_at": "2026-10-07T12:55:11.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "acceptance-criteria.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:4733aec76182aaa20abb1f349da44beb56f2a9db543d45c850427ae3f76d5296",
+    "source_fingerprint": "sha256:0940ef42da1dcce6be040d5834809bfec0b2f19f9e6ce94b3772e55639429232",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cd4f315da12444d890ca8a35e0bba826a38e307b312620fba90538957ff2e4a8",

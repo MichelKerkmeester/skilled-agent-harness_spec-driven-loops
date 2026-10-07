@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: theme charts from a DESIGN.md style reference"
 description: "Acceptance criteria for theming the chart corpus from a DESIGN.md Style Reference."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "design md theming acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

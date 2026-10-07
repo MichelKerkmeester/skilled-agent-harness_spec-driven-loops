@@ -2,10 +2,8 @@
 title: "Feature Specification: Close every gate this packet left red"
 description: "The closing phase measured the fleet and found two gates red. `sk-doc`'s typed-gold playbook gate fails on four fixtures asserting `sk-doc` owns FLOWCHART, which the cutover made false. A compiled-routing scenario has no pass/fail criteria at all and"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "close inherited failures"
+  - "the closing phase measured the fleet and found"
 importance_tier: "normal"
 contextType: "general"
 ---

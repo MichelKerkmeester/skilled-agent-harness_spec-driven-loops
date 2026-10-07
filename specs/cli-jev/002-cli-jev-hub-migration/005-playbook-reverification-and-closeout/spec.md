@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 5: playbook-reverification-and-closeout"
 description: "The migration promised to re-run the mode's playbook from its new home and never did: after the move, the transport's 22 recorded scenarios and the hub's three routing scenarios had only been re-cited, the frontmatter-version manifest had drifted past its recorded values, and the run records still pointed at skips and at a promised first execution. This phase re-runs both corpora live, records them in dated reports, reconciles the living docs with what was observed, and closes the program."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "playbook reverification and closeout"
+  - "the migration promised to re run the mode"
   - "playbook re-verification"
   - "cli-jev closeout"
 importance_tier: "normal"

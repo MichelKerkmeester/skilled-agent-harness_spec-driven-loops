@@ -21,8 +21,8 @@
       "implementation tasks",
       "verification checklist",
       "task dependencies",
-      "acceptance criteria",
-      "closure gate"
+      "alignment and hook parity acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
       "jev",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`ENV-REFERENCE.md` named the files that read each Jev switch before phase 54 moved them, and several READMEs described retired or moved code",
     "created_at": "2026-10-05T09:05:04Z",
-    "last_save_at": "2026-10-05T15:57:46.267Z",
+    "last_save_at": "2026-10-07T12:54:57.344Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cef53eaf8985e501f158f8442bc7fc20f934680ca50c8c80bce42de09dd2a45a",
+    "source_fingerprint": "sha256:d9eaded25f2c0606df3cf1690d13353fe0cc35696039d2bd68fc1bbe602008fe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "75666a84a1593767ff0a16575a793bbd95a6d45a988eb66408f29548ddc9cf04",

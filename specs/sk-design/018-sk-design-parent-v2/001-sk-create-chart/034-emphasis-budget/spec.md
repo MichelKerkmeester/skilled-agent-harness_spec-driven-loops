@@ -2,10 +2,8 @@
 title: "Feature Specification: emphasis budget and the second visual verification round"
 description: "The repaint in v2.1.0.0 landed after the reviewers had read the captures, so eighteen forms shipped in colours nobody had looked at. A second round found three defects, and the first of them turned out to rest on a rule the corpus kept by habit rather than by check."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "emphasis budget"
+  - "the repaint in v2 1 0 0 landed"
 importance_tier: "normal"
 contextType: "general"
 ---

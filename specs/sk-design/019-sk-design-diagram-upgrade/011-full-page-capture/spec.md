@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 11: full-page-capture"
 description: "The shared screenshot renderer crops every corpus form taller than 900px; an opt-in full-page flag, a corpus-wide reshoot and a second CAP-001 run close the gap without touching the chart skill."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "full page capture"
+  - "the shared screenshot renderer crops every corpus form"
 importance_tier: "normal"
 contextType: "general"
 ---

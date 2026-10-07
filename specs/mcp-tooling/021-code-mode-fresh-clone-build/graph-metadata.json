@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "code mode fresh clone build",
+      "track the never committed code mode server manifest",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "code",
+      "mode",
+      "fresh",
+      "clone",
+      "track",
+      "never",
+      "committed",
+      "server",
+      "manifest",
       "implementation",
       "plan",
-      "technical",
-      "approach"
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "A fresh clone or worktree cannot build Code Mode, and the config preflight reports the shipped UTCP configuration wrongly",
     "created_at": "2026-10-03T05:27:35Z",
-    "last_save_at": "2026-10-03T11:48:56.177Z",
+    "last_save_at": "2026-10-07T12:55:00.946Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a238630faa725b2ad2ba04c698a26b1c360710042eaf85a1098577087c1ffb5e",
+    "source_fingerprint": "sha256:9ecdc563361264169b0d9d04642ce1b5a7acaff9fad96ff3304d7870f5b2b9e3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f7183164b864457a884569347bc6a7ce2ecf80b1a09ee9d121eeac3b5d93ace0",
+      "spec.md": "0903abec093561c6bdcfb51edcd6664e2214acf90c356e88ed1de404449b1087",
       "plan.md": "bcb603d40eaba1a882b9c865144e83298a657481ce3b3c7600f96088aeb831ea",
       "tasks.md": "c64280d000b66574ed408bc206b0a86ffab5f44e86615aea203cdd4eb1965b3a",
       "implementation-summary.md": "cf088e910f528bb539c233a5bbbb7fa36eb521f0980cd84fb175ead093f4cadb"

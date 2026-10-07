@@ -21,8 +21,8 @@
       "chart motion tasks",
       "reveal wipe tasks",
       "determinism proof tasks",
-      "acceptance criteria",
-      "closure gate"
+      "motion layer acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
       "chart",
@@ -36,7 +36,7 @@
       "proof",
       "plan",
       "tasks",
-      "acceptance"
+      "layer"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "`grep -rn 'prefers-reduced-motion' assets/` over the corpus returns nothing, and so does a search",
     "created_at": "2026-09-03T08:02:25.308Z",
-    "last_save_at": "2026-09-11T16:41:57.868Z",
+    "last_save_at": "2026-10-07T12:55:07.119Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:af9942beb6b6435e3946252b2e96c8724f07fd6a9493394e1a364c9d867bd0ae",
+    "source_fingerprint": "sha256:79c7037e4e0f5236cc4d969381a79450a670cc52f78b33021a7f899c2f3ac537",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f5845000e5a90f47a78d20ea6e6c4b902a31fbafa1a21a3046231b29400b2e64",

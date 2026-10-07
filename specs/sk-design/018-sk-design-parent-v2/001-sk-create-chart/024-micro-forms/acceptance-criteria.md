@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: spark, tracker and bar-list forms"
 description: "Acceptance criteria for micro-forms: spark, tracker, bar-list."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "micro forms acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

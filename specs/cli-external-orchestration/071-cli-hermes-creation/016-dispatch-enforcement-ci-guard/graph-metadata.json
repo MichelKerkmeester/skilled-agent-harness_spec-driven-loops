@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "dispatch enforcement ci guard",
+      "every defect the earlier phases closed shares one",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "dispatch enforcement ci guard acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "dispatch",
+      "enforcement",
+      "guard",
+      "every",
+      "defect",
+      "earlier",
+      "phases",
+      "closed",
+      "shares",
+      "one",
       "implementation",
-      "plan",
-      "technical",
-      "approach"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Every defect the earlier phases closed shares one shape: something looked enforced and enforced nothing",
     "created_at": "2026-09-15T16:29:33Z",
-    "last_save_at": "2026-09-15T18:12:11.937Z",
+    "last_save_at": "2026-10-07T12:54:47.181Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cea0cb0ee0a8abd82e5d1abdc2509c231d77544aa5068882d16bf837c916b3fd",
+    "source_fingerprint": "sha256:8806cf617c2ef597601c637c27526d4ea45a0a5158a2aa93aed1658547b86b1d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7a239ff1482b1465fc2e2d168712efbf87fbeb4ac73760b7048d73b3e9a2b9b4",
+      "spec.md": "1c83f0719b1e6277c65357aee8167453012240d9928a4848ba755b989af2cdd5",
       "plan.md": "6d4d9964a2b475f173e89c7f5bad644440b216a509b0374ea48e285eea1d6302",
       "tasks.md": "c7d769ae728de5aa2ef4c05f6c5f4e1e2a13f9d7dee0d4543384862462332b12",
       "implementation-summary.md": "34fdba21d46d82328685d1461bcf621e6fdc63886005a63d5f5b5ed66ab7a194"

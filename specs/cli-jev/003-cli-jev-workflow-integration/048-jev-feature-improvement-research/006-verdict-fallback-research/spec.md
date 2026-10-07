@@ -2,10 +2,8 @@
 title: "Feature Specification: Research: improve the Jev reviewer verdict fallback (025)"
 description: "Five DeepSeek V4.1 Flash and three GPT-6 Luna research iterations on how to improve, refine and expand the Jev reviewer verdict fallback, measured in feature 025 as verdict jev: keep K=24 M=24 A=24 B=8 W=16 L=0 F=0 p_win=0.00001526."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "verdict fallback research"
+  - "five deepseek v4 1 flash and three gpt"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,8 @@
 title: "Feature Specification: embed the stock Style Reference in the chart skill and keep the generator override"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "embedded style reference"
+  - "every colour corner and type size in the"
 importance_tier: "normal"
 contextType: "general"
 ---

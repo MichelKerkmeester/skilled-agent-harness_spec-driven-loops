@@ -2,10 +2,8 @@
 title: "Feature Specification: Build: improve the Jev Pi native classifier transport (037)"
 description: "The transport honors the caller's provider, can always be switched off, costs one runtime per process, and its benchmark can run both arms fresh the same day."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "pi transport improvements"
+  - "the transport honors the caller s provider can"
 importance_tier: "normal"
 contextType: "general"
 ---

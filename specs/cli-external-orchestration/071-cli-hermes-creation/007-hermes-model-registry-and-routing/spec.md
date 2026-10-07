@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 6: hermes-model-registry-and-routing"
 description: "Hermes model registry and routing: the two-id LLM Gateway roster is enforced at both dispatch entry points, the prompt-improver eligibility and persona tables carry a cli-hermes row, the prompt-card sync guard covers the new packet, and every reasoning level was checked live."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "hermes model registry and routing"
+  - "hermes model registry and routing the two id"
 importance_tier: "normal"
 contextType: "general"
 ---

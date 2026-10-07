@@ -2,10 +2,8 @@
 title: "Feature Specification: Turn sk-design into a parent hub carrying one mode"
 description: "The smallest possible hub, assembled from content the root already owns. Today sk-design is a standalone skill; its SKILL.md and references become a fundamentals mode, and the root becomes routing only. Doing this first turns every later step into adding a mode to a shipped hub."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "hub and fundamentals"
+  - "the smallest possible hub assembled from content the"
 importance_tier: "normal"
 contextType: "general"
 ---

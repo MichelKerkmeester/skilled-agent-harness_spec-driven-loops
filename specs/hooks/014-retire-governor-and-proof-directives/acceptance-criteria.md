@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Retire the governor and proof-over-appearance directives from every runtime's prompt injection"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "retire governor and proof directives acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

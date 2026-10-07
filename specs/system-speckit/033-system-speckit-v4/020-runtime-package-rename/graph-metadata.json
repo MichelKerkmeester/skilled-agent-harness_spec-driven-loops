@@ -51,7 +51,6 @@
       ".claude/settings.json",
       ".opencode/skills/system-spec-kit/runtime/package.json",
       "scratch/review-scope.txt",
-      ".opencode/logs/README.md",
       "data/trigger-index.json",
       "scratch/inventory.md"
     ],
@@ -108,12 +107,6 @@
         "name": "review-scope.txt",
         "kind": "file",
         "path": "scratch/review-scope.txt",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/logs/README.md",
         "source": "derived"
       },
       {
@@ -199,11 +192,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The memory decommission deleted the MCP server, its tools and its database, but kept the package that held them because the validation orchestrator, the metadata refresh, the continuity writer and the per-runtime hook adapters live inside it",
     "created_at": "2026-09-04T19:16:06Z",
-    "last_save_at": "2026-09-11T16:42:47.917Z",
+    "last_save_at": "2026-10-07T12:55:46.109Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +212,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e2d05e144408e37f34ecb4a3825366dded33ce15b82383f48878fb2bcd99fb8",
+    "source_fingerprint": "sha256:26d469ca30030425436b9cc3f9e34b6649c64bcb37cc8cbb5632e90e697db2e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "26f44a16d139f44957500ed327f007468452d8229d48fb53bebbfc1e242f1aa7",

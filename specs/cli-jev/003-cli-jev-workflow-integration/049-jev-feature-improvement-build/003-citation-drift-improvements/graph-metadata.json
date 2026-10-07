@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "citation drift improvements",
+      "the scan flags on the evidence it already",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "citation",
+      "drift",
+      "improvements",
+      "scan",
+      "flags",
+      "evidence",
+      "already",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Feature 032 kept on its 40-row benchmark, but the modal flag misses a catch that flagging on the lowest rerun makes for free",
     "created_at": "2026-10-03T05:30:04Z",
-    "last_save_at": "2026-10-03T10:11:39.135Z",
+    "last_save_at": "2026-10-07T12:54:56.142Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:20c55cfe0207390bc230bc4257adda7cc5e7cc3cea7e72070eb3eb261e466897",
+    "source_fingerprint": "sha256:59e2bee1be9f3142109d4f3ccebd7621f3c8c07d096610cc2c31453729205d4a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7289cfa872c6c9b4af51ed44bf57e5ab5e6c62c0facbc562a0ad502cf35d71f7",
+      "spec.md": "50eefe5ba85d97faa5f586734dc5e3f0801f968404f8745223b01f75aca63aac",
       "plan.md": "d72c5b7752b34f71f6262112b5fe69a5219a00a399bef033267b6f1322fcd779",
       "tasks.md": "63a044c2da96a3f749cabffcc79e59efc058eeed83526232c6400cdf0a6a4f89",
       "implementation-summary.md": "1c995cec3d48077972a101e2d837f6859ead8052b5946225f692f331493c62b9"

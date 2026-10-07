@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Nothing yet states what this skill doing its job looks like, so nothing can tell a later reader whether a change broke it",
     "created_at": "2026-09-02T07:56:52Z",
-    "last_save_at": "2026-09-06T14:59:16.267Z",
+    "last_save_at": "2026-10-07T12:55:06.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7af50afec23a25d4d8f305db5a0ce31bf19b39fa1a4000a4f843fb1122c2df50",
+    "source_fingerprint": "sha256:087169c9ef3bcea850087612d09f3c0a84aa6c7abc0045885191387d4618d1fc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "01cb40892d3078e64772c49f40ee7a5f005a8eabdf4218bac3d91ba23a151672",

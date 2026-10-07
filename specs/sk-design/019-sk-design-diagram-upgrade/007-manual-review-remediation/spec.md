@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 7: manual-review-remediation"
 description: "Every one of the 34 per-file findings the manual review raised (F1-F34) is fixed in its shipped file with evidence, or recorded with a reason a reader can check."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "manual review remediation"
+  - "every one of the 34 per file findings"
 importance_tier: "normal"
 contextType: "general"
 ---

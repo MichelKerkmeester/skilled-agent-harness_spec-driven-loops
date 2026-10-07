@@ -2,10 +2,8 @@
 title: "Feature Specification: align the design chart command with the corpus it routes to"
 description: "The /design:chart command named a directory the corpus no longer ships, two YAML filenames that never existed, a presentation file under a name it does not have, a form count three short, and the wrong parent skill for its mode."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "chart command alignment"
+  - "the design chart command named a directory the"
 importance_tier: "normal"
 contextType: "general"
 ---

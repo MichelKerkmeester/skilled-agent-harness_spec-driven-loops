@@ -2,10 +2,8 @@
 title: "Feature Specification: every capture read by a fresh reviewer, and what that found"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "visual verification"
+  - "the palette was replaced wholesale and the checks"
 importance_tier: "normal"
 contextType: "general"
 ---

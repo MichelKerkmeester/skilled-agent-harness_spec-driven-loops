@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Callers reach the advisor three different ways today",
     "created_at": "2026-09-11T06:48:59Z",
-    "last_save_at": "2026-09-11T12:54:12.141Z",
+    "last_save_at": "2026-10-07T12:55:40.186Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:965b3e82ec74cd406e97d4b96586d5bfe9be8980068edf3670bb1691a5382070",
+    "source_fingerprint": "sha256:9142b02ebdc25a5b100b02e2bd7fe260e432b2442f6deb7772cbb7ac431546fe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e61788894209d90f5f3d89b6a87b9fc6e4da77ea0638fc2a0ac0b1f2850b7b35",
       "plan.md": "6213505a2142407d0bda58a45477f8f841caa9484dbb0c283600434c0e93e30f",
       "tasks.md": "59010ff81c2a500513773ce167780a55b1553d1d647e4a45b1998e8137e46721",
-      "implementation-summary.md": "c8439c842417efd53bbda3c00cca3a983cd6e947c073f6ca3eac1410ff24264a"
+      "implementation-summary.md": "5a9ae5391efe61a92e8d922e9a92bf0ab653c3683ba54632dd1fbbd2df9ad853"
     },
     "last_active_at": null
   }

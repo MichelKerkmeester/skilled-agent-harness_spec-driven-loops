@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Restyle every existing form and replace demo data with realistic figures"
 description: "Six criteria covering containment, arithmetic coherence, both stage gates, the absence of new runtime, and the proof that the restyle moved no number."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "restyle and richer data acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

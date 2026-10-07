@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 3: decouple-and-rewire"
 description: "Two hubs still named one packet and the dispatch chain still read the retired path, so every jev dispatch resolved a nonexistent SKILL.md and all eight hard rules failed open at preflight. This phase removes the old registration, points the audit row, both hook suites, the rosters and the generated surfaces at cli-jev/cli-usage, and re-derives the artifacts those edits invalidated."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "decouple and rewire"
+  - "two hubs still named one packet and the"
   - "cli-jev decoupling"
   - "dispatch packetPath"
   - "roster rewiring"

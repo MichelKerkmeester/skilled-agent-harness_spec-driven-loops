@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "goal chat send shape",
+      "a session resent a parent goal in chat",
       "goal chat slice",
       "parent goal chat send cap",
       "implementation plan",
@@ -22,21 +20,23 @@
       "architecture decisions",
       "testing strategy",
       "task breakdown",
-      "implementation tasks"
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
       "goal",
       "chat",
+      "send",
+      "shape",
+      "session",
+      "resent",
+      "parent",
       "slice",
-      "parent"
+      "cap",
+      "implementation",
+      "plan",
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -52,7 +52,6 @@
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
       ".opencode/skills/system-spec-kit/templates/addons/goal.md.tmpl",
-      ".opencode/skills/system-spec-kit/runtime/cli/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
       ".opencode/commands/speckit/assets/speckit-plan.yaml",
       ".opencode/commands/speckit/assets/speckit-resume-auto.yaml",
       ".hermes/skills/system-spec-kit/SKILL.md",
@@ -126,12 +125,6 @@
         "source": "derived"
       },
       {
-        "name": "scaffold-golden-snapshots.vitest.ts.snap",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/runtime/cli/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
-        "source": "derived"
-      },
-      {
         "name": "speckit-plan.yaml",
         "kind": "config",
         "path": ".opencode/commands/speckit/assets/speckit-plan.yaml",
@@ -202,11 +195,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A session bound to a phase parent edited a criterion and resent the parent `goal.md` in chat",
     "created_at": "2026-09-16T18:28:40Z",
-    "last_save_at": "2026-09-25T16:15:28.220Z",
+    "last_save_at": "2026-10-07T12:55:50.078Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +216,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dcfc394cc2058a748704c6b58aec7bdbeaa1fbadd498d6ebbb98dd10951da836",
+    "source_fingerprint": "sha256:37177e9c1b36daa2fa2bb667c1f57f15ffe3c588931fa8bfbe2cb53a954d087a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b791d7d77b30cb9fd515528c715a19574f0ddf5a033ea64cde4dec1a746621d3",
+      "spec.md": "92fb770e0e49cc0ddbc8cde985df5a86608eef50ef4e12426da11e712676f10d",
       "plan.md": "62b6b30cf64c565401019b01a7646e0686cc336ab451ef5e973b0410929ce5ee",
       "tasks.md": "dea570189204da0c02d32b2ebdc61d61051db8141042bce25ae787fdd9a5b408",
       "implementation-summary.md": "4de149315f0b079f1739161a6ee2cf86ee57e6213ab65fc1bf2454673ca46492"

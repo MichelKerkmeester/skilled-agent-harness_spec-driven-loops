@@ -22,7 +22,7 @@
       "confirm the target file",
       "additive template",
       "owning gate run",
-      "acceptance criteria"
+      "adjacent surface rules acceptance criteria"
     ],
     "key_topics": [
       "adjacent",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Two adopted candidates have owners outside this program's usual surfaces",
     "created_at": "2026-09-12T16:39:32Z",
-    "last_save_at": "2026-09-15T05:36:58.251Z",
+    "last_save_at": "2026-10-07T12:55:02.436Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a80c73bce0890b454021b330d52761e65013eead132ad6cc5e3d10ef2ad0a520",
+    "source_fingerprint": "sha256:c14ea9dc101ea50d7d87ab6c2ab534a388a1000c947af3e1eee80e00ac2e94d9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "60c327ea6f32645f3ffa76881e9e5b06f22e920ba30a1d1ff36147451b48919d",

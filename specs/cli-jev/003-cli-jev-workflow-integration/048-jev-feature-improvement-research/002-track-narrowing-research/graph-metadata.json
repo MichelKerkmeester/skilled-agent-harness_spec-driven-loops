@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "track narrowing research",
+      "five deepseek v4 1 flash and three gpt",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "track",
+      "narrowing",
+      "research",
+      "five",
+      "deepseek",
+      "flash",
+      "three",
+      "gpt",
       "implementation",
       "plan",
       "technical",
@@ -48,7 +48,6 @@
       "implementation-summary.md",
       "research/research.md",
       "research/findings-registry.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
       "research/lineages/deepseek/deep-research-state.jsonl",
       "research/lineages/luna/deep-research-state.jsonl",
       "research/lineages/deepseek/research.md",
@@ -98,12 +97,6 @@
         "name": "findings-registry.json",
         "kind": "config",
         "path": "research/findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "score-track-narrowing.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
         "source": "derived"
       },
       {
@@ -201,11 +194,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 047 measured the Jev spec-track narrowing at verdict jev: keep K=256 M=256 A=97 B=68 W=78 L=49 F=47 p=0.006330, p50 330 ms, p95 391 ms",
     "created_at": "2026-10-02T21:59:43Z",
-    "last_save_at": "2026-10-02T23:16:21.245Z",
+    "last_save_at": "2026-10-07T12:54:51.733Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +215,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:4460eaff62ecfa035c4744d0cb3151aad9aac424d7bc54f2a182a2f10898764d",
+    "source_fingerprint": "sha256:1b19a9de683be8dd3e79e2c847eb89194256e6fcdd284746647b69248cf199e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9e189f82ae7a43e13cc30b15a4037ec0ca8722bee402603e72c296f78569eefc",
+      "spec.md": "02595384e9883965b1e098520d0f14151459b0efe6390bd0fc076bf1b63f0aa9",
       "plan.md": "e91c3536a3ebed2814ef0f666218c2303371567e0f9c5c7e9882cad907d044f3",
       "tasks.md": "0db8ad54f26a67db832ee75f7ac002a409b4e66bb8e7ba540f6b070620edecc2",
       "implementation-summary.md": "2bb63ffba5b855c741a6b6ce17a76e0aa3bd06e9422bb0db14b8a00ef1ac00d7",

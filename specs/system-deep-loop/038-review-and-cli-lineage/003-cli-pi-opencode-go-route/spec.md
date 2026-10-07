@@ -2,10 +2,8 @@
 title: "Feature Specification: Let the deep-loop cli-pi executor reach DeepSeek V4.1 Flash through opencode-go"
 description: "The deep-loop cli-pi executor maps DeepSeek V4.1 Flash to DevPass only, so a review or research loop cannot run Pi through opencode-go. A provider-prefixed literal adds that route beside the DevPass one."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "cli pi opencode go route"
+  - "the deep loop cli pi executor maps deepseek"
 importance_tier: "normal"
 contextType: "general"
 ---

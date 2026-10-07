@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "cli pi opencode go route",
+      "the deep loop cli pi executor maps deepseek",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "cli",
+      "opencode",
+      "route",
+      "deep",
+      "loop",
+      "executor",
+      "maps",
+      "deepseek",
       "implementation",
       "plan",
       "technical",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`PIMODELPROVIDERS` maps the bare `deepseek-v4.1-flash` literal to `llmgateway`, and one literal maps to one provider, so `/deep:review` and `/deep:research` with `--executor=cli-pi` can only reach DeepSeek V4.1 Flash through DevPass",
     "created_at": "2026-10-02T18:36:37Z",
-    "last_save_at": "2026-10-06T18:48:37.308Z",
+    "last_save_at": "2026-10-07T12:55:36.797Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2864c074f909d0829d38354aaecbac85497f0174c2f3668d2d51b3c1bd019597",
+    "source_fingerprint": "sha256:177e018c27ce3651701fdcfaa7efcf81e79f12a0cf3ac23aeceb5b4e3b80dc8f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2d1ba57294dc04b60c22ed1aca6e3695242b6cfabcc9457965eb9b25f368e2bc",
+      "spec.md": "ab3bb9bb33cfcbfdda276a1668703e71edea25d1382c40f2ce695867aca0c7e2",
       "plan.md": "4820bf5e33a9712303eb98b1b5d07610f7366402150449b8cd434ebc019bfa21",
       "tasks.md": "88b683c46b7ca05c7ff35edab8fcd41ee71798dff85b50ee34c7bc79099c6674",
       "implementation-summary.md": "026470256953f6466d6d7b05bd5c3b735ca6885bb6e65a331d00c28e941c292c"

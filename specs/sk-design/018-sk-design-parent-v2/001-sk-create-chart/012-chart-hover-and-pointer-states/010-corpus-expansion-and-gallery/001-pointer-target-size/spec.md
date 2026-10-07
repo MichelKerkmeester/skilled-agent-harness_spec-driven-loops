@@ -2,10 +2,8 @@
 title: "Feature Specification: Give every mark a pointer target of at least 24 CSS pixels and enforce it"
 description: "Six hundred and fourteen of the corpus 695 marks sit below the 24px pointer floor and two forms have marks with zero height. Eight forms can have their target grown in place; five are denser than the floor and need a delegated nearest-mark region instead. This phase does both and adds the rule that keeps them done."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "pointer target size"
+  - "six hundred and fourteen of the corpus 695"
 importance_tier: "normal"
 contextType: "general"
 ---

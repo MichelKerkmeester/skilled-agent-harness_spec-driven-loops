@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 2: baseline-and-decisions"
 description: "Freeze the numbers, close the sk-doc research gap and record the decisions that gate phases 003 to 006."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "baseline and decisions"
+  - "freeze the numbers close the sk doc research"
 importance_tier: "normal"
 contextType: "general"
 ---

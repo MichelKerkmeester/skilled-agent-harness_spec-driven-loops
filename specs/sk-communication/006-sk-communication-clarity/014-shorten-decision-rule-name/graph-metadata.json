@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "shorten decision rule name",
+      "the decision rule carried the last long name",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "shorten",
+      "decision",
+      "rule",
+      "name",
+      "carried",
+      "last",
+      "long",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The decision rule carried the last long name in the corpus at 37 characters, so it was shortened to communication-decisions after checking the file itself says what the shorter name leaves out.",
     "created_at": "2026-09-15T20:10:11Z",
-    "last_save_at": "2026-09-15T20:13:33.962Z",
+    "last_save_at": "2026-10-07T12:55:04.928Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd6a67dce1d243b74d3262f874b027bb9463fd59163e56be4a03e01002fe1633",
+    "source_fingerprint": "sha256:42330b98b513eba0a0600f09646a73d2635a29c49601dcacd1b8c79a8558a31d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f118b52d054ad5df0a9e8485a8980fa637a96070571d8176bf2154a41304c65c",
+      "spec.md": "005c44092172bf19509143570b13447492268ead454fb69a24310154040a81dc",
       "plan.md": "71053f227a0f25cae3d6516550f7e66c4cccd9fe1d172a117a2388f064cf49af",
       "tasks.md": "6e678760a1aeb4557f45ef586349b920e2619d1a3fedbac363154af6866caf49",
       "implementation-summary.md": "c5c1fe5cd8fed95d283594e4297310f49693ac107c70fc5df3a5a4b452f3d827"

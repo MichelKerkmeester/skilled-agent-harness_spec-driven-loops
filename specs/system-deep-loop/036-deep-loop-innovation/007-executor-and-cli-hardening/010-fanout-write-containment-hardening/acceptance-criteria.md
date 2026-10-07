@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: harden fan-out write containment for shared checkouts"
 description: "The criteria this packet must satisfy before it may be closed: preserve-by-default quarantine, baseline-targeted restore, separated lane and containment outcomes, per-lineage worktrees and concurrent-editor detection."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "fanout write containment hardening acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

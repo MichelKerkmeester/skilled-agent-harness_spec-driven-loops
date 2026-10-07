@@ -21,8 +21,8 @@
       "implementation tasks",
       "verification checklist",
       "task dependencies",
-      "acceptance criteria",
-      "closure gate"
+      "retire unproven features acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
       "retire",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The repository ships measurement tooling for three features that never beat their baselines",
     "created_at": "2026-10-05T07:20:41Z",
-    "last_save_at": "2026-10-05T07:58:28.312Z",
+    "last_save_at": "2026-10-07T12:54:57.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9709ca4eff1b995f6934e1e7cfad29a8c5b7d8516707dea1e63d5cd3d938ec27",
+    "source_fingerprint": "sha256:25bdad6e5bdedd8562cc90ad3eb209244c94176432f447099c15195d217b0be9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4ce61922d546c4a42e9663ff688e0fdea0777ff293675a82f643c9075e016035",

@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "docs and release",
+      "release the capability sk git readme and changelog",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "docs and release acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "docs",
+      "release",
+      "capability",
+      "git",
+      "readme",
+      "changelog",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "sk-git's README says nothing about commit identity, its changelog stops at 1.5.2.0, the advisor cannot route commit-id vocabulary, and the two rule surfaces still lack the freeze paragraph and the identity row",
     "created_at": "2026-09-11T07:16:31Z",
-    "last_save_at": "2026-10-03T15:12:12.973Z",
+    "last_save_at": "2026-10-07T12:55:27.622Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8662cd6c8d92834022c31dbbbd402983f04027c11ebe4d0405b5ec38d7148975",
+    "source_fingerprint": "sha256:80fc604b9eae3fd8a5eb56160444955e126b8a29bd9229d651c669f5b3863aec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "470115883372d2327bdd78b608fdb8981d43feb3ae55a189aee557faca04410d",
+      "spec.md": "d5f06f48cf482f6ec18ccd0673a289d1c4c5a9565867003abbcc41c2451685df",
       "plan.md": "c93490f3fba6aacba7548662d74c7202855e3a19fccc1d51760cee237b3384c6",
       "tasks.md": "62ae7c4952a78bdacdf66f0c1611c3b28947623784ec289081fae0ef9397f739",
       "implementation-summary.md": "2d6c6e182b47d78d2ed9af67a4ed1bce2e9f8aa535732cea808f8e4b93e2cd89"

@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Enlarge every pointer target, restyle all forms with richer data, expand the catalogue with new chart types, and ship one light and dark gallery"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "corpus expansion and gallery acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

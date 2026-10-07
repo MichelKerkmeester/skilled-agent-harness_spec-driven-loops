@@ -2,10 +2,8 @@
 title: "Feature Specification: Fundamentals covers every surface a design decision lands on, not only UI"
 description: "`sk-design-fundamentals` reads as a UI skill. Its vocabulary, examples and references talk about buttons, padding and contrast, so a request about a slide deck, a printed page or a document layout either misses it or arrives and finds advice written "
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "fundamentals beyond ui"
+  - "sk design fundamentals reads as a ui skill"
 importance_tier: "normal"
 contextType: "general"
 ---

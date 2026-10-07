@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "symlink contained paths",
+      "every byte moving read or write the containment",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "symlink contained paths acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "symlink",
+      "contained",
+      "paths",
+      "every",
+      "byte",
+      "moving",
+      "read",
+      "write",
+      "containment",
       "implementation",
       "plan",
-      "technical",
-      "approach"
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The fresh review found three residual gaps in one class: the restore guard checked only the final component, so a symlinked parent directory still redirected the write outside the repository; baseline capture and baseline read copied bytes through unchecked components; and the quarantine writer resolved its destination and then created it, so a link planted in between landed the create at the link's target",
     "created_at": "2026-09-20T08:33:42.859Z",
-    "last_save_at": "2026-09-25T16:15:28.243Z",
+    "last_save_at": "2026-10-07T12:55:35.914Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ee1d4a691ee079717bda96bdc0eba8f38ae01da09719e892651b743af2c4a07f",
+    "source_fingerprint": "sha256:dab0ed098db3a70aac63891f50e6eaf8701fa16c1f56f048c98345f070048599",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4b625d0f656dda6e6f061eef0404013c5f33fc4d74dcb7344c00c26b7dab8f44",
+      "spec.md": "a1ffdc5413b69ea2103cb36934dd65d17562b982b84e8ee3ef0c9daf04994e9a",
       "plan.md": "e9631d92fd5ad59347709af43e558270be3bff66467a4aaf3372c753aab01835",
       "tasks.md": "9f4a2c1217afaa74169478829a671b7975f47ea33a21a758df86e7bc29468636",
       "implementation-summary.md": "52b7135c0ecc11ff193e1d662c87b25899ee9abc5b2a1e4cd373340f6e63d5b8"

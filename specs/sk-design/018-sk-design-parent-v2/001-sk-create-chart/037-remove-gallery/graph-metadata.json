@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "remove gallery",
+      "the operator asked for the gallery to go",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "remove gallery acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "remove",
+      "gallery",
+      "operator",
+      "asked",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions",
+      "testing",
+      "strategy"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -47,7 +47,8 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "scripts/README.md"
+      "scripts/README.md",
+      "changelog/v2.5.0.0.md"
     ],
     "entities": [
       {
@@ -90,6 +91,12 @@
         "name": "README.md",
         "kind": "doc",
         "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.5.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.5.0.0.md",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The gallery framed the corpus twice over and needed a height handshake in every template to show",
     "created_at": "2026-09-10T10:17:17Z",
-    "last_save_at": "2026-09-10T10:17:18.090Z",
+    "last_save_at": "2026-10-07T12:55:16.467Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:82825e1a42730d814f93edd49f3d989bffbfdb6a38a8d3d9ee96c22f187c426f",
+    "source_fingerprint": "sha256:26de11d092da982fb88dcf9265623a3fac4b7580014ea3bcf94f23c6f2e84c32",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4d1711d932fb70813c4479b8c2695d016d0fddc9db9a4e886d8c3dcf4ac34cc8",
+      "spec.md": "b75327e0679ecbe4abbf32e19ec59cb3a959bea06228a738aed4cab06652de47",
       "plan.md": "a028cf29985455f8b496dd40afd617c1fbdf84debf708cfa5c9b7f2f756da53a",
       "tasks.md": "c282e592b588a6a0286364fc0d60302555bcf9289c55a1a7e3bcf524199947dd",
       "implementation-summary.md": "e05bbe168de7ef836e343f1115a55388e3bcc626ba337820d85e553ea98607d0"

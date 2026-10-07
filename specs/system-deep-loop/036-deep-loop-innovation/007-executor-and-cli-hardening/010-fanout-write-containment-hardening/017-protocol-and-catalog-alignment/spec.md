@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 2: protocol-and-catalog-alignment"
 description: "The deep-review loop protocol carries the same write-containment rules as the deep-research protocol, and the hub feature catalog names exactly the five modes the registry holds."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "protocol and catalog alignment"
+  - "the deep review loop protocol carries the same"
 importance_tier: "normal"
 contextType: "general"
 ---

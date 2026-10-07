@@ -11,10 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "visual explanation output medium",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +19,24 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "implementation summary",
+      "what shipped",
+      "validation evidence"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "visual",
+      "explanation",
+      "output",
+      "medium",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions",
+      "testing",
+      "strategy"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -44,11 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/commands/rewrite/explain-visually.md",
-      ".opencode/skills/sk-communication/SKILL.md",
-      ".opencode/skills/sk-communication/references/visual-explanation.md",
-      ".opencode/skills/sk-communication/README.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -73,30 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "explain-visually.md",
-        "kind": "doc",
-        "path": ".opencode/commands/rewrite/explain-visually.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "visual-explanation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/references/visual-explanation.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/README.md",
         "source": "derived"
       },
       {
@@ -194,11 +166,35 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-12T10:00:14Z",
-    "last_save_at": "2026-09-12T10:02:56.495Z",
+    "last_save_at": "2026-10-07T12:55:01.357Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6bea45ff997c494295d26335be68af794baba0e1d6c40329a6d98941db246187",
+    "source_fingerprint": "sha256:d23b4b7ff6ea424a3b66bdeef71f3edbaf7276f1e4d3077164a0422ca9d32e1d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea4dd2efc8e7cb88e2336c89c36bddfd7a96baf5b2cddbd32d3a515370320b88",
+      "spec.md": "c180a659d055734467f1b200f2eef1f622f0c478d9d4222dbf1fbd01e58ed25d",
       "plan.md": "4dbfedceed026da4b942ca0bdb91b7453fc7689329044f3999956201075a1a70",
       "tasks.md": "8b03916e7b5db32072f0f9c6fd67bbf69b311cc97d1f5c5c0858f3590d327bb8",
-      "implementation-summary.md": "bf55e342929014b3b06a3f3fe84cf0818318b89d2e58d224f432473656c9487e"
+      "implementation-summary.md": "6284e517a3b17bed0a826ee3886298581f8bc21a43e89fbe016b5ba1c77eafaa"
     },
     "last_active_at": null
   }

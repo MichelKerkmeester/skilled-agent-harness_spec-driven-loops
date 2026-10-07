@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "quarantine destination canonical",
+      "the quarantine writer canonicalizes every destination and refuses",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "quarantine destination canonical acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "quarantine",
+      "destination",
+      "canonical",
+      "writer",
+      "canonicalizes",
+      "every",
+      "refuses",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The quarantine writer created directories and wrote content copies, patches and the manifest under a path derived from the lane's own directory without canonicalizing it",
     "created_at": "2026-09-20T08:33:41.785Z",
-    "last_save_at": "2026-09-25T16:15:27.893Z",
+    "last_save_at": "2026-10-07T12:55:33.037Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b32708ae9c576f9e0136f8cc8ab9eedd333ca9ebeb34971fd01f43881419e9cc",
+    "source_fingerprint": "sha256:1cddb0e440f924e740fda13e450426d31a302cf677355a91ca971aef40e98da0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a6dd3a31ac0fa34c535f315713ebad4aeadb9751e9a2c9ade23724ab3f561167",
+      "spec.md": "b411e78a24ba34467fc6cbc0449007af4cfe42fd8b34b29af8c2d56de4832518",
       "plan.md": "ffd7180621d8d079260239055d2ebf63f3cdb8678352530ff56d3a17b146f0a1",
       "tasks.md": "57b71b57a08957d32fae6a24e54016fb3c5b676f612d375bc09d262fa463543c",
       "implementation-summary.md": "1c1839387bcaaebbdfa04da79da2d556ade8035c0a099395d15b11517a859aed"

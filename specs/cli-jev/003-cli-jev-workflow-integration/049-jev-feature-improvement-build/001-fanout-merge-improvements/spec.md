@@ -2,10 +2,8 @@
 title: "Feature Specification: Build: improve the Jev fan-out merge (030)"
 description: "The fan-out merge scorer reports Jev against honest baselines, describes its own inputs, and spends about a third fewer calls for the same picks."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "fanout merge improvements"
+  - "the fan out merge scorer reports jev against"
 importance_tier: "normal"
 contextType: "general"
 ---

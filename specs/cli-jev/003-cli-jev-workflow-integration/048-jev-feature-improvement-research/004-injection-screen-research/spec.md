@@ -2,10 +2,8 @@
 title: "Feature Specification: Research: improve the Jev fetched-text injection screen (035)"
 description: "Five DeepSeek V4.1 Flash and three GPT-6 Luna research iterations on how to improve, refine and expand the Jev fetched-text injection screen, measured in feature 035 as verdict jev: keep K=90 M=90 A=81 B=56 W=30 L=5 TP=31 FP=5 F=0 p=0.00001118."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "injection screen research"
+  - "five deepseek v4 1 flash and three gpt"
 importance_tier: "normal"
 contextType: "general"
 ---

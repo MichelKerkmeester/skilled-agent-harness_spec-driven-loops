@@ -2,10 +2,7 @@
 title: "Feature Specification: Phase 2: diagram-review"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "diagram review"
 importance_tier: "normal"
 contextType: "general"
 ---

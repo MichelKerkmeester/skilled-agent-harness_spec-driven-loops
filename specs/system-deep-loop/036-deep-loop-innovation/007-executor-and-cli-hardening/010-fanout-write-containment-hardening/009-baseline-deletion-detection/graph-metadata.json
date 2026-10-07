@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "baseline deletion detection",
+      "a file that was untracked at the pre",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "baseline deletion detection acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "baseline",
+      "deletion",
+      "detection",
+      "file",
+      "untracked",
+      "pre",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The detector iterated the post-dispatch git status and subtracted the baseline, so an untracked file present at baseline and deleted by the lane was absent from status and never seen",
     "created_at": "2026-09-20T08:33:41.936Z",
-    "last_save_at": "2026-09-25T16:15:27.932Z",
+    "last_save_at": "2026-10-07T12:55:33.052Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f331a2ee84408a87d05a78b0f12fd223bef72ccb3052e3ad24586acbe1e70f0d",
+    "source_fingerprint": "sha256:8e9e95e6c72275d47306d12a39ce6f876b5b83c1601f96a9abea0ed96fb987da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0d5c006b3d0c4cc0dc22b7d566ef53f78e6001f26396332c608b1fa2eb9726d9",
+      "spec.md": "91673e1babae71c92c655621bf57d89578d74e5f6027e941f9d64149f6b82d71",
       "plan.md": "2aabc45893fc69ce373ffe3bafdc6a8fa44d1ea4f720ad1ea1000c2c0e8e695d",
       "tasks.md": "5ae2efb9b39fb972ab5ae19298d1a27a874ca1ff030b1cd8037f218db8e9ec91",
       "implementation-summary.md": "8ebe5237f410ad2ad35aafdfdfc351e5e14fa0838ea47c84475bdb88d4198506"

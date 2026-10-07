@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "visual review fixes",
+      "operator review of the shadcn visual upgrade numeric",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "visual",
+      "review",
+      "operator",
+      "shadcn",
+      "upgrade",
+      "numeric",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The operator reviewed the shipped shadcn register and found four defects the gates did not catch",
     "created_at": "2026-09-08T07:08:04Z",
-    "last_save_at": "2026-09-08T07:10:47.272Z",
+    "last_save_at": "2026-10-07T12:55:11.564Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:363d53ad5dccf87650b2cafee0cb694b48b4f12a33a1015947b05b6a1713bb47",
+    "source_fingerprint": "sha256:c358ea03f955fc61a521a3fa3b9f28a7f8278b015d71fb4e700f85984627419e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bde7fbd603fc5d0cd92422eb46e29b91771c518376c301f7b0183569ff632944",
+      "spec.md": "14c4e8afae4106145a440b32072abe5800b0d64b75ac5b2841b1792162e2a97a",
       "plan.md": "70373fb6cea86928750ca1911cd9f1b9801fa32f2c2d59d109be621f87ce3ca1",
       "tasks.md": "85fd165cf0dbc929ab18152c891133185332fbfea7500d6f96ce5bdb7f7d1c0f",
       "implementation-summary.md": "e72719f97b728141d8975fd6e865cc56056a571b74ad14a9a7fae8d9e7b93e87"

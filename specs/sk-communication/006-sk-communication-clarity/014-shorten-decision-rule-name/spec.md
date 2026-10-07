@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 14: shorten the decision rule name"
 description: "The decision rule carried the last long name in the corpus at 37 characters, so it was shortened to communication-decisions after checking the file itself says what the shorter name leaves out."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "shorten decision rule name"
+  - "the decision rule carried the last long name"
 importance_tier: "normal"
 contextType: "general"
 ---

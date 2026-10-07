@@ -50,7 +50,6 @@
       ".opencode/commands/README.txt",
       ".opencode/skills/sk-design/command-metadata.json",
       ".opencode/package-lock.json",
-      ".opencode/skills/system-skill-advisor/mcp-server/package-lock.json",
       ".opencode/skills/mcp-code-mode/mcp-server/package-lock.json"
     ],
     "entities": [
@@ -201,7 +200,7 @@
     ],
     "causal_summary": "The operator received a \"runs failed\" email on every push for days",
     "created_at": "2026-09-07T19:44:27Z",
-    "last_save_at": "2026-09-11T16:42:48.967Z",
+    "last_save_at": "2026-10-07T12:55:48.265Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +210,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d864d328425a176e6d9227a9f26c6e18394fd97d9af227199b31292c4261398f",
+    "source_fingerprint": "sha256:d2153655fcb2e1dc137a15afdb992d4c7a60cdc9178c4801056ae97efec78ac3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0846a732537ed19c2d2696d29b61a50000530ee49448a6184ea9a22372e67265",

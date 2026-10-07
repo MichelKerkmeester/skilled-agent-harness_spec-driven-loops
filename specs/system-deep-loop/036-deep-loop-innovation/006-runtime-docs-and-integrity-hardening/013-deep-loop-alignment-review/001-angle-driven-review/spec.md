@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: angle-driven-review"
 description: "A twenty-iteration, angle-driven review of routing artifacts, skills, catalogs, playbooks, READMEs, commands, agents, executor parity, architecture and repo-rule alignment, half on DeepSeek and half on GLM, with every finding of any severity bound to a phase."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "angle driven review"
+  - "a twenty iteration angle driven review of routing"
 importance_tier: "normal"
 contextType: "general"
 ---

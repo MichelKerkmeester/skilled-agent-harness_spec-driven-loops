@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "metric delta header",
+      "an optional metric and delta block in the",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "metric delta header acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "metric",
+      "delta",
+      "header",
+      "optional",
+      "block",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions",
+      "testing"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -49,8 +49,7 @@
       "implementation-summary.md",
       "scratch/mutations.md",
       ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
-      ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md",
-      ".opencode/skills/sk-design/sk-design-chart/changelog/v1.7.0.0.md"
+      ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md"
     ],
     "entities": [
       {
@@ -105,12 +104,6 @@
         "name": "template-contract.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.7.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.7.0.0.md",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Both research lanes found the same anatomy gap: our scalar and time-series forms carry their reading only as 14px prose while Apple, Vercel and Tremor lead with a value and a signed delta",
     "created_at": "2026-09-08T18:22:03Z",
-    "last_save_at": "2026-09-09T06:40:40.239Z",
+    "last_save_at": "2026-10-07T12:55:12.368Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10b60840755a78caac93537dcaa85b43c1055cf4a03776855db5f27e978fc352",
+    "source_fingerprint": "sha256:d947bc7c8ddef018fc8920dda159ce4961a4c7229e6dd76982322152d0ff76c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "da62b8c71560aca16b41263bba0ee8a8a30cd3b49cf435a7567d74f5c61a9c3a",
+      "spec.md": "510c854e10c8b534782351c6c4101043d4107092b8c5f4e7ec7d65950440e09c",
       "plan.md": "365ff1d9c42716b8ef75fc79d89c1c591eb25293d7cfd47d78fdcee86ab053b5",
       "tasks.md": "d8593edabd067c49f180c2f444a9446ff77e43c105b48d84c34ce967ce24a65a",
       "implementation-summary.md": "f88e4c5d540453c93d50e9d3e765055237da442eeae49c4bb5d15a495255fbe5"

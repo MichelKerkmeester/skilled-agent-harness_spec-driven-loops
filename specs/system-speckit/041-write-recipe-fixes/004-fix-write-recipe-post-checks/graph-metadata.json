@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "fix write recipe post checks",
+      "two post check rows of the write recipe",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "write",
+      "recipe",
+      "post",
+      "checks",
+      "two",
+      "check",
+      "rows",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Section 4 of the spec folder write recipe listed `git status clean (only the new packet files)` and `git push origin main success`",
     "created_at": "2026-09-29T07:01:31Z",
-    "last_save_at": "2026-10-06T18:48:17.963Z",
+    "last_save_at": "2026-10-07T12:55:52.719Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:384ef1f15cdf9389df3c946bdc3736e8665a1e5fea44b14e3051f45ff0c5932c",
+    "source_fingerprint": "sha256:0c20e270d75edbba8e2d7b42322bc6bade6172016b20c71c915a8f42f13b91f5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "916e2b72158660091e4825d6d1b2f7253db6b0e773b1ea8b69038ab6d427cc8f",
+      "spec.md": "b500b1edf7904061ac820b9f7b5a77a48e15d481833902087ccc770ce27127aa",
       "plan.md": "6daf08a36544b8904616cebf111a1b1e62f699d5a86119b28fd5c63d8f37edcf",
       "tasks.md": "bad40207554e98f7b78e511ace000a9de975ceedbc052e0997edfe45e042be66",
       "implementation-summary.md": "4dff0651321fe57a9caed4b091557dbea36d04c7f022255965c53db977d6474f"

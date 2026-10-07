@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The deep-loop graph scripts are not read-only, so no caller can promise they leave the machine unchanged",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-06T18:48:38.824Z",
+    "last_save_at": "2026-10-07T12:55:37.470Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3fa62aeed95bf325707081f974fb8a9567dbf14bd62c01317c875ae3a6a7845e",
+    "source_fingerprint": "sha256:c8d387a8c6ba4ad5af3382905e200ff2e168bec2c659d09c17c7619f2a2bb0ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b0f60e7417ddb402e61295168059df40a27d0e04189b1774906625cdc0f87256",

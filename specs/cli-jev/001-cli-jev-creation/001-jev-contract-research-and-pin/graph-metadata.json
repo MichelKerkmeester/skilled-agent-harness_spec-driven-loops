@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "jev contract research and pin",
+      "every claim the cli jev packet makes about",
       "implementation plan",
       "approach and phases",
       "testing strategy",
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "acceptance criteria",
-      "closure gate"
+      "jev contract research and pin acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "jev",
+      "contract",
+      "research",
+      "pin",
+      "every",
+      "claim",
+      "cli",
+      "packet",
+      "about",
       "implementation",
       "plan",
-      "approach",
-      "phases"
+      "approach"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The hub is about to route work to a binary it does not control, and the only available accounts of that binary are a vendor README, a vendored source tree, and the binary itself",
     "created_at": "2026-09-20T07:39:05Z",
-    "last_save_at": "2026-09-25T16:14:20.058Z",
+    "last_save_at": "2026-10-07T12:54:47.514Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:75150b7fd6e1368c09764206de8898134c811990a7808b342cf8f3b6ab2909f9",
+    "source_fingerprint": "sha256:7758c3c2667264d4a76ff67aa30aee00ac468d133af42373060e017829829a62",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8e6d6487dac4b9a51db9e350c175302a029544efda6fda10bf99bcb24e810d2c",
+      "spec.md": "279dfa90ddb09426bfd5bb002b5ff7e6150f8339822d2f18627a5698e895f1c4",
       "plan.md": "0335d8630b8dfc05d8e25f2fb9c164479c53ee2a4f5b9c458df1fcc676829364",
       "tasks.md": "50df3e9c888ba1cafef59467431c2c78aecc3dc84d5ec30adcff49e30e9a9521",
       "implementation-summary.md": "979b6b7dffd308890bba22210be281937475d8d19299debc3fbfe1c8fa7c8b9d"

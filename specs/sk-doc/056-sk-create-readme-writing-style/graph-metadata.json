@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "sk create readme writing style",
+      "sk create readme lacks the writing style rules",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "sk create readme writing style acceptance criteria",
+      "sk-create-readme problem section decision"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "readme",
+      "writing",
+      "style",
+      "lacks",
+      "rules",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions",
+      "testing"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The root README rework produced formatting patterns the skill never documented: decorative section emoji on a marketing front page versus semantic-only emoji elsewhere, headings that name the feature and its benefit, inventories where every item carries a description and a per-feature H2 structure for large documents",
     "created_at": "2026-09-20T12:52:07Z",
-    "last_save_at": "2026-09-20T13:56:41.716Z",
+    "last_save_at": "2026-10-07T12:55:25.868Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f087096f91df3aef4de4c90b722d06e65bc1888af6bbc96acbcfe23ffb8703b",
+    "source_fingerprint": "sha256:c3d7b1e1d8db997cb004feec795dcf72ca97709a92ce60f6a84bb7a48b5eaf7f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f3804985a4d8c7ab5386c9e3303e3215e2831f73baefa0462fb6c1fa6b6b4864",
+      "spec.md": "f42fad7fbfb7361cce7d0f1f97efe784543440d3942a98fbff5b89cfefd249f0",
       "plan.md": "1048abd6456eb76df911beb8a9abc851de8f32ff4d21aa8049d2d2da5f270d4e",
       "tasks.md": "637ac55c9a328248822f554a8bba3ff1a63ba9db3ddc5677d2fe189a2cb88f87",
       "decision-record.md": "07dd688b90bfdda7c6ee03078cbd2145c04214b3380145480c4f6d192f1f9210",

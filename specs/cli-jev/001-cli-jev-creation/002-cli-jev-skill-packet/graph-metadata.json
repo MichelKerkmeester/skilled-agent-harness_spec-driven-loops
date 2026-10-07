@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "cli jev skill packet",
+      "the hub needs a packet that tells a",
       "implementation plan",
       "approach and phases",
       "testing strategy",
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "acceptance criteria",
-      "closure gate"
+      "cli jev skill packet acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "cli",
+      "jev",
+      "skill",
+      "packet",
+      "hub",
+      "needs",
+      "tells",
       "implementation",
       "plan",
       "approach",
-      "phases"
+      "phases",
+      "testing"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The hub routes to executables whose contracts live in their own documentation",
     "created_at": "2026-09-20T07:39:06Z",
-    "last_save_at": "2026-09-25T16:15:23.472Z",
+    "last_save_at": "2026-10-07T12:54:47.473Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24897f829f5e7a380a7536c9a02d77e4b8647b100b279b8840bca21a00c63fa9",
+    "source_fingerprint": "sha256:0d60006350e441422524301bba45b94b21ef87a512c7ece6f39fb2a841342d0f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b25fad0795cafa318d7b19b75a5336a75222b231404ca324758beea5d3492121",
+      "spec.md": "3e63d04c38169d6c73166b0cca4a924334f169d94ed829c0c8fca1568c97e944",
       "plan.md": "4cbbd1c2680880d6b1915776681b097e43f0eab0bdd6feec54e5c052307907f5",
       "tasks.md": "41026a7381bf190628bbcb7f48096c0d7e30e8d3aa1d3785c7f5c64113f9fc47",
       "implementation-summary.md": "ad3e481121ce1d819c2589477b8969978731646454947d01a399242c2700178f"

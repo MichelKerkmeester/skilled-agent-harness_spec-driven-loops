@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "hallucination grader improvements",
+      "the grader is measured against a fed baseline",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "hallucination",
+      "grader",
+      "improvements",
+      "measured",
+      "against",
+      "fed",
+      "baseline",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Feature 024 kept, but against a starved baseline: none of the 21 benchmark fixtures carries an allowlist",
     "created_at": "2026-10-03T05:30:06Z",
-    "last_save_at": "2026-10-03T12:42:45.366Z",
+    "last_save_at": "2026-10-07T12:54:56.240Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ebd3954d06229d6ed47180bb3cc46fc43d4529d666f84f604e16df0ba78f799c",
+    "source_fingerprint": "sha256:84097a7e7b5ee45c788de4da9bf9cc15b2dab172fd3987db61bc95c033ac3a90",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "72c4ef295b4dd6617ae06f9d8847a0bd8b3d19bda092661dedbef5df17cbb051",
+      "spec.md": "2a1873a39bc36f1aafc4f6ea890e973b65f0315ab3de288f30b9d43570299984",
       "plan.md": "91fcae1b662ac81105f42d4e2adacd65f4a1f39f1c82315bef4d0933662588c6",
       "tasks.md": "2e90fd82753a8b782eaf5f5ad453b5383ad8eef5badf16378f34a35ca54664b8",
       "implementation-summary.md": "261ce435f7389e7eae792af27787a4f21dbb7c8b8f6767d046cceef1dacbbb5f"

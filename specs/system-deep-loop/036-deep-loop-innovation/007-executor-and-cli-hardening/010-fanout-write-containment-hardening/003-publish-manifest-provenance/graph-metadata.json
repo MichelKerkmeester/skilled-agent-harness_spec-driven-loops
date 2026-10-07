@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "publish manifest provenance",
+      "the fan out merge reads each lineage s",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "publish manifest provenance acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "publish",
+      "manifest",
+      "provenance",
+      "fan",
+      "merge",
+      "reads",
+      "lineage",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The attribution table printed `unknown` in the Kind and Model column for every lineage of a completed run",
     "created_at": "2026-09-20T08:33:41.013Z",
-    "last_save_at": "2026-09-25T16:15:23.580Z",
+    "last_save_at": "2026-10-07T12:55:32.707Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f8738133e02530edfbbf4cc0d26007c5000aa8b00ddc66aa98eee4e038fe9a9",
+    "source_fingerprint": "sha256:c0217f3e0ae6dca11f91bd517c45fb85dd8f345859e0a24530c9b6faecca9d89",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7378289bed2799af9eb7da630c93241647f7428da79ff8b4c6db8c61d9ee0ece",
+      "spec.md": "daffc7467703d031b4a4d1ee96d1272de4e52bb88d4ab20fa1f1c268a04f8ee7",
       "plan.md": "eeed827fcee8f3cf2976a8b439dddbdaeb545479d02b181eecf1e7e0d431495c",
       "tasks.md": "38f23902a8ef24adfddbc479b0d83eeb04f1ed196ed298cdc025a13e9d263523",
       "implementation-summary.md": "0f1a9e93d95d8999182de96e38067fe99770381a8d0917b1db0a64b99f5231c0"

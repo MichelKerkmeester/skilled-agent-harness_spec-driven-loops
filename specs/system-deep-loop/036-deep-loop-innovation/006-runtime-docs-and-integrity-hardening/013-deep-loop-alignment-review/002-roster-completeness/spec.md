@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: roster-completeness"
 description: "Every prose roster in the three hubs names the executor kinds the code registers and the modes the registry holds, with counts replaced by their source where one exists."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "roster completeness"
+  - "every prose roster in the three hubs names"
 importance_tier: "normal"
 contextType: "general"
 ---

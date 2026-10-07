@@ -203,7 +203,7 @@
     ],
     "causal_summary": "In all three research rounds of this packet, `stepconvergencereport` recorded `synthesisincomplete` with the single invariant `countonlystatefindingsnotreconstructed`",
     "created_at": "2026-09-27T11:50:21Z",
-    "last_save_at": "2026-09-27T18:47:23.686Z",
+    "last_save_at": "2026-10-07T12:54:52.179Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:22d9fc515e4789c292bad5c888c1cd4cd5f2d70315e6e7cc0b3f1ac627b394b2",
+    "source_fingerprint": "sha256:01607464bd07cfd431789eccab4d1e3fb6de52d62969b8060e37cdeeb149d0f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c55576d2134d5b334cee42ac62f6f695339c4e3ced64dc73a9d44420664bdaed",

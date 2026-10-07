@@ -11,10 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "the hub answers from its new home but",
       "compiled fleet onboarding",
       "activation manifest",
       "serving closure",
@@ -22,21 +19,24 @@
       "technical approach",
       "architecture decisions",
       "testing strategy",
-      "phase tasks"
+      "phase tasks",
+      "verification checklist",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "hub",
+      "answers",
+      "new",
+      "home",
       "compiled",
       "fleet",
       "onboarding",
-      "activation"
+      "activation",
+      "manifest",
+      "serving",
+      "closure",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -53,14 +53,14 @@
       ".skilled/bin/compiled-route-guard.cjs",
       ".skilled/bin/compiled-route-sync.cjs",
       ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
-      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json",
       ".skilled/bin/compiled-routing-foundation.vitest.ts",
       ".skilled/bin/tests/compiled-route-manifest.test.cjs",
-      ".skilled/skills/cli-jev/SKILL.md",
-      ".skilled/skills/cli-jev/changelog/v0.2.0.0.md",
-      ".skilled/skills/cli-jev/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md",
-      ".skilled/skills/cli-jev/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts"
+      ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs",
+      ".skilled/bin/lib/compiled-route-manifest.cjs",
+      ".skilled/bin/compiled-route-admission.cjs",
+      ".skilled/bin/compiled-route-status.cjs",
+      ".skilled/bin/compiled-route.cjs"
     ],
     "entities": [
       {
@@ -136,12 +136,6 @@
         "source": "derived"
       },
       {
-        "name": "manifest.json",
-        "kind": "config",
-        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json",
-        "source": "derived"
-      },
-      {
         "name": "compiled-routing-foundation.vitest.ts",
         "kind": "test",
         "path": ".skilled/bin/compiled-routing-foundation.vitest.ts",
@@ -154,33 +148,33 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-jev/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "v0.2.0.0.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-jev/changelog/v0.2.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "judgment-request-routes-to-transport.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-jev/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md",
-        "source": "derived"
-      },
-      {
-        "name": "out-of-domain-resolves-nothing.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-jev/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md",
-        "source": "derived"
-      },
-      {
         "name": "generate-description.ts",
         "kind": "code",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts",
+        "source": "derived"
+      },
+      {
+        "name": "registry-compiler.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-route-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-admission.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-admission.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-status.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-status.cjs",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Before this phase the hub resolved through the legacy path: it was absent from the engine's dispatch map, so `compiled-route.cjs --hub cli-jev` returned the sentinel, `loadHubEngine` threw `unknown hub`, and every compiled-routing view (status, guard, admission, the foundation lockstep suite) treated the hub as unregistered",
     "created_at": "2026-09-20T11:00:13Z",
-    "last_save_at": "2026-09-20T13:56:13.983Z",
+    "last_save_at": "2026-10-07T13:01:25.908Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2df0166fb6fbd500516a7ed5257131ae2d09a29a76aa4d04d64e3418bf6c3c5d",
+    "source_fingerprint": "sha256:31ead776daf10d95e27f40ce5c5ce2e9956ad97dcd43463f89706cad011f914d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bea3e5abab73c3e39835c869a8fb298584de841b34ef1b2c497de49986e5b683",
+      "spec.md": "92e2b055a2ba4bb2f968261f04a4b8253d2f050e60da1b13a68fb33a0b01247a",
       "plan.md": "8fdc13227505d9b9992fde73c4b06ec2b1834fbda68090a956649152bd8adbe6",
       "tasks.md": "0a19344a537d1914e21df1528f18f70f282d2f6809f5253ca0f9c488b763d121",
       "implementation-summary.md": "11ccd169a5437610e43d53b2ce0ef7837a41559b7992fcd255278c3ecc1341fa"

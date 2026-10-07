@@ -2,10 +2,8 @@
 title: "Feature Specification: Research: improve the Jev citation drift scan (032)"
 description: "Five DeepSeek V4.1 Flash and three GPT-6 Luna research iterations on how to improve, refine and expand the Jev citation drift scan, measured in feature 032 as verdict jev: keep K=40 M=40 A=35 B=13 W=22 L=0 TP=26 FP=0 F=3 p=2.384e-7."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "citation drift research"
+  - "five deepseek v4 1 flash and three gpt"
 importance_tier: "normal"
 contextType: "general"
 ---

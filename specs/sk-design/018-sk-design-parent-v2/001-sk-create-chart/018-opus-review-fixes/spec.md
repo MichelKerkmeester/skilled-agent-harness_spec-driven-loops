@@ -2,10 +2,8 @@
 title: "Feature Specification: fixes from the fresh Opus review of the chart packets"
 description: "A fresh Opus review of the three chart packets returned CONDITIONAL with five P1s; every P1 and the cheap P2s are fixed here: hex-only themed roles, a series distinguishability gate, mapper parity with the reference, category-headed tooltip cards, corrected evidence, relative provenance, stack-aware fonts, dead exports removed, generated scratch dropped, the figure label id renamed."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "opus review fixes"
+  - "a fresh opus review of the three chart"
 importance_tier: "normal"
 contextType: "general"
 ---

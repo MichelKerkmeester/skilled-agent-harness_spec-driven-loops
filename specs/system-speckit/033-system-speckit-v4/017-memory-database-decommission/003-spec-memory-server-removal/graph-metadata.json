@@ -19,10 +19,10 @@
       "preserve set",
       "implementation plan",
       "task breakdown",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability",
-      "waiver adr"
+      "spec memory server removal acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria"
     ],
     "key_topics": [
       "spec",
@@ -47,7 +47,6 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "lib/test-helpers/env-snapshot.ts",
       "core/config.ts",
       "data/README.md",
       "shared/embeddings/adapter.ts",
@@ -60,7 +59,8 @@
       ".opencode/scripts/session-cleanup.sh",
       ".opencode/commands/deep/assets/deep-research-auto.yaml",
       "data/trigger-index.json",
-      "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md"
+      "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md",
+      ".opencode/bin/lib/launcher-session-proxy.cjs"
     ],
     "entities": [
       {
@@ -97,12 +97,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "env-snapshot.ts",
-        "kind": "code",
-        "path": "lib/test-helpers/env-snapshot.ts",
         "source": "derived"
       },
       {
@@ -166,6 +160,12 @@
         "source": "derived"
       },
       {
+        "name": "launcher-session-proxy.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The subsystem's cost is structural, not incidental: a background service that flaps, 41 tools loaded",
     "created_at": "2026-09-02T11:04:52Z",
-    "last_save_at": "2026-09-11T16:42:47.118Z",
+    "last_save_at": "2026-10-07T12:55:44.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6f67cb647abbac1a72ef8a29eb2db718941ecb002601e1de5f6d3174f37f153",
+    "source_fingerprint": "sha256:2785ea2877f1b7d1faef6b782daaaedb3beb0226872bc4eb24f9e1d6d42b7155",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6cc3f83002766484aeeccf2ad9d9508c1545427aa68c72fc4df24b88b4ee590c",

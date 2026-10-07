@@ -52,7 +52,6 @@
       "review/deep-review-findings-registry.json",
       "review/luna-wave/deep-review-findings-registry.json",
       ".opencode/package.json",
-      "review/orchestration-status.log",
       "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/luna-halt-analysis.md",
       "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/review-report.md"
     ],
@@ -115,12 +114,6 @@
         "name": "package.json",
         "kind": "config",
         "path": ".opencode/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "orchestration-status.log",
-        "kind": "file",
-        "path": "review/orchestration-status.log",
         "source": "derived"
       },
       {
@@ -200,11 +193,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "v4.0.0.3 was released after 633 commits across about 45 spec packets",
     "created_at": "2026-10-05T21:03:37Z",
-    "last_save_at": "2026-10-06T07:52:44.432Z",
+    "last_save_at": "2026-10-07T12:55:57.402Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:315b61ffd47fbd2204bb2041e4c409c9a44a111a5a42220cf06b41ec3aff7b3c",
+    "source_fingerprint": "sha256:b5e6e5cdf589d878c5e48fb65c16f7d4a286486773d75f12584c08a0887a5267",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1904136b6056b291d7b52408de27d9b813c3e3cbb811af37754d54560446b8fc",

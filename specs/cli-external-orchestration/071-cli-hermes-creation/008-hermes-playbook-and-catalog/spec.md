@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 7: hermes-playbook-and-catalog"
 description: "Hermes playbook and catalog: a 36-scenario manual-testing playbook at the Pi depth with 22 live scenarios executed twice and 14 hermetic stress cells, a fail-closed feature catalog for the cli-hermes surface, and the hub catalog counting seven packets."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "hermes playbook and catalog"
+  - "hermes playbook and catalog a 36 scenario manual"
 importance_tier: "normal"
 contextType: "general"
 ---

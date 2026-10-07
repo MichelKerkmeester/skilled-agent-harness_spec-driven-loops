@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "reducer ordered lists",
+      "the deep research reducer writes the findings registry",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "reducer ordered lists acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "reducer",
+      "ordered",
+      "lists",
+      "deep",
+      "research",
+      "writes",
+      "findings",
+      "registry",
       "implementation",
       "plan",
       "technical",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The retained SWE-2 lineage finished three iterations with 25 finding records in its deltas and numbered findings in its iteration files, yet its registry held no findings",
     "created_at": "2026-09-20T08:33:41.475Z",
-    "last_save_at": "2026-09-25T16:15:27.785Z",
+    "last_save_at": "2026-10-07T12:55:32.971Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9f1f30860608f7aebed0dca841a4ff5d62916b01e7c98353f6560f42f32c74a",
+    "source_fingerprint": "sha256:1da5468ccf19807fe26c2a0e7d569f363a3fba447dde955dc9abb38687c7b487",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "24edf2b6180c4504d1c697b71294799cec3226092fa74daf10a6c5403aa1c04d",
+      "spec.md": "adc7f9228d91cc3e007d49523634496f2af8fc297bd9b0798496aa11bf0695bd",
       "plan.md": "90ca0e08069e2601e93f102331e398c7dee173a737ab1872dc472dc8d65d9922",
       "tasks.md": "fe9a4234861cb4b8cd4fb45e1c487fdf2771473c1d3e9e0d567d83c92c6bb026",
       "implementation-summary.md": "7663d2ef4a21354c980120481545dfe95f005cdde322119cabe196037ddbdfcc"

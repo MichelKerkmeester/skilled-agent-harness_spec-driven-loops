@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "chart command alignment",
+      "the design chart command named a directory the",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "chart command alignment acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "chart",
+      "command",
+      "alignment",
+      "design",
+      "named",
+      "directory",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The command that routes to the chart corpus had drifted from it",
     "created_at": "2026-09-10T11:10:19Z",
-    "last_save_at": "2026-09-10T11:10:20.007Z",
+    "last_save_at": "2026-10-07T12:55:16.505Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a761d46339dbd9844030bea09c35dcbc29bb32cd6703aa1a53c93f79ef5274d",
+    "source_fingerprint": "sha256:bc878f2c1ac5fa11b13c0727ea97c5211ae316d4c30ebe55f2d33ddc6ad4a919",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9740aade4d420d61f290564c1aee0aee0623ed458c3779eb4f6f613cd4a2b038",
+      "spec.md": "d3c46716d2cc4ec327264209cabebf793b39b3b6d91bff9297e697a7aa09a104",
       "plan.md": "10a98fa3c6c091ebe2455e0dc9209b16a9cedf2890dee032a75450d83d476287",
       "tasks.md": "ba83e95385709a687f148c968348dbcd71a3da182d34cfdf011e0e94a3d23458",
       "implementation-summary.md": "45b024446c33c534d5027ee0409a6421cdb1abb74044f0bf5dd6646e0d42349a"

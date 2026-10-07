@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "verdict fallback research",
+      "five deepseek v4 1 flash and three gpt",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "verdict",
+      "fallback",
+      "research",
+      "five",
+      "deepseek",
+      "flash",
+      "three",
+      "gpt",
       "implementation",
       "plan",
       "technical",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Phase 047 measured the Jev reviewer verdict fallback at verdict jev: keep K=24 M=24 A=24 B=8 W=16 L=0 F=0 pwin=0.00001526, baselines: majority 8 of 24, loose 0 of 24",
     "created_at": "2026-10-02T21:59:46Z",
-    "last_save_at": "2026-10-03T00:15:38.074Z",
+    "last_save_at": "2026-10-07T12:54:52.346Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:057252df34ef4f28abd691f3ef80214d10c360302ebf30b52ca6ce15c3b9674d",
+    "source_fingerprint": "sha256:e38a76fbf76e668cef7674440c13695f590bd73589ecf6cdc5f7d08e415f24a2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a0d340cc3e7e3244d5465560b8a38cf5c60cd22ddc02484281a76067d54fd430",
+      "spec.md": "4ec5364ed3633c20ac0d85966cefe6b7ecb598089499a48fac104b9b65749aa3",
       "plan.md": "04cf39d796e5b4a80bca7a7a21ded9595b21ed0fb263f535a0cc8ae88c140123",
       "tasks.md": "800b28ad187de4c7b01171a035b45ec6aa5910f1053ad0ff2bf015ef94e9e188",
       "implementation-summary.md": "bee3f837f79dcaecd7c68673260adffd18f23cd9d2d29e16309464b954995c7c",

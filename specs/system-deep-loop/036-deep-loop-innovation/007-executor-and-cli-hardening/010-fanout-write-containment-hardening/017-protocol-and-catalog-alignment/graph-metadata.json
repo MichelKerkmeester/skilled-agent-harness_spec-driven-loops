@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "protocol and catalog alignment",
+      "the deep review loop protocol carries the same",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "protocol and catalog alignment acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "protocol",
+      "catalog",
+      "alignment",
+      "deep",
+      "review",
+      "loop",
+      "carries",
+      "same",
       "implementation",
       "plan",
       "technical",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The parent required both loop protocols to describe the containment model, but only the deep-research protocol did; the deep-review protocol's only containment mention was an unrelated executor flag",
     "created_at": "2026-09-20T08:33:43.170Z",
-    "last_save_at": "2026-09-25T16:15:28.142Z",
+    "last_save_at": "2026-10-07T12:55:36.633Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a2546bb16a9a2b9f4a3fbc7d0488e595969de8e68f8e7539018b2e4d7ce235b",
+    "source_fingerprint": "sha256:d49ecc5e3349a23d24da5c8d5bbd2a5918aacac6330f47617fc68cfcf273a588",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fbf2a531a1b1a0943b204c6c333b67bb45048f0966caa7d0fec41fdd09b06a41",
+      "spec.md": "16a706981acd807c63010c02ebd24a4fc4264b95720a6a6ba15c13e9e1d71d13",
       "plan.md": "3287df60643173e47f9183edaf2b0f63c49e72d8d852bbc1a948a3156e958234",
       "tasks.md": "f1d28ae662d4361c1daa905dc3eaeb161c46b01a4eb767c15e9ae43470cb6bd4",
       "implementation-summary.md": "151cef58404560361f05124bbead1971e360dd87e15038f9eeefdca3b4aabc12"

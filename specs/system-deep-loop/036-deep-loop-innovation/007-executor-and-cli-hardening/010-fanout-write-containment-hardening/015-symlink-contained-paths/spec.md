@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: symlink-contained-paths"
 description: "Every byte-moving read or write the containment guard makes on a repository, artifact or baseline path is contained against symlinked components at every level, with kernel no-follow opens and check-then-create closed, so no restore, capture or quarantine can be redirected by a link."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "symlink contained paths"
+  - "every byte moving read or write the containment"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 2: baseline-deletion-detection"
 description: "A file that was untracked at the pre-dispatch baseline and no longer exists after dispatch is detected as a deletion, restored from the captured baseline under restore, and recorded as unrecoverable otherwise."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "baseline deletion detection"
+  - "a file that was untracked at the pre"
 importance_tier: "normal"
 contextType: "general"
 ---

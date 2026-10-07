@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Research and add the chart forms the catalogue is missing"
 description: "Five criteria: every new form passes every rule, its card never outruns its table, the contract and directory agree, nothing external is added, and no half-built form ever entered the corpus."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "new chart forms acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

@@ -2,10 +2,8 @@
 title: "Feature Specification: Research: improve the Jev hallucination grader (024)"
 description: "Five DeepSeek V4.1 Flash and three GPT-6 Luna research iterations on how to improve, refine and expand the Jev hallucination grader, measured in feature 024 as verdict jev: keep K=56 M=56 A=55 B=47 W=8 L=0 F=1 p_win=0.003906."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "hallucination grader research"
+  - "five deepseek v4 1 flash and three gpt"
 importance_tier: "normal"
 contextType: "general"
 ---

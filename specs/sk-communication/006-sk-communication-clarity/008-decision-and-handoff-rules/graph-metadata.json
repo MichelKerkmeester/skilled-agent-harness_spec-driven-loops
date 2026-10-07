@@ -22,7 +22,7 @@
       "qualifier against the tiers",
       "duplication scan",
       "edit not append",
-      "acceptance criteria"
+      "decision and handoff rules acceptance criteria"
     ],
     "key_topics": [
       "decision",
@@ -46,8 +46,6 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      "repo-rules/presenting-decisions.md",
-      "repo-rules/handoff-and-questions.md",
       "repo-rules/evidence-and-proof.md"
     ],
     "entities": [
@@ -79,18 +77,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "presenting-decisions.md",
-        "kind": "doc",
-        "path": "repo-rules/presenting-decisions.md",
-        "source": "derived"
-      },
-      {
-        "name": "handoff-and-questions.md",
-        "kind": "doc",
-        "path": "repo-rules/handoff-and-questions.md",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Five adopted candidates belong to rules that shape a decision, a handback and a claim rather than a",
     "created_at": "2026-09-12T16:39:31Z",
-    "last_save_at": "2026-09-15T05:36:55.478Z",
+    "last_save_at": "2026-10-07T12:55:02.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +206,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a378713172ebb0cf1542e37621f8fdaceb7c598d210d20dd81e2a155f30656d",
+    "source_fingerprint": "sha256:a6ed806ccdf6355e742eb4a399e596a1c8be70704719d6a0de8a04ec6cc32550",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "078a9a138aa9101fe0723c91046713e6d1106a63ae1e382c57d53275aaff660d",

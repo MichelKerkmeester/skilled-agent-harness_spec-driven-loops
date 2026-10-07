@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 6: ledger-stem-producers"
 description: "The registered ledger vocabulary and the spellings producers actually write disagreed, and nothing failed when they did. This packet reconciles the two, declares the census beside the stem arrays, and enforces agreement with a conformance checker."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "ledger stem producers"
+  - "the registered ledger vocabulary and the spellings producers"
 importance_tier: "normal"
 contextType: "general"
 ---

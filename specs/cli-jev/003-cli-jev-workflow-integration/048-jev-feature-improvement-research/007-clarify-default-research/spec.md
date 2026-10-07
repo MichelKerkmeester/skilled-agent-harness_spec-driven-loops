@@ -2,10 +2,8 @@
 title: "Feature Specification: Research: improve the Jev routing clarify default (020)"
 description: "Five DeepSeek V4.1 Flash and three GPT-6 Luna research iterations on how to improve, refine and expand the Jev routing clarify default, measured in feature 020 as verdict jev: keep K=54 M=54 A=28 B=15 W=17 L=4 F=10 p=0.003599."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "clarify default research"
+  - "five deepseek v4 1 flash and three gpt"
 importance_tier: "normal"
 contextType: "general"
 ---

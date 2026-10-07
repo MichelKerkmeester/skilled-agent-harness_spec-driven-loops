@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: direct-append-sites-through-gateway"
 description: "Every remaining direct state-log append in the four deep-loop command YAMLs goes through the append gateway with a canonical ledger stem, the append-site exemptions are retired, and a projection refresh can no longer drop a row."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "direct append sites through gateway"
+  - "every remaining direct state log append in the"
 importance_tier: "normal"
 contextType: "general"
 ---

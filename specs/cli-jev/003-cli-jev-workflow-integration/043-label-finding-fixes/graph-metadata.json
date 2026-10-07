@@ -47,20 +47,13 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts",
-      ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md",
       ".skilled/hooks/goal/lib/goal-core.cjs",
       ".skilled/hooks/goal/lib/goal-core.test.cjs",
-      ".skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs",
       ".skilled/hooks/goal/README.md",
       ".skilled/hooks/goal/pi/goal-context.ts",
       ".skilled/hooks/goal/pi/goal-pi.test.mjs",
-      ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs",
-      ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs",
       ".opencode/plugins/opencode-goal.js",
-      "build/fix/006a.md",
-      "build/fix/006c.md"
+      ".devin/SYNC.md"
     ],
     "entities": [
       {
@@ -100,24 +93,6 @@
         "source": "derived"
       },
       {
-        "name": "score-stop-rater.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-stop-rater.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stop-rater-replay.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md",
-        "source": "derived"
-      },
-      {
         "name": "goal-core.cjs",
         "kind": "file",
         "path": ".skilled/hooks/goal/lib/goal-core.cjs",
@@ -127,12 +102,6 @@
         "name": "goal-core.test.cjs",
         "kind": "file",
         "path": ".skilled/hooks/goal/lib/goal-core.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-verifier-labeled-set.test.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs",
         "source": "derived"
       },
       {
@@ -154,33 +123,15 @@
         "source": "derived"
       },
       {
-        "name": "score-goal-lint.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-goal-lint.test.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs",
-        "source": "derived"
-      },
-      {
         "name": "opencode-goal.js",
         "kind": "code",
         "path": ".opencode/plugins/opencode-goal.js",
         "source": "derived"
       },
       {
-        "name": "006a.md",
+        "name": "SYNC.md",
         "kind": "doc",
-        "path": "build/fix/006a.md",
-        "source": "derived"
-      },
-      {
-        "name": "006c.md",
-        "kind": "doc",
-        "path": "build/fix/006c.md",
+        "path": ".devin/SYNC.md",
         "source": "derived"
       },
       {
@@ -206,11 +157,53 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 042 labeled every fillable gate and found three tool defects",
     "created_at": "2026-10-01T18:41:49Z",
-    "last_save_at": "2026-10-02T17:59:21.775Z",
+    "last_save_at": "2026-10-07T12:54:52.450Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b378bdb3495c67813948015c6f4d3a50a9495f7386c449d4968c5614cad690a5",
+    "source_fingerprint": "sha256:10f14042ae6360d2b10e58be5ef4c7cd2a784d2381c43ccf56b6f785f9fed91d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bbc5050b7db6d4a8dee4469aec6d7012ffb7282e6a2458d98c011dd54541dc22",

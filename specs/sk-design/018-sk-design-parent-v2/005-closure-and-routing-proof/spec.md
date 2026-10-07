@@ -2,10 +2,8 @@
 title: "Feature Specification: Closure and routing proof"
 description: "Every phase in this packet reported success against its own gate. Nothing had yet checked those claims against the fleet from the final state, and three of them turned out to be false."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "closure and routing proof"
+  - "every phase in this packet reported success against"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,8 @@
 title: "Feature Specification: Deduplicate iteration state records by iteration and prefer the routed record, so a completed lane is not rejected"
 description: "The forced-depth validator collapses duplicate iteration records before checking the set, and the deep-research references no longer instruct a direct write to the state log."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "iteration record dedupe"
+  - "the forced depth validator collapses duplicate iteration records"
 importance_tier: "normal"
 contextType: "general"
 ---

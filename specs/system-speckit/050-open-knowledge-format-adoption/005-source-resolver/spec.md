@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 5: source-resolver"
 description: "Resolve the existing `[SOURCE:]` tags in research and review docs with an opt-in check for new packets, with no new frontmatter field unless decision D2 asks for one."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "source resolver"
+  - "resolve the existing source tags in research and"
 importance_tier: "normal"
 contextType: "general"
 ---

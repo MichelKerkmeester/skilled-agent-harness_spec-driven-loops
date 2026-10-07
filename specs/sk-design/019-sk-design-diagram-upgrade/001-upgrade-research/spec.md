@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: upgrade-research"
 description: "Five iterations of GLM-5.3-Flash deep research deciding how sk-design-diagram is upgraded to the sk-design-chart standard: what transfers, what the diagram context changes, and the phases that follow."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "upgrade research"
+  - "five iterations of glm 5 3 flash deep"
 importance_tier: "normal"
 contextType: "general"
 ---

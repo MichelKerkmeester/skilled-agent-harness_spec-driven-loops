@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "research run init via gateway",
+      "a deep research run including each fan out",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "research",
+      "run",
+      "init",
+      "via",
+      "gateway",
+      "deep",
+      "including",
+      "fan",
       "implementation",
       "plan",
       "technical",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Both deep-research workflows open a run by writing a 15-key config row straight into `deep-research-state.jsonl`",
     "created_at": "2026-10-03T05:30:11Z",
-    "last_save_at": "2026-10-06T18:50:00.673Z",
+    "last_save_at": "2026-10-07T12:54:56.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ee18a4563e52b2d04f87b1610e99b6af61a7e8c6a6444f418e57aa6e08e92cb7",
+    "source_fingerprint": "sha256:84ee12f46fb3f44fb300bca4bf16305e55bca27acab5213c3c7025f628d95125",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "137176d14135a7d7ab4f849ecfff3b185a239a26dbb5d0fd00346a8f1fbf763a",
+      "spec.md": "92df25fc26783c5e43a37da2f28578329bcdad51712c1401ec397e8badda76c0",
       "plan.md": "43e67747019b0cc193547258710075a9b3589bac84d473df9c730698bcf16b0d",
       "tasks.md": "0afc86c63ba088de9a1a9150e64237fc053caa69f646e5f6b1009a4bf9ed893d",
       "implementation-summary.md": "8200473a33a84f9d9a84642732efcb25080df6388a05df682d3dc789232e4375"

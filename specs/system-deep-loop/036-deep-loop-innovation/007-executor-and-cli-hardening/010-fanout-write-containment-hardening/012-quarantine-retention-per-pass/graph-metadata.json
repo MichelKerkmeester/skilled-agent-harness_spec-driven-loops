@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "quarantine retention per pass",
+      "each containment pass keeps its own quarantine directory",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "quarantine retention per pass acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "quarantine",
+      "retention",
+      "per",
+      "pass",
+      "containment",
+      "keeps",
+      "own",
+      "directory",
       "implementation",
       "plan",
       "technical",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The quarantine writer targeted one fixed directory per lane and its docs said a later pass replaces the manifest and named files",
     "created_at": "2026-09-20T08:33:42.396Z",
-    "last_save_at": "2026-09-25T16:15:28.114Z",
+    "last_save_at": "2026-10-07T12:55:35.395Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a97530ba9fdb68eba6d618aed76bad780041d50677aeeeccc18197ad3fdcbef5",
+    "source_fingerprint": "sha256:de6b73c4e08b3137138d37ea7c54c3b1102ef552b268d9cc8308ba41f5a1e4c9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f568bfc5a1e78409d26c0d84ff97bbddd7604e23c4c560a501e53a973a5b6e6c",
+      "spec.md": "57d58ddc979626e6f9b7b3fec4baa4d284c05f20d3dac08b845609d933e77b3a",
       "plan.md": "527866a61136f3541952a5e86c9cac89a0d5f8585d79ea2a570ef6c98c243de4",
       "tasks.md": "f903aca58078190768bdf5b24b5bd4b9cd00fbb6f9d52edee328a4931f7f96e0",
       "implementation-summary.md": "5ccc9ecc035b7b8237364f95744e1137f5d08b2c593355179c8cbd2ac5263627"

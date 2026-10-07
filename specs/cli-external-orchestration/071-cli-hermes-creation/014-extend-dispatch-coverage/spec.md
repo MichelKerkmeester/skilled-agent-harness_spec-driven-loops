@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 2: extend-dispatch-coverage"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "extend dispatch coverage"
+  - "phase 1 made the preflight enforce but two"
 importance_tier: "normal"
 contextType: "general"
 ---

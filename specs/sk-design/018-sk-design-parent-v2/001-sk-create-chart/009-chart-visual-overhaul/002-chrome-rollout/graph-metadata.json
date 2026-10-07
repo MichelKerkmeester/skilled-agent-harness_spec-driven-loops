@@ -21,8 +21,8 @@
       "chart chrome rollout tasks",
       "chart radius token tasks",
       "corpus restyle tasks",
-      "acceptance criteria",
-      "closure gate"
+      "chrome rollout acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
       "chart",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Twenty templates were authored one at a time, and every one of them re-types the same chrome by",
     "created_at": "2026-09-03T08:02:24.988Z",
-    "last_save_at": "2026-09-06T14:59:17.904Z",
+    "last_save_at": "2026-10-07T12:55:07.167Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:358ff4f5b51ffe75623f4745f111069123f38b070e7a1826c7d9eda892cfe32d",
+    "source_fingerprint": "sha256:f581a33a18a7a866941e23bef9bc4ee055ed9067e7723d7e59aa69f61022a82d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e9d57b00868d56f2c86c5fa5f4a542d085f93d2e7286eba3339682c9561b8a0e",

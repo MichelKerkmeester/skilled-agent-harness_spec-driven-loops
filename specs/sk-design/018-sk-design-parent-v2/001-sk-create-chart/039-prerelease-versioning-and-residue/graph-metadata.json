@@ -51,8 +51,7 @@
       ".opencode/skills/sk-design/sk-design-chart/SKILL.md",
       ".opencode/skills/sk-design/leaf-manifest.json",
       ".opencode/skills/sk-design/command-metadata.json",
-      ".opencode/skills/system-spec-kit/runtime/data/trigger-index.json",
-      "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md"
+      ".opencode/skills/system-spec-kit/runtime/data/trigger-index.json"
     ],
     "entities": [
       {
@@ -119,12 +118,6 @@
         "name": "trigger-index.json",
         "kind": "config",
         "path": ".opencode/skills/system-spec-kit/runtime/data/trigger-index.json",
-        "source": "derived"
-      },
-      {
-        "name": "CHANGELOG-v4.0.0.0.md",
-        "kind": "doc",
-        "path": "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The chart packet numbered its releases from `v1.0.0.0` and reached `v2.5.0.0`, which reads as two public major versions with a breaking change between them",
     "created_at": "2026-09-10T19:01:41Z",
-    "last_save_at": "2026-09-10T19:07:31.655Z",
+    "last_save_at": "2026-10-07T12:55:16.769Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +212,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:17189e0e46e24652ae8a95291fb2fd1f27e57ba92db5f069d0052dd07c3d5a67",
+    "source_fingerprint": "sha256:c71d0aaafc5a33a9b23bd5fa1cee04e5b8bdb7acc29fe8d6f606719a38ac7695",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "638e7f7c08f14b5c396ad5277015f25f492b7fab5c41d957adb2072125848008",

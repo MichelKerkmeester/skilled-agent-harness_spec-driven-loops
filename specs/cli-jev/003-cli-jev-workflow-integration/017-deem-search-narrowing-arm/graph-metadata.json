@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
       ".skilled/skills/system-spec-kit/SKILL.md",
       ".skilled/skills/system-spec-kit/README.md",
-      ".skilled/skills/system-spec-kit/changelog/v4.2.0.0.md",
-      ".skilled/skills/system-spec-kit/feature-catalog/retrieval/track-narrowing-measurement.md",
       ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
-      ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
       ".hermes/skills/system-spec-kit/SKILL.md",
-      "tests/score-track-narrowing.vitest.ts",
-      "changelog/v4.2.0.0.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json"
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+      ".skilled/skills/system-spec-kit/vitest.config.ts",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "runtime/data/trigger-index.json",
+      "retrieval/README.md",
+      "scratch/w3-build/build-evidence.md"
     ],
     "entities": [
       {
@@ -100,18 +100,6 @@
         "source": "derived"
       },
       {
-        "name": "score-track-narrowing.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-track-narrowing.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
@@ -121,18 +109,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "v4.2.0.0.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/changelog/v4.2.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "track-narrowing-measurement.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/feature-catalog/retrieval/track-narrowing-measurement.md",
         "source": "derived"
       },
       {
@@ -151,6 +127,24 @@
         "name": "semantic-probes.json",
         "kind": "config",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w3-build/build-evidence.md",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The committed trigger-index lookup finds exact wording and little else",
     "created_at": "2026-09-27T11:50:23Z",
-    "last_save_at": "2026-09-29T06:28:37.572Z",
+    "last_save_at": "2026-10-07T12:54:52.536Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53fbd9c7d82f17b25ab073ccaae3fa2b5634d68a185f8dca5632738265b935c5",
+    "source_fingerprint": "sha256:d2f166cfcc96f58226da61bddf80521f796cd752c12165f5cc83d7c07a82ce65",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4de30a5b30f40a55576c30ce03bf901c6a9de9ccc036808d6800ac3be83ca86b",

@@ -21,8 +21,8 @@
       "hub surface truth tasks",
       "inventory completion checklist",
       "command column test cases",
-      "acceptance criteria",
-      "closure gate"
+      "hub surface truth acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
       "hub",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Three hub surfaces state something their registries contradict, and none of them has a gate",
     "created_at": "2026-09-02T16:34:07Z",
-    "last_save_at": "2026-09-11T16:42:14.002Z",
+    "last_save_at": "2026-10-07T12:55:22.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:abaaee9526f373176b41ce6e53aa9222a7f3f0e761c3227236ef90a1aeb920e6",
+    "source_fingerprint": "sha256:30d4e23ceaad3a00644706fd8d4f97d05f9bf24ccff1b39de305a82737fe2948",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f99e54974be93217f4686f414c9a5ebe856f14dd69c131814881ff007e0fad76",

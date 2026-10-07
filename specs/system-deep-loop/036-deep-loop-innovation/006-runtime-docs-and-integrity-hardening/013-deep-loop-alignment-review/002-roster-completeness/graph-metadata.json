@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "roster completeness",
+      "every prose roster in the three hubs names",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "roster completeness acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "roster",
+      "completeness",
+      "every",
+      "prose",
+      "three",
+      "hubs",
+      "names",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The external orchestration router listed six CLI kinds in its opening parenthetical, its leaf-set bullets and its disambiguation rule while its own machine block and the registry carried seven; its skill file said six modes in one line and seven in four others",
     "created_at": "2026-09-20T08:33:43.947Z",
-    "last_save_at": "2026-09-25T16:15:22.756Z",
+    "last_save_at": "2026-10-07T12:55:30.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:13793e2f0aa67244b8629f2fbbfef725c84350fea18046f5074021f2acaa2c68",
+    "source_fingerprint": "sha256:43d8309f6fe229753cae9b0b52810626daa517077c10254e2a9f19d76a281ad5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "93996a2ac4339b2a8ec8ce2da20c236cc8c35928b12de3a85de5a6120b6e84fa",
+      "spec.md": "60563781e205735874ce751dd18df02ef446554616099535394932f261b05c73",
       "plan.md": "42afe83700c3c82d901f457e4ba0423802836088d2195f1343709ddffd90ef72",
       "tasks.md": "19c73b4bb9f55c8b0288d5b8d13b14f029cfdfcf6d652d56eea30e2b2ca7afd7",
       "implementation-summary.md": "f4eb47e1ab350ee333f3d79e05ac70193e9c1f7d995b83a2d46a46a27faeeb77"

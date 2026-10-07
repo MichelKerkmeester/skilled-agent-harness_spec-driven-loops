@@ -22,7 +22,7 @@
       "implementation tasks",
       "verification checklist",
       "task dependencies",
-      "acceptance criteria"
+      "align runtime code with sk code opencode acceptance criteria"
     ],
     "key_topics": [
       "spec",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Code under `.skilled/skills/system-spec-kit/runtime/` does not follow the sk-code-opencode comment and structure rules in `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md` §2 and §4",
     "created_at": "2026-09-30T05:43:46Z",
-    "last_save_at": "2026-09-30T22:06:54.610Z",
+    "last_save_at": "2026-10-07T12:55:56.568Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fb8498e48855e6a2e150c15b8376df9cfc3e3d3faddb2854e4d6e86427daefa0",
+    "source_fingerprint": "sha256:e749617ae12e49b0576c954279e2848470f86595b7aa03bfbc92a1509996b357",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8fcebfaf76bafc66f203249fcc8d674d99efe0357c34eb543536f4f2eb2ca7ac",

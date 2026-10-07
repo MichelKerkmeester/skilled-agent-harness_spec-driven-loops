@@ -20,9 +20,9 @@
       "release notes split lanes",
       "release-line-split tasks",
       "release line split checklist",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability"
+      "release line split acceptance criteria",
+      "release-line-split summary",
+      "skilled release line shipped"
     ],
     "key_topics": [
       "release-line-split",
@@ -47,7 +47,6 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       ".skilled/changelog/skilled/README.md",
-      ".skilled/skills/system-spec-kit/changelog/v4.0.0.0.md",
       ".skilled/skills/system-spec-kit/SKILL.md",
       ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.2.0.0.md",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
@@ -55,8 +54,6 @@
       ".skilled/skills/sk-git/references/finish-workflows.md",
       ".skilled/commands/create/assets/create-changelog-auto.yaml",
       ".skilled/changelog/skilled/v4.0.0.0.md",
-      ".skilled/skills/system-spec-kit/changelog/v4.1.0.0.md",
-      ".skilled/skills/system-spec-kit/changelog/v4.1.1.0.md",
       "runtime/cli/retrieval/lib/corpus.mjs",
       ".hermes/skills/sk-create-changelog/SKILL.md"
     ],
@@ -98,12 +95,6 @@
         "source": "derived"
       },
       {
-        "name": "v4.0.0.0.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/changelog/v4.0.0.0.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/SKILL.md",
@@ -140,15 +131,9 @@
         "source": "derived"
       },
       {
-        "name": "v4.1.0.0.md",
+        "name": "v4.0.0.0.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/changelog/v4.1.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "v4.1.1.0.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/changelog/v4.1.1.0.md",
+        "path": ".skilled/changelog/skilled/v4.0.0.0.md",
         "source": "derived"
       },
       {
@@ -204,11 +189,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit changelog folder had become the repository's release notes",
     "created_at": "2026-09-27T12:01:29Z",
-    "last_save_at": "2026-09-27T12:35:04.147Z",
+    "last_save_at": "2026-10-07T12:55:26.754Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,7 +215,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:797564486aec29c00101679e5c6969437eb63fcd02036bc8ce1597076cc23f7b",
+    "source_fingerprint": "sha256:bbdb48c6b9c5d41983552d6e351e52ce52976a90c17887a6171bd0d3301f2c06",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2e1c1949fa383e7788dd56d18c349ce0f536ffa90ac0f43dcad4b6660065579e",

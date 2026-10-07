@@ -2,10 +2,7 @@
 title: "Feature Specification: the visual explanation lane renders where a reader can see it"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "visual explanation output medium"
 importance_tier: "normal"
 contextType: "general"
 ---

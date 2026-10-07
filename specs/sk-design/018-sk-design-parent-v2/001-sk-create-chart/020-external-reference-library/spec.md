@@ -2,10 +2,8 @@
 title: "Feature Specification: screenshot library of well-designed charts from external sources"
 description: "A screenshot library of well-designed charts from public component libraries, chart libraries, design systems and editorial chart products, captured in both colour schemes with an index of what each one is worth borrowing."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "external reference library"
+  - "a screenshot library of well designed charts from"
 importance_tier: "normal"
 contextType: "general"
 ---

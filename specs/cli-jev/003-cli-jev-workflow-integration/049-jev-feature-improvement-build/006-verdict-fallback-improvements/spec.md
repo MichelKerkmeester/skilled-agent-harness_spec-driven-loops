@@ -2,10 +2,8 @@
 title: "Feature Specification: Build: improve the Jev reviewer verdict fallback (025)"
 description: "Reviewers emit a verdict the parser cannot miss, the parser reads the common real forms, and the fallback can abstain."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "verdict fallback improvements"
+  - "reviewers emit a verdict the parser cannot miss"
 importance_tier: "normal"
 contextType: "general"
 ---

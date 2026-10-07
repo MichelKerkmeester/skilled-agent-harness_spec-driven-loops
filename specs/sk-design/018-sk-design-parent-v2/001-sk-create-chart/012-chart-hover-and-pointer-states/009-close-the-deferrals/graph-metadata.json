@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The packet closed honestly and left four things written down rather than done",
     "created_at": "2026-09-06T04:34:06Z",
-    "last_save_at": "2026-09-06T14:59:18.954Z",
+    "last_save_at": "2026-10-07T12:55:10.102Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5171e99b29f2ce2965d3841a4c6f4a83e78b8a3ad86e353538e1108c29cafe36",
+    "source_fingerprint": "sha256:cef7ad035666cb8c983ece2bc90bfdf82d8cf3db6477dd182c1dc39e06ea13ef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "450501dad83ea5bf8a6c6e8c2c33feca9416137c8eb5b87c3f3dd0329fd387ab",
       "plan.md": "57cd361c45040d4f3e3f8f7b7552b2a02a0e89cbdfa2062deeec14e7db893ad3",
       "tasks.md": "c6c6dd4fdb8cbbfd3d5c15e328749f0619e9536406872ac9cb74bb813846e9af",
-      "implementation-summary.md": "0330f269aac6a1664a0b7f1cce254f637c4b5902a0e387dba43058ff4b8bb0d0"
+      "implementation-summary.md": "ae0c3c1b74a7833b5ec7190a83865080e73412bb0931b0698d052e9da9bed560"
     },
     "last_active_at": null
   }

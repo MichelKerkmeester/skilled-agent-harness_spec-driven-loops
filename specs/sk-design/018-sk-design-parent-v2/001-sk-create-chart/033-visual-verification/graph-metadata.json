@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "visual verification",
+      "the palette was replaced wholesale and the checks",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "visual verification acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "visual",
+      "verification",
+      "palette",
+      "replaced",
+      "wholesale",
+      "checks",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -47,9 +47,9 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json",
       ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
-      ".opencode/skills/sk-design/shared/scripts/render-screenshots.cjs"
+      ".opencode/skills/sk-design/shared/scripts/render-screenshots.cjs",
+      "changelog/v2.1.0.0.md"
     ],
     "entities": [
       {
@@ -89,12 +89,6 @@
         "source": "derived"
       },
       {
-        "name": "palettes.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json",
-        "source": "derived"
-      },
-      {
         "name": "check-corpus.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
@@ -104,6 +98,12 @@
         "name": "render-screenshots.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-design/shared/scripts/render-screenshots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "v2.1.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.1.0.0.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The palette was replaced wholesale and the checks stayed green throughout, which proves that colour",
     "created_at": "2026-09-10T06:10:51Z",
-    "last_save_at": "2026-09-10T06:21:50.376Z",
+    "last_save_at": "2026-10-07T12:55:15.531Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce5d316546eca9efada0048e0a890393a399a3ea2341bebf60859b0c71d6e321",
+    "source_fingerprint": "sha256:4a1f457f87903f53ee7d80f24b41d2e997a68be7e87aba79d55d1f5e60a45b51",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e440740ca93367e1c9e814160461e8b68ac769bc4fbeabe88d74ae49a5a3f2d7",
+      "spec.md": "20ea6ae865c175ad5911419a668c600f47065ebb499333de6ea7e32da2aed4ab",
       "plan.md": "642d036fabbb2ead10404a1fa95e96c7647bd8e46d68d249c20c85f134ab1b08",
       "tasks.md": "940f16c7a5316264b35384ebb7b0e42354ad3af215faec0ccf592584c303f89f",
       "implementation-summary.md": "dc28a49fb985f0f3bf85ead0f01b518738aab1ff8601c6d66a7e1d6cbe3578d3"

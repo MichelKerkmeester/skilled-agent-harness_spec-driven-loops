@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 5: confirm-variant-parity"
 description: "The confirm variants of deep-research and deep-review either match their auto twins or carry an in-file reason for every step they omit, so an interactive run is no longer a quietly weaker run."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "confirm variant parity"
+  - "the confirm variants of deep research and deep"
 importance_tier: "normal"
 contextType: "general"
 ---

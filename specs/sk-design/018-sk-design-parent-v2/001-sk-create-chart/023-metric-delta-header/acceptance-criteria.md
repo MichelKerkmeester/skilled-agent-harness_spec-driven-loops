@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: metric and delta header block for scalar and time-series forms"
 description: "Acceptance criteria for metric and delta header."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "metric delta header acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "docs governance and closeout",
+      "docs governance and closeout every roster surface that",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "docs governance and closeout acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "docs",
+      "governance",
+      "closeout",
+      "every",
+      "roster",
+      "surface",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "A reader following any roster surface would find six external CLI modes and never learn the seventh existed",
     "created_at": "2026-09-14T17:24:50Z",
-    "last_save_at": "2026-10-03T15:11:43.884Z",
+    "last_save_at": "2026-10-07T12:54:47.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:26b6b4623f50b563b016c4a62a904f90be526770700414c334f652d6da8ab31e",
+    "source_fingerprint": "sha256:0c9815575f6d664dc42dd780cf48983bc511d96ebfaa24532a49b82f666f1615",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "33d32fbdf3797b30916113bab20de0dbc1de58b454ef940e9603844a68effd6d",
+      "spec.md": "ab917c072a86665b194a33f6a646ef7c95d184c8da8227368f482fa86ee1f1a1",
       "plan.md": "f8e7f61f4649993db6c9ef251e7eb5dd6af489aaf2979c5b745f12fbba4b33d7",
       "tasks.md": "a0bf1d38b453de86b73aeafd6262d53c7c5982c35293722a0ea6ddabd0e0ca7e",
       "implementation-summary.md": "5391aa092abf2819a03b4e7508724a35997a9d0917fb7abc4494654bf0caa5bd"

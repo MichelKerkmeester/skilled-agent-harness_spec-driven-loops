@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 2: version-authority"
 description: "Each hub declares its SKILL.md as the release authority and its five routing artifacts carry that one version, with the schema doc defining the field as one thing."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "version authority"
+  - "each hub declares its skill md as the"
 importance_tier: "normal"
 contextType: "general"
 ---

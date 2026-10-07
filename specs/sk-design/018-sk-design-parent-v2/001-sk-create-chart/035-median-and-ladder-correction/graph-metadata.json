@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "median and ladder correction",
+      "two of the three fixes in the packet",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "median and ladder correction acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "median",
+      "ladder",
+      "correction",
+      "two",
+      "three",
+      "packet",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -47,6 +47,7 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "changelog/v2.3.0.0.md",
       ".opencode/skills/sk-design/sk-design-chart/assets/templates/box-plot.html",
       ".opencode/skills/sk-design/sk-design-chart/assets/templates/dumbbell.html"
     ],
@@ -85,6 +86,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.3.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.3.0.0.md",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two geometry fixes shipped on the strength of my own reading of the captures, because the packet",
     "created_at": "2026-09-10T07:13:30Z",
-    "last_save_at": "2026-09-10T07:24:09.676Z",
+    "last_save_at": "2026-10-07T12:55:16.029Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c3c3f74561d5c5a3cbc07da53fb4331b0a3b8072b15f0db5c0f1f48d4d455087",
+    "source_fingerprint": "sha256:8676955761fa12e3e770670e4d15e8f16c3a14ac244509e62e1bd6b51b37f316",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c3277128e050a6035e69784b5869598371ca08e4fda9ec5764f98466300f8d6c",
+      "spec.md": "09ef762ae98f924b9fe7d91852749a6cee565ce938061d9c6a71905b8d349f0c",
       "plan.md": "7f9415d3b59d4142003493d371aef7596d7f4d799eaf4ba9f6202f5f21b06f94",
       "tasks.md": "5791d74cfe29bb1f3baf93bf2c8e580d27c67060a986a9463fd8f3f3d7af5bac",
       "implementation-summary.md": "f9b538c3214ec9f6c704526b5cb1eedf3d05182e203d87acb3a467683d804ee8"

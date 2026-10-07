@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Audit the agent behavior ruleset against six agent-avoidance anti-patterns and give the uncovered family one home"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "agent avoidance anti patterns acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

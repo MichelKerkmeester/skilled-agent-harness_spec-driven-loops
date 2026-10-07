@@ -48,19 +48,13 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs",
-      ".skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs",
       ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
-      ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs",
       ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts",
       ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts",
-      ".skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts",
-      ".skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts"
+      "scratch/default-diff.txt",
+      "scratch/deem-flag.txt"
     ],
     "entities": [
       {
@@ -106,33 +100,15 @@
         "source": "derived"
       },
       {
-        "name": "judge-agreement.test.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs",
-        "source": "derived"
-      },
-      {
         "name": "test-cite-drift-scan.mjs",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
         "source": "derived"
       },
       {
-        "name": "score-goal-lint.test.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs",
-        "source": "derived"
-      },
-      {
         "name": "leaf-route-replay.test.cjs",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-clarify-default.test.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs",
         "source": "derived"
       },
       {
@@ -148,39 +124,21 @@
         "source": "derived"
       },
       {
-        "name": "score-residue-flagger.test.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs",
-        "source": "derived"
-      },
-      {
         "name": "score-fanout-pairs.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "score-severity-replay.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts",
+        "name": "default-diff.txt",
+        "kind": "file",
+        "path": "scratch/default-diff.txt",
         "source": "derived"
       },
       {
-        "name": "score-stop-hint.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "score-stop-rater.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "score-jev-tiebreak.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts",
+        "name": "deem-flag.txt",
+        "kind": "file",
+        "path": "scratch/deem-flag.txt",
         "source": "derived"
       },
       {
@@ -206,11 +164,47 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Its Deem",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Twenty scorers accept `--deem`, and each arm has tests, docs and in two cases a side-by-side comparison with Jev",
     "created_at": "2026-10-02T07:54:41Z",
-    "last_save_at": "2026-10-02T17:59:26.213Z",
+    "last_save_at": "2026-10-07T12:54:51.908Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +215,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d54bdbae29585db53df77ba0d8c685b93c5644cdf2f2238e479a532b0fd1624",
+    "source_fingerprint": "sha256:8584deef6ad9709364bace1c238ef5f2902500dacafd276fb6e778b252b40c18",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7eb8b0132c5b61ba08964730e278b7c5ad660c918dc0b82fc4ee36eba1883fef",

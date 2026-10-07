@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Cut the git hook gates that guard nothing, fix the three that are broken or blind"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "git hook gate reduction acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

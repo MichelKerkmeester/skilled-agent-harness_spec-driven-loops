@@ -22,7 +22,7 @@
       "implementation tasks",
       "verification checklist",
       "task dependencies",
-      "acceptance criteria"
+      "skill surface reconciliation acceptance criteria"
     ],
     "key_topics": [
       "mcp-obsidian",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "After phase 1 the mode's own documents are wrong",
     "created_at": "2026-09-11T06:42:00Z",
-    "last_save_at": "2026-09-11T10:01:04.029Z",
+    "last_save_at": "2026-10-07T12:55:01.358Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:22ab055c079f66f7f0e9ee9b187ee945695a8754877864fb7e01c04fd0993412",
+    "source_fingerprint": "sha256:8af179bbf27d2aa266566a610d14d0a3592898aa30e3eb9e72ccfdad6dbd1b3b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fe966fec31e3ce6095e163fbf0c90e7f7e8066f9e13da2090381340a7bedca4e",

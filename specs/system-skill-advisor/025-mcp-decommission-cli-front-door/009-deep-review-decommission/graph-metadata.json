@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "deep review decommission",
+      "an author s own residue sweep searches for",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "deep",
+      "review",
+      "decommission",
+      "author",
+      "own",
+      "residue",
+      "sweep",
+      "searches",
       "implementation",
       "plan",
       "technical",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The author of a decommission sweeps for what they remember removing: the retired",
     "created_at": "2026-09-11T17:15:39Z",
-    "last_save_at": "2026-09-11T19:47:36.436Z",
+    "last_save_at": "2026-10-07T12:55:41.228Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cf0bd47e4f5067a808ce835b372ffb85e71c69491ce3c3eacab9465fdbac2d5b",
+    "source_fingerprint": "sha256:eb72b5586a6de445be231e28f504ae699a827fc9c05d634eb3ee44d97e5e8fe2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bf02e14cb916784731901056535ba46803310ad540d1fdfe477050cb0a36f7a9",
+      "spec.md": "1de105a1829ce940f8b2fc108738cd8e818967ec1e1a26bf66588d4c206bfff9",
       "plan.md": "97f94f0681853ff469b5f47356568b8fdbfd5e717e31b74e0c0c1094c91a606d",
       "tasks.md": "20ff39a3f752366cb07faae842d83bce693effe14a7936e1679efb9d09d0397a",
       "implementation-summary.md": "1b2b325da7ea8d812391495c5a5d6444068e814c403e703482b9c6da37965e02"

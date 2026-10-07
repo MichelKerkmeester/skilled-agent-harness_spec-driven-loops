@@ -17,12 +17,11 @@
       "playbooks for the modes that author a component",
       "plan core",
       "tasks core",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability",
-      "waiver adr",
+      "authoring surfaces acceptance criteria",
       "implementation summary",
-      "what shipped"
+      "what shipped",
+      "validation evidence",
+      "authoring-surfaces playbooks delivered"
     ],
     "key_topics": [
       "sk-create-agent",
@@ -36,7 +35,7 @@
       "plan",
       "core",
       "tasks",
-      "acceptance"
+      "authoring"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -202,7 +201,7 @@
     ],
     "causal_summary": "Each of these takes a request and emits a new component that something else will load",
     "created_at": "2026-09-01T11:47:59Z",
-    "last_save_at": "2026-10-03T16:44:25.897Z",
+    "last_save_at": "2026-10-07T12:55:21.987Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +211,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a8bd750043bf4b87db54bfd4644af5bef74909a7ae51cfb71ff9e0e6ff91a173",
+    "source_fingerprint": "sha256:b9395077ad91658adddff334768a03290a3e1a8f80117184acb7e5add99af8d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9799aefdff71107a2aed27c6443e5daa7ab748b4b3a63d4956c292da713ab0a3",

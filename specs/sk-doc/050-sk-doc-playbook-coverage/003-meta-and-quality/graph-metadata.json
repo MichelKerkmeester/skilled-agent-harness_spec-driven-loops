@@ -17,12 +17,11 @@
       "meta and quality mode playbooks",
       "plan core",
       "tasks core",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability",
-      "waiver adr",
+      "meta and quality acceptance criteria",
       "implementation summary",
-      "what shipped"
+      "what shipped",
+      "validation evidence",
+      "meta-and-quality playbooks delivered"
     ],
     "key_topics": [
       "sk-create-manual-testing-playbook",
@@ -202,7 +201,7 @@
     ],
     "causal_summary": "Each of these takes another mode's output as its input",
     "created_at": "2026-09-01T11:48:00Z",
-    "last_save_at": "2026-10-03T16:44:29.456Z",
+    "last_save_at": "2026-10-07T12:55:22.205Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +211,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8df104d97bfe3bd4d5681798796c6e639b7ecdd9fe308457b1f12a719429bfa",
+    "source_fingerprint": "sha256:4aa149e1a4537f3b7749830f9cd299fcb7b8fb7123b9fc01e6d1f391d8b5422c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3777a5dc101c3c6d4f6ce8e680b725ac94d38b190ef9dc0ee1d846bb12c1e51f",

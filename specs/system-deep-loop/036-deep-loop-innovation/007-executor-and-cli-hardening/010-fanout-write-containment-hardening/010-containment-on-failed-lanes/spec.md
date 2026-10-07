@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 3: containment-on-failed-lanes"
 description: "Write containment runs for every lane immediately after its process ends, before the failure, missing-artifact, stop-policy and salvage gates decide the verdict, so a failed lane's out-of-scope writes are reported and quarantined too."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "containment on failed lanes"
+  - "write containment runs for every lane immediately after"
 importance_tier: "normal"
 contextType: "general"
 ---

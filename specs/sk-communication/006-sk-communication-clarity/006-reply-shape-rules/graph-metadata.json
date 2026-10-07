@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Ten adopted candidates belong to the rule that governs how a reply reads",
     "created_at": "2026-09-12T16:39:30Z",
-    "last_save_at": "2026-09-15T05:36:50.041Z",
+    "last_save_at": "2026-10-07T12:55:02.223Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e3c83d6e1d285eebca2f11875be222f1fc145c83fbe29a48ce2811d4629fd144",
+    "source_fingerprint": "sha256:c8a9c7de4ffcd3740b3913b1a8152f49448944ef3cd2c5f3a0cba06414cfb9b5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "86abc9425cdd3f0b7cf6e90502e957de5e21845efce54be4ef7a4419b33cb924",

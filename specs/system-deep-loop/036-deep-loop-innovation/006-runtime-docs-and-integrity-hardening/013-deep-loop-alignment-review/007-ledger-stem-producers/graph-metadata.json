@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "ledger stem producers",
+      "the registered ledger vocabulary and the spellings producers",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "ledger stem producers acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "ledger",
+      "stem",
+      "producers",
+      "registered",
+      "vocabulary",
+      "spellings",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The ledger schemas register 61 dotted event stems, and a census of the nine producer surfaces found 56 of them written by no mechanical producer at all",
     "created_at": "2026-09-20T08:33:44.721Z",
-    "last_save_at": "2026-09-25T16:15:22.994Z",
+    "last_save_at": "2026-10-07T12:55:31.503Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e3c5c6800946470a3c7aafcb237185d93363cc3e3d8317f61f754616b769def6",
+    "source_fingerprint": "sha256:52c046302a4a77f68f5b63ad7af203a3eb9220e40cc04afa3a401cc39026f5dc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7b15a7d05c61f1cd89a45c9698509e687c69dff8d181db0874d0a147ed4efc94",
+      "spec.md": "e7cf5cff978bdc28fa951bc72fc44c1d148fbc36eb6f1aa571a7a802215b9cd3",
       "plan.md": "1ba294c3c8173afa64d22c5f6b29ebf93e12299c9cfb859161227f0e6bcda6eb",
       "tasks.md": "ee6084d6d134248351a4d56a1cf9ae469b34ff316bdd45c8cd1669ff2c502b77",
       "implementation-summary.md": "aaebefde467e8afac8966e002d3bef70439fd272d735618e1daf7c2bcf20ffe6"

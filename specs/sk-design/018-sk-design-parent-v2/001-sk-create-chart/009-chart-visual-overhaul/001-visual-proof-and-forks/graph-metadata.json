@@ -21,8 +21,8 @@
       "chart chrome proof tasks",
       "fork comparison tasks",
       "chart decision tasks",
-      "acceptance criteria",
-      "closure gate"
+      "visual proof and forks acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
       "chart",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Twenty templates share one visual register, so any chrome change is a twenty-file change",
     "created_at": "2026-09-03T08:02:24.685Z",
-    "last_save_at": "2026-09-06T14:59:18.057Z",
+    "last_save_at": "2026-10-07T12:55:06.806Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7347179b8df61f2811707dea80b2a26eb600d84dba19bd50b903ffbe488767fe",
+    "source_fingerprint": "sha256:9438870708047b30371eb4e1ed38b8e113eac78b6cb4e9a29493812178302a7f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ebb523114f2e9093370752d90af530720866bcb0a90591846b12b8c7f8b79462",

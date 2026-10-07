@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 10: design-md-style-reference"
 description: "Theme a diagram delivery from a local v3 DESIGN.md Style Reference, gated the way the chart sibling already is."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "design md style reference"
+  - "theme a diagram delivery from a local v3"
 importance_tier: "normal"
 contextType: "general"
 ---

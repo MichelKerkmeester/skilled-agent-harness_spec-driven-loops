@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 3: context-type-unification"
 description: "Make one allowed `contextType` list govern spec docs and skill docs, and bring the outliers into line."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "context type unification"
+  - "make one allowed contexttype list govern spec docs"
 importance_tier: "normal"
 contextType: "general"
 ---

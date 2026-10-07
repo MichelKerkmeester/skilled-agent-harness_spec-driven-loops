@@ -2,10 +2,7 @@
 title: "Feature Specification: Phase 4: hermes-runtime-folder"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "hermes runtime folder"
 importance_tier: "normal"
 contextType: "general"
 ---

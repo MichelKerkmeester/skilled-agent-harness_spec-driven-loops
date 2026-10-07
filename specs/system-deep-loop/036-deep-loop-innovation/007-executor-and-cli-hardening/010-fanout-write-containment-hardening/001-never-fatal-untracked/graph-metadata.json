@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "never fatal untracked",
+      "under preserve an out of scope untracked path",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "never fatal untracked acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
+      "never",
+      "fatal",
+      "untracked",
+      "preserve",
       "scope",
-      "success",
-      "criteria",
+      "path",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The write-containment guard failed a fan-out iteration whenever an untracked file appeared outside the lane's packet tree, even under the preserve remedy, where nothing is ever rolled back",
     "created_at": "2026-09-20T08:33:40.699Z",
-    "last_save_at": "2026-09-25T16:15:23.303Z",
+    "last_save_at": "2026-10-07T12:55:32.541Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5297e29553c6c20c9bd052e684cae1bd56b39b9dbd7f23e89db5a8226f4f6413",
+    "source_fingerprint": "sha256:c56e41f2f028eed2143b0cdea93ac18ce2e43d36a7f3751299bbb1f04005a470",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "604f2de7eb32ab5e97cd07baa6f539019356e1ebd2b6eaf389ba049aa61949b9",
+      "spec.md": "a8ee30e0f229b5c68d96c2120f231ec6b4e06e126f6bb0209cc6d47f635b9ce2",
       "plan.md": "f4eb3f2fcfbf5087cc45a74811e9c17cb8e98fdccdfe676ae695e8ecec0554c3",
       "tasks.md": "449fbe89f9d341b4f3d3cc771da4078c09b3e1d9c4cc92df130ef1a37f765f34",
       "implementation-summary.md": "5015cd6a6b20ce9f1b55f05a910d19f93b8f4c8120ddb7d90164de39234a5c10"

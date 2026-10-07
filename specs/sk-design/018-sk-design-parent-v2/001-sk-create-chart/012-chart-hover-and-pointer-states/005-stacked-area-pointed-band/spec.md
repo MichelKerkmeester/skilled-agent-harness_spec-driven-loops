@@ -2,10 +2,8 @@
 title: "Feature Specification: Give stacked-area a hover card naming the pointed band"
 description: "stacked-area carries a legend and a dim but no tooltip. Its bands are full-width paths, so a pointer identifies a series and never an x position. This phase transfers the pointer excerpt unchanged, registers each band as its own mark and amends the contract row phase 1 wrote so the recorded contract matches the pointed-band readout that was actually built."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "stacked area pointed band"
+  - "stacked area carries a legend and a dim"
   - "stacked-area tooltip"
   - "pointed band readout"
 importance_tier: "normal"

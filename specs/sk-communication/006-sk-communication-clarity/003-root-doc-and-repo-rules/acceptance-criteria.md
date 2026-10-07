@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Phase 3: root-doc-and-repo-rules"
 description: "The criteria this packet must satisfy before it may be closed, one row per requirement in this phase's spec."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "root doc and repo rules acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

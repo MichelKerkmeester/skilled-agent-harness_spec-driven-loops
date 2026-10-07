@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Close every deferral the packet left: repair the pointer-only readings, enforce the readout rule, and require a contract row per form"
 description: "Nine criteria covering the three table repairs, the two new corpus rules and their four mutation proofs, the constraint that nothing gains a runtime, and the requirement that the parent packet carry no remaining deferral."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "close the deferrals acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

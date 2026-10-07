@@ -21,8 +21,8 @@
       "latest iteration record merge",
       "cli lineage findings contract tasks",
       "findings not enumerated tasks",
-      "acceptance criteria",
-      "closure gate"
+      "cli lineage findings contract acceptance criteria",
+      "cli lineage findings contract summary"
     ],
     "key_topics": [
       "cli",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "A `/deep:research` fan-out with two CLI lineages, DeepSeek V4.1 Flash on cli-pi and GPT-6 Luna on cli-codex, finished all ten iterations, and every iteration passed `verify-iteration.cjs`",
     "created_at": "2026-10-04T13:23:40Z",
-    "last_save_at": "2026-10-06T18:48:40.379Z",
+    "last_save_at": "2026-10-07T12:55:37.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0daf92483725e2212549b770074e72d68d8ea10b9da894e32890d217d93b02ff",
+    "source_fingerprint": "sha256:5bd1b1ee414669b2011a90a6b58b437721702c211955d05546ee6b7d5eca23bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b25dc331563b5c6f6d2ca372d4b958426bf346e034f07b1b264ed96bf7fb1219",

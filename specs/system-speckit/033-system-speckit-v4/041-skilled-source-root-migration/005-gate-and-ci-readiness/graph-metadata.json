@@ -59,8 +59,8 @@
       ".opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/check-agent-mirror-sync.vitest.ts",
-      ".opencode/scripts/git-hooks/README.md",
-      "tests/README.md"
+      "shared/tests/README.md",
+      ".opencode/scripts/git-hooks/README.md"
     ],
     "entities": [
       {
@@ -174,7 +174,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/scripts/git-hooks/README.md",
+        "path": "shared/tests/README.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The repository's gates look for their own scripts at one literal root, `$REPOROOT/.opencode/`, and most of them read a missing script as a reason to skip",
     "created_at": "2026-09-16T17:54:07Z",
-    "last_save_at": "2026-09-17T09:16:05.948Z",
+    "last_save_at": "2026-10-07T12:55:50.640Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:452da12914668dfd3328488a8eff720b7b43a65d9ae90efbcb3fc0f5bfbe50ed",
+    "source_fingerprint": "sha256:bd211393e4dc059e0c4e7a9170eda9d6fc78868e3a265a2931b1431cef15623a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5ec584eb9a48d81a8041f8ec35bff170b9bcc281b9b1b5051381c7c67e3b8546",

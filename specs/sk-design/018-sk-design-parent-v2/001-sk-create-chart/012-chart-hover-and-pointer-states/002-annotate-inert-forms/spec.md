@@ -2,10 +2,8 @@
 title: "Feature Specification: Annotate the six inert forms"
 description: "Six chart forms already print every value they encode beside the mark that carries it, so a hover card would only repeat what the reader is looking at. Phase 1 gave the corpus a way to say so. This phase says it, on each of the six."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "annotate inert forms"
+  - "six chart forms already print every value they"
 importance_tier: "normal"
 contextType: "general"
 ---

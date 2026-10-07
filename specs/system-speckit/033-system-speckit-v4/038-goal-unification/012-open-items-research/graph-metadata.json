@@ -11,10 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "open items research",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +19,24 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive",
+      "completion criteria"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "open",
+      "items",
+      "research",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions",
+      "testing",
+      "strategy",
+      "task"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-12T08:16:28Z",
-    "last_save_at": "2026-09-25T16:15:27.772Z",
+    "last_save_at": "2026-10-07T12:55:48.826Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:1fbc0b16d7b3a78b7d59010e02aaf054d0e8358e61330b77e6a427c7db26c755",
+    "source_fingerprint": "sha256:98e0a50eb32d151a19e8529cb2cc3aa8815498f3cca0d5adb1c8bfb67ad7e326",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "37156583a359433862cea19f24754df91f91f073656514130aa0f097633cc50f",
+      "spec.md": "a9d912410b033aa67b82415dd40b2cf7e46f2f26d80dab75655b1baa2c319383",
       "plan.md": "4262b2ba14d9c07e42887beef3abcf0fa014f877e306f40f7fd9726f3eb4ef2d",
       "tasks.md": "5a5889158574d8991ae07717e8ae75d6c3df510d406539e4ed9e083d45f0db75",
       "implementation-summary.md": "1811af2e0d2ae525c9267f6c652d5fdea14dca1d96e8c115961c6702b1dbda98",

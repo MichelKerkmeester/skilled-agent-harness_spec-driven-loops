@@ -21,8 +21,8 @@
       "doctor scripts tasks",
       "doctor scripts verification",
       "doctor test runner tasks",
-      "acceptance criteria",
-      "closure gate"
+      "doctor scripts conformance acceptance criteria",
+      "doctor scripts conformance summary"
     ],
     "key_topics": [
       "doctor",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "An audit of the twelve doctor scripts on 2026-10-03 found:",
     "created_at": "2026-10-03T17:24:50Z",
-    "last_save_at": "2026-10-03T18:18:30.046Z",
+    "last_save_at": "2026-10-07T12:55:54.944Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e59c9478efed0181f4f03390ad8f80b1d2b8af10b25c8937cc5cfc9a974afd1",
+    "source_fingerprint": "sha256:2e139b111453b517c01eba0ceb9ca1f20bb6e6e3693e87c3966be648f5442aff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8d5d95e8054a366cc31fef3f942699ad64db512a64cb3dafcc3c00b21880056c",

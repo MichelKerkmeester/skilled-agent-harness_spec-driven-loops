@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 15: evidence rule seam links"
 description: "The most referenced rule in the corpus pointed at nothing, so four other rules named its territory while it never named theirs."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "evidence rule seam links"
+  - "the most referenced rule in the corpus pointed"
 importance_tier: "normal"
 contextType: "general"
 ---

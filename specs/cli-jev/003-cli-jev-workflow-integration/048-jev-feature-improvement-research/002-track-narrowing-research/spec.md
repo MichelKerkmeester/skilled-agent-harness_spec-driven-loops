@@ -2,10 +2,8 @@
 title: "Feature Specification: Research: improve the Jev spec-track narrowing (017)"
 description: "Five DeepSeek V4.1 Flash and three GPT-6 Luna research iterations on how to improve, refine and expand the Jev spec-track narrowing, measured in feature 017 as verdict jev: keep K=256 M=256 A=97 B=68 W=78 L=49 F=47 p=0.006330."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "track narrowing research"
+  - "five deepseek v4 1 flash and three gpt"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,8 @@
 title: "Feature Specification: Give daily-range its first pointer contract, low and high, never a midpoint"
 description: "daily-range carries no interaction register at all today. Each day's minimum and maximum exist only as the two endpoints of its bar. This phase transfers the pointer excerpt, adds the hygiene line this file alone is missing and registers every drawable bar with two rows, low then high, never a midpoint."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "daily range endpoints"
+  - "daily range carries no interaction register at all"
   - "daily-range tooltip"
   - "daily-range hygiene line"
 importance_tier: "normal"

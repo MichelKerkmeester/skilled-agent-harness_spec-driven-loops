@@ -2,10 +2,8 @@
 title: "Feature Specification: The register and the recorded contract"
 description: "check-corpus.cjs has no way for a chart form to declare that it correctly answers a pointer with nothing, and references/template-contract.md does not yet record what any of the 21 forms' pointer contracts are. This phase lands the fourth register and writes every contract down, with nothing annotated yet, so the corpus stays green the day the rule arrives."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "register and contract"
+  - "check corpus cjs has no way for a"
 importance_tier: "normal"
 contextType: "general"
 ---

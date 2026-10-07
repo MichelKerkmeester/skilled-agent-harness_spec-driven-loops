@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "closeout",
+      "four phases closed with items recorded rather than",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "closeout acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "closeout",
+      "four",
+      "phases",
+      "closed",
+      "items",
+      "recorded",
+      "rather",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -48,7 +48,6 @@
       "goal.md",
       "implementation-summary.md",
       ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
-      ".opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json",
       ".opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs",
       ".opencode/skills/sk-design/sk-design-chart/references/color-system.md"
     ],
@@ -93,12 +92,6 @@
         "name": "check-corpus.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "palettes.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Four phases closed with items recorded rather than done",
     "created_at": "2026-09-09T17:46:09Z",
-    "last_save_at": "2026-09-09T18:21:21.597Z",
+    "last_save_at": "2026-10-07T12:55:12.308Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:26109740731f52c3874898a06bb340606c4fd381b2465456ad61a8c7fa663f3b",
+    "source_fingerprint": "sha256:8a948a3a31bbfc8004e5a60471e06fcffc28f0dd4bf6a3b1affbaf301a6e79bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d9f871bc7e6429341dfece274ce6475176c51a6e6ba1275645f956da7af4f9b4",
+      "spec.md": "55f0cdbf629a9abdc59ad046d402378ed1ca37e6b12253957693741f3ee9631f",
       "plan.md": "12612f9f644a68e3e85ab16d0883a6b208bf28d65f22223071ea40cb65d07f3c",
       "tasks.md": "c528200d97bfd072e7a4f36938cd45e713488ea9627d43c5a4ae7c7e3750f0a9",
       "implementation-summary.md": "3648824cc39fbd4f003b8896c3beab14a880d2eb3641840d1e8086b4c97c7dcb"

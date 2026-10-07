@@ -22,7 +22,7 @@
       "decommissioned server tasks",
       "doctor removal tasks",
       "residue cleanup tasks",
-      "acceptance criteria"
+      "sequential thinking residue removal acceptance criteria"
     ],
     "key_topics": [
       "sequential",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Commit `edff3a4c161` decommissioned the Sequential Thinking MCP server: it deleted the install guide, deleted the installer script, and unregistered the server from `opencode.json`",
     "created_at": "2026-08-31T13:24:32Z",
-    "last_save_at": "2026-09-11T16:42:46.952Z",
+    "last_save_at": "2026-10-07T12:55:43.543Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10ae9979dad8566597abfc5b402799d0a9b373e407979ba487a415f4e04cc66b",
+    "source_fingerprint": "sha256:f0b7eec267bc90048a355ae05edfe5512595a795b0d83370cdd2db31e9267cfb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8485ff6d5d17f89b7274b60916887d1264868f3306ce2b440932ebc196967425",

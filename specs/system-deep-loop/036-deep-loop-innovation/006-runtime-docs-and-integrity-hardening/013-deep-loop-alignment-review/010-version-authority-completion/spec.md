@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 10: version-authority-completion"
 description: "The two hubs that phase 003 recorded out of scope now carry one version across their routing artifacts, sk-doc's missing release entry is authored, and the sk-code packet versions are recorded as independent rather than aligned."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "version authority completion"
+  - "the two hubs that phase 003 recorded out"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "closure and routing proof",
+      "every phase in this packet reported success against",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "closure and routing proof acceptance criteria",
+      "closure decisions"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
+      "closure",
+      "routing",
+      "proof",
+      "every",
+      "phase",
+      "packet",
+      "reported",
       "success",
-      "criteria",
+      "against",
       "implementation",
       "plan",
-      "technical",
-      "approach"
+      "technical"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -50,11 +50,9 @@
       "implementation-summary.md",
       ".opencode/skills/sk-design/graph-metadata.json",
       ".opencode/skills/mcp-tooling/graph-metadata.json",
-      ".opencode/skills/sk-communication/graph-metadata.json",
       ".opencode/skills/sk-doc/graph-metadata.json",
       ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
       ".opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
-      "specs/sk-design/016-deprecate-sk-design-interface/spec.md",
       "specs/sk-design/018-sk-design-parent-v2/scratch/routing-after-005.txt"
     ],
     "entities": [
@@ -205,7 +203,7 @@
     ],
     "causal_summary": "Every phase in this packet closed against evidence it gathered itself, at the moment it ran",
     "created_at": "2026-09-06T13:52:17Z",
-    "last_save_at": "2026-09-06T15:52:26.113Z",
+    "last_save_at": "2026-10-07T12:55:17.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +215,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:63636b280ba7c6b6dc5e2cc05cb8d06bd0c3439ecf427aec930d7ba3b14d738d",
+    "source_fingerprint": "sha256:0f07de73de5d234905a158b12682262d78ff88eef04e6b0a0f173268b5d39cf5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "597d1bad239438c2664f902b464a5e3b5dc78d2cf06828c6b13676bdf85f6c93",
+      "spec.md": "8c3a4259d83d5e390d47d0b22b924061de34840fccf056aee812c16e3776d01a",
       "plan.md": "cf3854e25b1540a77ce22644c629f135532108155ed760e1836dfa5b38ef2692",
       "tasks.md": "b19f190d8417c0da0db619e58b78f1a03223e19e1e1932b3fafafc0cf8919718",
       "decision-record.md": "41c2332e2e3cb4de68de83fa06afa6b1cd094ed599af42a580b1354dfb3cf626",

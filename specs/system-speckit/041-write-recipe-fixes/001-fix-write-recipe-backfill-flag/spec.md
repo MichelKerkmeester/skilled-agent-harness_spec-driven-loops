@@ -2,10 +2,8 @@
 title: "Feature Specification: Correct the graph metadata backfill command in the spec folder write recipe"
 description: "Step 5 of the spec folder write recipe passed --root to the graph metadata backfill, which exits 1. The folder must be the positional argument."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "fix write recipe backfill flag"
+  - "step 5 of the spec folder write recipe"
 importance_tier: "normal"
 contextType: "general"
 ---

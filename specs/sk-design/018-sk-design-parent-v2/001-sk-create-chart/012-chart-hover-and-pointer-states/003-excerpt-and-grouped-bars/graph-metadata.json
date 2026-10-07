@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "excerpt and grouped bars",
+      "box plot html carries a working hover and",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "excerpt and grouped bars acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "excerpt",
+      "grouped",
+      "bars",
+      "box",
+      "plot",
+      "html",
+      "carries",
+      "working",
+      "hover",
       "implementation",
       "plan",
-      "technical",
-      "approach"
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -46,8 +46,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      "scripts/README.md",
-      "scratch/grouped-bars.pre-phase3.html"
+      "scripts/README.md"
     ],
     "entities": [
       {
@@ -84,12 +83,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": "scripts/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "grouped-bars.pre-phase3.html",
-        "kind": "file",
-        "path": "scratch/grouped-bars.pre-phase3.html",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`box-plot.html` carries a complete, working hover card, a click-to-pin path, a reduced-motion guard and a no-script fallback, all self-contained, because `REQ-008` forbids any file in this corpus from depending on a shared runtime",
     "created_at": "2026-09-05T16:03:56Z",
-    "last_save_at": "2026-09-06T14:59:20.140Z",
+    "last_save_at": "2026-10-07T12:55:07.087Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +206,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:92caf93a263804d07f938892e661a1ded41a5be64474e6221188020d0cefb2c5",
+    "source_fingerprint": "sha256:f69781792fbef239209df0e145f989a45929b7d0cd5e1919d4816a27895ed55c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b2b87053065d909e35116d6c7af5b83135419bcb53e5870792c713ddcb42bcfd",
+      "spec.md": "29730b095b3c423cf59ef598bae167048865aaeba9b2494583d897a69750df85",
       "plan.md": "d6e7a227a8e0f6e090c67c5fb74c381af4aea4e96f7e3ffd2f852f027e7968ae",
       "tasks.md": "47d3a11eef11b125863f41d1edaf4e188dd42e177183628ec887156b7c784535",
-      "implementation-summary.md": "2bd8cb961fdc754cd0170a6be1dec6f31445d9024221d9c015f631d261a941bf"
+      "implementation-summary.md": "4a3fe5b05fa11243f04d8a5afd7902395ef9811ba7cabde232bdf5318363ee58"
     },
     "last_active_at": null
   }

@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "recorded adjacent defects",
+      "the seven defects earlier phases measured and recorded",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "recorded adjacent defects acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "recorded",
+      "adjacent",
+      "defects",
+      "seven",
+      "earlier",
+      "phases",
+      "measured",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Four phases of this packet each ended by recording defects they had measured but not fixed, on the reasoning that the surface belonged to another track",
     "created_at": "2026-09-20T08:33:45.665Z",
-    "last_save_at": "2026-09-25T16:15:23.090Z",
+    "last_save_at": "2026-10-07T12:55:32.156Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:604a1e8e2f032168d8d09526233dde7236abbedc44f4b9eaf8924da8e6c2dee8",
+    "source_fingerprint": "sha256:262c07593bedce58be507b341eb9d99748219b73e04aa7f339140d057543f856",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2d8e340b31d78ac69960593c1f715a67e3a25e857472142b9a8bea9b169926e0",
+      "spec.md": "99a73d33c30870bdc35490f151bd0e262c3f88c2e159420985d8cc52f60f8364",
       "plan.md": "bcd50cfdd1dc2ce552ce58c17cb87984d6a9f9460e5ac48e84cf31c1aa852d1f",
       "tasks.md": "705391abe457c4686199dbfd5995e7edfde4b3a4f7f82a39b065d274cd66c088",
       "implementation-summary.md": "adab54e675b2c7ba601092fd03d4ab20f20e48d39c8a246ba11e9f87b2e5b5cb"

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-visual-explanation-output-medium"
+    packet_pointer: "sk-communication/004-visual-explanation-output-medium"
     last_updated_at: "2026-09-12T10:00:14Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

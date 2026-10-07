@@ -14,29 +14,28 @@
       "spec core",
       "plan core",
       "tasks core",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability",
-      "waiver adr",
+      "transport and baseline acceptance criteria",
       "packet goal",
       "durable directive",
       "completion criteria",
       "goal binding",
-      "transport baseline summary"
+      "transport baseline summary",
+      "which scorer governs routing",
+      "confidence floor 0.82"
     ],
     "key_topics": [
       "spec",
       "core",
       "plan",
       "tasks",
+      "transport",
+      "baseline",
       "acceptance",
       "criteria",
-      "closure",
-      "gate",
-      "traceability",
-      "waiver",
-      "adr",
-      "packet"
+      "packet",
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -199,7 +198,7 @@
     ],
     "causal_summary": "Two scorers answer the same question",
     "created_at": "2026-09-02T16:34:04Z",
-    "last_save_at": "2026-10-03T15:12:09.538Z",
+    "last_save_at": "2026-10-07T12:55:22.469Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +209,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40b08dfbd8ff5498c72e4710712e7a18f221b0e7627ca5c1dc7bd279a964efcb",
+    "source_fingerprint": "sha256:d7cb210ab365f2ae1af1d63e114f968746b27501ebc959ee3b49590634adae16",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7f42fb49a48718798483252b65d9e1a6ea5325a9ba5a0ccab20fa7acf4a827a4",

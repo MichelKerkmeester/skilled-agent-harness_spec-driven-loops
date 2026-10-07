@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-excerpt-and-grouped-bars"
+    packet_pointer: "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/003-excerpt-and-grouped-bars"
     last_updated_at: "2026-09-05T16:03:56Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"

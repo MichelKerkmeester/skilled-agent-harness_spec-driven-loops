@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "close silent preflight holes",
+      "the dispatch preflight is the only surface that",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "close silent preflight holes acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "close",
+      "silent",
+      "preflight",
+      "holes",
+      "dispatch",
+      "only",
+      "surface",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The dispatch preflight is the only surface that can refuse an incorrect `cli-` dispatch before it runs, and six conditions let it approve one silently",
     "created_at": "2026-09-15T16:29:31Z",
-    "last_save_at": "2026-09-15T18:12:08.004Z",
+    "last_save_at": "2026-10-07T12:54:46.851Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e980eb9902090a21d7905cbb1c457c44de22b4e30f90357d3763f64d807d3405",
+    "source_fingerprint": "sha256:1c5dbb97a1093d129a0eaeed5a6459caedcf447ade376bdde0b12fa446115f77",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fb3cbb1f05366646c84c37a4baac1a013393493c5fbdc69312c85c2a0f2abe7a",
+      "spec.md": "ee7191b554719195b648ff3ddc965f938b89300681175b6c76c91d8642f07808",
       "plan.md": "a36b00999be79e1135f00cea9b9f8d6baf1377831276070aa6631acbe051b420",
       "tasks.md": "02e201f503e215cb504fede162f5cd401cc6213a7c8e2514d6adfebb48a63f47",
       "implementation-summary.md": "d8847f916dca6cfeaea63aa60ff26dc42cf33a4fbf37ba53b75c1251103e1889"

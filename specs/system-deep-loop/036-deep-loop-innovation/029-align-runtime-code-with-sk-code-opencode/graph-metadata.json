@@ -57,10 +57,10 @@
       ".skilled/skills/sk-code/sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md",
       ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
       ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
-      "scratch/loop-state/system-deep-loop-header.log",
       "scratch/loop-state/system-deep-loop-sections.done",
-      "scratch/loop-state/system-deep-loop-readme.log",
-      ".skilled/scripts/run-node-tests.mjs"
+      ".skilled/scripts/run-node-tests.mjs",
+      "data/README.md",
+      ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs"
     ],
     "entities": [
       {
@@ -154,27 +154,27 @@
         "source": "derived"
       },
       {
-        "name": "system-deep-loop-header.log",
-        "kind": "file",
-        "path": "scratch/loop-state/system-deep-loop-header.log",
-        "source": "derived"
-      },
-      {
         "name": "system-deep-loop-sections.done",
         "kind": "file",
         "path": "scratch/loop-state/system-deep-loop-sections.done",
         "source": "derived"
       },
       {
-        "name": "system-deep-loop-readme.log",
-        "kind": "file",
-        "path": "scratch/loop-state/system-deep-loop-readme.log",
-        "source": "derived"
-      },
-      {
         "name": "run-node-tests.mjs",
         "kind": "file",
         "path": ".skilled/scripts/run-node-tests.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "data/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Code under `.skilled/skills/system-deep-loop/runtime/` does not follow the sk-code-opencode comment and structure rules in `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md` §2 and §4",
     "created_at": "2026-09-30T05:43:46Z",
-    "last_save_at": "2026-09-30T22:06:48.496Z",
+    "last_save_at": "2026-10-07T12:55:37.869Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3646cc31320748173b0d17dddcae8345b9a3344b51f90e003159fae4751d62e8",
+    "source_fingerprint": "sha256:0de53d73869c7f2875ab8a653f02e159920720c4eb5b6919f12bfee473c2d849",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "145e4f70495b87177fdef412633d343f68a6b8b25917665878fb8ff08e9a6881",

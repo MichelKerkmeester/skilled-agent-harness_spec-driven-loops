@@ -46,13 +46,9 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-communication/benchmark/reply-harness/cases.json",
-      ".opencode/skills/sk-communication/benchmark/README.md",
       "scratch/model-step.md",
-      ".opencode/skills/sk-communication/changelog/v1.3.0.0.md",
       "runs/sonnet/results/compare.txt",
       "runs/results/before.json",
-      ".codex/AGENTS.md",
       "runs/results/after.json",
       "runs/results/compare.txt"
     ],
@@ -88,27 +84,9 @@
         "source": "derived"
       },
       {
-        "name": "cases.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-communication/benchmark/reply-harness/cases.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/benchmark/README.md",
-        "source": "derived"
-      },
-      {
         "name": "model-step.md",
         "kind": "doc",
         "path": "scratch/model-step.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.3.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/changelog/v1.3.0.0.md",
         "source": "derived"
       },
       {
@@ -121,12 +99,6 @@
         "name": "before.json",
         "kind": "config",
         "path": "runs/results/before.json",
-        "source": "derived"
-      },
-      {
-        "name": "AGENTS.md",
-        "kind": "doc",
-        "path": ".codex/AGENTS.md",
         "source": "derived"
       },
       {
@@ -200,11 +172,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Result Interpretation Both",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Nothing in this repository measures whether a communication rule changes a reply",
     "created_at": "2026-09-12T12:44:38Z",
-    "last_save_at": "2026-09-15T07:06:03.658Z",
+    "last_save_at": "2026-10-07T12:55:02.251Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +210,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5632dc96cf22c460ee693668a20eb84dc477b9f316ed641f3da670ad0eea967b",
+    "source_fingerprint": "sha256:e1c6f7be3f658493266f3f709902d7a562527462de837e4843a32df4333f29a6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8347f243987d06d4f096fccf267e8e12dbb121033e7b1bd391fa63fa55e59fbc",

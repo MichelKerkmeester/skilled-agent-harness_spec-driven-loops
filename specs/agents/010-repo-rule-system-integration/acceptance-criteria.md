@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Extend the repo-rule system across the wider system and shrink AGENTS.md where content no longer earns a full writeup"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "repo rule system integration acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

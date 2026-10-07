@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: visual polish pass on the chart corpus"
 description: "Acceptance criteria for the visual polish pass on the chart corpus."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "visual polish acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

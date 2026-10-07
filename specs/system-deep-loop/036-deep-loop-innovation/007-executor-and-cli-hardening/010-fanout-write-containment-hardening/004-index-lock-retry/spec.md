@@ -2,10 +2,8 @@
 title: "Feature Specification: Retry a git call that lost an index.lock race with another session, and record on the ledger when one still failed"
 description: "A git call inside write containment that loses to another session's index.lock retries with backoff before failing open, and an exhausted retry is recorded on the fan-out ledger as a warning naming the command."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "index lock retry"
+  - "a git call inside write containment that loses"
 importance_tier: "normal"
 contextType: "general"
 ---

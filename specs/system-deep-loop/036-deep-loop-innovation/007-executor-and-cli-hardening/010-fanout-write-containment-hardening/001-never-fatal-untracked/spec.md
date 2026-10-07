@@ -2,10 +2,8 @@
 title: "Feature Specification: Under preserve, an out-of-scope untracked path is advisory and never fails the lane, so a neighbour's new file cannot halt a fan-out"
 description: "Under preserve, an out-of-scope untracked path is an advisory and never fails a fan-out lane, so a neighbour dropping a new file cannot halt it."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "never fatal untracked"
+  - "under preserve an out of scope untracked path"
 importance_tier: "normal"
 contextType: "general"
 ---

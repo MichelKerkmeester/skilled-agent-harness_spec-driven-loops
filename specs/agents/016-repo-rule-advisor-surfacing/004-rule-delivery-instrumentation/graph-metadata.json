@@ -18,11 +18,11 @@
       "rule delivery instrumentation plan",
       "gate 5 miss rate plan",
       "rule delivery instrumentation tasks",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability",
-      "waiver adr",
-      "packet goal"
+      "rule delivery instrumentation acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "rule",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The evidence pack counts a rule as read only when the `Read` tool named its path, so shell reads and hook injections are missed and the counts undercount (`002-rule-concision-and-loading/prep/evidence-pack.md` §2)",
     "created_at": "2026-10-04T14:39:56Z",
-    "last_save_at": "2026-10-04T20:48:10.771Z",
+    "last_save_at": "2026-10-07T12:54:42.791Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6c189d3a74b04de56d99ae84e90ea7f634f063965442099d54d90372d9869fbe",
+    "source_fingerprint": "sha256:a7132cc2bb4c3b7e2f2a904e728e1ceea3ae79c44e5adfd129d3302e2e9b207c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "553363a6b2076bb3af9388e89df4fb402d9ade5ecebe4fb2fedf878d5d88842f",

@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 16: code standards alignment"
 description: "An audit of the code this program added against the OpenCode surface standards and the restraint rule. One documentation gap was real, one suspected dead branch was not, and four candidate cuts were checked and declined."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "code standards alignment"
+  - "an audit of the code this program added"
 importance_tier: "normal"
 contextType: "general"
 ---

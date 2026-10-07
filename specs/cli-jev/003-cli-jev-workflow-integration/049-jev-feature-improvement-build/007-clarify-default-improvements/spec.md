@@ -2,10 +2,8 @@
 title: "Feature Specification: Build: improve the Jev routing clarify default (020)"
 description: "The clarify scorer scores only rows that still clarify, reports by class and hub against an always-none baseline, records its instrument and spends fewer calls."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "clarify default improvements"
+  - "the clarify scorer scores only rows that still"
 importance_tier: "normal"
 contextType: "general"
 ---

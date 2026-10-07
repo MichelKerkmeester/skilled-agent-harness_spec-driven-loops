@@ -2,10 +2,8 @@
 title: "Feature Specification: Remove em-dashes from authored READMEs, per the Human Voice Rules"
 description: "The Human Voice Rules carry an explicit Em Dash Ban: never use one, prefer a comma, full stop or colon. 149 authored READMEs carried 909 of them. The rule has been written down and unenforced, so every README reads with the punctuation the rules name"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "readme human voice"
+  - "the human voice rules carry an explicit em"
 importance_tier: "normal"
 contextType: "general"
 ---

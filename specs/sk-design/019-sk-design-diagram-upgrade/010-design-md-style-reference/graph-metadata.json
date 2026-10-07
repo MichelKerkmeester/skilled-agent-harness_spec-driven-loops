@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "design md style reference",
+      "theme a diagram delivery from a local v3",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "design md style reference acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "design",
+      "style",
+      "reference",
+      "theme",
+      "diagram",
+      "delivery",
+      "local",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The diagram skill has one colour system: `assets/color/diagram-palette.json`, applied by `apply-diagram-tokens.cjs`",
     "created_at": "2026-09-11T03:52:48Z",
-    "last_save_at": "2026-09-11T16:42:00.340Z",
+    "last_save_at": "2026-10-07T12:55:21.244Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2125aee49c02229f1b51ef18cd97c53f6ca69f22e2626b035112799d87d45957",
+    "source_fingerprint": "sha256:334f2b3f983eb13084bbf1753695ff428491cb20abfe82043fef831d609f3f70",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0d8f77ddc8728f0b50b3deb88378e5eae83c2f6f4bf3a5ccc7cc4b8809ea66d5",
+      "spec.md": "9ae8ae19f4241e762c7077025ddfc2f1ec3ef15b502698d763aeda4ab8c96877",
       "plan.md": "1363e65f9d95fa4ca10139da4027a23ef37efd2dfe30a6d86e8c5ecf5b5820a9",
       "tasks.md": "8c614c8a3aff11497811ce870be3024488841065b32db7724f05752c92bc63a8",
       "implementation-summary.md": "31f66195c068419ec989769e867c6836873ea8ea985443a4269b113b225ce694"

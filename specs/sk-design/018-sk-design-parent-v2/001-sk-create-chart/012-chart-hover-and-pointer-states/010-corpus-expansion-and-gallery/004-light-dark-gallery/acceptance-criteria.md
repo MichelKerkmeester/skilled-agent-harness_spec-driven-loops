@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Generate one gallery page rendering every form in both colour schemes"
 description: "Six criteria: generated not authored, both schemes per form, the rule watched failing in both directions, nothing external, and the page held to its own obligation rather than the chart rules."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "light dark gallery acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

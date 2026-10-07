@@ -2,10 +2,8 @@
 title: "Feature Specification: remove the gallery and re-render every capture"
 description: "The operator asked for the gallery to go. It went, with the height poster, two checker families and three cases that existed only for it, and every capture was rebuilt from the final sources."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "remove gallery"
+  - "the operator asked for the gallery to go"
 importance_tier: "normal"
 contextType: "general"
 ---

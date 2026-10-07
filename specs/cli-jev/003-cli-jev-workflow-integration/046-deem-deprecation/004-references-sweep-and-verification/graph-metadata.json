@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phases 002 and 003 remove the code and the hub's mode",
     "created_at": "2026-10-02T07:54:43Z",
-    "last_save_at": "2026-10-02T17:59:29.223Z",
+    "last_save_at": "2026-10-07T12:54:51.945Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a44068d5fefa18378e06d29a9c17ddd3334d7f50656fa0530faaef26c7550c00",
+    "source_fingerprint": "sha256:1497252b47edf3f077ca617b68afc1531610abc8b24df18d080ca05a41e2057d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "03ec37146921df1536965b482bcf27df4a2586462cd11e0a5fd81c24622814e2",

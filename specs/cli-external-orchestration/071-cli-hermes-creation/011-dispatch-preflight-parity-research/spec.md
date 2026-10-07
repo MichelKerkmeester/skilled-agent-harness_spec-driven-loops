@@ -2,10 +2,7 @@
 title: "Feature Specification: Phase 1: dispatch-preflight-parity-research"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "dispatch preflight parity research"
 importance_tier: "normal"
 contextType: "general"
 ---

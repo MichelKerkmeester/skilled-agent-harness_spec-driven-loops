@@ -20,10 +20,10 @@
       "changelog retrofit tasks",
       "changelog pilot tasks",
       "verification checklist",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability",
-      "waiver adr"
+      "tooling and pilot acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria"
     ],
     "key_topics": [
       "changelog",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The 549 legacy skill changelogs span several older styles, and a model asked to rewrite them can drop or invent facts",
     "created_at": "2026-09-24T16:53:59Z",
-    "last_save_at": "2026-09-25T14:07:23.569Z",
+    "last_save_at": "2026-10-07T12:55:24.739Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:907163f6bf8684cc26b1371d2980fd3007dc9d29de18c0ba7d0d357c5d7a371a",
+    "source_fingerprint": "sha256:66076fbe12085cfba9520d2f3502be440676dc691a79ca153a87983063788c92",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "288396f64f2de2746ba93011a6ef73abe7ea681d8c309fd133e3741ea65c1db9",

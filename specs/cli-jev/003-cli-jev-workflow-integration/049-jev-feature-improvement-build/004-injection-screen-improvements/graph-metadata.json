@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "injection screen improvements",
+      "the injection screen scores only a corpus it",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "injection",
+      "screen",
+      "improvements",
+      "scores",
+      "only",
+      "corpus",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Feature 035 kept strongly, but commit `b0f89ee5f07` untracked its corpus, so the run cannot be reproduced",
     "created_at": "2026-10-03T05:30:05Z",
-    "last_save_at": "2026-10-04T14:35:11.156Z",
+    "last_save_at": "2026-10-07T12:54:56.234Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bea519420ce69c35b09c466aa60b98d5cef84b953ead52c712ff6ef4dd0fd0ae",
+    "source_fingerprint": "sha256:a9e54e010a4bd61b56ebd2be147c74494d143b66b113018c3c8f3a0beb10e85c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "34a46ac96d73abb17b52e10174609d67b338bc2a19f2c053e944ceeb4ffbbeee",
+      "spec.md": "1f43630aa196ee596fd072af9334ce80163f56db029d164c685b1724586d6ccd",
       "plan.md": "55ff4d0c9ac1a765c38ab29c76db0dc824e5b0f14c448476637dd147aa1d5bb0",
       "tasks.md": "e554792515fa69225eb517bc7e56b1879a4261e78c19c20d0d31a15f922c9bd7",
       "implementation-summary.md": "f938626e6c7f384797831009dba307a7d1bd387c944efc4f5d6f7ca2eadf46e4"

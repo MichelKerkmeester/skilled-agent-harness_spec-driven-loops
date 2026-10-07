@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Fan-out Merge Under-count and Per-Iteration Steering"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "fanout merge and steering fixes acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

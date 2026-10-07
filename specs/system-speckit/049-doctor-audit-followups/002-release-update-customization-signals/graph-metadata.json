@@ -54,13 +54,12 @@
       ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
       ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
       "scratch/findings-recheck.md",
-      "scratch/engine-tests.log",
       "scratch/fixture-demo.sh",
       "scratch/measurement.md",
       "scratch/generated-inventory.md",
       "scratch/provenance-input.md",
       ".skilled/skills/system-skill-advisor/runtime/lib/derived/provenance.ts",
-      "scratch/fixture-demo.log"
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh"
     ],
     "entities": [
       {
@@ -142,12 +141,6 @@
         "source": "derived"
       },
       {
-        "name": "engine-tests.log",
-        "kind": "file",
-        "path": "scratch/engine-tests.log",
-        "source": "derived"
-      },
-      {
         "name": "fixture-demo.sh",
         "kind": "script",
         "path": "scratch/fixture-demo.sh",
@@ -178,9 +171,9 @@
         "source": "derived"
       },
       {
-        "name": "fixture-demo.log",
-        "kind": "file",
-        "path": "scratch/fixture-demo.log",
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -206,11 +199,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`release-update.cjs` compares base, local and release blobs per file and derives a unit status from the resulting classes",
     "created_at": "2026-10-03T05:27:40Z",
-    "last_save_at": "2026-10-03T15:12:23.304Z",
+    "last_save_at": "2026-10-07T12:55:54.824Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +219,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03a547440f24ff29f9375a2cf31530ebe1c418e3f45be74fbb3910de3c04879f",
+    "source_fingerprint": "sha256:5215f4dedb80377929eb79b8963478f0eab92e31a55f6c585b4b13275ef37ed1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e2a146303255e1946bdc9b2aa06a3e16e29d36ae272f1ef3366155660c612787",

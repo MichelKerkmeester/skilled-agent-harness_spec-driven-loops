@@ -18,11 +18,11 @@
       "agents md delivery prefix plan",
       "devin agents md truncation plan",
       "agents md delivery prefix tasks",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability",
-      "waiver adr",
-      "packet goal"
+      "agents md delivery prefix acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "agents",
@@ -49,7 +49,6 @@
       "implementation-summary.md",
       ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
       ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
-      ".codex/AGENTS.md",
       ".cursor/rules/skill-routing.md",
       ".github/workflows/rule-canary-sync.yml"
     ],
@@ -100,12 +99,6 @@
         "name": "check-rule-copies.test.sh",
         "kind": "script",
         "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
-        "source": "derived"
-      },
-      {
-        "name": "AGENTS.md",
-        "kind": "doc",
-        "path": ".codex/AGENTS.md",
         "source": "derived"
       },
       {
@@ -197,11 +190,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Devin cuts `AGENTS.md` at byte 16,384, partway through line 175 of 285 (`002-rule-concision-and-loading/prep/evidence-pack.md` §5)",
     "created_at": "2026-10-04T14:39:55Z",
-    "last_save_at": "2026-10-04T19:04:46.010Z",
+    "last_save_at": "2026-10-07T12:54:42.575Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +211,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fab88d2f07f1590d02bdb2bd7cea7205183654b271d7af333d7daec31f00075e",
+    "source_fingerprint": "sha256:26458aa6771c0ff5163211cbc49e27f3ede76989b27f2ff61be13aad93eded3e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7617c903cbdb564f30eb6b67998c4b926ae3804a5a3e4675590678153ab883c7",

@@ -21,8 +21,8 @@
       "implementation tasks",
       "verification checklist",
       "task dependencies",
-      "acceptance criteria",
-      "closure gate"
+      "design md theming acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
       "chart",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "`sk-design-md-generator` measures a live site into a v3 Style Reference, a `DESIGN.md` whose colour table, typography section and radius table hold every value verbatim",
     "created_at": "2026-09-08T06:21:09Z",
-    "last_save_at": "2026-09-11T16:41:58.167Z",
+    "last_save_at": "2026-10-07T12:55:12.021Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:42055f01ba66372fe67c2d48f58dfb3e5a69517ae813278c3ddbf59457187cb6",
+    "source_fingerprint": "sha256:2e2201702eeb8c4e83bf105c5b00629d6e8a3316284dfc9f01a35e0757af20a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c6751c6021da820c15ef9c5ad67c35e6ac5c486bcb51e36eda7f6134618a0c58",

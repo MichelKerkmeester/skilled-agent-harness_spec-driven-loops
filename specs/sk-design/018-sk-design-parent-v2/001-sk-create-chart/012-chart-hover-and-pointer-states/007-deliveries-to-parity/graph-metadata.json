@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "deliveries to parity",
+      "six delivered charts under assets examples carry none",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "deliveries to parity acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "deliveries",
+      "parity",
+      "six",
+      "delivered",
+      "charts",
+      "assets",
+      "examples",
+      "carry",
+      "none",
       "implementation",
       "plan",
-      "technical",
-      "approach"
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Six delivered charts live under `assets/examples/`, and measured across all six, none carries `data-chart-tooltip`, `data-chart-legend`, `data-chart-dim` or the `:focus:not(:focus-visible)` hygiene line",
     "created_at": "2026-09-05T16:03:58Z",
-    "last_save_at": "2026-09-06T14:59:19.981Z",
+    "last_save_at": "2026-10-07T12:55:07.124Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd9f5682655e2f2a6b775c901698853fd641bbbda64b78435577d3a56fd6eec6",
+    "source_fingerprint": "sha256:2bd027d79ca6490872d8e16e1378d1eb255388fef11b58686b7d52811b0320ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "074adfd44d2643806bc642ddf6725304584e67cd887def277d3661c2aff612e5",
+      "spec.md": "a8032a3cc489fcef0f7cc53d2961b0ac6c718b09326e89dfdb2d4e477691ab3c",
       "plan.md": "c44acf7f53c7688bccc8bc19eba5065c907bdf2ff2b350ad13adad155b77fe35",
       "tasks.md": "e291f3b9df5cbcfd5bf8c43a35f0933004dba2f5a0a7a01d62431323167489b5",
       "implementation-summary.md": "6c175b2ef2048da2ad982e2a3796162091278c757ac69503c3bd2c7099fe56fa"

@@ -2,10 +2,8 @@
 title: "Feature Specification: Build: improve the Jev completion-claim audit (026)"
 description: "The completion sentinel catches the claims it can catch for free, fires less on checklists and tables, and runs in every runtime that has an adapter."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "completion claims improvements"
+  - "the completion sentinel catches the claims it can"
 importance_tier: "normal"
 contextType: "general"
 ---

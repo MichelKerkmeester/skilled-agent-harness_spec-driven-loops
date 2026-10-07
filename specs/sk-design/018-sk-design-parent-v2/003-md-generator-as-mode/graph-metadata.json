@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "md generator as mode",
+      "move 7 946 files as renames fold a",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "md generator as mode acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "generator",
+      "mode",
+      "move",
+      "files",
+      "renames",
+      "fold",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`sk-design-md-generator` is a standalone skill with its own advisor identity",
     "created_at": "2026-09-06T13:52:16Z",
-    "last_save_at": "2026-09-11T16:41:58.332Z",
+    "last_save_at": "2026-10-07T12:55:16.806Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f8abd6b79618f19099e0f019588c897bd848f4f747799a390529ad128c25073",
+    "source_fingerprint": "sha256:cd872baf0d5bed32808829bbf49bf9cf0df1ce68dcde7595e3bb7b02093f27d7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ae7d0a69dec113da013bff30b4b131f08d2bb063ba98d6fc1b3499a86fa5e8aa",
+      "spec.md": "cbd1fffd873cd6c5051093a60380c62fc7a868864adf864f5217c857a0515f2f",
       "plan.md": "3f45a9ecb437767a1c5f2295a189773efb3f719683b14806744262e6aa158873",
       "tasks.md": "30b2650de02e8c93c1657873b81180d21bebd38ebd51da5421ec14ca82447293",
       "implementation-summary.md": "adcef5549aec46d97959073b5a7c0297ee2e5d0983d85f49481cd49a6b8ddf14"

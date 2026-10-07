@@ -2,10 +2,8 @@
 title: "Feature Specification: Replace broad staging in sk-git examples with explicit paths"
 description: "A release example staged everything with git add -A and two reference blocks staged whole directories, all against the scoped-staging rule the same skill states."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "fix broad staging in examples"
+  - "a release example staged everything with git add"
 importance_tier: "normal"
 contextType: "general"
 ---

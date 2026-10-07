@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "context type unification",
+      "make one allowed contexttype list govern spec docs",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "context type unification acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "context",
+      "type",
+      "unification",
+      "one",
+      "allowed",
+      "contexttype",
+      "list",
+      "govern",
+      "spec",
+      "docs",
       "implementation",
-      "plan",
-      "technical",
-      "approach"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`shared/context-types.ts` is the declared single source of truth with four values (`implementation`, `research`, `planning`, `general`) and two aliases (`decision` to `planning`, `discovery` to `general`), and the `sk-doc` contract lists the same four",
     "created_at": "2026-10-04T08:04:51Z",
-    "last_save_at": "2026-10-05T04:54:19.623Z",
+    "last_save_at": "2026-10-07T12:55:55.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b3bb53a58848d7976493002bb66080c1aadd608b15e7dd6447ba4582e041c8d4",
+    "source_fingerprint": "sha256:a40a919fccf783b07a03a8cd554246251d2788e8073279ce4f7572d7e019c351",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "675d1369c3b9e7fcb23d0902d380b9f51bc0c917d7531fe736436fed473586ca",
+      "spec.md": "0affb60cd8932ed3d0f4560c19dc5c9df2d0261ab5db8064a31fc3214d3cfb14",
       "plan.md": "d127595c8eb37df89ff4115686da86da51fc4eeaf9d0c1bbe9916db997a98bd7",
       "tasks.md": "57232d61181d524eb743049ce61fd6a21384ff92c1f94801777e5a949c209386",
       "implementation-summary.md": "9bfb6d6bb5a906ca910e0a28942ff0962582eed2d561bd1edafed8d2a787694a"

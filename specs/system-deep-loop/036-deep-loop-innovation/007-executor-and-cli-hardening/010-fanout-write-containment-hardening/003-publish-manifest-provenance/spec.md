@@ -2,10 +2,8 @@
 title: "Feature Specification: Record executor kind and model in the publish manifest so the attribution table stops reading unknown"
 description: "The fan-out merge reads each lineage's executor kind, model and reasoning effort from the invocation metadata the runner already writes, so the attribution table and the merged registry never print unknown for a published lane."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "publish manifest provenance"
+  - "the fan out merge reads each lineage s"
 importance_tier: "normal"
 contextType: "general"
 ---

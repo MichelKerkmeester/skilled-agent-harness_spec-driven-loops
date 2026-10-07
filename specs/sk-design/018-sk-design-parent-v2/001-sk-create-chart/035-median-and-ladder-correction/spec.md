@@ -2,10 +2,8 @@
 title: "Feature Specification: the two geometry fixes that did not work"
 description: "Two of the three fixes in the packet before this one shipped before the reader who checked them came back, and both were wrong. The median took the page colour rather than a width that was too large, and the axis was thinning a ladder that was never crowded."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "median and ladder correction"
+  - "two of the three fixes in the packet"
 importance_tier: "normal"
 contextType: "general"
 ---

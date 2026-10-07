@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "gate 3 option merge",
+      "gate 3 offers five options but c and",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "gate 3 option merge acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "gate",
+      "option",
+      "merge",
+      "offers",
+      "five",
+      "options",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -47,13 +47,11 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
-      ".opencode/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs",
       ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
       ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
       ".opencode/hooks/injection-contract.md",
       "runtime/hooks/pi/README.md",
       ".opencode/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json",
-      ".codex/AGENTS.md",
       ".opencode/commands/deep/assets/compiled/deep-research.contract.md",
       ".opencode/skills/system-spec-kit/references/workflows/worked-examples.md",
       ".opencode/skills/system-spec-kit/references/memory/trigger-config.md",
@@ -98,12 +96,6 @@
         "source": "derived"
       },
       {
-        "name": "spec-gate-core.test.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs",
-        "source": "derived"
-      },
-      {
         "name": "gate-3-classifier.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
@@ -131,12 +123,6 @@
         "name": "baseline-contexts.json",
         "kind": "config",
         "path": ".opencode/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json",
-        "source": "derived"
-      },
-      {
-        "name": "AGENTS.md",
-        "kind": "doc",
-        "path": ".codex/AGENTS.md",
         "source": "derived"
       },
       {
@@ -204,11 +190,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Merge Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Gate 3 offers five options today",
     "created_at": "2026-09-14T20:22:06Z",
-    "last_save_at": "2026-09-15T05:30:23.109Z",
+    "last_save_at": "2026-10-07T12:55:50.534Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +216,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4b039ca3fa61bc378d2be1742c62c7464a771970141499a436743f3fdd82b810",
+    "source_fingerprint": "sha256:ddcc29ea28fed1a95500314dac87f4d8dc65323e682fa8e93e48d51eeb960500",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3fdfb75e0e8e2df2e4ff97bff66141dff013f6f5274d9a54c7d53a681a9e8687",
+      "spec.md": "e48c7cd05b8b234f76e1fe0c1dce4f9b260a57d1cdae8ddcbdc535a73970eb18",
       "plan.md": "024037c2661249e7b72e2cee9d77ff10bbc9e8be37fdd90b788bc2d8fbccadaf",
       "tasks.md": "5a4023be6e9399137dc17189602288980cde3d08159dff205853831a253a1f08",
       "implementation-summary.md": "7a8bf982edd06b502cb02a41566e1c3cabeed27a6afe7f74e672aba6710f2457"

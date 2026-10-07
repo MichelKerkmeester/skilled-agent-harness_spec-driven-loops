@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 6: capture-and-judgment"
 description: "The permanent human half: a formalized capture review for what no check can hold, with a one-way graduation path into the checker."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "capture and judgment"
+  - "the permanent human half a formalized capture review"
 importance_tier: "normal"
 contextType: "general"
 ---

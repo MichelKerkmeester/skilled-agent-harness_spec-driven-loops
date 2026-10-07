@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: quarantine-destination-canonical"
 description: "The quarantine writer canonicalizes every destination and refuses a symlinked component, so a lane cannot redirect the runner's evidence writes outside the artifact root."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "quarantine destination canonical"
+  - "the quarantine writer canonicalizes every destination and refuses"
 importance_tier: "normal"
 contextType: "general"
 ---

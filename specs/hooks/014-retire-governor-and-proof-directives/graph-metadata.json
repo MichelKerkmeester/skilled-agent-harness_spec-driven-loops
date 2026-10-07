@@ -16,10 +16,7 @@
       "advisor directive block",
       "plan core",
       "tasks core",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability",
-      "waiver adr",
+      "retire governor and proof directives acceptance criteria",
       "impl summary core"
     ],
     "key_topics": [
@@ -34,7 +31,7 @@
       "plan",
       "core",
       "tasks",
-      "acceptance"
+      "directives"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +192,7 @@
     ],
     "causal_summary": "Three constant directives were appended to every advisor brief on every user turn, on every",
     "created_at": "2026-08-30T18:28:13Z",
-    "last_save_at": "2026-10-03T15:11:50.397Z",
+    "last_save_at": "2026-10-07T12:54:57.428Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +202,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d62cc2c5a3637f5a8fb5af0dfed6b9b4de29ba87ea8deff924e74d41fc5457d",
+    "source_fingerprint": "sha256:908c1b883d140336ec997665bbb7563963f06a111a438cab9c0dc3a16b07e7da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4514f71054ee2bffb3d8135f6b4083bbbbed816c9c7f19cf6fb7955d0a5d8804",

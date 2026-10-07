@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 11: communication rule naming"
 description: "Two of the four rules that fire on a reply do not carry the communication prefix the other two carry, so the reply-governing set is not visible by name. This phase renames both and repoints every live reference."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "communication rule naming"
+  - "two of the four rules that fire on"
 importance_tier: "normal"
 contextType: "general"
 ---

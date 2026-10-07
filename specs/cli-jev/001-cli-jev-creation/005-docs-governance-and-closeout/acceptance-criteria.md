@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Phase 5: docs-governance-and-closeout"
 description: "The criteria this packet must satisfy before it may be closed: every mode list true, the hub catalog's falsified axis claims corrected, the parent metadata complete, and the recursive gate green."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "docs governance and closeout acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

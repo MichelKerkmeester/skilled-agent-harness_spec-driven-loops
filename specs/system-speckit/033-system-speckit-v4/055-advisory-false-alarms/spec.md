@@ -2,10 +2,8 @@
 title: "Feature Specification: Stop the sk-git pathspec advisory and the completion-evidence sentinel from raising false alarms"
 description: "Two advisories warned about problems that did not exist. The sk-git pathspec checks judged a path behind a shell expansion as literal text. The completion-evidence sentinel took a cited document with its line number as the packet folder."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "advisory false alarms"
+  - "two advisories warned about problems that did not"
 importance_tier: "normal"
 contextType: "general"
 ---

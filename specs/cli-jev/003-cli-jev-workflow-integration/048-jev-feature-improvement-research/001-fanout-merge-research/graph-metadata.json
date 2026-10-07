@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "fanout merge research",
+      "five deepseek v4 1 flash and three gpt",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "fanout",
+      "merge",
+      "research",
+      "five",
+      "deepseek",
+      "flash",
+      "three",
+      "gpt",
       "implementation",
       "plan",
       "technical",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Phase 047 measured the Jev fan-out merge at verdict jev: keep K=60 M=60 A=53 B=12 W=44 L=3 F=3 p=1.232e-10 on 60 recorded fan-out pairs labeled by a delegated arbiter",
     "created_at": "2026-10-02T21:59:42Z",
-    "last_save_at": "2026-10-02T22:52:33.401Z",
+    "last_save_at": "2026-10-07T12:54:51.681Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e64362fbf609dc805769a9dd586368f962224eb3e5d468427c26e0a72ccee9bd",
+    "source_fingerprint": "sha256:d683d5afadfd17f0c79c8b73a4aad2feced32751c3daacd8dde90b8ef688a759",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea87ec56cab2903a8f6b1fe825b3bbb2ca17d17c10b2da262ec8744300f42762",
+      "spec.md": "ea3b392f39a635452bc7e6495f9b59e831e343786232ef83e99e80e3460c2751",
       "plan.md": "8764206642343898f1f417ad1c04b7a272c9745f445d0c1e930b7c59ab20204d",
       "tasks.md": "2a002f96a3546e4e566c5c694f60976b10022ac4b2b3041058b1ae127b9f0b5c",
       "implementation-summary.md": "891c765531dd65e7c712905513fcfab5950b1ecc4f0f6fe2055ed20fa7e70eca",

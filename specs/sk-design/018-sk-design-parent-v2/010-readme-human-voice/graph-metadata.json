@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "readme human voice",
+      "the human voice rules carry an explicit em",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "readme human voice acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "readme",
+      "human",
+      "voice",
+      "rules",
+      "carry",
+      "explicit",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The Human Voice Rules carry an explicit Em Dash Ban: never use one, prefer a comma, full stop or",
     "created_at": "2026-09-06T17:43:46Z",
-    "last_save_at": "2026-09-06T17:58:04.147Z",
+    "last_save_at": "2026-10-07T12:55:17.431Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a6e5b5075c94b4d0fe2f60ff8faa8a0e94195711886171ee09d9ab7a85c6b432",
+    "source_fingerprint": "sha256:64121018f78d5132ecb88d8e5a84ff7535289950969e0d4d69ec84278f38372c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "26f9d43059d37052f64dd266efc7d5acf17049c1cba722528980a2f412c3896f",
+      "spec.md": "e3044de437a713fa0854f2d6204205a52ee66884c97f1ee1f0922df324120a3c",
       "plan.md": "3c2aa31aabdcc46a0d6946549dcce4e8ee098d392620354ced35b28a346fc746",
       "tasks.md": "452d1f5f4fea67017584a0acae28593544cc5005c8782cb1e19dbb33d632dccc",
       "implementation-summary.md": "01233b64e33f099ae2c704dde912d9b2cc78bac3329766957f8bcb9f30b0f7e7"

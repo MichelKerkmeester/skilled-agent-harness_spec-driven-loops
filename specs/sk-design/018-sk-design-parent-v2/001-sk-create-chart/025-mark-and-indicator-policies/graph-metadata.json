@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "mark and indicator policies",
+      "per form declarations the research asked for a",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "mark and indicator policies acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "mark",
+      "indicator",
+      "policies",
+      "per",
+      "form",
+      "declarations",
+      "research",
+      "asked",
       "implementation",
       "plan",
       "technical",
@@ -49,8 +49,7 @@
       "implementation-summary.md",
       "scratch/mutations.md",
       ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
-      ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md",
-      ".opencode/skills/sk-design/sk-design-chart/changelog/v1.9.0.0.md"
+      ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md"
     ],
     "entities": [
       {
@@ -105,12 +104,6 @@
         "name": "template-contract.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.9.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.9.0.0.md",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Mark choices that carry meaning are still implicit per template: whether a short series shows its points, whether an area may split at zero, whether a composed form's line is shown with a bar-shaped swatch in the tooltip, whether a target or event line exists, and whether a dense multi-series form guides the cursor",
     "created_at": "2026-09-08T18:22:04Z",
-    "last_save_at": "2026-09-09T14:53:52.843Z",
+    "last_save_at": "2026-10-07T12:55:12.147Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:475e01f21056166d7d730f1e2038ebb220c5bd287aeda01b0d05695c8fb2b3e5",
+    "source_fingerprint": "sha256:5fcde7c9c8fce6aa1220d76683285e94d4839369861ecf1d52501dbc61ac1bbb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3065dfe4325fd8ef827e347179a689589ee703f8d0f24bed72c094d6ffd47656",
+      "spec.md": "9146724e01eb6b75fa67fe7046e55e63e949eea869e98dd1f87eee9b21c9b3e8",
       "plan.md": "7721d5d55ef65a7a93bc58e12e0906a71b1dbdf38d79a59a5e6041a053d6b7f7",
       "tasks.md": "6d64d46920a42f34f1fd362b42052cc75d83e4359c5d3dd73091432496178903",
       "implementation-summary.md": "9fd53a294b4bdefaa85673e21c11ed553bb42a77b372c7a2fa65cdbd18b1e4d2"

@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "hub scaffold and mode migration",
+      "the jev transport lived as a mode id",
       "parent hub scaffold",
       "cli-usage mode",
       "implementation plan",
@@ -22,21 +20,23 @@
       "architecture decisions",
       "testing strategy",
       "hub scaffold",
-      "task breakdown"
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
-      "parent",
       "hub",
       "scaffold",
-      "cli-usage"
+      "mode",
+      "migration",
+      "jev",
+      "transport",
+      "lived",
+      "parent",
+      "cli-usage",
+      "implementation",
+      "plan",
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -46,20 +46,8 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/cli-jev/mode-registry.json",
-      ".skilled/skills/cli-jev/hub-router.json",
-      ".skilled/skills/cli-jev/graph-metadata.json",
-      ".skilled/skills/cli-jev/SKILL.md",
-      ".skilled/skills/cli-jev/README.md",
-      ".skilled/skills/cli-jev/changelog/v0.1.0.0.md",
       "shared/README.md",
-      ".skilled/skills/cli-jev/cli-usage/SKILL.md",
       ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
-      ".skilled/skills/cli-jev/description.json",
-      ".skilled/skills/cli-jev/ROUTER.md",
-      ".skilled/skills/cli-jev/leaf-manifest.json",
-      ".skilled/skills/cli-jev/benchmark/README.md",
-      ".skilled/skills/cli-jev/shared/README.md",
       ".skilled/skills/cli-external-orchestration/mode-registry.json"
     ],
     "entities": [
@@ -94,39 +82,9 @@
         "source": "derived"
       },
       {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".skilled/skills/cli-jev/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".skilled/skills/cli-jev/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".skilled/skills/cli-jev/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-jev/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-jev/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v0.1.0.0.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-jev/changelog/v0.1.0.0.md",
+        "path": "shared/README.md",
         "source": "derived"
       },
       {
@@ -136,21 +94,9 @@
         "source": "derived"
       },
       {
-        "name": "description.json",
+        "name": "mode-registry.json",
         "kind": "config",
-        "path": ".skilled/skills/cli-jev/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "ROUTER.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-jev/ROUTER.md",
-        "source": "derived"
-      },
-      {
-        "name": "leaf-manifest.json",
-        "kind": "config",
-        "path": ".skilled/skills/cli-jev/leaf-manifest.json",
+        "path": ".skilled/skills/cli-external-orchestration/mode-registry.json",
         "source": "derived"
       },
       {
@@ -206,11 +152,53 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Hub",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Jev transport was the eighth mode of `cli-external-orchestration`, which made its identity a row inside another hub's registry, its folder a child of another hub's directory, and its routing vocabulary a class in another hub's router",
     "created_at": "2026-09-20T11:00:11Z",
-    "last_save_at": "2026-09-20T13:13:24.772Z",
+    "last_save_at": "2026-10-07T12:54:47.138Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c5796d95bf016a83e3bd97e796affc6851d457f1b3b734e3ec3e971110f23bee",
+    "source_fingerprint": "sha256:02bd18bedc26288faf2abb754f7df5ddd5d30b29939b5c96e18ba5d7be88f2b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "414ab6bcc13376bc43448eed73cdc9e2d5150054a0da51165326cb29a606b518",
+      "spec.md": "fd9c13db772a7e3b73b5af6696f2de3042c647f0bafbed881cd8e298d6513379",
       "plan.md": "fba6c5282ee5866fb3aac2d6970dc6ec49c3dc4cb9b94c3cab80c013899c289e",
       "tasks.md": "d47cc0c04e414535e9fb98ac9b7696e42f7eb35dd69a8053afdf554405534a69",
       "implementation-summary.md": "82c7f08d50581217e2813ad34056db321f13d75d76430957bfbbb14f4c9b26b9"

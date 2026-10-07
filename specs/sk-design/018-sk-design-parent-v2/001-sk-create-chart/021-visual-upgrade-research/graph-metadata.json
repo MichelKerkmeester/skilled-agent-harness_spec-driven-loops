@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "visual upgrade research",
+      "two parallel five iteration deep research lineages gpt",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "visual upgrade research acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "visual",
+      "upgrade",
+      "research",
+      "two",
+      "parallel",
+      "five",
+      "iteration",
+      "deep",
+      "lineages",
+      "gpt",
       "implementation",
-      "plan",
-      "technical",
-      "approach"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -48,7 +48,6 @@
       "implementation-summary.md",
       "research/research.md",
       "research/dispatch-prompt.md",
-      "research/orchestration-status.log",
       "research/lineages/luna/research.md",
       "research/lineages/glm/research.md"
     ],
@@ -93,12 +92,6 @@
         "name": "dispatch-prompt.md",
         "kind": "doc",
         "path": "research/dispatch-prompt.md",
-        "source": "derived"
-      },
-      {
-        "name": "orchestration-status.log",
-        "kind": "file",
-        "path": "research/orchestration-status.log",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The corpus has been upgraded against one reference, shadcn, and re-based on the cursor register",
     "created_at": "2026-09-08T15:38:35Z",
-    "last_save_at": "2026-09-08T16:39:01.474Z",
+    "last_save_at": "2026-10-07T12:55:12.069Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +210,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:cb62407eec52afd10a6a9487c33303b4c3f7b898815407c239ef5df106aaa590",
+    "source_fingerprint": "sha256:dee255a2eb65aff132d4be8bdf8ece5904b5c07ed8c4497ba1012589e88d25c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e3abc3a6e8ee18c6e49426af63fdfff46b14abc861048f2cfa020fdc5a4c7c5d",
+      "spec.md": "a2f1c2a44f3f66d5c3e4cadb2337be5bab57709e9543ebfd532290477f6d2058",
       "plan.md": "d716b5e56048d428c76461b99704802d20bf0ecfd8abef2f3924a55ed17a49d9",
       "tasks.md": "ba2873c942ac2d6731f977e8d07ef4433330c8ded707d4379a9a2b610ce9fa5e",
       "implementation-summary.md": "5efa2304b2af14145162f567c2174527a59772b02ad14af1e927659892e399e2",

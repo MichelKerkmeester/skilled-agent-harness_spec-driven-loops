@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "review remediation",
+      "close all six deep review findings on the",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "review remediation acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "review",
+      "remediation",
+      "close",
+      "six",
+      "deep",
+      "findings",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -45,12 +45,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-communication/cli-communication-projection/test/fidelity/semantics.test.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/fidelity/validator.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/contracts/projection.ts",
-      ".opencode/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/fidelity/semantics.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -81,36 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "semantics.test.ts",
-        "kind": "test",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/test/fidelity/semantics.test.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validator.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/fidelity/validator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "projection.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/contracts/projection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "semantics.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/fidelity/semantics.ts",
         "source": "derived"
       },
       {
@@ -196,11 +161,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A five-iteration deep review of the whole sk-communication clarity program returned a CONDITIONAL verdict with two P1 findings and four P2 findings",
     "created_at": "2026-09-14T15:52:21Z",
-    "last_save_at": "2026-09-15T05:37:01.000Z",
+    "last_save_at": "2026-10-07T12:55:02.486Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +205,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:531e44281c39c60946b5549ddb98ff2ba29873e22ed576dbdbc0c7216b1aa3f9",
+    "source_fingerprint": "sha256:359fb0d4dd0743e970e29164a032537c968654687684349dc63a329e58b06d95",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e9fa062f7b7f16fc19488adbe96b5c573a7816a84b17f574e7a7a8f3c12cdca4",
+      "spec.md": "b2a97d4df097979bab261d49cf387ae36ab5d4c35c642b0911bf91bdb0437f22",
       "plan.md": "5ac29493a7aaabac99c57eb4a7af8e3c85c455b6e0e0bec06120db29e90159c9",
       "tasks.md": "3c6ebbce63f12d4e3fcc732ced4a360556bade694e8db88646cf582a33ad95ff",
       "implementation-summary.md": "eb278facd84f304e5a2d5181d48a3019cfa74ccb0eb88cd960a457335cc83f6d"

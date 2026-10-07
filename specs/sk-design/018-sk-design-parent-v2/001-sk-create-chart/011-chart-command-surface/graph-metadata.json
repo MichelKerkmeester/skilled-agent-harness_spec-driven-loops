@@ -51,10 +51,6 @@
       ".opencode/skills/sk-doc/command-metadata.json",
       ".opencode/skills/sk-doc/README.md",
       ".opencode/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
-      ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/command-bridges.generated.json",
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/projection.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/command-metadata-e2e.vitest.ts",
       ".opencode/commands/create/assets/tests/fixtures/emitted-name-contract.json",
       ".opencode/commands/create/assets/tests/test_emitted_name_contract.py",
       ".opencode/commands/create/diff.md",
@@ -124,30 +120,6 @@
         "source": "derived"
       },
       {
-        "name": "command-bridges.generated.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/command-bridges.generated.json",
-        "source": "derived"
-      },
-      {
-        "name": "projection.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/projection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill_advisor.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
-        "source": "derived"
-      },
-      {
-        "name": "command-metadata-e2e.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/command-metadata-e2e.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "emitted-name-contract.json",
         "kind": "config",
         "path": ".opencode/commands/create/assets/tests/fixtures/emitted-name-contract.json",
@@ -206,11 +178,35 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`sk-doc` routes fifteen workflow packets, and fourteen of them have their own slash command",
     "created_at": "2026-09-04T08:51:34Z",
-    "last_save_at": "2026-09-11T16:41:58.307Z",
+    "last_save_at": "2026-10-07T12:55:07.174Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +216,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4dc1a9e9cc59e93595a91949a88fef627ea95614a485fd5a634b67a6ef066af4",
+    "source_fingerprint": "sha256:43f4e487311324b390ce469d1f6a4ac8ac4c268f4cb6d3f1ac89fa6f2c616e44",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "db9c740100446b82edf11add831e030fa2a6a9b814e9efc17c3833f659235ef3",

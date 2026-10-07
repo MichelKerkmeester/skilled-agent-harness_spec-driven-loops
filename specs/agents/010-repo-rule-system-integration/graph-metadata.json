@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "repo rule system integration",
+      "three lineage research into how the repo rule",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "repo rule system integration acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "repo",
+      "rule",
+      "system",
+      "integration",
+      "three",
+      "lineage",
+      "research",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The rule set grew to eleven files in a few days, and every proposal so far was decided by one constraint discovered mid-flight rather than by design: Gate 5 fires on the first write of a session and never on a read-only turn, so a rule file goes silent exactly when someone is only reading",
     "created_at": "2026-09-11T18:25:49Z",
-    "last_save_at": "2026-10-03T15:11:43.318Z",
+    "last_save_at": "2026-10-07T12:54:42.610Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8649bad4bfdba7a39da4941db2b167e84fd978321a0233f697b7aa33de80f7b2",
+    "source_fingerprint": "sha256:0b6d75b40b7fad635188ac9962db542c928cf699345aafd89840f837eb43867e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3bc6dbdc278eda1464863284da170dab0c545413b6f35ee3f03c36c71345c258",
+      "spec.md": "d8f46cf36dfb49b2545fd6ba0a503c718ebee059d65cc11f8731dbdc600fd456",
       "plan.md": "7558f946712fd6a85f5c586098f47e442577ddb2d006976b01180846c8a8562d",
       "tasks.md": "78434aab18e527b3632f619d3fc796fd5c70890073efb67a6f5b323ccf2df1c0",
       "implementation-summary.md": "b9d09ba699884150a870c2835e0c5610abdd2bf107053b70844e1556fd4cb906"

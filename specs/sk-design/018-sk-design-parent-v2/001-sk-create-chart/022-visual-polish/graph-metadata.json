@@ -12,10 +12,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "visual polish",
+      "a visual polish pass on the chart corpus",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -23,21 +21,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "visual polish acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "visual",
+      "polish",
+      "pass",
+      "chart",
+      "corpus",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions",
+      "testing"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -51,7 +51,6 @@
       "scratch/mutations.md",
       ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
       ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md",
-      ".opencode/skills/sk-design/sk-design-chart/changelog/v1.6.0.0.md",
       "scratch/proportions.md",
       "scratch/dispatch-a.md"
     ],
@@ -108,12 +107,6 @@
         "name": "template-contract.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.6.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.6.0.0.md",
         "source": "derived"
       },
       {
@@ -199,11 +192,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Six things make a rendered chart read as a template rather than a product",
     "created_at": "2026-09-08T18:22:02Z",
-    "last_save_at": "2026-09-08T20:28:11.324Z",
+    "last_save_at": "2026-10-07T12:55:12.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +213,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:415b548850fbe0ac03445b086f04fc44716be7b5a6f519950d0a33f016534085",
+    "source_fingerprint": "sha256:6b775a4c729dc397149a631e7ecf02c162450c4b2c860a663db32d8cf33ad316",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aab30d7b8108b1202bb2be852828bf1ecefde34410602231b3b387bbdaa55772",
+      "spec.md": "06f56035fa9446003ac7e72adc66df0ecb8667f41818a2af2f51a5a3e8dff166",
       "plan.md": "6e7267a1e7fc24ba90f244910cce78da8f960be4a006ae57e61485097d3c388f",
       "tasks.md": "75df0496ff3ddc6605bc4eaf8a4e3229e71106a086e5ce44d9736acb8578b340",
       "implementation-summary.md": "766ca16496324827cb6d1f34520e07403f5f09a788afc0c85dc27153f4a3a41e"

@@ -2,10 +2,8 @@
 title: "Feature Specification: Bring the sk-design root router onto the shape every other hub uses"
 description: "The `sk-design` root router passes its contract validator and still does not read like any other hub's. It has no machine-readable section, declares no `DEFAULT_RESOURCE`, numbers its closing section 3 where every peer numbers it 4, and its 'how to r"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "router conformance"
+  - "the sk design root router passes its contract"
 importance_tier: "normal"
 contextType: "general"
 ---

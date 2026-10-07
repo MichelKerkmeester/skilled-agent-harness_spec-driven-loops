@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: recorded-adjacent-defects"
 description: "The seven defects earlier phases measured and recorded as belonging to another surface, closed, so the packet's own decision that nothing is deferred holds."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "recorded adjacent defects"
+  - "the seven defects earlier phases measured and recorded"
 importance_tier: "normal"
 contextType: "general"
 ---

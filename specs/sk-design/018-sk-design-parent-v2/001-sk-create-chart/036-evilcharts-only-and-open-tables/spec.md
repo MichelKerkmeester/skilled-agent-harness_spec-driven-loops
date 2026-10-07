@@ -2,10 +2,8 @@
 title: "Feature Specification: one style reference, no examples, open tables, a gallery that sizes its frames"
 description: "The packet carried two Style References and one had stopped being the stock; the worked deliveries were a second corpus to keep in step; twenty forms hid their values behind a click; and the gallery clipped most of its frames at a guessed height."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "evilcharts only and open tables"
+  - "the packet carried two style references and one"
 importance_tier: "normal"
 contextType: "general"
 ---

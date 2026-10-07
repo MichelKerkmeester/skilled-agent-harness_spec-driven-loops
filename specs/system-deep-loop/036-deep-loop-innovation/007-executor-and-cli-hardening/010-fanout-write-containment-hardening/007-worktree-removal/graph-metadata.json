@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "worktree removal",
+      "the per lineage worktree mechanism is removed from",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "worktree removal acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "worktree",
+      "removal",
+      "per",
+      "lineage",
+      "mechanism",
+      "removed",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -48,7 +48,6 @@
       "goal.md",
       "implementation-summary.md",
       "research/orchestration-summary.json",
-      "research/orchestration-status.log",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
@@ -95,12 +94,6 @@
         "name": "orchestration-summary.json",
         "kind": "config",
         "path": "research/orchestration-summary.json",
-        "source": "derived"
-      },
-      {
-        "name": "orchestration-status.log",
-        "kind": "file",
-        "path": "research/orchestration-status.log",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The per-lineage worktree mechanism cost 1.6 GB and about 22 seconds per lane, existed only to make write attribution exact, and attribution is not a requirement: the operator's need is that a lane never halts on a neighbour's write and that no output is lost, which preserve-by-default plus the never-fatal untracked rule already meet",
     "created_at": "2026-09-20T08:33:41.631Z",
-    "last_save_at": "2026-09-25T16:15:28.189Z",
+    "last_save_at": "2026-10-07T12:55:32.965Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +212,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aa8d0f5849db50895ccd52c019f7762c75a6e1ac9230b3d903e1cc157cdf162a",
+    "source_fingerprint": "sha256:25401d462592a546ce4f0888019b4a5692d3065e6789fb194b91ffd377c1c8fc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c16c393c1c421bd6e7c6f494ad0e6e1be678b97d7be379aeaff700172b180b62",
+      "spec.md": "dd80d2a5837dc4c0641111050967fea4cd371723a416478f16925536edfde79f",
       "plan.md": "8474683b2000302ad40eb18b8fe85b3f1b5c04e63822f824826c8d3b7c9c899a",
       "tasks.md": "4fe1b4ad6436adb509c59cceae1986a1d028854d799a3d325c84ebef75d94f68",
       "implementation-summary.md": "3f48f935e07f27f1b2ed13dfd234cd09d804a6144b08d09f29fdd9805cae7640"

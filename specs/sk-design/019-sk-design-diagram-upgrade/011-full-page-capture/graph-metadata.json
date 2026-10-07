@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "full page capture",
+      "the shared screenshot renderer crops every corpus form",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "full page capture acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "full",
+      "page",
+      "capture",
+      "shared",
+      "screenshot",
+      "renderer",
+      "crops",
+      "every",
+      "corpus",
+      "form",
       "implementation",
-      "plan",
-      "technical",
-      "approach"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -52,7 +52,6 @@
       ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/dp-integration.html",
       ".opencode/skills/sk-design/sk-design-diagram/SKILL.md",
       ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/capture-review/capture-review.md",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs",
       ".opencode/skills/sk-design/sk-design-diagram/README.md",
       ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
       ".github/workflows/diagram-corpus.yml"
@@ -122,12 +121,6 @@
         "name": "capture-review.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/capture-review/capture-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "run-manual-playbook-scenario.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs",
         "source": "derived"
       },
       {
@@ -201,11 +194,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`render-screenshots.cjs` captures every form at a fixed `1280x900` Chrome window with no full-page option (confirmed empirically in this authoring pass: two-pass measurement shows Chrome's `--screenshot` flag always outputs exactly the requested `--window-size`, never auto-trimmed to content)",
     "created_at": "2026-09-11T03:52:48Z",
-    "last_save_at": "2026-09-11T16:42:00.662Z",
+    "last_save_at": "2026-10-07T12:55:21.567Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +215,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eba6483cec22eab7fad51659face6cab73f9c0d3f81769ff8f3b0b895fc1735f",
+    "source_fingerprint": "sha256:4f909200de25a5cea3324f23375933546ea2cb78aa540714117fadcf631cf224",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "71c1a0d57373ca84114a91aa0214f42ba53a2771cf042602326c9106a023ab0a",
+      "spec.md": "7263206ba23c41ddd3954c842828177222eda86527109ddfaba30823db94311a",
       "plan.md": "18f96213621ff977c9b82b191f25a33e3dfa3bd7b6dbf75e72fd9ba7c1c6e729",
       "tasks.md": "22b8f1632554d5e1166018fc0e540d7660206447dd1e6f4869af24fb7e81e93d",
       "implementation-summary.md": "5208c869f76295086cf52f50a9cc0b27c4506bbd31d0c97ef269a60fa5e371d6"

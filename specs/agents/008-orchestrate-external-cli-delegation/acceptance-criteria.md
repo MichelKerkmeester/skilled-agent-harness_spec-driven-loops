@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Orchestrator external CLI delegation, opt-in by explicit user request"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "orchestrate external cli delegation acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "docs and closeout",
+      "update the contracts references catalogs and changelogs in",
       "implementation plan",
       "docs closeout plan",
       "changelog and version bumps",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "docs and closeout acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "docs",
+      "closeout",
+      "contracts",
+      "references",
+      "catalogs",
+      "changelogs",
       "implementation",
       "plan",
-      "docs",
-      "closeout"
+      "changelog",
+      "version",
+      "bumps",
+      "closure"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Behavior that ships without its contract text, catalog entry and changelog leaves two skills documenting different rules, which is the drift this program set out to remove",
     "created_at": "2026-10-04T08:04:54Z",
-    "last_save_at": "2026-10-05T04:39:30.118Z",
+    "last_save_at": "2026-10-07T12:55:55.784Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:27635c4dedaacb3b58a7148f9d93462bb6cd5eae06b241ee46bbb750bc22d1ac",
+    "source_fingerprint": "sha256:4a856121f0a9d88388d9de4f6ebbb657cdbba394fcf4fb04bceb15da669795dc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f5929f447864282fffb6be201fa92ff8c17623f41c8baa5abaf203d708da0985",
+      "spec.md": "b00e663f5251633be4851743cca65a8ce683a03f42903bb9b0b18906ffe4a50f",
       "plan.md": "14cc6df16c12e99bcd9d25339d49e2f633891c7de87eb6a49790108b58eb4663",
       "tasks.md": "e7cc7d17813727c2bb457b1193e9d493bcc035b74a013aec2fd07e02e2828850",
       "implementation-summary.md": "d00be0d62b50b91e3bc5cec77786f67a70d7d154dcb193b479e25c48a45c1b63"

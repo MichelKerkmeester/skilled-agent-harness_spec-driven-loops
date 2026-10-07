@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "pi extension brace expansion",
+      "two pi extension lockfiles pin brace expansion 5",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "extension",
+      "brace",
+      "expansion",
+      "two",
+      "lockfiles",
+      "pin",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "GitHub reports four open Dependabot alerts, two high and two moderate, for `brace-expansion` 5.0.9 in the lockfiles of two Pi extensions",
     "created_at": "2026-10-05T07:28:02Z",
-    "last_save_at": "2026-10-05T07:29:00.002Z",
+    "last_save_at": "2026-10-07T12:54:47.757Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f50d67a05a07218d0da30b0a003dd2d621ebbc49cec520114e5af93622360e6",
+    "source_fingerprint": "sha256:3af41697b6e5728ab1b55406605d8ebf408767bddd1b43f21f465296a1cb0dc9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "392eae6b9ba36ca3ea2dcedb4d1f0bccbd5a57dc14f1332c20385ddb564fb080",
+      "spec.md": "5cf2530e863507669db8cdff73718dfc2eba337f0e188a5136f75ff7a7d6e2f9",
       "plan.md": "c98758a9d768eae8d25c0c90499b47067272d9a0794260cffea3ae2bc75693a6",
       "tasks.md": "c654face4cf0c7751381763100daeadfbb686b59cd33636a5917db736fc91607",
       "implementation-summary.md": "e8a68be6f8fb7dd322a88f887b787674626c95c0d2bcf71dea81284228342bf4"

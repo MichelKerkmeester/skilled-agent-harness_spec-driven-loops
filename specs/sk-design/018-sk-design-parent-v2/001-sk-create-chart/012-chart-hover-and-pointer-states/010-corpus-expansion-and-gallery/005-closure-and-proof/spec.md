@@ -2,10 +2,8 @@
 title: "Feature Specification: Prove the targets, the rules and the gallery from the final state"
 description: "Prove the whole packet from its final state, reconcile every document that now describes a corpus that has changed, and correct the parent packet that still claims completion while carrying active children."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "closure and proof"
+  - "prove the whole packet from its final state"
 importance_tier: "normal"
 contextType: "general"
 ---

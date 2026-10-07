@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 2: skin-contract"
 description: "Sign the seven contract decisions the research surfaced, write the derivation record, and collapse every duplicated contract to one locus."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "skin contract"
+  - "sign the seven contract decisions the research surfaced"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 5: history-rewrite"
 description: "Rewrite main, skilled/v4.0.0.0 and the tags on a mirror clone so every existing commit carries a Spec path where the mapping cascade finds one and a Commit-Id ordinal always, remap every hash citation under specs/ from the commit map, and publish only after a written rollback and a fresh yes."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "history rewrite"
+  - "rewrite main skilled v4 0 0 0 and"
 importance_tier: "normal"
 contextType: "general"
 ---

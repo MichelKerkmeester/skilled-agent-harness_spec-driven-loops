@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: mark policies, tooltip indicator kinds, reference lines and cursor guides"
 description: "Acceptance criteria for mark and indicator policies."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "mark and indicator policies acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

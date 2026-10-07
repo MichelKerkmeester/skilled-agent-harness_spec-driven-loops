@@ -2,10 +2,8 @@
 title: "Feature Specification: Build: improve the Jev fetched-text injection screen (035)"
 description: "The injection screen scores only a corpus it can identify, reports what it scored, flags at the better line and spends a third fewer calls."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "injection screen improvements"
+  - "the injection screen scores only a corpus it"
 importance_tier: "normal"
 contextType: "general"
 ---

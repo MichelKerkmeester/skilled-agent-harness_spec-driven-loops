@@ -2,10 +2,8 @@
 title: "Feature Specification: make evilcharts the stock register and fix the ranked ladder"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "evilcharts stock"
+  - "the operator asked for a custom evilcharts style"
 importance_tier: "normal"
 contextType: "general"
 ---

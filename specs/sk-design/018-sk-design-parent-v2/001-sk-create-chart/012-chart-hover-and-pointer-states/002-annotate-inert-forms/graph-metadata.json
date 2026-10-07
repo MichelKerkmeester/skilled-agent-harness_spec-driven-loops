@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "annotate inert forms",
+      "six chart forms already print every value they",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "annotate inert forms acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "annotate",
+      "inert",
+      "forms",
+      "six",
+      "chart",
+      "already",
+      "print",
+      "every",
+      "value",
       "implementation",
       "plan",
-      "technical",
-      "approach"
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`progress-single`, `unit-ring`, `unit-grid`, `independent-percentages`, `bar-columns` and `bar-rows` each print every value they encode beside the mark that carries it, so none of them needs a hover card",
     "created_at": "2026-09-05T16:03:55Z",
-    "last_save_at": "2026-09-06T14:59:19.659Z",
+    "last_save_at": "2026-10-07T12:55:06.923Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fb46aa3507d38be99ed867c482618b447735e17f3110c7161337d6f3e41c6271",
+    "source_fingerprint": "sha256:8043c50cf6e00f16db6651ac92db20ead38c320109852e0867690c7b75d839c0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d41b3eff72c47a51276baef2a18e395eacda2fc623669d2f76f14f775e875d2a",
+      "spec.md": "1c7aa10e3cac83ae983fa4998e31ad4756aa6b128437187cc1c633392d5f5a9f",
       "plan.md": "2181e2cb6eec0c11cb1be04c598e932bada6545d187f9a9bad903e1aad63c7a0",
       "tasks.md": "f0c546ad239c58b54e9aac5950273f3b6d8e6b0bc9a727cfa0a65caba2bff56d",
-      "implementation-summary.md": "434375de4a1ad56ac035da44cb0c96bb978600160c617b8d19dd50f6193770c9"
+      "implementation-summary.md": "24e0a7e40e9223be71f4c07c26931239a4e8b3f8a74d7bbc81957c9d0bf05393"
     },
     "last_active_at": null
   }

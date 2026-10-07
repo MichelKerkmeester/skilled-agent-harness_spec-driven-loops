@@ -2,10 +2,8 @@
 title: "Feature Specification: close every recorded item across the chart phases"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "closeout"
+  - "four phases closed with items recorded rather than"
 importance_tier: "normal"
 contextType: "general"
 ---

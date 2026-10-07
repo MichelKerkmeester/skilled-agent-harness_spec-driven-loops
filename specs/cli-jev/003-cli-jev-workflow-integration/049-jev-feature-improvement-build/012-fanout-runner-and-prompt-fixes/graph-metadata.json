@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "fanout runner and prompt fixes",
+      "a fan out run merges every finding a",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "fanout",
+      "runner",
+      "prompt",
+      "fan",
+      "run",
+      "merges",
+      "every",
+      "finding",
       "implementation",
       "plan",
       "technical",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Phase 048 hit four more fan-out faults",
     "created_at": "2026-10-03T05:30:11Z",
-    "last_save_at": "2026-10-06T18:50:03.396Z",
+    "last_save_at": "2026-10-07T12:54:56.689Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d8dd969741eda6a46f311283d28bf080e96c6e3f242a471a8a52429fe3a54a4",
+    "source_fingerprint": "sha256:71808bd8dde97e4e4559a0a1ea1a5abd56c91d33536c0b2a21950f1d4788813d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c912b49af3911780487c6fe0b929f6b2d8c5e7379178aea968833f03985c2f15",
+      "spec.md": "d7b306a62174649fdbebaeda5f4e5e6394a629069a2909e4a93f3bb354174783",
       "plan.md": "b6aa8f25b10c15b39fdf18ab894a18125910d670718de4717e580d9ce3d9d068",
       "tasks.md": "59f5952f10c09c285f3acf8db0ba8990f9c32e9494c7f43a78e492728685ab7a",
       "implementation-summary.md": "584fa0899da203c6b1cc321b545319668948983e62291a87b0321f3a3e2867dd"

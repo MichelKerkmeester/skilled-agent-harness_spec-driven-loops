@@ -17,10 +17,7 @@
       "mass deletion zero saves",
       "plan core",
       "tasks core",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability",
-      "waiver adr",
+      "git hook gate reduction acceptance criteria",
       "impl summary core"
     ],
     "key_topics": [
@@ -197,7 +194,7 @@
     ],
     "causal_summary": "Thirteen blocking gates across three hooks",
     "created_at": "2026-08-31T02:55:45Z",
-    "last_save_at": "2026-10-03T15:11:50.834Z",
+    "last_save_at": "2026-10-07T12:54:57.460Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +204,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fac2d7281514bce3c0b1e3787346446c6e7cfb905da75036124bf1bc0c566198",
+    "source_fingerprint": "sha256:742ec3fed100c02f10c8055514e2c26c5b162ea3b7aedcd3349710fce0bda070",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "653e6efabcee69c99376b15242f33a40b5f1305621dbfcd82d8b9bc2d215c7d8",

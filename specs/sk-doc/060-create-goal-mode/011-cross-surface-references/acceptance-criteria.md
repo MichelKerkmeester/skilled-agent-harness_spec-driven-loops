@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Phase 11: cross-surface-references"
 description: "The criteria that close phase 011: README references, a fresh command-bridge projection, passing command counts, agent coverage and the feature catalog."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "cross surface references acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

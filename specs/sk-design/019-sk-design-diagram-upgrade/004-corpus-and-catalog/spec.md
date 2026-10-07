@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 4: corpus-and-catalog"
 description: "The derivation-driven repaint of every example, fresh captures, and a question-keyed catalog read in both directions."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "corpus and catalog"
+  - "the derivation driven repaint of every example fresh"
 importance_tier: "normal"
 contextType: "general"
 ---

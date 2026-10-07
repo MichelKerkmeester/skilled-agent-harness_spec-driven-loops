@@ -2,10 +2,8 @@
 title: "Feature Specification: Move chart and diagram from sk-doc to sk-design"
 description: "Two packets leave a documentation hub for a design hub, and both hubs change in one commit because a router signal naming a packet that is not on disk fails whichever hub is wrong. The step that decides whether the restructure was worth doing."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "chart and diagram cutover"
+  - "two packets leave a documentation hub for a"
 importance_tier: "normal"
 contextType: "general"
 ---

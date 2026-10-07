@@ -2,10 +2,8 @@
 title: "Feature Specification: a case for every family, and a guard that keeps it that way"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "full family coverage"
+  - "the mutation suite covered twelve of the forty"
 importance_tier: "normal"
 contextType: "general"
 ---

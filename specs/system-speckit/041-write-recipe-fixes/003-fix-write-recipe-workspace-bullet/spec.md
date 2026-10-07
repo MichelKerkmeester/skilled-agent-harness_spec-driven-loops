@@ -2,10 +2,8 @@
 title: "Feature Specification: Reword the workspace bullet of the spec folder write recipe commit step"
 description: "The first bullet of Step 7 cited a memory note as repo authority and fixed main as the workspace, while sk-git leaves the workspace choice to the operator."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "fix write recipe workspace bullet"
+  - "the first bullet of step 7 cited a"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -11,10 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "the sk code hub still registers and advertises",
       "sk-code-mobile-cli deprecation",
       "implementation plan",
       "technical approach",
@@ -22,21 +19,24 @@
       "testing strategy",
       "hub de-registration",
       "task breakdown",
-      "implementation tasks"
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "sk code mobile cli deprecation acceptance criteria"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "code",
+      "hub",
+      "still",
+      "registers",
+      "advertises",
       "sk-code-mobile-cli",
       "deprecation",
       "implementation",
-      "plan"
+      "plan",
+      "technical",
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -46,8 +46,6 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-code/changelog/v4.2.3.0.md",
-      ".skilled/skills/sk-code/changelog/v4.2.2.0.md",
       ".skilled/skills/sk-code/graph-metadata.json",
       ".skilled/skills/sk-code/leaf-manifest.json",
       ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
@@ -60,7 +58,9 @@
       ".skilled/skills/sk-code/sk-code-obsidian/README.md",
       ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/surface-detection/negative-control-non-obsidian.md",
       ".skilled/skills/sk-code/shared/references/stack-detection.md",
-      "scratch/drift-conformance-fix.md"
+      "scratch/drift-conformance-fix.md",
+      "scratch/devin-swe2-drift-advice.md",
+      "scratch/devin-swe2-drift-verification.md"
     ],
     "entities": [
       {
@@ -91,18 +91,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "v4.2.3.0.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/changelog/v4.2.3.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "v4.2.2.0.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/changelog/v4.2.2.0.md",
         "source": "derived"
       },
       {
@@ -178,6 +166,18 @@
         "source": "derived"
       },
       {
+        "name": "devin-swe2-drift-advice.md",
+        "kind": "doc",
+        "path": "scratch/devin-swe2-drift-advice.md",
+        "source": "derived"
+      },
+      {
+        "name": "devin-swe2-drift-verification.md",
+        "kind": "doc",
+        "path": "scratch/devin-swe2-drift-verification.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The `sk-code` parent hub registers `sk-code-mobile-cli` as a read-only surface packet for",
     "created_at": "2026-09-19T09:02:48Z",
-    "last_save_at": "2026-09-19T12:41:38.851Z",
+    "last_save_at": "2026-10-07T13:01:29.438Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a8385c2f990aeb1b80a04035642d5f69aa8965a8f57aed2510a89b63ee5a63c2",
+    "source_fingerprint": "sha256:81315915a402b834ece024a6e78b80d4590ff54d09295a11f9818d399e58563d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2b25293d8e5224965ad84fcc984a37056c5c947c65e82aa29be5f44d1f36bea6",
+      "spec.md": "cee15c602ddc024f8fa368db087c5122f67a1ddc2602dbdea7bab785e87e0a90",
       "plan.md": "e86ac50d39f0ab5cc9826ff63d15d03b7911501fab04ae1512ef3b47d008a5ca",
       "tasks.md": "7eb65ba99eb1629dc2f3cbf12540637d98199125c8e495e538b289444254f6a8",
       "implementation-summary.md": "2929a5d15a95e6683e841c285d2ffece99964614f30dbf42410739b38ea89171"

@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "fanout merge improvements",
+      "the fan out merge scorer reports jev against",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "fanout",
+      "merge",
+      "improvements",
+      "fan",
+      "scorer",
+      "reports",
+      "jev",
+      "against",
       "implementation",
       "plan",
       "technical",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Feature 030 measured keep at A=53 of 60, but only against a baseline that answers \"different\" on every cross-body pair, and a lexical rule ties Jev at 53",
     "created_at": "2026-10-03T05:30:02Z",
-    "last_save_at": "2026-10-03T07:45:17.716Z",
+    "last_save_at": "2026-10-07T12:54:55.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:793874db88b5fa5ba3e8c4951dc75f2de47cd2051755ca08d937c8e7a00e906f",
+    "source_fingerprint": "sha256:2898725d08b4d2636a09be763c1267c23a768bb70aa9de21b43e83218e9a449d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cd4a70cf4b5ccee23da0757259298b2fa85b359d3e27f33acb93d2c35208cda0",
+      "spec.md": "398548e3614f798deb7e89ba7872232d6dfe50d3e1142163868b033e276a585d",
       "plan.md": "d40426b7ad016dfc300f064aa48dcba9e9bce8c529bfcaf6ae668ec87f66153c",
       "tasks.md": "27fcb0c14eaa083f36b535a66206b77834a4df8e60ee54a421c70a8896a71fda",
       "implementation-summary.md": "14806fea092690b28f1c1f56be870475f0f91f3009c58c0c65f00c9aab2ce741"

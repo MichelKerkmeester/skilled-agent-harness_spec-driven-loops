@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "specs/sk-doc/053-command-contract-reconciliation"
+    packet_pointer: "sk-doc/053-command-contract-reconciliation"
     last_updated_at: "2026-09-04T11:30:00Z"
     last_updated_by: "claude"
     recent_action: "Reconciled the command contract with the shipped tree and added the catalog mirror check"

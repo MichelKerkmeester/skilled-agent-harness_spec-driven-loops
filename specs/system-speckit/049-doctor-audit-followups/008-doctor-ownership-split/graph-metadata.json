@@ -21,8 +21,8 @@
       "implementation tasks",
       "verification checklist",
       "task dependencies",
-      "acceptance criteria",
-      "closure gate"
+      "doctor ownership split acceptance criteria",
+      "doctor ownership split summary"
     ],
     "key_topics": [
       "doctor",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`/doctor:speckit` was one router for nine targets, and eight of them belonged to other owners: four to the skill advisor's routing quality, one each to the deep loop and the runtime mirrors, one to the parent-hub canon and one to a Fable 5 metrics check nobody used",
     "created_at": "2026-10-04T06:09:43Z",
-    "last_save_at": "2026-10-04T06:45:28.862Z",
+    "last_save_at": "2026-10-07T12:55:55.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ca3d37068f439516eae4d1a665cb7da217c7f2e88330ff406559bbf7e1a31f75",
+    "source_fingerprint": "sha256:e7a265e081c3e9a724cb8f23f9ea4c74611f0fc3af7d32f0fa764f8be8afdb5c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "be76d687803dbf6bab1b12824accaf8fc5ab536efb0c264a145fade7e72db05d",

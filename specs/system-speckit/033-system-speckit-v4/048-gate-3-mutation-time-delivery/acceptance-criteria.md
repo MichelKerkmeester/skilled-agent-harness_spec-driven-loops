@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Phase 1: gate-3-mutation-time-delivery"
 description: "The criteria this packet must satisfy before it may be closed: no turn-time menu in any runtime, one mutation-time delivery per session through each runtime's strongest channel, a binding pi dialog, a persisted emission marker, and a not-yet-created packet path that binds."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "gate 3 mutation time delivery acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

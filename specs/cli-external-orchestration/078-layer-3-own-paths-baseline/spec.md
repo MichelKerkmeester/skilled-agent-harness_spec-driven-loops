@@ -2,10 +2,8 @@
 title: "Feature Specification: Scope the cli-opencode Layer 3 baseline to the dispatch target's own paths"
 description: "The dispatch safety net asked for a clean or committed tree, which in a shared tree can only be met by committing other sessions' work. It now snapshots the target's own in-flight paths and still records the hash."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "layer 3 own paths baseline"
+  - "the dispatch safety net asked for a clean"
 importance_tier: "normal"
 contextType: "general"
 ---

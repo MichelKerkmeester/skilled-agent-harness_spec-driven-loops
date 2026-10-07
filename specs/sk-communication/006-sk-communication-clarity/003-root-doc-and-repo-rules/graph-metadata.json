@@ -47,8 +47,6 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       "repo-rules/communication.md",
-      "repo-rules/presenting-decisions.md",
-      "repo-rules/handoff-and-questions.md",
       "repo-rules/communication-prose.md"
     ],
     "entities": [
@@ -86,18 +84,6 @@
         "name": "communication.md",
         "kind": "doc",
         "path": "repo-rules/communication.md",
-        "source": "derived"
-      },
-      {
-        "name": "presenting-decisions.md",
-        "kind": "doc",
-        "path": "repo-rules/presenting-decisions.md",
-        "source": "derived"
-      },
-      {
-        "name": "handoff-and-questions.md",
-        "kind": "doc",
-        "path": "repo-rules/handoff-and-questions.md",
         "source": "derived"
       },
       {
@@ -195,11 +181,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The reply-shape rule takes ten of the twenty-nine adopted candidates, the largest single allocation",
     "created_at": "2026-09-12T12:44:36Z",
-    "last_save_at": "2026-09-15T05:19:36.334Z",
+    "last_save_at": "2026-10-07T12:55:02.137Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +207,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c089eb27a481213f6054841765f19d2e645b12a57c4d9d090d43c2bb90d59a1",
+    "source_fingerprint": "sha256:1712e59da0ce914f79dec830721d4509f48e10ef8fb66e9bb7eb072dd3f9b1d3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2c7e936778cb98ee20ba44a849ab0dc47b53aec6da1311a4ae61fa1804ad097f",

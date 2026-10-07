@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 4: search-surface"
 description: "Deliver the search the format promises: recipes in the quick reference, a catalog entry and a playbook scenario that prove a commit resolves by packet and by identifier, and no index because plain git log suffices."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "search surface"
+  - "deliver the search the format promises recipes in"
 importance_tier: "normal"
 contextType: "general"
 ---

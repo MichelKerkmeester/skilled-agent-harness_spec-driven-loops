@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "missing stress fixture root",
+      "three deep improvement agent discipline stress scenarios and",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "acceptance criteria",
+      "closure gate"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "missing",
+      "stress",
+      "fixture",
+      "root",
+      "three",
+      "deep",
+      "improvement",
+      "agent",
+      "discipline",
+      "scenarios",
       "implementation",
-      "plan",
-      "technical",
-      "approach"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Review finding F044 records that `active-critic-overfit.md`, `proposal-only-boundary.md` and `skill-load-not-protocol.md` list `deep-improvement/test-fixtures/060-stress-test/` as their fixture source, and that `setup-cp-sandbox.sh` hard-requires paths under it, while no `test-fixtures/` directory exists: the corpus was pruned by a bulk checkpoint commit that never repointed its consumers",
     "created_at": "2026-09-20T08:33:45.508Z",
-    "last_save_at": "2026-09-25T16:15:23.460Z",
+    "last_save_at": "2026-10-07T12:55:31.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:679345d0e66898ce8393f22e62e7f35b2cfcebea0ef689ffb516a6ff197da4ff",
+    "source_fingerprint": "sha256:46bd235d39ed6df64aef2f97d41afbb4aab9ed0dd2b4e6d580a7800ab2088be7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1f026e85af360779fa1a9b2da1f3383c51022286023f91d847fbbad6a7324034",
+      "spec.md": "1488ab59a2e23874c823cea0a3a30dd8de7e579e3aea8021d45e226f6c624328",
       "plan.md": "1689f9de5ce84254eeb9a56443bc13ca983695d38d3db5fb938e8d0cc73cdba2",
       "tasks.md": "53902944b4c0a1045e0e1fefb1b143441edf88cc9d04d54933c30463dee4a187",
       "implementation-summary.md": "d509790e4c643e54fd89d4973eb27ebd119500e1618dc234526fa0ceb0204019"

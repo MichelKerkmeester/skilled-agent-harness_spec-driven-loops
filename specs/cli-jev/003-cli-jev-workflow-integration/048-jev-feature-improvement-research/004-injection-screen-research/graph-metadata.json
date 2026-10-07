@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "injection screen research",
+      "five deepseek v4 1 flash and three gpt",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "injection",
+      "screen",
+      "research",
+      "five",
+      "deepseek",
+      "flash",
+      "three",
+      "gpt",
       "implementation",
       "plan",
       "technical",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Phase 047 measured the Jev fetched-text injection screen at verdict jev: keep K=90 M=90 A=81 B=56 W=30 L=5 TP=31 FP=5 F=0 p=0.00001118, brier 0.0652",
     "created_at": "2026-10-02T21:59:44Z",
-    "last_save_at": "2026-10-02T23:20:41.456Z",
+    "last_save_at": "2026-10-07T12:54:51.875Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:81d6db6bf61de18a99c00d29f339642a2c4be62645e18ae5961d0f9db5d778f7",
+    "source_fingerprint": "sha256:397d43212bddc047d313a49e80cb5701c7f5b9c93d4eba924ed628052d566c34",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3b88141cb844de0d65805d6f2d92333f3b6aa7200acaf66d46680dc823a3a18b",
+      "spec.md": "35b17a716afcb3d9c19daae17ea0a930f9bafaa6b2a7ce91807202fa6d6f3891",
       "plan.md": "30a2b3cf7de5490eb0fa5c822d6560df1a46dd72add1b323017205a2edf9dcec",
       "tasks.md": "a2672ff2d074428b22d00a9b871373f4b5dc934a244bafd2fdf0dcc5dd9c2a2d",
       "implementation-summary.md": "2d3b6d52408ce8c1f3a010cc686aa4b072d0cff0f051de00ddf093ea5e1792a8",

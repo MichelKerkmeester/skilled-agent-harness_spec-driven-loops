@@ -2,10 +2,8 @@
 title: "Feature Specification: Perfect skill routing across the fleet: why an advertised phrase fails to arrive"
 description: "A phrase a hub's router advertises could fail to reach that hub, because the advisor never read the router's vocabulary. 173 of 439 declared phrases failed, and 155 of them were invisible to the gate that was supposed to catch it."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "routing perfection research"
+  - "a phrase a hub s router advertises could"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 3: wire-executor-builders"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "wire executor builders"
+  - "the fan out builder is the only caller"
 importance_tier: "normal"
 contextType: "general"
 ---

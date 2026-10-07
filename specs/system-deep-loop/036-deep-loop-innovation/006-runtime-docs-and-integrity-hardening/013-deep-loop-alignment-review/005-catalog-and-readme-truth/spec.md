@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 4: catalog-and-readme-truth"
 description: "Every catalog entry, README claim and playbook statement under the three hubs matches the tree it describes, across ten verified finding classes."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "catalog and readme truth"
+  - "every catalog entry readme claim and playbook statement"
 importance_tier: "normal"
 contextType: "general"
 ---

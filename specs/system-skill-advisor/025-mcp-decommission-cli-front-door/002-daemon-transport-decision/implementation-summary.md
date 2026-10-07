@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-daemon-transport-decision"
+    packet_pointer: "system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision"
     last_updated_at: "2026-09-11T06:48:58Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 template"

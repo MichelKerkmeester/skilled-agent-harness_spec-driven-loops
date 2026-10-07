@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: shadcn visual upgrade of the chart corpus"
 description: "Acceptance criteria for the shadcn visual upgrade of the standalone chart corpus."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "shadcn visual upgrade acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

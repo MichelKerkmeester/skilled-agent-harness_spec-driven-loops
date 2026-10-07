@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "acceptance criteria"
+      "native chart build acceptance criteria"
     ],
     "key_topics": [
       "author",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The reference implementation is PolyForm Noncommercial and this repository is MIT and public",
     "created_at": "2026-09-02T07:56:50Z",
-    "last_save_at": "2026-09-06T14:54:12.755Z",
+    "last_save_at": "2026-10-07T12:55:06.282Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a90a9e079bb429ba2b09051f6dcbbf1e95e9252c2a7b1f6c48f67c123c73373a",
+    "source_fingerprint": "sha256:48531b0034d53a91b93c95c619c8411a63184729c6c41c68ce2f175ae9b2dff6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c0504b6bf5cd8caf064208a8c59d1c02202f02123a7e2fddb6839e890848df37",

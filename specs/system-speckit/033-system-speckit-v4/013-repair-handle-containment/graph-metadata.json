@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Two packets closed on the same idea — prove membership rather than match a shape — and each left a",
     "created_at": "2026-08-30T14:17:45Z",
-    "last_save_at": "2026-09-08T18:23:43.700Z",
+    "last_save_at": "2026-10-07T12:55:43.754Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f523a39d1ab1c51636c8488a1c0d94196fe64bfe39b2b7dbabfa374b1abf7c2",
+    "source_fingerprint": "sha256:6e7cdf39b09f3ae240c9172a81dae73f3094307a512c08453d574cdb272e4341",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "785d2c052427d20ceea1bcb724e05605cbbe566fb1667f389796eecd00210d1e",

@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 4: restore-never-through-symlink"
 description: "The opt-in restore checks the violated path with lstat before writing baseline bytes and never writes through a symlink; the refusal is recorded with its reason and the lane's outcome is unchanged."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "restore never through symlink"
+  - "the opt in restore checks the violated path"
 importance_tier: "normal"
 contextType: "general"
 ---

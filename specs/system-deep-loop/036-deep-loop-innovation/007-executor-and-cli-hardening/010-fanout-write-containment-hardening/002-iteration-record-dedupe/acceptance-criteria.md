@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Deduplicate iteration state records by iteration and prefer the routed record, so a completed lane is not rejected"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "iteration record dedupe acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

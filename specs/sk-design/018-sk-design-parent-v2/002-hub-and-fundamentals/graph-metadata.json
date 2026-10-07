@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "hub and fundamentals",
+      "the smallest possible hub assembled from content the",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "hub and fundamentals acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "hub",
+      "fundamentals",
+      "smallest",
+      "possible",
+      "assembled",
+      "content",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`sk-design` is a standalone skill: a 501-line `SKILL.md` at the root doing both the routing and the",
     "created_at": "2026-09-06T13:52:15Z",
-    "last_save_at": "2026-09-11T16:41:58.291Z",
+    "last_save_at": "2026-10-07T12:55:16.790Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40453cf112d375c9b9ede7263c935c7f789ea40507e9482f276cb07e0400e7f1",
+    "source_fingerprint": "sha256:6a7fd7049614a26c331e583ec5373e282204cf58d9b56c0f4ea2c28fa2cfcc3e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5b2d67fc20e0c2bcfd0f708052de3c699c23af14987d12e3af39139ec9ab4646",
+      "spec.md": "c961e010f987c99137f5c23d6b2870000f5c7a439c3392f0fbf16150866d5966",
       "plan.md": "91f66260566ac3f8d90efc5fc0f5f7cc66ba2f77708f8e027cb38da46748864b",
       "tasks.md": "3d2b7610a4637168d75d38ff75bb2aaf3fc4671cdf7bbe72717364a414bd32e6",
       "implementation-summary.md": "959e886168e8c2c4fcd9a24aef473997849eb56bf9e992e9ae304600139095e2"

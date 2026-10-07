@@ -2,10 +2,8 @@
 title: "Feature Specification: Restore the pi advisor dedup return, renew the drifted advisor battery and close the stale documentation surfaces"
 description: "The 028 dedup fix half-landed: the changed-contribution path in decidePiDirectiveDelivery returns undefined where the full delivery belongs, so Pi's caller throws, a catch swallows the throw and the runtime battery never runs the Pi suite. The advisor runtime battery also carries 13 failing tests in 9 files from drifted fixtures and baselines, and five documentation surfaces still describe the old fallback or dedup behavior. Two earlier bulk renames also left environment variable names repeated in 13 files. A follow-up merges main, deletes the dead opt-in tri-daemon drill and points the CI corpus gate at the baseline's archived path."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "fix remaining advisor defects"
+  - "the 028 dedup fix half landed the changed"
 importance_tier: "normal"
 contextType: "general"
 ---

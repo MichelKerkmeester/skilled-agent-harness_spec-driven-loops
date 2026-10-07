@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: align the design chart command with the corpus it routes to"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "chart command alignment acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

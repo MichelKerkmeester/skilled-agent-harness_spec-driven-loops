@@ -21,8 +21,8 @@
       "implementation tasks",
       "verification checklist",
       "task dependencies",
-      "acceptance criteria",
-      "closure gate"
+      "codex dispatch and checklist acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
       "codex",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Codex task dispatch was marked `unverified` because its `spawnagent` hook payload had never been read",
     "created_at": "2026-10-05T15:41:54Z",
-    "last_save_at": "2026-10-05T18:42:50.278Z",
+    "last_save_at": "2026-10-07T12:54:57.296Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f701b3aff7310b646eec1c8f3fb2742d1d4d505fc1a6d1f255373069c46cf1b2",
+    "source_fingerprint": "sha256:3bf8fc04e5bd44f2161071d36f655b54d397b67b5fe0d735508416de2598f2a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "15fb526316e3eb702009286f161b68693a1e7130136c6b7eddcf7a4d9134bd11",

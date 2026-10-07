@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: post-work-review"
 description: "Ten adversarial review iterations by SWE-2 max over the whole alignment program: thirteen phases, one hundred and fifty changed files, twenty-one commits."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "post work review"
+  - "ten adversarial review iterations by swe 2 max"
 importance_tier: "normal"
 contextType: "general"
 ---

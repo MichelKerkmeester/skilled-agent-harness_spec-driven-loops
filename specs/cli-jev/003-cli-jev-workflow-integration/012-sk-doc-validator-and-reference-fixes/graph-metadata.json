@@ -22,7 +22,7 @@
       "implementation tasks",
       "verification checklist",
       "task dependencies",
-      "acceptance criteria"
+      "sk doc validator and reference fixes acceptance criteria"
     ],
     "key_topics": [
       "readme",
@@ -56,11 +56,11 @@
       ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md",
       ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/pause-sentinel-halt.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality-coverage.md",
+      "shared/scripts/README.md",
       ".skilled/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
       ".skilled/commands/deep/research.md",
       "runtime/cli/tests/memory-pipeline-regressions.vitest.ts",
-      ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "scratch/briefs/00-index.md"
+      ".skilled/commands/deep/assets/deep-research-presentation.txt"
     ],
     "entities": [
       {
@@ -172,12 +172,6 @@
         "source": "derived"
       },
       {
-        "name": "00-index.md",
-        "kind": "doc",
-        "path": "scratch/briefs/00-index.md",
-        "source": "derived"
-      },
-      {
         "name": "Fix Phase",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`detectdocumenttype` in `.skilled/skills/sk-doc/shared/scripts/validatedocument.py` ended with `# Default to readme for general markdown` and `return 'readme'` (`:266-267` at the build-start HEAD `6f47c32dce`)",
     "created_at": "2026-09-27T11:50:18Z",
-    "last_save_at": "2026-09-27T17:38:10.970Z",
+    "last_save_at": "2026-10-07T12:54:52.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a51ae32ae756dbdde66a3e941decd91745202b25ce6cd8753a68cd42392322da",
+    "source_fingerprint": "sha256:3b232718a463ed844179ab9d823ad0638a452758513d387811b14cbf182ae658",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "96ef204183388f2f467534bf987d21eabe74e496b8ffa36ad43609b52ae82fef",

@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The contract exists only in a decision record",
     "created_at": "2026-09-11T07:16:26Z",
-    "last_save_at": "2026-10-03T15:12:12.724Z",
+    "last_save_at": "2026-10-07T12:55:27.111Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c5d3a37f49f56bdafffa36ea8b2329784c571bb4013e8f146951fb445c20fe9",
+    "source_fingerprint": "sha256:36afca2103a6276ff9ad2aaf8cbfe6fda2213fbe97cd772a5177ee4f9699aa71",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a850677eef8234ba73665b5819cd2e07f6153892dfe1d93c7d420e554d283e51",

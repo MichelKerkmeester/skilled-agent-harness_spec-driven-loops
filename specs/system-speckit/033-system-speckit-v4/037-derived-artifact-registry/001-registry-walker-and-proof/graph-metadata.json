@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Freshness is defended per artifact, and the artifacts are not unproved",
     "created_at": "2026-09-11T06:37:35Z",
-    "last_save_at": "2026-09-12T16:14:52.550Z",
+    "last_save_at": "2026-10-07T12:55:47.704Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:94476b7e7bcad2668510327886f82fec76f53423f5484ecdbfecb97603c4402f",
+    "source_fingerprint": "sha256:8df6f0e96e568e2bf82057e9a97aa904fc4960f3c3c1b84d258ed9fb06d85436",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9d618434d41bf56f1e62729a277d52bebf0ffc5fefd769b0a30ac9877c75fa5e",

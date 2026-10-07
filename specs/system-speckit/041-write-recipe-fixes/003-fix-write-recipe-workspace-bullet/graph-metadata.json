@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "fix write recipe workspace bullet",
+      "the first bullet of step 7 cited a",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "write",
+      "recipe",
+      "workspace",
+      "bullet",
+      "first",
+      "step",
+      "cited",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The first bullet of Step 7 in the spec folder write recipe read `Stay on main (no feature branches per memory rule)`",
     "created_at": "2026-09-29T06:53:11Z",
-    "last_save_at": "2026-10-06T18:48:16.380Z",
+    "last_save_at": "2026-10-07T12:55:52.589Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:323b11232f9f58cfc7097ff745f80c336a700a320a5b443667627b9e7447c651",
+    "source_fingerprint": "sha256:d561e2bac178ea7abb1a7d989401926c1ffd6f9b4c6f64abd36b04d442a3fcb2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9550145e901f788283687d3f4ea264a1a909f66ca6900da4c90898930302a5ff",
+      "spec.md": "933ad37de6c068584a3382b7916cf0742f5c38843a7b946776913eccd09c5edc",
       "plan.md": "45e4f1f42c0fe6e7c0b08cec08942592a4b128f9c1f784b2ba866d65df106521",
       "tasks.md": "862da2bf780746755de5af3e872ea71031a6cbf0f1f2618358f483948a72d933",
       "implementation-summary.md": "156293e58b7bdb4f324765fea0484d214c9e3226298f6d6619fc0124ddcfc8a0"

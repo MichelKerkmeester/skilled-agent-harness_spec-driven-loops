@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 6: review-lane-advisory-and-strict-config"
 description: "The empty-registry advisory reads the registry field of the loop it inspects, so review lanes with open findings no longer misfire, and the fan-out containment schema rejects an unknown key such as the removed worktrees option by name."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "review lane advisory and strict config"
+  - "the empty registry advisory reads the registry field"
 importance_tier: "normal"
 contextType: "general"
 ---

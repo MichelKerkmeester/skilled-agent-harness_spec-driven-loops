@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 8: docs-governance-and-closeout"
 description: "Docs governance and closeout: every roster surface that named six external CLI modes now names cli-hermes, the hub and packet READMEs describe the shipped state, the agent-directory table records that Hermes has no agents folder, and the parent validates recursively."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "docs governance and closeout"
+  - "docs governance and closeout every roster surface that"
 importance_tier: "normal"
 contextType: "general"
 ---

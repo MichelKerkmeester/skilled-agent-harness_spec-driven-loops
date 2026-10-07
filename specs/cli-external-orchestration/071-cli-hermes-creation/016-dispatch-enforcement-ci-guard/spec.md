@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 4: dispatch-enforcement-ci-guard"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "dispatch enforcement ci guard"
+  - "every defect the earlier phases closed shares one"
 importance_tier: "normal"
 contextType: "general"
 ---

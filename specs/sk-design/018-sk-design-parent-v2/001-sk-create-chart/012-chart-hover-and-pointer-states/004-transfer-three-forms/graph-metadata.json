@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "transfer three forms",
+      "three of the seven partial forms already carry",
       "stacked-bars tooltip transfer",
       "bar-line-composed tooltip transfer",
       "implementation plan",
@@ -22,21 +20,23 @@
       "architecture decisions",
       "testing strategy",
       "task breakdown",
-      "implementation tasks"
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "transfer",
+      "three",
+      "forms",
+      "seven",
+      "partial",
+      "already",
+      "carry",
       "stacked-bars",
       "tooltip",
-      "transfer",
-      "bar-line-composed"
+      "bar-line-composed",
+      "implementation",
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`stacked-bars`, `daily-line` and `bar-line-composed` each carry a legend, a dim or both, but none of the three opens a hover card",
     "created_at": "2026-09-05T16:03:56Z",
-    "last_save_at": "2026-09-06T14:59:20.456Z",
+    "last_save_at": "2026-10-07T12:55:06.979Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:08ec52f1890e708caa6446df28606d4e9d6d4d85a1eb64b7b3882479cae7f811",
+    "source_fingerprint": "sha256:7ed1cec016b77358e836a4d4f1db4f144fa709dc18d92f88c3b8e50220046480",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a0d74265a10ee5e6970e18f6e2853baf30c4c945192fdcfce448de45ff81c8fd",
+      "spec.md": "e4d0986e5a12cb808e70b9f6ec10b5b5c93580cc5ccf5c3919b40b5e97091a49",
       "plan.md": "a19b576e311cd14b339aec9e117e5a8d176a4e9ed7ba6618bfa2bef5e8aa1239",
       "tasks.md": "6deca0a98ad7e4631def10e6fe7849f718520c1d715f0f48cf5ac6f0655a2277",
       "implementation-summary.md": "9abe0294b85a8e2853727b2e55d497ff255e3dca8a5aeb9823fdd0456dfd2f49"

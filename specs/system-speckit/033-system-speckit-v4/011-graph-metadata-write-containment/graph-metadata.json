@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`writeGraphMetadataFile` canonicalizes its destination, then asks a classifier whether the result may hold graph metadata",
     "created_at": "2026-08-30T08:10:26.979Z",
-    "last_save_at": "2026-09-08T18:23:40.428Z",
+    "last_save_at": "2026-10-07T12:55:43.760Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5772498d08c63d721294bd1a212328231c2bfd7fafc455d65f52ba2df15ea2dc",
+    "source_fingerprint": "sha256:46e78c14481c139f902c6edf1825b44a7d9fb75dc0f59e35ecb81ca5f44c5190",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "09adda5de7ba2d7ae1d23cd3e7f529486fb8acc92a75c58125398a1b847ae9d2",

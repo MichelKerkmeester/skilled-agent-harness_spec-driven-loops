@@ -2,10 +2,7 @@
 title: "Feature Specification: Phase 1: hermes-contract-pin"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "hermes contract pin"
 importance_tier: "normal"
 contextType: "general"
 ---

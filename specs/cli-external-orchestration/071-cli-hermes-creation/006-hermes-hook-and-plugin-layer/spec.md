@@ -2,10 +2,7 @@
 title: "Feature Specification: Phase 5: hermes-hook-and-plugin-layer"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "hermes hook and plugin layer"
 importance_tier: "normal"
 contextType: "general"
 ---

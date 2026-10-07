@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 8: agent-mirror-parity"
 description: "Six runtime trees ship the same twelve agents, but nothing stated how a declaration translates between them, and three real losses were silent: per-mode leaf sets collapsed onto one shared packet, the deep-review bodies demanded two state keys no consumer knows, and no artifact named the manual-invocation model drift."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "agent mirror parity"
+  - "six runtime trees ship the same twelve agents"
 importance_tier: "normal"
 contextType: "general"
 ---

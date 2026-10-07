@@ -22,7 +22,7 @@
       "implementation tasks",
       "verification checklist",
       "task dependencies",
-      "acceptance criteria"
+      "gate 3 delivery residue acceptance criteria"
     ],
     "key_topics": [
       "gate-3",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 048 removed turn-time Gate-3 injection and moved delivery to the first mutation for six runtimes",
     "created_at": "2026-09-22T07:42:02Z",
-    "last_save_at": "2026-09-22T08:51:03.171Z",
+    "last_save_at": "2026-10-07T12:55:51.936Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b4bb780bfe382c761a2365fd94b5da4adf4af61c5a8b9e55c1ddf527ad0b5fef",
+    "source_fingerprint": "sha256:a448485b8dfd47a6c00a4143d3374653df377e1ffc898a53852abfa09e063805",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "347d9b4d11a0f3d2c48d3ce7dc810080519dca4fd91f71727df464eddcb3c70a",

@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "pointer target size",
+      "six hundred and fourteen of the corpus 695",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "pointer target size acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "pointer",
+      "target",
+      "size",
+      "six",
+      "hundred",
+      "fourteen",
+      "corpus",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`markable()` sets `data-mark` on the visible geometry, so the pointer target is the drawn mark and",
     "created_at": "2026-09-06T06:26:42Z",
-    "last_save_at": "2026-09-06T14:53:03.094Z",
+    "last_save_at": "2026-10-07T12:55:10.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6fd87c68aa2b0508f9931305b5874dffa4d3501e9c3a016c979d218ba95923b7",
+    "source_fingerprint": "sha256:aef3da39cb491332713cd30357fbe280aa6be29ddfb418b494cbd01f835dbc3c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "864b3444f83d91354a73d4bf1a9278ce369d88b7bd90232ca857a8514feaf447",
+      "spec.md": "ea096b9c1e5ae93f9f1db5360962e053970333da05be3bd2f1614d63100a09e0",
       "plan.md": "72cab55524d0cb61aec88202e07f850166f7bbb9e139fc9a76185e74ef42c668",
       "tasks.md": "82eeddff55492b68711ab24900e94b915cdf12fed6098d8d9684995a385fae3f",
-      "implementation-summary.md": "961f5906380ad5b59ac6e61c1d671dea066c5f0483a2a4df556e47cea028db9f"
+      "implementation-summary.md": "ed39f9470cac1b57a8d1fdd59383ea52bcfee74595f70a6bfb46a31f8451b1c6"
     },
     "last_active_at": null
   }

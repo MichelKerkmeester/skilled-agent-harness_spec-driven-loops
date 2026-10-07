@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 6: docs-and-release"
 description: "Release the capability: sk-git README and changelog v1.6.0.0, advisor vocabulary and regenerated manifests, the delegation-rule freeze paragraph and the AGENTS.md commit-identity row, and the parent packet closeout."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "docs and release"
+  - "release the capability sk git readme and changelog"
 importance_tier: "normal"
 contextType: "general"
 ---

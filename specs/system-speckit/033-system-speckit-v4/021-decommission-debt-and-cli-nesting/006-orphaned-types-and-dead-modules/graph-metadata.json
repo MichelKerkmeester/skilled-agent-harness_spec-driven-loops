@@ -47,9 +47,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       "shared/types.ts",
-      "shared/index.ts",
       "lib/README.md",
-      "shared/algorithms/adaptive-fusion.ts",
       "lib/search/folder-discovery.ts",
       "lib/description/README.md",
       "tests/description/README.md",
@@ -60,7 +58,9 @@
       "runtime/tests/description/repair-specimens.vitest.ts",
       "runtime/tests/description/description-merge.vitest.ts",
       "runtime/lib/MODULE-MAP.md",
-      "runtime/lib/README.md"
+      "runtime/lib/README.md",
+      "runtime/lib/description/README.md",
+      "runtime/ENV-REFERENCE.md"
     ],
     "entities": [
       {
@@ -100,21 +100,9 @@
         "source": "derived"
       },
       {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "shared/index.ts",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": "lib/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "adaptive-fusion.ts",
-        "kind": "code",
-        "path": "shared/algorithms/adaptive-fusion.ts",
         "source": "derived"
       },
       {
@@ -151,6 +139,12 @@
         "name": "MODULE-MAP.md",
         "kind": "doc",
         "path": "runtime/lib/MODULE-MAP.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": "runtime/ENV-REFERENCE.md",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Grep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/system-spec-kit/shared/types.ts` still exports `IVectorStore` (line 246), `SearchOptions` (189), `SearchResult` (204), `StoreStats` (239), and the structural `Database` (171), `DatabaseExtended` (179), and `PreparedStatement` (157) interfaces; a repository-wide search finds no importer of any of these seven symbols outside `types.ts` itself and `shared/index.ts`'s barrel re-export - no implementer, no caller, no test",
     "created_at": "2026-09-05T06:13:07Z",
-    "last_save_at": "2026-09-06T07:09:11.502Z",
+    "last_save_at": "2026-10-07T12:55:46.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a04ad3d6277c3913a30cd891cb63752a0fac3370ecd2e25bc2765e055f2b12a3",
+    "source_fingerprint": "sha256:494707ce8c746d8e86948eecd79b7a6feff301079e3cc809663850bf88d9ab6a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ab817aa45e3dc7d720bbdb77855b60125ec985f45e080a2b4c82463823262c7c",

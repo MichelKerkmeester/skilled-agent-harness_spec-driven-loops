@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "cursor stock register",
+      "make the cursor style reference the stock chart",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "cursor stock register acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "cursor",
+      "stock",
+      "register",
+      "style",
+      "reference",
+      "chart",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -47,9 +47,6 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json",
-      ".opencode/skills/sk-design/sk-design-chart/changelog/v1.5.0.0.md",
-      ".opencode/skills/sk-design/sk-design-chart/scripts/build-gallery.cjs",
       "scratch/derive-cursor.cjs",
       "scratch/rebase-cursor.cjs"
     ],
@@ -88,24 +85,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "palettes.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json",
-        "source": "derived"
-      },
-      {
-        "name": "v1.5.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.5.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "build-gallery.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-chart/scripts/build-gallery.cjs",
         "source": "derived"
       },
       {
@@ -197,11 +176,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The operator asked for the best Style Reference in the library to be the initial default styling of charts",
     "created_at": "2026-09-08T10:05:17Z",
-    "last_save_at": "2026-09-08T10:16:16.711Z",
+    "last_save_at": "2026-10-07T12:55:12.230Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6881e4dc0910804dff747ed6b58559bf9f7986d1451e2951944eac9e0239c97a",
+    "source_fingerprint": "sha256:12cf8532ba1e4f9b947be10e010ecb0fbd04309890860645aab3e6117c2e63f7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4cc6baf44d3a81e68adbcec23c992bc4df63bd3d4460913229edec2a22c106a7",
+      "spec.md": "6f1e3a167245188cf42a400cc5cb63330a9f484749a9d98b1369776a142e19c5",
       "plan.md": "fc9b0fec755559028b49d2d6f0a06db327e4ec06e8a10fca858a4a6b565adc41",
       "tasks.md": "bc17c16ff99567013c08aad46c36e065925738541f416794a635f074e1d2d185",
       "implementation-summary.md": "17cc162b9abd714223afc8439e9ba086b1fae62c750f1a2413799801bee58120"

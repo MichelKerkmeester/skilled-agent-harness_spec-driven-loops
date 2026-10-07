@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "restyle and richer data",
+      "twenty one templates carry figures labelled demo which",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "restyle and richer data acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "restyle",
+      "richer",
+      "data",
+      "twenty",
+      "one",
+      "templates",
+      "carry",
+      "figures",
+      "labelled",
+      "demo",
       "implementation",
-      "plan",
-      "technical",
-      "approach"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "All 21 templates print `Source: demo figures`, and the numbers behind them are placeholder-grade",
     "created_at": "2026-09-06T06:26:44Z",
-    "last_save_at": "2026-09-06T14:53:03.241Z",
+    "last_save_at": "2026-10-07T12:55:10.277Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:93d065f522e0d9af8284966868c7fa5abeca74861835ab3e8107c7aa7bf44e37",
+    "source_fingerprint": "sha256:480217f55a6f7265cb853a28950862c4f54d637f7ad300fd300b94a9698cee95",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "35bc7ad25a7e0f0693fbe7f43acd25fb12578170d78167387388362271bdd64c",
+      "spec.md": "3fec7a70108c17321ebd9287d6802f0f6e4288dc257d322c8ef05857cf865352",
       "plan.md": "9197c644e935b1853d153928afef86281724b3652f16e0dafe45bf44fd825e53",
       "tasks.md": "4024c47e73c67df9a5c43285d0721f7f71e5bcb04b6da25082545343718fe3ee",
-      "implementation-summary.md": "52cc8ec52d06cd468f40ef9df9ab105f9fc05146bbe41293aadad58dff9f0f02"
+      "implementation-summary.md": "0193f496f1779dfc8a249fc44a9c0fc9364ba0ba65fd73e816b0da177b8311d9"
     },
     "last_active_at": null
   }

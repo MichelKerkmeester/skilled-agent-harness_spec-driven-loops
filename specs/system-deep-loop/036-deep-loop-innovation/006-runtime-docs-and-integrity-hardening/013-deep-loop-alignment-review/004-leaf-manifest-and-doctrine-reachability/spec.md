@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 3: leaf-manifest-and-doctrine-reachability"
 description: "The leaf-manifest generator resolves symlinked references, so the twelve sk-code doctrine leaves it skipped are typed and reachable, and a link that cannot become a leaf is reported rather than dropped."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "leaf manifest and doctrine reachability"
+  - "the leaf manifest generator resolves symlinked references so"
 importance_tier: "normal"
 contextType: "general"
 ---

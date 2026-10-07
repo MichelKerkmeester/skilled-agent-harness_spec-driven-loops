@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "new chart forms",
+      "the catalogue has twenty one forms and five",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "new chart forms acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "new",
+      "chart",
+      "forms",
+      "catalogue",
+      "twenty",
+      "one",
+      "five",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Twenty-one forms cover the common cases and leave gaps a reader hits quickly: there is no way to",
     "created_at": "2026-09-06T06:26:44Z",
-    "last_save_at": "2026-09-06T14:53:03.396Z",
+    "last_save_at": "2026-10-07T12:55:10.260Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a6c0d00181be61af551b69c5e6c5b6a31d46b8ca79a15e1806654884316a286",
+    "source_fingerprint": "sha256:446f0ce33b57a6f4b0bbd0376bfc8cd638231c32b3b0fc84b204a8c56aabf6a8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b69376934a36157ac82f78ee5e3c098a3bfc83a1e2865bb06fdfc90fab210a02",
+      "spec.md": "950d7507b1983fb357916092f334fc68a6fa81fb04486ee8f21856f9036ad5d4",
       "plan.md": "80400dac73955eb68473cb2923ac605dfd596801042c8f13edc86e8a4c6d9479",
       "tasks.md": "d66ed658dd0d8becf3f4b30da8d192a9d2b0df94370dbbba197b8ed1d55614e2",
-      "implementation-summary.md": "5dd5d6e36c56af5d9e98251aec1fdb7bcb9e8c2ad09bd44314bc81bf76a31cfc"
+      "implementation-summary.md": "1c5be39c8650954ee866ad0c66d976d1fee9db80dae88a86d9842a37a19c43e3"
     },
     "last_active_at": null
   }

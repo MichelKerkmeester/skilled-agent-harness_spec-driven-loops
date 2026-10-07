@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "design mode and command rename",
+      "chart and diagram live under sk design but",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "design mode and command rename acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "design",
+      "mode",
+      "command",
+      "rename",
+      "chart",
+      "diagram",
+      "live",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Chart and diagram live under `sk-design` but still carry `sk-create-` in their mode names and",
     "created_at": "2026-09-06T16:22:19Z",
-    "last_save_at": "2026-09-06T16:44:37.990Z",
+    "last_save_at": "2026-10-07T12:55:17.054Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aa88bbe9118f17df3f026bf65d3fc55c25261c84570cab048a7dcefba0417006",
+    "source_fingerprint": "sha256:d9be0182035324b4a31bdcf3e9aab4096459d4ccc0586cba543470baf8341ef3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f0821342081c39e60ac08081818dcb4ee0266ef7aac8bf3222814e9ae191b65c",
+      "spec.md": "64ed20a48ecdab116bd7c41787e48c757996bc6585d0ab229b82edfce6680e13",
       "plan.md": "6279a360aa088d617e1f47de8ded07d41dad35b858384ebd45534bea441a4cbb",
       "tasks.md": "26c913a42bea877b6e99f303c0bfc0468c1ba1e9d1762664d50694b7790b1396",
       "implementation-summary.md": "77291dccc67a661e676f803f849aa008c7e1be33e6d34539937f07d50eb68c91"

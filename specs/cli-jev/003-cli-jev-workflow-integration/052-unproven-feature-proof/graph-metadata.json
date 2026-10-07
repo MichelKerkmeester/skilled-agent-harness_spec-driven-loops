@@ -22,7 +22,7 @@
       "implementation tasks",
       "verification checklist",
       "task dependencies",
-      "acceptance criteria"
+      "unproven feature proof acceptance criteria"
     ],
     "key_topics": [
       "unproven",
@@ -49,13 +49,7 @@
       "specs/cli-jev/006-jev-feature-auto-enable/research/research.md",
       ".skilled/skills/cli-classifier/shared/scripts/scorer-report.mjs",
       ".skilled/skills/cli-classifier/shared/scripts/tests/scorer-report.test.mjs",
-      ".skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts"
+      ".skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs"
     ],
     "entities": [
       {
@@ -104,42 +98,6 @@
         "name": "jev-features.test.mjs",
         "kind": "file",
         "path": ".skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-track-narrowing.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-track-narrowing.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "score-clarify-default.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-clarify-default.test.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-alignment-suggestion.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "score-alignment-suggestion.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts",
         "source": "derived"
       },
       {
@@ -201,11 +159,47 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Rows",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Spec-track narrowing kept once and stopped on its repeat",
     "created_at": "2026-10-05T04:56:52Z",
-    "last_save_at": "2026-10-05T06:50:09.294Z",
+    "last_save_at": "2026-10-07T12:54:57.373Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +209,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24368132893eeceb7dc168f6f935efa5f459052939191b3de5426d9c0a831e53",
+    "source_fingerprint": "sha256:17ab23998f4e57054fba35d0df8d444cdaa368562d5bdb08ccbefd125f935dfd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e22d9f8b400a2343ae7f573be0ffed40cbddb7535d22721a34a6617959e69cd9",

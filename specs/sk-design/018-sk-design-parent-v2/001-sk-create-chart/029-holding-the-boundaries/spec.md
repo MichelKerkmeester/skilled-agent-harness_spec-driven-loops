@@ -2,10 +2,8 @@
 title: "Feature Specification: hold the boundaries that turned out to be reachable"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "holding the boundaries"
+  - "the previous phase closed everything it could and"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,8 @@
 title: "Feature Specification: Give the shared-checkout churn detector a cumulative arm so slow drift trips it"
 description: "The churn detector only counted newly dirty paths per heartbeat window, so a neighbour dirtying one path per heartbeat never crossed the threshold no matter how long it kept going. A running total across heartbeats trips on that shape while the per-window burst arm stays exactly as it was."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "churn cumulative arm"
+  - "the churn detector only counted newly dirty paths"
 importance_tier: "normal"
 contextType: "general"
 _memory:

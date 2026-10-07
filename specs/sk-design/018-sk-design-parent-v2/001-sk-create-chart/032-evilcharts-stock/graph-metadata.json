@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "evilcharts stock",
+      "the operator asked for a custom evilcharts style",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "evilcharts stock acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "evilcharts",
+      "stock",
+      "operator",
+      "asked",
+      "custom",
+      "style",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -47,7 +47,7 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json",
+      "changelog/v2.0.0.0.md",
       ".opencode/skills/sk-design/sk-design-chart/assets/templates/population-pyramid.html",
       ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs"
     ],
@@ -89,9 +89,9 @@
         "source": "derived"
       },
       {
-        "name": "palettes.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json",
+        "name": "v2.0.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.0.0.0.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The operator asked for a custom evilcharts Style Reference",
     "created_at": "2026-09-10T05:16:46Z",
-    "last_save_at": "2026-09-10T05:18:31.475Z",
+    "last_save_at": "2026-10-07T12:55:14.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:58d88e0ae3b7edba9a77b339ddab1c1d736e2e1b6229f9657977a05c07b9d44c",
+    "source_fingerprint": "sha256:de1a2bda7f46a3d7a20bc3803207105aeacf79e09bc45c385a3e4ef97783b630",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "12b9b74745119699c7c154cc768e9f1a4affd292e3d8621ab9627f55b93eeedb",
+      "spec.md": "b7480cc8568bd6ade4048ff6c411d5951fe03ed4c9651e5aee3eb340e6ded056",
       "plan.md": "9940082ac8b0e3ce6742da4f736e7239917b2d5dc018778c0b07f7f9a084450d",
       "tasks.md": "8b583db398d53130bcb9d24a5dc5cb3da9cfeb409c730593683a5029c260b219",
       "implementation-summary.md": "3c0e59c68342e321fe36cf71dcd7710e6540a9cae7d688187b6a199cbd1c91ce"

@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 3: hub mode registration"
 description: "A packet that no routing surface names is a folder; a routing surface that names a mode nothing enforces is a comment — this phase makes cli-jev reachable, enforced and served, on every surface, with a gate behind each layer."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "hub mode registration"
+  - "a packet that no routing surface names is"
 importance_tier: "normal"
 contextType: "general"
 _memory:

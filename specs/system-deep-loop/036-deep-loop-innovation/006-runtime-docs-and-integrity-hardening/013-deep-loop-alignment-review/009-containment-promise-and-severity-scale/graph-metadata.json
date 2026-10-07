@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "containment promise and severity scale",
+      "the containment promise says what the runner does",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "containment promise and severity scale acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "containment",
+      "promise",
+      "severity",
+      "scale",
+      "says",
+      "runner",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Two governed domains each had two authorities pronouncing and nothing reconciling them",
     "created_at": "2026-09-20T08:33:45.038Z",
-    "last_save_at": "2026-09-25T16:15:23.264Z",
+    "last_save_at": "2026-10-07T12:55:31.537Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d3980577136a4c30e6b478e7cdeaed1f9b5bd7dafa5c2a020bc003c2e4578840",
+    "source_fingerprint": "sha256:439f13238544a3135549d77e14ca03cdfffa9e7f285d899a68ab6dab47f839ec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1c0841a4b7bc2e77cc98284772c424edd3e0bf09fcb867f94bbd7a659dc74d8f",
+      "spec.md": "dbac36bcdb9a6144a247021974c6d8aea5adb58aeb34469e416d8a824446d5d9",
       "plan.md": "a56d88d3d1b8dd6df2984cce508751d676f42b055e22943a109a4ec0d79e9a6a",
       "tasks.md": "f0caf16be9ee1c0a34045c7131f14f51fe191f7310975ea2dbd3e9643d3285b6",
       "implementation-summary.md": "275d7f1d1d11fee3ff0aa322265cbcb36bf6bc073194137be8749bc127f5a7cc"

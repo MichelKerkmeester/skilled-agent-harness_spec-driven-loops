@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "citation drift detection",
+      "extend the existing citation scanner to spec and",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "citation drift detection acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "citation",
+      "drift",
+      "detection",
+      "extend",
+      "existing",
+      "scanner",
+      "spec",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`cite-drift-scan.mjs` reads tracked skill docs only",
     "created_at": "2026-10-04T08:04:51Z",
-    "last_save_at": "2026-10-04T12:06:05.536Z",
+    "last_save_at": "2026-10-07T12:55:55.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,10 +219,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30fbd840d6c032ab01530086199d2c0d5ce9197cb10943f6843bb3c6d8543aed",
+    "source_fingerprint": "sha256:e954787e639f125806c885f4c5e8758270b14e0b70fbc1991f65782ab2f85c8a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "432d6db9d24c96e17282aeebbbc72917083d6655cf106a09304f28f4ba6b111b",
+      "spec.md": "23fd3057cbdeacc0a3a197ca88753c87fd8b55a4c09a6cef52fbb504bdfc5c78",
       "plan.md": "939b24fd25e35edf3975cd5edc7283a0092064244321d8b057be5fdb147cabe1",
       "tasks.md": "264fd532835b4f22537017ad9fe436f7ab7daab1acf1aff1bb634c13c480afa0",
       "decision-record.md": "ac9a3ef15e56d1ff0385ac7e6c174eaf1b71a0b4a324eba1551cb35c3b4e4777",

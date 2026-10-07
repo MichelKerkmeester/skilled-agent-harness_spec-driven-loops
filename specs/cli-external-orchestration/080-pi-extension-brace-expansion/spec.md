@@ -2,10 +2,8 @@
 title: "Feature Specification: Bump brace-expansion in two Pi extension lockfiles to close four Dependabot alerts"
 description: "Two Pi extension lockfiles pin brace-expansion 5.0.9, which carries four Dependabot alerts; this moves both to 5.0.12."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "pi extension brace expansion"
+  - "two pi extension lockfiles pin brace expansion 5"
 importance_tier: "normal"
 contextType: "general"
 ---

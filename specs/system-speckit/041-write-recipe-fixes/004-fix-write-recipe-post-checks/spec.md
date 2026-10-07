@@ -2,10 +2,8 @@
 title: "Feature Specification: Reword the status and push rows of the spec folder write recipe post-checks"
 description: "Two post-check rows of the write recipe assumed a clean tree and a push to main, which the shared tree and the operator's workspace choice both contradict."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "fix write recipe post checks"
+  - "two post check rows of the write recipe"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "acceptance criteria"
+      "routing integration acceptance criteria"
     ],
     "key_topics": [
       "chart",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "A registry entry is not a route",
     "created_at": "2026-09-02T07:56:51Z",
-    "last_save_at": "2026-09-11T16:41:57.925Z",
+    "last_save_at": "2026-10-07T12:55:06.404Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bbb8ec3307aa52008922b6b01baaed8d289d1960e8bc84ec37fc5752bee50faa",
+    "source_fingerprint": "sha256:33e3c2cd9ad260e09150b3543cfb9972f099577798881c0c75b9a8567ea66096",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "143b70fa24af542c0c6178452d40b18dd6d4f139bfe7e07804bed1dfed19bd6e",

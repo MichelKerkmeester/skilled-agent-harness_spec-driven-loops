@@ -2,10 +2,8 @@
 title: "Feature Specification: Fix: deep-research run open"
 description: "A deep-research run, including each fan-out lineage, opens through the append gateway and records iterations with exit 0."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "research run init via gateway"
+  - "a deep research run including each fan out"
 importance_tier: "normal"
 contextType: "general"
 ---

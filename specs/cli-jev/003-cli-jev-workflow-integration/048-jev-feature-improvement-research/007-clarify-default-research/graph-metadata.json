@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "clarify default research",
+      "five deepseek v4 1 flash and three gpt",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "clarify",
+      "default",
+      "research",
+      "five",
+      "deepseek",
+      "flash",
+      "three",
+      "gpt",
       "implementation",
       "plan",
       "technical",
@@ -48,7 +48,6 @@
       "implementation-summary.md",
       "research/research.md",
       "research/findings-registry.json",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
       "research/lineages/deepseek/deep-research-state.jsonl",
       "research/lineages/luna/deep-research-state.jsonl",
       "research/lineages/deepseek/research.md",
@@ -98,12 +97,6 @@
         "name": "findings-registry.json",
         "kind": "config",
         "path": "research/findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "score-clarify-default.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
         "source": "derived"
       },
       {
@@ -201,11 +194,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 047 measured the Jev routing clarify default at verdict jev: keep K=54 M=54 A=28 B=15 W=17 L=4 F=10 p=0.003599, baseline: first alternative right on 15 of 54",
     "created_at": "2026-10-02T21:59:47Z",
-    "last_save_at": "2026-10-03T03:04:11.769Z",
+    "last_save_at": "2026-10-07T12:54:52.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +215,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ec76313fa6c6338983a8b658c8c24eb269692872ca09335986de7ad016ffa7f6",
+    "source_fingerprint": "sha256:55f6e8a73a46a58eb366330fec161c80abdf3b29ad048d4f76c8baecb96567a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2b657736cf8d49ff1eabbc5e8601bf1c345697c67288ebb5b8eb00d8adea4618",
+      "spec.md": "3a3b0c2a90a99a343c12c987e03554cbec925ba4aecfdd162f4bd89055c72ce5",
       "plan.md": "67dd1584c793f66016a8f17e6cb7f22fa7727ebaa60fef9d9dffb6f47f7545f4",
       "tasks.md": "3efe98cece6615e7fa02c81ac2d1e75fd4543b2f32ea1e4844250384ab56762c",
       "implementation-summary.md": "35b4a5298b06ad16d02caf54ff3f4eaed5187e5eeb03840512d4624719686e25",

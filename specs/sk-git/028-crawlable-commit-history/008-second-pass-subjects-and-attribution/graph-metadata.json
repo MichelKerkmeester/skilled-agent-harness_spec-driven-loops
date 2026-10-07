@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "second pass subjects and attribution",
+      "second rewrite pass every subject normalized to the",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "second pass subjects and attribution acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "second",
+      "pass",
+      "subjects",
+      "attribution",
+      "rewrite",
+      "every",
+      "subject",
+      "normalized",
       "implementation",
       "plan",
       "technical",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "2,466 subjects fail the grammar the hook enforces today, 2,912 carry a packet number or a slash as their scope, 572 run past 100 characters, and none carries a word from the packet it belongs to",
     "created_at": "2026-09-11T17:06:02Z",
-    "last_save_at": "2026-10-03T15:44:20.747Z",
+    "last_save_at": "2026-10-07T12:55:27.572Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6eaffc6fe5f0fef2d31aeebaa99b4ab195e91dd7c21a38937e9ed95404ed91e8",
+    "source_fingerprint": "sha256:8ba5095d597c81256da211c01b8576e5339fc36eeb58198128d343cfd37bc344",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e1ea4a1d0233c17e21ef2384412ff2c0dd972cbff69c514ac53e40d9d7b5797a",
+      "spec.md": "739c6cfdcfe3e0f32394a4dd080cf929c25be89ee623340ff72303d2b5f8230b",
       "plan.md": "2c463d3e52350857cf15144c763040c967cdd2c18cb5bdad6f202230551e7336",
       "tasks.md": "0f2552245a3825127f0946f9cf6f3ad18906d6494e520ff6d486c8c3eac68d65",
       "implementation-summary.md": "6f5f494efe052d843225cfb5c654468704489f21f6acb7d3a3f05bd58da1e214"

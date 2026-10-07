@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 13: shorten the handoff rule name"
 description: "The handoff rule's filename was the longest in the corpus at 38 characters, twice the length of its siblings, so it was shortened to communication-handoff."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "shorten handoff rule name"
+  - "the handoff rule s filename was the longest"
 importance_tier: "normal"
 contextType: "general"
 ---

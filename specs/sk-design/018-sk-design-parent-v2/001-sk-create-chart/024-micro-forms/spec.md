@@ -2,10 +2,8 @@
 title: "Feature Specification: spark, tracker and bar-list forms"
 description: "Three question-first micro-forms the library has and the catalogue lacks: spark (line, area and bar variants as one family) for the compact trend, tracker for discrete status over time in the categorical role, and bar-list as a compact ranked list sharing bar-rows semantics; each a template with every corpus contract, a catalogue row and a capture."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "micro forms"
+  - "three question first micro forms the library has"
 importance_tier: "normal"
 contextType: "general"
 ---

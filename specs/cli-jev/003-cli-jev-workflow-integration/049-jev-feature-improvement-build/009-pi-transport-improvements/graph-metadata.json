@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "pi transport improvements",
+      "the transport honors the caller s provider can",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "transport",
+      "improvements",
+      "honors",
+      "caller",
+      "provider",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions",
+      "testing"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Feature 037 adopted the Pi transport by one row, on a comparison whose CLI arm was a day older and used another provider",
     "created_at": "2026-10-03T05:30:09Z",
-    "last_save_at": "2026-10-03T15:11:04.133Z",
+    "last_save_at": "2026-10-07T12:54:56.536Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a11a33711812feb19475dc24c5657771efd52316ce1bd305cce358be7b26d67",
+    "source_fingerprint": "sha256:4e98934fb26ab6b2f3781209c9b0bc99626e8053e21e9d24975f3bbdac04785e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d8b8325e4c4283f81d30eb1b502c02055bf8778feee17a3f9c433091efde1859",
+      "spec.md": "bce5736f3cef5af07bd391ca8abf7e85ec9c1ddd64b78c6c3e0647e379ea4182",
       "plan.md": "5b5c656d4c4db85f56e5d4dc5e8b1d977b4d007bf88640588b7a5ef1677d5773",
       "tasks.md": "554b582742ef8596e39f71cec581e6f9ee48f2a9c7a49a91af5948e7e2fea659",
       "implementation-summary.md": "19a6c171844dc1b519fc075cca90ae6fbc867e3c4484ea73cae212c0e38199ec"

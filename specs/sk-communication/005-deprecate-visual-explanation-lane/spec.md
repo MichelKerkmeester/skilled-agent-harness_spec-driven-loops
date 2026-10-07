@@ -2,10 +2,7 @@
 title: "Feature Specification: deprecate the visual explanation lane and its command from sk-communication"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "deprecate visual explanation lane"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "hallucination grader research",
+      "five deepseek v4 1 flash and three gpt",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "hallucination",
+      "grader",
+      "research",
+      "five",
+      "deepseek",
+      "flash",
+      "three",
+      "gpt",
       "implementation",
       "plan",
       "technical",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Phase 047 measured the Jev hallucination grader at verdict jev: keep K=56 M=56 A=55 B=47 W=8 L=0 F=1 pwin=0.003906, baselines: majority 47 of 56, deterministic check 22 of 56",
     "created_at": "2026-10-02T21:59:45Z",
-    "last_save_at": "2026-10-03T00:14:07.360Z",
+    "last_save_at": "2026-10-07T12:54:52.207Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2595f2daac18b7c13197cbe572a54c8ee01b3c3caa5f7a60eb404abb575725ce",
+    "source_fingerprint": "sha256:5cd3c3af639d69add40798317d03cab4d51b46c75eb8659b8f0931cb7e08cdc0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8411f7e9b7f986dabe1fd66a7580b77c2376e27a01f1c5375b15659ffd1bb90d",
+      "spec.md": "4220573c89485c73cc4caa02273a76702bbdcffe9b12922b799a38e1faf18f71",
       "plan.md": "09022c060518f5f38b712f16ad0a1bf3d257ad5658c9af19a1e52dd19a5e1c65",
       "tasks.md": "d235fc62fb2a17dd41cdf06a2f3a3797ea46a523674f0d05b97006ded9fb940d",
       "implementation-summary.md": "463b0be79d679088449032b07c4b805a5a762ebcc9d742f41236b70e77011866",

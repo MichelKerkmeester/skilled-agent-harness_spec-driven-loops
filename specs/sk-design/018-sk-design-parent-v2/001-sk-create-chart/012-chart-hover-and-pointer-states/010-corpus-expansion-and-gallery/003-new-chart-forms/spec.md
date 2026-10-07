@@ -2,10 +2,8 @@
 title: "Feature Specification: Research and add the chart forms the catalogue is missing"
 description: "The catalogue has twenty-one forms and five obvious gaps. This child adds bullet, funnel, dumbbell, histogram and population-pyramid, each adapted from the existing form closest to it in structure, and records why gauge, radar, pareto, lollipop and sankey were considered and left out."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "new chart forms"
+  - "the catalogue has twenty one forms and five"
 importance_tier: "normal"
 contextType: "general"
 ---

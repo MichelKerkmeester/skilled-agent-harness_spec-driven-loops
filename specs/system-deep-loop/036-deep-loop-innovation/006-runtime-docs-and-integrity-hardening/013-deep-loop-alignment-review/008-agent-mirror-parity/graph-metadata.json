@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "agent mirror parity",
+      "six runtime trees ship the same twelve agents",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "agent mirror parity acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "agent",
+      "mirror",
+      "parity",
+      "six",
+      "runtime",
+      "trees",
+      "ship",
+      "same",
+      "twelve",
+      "agents",
       "implementation",
-      "plan",
-      "technical",
-      "approach"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Six trees mirror the same twelve agents, and the translation between them was undocumented and partly lossy",
     "created_at": "2026-09-20T08:33:44.884Z",
-    "last_save_at": "2026-09-25T16:15:22.840Z",
+    "last_save_at": "2026-10-07T12:55:31.524Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4802ca43501622d68ab62000111d6510bfd39743ca420087ce33e5bcf61b55f5",
+    "source_fingerprint": "sha256:66721ca2e9865c100d98192d637c5411d121be372a3a9f822153c06b4eb8fe58",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fb8e84610b06ec2e281a98aa8f095770bfa6f373c4124b9d049982e8853ea8da",
+      "spec.md": "12196a41ab1c2a58dcce194fa3c07b435b3241bdf8f52dcebfdf3eff8968e51f",
       "plan.md": "58bce6e782b778fc8c2b77bd7182cc580c4c318cdd568035f28fa74c7897fa6c",
       "tasks.md": "50809e0c7af19ec1356f8dbfd38b65ed40507684ee639795ee25552b340a3187",
       "implementation-summary.md": "05787f43de9ae5787f95896b3a68076f98a318dd9c92749a7f456c13ac9f28cb"

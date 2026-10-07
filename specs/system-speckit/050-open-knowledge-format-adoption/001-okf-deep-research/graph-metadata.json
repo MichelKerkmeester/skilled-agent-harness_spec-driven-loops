@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "okf deep research",
+      "ten iteration deep research comparing how system spec",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "okf deep research acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "okf",
+      "deep",
+      "research",
+      "ten",
+      "iteration",
+      "comparing",
+      "system",
+      "spec",
       "implementation",
       "plan",
       "technical",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "No one has compared system-spec-kit against the Open Knowledge Format (OKF) with evidence",
     "created_at": "2026-10-04T05:36:11Z",
-    "last_save_at": "2026-10-04T08:13:53.123Z",
+    "last_save_at": "2026-10-07T12:55:55.311Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ac0154bbd0f5be617aa4c259d7c17e7674f2738617c3b449c22beff7b88449c1",
+    "source_fingerprint": "sha256:38f1fbe620090f777978f5964ffa5fdf41287814476134e6630948cfe8b3ab6c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2baf0acc6182ac13028831f861b92e70af88db9c888eda446bbd9339a36ee45b",
+      "spec.md": "c671037c795ce5c6eef2798381acfc918b84d0af14c222db97357d373030b020",
       "plan.md": "4d4042038f33f1e48579d024c473392356cd3bfb2137fec74c430f7504705897",
       "tasks.md": "1833259b6eef02830e18c9ee5d5c6f8afc4f5daa5ede4ba5abe36a76896729ea",
       "implementation-summary.md": "133febe4a5ffbdb3b1473800e63fe19e6fbc74465705232eb3f6e107d2c8a84c",

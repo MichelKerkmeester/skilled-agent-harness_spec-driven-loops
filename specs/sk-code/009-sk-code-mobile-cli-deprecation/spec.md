@@ -2,10 +2,7 @@
 title: "Feature Specification: Deprecate the sk-code-mobile-cli surface packet and sweep its references"
 description: "The sk-code hub still registers and advertises a surface packet for the retired Pi Remote Mobile-CLI stack, so app-mobile prompts route to a stack the repository no longer carries."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "the sk code hub still registers and advertises"
   - "sk-code-mobile-cli deprecation"
 importance_tier: "normal"
 contextType: "general"

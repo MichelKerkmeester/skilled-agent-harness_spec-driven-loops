@@ -2,10 +2,8 @@
 title: "Feature Specification: a standing mutation suite for the corpus checker, and CI"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "mutation suite"
+  - "the corpus check is 3 435 lines forty"
 importance_tier: "normal"
 contextType: "general"
 ---

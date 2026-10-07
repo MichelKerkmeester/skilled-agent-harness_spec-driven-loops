@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 8: containment-promise-and-severity-scale"
 description: "The containment promise says what the runner does, the verdict check says what it checks, and a severity outside the scale is reported instead of silently ranking below everything."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "containment promise and severity scale"
+  - "the containment promise says what the runner does"
 importance_tier: "normal"
 contextType: "general"
 ---

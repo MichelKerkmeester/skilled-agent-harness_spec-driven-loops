@@ -21,8 +21,8 @@
       "evilcharts tasks",
       "fan-out task list",
       "chart research tasks",
-      "acceptance criteria",
-      "closure gate"
+      "evilcharts reference research acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
       "evilcharts",
@@ -47,8 +47,7 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "research/research.md",
-      "context/README.md"
+      "research/research.md"
     ],
     "entities": [
       {
@@ -91,12 +90,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "context/README.md",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "1. SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mode ships twenty templates, three colour systems and a corpus validator",
     "created_at": "2026-09-03T07:26:12.232Z",
-    "last_save_at": "2026-09-06T14:59:16.872Z",
+    "last_save_at": "2026-10-07T12:55:06.548Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +209,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:73ca245972ef1b9fb39515b1455e101f6d7c94569af389aa8c349c788e8699a2",
+    "source_fingerprint": "sha256:c9489d406d7089a0eacc4c2f3a4c5a73d4cb88206c2ac4318b2135113234d6c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "75746f9f40ce7ab39a59bdf202385958c905134dd1cd1859919b03ffd2950538",

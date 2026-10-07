@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Governance documentation alignment: 006-resume queue plus router and root-doc research"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "governance doc alignment acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

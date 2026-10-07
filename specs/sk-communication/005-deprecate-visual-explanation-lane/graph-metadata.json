@@ -11,10 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "deprecate visual explanation lane",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +19,24 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "deprecate visual explanation lane acceptance criteria",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "deprecate",
+      "visual",
+      "explanation",
+      "lane",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions",
+      "testing",
+      "strategy"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-12T10:14:52Z",
-    "last_save_at": "2026-09-12T10:24:43.720Z",
+    "last_save_at": "2026-10-07T12:55:01.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f17824a1f9a03b3a6456cf0903b42127df99511e114362831c13922082581c21",
+    "source_fingerprint": "sha256:b27a3c7b5021944741991b718c6e2394e5c28de02463de09a5d21f05ef1a6e7f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dda87ce4890de05fcd7b2998b0de57cbb8c36420a75eb6eac42efb0d5ab62663",
+      "spec.md": "437f1ecba0496f254ecbdff75e1a5235db6c7fb13e7c48fe4ad8d14f5cbb5975",
       "plan.md": "de24d725c131460bb29ef017322264036f8146992873151c65770ae7576cca8b",
       "tasks.md": "1bc6dc8f61308c4099465d251c368347a61ec018865b037769cb0fdf3f1385be",
-      "implementation-summary.md": "7f13c2bd62bff267195a3581a95b65051cccaa052dbc71b985c546989d172018"
+      "implementation-summary.md": "82ae4cd43becf1c2bf8bf6cd489771b27903709789ebaf2ddf111c8054f6e42e"
     },
     "last_active_at": null
   }

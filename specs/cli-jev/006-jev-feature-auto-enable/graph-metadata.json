@@ -60,7 +60,7 @@
       ".skilled/hooks/README.md",
       "scratch/baseline.txt",
       "specs/cli-jev/006-jev-feature-auto-enable/research/resource-map.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs"
+      ".skilled/skills/cli-classifier/shared/scripts/scorer-report.mjs"
     ],
     "entities": [
       {
@@ -172,9 +172,9 @@
         "source": "derived"
       },
       {
-        "name": "score-track-narrowing.mjs",
+        "name": "scorer-report.mjs",
         "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/scorer-report.mjs",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Four Jev features have a measured keep verdict: the citation drift check (032), the injection screen (035, 84 against 68 of 90), the reviewer verdict fallback (025, 24 against 8 of 24) and the hallucination grader (024, 55 against 47 of 56)",
     "created_at": "2026-10-04T20:12:18Z",
-    "last_save_at": "2026-10-04T22:20:44.639Z",
+    "last_save_at": "2026-10-07T12:54:57.390Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:cc644caa76c6c6f2d6ed322ac18d960fe11e7f187eb03a13d3af0d4a0ce6d476",
+    "source_fingerprint": "sha256:229aa4db2744aad474345354ea9361a886cadedfc4ef5ac45f12edc10a7b4b26",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "70dc04a3482b53886b1206f4b3ef7ceb823ac8291c19b7862944bc55a38591ea",

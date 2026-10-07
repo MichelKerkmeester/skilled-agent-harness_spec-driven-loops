@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Phase 10: asset-templates-and-folder-readmes"
 description: "The criteria that close phase 010: template parity, checker coverage, code-folder READMEs, index removal, routing and release notes."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "asset templates and folder readmes acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

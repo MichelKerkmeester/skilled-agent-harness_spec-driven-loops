@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 2: cli-jev skill packet"
 description: "The hub needs a packet that tells a dispatcher what a Jev judgment is, what it is not, and which command shapes the hub will refuse — otherwise the mode is a binary name and its contract lives only in whoever read the source."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "cli jev skill packet"
+  - "the hub needs a packet that tells a"
 importance_tier: "normal"
 contextType: "general"
 _memory:

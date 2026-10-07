@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: v4-changelog-review-fixes"
 description: "The 046 remediation shipped Complete and the LUNA 5.6 MAX FAST review of the result found eight mechanical or one-clause fixes that are machine-checkable today; this phase applies them in one atomic, evidence-anchored pass and defers the five restructure-class findings to their own future pass."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "v4 changelog review fixes"
+  - "the 046 remediation shipped complete and the luna"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,8 @@
 title: "Feature Specification: Give the chart and diagram modes a rendered picture of every template and example"
 description: "Both canvas modes ship HTML that has to be opened in a browser to be judged. 26 chart templates, 6 chart examples, 4 diagram templates and 34 diagram examples, and no way to see any of them without rendering it yourself. A catalog of forms nobody can"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "template screenshots"
+  - "both canvas modes ship html that has to"
 importance_tier: "normal"
 contextType: "general"
 ---

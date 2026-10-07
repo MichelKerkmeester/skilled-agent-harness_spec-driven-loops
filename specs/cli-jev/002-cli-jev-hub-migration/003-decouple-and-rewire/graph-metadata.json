@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "decouple and rewire",
+      "two hubs still named one packet and the",
       "cli-jev decoupling",
       "dispatch packetPath",
       "roster rewiring",
@@ -22,17 +20,19 @@
       "technical approach",
       "architecture decisions",
       "testing strategy",
-      "dispatch rewiring"
+      "dispatch rewiring",
+      "generated surfaces",
+      "phase tasks"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "decouple",
+      "rewire",
+      "two",
+      "hubs",
+      "still",
+      "named",
+      "one",
+      "packet",
       "cli-jev",
       "decoupling",
       "dispatch",
@@ -60,7 +60,7 @@
       ".skilled/skills/README.txt",
       ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
       ".skilled/skills/cli-external-orchestration/SKILL.md",
-      ".skilled/skills/cli-jev/SKILL.md"
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
     ],
     "entities": [
       {
@@ -154,6 +154,12 @@
         "source": "derived"
       },
       {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After phase 002 two registries named one packet and the enforcement chain still read the retired path: `dispatch-audit.mjs` resolved the packet `SKILL.md` under `cli-external-orchestration/cli-jev/`, a directory that no longer exists, so `readHardRules` failed open and zero of the eight jev hard rules were enforced at preflight while the packet-bijection test stayed red",
     "created_at": "2026-09-20T11:00:12Z",
-    "last_save_at": "2026-09-20T13:13:24.774Z",
+    "last_save_at": "2026-10-07T12:54:47.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fb5d3196b505c0cccd0bcdd57ae464a0a9b1b5034306d5af5182480f2ee8f012",
+    "source_fingerprint": "sha256:0eac64b9a73a68b77d98bc8c075acd2e2e9361e8de6daa36c740b559284a7cd3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7c26d6a6b588959fc3cabe0e620208b7f8c931a0a8626609ff8aa4d066594544",
+      "spec.md": "fc89768b00718576c9c149311f6a5ac41ed6f9eda64f98767442ab430eeb99cf",
       "plan.md": "6486f4cb2e1a2b8d559909d71d4d9e4bf597373d78371c0080e5dae39d154757",
       "tasks.md": "6c995486df1ee110475fa7bb438e83f65501cff1c262e831f3d05ca41da04cd6",
       "implementation-summary.md": "edda93739370df584e5224d1182709082ce3b775f3cf987907e87a7136bbe380"

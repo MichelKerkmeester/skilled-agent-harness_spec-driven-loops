@@ -2,10 +2,8 @@
 title: "Feature Specification: Build: improve the Jev spec-folder suggestion (022)"
 description: "The folder suggestion scorer shows each option with its real description, measures whether the right folder was offered at all, and records what it scored."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "folder suggestion improvements"
+  - "the folder suggestion scorer shows each option with"
 importance_tier: "normal"
 contextType: "general"
 ---

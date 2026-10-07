@@ -21,8 +21,8 @@
       "implementation tasks",
       "verification checklist",
       "task dependencies",
-      "acceptance criteria",
-      "closure gate"
+      "doctor git acceptance criteria",
+      "doctor git summary"
     ],
     "key_topics": [
       "doctor",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Every optional gate in the shipped hooks had a `SPECKITSKIP` variable, and a variable lasts one command",
     "created_at": "2026-10-04T07:07:48Z",
-    "last_save_at": "2026-10-04T07:50:25.852Z",
+    "last_save_at": "2026-10-07T12:55:55.082Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:26982f7fece5fe69a39ebd7fb7c626d480715df038e5a53e6d139f309276e2ec",
+    "source_fingerprint": "sha256:6142079934e14ba4712c1a65bb7c2418f1bcfa73337d041105e7eb8dad3f277b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f048a89648482465d3b2bfbe6b8e08ffe5cc432511f4d113d6b9e95da18989cc",

@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 13: goal-chat-send-shape"
 description: "A session resent a parent goal in chat with every anchor, template comment, divider and section number, because each goal send surface said to send the durable slice minus its frontmatter and none bounded the sent text. This phase defines the chat slice and a 4,000-character send cap and states both wherever an agent decides what goal text to send."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "goal chat send shape"
+  - "a session resent a parent goal in chat"
   - "goal chat slice"
   - "parent goal chat send cap"
 importance_tier: "normal"

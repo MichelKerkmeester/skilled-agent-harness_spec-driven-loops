@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "orchestrate mirror alignment",
+      "the orchestrate agent s opencode source grants the",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "orchestrate mirror alignment acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "orchestrate",
+      "mirror",
+      "alignment",
+      "agent",
+      "opencode",
+      "source",
+      "grants",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The orchestrate agent said it orchestrates through the delegation tool, but its OpenCode permission block did not grant it and its Pi mirror did not declare it, while the Claude mirror did",
     "created_at": "2026-09-20T08:33:43.324Z",
-    "last_save_at": "2026-09-25T16:15:28.185Z",
+    "last_save_at": "2026-10-07T12:55:36.629Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc48760fedf25bb369be584082528883c2ee073302570a42efe986589b4f8a8d",
+    "source_fingerprint": "sha256:fbffe1497b4ae1ecf673b39267121388384ee75ca3c0a882ca5dab0f84b5f8c3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "afb4db87123f26a47a694a48a487467b70f37217de9204fd2fb28e34271b994d",
+      "spec.md": "acb427b2e37d272de0c9887cd5655d593db5a780a738d7ba6ea3a5c45ff9cdbe",
       "plan.md": "2e50758c3daedaba05cb2560c88f57845c985ca2dee87b454cdb5ee5a7433add",
       "tasks.md": "109bffee7b2b6e513e2ac06204b05d9bc5b4cf366e1560ac4305abef47d18692",
       "implementation-summary.md": "3950d2fca2acff6f3e0389cd168431cf77dbaa1d1ae4c54f8fb2373cbf3cfaa0"

@@ -2,10 +2,8 @@
 title: "Feature Specification: Transfer the pointer mechanism to stacked-bars, daily-line and bar-line-composed"
 description: "Three of the seven partial forms already carry a legend or a dim but no tooltip. This phase copies the proven box-plot pointer mechanism into stacked-bars.html, daily-line.html and bar-line-composed.html unchanged, registering each form's own marks against its own readout."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "transfer three forms"
+  - "three of the seven partial forms already carry"
   - "stacked-bars tooltip transfer"
   - "bar-line-composed tooltip transfer"
 importance_tier: "normal"

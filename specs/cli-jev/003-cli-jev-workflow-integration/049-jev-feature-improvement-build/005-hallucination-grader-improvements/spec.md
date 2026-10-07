@@ -2,10 +2,8 @@
 title: "Feature Specification: Build: improve the Jev hallucination grader (024)"
 description: "The grader is measured against a fed baseline, a failure is never read as a score, and both scoring paths see the same context."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "hallucination grader improvements"
+  - "the grader is measured against a fed baseline"
 importance_tier: "normal"
 contextType: "general"
 ---

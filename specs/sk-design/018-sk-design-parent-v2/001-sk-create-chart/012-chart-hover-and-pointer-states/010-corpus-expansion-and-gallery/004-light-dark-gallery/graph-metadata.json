@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "light dark gallery",
+      "one page carrying every chart form twice once",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "light dark gallery acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "light",
+      "dark",
+      "gallery",
+      "one",
+      "page",
+      "carrying",
+      "every",
+      "chart",
+      "form",
+      "twice",
       "implementation",
-      "plan",
-      "technical",
-      "approach"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Every file in the corpus carries a dark palette block behind `prefers-color-scheme`, and the checker",
     "created_at": "2026-09-06T06:26:46Z",
-    "last_save_at": "2026-09-06T14:53:03.543Z",
+    "last_save_at": "2026-10-07T12:55:11.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:efb0e89cd16ca77640350e858f1c13c311ffa28dbba4ff4dc565509404cf2124",
+    "source_fingerprint": "sha256:a28835877d6bfb399b0b4ae295f2900513ef84088d67c9d3f4b04f66b6419330",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9264ab66349eeb9e5bf02ce9a3745ce2fd7005a3ffbbef158e10511a192049b0",
+      "spec.md": "b97825ad9bad6e4ac38249749f2e309ce91b44b8f8f5cf452b7842c2c9db31e9",
       "plan.md": "09c7ee4d8574f2809b30649eac1bb3f94179985af847f10b477cf0203e353023",
       "tasks.md": "b3f3709ad177cda1855a30f1b0eba31a9299848dc272f103d6b2d404643194ac",
-      "implementation-summary.md": "6e3de4ebac4b39fe1c747886624fc821d1833e056791df49e141acba240fc6dd"
+      "implementation-summary.md": "d5212fa29eaadb35d786109d0a7a8339484c40dba0cad8e4311f421a1c07ff14"
     },
     "last_active_at": null
   }

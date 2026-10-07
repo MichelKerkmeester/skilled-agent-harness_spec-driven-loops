@@ -2,10 +2,8 @@
 title: "Feature Specification: cursor bundle as the stock chart register"
 description: "Make the cursor Style Reference the stock chart register: the palette source, every stock palette block, the body typeface and the corner ladder are derived from it, with four values moved by the least amount that clears a gate and named in the source."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "cursor stock register"
+  - "make the cursor style reference the stock chart"
 importance_tier: "normal"
 contextType: "general"
 ---

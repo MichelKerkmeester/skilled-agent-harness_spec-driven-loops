@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Claude and Cursor hook registrations now carry the same self-diagnosing drift fallback as Codex and Devin, and the improvement/ artifact family the deep-improvement commands write is documented in the folder structure and checked by a validator rule.",
     "created_at": "2026-09-05T21:16:58Z",
-    "last_save_at": "2026-09-06T07:09:10.535Z",
+    "last_save_at": "2026-10-07T12:55:47.098Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,7 +218,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d67b5d6c126dc31adb902a7aba87dcffab8ba2fc33be980ae2a1d4647976d80",
+    "source_fingerprint": "sha256:f8430f457cd2ceada9ab0c834e0d343e65d123770dd4ba451b1d0f7c9855c1f6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4dd335c8344ec24c6659b3696d05de9a4f7e52f3ccf52e9397b3274f925ecc1f",

@@ -22,7 +22,7 @@
       "closeout tasks",
       "final gate pass",
       "register edit",
-      "acceptance criteria"
+      "verification and closeout acceptance criteria"
     ],
     "key_topics": [
       "closeout",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "A packet that measured well during its work can still leave a repository that disagrees with",
     "created_at": "2026-09-02T22:17:29Z",
-    "last_save_at": "2026-09-02T22:38:54.307Z",
+    "last_save_at": "2026-10-07T12:55:37.392Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:5d3f493f0026c85bc123420df979110d2318eaa58876493809a43b39bac8fe81",
+    "source_fingerprint": "sha256:de2819194b5955ea90182acd6e0fa65f69db560daeeeed5660f4e738f7e4eb70",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "21dcdb07729935582446990406f923711f5619eb54384f0350d92b1460d3a98f",

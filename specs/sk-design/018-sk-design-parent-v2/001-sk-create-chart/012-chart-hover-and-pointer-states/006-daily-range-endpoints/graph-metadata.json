@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "daily range endpoints",
+      "daily range carries no interaction register at all",
       "daily-range tooltip",
       "daily-range hygiene line",
       "implementation plan",
@@ -22,21 +20,23 @@
       "architecture decisions",
       "testing strategy",
       "task breakdown",
-      "implementation tasks"
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "daily",
+      "range",
+      "endpoints",
+      "carries",
+      "interaction",
+      "register",
       "daily-range",
       "tooltip",
       "hygiene",
-      "line"
+      "line",
+      "implementation",
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -46,8 +46,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      "scripts/README.md",
-      "tmp/phase-006-daily-range/daily-range.pre.html"
+      "scripts/README.md"
     ],
     "entities": [
       {
@@ -84,12 +83,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": "scripts/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "daily-range.pre.html",
-        "kind": "file",
-        "path": "tmp/phase-006-daily-range/daily-range.pre.html",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`daily-range` carries no interaction register at all today",
     "created_at": "2026-09-05T16:03:58Z",
-    "last_save_at": "2026-09-06T14:59:19.136Z",
+    "last_save_at": "2026-10-07T12:55:07.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +206,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8d920fd1b3179d38e8bbf8e4e5bebce11936c76c48a5d02a1d977b4fb80497bd",
+    "source_fingerprint": "sha256:2ad7f7c168aae0923afe7c4d490b162341c1e9a9a87a2a8ef3ef12792304075a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "efc30054334a6b390fed42060947ac22cf9d9cec42e627b09cffdd6dedb61727",
+      "spec.md": "2899df8c89d3af1ed2816637280cc395e98f0cc078a573321dc0cdd2eb46711a",
       "plan.md": "71c1cba7f002b79d38121676a17ab3901ed3f484ff5a5e77101b8d08968efbf7",
       "tasks.md": "bb0173a5cb7d20c52fe580c25ee1dfd4ebe0400890e57c47ba6501f6e6b04045",
       "implementation-summary.md": "9509e1c8a0e4673ebd7761f1bd24b6acc924f057b368c9ed1d3297fd3ca20544"

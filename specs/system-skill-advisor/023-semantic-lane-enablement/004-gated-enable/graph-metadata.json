@@ -22,7 +22,7 @@
       "override apply",
       "gate measurement",
       "revert drill",
-      "acceptance criteria"
+      "gated enable acceptance criteria"
     ],
     "key_topics": [
       "lane",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Raising a lane weight changes every routing decision the advisor makes",
     "created_at": "2026-09-02T22:17:24Z",
-    "last_save_at": "2026-09-02T22:38:54.171Z",
+    "last_save_at": "2026-10-07T12:55:37.487Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:74f3f3722a433af406fb9b86e7cfc84645cca6f6923ae84b34edb90a28138dd0",
+    "source_fingerprint": "sha256:cf72069af254ef313dbc3292bdf588ce25a96bbe89b12dd52e05df4440edab49",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a40ade02d036004430700a172e1c49db46b0f4a7805d201230876a015c4024aa",

@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: close-silent-preflight-holes"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "close silent preflight holes"
+  - "the dispatch preflight is the only surface that"
 importance_tier: "normal"
 contextType: "general"
 ---

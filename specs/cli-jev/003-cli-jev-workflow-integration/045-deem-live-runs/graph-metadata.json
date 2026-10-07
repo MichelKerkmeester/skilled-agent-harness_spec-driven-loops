@@ -47,10 +47,7 @@
       "acceptance-criteria.md",
       "goal.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
-      ".skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs",
-      "build/fix/045a.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -93,24 +90,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli-deem.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "cli-deem.test.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "045a.md",
-        "kind": "doc",
-        "path": "build/fix/045a.md",
         "source": "derived"
       },
       {
@@ -196,11 +175,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Until phase 044 every `noul` and `score` call through `cli-deem` exited 1, so no scorer's Deem arm has a measured result, and the one local run of 006's arm failed all 196 calls",
     "created_at": "2026-10-02T07:13:43Z",
-    "last_save_at": "2026-10-02T08:04:07.701Z",
+    "last_save_at": "2026-10-07T12:54:52.474Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +209,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e29fd830fec4d05661eee5693cd24945327696e217c979910db893801b3fac74",
+    "source_fingerprint": "sha256:fcdf9c5be63ef702f09817c625eee95e50cabf2a064613f81839b083d90d28be",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9db6c59d55705b3244828c5704e563ab9de712df4d6110f845f2d234a64a1839",

@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 12: missing-stress-fixture-root"
 description: "Three deep-improvement agent-discipline stress scenarios and their shared sandbox setup script depend on a test-fixture corpus that was pruned without repointing them. This phase restores the corpus in the current runtime tree shapes and makes the sandbox setup executable again."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "missing stress fixture root"
+  - "three deep improvement agent discipline stress scenarios and"
 importance_tier: "normal"
 contextType: "general"
 ---

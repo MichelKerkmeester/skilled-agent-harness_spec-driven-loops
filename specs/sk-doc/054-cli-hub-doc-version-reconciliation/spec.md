@@ -2,10 +2,8 @@
 title: "Feature Specification: cli hub doc version reconciliation"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "cli hub doc version reconciliation"
+  - "the cli external orchestration hub carries 363 versioned"
 importance_tier: "normal"
 contextType: "general"
 ---

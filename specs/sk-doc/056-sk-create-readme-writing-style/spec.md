@@ -2,10 +2,8 @@
 title: "Feature Specification: Improve sk-create-readme writing-style guidance"
 description: "sk-create-readme lacks the writing-style rules the root README rework proved: a two-register emoji policy, feature-named headings, per-item inventory descriptions, a paragraph bound."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "sk create readme writing style"
+  - "sk create readme lacks the writing style rules"
 importance_tier: "normal"
 contextType: "general"
 ---

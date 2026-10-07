@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 4: citation-drift-detection"
 description: "Extend the existing citation scanner to spec and research docs and split broken citations into moved, gone and past-end."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "citation drift detection"
+  - "extend the existing citation scanner to spec and"
 importance_tier: "normal"
 contextType: "general"
 ---

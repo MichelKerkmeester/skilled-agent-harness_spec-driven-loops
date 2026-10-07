@@ -22,7 +22,7 @@
       "cli versus mcp tasks",
       "obsidian measurement tasks",
       "surface comparison checklist",
-      "acceptance criteria"
+      "cli versus mcp acceptance criteria"
     ],
     "key_topics": [
       "cli",
@@ -54,8 +54,11 @@
       ".opencode/skills/mcp-tooling/mcp-obsidian/references/official-cli-agent-usage.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
       ".opencode/skills/mcp-tooling/leaf-manifest.json",
-      "specs/mcp-tooling/013-mcp-obsidian/spec.md",
-      "manual-testing-playbook/manual-testing-playbook.md"
+      "scratch/runt.sh",
+      "scratch/mcpcall.cjs",
+      "scratch/mcpseq.cjs",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      "scratch/evidence/bench-cli-read.txt"
     ],
     "entities": [
       {
@@ -137,6 +140,30 @@
         "source": "derived"
       },
       {
+        "name": "runt.sh",
+        "kind": "script",
+        "path": "scratch/runt.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mcpcall.cjs",
+        "kind": "file",
+        "path": "scratch/mcpcall.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mcpseq.cjs",
+        "kind": "file",
+        "path": "scratch/mcpseq.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "bench-cli-read.txt",
+        "kind": "file",
+        "path": "scratch/evidence/bench-cli-read.txt",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -177,35 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Drive",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Measurement",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The skill described the official CLI and the MCP server side by side and left the choice to the reader",
     "created_at": "2026-09-02T18:51:33Z",
-    "last_save_at": "2026-09-11T16:41:50.986Z",
+    "last_save_at": "2026-10-07T12:55:01.341Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +219,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc3adb2e96fe9b1a67f92a2ff8227e4a7499172e940134d1d8dd58c339f09f8d",
+    "source_fingerprint": "sha256:c8f6931545314df721f0dd9fbb5e21a8e12e4af6fb726596e2501ea235f99dd7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7850076c2fd163a8a06e9fcf2cb79e591e731c248045033af3aa65d304eabe46",

@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: alignment-review"
 description: "A fifteen-iteration alignment review of the remediated deep-loop tree along six dimensions, read against the repo rules, with every confirmed finding bound to a phase or recorded as reviewed."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "alignment review"
+  - "a fifteen iteration alignment review of the remediated"
 importance_tier: "normal"
 contextType: "general"
 ---

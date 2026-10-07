@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/009-close-the-deferrals"
+    packet_pointer: "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/009-close-the-deferrals"
     last_updated_at: "2026-09-06T04:34:06Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Repairs landed, both rules watched failing, deferrals closed"

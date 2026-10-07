@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "evidence rule seam links",
+      "the most referenced rule in the corpus pointed",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "evidence",
+      "rule",
+      "seam",
+      "links",
+      "referenced",
+      "corpus",
+      "pointed",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The most referenced rule in the corpus pointed at nothing, so four other rules named its territory while it never named theirs.",
     "created_at": "2026-09-15T20:24:22Z",
-    "last_save_at": "2026-09-15T20:26:50.388Z",
+    "last_save_at": "2026-10-07T12:55:05.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1c92c3cac5792bf1806fdc9dbde50a699fc1fe440e50346b8fe50ebf79c1960",
+    "source_fingerprint": "sha256:fb91f5734650c22e22442dccfc43d1237ba946f09a5cd51321d45e798b4640f6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4c35eb042e5e9e8e77303bda2ae2b9422fe21c5d46b9901a3f1c00b32c44cb0a",
+      "spec.md": "1d5e004da450102f0ab181b65dacc1fdd1a153ccd706f0bc5007aa783953dbab",
       "plan.md": "ca93e0dc8a21ad51c9904e16d0486a214f362de036b2a4ca0c973d5fe00487eb",
       "tasks.md": "7c9168ebbc43ded588bc5ddb66684c6a1fcc7caa210d047ce32933674c66a531",
       "implementation-summary.md": "2277df3966725ea9a7d8e47c7a5fbe4a74ca8c555d5e26e8c6720c1f12ca959d"

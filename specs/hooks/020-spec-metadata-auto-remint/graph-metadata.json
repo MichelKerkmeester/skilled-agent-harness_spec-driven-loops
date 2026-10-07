@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Every spec packet carries a `graph-metadata.json` holding a fingerprint of the documents it was derived from, plus fields summarised out of them",
     "created_at": "2026-09-10T20:45:38Z",
-    "last_save_at": "2026-09-12T08:47:36.847Z",
+    "last_save_at": "2026-10-07T12:55:01.246Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f9cd9c64e725d33257b05c416950999d534d216173a2de23e962df6aae39303",
+    "source_fingerprint": "sha256:3e30f5c1b495c9827b07f93dd8065792f67c8a22669bb38d8216d3b994518a93",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7425db3070712c8f9ac1f912ea4d11e33d6cda08560aed83d9875ccb52b2c8b7",

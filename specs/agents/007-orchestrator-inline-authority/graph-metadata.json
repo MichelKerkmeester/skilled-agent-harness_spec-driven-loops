@@ -14,10 +14,7 @@
       "spec core",
       "plan core",
       "tasks core",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability",
-      "waiver adr",
+      "orchestrator inline authority acceptance criteria",
       "impl summary core"
     ],
     "key_topics": [
@@ -25,14 +22,14 @@
       "core",
       "plan",
       "tasks",
+      "orchestrator",
+      "inline",
+      "authority",
       "acceptance",
       "criteria",
-      "closure",
-      "gate",
-      "traceability",
-      "waiver",
-      "adr",
-      "impl"
+      "impl",
+      "summary",
+      "held"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -196,7 +193,7 @@
     ],
     "causal_summary": "The orchestrator held no write capability in any of its four runtime dialects, and its prose forbade direct execution outright",
     "created_at": "2026-08-31T06:37:55Z",
-    "last_save_at": "2026-10-03T15:11:43.854Z",
+    "last_save_at": "2026-10-07T12:54:42.688Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +203,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e2fb10b30b0ab492148eafb5e2187b853678830dd8d3bb544686fcf614257ada",
+    "source_fingerprint": "sha256:d5088d85471002ddafe6e86482a5870a19ee93ee0d15c9d62066ccd132fa33a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5e2ddbf637c98beb553c203c6ecbff8574e562ed2f7c6d2e0e741cdb13157fa4",

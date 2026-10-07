@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "closure and proof",
+      "the corpus has never been proven to fail",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "phase acceptance criteria",
+      "closure phase acceptance"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "closure",
+      "proof",
+      "corpus",
+      "never",
+      "proven",
+      "fail",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Phases 001 through 007 land the register, the annotations and the delivery transfers, but nothing yet proves the corpus checker actually fails a form whose rendered output contradicts its declared contract",
     "created_at": "2026-09-05T16:03:59Z",
-    "last_save_at": "2026-09-06T14:59:19.827Z",
+    "last_save_at": "2026-10-07T12:55:07.218Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7639a6ae1b34c7e6cc75b04d5cabcba10bcc5ccd0d39ab480c2138ef3f561748",
+    "source_fingerprint": "sha256:dae01a60b26819d9b35cf7525f8a3e0a4efda460b73dd53a0bc4129fcf205caf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6c42b4140f33eed94dfe383ef8a58cf634e8532d4a480f28c3ebad3b66a31e09",
+      "spec.md": "87c448df2b5a84f3e1db7fb993e7c99c71ae1a8d801cf3319d14857ae08d849f",
       "plan.md": "59e11fa7e7e7922d2ca6a402351d4424819b78b6f54863bb705965625c7bfa40",
       "tasks.md": "e6bd3fba568122b2e1fd5099c408967c2a01b10b8143748c1f0a9799aac154cc",
       "decision-record.md": "34331d069f67b72740921d543207944df517edbef5b9a682e8631d81dd9d7ac7",

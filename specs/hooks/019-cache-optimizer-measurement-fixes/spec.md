@@ -2,10 +2,8 @@
 title: "Feature Specification: cache optimizer measurement and pricing fixes"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "cache optimizer measurement fixes"
+  - "an eight iteration three model research loop found"
 importance_tier: "normal"
 contextType: "general"
 ---

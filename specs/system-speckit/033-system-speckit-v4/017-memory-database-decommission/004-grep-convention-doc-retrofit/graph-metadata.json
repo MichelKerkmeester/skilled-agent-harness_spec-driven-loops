@@ -20,9 +20,9 @@
       "spec doc retrofit",
       "implementation plan",
       "task breakdown",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability"
+      "grep convention doc retrofit acceptance criteria",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
       "grep",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Once retrieval is ripgrep, retrieval quality is a property of the corpus rather than of a ranking",
     "created_at": "2026-09-02T11:04:54Z",
-    "last_save_at": "2026-09-11T16:42:47.556Z",
+    "last_save_at": "2026-10-07T12:55:45.192Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,7 +218,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2c83491575798325a5393435178f0292e000bcab63506814dcf11ee38e1b2e7e",
+    "source_fingerprint": "sha256:b9ec53c7f707fa21e3412cbc5088b74ca48925194e3a54ca66e8beafb1fbbb4f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "08d6d3f2f342bcd8093d3bd2de87f622771da699a12f028ff081e9f305e0042a",

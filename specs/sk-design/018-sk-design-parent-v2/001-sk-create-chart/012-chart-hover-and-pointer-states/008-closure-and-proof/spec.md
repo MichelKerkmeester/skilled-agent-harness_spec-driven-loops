@@ -2,10 +2,8 @@
 title: "Feature Specification: Prove the pointer contract, run the failure mutation, and close the packet's acceptance criteria"
 description: "The corpus has never been proven to fail on a broken contract, and AC-005 cannot be met as written. This phase runs the render check, executes the deliberate mutation AC-006 requires, resolves every acceptance criterion honestly, and reconciles the packet's completion metadata."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "closure and proof"
+  - "the corpus has never been proven to fail"
 importance_tier: "normal"
 contextType: "general"
 ---

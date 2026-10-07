@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "communication split",
+      "split communication md two ways prose craft keeps",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "communication split acceptance criteria",
+      "implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "communication",
+      "split",
+      "two",
+      "ways",
+      "prose",
+      "craft",
+      "keeps",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`communication.md` bundled three different trigger conditions under one",
     "created_at": "2026-09-11T17:16:17Z",
-    "last_save_at": "2026-10-03T15:43:36.557Z",
+    "last_save_at": "2026-10-07T12:54:42.492Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:42be5f113f3094040d0b9b25838e74c79a3203f52531b8e043faa1054793e12b",
+    "source_fingerprint": "sha256:535766bccc093a35769c4d60752b0594a177ff2526249d241eb419a9c8148f53",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1d9213b7596bb28fd97129cceab970c47d8356165b98feb53cc35131c4936c60",
+      "spec.md": "a48e560416e3593d59274aadad6996add67e8cdbf7fba94ebe0de147024a7bef",
       "plan.md": "66210852764df1f0e90900632d1f0d4a23ce79e62082f2776da68dc4ff8d5330",
       "tasks.md": "26a875522c2d99d9de64ed09e321209f2f6394c0edfa512a28a092db6027178e",
       "implementation-summary.md": "90b18ac08d0e9540ab108103f3777fdc1986b7dcdfc3d453b8585167b7079838"

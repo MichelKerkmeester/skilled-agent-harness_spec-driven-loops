@@ -2,10 +2,7 @@
 title: "Feature Specification: Phase 4: agents-md-integration"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "agents md integration"
 importance_tier: "normal"
 contextType: "general"
 ---

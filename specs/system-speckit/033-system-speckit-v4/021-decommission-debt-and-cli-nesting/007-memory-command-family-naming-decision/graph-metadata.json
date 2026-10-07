@@ -55,12 +55,12 @@
       ".opencode/commands/README.txt",
       ".opencode/commands/doctor/_routes.yaml",
       ".opencode/commands/doctor/speckit.md",
-      ".opencode/install-guides/README.md",
       ".opencode/agents/orchestrate.md",
       ".claude/agents/orchestrate.md",
       ".codex/agents/orchestrate.toml",
       ".pi/agents/orchestrate.md",
-      ".opencode/skills/sk-doc/sk-create-command/assets/command-contract.json"
+      ".opencode/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      "scratch/code-path-followups.md"
     ],
     "entities": [
       {
@@ -142,12 +142,6 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/install-guides/README.md",
-        "source": "derived"
-      },
-      {
         "name": "orchestrate.md",
         "kind": "doc",
         "path": ".opencode/agents/orchestrate.md",
@@ -163,6 +157,12 @@
         "name": "command-contract.json",
         "kind": "config",
         "path": ".opencode/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "code-path-followups.md",
+        "kind": "doc",
+        "path": "scratch/code-path-followups.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The surviving continuity writer and retrieval commands still carry the word \"memory\" throughout their names, paths, and package metadata: the `/memory:save` and `/memory:search` commands (`.opencode/commands/memory/save.md`, `.opencode/commands/memory/search.md`); the writer itself, `scripts/memory/generate-context.ts`, compiled to `scripts/dist/memory/generate-context.js`; the `@spec-kit/scripts` package description, `\"CLI tools for spec-kit context generation and memory management\"` (`scripts/package.json:4`); the `/doctor memory` route (`.opencode/commands/doctor/routes.yaml:33-38`, target",
     "created_at": "2026-09-05T06:13:08Z",
-    "last_save_at": "2026-09-06T07:09:11.291Z",
+    "last_save_at": "2026-10-07T12:55:46.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:638fe62ea33f561114f128695bd8811908b83bd64af62f9415802c299421bebf",
+    "source_fingerprint": "sha256:16d4d8dbb181225b490bd481ba61399bd732c0803d366773d04d25152f121c9f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a9e24d0577c6b32908e6f992d8681454550471bc64ddfac9751c930f82052b55",

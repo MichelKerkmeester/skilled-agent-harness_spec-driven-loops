@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "restore never through symlink",
+      "the opt in restore checks the violated path",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "restore never through symlink acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "restore",
+      "never",
+      "symlink",
+      "opt",
+      "checks",
+      "violated",
+      "path",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Under restore, the baseline write used `writeFileSync` on the violated path",
     "created_at": "2026-09-20T08:33:42.243Z",
-    "last_save_at": "2026-09-25T16:15:27.969Z",
+    "last_save_at": "2026-10-07T12:55:35.407Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a57819f9b94acea52fc0acee2f4d7c5ce6f3dc4c1697aa02e99ca4a4685b9ba",
+    "source_fingerprint": "sha256:570d7ad8ab62b950dff00a7b5284fdedc9e921013e8367ce8af175ba6f9381c3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f8d243f1304d1a1746907d4674941cef40bc7eb2f1fbb6ae4dd78b85f58c7c3d",
+      "spec.md": "494e764674db91fceacc4ca6905ac820a7bcfc20c7bf12e5b55da55c25a36483",
       "plan.md": "48a09392bd46efbae9311dc10449d86c7eacca33f7b2df4dbacd3ad0f99dfa3e",
       "tasks.md": "f5c396925306b3135ebed1759b7916d48f2934112486b05c0f987972faa09925",
       "implementation-summary.md": "b3bd57f3172e0ac0a32b3f378efa8d28a6247ee68343ebdb5448088278c44a31"

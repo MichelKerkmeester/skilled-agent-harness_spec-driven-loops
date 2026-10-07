@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9b671f3554bab879bbb54a6a0f22ae97236d9ac82a6d2c25a1f750bef048313e",
+  "manifestHash": "409c15490eaa570451955c56a64e9239fbdedd44faf33faf118cfaeeeea270c5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7430,20 +7430,62 @@
     "a canonical feature catalog": [
       "A Canonical Feature Catalog"
     ],
+    "a deep research run including each fan out": [
+      "a deep research run including each fan out"
+    ],
+    "a fan out run merges every finding a": [
+      "a fan out run merges every finding a"
+    ],
+    "a fifteen iteration alignment review of the remediated": [
+      "a fifteen iteration alignment review of the remediated"
+    ],
+    "a file that was untracked at the pre": [
+      "a file that was untracked at the pre"
+    ],
     "a forkable prompt framework engine": [
       "A Forkable Prompt Framework Engine"
+    ],
+    "a fresh opus review of the three chart": [
+      "a fresh opus review of the three chart"
+    ],
+    "a git call inside write containment that loses": [
+      "a git call inside write containment that loses"
     ],
     "a incremental bm25 decision": [
       "A-incremental BM25 decision"
     ],
+    "a packet that no routing surface names is": [
+      "a packet that no routing surface names is"
+    ],
+    "a phrase a hub s router advertises could": [
+      "a phrase a hub s router advertises could"
+    ],
     "a purpose first sk code readme": [
       "A Purpose-First sk-code README"
+    ],
+    "a release example staged everything with git add": [
+      "a release example staged everything with git add"
     ],
     "a reshaped sk doc surface": [
       "A Reshaped sk-doc Surface"
     ],
+    "a screenshot library of well designed charts from": [
+      "a screenshot library of well designed charts from"
+    ],
     "a second door to the same daemon": [
       "A Second Door to the Same Daemon"
+    ],
+    "a sentinel palette block per file and an": [
+      "a sentinel palette block per file and an"
+    ],
+    "a session resent a parent goal in chat": [
+      "a session resent a parent goal in chat"
+    ],
+    "a twenty iteration angle driven review of routing": [
+      "a twenty iteration angle driven review of routing"
+    ],
+    "a visual polish pass on the chart corpus": [
+      "a visual polish pass on the chart corpus"
     ],
     "a1 extend quality loop authored": [
       "a1 extend quality loop authored"
@@ -7678,6 +7720,12 @@
     ],
     "acceptance criteria template": [
       "acceptance criteria template"
+    ],
+    "acceptance criteria template acceptance criteria": [
+      "acceptance criteria template acceptance criteria"
+    ],
+    "acceptance criteria template default": [
+      "acceptance criteria template default"
     ],
     "acceptance packet correction": [
       "acceptance packet correction"
@@ -8104,6 +8152,9 @@
     ],
     "adjacent surface rules": [
       "adjacent surface rules"
+    ],
+    "adjacent surface rules acceptance criteria": [
+      "adjacent surface rules acceptance criteria"
     ],
     "adjacent surface tasks": [
       "adjacent surface tasks"
@@ -9371,6 +9422,9 @@
     "advisory deduplication": [
       "advisory deduplication"
     ],
+    "advisory false alarms": [
+      "advisory false alarms"
+    ],
     "advisory false positive cwd": [
       "advisory false positive cwd"
     ],
@@ -9454,6 +9508,9 @@
     ],
     "agent avoidance anti patterns": [
       "agent avoidance anti-patterns"
+    ],
+    "agent avoidance anti patterns acceptance criteria": [
+      "agent avoidance anti patterns acceptance criteria"
     ],
     "agent boilerplate boundary statement": [
       "agent boilerplate boundary statement"
@@ -9861,6 +9918,12 @@
     "agent mirror drift": [
       "agent mirror drift"
     ],
+    "agent mirror parity": [
+      "agent mirror parity"
+    ],
+    "agent mirror parity acceptance criteria": [
+      "agent mirror parity acceptance criteria"
+    ],
     "agent mirror propagation": [
       "agent mirror propagation"
     ],
@@ -10020,6 +10083,9 @@
     "agents md delivery prefix": [
       "agents md delivery prefix"
     ],
+    "agents md delivery prefix acceptance criteria": [
+      "agents md delivery prefix acceptance criteria"
+    ],
     "agents md delivery prefix plan": [
       "agents md delivery prefix plan"
     ],
@@ -10031,6 +10097,12 @@
     ],
     "agents md improvement": [
       "AGENTS.md improvement"
+    ],
+    "agents md integration": [
+      "agents md integration"
+    ],
+    "agents md integration acceptance criteria": [
+      "agents md integration acceptance criteria"
     ],
     "agents md pi row": [
       "AGENTS.md pi row"
@@ -10197,11 +10269,17 @@
     "align rerank sidecar cjs and sidecar worker with sk changelog": [
       "align rerank sidecar cjs and sidecar worker with sk changelog"
     ],
+    "align runtime code with sk code opencode acceptance criteria": [
+      "align runtime code with sk code opencode acceptance criteria"
+    ],
     "align skill advisor graph id": [
       "align skill_advisor graph id"
     ],
     "alignment acceptance criteria": [
       "alignment acceptance criteria"
+    ],
+    "alignment and hook parity acceptance criteria": [
+      "alignment and hook parity acceptance criteria"
     ],
     "alignment audit completion criteria": [
       "alignment audit completion criteria"
@@ -10293,6 +10371,12 @@
     "alignment resume continuity projection": [
       "alignment resume continuity projection"
     ],
+    "alignment review": [
+      "alignment review"
+    ],
+    "alignment review acceptance criteria": [
+      "alignment review acceptance criteria"
+    ],
     "alignment scoring logic": [
       "alignment scoring logic"
     ],
@@ -10331,6 +10415,9 @@
     ],
     "all dimensions clean pivot": [
       "all_dimensions_clean pivot"
+    ],
+    "all four deep loop command yamls pass the": [
+      "all four deep loop command yamls pass the"
     ],
     "all questions answered pivot": [
       "all_questions_answered pivot"
@@ -10444,6 +10531,21 @@
     "amendment brief": [
       "amendment brief"
     ],
+    "an audit of the code this program added": [
+      "an audit of the code this program added"
+    ],
+    "an author s own residue sweep searches for": [
+      "an author s own residue sweep searches for"
+    ],
+    "an eight iteration three model research loop found": [
+      "an eight iteration three model research loop found"
+    ],
+    "an independent review of the cache extension found": [
+      "an independent review of the cache extension found"
+    ],
+    "an optional metric and delta block in the": [
+      "an optional metric and delta block in the"
+    ],
     "analysis": [
       "analysis"
     ],
@@ -10534,6 +10636,12 @@
     "android health data files": [
       "android health data files"
     ],
+    "angle driven review": [
+      "angle driven review"
+    ],
+    "angle driven review acceptance criteria": [
+      "angle driven review acceptance criteria"
+    ],
     "angle driven review phases": [
       "angle-driven review phases"
     ],
@@ -10566,6 +10674,12 @@
     ],
     "animation timing vocabulary": [
       "animation timing vocabulary"
+    ],
+    "annotate inert forms": [
+      "annotate inert forms"
+    ],
+    "annotate inert forms acceptance criteria": [
+      "annotate inert forms acceptance criteria"
     ],
     "annotated changelog sample": [
       "annotated changelog sample"
@@ -10796,6 +10910,12 @@
     "applicability decision digest boundary": [
       "applicability decision digest boundary"
     ],
+    "applicator and sentinels": [
+      "applicator and sentinels"
+    ],
+    "applicator and sentinels acceptance criteria": [
+      "applicator and sentinels acceptance criteria"
+    ],
     "applied source and doc fixes 011": [
       "applied source and doc fixes 011"
     ],
@@ -10817,6 +10937,9 @@
     ],
     "apply mode phase b implementation": [
       "apply mode phase b implementation"
+    ],
+    "apply path and candidate filter fixes acceptance criteria": [
+      "apply path and candidate filter fixes acceptance criteria"
     ],
     "apply path candidate filter fixes": [
       "apply path candidate filter fixes"
@@ -11310,6 +11433,9 @@
     "artifact producer mode playbooks": [
       "artifact-producer mode playbooks"
     ],
+    "artifact producers acceptance criteria": [
+      "artifact producers acceptance criteria"
+    ],
     "artifact producers playbooks delivered": [
       "artifact-producers playbooks delivered"
     ],
@@ -11642,6 +11768,9 @@
     ],
     "asset optimization checklist": [
       "asset optimization checklist"
+    ],
+    "asset templates and folder readmes acceptance criteria": [
+      "asset templates and folder readmes acceptance criteria"
     ],
     "assets checklists reading order": [
       "assets checklists reading order"
@@ -11994,6 +12123,9 @@
     "authoring not scoring boundary": [
       "authoring-not-scoring boundary"
     ],
+    "authoring surfaces acceptance criteria": [
+      "authoring surfaces acceptance criteria"
+    ],
     "authoring surfaces playbooks delivered": [
       "authoring-surfaces playbooks delivered"
     ],
@@ -12131,6 +12263,9 @@
     ],
     "auto provenance cap changelog": [
       "auto-provenance cap changelog"
+    ],
+    "auto rebuild trigger index": [
+      "auto rebuild trigger index"
     ],
     "auto refresh queue": [
       "auto-refresh queue"
@@ -12480,8 +12615,17 @@
     "based": [
       "based"
     ],
+    "baseline and decisions": [
+      "baseline and decisions"
+    ],
+    "baseline and decisions acceptance criteria": [
+      "baseline and decisions acceptance criteria"
+    ],
     "baseline and delta": [
       "baseline and delta"
+    ],
+    "baseline and instrumentation acceptance criteria": [
+      "baseline and instrumentation acceptance criteria"
     ],
     "baseline capture nesting": [
       "baseline capture nesting"
@@ -12500,6 +12644,12 @@
     ],
     "baseline continuity freshness vitest": [
       "baseline continuity-freshness vitest"
+    ],
+    "baseline deletion detection": [
+      "baseline deletion detection"
+    ],
+    "baseline deletion detection acceptance criteria": [
+      "baseline deletion detection acceptance criteria"
     ],
     "baseline fingerprint marker counts": [
       "baseline fingerprint marker counts"
@@ -13545,6 +13695,9 @@
     "born findable changelog entries": [
       "born findable changelog entries"
     ],
+    "both canvas modes ship html that has to": [
+      "both canvas modes ship html that has to"
+    ],
     "botpoison spam patterns": [
       "botpoison spam patterns"
     ],
@@ -13631,6 +13784,9 @@
     ],
     "box drawing section banner target state": [
       "box drawing section banner target state"
+    ],
+    "box plot html carries a working hover and": [
+      "box plot html carries a working hover and"
     ],
     "box plot median contrasts": [
       "box plot median contrasts"
@@ -14265,6 +14421,12 @@
     "cache optimizer loops": [
       "cache optimizer loops"
     ],
+    "cache optimizer measurement fixes": [
+      "cache optimizer measurement fixes"
+    ],
+    "cache optimizer measurement fixes acceptance criteria": [
+      "cache optimizer measurement fixes acceptance criteria"
+    ],
     "cache optimizer playbook": [
       "cache-optimizer playbook"
     ],
@@ -14276,6 +14438,9 @@
     ],
     "cache optimizer playbook tasks": [
       "cache-optimizer playbook tasks"
+    ],
+    "cache optimizer review remediation": [
+      "cache optimizer review remediation"
     ],
     "cache optimizer savings measured": [
       "cache optimizer savings measured"
@@ -14369,6 +14534,9 @@
     ],
     "caller opt in status": [
       "caller opt-in status"
+    ],
+    "caller rewire acceptance criteria": [
+      "caller rewire acceptance criteria"
     ],
     "caller side ranking tuple": [
       "caller-side ranking tuple"
@@ -14749,6 +14917,12 @@
     "capstone synthesis deep loop": [
       "capstone synthesis deep loop"
     ],
+    "capture and judgment": [
+      "capture and judgment"
+    ],
+    "capture and judgment acceptance criteria": [
+      "capture and judgment acceptance criteria"
+    ],
     "capture baseline before edit": [
       "capture baseline before edit"
     ],
@@ -14908,6 +15082,15 @@
     ],
     "catalog alignment tasks": [
       "catalog alignment tasks"
+    ],
+    "catalog and playbook acceptance criteria": [
+      "catalog and playbook acceptance criteria"
+    ],
+    "catalog and readme truth": [
+      "catalog and readme truth"
+    ],
+    "catalog and readme truth acceptance criteria": [
+      "catalog and readme truth acceptance criteria"
     ],
     "catalog code traceability": [
       "catalog code traceability"
@@ -15267,6 +15450,9 @@
     ],
     "census hardening": [
       "census hardening"
+    ],
+    "census hardening acceptance criteria": [
+      "census hardening acceptance criteria"
     ],
     "census hardening summary": [
       "census hardening summary"
@@ -15707,6 +15893,15 @@
     "chart aesthetics research": [
       "chart aesthetics research"
     ],
+    "chart and diagram cutover": [
+      "chart and diagram cutover"
+    ],
+    "chart and diagram cutover acceptance criteria": [
+      "chart and diagram cutover acceptance criteria"
+    ],
+    "chart and diagram live under sk design but": [
+      "chart and diagram live under sk design but"
+    ],
     "chart and diagram review synthesis": [
       "chart and diagram review synthesis"
     ],
@@ -15818,6 +16013,12 @@
     "chart colour system count": [
       "chart colour system count"
     ],
+    "chart command alignment": [
+      "chart command alignment"
+    ],
+    "chart command alignment acceptance criteria": [
+      "chart command alignment acceptance criteria"
+    ],
     "chart command plan": [
       "chart command plan"
     ],
@@ -15826,6 +16027,9 @@
     ],
     "chart command surface": [
       "chart command surface"
+    ],
+    "chart command surface acceptance criteria": [
+      "chart command surface acceptance criteria"
     ],
     "chart command tasks": [
       "chart command tasks"
@@ -15976,6 +16180,9 @@
     ],
     "chart hit target size": [
       "chart hit target size"
+    ],
+    "chart hover and pointer states acceptance criteria": [
+      "chart hover and pointer states acceptance criteria"
     ],
     "chart hover dim": [
       "chart hover dim"
@@ -16193,6 +16400,12 @@
     "chart reveal wipe summary": [
       "chart reveal wipe summary"
     ],
+    "chart review": [
+      "chart review"
+    ],
+    "chart review acceptance criteria": [
+      "chart review acceptance criteria"
+    ],
     "chart review closure gate": [
       "chart review closure gate"
     ],
@@ -16360,6 +16573,9 @@
     ],
     "check corpus": [
       "check-corpus"
+    ],
+    "check corpus cjs has no way for a": [
+      "check corpus cjs has no way for a"
     ],
     "check council agreement to proceed": [
       "check council agreement to proceed"
@@ -16556,6 +16772,12 @@
     ],
     "checker mutation ci": [
       "checker mutation ci"
+    ],
+    "checker mutations and ci": [
+      "checker mutations and ci"
+    ],
+    "checker mutations and ci acceptance criteria": [
+      "checker mutations and ci acceptance criteria"
     ],
     "checklist completion tool": [
       "checklist completion tool"
@@ -16932,6 +17154,9 @@
     "chrome path not found": [
       "chrome path not found"
     ],
+    "chrome rollout acceptance criteria": [
+      "chrome rollout acceptance criteria"
+    ],
     "chrome sandbox linux": [
       "chrome sandbox linux"
     ],
@@ -16992,6 +17217,12 @@
     "chunking strategy tuning research": [
       "chunking strategy tuning research"
     ],
+    "churn cumulative arm": [
+      "churn cumulative arm"
+    ],
+    "churn cumulative arm acceptance criteria": [
+      "churn cumulative arm acceptance criteria"
+    ],
     "ci canary verdict vocabulary": [
       "ci canary verdict vocabulary"
     ],
@@ -17003,6 +17234,9 @@
     ],
     "ci cleanup pi proof": [
       "ci cleanup pi proof"
+    ],
+    "ci dependency hardening acceptance criteria": [
+      "ci dependency hardening acceptance criteria"
     ],
     "ci lanes wired": [
       "ci lanes wired"
@@ -17106,6 +17340,15 @@
     "citation drift default on": [
       "citation drift default-on"
     ],
+    "citation drift detection": [
+      "citation drift detection"
+    ],
+    "citation drift detection acceptance criteria": [
+      "citation drift detection acceptance criteria"
+    ],
+    "citation drift improvements": [
+      "citation drift improvements"
+    ],
     "citation drift keep rule": [
       "citation drift keep rule"
     ],
@@ -17117,6 +17360,9 @@
     ],
     "citation drift plan": [
       "citation drift plan"
+    ],
+    "citation drift research": [
+      "citation drift research"
     ],
     "citation drift scan": [
       "citation drift scan"
@@ -17289,8 +17535,14 @@
     "clarify census verdict": [
       "clarify census verdict"
     ],
+    "clarify default improvements": [
+      "clarify default improvements"
+    ],
     "clarify default plan": [
       "clarify default plan"
+    ],
+    "clarify default research": [
+      "clarify default research"
     ],
     "clarify default tasks": [
       "clarify default tasks"
@@ -17372,6 +17624,9 @@
     ],
     "classifier module names": [
       "classifier module names"
+    ],
+    "classifier module names acceptance criteria": [
+      "classifier module names acceptance criteria"
     ],
     "classifier module names plan": [
       "classifier module names plan"
@@ -17510,6 +17765,9 @@
     ],
     "claude code model selection strategy": [
       "claude code model selection strategy"
+    ],
+    "claude code native dispatch": [
+      "claude code native dispatch"
     ],
     "claude code non interactive mode": [
       "claude code non-interactive mode"
@@ -18525,6 +18783,9 @@
     "cli deem health smoke": [
       "cli-deem health smoke"
     ],
+    "cli deem mode removal acceptance criteria": [
+      "cli deem mode removal acceptance criteria"
+    ],
     "cli deem noul value": [
       "cli-deem noul value"
     ],
@@ -18933,6 +19194,9 @@
     "cli freshness and smoke": [
       "cli freshness and smoke"
     ],
+    "cli front door parity acceptance criteria": [
+      "cli front door parity acceptance criteria"
+    ],
     "cli front door stress tasks": [
       "cli front door stress tasks"
     ],
@@ -19065,6 +19329,9 @@
     "cli hermes skill packet": [
       "cli-hermes skill packet"
     ],
+    "cli hermes skill packet acceptance criteria": [
+      "cli hermes skill packet acceptance criteria"
+    ],
     "cli hermes v1 0 0 0": [
       "cli-hermes v1.0.0.0"
     ],
@@ -19088,6 +19355,12 @@
     ],
     "cli hook runner results": [
       "cli hook runner results"
+    ],
+    "cli hub doc version reconciliation": [
+      "cli hub doc version reconciliation"
+    ],
+    "cli hub doc version reconciliation acceptance criteria": [
+      "cli hub doc version reconciliation acceptance criteria"
     ],
     "cli jev 0 1 0 0": [
       "cli-jev 0.1.0.0"
@@ -19260,6 +19533,12 @@
     "cli jev run keyword": [
       "cli-jev run keyword"
     ],
+    "cli jev skill packet": [
+      "cli jev skill packet"
+    ],
+    "cli jev skill packet acceptance criteria": [
+      "cli jev skill packet acceptance criteria"
+    ],
     "cli jev track": [
       "cli-jev track"
     ],
@@ -19296,6 +19575,9 @@
     "cli lineage findings contract": [
       "cli lineage findings contract"
     ],
+    "cli lineage findings contract acceptance criteria": [
+      "cli lineage findings contract acceptance criteria"
+    ],
     "cli lineage findings contract plan": [
       "cli lineage findings contract plan"
     ],
@@ -19307,6 +19589,9 @@
     ],
     "cli lineage nesting": [
       "cli lineage nesting"
+    ],
+    "cli lineage nesting and containment guard acceptance criteria": [
+      "cli lineage nesting and containment guard acceptance criteria"
     ],
     "cli list tools compact names only": [
       "cli list-tools compact names-only"
@@ -20143,6 +20428,9 @@
     "cli versus mcp": [
       "cli versus mcp"
     ],
+    "cli versus mcp acceptance criteria": [
+      "cli versus mcp acceptance criteria"
+    ],
     "cli versus mcp runners": [
       "cli versus mcp runners"
     ],
@@ -20386,6 +20674,9 @@
     "close all deferred findings": [
       "close all deferred findings"
     ],
+    "close all six deep review findings on the": [
+      "close all six deep review findings on the"
+    ],
     "close browser pages finally": [
       "close browser pages finally"
     ],
@@ -20401,11 +20692,23 @@
     "close db truncate wal": [
       "close_db truncate wal"
     ],
+    "close inherited failures": [
+      "close inherited failures"
+    ],
+    "close inherited failures acceptance criteria": [
+      "close inherited failures acceptance criteria"
+    ],
     "close loop state": [
       "close loop state"
     ],
     "close out next steps research": [
       "close-out next steps research"
+    ],
+    "close silent preflight holes": [
+      "close silent preflight holes"
+    ],
+    "close silent preflight holes acceptance criteria": [
+      "close silent preflight holes acceptance criteria"
     ],
     "close stress gaps": [
       "close stress gaps"
@@ -20415,6 +20718,9 @@
     ],
     "close task status": [
       "close task status"
+    ],
+    "close the deferrals acceptance criteria": [
+      "close the deferrals acceptance criteria"
     ],
     "close the loop measurement": [
       "close-the-loop measurement"
@@ -20440,6 +20746,12 @@
     "closedb lifecycle enforcement": [
       "closeDb lifecycle enforcement"
     ],
+    "closeout": [
+      "closeout"
+    ],
+    "closeout acceptance criteria": [
+      "closeout acceptance criteria"
+    ],
     "closeout and drift reconcile": [
       "closeout and drift reconcile"
     ],
@@ -20454,6 +20766,18 @@
     ],
     "closeout verification": [
       "closeout verification"
+    ],
+    "closure and proof": [
+      "closure and proof"
+    ],
+    "closure and proof acceptance criteria": [
+      "closure and proof acceptance criteria"
+    ],
+    "closure and routing proof": [
+      "closure and routing proof"
+    ],
+    "closure and routing proof acceptance criteria": [
+      "closure and routing proof acceptance criteria"
     ],
     "closure decisions": [
       "closure decisions"
@@ -22008,6 +22332,9 @@
     "code mode env template": [
       "code mode env template"
     ],
+    "code mode fresh clone build": [
+      "code mode fresh clone build"
+    ],
     "code mode mcp server configuration": [
       "code mode mcp server configuration"
     ],
@@ -22516,6 +22843,9 @@
     "codex devin hook fallback chains": [
       "codex devin hook fallback chains"
     ],
+    "codex dispatch and checklist acceptance criteria": [
+      "codex dispatch and checklist acceptance criteria"
+    ],
     "codex dispatch prompt discipline": [
       "codex dispatch prompt discipline"
     ],
@@ -23000,6 +23330,9 @@
     "command contract reconciliation": [
       "command contract reconciliation"
     ],
+    "command contract reconciliation acceptance criteria": [
+      "command contract reconciliation acceptance criteria"
+    ],
     "command contract tasks": [
       "command contract tasks"
     ],
@@ -23180,6 +23513,12 @@
     "command vs skill vs agent": [
       "command vs skill vs agent"
     ],
+    "command yaml alignment": [
+      "command yaml alignment"
+    ],
+    "command yaml alignment acceptance criteria": [
+      "command yaml alignment acceptance criteria"
+    ],
     "commands cleanup plan": [
       "commands cleanup plan"
     ],
@@ -23297,6 +23636,9 @@
     ],
     "commit body always required": [
       "commit body always required"
+    ],
+    "commit body always required acceptance criteria": [
+      "commit body always required acceptance criteria"
     ],
     "commit disappeared after autosync": [
       "commit disappeared after autosync"
@@ -23479,6 +23821,9 @@
     "communication rule iteration": [
       "communication rule iteration"
     ],
+    "communication rule naming": [
+      "communication rule naming"
+    ],
     "communication rule upgrade": [
       "communication rule upgrade"
     ],
@@ -23490,6 +23835,12 @@
     ],
     "communication source classification": [
       "communication source classification"
+    ],
+    "communication split": [
+      "communication split"
+    ],
+    "communication split acceptance criteria": [
+      "communication split acceptance criteria"
     ],
     "community css themes json": [
       "community-css-themes json"
@@ -23941,6 +24292,12 @@
     "completion claim regex false fire": [
       "completion claim regex false fire"
     ],
+    "completion claims improvements": [
+      "completion claims improvements"
+    ],
+    "completion claims research": [
+      "completion claims research"
+    ],
     "completion criteria": [
       "completion criteria"
     ],
@@ -24367,6 +24724,12 @@
     "confirm the target file": [
       "confirm the target file"
     ],
+    "confirm variant parity": [
+      "confirm variant parity"
+    ],
+    "confirm variant parity acceptance criteria": [
+      "confirm variant parity acceptance criteria"
+    ],
     "confirmation batch tasks": [
       "confirmation batch tasks"
     ],
@@ -24420,6 +24783,9 @@
     ],
     "consolidate doctor router implementations": [
       "consolidate doctor router implementations"
+    ],
+    "consolidate official orca skills acceptance criteria": [
+      "consolidate official orca skills acceptance criteria"
     ],
     "consolidate socket server copies": [
       "consolidate socket-server copies"
@@ -24685,8 +25051,20 @@
     "containment implementation plan": [
       "containment implementation plan"
     ],
+    "containment on failed lanes": [
+      "containment on failed lanes"
+    ],
+    "containment on failed lanes acceptance criteria": [
+      "containment on failed lanes acceptance criteria"
+    ],
     "containment plus observability": [
       "containment plus observability"
+    ],
+    "containment promise and severity scale": [
+      "containment promise and severity scale"
+    ],
+    "containment promise and severity scale acceptance criteria": [
+      "containment promise and severity scale acceptance criteria"
     ],
     "containment quarantine preserve": [
       "containment quarantine preserve"
@@ -24940,11 +25318,20 @@
     "context type hardening": [
       "context type hardening"
     ],
+    "context type hardening acceptance criteria": [
+      "context type hardening acceptance criteria"
+    ],
     "context type hardening summary": [
       "context type hardening summary"
     ],
     "context type measurement protocol": [
       "context type measurement protocol"
+    ],
+    "context type unification": [
+      "context type unification"
+    ],
+    "context type unification acceptance criteria": [
+      "context type unification acceptance criteria"
     ],
     "context vectors provider shard convention": [
       "context-vectors provider shard convention"
@@ -25039,6 +25426,9 @@
     ],
     "continuity freshness claim binding": [
       "continuity freshness claim binding"
+    ],
+    "continuity freshness claim binding acceptance criteria": [
+      "continuity freshness claim binding acceptance criteria"
     ],
     "continuity freshness claim rule": [
       "CONTINUITY_FRESHNESS claim rule"
@@ -25168,6 +25558,9 @@
     ],
     "continuous integration workflow": [
       "continuous integration workflow"
+    ],
+    "contract and hook acceptance criteria": [
+      "contract and hook acceptance criteria"
     ],
     "contract census tasks": [
       "contract census tasks"
@@ -25617,8 +26010,17 @@
     "corner ladder stays a floor": [
       "corner ladder stays a floor"
     ],
+    "corpus and catalog": [
+      "corpus and catalog"
+    ],
+    "corpus and catalog acceptance criteria": [
+      "corpus and catalog acceptance criteria"
+    ],
     "corpus authoring": [
       "corpus authoring"
+    ],
+    "corpus expansion and gallery acceptance criteria": [
+      "corpus expansion and gallery acceptance criteria"
     ],
     "corpus holdout parity": [
       "corpus holdout parity"
@@ -26944,6 +27346,9 @@
     "cross hub vocabulary": [
       "cross hub vocabulary"
     ],
+    "cross hub vocabulary acceptance criteria": [
+      "cross hub vocabulary acceptance criteria"
+    ],
     "cross hub vocabulary plan": [
       "cross hub vocabulary plan"
     ],
@@ -27186,6 +27591,9 @@
     ],
     "cross surface coco residue remediation": [
       "cross-surface coco residue remediation"
+    ],
+    "cross surface references acceptance criteria": [
+      "cross surface references acceptance criteria"
     ],
     "cross team task visibility": [
       "cross-team task visibility"
@@ -27700,6 +28108,12 @@
     "cursor shared config": [
       "cursor shared config"
     ],
+    "cursor stock register": [
+      "cursor stock register"
+    ],
+    "cursor stock register acceptance criteria": [
+      "cursor stock register acceptance criteria"
+    ],
     "cursor style reference": [
       "cursor style reference"
     ],
@@ -28189,6 +28603,9 @@
     "daemon test harness hardening": [
       "daemon test harness hardening"
     ],
+    "daemon transport decision acceptance criteria": [
+      "daemon transport decision acceptance criteria"
+    ],
     "daemon versus python scorer": [
       "daemon versus python scorer"
     ],
@@ -28200,6 +28617,15 @@
     ],
     "daemon watcher": [
       "daemon watcher"
+    ],
+    "daily range carries no interaction register at all": [
+      "daily range carries no interaction register at all"
+    ],
+    "daily range endpoints": [
+      "daily range endpoints"
+    ],
+    "daily range endpoints acceptance criteria": [
+      "daily range endpoints acceptance criteria"
     ],
     "daily range hygiene line": [
       "daily-range hygiene line"
@@ -28639,11 +29065,20 @@
     "decision": [
       "decision"
     ],
+    "decision and design": [
+      "decision and design"
+    ],
+    "decision and design acceptance criteria": [
+      "decision and design acceptance criteria"
+    ],
     "decision and handoff plan": [
       "decision and handoff plan"
     ],
     "decision and handoff rules": [
       "decision and handoff rules"
+    ],
+    "decision and handoff rules acceptance criteria": [
+      "decision and handoff rules acceptance criteria"
     ],
     "decision and handoff tasks": [
       "decision and handoff tasks"
@@ -28795,6 +29230,9 @@
     "declined resume containment finding": [
       "declined resume containment finding"
     ],
+    "decommission debt and cli nesting acceptance criteria": [
+      "decommission debt and cli nesting acceptance criteria"
+    ],
     "decommission debt cli nesting": [
       "decommission debt cli nesting"
     ],
@@ -28881,6 +29319,9 @@
     ],
     "deem answer shape fix": [
       "deem answer shape fix"
+    ],
+    "deem answer shape fix acceptance criteria": [
+      "deem answer shape fix acceptance criteria"
     ],
     "deem answer shape plan": [
       "deem answer shape plan"
@@ -28975,6 +29416,9 @@
     "deem live runs": [
       "deem live runs"
     ],
+    "deem live runs acceptance criteria": [
+      "deem live runs acceptance criteria"
+    ],
     "deem live runs plan": [
       "deem live runs plan"
     ],
@@ -28992,6 +29436,9 @@
     ],
     "deem local hardening": [
       "deem local hardening"
+    ],
+    "deem local hardening acceptance criteria": [
+      "deem local hardening acceptance criteria"
     ],
     "deem n orders decision": [
       "deem n orders decision"
@@ -29085,6 +29532,9 @@
     ],
     "deem search narrowing arm": [
       "deem search narrowing arm"
+    ],
+    "deem search narrowing arm acceptance criteria": [
+      "deem search narrowing arm acceptance criteria"
     ],
     "deem search narrowing goal": [
       "deem search narrowing goal"
@@ -30533,6 +30983,9 @@
     "deep loop executor matrix audit": [
       "deep-loop executor matrix audit"
     ],
+    "deep loop executor support acceptance criteria": [
+      "deep loop executor support acceptance criteria"
+    ],
     "deep loop fan out model": [
       "deep-loop fan-out model"
     ],
@@ -31364,6 +31817,9 @@
     "deep research 7 and 3": [
       "deep research 7 and 3"
     ],
+    "deep research acceptance criteria": [
+      "deep research acceptance criteria"
+    ],
     "deep research append only events": [
       "deep research append-only events"
     ],
@@ -31740,6 +32196,9 @@
     ],
     "deep research replay fold tasks": [
       "deep research replay fold tasks"
+    ],
+    "deep research residue": [
+      "deep research residue"
     ],
     "deep research resource map": [
       "deep-research resource map"
@@ -32173,6 +32632,9 @@
     ],
     "deep review dashboard md": [
       "deep-review-dashboard.md"
+    ],
+    "deep review decommission": [
+      "deep review decommission"
     ],
     "deep review deterministic replay": [
       "deep review deterministic replay"
@@ -33244,6 +33706,15 @@
     "deliberate with three seats": [
       "deliberate with three seats"
     ],
+    "deliver the search the format promises recipes in": [
+      "deliver the search the format promises recipes in"
+    ],
+    "deliveries to parity": [
+      "deliveries to parity"
+    ],
+    "deliveries to parity acceptance criteria": [
+      "deliveries to parity acceptance criteria"
+    ],
     "delivery receipt hashes injection bloat": [
       "delivery receipt hashes injection bloat"
     ],
@@ -33378,6 +33849,15 @@
     ],
     "deprecate skill benchmark": [
       "deprecate skill benchmark"
+    ],
+    "deprecate skill benchmark acceptance criteria": [
+      "deprecate skill benchmark acceptance criteria"
+    ],
+    "deprecate visual explanation lane": [
+      "deprecate visual explanation lane"
+    ],
+    "deprecate visual explanation lane acceptance criteria": [
+      "deprecate visual explanation lane acceptance criteria"
     ],
     "deprecated bulk delete outcome": [
       "deprecated bulk delete outcome"
@@ -33784,16 +34264,29 @@
       "design md section order"
     ],
     "design md style reference": [
+      "design md style reference",
       "design-md style reference"
+    ],
+    "design md style reference acceptance criteria": [
+      "design md style reference acceptance criteria"
     ],
     "design md theming": [
       "design-md theming"
+    ],
+    "design md theming acceptance criteria": [
+      "design md theming acceptance criteria"
     ],
     "design md value provenance card": [
       "design md value provenance card"
     ],
     "design md write prompt": [
       "design.md write prompt"
+    ],
+    "design mode and command rename": [
+      "design mode and command rename"
+    ],
+    "design mode and command rename acceptance criteria": [
+      "design mode and command rename acceptance criteria"
     ],
     "design operating register": [
       "design operating register"
@@ -34530,6 +35023,12 @@
     "diagram primitives index": [
       "diagram primitives index"
     ],
+    "diagram review": [
+      "diagram review"
+    ],
+    "diagram review acceptance criteria": [
+      "diagram review acceptance criteria"
+    ],
     "diagram role mapping": [
       "diagram role mapping"
     ],
@@ -34634,6 +35133,12 @@
     ],
     "direct append retirement complete": [
       "direct append retirement complete"
+    ],
+    "direct append sites through gateway": [
+      "direct append sites through gateway"
+    ],
+    "direct append sites through gateway acceptance criteria": [
+      "direct append sites through gateway acceptance criteria"
     ],
     "direct child spec allowlist": [
       "direct child spec allowlist"
@@ -34860,6 +35365,12 @@
     "dispatch doctor manifest": [
       "dispatch doctor manifest"
     ],
+    "dispatch enforcement ci guard": [
+      "dispatch enforcement ci guard"
+    ],
+    "dispatch enforcement ci guard acceptance criteria": [
+      "dispatch enforcement ci guard acceptance criteria"
+    ],
     "dispatch envelope test": [
       "dispatch envelope test"
     ],
@@ -34943,6 +35454,9 @@
     ],
     "dispatch preflight parity research": [
       "dispatch preflight parity research"
+    ],
+    "dispatch preflight parity research acceptance criteria": [
+      "dispatch preflight parity research acceptance criteria"
     ],
     "dispatch preflight suite": [
       "dispatch preflight suite"
@@ -35349,6 +35863,12 @@
     "docs and catalogs rollup": [
       "docs and catalogs rollup"
     ],
+    "docs and closeout": [
+      "docs and closeout"
+    ],
+    "docs and closeout acceptance criteria": [
+      "docs and closeout acceptance criteria"
+    ],
     "docs and final gate": [
       "docs-and-final-gate"
     ],
@@ -35360,6 +35880,15 @@
     ],
     "docs and final gate tasks": [
       "docs-and-final-gate tasks"
+    ],
+    "docs and release": [
+      "docs and release"
+    ],
+    "docs and release acceptance criteria": [
+      "docs and release acceptance criteria"
+    ],
+    "docs and residue sweep acceptance criteria": [
+      "docs and residue sweep acceptance criteria"
     ],
     "docs and stress test refresh": [
       "docs and stress test refresh"
@@ -35390,6 +35919,15 @@
     ],
     "docs governance": [
       "docs governance"
+    ],
+    "docs governance and closeout": [
+      "docs governance and closeout"
+    ],
+    "docs governance and closeout acceptance criteria": [
+      "docs governance and closeout acceptance criteria"
+    ],
+    "docs governance and closeout every roster surface that": [
+      "docs governance and closeout every roster surface that"
     ],
     "docs impact remediation": [
       "docs impact remediation"
@@ -35707,8 +36245,14 @@
     "doctor false pass fixes": [
       "doctor false pass fixes"
     ],
+    "doctor gates and drift acceptance criteria": [
+      "doctor gates and drift acceptance criteria"
+    ],
     "doctor gates drift": [
       "doctor gates drift"
+    ],
+    "doctor git acceptance criteria": [
+      "doctor git acceptance criteria"
     ],
     "doctor git command": [
       "doctor git command"
@@ -35815,6 +36359,9 @@
     ],
     "doctor ownership split": [
       "doctor ownership split"
+    ],
+    "doctor ownership split acceptance criteria": [
+      "doctor ownership split acceptance criteria"
     ],
     "doctor ownership split plan": [
       "doctor ownership split plan"
@@ -36064,6 +36611,9 @@
     ],
     "doctor scripts conformance": [
       "doctor scripts conformance"
+    ],
+    "doctor scripts conformance acceptance criteria": [
+      "doctor scripts conformance acceptance criteria"
     ],
     "doctor scripts conformance plan": [
       "doctor scripts conformance plan"
@@ -36367,6 +36917,9 @@
     ],
     "doctrine reconciliation": [
       "doctrine reconciliation"
+    ],
+    "doctrine reconciliation acceptance criteria": [
+      "doctrine reconciliation acceptance criteria"
     ],
     "document content update": [
       "document content update"
@@ -36911,6 +37464,9 @@
     "dual root code and contracts": [
       "dual-root-code-and-contracts"
     ],
+    "dual root code and contracts acceptance criteria": [
+      "dual root code and contracts acceptance criteria"
+    ],
     "dual root code and contracts results": [
       "dual-root-code-and-contracts results"
     ],
@@ -37185,6 +37741,12 @@
     "e081 classified error codes": [
       "E081 classified error codes"
     ],
+    "each containment pass keeps its own quarantine directory": [
+      "each containment pass keeps its own quarantine directory"
+    ],
+    "each hub declares its skill md as the": [
+      "each hub declares its skill md as the"
+    ],
     "eaddrinuse 9222": [
       "EADDRINUSE 9222"
     ],
@@ -37448,6 +38010,12 @@
     ],
     "embedded sibling phase parent": [
       "embedded sibling phase parent"
+    ],
+    "embedded style reference": [
+      "embedded style reference"
+    ],
+    "embedded style reference acceptance criteria": [
+      "embedded style reference acceptance criteria"
     ],
     "embedder": [
       "embedder"
@@ -37839,6 +38407,9 @@
     "embedding population": [
       "embedding population"
     ],
+    "embedding population acceptance criteria": [
+      "embedding population acceptance criteria"
+    ],
     "embedding profile": [
       "embedding profile"
     ],
@@ -38105,6 +38676,12 @@
     ],
     "emoji markers": [
       "emoji markers"
+    ],
+    "emphasis budget": [
+      "emphasis budget"
+    ],
+    "emphasis budget acceptance criteria": [
+      "emphasis budget acceptance criteria"
     ],
     "emphasis budget one emphasis mark": [
       "emphasis-budget one emphasis mark"
@@ -38991,11 +39568,41 @@
     "evergreen rule self check": [
       "evergreen rule self-check"
     ],
+    "every byte moving read or write the containment": [
+      "every byte moving read or write the containment"
+    ],
+    "every catalog entry readme claim and playbook statement": [
+      "every catalog entry readme claim and playbook statement"
+    ],
+    "every claim the cli jev packet makes about": [
+      "every claim the cli jev packet makes about"
+    ],
     "every cli provider model combo works": [
       "every cli provider model combo works"
     ],
+    "every colour corner and type size in the": [
+      "every colour corner and type size in the"
+    ],
+    "every defect the earlier phases closed shares one": [
+      "every defect the earlier phases closed shares one"
+    ],
     "every executor reachable fanout": [
       "every executor reachable fanout"
+    ],
+    "every one of the 34 per file findings": [
+      "every one of the 34 per file findings"
+    ],
+    "every phase in this packet reported success against": [
+      "every phase in this packet reported success against"
+    ],
+    "every pi prompt scores in 2 ms and": [
+      "every pi prompt scores in 2 ms and"
+    ],
+    "every prose roster in the three hubs names": [
+      "every prose roster in the three hubs names"
+    ],
+    "every remaining direct state log append in the": [
+      "every remaining direct state log append in the"
     ],
     "every turn injection": [
       "every-turn injection"
@@ -39070,6 +39677,9 @@
       "evidence marker lint",
       "evidence-marker lint"
     ],
+    "evidence rule seam links": [
+      "evidence rule seam links"
+    ],
     "evidence rule successor": [
       "evidence rule successor"
     ],
@@ -39094,11 +39704,20 @@
     "evilcharts dark theme tokens": [
       "evilcharts dark theme tokens"
     ],
+    "evilcharts only and open tables": [
+      "evilcharts only and open tables"
+    ],
+    "evilcharts only and open tables acceptance criteria": [
+      "evilcharts only and open tables acceptance criteria"
+    ],
     "evilcharts origin": [
       "evilcharts origin"
     ],
     "evilcharts reference override path": [
       "evilcharts reference override path"
+    ],
+    "evilcharts reference research acceptance criteria": [
+      "evilcharts reference research acceptance criteria"
     ],
     "evilcharts research": [
       "evilcharts research"
@@ -39109,8 +39728,17 @@
     "evilcharts research summary": [
       "evilcharts research summary"
     ],
+    "evilcharts stock": [
+      "evilcharts stock"
+    ],
+    "evilcharts stock acceptance criteria": [
+      "evilcharts stock acceptance criteria"
+    ],
     "evilcharts style reference": [
       "evilcharts style reference"
+    ],
+    "evilcharts style reference acceptance criteria": [
+      "evilcharts style reference acceptance criteria"
     ],
     "evilcharts synthesis": [
       "evilcharts synthesis"
@@ -39159,6 +39787,12 @@
     ],
     "excalidraw project manager deprecation": [
       "excalidraw project manager deprecation"
+    ],
+    "excerpt and grouped bars": [
+      "excerpt and grouped bars"
+    ],
+    "excerpt and grouped bars acceptance criteria": [
+      "excerpt and grouped bars acceptance criteria"
     ],
     "exclude by tag": [
       "exclude by tag"
@@ -39514,6 +40148,15 @@
     "export network trace": [
       "export network trace"
     ],
+    "extend dispatch coverage": [
+      "extend dispatch coverage"
+    ],
+    "extend dispatch coverage acceptance criteria": [
+      "extend dispatch coverage acceptance criteria"
+    ],
+    "extend the existing citation scanner to spec and": [
+      "extend the existing citation scanner to spec and"
+    ],
     "extended bake off plan": [
       "extended bake-off plan"
     ],
@@ -39609,6 +40252,9 @@
     ],
     "external project license": [
       "external-project license"
+    ],
+    "external reference library": [
+      "external reference library"
     ],
     "external scanner reset bash": [
       "external_scanner_reset bash"
@@ -40691,6 +41337,9 @@
     "fanout manifest compiler complete": [
       "fanout manifest compiler complete"
     ],
+    "fanout merge and steering fixes acceptance criteria": [
+      "fanout merge and steering fixes acceptance criteria"
+    ],
     "fanout merge cjs": [
       "fanout-merge.cjs"
     ],
@@ -40706,11 +41355,17 @@
     "fanout merge fix tasks": [
       "fanout merge fix tasks"
     ],
+    "fanout merge improvements": [
+      "fanout merge improvements"
+    ],
     "fanout merge pair labels": [
       "fanout merge pair labels"
     ],
     "fanout merge reconstruction gap": [
       "fanout-merge reconstruction gap"
+    ],
+    "fanout merge research": [
+      "fanout merge research"
     ],
     "fanout merge semantic dedup research": [
       "fanout merge semantic dedup research"
@@ -40772,6 +41427,9 @@
     "fanout run two lineages": [
       "fanout run two lineages"
     ],
+    "fanout runner and prompt fixes": [
+      "fanout runner and prompt fixes"
+    ],
     "fanout salvage cjs": [
       "fanout-salvage.cjs"
     ],
@@ -40813,6 +41471,9 @@
     ],
     "fanout write containment": [
       "fanout write containment"
+    ],
+    "fanout write containment hardening acceptance criteria": [
+      "fanout write containment hardening acceptance criteria"
     ],
     "fast": [
       "fast"
@@ -41232,6 +41893,9 @@
     ],
     "fewer skills safer paths": [
       "fewer skills safer paths"
+    ],
+    "fidelity and library research acceptance criteria": [
+      "fidelity and library research acceptance criteria"
     ],
     "fidelity checklist": [
       "fidelity checklist"
@@ -41684,6 +42348,9 @@
     "find element in page": [
       "find element in page"
     ],
+    "find every git workflow that can fail an": [
+      "find every git workflow that can fail an"
+    ],
     "find notes by title": [
       "find notes by title"
     ],
@@ -41951,6 +42618,9 @@
     "five checks framework": [
       "five checks framework"
     ],
+    "five deepseek v4 1 flash and three gpt": [
+      "five deepseek v4 1 flash and three gpt"
+    ],
     "five dimension council scoring": [
       "five-dimension council scoring"
     ],
@@ -41965,6 +42635,9 @@
     ],
     "five iterations no convergence": [
       "five iterations no convergence"
+    ],
+    "five iterations of glm 5 3 flash deep": [
+      "five iterations of glm 5 3 flash deep"
     ],
     "five lane fusion": [
       "five lane fusion"
@@ -42043,6 +42716,9 @@
     ],
     "fix baseline test failures": [
       "fix baseline test failures"
+    ],
+    "fix broad staging in examples": [
+      "fix broad staging in examples"
     ],
     "fix code opencode findings": [
       "fix code-opencode findings"
@@ -42152,6 +42828,9 @@
     "fix orphaned test files": [
       "fix orphaned test files"
     ],
+    "fix remaining advisor defects": [
+      "fix remaining advisor defects"
+    ],
     "fix remaining priority findings": [
       "fix remaining priority findings"
     ],
@@ -42178,6 +42857,21 @@
     ],
     "fix the gap detector over capping": [
       "fix the gap detector over-capping"
+    ],
+    "fix write recipe backfill flag": [
+      "fix write recipe backfill flag"
+    ],
+    "fix write recipe commit step": [
+      "fix write recipe commit step"
+    ],
+    "fix write recipe post checks": [
+      "fix write recipe post checks"
+    ],
+    "fix write recipe verification gate": [
+      "fix write recipe verification gate"
+    ],
+    "fix write recipe workspace bullet": [
+      "fix write recipe workspace bullet"
     ],
     "fixclass allow list": [
       "fixClass allow-list"
@@ -42587,6 +43281,12 @@
     "folder structure reference": [
       "folder structure reference"
     ],
+    "folder suggestion improvements": [
+      "folder suggestion improvements"
+    ],
+    "folder suggestion research": [
+      "folder suggestion research"
+    ],
     "folder token fallback": [
       "folder token fallback"
     ],
@@ -42674,8 +43374,17 @@
     "forced alignment iterations": [
       "forced alignment iterations"
     ],
+    "forced depth empty records": [
+      "forced depth empty records"
+    ],
+    "forced depth empty records acceptance criteria": [
+      "forced depth empty records acceptance criteria"
+    ],
     "forced depth two lineages": [
       "forced depth two lineages"
+    ],
+    "forced depth validation fails a lane whose state": [
+      "forced depth validation fails a lane whose state"
     ],
     "forced iterations": [
       "forced iterations"
@@ -42751,6 +43460,9 @@
     ],
     "form validation classes": [
       "form validation classes"
+    ],
+    "format decision acceptance criteria": [
+      "format decision acceptance criteria"
     ],
     "format decision phase": [
       "format decision phase"
@@ -42935,6 +43647,9 @@
     "four phase debugging workflow": [
       "four phase debugging workflow"
     ],
+    "four phases closed with items recorded rather than": [
+      "four phases closed with items recorded rather than"
+    ],
     "four reducer issues fixed": [
       "four reducer issues fixed"
     ],
@@ -43017,6 +43732,9 @@
     "freeze exclusion globs": [
       "freeze exclusion globs"
     ],
+    "freeze the numbers close the sk doc research": [
+      "freeze the numbers close the sk doc research"
+    ],
     "fresh": [
       "fresh"
     ],
@@ -43058,6 +43776,9 @@
     ],
     "fresh worktree dependencies": [
       "fresh worktree dependencies"
+    ],
+    "freshness and scan truth acceptance criteria": [
+      "freshness and scan truth acceptance criteria"
     ],
     "freshness contract": [
       "freshness contract"
@@ -43453,6 +44174,9 @@
     "frontmatter values rule": [
       "FRONTMATTER_VALUES rule"
     ],
+    "frontmatter values to sk doc acceptance criteria": [
+      "frontmatter values to sk doc acceptance criteria"
+    ],
     "frontmatter values warn rule": [
       "frontmatter values warn rule"
     ],
@@ -43588,6 +44312,12 @@
     "full enablement finalize tasks": [
       "full enablement finalize tasks"
     ],
+    "full family coverage": [
+      "full family coverage"
+    ],
+    "full family coverage acceptance criteria": [
+      "full family coverage acceptance criteria"
+    ],
     "full first route only repeats": [
       "full first route only repeats"
     ],
@@ -43642,6 +44372,9 @@
     "full page capture": [
       "full page capture"
     ],
+    "full page capture acceptance criteria": [
+      "full page capture acceptance criteria"
+    ],
     "full plugin runtime": [
       "full plugin runtime"
     ],
@@ -43668,6 +44401,12 @@
     ],
     "functional engine": [
       "Functional Engine"
+    ],
+    "fundamentals beyond ui": [
+      "fundamentals beyond ui"
+    ],
+    "fundamentals beyond ui acceptance criteria": [
+      "fundamentals beyond ui acceptance criteria"
     ],
     "funnel conversion": [
       "funnel conversion"
@@ -43768,8 +44507,38 @@
     "gate 3 delivery residue": [
       "gate-3 delivery residue"
     ],
+    "gate 3 delivery residue acceptance criteria": [
+      "gate 3 delivery residue acceptance criteria"
+    ],
     "gate 3 hook coverage": [
       "gate 3 hook coverage"
+    ],
+    "gate 3 menu series parent": [
+      "gate 3 menu series parent"
+    ],
+    "gate 3 menu series parent acceptance criteria": [
+      "gate 3 menu series parent acceptance criteria"
+    ],
+    "gate 3 menu series parent plan": [
+      "gate 3 menu series parent plan"
+    ],
+    "gate 3 menu series parent tasks": [
+      "gate 3 menu series parent tasks"
+    ],
+    "gate 3 mutation time delivery acceptance criteria": [
+      "gate 3 mutation time delivery acceptance criteria"
+    ],
+    "gate 3 offers five options but c and": [
+      "gate 3 offers five options but c and"
+    ],
+    "gate 3 option labels plan": [
+      "gate 3 option labels plan"
+    ],
+    "gate 3 option merge": [
+      "gate 3 option merge"
+    ],
+    "gate 3 option merge acceptance criteria": [
+      "gate 3 option merge acceptance criteria"
     ],
     "gate 3 preamble": [
       "gate 3 preamble"
@@ -43779,6 +44548,9 @@
     ],
     "gate 3 question noise handover": [
       "gate-3 question noise handover"
+    ],
+    "gate 3 question wording": [
+      "gate 3 question wording"
     ],
     "gate 3 re ask": [
       "gate 3 re-ask"
@@ -43794,6 +44566,9 @@
     ],
     "gate 3 relay tasks": [
       "gate 3 relay tasks"
+    ],
+    "gate 3 series parent wording": [
+      "gate 3 series parent wording"
     ],
     "gate 3 suppression": [
       "gate 3 suppression"
@@ -43867,11 +44642,20 @@
     "gate a signal closure": [
       "gate a signal closure"
     ],
+    "gate a signal closure acceptance criteria": [
+      "gate a signal closure acceptance criteria"
+    ],
     "gate a summary": [
       "gate a summary"
     ],
+    "gate and ci readiness acceptance criteria": [
+      "gate and ci readiness acceptance criteria"
+    ],
     "gate b realistic corpus": [
       "gate b realistic corpus"
+    ],
+    "gate b realistic corpus acceptance criteria": [
+      "gate b realistic corpus acceptance criteria"
     ],
     "gate b rerun": [
       "gate b rerun"
@@ -44022,6 +44806,12 @@
     ],
     "gate3 shadow delivery doc sweep": [
       "gate3 shadow delivery doc sweep"
+    ],
+    "gate5 card pilot acceptance criteria": [
+      "gate5 card pilot acceptance criteria"
+    ],
+    "gated enable acceptance criteria": [
+      "gated enable acceptance criteria"
     ],
     "gated relevance aware detector path": [
       "gated relevance aware detector path"
@@ -44495,6 +45285,9 @@
     "git hook gate reduction": [
       "git hook gate reduction"
     ],
+    "git hook gate reduction acceptance criteria": [
+      "git hook gate reduction acceptance criteria"
+    ],
     "git hook gate settings": [
       "git hook gate settings"
     ],
@@ -44521,6 +45314,9 @@
     ],
     "git hook review fixes": [
       "git hook review fixes"
+    ],
+    "git hook review fixes acceptance criteria": [
+      "git hook review fixes acceptance criteria"
     ],
     "git hook review fixes summary": [
       "git hook review fixes summary"
@@ -44606,6 +45402,12 @@
     "git workflow orchestrator": [
       "git workflow orchestrator"
     ],
+    "git workflow run failures": [
+      "git workflow run failures"
+    ],
+    "git workflow run failures acceptance criteria": [
+      "git workflow run failures acceptance criteria"
+    ],
     "git workflow support": [
       "git workflow support"
     ],
@@ -44686,6 +45488,9 @@
     ],
     "gitlens launchpad": [
       "gitlens launchpad"
+    ],
+    "give each deep loop mode a required content": [
+      "give each deep loop mode a required content"
     ],
     "glm 5 2 cli devin dispatch": [
       "glm-5.2 cli-devin dispatch"
@@ -44873,6 +45678,12 @@
     "goal chat send rule": [
       "goal chat send rule"
     ],
+    "goal chat send shape": [
+      "goal chat send shape"
+    ],
+    "goal chat send shape acceptance criteria": [
+      "goal chat send shape acceptance criteria"
+    ],
     "goal chat slice": [
       "goal chat slice"
     ],
@@ -44932,6 +45743,9 @@
     ],
     "goal conformance check": [
       "goal conformance check"
+    ],
+    "goal conformance check acceptance criteria": [
+      "goal conformance check acceptance criteria"
     ],
     "goal conformance checker": [
       "goal conformance checker"
@@ -45098,6 +45912,9 @@
     "goal documentation parity tasks": [
       "goal documentation parity tasks"
     ],
+    "goal drift remediation": [
+      "goal drift remediation"
+    ],
     "goal durable budget": [
       "goal durable budget"
     ],
@@ -45193,6 +46010,9 @@
     ],
     "goal integration seams": [
       "goal integration seams"
+    ],
+    "goal inventory and mode contract acceptance criteria": [
+      "goal inventory and mode contract acceptance criteria"
     ],
     "goal inventory plan": [
       "goal inventory plan"
@@ -45794,6 +46614,9 @@
     "governance doc alignment": [
       "governance-doc-alignment"
     ],
+    "governance doc alignment acceptance criteria": [
+      "governance doc alignment acceptance criteria"
+    ],
     "governance enforcement review": [
       "governance enforcement review"
     ],
@@ -46375,6 +47198,9 @@
     "graph metadata write containment": [
       "graph metadata write containment"
     ],
+    "graph metadata write containment acceptance criteria": [
+      "graph metadata write containment acceptance criteria"
+    ],
     "graph metadata write guard": [
       "graph metadata write guard"
     ],
@@ -46521,6 +47347,9 @@
     ],
     "grep convention doc retrofit": [
       "grep convention doc retrofit"
+    ],
+    "grep convention doc retrofit acceptance criteria": [
+      "grep convention doc retrofit acceptance criteria"
     ],
     "grep convention for spec docs": [
       "grep convention for spec docs"
@@ -46741,8 +47570,14 @@
     "hallucination grader goal": [
       "hallucination grader goal"
     ],
+    "hallucination grader improvements": [
+      "hallucination grader improvements"
+    ],
     "hallucination grader plan": [
       "hallucination grader plan"
+    ],
+    "hallucination grader research": [
+      "hallucination grader research"
     ],
     "hallucination grader status": [
       "hallucination grader status"
@@ -46933,6 +47768,9 @@
     ],
     "hardcoded embedder default removal": [
       "hardcoded embedder default removal"
+    ],
+    "harden the series parent rule": [
+      "harden the series parent rule"
     ],
     "hardening": [
       "hardening"
@@ -47288,6 +48126,12 @@
     "hermes constraints versus other runtimes": [
       "hermes constraints versus other runtimes"
     ],
+    "hermes contract pin": [
+      "hermes contract pin"
+    ],
+    "hermes contract pin acceptance criteria": [
+      "hermes contract pin acceptance criteria"
+    ],
     "hermes cross ai dispatch": [
       "hermes cross-ai dispatch"
     ],
@@ -47351,6 +48195,21 @@
     "hermes help": [
       "hermes help"
     ],
+    "hermes hook and plugin layer": [
+      "hermes hook and plugin layer"
+    ],
+    "hermes hook and plugin layer acceptance criteria": [
+      "hermes hook and plugin layer acceptance criteria"
+    ],
+    "hermes hook parity": [
+      "hermes hook parity"
+    ],
+    "hermes hook parity acceptance criteria": [
+      "hermes hook parity acceptance criteria"
+    ],
+    "hermes hook parity the repo guards plugin bridges": [
+      "hermes hook parity the repo guards plugin bridges"
+    ],
     "hermes hooks": [
       "hermes hooks"
     ],
@@ -47396,11 +48255,29 @@
     "hermes mirror drift": [
       "hermes mirror drift"
     ],
+    "hermes model registry and routing": [
+      "hermes model registry and routing"
+    ],
+    "hermes model registry and routing acceptance criteria": [
+      "hermes model registry and routing acceptance criteria"
+    ],
+    "hermes model registry and routing the two id": [
+      "hermes model registry and routing the two id"
+    ],
     "hermes oneshot": [
       "hermes oneshot"
     ],
     "hermes persona": [
       "hermes persona"
+    ],
+    "hermes playbook and catalog": [
+      "hermes playbook and catalog"
+    ],
+    "hermes playbook and catalog a 36 scenario manual": [
+      "hermes playbook and catalog a 36 scenario manual"
+    ],
+    "hermes playbook and catalog acceptance criteria": [
+      "hermes playbook and catalog acceptance criteria"
     ],
     "hermes plugin hooks": [
       "hermes plugin hooks"
@@ -47476,6 +48353,9 @@
     ],
     "hermes runtime folder": [
       "hermes runtime folder"
+    ],
+    "hermes runtime folder acceptance criteria": [
+      "hermes runtime folder acceptance criteria"
     ],
     "hermes runtime folder and prompt sync": [
       "hermes runtime folder and prompt sync"
@@ -47778,6 +48658,12 @@
     "historical benchmark contract": [
       "historical benchmark contract"
     ],
+    "history rewrite": [
+      "history rewrite"
+    ],
+    "history rewrite acceptance criteria": [
+      "history rewrite acceptance criteria"
+    ],
     "history rewrite research": [
       "history rewrite research"
     ],
@@ -47786,6 +48672,12 @@
     ],
     "hol plugin scanner": [
       "hol plugin scanner"
+    ],
+    "holding the boundaries": [
+      "holding the boundaries"
+    ],
+    "holding the boundaries acceptance criteria": [
+      "holding the boundaries acceptance criteria"
     ],
     "home config cutover": [
       "home config cutover"
@@ -47904,6 +48796,9 @@
     "hook fallback failure signal": [
       "hook fallback failure signal"
     ],
+    "hook fallback failure signal acceptance criteria": [
+      "hook fallback failure signal acceptance criteria"
+    ],
     "hook fallback signal plan": [
       "hook fallback signal plan"
     ],
@@ -47984,6 +48879,9 @@
     ],
     "hook live testing matrix": [
       "hook live testing matrix"
+    ],
+    "hook markers and improvement family acceptance criteria": [
+      "hook markers and improvement family acceptance criteria"
     ],
     "hook markers improvement family": [
       "hook markers improvement family"
@@ -48228,6 +49126,12 @@
     "httpsidecarrerankeradapter": [
       "HttpSidecarRerankerAdapter"
     ],
+    "hub and fundamentals": [
+      "hub and fundamentals"
+    ],
+    "hub and fundamentals acceptance criteria": [
+      "hub and fundamentals acceptance criteria"
+    ],
     "hub and spoke topology": [
       "hub and spoke topology"
     ],
@@ -48297,6 +49201,9 @@
     "hub mode registration": [
       "hub mode registration"
     ],
+    "hub mode registration acceptance criteria": [
+      "hub mode registration acceptance criteria"
+    ],
     "hub only routing hit": [
       "hub-only routing hit"
     ],
@@ -48333,8 +49240,14 @@
     "hub router vocabulary plugin removal": [
       "hub router vocabulary plugin removal"
     ],
+    "hub routing and validation acceptance criteria": [
+      "hub routing and validation acceptance criteria"
+    ],
     "hub routing benchmark": [
       "hub routing benchmark"
+    ],
+    "hub routing integration acceptance criteria": [
+      "hub routing integration acceptance criteria"
     ],
     "hub routing operator contract": [
       "hub-routing operator contract"
@@ -48344,6 +49257,9 @@
     ],
     "hub scaffold": [
       "hub scaffold"
+    ],
+    "hub scaffold and mode migration": [
+      "hub scaffold and mode migration"
     ],
     "hub scaffold tasks": [
       "hub scaffold tasks"
@@ -48356,6 +49272,9 @@
     ],
     "hub surface truth": [
       "hub surface truth"
+    ],
+    "hub surface truth acceptance criteria": [
+      "hub surface truth acceptance criteria"
     ],
     "hub surface truth plan": [
       "hub surface truth plan"
@@ -49302,6 +50221,12 @@
     "index fingerprint mismatch": [
       "index fingerprint mismatch"
     ],
+    "index lock retry": [
+      "index lock retry"
+    ],
+    "index lock retry acceptance criteria": [
+      "index lock retry acceptance criteria"
+    ],
     "index md navigation page": [
       "index.md navigation page"
     ],
@@ -49310,6 +50235,9 @@
     ],
     "index meta compatibility": [
       "index_meta compatibility"
+    ],
+    "index root and docs acceptance criteria": [
+      "index root and docs acceptance criteria"
     ],
     "index root docs": [
       "index root docs"
@@ -49554,6 +50482,9 @@
     "injection screen hook": [
       "injection screen hook"
     ],
+    "injection screen improvements": [
+      "injection screen improvements"
+    ],
     "injection screen keep rule": [
       "injection screen keep rule"
     ],
@@ -49571,6 +50502,9 @@
     ],
     "injection screen plan": [
       "injection screen plan"
+    ],
+    "injection screen research": [
+      "injection screen research"
     ],
     "injection screen runtime parity": [
       "injection screen runtime parity"
@@ -49989,6 +50923,9 @@
     "inventory a notion workspace": [
       "inventory a notion workspace"
     ],
+    "inventory and contract acceptance criteria": [
+      "inventory and contract acceptance criteria"
+    ],
     "inventory completion checklist": [
       "inventory completion checklist"
     ],
@@ -50274,6 +51211,12 @@
     "iteration record closure gate": [
       "iteration record closure gate"
     ],
+    "iteration record dedupe": [
+      "iteration record dedupe"
+    ],
+    "iteration record dedupe acceptance criteria": [
+      "iteration record dedupe acceptance criteria"
+    ],
     "iteration record field name": [
       "iteration record field name"
     ],
@@ -50475,6 +51418,12 @@
     "jev completion claim audit improvement": [
       "jev completion claim audit improvement"
     ],
+    "jev contract research and pin": [
+      "jev contract research and pin"
+    ],
+    "jev contract research and pin acceptance criteria": [
+      "jev contract research and pin acceptance criteria"
+    ],
     "jev council re synthesis": [
       "jev council re-synthesis"
     ],
@@ -50507,6 +51456,9 @@
     ],
     "jev feature auto enable": [
       "jev feature auto enable"
+    ],
+    "jev feature auto enable acceptance criteria": [
+      "jev feature auto enable acceptance criteria"
     ],
     "jev feature auto enable plan": [
       "jev feature auto enable plan"
@@ -51270,6 +52222,9 @@
     "label finding fixes": [
       "label finding fixes"
     ],
+    "label finding fixes acceptance criteria": [
+      "label finding fixes acceptance criteria"
+    ],
     "label finding fixes plan": [
       "label finding fixes plan"
     ],
@@ -51888,6 +52843,9 @@
     "launchmodelserver implementation plan": [
       "launchModelServer implementation plan"
     ],
+    "layer 3 own paths baseline": [
+      "layer 3 own paths baseline"
+    ],
     "layer b layer a telemetry in flight gate": [
       "layer b layer a telemetry in flight gate"
     ],
@@ -52034,6 +52992,12 @@
     ],
     "leaf manifest ac traceability": [
       "leaf manifest ac traceability"
+    ],
+    "leaf manifest and doctrine reachability": [
+      "leaf manifest and doctrine reachability"
+    ],
+    "leaf manifest and doctrine reachability acceptance criteria": [
+      "leaf manifest and doctrine reachability acceptance criteria"
     ],
     "leaf manifest byte stability": [
       "leaf manifest byte stability"
@@ -52320,6 +53284,12 @@
     ],
     "ledger schema upcasters removed": [
       "ledger schema upcasters removed"
+    ],
+    "ledger stem producers": [
+      "ledger stem producers"
+    ],
+    "ledger stem producers acceptance criteria": [
+      "ledger stem producers acceptance criteria"
     ],
     "ledger substrate orchestration": [
       "ledger substrate orchestration"
@@ -52830,6 +53800,12 @@
     ],
     "light dark chart gallery": [
       "light dark chart gallery"
+    ],
+    "light dark gallery": [
+      "light dark gallery"
+    ],
+    "light dark gallery acceptance criteria": [
+      "light dark gallery acceptance criteria"
     ],
     "light developer style reference example": [
       "light developer style reference example"
@@ -54397,6 +55373,15 @@
     "make md support": [
       "make.md support"
     ],
+    "make one allowed contexttype list govern spec docs": [
+      "make one allowed contexttype list govern spec docs"
+    ],
+    "make the cursor style reference the stock chart": [
+      "make the cursor style reference the stock chart"
+    ],
+    "make the three shadcn chart decisions worth keeping": [
+      "make the three shadcn chart decisions worth keeping"
+    ],
     "make this look better": [
       "make this look better"
     ],
@@ -54682,6 +55667,9 @@
     "manual review remediation": [
       "manual review remediation"
     ],
+    "manual review remediation acceptance criteria": [
+      "manual review remediation acceptance criteria"
+    ],
     "manual save triggers": [
       "manual save triggers"
     ],
@@ -54813,6 +55801,12 @@
     ],
     "marginalia annotation": [
       "marginalia annotation"
+    ],
+    "mark and indicator policies": [
+      "mark and indicator policies"
+    ],
+    "mark and indicator policies acceptance criteria": [
+      "mark and indicator policies acceptance criteria"
     ],
     "mark complete": [
       "mark complete"
@@ -56182,6 +57176,9 @@
     "mcp transport flap fix": [
       "mcp transport flap fix"
     ],
+    "mcp transport removal acceptance criteria": [
+      "mcp transport removal acceptance criteria"
+    ],
     "mcp validate tool": [
       "mcp validate tool"
     ],
@@ -56190,6 +57187,12 @@
     ],
     "md generator 80 point gate": [
       "md-generator 80-point gate"
+    ],
+    "md generator as mode": [
+      "md generator as mode"
+    ],
+    "md generator as mode acceptance criteria": [
+      "md generator as mode acceptance criteria"
     ],
     "md generator gate option plan": [
       "md-generator gate option plan"
@@ -56215,6 +57218,9 @@
     "meaning judge wiring": [
       "meaning-judge-wiring"
     ],
+    "measure and declare acceptance criteria": [
+      "measure and declare acceptance criteria"
+    ],
     "measure d4 grader against labels": [
       "measure d4 grader against labels"
     ],
@@ -56223,6 +57229,9 @@
     ],
     "measure every jev feature": [
       "measure every jev feature"
+    ],
+    "measure every jev feature acceptance criteria": [
+      "measure every jev feature acceptance criteria"
     ],
     "measure fix against accuracy pin": [
       "measure fix against accuracy pin"
@@ -56295,6 +57304,12 @@
     ],
     "medallion architecture": [
       "medallion architecture"
+    ],
+    "median and ladder correction": [
+      "median and ladder correction"
+    ],
+    "median and ladder correction acceptance criteria": [
+      "median and ladder correction acceptance criteria"
     ],
     "mem0 graphiti letta cognee findings": [
       "mem0 graphiti letta cognee findings"
@@ -57233,6 +58248,9 @@
     "memory command family naming decision": [
       "memory command family naming decision"
     ],
+    "memory command family naming decision acceptance criteria": [
+      "memory command family naming decision acceptance criteria"
+    ],
     "memory command family rename": [
       "memory command family rename"
     ],
@@ -57310,6 +58328,9 @@
     ],
     "memory consumer rewire": [
       "memory consumer rewire"
+    ],
+    "memory consumer rewire acceptance criteria": [
+      "memory consumer rewire acceptance criteria"
     ],
     "memory context payload count invariant": [
       "memory_context payload count invariant"
@@ -57406,6 +58427,9 @@
     ],
     "memory decommission branch landing": [
       "memory decommission branch landing"
+    ],
+    "memory decommission branch landing acceptance criteria": [
+      "memory decommission branch landing acceptance criteria"
     ],
     "memory decommission history": [
       "memory decommission history"
@@ -58672,6 +59696,15 @@
     "ment": [
       "ment"
     ],
+    "menu wording plan": [
+      "menu wording plan"
+    ],
+    "menu wording tasks": [
+      "menu wording tasks"
+    ],
+    "merge assets templates and assets examples into one": [
+      "merge assets templates and assets examples into one"
+    ],
     "merge back to main locally": [
       "merge back to main locally"
     ],
@@ -58762,6 +59795,9 @@
     "message sequence diagram": [
       "message sequence diagram"
     ],
+    "meta and quality acceptance criteria": [
+      "meta and quality acceptance criteria"
+    ],
     "meta and quality mode playbooks": [
       "meta and quality mode playbooks"
     ],
@@ -58788,6 +59824,9 @@
     ],
     "metadata disk path consistency bind": [
       "METADATA_DISK_PATH_CONSISTENCY bind"
+    ],
+    "metadata drift and rules acceptance criteria": [
+      "metadata drift and rules acceptance criteria"
     ],
     "metadata drift root cause": [
       "metadata drift root cause"
@@ -58855,6 +59894,9 @@
     "metadata regeneration": [
       "metadata regeneration"
     ],
+    "metadata regeneration and shared parser acceptance criteria": [
+      "metadata regeneration and shared parser acceptance criteria"
+    ],
     "metadata regeneration parser edges": [
       "metadata regeneration parser edges"
     ],
@@ -58909,6 +59951,12 @@
     "metric block family corpus assertions": [
       "metric-block family corpus assertions"
     ],
+    "metric delta header": [
+      "metric delta header"
+    ],
+    "metric delta header acceptance criteria": [
+      "metric delta header acceptance criteria"
+    ],
     "metric header above the plot": [
       "metric header above the plot"
     ],
@@ -58917,6 +59965,12 @@
     ],
     "metric tables refreshed": [
       "metric tables refreshed"
+    ],
+    "micro forms": [
+      "micro forms"
+    ],
+    "micro forms acceptance criteria": [
+      "micro forms acceptance criteria"
     ],
     "microservices data flow diagram": [
       "microservices data flow diagram"
@@ -59241,6 +60295,9 @@
     ],
     "missing section separators": [
       "missing section separators"
+    ],
+    "missing stress fixture root": [
+      "missing stress fixture root"
     ],
     "missing value file behavior": [
       "missing value file behavior"
@@ -60535,6 +61592,9 @@
     "motion inview viewport trigger": [
       "motion inview viewport trigger"
     ],
+    "motion layer acceptance criteria": [
+      "motion layer acceptance criteria"
+    ],
     "motion regressions cross browser performance": [
       "motion regressions cross-browser performance"
     ],
@@ -60549,6 +61609,9 @@
     ],
     "motion webflow integration": [
       "motion webflow integration"
+    ],
+    "move 7 946 files as renames fold a": [
+      "move 7 946 files as renames fold a"
     ],
     "move a notion page to a new parent": [
       "move a Notion page to a new parent"
@@ -60814,6 +61877,12 @@
     "mutation representation format": [
       "mutation representation format"
     ],
+    "mutation suite": [
+      "mutation suite"
+    ],
+    "mutation suite acceptance criteria": [
+      "mutation suite acceptance criteria"
+    ],
     "mutation suite covers every family": [
       "mutation suite covers every family"
     ],
@@ -60960,6 +62029,9 @@
     ],
     "native advisor validate slice bundle": [
       "native advisor_validate slice bundle"
+    ],
+    "native chart build acceptance criteria": [
+      "native chart build acceptance criteria"
     ],
     "native chart build status": [
       "native chart build status"
@@ -61246,6 +62318,12 @@
     "neutral delegation wording": [
       "neutral delegation wording"
     ],
+    "never fatal untracked": [
+      "never fatal untracked"
+    ],
+    "never fatal untracked acceptance criteria": [
+      "never fatal untracked acceptance criteria"
+    ],
     "never invent a db class": [
       "never invent a db class"
     ],
@@ -61254,6 +62332,9 @@
     ],
     "new chart forms": [
       "new chart forms"
+    ],
+    "new chart forms acceptance criteria": [
+      "new chart forms acceptance criteria"
     ],
     "new child 005 not 002": [
       "new child 005 not 002"
@@ -62835,6 +63916,9 @@
     "official obsidian cli": [
       "official obsidian cli"
     ],
+    "official obsidian cli acceptance criteria": [
+      "official obsidian cli acceptance criteria"
+    ],
     "official obsidian cli open note": [
       "official obsidian CLI open note"
     ],
@@ -62954,6 +64038,9 @@
     ],
     "okf deep research": [
       "okf deep research"
+    ],
+    "okf deep research acceptance criteria": [
+      "okf deep research acceptance criteria"
     ],
     "oklch color clustering": [
       "OKLCH color clustering"
@@ -63135,6 +64222,12 @@
     "one file per brief loop": [
       "one file per brief loop"
     ],
+    "one form library": [
+      "one form library"
+    ],
+    "one form library acceptance criteria": [
+      "one form library acceptance criteria"
+    ],
     "one formatter every printed value": [
       "one formatter every printed value"
     ],
@@ -63173,6 +64266,9 @@
     ],
     "one owning document": [
       "one owning document"
+    ],
+    "one page carrying every chart form twice once": [
+      "one page carrying every chart form twice once"
     ],
     "one question at the first save": [
       "one question at the first save"
@@ -63257,6 +64353,9 @@
     ],
     "open horizons check": [
       "open horizons check"
+    ],
+    "open items research": [
+      "open items research"
     ],
     "open knowledge format": [
       "open knowledge format"
@@ -63904,6 +65003,9 @@
     "operator recovery daemon": [
       "operator recovery daemon"
     ],
+    "operator review of the shadcn visual upgrade numeric": [
+      "operator review of the shadcn visual upgrade numeric"
+    ],
     "operator rollout plan": [
       "operator rollout plan"
     ],
@@ -64128,6 +65230,9 @@
     ],
     "opus medium arbiter": [
       "opus medium arbiter"
+    ],
+    "opus review fixes": [
+      "opus review fixes"
     ],
     "opus review remediation decisions": [
       "opus review remediation decisions"
@@ -64396,6 +65501,15 @@
     "orchestrate claude code from external ai": [
       "orchestrate claude code from external ai"
     ],
+    "orchestrate external cli delegation acceptance criteria": [
+      "orchestrate external cli delegation acceptance criteria"
+    ],
+    "orchestrate mirror alignment": [
+      "orchestrate mirror alignment"
+    ],
+    "orchestrate mirror alignment acceptance criteria": [
+      "orchestrate mirror alignment acceptance criteria"
+    ],
     "orchestrate rule 7 plan": [
       "orchestrate rule 7 plan"
     ],
@@ -64413,6 +65527,9 @@
     ],
     "orchestrator env round trip": [
       "orchestrator env round trip"
+    ],
+    "orchestrator inline authority acceptance criteria": [
+      "orchestrator inline authority acceptance criteria"
     ],
     "orchestrator pi flash codex sol tasks": [
       "orchestrator pi-flash codex-sol tasks"
@@ -64455,6 +65572,9 @@
     ],
     "orphan daemon reaping": [
       "orphan daemon reaping"
+    ],
+    "orphan daemon reaping acceptance criteria": [
+      "orphan daemon reaping acceptance criteria"
     ],
     "orphan daemon reaping plan": [
       "orphan daemon reaping plan"
@@ -64653,6 +65773,9 @@
     ],
     "orphaned timer check": [
       "orphaned timer check"
+    ],
+    "orphaned types and dead modules acceptance criteria": [
+      "orphaned types and dead modules acceptance criteria"
     ],
     "orphaned types cleanup plan": [
       "orphaned types cleanup plan"
@@ -65377,6 +66500,9 @@
     ],
     "packet resource map": [
       "packet resource map"
+    ],
+    "packet scaffold acceptance criteria": [
+      "packet scaffold acceptance criteria"
     ],
     "packet scaffold summary": [
       "packet scaffold summary"
@@ -66233,6 +67359,9 @@
     "per folder identity card": [
       "per-folder identity card"
     ],
+    "per form declarations the research asked for a": [
+      "per form declarations the research asked for a"
+    ],
     "per form interaction table": [
       "per form interaction table"
     ],
@@ -66980,6 +68109,9 @@
     "phase 1 acceptance criteria": [
       "phase 1 acceptance criteria"
     ],
+    "phase 1 made the preflight enforce but two": [
+      "phase 1 made the preflight enforce but two"
+    ],
     "phase 1 verification checklist": [
       "phase 1 verification checklist"
     ],
@@ -66994,6 +68126,15 @@
     ],
     "phase 10 observations tasks": [
       "phase 10 observations tasks"
+    ],
+    "phase 10 trigger index ci rebuild": [
+      "phase 10 trigger index ci rebuild"
+    ],
+    "phase 11 goal drift remediation": [
+      "phase 11 goal drift remediation"
+    ],
+    "phase 11 template phrase census and cleanup": [
+      "phase 11 template phrase census and cleanup"
     ],
     "phase 12 review findings": [
       "phase 12 review findings"
@@ -67210,6 +68351,15 @@
     ],
     "phase 6 tasks": [
       "phase 6 tasks"
+    ],
+    "phase 7 series parent review and hardening research": [
+      "phase 7 series parent review and hardening research"
+    ],
+    "phase 8 series parent review fixes": [
+      "phase 8 series parent review fixes"
+    ],
+    "phase 9 gate 3 menu series parent": [
+      "phase 9 gate 3 menu series parent"
     ],
     "phase a readme authoring": [
       "Phase A readme authoring"
@@ -68016,6 +69166,9 @@
     "pi extension benchmark runs": [
       "pi extension benchmark runs"
     ],
+    "pi extension brace expansion": [
+      "pi extension brace expansion"
+    ],
     "pi extension package manifest": [
       "pi extension package manifest"
     ],
@@ -68471,6 +69624,9 @@
     "pi transport follow up list": [
       "pi transport follow-up list"
     ],
+    "pi transport improvements": [
+      "pi transport improvements"
+    ],
     "pi transport integration criteria": [
       "pi transport integration criteria"
     ],
@@ -68479,6 +69635,9 @@
     ],
     "pi transport keep rule": [
       "pi transport keep rule"
+    ],
+    "pi transport research": [
+      "pi transport research"
     ],
     "pi transport summary": [
       "pi transport summary"
@@ -68822,6 +69981,9 @@
     "playbook allowlist enrolment": [
       "playbook allowlist enrolment"
     ],
+    "playbook and closeout acceptance criteria": [
+      "playbook and closeout acceptance criteria"
+    ],
     "playbook audit changelog": [
       "playbook audit changelog"
     ],
@@ -68993,6 +70155,9 @@
     "playbook remediation plan": [
       "playbook remediation plan"
     ],
+    "playbook reverification and closeout": [
+      "playbook reverification and closeout"
+    ],
     "playbook review protocol split": [
       "playbook review protocol split"
     ],
@@ -69149,6 +70314,9 @@
     "plugin data over ui": [
       "plugin data over ui"
     ],
+    "plugin doc removal acceptance criteria": [
+      "plugin doc removal acceptance criteria"
+    ],
     "plugin documentation removal": [
       "plugin documentation removal"
     ],
@@ -69250,6 +70418,12 @@
     ],
     "pointer only lines removed": [
       "pointer-only lines removed"
+    ],
+    "pointer target size": [
+      "pointer target size"
+    ],
+    "pointer target size acceptance criteria": [
+      "pointer target size acceptance criteria"
     ],
     "poisoned rag probe": [
       "poisoned rag probe"
@@ -69668,6 +70842,12 @@
     "post wave scenario suite results": [
       "post-wave scenario suite results"
     ],
+    "post work review": [
+      "post work review"
+    ],
+    "post work review acceptance criteria": [
+      "post work review acceptance criteria"
+    ],
     "posttooluse quality hook": [
       "posttooluse quality hook"
     ],
@@ -69866,6 +71046,9 @@
     "pre v4 spec upgrade": [
       "pre-v4 spec upgrade"
     ],
+    "pre v4 spec upgrade acceptance criteria": [
+      "pre v4 spec upgrade acceptance criteria"
+    ],
     "pre v4 spec upgrade research": [
       "pre-v4 spec upgrade research"
     ],
@@ -70036,6 +71219,9 @@
     ],
     "prerelease policy": [
       "prerelease policy"
+    ],
+    "prerelease versioning and residue acceptance criteria": [
+      "prerelease versioning and residue acceptance criteria"
     ],
     "presentation adherence research": [
       "presentation adherence research"
@@ -70441,6 +71627,9 @@
     ],
     "program graph metadata stale": [
       "program graph metadata stale"
+    ],
+    "progress updates acceptance criteria": [
+      "progress updates acceptance criteria"
     ],
     "progressive design brief": [
       "progressive design brief"
@@ -70893,6 +72082,9 @@
     "promptfilebody dispatch test": [
       "promptFileBody dispatch test"
     ],
+    "prompting guide alignment acceptance criteria": [
+      "prompting guide alignment acceptance criteria"
+    ],
     "prompting guide alignment plan": [
       "prompting guide alignment plan"
     ],
@@ -70944,6 +72136,12 @@
     "protection finsweet attributes": [
       "protection finsweet attributes"
     ],
+    "protocol and catalog alignment": [
+      "protocol and catalog alignment"
+    ],
+    "protocol and catalog alignment acceptance criteria": [
+      "protocol and catalog alignment acceptance criteria"
+    ],
     "protocol drift fail closed re handshake": [
       "protocol-drift fail-closed re-handshake"
     ],
@@ -70952,6 +72150,9 @@
     ],
     "prove no over reach": [
       "prove no over-reach"
+    ],
+    "prove the whole packet from its final state": [
+      "prove the whole packet from its final state"
     ],
     "provenance audit phase summary": [
       "provenance audit phase summary"
@@ -71160,6 +72361,12 @@
     ],
     "publish language search": [
       "publish language search"
+    ],
+    "publish manifest provenance": [
+      "publish manifest provenance"
+    ],
+    "publish manifest provenance acceptance criteria": [
+      "publish manifest provenance acceptance criteria"
     ],
     "publish readiness": [
       "publish readiness"
@@ -71392,6 +72599,12 @@
     "quantized onnx embedding load": [
       "quantized ONNX embedding load"
     ],
+    "quarantine destination canonical": [
+      "quarantine destination canonical"
+    ],
+    "quarantine destination canonical acceptance criteria": [
+      "quarantine destination canonical acceptance criteria"
+    ],
     "quarantine implementation tasks": [
       "quarantine implementation tasks"
     ],
@@ -71400,6 +72613,12 @@
     ],
     "quarantine rebuild": [
       "quarantine rebuild"
+    ],
+    "quarantine retention per pass": [
+      "quarantine retention per pass"
+    ],
+    "quarantine retention per pass acceptance criteria": [
+      "quarantine retention per pass acceptance criteria"
     ],
     "quarantine tasks": [
       "quarantine tasks"
@@ -71887,6 +73106,9 @@
     "read notion page comments": [
       "read Notion page comments"
     ],
+    "read only and research bookkeeping acceptance criteria": [
+      "read only and research bookkeeping acceptance criteria"
+    ],
     "read only audit iterations plan": [
       "read-only audit iterations plan"
     ],
@@ -72225,6 +73447,12 @@
     ],
     "readme heading hierarchy": [
       "readme heading hierarchy"
+    ],
+    "readme human voice": [
+      "readme human voice"
+    ],
+    "readme human voice acceptance criteria": [
+      "readme human voice acceptance criteria"
     ],
     "readme indexing pipeline": [
       "readme indexing pipeline"
@@ -72643,6 +73871,9 @@
     "recent packets in this track": [
       "recent packets in this track"
     ],
+    "recent packets listing hardening": [
+      "recent packets listing hardening"
+    ],
     "reciprocal contradicts edges dormant": [
       "reciprocal contradicts edges dormant"
     ],
@@ -72771,6 +74002,12 @@
     ],
     "record replay cassette harness runtime": [
       "record-replay cassette harness runtime"
+    ],
+    "recorded adjacent defects": [
+      "recorded adjacent defects"
+    ],
+    "recorded adjacent defects acceptance criteria": [
+      "recorded adjacent defects acceptance criteria"
     ],
     "recorded failure closure": [
       "recorded failure closure"
@@ -72967,6 +74204,12 @@
     "reducer iteration numbering tasks": [
       "reducer iteration numbering tasks"
     ],
+    "reducer ordered lists": [
+      "reducer ordered lists"
+    ],
+    "reducer ordered lists acceptance criteria": [
+      "reducer ordered lists acceptance criteria"
+    ],
     "reducer owned findings": [
       "reducer-owned findings"
     ],
@@ -73040,6 +74283,9 @@
     "reference levels headline claims": [
       "reference levels headline claims"
     ],
+    "reference rewrite acceptance criteria": [
+      "reference rewrite acceptance criteria"
+    ],
     "reference rewrite batch plan": [
       "reference rewrite batch plan"
     ],
@@ -73111,6 +74357,9 @@
     ],
     "references readme sync plan": [
       "references readme sync plan"
+    ],
+    "references sweep and verification acceptance criteria": [
+      "references sweep and verification acceptance criteria"
     ],
     "refero": [
       "refero"
@@ -73424,6 +74673,12 @@
     "register an obsidian vault": [
       "register an Obsidian vault"
     ],
+    "register and contract": [
+      "register and contract"
+    ],
+    "register and contract acceptance criteria": [
+      "register and contract acceptance criteria"
+    ],
     "register aside mcp": [
       "register aside mcp"
     ],
@@ -73561,6 +74816,9 @@
     ],
     "registry validate daemon startup": [
       "registry validate daemon startup"
+    ],
+    "registry walker and proof acceptance criteria": [
+      "registry walker and proof acceptance criteria"
     ],
     "regression baseline": [
       "regression baseline"
@@ -74517,6 +75775,9 @@
     "release line split": [
       "release-line-split"
     ],
+    "release line split acceptance criteria": [
+      "release line split acceptance criteria"
+    ],
     "release line split checklist": [
       "release line split checklist"
     ],
@@ -74593,8 +75854,14 @@
     "release review verdict": [
       "release review verdict"
     ],
+    "release the capability sk git readme and changelog": [
+      "release the capability sk git readme and changelog"
+    ],
     "release update customization": [
       "release update customization"
+    ],
+    "release update customization signals acceptance criteria": [
+      "release update customization signals acceptance criteria"
     ],
     "release update engine audit": [
       "release-update engine audit"
@@ -74854,6 +76121,9 @@
     "removal only codex hook installer": [
       "removal-only codex hook installer"
     ],
+    "removal plan acceptance criteria": [
+      "removal plan acceptance criteria"
+    ],
     "removal usage evidence check": [
       "removal usage evidence check"
     ],
@@ -74898,6 +76168,12 @@
     ],
     "remove folder suggestion scorer": [
       "remove folder suggestion scorer"
+    ],
+    "remove gallery": [
+      "remove gallery"
+    ],
+    "remove gallery acceptance criteria": [
+      "remove gallery acceptance criteria"
     ],
     "remove guest access": [
       "remove guest access"
@@ -75158,6 +76434,9 @@
     "repair handle containment": [
       "repair handle containment"
     ],
+    "repair handle containment acceptance criteria": [
+      "repair handle containment acceptance criteria"
+    ],
     "repair handle containment tasks": [
       "repair handle containment tasks"
     ],
@@ -75320,6 +76599,9 @@
     "reply harness rerun": [
       "reply harness rerun"
     ],
+    "reply rule delegation repair": [
+      "reply rule delegation repair"
+    ],
     "reply rule gate decision": [
       "reply rule gate decision"
     ],
@@ -75340,6 +76622,9 @@
     ],
     "reply shape rules": [
       "reply shape rules"
+    ],
+    "reply shape rules acceptance criteria": [
+      "reply shape rules acceptance criteria"
     ],
     "reply shape tasks": [
       "reply shape tasks"
@@ -75442,6 +76727,12 @@
     ],
     "repo rule surfacing": [
       "repo rule surfacing"
+    ],
+    "repo rule system integration": [
+      "repo rule system integration"
+    ],
+    "repo rule system integration acceptance criteria": [
+      "repo rule system integration acceptance criteria"
     ],
     "repo rule template": [
       "repo rule template"
@@ -76022,6 +77313,9 @@
     "research 007 synthesis": [
       "RESEARCH-007 synthesis"
     ],
+    "research acceptance criteria": [
+      "research acceptance criteria"
+    ],
     "research advisory lock": [
       "research advisory lock"
     ],
@@ -76111,6 +77405,9 @@
     ],
     "research codebase pointers": [
       "research codebase pointers"
+    ],
+    "research communication context acceptance criteria": [
+      "research communication context acceptance criteria"
     ],
     "research complete code fix deferred embedder": [
       "research complete code fix deferred embedder"
@@ -76448,6 +77745,9 @@
     "research review loop types": [
       "research review loop types"
     ],
+    "research run init via gateway": [
+      "research run init via gateway"
+    ],
     "research run open gateway plan": [
       "research run-open gateway plan"
     ],
@@ -76669,6 +77969,9 @@
     ],
     "resolve database paths": [
       "resolve database paths"
+    ],
+    "resolve the existing source tags in research and": [
+      "resolve the existing source tags in research and"
     ],
     "resolveabsoluterelevance request quality gate": [
       "resolveAbsoluteRelevance request quality gate"
@@ -76923,8 +78226,17 @@
     "restore level upgrade vocabulary invariance": [
       "restore level upgrade vocabulary invariance"
     ],
+    "restore never through symlink": [
+      "restore never through symlink"
+    ],
+    "restore never through symlink acceptance criteria": [
+      "restore never through symlink acceptance criteria"
+    ],
     "restore phase to parent": [
       "restore phase to parent"
+    ],
+    "restore pi advisor brief": [
+      "restore pi advisor brief"
     ],
     "restore staged": [
       "restore staged"
@@ -76938,6 +78250,9 @@
     "restore to track": [
       "restore to track"
     ],
+    "restraint and routing gates acceptance criteria": [
+      "restraint and routing gates acceptance criteria"
+    ],
     "restraint routing": [
       "restraint routing"
     ],
@@ -76946,6 +78261,12 @@
     ],
     "restrict to my tasks": [
       "restrict to my tasks"
+    ],
+    "restyle and richer data": [
+      "restyle and richer data"
+    ],
+    "restyle and richer data acceptance criteria": [
+      "restyle and richer data acceptance criteria"
     ],
     "result count cap": [
       "result count cap"
@@ -77115,6 +78436,9 @@
     "retire detect changes tasks": [
       "retire detect_changes tasks"
     ],
+    "retire governor and proof directives acceptance criteria": [
+      "retire governor and proof directives acceptance criteria"
+    ],
     "retire governor directive": [
       "retire governor directive"
     ],
@@ -77156,6 +78480,9 @@
     ],
     "retire the sweep tasks": [
       "retire the sweep tasks"
+    ],
+    "retire unproven features acceptance criteria": [
+      "retire unproven features acceptance criteria"
     ],
     "retire unproven features plan": [
       "retire unproven features plan"
@@ -77276,6 +78603,9 @@
     ],
     "retrieval coverage alignment": [
       "retrieval coverage alignment"
+    ],
+    "retrieval coverage alignment acceptance criteria": [
+      "retrieval coverage alignment acceptance criteria"
     ],
     "retrieval coverage alignment plan": [
       "retrieval coverage alignment plan"
@@ -77691,6 +79021,12 @@
     "review checklists move to assets": [
       "review checklists move to assets"
     ],
+    "review confirmed findings": [
+      "review confirmed findings"
+    ],
+    "review confirmed findings acceptance criteria": [
+      "review confirmed findings acceptance criteria"
+    ],
     "review containment exemption": [
       "review containment exemption"
     ],
@@ -77847,6 +79183,12 @@
     "review jsonl record schemas": [
       "review jsonl record schemas"
     ],
+    "review lane advisory and strict config": [
+      "review lane advisory and strict config"
+    ],
+    "review lane advisory and strict config acceptance criteria": [
+      "review lane advisory and strict config acceptance criteria"
+    ],
     "review leaf protocol": [
       "review leaf protocol"
     ],
@@ -77937,6 +79279,9 @@
     ],
     "review remediation 006 007": [
       "review remediation 006 007"
+    ],
+    "review remediation acceptance criteria": [
+      "review remediation acceptance criteria"
     ],
     "review remediation all p2": [
       "review remediation all p2"
@@ -78205,6 +79550,9 @@
     "reviewer verdict regex miss": [
       "reviewer verdict regex miss"
     ],
+    "reviewers emit a verdict the parser cannot miss": [
+      "reviewers emit a verdict the parser cannot miss"
+    ],
     "reviewing a draft rule": [
       "reviewing a draft rule"
     ],
@@ -78255,6 +79603,9 @@
     ],
     "rewrite explain visually depth modality": [
       "rewrite explain-visually depth modality"
+    ],
+    "rewrite main skilled v4 0 0 0 and": [
+      "rewrite main skilled v4 0 0 0 and"
     ],
     "rewrite pass declaration": [
       "rewrite pass declaration"
@@ -78571,6 +79922,9 @@
     "root count vitest add": [
       "root count vitest add"
     ],
+    "root doc and repo rules acceptance criteria": [
+      "root doc and repo rules acceptance criteria"
+    ],
     "root doc clause": [
       "root doc clause"
     ],
@@ -78696,6 +80050,12 @@
     ],
     "root specs directory": [
       "root specs directory"
+    ],
+    "roster completeness": [
+      "roster completeness"
+    ],
+    "roster completeness acceptance criteria": [
+      "roster completeness acceptance criteria"
     ],
     "roster mentions": [
       "roster mentions"
@@ -78835,6 +80195,12 @@
     "router compliance records": [
       "router compliance records"
     ],
+    "router conformance": [
+      "router conformance"
+    ],
+    "router conformance acceptance criteria": [
+      "router conformance acceptance criteria"
+    ],
     "router consistency hardening": [
       "router consistency hardening"
     ],
@@ -78883,6 +80249,9 @@
     "router reach misroutes": [
       "router reach misroutes"
     ],
+    "router reach misroutes acceptance criteria": [
+      "router reach misroutes acceptance criteria"
+    ],
     "router read recount": [
       "router read recount"
     ],
@@ -78924,6 +80293,12 @@
     ],
     "router vocabulary classes": [
       "router vocabulary classes"
+    ],
+    "router vocabulary repair": [
+      "router vocabulary repair"
+    ],
+    "router vocabulary repair acceptance criteria": [
+      "router vocabulary repair acceptance criteria"
     ],
     "router walk": [
       "router walk"
@@ -79027,6 +80402,9 @@
     "routing integration acceptance": [
       "routing integration acceptance"
     ],
+    "routing integration acceptance criteria": [
+      "routing integration acceptance criteria"
+    ],
     "routing integration summary": [
       "routing integration summary"
     ],
@@ -79041,6 +80419,12 @@
     ],
     "routing ownership table": [
       "routing ownership table"
+    ],
+    "routing perfection research": [
+      "routing perfection research"
+    ],
+    "routing perfection research acceptance criteria": [
+      "routing perfection research acceptance criteria"
     ],
     "routing ratchet deep review wave": [
       "routing ratchet deep-review wave"
@@ -79123,6 +80507,12 @@
     "rule anatomy": [
       "rule anatomy"
     ],
+    "rule authoring": [
+      "rule authoring"
+    ],
+    "rule authoring acceptance criteria": [
+      "rule authoring acceptance criteria"
+    ],
     "rule authoring references": [
       "rule authoring references"
     ],
@@ -79140,6 +80530,9 @@
     ],
     "rule concision rewrites": [
       "rule concision rewrites"
+    ],
+    "rule concision rewrites acceptance criteria": [
+      "rule concision rewrites acceptance criteria"
     ],
     "rule concision rewrites plan": [
       "rule concision rewrites plan"
@@ -79165,6 +80558,9 @@
     "rule delivery debugging": [
       "rule delivery debugging"
     ],
+    "rule delivery debugging acceptance criteria": [
+      "rule delivery debugging acceptance criteria"
+    ],
     "rule delivery debugging plan": [
       "rule delivery debugging plan"
     ],
@@ -79182,6 +80578,9 @@
     ],
     "rule delivery instrumentation": [
       "rule delivery instrumentation"
+    ],
+    "rule delivery instrumentation acceptance criteria": [
+      "rule delivery instrumentation acceptance criteria"
     ],
     "rule delivery instrumentation plan": [
       "rule delivery instrumentation plan"
@@ -79461,6 +80860,9 @@
     ],
     "runnable commands and repaired cross references": [
       "Runnable commands and repaired cross-references"
+    ],
+    "runnable series parent recipe": [
+      "runnable series parent recipe"
     ],
     "runner source embedded": [
       "runner source embedded"
@@ -79876,6 +81278,9 @@
     "runtime package rename": [
       "runtime package rename"
     ],
+    "runtime package rename acceptance criteria": [
+      "runtime package rename acceptance criteria"
+    ],
     "runtime package rename plan": [
       "runtime package rename plan"
     ],
@@ -79968,6 +81373,9 @@
     ],
     "runtime surface parity research": [
       "runtime surface parity research"
+    ],
+    "runtime surface parity research acceptance criteria": [
+      "runtime surface parity research acceptance criteria"
     ],
     "runtime symlink inversion": [
       "runtime symlink inversion"
@@ -80337,6 +81745,9 @@
     ],
     "save and resume freshness": [
       "save and resume freshness"
+    ],
+    "save and resume freshness acceptance criteria": [
+      "save and resume freshness acceptance criteria"
     ],
     "save completion reminder drift": [
       "save completion reminder drift"
@@ -81265,6 +82676,9 @@
     "scorer coverage": [
       "scorer coverage"
     ],
+    "scorer deem arms acceptance criteria": [
+      "scorer deem arms acceptance criteria"
+    ],
     "scorer deem flag removal": [
       "scorer deem flag removal"
     ],
@@ -81481,6 +82895,9 @@
     ],
     "scripts into runtime nesting": [
       "scripts into runtime nesting"
+    ],
+    "scripts into runtime nesting acceptance criteria": [
+      "scripts into runtime nesting acceptance criteria"
     ],
     "scripts library": [
       "scripts library"
@@ -81806,6 +83223,12 @@
     "search styles refero": [
       "search styles refero"
     ],
+    "search surface": [
+      "search surface"
+    ],
+    "search surface acceptance criteria": [
+      "search surface acceptance criteria"
+    ],
     "search tasks": [
       "search tasks"
     ],
@@ -81890,8 +83313,17 @@
     "second opinion": [
       "second opinion"
     ],
+    "second pass subjects and attribution": [
+      "second pass subjects and attribution"
+    ],
+    "second pass subjects and attribution acceptance criteria": [
+      "second pass subjects and attribution acceptance criteria"
+    ],
     "second research lineage advisor": [
       "second research lineage advisor"
+    ],
+    "second rewrite pass every subject normalized to the": [
+      "second rewrite pass every subject normalized to the"
     ],
     "secondary factors override": [
       "secondary factors override"
@@ -82018,6 +83450,9 @@
     ],
     "seeded corpus evaluation": [
       "seeded corpus evaluation"
+    ],
+    "seeded trigger phrase drift": [
+      "seeded trigger phrase drift"
     ],
     "seeded trigger phrases plan": [
       "seeded trigger phrases plan"
@@ -82358,6 +83793,9 @@
     "sequential thinking residue removal": [
       "sequential thinking residue removal"
     ],
+    "sequential thinking residue removal acceptance criteria": [
+      "sequential thinking residue removal acceptance criteria"
+    ],
     "serial authority loop": [
       "serial authority loop"
     ],
@@ -82370,11 +83808,44 @@
     "series mapping check": [
       "series mapping check"
     ],
+    "series parent hardening": [
+      "series parent hardening"
+    ],
+    "series parent hardening recommendations": [
+      "series parent hardening recommendations"
+    ],
+    "series parent hardening research plan": [
+      "series parent hardening research plan"
+    ],
+    "series parent hardening research tasks": [
+      "series parent hardening research tasks"
+    ],
     "series parent packet": [
       "series parent packet"
     ],
+    "series parent review and hardening research": [
+      "series parent review and hardening research"
+    ],
+    "series parent review fixes": [
+      "series parent review fixes"
+    ],
+    "series parent review fixes acceptance criteria": [
+      "series parent review fixes acceptance criteria"
+    ],
+    "series parent review plan": [
+      "series parent review plan"
+    ],
+    "series parent review tasks": [
+      "series parent review tasks"
+    ],
+    "series parent review verdict": [
+      "series parent review verdict"
+    ],
     "series parent rule": [
       "series parent rule"
+    ],
+    "series parent rule and sibling listing acceptance criteria": [
+      "series parent rule and sibling listing acceptance criteria"
     ],
     "series parent rule plan": [
       "series parent rule plan"
@@ -82856,8 +84327,23 @@
     "sgqs test runner": [
       "sgqs test runner"
     ],
+    "shadcn adoptions": [
+      "shadcn adoptions"
+    ],
+    "shadcn adoptions acceptance criteria": [
+      "shadcn adoptions acceptance criteria"
+    ],
     "shadcn chart look": [
       "shadcn chart look"
+    ],
+    "shadcn reference research": [
+      "shadcn reference research"
+    ],
+    "shadcn reference research acceptance criteria": [
+      "shadcn reference research acceptance criteria"
+    ],
+    "shadcn visual upgrade acceptance criteria": [
+      "shadcn visual upgrade acceptance criteria"
     ],
     "shadow adapters delete": [
       "shadow adapters delete"
@@ -83429,6 +84915,9 @@
     "shared package utilization research lane": [
       "shared package utilization research lane"
     ],
+    "shared parsers and post run refresh acceptance criteria": [
+      "shared parsers and post run refresh acceptance criteria"
+    ],
     "shared parsers post run refresh": [
       "shared parsers post run refresh"
     ],
@@ -83624,6 +85113,12 @@
     ],
     "short registry reconstruction plan": [
       "short registry reconstruction plan"
+    ],
+    "shorten decision rule name": [
+      "shorten decision rule name"
+    ],
+    "shorten handoff rule name": [
+      "shorten handoff rule name"
     ],
     "shorter repo rules": [
       "shorter repo rules"
@@ -83955,6 +85450,9 @@
     "sign out clickup": [
       "sign out clickup"
     ],
+    "sign the seven contract decisions the research surfaced": [
+      "sign the seven contract decisions the research surfaced"
+    ],
     "signal free sandbox teardown": [
       "signal-free sandbox teardown"
     ],
@@ -84174,8 +85672,14 @@
     "single writer lock summary": [
       "single writer lock summary"
     ],
+    "singleton packet grouping default": [
+      "singleton packet grouping default"
+    ],
     "situational awareness dashboard": [
       "situational awareness dashboard"
+    ],
+    "six chart forms already print every value they": [
+      "six chart forms already print every value they"
     ],
     "six ci surfaces": [
       "six ci surfaces"
@@ -84186,6 +85690,9 @@
     "six completion docs fingerprint": [
       "six completion docs fingerprint"
     ],
+    "six delivered charts under assets examples carry none": [
+      "six delivered charts under assets examples carry none"
+    ],
     "six family capability layer": [
       "six-family capability layer"
     ],
@@ -84194,6 +85701,9 @@
     ],
     "six hubs not seven": [
       "six hubs not seven"
+    ],
+    "six hundred and fourteen of the corpus 695": [
+      "six hundred and fourteen of the corpus 695"
     ],
     "six of ten newcomer prompts": [
       "six of ten newcomer prompts"
@@ -84207,8 +85717,14 @@
     "six primitive spine ratification evidence": [
       "six-primitive spine ratification evidence"
     ],
+    "six research angles against a frozen local copy": [
+      "six research angles against a frozen local copy"
+    ],
     "six runtime surfaces": [
       "six runtime surfaces"
+    ],
+    "six runtime trees ship the same twelve agents": [
+      "six runtime trees ship the same twelve agents"
     ],
     "six surface grep": [
       "six surface grep"
@@ -84614,6 +86130,9 @@
     ],
     "sk code mobile cli deprecation": [
       "sk-code-mobile-cli deprecation"
+    ],
+    "sk code mobile cli deprecation acceptance criteria": [
+      "sk code mobile cli deprecation acceptance criteria"
     ],
     "sk code mobile cli mode": [
       "sk-code mobile-cli mode"
@@ -85722,6 +87241,9 @@
     "sk create readme 1 3 0 0": [
       "sk-create-readme 1.3.0.0"
     ],
+    "sk create readme lacks the writing style rules": [
+      "sk create readme lacks the writing style rules"
+    ],
     "sk create readme playbook": [
       "sk-create-readme playbook"
     ],
@@ -85739,6 +87261,12 @@
     ],
     "sk create readme v1 3 0 0": [
       "sk-create-readme v1.3.0.0"
+    ],
+    "sk create readme writing style": [
+      "sk create readme writing style"
+    ],
+    "sk create readme writing style acceptance criteria": [
+      "sk create readme writing style acceptance criteria"
     ],
     "sk create repo rule 1 0 0 0": [
       "sk-create-repo-rule 1.0.0.0"
@@ -86055,11 +87583,17 @@
     "sk design diagram v1 2 0 0": [
       "sk-design-diagram v1.2.0.0"
     ],
+    "sk design doc and routing check acceptance criteria": [
+      "sk design doc and routing check acceptance criteria"
+    ],
     "sk design executed summary": [
       "sk-design executed summary"
     ],
     "sk design fundamentals 1 0 0 0": [
       "sk-design-fundamentals 1.0.0.0"
+    ],
+    "sk design fundamentals reads as a ui skill": [
+      "sk design fundamentals reads as a ui skill"
     ],
     "sk design fundamentals v1 0 0 0": [
       "sk-design-fundamentals v1.0.0.0"
@@ -86472,6 +88006,9 @@
     "sk doc validation off switch": [
       "sk-doc validation off switch"
     ],
+    "sk doc validator and reference fixes acceptance criteria": [
+      "sk doc validator and reference fixes acceptance criteria"
+    ],
     "sk doc validator findings obsidian surface": [
       "sk-doc validator findings obsidian surface"
     ],
@@ -86612,6 +88149,9 @@
     ],
     "sk git reference frontmatter": [
       "sk-git reference frontmatter"
+    ],
+    "sk git required a commit body only when": [
+      "sk git required a commit body only when"
     ],
     "sk git scripts folder": [
       "sk-git scripts folder"
@@ -86834,6 +88374,9 @@
     ],
     "sk prompt framework docs": [
       "sk-prompt framework docs"
+    ],
+    "sk prompt framework docs acceptance criteria": [
+      "sk prompt framework docs acceptance criteria"
     ],
     "sk prompt framework docs plan": [
       "sk-prompt framework docs plan"
@@ -89099,6 +90642,9 @@
     "skill surface evergreen packet id check": [
       "skill surface evergreen packet id check"
     ],
+    "skill surface reconciliation acceptance criteria": [
+      "skill surface reconciliation acceptance criteria"
+    ],
     "skill update triggers": [
       "skill update triggers"
     ],
@@ -89522,6 +91068,12 @@
     "skills state path rewrites": [
       "skills state path rewrites"
     ],
+    "skin contract": [
+      "skin contract"
+    ],
+    "skin contract acceptance criteria": [
+      "skin contract acceptance criteria"
+    ],
     "skin contract decisions": [
       "skin contract decisions"
     ],
@@ -89845,6 +91397,9 @@
     "source fingerprint docset missing": [
       "source fingerprint docset missing"
     ],
+    "source inventory and placement acceptance criteria": [
+      "source inventory and placement acceptance criteria"
+    ],
     "source kind": [
       "source_kind"
     ],
@@ -89877,6 +91432,12 @@
     ],
     "source parent migration": [
       "source parent migration"
+    ],
+    "source resolver": [
+      "source resolver"
+    ],
+    "source resolver acceptance criteria": [
+      "source resolver acceptance criteria"
     ],
     "source root block plan": [
       "source root block plan"
@@ -89949,6 +91510,9 @@
     ],
     "source tag hardening": [
       "source tag hardening"
+    ],
+    "source tag hardening acceptance criteria": [
+      "source tag hardening acceptance criteria"
     ],
     "source tag hardening summary": [
       "source tag hardening summary"
@@ -90275,6 +91839,9 @@
     ],
     "spec doc healer": [
       "spec doc healer"
+    ],
+    "spec doc healer acceptance criteria": [
+      "spec doc healer acceptance criteria"
     ],
     "spec doc health": [
       "spec doc health"
@@ -91118,6 +92685,9 @@
     "spec kit residue": [
       "spec kit residue"
     ],
+    "spec kit residue acceptance criteria": [
+      "spec kit residue acceptance criteria"
+    ],
     "spec kit restructure verification": [
       "spec-kit restructure verification"
     ],
@@ -91403,6 +92973,9 @@
     "spec memory server removal": [
       "spec memory server removal"
     ],
+    "spec memory server removal acceptance criteria": [
+      "spec memory server removal acceptance criteria"
+    ],
     "spec memory shim": [
       "spec-memory shim"
     ],
@@ -91441,6 +93014,9 @@
     ],
     "spec metadata auto remint": [
       "spec metadata auto remint"
+    ],
+    "spec metadata auto remint acceptance criteria": [
+      "spec metadata auto remint acceptance criteria"
     ],
     "spec metadata gate approach": [
       "spec metadata gate approach"
@@ -91546,6 +93122,9 @@
     ],
     "spec validation scripts": [
       "spec validation scripts"
+    ],
+    "spec validator fixes acceptance criteria": [
+      "spec validator fixes acceptance criteria"
     ],
     "spec validator fixes build evidence": [
       "spec validator fixes build evidence"
@@ -92189,6 +93768,9 @@
     "split command refactor": [
       "split command refactor"
     ],
+    "split communication md two ways prose craft keeps": [
+      "split communication md two ways prose craft keeps"
+    ],
     "split oversized sk code references": [
       "split oversized sk-code references"
     ],
@@ -92306,6 +93888,15 @@
     ],
     "stack verification and docs": [
       "stack verification and docs"
+    ],
+    "stacked area carries a legend and a dim": [
+      "stacked area carries a legend and a dim"
+    ],
+    "stacked area pointed band": [
+      "stacked area pointed band"
+    ],
+    "stacked area pointed band acceptance criteria": [
+      "stacked area pointed band acceptance criteria"
     ],
     "stacked area tooltip": [
       "stacked-area tooltip"
@@ -93091,6 +94682,9 @@
     "status completion consistency gate on ignored": [
       "STATUS_COMPLETION_CONSISTENCY_GATE on ignored"
     ],
+    "status contract and docs acceptance criteria": [
+      "status contract and docs acceptance criteria"
+    ],
     "status cross doc enforce flip": [
       "status cross-doc enforce flip"
     ],
@@ -93198,6 +94792,12 @@
     ],
     "step 11 5 daemon guard tasks": [
       "Step 11.5 daemon guard tasks"
+    ],
+    "step 5 of the spec folder write recipe": [
+      "step 5 of the spec folder write recipe"
+    ],
+    "step 7 of the write recipe told authors": [
+      "step 7 of the write recipe told authors"
     ],
     "step fanout spawn": [
       "step_fanout_spawn"
@@ -94032,9 +95632,6 @@
     "subtree root scan deletion": [
       "subtree root scan deletion"
     ],
-    "success criteria": [
-      "success criteria"
-    ],
     "success criteria section": [
       "success criteria section"
     ],
@@ -94434,6 +96031,12 @@
     "symlink attack temp file fix": [
       "symlink attack temp file fix"
     ],
+    "symlink contained paths": [
+      "symlink contained paths"
+    ],
+    "symlink contained paths acceptance criteria": [
+      "symlink contained paths acceptance criteria"
+    ],
     "symlink not followed": [
       "symlink not followed"
     ],
@@ -94506,8 +96109,17 @@
     "synthesis": [
       "synthesis"
     ],
+    "synthesis and decisions acceptance criteria": [
+      "synthesis and decisions acceptance criteria"
+    ],
     "synthesis artifact staging": [
       "synthesis artifact staging"
+    ],
+    "synthesis chat presentation": [
+      "synthesis chat presentation"
+    ],
+    "synthesis chat presentation acceptance criteria": [
+      "synthesis chat presentation acceptance criteria"
     ],
     "synthesis closeout count only": [
       "synthesis closeout count only"
@@ -94523,6 +96135,9 @@
     ],
     "synthesis plan": [
       "synthesis plan"
+    ],
+    "synthesis presentation acceptance criteria": [
+      "synthesis presentation acceptance criteria"
     ],
     "synthesis presentation research": [
       "synthesis presentation research"
@@ -96071,6 +97686,9 @@
     "template dedup": [
       "template dedup"
     ],
+    "template default judge class": [
+      "template default judge class"
+    ],
     "template default text in finished packets": [
       "template default text in finished packets"
     ],
@@ -96088,6 +97706,9 @@
     ],
     "template driven message enforcement": [
       "template-driven message enforcement"
+    ],
+    "template driven message enforcement acceptance criteria": [
+      "template driven message enforcement acceptance criteria"
     ],
     "template duplication analysis": [
       "template duplication analysis"
@@ -96236,6 +97857,12 @@
     "template payload scanning": [
       "template payload scanning"
     ],
+    "template phrase census and cleanup": [
+      "template phrase census and cleanup"
+    ],
+    "template phrase census and cleanup acceptance criteria": [
+      "template phrase census and cleanup acceptance criteria"
+    ],
     "template policy enforcement": [
       "template policy enforcement"
     ],
@@ -96271,6 +97898,12 @@
     ],
     "template scaffold commands": [
       "template scaffold commands"
+    ],
+    "template screenshots": [
+      "template screenshots"
+    ],
+    "template screenshots acceptance criteria": [
+      "template screenshots acceptance criteria"
     ],
     "template seams sentinel repair": [
       "template seams sentinel repair"
@@ -96392,11 +98025,17 @@
     "temporary git index scan": [
       "temporary git index scan"
     ],
+    "ten adversarial review iterations by swe 2 max": [
+      "ten adversarial review iterations by swe 2 max"
+    ],
     "ten agent specialization": [
       "ten agent specialization"
     ],
     "ten candidates": [
       "ten candidates"
+    ],
+    "ten iteration deep research comparing how system spec": [
+      "ten iteration deep research comparing how system spec"
     ],
     "ten iteration gpt 5 6 review": [
       "ten-iteration gpt-5.6 review"
@@ -96665,23 +98304,233 @@
     "text over photos readable": [
       "text over photos readable"
     ],
+    "the 028 dedup fix half landed the changed": [
+      "the 028 dedup fix half landed the changed"
+    ],
+    "the 046 remediation shipped complete and the luna": [
+      "the 046 remediation shipped complete and the luna"
+    ],
+    "the catalogue has twenty one forms and five": [
+      "the catalogue has twenty one forms and five"
+    ],
+    "the churn detector only counted newly dirty paths": [
+      "the churn detector only counted newly dirty paths"
+    ],
+    "the clarify scorer scores only rows that still": [
+      "the clarify scorer scores only rows that still"
+    ],
+    "the cli claude code self invocation guard said": [
+      "the cli claude code self invocation guard said"
+    ],
+    "the cli external orchestration hub carries 363 versioned": [
+      "the cli external orchestration hub carries 363 versioned"
+    ],
+    "the cli jev creation packet sat inside the": [
+      "the cli jev creation packet sat inside the"
+    ],
+    "the closing phase measured the fleet and found": [
+      "the closing phase measured the fleet and found"
+    ],
     "the comment rule gets teeth and the review backlog closes": [
       "The Comment Rule Gets Teeth, and the Review Backlog Closes"
+    ],
+    "the completion sentinel catches the claims it can": [
+      "the completion sentinel catches the claims it can"
+    ],
+    "the confirm variants of deep research and deep": [
+      "the confirm variants of deep research and deep"
+    ],
+    "the containment promise says what the runner does": [
+      "the containment promise says what the runner does"
+    ],
+    "the corpus check is 3 435 lines forty": [
+      "the corpus check is 3 435 lines forty"
+    ],
+    "the corpus has never been proven to fail": [
+      "the corpus has never been proven to fail"
     ],
     "the create skill workflow debuts": [
       "The create-skill Workflow Debuts"
     ],
+    "the decision rule carried the last long name": [
+      "the decision rule carried the last long name"
+    ],
+    "the deep loop cli pi executor maps deepseek": [
+      "the deep loop cli pi executor maps deepseek"
+    ],
+    "the deep research reducer writes the findings registry": [
+      "the deep research reducer writes the findings registry"
+    ],
+    "the deep review loop protocol carries the same": [
+      "the deep review loop protocol carries the same"
+    ],
     "the deferred lifecycle closed": [
       "The Deferred Lifecycle, Closed"
+    ],
+    "the derivation driven repaint of every example fresh": [
+      "the derivation driven repaint of every example fresh"
+    ],
+    "the design chart command named a directory the": [
+      "the design chart command named a directory the"
+    ],
+    "the diagram corpus checker its mutation suite with": [
+      "the diagram corpus checker its mutation suite with"
+    ],
+    "the dispatch preflight is the only surface that": [
+      "the dispatch preflight is the only surface that"
+    ],
+    "the dispatch safety net asked for a clean": [
+      "the dispatch safety net asked for a clean"
+    ],
+    "the empty registry advisory reads the registry field": [
+      "the empty registry advisory reads the registry field"
+    ],
+    "the fan out builder is the only caller": [
+      "the fan out builder is the only caller"
+    ],
+    "the fan out merge reads each lineage s": [
+      "the fan out merge reads each lineage s"
+    ],
+    "the fan out merge scorer reports jev against": [
+      "the fan out merge scorer reports jev against"
+    ],
+    "the first bullet of step 7 cited a": [
+      "the first bullet of step 7 cited a"
+    ],
+    "the folder suggestion scorer shows each option with": [
+      "the folder suggestion scorer shows each option with"
+    ],
+    "the forced depth validator collapses duplicate iteration records": [
+      "the forced depth validator collapses duplicate iteration records"
+    ],
+    "the gate told the author to confirm that": [
+      "the gate told the author to confirm that"
     ],
     "the gpt 5 6 model roster": [
       "The GPT-5.6 Model Roster"
     ],
+    "the grader is measured against a fed baseline": [
+      "the grader is measured against a fed baseline"
+    ],
+    "the handoff rule s filename was the longest": [
+      "the handoff rule s filename was the longest"
+    ],
+    "the hub answers from its new home but": [
+      "the hub answers from its new home but"
+    ],
+    "the hub needs a packet that tells a": [
+      "the hub needs a packet that tells a"
+    ],
+    "the human voice rules carry an explicit em": [
+      "the human voice rules carry an explicit em"
+    ],
+    "the injection screen scores only a corpus it": [
+      "the injection screen scores only a corpus it"
+    ],
+    "the jev transport lived as a mode id": [
+      "the jev transport lived as a mode id"
+    ],
+    "the leaf manifest generator resolves symlinked references so": [
+      "the leaf manifest generator resolves symlinked references so"
+    ],
+    "the manual review s nine systemic patterns s1": [
+      "the manual review s nine systemic patterns s1"
+    ],
+    "the migration promised to re run the mode": [
+      "the migration promised to re run the mode"
+    ],
+    "the most referenced rule in the corpus pointed": [
+      "the most referenced rule in the corpus pointed"
+    ],
+    "the mutation suite covered twelve of the forty": [
+      "the mutation suite covered twelve of the forty"
+    ],
+    "the narrowing scorer pins what it measured keeps": [
+      "the narrowing scorer pins what it measured keeps"
+    ],
+    "the operator asked for a custom evilcharts style": [
+      "the operator asked for a custom evilcharts style"
+    ],
+    "the operator asked for the gallery to go": [
+      "the operator asked for the gallery to go"
+    ],
+    "the opt in restore checks the violated path": [
+      "the opt in restore checks the violated path"
+    ],
+    "the orchestrate agent s opencode source grants the": [
+      "the orchestrate agent s opencode source grants the"
+    ],
+    "the packet carried two style references and one": [
+      "the packet carried two style references and one"
+    ],
+    "the packet carries one style reference the stock": [
+      "the packet carries one style reference the stock"
+    ],
+    "the palette was replaced wholesale and the checks": [
+      "the palette was replaced wholesale and the checks"
+    ],
+    "the per lineage worktree mechanism is removed from": [
+      "the per lineage worktree mechanism is removed from"
+    ],
+    "the permanent human half a formalized capture review": [
+      "the permanent human half a formalized capture review"
+    ],
+    "the pi cache extension recently absorbed three capabilities": [
+      "the pi cache extension recently absorbed three capabilities"
+    ],
+    "the previous phase closed everything it could and": [
+      "the previous phase closed everything it could and"
+    ],
+    "the quarantine writer canonicalizes every destination and refuses": [
+      "the quarantine writer canonicalizes every destination and refuses"
+    ],
     "the readme rebuilt as purpose first narrative": [
       "The README Rebuilt as Purpose-First Narrative"
     ],
+    "the registered ledger vocabulary and the spellings producers": [
+      "the registered ledger vocabulary and the spellings producers"
+    ],
+    "the repaint in v2 1 0 0 landed": [
+      "the repaint in v2 1 0 0 landed"
+    ],
+    "the reply rule opened by stating one idea": [
+      "the reply rule opened by stating one idea"
+    ],
+    "the scan flags on the evidence it already": [
+      "the scan flags on the evidence it already"
+    ],
+    "the seven defects earlier phases measured and recorded": [
+      "the seven defects earlier phases measured and recorded"
+    ],
+    "the shared screenshot renderer crops every corpus form": [
+      "the shared screenshot renderer crops every corpus form"
+    ],
+    "the six findings the post work review confirmed": [
+      "the six findings the post work review confirmed"
+    ],
+    "the sk code hub still registers and advertises": [
+      "the sk code hub still registers and advertises"
+    ],
+    "the sk design root router passes its contract": [
+      "the sk design root router passes its contract"
+    ],
+    "the sk design router declares 55 keywords its": [
+      "the sk design router declares 55 keywords its"
+    ],
+    "the smallest possible hub assembled from content the": [
+      "the smallest possible hub assembled from content the"
+    ],
+    "the transport honors the caller s provider can": [
+      "the transport honors the caller s provider can"
+    ],
+    "the two hubs that phase 003 recorded out": [
+      "the two hubs that phase 003 recorded out"
+    ],
     "the webflow surface is established": [
       "The Webflow Surface Is Established"
+    ],
+    "theme a diagram delivery from a local v3": [
+      "theme a diagram delivery from a local v3"
     ],
     "theme chart from design md": [
       "theme chart from DESIGN.md"
@@ -96764,6 +98613,9 @@
     "three corpus metric lanes status": [
       "three corpus metric lanes status"
     ],
+    "three deep improvement agent discipline stress scenarios and": [
+      "three deep improvement agent discipline stress scenarios and"
+    ],
     "three digit numeric prefix": [
       "three digit numeric prefix"
     ],
@@ -96827,6 +98679,12 @@
     "three lineage jev research": [
       "three lineage jev research"
     ],
+    "three lineage research into how the repo rule": [
+      "three lineage research into how the repo rule"
+    ],
+    "three of the seven partial forms already carry": [
+      "three of the seven partial forms already carry"
+    ],
     "three p1 deep review findings": [
       "three P1 deep-review findings"
     ],
@@ -96835,6 +98693,9 @@
     ],
     "three phase write split memory": [
       "three-phase write split memory"
+    ],
+    "three question first micro forms the library has": [
+      "three question first micro forms the library has"
     ],
     "three result floor blocker": [
       "three result floor blocker"
@@ -97265,6 +99126,9 @@
     "toolchain on main after merge": [
       "toolchain on main after merge"
     ],
+    "tooling and pilot acceptance criteria": [
+      "tooling and pilot acceptance criteria"
+    ],
     "tools per mcp server": [
       "tools per mcp server"
     ],
@@ -97379,6 +99243,9 @@
     "track access cache hits": [
       "track access cache hits"
     ],
+    "track and packet migration": [
+      "track and packet migration"
+    ],
     "track aware archive": [
       "track aware archive",
       "track-aware archive"
@@ -97416,11 +99283,17 @@
     "track level retrieval baseline": [
       "track-level retrieval baseline"
     ],
+    "track narrowing improvements": [
+      "track narrowing improvements"
+    ],
     "track narrowing keep rule": [
       "track narrowing keep rule"
     ],
     "track narrowing plan": [
       "track narrowing plan"
+    ],
+    "track narrowing research": [
+      "track narrowing research"
     ],
     "track narrowing tasks": [
       "track narrowing tasks"
@@ -97476,6 +99349,9 @@
     "track roots sweep script": [
       "track roots sweep script"
     ],
+    "track the never committed code mode server manifest": [
+      "track the never committed code mode server manifest"
+    ],
     "track time on task": [
       "track time on task"
     ],
@@ -97515,11 +99391,20 @@
     "transactional remint": [
       "transactional remint"
     ],
+    "transactional remint acceptance criteria": [
+      "transactional remint acceptance criteria"
+    ],
     "transcribe the error message": [
       "transcribe the error message"
     ],
     "transcript high water mark": [
       "transcript high-water mark"
+    ],
+    "transfer three forms": [
+      "transfer three forms"
+    ],
+    "transfer three forms acceptance criteria": [
+      "transfer three forms acceptance criteria"
     ],
     "transform dedup plan": [
       "transform dedup plan"
@@ -97606,6 +99491,9 @@
     "translate lieflat charts": [
       "translate lieflat charts"
     ],
+    "translation and voice acceptance criteria": [
+      "translation and voice acceptance criteria"
+    ],
     "translation complete": [
       "translation complete"
     ],
@@ -97626,6 +99514,12 @@
     ],
     "transparent reconnect tasks": [
       "transparent reconnect tasks"
+    ],
+    "transport and baseline acceptance criteria": [
+      "transport and baseline acceptance criteria"
+    ],
+    "transport and consumer inventory acceptance criteria": [
+      "transport and consumer inventory acceptance criteria"
     ],
     "transport axis extension moved": [
       "transport-axis extension moved"
@@ -97795,6 +99689,9 @@
     "trigger index behavior": [
       "trigger index behavior"
     ],
+    "trigger index ci rebuild": [
+      "trigger index ci rebuild"
+    ],
     "trigger index committed pair": [
       "trigger index committed pair"
     ],
@@ -97809,6 +99706,9 @@
     ],
     "trigger index freshness": [
       "trigger index freshness"
+    ],
+    "trigger index freshness acceptance criteria": [
+      "trigger index freshness acceptance criteria"
     ],
     "trigger index generator": [
       "trigger index generator"
@@ -97852,6 +99752,9 @@
     "trigger index replacement": [
       "trigger index replacement"
     ],
+    "trigger index replacement acceptance criteria": [
+      "trigger index replacement acceptance criteria"
+    ],
     "trigger index repo root": [
       "trigger index repo root"
     ],
@@ -97872,6 +99775,9 @@
     ],
     "trigger index runtime data move": [
       "trigger index runtime data move"
+    ],
+    "trigger index search fixes acceptance criteria": [
+      "trigger index search fixes acceptance criteria"
     ],
     "trigger index skipped paths": [
       "trigger index skipped paths"
@@ -98146,6 +100052,9 @@
     "twelve principles of animation": [
       "twelve principles of animation"
     ],
+    "twenty one templates carry figures labelled demo which": [
+      "twenty one templates carry figures labelled demo which"
+    ],
     "twenty packet drift sample": [
       "twenty-packet drift sample"
     ],
@@ -98163,6 +100072,9 @@
     ],
     "twenty seven packet task list": [
       "twenty seven packet task list"
+    ],
+    "two advisories warned about problems that did not": [
+      "two advisories warned about problems that did not"
     ],
     "two axis hub plan": [
       "two-axis hub plan"
@@ -98203,6 +100115,9 @@
     "two executor fan out research": [
       "two executor fan-out research"
     ],
+    "two hubs still named one packet and the": [
+      "two hubs still named one packet and the"
+    ],
     "two lane deep research decision": [
       "two lane deep research decision"
     ],
@@ -98239,6 +100154,12 @@
     "two new benchmark families and normalized skill md sections": [
       "Two New Benchmark Families and Normalized SKILL.md Sections"
     ],
+    "two of the four rules that fire on": [
+      "two of the four rules that fire on"
+    ],
+    "two of the three fixes in the packet": [
+      "two of the three fixes in the packet"
+    ],
     "two of three agree": [
       "two of three agree"
     ],
@@ -98250,6 +100171,12 @@
     ],
     "two orphaned runtime modules": [
       "two orphaned runtime modules"
+    ],
+    "two packets leave a documentation hub for a": [
+      "two packets leave a documentation hub for a"
+    ],
+    "two parallel five iteration deep research lineages gpt": [
+      "two parallel five iteration deep research lineages gpt"
     ],
     "two part box shadow": [
       "two part box shadow"
@@ -98265,6 +100192,12 @@
     ],
     "two phase promotion": [
       "two-phase promotion"
+    ],
+    "two pi extension lockfiles pin brace expansion 5": [
+      "two pi extension lockfiles pin brace expansion 5"
+    ],
+    "two post check rows of the write recipe": [
+      "two post check rows of the write recipe"
     ],
     "two root gate resolution": [
       "two root gate resolution"
@@ -98608,6 +100541,9 @@
     "unconfirmed cause qualifier": [
       "unconfirmed cause qualifier"
     ],
+    "under preserve an out of scope untracked path": [
+      "under preserve an out of scope untracked path"
+    ],
     "undo last commit": [
       "undo last commit"
     ],
@@ -98748,6 +100684,9 @@
     ],
     "unphotographed surface obsidian plugin": [
       "unphotographed surface obsidian plugin"
+    ],
+    "unproven feature proof acceptance criteria": [
+      "unproven feature proof acceptance criteria"
     ],
     "unproven feature proof plan": [
       "unproven feature proof plan"
@@ -98902,6 +100841,9 @@
     "update task priority or assignee": [
       "update task priority or assignee"
     ],
+    "update the contracts references catalogs and changelogs in": [
+      "update the contracts references catalogs and changelogs in"
+    ],
     "update the goal": [
       "update the goal"
     ],
@@ -98970,6 +100912,12 @@
     ],
     "upgrade path re assembles tasks": [
       "upgrade path re-assembles tasks"
+    ],
+    "upgrade research": [
+      "upgrade research"
+    ],
+    "upgrade research acceptance criteria": [
+      "upgrade research acceptance criteria"
     ],
     "upgrade safety audit": [
       "upgrade safety audit"
@@ -99105,6 +101053,9 @@
     ],
     "utility tests added": [
       "utility tests added"
+    ],
+    "utilization review acceptance criteria": [
+      "utilization review acceptance criteria"
     ],
     "ux flow references": [
       "ux flow references"
@@ -99415,6 +101366,9 @@
     "v4 0 0 3 entry edit plan": [
       "v4.0.0.3 entry edit plan"
     ],
+    "v4 0 0 3 release deep review acceptance criteria": [
+      "v4 0 0 3 release deep review acceptance criteria"
+    ],
     "v4 0 0 3 release notes": [
       "v4.0.0.3 release notes"
     ],
@@ -99441,6 +101395,9 @@
     ],
     "v4 0 0 3 review remediation": [
       "v4.0.0.3 review remediation"
+    ],
+    "v4 0 0 3 review remediation acceptance criteria": [
+      "v4 0 0 3 review remediation acceptance criteria"
     ],
     "v4 0 0 3 review summary": [
       "v4.0.0.3 review summary"
@@ -99477,6 +101434,9 @@
     ],
     "v4 changelog remediation": [
       "v4 changelog remediation"
+    ],
+    "v4 changelog review fixes": [
+      "v4 changelog review fixes"
     ],
     "v4 changelog voice plan": [
       "v4 changelog voice plan"
@@ -99534,6 +101494,9 @@
     ],
     "v4 root readme": [
       "v4 root readme"
+    ],
+    "v4 root readme acceptance criteria": [
+      "v4 root readme acceptance criteria"
     ],
     "v4 state inventory": [
       "v4 state inventory"
@@ -99902,6 +101865,9 @@
     "validator and template debt": [
       "validator and template debt"
     ],
+    "validator and template debt acceptance criteria": [
+      "validator and template debt acceptance criteria"
+    ],
     "validator audit": [
       "validator audit"
     ],
@@ -100247,6 +102213,12 @@
     "verdict determination": [
       "verdict determination"
     ],
+    "verdict fallback improvements": [
+      "verdict fallback improvements"
+    ],
+    "verdict fallback research": [
+      "verdict fallback research"
+    ],
     "verdict flip reproduced": [
       "verdict flip reproduced"
     ],
@@ -100270,6 +102242,12 @@
     ],
     "verification": [
       "verification"
+    ],
+    "verification acceptance criteria": [
+      "verification acceptance criteria"
+    ],
+    "verification and closeout acceptance criteria": [
+      "verification and closeout acceptance criteria"
     ],
     "verification and remediation bm25 indexing fidelity changelog": [
       "verification and remediation bm25 indexing fidelity changelog"
@@ -100336,6 +102314,9 @@
     ],
     "verification and remediation write safety and guards changelog": [
       "verification and remediation write safety and guards changelog"
+    ],
+    "verification and rollout acceptance criteria": [
+      "verification and rollout acceptance criteria"
     ],
     "verification battery": [
       "verification battery"
@@ -100532,6 +102513,18 @@
     "version alias refused": [
       "version alias refused"
     ],
+    "version authority": [
+      "version authority"
+    ],
+    "version authority acceptance criteria": [
+      "version authority acceptance criteria"
+    ],
+    "version authority completion": [
+      "version authority completion"
+    ],
+    "version authority completion acceptance criteria": [
+      "version authority completion acceptance criteria"
+    ],
     "version bump decision rules": [
       "version bump decision rules"
     ],
@@ -100645,6 +102638,33 @@
     ],
     "visual explanation lane sk communication": [
       "visual explanation lane sk-communication"
+    ],
+    "visual explanation output medium": [
+      "visual explanation output medium"
+    ],
+    "visual polish": [
+      "visual polish"
+    ],
+    "visual polish acceptance criteria": [
+      "visual polish acceptance criteria"
+    ],
+    "visual proof and forks acceptance criteria": [
+      "visual proof and forks acceptance criteria"
+    ],
+    "visual review fixes": [
+      "visual review fixes"
+    ],
+    "visual upgrade research": [
+      "visual upgrade research"
+    ],
+    "visual upgrade research acceptance criteria": [
+      "visual upgrade research acceptance criteria"
+    ],
+    "visual verification": [
+      "visual verification"
+    ],
+    "visual verification acceptance criteria": [
+      "visual verification acceptance criteria"
     ],
     "vitest": [
       "vitest"
@@ -101419,6 +103439,9 @@
     "weekly task filter": [
       "weekly task filter"
     ],
+    "weight and fusion research acceptance criteria": [
+      "weight and fusion research acceptance criteria"
+    ],
     "weight decision": [
       "weight decision"
     ],
@@ -101827,6 +103850,12 @@
     "wire cli pi into the deep loop fanout": [
       "wire cli-pi into the deep-loop fanout"
     ],
+    "wire executor builders": [
+      "wire executor builders"
+    ],
+    "wire executor builders acceptance criteria": [
+      "wire executor builders acceptance criteria"
+    ],
     "wire the audited dispatch": [
       "wire the audited dispatch"
     ],
@@ -101868,6 +103897,9 @@
     ],
     "wording standard restructure": [
       "wording standard restructure"
+    ],
+    "wording standard restructure acceptance criteria": [
+      "wording standard restructure acceptance criteria"
     ],
     "wording standard routing": [
       "wording standard routing"
@@ -102166,6 +104198,9 @@
     "worktree portability verification": [
       "worktree portability verification"
     ],
+    "worktree provision shared link acceptance criteria": [
+      "worktree provision shared link acceptance criteria"
+    ],
     "worktree provision spec kit fallback plan": [
       "worktree provision spec-kit fallback plan"
     ],
@@ -102204,6 +104239,12 @@
     ],
     "worktree relocation tasks": [
       "worktree relocation tasks"
+    ],
+    "worktree removal": [
+      "worktree removal"
+    ],
+    "worktree removal acceptance criteria": [
+      "worktree removal acceptance criteria"
     ],
     "worktree remove path limit": [
       "worktree remove path limit"
@@ -102342,6 +104383,9 @@
     ],
     "write containment revert": [
       "write containment revert"
+    ],
+    "write containment runs for every lane immediately after": [
+      "write containment runs for every lane immediately after"
     ],
     "write containment tasks": [
       "write containment tasks"

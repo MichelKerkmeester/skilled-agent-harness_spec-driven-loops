@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "source resolver",
+      "resolve the existing source tags in research and",
       "implementation plan",
       "source tags rule plan",
       "source tag cutoff",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "source resolver acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "source",
+      "resolver",
+      "resolve",
+      "existing",
+      "tags",
+      "research",
       "implementation",
       "plan",
-      "source",
-      "tags"
+      "rule",
+      "tag",
+      "cutoff",
+      "citation"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "About 1,919 files use `[SOURCE:]` tags and 1,186 delta files hold structured `evidence` lists, yet nothing resolves the tags",
     "created_at": "2026-10-04T08:04:52Z",
-    "last_save_at": "2026-10-04T12:06:07.335Z",
+    "last_save_at": "2026-10-07T12:55:55.672Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:799095083e51b3bd81a2aeba68fbfb9f0630896aa4d8257d1eee150dec8dafdc",
+    "source_fingerprint": "sha256:b5bee66497dbcf5defac1d4781896c4089014a965f7f440889af2d1d968c82b0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0747c4222c3dec92b3818cc53dd4787cb2730a650d1ad1f4af265f03b8193ab0",
+      "spec.md": "ab289542094af078e0851a67e2b164fd9bc59c79160d7b952fc5d1160ec5742a",
       "plan.md": "6e993bd5d82196485a98820e1adb76e862b53bb9c15df15b575f812c0802b5b4",
       "tasks.md": "20f81ab1d59235f1b41799be93595f008ff3f33639a4e730d2213be7dc214394",
       "implementation-summary.md": "64a6b786529d8ba1eb21efc23718df80a2840a70a5bf811046c6a14f67f66fc8"

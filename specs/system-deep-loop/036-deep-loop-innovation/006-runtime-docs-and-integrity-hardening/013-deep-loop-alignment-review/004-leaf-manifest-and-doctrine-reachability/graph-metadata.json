@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "leaf manifest and doctrine reachability",
+      "the leaf manifest generator resolves symlinked references so",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "leaf manifest and doctrine reachability acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "leaf",
+      "manifest",
+      "doctrine",
+      "reachability",
+      "generator",
+      "resolves",
+      "symlinked",
+      "references",
       "implementation",
       "plan",
       "technical",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The generator skipped any directory entry that was not a plain file, and a symlink never reports as one, so every symlinked reference was invisible",
     "created_at": "2026-09-20T08:33:44.259Z",
-    "last_save_at": "2026-09-25T16:15:22.754Z",
+    "last_save_at": "2026-10-07T12:55:30.797Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:496b93350c8187c54051142c4f011cf98acb490f344ce9520cfed29d5a302a42",
+    "source_fingerprint": "sha256:a0806d0f9682a22665dd6a7ccc66efb68dfebd620d12b3ec3ad453b1c543e51d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ef91072ba360cdaed1f8044e4ce20d61add7e2a2e9c6decab8b76deb7190813f",
+      "spec.md": "64e65a38ea10feda66e25ee46ffaffc036131c84915306278ba8ff1e091071e5",
       "plan.md": "ca63cf8369130d27a2d725c1f620075aa8f51c081c0bc35eba53a25def146126",
       "tasks.md": "f345a4e3cd41c47c4fd6551788bf29a10250305b97330f35caaf2321d066d7a9",
       "implementation-summary.md": "77405221b5f7210b65afe8031161db1160b092e9e7f4c25b5843c8841e0a0432"

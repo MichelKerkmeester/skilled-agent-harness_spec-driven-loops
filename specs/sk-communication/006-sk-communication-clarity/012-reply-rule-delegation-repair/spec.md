@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 12: reply rule delegation repair"
 description: "The reply rule opened by stating one idea per sentence, a mechanic it delegates to the prose rule three lines later, so the split it describes was contradicted by its own headline."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "reply rule delegation repair"
+  - "the reply rule opened by stating one idea"
 importance_tier: "normal"
 contextType: "general"
 ---

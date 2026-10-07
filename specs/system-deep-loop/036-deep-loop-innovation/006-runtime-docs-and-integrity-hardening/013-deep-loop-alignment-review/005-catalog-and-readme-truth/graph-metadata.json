@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "catalog and readme truth",
+      "every catalog entry readme claim and playbook statement",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "catalog and readme truth acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
+      "catalog",
+      "readme",
+      "truth",
+      "every",
+      "entry",
+      "claim",
+      "playbook",
       "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
       "implementation",
       "plan",
       "technical",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The review found ten classes of documentation that the tree contradicts: nine catalog references citing absent paths, a superseded runtime generation cited in three catalogs, a contract count wrong in two READMEs, a playbook asserting no test suite exists against 121 unit test files, removed benchmark artifacts still advertised as live, five test files named under a prefix they no longer carry, a catalog claiming fifty-five entries against fifty-four, a repository-wide checker presented as a local acceptance test, a retired command path with a dead anchor, and two READMEs pointing one",
     "created_at": "2026-09-20T08:33:44.413Z",
-    "last_save_at": "2026-09-25T16:15:22.753Z",
+    "last_save_at": "2026-10-07T12:55:30.867Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d19d1c65e64f3f0d4e3aa4a65f3b3a5b116e75cc12216c034652d589eb3622e",
+    "source_fingerprint": "sha256:e6af162847a3121d9c0668015117d964aea7419509fc7bc57167aefd3d4a446b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4308f0a59e5f619a7845c8934492b0eebc0520048cac02c0625ecd1856bb1f18",
+      "spec.md": "5a9aece3b8390e2f906a22ffb38eaba07ce23398a48b3b0d9f9a6e0f95d94348",
       "plan.md": "3e23921eb7ea948af174382db236a8f29b08f46bf8abf2027a7ed93871239d79",
       "tasks.md": "98711d3455581d24d43e1a2f90ec71fde681963032cd6381503eb9180bbed73e",
       "implementation-summary.md": "d90450a8ab7e1f323b41ba789df9913321422bdcad7067f6caf822bb32c544a4"

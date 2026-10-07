@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "git workflow run failures",
+      "find every git workflow that can fail an",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "git workflow run failures acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "git",
+      "workflow",
+      "run",
+      "failures",
+      "find",
+      "every",
+      "fail",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Automated runs in this repository hand work to detached children and fan-out lineages, and git behaviors that a human shrugs off end those runs: a revert that erases an orchestrator's work, a hook that blocks a commit nobody can answer for, an advisory that cries wolf on every add",
     "created_at": "2026-09-11T08:06:45Z",
-    "last_save_at": "2026-10-03T15:44:19.192Z",
+    "last_save_at": "2026-10-07T12:55:27.730Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:4b84553e74b1a07afcdd764ca72c409e8f9f0d2147436d1fa7cdd7b7abf5d3a0",
+    "source_fingerprint": "sha256:98fafd72170394858d3fdf136ac11543f88bf4610adc988847e2c6542f2fa7fb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cff220933e0c8e1e49ac13241decd7db86ceecd9fa6847fc424d6d1560ed4a41",
+      "spec.md": "37521d783bcd3d1be442cc2c61b3f032eb37e5161580a4984bc0c0614155f2cf",
       "plan.md": "4ec8406d5cec3989748b8aa4b23bc5d6bbfb9213f8501fab7779070b8e479e6c",
       "tasks.md": "04c67ba7d82d9c39ea55e60b3f7e19b61e9d86be2bc1c2f5420b74e2e757c438",
       "implementation-summary.md": "3320e03f07782a0c2ffc3e170fc4d3efb960f49fb57e37f568acb3698ba946e4",

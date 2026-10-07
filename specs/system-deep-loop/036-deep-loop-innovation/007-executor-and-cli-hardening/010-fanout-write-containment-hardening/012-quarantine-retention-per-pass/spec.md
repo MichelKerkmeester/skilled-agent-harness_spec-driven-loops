@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 5: quarantine-retention-per-pass"
 description: "Each containment pass keeps its own quarantine directory keyed by iteration and attempt, every quarantine and patch file is created exclusively, and a later pass never overwrites an earlier pass's evidence."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "quarantine retention per pass"
+  - "each containment pass keeps its own quarantine directory"
 importance_tier: "normal"
 contextType: "general"
 ---

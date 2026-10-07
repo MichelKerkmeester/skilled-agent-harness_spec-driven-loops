@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "citation drift research",
+      "five deepseek v4 1 flash and three gpt",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "citation",
+      "drift",
+      "research",
+      "five",
+      "deepseek",
+      "flash",
+      "three",
+      "gpt",
       "implementation",
       "plan",
       "technical",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Phase 047 measured the Jev citation drift scan at verdict jev: keep K=40 M=40 A=35 B=13 W=22 L=0 TP=26 FP=0 F=3 p=2.384e-7",
     "created_at": "2026-10-02T21:59:44Z",
-    "last_save_at": "2026-10-02T23:34:14.365Z",
+    "last_save_at": "2026-10-07T12:54:51.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:35207ad4b513b04cf178dd77497796b0c5c892fad5a4cdd61d6ebf4a86273fac",
+    "source_fingerprint": "sha256:534f2f0672b700d8de42c5d935ed08e280e6a0f76cf2fe8e30083d02f0610f21",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d9a0d6a4d501359847f8143e0058f627ece1580cca3ea99b3bce4352ac649465",
+      "spec.md": "ce0d49cfaac02e6973039677da8e0ba75d17418cda569ccd0cc0d2dd188de9be",
       "plan.md": "58ce61e34c113e82753cf12a6ae5751cf6252a579bafbb1743794654f9dcfa37",
       "tasks.md": "4bad8d84994f02c0e528e7eeb28041aebcd79c67b1cfa5191a5087579156f02a",
       "implementation-summary.md": "ca822b7b57339df1fa1821f8df42006643a0b3035abb081e4b71d074b416a377",

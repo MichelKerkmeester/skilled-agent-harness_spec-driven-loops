@@ -21,8 +21,8 @@
       "cross hub vocabulary tasks",
       "vocabulary phase checklist",
       "routing edit verification",
-      "acceptance criteria",
-      "closure gate"
+      "cross hub vocabulary acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
       "cross",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "This phase was scoped before either gate was measured, on the belief that a cross-hub",
     "created_at": "2026-09-02T16:34:06Z",
-    "last_save_at": "2026-09-11T16:42:13.236Z",
+    "last_save_at": "2026-10-07T12:55:22.503Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aece266b5dc27c06c171e10a5077fff6b78a4fa3fc14211e5ed74c41b2bffd95",
+    "source_fingerprint": "sha256:e56611218cd9fa3c81d9016fb874af2f31aeaa2dde313bcc7b58181530e07a7e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9946edce922bab22b31dc06e230873bded27943a0695fb5701ad8bdbb88700d9",

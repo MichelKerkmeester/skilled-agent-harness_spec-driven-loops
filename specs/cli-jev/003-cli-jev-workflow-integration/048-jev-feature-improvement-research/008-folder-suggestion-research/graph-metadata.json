@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "folder suggestion research",
+      "five deepseek v4 1 flash and three gpt",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,17 +20,19 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "folder",
+      "suggestion",
+      "research",
+      "five",
+      "deepseek",
+      "flash",
+      "three",
+      "gpt",
       "implementation",
       "plan",
       "technical",
@@ -48,7 +48,6 @@
       "implementation-summary.md",
       "research/research.md",
       "research/findings-registry.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts",
       "research/lineages/deepseek/deep-research-state.jsonl",
       "research/lineages/luna/deep-research-state.jsonl",
       "research/lineages/deepseek/research.md",
@@ -98,12 +97,6 @@
         "name": "findings-registry.json",
         "kind": "config",
         "path": "research/findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "score-alignment-suggestion.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts",
         "source": "derived"
       },
       {
@@ -201,11 +194,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 047 measured the Jev spec-folder suggestion at verdict jev: keep K=40 M=40 A=39 B=30 W=10 L=1 F=0 p=0.0059 baseline=top, target right 0 of 40",
     "created_at": "2026-10-02T21:59:48Z",
-    "last_save_at": "2026-10-03T03:31:26.413Z",
+    "last_save_at": "2026-10-07T12:54:55.829Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +215,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c7f893e156ec2ed726b5cb5a9a5894624ff34cf793756ff7edaa7b0cff16acf7",
+    "source_fingerprint": "sha256:391830ad8c284f281c3eeb265088fd4a40d2ddec4827d1cf52142fc0d7c102cc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e96c0aae5d19c60407a3efce6ba00b31df687c872775a60270f3cde96dc76d86",
+      "spec.md": "5cf5280828df5164188c4bff574af07a80dceecc1792e2a22ca47bc1d766a7fe",
       "plan.md": "e6d8ed4901ee3dc2454273af80338889e3939d7887b698c2e7355a43858a37b0",
       "tasks.md": "46415684faa0b1516d2a7ccd08e84c8b86c2586cee93d639baa51037a496148c",
       "implementation-summary.md": "9ab0187ffa356877155c94c4563f160c79da103acde3b080ca3fbbfbdaebe1d8",

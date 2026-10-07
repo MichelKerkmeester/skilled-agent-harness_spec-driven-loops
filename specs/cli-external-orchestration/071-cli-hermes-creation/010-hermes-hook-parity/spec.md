@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: hermes-hook-parity"
 description: "Hermes hook parity: the repo-guards plugin bridges every repo hook core Hermes's plugin API can reach (prompt-time advisor and gate, tool-call guards, post-edit quality, goal core, session-start advisories, session cleanup, vision), implemented on cli-pi with DeepSeek V4.1 Flash and proven live."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "hermes hook parity"
+  - "hermes hook parity the repo guards plugin bridges"
 importance_tier: "normal"
 contextType: "general"
 ---

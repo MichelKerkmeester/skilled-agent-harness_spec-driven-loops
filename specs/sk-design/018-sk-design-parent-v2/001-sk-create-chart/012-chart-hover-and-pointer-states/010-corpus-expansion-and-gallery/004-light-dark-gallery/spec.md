@@ -2,10 +2,8 @@
 title: "Feature Specification: Generate one gallery page rendering every form in both colour schemes"
 description: "One page carrying every chart form twice, once per pinned colour scheme, generated from the templates directory so a missing form is impossible rather than merely unlikely."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "light dark gallery"
+  - "one page carrying every chart form twice once"
 importance_tier: "normal"
 contextType: "general"
 ---

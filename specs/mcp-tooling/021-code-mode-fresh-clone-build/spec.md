@@ -2,10 +2,8 @@
 title: "Feature Specification: Make Code Mode buildable from a fresh clone and validate its UTCP config"
 description: "Track the never-committed Code Mode server manifest, make install.sh build dist/index.js, correct validate_config.py's per-type shape and credential-prefix checks, and make the doctor's Codex and build-currentness checks truthful."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "code mode fresh clone build"
+  - "track the never committed code mode server manifest"
 importance_tier: "normal"
 contextType: "general"
 ---

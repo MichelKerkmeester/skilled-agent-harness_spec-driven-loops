@@ -2,10 +2,8 @@
 title: "Feature Specification: Build: improve the Jev citation drift scan (032)"
 description: "The scan flags on the evidence it already has, reports live rows apart, checks its own input hashes and reads each document once."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "citation drift improvements"
+  - "the scan flags on the evidence it already"
 importance_tier: "normal"
 contextType: "general"
 ---

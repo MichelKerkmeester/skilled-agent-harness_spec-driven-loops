@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 1: jev contract research and pin"
 description: "Every claim the cli-jev packet makes about the jev CLI and jev-mcp must come from the vendored 0.6.2 source or a live probe of the same version, never from a vendor README's summary — so the contract is pinned before any packet text depends on it."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "jev contract research and pin"
+  - "every claim the cli jev packet makes about"
 importance_tier: "normal"
 contextType: "general"
 _memory:

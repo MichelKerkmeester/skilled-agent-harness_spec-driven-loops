@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Phase 1: goal-inventory-and-mode-contract"
 description: "These criteria decide whether phase 001 has produced a complete, evidence-backed goal inventory and mode contract."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "goal inventory and mode contract acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

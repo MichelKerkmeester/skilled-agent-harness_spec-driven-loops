@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "communication rule naming",
+      "two of the four rules that fire on",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "communication",
+      "rule",
+      "naming",
+      "two",
+      "four",
+      "rules",
+      "fire",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -45,8 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "repo-rules/communication-handoff-and-questions.md",
-      "repo-rules/communication-presenting-decisions.md",
       "repo-rules/communication.md"
     ],
     "entities": [
@@ -72,18 +70,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "communication-handoff-and-questions.md",
-        "kind": "doc",
-        "path": "repo-rules/communication-handoff-and-questions.md",
-        "source": "derived"
-      },
-      {
-        "name": "communication-presenting-decisions.md",
-        "kind": "doc",
-        "path": "repo-rules/communication-presenting-decisions.md",
         "source": "derived"
       },
       {
@@ -193,11 +179,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two of the four rules that fire on a reply do not carry the communication prefix the other two carry, so the reply-governing set is not visible by name. This phase renames both and repoints every live reference.",
     "created_at": "2026-09-15T18:05:02Z",
-    "last_save_at": "2026-09-15T18:13:37.372Z",
+    "last_save_at": "2026-10-07T12:55:02.001Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0108dd4497e313e425dad2eda2e38f1ffd3e0ad42e62d2721d6c652e1a9e4ad8",
+    "source_fingerprint": "sha256:b8b6c824ce2cef96adcac999ba72ef1a5d7e90008e9577fa3c59460e1f2c035f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4d5e47a60925df886febf350028bd45ea285d82abc89b5e6ca20517820e5117e",
+      "spec.md": "6b7f955002cc3bb6ee4e9f41902e40302914019491b733e522ebe1e156039daa",
       "plan.md": "1eb6e634ce3ce02183a1e2a6082aa61274a7740d75f2d76dd0473d969b47bb54",
       "tasks.md": "73d4133746763deef938c71f090599c8721cf40b52ee9ffc4884bef1f48c6293",
       "implementation-summary.md": "ae69305d61eeb5ccf4c35fce51d223381bcbd340f46b75e20fe9ea2d67562d3e"

@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "routing perfection research",
+      "a phrase a hub s router advertises could",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "routing perfection research acceptance criteria",
+      "decision record"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "routing",
+      "perfection",
+      "research",
+      "phrase",
+      "hub",
+      "router",
+      "advertises",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "A hub's `ROUTER.md` advertises the phrases that reach it, and for 173 of 439 such phrases across six hubs that claim was false",
     "created_at": "2026-09-07T05:02:02Z",
-    "last_save_at": "2026-10-03T15:44:27.672Z",
+    "last_save_at": "2026-10-07T12:55:39.008Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f939303eb9a028c30285abf9abb54e2dcc178b4e9f0032775982297e398d89d3",
+    "source_fingerprint": "sha256:e4461d8311e69d2f934b1a76c5c979afb09562cc531a785ea6974c757ec46418",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "04cb7dfb03db4cc2b17804557090547c67d6e50dc4365f35f550671d893ce53f",
+      "spec.md": "1e0727f74f9ef4ac8e2adf87558617790c79ae91fb4d7875142fa3d9a76321fb",
       "plan.md": "6351a6badf01c1eb45bc38b997739bcdf26dfa10db492f613e6585f3cac02de2",
       "tasks.md": "fc577f840cdfb6dc389a4ef49541d84e69191dd284267b709c11ac03d6acecdb",
       "decision-record.md": "04fa8af5115304147243b85247cd774c65a67a65891a9f020bb735f2493bdd78",

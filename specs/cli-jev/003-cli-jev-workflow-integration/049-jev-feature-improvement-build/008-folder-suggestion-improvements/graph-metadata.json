@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "folder suggestion improvements",
+      "the folder suggestion scorer shows each option with",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "folder",
+      "suggestion",
+      "improvements",
+      "scorer",
+      "shows",
+      "option",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -46,8 +46,6 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts",
       "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/008-folder-suggestion-research/research/research.md"
     ],
     "entities": [
@@ -79,18 +77,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "score-alignment-suggestion.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "score-alignment-suggestion.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Feature 022 kept against the top-listed alternative, because the fixture's target is wrong on every row",
     "created_at": "2026-10-03T05:30:08Z",
-    "last_save_at": "2026-10-03T12:46:29.537Z",
+    "last_save_at": "2026-10-07T12:54:56.327Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +206,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a685e54639de2eaec4502fb2a12733af8dfd220e98c83ca25036836fc33406f3",
+    "source_fingerprint": "sha256:703294bcf0644d4eb90591f46a49278daf5f392d8c8f804aa26511b4298b96f6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e726c672d04a4ab2b04e71b610f741de37c587b609778d8453645b190ff427b5",
+      "spec.md": "f55fb14912b0debbfdf24a85091c2bbe14401cb0813d4ccfe53b87484743ded8",
       "plan.md": "ba5de3910448a001bdb54445bf6284cd27b97828ea54bbbd3246aab45677e571",
       "tasks.md": "19096763764d92193751221834ff27f8ebcdaa4e573dbf6b4aa3e30cf0b86af6",
       "implementation-summary.md": "1bcba0971a3acd8fbaef2e6b76025bf34272cd4bef48d9101d564c12b1550db5"

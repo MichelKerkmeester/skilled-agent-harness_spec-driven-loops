@@ -11,10 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "history rewrite",
+      "rewrite main skilled v4 0 0 0 and",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -22,21 +20,23 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "history rewrite acceptance criteria",
+      "packet goal"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "history",
+      "rewrite",
+      "main",
+      "skilled",
       "implementation",
       "plan",
       "technical",
-      "approach"
+      "approach",
+      "architecture",
+      "decisions",
+      "testing",
+      "strategy"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "New commits carry an address",
     "created_at": "2026-09-11T07:16:30Z",
-    "last_save_at": "2026-10-03T15:12:12.825Z",
+    "last_save_at": "2026-10-07T12:55:27.289Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f613f68ed0bca2dfb35fb35c48bf168e416bb67550e002f938fb1bdc6bf6f09",
+    "source_fingerprint": "sha256:76bca89d6c96bb6c16a9ef2a7081389e8aa94ea5d6628fca183b41675aee8004",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4079c18826b2dadd6d0cb84b533eb1b0daf4e19c5c7c900bdbd670202868541b",
+      "spec.md": "e156648beed1e5ae1c3c97eef1d7d6c8935ead92a334f3c30ec1c40fddf577bf",
       "plan.md": "fac2da216226399e1482298bf1eb5f15037cc27fd4942c12f394b67a9805d8d8",
       "tasks.md": "e6f94d14aa29363809c65ddfc0689c834e8596ac0b557b0fdacc83845b1ec5cd",
       "implementation-summary.md": "02a1c991fc36f197675b781735621779388c315258cac8f5d0634538d58e5384"

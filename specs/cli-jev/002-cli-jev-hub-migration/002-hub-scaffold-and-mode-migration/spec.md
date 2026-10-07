@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 2: hub-scaffold-and-mode-migration"
 description: "The Jev transport lived as a mode id inside another hub's registry, so its identity was a row in a file the other hub owned. This phase stands .skilled/skills/cli-jev/ up as a hub of its own, moves the packet into cli-usage as its first transport mode, and re-authors the packet's own docs around its new home."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "hub scaffold and mode migration"
+  - "the jev transport lived as a mode id"
   - "parent hub scaffold"
   - "cli-usage mode"
 importance_tier: "normal"

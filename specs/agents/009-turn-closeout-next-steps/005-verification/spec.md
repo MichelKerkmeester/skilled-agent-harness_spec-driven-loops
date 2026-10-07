@@ -2,10 +2,7 @@
 title: "Feature Specification: Phase 5: verification"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "verification"
 importance_tier: "normal"
 contextType: "general"
 ---
