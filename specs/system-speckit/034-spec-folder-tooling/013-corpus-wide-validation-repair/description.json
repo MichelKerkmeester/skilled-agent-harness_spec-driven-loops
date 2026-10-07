@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair",
+  "description": "Phase 13: corpus-wide-validation-repair",
+  "keywords": [
+    "phase",
+    "corpus-wide-validation-repair"
+  ],
+  "lastUpdated": "2026-10-07T19:32:05.309Z",
+  "specId": "013",
+  "folderSlug": "corpus-wide-validation-repair",
+  "parentChain": [
+    "system-speckit",
+    "034-spec-folder-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
