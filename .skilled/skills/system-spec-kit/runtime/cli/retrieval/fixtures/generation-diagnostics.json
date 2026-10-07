@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 6762,
-    "ok": 13412,
+    "missing-frontmatter": 6767,
+    "ok": 13417,
     "valid-empty-list": 3516
   },
-  "documentsScanned": 23744,
+  "documentsScanned": 23754,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "9b671f3554bab879bbb54a6a0f22ae97236d9ac82a6d2c25a1f750bef048313e",
+  "manifestHash": "341795c492d1af3a509c13a08f875a51bdcd0850440a8714d4d06d8f52a7a6c2",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33931,
+      "ok": 33935,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1,
@@ -35534,6 +35534,36 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/agents/018-communication-rules-consolidation/research/analysis-under-review.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/018-communication-rules-consolidation/research/reviews/claude-opus-5.5-xhigh.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/018-communication-rules-consolidation/research/reviews/deepseek-v4.1-flash-max.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/018-communication-rules-consolidation/research/reviews/gpt-6-luna-max-fast.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/018-communication-rules-consolidation/research/reviews/swe-2-max.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -66443,6 +66473,10 @@
     },
     {
       "path": "specs/agents/017-thinking-discipline/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/018-communication-rules-consolidation/scratch",
       "reason": "excluded directory"
     },
     {

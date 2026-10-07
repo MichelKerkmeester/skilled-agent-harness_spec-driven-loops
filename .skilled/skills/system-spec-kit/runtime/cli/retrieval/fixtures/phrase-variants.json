@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9b671f3554bab879bbb54a6a0f22ae97236d9ac82a6d2c25a1f750bef048313e",
+  "manifestHash": "341795c492d1af3a509c13a08f875a51bdcd0850440a8714d4d06d8f52a7a6c2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -23413,6 +23413,9 @@
     "communication clarity goal": [
       "communication clarity goal"
     ],
+    "communication clause ledger": [
+      "communication clause ledger"
+    ],
     "communication documentation review": [
       "communication documentation review"
     ],
@@ -23484,6 +23487,12 @@
     ],
     "communication rule upgrade tasks": [
       "communication rule upgrade tasks"
+    ],
+    "communication rules consolidation": [
+      "communication rules consolidation"
+    ],
+    "communication rules review synthesis": [
+      "communication rules review synthesis"
     ],
     "communication skill removal": [
       "communication skill removal"
@@ -24423,6 +24432,9 @@
     ],
     "consolidate socket server copies": [
       "consolidate socket-server copies"
+    ],
+    "consolidate the communication repo rules move the writing": [
+      "consolidate the communication repo rules move the writing"
     ],
     "consolidated interview": [
       "consolidated interview"
