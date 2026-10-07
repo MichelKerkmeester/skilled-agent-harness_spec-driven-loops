@@ -1,11 +1,11 @@
 ---
 title: "Devin CLI — Runtime Sync Manifest"
-description: "How .devin derives from .skilled and .claude: the nested agent symlink shape, the strict-YAML constraint, inherited rules, and how to detect drift. Devin carries no mirrored command surface."
+description: "How .devin derives from .skilled and .claude: the nested agent symlink shape, the skills link, the Claude-import switch, the strict-YAML constraint, inherited rules, and how to detect drift. Devin carries no mirrored command surface."
 ---
 
 # Devin CLI Sync Manifest
 
-> Devin needs the same files as its siblings but at **different paths and in a nested shape**. Every mirror here is a symlink onto a canonical file. Two files are authored in this directory instead: `hooks.v1.json`, whose event set has no counterpart to mirror, and `mcp_config.json`, which Devin owns outright.
+> Devin needs the same files as its siblings but at **different paths and in a nested shape**. Every mirror here is a symlink onto a canonical file. Three files are authored in this directory instead: `hooks.v1.json`, whose event set has no counterpart to mirror, `mcp_config.json`, which Devin owns outright, and `config.json`, which turns off Devin's Claude import (§5).
 
 ---
 
@@ -17,8 +17,8 @@ This matters historically: Devin's own docs claim `.claude/agents/*.md` is auto-
 
 Two naming quirks to internalise:
 
-- Devin has **no mirrored command surface** (removed by operator decision). It discovers the repo's `.opencode/skills/` packets on its own — exposed as `/sk-doc`, `/sk-git`, and so on — with no `.devin/skills/` mirror authored.
-- Agents source from `.claude/agents/` (Claude dialect); that is the only symlink mirror tree Devin still carries.
+- Devin has **no mirrored command surface** (removed by operator decision). Skills reach it through one whole-directory link, `skills/` → `../.skilled/skills`, exposed as `/sk-doc`, `/sk-git`, and so on. Devin used to find them through its Claude import of `.claude/skills/`, which `config.json` now turns off.
+- Agents source from `.claude/agents/` (Claude dialect); that is the only per-item symlink mirror tree Devin carries. The links still resolve with the Claude import off, because Devin reads them at its own path.
 
 ---
 
@@ -30,13 +30,15 @@ Two naming quirks to internalise:
 | `hooks/*` | symlink | scattered `.skilled/**` | discovery mirror only |
 | `hooks.v1.json` | **hand-authored** | — | — |
 | `mcp_config.json` | **Devin-owned** | — | real file, not a symlink |
+| `config.json` | **hand-authored** | — | `read_config_from.claude: false` (§5) |
+| `skills/` | whole-dir symlink | `.skilled/skills` | `../.skilled/skills` |
 | `config.local.json` | operator-local | — | gitignored, never synced |
 | `rules/` | **absent by design** | — | see §5 |
 | `manual-testing-playbook/` | whole-dir symlink | `.skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook` | `../.skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook` |
 
 The agent mirror tree is **nested one directory per item** — the directory name is the identifier, and the file inside carries the fixed name Devin looks for (`AGENT.md`).
 
-Devin also discovers the 12 `.opencode/skills/` packets on its own, with no mirror required, exposing them as `/sk-doc`, `/sk-git` and so on.
+`skills/` is the one whole-directory link that points at a canonical tree rather than holding mirrors. The sync script's orphan pruning skips it for that reason: pruning through it would delete the canonical `SKILL.md` files.
 
 ---
 
@@ -81,7 +83,11 @@ There is no `.devin/rules/`. `devin rules paths` reports Devin's own directory a
 skill-routing [Cursor] · CLAUDE [Claude] · AGENTS [Standard] · global_rules [Windsurf]
 ```
 
-So Devin inherits the repo's Cursor rule plus root `CLAUDE.md`/`AGENTS.md`. That is why no rules file exists here — the asymmetry with Cursor is inheritance, not an omission.
+So Devin inherits the repo's Cursor rules plus root `AGENTS.md`. That is why no rules file exists here — the asymmetry with Cursor is inheritance, not an omission.
+
+### The Claude import is off
+
+`config.json` sets `read_config_from.claude` to `false`. With it on, Devin also loaded `~/.claude/CLAUDE.md`, which links to the main checkout's `AGENTS.md`. That file and the Cursor rules used up Devin's rule budget, so the repo's own `AGENTS.md` arrived only as a path ("could not be injected due to token limits"), and a worktree session read the main checkout's copy. With it off, Devin loads the checkout's own `AGENTS.md`. Each rule file is still cut at 16,384 bytes, which is Devin's fixed per-file limit, so hard rules must stay in the first 16 KB. `devin rules list` still names `CLAUDE` with the import off; the session does not load it.
 
 ### Hooks and permission modes
 
@@ -113,8 +119,8 @@ Valid `--permission-mode` values are `normal` (alias `auto`, default), `accept-e
 Live confirmation, which file checks cannot give you:
 
 ```bash
-devin skills list                                                   # expect the 12 native skill packets (no mirrored commands)
-devin --permission-mode bypass -p "List ONLY subagent profile names, one per line."   # expect 13 + 2 built-ins
+devin skills list                                                   # expect the 14 .skilled packets plus Devin's own built-ins
+devin --permission-mode bypass -p "List ONLY subagent profile names, one per line."   # expect 12 + 2 built-ins
 ```
 
 A command missing from `devin skills list` while present on disk is almost always the strict-YAML failure in §5.

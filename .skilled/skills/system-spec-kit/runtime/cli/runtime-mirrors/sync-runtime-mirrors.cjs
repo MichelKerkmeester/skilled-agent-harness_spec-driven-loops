@@ -207,6 +207,9 @@ function findOrphans(expectedLinks) {
   for (const parent of ['.devin/agents', '.devin/skills']) {
     const absoluteParent = path.join(REPO_ROOT, parent);
     if (!fs.existsSync(absoluteParent)) continue;
+    // A parent that is itself a symlink points at a canonical tree, not a mirror
+    // tree; pruning through it would delete the canonical files.
+    if (fs.lstatSync(absoluteParent).isSymbolicLink()) continue;
     const leaf = parent.endsWith('agents') ? 'AGENT.md' : 'SKILL.md';
     const wanted = new Set(
       expectedLinks
