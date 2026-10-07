@@ -75,7 +75,33 @@ A series parent qualifies when all three hold:
 
 Create the series parent at the second packet, not later, so each child's commit history stays on one path for as long as possible. Its slug names the artifact, for example `041-write-recipe-fixes`, and its `spec.md` names the artifact and the condition that closes the series. It keeps the lean trio plus an optional `timeline.md` and gets no `goal.md` by default.
 
-To create one, scaffold the parent with `create.sh --phase`, move the existing packet in as child `001` with `git mv`, and repoint its identity: `specFolder`, `specId` and `parentChain` in `description.json`, `parent_id` in `graph-metadata.json`, and the `Spec Folder` row of `implementation-summary.md`. Run `repair-derived.cjs --apply` on every packet whose docs changed and `refresh-track-roots.mjs --apply` on the track, then add the new work as child `002` with `create.sh --phase --parent`.
+1. Create the parent with the explicit track and slug. Replace each angle-bracket value with the actual track, slug, description or packet path before running the commands. `--track <track>` places it under `specs/<track>/`, and the command picks the next number after the highest numbered packet in that track. The result is `specs/<track>/<NNN>-<parent-slug>`. The `phase-parent` level creates one validation child, and there is no `create.sh` mode that skips it. Remove that generated child before moving the existing packet.
+
+   ```bash
+   bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --level phase-parent --track <track> --short-name <parent-slug> "<parent-description>"
+   rm -rf <parent-path>/001-validation-phase-PROVIDE-DESCRIPTIVE-SLUG
+   ```
+
+2. Move the existing packet into child `001` with `git mv`.
+
+   ```bash
+   git mv specs/<track>/<existing-packet> <parent-path>/001-<child-slug>
+   ```
+
+3. Repoint the moved child's identity. Update `specFolder`, `specId` and `parentChain` in its `description.json`. Set `parent_id` in its `graph-metadata.json` to the new parent. Change the `Spec Folder` row in its `implementation-summary.md` to `<parent-path>/001-<child-slug>`.
+
+4. Repair derived metadata on every packet whose docs changed by repeating `--folder <packet-path>` for each packet. Then refresh the track root.
+
+   ```bash
+   node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder <parent-path> --folder <parent-path>/001-<child-slug> --apply
+   node .skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs --specs specs --track <track> --apply
+   ```
+
+5. Add the new work with the append-mode command below. Because child `001` exists, the command creates child `002`.
+
+   ```bash
+   bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --phase --parent <parent-path> --phases 1 --phase-names <new-child-slug> "<new-work-description>"
+   ```
 
 A series parent is not a bucket. Work that changes a different artifact gets its own packet, even in the same track.
 

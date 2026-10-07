@@ -478,7 +478,11 @@ Six mandatory gates run before acting. Gates 1 to 5 run before any file change, 
   ┌─────────────────────────────────────────────┐
   │  Gate 3: Spec Folder (HARD BLOCK)           │
   │  Asked first when a file write is coming    │
-  │  A) Existing  B) New  C) Related  D) Skip   │
+  │  A) Existing                                │
+  │  B) New, for new or unrelated work          │
+  │  C) Related, a phase child or a series      │
+  │     parent for the same artifact            │
+  │  D) Skip                                    │
   └──────────────────┬──────────────────────────┘
                      │
                      ▼

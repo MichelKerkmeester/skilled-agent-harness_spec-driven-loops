@@ -87,8 +87,8 @@ Example: modes research,review,ai-council  (optionally --surfaces webflow,animat
 
 Q3. Spec Folder
 A) Existing
-B) New
-C) Related
+B) New (new or unrelated work only)
+C) Related (a phase child, or a series parent for a different change to the same artifact)
 D) Skip
 
 Q4. Prior Work Context (when the existing spec has prior continuity)

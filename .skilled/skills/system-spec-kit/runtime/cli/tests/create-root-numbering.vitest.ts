@@ -8,6 +8,11 @@ import path from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
+import {
+  AC_TEMPLATE_DEFAULT_PHRASES,
+  TEMPLATE_DEFAULT_PHRASES,
+} from '../retrieval/lib/phrase-judge.mjs';
+
 const CLI_DIR = path.resolve(__dirname, '..');
 const SKILL_ROOT = path.resolve(CLI_DIR, '../..');
 
@@ -137,11 +142,87 @@ describe('create.sh seeds trigger phrases', () => {
     expect(spec).not.toContain('  - "success criteria"');
   });
 
+  it('replaces AC template defaults with the slug phrase in Level 2 packets', () => {
+    const folder = create([
+      '--level', '2',
+      '--short-name', 'seeded-phrases',
+      'Seed trigger phrases for new packets',
+    ]);
+    const acceptanceCriteria = fs.readFileSync(
+      path.join(workspace, 'specs', folder, 'acceptance-criteria.md'),
+      'utf8',
+    );
+
+    expect(acceptanceCriteria).not.toContain('  - "closure gate"');
+    expect(acceptanceCriteria).toContain('  - "seeded phrases acceptance criteria"');
+  });
+
   it('turns punctuation in the description into word breaks', () => {
     const folder = create(['--short-name', 'punctuated-phrase', 'Fix the write-recipe step, once.']);
     const spec = fs.readFileSync(path.join(workspace, 'specs', folder, 'spec.md'), 'utf8');
 
     expect(spec).toContain('  - "fix the write recipe step once"');
+  });
+
+  it('keeps the core template phrases aligned with the judge and shell list', () => {
+    const templatePath = process.env.SPECKIT_TEST_CORE_SPEC_TEMPLATE_PATH
+      ?? path.join(SKILL_ROOT, 'templates', 'core', 'spec.md.tmpl');
+    const template = fs.readFileSync(templatePath, 'utf8');
+    const templateBlock = template.match(
+      /^trigger_phrases:\r?\n((?:[ \t]*-[ \t]*"[^"]*"[ \t]*\r?\n?)+)/m,
+    );
+    if (!templateBlock) {
+      throw new Error('Core spec template has no quoted trigger_phrases block');
+    }
+    const templatePhrases = Array.from(
+      templateBlock[1].matchAll(/^[ \t]*-[ \t]*"([^"]*)"[ \t]*\r?$/gm),
+      ([, phrase]) => phrase,
+    );
+    expect(templatePhrases).toEqual([...TEMPLATE_DEFAULT_PHRASES]);
+
+    const createSource = fs.readFileSync(path.join(CLI_DIR, 'spec', 'create.sh'), 'utf8');
+    const shellPhraseList = createSource.match(
+      /local -a template_default_phrases=\(\r?\n([\s\S]*?)\r?\n[ \t]*\)/,
+    );
+    if (!shellPhraseList) {
+      throw new Error('create.sh has no local default trigger phrase list');
+    }
+    const shellPhrases = Array.from(
+      shellPhraseList[1].matchAll(/^[ \t]*"([^"]+)"[ \t]*\r?$/gm),
+      ([, phrase]) => phrase,
+    );
+    expect(templatePhrases).toEqual(shellPhrases);
+
+    const acTemplatePath = path.join(
+      SKILL_ROOT,
+      'templates',
+      'addons',
+      'acceptance-criteria.md.tmpl',
+    );
+    const acTemplate = fs.readFileSync(acTemplatePath, 'utf8');
+    const acTemplateBlock = acTemplate.match(
+      /^trigger_phrases:\r?\n((?:[ \t]*-[ \t]*"[^"]*"[ \t]*\r?\n?)+)/m,
+    );
+    if (!acTemplateBlock) {
+      throw new Error('Acceptance-criteria template has no quoted trigger_phrases block');
+    }
+    const acTemplatePhrases = Array.from(
+      acTemplateBlock[1].matchAll(/^[ \t]*-[ \t]*"([^"]*)"[ \t]*\r?$/gm),
+      ([, phrase]) => phrase,
+    );
+    expect(acTemplatePhrases).toEqual([...AC_TEMPLATE_DEFAULT_PHRASES]);
+
+    const acShellPhraseList = createSource.match(
+      /local -a ac_template_default_phrases=\(\r?\n([\s\S]*?)\r?\n[ \t]*\)/,
+    );
+    if (!acShellPhraseList) {
+      throw new Error('create.sh has no AC template default trigger phrase list');
+    }
+    const acShellPhrases = Array.from(
+      acShellPhraseList[1].matchAll(/^[ \t]*"([^"]+)"[ \t]*\r?$/gm),
+      ([, phrase]) => phrase,
+    );
+    expect(acTemplatePhrases).toEqual(acShellPhrases);
   });
 });
 

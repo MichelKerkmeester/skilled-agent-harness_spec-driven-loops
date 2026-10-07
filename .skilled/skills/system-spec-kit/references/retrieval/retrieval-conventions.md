@@ -252,6 +252,7 @@ The index is only as good as the corpus it reads. `trigger_phrases` is an author
 - Stopword-only phrases, against the judge's 37-word stop list (`stop-word-only`)
 - Whole prose sentences: sentence punctuation, or more than 10 tokens (`prose-sentence`); a phrase over 120 characters is the normalizer's `oversized` variant, a separate check
 - The frontmatter editor's two fallback shapes: the terminal `session` and `context` pair (`editor-fallback`) and a single token echoing the packet folder (`folder-token-fallback`)
+- The placeholder phrases two templates ship with (`template-default`): the spec template's `feature specification`, `problem statement`, `requirements and scope` and `success criteria`, and the acceptance criteria template's `acceptance criteria`, `closure gate`, `ac traceability` and `waiver adr`
 - Single-token phrases (`single-token`), and phrases that are only numbers (`numeric-only`)
 
 The last one is not hypothetical. The frontmatter editor inserts folder tokens and ultimately falls back to `session` and `context`, and the body extractor applies its own separate stop-word and n-gram policy. Neither should silently define index input. A phrase that arrived by fallback rather than by an author's choice is corpus pollution, and it costs precision on every query that touches it.

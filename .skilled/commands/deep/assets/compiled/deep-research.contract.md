@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "238acd1c3050eeff8127efd79d1eb13f16704954bfb375b967c304cdccab1ab1",
+      "sha256": "4eb7b8a35d38b5a8680e8eee6f1aa6ba770fb1351555134390536316882c2dee",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "74de9bf6b10f7c75f6dadbe128bbfe4a65f10a5233ff17d423fe4c1f69df9c26",
+      "sha256": "6b5049c1615f7b5e57a7d001caa9031757774a7722230f753a72e7f391a3ad85",
       "section": "full"
     },
     {
@@ -91,7 +91,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "4830c5eb50c6f7ab6abf2cdc7bdecf45ac771c53fcfc42d5e808245ce08a2d5d"
+  "compiledBodyDigest": "07beaa188bd0648dd227b77adc2d02e57df838c017bb7eece8927042921d718d"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -300,8 +300,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q1. Spec Folder (required):
      A) Use existing [suggest if found]
-     B) Create new under `specs/[track]/[###]-[slug]/` (accept `.opencode/specs/` alias roots when already in use)
-     C) Related [if match found, including a phase folder such as `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias]
+     B) Create new under `specs/[track]/[###]-[slug]/` only for new or unrelated work (accept `.opencode/specs/` alias roots when already in use)
+     C) Related (a phase child, or a series parent for a different change to the same artifact) [if match found, including a phase folder such as `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias]
 
    Q2. Execution Mode (if no suffix):
      A) Autonomous -- all iterations without approval

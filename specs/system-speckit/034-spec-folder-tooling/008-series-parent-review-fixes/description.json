@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/034-spec-folder-tooling/008-series-parent-review-fixes",
+  "description": "Phase 8: series-parent-review-fixes",
+  "keywords": [
+    "phase",
+    "series-parent-review-fixes"
+  ],
+  "lastUpdated": "2026-10-07T09:58:44.112Z",
+  "specId": "008",
+  "folderSlug": "series-parent-review-fixes",
+  "parentChain": [
+    "system-speckit",
+    "034-spec-folder-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

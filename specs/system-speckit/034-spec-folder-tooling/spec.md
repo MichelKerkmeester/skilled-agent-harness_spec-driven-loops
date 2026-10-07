@@ -117,6 +117,10 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 5 | `005-phase-aware-archive/` | Archive and restore a phase inside its parent | Complete |
 | 6 | `006-series-parent-rule-and-sibling-listing/` | Name the series parent and list recent packets before a new one | Complete |
 | 7 | 007-series-parent-review-and-hardening-research/ | [Phase 7 scope] | Pending |
+| 8 | 008-series-parent-review-fixes/ | [Phase 8 scope] | Pending |
+| 9 | 009-gate-3-menu-series-parent/ | [Phase 9 scope] | Pending |
+| 10 | 010-trigger-index-ci-rebuild/ | [Phase 10 scope] | Pending |
+| 11 | 011-template-phrase-census-and-cleanup/ | [Phase 11 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -135,6 +139,10 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | `004-track-aware-archive` | `005-phase-aware-archive` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
 | `005-phase-aware-archive` | `006-series-parent-rule-and-sibling-listing` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
 | 006-series-parent-rule-and-sibling-listing | 007-series-parent-review-and-hardening-research | [Criteria TBD] | [Verification TBD] |
+| 007-series-parent-review-and-hardening-research | 008-series-parent-review-fixes | [Criteria TBD] | [Verification TBD] |
+| 008-series-parent-review-fixes | 009-gate-3-menu-series-parent | [Criteria TBD] | [Verification TBD] |
+| 009-gate-3-menu-series-parent | 010-trigger-index-ci-rebuild | [Criteria TBD] | [Verification TBD] |
+| 010-trigger-index-ci-rebuild | 011-template-phrase-census-and-cleanup | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

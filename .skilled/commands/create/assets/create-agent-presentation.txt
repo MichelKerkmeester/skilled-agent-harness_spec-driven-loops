@@ -88,8 +88,8 @@ Format: kebab-case, for example quality-gate or security-audit.
 
 Q1. Spec Folder
 A) Use existing: [suggest if related found]
-B) Create new spec folder
-C) Related spec: [if partial match found]
+B) Create new spec folder only for new or unrelated work
+C) Related spec: [if partial match found] or a series parent when the work is a different change to the same artifact as an existing packet in the same track
 D) Skip documentation
 
 Q2. Execution Mode (if no :auto/:confirm suffix)

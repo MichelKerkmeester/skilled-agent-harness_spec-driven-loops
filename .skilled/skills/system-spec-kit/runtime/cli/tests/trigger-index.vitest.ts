@@ -147,9 +147,12 @@ describe('judgeTriggerPhrase', () => {
   it('rejects the spec template phrases as template-default', () => {
     expect(judgeTriggerPhrase('feature specification')).toEqual({
       negativeClass: 'template-default',
-      reason: `"feature specification" is one of the spec template's placeholder trigger phrases, which name no topic.`,
+      reason: `"feature specification" is one of a template's placeholder trigger phrases, which name no topic.`,
     });
     for (const phrase of ['problem statement', 'requirements and scope', 'success criteria']) {
+      expect(judgeTriggerPhrase(phrase)?.negativeClass, phrase).toBe('template-default');
+    }
+    for (const phrase of ['acceptance criteria', 'waiver adr']) {
       expect(judgeTriggerPhrase(phrase)?.negativeClass, phrase).toBe('template-default');
     }
   });

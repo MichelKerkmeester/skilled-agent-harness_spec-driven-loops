@@ -388,39 +388,87 @@ escape_template_value() {
     printf '%s' "$value"
 }
 
-# The core spec template ships four placeholder trigger phrases that name no
-# topic, so a packet that keeps them can never be found by what it is about.
-# Replace exactly that block with the packet's own slug phrase and, when the
-# description adds something different, one phrase cut from it.
+# The core spec and acceptance-criteria templates ship placeholder phrases that
+# name no topic, so new packets may not be found by what they are about.
+# Replace only each template's exact trigger block with phrases about the packet.
 replace_template_default_trigger_phrases() {
     local folder_path="$1"
     local packet_name="$2"
     local description="$3"
     local spec_file="$folder_path/spec.md"
-    [[ -f "$spec_file" ]] || return 0
-    grep -qF '  - "feature specification"' "$spec_file" || return 0
-
+    local acceptance_criteria_file="$folder_path/acceptance-criteria.md"
+    local -a template_default_phrases=(
+        "feature specification"
+        "problem statement"
+        "requirements and scope"
+        "success criteria"
+    )
+    local -a ac_template_default_phrases=(
+        "acceptance criteria"
+        "closure gate"
+        "ac traceability"
+        "waiver adr"
+    )
+    local phrase
     local slug_phrase="${packet_name#[0-9][0-9][0-9]-}"
     slug_phrase="${slug_phrase//-/ }"
 
-    local description_phrase
-    description_phrase="$(printf '%s' "$description" \
-        | tr '[:upper:]' '[:lower:]' \
-        | tr -c 'a-z0-9' ' ' \
-        | awk '{ for (i = 1; i <= NF && i <= 8; i++) printf "%s%s", (i > 1 ? " " : ""), $i }')"
-    if [[ -z "$description_phrase" || "$description_phrase" == "$slug_phrase" ]]; then
-        description_phrase=""
+    if [[ -f "$spec_file" ]]; then
+        local spec_has_default_block=true
+        for phrase in "${template_default_phrases[@]}"; do
+            if ! grep -qF "  - \"$phrase\"" "$spec_file"; then
+                spec_has_default_block=false
+                break
+            fi
+        done
+
+        if [[ "$spec_has_default_block" == true ]]; then
+            local template_default_block
+            printf -v template_default_block '  - "%s"\n' "${template_default_phrases[@]}"
+
+            local description_phrase
+            description_phrase="$(printf '%s' "$description" \
+                | tr '[:upper:]' '[:lower:]' \
+                | tr -c 'a-z0-9' ' ' \
+                | awk '{ for (i = 1; i <= NF && i <= 8; i++) printf "%s%s", (i > 1 ? " " : ""), $i }')"
+            if [[ -z "$description_phrase" || "$description_phrase" == "$slug_phrase" ]]; then
+                description_phrase=""
+            fi
+
+            local replacement="  - \"${slug_phrase}\""
+            if [[ -n "$description_phrase" ]]; then
+                replacement="${replacement}"$'\n'"  - \"${description_phrase}\""
+            fi
+
+            TRIGGER_DEFAULT_BLOCK="$template_default_block" TRIGGER_REPLACEMENT="$replacement" perl -0pi -e '
+                my $block = qq{$ENV{TRIGGER_DEFAULT_BLOCK}};
+                s/\Q$block\E/$ENV{TRIGGER_REPLACEMENT}\n/;
+            ' "$spec_file"
+        fi
     fi
 
-    local replacement="  - \"${slug_phrase}\""
-    if [[ -n "$description_phrase" ]]; then
-        replacement="${replacement}"$'\n'"  - \"${description_phrase}\""
+    if [[ -f "$acceptance_criteria_file" ]]; then
+        local ac_has_default_block=true
+        for phrase in "${ac_template_default_phrases[@]}"; do
+            if ! grep -qF "  - \"$phrase\"" "$acceptance_criteria_file"; then
+                ac_has_default_block=false
+                break
+            fi
+        done
+
+        if [[ "$ac_has_default_block" == true ]]; then
+            local ac_template_default_block
+            printf -v ac_template_default_block '  - "%s"\n' "${ac_template_default_phrases[@]}"
+            local ac_replacement="  - \"${slug_phrase} acceptance criteria\""
+
+            TRIGGER_DEFAULT_BLOCK="$ac_template_default_block" TRIGGER_REPLACEMENT="$ac_replacement" perl -0pi -e '
+                my $block = qq{$ENV{TRIGGER_DEFAULT_BLOCK}};
+                s/\Q$block\E/$ENV{TRIGGER_REPLACEMENT}\n/;
+            ' "$acceptance_criteria_file"
+        fi
     fi
 
-    TRIGGER_REPLACEMENT="$replacement" perl -0pi -e '
-        my $block = qq{  - "feature specification"\n  - "problem statement"\n  - "requirements and scope"\n  - "success criteria"\n};
-        s/\Q$block\E/$ENV{TRIGGER_REPLACEMENT}\n/;
-    ' "$spec_file"
+    return 0
 }
 
 requested_lazy_addon_docs() {
@@ -1090,6 +1138,9 @@ const specsDir = process.argv[1];
 const specsLabel = process.argv[2];
 const cutoff = Date.now() - 14 * 24 * 60 * 60 * 1000;
 const rows = [];
+// Packet metadata is untrusted text: without stripping, control characters let a
+// stored name or description move the cursor and rewrite what the terminal shows.
+const controlChars = /[\u0000-\u001f\u007f-\u009f]/g;
 for (const name of fs.readdirSync(specsDir)) {
   if (!/^[0-9]{3}-/.test(name)) continue;
   const folder = path.join(specsDir, name);
@@ -1106,12 +1157,12 @@ for (const name of fs.readdirSync(specsDir)) {
   if (typeof createdAt !== "string" || createdAt === "") continue;
   const timestamp = Date.parse(createdAt);
   if (Number.isNaN(timestamp) || timestamp < cutoff) continue;
-  rows.push({ name, timestamp, date: createdAt.slice(0, 10), description: description.replace(/\s+/g, " ").slice(0, 100) });
+  rows.push({ name, timestamp, date: createdAt.slice(0, 10), description: description.replace(/\s+/g, " ").replace(controlChars, "").slice(0, 100) });
 }
 rows.sort((a, b) => b.timestamp - a.timestamp);
 if (rows.length === 0) process.exit(0);
 const lines = ["[speckit] Recent packets in " + specsLabel + ", last 14 days:"];
-for (const row of rows.slice(0, 10)) lines.push("  " + row.name + "  " + row.date + "  " + row.description);
+for (const row of rows.slice(0, 10)) lines.push("  " + row.name.replace(controlChars, "") + "  " + row.date + "  " + row.description);
 lines.push("[speckit] If the new work is a different change to the same artifact as one of these, join or create a series parent instead of a new packet: references/structure/phase-definitions.md, section 2.");
 process.stderr.write(lines.join("\n") + "\n");
 ' "$SPECS_DIR" "$specs_label" || return 0

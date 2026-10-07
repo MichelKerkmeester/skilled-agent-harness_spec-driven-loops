@@ -29,6 +29,14 @@ export const TEMPLATE_DEFAULT_PHRASES = Object.freeze(new Set([
   'success criteria',
 ]));
 
+/** The four placeholder phrases the acceptance-criteria template ships. */
+export const AC_TEMPLATE_DEFAULT_PHRASES = Object.freeze(new Set([
+  'acceptance criteria',
+  'closure gate',
+  'ac traceability',
+  'waiver adr',
+]));
+
 /**
  * The two phrases `ensureMinTriggerPhrases` falls back to when a document
  * yields nothing else. They are generic words too, but they are reported under
@@ -86,10 +94,10 @@ export function judgeTriggerPhrase(phrase, context = {}) {
     };
   }
 
-  if (TEMPLATE_DEFAULT_PHRASES.has(normalized)) {
+  if (TEMPLATE_DEFAULT_PHRASES.has(normalized) || AC_TEMPLATE_DEFAULT_PHRASES.has(normalized)) {
     return {
       negativeClass: 'template-default',
-      reason: `"${normalized}" is one of the spec template's placeholder trigger phrases, which name no topic.`,
+      reason: `"${normalized}" is one of a template's placeholder trigger phrases, which name no topic.`,
     };
   }
 

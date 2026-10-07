@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-spec-folder-tooling/011-template-phrase-census-and-cleanup",
+  "spec_folder": "system-speckit/034-spec-folder-tooling/011-template-phrase-census-and-cleanup",
+  "parent_id": "system-speckit/034-spec-folder-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template phrase census and cleanup",
+      "phase 11 template phrase census and cleanup",
+      "acceptance criteria template default",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "template phrase census and cleanup acceptance criteria"
+    ],
+    "key_topics": [
+      "template",
+      "phrase",
+      "census",
+      "cleanup",
+      "phase",
+      "acceptance",
+      "criteria",
+      "default",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts",
+      "templates/addons/acceptance-criteria.md.tmpl",
+      ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phrase-judge.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-phrase-census.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "template-phrase-cleanup.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "template-phrase-cleanup.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "create-root-numbering.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md.tmpl",
+        "kind": "file",
+        "path": "templates/addons/acceptance-criteria.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Standalone Node",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A packet that keeps a template's default trigger phrases is indexed under words that describe the template, not the work",
+    "created_at": "2026-10-07T09:58:46Z",
+    "last_save_at": "2026-10-07T13:18:55.831Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4c746568b9df0dbaec9ee66a7a171d70a9a50953c30b915c5489c444c912188a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9719574c99eff2043033a7ebc97cb22a0fc7eb47157a32ef28dbbf86b861f15e",
+      "plan.md": "a96a43416a3bea858e81ab5a493ab13d872a6a58018d80d0e933cddf55a1e075",
+      "tasks.md": "8d4381debd49c5180dfb07d1e65a92758640caaeac7e04be7255a307c143532b",
+      "implementation-summary.md": "8923612ee7ccb4c7738b7ba0b83995905faba42bd21f8c5e40d84a0f34eec2d0"
+    },
+    "last_active_at": null
+  }
+}

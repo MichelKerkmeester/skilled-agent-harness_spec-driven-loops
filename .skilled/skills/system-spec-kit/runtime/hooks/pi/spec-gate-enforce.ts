@@ -8,11 +8,7 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 // a real dialog at the first mutation instead of a notice appended to a turn.
 // The dialog exists in every mode: asking is not enforcement, and only the
 // enforce env turns the same mutation into a block.
-const CHOICE_EXISTING = "Use an existing spec folder";
-const CHOICE_NEW = "Create a new spec folder";
-const CHOICE_RELATED = "Use a related folder or phase child";
-const CHOICE_SKIP = "Skip - no spec folder needed for this change";
-const CHOICE_OPTIONS = [CHOICE_EXISTING, CHOICE_NEW, CHOICE_RELATED, CHOICE_SKIP];
+
 const PATH_PLACEHOLDER = "specs/<track>/<NNN-name>";
 const DIALOG_TIMEOUT_MS = 120_000;
 
@@ -36,12 +32,17 @@ async function askForSpecFolder(
   ctx: GateContext,
   sessionID: string,
 ): Promise<DialogOutcome> {
-  const choice = await ctx.ui.select("Where should this change live?", CHOICE_OPTIONS, {
+  const choiceExisting = guard.GATE_3_CHOICE_EXISTING;
+  const choiceNew = guard.GATE_3_CHOICE_NEW;
+  const choiceRelated = guard.GATE_3_CHOICE_RELATED;
+  const choiceSkip = guard.GATE_3_CHOICE_SKIP;
+  const choiceOptions = [choiceExisting, choiceNew, choiceRelated, choiceSkip];
+  const choice = await ctx.ui.select("Where should this change live?", choiceOptions, {
     timeout: DIALOG_TIMEOUT_MS,
   });
   if (choice === undefined) return { answered: false, reason: "" };
 
-  if (choice === CHOICE_SKIP) {
+  if (choice === choiceSkip) {
     const bound = guard.bindGate3Answer({
       answer: { type: "skip" },
       sessionID,
@@ -54,7 +55,7 @@ async function askForSpecFolder(
   }
 
   const enteredPath = await ctx.ui.input(
-    choice === CHOICE_NEW ? `New spec folder path (${PATH_PLACEHOLDER})` : `Spec folder path (${PATH_PLACEHOLDER})`,
+    choice === choiceNew ? `New spec folder path (${PATH_PLACEHOLDER})` : `Spec folder path (${PATH_PLACEHOLDER})`,
     PATH_PLACEHOLDER,
     { timeout: DIALOG_TIMEOUT_MS },
   );

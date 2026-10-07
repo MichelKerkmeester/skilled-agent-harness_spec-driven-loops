@@ -789,6 +789,8 @@ Phase decomposition is suggested when BOTH conditions are met:
 - Complexity score >= 25 (from 5-dimension scoring)
 - Documentation level >= 3
 
+A series parent is the one exception. It groups separate small packets that change the same artifact in the same track, and it qualifies without these thresholds. See `../structure/phase-definitions.md` §2.
+
 ### What Phases Add to a Level
 
 Phases do not change the documentation requirements for a given level. Each phase child folder independently follows the level requirements:

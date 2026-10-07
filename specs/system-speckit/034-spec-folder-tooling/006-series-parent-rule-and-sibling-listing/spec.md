@@ -77,6 +77,7 @@ A different change to the same artifact joins or creates a series parent, and th
 - A listing of recent packets in the same track, printed by `create.sh` before it allocates a number for a new top-level packet.
 - Trigger phrases seeded from the packet name and description when `create.sh` copies a `spec.md` template.
 - A `GREP_CONVENTION` warning when a spec keeps the template's default trigger phrases.
+- The series parent exception named in `.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md`.
 
 ### Out of Scope
 - The Gate 3 runtime hook prompt - its text is compared byte for byte and it never sees a packet being created.
@@ -93,6 +94,7 @@ A different change to the same artifact joins or creates a series parent, and th
 | `.skilled/skills/system-spec-kit/references/structure/phase-system.md` | Modify | Point the threshold section at the exception |
 | `.skilled/skills/system-spec-kit/references/workflows/quick-reference.md` | Modify | Section 8 rule, priority line, labels, `create.sh` instead of `mkdir` |
 | `.skilled/skills/system-spec-kit/SKILL.md` | Modify | Rule 16 names the exception |
+| `.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` | Modify | Names the series parent exception |
 | `AGENTS.md` | Modify | Gate 3 Option C names the series parent |
 | `.skilled/commands/speckit/assets/speckit-plan.yaml` | Modify | Option C instead of Option D for adding a phase |
 | `.skilled/commands/speckit/assets/speckit-complete.yaml` | Modify | Option C instead of Option D for adding a phase |

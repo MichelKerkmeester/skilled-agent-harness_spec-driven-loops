@@ -1,0 +1,53 @@
+name: Trigger Index Rebuild
+
+# The advisory PR check can only report trigger-index drift. This job repairs it
+# on the integration branches after merge, so drift never accumulates silently
+# and local generators stay the source of truth rather than hand-edited output.
+on:
+  push:
+    branches: [main, 'skilled/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: trigger-index-rebuild-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    name: Rebuild the trigger index
+    # A rebuild commit is authored by the bot; skip so it cannot trigger itself
+    # into an endless repair loop on the next push.
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '20'
+
+      - name: Regenerate the trigger index
+        run: node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
+
+      - name: Commit and push if the index changed
+        run: |
+          set -uo pipefail
+          INDEX=".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
+          # Diff against the committed content: an unchanged index needs no commit.
+          if git diff --quiet -- "$INDEX"; then
+            echo "Trigger index is current; nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$INDEX"
+          git commit -m "chore(system-spec-kit): rebuild the trigger index"
+          if ! git push; then
+            echo "::error::Failed to push the trigger index rebuild. Branch protection on this branch is the likely cause; allow the bot to push or exempt this path."
+            exit 1
+          fi

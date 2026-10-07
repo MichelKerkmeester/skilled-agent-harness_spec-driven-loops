@@ -85,8 +85,8 @@ For asset-only: template | lookup | example | guide
 
 Q3. Spec Folder (required for full-create/full-update)
 A) Existing
-B) New
-C) Related
+B) New (new or unrelated work only)
+C) Related (a phase child, or a series parent for a different change to the same artifact)
 D) Skip
 
 For reference-only/asset-only:

@@ -83,6 +83,8 @@ Phase scoring uses its own 5 signals (max 50 points), enabled by default:
 Phases are recommended when phase score >= 25 (threshold) AND recommended level >= 3.
 Score 25-34 → 2 phases; 35-44 → 3 phases; 45+ → 4+ phases.
 
+A series parent is the one exception. It groups separate small packets that change the same artifact in the same track, and it qualifies without these thresholds. See `../structure/phase-definitions.md` §2.
+
 ---
 
 ## 3. LEVEL MAPPING

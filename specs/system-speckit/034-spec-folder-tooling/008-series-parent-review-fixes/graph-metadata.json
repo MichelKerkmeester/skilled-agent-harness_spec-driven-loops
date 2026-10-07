@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-spec-folder-tooling/008-series-parent-review-fixes",
+  "spec_folder": "system-speckit/034-spec-folder-tooling/008-series-parent-review-fixes",
+  "parent_id": "system-speckit/034-spec-folder-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "series parent review fixes",
+      "phase 8 series parent review fixes",
+      "runnable series parent recipe",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "series parent review fixes acceptance criteria"
+    ],
+    "key_topics": [
+      "series",
+      "parent",
+      "review",
+      "phase",
+      "runnable",
+      "recipe",
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture",
+      "decisions"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+      ".skilled/skills/system-spec-kit/README.md",
+      ".skilled/skills/system-spec-kit/references/templates/level-selection-guide.md",
+      ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/phase-system-knowledge-node.md",
+      ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+      ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/tasks.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "references/structure/phase-definitions.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-definitions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "level-selection-guide.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/templates/level-selection-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "level-specifications.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-system-knowledge-node.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/phase-system-knowledge-node.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "phrase-judge.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create-track-refresh.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Anyone following the series parent recipe gets three placeholder children that the next steps collide with",
+    "created_at": "2026-10-07T09:58:43Z",
+    "last_save_at": "2026-10-07T13:16:58.283Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:755157fce1a1fd649ca116fa627e9c03b8403a188e9c5f6ea047179f0b204c6d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "eb83757c0f8efd820fced4821ccfd34923947903a8c1aa9cb47d1c07054f6211",
+      "plan.md": "db186f45f7e0132d1e8bac3469c01408a52e543c1374a3d3fcfb6476d35c40a8",
+      "tasks.md": "7dc40363c3a3f85180bdffab87e5dae6b8f21f61f2b06bf130af8b4cdf898ab1",
+      "implementation-summary.md": "cddb383311fe184652c4d668edaa3a41ac17470a0a509a05a4063bbdeee6d9b7"
+    },
+    "last_active_at": null
+  }
+}

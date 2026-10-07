@@ -21,8 +21,8 @@
       "seeded trigger phrases plan",
       "series parent rule tasks",
       "sibling listing tasks",
-      "acceptance criteria",
-      "closure gate"
+      "series parent rule and sibling listing acceptance criteria",
+      "series parent rule shipped"
     ],
     "key_topics": [
       "series",
@@ -53,14 +53,14 @@
       "runtime/cli/retrieval/lib/phrase-judge.mjs",
       "runtime/cli/tests/create-root-numbering.vitest.ts",
       ".opencode/package.json",
+      ".skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md",
       ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
       ".skilled/skills/system-spec-kit/references/structure/sub-folder-versioning.md",
       ".skilled/skills/system-spec-kit/references/structure/phase-system.md",
       ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
       ".skilled/skills/system-spec-kit/SKILL.md",
       ".skilled/commands/speckit/assets/speckit-plan.yaml",
-      ".skilled/commands/speckit/assets/speckit-complete.yaml",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
+      ".skilled/commands/speckit/assets/speckit-complete.yaml"
     ],
     "entities": [
       {
@@ -136,6 +136,12 @@
         "source": "derived"
       },
       {
+        "name": "spec-folder-authoring-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "phase-system.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/references/structure/phase-system.md",
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "On 2026-09-29 five Level 1 packets were opened in one day, each fixing one line of the same write recipe, and 21 packets across three tracks had to be grouped by hand on 2026-10-06",
     "created_at": "2026-10-06T20:29:10Z",
-    "last_save_at": "2026-10-06T21:25:14.744Z",
+    "last_save_at": "2026-10-07T12:55:52.071Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +220,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8f6cba136f2d82578febd87244db65686461069b66fe867948c8b29d28e40ea6",
+    "source_fingerprint": "sha256:4fecbb17ae596b5db0bf905fa05c4f0e2834f5e73c7d65d62138b75752b61ca1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e1ba7f18b824105b2465a0a7a6f37dd5cb5570e005a3e1bfa7e12b37b082329a",
+      "spec.md": "0ce257073735fb3a77ff01ddb1cd42e1e2715d5daf172967a352a13543b95f43",
       "plan.md": "63873224ae39c496e59683c7cca377fbd1a6265c861c7aadd10e8e4a4d4563de",
-      "tasks.md": "fed736cdf283a1df115c55aec9ee3779598e1d5ab24f676acbac151835f5110f",
+      "tasks.md": "982f81ce97a4eb71fc45c45ac27ace573bffec5cbb058f549a5526fb98f897af",
       "implementation-summary.md": "ab730540482f3aa287d0dd07c19533192332ba0e93cbeeb35667799382fa3e7f"
     },
     "last_active_at": null

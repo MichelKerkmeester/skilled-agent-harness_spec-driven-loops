@@ -180,4 +180,28 @@ describe('create.sh lists recent sibling packets', () => {
     expect(result.stderr).not.toContain('Recent packets');
     expect(result.stderr).not.toContain('001-old');
   });
+
+  it('strips terminal control characters from a recent packet description', () => {
+    trackRoot('tools', ['tools/001-first'], ['001-first']);
+    packetIdentity('tools', '001-first', 0, '\u001b[31mred\u001b[0m');
+
+    const result = create(['--track', 'tools', '--short-name', 'second', 'Second packet']);
+
+    expect(result.status, result.stderr).toBe(0);
+    expect(result.stderr).toContain('red');
+    expect(result.stderr).not.toContain('\u001b');
+  });
+
+  it('lists nothing for a versioned sub-folder run in an existing packet', () => {
+    trackRoot('tools', ['tools/001-first'], ['001-first']);
+    packetIdentity('tools', '001-first', 0, 'First recent packet');
+
+    const result = create([
+      '--subfolder', 'specs/tools/001-first',
+      '--topic', 'refactor', 'Refactor the first packet',
+    ]);
+
+    expect(result.status, result.stderr).toBe(0);
+    expect(result.stderr).not.toContain('[speckit] Recent packets');
+  });
 });

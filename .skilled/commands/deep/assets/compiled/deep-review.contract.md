@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "c2e47c9713e7c6714d615074b349de8fffdfeb3f9bd8dd5238cdd736878d57fa",
+      "sha256": "cd6f47e11cdf0d3318f2bcdbd7ea182a46110c0c73488cf0b8afbc14b551e417",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "727e72479f6541aa297d8843589946a94bebcb9920adeda0c95d6a38d9735704",
+      "sha256": "cfb4899313d7f6efc92f75574684e5ed97e2e77e483140525aed16aadcfb8be7",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "77ec94c92034f507d52ec6177da8b5d628e340433ca990ec5313e9e99f8d235d"
+  "compiledBodyDigest": "9521dcf70859a8fd860b07accbde0f24e189eaeaa0587beacc0360b35913d264"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -332,8 +332,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q1. Spec Folder (required):
      A) Use existing [suggest if found]
-     B) Create new under `specs/[track]/[###]-[slug]/` (accept `.opencode/specs/` alias roots when already in use)
-     C) Related [if match found, including a phase folder such as `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias]
+     B) Create new under `specs/[track]/[###]-[slug]/` only for new or unrelated work (accept `.opencode/specs/` alias roots when already in use)
+     C) Related (a phase child, or a series parent for a different change to the same artifact) [if match found, including a phase folder such as `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias]
 
    Q2. Execution Mode (if no suffix):
      A) Autonomous -- all iterations without approval

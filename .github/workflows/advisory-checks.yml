@@ -65,4 +65,4 @@ jobs:
           fi
           # The checkout is committed content, so this compares the committed index with
           # the corpus it should describe. The lookup cannot afford this walk per call.
-          node "$GENERATOR" --check || echo "trigger index drift reported above; regenerate with node $GENERATOR from committed content"
+          node "$GENERATOR" --check || echo "trigger index drift reported above; the trigger-index-rebuild workflow repairs drift on the integration branches after merge, or regenerate locally with node $GENERATOR"

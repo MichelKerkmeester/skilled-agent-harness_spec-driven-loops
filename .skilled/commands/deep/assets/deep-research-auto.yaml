@@ -1454,7 +1454,8 @@ workflow:
             // so the leaf runs workspace-write; the builder maps that to each CLI's real
             // write-permitting headless flags.
             const sandboxMode = 'workspace-write';
-            const lineage = { kind, model, sandboxMode };
+            const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
+            const lineage = { kind, model, sandboxMode, reasoningEffort };
             const resolvedSandbox = resolveSandboxMode(sandboxMode);
             const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
 
@@ -1472,7 +1473,7 @@ workflow:
               kind,
               model,
               configDir: null,
-              reasoningEffort: null,
+              reasoningEffort,
               serviceTier: null,
               sandboxMode,
               timeoutSeconds,

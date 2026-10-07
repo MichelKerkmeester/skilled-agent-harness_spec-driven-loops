@@ -266,7 +266,7 @@ When Gate 3 applies, always present all four stable labels and ask the user to c
 
 **Option A:** Continue in the detected/current spec or current phase child when its scope fits.
 **Option B:** Create a new top-level packet for new/unrelated work; independently evaluate whether that new packet qualifies for phases.
-**Option C:** Use another existing packet — a related spec when it is a better scope match, a specific child under an existing phase parent, or a related standard packet decomposed into phases when it meets both phase thresholds.
+**Option C:** Use another existing packet — a related spec when it is a better scope match, a specific child under an existing phase parent, a related standard packet decomposed into phases when it meets both phase thresholds, or a series parent when the work is a different change to the same artifact as an existing packet in the same track (phase-definitions.md §2).
 **Option D:** Skip spec documentation after the required warning or under an existing exemption.
 
 **Recommendation priority:** `C` for a distinct related workstream in an existing or qualifying phased packet, including a series parent; otherwise `A` when the current packet fits; otherwise `C` for another related packet; `B` only for new/unrelated work; `D` is never the default.

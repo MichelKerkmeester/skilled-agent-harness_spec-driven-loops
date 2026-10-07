@@ -49,7 +49,7 @@ gate_3_compliance:
   status: ENFORCED_VIA_PHASES
   mechanism: "Phase 1-3 blocking gates in implement.md"
   machine_contract: ".skilled/skills/system-spec-kit/shared/gate-3-classifier.ts (classifyPrompt)"
-  standard_question: "Spec Folder (required): A) Existing | B) New | C) Related | D) Skip"
+  standard_question: "Spec Folder (required): A) Existing | B) New (new or unrelated work only) | C) Related (a phase child, or a series parent for a different change to the same artifact) | D) Skip"
   first_message_protocol: "If FIRST message requests implementation, ask spec folder FIRST"
   failure_pattern_19:
     triggers: ["comprehensive", "fix all", "15 agents", "implement everything"]

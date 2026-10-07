@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-spec-folder-tooling/009-gate-3-menu-series-parent",
+  "spec_folder": "system-speckit/034-spec-folder-tooling/009-gate-3-menu-series-parent",
+  "parent_id": "system-speckit/034-spec-folder-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gate 3 menu series parent",
+      "phase 9 gate 3 menu series parent",
+      "gate 3 question wording",
+      "gate 3 menu series parent plan",
+      "gate 3 option labels plan",
+      "menu wording plan",
+      "gate 3 menu series parent tasks",
+      "menu wording tasks",
+      "gate 3 menu series parent acceptance criteria",
+      "implementation summary",
+      "what shipped",
+      "validation evidence"
+    ],
+    "key_topics": [
+      "gate",
+      "menu",
+      "series",
+      "parent",
+      "phase",
+      "question",
+      "wording",
+      "plan",
+      "option",
+      "labels",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json",
+      ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+      ".skilled/commands/deep/assets/deep-review-presentation.txt",
+      ".skilled/commands/create/assets/create-command-presentation.txt",
+      ".skilled/skills/system-spec-kit/references/workflows/worked-examples.md",
+      ".skilled/skills/system-spec-kit/references/memory/trigger-config.md",
+      "references/workflows/worked-examples.md",
+      "references/memory/trigger-config.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-enforce.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-contexts.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-plan-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "create-command-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/create/assets/create-command-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "worked-examples.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/worked-examples.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-config.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/memory/trigger-config.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The menu text in `spec-gate-core.mjs` offers \"C) Use a related spec folder, including a phase child\" with no series parent, and the Pi dialog says only \"Use a related folder or phase child\"",
+    "created_at": "2026-10-07T09:58:44Z",
+    "last_save_at": "2026-10-07T12:55:52.791Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6076e643cafdc0eefa57a348c206a463303328fafdc4a1def2b0dbcdb1fbefdd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "76cf0e3d7dc2ace42ba6fcc3b160ac3b1908bf9aa7d4a9e78e084effbb399bbb",
+      "plan.md": "7a0b5e3cf97c9c58ad284ce06278afb1b2a378e834d351fbe54778423bd40c07",
+      "tasks.md": "c80b42d390e1c105d67ff6886b7a889d59cd7093381248ca0fd4fc058f322437",
+      "implementation-summary.md": "07b7a4394b86c6548fa5c1da7ca53bdd70f566299d20b5236197ed9ebe28cb21"
+    },
+    "last_active_at": null
+  }
+}

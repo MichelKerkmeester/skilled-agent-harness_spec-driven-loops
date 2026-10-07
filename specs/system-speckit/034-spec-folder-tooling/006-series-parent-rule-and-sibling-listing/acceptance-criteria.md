@@ -2,26 +2,23 @@
 title: "Acceptance Criteria: Series parent rule, sibling listing and trigger phrases for new packets"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "series parent rule and sibling listing acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing"
-    last_updated_at: "2026-10-06T20:29:11Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    last_updated_at: "2026-10-07T10:04:39Z"
+    last_updated_by: "deepseek-v4.1-flash"
+    recent_action: "Reconciled the acceptance criteria continuity after the phase review"
+    next_safe_action: "None, the packet is complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "phase-006-records-reconcile"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---

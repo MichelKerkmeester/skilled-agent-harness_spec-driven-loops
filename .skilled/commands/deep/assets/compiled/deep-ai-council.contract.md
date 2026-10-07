@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-ai-council-presentation.txt",
-      "sha256": "883f9803448193c30aed321455898f257684d2ec545f47ad061cec8e776c3227",
+      "sha256": "950cd38c7f14c65d9411283a946c7ba609f7a8d0cbd24af7744f80cddb64e588",
       "section": "full"
     },
     {
@@ -146,7 +146,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "70fbfe88549dc4a2fbafff3ab9ba6adffee239a17df646e9e3aca9dee37ffbda"
+  "compiledBodyDigest": "40bff491fd5ae54be1c3c7f067b46608510386dc426ea2b0c73cd6cfaab51fa7"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:ai-council
@@ -352,8 +352,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q1. Spec Folder (required):
      A) Use existing [suggest if found]
-     B) Create new under `specs/[track]/[###]-[slug]/` (accept `.opencode/specs/` alias roots when already in use)
-     C) Related [if match found, including a phase folder such as `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias]
+     B) Create new under `specs/[track]/[###]-[slug]/` only for new or unrelated work (accept `.opencode/specs/` alias roots when already in use)
+     C) Related (a phase child, or a series parent for a different change to the same artifact) [if match found, including a phase folder such as `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias]
 
    Q2. Execution Mode (if no suffix):
      A) Autonomous - run setup, topic loops, synthesis, and save without approval

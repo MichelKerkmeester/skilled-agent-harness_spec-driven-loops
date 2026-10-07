@@ -175,7 +175,8 @@ Session starts
   └─► Gate 3 asks: "Which spec folder?"
        ├─► Option A: Use existing folder
        ├─► Option B: Create new folder (create.sh)
-       └─► Option E: Skip documentation
+       ├─► Option C: Use a related folder
+       └─► Option D: Skip documentation
             │
             ▼
   AI modifies files, tracks tasks in tasks.md
