@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-08 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
@@ -180,7 +180,11 @@ Move the anchor opener to just above each level's Open Questions heading so the 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- None. The research identified the exact fix needed and verified the evidence.
+None open. The research named the exact fix, and three points settled during the build:
+
+- Only the L3+ closer needed to move. The L1, L2 and L3 closer already sat directly after the last question, so only their opener moved and the closer stayed where it was. The L3+ closer sat after the RELATED DOCUMENTS section and now sits directly after Question 1, which is the only question the L3+ template carries.
+- `review.spec.md.tmpl` is flat and needed no template change, but the golden test never rendered it. Review round 1 raised that as a P1; the test now renders it and asserts its anchors too, which added one snapshot entry.
+- The existing 549 spec.md files that carry the old layout stay out of scope and go to the anchor-repair phase. The doubled blank line the removed opener leaves in the L2 and L3 renders is cosmetic and was left unchanged.
 <!-- /ANCHOR:questions -->
 
 ---

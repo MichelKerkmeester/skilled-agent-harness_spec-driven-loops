@@ -41,6 +41,37 @@ function renderTemplate(templateName: string, level: RenderLevel): string {
   return renderInlineGates(fs.readFileSync(templatePath, 'utf8'), level);
 }
 
+const ANCHOR_OPEN = /^\s*<!--\s*ANCHOR:([A-Za-z0-9_-]+)\s*-->\s*$/u;
+const ANCHOR_CLOSE = /^\s*<!--\s*\/ANCHOR:([A-Za-z0-9_-]+)\s*-->\s*$/u;
+
+// Retrieval chunks a document by its anchor pairs, so a rendered spec must keep
+// them flat and balanced or one section's content would merge into its neighbor.
+function expectAnchorsWellOrdered(content: string, label: string): void {
+  const openAnchors: string[] = [];
+  let isInFence = false;
+  for (const line of content.split(/\r?\n/u)) {
+    if (/^\s*(`{3}|~~~)/u.test(line)) {
+      isInFence = !isInFence;
+      continue;
+    }
+    if (isInFence) {
+      continue;
+    }
+    const opener = ANCHOR_OPEN.exec(line);
+    if (opener) {
+      const current = openAnchors.length > 0 ? openAnchors[openAnchors.length - 1] : 'none';
+      expect(openAnchors, `${label}: anchor "${opener[1]}" is nested inside "${current}"`).toHaveLength(0);
+      openAnchors.push(opener[1]);
+      continue;
+    }
+    const closer = ANCHOR_CLOSE.exec(line);
+    if (closer) {
+      expect(openAnchors.pop(), `${label}: closer "${closer[1]}" has no matching opener`).toBe(closer[1]);
+    }
+  }
+  expect(openAnchors, `${label}: unclosed anchors`).toEqual([]);
+}
+
 describe('manifest template golden snapshots', () => {
   for (const level of ['1', '2', '3', '3+'] as RenderLevel[]) {
     it(`renders required docs for Level ${level} from manifest templates`, () => {
@@ -57,6 +88,9 @@ describe('manifest template golden snapshots', () => {
         expect(normalized, docName).toContain('SPECKIT_TEMPLATE_SOURCE');
         expect(normalized, docName).not.toMatch(/<!--\s*IF\s+/u);
         expect(normalized, docName).not.toMatch(/<!--\s*\/IF\s*-->/u);
+        if (docName === 'spec.md') {
+          expectAnchorsWellOrdered(normalized, `${level}-${docName}`);
+        }
         expect(normalized).toMatchSnapshot(`${level}-${docName}`);
       }
     });
@@ -70,6 +104,7 @@ describe('manifest template golden snapshots', () => {
     expect(normalized).toContain('PHASE DOCUMENTATION MAP');
     expect(normalized).not.toMatch(/<!--\s*IF\s+/u);
     expect(normalized).not.toMatch(/<!--\s*\/IF\s*-->/u);
+    expectAnchorsWellOrdered(normalized, 'phase-parent-spec.md');
     expect(normalized).toMatchSnapshot('phase-parent-spec.md');
   });
 
@@ -217,6 +252,7 @@ describe('review and research packet scaffolds', () => {
   it('renders the review report and research spec templates from the manifest', () => {
     const templates = [
       { templateName: 'review-report.md.tmpl', level: 'review', snapshot: 'review-review-report.md', anchorFree: true },
+      { templateName: 'review.spec.md.tmpl', level: 'review', snapshot: 'review-spec.md', anchorFree: false },
       { templateName: 'research.spec.md.tmpl', level: 'research', snapshot: 'research-spec.md', anchorFree: false },
     ] as const;
     for (const { templateName, level, snapshot, anchorFree } of templates) {
@@ -229,7 +265,10 @@ describe('review and research packet scaffolds', () => {
         for (const anchor of ['metadata', 'problem', 'scope', 'questions']) {
           expect(normalized, `${templateName}:${anchor}`).toContain(`<!-- ANCHOR:${anchor} -->`);
         }
-        expect(normalized, templateName).toContain('<!-- SPECKIT_LEVEL: research -->');
+        expect(normalized, templateName).toContain(`<!-- SPECKIT_LEVEL: ${level} -->`);
+      }
+      if (templateName.endsWith('.spec.md.tmpl')) {
+        expectAnchorsWellOrdered(normalized, snapshot);
       }
       expect(normalized, templateName).toMatchSnapshot(snapshot);
     }
