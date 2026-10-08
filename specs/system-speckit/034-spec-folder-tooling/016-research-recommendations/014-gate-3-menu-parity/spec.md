@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-08 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
@@ -152,8 +152,10 @@ Ensure every Gate 3 menu, whether in a presentation file, compiled contract or t
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should the `compile-command-contracts.cjs` regeneration happen as part of the build, or be tested locally before commit?
-- Are there other menu-bearing files beyond the 9 presentations and 3 deep contracts (e.g., speckit-implement.yaml:52, memory trigger-config, worked-examples)?
+None open. Both questions were answered during the build:
+
+- The contract regeneration ran locally before commit, and its output was checked line by line.
+- Three more files carry an option C menu without the phrase: `speckit-implement.yaml:52`, `worked-examples.md:60` and `trigger-config.md:134`. They are recorded as follow-ups in implementation-summary.md, outside this phase's frozen scope.
 <!-- /ANCHOR:questions -->
 
 ---

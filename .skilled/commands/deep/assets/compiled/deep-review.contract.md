@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "cd6f47e11cdf0d3318f2bcdbd7ea182a46110c0c73488cf0b8afbc14b551e417",
+      "sha256": "f28b363afff27cf9d8385652c9e053dd37aa635595c85a863b4b49dab1f7c700",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "9521dcf70859a8fd860b07accbde0f24e189eaeaa0587beacc0360b35913d264"
+  "compiledBodyDigest": "d12087f059a8db4bd906190247e9c32646a96419f6d5fab622eb9b19b6a4bac6"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -333,7 +333,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q1. Spec Folder (required):
      A) Use existing [suggest if found]
      B) Create new under `specs/[track]/[###]-[slug]/` only for new or unrelated work (accept `.opencode/specs/` alias roots when already in use)
-     C) Related (a phase child, or a series parent for a different change to the same artifact) [if match found, including a phase folder such as `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias]
+     C) Related (Use a related folder, phase child, or a series parent for a different change to the same artifact as an existing packet in the same track) [if match found, including a phase folder such as `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias]
 
    Q2. Execution Mode (if no suffix):
      A) Autonomous -- all iterations without approval

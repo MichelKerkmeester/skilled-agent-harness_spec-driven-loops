@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity"
     last_updated_at: "2026-10-08T12:00:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "orchestrator"
+    recent_action: "Phase built and verified"
+    next_safe_action: "Commit with wave 1"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bd2aa56c-623b-43f8-a2ef-69a13c32d626"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -58,11 +58,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] All 9 named presentation files include "in the same track" in Gate 3 option C
-- [ ] 3 deep contracts are regenerated and include the phrase
-- [ ] A parity test passes on all 12 files
-- [ ] Hook test baseline hash remains unchanged
-- [ ] Phase validates strictly
+- [x] All 9 named presentation files include "in the same track" in Gate 3 option C
+- [x] 3 deep contracts are regenerated and include the phrase
+- [x] A parity test passes on all 12 files
+- [x] Hook test baseline hash remains unchanged
+- [x] Phase validates strictly
 <!-- /ANCHOR:completion -->
 
 ---
@@ -78,15 +78,18 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Inventory presentation files | Pending | Tasks T001 |
-| Locate compiled contracts | Pending | Tasks T002 |
-| Update presentation files | Pending | Tasks T004 |
-| Create parity test | Pending | Tasks T007 |
-| Validate changes | Pending | Tasks T009 |
+| Inventory presentation files | Done | 9 named files plus 3 deep contracts; 3 more bearers recorded as follow-ups |
+| Update presentation files | Done | One option C line per file, full constant wording |
+| Regenerate contracts | Done | `compile-command-contracts.cjs --write --command deep/<name>` for all 3 |
+| Create parity test | Done | `gate-3-menu-parity.test.mjs`, 12 pass, 0 fail |
+| Cross-family review | Done | Luna round 1: one P1, fixed and confirmed with a planted stale line |
+| Validate changes | Done | Hook tests 0 fail, `validate.sh --strict` passed |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | To be filled during implementation |
+| Contract regeneration ran by the orchestrator | The codex and pi sandboxes cannot run every check, so this session ran `compile-command-contracts.cjs` itself after the builder's presentation edits |
+| Two briefs instead of one per task | T004 was one brief over the 9 files and T006-T007 another, because each is a single mechanical change; the diff was checked after each |
+| Three more menu bearers | `speckit-implement.yaml:52`, `worked-examples.md:60` and `trigger-config.md:134` lack the phrase; outside the frozen 12 |
 <!-- /ANCHOR:log -->

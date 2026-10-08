@@ -10,16 +10,17 @@ _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity"
     last_updated_at: "2026-10-08T12:00:00Z"
-    last_updated_by: "planning-author"
-    recent_action: "Planned the phase"
-    next_safe_action: "Build against goal.md"
+    last_updated_by: "orchestrator"
+    recent_action: "Built, reviewed and verified the phase"
+    next_safe_action: "Commit with wave 1"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bd2aa56c-623b-43f8-a2ef-69a13c32d626"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -31,36 +32,38 @@ _memory:
 
 ## Status
 
-This phase is **planned** and not yet built.
+This phase is **complete**. Built in wave 1, reviewed once by the other model family, and verified by the orchestrator.
 
-## What Was Planned
+## What Was Built
 
-The phase plans to restore the phrase "in the same track" to 9 specific presentation files and 3 compiled deep contracts that carry Gate 3 menu option C (12 files total). A parity test will verify that all 12 files match the constant wording.
+- The 9 presentation files now carry the full `GATE_3_CHOICE_RELATED` wording in option C, ending in "as an existing packet in the same track". Each file changed one line.
+- The 3 deep compiled contracts were regenerated with `compile-command-contracts.cjs --write --command deep/<name>`. Each diff is the option C line plus the source sha256 and `compiledBodyDigest`.
+- `runtime/tests/hooks/gate-3-menu-parity.test.mjs` imports the constant and asserts that the option C line of each of the 12 files contains it. A failure names the file, the line number, the line text and the expected text.
 
-## What Remains
+## Verification
 
-All implementation work remains:
-- Edit 9 presentation files directly to restore the phrase
-- Regenerate 3 deep contracts from their presentation sources
-- Write and run a parity test that validates all 12 files against the constant
-- Verify hook test baseline remains unchanged (no test edits planned)
+| Check | Result |
+|-------|--------|
+| `node --test gate-3-menu-parity.test.mjs` | 12 pass, 0 fail |
+| Planted stale option C line with the canonical text elsewhere in the file | 11 pass, 1 fail, file restored byte for byte |
+| `node --test runtime/tests/hooks/*.test.mjs` | 184 tests, 181 pass, 0 fail |
+| `git diff` on `spec-gate-core.mjs` and `spec-gate-core.test.mjs` | Empty |
+| `validate.sh --strict` on this folder | `RESULT: PASSED` |
 
-## Key Decisions and Trade-offs
+## Review
 
-The plan treats the constant as the authored source and the 12 files as verified copies kept in parity by the test. Presentation files are edited directly; contracts are regenerated via the compilation pipeline to avoid hand-editing generated artifacts. Hook tests keep their byte-identity baseline to preserve a critical quality gate.
+Luna max fast reviewed read-only and reported one P1: the first assertion searched the whole file, so a stale option C line passed whenever the canonical text appeared anywhere else. The test now asserts on the located option C line and fails when no such line exists. The fix was confirmed with the planted-line check above.
 
-## How to Resume
+## Follow-ups Outside This Phase
 
-1. Read the plan and tasks in this folder.
-2. Follow implementation tasks T003-T009 in order.
-3. The 12 named files are listed in spec.md "Files to Change" section.
-4. Use the acceptance criteria to verify each step.
-5. Run `validate.sh --strict` and `check-goal.cjs` before claiming completion.
+Three more files carry an option C menu without "in the same track". They were not in the frozen list of 12, so they were left as they are:
 
-## Notes for Future Sessions
+- `.skilled/commands/speckit/assets/speckit-implement.yaml:52`
+- `.skilled/skills/system-spec-kit/references/workflows/worked-examples.md:60`
+- `.skilled/skills/system-spec-kit/references/memory/trigger-config.md:134`
 
-- The constants in `spec-gate-core.mjs:149-152` are correct and include "in the same track".
-- The phrase "in the same track" clarifies that option C work must stay within the same track directory.
-- A parity test should be automated so future changes to the constants are caught if presentation files diverge.
+`create-command-presentation.txt` and `create-agent-presentation.txt` use a different "Related spec:" shape and already carry the phrase.
+
+The phase context asks for a changelog refresh, but no `changelog/` folder exists under the parent or the track, so there was nothing to refresh.
 
 <!-- /ANCHOR:summary -->
