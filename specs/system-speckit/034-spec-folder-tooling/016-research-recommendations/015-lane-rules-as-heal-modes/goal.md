@@ -47,6 +47,9 @@ Frozen choices. Changing one is an amendment.
 | D1 | Lane rules 3 (reconstruction) and 7 (status) stay reported, never automated, because both change what a document says. Rule 7 was confirmed by the operator on 2026-10-08 |
 | D2 | Each mode must refuse when its derivability rule fails; refusal is recorded in the baseline |
 | D3 | Per-folder validation after apply is the control for safety when touching many documents |
+| D4 | Built in wave 5 by GPT-6 Luna max on the fast tier through cli-codex: `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 codex -a never exec --model gpt-6-luna -c model_reasoning_effort="max" -c service_tier="fast" --sandbox workspace-write "<brief>" </dev/null`. One brief per task group in tasks.md, each naming its files and the check that proves it |
+| D5 | Reviewed read-only by DeepSeek V4.1 Flash max through cli-pi on the LLM Gateway route with `--tools read,grep,find,ls`. The builder applies a finding only after confirming it in the code, for at most two rounds |
+| D6 | The builder writes only the files in spec.md Files to Change, its tests and this folder. The orchestrator reverts any other write |
 
 <!-- /ANCHOR:directive -->
 

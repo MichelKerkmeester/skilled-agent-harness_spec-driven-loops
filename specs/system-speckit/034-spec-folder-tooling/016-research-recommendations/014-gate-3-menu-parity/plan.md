@@ -21,13 +21,13 @@ Gate 3 is the spec folder choice question asked when a mutation is about to happ
 - C: Use a related folder, phase child, or series parent for a different change to the same artifact as an existing packet **in the same track**
 - D: Skip
 
-The phrase "in the same track" sets a boundary for option C, clarifying that related work must stay in the same track directory. This phrase is correctly defined in `GATE_3_CHOICE_RELATED` but was dropped or never included in 33 presentation files and any compiled contracts that carry the menu.
+The phrase "in the same track" sets a boundary for option C, clarifying that related work must stay in the same track directory. This phrase is correctly defined in `GATE_3_CHOICE_RELATED` but is missing from 9 presentation files and 3 compiled contracts that carry the menu.
 
 ## 2. Approach
 
 ### 2.1 Inventory and Locate
 
-- Search all `.skilled/commands/**/assets/*-presentation.txt` files (confirmed: 33 lack "in the same track").
+- Search all `.skilled/commands/**/assets/*-presentation.txt` files (9 menu-bearing files lack "in the same track"; a raw grep -L over all presentations overcounts because it includes files with no Gate 3 menu).
 - Search all `.skilled/skills/` and `.skilled/` for compiled contracts or YAML that embed Gate 3 menus.
 - Search hook test files for hardcoded Gate 3 menu text.
 
@@ -112,7 +112,7 @@ The phrase "in the same track" sets a boundary for option C, clarifying that rel
 
 ### Mitigation
 
-- Test the parity script on a sample of files before applying to all 33.
+- Test the parity script on a sample of files before applying to all 12.
 - Validate presentation file syntax after each replacement.
 - If a compiled contract is in binary format, document it clearly and validate with the builder.
 

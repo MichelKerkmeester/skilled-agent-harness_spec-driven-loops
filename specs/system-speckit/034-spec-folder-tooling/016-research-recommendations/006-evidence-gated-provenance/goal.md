@@ -44,6 +44,9 @@ Frozen choices, decided 2026-10-08 by the operator. Changing one is an amendment
 | D2 | The dead `quality-audit.sh --fix` branch is removed or pointed at upgrade-legacy |
 | D3 | heal-spec-docs stamps only on exact equality with the anchor set rendered for the document's level |
 | D4 | No marker or comment is added to unknown-provenance documents |
+| D5 | Built in wave 2 by DeepSeek V4.1 Flash max through cli-pi on the OpenCode Go route: `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 PI_BLACKHOLE_PASSIVE=true pi -p "<brief>" --model opencode-go/deepseek-v4.1-flash --thinking max --mode text --offline </dev/null`. One task from tasks.md per brief, in task order, and the diff is checked before the next brief |
+| D6 | Reviewed read-only by Luna max fast through cli-codex with `--sandbox read-only`. The builder applies a finding only after confirming it in the code, for at most two rounds |
+| D7 | The builder writes only the files in spec.md Files to Change, its tests and this folder. The orchestrator reverts any other write |
 
 <!-- /ANCHOR:directive -->
 

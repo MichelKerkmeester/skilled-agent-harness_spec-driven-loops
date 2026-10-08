@@ -46,6 +46,9 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | Current-location semantics already implemented by Phase 15: recorded paths are derived facts, and git history keeps provenance. |
 | D2 | Tools already agree: repair-derived does not freeze archives, heal-spec-docs skips archives, migrate-generated-json walks and re-derives them, upgrade-legacy repairs them. |
+| D3 | Built in wave 4 by DeepSeek V4.1 Flash max through cli-pi on the OpenCode Go route: `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 PI_BLACKHOLE_PASSIVE=true pi -p "<brief>" --model opencode-go/deepseek-v4.1-flash --thinking max --mode text --offline </dev/null`. One task from tasks.md per brief, in task order, and the diff is checked before the next brief |
+| D4 | Reviewed read-only by Luna max fast through cli-codex with `--sandbox read-only`. The builder applies a finding only after confirming it in the code, for at most two rounds |
+| D5 | The builder writes only the files in spec.md Files to Change, its tests and this folder. The orchestrator reverts any other write |
 
 <!-- /ANCHOR:directive -->
 

@@ -49,6 +49,9 @@ Frozen choices. Changing one is an amendment.
 | D3 | Mandatory preview step showing path map with collision detection before any move happens; no writes until explicit user approval |
 | D4 | Path map and move steps are logged for recovery; if move is interrupted, the action can resume or be re-run from where it stopped |
 | D5 | Upgrade-legacy applies with baseline recording scoped to upgrade units only; release apply's own rollback covers only .skilled/ units |
+| D6 | Built in wave 6 by GPT-6 Luna max on the fast tier through cli-codex: `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 codex -a never exec --model gpt-6-luna -c model_reasoning_effort="max" -c service_tier="fast" --sandbox workspace-write "<brief>" </dev/null`. One brief per task group in tasks.md, each naming its files and the check that proves it |
+| D7 | Reviewed read-only by DeepSeek V4.1 Flash max through cli-pi on the OpenCode Go route with `--tools read,grep,find,ls`. The builder applies a finding only after confirming it in the code, for at most two rounds |
+| D8 | The builder writes only the files in spec.md Files to Change, its tests and this folder. The orchestrator reverts any other write |
 
 <!-- /ANCHOR:directive -->
 

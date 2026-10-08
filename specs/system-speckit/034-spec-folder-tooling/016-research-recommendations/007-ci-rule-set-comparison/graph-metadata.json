@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`.github/workflows/changed-packet-validation.yml` lines 139 to 146 compare only verdicts: if the base passed and the head failed, it is a regression",
     "created_at": "2026-10-08T04:22:43Z",
-    "last_save_at": "2026-10-08T05:31:26.228Z",
+    "last_save_at": "2026-10-08T07:39:26.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bc829f5e763c04faf0b28bc05a5f93508632b20ccb3e6d7af0a19e19f171ee7a",
+    "source_fingerprint": "sha256:7510825f8d199f2a181b36acf359584855a5a4cbc503f30c94c5c2d23ce39de1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "365b5648169d453c51df49a8cdc6b22ccf99c37d566dadace76af1b7ed91a9c3",

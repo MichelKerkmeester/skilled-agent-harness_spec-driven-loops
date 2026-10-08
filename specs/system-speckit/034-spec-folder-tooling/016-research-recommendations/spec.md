@@ -21,7 +21,7 @@ contextType: "planning"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-10-08 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | `../spec.md` |
@@ -40,7 +40,7 @@ contextType: "planning"
 The tools that scaffold, archive, heal and index spec packets kept producing failures that the corpus-wide repair then had to clean up by hand: a template that nests anchors, phase scaffolds that fail their own gate, a healer that writes rejected phrases and version stamps it cannot prove, CI checks that compare the wrong thing, and no supported path for an external repo still on an older version.
 
 ### Purpose
-Plan each of the 16 ranked recommendations as its own phase, so each one can be built, verified and shipped on its own, in an order that respects their dependencies.
+Plan each of the 16 ranked recommendations as its own phase, then build, verify and ship all of them through parallel CLI lanes in an order that respects their dependencies and never lets two concurrent phases write the same file.
 
 > **Phase-parent note:** This spec.md is the only authored document at the parent level. Each child holds its own plan, tasks and acceptance criteria.
 <!-- /ANCHOR:problem -->
@@ -53,9 +53,10 @@ Plan each of the 16 ranked recommendations as its own phase, so each one can be 
 ### In Scope
 - One child phase per recommendation SH-01 to SH-16.
 - Each child's plan names the files, the tests, the checks and the risks.
+- Building every child through the lanes in `goal.md`: DeepSeek V4.1 Flash max through cli-pi on two routes and GPT-6 Luna max fast through cli-codex, in six waves.
 
 ### Out of Scope
-- Building the recommendations. Each child is planned here and built in its own later session.
+- Work outside a child's own Files to Change.
 - Reopening the research's verified findings.
 
 ### Files to Change

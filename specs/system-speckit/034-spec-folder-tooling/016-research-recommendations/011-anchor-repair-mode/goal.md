@@ -49,6 +49,9 @@ Frozen choices. Changing one is an amendment.
 | D3 | Phase 1 (SH-01) must ship first so the un-nesting target template is available |
 | D4 | The marker-only un-nesting also runs on archived documents. No other anchor repair touches them. Decided 2026-10-08 by the operator |
 | D5 | Phase 13 waits for this phase before nesting becomes an error |
+| D6 | Built in wave 3 by GPT-6 Luna max on the fast tier through cli-codex: `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 codex -a never exec --model gpt-6-luna -c model_reasoning_effort="max" -c service_tier="fast" --sandbox workspace-write "<brief>" </dev/null`. One brief per task group in tasks.md, each naming its files and the check that proves it |
+| D7 | Reviewed read-only by DeepSeek V4.1 Flash max through cli-pi on the LLM Gateway route with `--tools read,grep,find,ls`. The builder applies a finding only after confirming it in the code, for at most two rounds |
+| D8 | The builder writes only the files in spec.md Files to Change, its tests and this folder. The orchestrator reverts any other write |
 
 <!-- /ANCHOR:directive -->
 

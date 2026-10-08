@@ -15,7 +15,7 @@ contextType: "planning"
 
 ## Verification Checklist
 
-- [ ] All 33 presentation files have been identified
+- [ ] All 9 Gate 3 presentation files and 3 compiled contracts have been identified
 - [ ] All compiled contracts carrying Gate 3 menus have been located
 - [ ] Parity test runs and validates all files
 - [ ] No presentation file has been modified without testing

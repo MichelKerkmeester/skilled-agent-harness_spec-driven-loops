@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Phase 13's one-off script `fix-dup-anchors.mjs` handled duplicate anchor pairs (two anchor copies in one document, paired by literal position)",
     "created_at": "2026-10-08T04:22:46Z",
-    "last_save_at": "2026-10-08T06:45:26.029Z",
+    "last_save_at": "2026-10-08T07:39:26.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:65b76cf5c731b076dacbc33de74b99fd1d470b6397a3980d95d9c09ce5239d08",
+    "source_fingerprint": "sha256:d009f47c228148071c182d5c5b2d51cfa22f4d252e53b47feab101e008f24f66",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "42a9b99469111a1ef563a9cbbce70b241b5ca03b7ae1d0620424e79ac1daa633",

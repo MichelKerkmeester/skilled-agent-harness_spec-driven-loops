@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Pre-v4 repos hold five independent era signals: the old `.opencode/specs` layout, documents with no frontmatter, documents without template markers or with legacy markers under drifting header names, packets with no generated metadata and packets older than their level's document set",
     "created_at": "2026-10-08T04:22:44Z",
-    "last_save_at": "2026-10-08T06:47:53.592Z",
+    "last_save_at": "2026-10-08T07:39:26.809Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cff9ee5a059b820202cb125ec4920c4ef40e0b7e319cb7d9d254adaacc7cd5db",
+    "source_fingerprint": "sha256:194961d8deb327c20086f2d6614eed15da50d9c37894736a0482ed73e99f5e5c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "daa4363acd180c7588b8afd38e8ede9ca706f54a641668652ea63516b27cd179",

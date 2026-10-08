@@ -47,6 +47,9 @@ Frozen choices. Changing one is an amendment.
 | D1 | Constants in `spec-gate-core.mjs:151` are the authored source; the 12 files are verified copies kept in parity by the test |
 | D2 | 9 presentation files are edited directly; 3 deep contracts are regenerated from their sources via `compile-command-contracts.cjs` |
 | D3 | Hook test baseline (spec-gate-core.test.mjs:324) is left unchanged; no hook test assertions are modified |
+| D4 | Built in wave 1 by DeepSeek V4.1 Flash max through cli-pi on the OpenCode Go route: `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 PI_BLACKHOLE_PASSIVE=true pi -p "<brief>" --model opencode-go/deepseek-v4.1-flash --thinking max --mode text --offline </dev/null`. One task from tasks.md per brief, in task order, and the diff is checked before the next brief |
+| D5 | Reviewed read-only by Luna max fast through cli-codex with `--sandbox read-only`. The builder applies a finding only after confirming it in the code, for at most two rounds |
+| D6 | The builder writes only the files in spec.md Files to Change, its tests and this folder. The orchestrator reverts any other write |
 
 <!-- /ANCHOR:directive -->
 

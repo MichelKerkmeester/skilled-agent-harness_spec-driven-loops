@@ -202,7 +202,7 @@
     ],
     "causal_summary": "`upgrade-legacy.mjs` exists and ships tests but no workflow, hook, or command calls it",
     "created_at": "2026-10-08T04:22:45Z",
-    "last_save_at": "2026-10-08T06:45:25.991Z",
+    "last_save_at": "2026-10-08T07:39:26.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:12639a641a571ba2ad0097a6f23d00b3b271caefd5f25f82721923032f0f09d3",
+    "source_fingerprint": "sha256:12f111b72cc44ad30a97cb2c3234b722a3a41e3d8c3a8efa510c646a0a9fd48e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "589615b293b2cac74bc01f2729f59320090f49981e56fdff508ce1d03cf68a6e",

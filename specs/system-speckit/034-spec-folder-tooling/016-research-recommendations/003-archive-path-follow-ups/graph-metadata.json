@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Phase 15 implemented re-derivation at archive and restore time",
     "created_at": "2026-10-08T04:22:40Z",
-    "last_save_at": "2026-10-08T05:31:26.129Z",
+    "last_save_at": "2026-10-08T07:39:26.807Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6eec9a0c6c678afdf4c06849a7046316ed195bd474ff0892660786df23c73bde",
+    "source_fingerprint": "sha256:0cd9bd469aead5ea210a354d8b908f7b84eaf714f89f9c4bb33ffcea8aa04013",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c2ac31c84331d30b05ae958cf858754900e52d552687e9978349563c687f82b1",

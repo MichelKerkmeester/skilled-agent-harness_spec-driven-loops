@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Phase 13's manual repair identified five deterministic rules that apply to many packets: wrapping anchors, repointing links when the target changed, filling continuity placeholders, reading level from the spec when metadata is stale, and adding a missing template header",
     "created_at": "2026-10-08T04:22:49Z",
-    "last_save_at": "2026-10-08T06:46:36.586Z",
+    "last_save_at": "2026-10-08T07:39:26.807Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:74c9767505a4422df804e2f8e3243320915a831b543f6d3dfe0e9eeee3a2818a",
+    "source_fingerprint": "sha256:7ef983cffc8a5f92907730b12ec3a4547477efc6f19a16acae23b1e2b66c4ce5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c79d035bd07d145c88b73728e38bd7a1ab52090b4aee5b69cd2b4a4e0da5ec52",

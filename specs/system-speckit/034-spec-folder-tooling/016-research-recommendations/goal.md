@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Each of the 16 recommendations ranked in phase 14's research is planned as its own phase, ready to be built and verified on its own.
+**Objective:** Build, verify and ship all 16 research recommendations to main through parallel CLI lanes, each phase meeting its own goal.
 
 ### Decisions
 
@@ -44,10 +44,14 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | One child phase per recommendation SH-01 to SH-16. Each child is built later in its own session, against its own goal |
-| D2 | Phase 001 lands before 011. Phases 001 and 011 land before 013. Phases 005, 006, 008 and 010 land before 009. Every other phase is independent |
-| D3 | Planning changes no code, template, workflow or test |
-| D4 | The anchor check adds a nesting check, with the decision-record parent and child allowed, and a duplicate-closer check. Nesting ships as a warning after 001 and as an error after 011 |
+| D1 | Builders: DeepSeek V4.1 Flash max through cli-pi on two routes, `opencode-go` and `llmgateway`, and GPT-6 Luna max fast through cli-codex. Each child goal names its route, command and reviewer |
+| D2 | Waves, run in order. No two phases in a wave write the same file. W1: 001 002 004 005 008 014. W2: 006 007 010 016. W3: 011. W4: 003 012 013. W5: 015. W6: 009 |
+| D3 | A DeepSeek brief carries one task. Every brief opens with the child-dispatch preamble and an inline persona, and ends with its allowed write set |
+| D4 | The other model family reviews each phase read-only. A finding is applied only after it is confirmed in the code, for at most two rounds |
+| D5 | This session orchestrates and runs every gate itself. A child's exit code or report is never evidence |
+| D6 | Each phase commits only its own files. Each wave pushes to main as a fast-forward, and CI must pass before the next wave starts |
+| D7 | A failing DeepSeek route switches to the other route, then to Luna. Three failed fixes on one symptom park that phase with its blocker logged. Phases that do not depend on it continue |
+| D8 | Nesting in the anchor check ships as a warning after 001 and becomes an error only after 011 has un-nested the corpus |
 
 <!-- /ANCHOR:directive -->
 
@@ -90,11 +94,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] All 16 child folders hold spec.md, plan.md, tasks.md, acceptance-criteria.md, implementation-summary.md and goal.md
-- [ ] Each ID from SH-01 to SH-16 is named in exactly one child spec.md
+- [ ] All 16 child spec.md files read Status Complete, and every acceptance row is Met or waived by a decision record
 - [ ] `validate.sh` on this packet with `--recursive --strict` prints `RESULT: PASSED`
+- [ ] `npm --prefix .skilled/skills/system-spec-kit/runtime/cli test` shows no failure beyond the baseline taken before wave 1
 - [ ] `check-goal.cjs` exits 0 for this packet and for each of the 16 children
-- [ ] No child claims a built result: every acceptance row reads `Unmet` until its phase is built
+- [ ] CI on the final main commit reports every check as success
 <!-- /ANCHOR:completion -->
 
 ---
@@ -113,10 +117,12 @@ and findings belong here.
 | Parent and 16 children scaffolded | Done | `validate.sh` on the parent printed `RESULT: PASSED` with one warning |
 | Child planning docs and goals | Done | Written by Haiku 4.5 agents, reviewed by DeepSeek v4.1 Flash, fixes verified against the code |
 | Operator decisions | Done | Ten choices decided on 2026-10-08 after a fresh Opus recommendation, D2 and D4 amended |
+| Lane routes smoke-tested | Done | `llmgateway/deepseek-v4.1-flash`, `opencode-go/deepseek-v4.1-flash` and `gpt-6-luna` max fast each replied PONG on 2026-10-08 |
+| Wave 1 | Pending | Capture the CLI test and check baseline first |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| Parent goal stops at planning | The parent spec puts building out of scope, so each child goal carries its own build criteria for a later session |
+| Scope widened to the build | On 2026-10-08 the operator asked for all 16 phases to be built autonomously, so the objective, decisions and criteria now cover the build. The planning record stays in the progress rows |
 <!-- /ANCHOR:log -->

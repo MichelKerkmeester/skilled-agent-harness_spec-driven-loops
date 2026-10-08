@@ -43,6 +43,9 @@ Frozen choices, decided 2026-10-08 by the operator. Changing one is an amendment
 | D1 | An empty trigger_phrases list is refilled with the exact output of `seededPhrases` in template-phrase-cleanup.mjs. It is never left empty and never filled from template defaults |
 | D2 | TEMPLATE_DEFAULTS is deleted from heal-spec-docs.cjs, not pinned in a test |
 | D3 | Scope covers `inferTriggerPhrases` in frontmatter-migration.ts, and the upgrade test checks every negative judge class |
+| D4 | Built in wave 1 by DeepSeek V4.1 Flash max through cli-pi on the LLM Gateway route: `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 PI_BLACKHOLE_PASSIVE=true pi -p "<brief>" --model llmgateway/deepseek-v4.1-flash --thinking max --mode text --offline </dev/null`. One task from tasks.md per brief, in task order, and the diff is checked before the next brief |
+| D5 | Reviewed read-only by Luna max fast through cli-codex with `--sandbox read-only`. The builder applies a finding only after confirming it in the code, for at most two rounds |
+| D6 | The builder writes only the files in spec.md Files to Change, its tests and this folder. The orchestrator reverts any other write |
 
 <!-- /ANCHOR:directive -->
 

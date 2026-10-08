@@ -48,6 +48,9 @@ Frozen choices, decided 2026-10-08 by the operator. Changing one is an amendment
 | D2 | On a dirty tree, `--apply` writes the manifest before its first change and refuses when it cannot write. Committed trees need no manifest |
 | D3 | `--apply` refuses when REPO is not a git repository |
 | D4 | The manifest stores real before-image content for each dirty file the run touches: a blob id from `git hash-object -w`, or the file bytes |
+| D5 | Built in wave 2 by GPT-6 Luna max on the fast tier through cli-codex: `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 codex -a never exec --model gpt-6-luna -c model_reasoning_effort="max" -c service_tier="fast" --sandbox workspace-write "<brief>" </dev/null`. One brief per task group in tasks.md, each naming its files and the check that proves it |
+| D6 | Reviewed read-only by DeepSeek V4.1 Flash max through cli-pi on the LLM Gateway route with `--tools read,grep,find,ls`. The builder applies a finding only after confirming it in the code, for at most two rounds |
+| D7 | The builder writes only the files in spec.md Files to Change, its tests and this folder. The orchestrator reverts any other write |
 
 <!-- /ANCHOR:directive -->
 

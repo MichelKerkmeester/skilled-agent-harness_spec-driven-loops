@@ -46,6 +46,9 @@ Frozen choices, decided 2026-10-08 by the operator. Changing one is an amendment
 |----|----------|
 | D1 | Leave the token as it is: no `persist-credentials` change, no GitHub environment, no secret move, and the `skilled/**` trigger stays |
 | D2 | Keep the rest: stage all four generated files, an exact-match or marker loop guard, and regenerate plus `--check` before the retry push |
+| D3 | Built in wave 1 by DeepSeek V4.1 Flash max through cli-pi on the OpenCode Go route: `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 PI_BLACKHOLE_PASSIVE=true pi -p "<brief>" --model opencode-go/deepseek-v4.1-flash --thinking max --mode text --offline </dev/null`. One task from tasks.md per brief, in task order, and the diff is checked before the next brief |
+| D4 | Reviewed read-only by Luna max fast through cli-codex with `--sandbox read-only`. The builder applies a finding only after confirming it in the code, for at most two rounds |
+| D5 | The builder writes only the files in spec.md Files to Change, its tests and this folder. The orchestrator reverts any other write |
 
 <!-- /ANCHOR:directive -->
 

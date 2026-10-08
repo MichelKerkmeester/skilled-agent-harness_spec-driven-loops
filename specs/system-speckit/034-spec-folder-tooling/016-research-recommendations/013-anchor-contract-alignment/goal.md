@@ -49,6 +49,9 @@ Frozen choices, decided 2026-10-08 by the operator. Changing one is an amendment
 | D3 | Nesting is a warning after phase 001 lands and an error after phase 011 lands. 013 depends on 001 and 011 |
 | D4 | Template-sequence order is rejected |
 | D5 | Baseline the corpus before each severity step |
+| D6 | Built in wave 4 by GPT-6 Luna max on the fast tier through cli-codex: `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 codex -a never exec --model gpt-6-luna -c model_reasoning_effort="max" -c service_tier="fast" --sandbox workspace-write "<brief>" </dev/null`. One brief per task group in tasks.md, each naming its files and the check that proves it |
+| D7 | Reviewed read-only by DeepSeek V4.1 Flash max through cli-pi on the OpenCode Go route with `--tools read,grep,find,ls`. The builder applies a finding only after confirming it in the code, for at most two rounds |
+| D8 | The builder writes only the files in spec.md Files to Change, its tests and this folder. The orchestrator reverts any other write |
 
 <!-- /ANCHOR:directive -->
 

@@ -48,6 +48,9 @@ Frozen choices. Changing one is an amendment.
 | D2 | All 18 template kinds will have seed recipes in the pin test, not in a separate data file |
 | D3 | The pre-commit lint blocks only `template-default` and `editor-fallback` on newly added phrases, warns on every other negative class, and is bypassed with `SPECKIT_SKIP_PHRASE_LINT=1`. Decided 2026-10-08 by the operator |
 | D4 | No-frontmatter files are routed to a fixer, not silently skipped |
+| D5 | Built in wave 2 by GPT-6 Luna max on the fast tier through cli-codex: `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 codex -a never exec --model gpt-6-luna -c model_reasoning_effort="max" -c service_tier="fast" --sandbox workspace-write "<brief>" </dev/null`. One brief per task group in tasks.md, each naming its files and the check that proves it |
+| D6 | Reviewed read-only by DeepSeek V4.1 Flash max through cli-pi on the OpenCode Go route with `--tools read,grep,find,ls`. The builder applies a finding only after confirming it in the code, for at most two rounds |
+| D7 | The builder writes only the files in spec.md Files to Change, its tests and this folder. The orchestrator reverts any other write |
 
 <!-- /ANCHOR:directive -->
 

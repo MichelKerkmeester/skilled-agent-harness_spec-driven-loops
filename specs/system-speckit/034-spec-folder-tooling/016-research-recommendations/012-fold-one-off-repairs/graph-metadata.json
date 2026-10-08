@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 13 used one-off scripts for repairs",
     "created_at": "2026-10-08T04:22:47Z",
-    "last_save_at": "2026-10-08T05:31:26.088Z",
+    "last_save_at": "2026-10-08T07:39:26.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9502dc57ca695475e4defb311fb08c14fe5d5af69a0c0caf395102b8108fd0c0",
+    "source_fingerprint": "sha256:dd9050bb4388fd5ef5a67cce0d777368d0594e52006b04910364353c0c781aab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0df9577a614ffbd3a86247eafd1f966356b8c83652aaa6be5cdbfb313690e165",

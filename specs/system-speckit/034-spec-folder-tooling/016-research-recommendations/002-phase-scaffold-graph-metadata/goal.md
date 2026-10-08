@@ -47,6 +47,9 @@ Frozen choices. Changing one is an amendment.
 | D1 | Call backfill-graph-metadata.ts for the parent and each child in create.sh --phase mode, before the original exit point |
 | D2 | Refresh the parent's children_ids field from the newly created children directories |
 | D3 | Add a --phase test case to scaffold-passes-its-own-gate.vitest.ts |
+| D4 | Built in wave 1 by DeepSeek V4.1 Flash max through cli-pi on the LLM Gateway route: `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 PI_BLACKHOLE_PASSIVE=true pi -p "<brief>" --model llmgateway/deepseek-v4.1-flash --thinking max --mode text --offline </dev/null`. One task from tasks.md per brief, in task order, and the diff is checked before the next brief |
+| D5 | Reviewed read-only by Luna max fast through cli-codex with `--sandbox read-only`. The builder applies a finding only after confirming it in the code, for at most two rounds |
+| D6 | The builder writes only the files in spec.md Files to Change, its tests and this folder. The orchestrator reverts any other write |
 
 <!-- /ANCHOR:directive -->
 
