@@ -44,12 +44,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Builders and reviewers: DeepSeek V4.1 Flash max through cli-pi on `opencode-go` and `llmgateway`. The operator dropped Luna on 2026-10-08 after wave 2, so a child goal's Luna route reads as DeepSeek |
+| D1 | Builders and reviewers: DeepSeek V4.1 Flash max through cli-pi on `opencode-go` and `llmgateway`, and cli-devin. The operator dropped Luna on 2026-10-08 after wave 2, so a child goal's Luna route reads as DeepSeek |
 | D2 | W1 001 002 004 005 008 014 and W2 006 007 010 016 shipped in order. The rest run as parallel lanes that never write one file at once. Lane A, upgrade-legacy: 011, 012, 015, then 009's function. Lane B, the healer: 015's modes, then 003's comment. Lanes C to E: 013, 009's doctor files, 003's test |
 | D3 | A DeepSeek brief carries one task. Every brief opens with the child-dispatch preamble and an inline persona, and ends with its allowed write set |
 | D4 | A fresh DeepSeek on the other route reviews each phase read-only, and a fresh Opus high gives the final review. A finding is applied only once confirmed in the code, for at most two rounds |
 | D5 | This session only orchestrates. Haiku 5.5 xhigh workers run gates and closeouts and save raw command output to files. Only that output is evidence, never a worker's summary |
-| D6 | Each phase commits only its own files. A closed phase pushes to main as a fast-forward, and CI must pass before the next push |
+| D6 | Each phase commits only its own files. Phases sharing a file ship as one commit naming each part. A closed phase pushes to main as a fast-forward, and CI must pass before the next push |
 | D7 | A failing route switches to the other route. Three failed fixes on one symptom park that phase with its blocker logged. Phases that do not depend on it continue |
 | D8 | Nesting in the anchor check ships as a warning after 001 and becomes an error only after 011 has un-nested the corpus |
 
@@ -124,7 +124,7 @@ and findings belong here.
 | Wave 2 build | Done | 006 (opencode-go), 007 (llmgateway), 010 and 016 (Luna) Complete. Final gates after 010's second review round: CLI test 1,685 passed, 0 failed (baseline 1,639); `check` and typecheck rc 0; hook tests 184 run, 0 failed; each phase `validate.sh --strict` PASSED and `check-goal.cjs` 5/5 |
 | Wave 2 ship | Done | Pushed as a fast-forward (`3872d55aab`). Spec-Kit Check failed on it: a doctor test pinned 12 hook gates and 016 registered a 13th. Fixed in `3000be113c`; CI on `3000be113c`: 12 workflows success. A dispatched freshness sweep (run 37783711329) loaded the stored baseline live for 007 |
 | Wave 3 | Superseded | Luna built 011's repair mode (brief 1). Its second brief was stopped before any write when the operator moved the build to DeepSeek |
-| Amendment: DeepSeek only, parallel lanes | On 2026-10-08 the operator said: "Skip luna, use deepseke only max parallization". D1, D2, D4, D6 and D7 were rewritten, and the remaining phases run as lanes. The operator then said: "Use haiku 5.5 xhigh for things you would do yourself", "You do omly orchestration" and "Final review will be done by fresh opus high", so D4 and D5 were rewritten |
+| Amendment: DeepSeek only, parallel lanes | On 2026-10-08 the operator said: "Skip luna, use deepseke only max parallization". D1, D2, D4, D6 and D7 were rewritten, and the remaining phases run as lanes. The operator then said: "Use haiku 5.5 xhigh for things you would do yourself", "You do omly orchestration" and "Final review will be done by fresh opus high", so D4 and D5 were rewritten. Later the operator said: "Cli devin also has deepseek so you can spread it through pi opencodw go and devin" and approved Devin's dangerous permission mode for this build, so D1 names cli-devin. Phases 011, 012, 015, 009 and 003 edit the same two files, so D6 lets them ship as one commit |
 
 ### Deviations and findings
 
