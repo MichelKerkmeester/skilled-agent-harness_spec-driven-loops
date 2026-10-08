@@ -10,7 +10,9 @@
 # so a legacy marker is grandfathered, never a failure.
 #
 # Usage:
-#   check-template-staleness.sh [--json] [--auto-upgrade] [--root <path>]
+#   check-template-staleness.sh [--json] [--root <path>]
+#
+# --auto-upgrade was removed; use upgrade-legacy.mjs for version-comment rewrites.
 #
 # Exit codes:
 #   0 - all up to date
@@ -27,7 +29,6 @@ source "$SCRIPT_DIR/../lib/template-utils.sh"
 # ───────────────────────────────────────────────────────────────
 
 JSON_MODE=false
-AUTO_UPGRADE=false
 ROOT_PATH=""
 TEMPLATE_DIR=""
 
@@ -35,7 +36,7 @@ parse_args() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
             --json) JSON_MODE=true; shift ;;
-            --auto-upgrade) AUTO_UPGRADE=true; shift ;;
+            --auto-upgrade) echo "--auto-upgrade was removed, use upgrade-legacy" >&2; exit 2 ;;
             --root) ROOT_PATH="$2"; shift 2 ;;
             --help|-h) show_help; exit 0 ;;
             *) echo "ERROR: Unknown option '$1'" >&2; exit 2 ;;
@@ -47,13 +48,14 @@ show_help() {
     cat <<'EOF'
 check-template-staleness.sh — Detect spec folders with outdated template versions
 
-Usage: check-template-staleness.sh [--json] [--auto-upgrade] [--root <path>]
+Usage: check-template-staleness.sh [--json] [--root <path>]
 
 Options:
   --json           Machine-readable JSON output
-  --auto-upgrade   Apply safe auto-fixes to stale folders (update version comment)
   --root           Repository root (default: git root or cwd)
   --help           Show this help
+
+--auto-upgrade was removed; use upgrade-legacy.mjs for version-comment rewrites.
 EOF
 }
 
@@ -166,25 +168,7 @@ main() {
             "$current_version") ((current_count++)) || true ;;
             "none") ((none_count++)) || true; stale_folders+=("$folder_name ($version)") ;;
             "missing") ((missing_count++)) || true ;;
-            *) ((stale_count++)) || true; stale_folders+=("$folder_name ($version)")
-
-               if $AUTO_UPGRADE; then
-                   for md_file in "$folder"/*.md; do
-                       [[ ! -f "$md_file" ]] && continue
-                       local basename_md
-                       basename_md=$(basename "$md_file")
-                       case "$basename_md" in
-                           spec.md|plan.md|tasks.md|acceptance-criteria.md|goal.md|decision-record.md|implementation-summary.md)
-                               if head -n 30 "$md_file" | grep -q "SPECKIT_TEMPLATE_SOURCE:"; then
-                                   # Only bump the version portion (vN.N), preserving the template ID
-                                   # e.g., "plan-core | v2.0" → "plan-core | v2.2"
-                                   sed -i '' "s/\(SPECKIT_TEMPLATE_SOURCE:.*| \)v[0-9][0-9]*\.[0-9][0-9]*/\1$current_version/" "$md_file" 2>/dev/null || true
-                               fi
-                               ;;
-                       esac
-                   done
-               fi
-               ;;
+            *) ((stale_count++)) || true; stale_folders+=("$folder_name ($version)") ;;
         esac
     done
 

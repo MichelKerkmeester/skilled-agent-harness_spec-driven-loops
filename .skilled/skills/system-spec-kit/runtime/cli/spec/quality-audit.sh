@@ -6,7 +6,7 @@
 # Aggregates results for continuous quality monitoring.
 #
 # Usage:
-#   quality-audit.sh [--json] [--fix] [--root <path>]
+#   quality-audit.sh [--json] [--root <path>]
 #
 # Exit codes:
 #   0 - all pass
@@ -22,7 +22,6 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # ───────────────────────────────────────────────────────────────
 
 JSON_MODE=false
-FIX_MODE=false
 ROOT_PATH=""
 VERBOSE=false
 
@@ -30,7 +29,7 @@ parse_args() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
             --json) JSON_MODE=true; shift ;;
-            --fix) FIX_MODE=true; shift ;;
+            --fix) echo "--fix was removed, use upgrade-legacy" >&2; exit 2 ;;
             --verbose|-v) VERBOSE=true; shift ;;
             --root) ROOT_PATH="$2"; shift 2 ;;
             --help|-h) show_help; exit 0 ;;
@@ -43,11 +42,10 @@ show_help() {
     cat <<'EOF'
 quality-audit.sh — Continuous spec folder quality monitoring
 
-Usage: quality-audit.sh [--json] [--fix] [--root <path>] [--verbose]
+Usage: quality-audit.sh [--json] [--root <path>] [--verbose]
 
 Options:
   --json      Machine-readable JSON output
-  --fix       Run auto-remediation for fixable issues
   --root      Repository root (default: git root or cwd)
   --verbose   Show per-folder details
   --help      Show this help
@@ -145,13 +143,6 @@ main() {
                    ((fail_count++)) || true
                    worst_folders+=("$folder_name")
                    $VERBOSE && echo "FAIL: $folder_name"
-                   # --fix: re-run staleness auto-upgrade on failing folders
-                   if $FIX_MODE; then
-                       local staleness_script="$SCRIPT_DIR/check-template-staleness.sh"
-                       if [[ -f "$staleness_script" ]]; then
-                           bash "$staleness_script" --auto-upgrade --root "$folder" 2>/dev/null || true
-                       fi
-                   fi
                    ;;
                 *) status="fail" ;;
             esac

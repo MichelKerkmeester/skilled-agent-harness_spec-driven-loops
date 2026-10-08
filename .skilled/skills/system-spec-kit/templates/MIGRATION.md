@@ -48,6 +48,14 @@ The migration policy is indefinite read support plus current-version writes.
 
 ---
 
-## 4. EXTENSION PROCESS LINK
+## 4. NEVER INVENT PROVENANCE
+
+A tool writes a template-source marker only when the document's anchors exactly equal the anchor set the template renders for the packet's level. A document that does not match keeps no marker, and no marker or comment is ever added to record unknown provenance.
+
+`check-template-staleness.sh --auto-upgrade` and `quality-audit.sh --fix` were removed, and `upgrade-legacy.mjs` is the repair path.
+
+---
+
+## 5. EXTENSION PROCESS LINK
 
 For new document types, follow `EXTENSION-GUIDE.md` and add both the manifest document entry and a per-document `sectionGates` profile.

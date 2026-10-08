@@ -31,6 +31,9 @@ const path = require('node:path');
 // Node loads an ES module from CommonJS synchronously, so the seeder can stay
 // the single source of the phrases create.sh and the cleanup tool also write.
 const { seededPhrases } = require('./template-phrase-cleanup.mjs');
+// The template contract is the renderer's own account of what a document of a
+// level carries; loading it keeps the stamp inside what the render can prove.
+const { loadTemplateContractForDocument, normalizeLevel } = require('../utils/template-structure.js');
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -51,15 +54,25 @@ const SEEDED_KINDS = {
   'implementation-summary.md': 'implementationSummary',
 };
 
-// The header a document earns by matching a template's anchor set. The anchor
-// set is the evidence: a document carrying exactly these anchors demonstrably
-// came from this template, so naming it is a finding rather than a claim.
-const TEMPLATE_SIGNATURES = [
-  { doc: 'plan.md', header: 'plan-core | v2.2', anchors: ['summary', 'quality-gates', 'architecture', 'phases', 'testing', 'dependencies', 'rollback'] },
-  { doc: 'tasks.md', header: 'tasks-core | v2.2', anchors: ['notation', 'phase-1', 'phase-2', 'phase-3', 'completion', 'cross-refs'] },
-  { doc: 'implementation-summary.md', header: 'impl-summary-core | v2.2', anchors: ['metadata', 'what-built', 'how-delivered', 'decisions', 'verification', 'limitations'] },
-  { doc: 'spec.md', header: 'spec-core | v2.2', anchors: ['metadata', 'problem', 'scope', 'requirements', 'success-criteria', 'risks'] },
-];
+// The level a packet records: the machine marker first, then the metadata-table
+// row, then the frontmatter `level:` key. The anchors a document should carry
+// differ per level, so a document cannot be named without one.
+const LEVEL_MARKER_RE = /<!--\s*SPECKIT_LEVEL:\s*(3\+|[123]|phase|review|research)\s*-->/;
+const LEVEL_TABLE_RE = /^\|\s*(?:\*\*Level\*\*|Level)\s*\|\s*(3\+|[123]|phase|review|research)\s*\|/m;
+// Quoted values are deliberately not matched here, because the validator reads
+// them as an invalid declaration rather than as a level.
+const LEVEL_FRONTMATTER_RE = /^level:\s*(3\+|[123]|phase|review|research)\s*$/m;
+
+// A template renders per level: whole sections, and sometimes the template-
+// source marker itself, sit inside `<!-- IF level... -->` gates. The gate
+// grammar here mirrors evaluateTemplateGate, and the line walk mirrors
+// renderManifestTemplate, both in template-structure.js, so the marker read
+// is the marker the level actually renders.
+const VALID_LEVELS = new Set(['1', '2', '3', '3+', 'phase', 'review', 'research']);
+const GATE_OPEN_RE = /^\s*<!--\s*IF\s+(.+?)\s*-->\s*$/;
+const GATE_CLOSE_RE = /^\s*<!--\s*\/IF\s*-->\s*$/;
+const FENCE_RE = /^\s*(?:`{3}|~~~)/;
+const TEMPLATE_SOURCE_RE = /<!--\s*SPECKIT_TEMPLATE_SOURCE:\s*([^>]*?)\s*-->/;
 
 const HEADER_RE = /<!--\s*SPECKIT_TEMPLATE_SOURCE:/;
 const FRONTMATTER_RE = /^---\r?\n([\s\S]*?)\r?\n---/;
@@ -74,10 +87,108 @@ function anchorsOf(text) {
   return found;
 }
 
-/** True when the document carries every anchor the template defines. */
-function matchesSignature(text, sig) {
-  const have = anchorsOf(text);
-  return sig.anchors.every((a) => have.has(a));
+/** The level a packet records in its spec.md, or null when it records none. */
+function declaredLevel(packetDir, specText) {
+  let text = specText;
+  if (text === null) {
+    const specFile = path.join(packetDir, 'spec.md');
+    if (!fs.existsSync(specFile)) return null;
+    text = fs.readFileSync(specFile, 'utf8');
+  }
+  const marker = text.match(LEVEL_MARKER_RE);
+  if (marker) return marker[1];
+  const row = text.match(LEVEL_TABLE_RE);
+  if (row) return row[1];
+  const fm = frontmatterOf(text);
+  const yaml = fm === null ? null : fm.match(LEVEL_FRONTMATTER_RE);
+  return yaml ? yaml[1] : null;
+}
+
+/** True when a template's `<!-- IF ... -->` gate is active for a level. */
+function gateActive(expression, level) {
+  return expression
+    .split(/\s+OR\s+/i)
+    .some((orTerm) => orTerm.split(/\s+AND\s+/i).every((andTerm) => {
+      const term = andTerm.trim();
+      const negated = /^NOT\s+/i.test(term);
+      const atom = term.replace(/^NOT\s+/i, '');
+      const match = /^level:([A-Za-z0-9+,_-]+)$/u.exec(atom);
+      if (!match) return false;
+      const values = match[1].split(',').map((value) => value.trim()).filter(Boolean);
+      if (values.some((value) => !VALID_LEVELS.has(value))) return false;
+      const active = values.includes(level);
+      return negated ? !active : active;
+    }));
+}
+
+/** The template-source marker a template renders for a level, or null. */
+function renderedTemplateSource(templatePath, level) {
+  if (!templatePath || !fs.existsSync(templatePath)) return null;
+  const gates = [];
+  const gatesActive = () => gates.every((gate) => gate.parentActive && gate.conditionActive);
+  let inFence = false;
+  for (const line of fs.readFileSync(templatePath, 'utf8').split(/\r?\n/)) {
+    if (FENCE_RE.test(line)) {
+      inFence = !inFence;
+      continue;
+    }
+    if (!inFence) {
+      const open = line.match(GATE_OPEN_RE);
+      if (open) {
+        gates.push({ parentActive: gatesActive(), conditionActive: gateActive(open[1], level) });
+        continue;
+      }
+      if (GATE_CLOSE_RE.test(line)) {
+        gates.pop();
+        continue;
+      }
+    }
+    if (inFence || !gatesActive()) continue;
+    const marker = line.match(TEMPLATE_SOURCE_RE);
+    if (marker) return marker[1];
+  }
+  return null;
+}
+
+/**
+ * The template-source marker a document's own anchors prove, or a refusal
+ * reason. The document must carry exactly the anchors its level renders: one
+ * extra or missing anchor means the render cannot honestly be claimed.
+ */
+function provenMarker(out, name, file) {
+  const level = declaredLevel(path.dirname(file), name === 'spec.md' ? out : null);
+  if (level === null) {
+    return { refusal: `${name}: no level is recorded in spec.md, so no rendered template can be proven` };
+  }
+
+  let normalized;
+  let contract;
+  try {
+    normalized = normalizeLevel(level);
+    contract = loadTemplateContractForDocument(normalized, name, file);
+  } catch {
+    return { refusal: `${name}: the Level ${level} template contract could not be resolved, so it cannot be named` };
+  }
+  if (!contract.supported) {
+    return { refusal: `${name}: Level ${level} renders no template for this document, so it cannot be named` };
+  }
+
+  const rendered = new Set([...(contract.requiredAnchors || []), ...(contract.optionalAnchors || [])]);
+  const have = anchorsOf(out);
+  const extra = [...have].filter((anchor) => !rendered.has(anchor));
+  const missing = [...rendered].filter((anchor) => !have.has(anchor));
+
+  const marker = renderedTemplateSource(contract.templatePath, normalized);
+  if (marker === null) {
+    return { refusal: `${name}: the Level ${level} template renders no SPECKIT_TEMPLATE_SOURCE marker, so it cannot be named` };
+  }
+  if (extra.length > 0) {
+    return { refusal: `${name}: carries ${extra.join(', ')} beyond the anchors rendered for Level ${level}, so it cannot be called ${marker}` };
+  }
+  if (missing.length > 0) {
+    return { refusal: `${name}: does not carry ${missing.join(', ')}, so it cannot be called ${marker}` };
+  }
+  return { marker };
 }
 
 /** The frontmatter block's raw text, or null when the document has none. */
@@ -142,23 +253,19 @@ function healDoc(file) {
   // NAME THE TEMPLATE ONLY WHEN THE ANCHORS PROVE IT
   // ───────────────────────────────────────────────────────────────────
   if (!HEADER_RE.test(out)) {
-    const sig = TEMPLATE_SIGNATURES.find((s) => s.doc === name);
-    if (!sig) {
-      // Not a document class this tool knows a signature for.
-    } else if (matchesSignature(out, sig)) {
-      const marker = `<!-- SPECKIT_TEMPLATE_SOURCE: ${sig.header} -->`;
+    const proven = provenMarker(out, name, file);
+    if (proven.refusal) {
+      refusals.push(proven.refusal);
+    } else {
       const fmEnd = out.match(FRONTMATTER_RE);
       if (fmEnd) {
+        const marker = `<!-- SPECKIT_TEMPLATE_SOURCE: ${proven.marker} -->`;
         const idx = fmEnd.index + fmEnd[0].length;
         out = `${out.slice(0, idx)}\n${marker}${out.slice(idx)}`;
-        actions.push(`named the template as ${sig.header}, proven by its anchors`);
+        actions.push(`named the template as ${proven.marker}, proven by its exact anchors`);
       } else {
-        refusals.push(`${name}: anchors match ${sig.header} but there is no frontmatter to place the header after`);
+        refusals.push(`${name}: its anchors prove ${proven.marker} but there is no frontmatter to place the header after`);
       }
-    } else {
-      const have = anchorsOf(out);
-      const missing = sig.anchors.filter((a) => !have.has(a));
-      refusals.push(`${name}: does not carry ${missing.join(', ')}, so it cannot be called ${sig.header}`);
     }
   }
 

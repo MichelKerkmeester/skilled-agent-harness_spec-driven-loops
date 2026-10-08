@@ -38,7 +38,7 @@
       "goal"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -46,11 +46,14 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
       ".skilled/skills/system-spec-kit/templates/MIGRATION.md",
-      "templates/MIGRATION.md"
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-provenance.vitest.ts",
+      "templates/MIGRATION.md",
+      "runtime/cli/utils/template-structure.js",
+      "runtime/cli/tests/heal-provenance.vitest.ts"
     ],
     "entities": [
       {
@@ -90,6 +93,12 @@
         "source": "derived"
       },
       {
+        "name": "heal-spec-docs.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        "source": "derived"
+      },
+      {
         "name": "check-template-staleness.sh",
         "kind": "script",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh",
@@ -102,15 +111,21 @@
         "source": "derived"
       },
       {
-        "name": "heal-spec-docs.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
-        "source": "derived"
-      },
-      {
         "name": "MIGRATION.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/templates/MIGRATION.md",
+        "source": "derived"
+      },
+      {
+        "name": "heal-provenance.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-provenance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": "runtime/cli/utils/template-structure.js",
         "source": "derived"
       },
       {
@@ -184,23 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`check-template-staleness.sh --auto-upgrade` at line 181 uses sed -i '' to bump template versions on any old marker with no structural check, inventing history for documents that changed templates only in version number",
     "created_at": "2026-10-08T04:22:43Z",
-    "last_save_at": "2026-10-08T07:39:26.810Z",
+    "last_save_at": "2026-10-08T12:21:20.038Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7ea89f500b0df732b365a0a74d4a9d8bcaa58dcd8e70755b081dbf4db9450acf",
+    "source_fingerprint": "sha256:c738b3c11e578cbe5d6e186fc0b5e1d111c6508526a871803dbaefe3eec3e023",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "770aac37ba1e13453666980c1be218617e8372a9a30b7cc09602419cf06c6f35",
-      "plan.md": "c59e0fb21d4a58af3ed12c9ec4fd0470c1e39e2d2a713d1b6e18304a0ac9a81c",
-      "tasks.md": "b02bb9b7ef22937856b5b5d893819a4775ba8b289035ece019a3612931294f45",
-      "implementation-summary.md": "1cb36b82d09745a8eadbefb1839ee85c855aff2016d11dfec41bd3543a2d3686"
+      "spec.md": "e72e2d6f9c257351d174b905bd9a45af81a921bc60480312c94f42774525707d",
+      "plan.md": "26ff4893a2d7c564443b4ac20092049c340624f854b4f113a13fd032e9350bbc",
+      "tasks.md": "d7c95f781032ee1f4d3597ca9fd7cc6cd76bc315126b0713541572e29f35b7d3",
+      "implementation-summary.md": "93f6ce6686b806d417f414e43583d6882bcf662d3b867b7a4cb687699e16f2b5"
     },
     "last_active_at": null
   }

@@ -25,7 +25,7 @@ contextType: "general"
 | **Testing** | Vitest unit tests |
 
 ### Overview
-Make provenance stamping evidence-gated, as the operator decided on 2026-10-08. Retire `check-template-staleness.sh --auto-upgrade`: for one release the flag prints "removed, use upgrade-legacy" and exits 2. Remove the dead `quality-audit.sh --fix` branch or point it at upgrade-legacy. Make heal-spec-docs.cjs stamp a header only on an exact match against the anchor set rendered for the document's level. Add no marker to unknown-provenance documents, and state the rule in MIGRATION.md.
+Make provenance stamping evidence-gated, as the operator decided on 2026-10-08. Retire `check-template-staleness.sh --auto-upgrade`: for one release the flag prints "removed, use upgrade-legacy" and exits 2. Remove the dead `quality-audit.sh --fix` branch, and make that flag exit 2 with the same pointer. Make heal-spec-docs.cjs stamp a header only on an exact match against the anchor set rendered for the document's level, taking the header from that level's rendered template. Add no marker to unknown-provenance documents, and state the rule in MIGRATION.md.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -34,15 +34,15 @@ Make provenance stamping evidence-gated, as the operator decided on 2026-10-08. 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] check-template-staleness.sh, quality-audit.sh and heal-spec-docs.cjs code paths traced
-- [ ] The renderer that produces a level's anchor set located, so the healer can reuse it
-- [ ] In-repo callers of --auto-upgrade confirmed with rg (quality-audit.sh only)
+- [x] check-template-staleness.sh, quality-audit.sh and heal-spec-docs.cjs code paths traced
+- [x] The renderer that produces a level's anchor set located, so the healer can reuse it
+- [x] In-repo callers of --auto-upgrade confirmed with rg (quality-audit.sh only)
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests pass
-- [ ] Docs updated (spec/plan/tasks, MIGRATION.md)
-- [ ] validate.sh --strict passes
+- [x] All acceptance criteria met
+- [x] Tests pass
+- [x] Docs updated (spec/plan/tasks, MIGRATION.md)
+- [x] validate.sh --strict passes
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -55,12 +55,12 @@ Fix at source: a tool writes a template header only from exact evidence, and nev
 
 ### Key Components
 - **check-template-staleness.sh**: The report stays. The `--auto-upgrade` branch is replaced by a message and exit 2
-- **quality-audit.sh**: The `--fix` branch no longer calls the staleness script
-- **heal-spec-docs.cjs**: Compares the document's anchor set with the set rendered for its level, and stamps only on equality
+- **quality-audit.sh**: The `--fix` branch is removed, so nothing calls the staleness script, and the flag prints "--fix was removed, use upgrade-legacy" and exits 2
+- **heal-spec-docs.cjs**: Reads the level from spec.md (marker, then metadata-table row, then frontmatter `level:`), compares the document's anchor set with the required and optional anchors of that level's template contract, and stamps only on equality. The stamped header is the `SPECKIT_TEMPLATE_SOURCE` line the level's template renders, so no fixed header table remains
 
 ### Data Flow
 1. A document lacks a template marker or has an old one
-2. heal-spec-docs renders the level's anchor set and compares
+2. heal-spec-docs loads the level's template contract and compares
 3. Equal: name the template. Not equal: leave the document as it is
 4. An old marker is never bumped, and no unknown-provenance marker is added
 <!-- /ANCHOR:architecture -->
@@ -73,7 +73,7 @@ Fix at source: a tool writes a template header only from exact evidence, and nev
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `check-template-staleness.sh:171-186` | Version bump under --auto-upgrade | Replace with "removed, use upgrade-legacy" and exit 2 | Test runs the flag and checks message and exit code |
-| `quality-audit.sh:148-153` | Dead --fix call to the staleness script | Remove, or point at upgrade-legacy | rg finds no --auto-upgrade call |
+| `quality-audit.sh:148-153` | Dead --fix call to the staleness script | Removed. The flag prints "--fix was removed, use upgrade-legacy" and exits 2 | rg finds no --auto-upgrade call, and a test runs the flag |
 | `heal-spec-docs.cjs:60-83` | Superset check against a fixed Level 1 list | Exact equality against the level's rendered anchor set | Test: exact match stamps, superset and subset do not |
 | `templates/MIGRATION.md` | Legacy marker policy | State the never-invent-history rule | grep for the rule |
 | `template-version-parity.vitest.ts` | Reads the staleness script's manifest path | Unchanged | Suite still passes |
@@ -106,7 +106,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 |-----------|-------|-------|
 | Unit | heal-spec-docs exact level match: exact stamps, superset and subset do not | Vitest |
 | Unit | --auto-upgrade prints "removed, use upgrade-legacy", exits 2 and writes nothing | Vitest running the script on a fixture |
-| Manual | One markerless and one old-marker document traced through heal-spec-docs | Terminal |
+| Unit | quality-audit.sh --fix prints the same message, exits 2 and writes nothing | Vitest running the script on a fixture |
+| Unit | A plan whose spec.md records its level only in frontmatter is still stamped | Vitest |
+| Manual | One markerless and one old-marker document traced through heal-spec-docs | Terminal, in a scratch copy |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -161,8 +163,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Tests pass before commit
-- [ ] rg confirms no in-repo caller still passes --auto-upgrade
+- [x] Tests pass before commit
+- [x] rg confirms no in-repo caller still passes --auto-upgrade
 
 ### Rollback Procedure
 1. `git revert` the commit

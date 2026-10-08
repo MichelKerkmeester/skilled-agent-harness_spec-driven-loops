@@ -20,7 +20,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-08 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
@@ -71,6 +71,7 @@ Make provenance stamping evidence-gated so the upgrade path never invents templa
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs` | Modify | Exact match against the level's rendered anchor set, not a superset of a fixed list |
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh` | Modify | Remove the dead `--fix` branch, or point it at upgrade-legacy |
 | `.skilled/skills/system-spec-kit/templates/MIGRATION.md` | Modify | State the never-invent-history rule |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/heal-provenance.vitest.ts` | Create | Pin the retired flags and the exact-anchor stamp |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -133,6 +134,13 @@ None open. Decided 2026-10-08 by the operator:
 - **`--auto-upgrade` is retired.** Its only write is a version bump that anchors cannot prove, and its one in-repo caller never reaches it. For one release the flag prints "removed, use upgrade-legacy" and exits 2. Restricting it to an exact anchor match with no bump was considered and rejected, because with no bump the flag has nothing left to do.
 - **No marker on unknown-provenance documents.** Adding one would be the rewrite `MIGRATION.md:40` forbids, and a missing marker is already detectable.
 - **Build note.** The signatures at `heal-spec-docs.cjs:60-65` list only the six Level 1 spec anchors, so exact equality against them would never match a Level 2 or 3 spec.md. The exact comparison must use the anchor set rendered for the document's level.
+
+Questions answered during the build:
+
+- **The healer reads the level the way the validator does.** `declaredLevel` takes the `SPECKIT_LEVEL` marker first, then the metadata-table `Level` row, then the frontmatter `level:` key. The first version skipped the frontmatter key, which the review caught. A packet that records no level is refused with a named reason, so a document is never compared against a guessed level.
+- **The stamped header comes from the rendered template.** The healer imports `loadTemplateContractForDocument` and `normalizeLevel` from `template-structure.js`, compares the document's anchors with the required and optional anchors together, and reads the `SPECKIT_TEMPLATE_SOURCE` line the level actually renders. `TEMPLATE_SIGNATURES` and `matchesSignature` are gone, so no fixed header table remains. `evaluateTemplateGate` and `renderManifestTemplate` are not exported from `template-structure.js`, so the healer carries a local walk that mirrors them, with the same gate grammar (operators case-insensitive, level atom case-sensitive).
+- **`quality-audit.sh --fix` was removed and made loud.** The spec allowed removing the branch or pointing it at `upgrade-legacy`. The build removed the branch and also made the flag print "--fix was removed, use upgrade-legacy" and exit 2, the same shape as `--auto-upgrade`, so an outside script gets a clear failure instead of a silent no-op.
+- **REQ-003 is read together with REQ-001.** A markerless document whose anchors equal its level's render is still named, as the edge case "Document with an exact level match and no marker" allows. REQ-003 and AC-003 therefore cover every old-marker document, which the healer never touches, and every markerless document that fails the exact check.
 
 <!-- /ANCHOR:questions -->
 
