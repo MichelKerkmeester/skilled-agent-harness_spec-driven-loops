@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance",
+  "spec_folder": "system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance",
+  "parent_id": "system-speckit/034-spec-folder-tooling/016-research-recommendations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "evidence gated provenance",
+      "phase 6 evidence gated provenance",
+      "template version stamping evidence",
+      "evidence gated provenance plan",
+      "template version stamping plan",
+      "evidence gated provenance tasks",
+      "template version stamping tasks",
+      "evidence gated provenance acceptance criteria",
+      "phase 6 evidence gated provenance goal",
+      "packet goal",
+      "evidence gated provenance implementation summary"
+    ],
+    "key_topics": [
+      "evidence",
+      "gated",
+      "provenance",
+      "phase",
+      "template",
+      "version",
+      "stamping",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+      ".skilled/skills/system-spec-kit/templates/MIGRATION.md",
+      "templates/MIGRATION.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-template-staleness.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "quality-audit.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh",
+        "source": "derived"
+      },
+      {
+        "name": "heal-spec-docs.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "MIGRATION.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/templates/MIGRATION.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Make",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`check-template-staleness.sh --auto-upgrade` at line 181 uses sed -i '' to bump template versions on any old marker with no structural check, inventing history for documents that changed templates only in version number",
+    "created_at": "2026-10-08T04:22:43Z",
+    "last_save_at": "2026-10-08T06:47:51.869Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3fe928a59f7f25628331e790b172a64dbda28ced784fbf032818e973ce5f8fc9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "770aac37ba1e13453666980c1be218617e8372a9a30b7cc09602419cf06c6f35",
+      "plan.md": "c59e0fb21d4a58af3ed12c9ec4fd0470c1e39e2d2a713d1b6e18304a0ac9a81c",
+      "tasks.md": "b02bb9b7ef22937856b5b5d893819a4775ba8b289035ece019a3612931294f45",
+      "implementation-summary.md": "1cb36b82d09745a8eadbefb1839ee85c855aff2016d11dfec41bd3543a2d3686"
+    },
+    "last_active_at": null
+  }
+}

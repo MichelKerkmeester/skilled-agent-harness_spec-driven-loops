@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment",
+  "spec_folder": "system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment",
+  "parent_id": "system-speckit/034-spec-folder-tooling/016-research-recommendations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "anchor contract alignment",
+      "ANCHORS_VALID order nesting",
+      "anchor contract specification",
+      "anchor contract alignment plan",
+      "ANCHORS_VALID anchor rules plan",
+      "anchor contract alignment tasks",
+      "ANCHORS_VALID implementation tasks",
+      "anchor contract alignment acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "anchor",
+      "contract",
+      "alignment",
+      "order",
+      "nesting",
+      "specification",
+      "plan",
+      "rules",
+      "tasks",
+      "implementation",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+      ".skilled/skills/system-spec-kit/references/validation/validation-rules.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "validation-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Validator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Anchor Rules",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The ANCHORSVALID check in the validator code only detects duplicate anchor opens, unopened closes, unclosed opens, and documents with zero anchors",
+    "created_at": "2026-10-08T04:22:48Z",
+    "last_save_at": "2026-10-08T06:47:53.765Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:84ec6bd40e329bbdba7c3009669ea7ab62fcf0cf6f1c7c84bff926f9249d00f4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "389dca435e19d31b80bada0d205c2d787d9b165f49cad1d99b195fe90c5c38d5",
+      "plan.md": "646ee9bcc138c359f41ce1c9c64f8c8e625e410fdaff1e297a74b43bb9f92e45",
+      "tasks.md": "a0fbcf7c6343f56bd0339e47d4694b7ec1e0bc0b3e1381eecf01e3e424850695",
+      "implementation-summary.md": "437ce332bd1dacc867236abcabfd64c5eceea053b5a20a6fb95514579ef67019"
+    },
+    "last_active_at": null
+  }
+}

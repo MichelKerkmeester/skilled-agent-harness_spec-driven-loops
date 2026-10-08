@@ -26,9 +26,9 @@ contextType: "implementation"
 | **Created** | 2026-10-08 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 15 of 15 |
+| **Phase** | 15 of 16 |
 | **Predecessor** | 014-spec-auto-healing-research |
-| **Successor** | None |
+| **Successor** | 016-research-recommendations |
 | **Handoff Criteria** | An archived and a restored packet each pass strict validation with no manual step, and a local index build matches the CI build of the same commit |
 <!-- /ANCHOR:metadata -->
 

@@ -26,7 +26,7 @@ contextType: "research"
 | **Created** | 2026-10-07 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 14 of 15 |
+| **Phase** | 14 of 16 |
 | **Predecessor** | 013-corpus-wide-validation-repair |
 | **Successor** | 015-archive-current-location-and-ignored-files |
 | **Handoff Criteria** | `research/research.md` ranks evidence-cited recommendations for all five questions, each with its effort, risk and the files it touches. This packet passes strict validation |

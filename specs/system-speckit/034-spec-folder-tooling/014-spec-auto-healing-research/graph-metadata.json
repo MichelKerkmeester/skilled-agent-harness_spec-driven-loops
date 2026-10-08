@@ -206,7 +206,7 @@
     ],
     "causal_summary": "A baseline over all 4,371 packets found 2,046 failing strict validation, most of them archived packets whose recorded paths went stale when they were moved",
     "created_at": "2026-10-07T20:43:21Z",
-    "last_save_at": "2026-10-08T03:43:00.469Z",
+    "last_save_at": "2026-10-08T04:24:36.298Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ba298056032eb99b3aa551195833f03d7971057889e2d2cfc60716fcd642bf2b",
+    "source_fingerprint": "sha256:20b915ab5f53f8334eeee42b7efad01ed478eab837c3140d466f0c7f6dca1f24",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "26db29066b18c5e5b45c2fcfc2362c67f955a3c6d7bb2f95baae5872ea98b20e",
+      "spec.md": "a2127c1b65db2909c032bdc480146aed56f960d317763b0aefc79541b4c9ec68",
       "plan.md": "50a2661d6010c6a4abfaf4b6efb3377c69c124aa30346e9f59565d565946d488",
       "tasks.md": "d19a73468caa1d240ad2ca7dd3840baf66f113d2e86fe961a7b57adb03a1deb9",
       "implementation-summary.md": "ab0b509d67b5c08e59fbe3d9c2acc6c2954b09f8e18a571cc0d383e04cec22fe",

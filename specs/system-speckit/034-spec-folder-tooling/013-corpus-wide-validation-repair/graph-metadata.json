@@ -192,7 +192,7 @@
     ],
     "causal_summary": "A baseline over all 4,371 packets found 2,046 failing strict validation: 1,935 of the 2,198 archived packets and 111 of the 2,173 live ones, besides 37 non-packet folders",
     "created_at": "2026-10-07T19:32:04Z",
-    "last_save_at": "2026-10-08T03:42:59.158Z",
+    "last_save_at": "2026-10-08T04:24:34.950Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:49aa32d5e3c18b89aacb3f81adccd8fc74177d055cf7f7feed2835019f58df5a",
+    "source_fingerprint": "sha256:979756a82178d147492f5367f630084f98df2790b5b308f65da3b99f546fba62",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "81a4b2f5e123f5927cb7936f858e4a19872a45f63aaee107518e7df3f592b73f",
+      "spec.md": "6dfab16e1726ebcceefd405bc6ae167415922d623f2d35174f6807d34d9bb240",
       "plan.md": "c274980dcc097f36209c2ba3a199a6ff734428ecf2d2758165d4a4ad7342922e",
       "tasks.md": "fe07b30cef32e43a9d68552757ea6c0e583e9e72fbad745cb54a39dd0163984c",
       "implementation-summary.md": "116794b14559824b248fc5372ef7bce2e834ac9c821c46d8a3838cbf78fb0c8c"

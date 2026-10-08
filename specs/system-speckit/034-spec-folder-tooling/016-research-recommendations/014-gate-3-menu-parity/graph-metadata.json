@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity",
+  "spec_folder": "system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity",
+  "parent_id": "system-speckit/034-spec-folder-tooling/016-research-recommendations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gate 3 menu parity",
+      "gate 3 choice wording consistency",
+      "render every Gate 3 menu from constants",
+      "gate 3 choice consistency plan",
+      "gate 3 menu parity tasks",
+      "gate 3 constants parity",
+      "gate 3 menu parity acceptance",
+      "gate 3 constants parity verification",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "gate",
+      "menu",
+      "parity",
+      "choice",
+      "wording",
+      "consistency",
+      "render",
+      "every",
+      "constants",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/create/assets/create-feature-catalog-presentation.txt",
+      ".skilled/commands/create/assets/create-manual-testing-playbook-presentation.txt",
+      ".skilled/commands/create/assets/create-skill-parent-presentation.txt",
+      ".skilled/commands/create/assets/create-skill-presentation.txt",
+      ".skilled/commands/deep/assets/deep-ai-council-presentation.txt",
+      ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      ".skilled/commands/deep/assets/deep-review-presentation.txt",
+      ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
+      ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+      ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-feature-catalog-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/create/assets/create-feature-catalog-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "create-manual-testing-playbook-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/create/assets/create-manual-testing-playbook-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "create-skill-parent-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/create/assets/create-skill-parent-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "create-skill-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/create/assets/create-skill-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-ai-council-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-complete-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-plan-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`GATE3CHOICERELATED` in `spec-gate-core.mjs:151` reads \"Use a related folder, phase child, or a series parent for a different change to the same artifact as an existing packet in the same track\"",
+    "created_at": "2026-10-08T04:22:48Z",
+    "last_save_at": "2026-10-08T06:47:53.737Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b2b256953aa1a83fec03d4ea8257bc031a06df1327cb6e955c06218275c43f05",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f0921131590be70ddca46f5ce9a66a898421ffd812ffe42f4e32dfab0f8e4f55",
+      "plan.md": "bf169299d98dc82c04ce7ac1789dd990d63bcd6c44722ff1f53d93d2c6d4122a",
+      "tasks.md": "11fee3dd2c7d2242d766f71dc61672c579b2e58617bc2e046b3339d9359bc910",
+      "implementation-summary.md": "693871ff29255566914dcb0e00276127415e1a6605fea3edd8e7434866683ebb"
+    },
+    "last_active_at": null
+  }
+}

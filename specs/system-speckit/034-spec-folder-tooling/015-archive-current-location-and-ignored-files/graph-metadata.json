@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`archive.sh` moved a packet and refreshed only the track root, so `description.json` `specFolder`, the graph metadata ids and each document's packet pointer kept naming the folder the packet left, and the validator failed it",
     "created_at": "2026-10-08T03:25:30Z",
-    "last_save_at": "2026-10-08T03:42:38.312Z",
+    "last_save_at": "2026-10-08T04:24:34.951Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f4e8a6e0fe694ae7352da157c4b997f79c8117b1d85251cf2013190207538e60",
+    "source_fingerprint": "sha256:72050e65cefd4e5aea33a11c2a5647247e5b94bad7575a433d6b9f0d37cecce2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "252b5401658ed654fbe6072e815b95d3f107eafc7f329ed9ef36846fb48718b7",
+      "spec.md": "894087fdabc72f9218de2ba3f10dc6be81acfccfec4737a4982a31430175b1d5",
       "plan.md": "6891f8608d73c3cb4d1fbbc83286adaf2bc396742a4242038ebca332713ef2be",
       "tasks.md": "af03d58172ededdba4a5139b39e4f81b1003b143ddb66fc5633963513ae84593",
       "implementation-summary.md": "bf86ff9ad5a3c105b253d828fba7f6fd1ef92d7d97eb2530c39670b17f3e28f2"

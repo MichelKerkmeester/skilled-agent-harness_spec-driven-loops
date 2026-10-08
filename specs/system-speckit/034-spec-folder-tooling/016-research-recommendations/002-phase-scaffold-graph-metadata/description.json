@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata",
+  "description": "Phase 2: phase-scaffold-graph-metadata",
+  "keywords": [
+    "phase",
+    "phase-scaffold-graph-metadata"
+  ],
+  "lastUpdated": "2026-10-08T04:22:40.716Z",
+  "specId": "002",
+  "folderSlug": "phase-scaffold-graph-metadata",
+  "parentChain": [
+    "system-speckit",
+    "034-spec-folder-tooling",
+    "016-research-recommendations"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report",
+  "description": "Phase 8: legacy-era-report",
+  "keywords": [
+    "phase",
+    "legacy-era-report"
+  ],
+  "lastUpdated": "2026-10-08T04:22:45.128Z",
+  "specId": "008",
+  "folderSlug": "legacy-era-report",
+  "parentChain": [
+    "system-speckit",
+    "034-spec-folder-tooling",
+    "016-research-recommendations"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

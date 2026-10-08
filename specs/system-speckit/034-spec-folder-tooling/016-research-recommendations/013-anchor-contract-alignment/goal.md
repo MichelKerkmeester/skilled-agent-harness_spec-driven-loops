@@ -1,0 +1,82 @@
+---
+title: "Goal: Phase 13: anchor-contract-alignment"
+description: "The durable directive this packet executes against and the criteria that decide when it is done."
+trigger_phrases:
+  - "packet goal"
+  - "durable directive"
+  - "completion criteria"
+  - "goal binding"
+importance_tier: "important"
+contextType: "planning"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment"
+    last_updated_at: "2026-10-08T12:00:00Z"
+    last_updated_by: "planning-agent"
+    recent_action: "Authored the durable directive"
+    next_safe_action: "Operator chooses anchor rule option"
+    blockers: ["Operator decision"]
+    key_files: ["spec.md", "plan.md", "tasks.md", "acceptance-criteria.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "bd2aa56c-623b-43f8-a2ef-69a13c32d626"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: ["Which anchor rules should ANCHORS_VALID check?"]
+    answered_questions: []
+---
+# Goal: Phase 13: anchor-contract-alignment
+
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+<!-- GOAL_AUTHORING: .skilled/skills/sk-doc/sk-create-goal/SKILL.md -->
+
+---
+
+<!-- ANCHOR:directive -->
+## 1. DURABLE DIRECTIVE
+
+**Objective:** Make ANCHORS_VALID report nesting, except `adr-NNN` holding `adr-NNN-*`, and duplicate closers, ship nesting as a warning after phase 001 and as an error after phase 011, and make the code, registry and docs say the same thing.
+
+### Decisions
+
+Frozen choices, decided 2026-10-08 by the operator. Changing one is an amendment.
+
+| ID | Decision |
+|----|----------|
+| D1 | Option 2: a nesting check that allows `adr-NNN` to contain `adr-NNN-*`, the decision-record layout |
+| D2 | Duplicate closers are detected: a name closed more times than it is opened |
+| D3 | Nesting is a warning after phase 001 lands and an error after phase 011 lands. 013 depends on 001 and 011 |
+| D4 | Template-sequence order is rejected |
+| D5 | Baseline the corpus before each severity step |
+
+<!-- /ANCHOR:directive -->
+
+---
+
+<!-- ANCHOR:completion -->
+## 2. COMPLETION CRITERIA
+
+- [ ] Vitest fixtures pass: nested `questions` reported, `adr-001` holding `adr-001-context` allowed, a duplicate closer reported
+- [ ] A nesting finding is a warning before phase 011 lands and an error after, shown by a fixture checking the severity
+- [ ] `sed -n '109p' .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json` and validation-rules.md Anchor Rules describe exactly what the code checks
+- [ ] A baseline and a comparison report exist for each step, as files in this packet's scratch/ folder
+- [ ] `validate.sh --strict` on this packet prints RESULT: PASSED
+
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:log -->
+## 3. LOG
+
+### Deviations and findings
+
+| Item | Note |
+|------|------|
+| Anchor rules decided | 2026-10-08, the operator chose option 2 with the `adr-NNN` allowance plus duplicate closers. The allowance is needed because the decision-record template nests by design, so a literal "no nesting" rule fails a correct template |
+| Severity steps decided | Warning after 001, error after 011, because about 416 live packets nest today, 403 of them only through the old `questions` layout |
+| Order rejected | Template-sequence order would add about 45 live and 95 archived failures with no repair, and regrade the corpus on template edits |
+<!-- /ANCHOR:log -->
+
+---

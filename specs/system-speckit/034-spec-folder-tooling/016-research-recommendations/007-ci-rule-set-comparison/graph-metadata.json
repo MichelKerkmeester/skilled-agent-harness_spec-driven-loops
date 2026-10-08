@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison",
+  "spec_folder": "system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison",
+  "parent_id": "system-speckit/034-spec-folder-tooling/016-research-recommendations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ci rule set comparison",
+      "phase 7 ci rule set comparison",
+      "ci regression gate comparison rule sets",
+      "ci rule set comparison plan",
+      "ci rule set comparison tasks",
+      "ci rule set comparison acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "ci rule set comparison implementation summary"
+    ],
+    "key_topics": [
+      "rule",
+      "set",
+      "comparison",
+      "phase",
+      "regression",
+      "gate",
+      "sets",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".github/workflows/changed-packet-validation.yml",
+      ".github/workflows/strict-pass-freshness-report.yml",
+      ".github/workflows/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "changed-packet-validation.yml",
+        "kind": "config",
+        "path": ".github/workflows/changed-packet-validation.yml",
+        "source": "derived"
+      },
+      {
+        "name": "strict-pass-freshness-report.yml",
+        "kind": "config",
+        "path": ".github/workflows/strict-pass-freshness-report.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Declarative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.github/workflows/changed-packet-validation.yml` lines 139 to 146 compare only verdicts: if the base passed and the head failed, it is a regression",
+    "created_at": "2026-10-08T04:22:43Z",
+    "last_save_at": "2026-10-08T05:31:26.228Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bc829f5e763c04faf0b28bc05a5f93508632b20ccb3e6d7af0a19e19f171ee7a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "365b5648169d453c51df49a8cdc6b22ccf99c37d566dadace76af1b7ed91a9c3",
+      "plan.md": "cfb4df1276a367408a8887d547911c9b963b2a1e5e0bb17fd92e4007a6b8b41b",
+      "tasks.md": "e605404bdb556c194723ac4b13aa142396c9d717fba33585e3a06c119ffb3ac0",
+      "implementation-summary.md": "37855bc7f65812aeaa7bb51c18077467a4f810b6ba59afa31402a8ee27ab0e8c"
+    },
+    "last_active_at": null
+  }
+}

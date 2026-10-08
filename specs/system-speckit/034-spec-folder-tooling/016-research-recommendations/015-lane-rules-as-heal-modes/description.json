@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes",
+  "description": "Phase 15: lane-rules-as-heal-modes",
+  "keywords": [
+    "phase",
+    "lane-rules-as-heal-modes"
+  ],
+  "lastUpdated": "2026-10-08T04:22:50.191Z",
+  "specId": "015",
+  "folderSlug": "lane-rules-as-heal-modes",
+  "parentChain": [
+    "system-speckit",
+    "034-spec-folder-tooling",
+    "016-research-recommendations"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

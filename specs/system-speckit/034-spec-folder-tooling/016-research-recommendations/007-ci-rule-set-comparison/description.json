@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison",
+  "description": "Phase 7: ci-rule-set-comparison",
+  "keywords": [
+    "phase",
+    "ci-rule-set-comparison"
+  ],
+  "lastUpdated": "2026-10-08T04:22:44.396Z",
+  "specId": "007",
+  "folderSlug": "ci-rule-set-comparison",
+  "parentChain": [
+    "system-speckit",
+    "034-spec-folder-tooling",
+    "016-research-recommendations"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
