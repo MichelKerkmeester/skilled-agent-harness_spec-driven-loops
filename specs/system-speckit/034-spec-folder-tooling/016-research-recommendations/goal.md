@@ -44,13 +44,13 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Builders: DeepSeek V4.1 Flash max through cli-pi on two routes, `opencode-go` and `llmgateway`, and GPT-6 Luna max fast through cli-codex. Each child goal names its route, command and reviewer |
-| D2 | Waves, run in order. No two phases in a wave write the same file. W1: 001 002 004 005 008 014. W2: 006 007 010 016. W3: 011. W4: 003 012 013. W5: 015. W6: 009 |
+| D1 | Builders and reviewers: DeepSeek V4.1 Flash max through cli-pi on `opencode-go` and `llmgateway`. The operator dropped Luna on 2026-10-08 after wave 2, so a child goal's Luna route reads as DeepSeek |
+| D2 | W1 001 002 004 005 008 014 and W2 006 007 010 016 shipped in order. The rest run as parallel lanes that never write one file at once. Lane A, upgrade-legacy: 011, 012, 015, then 009's function. Lane B, the healer: 015's modes, then 003's comment. Lanes C to E: 013, 009's doctor files, 003's test |
 | D3 | A DeepSeek brief carries one task. Every brief opens with the child-dispatch preamble and an inline persona, and ends with its allowed write set |
-| D4 | The other model family reviews each phase read-only. A finding is applied only after it is confirmed in the code, for at most two rounds |
-| D5 | This session orchestrates and runs every gate itself. A child's exit code or report is never evidence |
-| D6 | Each phase commits only its own files. Each wave pushes to main as a fast-forward, and CI must pass before the next wave starts |
-| D7 | A failing DeepSeek route switches to the other route, then to Luna. Three failed fixes on one symptom park that phase with its blocker logged. Phases that do not depend on it continue |
+| D4 | A fresh DeepSeek on the other route reviews each phase read-only, and a fresh Opus high gives the final review. A finding is applied only once confirmed in the code, for at most two rounds |
+| D5 | This session only orchestrates. Haiku 5.5 xhigh workers run gates and closeouts and save raw command output to files. Only that output is evidence, never a worker's summary |
+| D6 | Each phase commits only its own files. A closed phase pushes to main as a fast-forward, and CI must pass before the next push |
+| D7 | A failing route switches to the other route. Three failed fixes on one symptom park that phase with its blocker logged. Phases that do not depend on it continue |
 | D8 | Nesting in the anchor check ships as a warning after 001 and becomes an error only after 011 has un-nested the corpus |
 
 <!-- /ANCHOR:directive -->
@@ -123,7 +123,8 @@ and findings belong here.
 | Wave 1 ship | Done | Pushed to `main` as a fast-forward (`73be1380b6`, `c65147fca3`); the rebuild job lost a staged push race and recovered as `08af7d089e`; CI on `08af7d089e`: 11 workflows success, Trigger Index Rebuild skipped by its own guard |
 | Wave 2 build | Done | 006 (opencode-go), 007 (llmgateway), 010 and 016 (Luna) Complete. Final gates after 010's second review round: CLI test 1,685 passed, 0 failed (baseline 1,639); `check` and typecheck rc 0; hook tests 184 run, 0 failed; each phase `validate.sh --strict` PASSED and `check-goal.cjs` 5/5 |
 | Wave 2 ship | Done | Pushed as a fast-forward (`3872d55aab`). Spec-Kit Check failed on it: a doctor test pinned 12 hook gates and 016 registered a 13th. Fixed in `3000be113c`; CI on `3000be113c`: 12 workflows success. A dispatched freshness sweep (run 37783711329) loaded the stored baseline live for 007 |
-| Wave 3 | In Progress | 011 on Luna in two briefs, one per task group: the repair mode, then the upgrade-legacy wiring |
+| Wave 3 | Superseded | Luna built 011's repair mode (brief 1). Its second brief was stopped before any write when the operator moved the build to DeepSeek |
+| Amendment: DeepSeek only, parallel lanes | On 2026-10-08 the operator said: "Skip luna, use deepseke only max parallization". D1, D2, D4, D6 and D7 were rewritten, and the remaining phases run as lanes. The operator then said: "Use haiku 5.5 xhigh for things you would do yourself", "You do omly orchestration" and "Final review will be done by fresh opus high", so D4 and D5 were rewritten |
 
 ### Deviations and findings
 
