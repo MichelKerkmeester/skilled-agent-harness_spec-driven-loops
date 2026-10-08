@@ -299,6 +299,56 @@ function fixRecordedLocation(folder) {
     }
   }
 
+  const description = path.join(folder, 'description.json');
+  const descriptionText = readIfPresent(description);
+  if (descriptionText !== null) {
+    let data = null;
+    try {
+      data = JSON.parse(descriptionText);
+    } catch {
+      // Unparseable metadata is a shape failure the validator reports, and
+      // rewriting one field of a file that cannot be read would guess at the rest.
+    }
+    if (data && typeof data === 'object' && !Array.isArray(data) && typeof data.specFolder === 'string' && data.specFolder !== pointer) {
+      actions.push({
+        file: description,
+        what: `description specFolder -> ${pointer}`,
+        apply: () => {
+          const current = JSON.parse(fs.readFileSync(description, 'utf8'));
+          current.specFolder = pointer;
+          writeAtomic(description, `${JSON.stringify(current, null, 2)}\n`);
+        },
+      });
+    }
+  }
+
+  // A packet sitting directly in an archive has no parent packet: z_archive is
+  // not one, and a re-derive computes null. The graph merge keeps a stored
+  // parent over a null re-derive and flags it for review, so after a move the
+  // parent the packet was archived from would survive and fail the path check.
+  const graph = path.join(folder, 'graph-metadata.json');
+  const graphText = path.basename(path.dirname(path.resolve(REPO, folder))) === 'z_archive' ? readIfPresent(graph) : null;
+  if (graphText !== null) {
+    let data = null;
+    try {
+      data = JSON.parse(graphText);
+    } catch {
+      // A graph file that cannot be read is the re-derive's to report.
+    }
+    if (data && typeof data === 'object' && !Array.isArray(data) && data.parent_id) {
+      actions.push({
+        file: graph,
+        what: `graph parent ${data.parent_id} -> none, the packet is archived`,
+        apply: () => {
+          const current = JSON.parse(fs.readFileSync(graph, 'utf8'));
+          current.parent_id = null;
+          delete current.parent_id_review_required;
+          writeAtomic(graph, `${JSON.stringify(current, null, 2)}\n`);
+        },
+      });
+    }
+  }
+
   for (const name of DOCS) {
     const file = path.join(folder, name);
     const text = readIfPresent(file);
@@ -386,7 +436,10 @@ async function repairFolder(folder, apply) {
 // Snapshots taken before a rename are frozen by definition: their recorded
 // location is deliberately the old one, so "repairing" it to match where the
 // snapshot now sits destroys the very thing the copy was kept to preserve.
-const FROZEN_TREES = new Set(['node_modules', '.git', 'z_archive', 'scratch']);
+// An archived packet is not a snapshot. It records where it lives now, as the
+// validator requires, and git history keeps where it lived before, so it is
+// walked and repaired like any other packet.
+const FROZEN_TREES = new Set(['node_modules', '.git', 'scratch']);
 const frozen = (name) => FROZEN_TREES.has(name) || name.startsWith('.backup-');
 
 function discover(root) {

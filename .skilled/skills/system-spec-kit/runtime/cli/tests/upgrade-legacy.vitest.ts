@@ -203,12 +203,15 @@ describe('upgrade-legacy', () => {
     expect(manifest('specs/z_archive')).toBe(before);
   }, 180_000);
 
-  it('only records an archived packet and never rewrites its documents', () => {
+  // An archived packet records where it lives now, so its derived files may be
+  // written, but what its documents say is history and stays byte for byte.
+  it('repairs only an archived packet\'s derived files and never rewrites its documents', () => {
     const folder = path.join(sandbox, 'specs/z_archive/001-frozen');
-    const docs = Object.fromEntries(fs.readdirSync(folder).map((name) => [name, fs.readFileSync(path.join(folder, name), 'utf8')]));
+    const docs = Object.fromEntries(fs.readdirSync(folder).filter((name) => name.endsWith('.md')).map((name) => [name, fs.readFileSync(path.join(folder, name), 'utf8')]));
     const result = runUpgrade(['--apply', '--include-archive', '--roots', 'specs/z_archive']);
     expect(result.status, result.stdout + result.stderr).toBe(0);
-    expect(fs.readdirSync(folder).sort()).toEqual([...Object.keys(docs), 'upgrade-baseline.json'].sort());
+    expect(result.stdout).toContain('step repair-derived (archived): ok');
+    expect(fs.readdirSync(folder).filter((name) => name.endsWith('.md')).sort()).toEqual(Object.keys(docs).sort());
     for (const [name, content] of Object.entries(docs)) {
       expect(fs.readFileSync(path.join(folder, name), 'utf8'), name).toBe(content);
     }

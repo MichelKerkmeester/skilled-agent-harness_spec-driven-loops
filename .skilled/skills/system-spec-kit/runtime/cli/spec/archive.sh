@@ -172,6 +172,24 @@ refresh_track_root() {
     fi
 }
 
+# A packet records where it lives: description.json specFolder, the graph
+# metadata ids and each document's packet pointer, and the validator fails it
+# when any of them names another folder. A move leaves all of them naming the
+# folder it left, for the packet and for every packet nested in it, so they are
+# re-derived from the new path. The move has already happened by then, so a
+# failed re-derive is reported rather than undoing it.
+rederive_moved() {
+    local destination="$1"
+    local repair_script="$SCRIPT_DIR/repair-derived.cjs"
+    if [[ ! -f "$repair_script" ]]; then
+        log_warning "Recorded paths under $destination were not re-derived: $repair_script is missing. Restore it, then run repair-derived.cjs --roots $destination --apply."
+        return 0
+    fi
+    if ! node "$repair_script" --roots "$destination" --apply >/dev/null; then
+        log_warning "Recorded paths under $destination may still name the old folder. Rerun repair-derived.cjs --roots $destination --apply and read its report."
+    fi
+}
+
 # ───────────────────────────────────────────────────────────────
 # 4. CORE FUNCTIONS
 # ───────────────────────────────────────────────────────────────
@@ -291,6 +309,7 @@ archive_spec() {
     rm -rf "$resolved_spec"
 
     log_success "Archived: $resolved_spec -> $archive_root/$basename"
+    rederive_moved "$archive_root/$basename"
     refresh_track_root "$specs_root" "$track"
 
     # A phase parent's children_ids is not rewritten here. Its writer only adds
@@ -403,6 +422,7 @@ restore_spec() {
     mv "$resolved_archived" "$destination"
 
     log_success "Restored: $resolved_archived -> $destination"
+    rederive_moved "$destination"
     refresh_track_root "$specs_root" "$track"
 }
 

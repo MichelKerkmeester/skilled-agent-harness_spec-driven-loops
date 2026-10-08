@@ -93,6 +93,8 @@ some of them.
 |---------|-----------------|
 | Recorded folder name in the summary | The packet's own directory name |
 | Packet pointer in document frontmatter | The packet's path beneath the specs root |
+| `specFolder` in the generated description | The packet's path beneath the specs root |
+| Graph parent of a packet sitting directly in an archive | None, since `z_archive` is not a packet |
 | Missing level in the generated description | The level the validator detects |
 | Stale generated-metadata fingerprint | A re-derive over the packet's current sources |
 
@@ -132,9 +134,14 @@ of the remaining debt is authored rather than mechanical.
   `--roots` when possible.
 - Every packet is validated even when nothing about it can be repaired, because
   the census of what was refused is the other half of the report.
-- Archived and scratch trees are skipped. They are frozen copies that will never
-  be brought to current standards, and measuring them reports permanent debt
-  nobody can act on.
+- Scratch trees and `.backup-` snapshots are skipped. A snapshot records the
+  location it was copied from on purpose, so repairing it would destroy what it
+  was kept for.
+- Archived packets are walked and repaired. A packet records where it lives now,
+  as the validator requires, and git history keeps where it lived before.
+  `archive.sh` runs this tool on a packet after every archive and restore, so a
+  move never leaves its recorded paths behind. Only derived fields change: what
+  an archived document says is never rewritten.
 - In CI it runs without `--apply`. A gate that silently rewrote packets would
   erase the drift it exists to surface.
 

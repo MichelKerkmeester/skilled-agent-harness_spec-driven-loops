@@ -9,8 +9,9 @@
 // packet's upgrade-baseline.json. The validator reports a recorded finding as a warning, and
 // any finding the file does not list stays an error, so a new mistake still fails.
 //
-// Only packets that fail are touched, and archived snapshots are only ever recorded, never
-// rewritten. Dry by default; --apply writes.
+// Only packets that fail are touched. An archived packet's documents are history and are
+// never rewritten: only its derived fields, the recorded paths and the generated metadata,
+// are repaired so they name where it lives now. Dry by default; --apply writes.
 //
 // Usage:
 //   node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [--roots <dir>]... [--include-archive] [--apply]
@@ -75,8 +76,9 @@ const STEP_CHILD = { ...VALIDATE_CHILD, timeout: 60 * 60 * 1000 };
 // a long list of absolute folder paths in one argv would cross it.
 const BATCH = 100;
 
-// Archived and future trees are frozen snapshots, so the default scope leaves
-// them alone and --include-archive opts in deliberately.
+// Archived and future trees hold finished work, so the default scope leaves
+// them alone and --include-archive opts in deliberately. Even then only their
+// derived fields are repaired, never what their documents say.
 const ARCHIVE_SEGMENTS = new Set(['z_archive', 'z_future']);
 
 // research and review runs keep copies of spec folders inside a packet
@@ -414,6 +416,18 @@ async function repairPackets(targets) {
   return failures;
 }
 
+// An archived packet records where it lives now, like any other, so its derived
+// fields are repaired. The document steps are skipped: they fill frontmatter and
+// heal trigger phrases, which would rewrite a finished record.
+async function repairArchived(targets) {
+  const failures = [];
+  for (const batch of batches(targets)) {
+    const why = await runStep('repair-derived (archived)', [REPAIR, '--apply', ...batch.flatMap((folder) => ['--folder', folder])]);
+    if (why !== null) failures.push(why);
+  }
+  return failures;
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 7. RECORD
 // ───────────────────────────────────────────────────────────────────
@@ -489,9 +503,9 @@ async function main() {
   }
 
   if (apply) {
-    const failures = await repairPackets(packets
-      .filter((packet) => !packet.archived && before.get(packet.folder)?.passed !== true)
-      .map((packet) => packet.folder));
+    const failing = packets.filter((packet) => before.get(packet.folder)?.passed !== true);
+    const failures = await repairPackets(failing.filter((packet) => !packet.archived).map((packet) => packet.folder));
+    failures.push(...await repairArchived(failing.filter((packet) => packet.archived).map((packet) => packet.folder)));
 
     const mid = await validateAll(packets);
     const recorded = [];
@@ -586,7 +600,7 @@ async function main() {
   }).length;
   process.stdout.write(`passing=${passing}/${packets.length}\n`);
 
-  process.stdout.write('\n--apply would run: fill-frontmatter, heal-spec-docs, repair-derived, migrate-generated-json, then record the remaining findings in upgrade-baseline.json\n');
+  process.stdout.write('\n--apply would run: fill-frontmatter, heal-spec-docs, repair-derived, migrate-generated-json (archived packets: repair-derived only), then record the remaining findings in upgrade-baseline.json\n');
   process.exitCode = bad > 0 ? 1 : 0;
 }
 

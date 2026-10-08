@@ -138,6 +138,28 @@ describe('repair-derived', () => {
     expect(after).not.toContain('999-stale-name');
   });
 
+  // An archived packet records where it lives now. The walk used to skip every
+  // z_archive tree, and description.json kept the path a packet was archived
+  // from, so an archive move left failures no tool would repair.
+  it('walks into an archive and rewrites an archived packet\'s recorded paths', () => {
+    const staging = fs.mkdtempSync(path.join(SPECS, '.repair-fixture-'));
+    created.push(staging);
+    const dir = path.join(staging, 'z_archive', '001-archived');
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'implementation-summary.md'), summaryDoc('old-track/001-archived', '001-archived'));
+    fs.writeFileSync(path.join(dir, 'description.json'), `${JSON.stringify({ specFolder: 'old-track/001-archived', title: 'Fixture' }, null, 2)}\n`);
+    fs.writeFileSync(path.join(dir, 'graph-metadata.json'), `${JSON.stringify({ schema_version: 1, packet_id: 'old-track/001-archived', spec_folder: 'old-track/001-archived', parent_id: 'old-track', parent_id_review_required: true, children_ids: [] }, null, 2)}\n`);
+
+    run(['--roots', path.relative(REPO, staging), '--apply']);
+
+    const expected = path.relative(SPECS, dir).split(path.sep).join('/');
+    expect(JSON.parse(fs.readFileSync(path.join(dir, 'description.json'), 'utf8')).specFolder).toBe(expected);
+    const graph = JSON.parse(fs.readFileSync(path.join(dir, 'graph-metadata.json'), 'utf8'));
+    expect(graph.parent_id).toBeNull();
+    expect(graph.parent_id_review_required).toBeUndefined();
+    expect(fs.readFileSync(path.join(dir, 'implementation-summary.md'), 'utf8')).toContain(`packet_pointer: "${expected}"`);
+  });
+
   it('leaves a packet alone when nothing derived is wrong', () => {
     const pointerFor = (dir: string) => path.relative(SPECS, path.join(REPO, dir)).split(path.sep).join('/');
     const dir = fixture('correct', { 'implementation-summary.md': summaryDoc('placeholder', 'placeholder') });

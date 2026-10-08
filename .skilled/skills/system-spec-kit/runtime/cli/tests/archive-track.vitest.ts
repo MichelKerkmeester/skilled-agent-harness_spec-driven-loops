@@ -171,6 +171,26 @@ describe('archive.sh with tracks', () => {
     expect(result.stdout + result.stderr).not.toContain('was not refreshed');
   });
 
+  // A moved packet's recorded paths still name the folder it left, so both
+  // directions hand the new location to the re-derive. The stub records its
+  // arguments; the repair itself is covered by repair-derived's own suite.
+  it('re-derives the recorded paths at the new location after an archive and a restore', () => {
+    const calls = path.join(repo, 'repair-calls.txt');
+    fs.writeFileSync(
+      path.join(path.dirname(archiveScript), 'repair-derived.cjs'),
+      `require('node:fs').appendFileSync(${JSON.stringify(calls)}, process.argv.slice(2).join(' ') + '\\n');\n`,
+    );
+    trackRoot('tools', ['tools/001-a', 'tools/002-b']);
+
+    expect(archive(['--force', 'specs/tools/002-b']).status).toBe(0);
+    expect(archive(['--restore', 'specs/tools/z_archive/002-b']).status).toBe(0);
+
+    expect(fs.readFileSync(calls, 'utf8').trim().split('\n')).toEqual([
+      `--roots ${path.join(specs, 'tools', 'z_archive', '002-b')} --apply`,
+      `--roots ${path.join(specs, 'tools', '002-b')} --apply`,
+    ]);
+  });
+
   it('still archives, and says so, when the writer is missing', () => {
     trackRoot('tools', ['tools/001-a', 'tools/002-b']);
     fs.rmSync(path.join(path.dirname(archiveScript), 'refresh-track-roots.mjs'));
