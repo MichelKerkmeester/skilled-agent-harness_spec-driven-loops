@@ -30,6 +30,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
+import { buildReport, classifyRepo } from './repo-era.mjs';
 
 const run = promisify(execFile);
 
@@ -599,6 +600,19 @@ async function main() {
     return report !== null && report.passed === true;
   }).length;
   process.stdout.write(`passing=${passing}/${packets.length}\n`);
+
+  const eraReport = buildReport(classifyRepo(REPO));
+  const { layout, frontmatter } = eraReport.signals;
+  process.stdout.write('repo era report:\n');
+  process.stdout.write(
+    '  layout provenance: source='
+      + (layout.provenance.source ?? 'none')
+      + '; description.json residue count='
+      + layout.provenance.residueCount
+      + '\n',
+  );
+  process.stdout.write(`  layout: ${layout.kind} (v3=${layout.v3}, v4=${layout.v4})\n`);
+  process.stdout.write(`  frontmatter: present=${frontmatter.present} missing=${frontmatter.missing}\n`);
 
   process.stdout.write('\n--apply would run: fill-frontmatter, heal-spec-docs, repair-derived, migrate-generated-json (archived packets: repair-derived only), then record the remaining findings in upgrade-baseline.json\n');
   process.exitCode = bad > 0 ? 1 : 0;

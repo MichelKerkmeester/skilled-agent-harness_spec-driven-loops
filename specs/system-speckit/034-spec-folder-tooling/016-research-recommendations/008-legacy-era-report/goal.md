@@ -12,16 +12,18 @@ _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report"
     last_updated_at: "2026-10-08T12:00:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "orchestrator"
+    recent_action: "Phase built and verified"
+    next_safe_action: "Commit with wave 1"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs"
+      - ".skilled/skills/system-spec-kit/runtime/cli/tests/repo-era.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bd2aa56c-623b-43f8-a2ef-69a13c32d626"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -59,13 +61,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] PacketClassifier walks a 20-packet fixture and counts every packet exactly once (exit 0 from unit test)
-- [ ] Exclusion list filters research lineages, scratch, changelog, and git-ignored paths (exit 0 from four exclusion test cases)
-- [ ] Layout detection returns correct v3 vs v4 classification for both layouts (exit 0 from layout test cases)
-- [ ] Era report runs consistently and produces the same packet count across multiple invocations on the same input
-- [ ] Header aliases normalize all implementation-summary spelling variants to canonical name (exit 0 from alias test cases)
-- [ ] Five independent signal detectors work on pre-v4 fixture examples and all signals are counted (exit 0 from signal detector tests)
-- [ ] Latest spec-kit CLI test suite passes with no new failures (exit 0 from npm run test -- spec-kit)
+- [x] PacketClassifier walks a 20-packet fixture and counts every packet exactly once (exit 0 from unit test)
+- [x] Exclusion list filters research lineages, scratch, changelog, and git-ignored paths (exit 0 from four exclusion test cases)
+- [x] Layout detection returns correct v3 vs v4 classification for both layouts (exit 0 from layout test cases)
+- [x] Era report runs consistently and produces the same packet count across multiple invocations on the same input
+- [x] Header aliases normalize all implementation-summary spelling variants to canonical name (exit 0 from alias test cases)
+- [x] Five independent signal detectors work on pre-v4 fixture examples and all signals are counted (exit 0 from signal detector tests)
+- [x] Latest spec-kit CLI test suite passes with no new failures (exit 0 from npm run test -- spec-kit)
 
 <!-- /ANCHOR:completion -->
 
@@ -83,12 +85,27 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planning documents written | Done | spec.md, plan.md, tasks.md, acceptance-criteria.md, implementation-summary.md |
-| Validation status | Pending | repair-derived and validate.sh to run |
-| Goal binding in parent | Done | Parent goal.md:71 lists SH-09 | 008-legacy-era-report/goal.md |
+| Exclusion list and header aliases | Done | `EXCLUSION_RULES` and `HEADER_ALIASES` in `repo-era.mjs`, separate frozen tables |
+| Classifier and report | Done | `classifyRepo` and `buildReport`; corpus run 4431 packets, equal to an independent `find` count of 4431 |
+| Layout detection with provenance | Done | v3, v4 and both fixtures pass; this repository reports `v4` with residue 0 |
+| Dry-run report lines | Done | `upgrade-legacy` dry run prints the provenance, layout and frontmatter lines |
+| README section | Done | `Repo Era Report` in `runtime/cli/spec/README.md` |
+| Tests | Done | `repo-era.vitest.ts` 6 passed; with `upgrade-legacy.vitest.ts` 24 passed |
+| Cross-family review | Done | DeepSeek round 1: F1 P0 (archives pruned), F2 P2 (residue matched prose), F3 P2 (YAML level ignored); all fixed |
+| Whole-suite gates | Done | CLI test exit 0 with 162 files and 1648 tests passed against a baseline of 161 and 1639; `run check`, typecheck and build exit 0; hook tests 184 run, 0 fail |
+| Validation | Done | `validate.sh --strict` prints `RESULT: PASSED`; `check-goal.cjs` passes |
+| Goal binding in parent | Done | The parent goal.md lists SH-09 for this phase |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| (none yet) | (Phase is planned, not yet executed) |
+| 22-packet fixture, not 20 | The main fixture adds archived packets at top-level, track-level and nested depth, so it counts 22 packets |
+| Functions, not classes | `classifyRepo` and `buildReport` replace the PacketClassifier and EraReport classes the tasks named |
+| Doctor integration left to phase 009 | T009 names `doctor-update-check.yaml`; no doctor file was touched here |
+| Findings printed, not routed | The dry run prints layout and frontmatter lines only; the spec's wording about routing findings to repair stages is not built |
+| Weekly sweep caller not added | The spec lists it as an optional caller added separately |
+| Test command | The CLI package test (`npm --prefix .skilled/skills/system-spec-kit/runtime/cli test`) ran, not the root script the criteria name |
+| No test pins the dry-run lines | They were checked by running the dry run |
+| REQ-003 is undefined | AC-004 and AC-008 cite it, and spec.md has no such requirement |
 <!-- /ANCHOR:log -->

@@ -138,9 +138,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Era report read-only (no mutations)
-- [ ] Classifier tested on 4,371 packet corpus
-- [ ] No data migrations (pure analysis)
+- [x] Era report read-only (no mutations): `rg` finds no write call in `repo-era.mjs`
+- [x] Classifier tested on the packet corpus: 4,431 packets, equal to an independent `find` count (the 4,371 planned was an estimate)
+- [x] No data migrations (pure analysis)
 
 ### Rollback Procedure
 1. Revert the commit.

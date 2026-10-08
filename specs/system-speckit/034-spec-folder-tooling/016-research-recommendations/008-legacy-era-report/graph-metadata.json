@@ -39,7 +39,7 @@
       "packet"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,10 +47,18 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "templates/spec-kit-docs.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/repo-era.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
-      ".skilled/commands/doctor/assets/doctor-update-check.yaml",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs"
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+      "tests/repo-era.vitest.ts",
+      "runtime/cli/spec/README.md",
+      "retrieval/lib/corpus.mjs",
+      "spec/upgrade-legacy.mjs",
+      "spec/README.md",
+      "runtime/cli/tests/repo-era.vitest.ts"
     ],
     "entities": [
       {
@@ -90,15 +98,27 @@
         "source": "derived"
       },
       {
-        "name": "upgrade-legacy.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": "templates/spec-kit-docs.json",
         "source": "derived"
       },
       {
-        "name": "doctor-update-check.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        "name": "repo-era.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "repo-era.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/repo-era.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
         "source": "derived"
       },
       {
@@ -184,23 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Pre-v4 repos hold five independent era signals: the old `.opencode/specs` layout, documents with no frontmatter, documents without template markers or with legacy markers under drifting header names, packets with no generated metadata and packets older than their level's document set",
     "created_at": "2026-10-08T04:22:44Z",
-    "last_save_at": "2026-10-08T07:39:26.809Z",
+    "last_save_at": "2026-10-08T10:00:48.518Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:194961d8deb327c20086f2d6614eed15da50d9c37894736a0482ed73e99f5e5c",
+    "source_fingerprint": "sha256:40743caadcc11a990f1851a703149176406092c100a74495ba86ff34b074ded2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "daa4363acd180c7588b8afd38e8ede9ca706f54a641668652ea63516b27cd179",
-      "plan.md": "7e6c97b520f6caff9b92ca3b37ff668dfeaaf46cc95edf3194fdac8e378fde59",
-      "tasks.md": "7e02e806426a1941152ad2e89840267ed4005c9f82204e84e0cc69a87530ff49",
-      "implementation-summary.md": "3f1073f413a9c2bbdf70f83698c5fc25c1abcc2c8d67e15c8ab8b2a17490fd6a"
+      "spec.md": "e3120dcc097574190f1a649b76dbbed07da44101c8602660201db54dc05d8b6e",
+      "plan.md": "208d87172254f5033a8d898b790f53eac5fae2e2eb0ef50e4560234b3e0d142b",
+      "tasks.md": "5874033bb78181d8289f7199f581ac96b9b23e09ff36de2bc1e9b3cfef0f1d1d",
+      "implementation-summary.md": "82a9be87fbb26a746ee2c0699a5af62a54e20fddee5d0d978f6f57e2fa344d81"
     },
     "last_active_at": null
   }

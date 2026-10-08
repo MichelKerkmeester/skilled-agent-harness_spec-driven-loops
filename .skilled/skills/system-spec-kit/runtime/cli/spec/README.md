@@ -160,6 +160,24 @@ node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [--root
 
 ---
 
+### Repo Era Report
+
+The read-only report prints JSON and writes no files. Run it from the repository root:
+
+```bash
+node .skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs
+```
+
+Pass a repository root as the first argument to inspect another checkout. The report has five signals:
+
+- **Layout:** It uses `.opencode/specs`, packet metadata and the top-level `specs/` tree to report `v3`, `v4`, `both` or `unknown`.
+- **Frontmatter:** It counts markdown documents with and without complete YAML frontmatter.
+- **Template markers:** It counts current markers, legacy markers and documents with no marker.
+- **Generated metadata:** It counts packets with complete, stub or missing `graph-metadata.json`.
+- **Level documents:** It counts packets whose direct documents match, mismatch or cannot be compared with the declared level.
+
+---
+
 ## 7. VALIDATION
 
 Use repository-root commands:

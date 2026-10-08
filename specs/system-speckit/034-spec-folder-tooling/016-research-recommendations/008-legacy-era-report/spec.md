@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-08 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
@@ -203,9 +203,11 @@ One shared report combines all five signals with a classifier that excludes know
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Should the classifier detect v3 layout even if `.opencode/specs` has already been moved to `specs/`? (Answer: Yes, look for evidence in description.json files.)
-- Which non-packet directories besides lineages, scratch, and changelog should the exclusion list cover? (Answer: None identified yet; test with real repos.)
-- What time budget should the corpus walk have? (Not recorded: performance is not a blocker for Phase 8.)
+None open. All three were answered during the build:
+
+- **Detecting v3 after the move:** Yes. The classifier reads each packet's `description.json` and counts it as residue only when `specFolder` names the legacy `.opencode/specs` root. A prose mention of that path does not count, which the review round fixed after the first build matched prose and reported `both` on a repository that has no `.opencode/specs`. The layout result carries its provenance as `{ source, residueCount }`, where `source` is `legacy-root`, `description-residue` or `null`. On this repository the layout is `v4` with residue 0.
+- **Other non-packet directories:** None beyond the list. The exclusion list covers research lineages, the `research`, `review` and `context` containment trees, `scratch`, `z_archive/00-changelog` and git-ignored paths. The review round corrected the opposite mistake: archived packets were being dropped, so every `z_archive` at any depth is now walked and its packets are counted. The corpus run reports 4431 packets, equal to an independent `find` count that excludes the same directories.
+- **Time budget:** No budget is enforced and NFR-P01 stays as written. The whole-corpus run of 4431 packets took 18.2 s and then 13.2 s wall time in two consecutive runs, with identical output.
 <!-- /ANCHOR:questions -->
 
 ---
