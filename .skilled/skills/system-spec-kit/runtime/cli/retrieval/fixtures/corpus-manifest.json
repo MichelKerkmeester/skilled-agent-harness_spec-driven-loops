@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1fcf9caa4d9037dbfce64c130cd01a01a96b67f5edeb9fa41550eedd0ad2d23b",
+  "corpusHash": "b0fa2af4cf5f7aca6d8c8a6c95f1e24f9261ce3eac5bc651949c56e776e9a028",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23859,
+  "includedPathCount": 23961,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10292,6 +10292,10 @@
     "specs/sk-code/009-sk-code-mobile-cli-deprecation/plan.md",
     "specs/sk-code/009-sk-code-mobile-cli-deprecation/spec.md",
     "specs/sk-code/009-sk-code-mobile-cli-deprecation/tasks.md",
+    "specs/sk-code/010-drift-guard-cleanup/implementation-summary.md",
+    "specs/sk-code/010-drift-guard-cleanup/plan.md",
+    "specs/sk-code/010-drift-guard-cleanup/spec.md",
+    "specs/sk-code/010-drift-guard-cleanup/tasks.md",
     "specs/sk-communication/001-sk-communication-creation/001-research-strategy/implementation-summary.md",
     "specs/sk-communication/001-sk-communication-creation/001-research-strategy/plan.md",
     "specs/sk-communication/001-sk-communication-creation/001-research-strategy/research/deep-research-dashboard.md",
@@ -23483,6 +23487,104 @@
     "specs/system-speckit/034-spec-folder-tooling/015-archive-current-location-and-ignored-files/plan.md",
     "specs/system-speckit/034-spec-folder-tooling/015-archive-current-location-and-ignored-files/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/015-archive-current-location-and-ignored-files/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/timeline.md",
     "specs/system-speckit/035-retire-memory-era-tests/implementation-summary.md",
@@ -23890,7 +23992,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "558d4685ee858463c86ea375a747ab6c3ea129720f36412461902bf2c4f5e961",
+  "manifestHash": "aa505943fa0cc3a7c37a96c2612619e1bce4d3ff6cd43c5fc080de24807fc0b0",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -25602,6 +25704,10 @@
     },
     {
       "path": "specs/sk-code/009-sk-code-mobile-cli-deprecation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/010-drift-guard-cleanup/scratch",
       "reason": "excluded directory"
     },
     {
@@ -29386,6 +29492,70 @@
     },
     {
       "path": "specs/system-speckit/034-spec-folder-tooling/015-archive-current-location-and-ignored-files/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/scratch",
       "reason": "excluded directory"
     },
     {

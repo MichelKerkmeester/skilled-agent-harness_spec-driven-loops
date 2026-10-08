@@ -1,5 +1,5 @@
 {
-  "manifestHash": "558d4685ee858463c86ea375a747ab6c3ea129720f36412461902bf2c4f5e961",
+  "manifestHash": "aa505943fa0cc3a7c37a96c2612619e1bce4d3ff6cd43c5fc080de24807fc0b0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10669,6 +10669,24 @@
     "anchor citation threshold": [
       "anchor citation threshold"
     ],
+    "anchor contract alignment": [
+      "anchor contract alignment"
+    ],
+    "anchor contract alignment acceptance criteria": [
+      "anchor contract alignment acceptance criteria"
+    ],
+    "anchor contract alignment implementation summary": [
+      "anchor contract alignment implementation summary"
+    ],
+    "anchor contract alignment plan": [
+      "anchor contract alignment plan"
+    ],
+    "anchor contract alignment tasks": [
+      "anchor contract alignment tasks"
+    ],
+    "anchor contract specification": [
+      "anchor contract specification"
+    ],
     "anchor generator": [
       "anchor generator"
     ],
@@ -10690,6 +10708,21 @@
     "anchor prefix matching": [
       "anchor prefix matching"
     ],
+    "anchor repair mode": [
+      "anchor repair mode"
+    ],
+    "anchor repair mode acceptance criteria": [
+      "anchor repair mode acceptance criteria"
+    ],
+    "anchor repair mode implementation summary": [
+      "anchor repair mode implementation summary"
+    ],
+    "anchor repair mode plan": [
+      "anchor repair mode plan"
+    ],
+    "anchor repair mode tasks": [
+      "anchor repair mode tasks"
+    ],
     "anchor reset plan": [
       "anchor reset plan"
     ],
@@ -10704,6 +10737,15 @@
     ],
     "anchors read by retrieval": [
       "anchors read by retrieval"
+    ],
+    "anchors valid anchor rules plan": [
+      "ANCHORS_VALID anchor rules plan"
+    ],
+    "anchors valid implementation tasks": [
+      "ANCHORS_VALID implementation tasks"
+    ],
+    "anchors valid order nesting": [
+      "ANCHORS_VALID order nesting"
     ],
     "and": [
       "and"
@@ -11477,6 +11519,21 @@
     ],
     "archive multipliers decay fix": [
       "ARCHIVE_MULTIPLIERS decay fix"
+    ],
+    "archive path follow ups": [
+      "archive path follow ups"
+    ],
+    "archive path follow ups acceptance criteria": [
+      "archive path follow ups acceptance criteria"
+    ],
+    "archive path follow ups implementation summary": [
+      "archive path follow ups implementation summary"
+    ],
+    "archive path follow ups plan": [
+      "archive path follow ups plan"
+    ],
+    "archive path follow ups tasks": [
+      "archive path follow ups tasks"
     ],
     "archive re derive recorded paths": [
       "archive re-derive recorded paths"
@@ -12444,6 +12501,9 @@
     "autofill validation override": [
       "autofill validation override"
     ],
+    "automate lane rules": [
+      "automate lane rules"
+    ],
     "automated multi model search fanout": [
       "automated multi-model search fanout"
     ],
@@ -12608,6 +12668,9 @@
     ],
     "backfill graph metadata exclusion": [
       "backfill graph metadata exclusion"
+    ],
+    "backfill graph metadata in create sh phase": [
+      "backfill graph metadata in create.sh --phase"
     ],
     "backfill graph metadata reuse": [
       "backfill-graph-metadata reuse"
@@ -13067,6 +13130,9 @@
     ],
     "before after template": [
       "before-after template"
+    ],
+    "before image manifest": [
+      "before-image manifest"
     ],
     "begin time tracking": [
       "begin time tracking"
@@ -17580,6 +17646,9 @@
     "ci push triggers tasks": [
       "ci push triggers tasks"
     ],
+    "ci regression gate comparison rule sets": [
+      "ci regression gate comparison rule sets"
+    ],
     "ci resolution plan": [
       "ci resolution plan"
     ],
@@ -17589,11 +17658,29 @@
     "ci resolution tasks": [
       "ci resolution tasks"
     ],
+    "ci rule set comparison": [
+      "ci rule set comparison"
+    ],
+    "ci rule set comparison acceptance criteria": [
+      "ci rule set comparison acceptance criteria"
+    ],
+    "ci rule set comparison implementation summary": [
+      "ci rule set comparison implementation summary"
+    ],
+    "ci rule set comparison plan": [
+      "ci rule set comparison plan"
+    ],
+    "ci rule set comparison tasks": [
+      "ci rule set comparison tasks"
+    ],
     "ci shared package resolution": [
       "ci shared package resolution"
     ],
     "ci token configuration": [
       "ci token configuration"
+    ],
+    "ci trigger index job hardening": [
+      "ci trigger index job hardening"
     ],
     "ci visual regression pipeline": [
       "ci visual regression pipeline"
@@ -27906,6 +27993,12 @@
     "create sh parent packet corruption review": [
       "create.sh parent packet corruption review"
     ],
+    "create sh phase backfill tasks": [
+      "create.sh --phase backfill tasks"
+    ],
+    "create sh phase derives graph metadata": [
+      "create.sh --phase derives graph metadata"
+    ],
     "create sh phase label criteria": [
       "create.sh phase label criteria"
     ],
@@ -35533,6 +35626,9 @@
     "deterministic ranking verdict": [
       "deterministic ranking verdict"
     ],
+    "deterministic repair rules": [
+      "deterministic repair rules"
+    ],
     "deterministic research replay": [
       "deterministic research replay"
     ],
@@ -37953,6 +38049,21 @@
     "doctor update command": [
       "doctor update command"
     ],
+    "doctor update compatibility": [
+      "doctor update compatibility"
+    ],
+    "doctor update compatibility acceptance criteria": [
+      "doctor update compatibility acceptance criteria"
+    ],
+    "doctor update compatibility implementation summary": [
+      "doctor update compatibility implementation summary"
+    ],
+    "doctor update compatibility plan": [
+      "doctor update compatibility plan"
+    ],
+    "doctor update compatibility tasks": [
+      "doctor update compatibility tasks"
+    ],
     "doctor update copied tree": [
       "doctor update copied tree"
     ],
@@ -38438,6 +38549,18 @@
     ],
     "drift guard acceptance criteria": [
       "drift guard acceptance criteria"
+    ],
+    "drift guard cleanup": [
+      "drift guard cleanup"
+    ],
+    "drift guard cleanup implementation summary": [
+      "drift guard cleanup implementation summary"
+    ],
+    "drift guard cleanup plan": [
+      "drift guard cleanup plan"
+    ],
+    "drift guard cleanup tasks": [
+      "drift guard cleanup tasks"
     ],
     "drift guard count": [
       "drift guard count"
@@ -40891,6 +41014,21 @@
     "evidence gated orca": [
       "evidence-gated Orca"
     ],
+    "evidence gated provenance": [
+      "evidence gated provenance"
+    ],
+    "evidence gated provenance acceptance criteria": [
+      "evidence gated provenance acceptance criteria"
+    ],
+    "evidence gated provenance implementation summary": [
+      "evidence gated provenance implementation summary"
+    ],
+    "evidence gated provenance plan": [
+      "evidence gated provenance plan"
+    ],
+    "evidence gated provenance tasks": [
+      "evidence gated provenance tasks"
+    ],
     "evidence ledger runtime for system deep loop": [
       "evidence-ledger runtime for system-deep-loop"
     ],
@@ -41578,6 +41716,9 @@
     ],
     "external reference library tasks": [
       "external reference library tasks"
+    ],
+    "external repo upgrade path": [
+      "external repo upgrade path"
     ],
     "external scanner reset bash": [
       "external_scanner_reset bash"
@@ -44202,6 +44343,9 @@
     "fix documentation bugs phase": [
       "fix documentation bugs phase"
     ],
+    "fix duplicate anchors": [
+      "fix duplicate anchors"
+    ],
     "fix investigation deferred p2s for behavior and api changes changelog": [
       "fix investigation deferred p2s for behavior and api changes changelog"
     ],
@@ -44234,6 +44378,9 @@
     ],
     "fix matrix gap catalog": [
       "fix matrix gap catalog"
+    ],
+    "fix nested questions anchor": [
+      "fix nested questions anchor"
     ],
     "fix now accept as is p2 scope": [
       "fix-now accept-as-is p2 scope"
@@ -44690,6 +44837,24 @@
     ],
     "fold in worklist": [
       "fold-in worklist"
+    ],
+    "fold one off repairs": [
+      "fold one off repairs"
+    ],
+    "fold one off repairs acceptance criteria": [
+      "fold one off repairs acceptance criteria"
+    ],
+    "fold one off repairs implementation summary": [
+      "fold one off repairs implementation summary"
+    ],
+    "fold one off repairs plan": [
+      "fold one off repairs plan"
+    ],
+    "fold one off repairs tasks": [
+      "fold one off repairs tasks"
+    ],
+    "fold remaining one offs": [
+      "fold remaining one-offs"
     ],
     "folder alignment scoring": [
       "folder alignment scoring"
@@ -46082,6 +46247,21 @@
     "gate 3 asks once": [
       "Gate 3 asks once"
     ],
+    "gate 3 choice consistency plan": [
+      "gate 3 choice consistency plan"
+    ],
+    "gate 3 choice wording consistency": [
+      "gate 3 choice wording consistency"
+    ],
+    "gate 3 constants parity": [
+      "gate 3 constants parity"
+    ],
+    "gate 3 constants parity summary": [
+      "gate 3 constants parity summary"
+    ],
+    "gate 3 constants parity verification": [
+      "gate 3 constants parity verification"
+    ],
     "gate 3 delivery": [
       "gate 3 delivery"
     ],
@@ -46099,6 +46279,18 @@
     ],
     "gate 3 hook coverage": [
       "gate 3 hook coverage"
+    ],
+    "gate 3 menu parity": [
+      "gate 3 menu parity"
+    ],
+    "gate 3 menu parity acceptance": [
+      "gate 3 menu parity acceptance"
+    ],
+    "gate 3 menu parity implementation": [
+      "gate 3 menu parity implementation"
+    ],
+    "gate 3 menu parity tasks": [
+      "gate 3 menu parity tasks"
     ],
     "gate 3 menu series parent": [
       "gate 3 menu series parent"
@@ -49646,6 +49838,27 @@
     ],
     "headless stream print capture plan": [
       "headless stream print capture plan"
+    ],
+    "heal spec docs phrase refill policy": [
+      "heal-spec-docs phrase refill policy"
+    ],
+    "heal spec docs refill tasks": [
+      "heal-spec-docs refill tasks"
+    ],
+    "healer phrase seeding": [
+      "healer phrase seeding"
+    ],
+    "healer phrase seeding acceptance criteria": [
+      "healer phrase seeding acceptance criteria"
+    ],
+    "healer phrase seeding implementation summary": [
+      "healer phrase seeding implementation summary"
+    ],
+    "healer phrase seeding plan": [
+      "healer phrase seeding plan"
+    ],
+    "healer phrase seeding tasks": [
+      "healer phrase seeding tasks"
     ],
     "health and degeneration harness implementation plan": [
       "health and degeneration harness implementation plan"
@@ -54313,6 +54526,21 @@
     "lane repair tasks": [
       "lane repair tasks"
     ],
+    "lane rules as heal modes": [
+      "lane rules as heal modes"
+    ],
+    "lane rules as heal modes acceptance criteria": [
+      "lane rules as heal modes acceptance criteria"
+    ],
+    "lane rules as heal modes implementation summary": [
+      "lane rules as heal modes implementation summary"
+    ],
+    "lane rules as heal modes plan": [
+      "lane rules as heal modes plan"
+    ],
+    "lane rules as heal modes tasks": [
+      "lane rules as heal modes tasks"
+    ],
     "lane source tagging": [
       "lane source tagging"
     ],
@@ -55285,6 +55513,21 @@
     ],
     "legacy doctor delete tasks": [
       "legacy doctor delete tasks"
+    ],
+    "legacy era report": [
+      "legacy era report"
+    ],
+    "legacy era report acceptance criteria": [
+      "legacy era report acceptance criteria"
+    ],
+    "legacy era report implementation summary": [
+      "legacy era report implementation summary"
+    ],
+    "legacy era report plan": [
+      "legacy era report plan"
+    ],
+    "legacy era report tasks": [
+      "legacy era report tasks"
     ],
     "legacy file cleanup audit": [
       "legacy file cleanup audit"
@@ -64121,6 +64364,9 @@
     "narrative skill readme": [
       "narrative skill readme"
     ],
+    "narrow the alignment drift guard so it skips": [
+      "narrow the alignment drift guard so it skips"
+    ],
     "narrowing not reranking": [
       "narrowing not reranking"
     ],
@@ -70320,6 +70566,9 @@
     "phase 1 made the preflight enforce but two": [
       "phase 1 made the preflight enforce but two"
     ],
+    "phase 1 spec template anchor nesting": [
+      "phase 1 spec template anchor nesting"
+    ],
     "phase 1 verification checklist": [
       "phase 1 verification checklist"
     ],
@@ -70337,6 +70586,12 @@
     ],
     "phase 10 trigger index ci rebuild": [
       "phase 10 trigger index ci rebuild"
+    ],
+    "phase 10 upgrade reversibility": [
+      "phase 10 upgrade reversibility"
+    ],
+    "phase 11 anchor repair mode": [
+      "phase 11 anchor repair mode"
     ],
     "phase 11 goal drift remediation": [
       "phase 11 goal drift remediation"
@@ -70389,6 +70644,9 @@
     "phase 15 closure gate": [
       "phase 15 closure gate"
     ],
+    "phase 15 lane rules as heal modes": [
+      "phase 15 lane rules as heal modes"
+    ],
     "phase 15 plan": [
       "phase 15 plan"
     ],
@@ -70403,6 +70661,9 @@
     ],
     "phase 16 plan": [
       "phase 16 plan"
+    ],
+    "phase 16 research recommendations": [
+      "phase 16 research recommendations"
     ],
     "phase 16 results": [
       "phase 16 results"
@@ -70548,8 +70809,17 @@
     "phase 4 cache optimizer": [
       "phase 4 cache optimizer"
     ],
+    "phase 4 trigger index rebuild hardening": [
+      "phase 4 trigger index rebuild hardening"
+    ],
     "phase 5 completed diagnostics governance": [
       "phase 5 completed diagnostics governance"
+    ],
+    "phase 5 healer phrase seeding": [
+      "phase 5 healer phrase seeding"
+    ],
+    "phase 5 healer phrase seeding goal": [
+      "phase 5 healer phrase seeding goal"
     ],
     "phase 5 implementation review": [
       "phase 5 implementation review"
@@ -70559,6 +70829,12 @@
     ],
     "phase 6 continuity refactor gates": [
       "phase 6 continuity refactor gates"
+    ],
+    "phase 6 evidence gated provenance": [
+      "phase 6 evidence gated provenance"
+    ],
+    "phase 6 evidence gated provenance goal": [
+      "phase 6 evidence gated provenance goal"
     ],
     "phase 6 gates completion": [
       "phase 6 gates completion"
@@ -70572,11 +70848,20 @@
     "phase 6 tasks": [
       "phase 6 tasks"
     ],
+    "phase 7 ci rule set comparison": [
+      "phase 7 ci rule set comparison"
+    ],
     "phase 7 series parent review and hardening research": [
       "phase 7 series parent review and hardening research"
     ],
+    "phase 8 legacy era report": [
+      "phase 8 legacy era report"
+    ],
     "phase 8 series parent review fixes": [
       "phase 8 series parent review fixes"
+    ],
+    "phase 9 doctor update compatibility": [
+      "phase 9 doctor update compatibility"
     ],
     "phase 9 gate 3 menu series parent": [
       "phase 9 gate 3 menu series parent"
@@ -70982,8 +71267,26 @@
     "phase planning": [
       "phase planning"
     ],
+    "phase scaffold graph metadata": [
+      "phase scaffold graph metadata"
+    ],
+    "phase scaffold graph metadata acceptance criteria": [
+      "phase scaffold graph metadata acceptance criteria"
+    ],
+    "phase scaffold graph metadata implementation summary": [
+      "phase scaffold graph metadata implementation summary"
+    ],
+    "phase scaffold graph metadata plan": [
+      "phase scaffold graph metadata plan"
+    ],
+    "phase scaffold graph metadata tasks": [
+      "phase scaffold graph metadata tasks"
+    ],
     "phase scaffolding overwrites parent metadata": [
       "phase scaffolding overwrites parent metadata"
+    ],
+    "phase scaffolds pass their own gate": [
+      "phase scaffolds pass their own gate"
     ],
     "phase six deliverables": [
       "phase six deliverables"
@@ -71062,6 +71365,24 @@
     ],
     "phrase boost bound": [
       "phrase boost bound"
+    ],
+    "phrase census and cleanup plan": [
+      "phrase census and cleanup plan"
+    ],
+    "phrase census and cleanup robustness": [
+      "phrase census and cleanup robustness"
+    ],
+    "phrase cleanup hardening": [
+      "phrase cleanup hardening"
+    ],
+    "phrase cleanup hardening acceptance": [
+      "phrase cleanup hardening acceptance"
+    ],
+    "phrase cleanup hardening implementation": [
+      "phrase cleanup hardening implementation"
+    ],
+    "phrase cleanup hardening tasks": [
+      "phrase cleanup hardening tasks"
     ],
     "phrase intent booster migration": [
       "phrase intent booster migration"
@@ -73377,6 +73698,12 @@
     "pre spawn refusal": [
       "pre-spawn refusal"
     ],
+    "pre v4 detection": [
+      "pre-v4 detection"
+    ],
+    "pre v4 repo upgrade": [
+      "pre-v4 repo upgrade"
+    ],
     "pre v4 spec folder migration": [
       "pre-v4 spec folder migration"
     ],
@@ -75154,6 +75481,9 @@
     ],
     "question origin provenance": [
       "question origin provenance"
+    ],
+    "questions anchor scope": [
+      "questions anchor scope"
     ],
     "quick check failure unreachable repair": [
       "quick_check failure unreachable repair"
@@ -78860,6 +79190,9 @@
     "render contract probe harness artifact": [
       "render contract probe harness artifact"
     ],
+    "render every gate 3 menu from constants": [
+      "render every Gate 3 menu from constants"
+    ],
     "render gate evidence": [
       "render gate evidence"
     ],
@@ -79187,6 +79520,9 @@
     ],
     "repo convention audit summary": [
       "repo convention audit summary"
+    ],
+    "repo era detection": [
+      "repo era detection"
     ],
     "repo guards plugin": [
       "repo-guards plugin"
@@ -80291,6 +80627,9 @@
     ],
     "research r9 test phase": [
       "research r9 test phase"
+    ],
+    "research recommendations": [
+      "research recommendations"
     ],
     "research recovery strategies": [
       "research recovery strategies"
@@ -94639,6 +94978,9 @@
     "spec anchoring output": [
       "spec anchoring output"
     ],
+    "spec auto healing recommendations": [
+      "spec auto healing recommendations"
+    ],
     "spec auto healing research": [
       "spec auto healing research"
     ],
@@ -96128,6 +96470,21 @@
     ],
     "spec scripts": [
       "spec scripts"
+    ],
+    "spec template anchor nesting": [
+      "spec template anchor nesting"
+    ],
+    "spec template anchor nesting acceptance criteria": [
+      "spec template anchor nesting acceptance criteria"
+    ],
+    "spec template anchor nesting implementation summary": [
+      "spec template anchor nesting implementation summary"
+    ],
+    "spec template anchor nesting plan": [
+      "spec template anchor nesting plan"
+    ],
+    "spec template anchor nesting tasks": [
+      "spec template anchor nesting tasks"
     ],
     "spec template context optimization": [
       "spec template context optimization"
@@ -97928,6 +98285,9 @@
     ],
     "stop grading prose shape": [
       "stop grading prose shape"
+    ],
+    "stop healer writing rejected phrases": [
+      "stop healer writing rejected phrases"
     ],
     "stop hint evaluator plan": [
       "stop hint evaluator plan"
@@ -101001,6 +101361,12 @@
     "template phrase census and cleanup tasks": [
       "template phrase census and cleanup tasks"
     ],
+    "template phrase cleanup atomic writes": [
+      "template phrase cleanup atomic writes"
+    ],
+    "template phrase cleanup atomicity": [
+      "template phrase cleanup atomicity"
+    ],
     "template phrase cleanup round two": [
       "template phrase cleanup round two"
     ],
@@ -101015,6 +101381,12 @@
     ],
     "template phrase cleanup round two tasks": [
       "template phrase cleanup round two tasks"
+    ],
+    "template phrase cleanup summary": [
+      "template phrase cleanup summary"
+    ],
+    "template phrase cleanup verification": [
+      "template phrase cleanup verification"
     ],
     "template policy enforcement": [
       "template policy enforcement"
@@ -101132,6 +101504,15 @@
     ],
     "template validation orchestrator": [
       "template validation orchestrator"
+    ],
+    "template version stamping evidence": [
+      "template version stamping evidence"
+    ],
+    "template version stamping plan": [
+      "template version stamping plan"
+    ],
+    "template version stamping tasks": [
+      "template version stamping tasks"
     ],
     "template version workflow": [
       "template version workflow"
@@ -102998,6 +103379,21 @@
     "trigger index reader fails closed": [
       "trigger index reader fails closed"
     ],
+    "trigger index rebuild hardening": [
+      "trigger index rebuild hardening"
+    ],
+    "trigger index rebuild hardening acceptance criteria": [
+      "trigger index rebuild hardening acceptance criteria"
+    ],
+    "trigger index rebuild hardening implementation summary": [
+      "trigger index rebuild hardening implementation summary"
+    ],
+    "trigger index rebuild hardening plan": [
+      "trigger index rebuild hardening plan"
+    ],
+    "trigger index rebuild hardening tasks": [
+      "trigger index rebuild hardening tasks"
+    ],
     "trigger index rebuild refused": [
       "trigger index rebuild refused"
     ],
@@ -103754,6 +104150,9 @@
     "umbrella docs tasks": [
       "umbrella docs tasks"
     ],
+    "un nest questions anchor": [
+      "un-nest questions anchor"
+    ],
     "un skip launcher lease suite": [
       "un-skip launcher lease suite"
     ],
@@ -104162,6 +104561,9 @@
     "upgrade legacy results": [
       "upgrade-legacy results"
     ],
+    "upgrade legacy reversibility record": [
+      "upgrade-legacy reversibility record"
+    ],
     "upgrade legacy spec folders": [
       "upgrade legacy spec folders"
     ],
@@ -104221,6 +104623,21 @@
     ],
     "upgrade research tasks": [
       "upgrade research tasks"
+    ],
+    "upgrade reversibility": [
+      "upgrade reversibility"
+    ],
+    "upgrade reversibility acceptance criteria": [
+      "upgrade reversibility acceptance criteria"
+    ],
+    "upgrade reversibility implementation summary": [
+      "upgrade reversibility implementation summary"
+    ],
+    "upgrade reversibility plan": [
+      "upgrade reversibility plan"
+    ],
+    "upgrade reversibility tasks": [
+      "upgrade reversibility tasks"
     ],
     "upgrade safety audit": [
       "upgrade safety audit"
