@@ -1,5 +1,5 @@
 {
-  "corpusHash": "eecee807e03baf8b2730059b226097d76cc6a76bf469e1cd8591f3f6ec22a48b",
+  "corpusHash": "2738548362b35970ce07ee3e1cadfff7798689a3e7fd15a4f1f872fb8d94d4d7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23961,
+  "includedPathCount": 23966,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8566,6 +8566,11 @@
     "specs/agents/018-communication-rules-consolidation/research/reviews/swe-2-max.md",
     "specs/agents/018-communication-rules-consolidation/spec.md",
     "specs/agents/018-communication-rules-consolidation/tasks.md",
+    "specs/agents/019-haiku-explore-and-context-agents/acceptance-criteria.md",
+    "specs/agents/019-haiku-explore-and-context-agents/implementation-summary.md",
+    "specs/agents/019-haiku-explore-and-context-agents/plan.md",
+    "specs/agents/019-haiku-explore-and-context-agents/spec.md",
+    "specs/agents/019-haiku-explore-and-context-agents/tasks.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/acceptance-criteria.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/goal.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/implementation-summary.md",
@@ -23992,7 +23997,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "df9a5ebf035daf61cc0ae69d0509508e32aee21cbc49a87a7ba3fc9d99b144f3",
+  "manifestHash": "d8ec0f0b57b94597564c157e42b01b59e1c85f0adbf4df98a1b23f05d4248677",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24832,6 +24837,10 @@
     },
     {
       "path": "specs/agents/018-communication-rules-consolidation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/019-haiku-explore-and-context-agents/scratch",
       "reason": "excluded directory"
     },
     {

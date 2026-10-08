@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 6794,
-    "ok": 13604,
+    "ok": 13609,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 23961,
+  "documentsScanned": 23966,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "df9a5ebf035daf61cc0ae69d0509508e32aee21cbc49a87a7ba3fc9d99b144f3",
+  "manifestHash": "d8ec0f0b57b94597564c157e42b01b59e1c85f0adbf4df98a1b23f05d4248677",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 35892,
+      "ok": 35900,
       "prose-sentence": 19,
       "single-token": 164,
       "stop-word-only": 1,
@@ -66590,6 +66590,10 @@
     },
     {
       "path": "specs/agents/018-communication-rules-consolidation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/019-haiku-explore-and-context-agents/scratch",
       "reason": "excluded directory"
     },
     {

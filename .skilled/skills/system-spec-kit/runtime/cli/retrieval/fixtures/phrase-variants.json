@@ -1,5 +1,5 @@
 {
-  "manifestHash": "df9a5ebf035daf61cc0ae69d0509508e32aee21cbc49a87a7ba3fc9d99b144f3",
+  "manifestHash": "d8ec0f0b57b94597564c157e42b01b59e1c85f0adbf4df98a1b23f05d4248677",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -26089,6 +26089,9 @@
     "context": [
       "context"
     ],
+    "context agent model haiku": [
+      "context agent model haiku"
+    ],
     "context artifact": [
       "context artifact"
     ],
@@ -41558,6 +41561,9 @@
     "exploit paths review": [
       "exploit paths review"
     ],
+    "explore subagent haiku": [
+      "explore subagent haiku"
+    ],
     "export diagram to png": [
       "export diagram to png"
     ],
@@ -49402,6 +49408,24 @@
     ],
     "h2 heading case drift fix": [
       "H2 heading case drift fix"
+    ],
+    "haiku default explore override and haiku pinned context": [
+      "haiku default explore override and haiku pinned context"
+    ],
+    "haiku explore and context agents": [
+      "haiku explore and context agents"
+    ],
+    "haiku explore and context agents acceptance criteria": [
+      "haiku explore and context agents acceptance criteria"
+    ],
+    "haiku explore and context agents implementation summary": [
+      "haiku explore and context agents implementation summary"
+    ],
+    "haiku explore and context agents plan": [
+      "haiku explore and context agents plan"
+    ],
+    "haiku explore and context agents tasks": [
+      "haiku explore and context agents tasks"
     ],
     "half applied rename projection": [
       "half applied rename projection"
