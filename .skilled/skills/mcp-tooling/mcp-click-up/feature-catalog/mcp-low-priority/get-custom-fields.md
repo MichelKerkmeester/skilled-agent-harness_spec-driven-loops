@@ -1,20 +1,20 @@
 ---
 title: "clickup_get_custom_fields"
-description: "List all custom field definitions for a list."
+description: "Read custom field definitions at list, folder, space or workspace level."
 trigger_phrases:
-  - "get custom fields"
   - "clickup_get_custom_fields"
-  - "list custom field definitions"
-  - "discover field ids"
-  - "custom field schema for list"
-version: 1.0.0.3
+  - "custom fields"
+  - "field ids"
+version: 1.1.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---
 
 # clickup_get_custom_fields
 
-List all custom field definitions for a list.
+Read custom field definitions at list, folder, space or workspace level.
+
+> **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_get_custom_fields` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
@@ -22,13 +22,21 @@ List all custom field definitions for a list.
 
 ## 1. OVERVIEW
 
-Returns all custom field definitions configured for the specified list. Required: `list_id`. Each definition includes: `id`, `name`, `type`, and allowed values (for dropdowns).
+Get custom field definitions at any hierarchy level (list, folder, space, or workspace). Returns field IDs, types, and options for dropdowns/labels. Use this to discover available custom fields before setting values on tasks. Multiple scopes can be queried in a single call.
+
+| Parameter | Type | Required | Server description |
+|-----------|------|----------|--------------------|
+| `list_id` | string | no | List ID. Returns custom fields defined on this list. |
+| `folder_id` | string | no | Folder ID. Returns custom fields defined on this folder. |
+| `space_id` | string | no | Space ID. Returns custom fields defined on this space. |
+| `include_workspace` | boolean | no | If true, returns workspace-level custom fields. |
+| `workspace_id` | string | no | Workspace ID (digits only). Only needed when you have multiple workspaces. |
 
 ---
 
 ## 2. HOW IT WORKS
 
-Use to discover field IDs before calling `clickup_set_custom_field_value`. Field IDs are list-specific.
+Use it to find field IDs and dropdown options. Then set values with `custom_fields` on `clickup_create_task` or `clickup_update_task`, since the server has no single-field setter.
 
 ---
 
@@ -44,7 +52,7 @@ Use to discover field IDs before calling `clickup_set_custom_field_value`. Field
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/mcp-structure/custom-field.md` | Manual | Scenario that exercises this tool |
 
 ---
 
@@ -53,6 +61,6 @@ Use to discover field IDs before calling `clickup_set_custom_field_value`. Field
 - Group: MCP LOW Priority
 - Canonical catalog source: `FEATURE-CATALOG.md`
 - Feature file path: `mcp-low-priority/get-custom-fields.md`
+
 Related references:
-- [update-doc-page.md](../../feature-catalog/mcp-low-priority/update-doc-page.md) — clickup_update_document_page
-- [set-custom-field.md](../../feature-catalog/mcp-low-priority/set-custom-field.md) — clickup_set_custom_field_value
+- [update-task.md](../../feature-catalog/mcp-high-priority/update-task.md): clickup_update_task

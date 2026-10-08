@@ -1,31 +1,29 @@
 ---
 name: mcp-click-up
-description: Routes ClickUp between cupt CLI (daily ops) and official MCP (docs, goals, bulk). Embedded install and agent safety invariants.
+description: Routes ClickUp between cupt CLI (daily ops) and the hosted MCP (task create, docs, search). Embedded install and safety rules.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 <!-- keywords: clickup cupt task-management work-queue time-tracking mcp -->
 
 # mcp-click-up Skill
 
-ClickUp task management via **cupt CLI** (primary) and **official ClickUp MCP** (secondary). Operation-based routing: cupt handles daily task ops, MCP handles documents, goals, and bulk operations.
+ClickUp task management via **cupt CLI** (primary) and **official ClickUp MCP** (secondary). Operation-based routing: cupt handles daily task ops, and the MCP handles task creation, documents, search, lists and folders, task relations, chat and reminders. Goals, bulk create, webhooks and checklist edits have no route on either surface.
 
 ---
 
 ## MARKDOWN FORMATTING CONTRACT — READ BEFORE ANY CLICKUP WRITE
 
-ClickUp stores the plain `description` field literally. Markdown submitted there shows up in the ClickUp UI as raw `### Heading`, `**bold**`, and `- [ ]` text. Whenever the content contains ANY markdown syntax, use the markdown-aware parameter for the operation:
+ClickUp shows plain text literally. Markdown sent through a plain-text path shows up in the ClickUp UI as raw `### Heading`, `**bold**`, and `- [ ]` text. Whenever the content contains ANY markdown syntax, use the markdown-aware parameter for the operation. On the Code Mode manual (`clickup_official`), checked against the server's schema on 2026-10-08:
 
 | Operation | Required parameter |
 | --- | --- |
-| Task create | `markdown_description` |
-| Task update (raw v2 API / Code Mode server) | `markdown_content` (`markdown_description` also accepted) |
-| Task update (claude.ai ClickUp connector) | `markdown_description` |
-| Document or page create | `content` plus `content_format: "markdown"` (connector pages: `"text/md"`) |
-| Task read-back | `include_markdown_description=true` |
+| Task create or update | `markdown_description` (the server has no plain `description` or `markdown_content` parameter) |
+| Document page create, update or read | `content_format: "text/md"` |
+| Task read-back | `include: ["description"]` on `clickup_get_task` |
 
-This contract applies identically on every surface: Code Mode (`clickup_official.clickup_official_*`), the claude.ai ClickUp connector (`clickup_create_task` and friends), and the raw ClickUp v2 REST API. Live-verified 2026-07-15 (scratch-task round trips plus a full Product Owner task export, all rendering headings, bold, dividers, and checkboxes correctly).
+On the raw ClickUp v2 REST API, `markdown_content` is also accepted on task update and `include_markdown_description=true` returns markdown, both live-verified 2026-07-15. The claude.ai ClickUp connector was not re-checked on 2026-10-08.
 
 **Push shape for a markdown artifact:** the document's H1 becomes the task `name` (drop it from the body); strip internal HTML comments and processing metadata; everything else travels verbatim.
 
@@ -44,7 +42,7 @@ Worked examples: `references/mcp-tools.md` (Markdown Transport Contract + invoca
 - "log time", "track time", "start timer", "stop timer"
 - "add note to task", "tag task", "show task details"
 - "process work queue", "process task queue"
-- "clickup documents", "clickup goals", "bulk create tasks"
+- "clickup documents", "clickup doc page", "create clickup task", "search clickup"
 
 ### Automatic Triggers (keyword patterns)
 
@@ -52,7 +50,7 @@ Worked examples: `references/mcp-tools.md` (Markdown Transport Contract + invoca
 - `clickup` + any action verb (list, show, done, mark, note, time, tag)
 - "work queue" or "task queue" in a ClickUp context
 - "time tracking" or "work log" with project management context
-- MCP tool names: `clickup_create_task`, `clickup_get_task`, `clickup_manage_documents`
+- MCP tool names: `clickup_create_task`, `clickup_get_task`, `clickup_create_document`, `clickup_update_document_page`
 
 ### When NOT to Use
 
@@ -79,23 +77,24 @@ ON_DEMAND: references/cupt-commands.md    (when cupt command details needed)
 
 | Operation | Primary Tool | Command | MCP Fallback |
 |-----------|-------------|---------|-------------|
-| List/filter tasks | cupt | `cupt list [--today\|--week\|--tag X]` | `clickup_search_tasks` |
+| List/filter tasks | cupt | `cupt list [--today\|--week\|--tag X]` | `clickup_filter_tasks` |
 | Task details | cupt | `cupt show <id> [--notes]` | `clickup_get_task` |
 | Mark task complete | cupt | `cupt done <id> [--dry-run]` | `clickup_update_task` |
-| Add note/comment | cupt | `cupt note <id> "<text>"` | `clickup_manage_comments` |
-| Read comments | cupt | `cupt notes <id>` | `clickup_manage_comments` |
-| Start/stop timer | cupt | `cupt time start <id>` / `cupt time stop` | MCP time tracking |
-| Log time manually | cupt | `cupt time add <id> <dur>` | MCP time tracking |
+| Add note/comment | cupt | `cupt note <id> "<text>"` | `clickup_create_comment` |
+| Read comments | cupt | `cupt notes <id>` | `clickup_get_task_comments` |
+| Start/stop timer | cupt | `cupt time start <id>` / `cupt time stop` | `clickup_start_time_tracking` / `clickup_stop_time_tracking` |
+| Log time manually | cupt | `cupt time add <id> <dur>` | `clickup_add_time_entry` |
 | Add tag | cupt | `cupt tag add <id> <name>` | `clickup_add_tag_to_task` |
 | Remove tag | cupt | `cupt tag remove <id> <name>` | `clickup_remove_tag_from_task` |
-| Task context | cupt | `cupt context <id>` | n/a |
-| Discover statuses | cupt | `cupt statuses <id>` | n/a |
-| **Documents** | **MCP only** | n/a | `clickup_create_document` |
-| **Goals/OKRs** | **MCP only** | n/a | goal management tools |
-| **Bulk create 5+** | **MCP only** | n/a | `clickup_create_bulk_tasks` |
-| **Webhooks** | **MCP only** | n/a | webhook management tools |
-| **Chat** | **MCP only** | n/a | chat tools |
-| **Audit logs** | **MCP only** | n/a | `clickup_get_audit_logs` |
+| Task context | cupt | `cupt context <id>` | `clickup_get_task` with `include: ["subtasks"]` |
+| Discover statuses | cupt | `cupt statuses <id>` | `clickup_get_task` with `expand_statuses: true` |
+| **Create a task or subtask** | **MCP only** | n/a | `clickup_create_task` (`parent` for a subtask) |
+| **Documents and pages** | **MCP only** | n/a | `clickup_create_document`, `clickup_list_document_pages`, `clickup_get_document_pages`, `clickup_create_document_page`, `clickup_update_document_page` |
+| **Search the workspace** | **MCP only** | n/a | `clickup_search` |
+| **Lists and folders** | **MCP only** | n/a | `clickup_create_list`, `clickup_get_list`, `clickup_create_folder` and their update tools |
+| **Task relations** | **MCP only** | n/a | dependency, link, move, merge and extra-list tools |
+| **Chat and reminders** | **MCP only** | n/a | `clickup_send_chat_message`, `clickup_create_reminder` and their read tools |
+| **Goals, bulk create, webhooks, checklist edits, spaces, views, audit logs** | **Not available** | n/a | No tool on the hosted server and no enabled operator. Tell the user. |
 
 ### Smart Router Pseudocode
 
@@ -104,6 +103,8 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+# The install guide lives at the packet root, outside both bases.
+ROOT_RESOURCES = ("INSTALL-GUIDE.md",)
 DEFAULT_RESOURCE = "references/cupt-commands.md"
 # Fallback-only: DEFAULT_RESOURCE is a defer-time suggestion, never unioned
 # into a route's loaded set. Scored routes load exactly RESOURCE_MAP[intent];
@@ -138,7 +139,9 @@ INTENT_SIGNALS = {
                      "doc page", "wiki page", "write-up page",
                      "create a folder", "create a space", "manage lists", "task dependencies",
                      "link tasks", "bulk update", "mass create", "batch create", "user groups",
-                     "guest access", "enterprise feature", "task template", "space tags"],
+                     "guest access", "enterprise feature", "task template", "space tags",
+                     "create a task", "create task", "new task", "subtask", "search clickup",
+                     "reminder", "merge tasks", "move task", "time in status"],
     },
     "INSTALL": {
         "weight": 6,
@@ -174,11 +177,18 @@ RESOURCE_MAP = {
     "TROUBLESHOOT":  ["references/troubleshooting.md"],
 }
 
+# Operations cupt has no command for. A CUPT_DAILY word such as "list" or
+# "show" in the same request must not pull them to cupt on a tie.
+MCP_ONLY_PHRASES = ["create a task", "create task", "new task", "subtask",
+                    "move task", "merge tasks", "time in status", "search clickup",
+                    "reminder", "document", "doc page"]
+
 def discover_markdown_resources() -> set[str]:
     docs = []
     for base in RESOURCE_BASES:
         if base.exists():
             docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    docs.extend(SKILL_ROOT / name for name in ROOT_RESOURCES if (SKILL_ROOT / name).is_file())
 
     return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
@@ -227,6 +237,8 @@ def route_clickup_resources(request: str) -> dict:
         intent = "TROUBLESHOOT"
     elif scores.get("INSTALL", 0) > 4:
         intent = "INSTALL"
+    elif any(phrase in request_lower for phrase in MCP_ONLY_PHRASES):
+        intent = "MCP_ADVANCED"
     else:
         intent = max(scores, key=scores.get)
 
@@ -254,7 +266,7 @@ def route_clickup_resources(request: str) -> dict:
 | Dimension | cupt CLI | Official ClickUp MCP |
 |-----------|---------|---------------------|
 | **Activation** | `cupt <command>` in Bash | Code Mode `call_tool_chain()` |
-| **Best for** | Daily task ops, time tracking, notes, tags | Documents, goals, bulk ops, webhooks |
+| **Best for** | Daily task ops, time tracking, notes, tags | Task creation, documents, search, lists and folders, task relations |
 | **Output** | Human-readable + `--json` flag | Structured JSON always |
 | **Auth** | `cupt auth` / `cupt config --api-token` | OAuth through the hosted ClickUp server, one browser approval |
 | **Offline** | `--offline` flag uses local cache | Always requires network |
@@ -323,33 +335,32 @@ This is ClickUp's official hosted MCP server, at `https://mcp.clickup.com/mcp`. 
 
 Reference: `references/mcp-tools.md` and `mcp-servers/clickup-mcp/README.md`
 
-**Invocation via Code Mode** (`call_tool_chain` takes a single `code` string, NOT an array of `{tool, input}` records):
+**Invocation via Code Mode.** Call `mcp__code_mode__call_tool_chain` with one `code` string, not an array of `{tool, input}` records. Every server tool name already starts with `clickup_`, so the callable name repeats it: `clickup_official.clickup_official_clickup_<tool>`. Top-level `await` is rejected and a returned value comes back as `{}`, so wrap calls in an async function and print with `console.log`:
 ```typescript
-// Tool naming: clickup_official.clickup_official_{tool_name}
-const result = await call_tool_chain({
-  code: `
-    const doc = await clickup_official.clickup_official_clickup_create_document({
-      name: "Sprint Notes",
-      parent: { type: 4, id: "LIST_ID" },
-      content: "# Sprint Notes\\n\\n...",
-      content_format: "markdown",
-    });
-    return doc;
-  `,
-});
+(async () => {
+  const doc = await clickup_official.clickup_official_clickup_create_document({
+    name: "Sprint Notes",
+    parent: { id: "LIST_ID", type: "6" },   // "4" space, "5" folder, "6" list, "7" everything, "12" workspace
+    visibility: "PRIVATE",
+    create_page: false,
+  });
+  console.log(JSON.stringify(doc));
+})();
 ```
+The document tool takes no content. Add text with `clickup_create_document_page` and `content_format: "text/md"`. See `references/mcp-tools.md` sections 7 and 8.
 
 **When to prefer MCP:**
-- Creating or reading ClickUp Documents
-- Managing Goals and OKRs
-- Bulk-creating 5+ tasks simultaneously
-- Webhooks, custom views, user groups
-- Enterprise features (audit logs, guests)
+- Creating tasks and subtasks, since cupt has no create command
+- Creating documents and reading or writing their pages
+- Searching the workspace by keyword, or filtering tasks across lists by field
+- Creating or updating lists and folders
+- Task relations, comment threads, chat and reminders
 
 **Limitations:**
 - No dry-run for task completion (always specify correct status)
 - No offline mode
 - Requires Code Mode MCP to be configured
+- No goals, bulk create or update, webhooks, checklist edits, spaces, views, templates, guests, user groups or audit logs. Its operator catalog had nothing enabled on 2026-10-08
 
 ---
 
@@ -363,7 +374,7 @@ const result = await call_tool_chain({
 4. **Run `cupt --version && cupt status` as preflight** before starting a ClickUp workflow session.
 5. **Treat empty `cupt list` results as valid** — an empty queue is not an error. Before escalating: check tag spelling, try `--all` flag, verify team name via `cupt teams`.
 6. **Use `cupt context <id>`** before acting on a task to understand its parent and sibling relationships.
-7. **Route markdown through markdown-aware parameters** per the MARKDOWN FORMATTING CONTRACT section at the top of this skill — task create: `markdown_description`; task update: `markdown_content` (connector: `markdown_description`); documents and pages: `content` + `content_format: "markdown"`; read-back: `include_markdown_description=true`.
+7. **Route markdown through markdown-aware parameters** per the MARKDOWN FORMATTING CONTRACT section at the top of this skill. On the Code Mode manual: `markdown_description` for task create and update, `content_format: "text/md"` for document pages, and `include: ["description"]` on `clickup_get_task` for read-back.
 
 ### ⛔ NEVER
 
@@ -392,7 +403,7 @@ const result = await call_tool_chain({
 - [ ] `cupt list --today --json` returns valid JSON array (even if empty)
 - [ ] `cupt statuses <id>` returns status list for the task's list
 - [ ] Dry-run before batch: `cupt done <id> --dry-run` shows resolved status
-- [ ] For MCP operations: Code Mode `clickup_official.clickup_official_get_workspace` returns workspace data
+- [ ] For MCP operations: Code Mode `clickup_official.clickup_official_clickup_get_workspace_hierarchy` returns the workspace's spaces
 
 ---
 
@@ -400,7 +411,7 @@ const result = await call_tool_chain({
 
 **Gate 2 (Skill Routing):** This skill activates at ≥0.8 confidence for ClickUp task management requests. The skill advisor matches on: `clickup`, `cupt`, `task management`, `work queue`, `time tracking`, `mark done`.
 
-**Code Mode MCP:** Official ClickUp MCP tools are invoked via `mcp__code_mode__call_tool_chain`. Tool naming convention: `clickup_official.clickup_official_{tool_name}`. See references/mcp-tools.md for the full tool catalog.
+**Code Mode MCP:** Official ClickUp MCP tools are invoked via `mcp__code_mode__call_tool_chain`. Tool naming convention: `clickup_official.clickup_official_clickup_{tool}`, because every server tool name already starts with `clickup_`. See references/mcp-tools.md for the full tool catalog.
 
 **Memory:** Save ClickUp workflow context (current list, active tags, workspace ID) using `/speckit:save` when switching sessions.
 
@@ -460,9 +471,9 @@ const result = await call_tool_chain({
 
 **Reference Files (load on demand via router):**
 - `references/cupt-commands.md` — Full cupt command reference with agent patterns
-- `references/mcp-tools.md` — 46 official MCP tools, priority table, invocation
+- `references/mcp-tools.md`: the 61 live MCP tools, invocation, markdown contract and what the server cannot do
 - `references/troubleshooting.md` — Auth, status, team-filter, MCP failures
-- `references/INSTALL-GUIDE.md` — Step-by-step install with validation checkpoints
+- `INSTALL-GUIDE.md`: step-by-step install with validation checkpoints, at the packet root
 
 Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — condensed top-level install doc; the phase-validation reference above stays the router's INSTALL-intent target.
 

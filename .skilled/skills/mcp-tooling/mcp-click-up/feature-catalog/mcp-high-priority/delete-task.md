@@ -1,20 +1,20 @@
 ---
 title: "clickup_delete_task"
-description: "Permanently delete a task. Not reversible."
+description: "Delete a task permanently."
 trigger_phrases:
-  - "delete task"
   - "clickup_delete_task"
-  - "permanently remove task"
-  - "irreversible task deletion"
-  - "destroy clickup task"
-version: 1.0.0.3
+  - "delete task"
+  - "remove task mcp"
+version: 1.1.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---
 
 # clickup_delete_task
 
-Permanently delete a task. Not reversible.
+Delete a task permanently.
+
+> **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_delete_task` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
@@ -22,13 +22,18 @@ Permanently delete a task. Not reversible.
 
 ## 1. OVERVIEW
 
-Deletes the specified task permanently from ClickUp. The deletion is immediate and cannot be undone — there is no recycle bin for API deletions.
+Delete a task by task_id (supports custom IDs like 'DEV-1234'). Always confirm the task_id with the user before deleting.
+
+| Parameter | Type | Required | Server description |
+|-----------|------|----------|--------------------|
+| `task_id` | string | yes | Task ID to delete (supports custom IDs like 'DEV-1234') |
+| `workspace_id` | string | no | Workspace ID (digits only). Only needed when you have multiple workspaces. |
 
 ---
 
 ## 2. HOW IT WORKS
 
-Use only on confirmed test or duplicate tasks. Verify task ID before calling. Consider updating status to 'closed' instead if auditability matters.
+This cannot be undone from the MCP. Confirm the task ID with the user before the call, and use it only on throwaway or confirmed duplicate tasks.
 
 ---
 
@@ -44,7 +49,7 @@ Use only on confirmed test or duplicate tasks. Verify task ID before calling. Co
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/mcp-task-crud/delete-task.md` | Manual | Scenario that exercises this tool |
 
 ---
 
@@ -53,6 +58,6 @@ Use only on confirmed test or duplicate tasks. Verify task ID before calling. Co
 - Group: MCP HIGH Priority
 - Canonical catalog source: `FEATURE-CATALOG.md`
 - Feature file path: `mcp-high-priority/delete-task.md`
+
 Related references:
-- [update-task.md](../../feature-catalog/mcp-high-priority/update-task.md) — clickup_update_task
-- [search-tasks.md](../../feature-catalog/mcp-high-priority/search-tasks.md) — clickup_search_tasks
+- [get-task.md](../../feature-catalog/mcp-high-priority/get-task.md): clickup_get_task

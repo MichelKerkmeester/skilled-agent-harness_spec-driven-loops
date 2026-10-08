@@ -159,8 +159,9 @@ print_mcp_config() {
   header "Phase 5: Official ClickUp MCP Configuration"
 
   cat <<'MCPEOF'
-The official ClickUp MCP server provides advanced operations:
-  documents, goals/OKRs, bulk task creation, webhooks, and more.
+The official ClickUp MCP server covers what cupt cannot do:
+  task creation, documents and pages, workspace search, lists and folders.
+  It has no goals, bulk-create, webhook or checklist-edit tools.
 
 SERVER: https://mcp.clickup.com/mcp (ClickUp's own hosted server)
 DOCS:   https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server
@@ -174,14 +175,14 @@ Add the following manual to .utcp_config.json's manual_call_templates
 
 ─────────────────────────────────────────────────────────────────
 {
-  "name": "clickup",
+  "name": "clickup_official",
   "call_template_type": "mcp",
   "config": {
     "mcpServers": {
-      "clickup": {
+      "clickup_official": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["mcp-remote", "https://mcp.clickup.com/mcp"],
+        "args": ["-y", "mcp-remote", "https://mcp.clickup.com/mcp"],
         "env": {}
       }
     }
@@ -190,7 +191,8 @@ Add the following manual to .utcp_config.json's manual_call_templates
 ─────────────────────────────────────────────────────────────────
 
 NOTE: The mcp-click-up skill invokes the MCP via Code Mode call_tool_chain().
-      Tools are named: clickup.clickup_{tool_name} (e.g. clickup.clickup_create_task)
+      Tools are named: clickup_official.clickup_official_clickup_{tool}
+      (e.g. clickup_official.clickup_official_clickup_create_task)
 
 MCPEOF
 

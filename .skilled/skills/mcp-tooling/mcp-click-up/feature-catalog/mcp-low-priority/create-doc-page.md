@@ -1,20 +1,20 @@
 ---
 title: "clickup_create_document_page"
-description: "Add a new page to an existing ClickUp document."
+description: "Add a page, or a sub-page, to a document."
 trigger_phrases:
-  - "create document page"
   - "clickup_create_document_page"
-  - "add page to doc"
-  - "new doc section"
-  - "document sub-page creation"
-version: 1.0.0.3
+  - "create doc page"
+  - "add page to document"
+version: 1.1.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---
 
 # clickup_create_document_page
 
-Add a new page to an existing ClickUp document.
+Add a page, or a sub-page, to a document.
+
+> **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_create_document_page` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
@@ -22,13 +22,23 @@ Add a new page to an existing ClickUp document.
 
 ## 1. OVERVIEW
 
-Creates a new page within a document. Required: `doc_id`, `name`. Optional: `content`, `content_format`. Returns `page_id`.
+Create a new page in a ClickUp document.
+
+| Parameter | Type | Required | Server description |
+|-----------|------|----------|--------------------|
+| `document_id` | string | yes | ID of the document to create the page in (e.g. 'ad-909705'). In ClickUp doc URLs, the document_id is always the first ID after /docs/ or /v/dc/. |
+| `content` | string | yes | Content of the page |
+| `name` | string | yes | Name and title of the page |
+| `sub_title` | string | no | Subtitle of the page |
+| `parent_page_id` | string | no | ID of the parent page (if this is a sub-page) |
+| `content_format` | string (`text/md`, `text/plain`) | no | The format of the page content |
+| `workspace_id` | string | no | Workspace ID (digits only). Only needed when you have multiple workspaces. |
 
 ---
 
 ## 2. HOW IT WORKS
 
-Pages are sub-sections of a document. Use to organize long documents into navigable sections.
+`document_id`, `name` and `content` are required. Use `content_format: "text/md"` for markdown and `parent_page_id` for a sub-page.
 
 ---
 
@@ -44,7 +54,7 @@ Pages are sub-sections of a document. Use to organize long documents into naviga
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/mcp-documents/document-pages.md` | Manual | Scenario that exercises this tool |
 
 ---
 
@@ -53,6 +63,6 @@ Pages are sub-sections of a document. Use to organize long documents into naviga
 - Group: MCP LOW Priority
 - Canonical catalog source: `FEATURE-CATALOG.md`
 - Feature file path: `mcp-low-priority/create-doc-page.md`
+
 Related references:
-- [get-doc-pages.md](../../feature-catalog/mcp-low-priority/get-doc-pages.md) — clickup_get_document_pages
-- [update-doc-page.md](../../feature-catalog/mcp-low-priority/update-doc-page.md) — clickup_update_document_page
+- [update-doc-page.md](../../feature-catalog/mcp-low-priority/update-doc-page.md): clickup_update_document_page

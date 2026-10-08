@@ -1,20 +1,21 @@
 ---
 title: "clickup_create_document"
-description: "Create a ClickUp document with markdown or HTML content."
+description: "Create a ClickUp document in a space, folder, list, everything view or workspace."
 trigger_phrases:
-  - "create document"
   - "clickup_create_document"
+  - "create document"
   - "new clickup doc"
-  - "create doc with markdown"
-  - "document creation mcp"
-version: 1.0.0.3
+  - "create wiki"
+version: 1.1.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---
 
 # clickup_create_document
 
-Create a ClickUp document with markdown or HTML content.
+Create a ClickUp document in a space, folder, list, everything view or workspace.
+
+> **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_create_document` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
@@ -22,13 +23,21 @@ Create a ClickUp document with markdown or HTML content.
 
 ## 1. OVERVIEW
 
-Creates a new document. Required: `name`, `parent` (object with `type` and `id`). Optional: `content`, `content_format` (markdown or html). Parent type codes: 4=list, 5=folder, 6=space, 7=all, 12=workspace.
+Create a document in a ClickUp space, folder, or list. Requires name, parent info, visibility and create_page flag.
+
+| Parameter | Type | Required | Server description |
+|-----------|------|----------|--------------------|
+| `name` | string | yes | Name and Title of the document |
+| `parent` | object | yes | Parent container information |
+| `visibility` | string (`PUBLIC`, `PRIVATE`, `PERSONAL`, `HIDDEN`) | yes | Document visibility setting |
+| `create_page` | boolean | yes | Whether to create an initial blank page |
+| `workspace_id` | string | no | Workspace ID (digits only). Only needed when you have multiple workspaces. |
 
 ---
 
 ## 2. HOW IT WORKS
 
-Returns the created document object with `doc_id`. Documents are the ONLY feature exclusively in the MCP — cupt cannot create or read documents.
+All four of `name`, `parent`, `visibility` and `create_page` are required. `parent` is `{id, type}`, and `type` is a string: `"4"` space, `"5"` folder, `"6"` list, `"7"` everything, `"12"` workspace. `visibility` is `PUBLIC`, `PRIVATE`, `PERSONAL` or `HIDDEN`. This tool takes no content. Add text afterwards with `clickup_create_document_page` or `clickup_update_document_page`.
 
 ---
 
@@ -44,7 +53,7 @@ Returns the created document object with `doc_id`. Documents are the ONLY featur
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/mcp-documents/create-document.md` | Manual | Scenario that exercises this tool |
 
 ---
 
@@ -53,6 +62,7 @@ Returns the created document object with `doc_id`. Documents are the ONLY featur
 - Group: MCP MEDIUM Priority
 - Canonical catalog source: `FEATURE-CATALOG.md`
 - Feature file path: `mcp-medium-priority/create-document.md`
+
 Related references:
-- [get-views.md](../../feature-catalog/mcp-medium-priority/get-views.md) — clickup_get_views
-- [get-document.md](../../feature-catalog/mcp-medium-priority/get-document.md) — clickup_get_document
+- [create-doc-page.md](../../feature-catalog/mcp-low-priority/create-doc-page.md): clickup_create_document_page
+- [list-document-pages.md](../../feature-catalog/mcp-low-priority/list-document-pages.md): clickup_list_document_pages

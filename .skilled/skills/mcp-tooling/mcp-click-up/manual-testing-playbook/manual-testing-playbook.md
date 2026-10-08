@@ -1,7 +1,7 @@
 ---
 title: "mcp-click-up: Manual Testing Playbook"
-description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the mcp-click-up skill. Covers all 96 features across cupt CLI and the official ClickUp MCP."
-version: 1.0.0.7
+description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the mcp-click-up skill. Covers all 111 features across cupt CLI and the official ClickUp MCP."
+version: 1.1.0.0
 ---
 
 # mcp-click-up: Manual Testing Playbook
@@ -37,15 +37,14 @@ A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and 
 | cupt Global Flags | 4 | 0 |
 | cupt Advanced Listing | (stacked, no-tag, -n, verbose) | 4 |
 | cupt Offline & Cache | (prefetch, offline, clear-cache) | 2 |
-| MCP Task CRUD | HIGH: create, get, update, delete, search | 5 |
-| MCP Bulk & Comments | HIGH: bulk, comments, workspace | 3 |
-| MCP Documents | MEDIUM: create, get, update, pages | 3 |
-| MCP Goals & Structure | MEDIUM: goals, lists, spaces, folders | 3 |
-| MCP Webhooks & Checklists | LOW: webhooks, checklists | 2 |
+| MCP Task CRUD | HIGH: create, get, update, delete, filter, search | 6 |
+| MCP Comments & Smoke Test | HIGH: comments, workspace hierarchy | 2 |
+| MCP Documents | create, read pages, add page, append to page | 4 |
+| MCP Structure | lists, custom field values | 2 |
 | Recovery and Failure | auth fail, empty queue, status errors, MCP fail | 3 |
-| **TOTAL** | **96 features** | **37 scenarios** |
+| **TOTAL** | **111 features** | **35 scenarios** |
 
-Scenario count verified by direct file count against the 9 scenario category folders (37 files; 37 distinct IDs -- the legacy `mcp-advanced/` duplicates of `MCP-M015` and `MCP-M019` were removed in favor of their canonical `mcp-documents-goals/` files). The routing-recall holdout set validates smart-router intent selection on a separate ID scheme and is not an executable manual-testing scenario, so it is excluded from this count.
+Scenario count verified by direct file count against the 9 scenario category folders (35 files, 35 distinct IDs). The MCP scenarios for bulk create, goals, webhooks and checklist edits were retired on 2026-10-08 because the hosted server has no tools for them. The routing-recall holdout set validates smart-router intent selection on a separate ID scheme and is not an executable manual-testing scenario, so it is excluded from this count.
 
 ### Realistic Test Model
 
@@ -93,7 +92,7 @@ Each scenario MUST capture:
 | Type | Notation | Example |
 |------|---------|---------|
 | cupt CLI | `cupt <subcommand> [args]` | `cupt list --today --json` |
-| MCP tool | `clickup.clickup_<tool>({...})` | `clickup.clickup_create_task({list_id: "X", name: "Y"})` |
+| MCP tool | `clickup_official.clickup_official_clickup_<tool>({...})` | `clickup_official.clickup_official_clickup_create_task({list_id: "X", name: "Y"})` |
 | Bash | `bash: <command>` | `bash: jq length <<< "$RESULT"` |
 | Sequential | `->` separator | `cupt statuses ID -> cupt done ID --dry-run -> cupt done ID` |
 | Expected output | `# → expected` | `cupt --version  # → cupt 0.7.1` |
@@ -122,7 +121,7 @@ A scenario is **FAIL** when any of the above conditions is not met.
 | CU-012 | cupt list --json | Primary agent operation — queue fetch |
 | CU-021 | cupt statuses (schema discovery) | Required before any completion — agent safety |
 | CU-022 | cupt done --dry-run | Safety gate for task completion |
-| MCP-H006 | clickup_get_workspace | MCP connection smoke test |
+| MCP-H006 | clickup_get_workspace_hierarchy | MCP connection smoke test |
 | MCP-M015 | clickup_create_document | Primary MCP-only feature |
 
 ### Feature Verdict
@@ -141,8 +140,8 @@ A **release is ready** when all critical-path scenarios are PASS and no P0 featu
 | Wave 1 — Install & Auth | CU-001, CU-002, CU-007, CU-010, CU-011 | Yes | Must complete before all other waves |
 | Wave 2 — Read-Only cupt | CU-012–CU-020, CU-028, CU-029 | Yes (no writes) | Requires Wave 1 PASS |
 | Wave 3 — Write cupt | CU-021–CU-027, CU-030–CU-034 | Sequential | Use dry-run before each write; requires Wave 2 PASS |
-| Wave 4 — MCP Read | MCP-H005, MCP-H006, MCP-H002, MCP-M016, MCP-M014 | Yes | Requires MCP configured; independent of cupt waves |
-| Wave 5 — MCP Write | MCP-H001, MCP-H007, MCP-H008, MCP-M015, MCP-M019 | Sequential | Requires Wave 4 PASS |
+| Wave 4 — MCP Read | MCP-H006, MCP-H005, MCP-H002, MCP-M016 | Yes | Requires MCP configured; independent of cupt waves |
+| Wave 5 — MCP Write | MCP-H001, MCP-H009, MCP-H003, MCP-H007, MCP-M015, MCP-M017, MCP-M018, MCP-M007, MCP-L019 | Sequential | Requires Wave 4 PASS |
 | Wave 6 — Destructive | CU-008 (logout), MCP-H004 (delete), failure scenarios | Sequential, last | Run last; against throwaway tasks only |
 
 ### What Belongs in Per-Feature Files
@@ -569,188 +568,179 @@ Expected: output is `[]`; exit 0 (not an error condition).
 
 ---
 
-## 12. MCP TASK CRUD (`MCP-H001..MCP-H006`)
+## 12. MCP TASK CRUD (`MCP-H001, MCP-H002, MCP-H003, MCP-H004, MCP-H005, MCP-H006, MCP-H007, MCP-H009`)
 
-### MCP-H001 | Create Task
+### MCP-H001 | Create Task via MCP
 
-Verify `clickup_create_task` creates a task and returns a task ID.
+Verify `clickup_create_task` creates a task in LIST_ID and returns its ID.
 
-Prompt: `"Create a task named 'Test Task' in list LIST_ID with priority 3."`
-Expected: response includes `id` field; task visible in ClickUp UI; exit 0.
+Prompt: `"Create a task named 'MCP Playbook Test Task' in list LIST_ID."`
+Expected: Response carries a task ID and no `error` field; `cupt show` confirms the name.
 
 > **Feature File:** [mcp-task-crud/create-task.md](../manual-testing-playbook/mcp-task-crud/create-task.md)
 > **Catalog:** [mcp-high-priority/create-task.md](../feature-catalog/mcp-high-priority/create-task.md)
 
 ---
 
-### MCP-H002 | Get Task
+### MCP-H002 | Get Task via MCP
 
-Verify `clickup_get_task` returns full task object for the ID created in MCP-H001.
+Verify `clickup_get_task` returns the task created in MCP-H001.
 
-Prompt: `"Get all details for task TASK_ID."`
-Expected: JSON object with `id`, `name`, `status`, `priority`; exit 0.
+Prompt: `"Get all details for task TASK_ID, including its description."`
+Expected: Response carries the task ID, name and status, and no `error` field.
 
 > **Feature File:** [mcp-task-crud/get-task.md](../manual-testing-playbook/mcp-task-crud/get-task.md)
+> **Catalog:** [mcp-high-priority/get-task.md](../feature-catalog/mcp-high-priority/get-task.md)
 
 ---
 
-### MCP-H003 | Update Task
+### MCP-H003 | Update Task via MCP
 
-Verify `clickup_update_task` changes the task status to a known value.
+Verify `clickup_update_task` changes the test task's status to a valid value.
 
 Prompt: `"Update task TASK_ID status to 'in progress'."`
-Expected: task status in ClickUp UI is 'in progress'; exit 0.
+Expected: The status exists in `available_statuses`; the update returns no `error` field; cupt shows the new status.
 
 > **Feature File:** [mcp-task-crud/update-task.md](../manual-testing-playbook/mcp-task-crud/update-task.md)
+> **Catalog:** [mcp-high-priority/update-task.md](../feature-catalog/mcp-high-priority/update-task.md)
 
 ---
 
-### MCP-H004 | Delete Task (DESTRUCTIVE — Wave 6)
+### MCP-H004 | Delete Task via MCP (DESTRUCTIVE)
 
-Verify `clickup_delete_task` removes the task created in MCP-H001.
+Verify `clickup_delete_task` removes the throwaway task from MCP-H001.
 
 Prompt: `"Delete test task TASK_ID permanently."`
-Expected: subsequent `clickup_get_task` returns 404/not-found; task gone from UI.
+Expected: Delete returns no `error` field; the follow-up read reports the task as not found.
+
 **Use only the throwaway test task.**
 
 > **Feature File:** [mcp-task-crud/delete-task.md](../manual-testing-playbook/mcp-task-crud/delete-task.md)
+> **Catalog:** [mcp-high-priority/delete-task.md](../feature-catalog/mcp-high-priority/delete-task.md)
 
 ---
 
-### MCP-H005 | Search Tasks
+### MCP-H005 | Filter Tasks via MCP
 
-Verify `clickup_search_tasks` returns tasks matching a keyword.
+Verify `clickup_filter_tasks` lists the tasks in LIST_ID, including the test task.
 
-Prompt: `"Search for tasks containing the word 'test' in the workspace."`
-Expected: JSON array with matching tasks; exit 0.
+Prompt: `"Show the open tasks in list LIST_ID."`
+Expected: Result lists tasks from LIST_ID including the test task; no `error` field.
 
-> **Feature File:** [mcp-task-crud/search-tasks.md](../manual-testing-playbook/mcp-task-crud/search-tasks.md)
-
----
-
-### MCP-H006 | Get Workspace (CRITICAL PATH)
-
-Verify `clickup_get_workspace` returns workspace name and ID matching `90151466006`.
-
-Prompt: `"Get workspace details via MCP."`
-Expected: JSON with workspace name and numeric ID matching `90151466006` env var; exit 0.
-
-> **Feature File:** [mcp-task-crud/get-workspace.md](../manual-testing-playbook/mcp-task-crud/get-workspace.md)
+> **Feature File:** [mcp-task-crud/filter-tasks.md](../manual-testing-playbook/mcp-task-crud/filter-tasks.md)
+> **Catalog:** [mcp-high-priority/filter-tasks.md](../feature-catalog/mcp-high-priority/filter-tasks.md)
 
 ---
 
-### MCP-H007 | Manage Comments
+### MCP-H006 | Get Workspace Hierarchy (CRITICAL PATH)
 
-Verify `clickup_manage_comments` creates a comment and lists it back.
+Verify `clickup_get_workspace_hierarchy` answers, proving the MCP route and the OAuth sign-in work.
 
-Prompt: `"Add a comment 'MCP test comment' to task TASK_ID, then list comments."`
-Expected: comment appears in list response; exit 0.
+Prompt: `"Show the spaces in my ClickUp workspace via MCP."`
+Expected: Response lists the workspace's spaces; no `error` field.
 
-> **Feature File:** [mcp-task-crud/manage-comments.md](../manual-testing-playbook/mcp-task-crud/manage-comments.md)
-
----
-
-### MCP-H008 | Bulk Create Tasks
-
-Verify `clickup_create_bulk_tasks` creates 3+ tasks in one call.
-
-Prompt: `"Create three tasks at once in list LIST_ID."`
-Expected: response is array of 3 task objects with IDs; all visible in ClickUp; exit 0.
-
-> **Feature File:** [mcp-task-crud/bulk-create.md](../manual-testing-playbook/mcp-task-crud/bulk-create.md)
+> **Feature File:** [mcp-task-crud/get-workspace-hierarchy.md](../manual-testing-playbook/mcp-task-crud/get-workspace-hierarchy.md)
+> **Catalog:** [mcp-high-priority/get-workspace-hierarchy.md](../feature-catalog/mcp-high-priority/get-workspace-hierarchy.md)
 
 ---
 
-## 13. MCP DOCUMENTS AND GOALS (`MCP-M015..MCP-M019`)
+### MCP-H007 | Task Comments via MCP
+
+Verify `clickup_create_comment` posts a comment and `clickup_get_task_comments` reads it back.
+
+Prompt: `"Add a comment 'MCP test comment' to task TASK_ID, then list its comments."`
+Expected: The comment appears in the comment list; neither call returns an `error` field.
+
+> **Feature File:** [mcp-task-crud/task-comments.md](../manual-testing-playbook/mcp-task-crud/task-comments.md)
+> **Catalog:** [mcp-high-priority/create-comment.md](../feature-catalog/mcp-high-priority/create-comment.md)
+
+---
+
+### MCP-H009 | Search the Workspace via MCP
+
+Verify `clickup_search` finds the test task by keyword.
+
+Prompt: `"Search ClickUp for 'MCP Playbook Test Task'."`
+Expected: Results include the test task; no `error` field.
+
+> **Feature File:** [mcp-task-crud/search.md](../manual-testing-playbook/mcp-task-crud/search.md)
+> **Catalog:** [mcp-high-priority/search.md](../feature-catalog/mcp-high-priority/search.md)
+
+---
+
+## 13. MCP DOCUMENTS (`MCP-M015, MCP-M016, MCP-M017, MCP-M018`)
 
 ### MCP-M015 | Create Document (CRITICAL PATH)
 
-Verify `clickup_create_document` creates a document and returns a doc ID.
+Verify `clickup_create_document` creates a document in LIST_ID and returns its ID.
 
-Prompt: `"Create a document named 'Test Doc' in list LIST_ID with markdown content."`
-Expected: response includes `doc_id`; document visible in ClickUp; exit 0.
+Prompt: `"Create a private document named 'MCP Playbook Test Doc' in list LIST_ID."`
+Expected: Response carries a document ID and no `error` field; the document is visible in the list.
 
-> **Feature File:** [mcp-documents-goals/create-document.md](../manual-testing-playbook/mcp-documents-goals/create-document.md)
+> **Feature File:** [mcp-documents/create-document.md](../manual-testing-playbook/mcp-documents/create-document.md)
 > **Catalog:** [mcp-medium-priority/create-document.md](../feature-catalog/mcp-medium-priority/create-document.md)
 
 ---
 
-### MCP-M016 | Get Document
+### MCP-M016 | Read Document Pages
 
-Verify `clickup_get_document` returns the document created in MCP-M015.
+Verify `clickup_list_document_pages` and `clickup_get_document_pages` read the document from MCP-M015.
 
-Prompt: `"Get the document created in MCP-M015."`
-Expected: JSON with `name`, `doc_id`; exit 0.
+Prompt: `"List the pages of document DOC_ID and read the first one as markdown."`
+Expected: The page list contains PAGE_ID; the read returns its content with no `error` field.
 
-> **Feature File:** [mcp-documents-goals/get-document.md](../manual-testing-playbook/mcp-documents-goals/get-document.md)
+> **Feature File:** [mcp-documents/read-document-pages.md](../manual-testing-playbook/mcp-documents/read-document-pages.md)
+> **Catalog:** [mcp-low-priority/list-document-pages.md](../feature-catalog/mcp-low-priority/list-document-pages.md)
 
 ---
 
 ### MCP-M017 | Create Document Page
 
-Verify `clickup_create_document_page` adds a page and returns a `page_id`.
+Verify `clickup_create_document_page` adds a markdown page to the test document.
 
-Prompt: `"Add a page named 'Section 1' to the test document."`
-Expected: response includes `page_id`; page visible in ClickUp document; exit 0.
+Prompt: `"Add a page named 'Section 1' to document DOC_ID."`
+Expected: The new page is listed; the heading renders as a heading in ClickUp.
 
-> **Feature File:** [mcp-documents-goals/document-pages.md](../manual-testing-playbook/mcp-documents-goals/document-pages.md)
-
----
-
-### MCP-M019 | Create Goal
-
-Verify `clickup_manage_goals` creates a goal and returns a `goal_id`.
-
-Prompt: `"Create a goal named 'Q3 Test Goal' in the workspace."`
-Expected: response includes `goal_id`; goal visible in ClickUp; exit 0.
-
-> **Feature File:** [mcp-documents-goals/manage-goals.md](../manual-testing-playbook/mcp-documents-goals/manage-goals.md)
+> **Feature File:** [mcp-documents/document-pages.md](../manual-testing-playbook/mcp-documents/document-pages.md)
+> **Catalog:** [mcp-low-priority/create-doc-page.md](../feature-catalog/mcp-low-priority/create-doc-page.md)
 
 ---
 
-## 14. MCP BULK AND STRUCTURE (`MCP-H008, MCP-M007..MCP-M009`)
+### MCP-M018 | Append to a Document Page
 
-### MCP-M007 | Manage Lists
+Verify `clickup_update_document_page` appends without overwriting the page.
 
-Verify `clickup_manage_lists` creates a list and returns a `list_id`.
+Prompt: `"Append 'Appended line' to page PAGE_ID of document DOC_ID."`
+Expected: The page keeps its earlier content and ends with 'Appended line'.
 
-Prompt: `"Create a list named 'Test List' in space SPACE_ID."`
-Expected: response includes `list_id`; list visible in ClickUp; exit 0.
-
-> **Feature File:** [mcp-bulk-and-structure/manage-lists.md](../manual-testing-playbook/mcp-bulk-and-structure/manage-lists.md)
-
----
-
-### MCP-M004 | Create Webhook
-
-Verify `clickup_manage_webhooks` creates a webhook.
-
-Prompt: `"Create a webhook for taskCreated events pointing to https://example.com/webhook."`
-Expected: response includes `webhook_id`; exit 0.
-
-> **Feature File:** [mcp-bulk-and-structure/create-webhook.md](../manual-testing-playbook/mcp-bulk-and-structure/create-webhook.md)
+> **Feature File:** [mcp-documents/update-document-page.md](../manual-testing-playbook/mcp-documents/update-document-page.md)
+> **Catalog:** [mcp-low-priority/update-doc-page.md](../feature-catalog/mcp-low-priority/update-doc-page.md)
 
 ---
 
-### MCP-L009 | Checklist Lifecycle
+## 14. MCP STRUCTURE (`MCP-M007, MCP-L019`)
 
-Verify checklist CRUD: create checklist → add item → mark resolved → delete.
+### MCP-M007 | Create a List
 
-Prompt: `"Create a checklist on task TASK_ID, add an item, check it off, then delete the checklist."`
-Expected: each operation exits 0; checklist and item state matches in ClickUp UI.
+Verify `clickup_create_list` creates a list in SPACE_ID.
 
-> **Feature File:** [mcp-bulk-and-structure/checklist-lifecycle.md](../manual-testing-playbook/mcp-bulk-and-structure/checklist-lifecycle.md)
+Prompt: `"Create a list named 'MCP Playbook Test List' in space SPACE_ID."`
+Expected: The list is created and resolves by name; no `error` field.
+
+> **Feature File:** [mcp-structure/create-list.md](../manual-testing-playbook/mcp-structure/create-list.md)
+> **Catalog:** [mcp-medium-priority/create-list.md](../feature-catalog/mcp-medium-priority/create-list.md)
 
 ---
 
-### MCP-L019 | Set Custom Field
+### MCP-L019 | Set a Custom Field Value
 
-Verify `clickup_set_custom_field_value` sets a field and is readable back.
+Verify a custom field value set through `clickup_update_task` reads back.
 
-Prompt: `"Set custom field FIELD_ID on task TASK_ID to value 'test-value'."`
-Expected: `clickup_get_task` response shows the field with the new value; exit 0.
+Prompt: `"Set custom field FIELD_ID on task TASK_ID to 'test-value'."`
+Expected: The read-back shows FIELD_ID with 'test-value'.
 
-> **Feature File:** [mcp-bulk-and-structure/custom-field.md](../manual-testing-playbook/mcp-bulk-and-structure/custom-field.md)
+> **Feature File:** [mcp-structure/custom-field.md](../manual-testing-playbook/mcp-structure/custom-field.md)
+> **Catalog:** [mcp-low-priority/get-custom-fields.md](../feature-catalog/mcp-low-priority/get-custom-fields.md)
 
 ---
 
@@ -793,7 +783,7 @@ Expected: clear error message naming the status issue; exit non-zero; `cupt stat
 
 Verify behavior when the OAuth approval is missing or lapsed.
 
-Prompt: `"Call clickup_get_workspace after the OAuth approval has lapsed."`
+Prompt: `"Call clickup_get_workspace_hierarchy after the OAuth approval has lapsed."`
 Expected: MCP returns 401/auth error; meaningful error message; exit non-zero.
 
 > **Feature File:** [recovery-and-failure/missing-auth.md](../manual-testing-playbook/recovery-and-failure/missing-auth.md)
@@ -873,17 +863,17 @@ All test modules are at 86% coverage per the cupt upstream repo.
 | CU-030 | Log time | cupt Time | `cupt-time-tracking/log-manual.md` |
 | CU-031 | Clear cache | cupt Config | `cupt-authentication/clear-cache.md` |
 | CU-034 | Empty queue | Recovery | `cupt-task-listing/list-assigned.md` |
-| MCP-H001 | Create task | MCP HIGH | `mcp-high-priority/create-task.md` |
-| MCP-H002 | Get task | MCP HIGH | `mcp-high-priority/get-task.md` |
-| MCP-H003 | Update task | MCP HIGH | `mcp-high-priority/update-task.md` |
-| MCP-H004 | Delete task | MCP HIGH | `mcp-high-priority/delete-task.md` |
-| MCP-H005 | Search tasks | MCP HIGH | `mcp-high-priority/search-tasks.md` |
-| MCP-H006 | Get workspace | MCP HIGH | `mcp-high-priority/get-workspace.md` |
-| MCP-H007 | Manage comments | MCP HIGH | `mcp-high-priority/manage-comments.md` |
-| MCP-H008 | Bulk create | MCP HIGH | `mcp-high-priority/create-bulk-tasks.md` |
-| MCP-M015 | Create document | MCP MEDIUM | `mcp-medium-priority/create-document.md` |
-| MCP-M016 | Get document | MCP MEDIUM | `mcp-medium-priority/get-document.md` |
-| MCP-M019 | Manage goals | MCP MEDIUM | `mcp-medium-priority/manage-goals.md` |
-| MCP-M007 | Manage lists | MCP MEDIUM | `mcp-medium-priority/manage-lists.md` |
-| MCP-L009 | Checklist lifecycle | MCP LOW | `mcp-low-priority/create-checklist.md` |
-| MCP-L019 | Set custom field | MCP LOW | `mcp-low-priority/set-custom-field.md` |
+| MCP-H001 | Create Task via MCP | MCP Task CRUD | `mcp-high-priority/create-task.md` |
+| MCP-H002 | Get Task via MCP | MCP Task CRUD | `mcp-high-priority/get-task.md` |
+| MCP-H003 | Update Task via MCP | MCP Task CRUD | `mcp-high-priority/update-task.md` |
+| MCP-H004 | Delete Task via MCP (DESTRUCTIVE) | MCP Task CRUD | `mcp-high-priority/delete-task.md` |
+| MCP-H005 | Filter Tasks via MCP | MCP Task CRUD | `mcp-high-priority/filter-tasks.md` |
+| MCP-H006 | Get Workspace Hierarchy (CRITICAL PATH) | MCP Task CRUD | `mcp-high-priority/get-workspace-hierarchy.md` |
+| MCP-H007 | Task Comments via MCP | MCP Task CRUD | `mcp-high-priority/create-comment.md` |
+| MCP-H009 | Search the Workspace via MCP | MCP Task CRUD | `mcp-high-priority/search.md` |
+| MCP-M015 | Create Document (CRITICAL PATH) | MCP Documents | `mcp-medium-priority/create-document.md` |
+| MCP-M016 | Read Document Pages | MCP Documents | `mcp-low-priority/list-document-pages.md` |
+| MCP-M017 | Create Document Page | MCP Documents | `mcp-low-priority/create-doc-page.md` |
+| MCP-M018 | Append to a Document Page | MCP Documents | `mcp-low-priority/update-doc-page.md` |
+| MCP-M007 | Create a List | MCP Structure | `mcp-medium-priority/create-list.md` |
+| MCP-L019 | Set a Custom Field Value | MCP Structure | `mcp-low-priority/get-custom-fields.md` |

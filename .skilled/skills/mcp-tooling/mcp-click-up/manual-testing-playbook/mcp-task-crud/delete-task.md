@@ -1,7 +1,7 @@
 ---
 title: "MCP-H004 -- Delete Task via MCP (DESTRUCTIVE)"
-description: "This scenario validates Delete Task via MCP (DESTRUCTIVE) for `MCP-H004`. Objective: Verify `clickup_delete_task` removes the task and subsequent get returns not-fou."
-version: 1.0.0.5
+description: "This scenario validates Delete Task via MCP (DESTRUCTIVE) for `MCP-H004`. Objective: Verify `clickup_delete_task` removes the throwaway task from MCP-H001."
+version: 1.1.0.0
 ---
 
 # MCP-H004 -- Delete Task via MCP (DESTRUCTIVE)
@@ -10,22 +10,22 @@ version: 1.0.0.5
 
 ## 1. OVERVIEW
 
-Validates that **Delete Task via MCP (DESTRUCTIVE)** behaves as defined in the feature catalog.
+Validates that **Delete Task via MCP (DESTRUCTIVE)** behaves as the feature catalog describes. Tool names and parameters come from the hosted server's schema, captured on 2026-10-08.
 
 ### Why This Matters
 
-Verify `clickup_delete_task` removes the task and subsequent get returns not-found is required for correct agent operation. Failure here means task still accessible after deletion attempt.
+Verify `clickup_delete_task` removes the throwaway task from MCP-H001. A failure here means an agent following this skill gets a wrong answer or a tool-not-found error.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- **Objective:** Verify `clickup_delete_task` removes the task and subsequent get returns not-found
-- **Real user request:** `Delete test task via MCP.`
-- **Prompt:** `Delete task TASK_ID permanently via MCP.`
-- **Expected signals:** Step 1: MCP returns success. Step 2: task returns 404 or not-found error.
-- **Desired user-visible outcome:** Agent reports: task deleted. Subsequent fetch confirms task no longer exists.
-- **Pass/fail:** PASS if step 2 returns not-found error confirming deletion; FAIL if task still accessible after deletion attempt
+- **Objective:** Verify `clickup_delete_task` removes the throwaway task from MCP-H001
+- **Real user request:** `Delete the test task via MCP.`
+- **Prompt:** `Delete test task TASK_ID permanently.`
+- **Expected signals:** Delete returns no `error` field; the follow-up read reports the task as not found.
+- **Desired user-visible outcome:** Agent reports the test task deleted and confirms it is gone.
+- **Pass/fail:** PASS if the follow-up read reports not found; FAIL if the task can still be read
 
 ---
 
@@ -33,13 +33,16 @@ Verify `clickup_delete_task` removes the task and subsequent get returns not-fou
 
 ### Recommended Orchestration Process
 
-PRE: TASK_ID must be the throwaway test task created in MCP-H001.
-1. Code Mode: `clickup_official.clickup_official_clickup_delete_task({task_id: 'TASK_ID'})`
-2. Code Mode: `clickup_official.clickup_official_clickup_get_task({task_id: 'TASK_ID'})`  # → should return 404/not-found
+PRE: MCP configured. Run in Wave 6 against the throwaway task from MCP-H001 only.
+1. Confirm with the operator that TASK_ID is the throwaway test task
+2. Code Mode: `clickup_official.clickup_official_clickup_delete_task({task_id: 'TASK_ID'})`
+3. Code Mode: `clickup_official.clickup_official_clickup_get_task({task_id: 'TASK_ID'})`  # → not found
+
+Each Code Mode step runs inside an async function passed to `mcp__code_mode__call_tool_chain`, with the result printed through `console.log`.
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| MCP-H004 | Delete Task via MCP (DESTRUCTIVE) | Verify `clickup_delete_task` removes the task and subsequent get returns not-found | `Delete task TASK_ID permanently via MCP.` | 1. Code Mode: `clickup_official.clickup_official_clickup_delete_task({task_id: 'TASK_ID'})` 2. Code Mode: `clickup_official.clickup_official_clickup_get_task({task_id: 'TASK_ID'})`  # → should return 404/not-found | Step 1: MCP returns success. Step 2: task returns 404 or not-found error. | Code Mode response + terminal output of the verification step(s) above | PASS if step 2 returns not-found error confirming deletion; FAIL if task still accessible after deletion attempt | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
+| MCP-H004 | Delete Task via MCP (DESTRUCTIVE) | Verify `clickup_delete_task` removes the throwaway task from MCP-H001 | `Delete test task TASK_ID permanently.` | 1. Confirm with the operator that TASK_ID is the throwaway test task 2. Code Mode: `clickup_official.clickup_official_clickup_delete_task({task_id: 'TASK_ID'})` 3. Code Mode: `clickup_official.clickup_official_clickup_get_task({task_id: 'TASK_ID'})`  # → not found | Delete returns no `error` field; the follow-up read reports the task as not found. | Code Mode logs plus the terminal output of any cupt step | PASS if the follow-up read reports not found; FAIL if the task can still be read | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -56,7 +59,7 @@ PRE: TASK_ID must be the throwaway test task created in MCP-H001.
 
 | File | Role |
 |------|------|
-| [`../../references/cupt-commands.md`](../../references/cupt-commands.md) | cupt command reference |
+| [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | MCP tool reference |
 | [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---

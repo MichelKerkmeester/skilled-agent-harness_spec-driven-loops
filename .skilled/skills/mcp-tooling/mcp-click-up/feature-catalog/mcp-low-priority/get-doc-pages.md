@@ -1,20 +1,20 @@
 ---
 title: "clickup_get_document_pages"
-description: "List all pages within a ClickUp document."
+description: "Read the full content of chosen document pages."
 trigger_phrases:
-  - "get document pages"
   - "clickup_get_document_pages"
-  - "list doc pages"
-  - "document page listing"
-  - "retrieve page ids from doc"
-version: 1.0.0.3
+  - "read doc page"
+  - "get document pages"
+version: 1.1.0.0
 importance_tier: "normal"
 contextType: "implementation"
 ---
 
 # clickup_get_document_pages
 
-List all pages within a ClickUp document.
+Read the full content of chosen document pages.
+
+> **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_get_document_pages` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
@@ -22,13 +22,20 @@ List all pages within a ClickUp document.
 
 ## 1. OVERVIEW
 
-Returns all page objects within a document. Required: `doc_id`. Each page object includes `page_id`, `name`, and `content`.
+Get the full content of specific pages by page ID. Use list_document_pages first to discover available page IDs.
+
+| Parameter | Type | Required | Server description |
+|-----------|------|----------|--------------------|
+| `document_id` | string | yes | ID of the document (e.g. 'ad-909705'). In ClickUp doc URLs the path is either /{workspace_id}/docs/{document_id}/{page_id} or /{workspace_id}/v/dc/{document_id}/{page_id}. The document_id is always the first ID after /docs/ or /v/dc/. |
+| `page_ids` | array | yes | Array of page IDs to retrieve (e.g. ['ad-2675877']). In ClickUp doc URLs, the page_id is the second ID after /docs/ or /v/dc/. If the URL contains only one ID (e.g. /{workspace_id}/docs/{document_id}), that is the document_id, use list_document_pages to discover page IDs. |
+| `content_format` | string (`text/plain`, `text/md`) | no | Response content format. |
+| `workspace_id` | string | no | Workspace ID (digits only). Only needed when you have multiple workspaces. |
 
 ---
 
 ## 2. HOW IT WORKS
 
-Use after `clickup_create_document` to verify pages or before `clickup_update_document_page` to get page IDs.
+Pass `document_id` and `page_ids`, and set `content_format: "text/md"` for markdown. Find page IDs with `clickup_list_document_pages`. The server has no whole-document read tool, so a document is read page by page.
 
 ---
 
@@ -44,7 +51,7 @@ Use after `clickup_create_document` to verify pages or before `clickup_update_do
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/mcp-documents/read-document-pages.md` | Manual | Scenario that exercises this tool |
 
 ---
 
@@ -53,6 +60,7 @@ Use after `clickup_create_document` to verify pages or before `clickup_update_do
 - Group: MCP LOW Priority
 - Canonical catalog source: `FEATURE-CATALOG.md`
 - Feature file path: `mcp-low-priority/get-doc-pages.md`
+
 Related references:
-- [delete-checklist-item.md](../../feature-catalog/mcp-low-priority/delete-checklist-item.md) — clickup_delete_checklist_item
-- [create-doc-page.md](../../feature-catalog/mcp-low-priority/create-doc-page.md) — clickup_create_document_page
+- [list-document-pages.md](../../feature-catalog/mcp-low-priority/list-document-pages.md): clickup_list_document_pages
+- [update-doc-page.md](../../feature-catalog/mcp-low-priority/update-doc-page.md): clickup_update_document_page

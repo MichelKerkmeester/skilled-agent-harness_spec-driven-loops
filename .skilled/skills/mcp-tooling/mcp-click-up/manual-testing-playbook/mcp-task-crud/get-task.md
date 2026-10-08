@@ -1,7 +1,7 @@
 ---
 title: "MCP-H002 -- Get Task via MCP"
-description: "This scenario validates Get Task via MCP for `MCP-H002`. Objective: Verify `clickup_get_task` returns full task object for a known task ID."
-version: 1.0.0.5
+description: "This scenario validates Get Task via MCP for `MCP-H002`. Objective: Verify `clickup_get_task` returns the task created in MCP-H001."
+version: 1.1.0.0
 ---
 
 # MCP-H002 -- Get Task via MCP
@@ -10,22 +10,22 @@ version: 1.0.0.5
 
 ## 1. OVERVIEW
 
-Validates that **Get Task via MCP** behaves as defined in the feature catalog.
+Validates that **Get Task via MCP** behaves as the feature catalog describes. Tool names and parameters come from the hosted server's schema, captured on 2026-10-08.
 
 ### Why This Matters
 
-Verify `clickup_get_task` returns full task object for a known task ID is required for correct agent operation. Failure here means 404/not found or response missing required fields.
+Verify `clickup_get_task` returns the task created in MCP-H001. A failure here means an agent following this skill gets a wrong answer or a tool-not-found error.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- **Objective:** Verify `clickup_get_task` returns full task object for a known task ID
-- **Real user request:** `Get task details via MCP.`
-- **Prompt:** `Get all fields for task TASK_ID using the MCP.`
-- **Expected signals:** MCP returns JSON with `id`, `name`, `status`, `priority`, `assignees`, `tags`; exit 0.
-- **Desired user-visible outcome:** Agent reports: task ID TASK_ID is named '...', status is '...', priority N.
-- **Pass/fail:** PASS if response includes `id`, `name`, and `status` fields; FAIL if 404/not found OR response missing required fields
+- **Objective:** Verify `clickup_get_task` returns the task created in MCP-H001
+- **Real user request:** `Show me the details of the test task via MCP.`
+- **Prompt:** `Get all details for task TASK_ID, including its description.`
+- **Expected signals:** Response carries the task ID, name and status, and no `error` field.
+- **Desired user-visible outcome:** Agent reports the task's name, status and description.
+- **Pass/fail:** PASS if ID, name and status are present; FAIL if the response has an `error` field
 
 ---
 
@@ -33,12 +33,15 @@ Verify `clickup_get_task` returns full task object for a known task ID is requir
 
 ### Recommended Orchestration Process
 
-1. Code Mode: `clickup_official.clickup_official_clickup_get_task({task_id: 'TASK_ID'})`
-2. `bash: jq '.id, .name, .status.status' <<< "$RESULT"`  # → task ID, name, status
+PRE: MCP configured. Use a throwaway test list and task.
+1. Code Mode: `clickup_official.clickup_official_clickup_get_task({task_id: 'TASK_ID', include: ['description']})`
+2. Check the response for the task's ID, name and status
+
+Each Code Mode step runs inside an async function passed to `mcp__code_mode__call_tool_chain`, with the result printed through `console.log`.
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| MCP-H002 | Get Task via MCP | Verify `clickup_get_task` returns full task object for a known task ID | `Get all fields for task TASK_ID using the MCP.` | 1. Code Mode: `clickup_official.clickup_official_clickup_get_task({task_id: 'TASK_ID'})` 2. `bash: jq '.id, .name, .status.status' <<< "$RESULT"`  # → task ID, name, status | MCP returns JSON with `id`, `name`, `status`, `priority`, `assignees`, `tags`; exit 0. | Code Mode response + terminal output of the verification step(s) above | PASS if response includes `id`, `name`, and `status` fields; FAIL if 404/not found OR response missing required fields | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
+| MCP-H002 | Get Task via MCP | Verify `clickup_get_task` returns the task created in MCP-H001 | `Get all details for task TASK_ID, including its description.` | 1. Code Mode: `clickup_official.clickup_official_clickup_get_task({task_id: 'TASK_ID', include: ['description']})` 2. Check the response for the task's ID, name and status | Response carries the task ID, name and status, and no `error` field. | Code Mode logs plus the terminal output of any cupt step | PASS if ID, name and status are present; FAIL if the response has an `error` field | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -55,7 +58,7 @@ Verify `clickup_get_task` returns full task object for a known task ID is requir
 
 | File | Role |
 |------|------|
-| [`../../references/cupt-commands.md`](../../references/cupt-commands.md) | cupt command reference |
+| [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | MCP tool reference |
 | [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---

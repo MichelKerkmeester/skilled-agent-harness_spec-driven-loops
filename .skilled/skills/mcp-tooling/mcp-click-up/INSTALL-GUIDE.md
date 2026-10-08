@@ -1,6 +1,6 @@
 # mcp-click-up Installation Guide
 
-Complete installation and configuration for ClickUp task management, providing AI assistants with two complementary surfaces. The cupt CLI is the primary tool: daily task operations (list, complete, note, time, tag) with per-list status resolution, dry-run safety, and `--json` output. The official ClickUp MCP is the secondary surface, launched through Code Mode for documents, goals, and bulk operations.
+Complete installation and configuration for ClickUp task management, providing AI assistants with two complementary surfaces. The cupt CLI is the primary tool: daily task operations (list, complete, note, time, tag) with per-list status resolution, dry-run safety, and `--json` output. The official ClickUp MCP is the secondary surface, launched through Code Mode for task creation, documents and workspace search.
 
 > **Package:** `cupt` (PyPI) | **Dependencies:** Python 3.8+, pipx (or pip); Node.js 18+ for the MCP path
 > **Phase-by-phase validation:** the install and verification checkpoints live in [§2 Prerequisites & Installation](#2-prerequisites--installation) through [§5 Verification](#5-verification) below.
@@ -50,7 +50,7 @@ All three succeed: the CLI surface is fully working. Not working? Go to [Trouble
 | Component | Source | Package | Install | Required For |
 |-----------|--------|---------|---------|-------------|
 | **cupt CLI** | [github.com/newz2000/cupt](https://github.com/newz2000/cupt) · [PyPI](https://pypi.org/project/cupt/) | `cupt` | `pipx install cupt` or `bash mcp-servers/clickup-cli/setup.sh` | Daily task ops (primary) |
-| **Official ClickUp MCP** | Hosted ClickUp MCP server | `https://mcp.clickup.com/mcp` | `.utcp_config.json` manual using stdio via `npx -y mcp-remote https://mcp.clickup.com/mcp`, then one OAuth approval | Documents, goals, bulk (secondary) |
+| **Official ClickUp MCP** | Hosted ClickUp MCP server | `https://mcp.clickup.com/mcp` | `.utcp_config.json` manual using stdio via `npx -y mcp-remote https://mcp.clickup.com/mcp`, then one OAuth approval | Task creation, documents, search (secondary) |
 
 ### When to Install What
 
@@ -60,7 +60,7 @@ Need ClickUp access?
   ├─ Daily task ops (list, done, note, time, tag)?
   │     → cupt CLI only (Sections 2-3)
   │
-  └─ Documents, goals, bulk ops?
+  └─ Create tasks, documents, search?
         → cupt CLI + MCP config (Sections 2-4)
 ```
 
@@ -154,16 +154,17 @@ The official server is launched over stdio by the `clickup_official` manual with
 }
 ```
 
-Restart your AI client after updating the config. Tool naming is `clickup_official.clickup_official_{tool_name}` — confirm every name with `tool_info()`/`list_tools()`, never guess. Configuration notes for other stdio clients: [`mcp-servers/clickup-mcp/README.md`](mcp-servers/clickup-mcp/README.md).
+Restart your AI client after updating the config. Tool naming is `clickup_official.clickup_official_clickup_{tool}`, because every server tool name already starts with `clickup_`. Confirm a name with `tool_info()` when a call reports it missing. Configuration notes for other stdio clients: [`mcp-servers/clickup-mcp/README.md`](mcp-servers/clickup-mcp/README.md).
 
 **MCP smoke test (Code Mode):**
 
 ```typescript
-const result = await call_tool_chain([{
-  tool: "clickup_official.clickup_official_get_workspace",
-  input: {}
-}]);
-// Should return workspace data with team ID
+// The `code` string passed to mcp__code_mode__call_tool_chain
+(async () => {
+  const tree = await clickup_official.clickup_official_clickup_get_workspace_hierarchy({ max_depth: 1 });
+  console.log(JSON.stringify(tree).slice(0, 500));
+})();
+// Should print the workspace's spaces
 ```
 
 ---

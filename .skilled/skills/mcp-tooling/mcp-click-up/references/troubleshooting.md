@@ -182,8 +182,8 @@ cupt done TASK_ID --dry-run
 ```
 
 **Fix if already completed:**
-- cupt cannot reopen tasks (use ClickUp UI or MCP `clickup_official.clickup_official_update_task`)
-- For MCP: `clickup_official.clickup_official_update_task` with `{ "status": "in progress" }` to reopen
+- cupt cannot reopen tasks (use ClickUp UI or MCP `clickup_official.clickup_official_clickup_update_task`)
+- For MCP: `clickup_official.clickup_official_clickup_update_task` with `{ "status": "in progress" }` to reopen
 
 ---
 
@@ -201,7 +201,7 @@ cupt statuses TASK_ID   # List available statuses
 **Fix:**
 - Check the task's list in ClickUp UI → Settings → Statuses
 - Ensure at least one status has "closed" type enabled
-- Or use MCP: `clickup_official.clickup_official_update_task` with explicit status name
+- Or use MCP: `clickup_official.clickup_official_clickup_update_task` with explicit status name
 
 ---
 
@@ -226,11 +226,14 @@ cupt statuses TASK_ID   # List available statuses
 
 3. **Consider MCP for large-scale searches:**
    ```typescript
-   // MCP supports server-side team filtering:
-   await call_tool_chain([{
-     tool: "clickup_official.clickup_official_search_tasks",
-     input: { assignees: ["USER_ID"], team_id: "WORKSPACE_ID" }
-   }]);
+   // MCP filters across lists server-side. Turn names into IDs with clickup_resolve_assignees first.
+   (async () => {
+     const tasks = await clickup_official.clickup_official_clickup_filter_tasks({
+       assignees: ["USER_ID"],
+       tags: ["sprint"],
+     });
+     console.log(JSON.stringify(tasks));
+   })();
    ```
 
 ---

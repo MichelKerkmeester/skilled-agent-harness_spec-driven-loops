@@ -7,7 +7,7 @@ description: "This scenario validates the SKILL.md Smart Router's MCP_ADVANCED i
 expected_intent: MCP_ADVANCED
 expected_resources:
   - references/mcp-tools.md
-version: 1.1.0.0
+version: 1.1.0.1
 ---
 
 # CU-R02: MCP advanced routing
@@ -24,8 +24,10 @@ exactly `RESOURCE_MAP["MCP_ADVANCED"]` — `references/mcp-tools.md` alone — p
 
 ### Why This Matters
 
-`MCP_ADVANCED` covers the official ClickUp MCP surface beyond everyday `cupt` CLI ops — documents,
-goals/OKRs, bulk operations, webhooks, and structural changes. `route_clickup_resources()` runs a
+`MCP_ADVANCED` covers the official ClickUp MCP surface beyond everyday `cupt` CLI ops: task creation,
+documents, search and structural changes. It also catches requests for features the hosted server
+lacks, such as goals, bulk creation and webhooks, so the loaded reference can say plainly that they
+are not available. `route_clickup_resources()` runs a
 hard tie-break that lets a `TROUBLESHOOT` score above 3 or an `INSTALL` score above 4 override any
 other intent. This scenario proves a documents/goals/bulk-create prompt, with no error or setup
 language in it, resolves to `MCP_ADVANCED` cleanly rather than being pulled off course by that
@@ -58,7 +60,8 @@ Create a ClickUp document, set quarterly OKR goals, and bulk-create the sprint t
 - Expected signals: `SKILL.md` §2 lists `MCP_ADVANCED` in `INTENT_SIGNALS` with those keywords;
   `RESOURCE_MAP["MCP_ADVANCED"]` names exactly `references/mcp-tools.md`; the file exists.
 - Desired user-visible outcome: the router states plainly that this request routes to `MCP_ADVANCED`
-  and bundles the MCP tool reference before answering.
+  and bundles the MCP tool reference before answering. The answer creates the document and says
+  that goals and bulk creation have no tool on the hosted server (`references/mcp-tools.md` §4).
 - Pass/fail: PASS if `SKILL.md` §2 names the matched `MCP_ADVANCED` keywords, no
   `TROUBLESHOOT`/`INSTALL` keyword is present in the prompt, and the mapped resource exists; FAIL if
   the keyword weights or `RESOURCE_MAP["MCP_ADVANCED"]` entry in `SKILL.md` no longer matches this

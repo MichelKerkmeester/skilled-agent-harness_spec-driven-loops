@@ -87,5 +87,5 @@ log "-- ClickUp MCP auth --"
 info "Auth is OAuth 2.1 + PKCE via the browser, no env var to check. First connection opens a browser to authorize."
 
 log ""
-log "Doctor is read-only. For setup and authentication, run install.sh or read references/INSTALL-GUIDE.md."
+log "Doctor is read-only. For setup and authentication, run install.sh or read INSTALL-GUIDE.md at the packet root."
 exit 0

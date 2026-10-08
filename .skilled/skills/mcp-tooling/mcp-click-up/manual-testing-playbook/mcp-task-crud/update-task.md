@@ -1,7 +1,7 @@
 ---
 title: "MCP-H003 -- Update Task via MCP"
-description: "This scenario validates Update Task via MCP for `MCP-H003`. Objective: Verify `clickup_update_task` changes a task field and the change is reflected in."
-version: 1.0.0.5
+description: "This scenario validates Update Task via MCP for `MCP-H003`. Objective: Verify `clickup_update_task` changes the test task's status to a valid value."
+version: 1.1.0.0
 ---
 
 # MCP-H003 -- Update Task via MCP
@@ -10,22 +10,22 @@ version: 1.0.0.5
 
 ## 1. OVERVIEW
 
-Validates that **Update Task via MCP** behaves as defined in the feature catalog.
+Validates that **Update Task via MCP** behaves as the feature catalog describes. Tool names and parameters come from the hosted server's schema, captured on 2026-10-08.
 
 ### Why This Matters
 
-Verify `clickup_update_task` changes a task field and the change is reflected in ClickUp is required for correct agent operation. Failure here means priority unchanged after update or mcp returns error.
+Verify `clickup_update_task` changes the test task's status to a valid value. A failure here means an agent following this skill gets a wrong answer or a tool-not-found error.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- **Objective:** Verify `clickup_update_task` changes a task field and the change is reflected in ClickUp
-- **Real user request:** `Update a task's priority via MCP.`
-- **Prompt:** `Update task TASK_ID priority to 2 (high) via MCP.`
-- **Expected signals:** Step 1: MCP returns updated task with priority 2. Step 2: cupt show confirms priority is 2/high.
-- **Desired user-visible outcome:** Agent reports: task priority updated to 'high' (2).
-- **Pass/fail:** PASS if cupt show confirms new priority value matches update; FAIL if priority unchanged after update OR MCP returns error
+- **Objective:** Verify `clickup_update_task` changes the test task's status to a valid value
+- **Real user request:** `Move the test task to in progress via MCP.`
+- **Prompt:** `Update task TASK_ID status to 'in progress'.`
+- **Expected signals:** The status exists in `available_statuses`; the update returns no `error` field; cupt shows the new status.
+- **Desired user-visible outcome:** Agent reports the task moved to 'in progress'.
+- **Pass/fail:** PASS if cupt shows the new status; FAIL if the update returns an `error` field OR the status is unchanged
 
 ---
 
@@ -33,12 +33,16 @@ Verify `clickup_update_task` changes a task field and the change is reflected in
 
 ### Recommended Orchestration Process
 
-1. Code Mode: `clickup_official.clickup_official_clickup_update_task({task_id: 'TASK_ID', priority: 2})`
-2. `cupt show TASK_ID --json | jq .priority.priority`  # → '2' or 'high'
+PRE: MCP configured. Use a throwaway test list and task.
+1. Code Mode: `clickup_official.clickup_official_clickup_get_task({task_id: 'TASK_ID', expand_statuses: true})` and pick a status from `available_statuses`
+2. Code Mode: `clickup_official.clickup_official_clickup_update_task({task_id: 'TASK_ID', status: 'in progress'})`
+3. `cupt show TASK_ID --json | jq .status`  # → the new status
+
+Each Code Mode step runs inside an async function passed to `mcp__code_mode__call_tool_chain`, with the result printed through `console.log`.
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| MCP-H003 | Update Task via MCP | Verify `clickup_update_task` changes a task field and the change is reflected in ClickUp | `Update task TASK_ID priority to 2 (high) via MCP.` | 1. Code Mode: `clickup_official.clickup_official_clickup_update_task({task_id: 'TASK_ID', priority: 2})` 2. `cupt show TASK_ID --json \| jq .priority.priority`  # → '2' or 'high' | Step 1: MCP returns updated task with priority 2. Step 2: cupt show confirms priority is 2/high. | Code Mode response + terminal output of the verification step(s) above | PASS if cupt show confirms new priority value matches update; FAIL if priority unchanged after update OR MCP returns error | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
+| MCP-H003 | Update Task via MCP | Verify `clickup_update_task` changes the test task's status to a valid value | `Update task TASK_ID status to 'in progress'.` | 1. Code Mode: `clickup_official.clickup_official_clickup_get_task({task_id: 'TASK_ID', expand_statuses: true})` and pick a status from `available_statuses` 2. Code Mode: `clickup_official.clickup_official_clickup_update_task({task_id: 'TASK_ID', status: 'in progress'})` 3. `cupt show TASK_ID --json \| jq .status`  # → the new status | The status exists in `available_statuses`; the update returns no `error` field; cupt shows the new status. | Code Mode logs plus the terminal output of any cupt step | PASS if cupt shows the new status; FAIL if the update returns an `error` field OR the status is unchanged | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -55,7 +59,7 @@ Verify `clickup_update_task` changes a task field and the change is reflected in
 
 | File | Role |
 |------|------|
-| [`../../references/cupt-commands.md`](../../references/cupt-commands.md) | cupt command reference |
+| [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | MCP tool reference |
 | [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---

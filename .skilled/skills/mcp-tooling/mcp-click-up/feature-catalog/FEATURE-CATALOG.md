@@ -1,7 +1,7 @@
 ---
 title: "mcp-click-up: Feature Catalog"
-description: "Unified reference combining the complete feature inventory and current-reality reference for the mcp-click-up skill — cupt CLI (v0.7.1+) and Official ClickUp MCP (46 tools)."
-version: 1.0.0.3
+description: "Unified reference combining the complete feature inventory and current-reality reference for the mcp-click-up skill: cupt CLI (v0.7.1+) and the official hosted ClickUp MCP (61 live tools)."
+version: 1.1.0.0
 ---
 
 # mcp-click-up: Feature Catalog
@@ -15,20 +15,20 @@ Complete feature inventory for both tools in the mcp-click-up skill. This catalo
 The mcp-click-up skill routes ClickUp work between two complementary tools:
 
 - **cupt CLI** (`pipx install cupt`) — 50 features across 10 command areas. Purpose-built for agent use: per-list status resolution, dry-run safety, offline cache, and `--json` output on 4 of its read commands (`list`, `show`, `statuses`, `teams` — not global).
-- **Official ClickUp MCP** (the `clickup_official` manual — the hosted server at `https://mcp.clickup.com/mcp`, launched over stdio via `npx -y mcp-remote`, signed in with OAuth, registered in `.utcp_config.json`, via Code Mode `call_tool_chain({ code: "..." })`). Covers surfaces cupt cannot reach: documents, time tracking, chat and reminders.
+- **Official ClickUp MCP** (the `clickup_official` manual: the hosted server at `https://mcp.clickup.com/mcp`, launched over stdio via `npx -y mcp-remote`, signed in with OAuth, registered in `.utcp_config.json`, via Code Mode `call_tool_chain({ code: "..." })`). Covers what cupt cannot do: task creation, documents and pages, search, lists and folders, task relations, chat and reminders.
 
-> **Verification status (2026-10-08):** the `clickup_official` manual now runs ClickUp's hosted server through `mcp-remote`, after the npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08. The hosted server registered 61 tools on 2026-10-08. The capability marks on the cards came from the 2026-07 inventory of the npm route and have not been re-checked against that list. See `../references/mcp-tools.md` for the notes.
+> **Verification status (2026-10-08):** the `clickup_official` manual runs ClickUp's hosted server through `mcp-remote`, after the npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08. The hosted server registered 61 tools on 2026-10-08, and every MCP card below was generated from that tool list, one card per tool, with each parameter table taken from the server's own schema. The server has no tools for goals, bulk create, webhooks, checklist edits, spaces, views, space tags, task templates, guests, user groups or audit logs. Its operator catalog had no operators enabled, so those features have no MCP route.
 
 Routing is **operation-based**: each feature belongs to exactly one tool. See `../SKILL.md §2` for the routing pseudocode.
 
 | Metric | Value |
 |--------|-------|
 | cupt features | 50 |
-| Official MCP tools | 51 confirmed present + not-yet-reconciled (2026-07 `list_tools()`); catalog below still lists cards for the old assumed 46, with confirmed-absent ones marked UNSUPPORTED |
-| Total catalog entries | 96 (8 MCP cards marked UNSUPPORTED — not live capabilities) |
+| Official MCP tools | 61, one card each, live-verified 2026-10-08 |
+| Total catalog entries | 111 |
 | cupt install | `pipx install cupt` |
-| MCP server | `clickup_official` — hosted ClickUp server via `npx -y mcp-remote`, OAuth sign-in, registered in `.utcp_config.json` |
-| MCP invocation | `clickup_official.clickup_official_<tool_name>` via Code Mode — confirm every name with `tool_info()`/`list_tools()`, do not guess |
+| MCP server | `clickup_official`, the hosted ClickUp server via `npx -y mcp-remote`, OAuth sign-in, registered in `.utcp_config.json` |
+| MCP invocation | `clickup_official.clickup_official_<tool_name>`, where every server tool name already starts with `clickup_`, for example `clickup_official.clickup_official_clickup_create_task` |
 
 See `../feature-catalog/FEATURE-CATALOG.md` for the agent decision guide.
 
@@ -344,251 +344,326 @@ See [`cupt-global-flags/version-flag.md`](../feature-catalog/cupt-global-flags/v
 
 ---
 
-## 12. OFFICIAL CLICKUP MCP — HIGH PRIORITY (8 CARDS, 1 UNSUPPORTED)
+## 12. OFFICIAL CLICKUP MCP: HIGH PRIORITY (10 TOOLS)
 
-Daily task management. Tools invoked as `clickup_official.clickup_official_<tool_name>` in Code Mode — confirm every name with `tool_info()`/`list_tools()`. `clickup_create_bulk_tasks` is marked UNSUPPORTED below (confirmed absent from the last live inventory); the other 7 cover standard task CRUD.
+Task create, read, update and delete, task search and filtering, comments, and the connection smoke test.
 
 ### clickup_create_task
-Create a single task in a list. Supports name, description, priority (1-4), assignees, tags, due_date, and status.
+Create one task in a list, with a markdown description, assignees, tags, dates and custom fields.
 
 See [`mcp-high-priority/create-task.md`](../feature-catalog/mcp-high-priority/create-task.md)
 
 ### clickup_get_task
-Get full task details by ID. Returns all fields including custom fields, time tracked, and subtask list.
+Read one task by ID, including custom IDs such as `DEV-1234`.
 
 See [`mcp-high-priority/get-task.md`](../feature-catalog/mcp-high-priority/get-task.md)
 
 ### clickup_update_task
-Update task fields: status, priority, assignees, due date, name, description. The only MCP tool that can change task status.
+Change task fields: name, markdown description, status, priority, dates, assignees, type and custom fields.
 
 See [`mcp-high-priority/update-task.md`](../feature-catalog/mcp-high-priority/update-task.md)
 
 ### clickup_delete_task
-Permanently delete a task. Not reversible. Use only on confirmed test or duplicate tasks.
+Delete a task permanently.
 
 See [`mcp-high-priority/delete-task.md`](../feature-catalog/mcp-high-priority/delete-task.md)
 
-### clickup_search_tasks
-Full-text search across the workspace with optional filters for list, assignee, tags, and status.
+### clickup_filter_tasks
+List tasks that match field filters: tags, lists, folders, spaces, statuses, assignees, dates and custom fields.
 
-See [`mcp-high-priority/search-tasks.md`](../feature-catalog/mcp-high-priority/search-tasks.md)
+See [`mcp-high-priority/filter-tasks.md`](../feature-catalog/mcp-high-priority/filter-tasks.md)
 
-### clickup_get_workspace
-Get workspace details including team ID, name, members, and plan information.
+### clickup_search
+Keyword search across the workspace: tasks, docs, dashboards, attachments, whiteboards, chats and forms.
 
-See [`mcp-high-priority/get-workspace.md`](../feature-catalog/mcp-high-priority/get-workspace.md)
+See [`mcp-high-priority/search.md`](../feature-catalog/mcp-high-priority/search.md)
 
-### clickup_manage_comments
-Create (POST) or list (GET) task comments. Equivalent to cupt note/notes but via MCP.
+### clickup_get_workspace_hierarchy
+Read the workspace structure: spaces, folders and lists, with paging and depth control.
 
-See [`mcp-high-priority/manage-comments.md`](../feature-catalog/mcp-high-priority/manage-comments.md)
+See [`mcp-high-priority/get-workspace-hierarchy.md`](../feature-catalog/mcp-high-priority/get-workspace-hierarchy.md)
 
-### clickup_create_bulk_tasks
-Create 5 or more tasks in one API call. More efficient than sequential `clickup_create_task` for large batches.
+### clickup_create_comment
+Post a comment or threaded reply on a task, list or view, with markdown support.
 
-See [`mcp-high-priority/create-bulk-tasks.md`](../feature-catalog/mcp-high-priority/create-bulk-tasks.md)
+See [`mcp-high-priority/create-comment.md`](../feature-catalog/mcp-high-priority/create-comment.md)
+
+### clickup_get_task_comments
+List a task's comments, with a reply count per comment.
+
+See [`mcp-high-priority/get-task-comments.md`](../feature-catalog/mcp-high-priority/get-task-comments.md)
+
+### clickup_move_task
+Move a task to a different home list.
+
+See [`mcp-high-priority/move-task.md`](../feature-catalog/mcp-high-priority/move-task.md)
 
 ---
 
-## 13. OFFICIAL CLICKUP MCP — MEDIUM PRIORITY (19 CARDS, 3 UNSUPPORTED)
+## 13. OFFICIAL CLICKUP MCP: MEDIUM PRIORITY (25 TOOLS)
 
-Weekly operations: structure management, documents, advanced task features. `clickup_manage_goals` and the top-level `clickup_get_document`/`clickup_update_document` cards are marked UNSUPPORTED below (confirmed absent — or, for the two document cards, not found in the last inventory alongside document-create and document-pages tools which were confirmed).
+Documents, tags, comment upkeep, task relations, lists and folders, and time tracking.
 
-### clickup_update_bulk_tasks
-Update multiple tasks in a single call. Accepts an array of task objects with `task_id` + fields to change.
+### clickup_create_document
+Create a ClickUp document in a space, folder, list, everything view or workspace.
 
-See [`mcp-medium-priority/update-bulk-tasks.md`](../feature-catalog/mcp-medium-priority/update-bulk-tasks.md)
-
-### clickup_create_subtask
-Create a subtask under a parent task. Requires `parent_task_id` and `name`.
-
-See [`mcp-medium-priority/create-subtask.md`](../feature-catalog/mcp-medium-priority/create-subtask.md)
-
-### clickup_manage_task_dependencies
-Set or remove dependencies between tasks. Supports `depends_on` and `dependency_of` relationship types.
-
-See [`mcp-medium-priority/task-dependencies.md`](../feature-catalog/mcp-medium-priority/task-dependencies.md)
-
-### clickup_create_task_link
-Create a non-dependency link between two tasks (e.g. "related to").
-
-See [`mcp-medium-priority/create-task-link.md`](../feature-catalog/mcp-medium-priority/create-task-link.md)
-
-### clickup_add_task_to_multiple_lists
-Add an existing task to additional lists without duplicating it.
-
-See [`mcp-medium-priority/multi-list.md`](../feature-catalog/mcp-medium-priority/multi-list.md)
-
-### clickup_manage_task_attachments
-Upload or list task attachments via MCP. Alternative to `cupt attach` for MCP-first workflows.
-
-See [`mcp-medium-priority/task-attachments.md`](../feature-catalog/mcp-medium-priority/task-attachments.md)
-
-### clickup_manage_lists
-Create, update, or delete lists within a space or folder.
-
-See [`mcp-medium-priority/manage-lists.md`](../feature-catalog/mcp-medium-priority/manage-lists.md)
-
-### clickup_manage_spaces
-Create, update, or delete spaces within the workspace.
-
-See [`mcp-medium-priority/manage-spaces.md`](../feature-catalog/mcp-medium-priority/manage-spaces.md)
-
-### clickup_manage_folders
-Create, update, or delete folders within a space.
-
-See [`mcp-medium-priority/manage-folders.md`](../feature-catalog/mcp-medium-priority/manage-folders.md)
-
-### clickup_manage_custom_fields
-Create or update custom field definitions for a list.
-
-See [`mcp-medium-priority/custom-fields.md`](../feature-catalog/mcp-medium-priority/custom-fields.md)
+See [`mcp-medium-priority/create-document.md`](../feature-catalog/mcp-medium-priority/create-document.md)
 
 ### clickup_add_tag_to_task
-Add a tag to a task via MCP. Functionally equivalent to `cupt tag add`.
+Add an existing space tag to a task.
 
 See [`mcp-medium-priority/add-tag.md`](../feature-catalog/mcp-medium-priority/add-tag.md)
 
 ### clickup_remove_tag_from_task
-Remove a tag from a task via MCP. Functionally equivalent to `cupt tag remove`.
+Remove a tag from a task. The tag stays defined in the space.
 
 See [`mcp-medium-priority/remove-tag.md`](../feature-catalog/mcp-medium-priority/remove-tag.md)
 
-### clickup_manage_space_tags
-Create or update workspace-level tag definitions in a space.
+### clickup_update_comment
+Edit a comment in place: replace its text, resolve it or reassign it.
 
-See [`mcp-medium-priority/space-tags.md`](../feature-catalog/mcp-medium-priority/space-tags.md)
+See [`mcp-medium-priority/update-comment.md`](../feature-catalog/mcp-medium-priority/update-comment.md)
 
-### clickup_get_views
-List all views (list view, board, calendar, etc.) for a workspace, space, or list.
+### clickup_delete_comment
+Delete a comment permanently.
 
-See [`mcp-medium-priority/get-views.md`](../feature-catalog/mcp-medium-priority/get-views.md)
+See [`mcp-medium-priority/delete-comment.md`](../feature-catalog/mcp-medium-priority/delete-comment.md)
 
-### clickup_create_document
-Create a ClickUp document. Supports markdown or HTML content. Parent type codes: 4=list, 5=folder, 6=space, 7=all, 12=workspace.
+### clickup_get_threaded_comments
+Read the replies under one comment.
 
-See [`mcp-medium-priority/create-document.md`](../feature-catalog/mcp-medium-priority/create-document.md)
+See [`mcp-medium-priority/get-threaded-comments.md`](../feature-catalog/mcp-medium-priority/get-threaded-comments.md)
 
-### clickup_get_document
-Get document details by document ID.
+### clickup_merge_tasks
+Merge source tasks into a target task. The sources are consumed.
 
-See [`mcp-medium-priority/get-document.md`](../feature-catalog/mcp-medium-priority/get-document.md)
+See [`mcp-medium-priority/merge-tasks.md`](../feature-catalog/mcp-medium-priority/merge-tasks.md)
 
-### clickup_update_document
-Update an existing document's name or content.
+### clickup_add_task_to_list
+Show a task in an additional list while it keeps its home list.
 
-See [`mcp-medium-priority/update-document.md`](../feature-catalog/mcp-medium-priority/update-document.md)
+See [`mcp-medium-priority/add-task-to-list.md`](../feature-catalog/mcp-medium-priority/add-task-to-list.md)
 
-### clickup_manage_time_tracking
-Log or update time tracking entries for a task via MCP. Accepts start/end timestamps or duration.
+### clickup_remove_task_from_list
+Remove a task from an additional list. The home list cannot be removed.
 
-See [`mcp-medium-priority/time-tracking.md`](../feature-catalog/mcp-medium-priority/time-tracking.md)
+See [`mcp-medium-priority/remove-task-from-list.md`](../feature-catalog/mcp-medium-priority/remove-task-from-list.md)
 
-### clickup_manage_goals
-Create, update, or delete goals and OKRs. Requires workspace-level team ID.
+### clickup_add_task_dependency
+Make one task block another: `waiting_on` or `blocking`.
 
-See [`mcp-medium-priority/manage-goals.md`](../feature-catalog/mcp-medium-priority/manage-goals.md)
+See [`mcp-medium-priority/add-task-dependency.md`](../feature-catalog/mcp-medium-priority/add-task-dependency.md)
+
+### clickup_remove_task_dependency
+Remove a dependency between two tasks.
+
+See [`mcp-medium-priority/remove-task-dependency.md`](../feature-catalog/mcp-medium-priority/remove-task-dependency.md)
+
+### clickup_add_task_link
+Link two tasks with no ordering or blocking.
+
+See [`mcp-medium-priority/add-task-link.md`](../feature-catalog/mcp-medium-priority/add-task-link.md)
+
+### clickup_remove_task_link
+Remove a link between two tasks.
+
+See [`mcp-medium-priority/remove-task-link.md`](../feature-catalog/mcp-medium-priority/remove-task-link.md)
+
+### clickup_create_list
+Create a list directly in a space.
+
+See [`mcp-medium-priority/create-list.md`](../feature-catalog/mcp-medium-priority/create-list.md)
+
+### clickup_create_list_in_folder
+Create a list inside a folder.
+
+See [`mcp-medium-priority/create-list-in-folder.md`](../feature-catalog/mcp-medium-priority/create-list-in-folder.md)
+
+### clickup_get_list
+Read a list by ID or name, including its configured statuses.
+
+See [`mcp-medium-priority/get-list.md`](../feature-catalog/mcp-medium-priority/get-list.md)
+
+### clickup_update_list
+Change a list's name, content or status.
+
+See [`mcp-medium-priority/update-list.md`](../feature-catalog/mcp-medium-priority/update-list.md)
+
+### clickup_create_folder
+Create a folder in a space, optionally with its own statuses.
+
+See [`mcp-medium-priority/create-folder.md`](../feature-catalog/mcp-medium-priority/create-folder.md)
+
+### clickup_get_folder
+Read a folder by ID or name.
+
+See [`mcp-medium-priority/get-folder.md`](../feature-catalog/mcp-medium-priority/get-folder.md)
+
+### clickup_update_folder
+Rename a folder or change its statuses.
+
+See [`mcp-medium-priority/update-folder.md`](../feature-catalog/mcp-medium-priority/update-folder.md)
+
+### clickup_start_time_tracking
+Start a timer on a task.
+
+See [`mcp-medium-priority/start-time-tracking.md`](../feature-catalog/mcp-medium-priority/start-time-tracking.md)
+
+### clickup_stop_time_tracking
+Stop the running timer and return the finished entry.
+
+See [`mcp-medium-priority/stop-time-tracking.md`](../feature-catalog/mcp-medium-priority/stop-time-tracking.md)
+
+### clickup_add_time_entry
+Log a manual time entry on a task.
+
+See [`mcp-medium-priority/add-time-entry.md`](../feature-catalog/mcp-medium-priority/add-time-entry.md)
+
+### clickup_get_current_time_entry
+Read the running time entry, if there is one.
+
+See [`mcp-medium-priority/get-current-time-entry.md`](../feature-catalog/mcp-medium-priority/get-current-time-entry.md)
+
+### clickup_get_time_entries
+List time entries, filtered by task, dates, assignee or billable flag.
+
+See [`mcp-medium-priority/get-time-entries.md`](../feature-catalog/mcp-medium-priority/get-time-entries.md)
 
 ---
 
-## 14. OFFICIAL CLICKUP MCP — LOW PRIORITY (19 CARDS, 10 UNSUPPORTED)
+## 14. OFFICIAL CLICKUP MCP: LOW PRIORITY (26 TOOLS)
 
-Used for setup, enterprise administration, and specialized workflows. `clickup_manage_webhooks`, `clickup_get_user_groups`, `clickup_manage_guests`, `clickup_get_audit_logs`, and all 6 checklist tools (`create`/`update`/`delete` for both checklists and checklist items) are marked UNSUPPORTED below (confirmed absent from the last live inventory).
+Document pages and their attachments, task attachments, chat, reminders, members, time in status, and the operator catalog.
 
-### clickup_get_task_dependencies
-Query the dependency graph for a task (read-only). Returns all `depends_on` and `dependency_of` relationships.
+### clickup_list_document_pages
+List the page tree of a document, names only.
 
-See [`mcp-low-priority/get-dependencies.md`](../feature-catalog/mcp-low-priority/get-dependencies.md)
-
-### clickup_use_task_template
-Create a new task from a saved ClickUp task template.
-
-See [`mcp-low-priority/use-template.md`](../feature-catalog/mcp-low-priority/use-template.md)
-
-### clickup_manage_chat
-Send messages to ClickUp Chat channels.
-
-See [`mcp-low-priority/manage-chat.md`](../feature-catalog/mcp-low-priority/manage-chat.md)
-
-### clickup_manage_webhooks
-Create, update, list, or delete workspace webhooks. Supports `taskCreated`, `taskStatusUpdated`, and other event types.
-
-See [`mcp-low-priority/manage-webhooks.md`](../feature-catalog/mcp-low-priority/manage-webhooks.md)
-
-### clickup_get_user_groups
-List user groups (teams) in the workspace. Enterprise feature — requires admin token.
-
-See [`mcp-low-priority/user-groups.md`](../feature-catalog/mcp-low-priority/user-groups.md)
-
-### clickup_manage_guests
-Add or remove guest users from the workspace. Enterprise feature.
-
-See [`mcp-low-priority/manage-guests.md`](../feature-catalog/mcp-low-priority/manage-guests.md)
-
-### clickup_get_audit_logs
-Access workspace audit logs for compliance and security review. Enterprise feature.
-
-See [`mcp-low-priority/audit-logs.md`](../feature-catalog/mcp-low-priority/audit-logs.md)
-
-### clickup_provide_feedback
-Submit product feedback directly to ClickUp from the MCP. Rarely used in agent workflows.
-
-See [`mcp-low-priority/feedback.md`](mcp-low-priority/feedback.md)
-
-### clickup_create_checklist
-Create a named checklist inside a task.
-
-See [`mcp-low-priority/create-checklist.md`](../feature-catalog/mcp-low-priority/create-checklist.md)
-
-### clickup_update_checklist
-Update a checklist's name or ordering.
-
-See [`mcp-low-priority/update-checklist.md`](../feature-catalog/mcp-low-priority/update-checklist.md)
-
-### clickup_delete_checklist
-Delete a checklist from a task.
-
-See [`mcp-low-priority/delete-checklist.md`](../feature-catalog/mcp-low-priority/delete-checklist.md)
-
-### clickup_create_checklist_item
-Add a new item to an existing checklist.
-
-See [`mcp-low-priority/create-checklist-item.md`](../feature-catalog/mcp-low-priority/create-checklist-item.md)
-
-### clickup_update_checklist_item
-Update a checklist item: change text or mark as resolved/unresolved.
-
-See [`mcp-low-priority/update-checklist-item.md`](../feature-catalog/mcp-low-priority/update-checklist-item.md)
-
-### clickup_delete_checklist_item
-Remove a specific item from a checklist.
-
-See [`mcp-low-priority/delete-checklist-item.md`](../feature-catalog/mcp-low-priority/delete-checklist-item.md)
+See [`mcp-low-priority/list-document-pages.md`](../feature-catalog/mcp-low-priority/list-document-pages.md)
 
 ### clickup_get_document_pages
-List all pages within a ClickUp document.
+Read the full content of chosen document pages.
 
 See [`mcp-low-priority/get-doc-pages.md`](../feature-catalog/mcp-low-priority/get-doc-pages.md)
 
 ### clickup_create_document_page
-Add a new page to an existing ClickUp document.
+Add a page, or a sub-page, to a document.
 
 See [`mcp-low-priority/create-doc-page.md`](../feature-catalog/mcp-low-priority/create-doc-page.md)
 
 ### clickup_update_document_page
-Update the name or content of a specific document page.
+Rename a page or change its content, by replacing, appending or prepending.
 
 See [`mcp-low-priority/update-doc-page.md`](../feature-catalog/mcp-low-priority/update-doc-page.md)
 
 ### clickup_get_custom_fields
-List all custom field definitions for a list.
+Read custom field definitions at list, folder, space or workspace level.
 
 See [`mcp-low-priority/get-custom-fields.md`](../feature-catalog/mcp-low-priority/get-custom-fields.md)
 
-### clickup_set_custom_field_value
-Set the value of a custom field on a specific task.
+### clickup_list_document_page_attachments
+List the files and images embedded in a document page.
 
-See [`mcp-low-priority/set-custom-field.md`](../feature-catalog/mcp-low-priority/set-custom-field.md)
+See [`mcp-low-priority/list-document-page-attachments.md`](../feature-catalog/mcp-low-priority/list-document-page-attachments.md)
+
+### clickup_download_document_page_attachment
+Get a short-lived download URL for a document page attachment.
+
+See [`mcp-low-priority/download-document-page-attachment.md`](../feature-catalog/mcp-low-priority/download-document-page-attachment.md)
+
+### clickup_attach_task_file
+Attach a small file or a web URL to a task.
+
+See [`mcp-low-priority/attach-task-file.md`](../feature-catalog/mcp-low-priority/attach-task-file.md)
+
+### clickup_request_attachment_upload
+Get upload details for attaching a local file of any size to a task.
+
+See [`mcp-low-priority/request-attachment-upload.md`](../feature-catalog/mcp-low-priority/request-attachment-upload.md)
+
+### clickup_download_task_attachment
+Get a short-lived download URL for a task attachment.
+
+See [`mcp-low-priority/download-task-attachment.md`](../feature-catalog/mcp-low-priority/download-task-attachment.md)
+
+### clickup_create_task_comment
+Deprecated alias for task comments. Use `clickup_create_comment`.
+
+See [`mcp-low-priority/create-task-comment.md`](../feature-catalog/mcp-low-priority/create-task-comment.md)
+
+### clickup_get_chat_channels
+List the workspace's chat channels.
+
+See [`mcp-low-priority/get-chat-channels.md`](../feature-catalog/mcp-low-priority/get-chat-channels.md)
+
+### clickup_send_chat_message
+Post a chat message or threaded reply, with markdown support.
+
+See [`mcp-low-priority/send-chat-message.md`](../feature-catalog/mcp-low-priority/send-chat-message.md)
+
+### clickup_get_chat_channel_messages
+Read a chat channel's messages.
+
+See [`mcp-low-priority/get-chat-channel-messages.md`](../feature-catalog/mcp-low-priority/get-chat-channel-messages.md)
+
+### clickup_get_chat_message_replies
+Read the replies in a chat thread.
+
+See [`mcp-low-priority/get-chat-message-replies.md`](../feature-catalog/mcp-low-priority/get-chat-message-replies.md)
+
+### clickup_create_reminder
+Create a personal reminder with a due date.
+
+See [`mcp-low-priority/create-reminder.md`](../feature-catalog/mcp-low-priority/create-reminder.md)
+
+### clickup_search_reminders
+List and filter the user's reminders.
+
+See [`mcp-low-priority/search-reminders.md`](../feature-catalog/mcp-low-priority/search-reminders.md)
+
+### clickup_update_reminder
+Change a reminder or mark it complete.
+
+See [`mcp-low-priority/update-reminder.md`](../feature-catalog/mcp-low-priority/update-reminder.md)
+
+### clickup_get_workspace_members
+List every member of the workspace.
+
+See [`mcp-low-priority/get-workspace-members.md`](../feature-catalog/mcp-low-priority/get-workspace-members.md)
+
+### clickup_find_member_by_name
+Find one member by name or email.
+
+See [`mcp-low-priority/find-member-by-name.md`](../feature-catalog/mcp-low-priority/find-member-by-name.md)
+
+### clickup_resolve_assignees
+Turn names, emails or `me` into numeric user IDs.
+
+See [`mcp-low-priority/resolve-assignees.md`](../feature-catalog/mcp-low-priority/resolve-assignees.md)
+
+### clickup_get_task_time_in_status
+Show how long a task has spent in each status.
+
+See [`mcp-low-priority/get-task-time-in-status.md`](../feature-catalog/mcp-low-priority/get-task-time-in-status.md)
+
+### clickup_get_bulk_tasks_time_in_status
+Show time in status for up to 100 tasks at once.
+
+See [`mcp-low-priority/get-bulk-tasks-time-in-status.md`](../feature-catalog/mcp-low-priority/get-bulk-tasks-time-in-status.md)
+
+### clickup_get_operators
+List the operators this server has enabled beyond its dedicated tools.
+
+See [`mcp-low-priority/get-operators.md`](../feature-catalog/mcp-low-priority/get-operators.md)
+
+### clickup_execute_operator
+Run one enabled operator, as the signed-in user.
+
+See [`mcp-low-priority/execute-operator.md`](../feature-catalog/mcp-low-priority/execute-operator.md)
+
+### clickup_get_schema
+Return the data model behind the enabled operators.
+
+See [`mcp-low-priority/get-schema.md`](../feature-catalog/mcp-low-priority/get-schema.md)
 
 ---
 
@@ -607,8 +682,8 @@ See [`mcp-low-priority/set-custom-field.md`](../feature-catalog/mcp-low-priority
 | cupt Workspace Discovery | 3 |
 | cupt Global Flags | 4 |
 | **cupt subtotal** | **50** |
-| MCP HIGH Priority | 8 |
-| MCP MEDIUM Priority | 19 |
-| MCP LOW Priority | 19 |
-| **MCP subtotal** | **46** |
-| **TOTAL** | **96** |
+| MCP HIGH Priority | 10 |
+| MCP MEDIUM Priority | 25 |
+| MCP LOW Priority | 26 |
+| **MCP subtotal** | **61** |
+| **TOTAL** | **111** |

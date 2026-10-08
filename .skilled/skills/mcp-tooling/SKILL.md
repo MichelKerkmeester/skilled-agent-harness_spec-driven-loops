@@ -2,7 +2,7 @@
 name: mcp-tooling
 description: "Parent hub for nine MCP tool bridges: five workflow modes and four read-only design transports routed by workflowMode."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.8.0.1
+version: 1.8.0.2
 metadata:
   author: OpenCode
   family: mcp
@@ -52,13 +52,13 @@ Routing is two-stage:
 1. Stage 1 uses `hub-router.json` and `mode-registry.json` to select one workflow mode, an ordered bundle, or a defer outcome.
 2. Stage 2 uses the root `ROUTER.md` surface map to select packet-qualified leaf resources within the chosen mode.
 
-Use the compiled route first when it is serving:
+> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode through the compiled router first:
+> ```bash
+> node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
+> ```
+> Follow `route` targets. On `clarify` or `defer`, ask for the missing tool identity. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the legacy hub-router contract. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide.
 
-```bash
-node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
-```
-
-Follow `route` targets. On `clarify` or `defer`, ask for the missing tool identity. On a legacy sentinel or error, use the legacy hub-router contract. A scored route loads only the selected mode's resources. The default resource is fallback-only and must not be unioned into a scored route.
+A scored route loads only the selected mode's resources. The default resource is fallback-only and must not be unioned into a scored route.
 
 The root `ROUTER.md` machine block keeps `INTENT_SIGNALS` and `RESOURCE_MAP` in sync. Every resource path is packet-qualified, resolves on disk, and is represented in the generated leaf manifest.
 

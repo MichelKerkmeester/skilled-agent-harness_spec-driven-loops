@@ -324,7 +324,7 @@ sudo apt install jq
 
 **mcp-click-up:**
 - `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`: Routing rules and agent invariants
-- `.skilled/skills/mcp-tooling/mcp-click-up/references/INSTALL-GUIDE.md`: Install and authentication
+- `.skilled/skills/mcp-tooling/mcp-click-up/INSTALL-GUIDE.md`: Install and authentication
 - `.skilled/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md`: Full cupt command reference
 
 ### Related References
