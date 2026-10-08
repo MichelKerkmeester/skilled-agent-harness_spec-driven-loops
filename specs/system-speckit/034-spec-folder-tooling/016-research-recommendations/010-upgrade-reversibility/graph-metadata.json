@@ -39,7 +39,7 @@
       "packet"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,9 +47,11 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "spec/README.md",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md"
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      "runtime/lib/validation/orchestrator.ts"
     ],
     "entities": [
       {
@@ -89,6 +91,12 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "spec/README.md",
+        "source": "derived"
+      },
+      {
         "name": "upgrade-legacy.mjs",
         "kind": "file",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
@@ -101,9 +109,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "runtime/lib/validation/orchestrator.ts",
         "source": "derived"
       },
       {
@@ -189,17 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Tree State",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`upgrade-legacy --apply` transforms a legacy spec tree into v4 format with no reversibility record",
     "created_at": "2026-10-08T04:22:46Z",
-    "last_save_at": "2026-10-08T07:39:26.807Z",
+    "last_save_at": "2026-10-08T13:08:08.053Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:af59ee70840893d856cc441b4fee5a23c7154adff0c1cd0af70397589022da25",
+    "source_fingerprint": "sha256:4ab545f3849fc9a8fe19530249722570c38c1d09df1a98e2e10a1b736a138731",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "50e1c2af003785102c874b9afd7ad17c21817db868bd5617f0f466b8ada2a67e",
-      "plan.md": "d66c1a19a75d8794e76d6f319a4fa7006d0b0ae3f42d8b454b5e6a1d0db7474d",
-      "tasks.md": "e0f6a3f84ac8bcda242eecafface713bf77da07844ff75b83dc60a408bae8b66",
-      "implementation-summary.md": "005242aea51b130ab213fa96f0d436dcbe28dd9df6642f72e63314f485b34b02"
+      "spec.md": "5945148938931b3b8acbf159d1ffb1fb3cd6e4502510ce12d256722461272403",
+      "plan.md": "8ceab0e5be25dca0d651f1965769b42c365056562dbd8e226a30e8650be2266a",
+      "tasks.md": "06c20a33f5974965f0c4e548cfe1eb1e334f2224c8f6ee1dbc7532125bbce532",
+      "implementation-summary.md": "a7d05b6616255c16561ff6dba48687e8054b50c072119872827a5ef7a8d9c2c6"
     },
     "last_active_at": null
   }

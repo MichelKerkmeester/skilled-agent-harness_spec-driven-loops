@@ -112,6 +112,102 @@ Disallowed direction:
 | `repair-derived.cjs` | Repairs derivable packet facts (folder name, packet pointer, level, metadata fingerprint) and refuses authored ones; see `README-repair-derived.md`. |
 | `upgrade-legacy.mjs` | Upgrades a specs tree written under v3.x. For each active packet that fails `--strict`, it adds the frontmatter keys a spec document lacks without rewriting any value already there, and names any document whose frontmatter it cannot read and so leaves as is. It then runs `heal-spec-docs`, `repair-derived` and `migrate-generated-json` on that packet alone, then records each finding they cannot clear in the packet's `upgrade-baseline.json`. The validator reports a recorded finding as a warning, and any finding the file does not list stays an error, so a new mistake still fails. A packet that already passes is never touched, copies of spec trees inside `research/`, `review/` and `context/` are skipped, and `--include-archive` brings archived packets in: only `repair-derived` runs on them, so their recorded paths follow where they live while their documents stay as written. It works on packets in a top-level `specs/`, and when they still live in `.opencode/specs` it stops before any write and prints the commands that move them, which also clear the `specs` symlink a v3 checkout tracks. Dry run by default (exits 1 when a packet fails); `--apply` writes, stops before any write when a packet cannot be validated, and exits 2 when that happens, a step fails or a packet still fails. |
 
+### Upgrade Legacy Reversibility
+
+`--apply` requires `REPO` to be a Git repository. On a dirty worktree with failing packets, it writes one manifest before the first packet edit. The manifest lives under the absolute Git directory returned by:
+
+```bash
+git -C REPO rev-parse --absolute-git-dir
+```
+
+Each worktree has its own Git directory, so its manifest stays separate. A clean committed tree needs no manifest. On the same HEAD, a later dirty apply replaces a completed manifest with a fresh recovery point.
+
+The manifest records `schema`, `headSha`, `recordedAt`, `status`, `baselineMap`, `recordedBaselineMap`, `scopeHashes` and `beforeImages`. `baselineMap` records the baselines present before the run. `recordedBaselineMap` records each in-scope packet's findings after repair. The manifest starts with `status: "in-progress"` and becomes `complete` after the repairs and baseline writes finish.
+
+Each `beforeImages` entry has a repository-relative path and a `beforeImage` value. File entries store the original bytes as base64 and the file mode. Missing paths use `kind: "absent"`. Symbolic links store their target.
+
+Dry run uses a temporary packet copy to predict findings when no matching complete manifest exists. A complete manifest supplies `recordedBaselineMap` for the **Downgrades** section in both dry run and `--apply`, after the tool verifies its HEAD and packet tree hashes. The tool trusts matching hashes even when `repoRoot` names another absolute path. A HEAD or packet tree mismatch makes dry run report the mismatch and continue, while `--apply` refuses. An in-progress manifest marks a run that stopped before finalizing its recovery record. Dry run reports it and continues. `--apply` refuses until you recover or deliberately clear the manifest.
+
+### Recover an Interrupted Apply
+
+Set `repo_root` to the repository the command edits, then find the manifest:
+
+```bash
+repo_root="/path/to/repository"
+manifest="$(git -C "$repo_root" rev-parse --absolute-git-dir)/upgrade-legacy.manifest.json"
+export UPGRADE_LEGACY_REPO_ROOT="$repo_root"
+```
+
+The script resolves every restore path from `UPGRADE_LEGACY_REPO_ROOT`, so you can run it from any directory.
+
+Check `headSha` against the current HEAD before restoring committed files. When they differ, restore before-images only if their paths still match the current tree. Otherwise remove the manifest deliberately and keep the current tree.
+
+For a matching HEAD, inspect `git status --short`. Restore changed committed packet files that are not listed in `beforeImages` from `headSha`. Leave paths listed in `beforeImages` for the script below, since those entries may hold uncommitted bytes from before the run. The script restores those bytes and modes, removes paths marked absent, recreates symbolic links and restores or removes baselines according to `baselineMap`.
+
+```js
+import fs from 'node:fs';
+import path from 'node:path';
+import { execFileSync } from 'node:child_process';
+
+const repoRootInput = process.env.UPGRADE_LEGACY_REPO_ROOT;
+if (!repoRootInput) throw new Error('UPGRADE_LEGACY_REPO_ROOT must name the repository to restore');
+const repoRoot = fs.realpathSync(repoRootInput);
+const manifestFile = process.argv[1];
+const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
+const beforeImages = Array.isArray(manifest.beforeImages) ? manifest.beforeImages : [];
+
+function resolveInsideRepo(relative) {
+  const target = path.resolve(repoRoot, relative);
+  const fromRoot = path.relative(repoRoot, target);
+  if (!fromRoot || fromRoot.startsWith(`..${path.sep}`) || path.isAbsolute(fromRoot)) {
+    throw new Error(`manifest path escapes repository: ${relative}`);
+  }
+  return target;
+}
+
+for (const entry of beforeImages) {
+  const target = resolveInsideRepo(entry.path);
+  const image = entry.beforeImage;
+  if (image.kind === 'file-bytes') {
+    fs.rmSync(target, { recursive: true, force: true });
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, Buffer.from(image.content, 'base64'));
+    fs.chmodSync(target, image.mode);
+  } else if (image.kind === 'absent') {
+    fs.rmSync(target, { recursive: true, force: true });
+  } else if (image.kind === 'symlink-target') {
+    fs.rmSync(target, { recursive: true, force: true });
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.symlinkSync(image.target, target);
+  } else {
+    throw new Error(`unknown before-image kind: ${image.kind}`);
+  }
+}
+
+const savedPaths = new Set(beforeImages.map((entry) => entry.path));
+for (const relative of Object.keys(manifest.scopeHashes || {})) {
+  const baselinePath = `${relative}/upgrade-baseline.json`;
+  if (savedPaths.has(baselinePath)) continue;
+  const target = resolveInsideRepo(baselinePath);
+  if (manifest.baselineMap?.[relative] === null) {
+    fs.rmSync(target, { force: true });
+  } else {
+    const saved = execFileSync('git', ['-C', repoRoot, 'show', `${manifest.headSha}:${baselinePath}`]);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, saved);
+  }
+}
+```
+
+After restoring the packet files and baselines, remove the manifest to clear the interrupted state, then validate the recovered packets with `validate.sh [packet] --strict`:
+
+```bash
+rm "$manifest"
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<packet> --strict
+```
+
+If you choose not to recover, remove the manifest deliberately. This discards its before-images.
+
 ---
 
 ## 5. BOUNDARIES AND FLOW

@@ -25,6 +25,7 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 import { execFile } from 'node:child_process';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -73,6 +74,23 @@ const VALIDATE_CHILD = { cwd: REPO, encoding: 'utf8', maxBuffer: 64 * 1024 * 102
 // hour; a wedged step still cannot hold the sweep open forever.
 const STEP_CHILD = { ...VALIDATE_CHILD, timeout: 60 * 60 * 1000 };
 
+function createRunContext(repoRoot, skillRoot) {
+  return {
+    repoRoot,
+    validate: path.join(skillRoot, 'runtime/cli/spec/validate.sh'),
+    tsxLoader: path.join(skillRoot, 'node_modules/tsx/dist/loader.mjs'),
+    frontmatterLib: path.join(skillRoot, 'runtime/cli/lib/frontmatter-migration.ts'),
+    templatesRoot: path.join(skillRoot, 'templates'),
+    heal: path.join(skillRoot, 'runtime/cli/spec/heal-spec-docs.cjs'),
+    repair: path.join(skillRoot, 'runtime/cli/spec/repair-derived.cjs'),
+    migrate: path.join(skillRoot, 'runtime/cli/graph/migrate-generated-json.ts'),
+    validateOptions: { ...VALIDATE_CHILD, cwd: repoRoot },
+    stepOptions: { ...STEP_CHILD, cwd: repoRoot },
+  };
+}
+
+const LIVE_RUN_CONTEXT = createRunContext(REPO, SKILL_ROOT);
+
 // Folders per child call: some kernels cap a single argument near 128 KB, and
 // a long list of absolute folder paths in one argv would cross it.
 const BATCH = 100;
@@ -90,6 +108,7 @@ const ARCHIVE_SEGMENTS = new Set(['z_archive', 'z_future']);
 const ARTIFACT_TREES = new Set(['research', 'review', 'context']);
 
 const BASELINE_FILE = 'upgrade-baseline.json';
+const MANIFEST_FILE = 'upgrade-legacy.manifest.json';
 
 // This mirrors the validator's own never-recorded list: recording one of these
 // in an active packet would only mislead, since the validator never downgrades
@@ -129,6 +148,359 @@ function parseArgs(argv) {
 function contained(target, root) {
   const rel = path.relative(root, target);
   return target === root || (rel !== '' && !rel.startsWith('..') && !path.isAbsolute(rel));
+}
+
+function repoRelative(target) {
+  return path.relative(REPO, target).split(path.sep).join('/');
+}
+
+function resolveRepoPath(relative) {
+  if (typeof relative !== 'string' || relative.length === 0 || path.isAbsolute(relative)) {
+    throw new Error(`invalid repository path: ${relative}`);
+  }
+  const target = path.resolve(REPO, ...relative.split('/'));
+  if (!contained(target, REPO)) throw new Error(`repository path escapes REPO: ${relative}`);
+  return target;
+}
+
+function parseDirtyPaths(stdout) {
+  const fields = stdout.split('\0');
+  const paths = [];
+  for (let index = 0; index < fields.length;) {
+    const record = fields[index];
+    index += 1;
+    if (!record || record.length < 4) continue;
+    const status = record.slice(0, 2);
+    const relative = record.slice(3);
+    if (relative) paths.push(relative);
+    if (status.includes('R') || status.includes('C')) index += 1;
+  }
+  return [...new Set(paths)].sort();
+}
+
+// Resolve Git state from REPO so a caller's current directory cannot select another worktree.
+async function readRepositoryState() {
+  let gitDir;
+  try {
+    const result = await run('git', ['-C', REPO, 'rev-parse', '--absolute-git-dir'], VALIDATE_CHILD);
+    gitDir = result.stdout.trim();
+  } catch {
+    throw new Error(`${SCRIPT}: --apply requires REPO to be a git repository`);
+  }
+
+  let headSha = null;
+  try {
+    const result = await run('git', ['-C', REPO, 'rev-parse', '--verify', 'HEAD'], VALIDATE_CHILD);
+    headSha = result.stdout.trim();
+  } catch {
+    // An initialized repository may not have a commit yet.
+  }
+
+  let status;
+  try {
+    const result = await run(
+      'git',
+      ['--no-optional-locks', '-c', 'core.fsmonitor=false', '-C', REPO, 'status', '--porcelain=v1', '-z', '--untracked-files=all'],
+      VALIDATE_CHILD,
+    );
+    status = result.stdout;
+  } catch (err) {
+    throw new Error(`${SCRIPT}: cannot inspect REPO git status: ${(err && err.message) || err}`);
+  }
+
+  return { gitDir, headSha, dirtyPaths: parseDirtyPaths(status) };
+}
+
+// Track packet contents so saved baselines are reused only while their trees match.
+function packetTreeHash(relativePackets) {
+  const hash = crypto.createHash('sha256');
+  const visit = (target) => {
+    let stat;
+    try {
+      stat = fs.lstatSync(target);
+    } catch (err) {
+      if (err && err.code === 'ENOENT') {
+        hash.update(`${repoRelative(target)}\0missing\0`);
+        return;
+      }
+      throw err;
+    }
+
+    hash.update(`${repoRelative(target)}\0`);
+    if (stat.isSymbolicLink()) {
+      hash.update(`symlink\0${fs.readlinkSync(target)}\0`);
+    } else if (stat.isDirectory()) {
+      hash.update('directory\0');
+      for (const name of fs.readdirSync(target).sort()) visit(path.join(target, name));
+    } else if (stat.isFile()) {
+      hash.update(`file:${stat.mode & 0o777}\0`);
+      hash.update(fs.readFileSync(target));
+    } else {
+      hash.update(`other:${stat.mode}\0`);
+    }
+  };
+
+  for (const relative of [...relativePackets].sort()) {
+    const target = resolveRepoPath(relative);
+    if (!relative.startsWith('specs/') && !relative.startsWith('.opencode/specs/')) {
+      throw new Error(`manifest packet path is outside spec roots: ${relative}`);
+    }
+    visit(target);
+  }
+  return hash.digest('hex');
+}
+
+function baselineMapFor(packets, manifest = null) {
+  const map = {};
+  for (const packet of packets) {
+    const relative = repoRelative(packet.folder);
+    const hasSavedTree = manifest?.scopeHashes
+      && Object.prototype.hasOwnProperty.call(manifest.scopeHashes, relative);
+    const savedMap = hasSavedTree && [manifest?.recordedBaselineMap, manifest?.baselineMap].find((candidate) =>
+      candidate
+        && typeof candidate === 'object'
+        && !Array.isArray(candidate)
+        && Object.prototype.hasOwnProperty.call(candidate, relative),
+    );
+    if (savedMap) {
+      map[relative] = Array.isArray(savedMap[relative]) ? savedMap[relative] : null;
+      continue;
+    }
+    try {
+      const body = JSON.parse(fs.readFileSync(path.join(packet.folder, BASELINE_FILE), 'utf8'));
+      map[relative] = Array.isArray(body.findings) ? body.findings : null;
+    } catch {
+      map[relative] = null;
+    }
+  }
+  return map;
+}
+
+// Snapshot dirty files inside packets this run will repair, not unrelated worktree files.
+function beforeImagesFor(gitState, packets) {
+  const images = [];
+  for (const relative of gitState.dirtyPaths) {
+    const target = resolveRepoPath(relative);
+    if (!packets.some((packet) => contained(target, packet.folder))) continue;
+
+    let stat;
+    try {
+      stat = fs.lstatSync(target);
+    } catch (err) {
+      if (err && err.code === 'ENOENT') {
+        images.push({ path: relative, beforeImage: { kind: 'absent' } });
+        continue;
+      }
+      throw err;
+    }
+
+    if (stat.isSymbolicLink()) {
+      images.push({ path: relative, beforeImage: { kind: 'symlink-target', target: fs.readlinkSync(target) } });
+    } else if (stat.isFile()) {
+      images.push({
+        path: relative,
+        beforeImage: {
+          kind: 'file-bytes',
+          encoding: 'base64',
+          content: fs.readFileSync(target).toString('base64'),
+          mode: stat.mode & 0o777,
+        },
+      });
+    }
+  }
+  return images.sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0));
+}
+
+function manifestPathFor(gitState) {
+  return path.join(gitState.gitDir, MANIFEST_FILE);
+}
+
+// Write manifest updates atomically so readers never see a partial file.
+function writeManifestFile(file, manifest, exclusive) {
+  const content = `${JSON.stringify(manifest, null, 2)}\n`;
+  if (exclusive) {
+    let descriptor = null;
+    let created = false;
+    try {
+      descriptor = fs.openSync(file, 'wx', 0o600);
+      created = true;
+      fs.writeFileSync(descriptor, content, 'utf8');
+      fs.fsyncSync(descriptor);
+      fs.closeSync(descriptor);
+      descriptor = null;
+    } catch (err) {
+      if (descriptor !== null) {
+        try { fs.closeSync(descriptor); } catch { /* The write error is the useful failure. */ }
+      }
+      if (created) {
+        try { fs.unlinkSync(file); } catch { /* A failed create must not leave a partial manifest. */ }
+      }
+      throw err;
+    }
+    return;
+  }
+
+  const temporary = `${file}.${process.pid}.${crypto.randomBytes(6).toString('hex')}.tmp`;
+  try {
+    fs.writeFileSync(temporary, content, { encoding: 'utf8', flag: 'wx', mode: 0o600 });
+    fs.renameSync(temporary, file);
+  } catch (err) {
+    try { fs.unlinkSync(temporary); } catch { /* Keep the original write failure. */ }
+    throw err;
+  }
+}
+
+// Reuse saved baselines only while the recorded HEAD and packet trees still match.
+function readManifestIfExists(gitState) {
+  const file = manifestPathFor(gitState);
+  if (!fs.existsSync(file)) return { manifest: null, issue: null };
+
+  let manifest;
+  try {
+    manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+  } catch (err) {
+    throw new Error(`cannot read reversibility manifest ${file}: ${(err && err.message) || err}`);
+  }
+  if (!manifest || manifest.schema !== 1 || typeof manifest.repoRoot !== 'string') {
+    throw new Error(`invalid reversibility manifest: ${file}`);
+  }
+  if (manifest.headSha !== gitState.headSha) {
+    return {
+      manifest: null,
+      issue: {
+        kind: 'head-mismatch',
+        file,
+        recordedHead: manifest.headSha,
+        currentHead: gitState.headSha,
+      },
+    };
+  }
+  if (manifest.status === 'in-progress') {
+    return {
+      manifest: null,
+      issue: {
+        kind: 'in-progress',
+        file,
+        recordedHead: manifest.headSha,
+        currentHead: gitState.headSha,
+      },
+    };
+  }
+  const isObject = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
+  const hasValidBaselineMap = (value) => isObject(value)
+    && Object.values(value).every((findings) => findings === null || Array.isArray(findings));
+  const hasScopedBaselines = isObject(manifest.scopeHashes)
+    && isObject(manifest.baselineMap)
+    && isObject(manifest.recordedBaselineMap)
+    && Object.keys(manifest.scopeHashes).every((relative) =>
+      Object.prototype.hasOwnProperty.call(manifest.baselineMap, relative)
+        && Object.prototype.hasOwnProperty.call(manifest.recordedBaselineMap, relative),
+    );
+  if (
+    manifest.status !== 'complete'
+    || !isObject(manifest.scopeHashes)
+    || !hasValidBaselineMap(manifest.baselineMap)
+    || !hasValidBaselineMap(manifest.recordedBaselineMap)
+    || !hasScopedBaselines
+  ) {
+    throw new Error(`reversibility manifest is incomplete: ${file}`);
+  }
+
+  for (const [relative, recordedTree] of Object.entries(manifest.scopeHashes)) {
+    if (typeof recordedTree !== 'string') {
+      throw new Error(`reversibility manifest is incomplete: ${file}`);
+    }
+    const currentTree = packetTreeHash([relative]);
+    if (currentTree !== recordedTree) {
+      return {
+        manifest: null,
+        issue: {
+          kind: 'tree-mismatch',
+          file,
+          recordedHead: manifest.headSha,
+          currentHead: gitState.headSha,
+          relative,
+          recordedTree,
+          currentTree,
+        },
+      };
+    }
+  }
+  return { manifest, issue: null };
+}
+
+function reportManifestIssue(issue, apply) {
+  const recordedHead = issue.recordedHead || '(none)';
+  const currentHead = issue.currentHead || '(none)';
+  const action = apply ? '--apply refuses' : 'dry run continues';
+  const inProgress = issue.kind === 'in-progress';
+  const recovery = inProgress
+    ? 'Restore its beforeImages and prior baselines, then remove the manifest before retrying. Remove it deliberately only if recovery is not needed.'
+    : 'Restore the worktree from its beforeImages, or remove the manifest deliberately after deciding recovery is not needed.';
+  const state = inProgress
+    ? 'is in-progress from an interrupted run'
+    : 'has a tree mismatch';
+  const treeDetail = issue.kind === 'tree-mismatch'
+    ? ` for ${issue.relative}: recorded packet hash ${issue.recordedTree}, current packet hash ${issue.currentTree}`
+    : '';
+  process.stderr.write(
+    `${SCRIPT}: reversibility manifest ${issue.file} ${state}${treeDetail}: recorded HEAD ${recordedHead}, current HEAD ${currentHead}; ${action}. ${recovery}\n`,
+  );
+}
+
+// Write the before-images before any packet repair can change their contents.
+function prepareManifest(gitState, packets, failing, file) {
+  const scopeHashes = {};
+  for (const packet of failing) {
+    const relative = repoRelative(packet.folder);
+    scopeHashes[relative] = packetTreeHash([relative]);
+  }
+
+  const next = {
+    schema: 1,
+    repoRoot: REPO,
+    headSha: gitState.headSha,
+    recordedAt: new Date().toISOString(),
+    status: 'in-progress',
+    baselineMap: baselineMapFor(packets),
+    recordedBaselineMap: null,
+    scopeHashes,
+    beforeImages: beforeImagesFor(gitState, failing),
+  };
+  writeManifestFile(file, next, !fs.existsSync(file));
+  return { file, manifest: next };
+}
+
+// Record the baselines produced by the run for later dry-run inspection.
+function completeManifest(context, packets) {
+  context.manifest.recordedBaselineMap = {
+    ...(context.manifest.recordedBaselineMap || {}),
+    ...baselineMapFor(packets),
+  };
+  context.manifest.status = 'complete';
+  for (const relative of Object.keys(context.manifest.scopeHashes)) {
+    context.manifest.scopeHashes[relative] = packetTreeHash([relative]);
+  }
+  context.manifest.completedAt = new Date().toISOString();
+  writeManifestFile(context.file, context.manifest, false);
+}
+
+// Show stored baseline entries and new errors that can be recorded after repair.
+function printDowngrades(packets, findingsByFolder) {
+  process.stdout.write('\nDowngrades:\n');
+  let count = 0;
+  const print = (relative, finding) => {
+    if (!finding || typeof finding.rule !== 'string') return;
+    const detail = typeof finding.detail === 'string' ? finding.detail.replace(/\s+/gu, ' ').trim() : '';
+    process.stdout.write(`  ${relative} | ${finding.rule} | error -> warning${detail ? ` | ${detail}` : ''}\n`);
+    count += 1;
+  };
+
+  for (const packet of packets) {
+    const relative = repoRelative(packet.folder);
+    for (const finding of findingsByFolder.get(packet.folder) || []) print(relative, finding);
+  }
+  if (count === 0) process.stdout.write('  none\n');
 }
 
 // Roots are resolved to real paths and deduplicated because some checkouts
@@ -227,10 +599,10 @@ function parseReport(stdout) {
 // looks the same whether the validator hung, crashed or printed nothing.
 const unreadableWhy = new Map();
 
-async function validate(folder) {
+async function validate(folder, context = LIVE_RUN_CONTEXT) {
   unreadableWhy.delete(folder);
   try {
-    const { stdout } = await run('bash', [VALIDATE, folder, '--strict', '--json', '--no-recursive'], VALIDATE_CHILD);
+    const { stdout } = await run('bash', [context.validate, folder, '--strict', '--json', '--no-recursive'], context.validateOptions);
     const report = parseReport(stdout);
     if (report === null) unreadableWhy.set(folder, 'no JSON report on stdout');
     return report;
@@ -257,14 +629,14 @@ function failingRules(report) {
   return [...new Set(report.entries.filter((row) => row.status === 'error').map((row) => row.rule))].sort();
 }
 
-async function validateAll(packets) {
+async function validateAll(packets, context = LIVE_RUN_CONTEXT) {
   const reports = new Map();
   let next = 0;
   async function worker() {
     while (next < packets.length) {
       const { folder } = packets[next];
       next += 1;
-      reports.set(folder, await validate(folder));
+      reports.set(folder, await validate(folder, context));
     }
   }
   await Promise.all(Array.from({ length: Math.min(WORKERS, packets.length) }, () => worker()));
@@ -378,11 +750,18 @@ const FILL_SCRIPT = [
 // an order that keeps each step's output valid input for the next: document
 // edits first, derivation last. Only these targets are touched, so a packet
 // that already passes is never rewritten.
-async function repairPackets(targets) {
+async function repairPackets(targets, context = LIVE_RUN_CONTEXT) {
   const failures = [];
+  const silent = context.silent === true;
 
   for (const batch of batches(targets)) {
-    const why = await runStep('fill-frontmatter', ['--input-type=module', '-e', FILL_SCRIPT, TEMPLATES_ROOT, FRONTMATTER_LIB, ...batch], STEP_CHILD, false, true);
+    const why = await runStep(
+      'fill-frontmatter',
+      ['--input-type=module', '-e', FILL_SCRIPT, context.templatesRoot, context.frontmatterLib, ...batch],
+      context.stepOptions,
+      silent,
+      !silent,
+    );
     if (why !== null) failures.push(why);
   }
 
@@ -392,7 +771,12 @@ async function repairPackets(targets) {
     while (next < targets.length) {
       const target = targets[next];
       next += 1;
-      const why = await runStep(`heal-spec-docs ${path.relative(REPO, target)}`, [HEAL, '--apply', '--folder', target], STEP_CHILD, true);
+      const why = await runStep(
+        `heal-spec-docs ${path.relative(context.repoRoot, target)}`,
+        [context.heal, '--apply', '--folder', target],
+        context.stepOptions,
+        true,
+      );
       if (why !== null) {
         failed += 1;
         failures.push(`${path.relative(REPO, target)}: ${why}`);
@@ -405,12 +789,22 @@ async function repairPackets(targets) {
     : `step heal-spec-docs: FAILED ${failed} of ${targets.length} packets\n`);
 
   for (const batch of batches(targets)) {
-    const why = await runStep('repair-derived', [REPAIR, '--apply', ...batch.flatMap((folder) => ['--folder', folder])]);
+    const why = await runStep(
+      'repair-derived',
+      [context.repair, '--apply', ...batch.flatMap((folder) => ['--folder', folder])],
+      context.stepOptions,
+      silent,
+    );
     if (why !== null) failures.push(why);
   }
 
   for (const batch of batches(targets)) {
-    const why = await runStep('migrate-generated-json', [MIGRATE, ...batch.flatMap((folder) => ['--only', folder])]);
+    const why = await runStep(
+      'migrate-generated-json',
+      [context.migrate, ...batch.flatMap((folder) => ['--only', folder])],
+      context.stepOptions,
+      silent,
+    );
     if (why !== null) failures.push(why);
   }
 
@@ -420,13 +814,152 @@ async function repairPackets(targets) {
 // An archived packet records where it lives now, like any other, so its derived
 // fields are repaired. The document steps are skipped: they fill frontmatter and
 // heal trigger phrases, which would rewrite a finished record.
-async function repairArchived(targets) {
+async function repairArchived(targets, context = LIVE_RUN_CONTEXT) {
   const failures = [];
+  const silent = context.silent === true;
   for (const batch of batches(targets)) {
-    const why = await runStep('repair-derived (archived)', [REPAIR, '--apply', ...batch.flatMap((folder) => ['--folder', folder])]);
+    const why = await runStep(
+      'repair-derived (archived)',
+      [context.repair, '--apply', ...batch.flatMap((folder) => ['--folder', folder])],
+      context.stepOptions,
+      silent,
+    );
     if (why !== null) failures.push(why);
   }
   return failures;
+}
+
+function copyPreviewAncestorFiles(folder, previewRoot) {
+  let ancestor = path.dirname(folder);
+  while (ancestor !== REPO) {
+    const relative = repoRelative(ancestor);
+    if (!relative.startsWith('specs/') && !relative.startsWith('.opencode/specs/')) break;
+    const targetDirectory = path.join(previewRoot, ...relative.split('/'));
+    fs.mkdirSync(targetDirectory, { recursive: true });
+    for (const entry of fs.readdirSync(ancestor, { withFileTypes: true })) {
+      if (!entry.isFile() && !entry.isSymbolicLink()) continue;
+      fs.cpSync(path.join(ancestor, entry.name), path.join(targetDirectory, entry.name), {
+        recursive: true,
+        dereference: true,
+      });
+    }
+    ancestor = path.dirname(ancestor);
+  }
+}
+
+// cpSync's dereference option does not reach symlinks nested inside a
+// recursive copy, so a linked document would reach the preview as a link and
+// the preview's repair steps would write through it into the real tree.
+// Replace every link under the copied spec roots with a copy of its target.
+function materializeSymlinks(directory) {
+  if (!fs.existsSync(directory)) return;
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const target = path.join(directory, entry.name);
+    if (entry.isSymbolicLink()) {
+      const resolved = fs.realpathSync(target);
+      fs.unlinkSync(target);
+      fs.cpSync(resolved, target, { recursive: true, dereference: true });
+      if (fs.statSync(target).isDirectory()) materializeSymlinks(target);
+    } else if (entry.isDirectory()) {
+      materializeSymlinks(target);
+    }
+  }
+}
+
+async function createPreviewWorkspace(packets) {
+  const previewRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-preview-'));
+  try {
+    const skillRoot = path.join(previewRoot, '.skilled/skills/system-spec-kit');
+    fs.mkdirSync(path.dirname(skillRoot), { recursive: true });
+    fs.cpSync(SKILL_ROOT, skillRoot, {
+      recursive: true,
+      filter: (source) => path.basename(source) !== 'node_modules',
+    });
+
+    for (const relative of ['node_modules', 'runtime/node_modules', 'runtime/cli/node_modules']) {
+      const source = path.join(SKILL_ROOT, relative);
+      const target = path.join(skillRoot, relative);
+      if (!fs.existsSync(source)) continue;
+      fs.mkdirSync(path.dirname(target), { recursive: true });
+      fs.symlinkSync(source, target, 'dir');
+    }
+    const runtimeModules = path.join(skillRoot, 'runtime/node_modules');
+    if (!fs.existsSync(runtimeModules)) fs.mkdirSync(runtimeModules, { recursive: true });
+
+    const now = new Date();
+    const touchDist = (directory) => {
+      for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+        const target = path.join(directory, entry.name);
+        if (entry.isDirectory()) touchDist(target);
+        else if (entry.isFile() && target.includes(`${path.sep}dist${path.sep}`)) {
+          fs.utimesSync(target, now, now);
+        }
+      }
+    };
+    touchDist(path.join(skillRoot, 'runtime'));
+
+    const previewPackets = packets.map((packet) => {
+      const relative = repoRelative(packet.folder);
+      if (!relative.startsWith('specs/') && !relative.startsWith('.opencode/specs/')) {
+        throw new Error(`cannot preview a packet outside the spec roots: ${relative}`);
+      }
+      copyPreviewAncestorFiles(packet.folder, previewRoot);
+      const folder = path.resolve(previewRoot, ...relative.split('/'));
+      if (!contained(folder, previewRoot)) throw new Error(`packet path escapes preview root: ${relative}`);
+      fs.mkdirSync(path.dirname(folder), { recursive: true });
+      fs.cpSync(packet.folder, folder, { recursive: true, dereference: true });
+      return { ...packet, folder, root: path.join(previewRoot, repoRelative(packet.root)) };
+    });
+    for (const specRoot of ['specs', '.opencode/specs']) materializeSymlinks(path.join(previewRoot, specRoot));
+
+    await run('git', ['init', '-q'], { cwd: previewRoot, encoding: 'utf8' });
+    const context = createRunContext(previewRoot, skillRoot);
+    context.silent = true;
+    return { previewRoot, packets: previewPackets, context };
+  } catch (err) {
+    fs.rmSync(previewRoot, { recursive: true, force: true });
+    throw err;
+  }
+}
+
+async function predictDowngradeFindings(packets, reports, manifestIssue, manifest) {
+  const findingsByFolder = new Map();
+  const baselines = baselineMapFor(packets, manifest);
+  for (const packet of packets) {
+    const baseline = baselines[repoRelative(packet.folder)];
+    findingsByFolder.set(packet.folder, Array.isArray(baseline) ? baseline : []);
+  }
+
+  if (
+    manifestIssue
+    || manifest !== null
+    || packets.some((packet) => reports.get(packet.folder) === null)
+  ) return findingsByFolder;
+  const failing = packets.filter((packet) => reports.get(packet.folder)?.passed !== true);
+  if (failing.length === 0) return findingsByFolder;
+
+  const preview = await createPreviewWorkspace(failing);
+  try {
+    const active = preview.packets.filter((packet) => !packet.archived).map((packet) => packet.folder);
+    const archived = preview.packets.filter((packet) => packet.archived).map((packet) => packet.folder);
+    await repairPackets(active, preview.context);
+    await repairArchived(archived, preview.context);
+    const after = await validateAll(preview.packets, preview.context);
+
+    for (let index = 0; index < failing.length; index += 1) {
+      const original = failing[index];
+      const report = after.get(preview.packets[index].folder);
+      if (report === null) {
+        throw new Error(`preview could not validate ${repoRelative(original.folder)}: ${unreadableWhy.get(preview.packets[index].folder)}`);
+      }
+      if (report.passed === true) continue;
+      const findings = findingsOf(report, original.archived);
+      if (findings.length > 0) findingsByFolder.set(original.folder, findings);
+    }
+  } finally {
+    fs.rmSync(preview.previewRoot, { recursive: true, force: true });
+  }
+  return findingsByFolder;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -478,13 +1011,53 @@ function recordFindings(folder, findings, roots) {
 // ───────────────────────────────────────────────────────────────────
 async function main() {
   const { roots: given, includeArchive, apply } = parseArgs(process.argv.slice(2));
+  let gitState = null;
+  if (apply) {
+    try {
+      gitState = await readRepositoryState();
+    } catch (err) {
+      process.stderr.write(`${(err && err.message) || err}\n`);
+      process.exitCode = 2;
+      return;
+    }
+  } else {
+    try {
+      gitState = await readRepositoryState();
+    } catch {
+      gitState = null;
+    }
+  }
+
   const roots = resolveRoots(given);
   const packets = await discover(roots, includeArchive);
 
   if (packets.length === 0) {
     process.stdout.write(`${SCRIPT}: no spec folders found\n`);
+    if (apply) process.stdout.write('plan changes=0\n');
+    else process.stdout.write('\nDowngrades:\n  none\n');
     process.exitCode = 0;
     return;
+  }
+
+  let manifestIssue = null;
+  let manifest = null;
+  if (gitState !== null) {
+    try {
+      const manifestState = readManifestIfExists(gitState);
+      manifest = manifestState.manifest;
+      manifestIssue = manifestState.issue;
+      if (manifestIssue !== null) {
+        reportManifestIssue(manifestIssue, apply);
+        if (apply) {
+          process.exitCode = 2;
+          return;
+        }
+      }
+    } catch (err) {
+      process.stderr.write(`${SCRIPT}: ${(err && err.message) || err}\n`);
+      process.exitCode = 2;
+      return;
+    }
   }
 
   const before = await validateAll(packets);
@@ -505,6 +1078,19 @@ async function main() {
 
   if (apply) {
     const failing = packets.filter((packet) => before.get(packet.folder)?.passed !== true);
+    process.stdout.write(`plan changes=${failing.length}\n`);
+    let manifestContext = null;
+    if (gitState.dirtyPaths.length > 0 && failing.length > 0) {
+      const file = manifestPathFor(gitState);
+      try {
+        manifestContext = prepareManifest(gitState, packets, failing, file);
+      } catch (err) {
+        process.stderr.write(`${SCRIPT}: could not write reversibility manifest at ${file}: ${(err && err.message) || err}; no packet changes were made\n`);
+        process.exitCode = 2;
+        return;
+      }
+    }
+
     const failures = await repairPackets(failing.filter((packet) => !packet.archived).map((packet) => packet.folder));
     failures.push(...await repairArchived(failing.filter((packet) => packet.archived).map((packet) => packet.folder)));
 
@@ -534,6 +1120,23 @@ async function main() {
 
     const after = new Map(mid);
     for (const [folder, report] of await validateAll(recorded)) after.set(folder, report);
+
+    if (manifestContext !== null) {
+      try {
+        completeManifest(manifestContext, packets);
+      } catch (err) {
+        failures.push(`${SCRIPT}: could not finalize reversibility manifest at ${manifestContext.file}: ${(err && err.message) || err}`);
+      }
+    }
+
+    const savedBaselines = baselineMapFor(packets, manifestContext?.manifest ?? manifest);
+    const findingsByFolder = new Map(packets.map((packet) => [
+      packet.folder,
+      Array.isArray(savedBaselines[repoRelative(packet.folder)])
+        ? savedBaselines[repoRelative(packet.folder)]
+        : [],
+    ]));
+    printDowngrades(packets, findingsByFolder);
 
     let notPassing = 0;
     for (const packet of packets) {
@@ -592,6 +1195,16 @@ async function main() {
     bad += 1;
     process.stdout.write(`failing ${shown}: ${failingRules(report).join(', ')}\n`);
   }
+
+  let findingsByFolder;
+  try {
+    findingsByFolder = await predictDowngradeFindings(packets, before, manifestIssue, manifest);
+  } catch (err) {
+    process.stderr.write(`${SCRIPT}: could not predict Downgrades: ${(err && err.message) || err}\n`);
+    process.exitCode = 2;
+    return;
+  }
+  printDowngrades(packets, findingsByFolder);
 
   const active = packets.filter((packet) => !packet.archived).length;
   process.stdout.write(`\ninspected=${packets.length} active=${active} archived=${packets.length - active}\n`);

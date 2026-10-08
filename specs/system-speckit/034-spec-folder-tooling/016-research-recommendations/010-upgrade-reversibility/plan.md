@@ -23,10 +23,10 @@ contextType: "general"
 | **Language/Stack** | Node.js ESM and shell |
 | **Framework** | system-spec-kit CLI runtime |
 | **Storage** | `<git-dir>/upgrade-legacy.manifest.json` for the manifest (one per worktree, `<git-dir>` from `git -C <REPO> rev-parse --absolute-git-dir`), `upgrade-baseline.json` per packet |
-| **Testing** | Vitest with fixture trees and shell integration tests |
+| **Testing** | Vitest cases that run the real script against throwaway git repositories the test file creates |
 
 ### Overview
-The tool gains a state machine for reversibility: check tree state at start, write manifest if dirty, list baseline downgrades in dry run, and validate manifest on recovery. Dry run already validates and plans changes; we add the manifest path and the downgrade listing. Tests cover three paths: committed tree (no manifest), dirty tree (writes manifest), and manifest recovery (reads and applies manifest).
+The tool gains a state machine for reversibility: check tree state at start, write manifest if dirty, list baseline downgrades in dry run, and validate manifest on recovery. Dry run already validates and plans changes; we add the manifest path and the downgrade listing. Tests cover three paths: committed tree (no manifest), dirty tree (writes manifest), and manifest recovery (reads and applies manifest), plus the refusals for a missing git, an unwritable location and a stale manifest.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -37,12 +37,12 @@ The tool gains a state machine for reversibility: check tree state at start, wri
 ### Definition of Ready
 - [x] Spec and research document the requirement fully
 - [x] Success criteria are measurable (dry run output, second run no-op, manifest state)
-- [x] Dependencies identified (Phase 9, the era report, comes first)
+- [x] Dependencies identified (the era report in 008-legacy-era-report is context, not a blocker; phase 009 waits on this phase)
 
 ### Definition of Done
-- [ ] Acceptance criteria reviewed with evidence
-- [ ] Test suite covers committed, dirty, and manifest recovery paths
-- [ ] Docs updated: spec, plan, tasks, acceptance criteria, README
+- [x] Acceptance criteria reviewed with evidence (nine of nine Met, each with a test or a README line)
+- [x] Test suite covers committed, dirty, and manifest recovery paths (`dirty-tree-writes-manifest` covers committed and dirty, `manifest-recovery` the third)
+- [x] Docs updated: spec, plan, tasks, acceptance criteria, README
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,13 +54,13 @@ The tool gains a state machine for reversibility: check tree state at start, wri
 Tree-state validation before mutation. The tool already validates in dry run; we add state checks and manifest writes.
 
 ### Key Components
-- **Tree state check**: `isCommittedTree()` runs `git -C <REPO> status` to detect dirty state. Returns HEAD SHA and dirty paths. When REPO is not a git repository, `--apply` refuses.
-- **Manifest write**: `writeManifest()` records HEAD SHA, timestamp, the baseline map (packet path -> baseline findings) and, for each dirty file the run will touch, its path and before-image (a blob id from `git hash-object -w`, or the file bytes).
-- **Dry run listing**: Existing dry run lists plans; we add a "Downgrades" section that shows each finding that will become a warning.
-- **Manifest recovery**: `readManifestIfExists()` loads the manifest, validates the tree state matches, and restores the baseline for that run.
+- **Tree state check**: `readRepositoryState()` runs `git -C <REPO> rev-parse --absolute-git-dir`, `rev-parse --verify HEAD` and `status --porcelain=v1 -z --untracked-files=all`, and returns the git dir, HEAD SHA and dirty paths. When the first call fails, `--apply` refuses with exit 2. There is no function named `isCommittedTree()`.
+- **Manifest write**: `prepareManifest()` writes the manifest as `in-progress` before any repair, and `completeManifest()` marks it `complete` afterwards. It records `schema`, `repoRoot`, `headSha`, `recordedAt`, `status`, `baselineMap`, `recordedBaselineMap`, `scopeHashes` (one tree hash per in-scope packet) and `beforeImages`: for each dirty file inside a failing packet, its path and the file bytes as base64 with the mode, `absent`, or a symlink target. The built manifest never holds a blob id.
+- **Dry run listing**: `printDowngrades()` prints the "Downgrades" section. `predictDowngradeFindings()` repairs a temporary copy of the failing packets, so the list is what `--apply` would record, and `materializeSymlinks()` keeps that copy from writing through links into the real tree.
+- **Manifest recovery**: `readManifestIfExists()` loads the manifest and checks it against HEAD and the packet-tree hashes. A valid manifest supplies its `recordedBaselineMap` to the Downgrades list. A different HEAD, a changed packet tree or an `in-progress` status makes `--apply` refuse and the dry run report and continue. Copying before-images back is the README recovery script, not a command.
 
 ### Data Flow
-User runs `--apply` on dirty tree -> tree state check (refuse if no git) -> resolve `<git-dir>` with `git -C <REPO> rev-parse --absolute-git-dir` -> write manifest with before-images -> proceed with repairs. Git restores committed documents, the before-images restore dirty files, and deleting a packet's `upgrade-baseline.json` restores its error status.
+User runs `--apply` on dirty tree -> tree state check (refuse if no git) -> resolve `<git-dir>` with `git -C <REPO> rev-parse --absolute-git-dir` -> read any existing manifest (refuse if its HEAD or packet trees no longer match, or it is in progress) -> write manifest with before-images -> proceed with repairs -> mark the manifest complete. Git restores committed documents, the before-images restore dirty files, and deleting a packet's `upgrade-baseline.json` restores its error status.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -99,9 +99,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Tree state check, manifest format, baseline recovery | Vitest with mocked git and file system |
-| Integration | Full dry run and apply flow with fixture tree in each state | Vitest with a test git repo |
-| Manual | Real tree transitions: committed -> dirty -> apply, rerun on same baseline, delete manifest and rerun | Shell commands on a temp repo |
+| Unit | Manifest format, before-image bytes, baseline recovery | Vitest cases that read the manifest the real script wrote; no mocked git or file system |
+| Integration | Full dry run and apply flow with fixture trees in each state | Vitest with a throwaway git repository; a `git` shim on `PATH` for the unwritable location and `GIT_DIR` for the missing git |
+| Manual | Real tree transitions: committed -> dirty -> apply, rerun on same baseline, moved checkout | Done by the Vitest cases above instead of by hand; not run on this checkout's real tree |
 | Regression | Existing upgrade-legacy test suite | Vitest |
 <!-- /ANCHOR:testing -->
 
@@ -124,7 +124,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Tool breaks manifest recording, or manifest location becomes unwritable, or corruption detected on reread.
-- **Procedure**: Restore dirty files from the manifest's before-images, delete the packet's `upgrade-baseline.json` files (restores error status for findings the upgrade recorded) and revert code changes with `git revert`. Then rerun `--apply`.
+- **Procedure**: Restore dirty files from the manifest's before-images (the README's "Recover an Interrupted Apply" script), delete the packet's `upgrade-baseline.json` files (restores error status for findings the upgrade recorded) and revert code changes with `git revert`. Then rerun `--apply`.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -174,8 +174,8 @@ upgrade-legacy manifest (state machine)
 
 ### Pre-deployment Checklist
 - [x] Research defines manifest semantics
-- [ ] Manifest location is the worktree's own git directory (`<git-dir>/upgrade-legacy.manifest.json`)
-- [ ] Tree state check is validated on real and fixture repos
+- [x] Manifest location is the worktree's own git directory (`<git-dir>/upgrade-legacy.manifest.json`)
+- [x] Tree state check is validated on throwaway git repositories (the tests create them; not run on this checkout's real tree)
 
 ### Rollback Procedure
 1. Delete `<git-dir>/upgrade-legacy.manifest.json`

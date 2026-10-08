@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-08 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
@@ -152,6 +152,16 @@ None open. Decided 2026-10-08 by the operator:
 - **One manifest per worktree, resolved from REPO.** The path is `<git-dir>/upgrade-legacy.manifest.json`, where `<git-dir>` is `git -C <REPO> rev-parse --absolute-git-dir`. REPO is the repository the script edits, taken from the script's own location, so a run from another directory cannot write the manifest beside the wrong tree. `--git-common-dir` was rejected because worktrees would share one file, and a path inside `specs/` was rejected because the manifest would dirty the tree it describes.
 - **No git, no apply.** `--apply` refuses when REPO is not a git repository.
 - **Real before-image content.** For each dirty file the run will touch, the manifest stores a blob id from `git hash-object -w` or the file bytes. HEAD plus a list of dirty paths cannot restore uncommitted edits.
+
+Questions answered during the build:
+
+- **The before-image is the file bytes, never a blob id.** Each entry holds the bytes as base64 plus the file mode. A path that was absent is recorded as `absent` and a symbolic link as its target. `upgrade-legacy.mjs` never calls `git hash-object`, so a run writes nothing into the object database and the manifest restores a file without any git object.
+- **The manifest is written only when something will change.** The tree must be dirty and at least one packet must fail. The before-images cover the dirty files inside the failing packets, not unrelated dirty files elsewhere in the worktree. A clean committed tree gets no manifest.
+- **A manifest is trusted only while it still describes the tree.** It records `headSha` and one packet-tree hash per in-scope packet. A different HEAD, a changed packet tree or the status `in-progress` (an interrupted run) makes `--apply` refuse with exit 2, naming the manifest, the recorded HEAD and the current HEAD. The dry run reports the same condition and continues.
+- **A moved checkout is still trusted.** The recorded `repoRoot` is not compared. A manifest whose HEAD and packet hashes match is used even when the repository now lives at another absolute path.
+- **The tool loads the manifest's baselines and does not copy before-images back.** A valid manifest supplies its recorded baseline map to the Downgrades listing, in the dry run and in `--apply`. Restoring dirty files from the before-images is the documented recovery script in the README, which a test runs.
+- **The Downgrades listing is a prediction by preview.** With no matching manifest, the dry run repairs a temporary copy of the failing packets and lists the findings that remain, which are the findings `--apply` records. Errors the repair steps clear are not listed.
+- **The preview copy resolves symbolic links.** Node 26's recursive `fs.cpSync` with `dereference` keeps nested links as links, so the preview's repair steps wrote through them into the real tree. The orchestrator added `materializeSymlinks()`, which replaces every link under the preview's spec roots with a copy of its target. This was a code edit by the orchestrator, recorded in implementation-summary.md.
 
 <!-- /ANCHOR:questions -->
 
