@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-10-08 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
@@ -189,6 +189,15 @@ None open. Decided 2026-10-08 by the operator:
 
 - **The token is left as it is.** No `persist-credentials: false`, no GitHub environment, no secret move, and the workflow keeps its `skilled/**` trigger. The change was considered because the checkout receives `TRIGGER_INDEX_PUSH_TOKEN`, a ruleset-bypass token, with credentials persisted while `generate-trigger-index.mjs` runs from the pushed commit (`trigger-index-rebuild.yml:29-48`), and because no ruleset covers `skilled/**`. Branch protection checked on 2026-10-08 with `gh api repos/{owner}/{repo}/rulesets` and `gh api repos/{owner}/{repo}/branches/main/protection`: two rulesets, both targeting `~DEFAULT_BRANCH` (`main`). `main-protection` (id 11725786) is disabled. `message-contract-required` (id 24326453) is active with one rule, required_status_checks. Classic protection on main returns 404. At decision time `git ls-remote --heads origin` showed no `skilled/**` branch.
 - **The rest of the hardening stays:** stage all four generated files, an exact-match or marker loop guard, and regenerate plus `--check` before the retry push.
+
+Settled during the build, from the local checks and the two review rounds:
+
+- **Loop guard form.** A marker trailer, `Trigger-Index-Rebuild: ci`, written as the last paragraph of both rebuild commits and matched with `endsWith` on the head commit message. Review round 1 changed `contains` to `endsWith`, because a human commit that merely quotes the trailer in its body still needs its own rebuild. `sk-git/scripts/validate-message.mjs` accepts the trailer.
+- **Recovery step.** The retry resets to the fetched tip instead of rebasing onto it, then regenerates and runs `--check`. The rejected commit holds only regenerated output, so a rebase would stop on a conflict whenever the new tip regenerated the same files. The deviation from REQ-005's word "rebasing" is recorded in implementation-summary.md.
+- **Missing sidecar.** `--check` reads the index alone, so a sidecar the generator failed to write would pass it. The step therefore checks that all four files exist before it stages them, on the first attempt and again on the retry, rather than relying on the post-commit `--check`.
+- **Failure classes.** Non-fast-forward, authentication or ruleset (including `GH013`, `GH006` and a protected branch), and other. A bare `remote rejected` is no longer counted as a race.
+
+Still to observe: any run on GitHub. Nothing is pushed yet, so AC-002, AC-003, AC-005 and AC-006 stay Unmet until a live rebuild, race and push of each commit kind has been seen. This is a verification step, not a design question.
 
 <!-- /ANCHOR:questions -->
 

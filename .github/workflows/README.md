@@ -47,6 +47,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `skill-doc-frontmatter.yml` | Validates skill reference and asset frontmatter. |
 | `spec-kit-check.yml` | Typechecks and tests the spec-kit packages and checks that runtime mirrors agree with their sources. |
 | `strict-pass-freshness-report.yml` | Weekly whole-corpus validation report. Does not gate. |
+| `trigger-index-rebuild.yml` | Rebuilds the committed trigger index after a push to `main` or `skilled/**`, staging `trigger-index.json` plus its three fixture sidecars `corpus-manifest.json`, `generation-diagnostics.json` and `phrase-variants.json`. The loop guard skips commits whose message ends with the `Trigger-Index-Rebuild: ci` trailer. The job retries a non-fast-forward push once after resetting to the new tip and regenerating. |
 
 ### Push versus pull-request coverage
 

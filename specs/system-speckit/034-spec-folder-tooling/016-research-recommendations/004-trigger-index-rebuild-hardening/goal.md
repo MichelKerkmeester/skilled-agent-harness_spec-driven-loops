@@ -11,17 +11,20 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening"
-    last_updated_at: "2026-10-08T12:00:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
-    blockers: []
-    key_files: []
+    last_updated_at: "2026-10-08T09:55:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Built and reviewed; live run pending"
+    next_safe_action: "Push, then watch a live rebuild run"
+    blockers:
+      - "No run on GitHub yet; nothing is pushed"
+    key_files:
+      - ".github/workflows/trigger-index-rebuild.yml"
+      - ".github/workflows/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bd2aa56c-623b-43f8-a2ef-69a13c32d626"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -76,12 +79,24 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Planning complete | Done | spec.md, plan.md, tasks.md, acceptance-criteria.md, implementation-summary.md all validate --strict |
+| Planning complete | Done | spec.md, plan.md, tasks.md, acceptance-criteria.md, implementation-summary.md all validated --strict before the build |
+| Loop guard | Done | Job `if:` is `!endsWith(github.event.head_commit.message, 'Trigger-Index-Rebuild: ci')`, no `startsWith`; both rebuild commits end with the trailer; `sk-git/scripts/validate-message.mjs` accepts it |
+| Four-file staging and checks | Done | `FILES` array of the index and three sidecars, presence check before staging, `--check` after the commit; `bash -n` 0, `shellcheck` 0 |
+| Retry and error classes | Done | Fetch, `git reset --hard origin/<branch>`, regenerate, `--check`, one retry push; three classes with their own messages, sample push outputs sorted as intended |
+| Workflow README | Done | New `trigger-index-rebuild.yml` row in `.github/workflows/README.md` |
+| Cross-family review | Done | Luna round 1 four findings, all applied; round 2 none |
+| Whole-tree gates | Done | cli test exit 0 with 162 files and 1648 tests passed (baseline 161 and 1639), `run check` exit 0, hook tests 184 with 0 fail, typecheck and build exit 0 |
+| Validate changes | Done | `validate.sh --strict` on this folder prints `RESULT: PASSED`, `check-goal.cjs` passes |
+| Run on GitHub | Not started | Nothing is pushed. Completion criteria 1 to 4 and AC-002, AC-003, AC-005 and AC-006 wait on it |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| Reset instead of rebase | REQ-005 and criterion 3 say the retry rebases. The build resets to the fetched tip and regenerates, because the rejected commit holds only regenerated output and a rebase would conflict whenever the new tip regenerated the same files (review round 1, accepted). The authored wording was left as written |
+| Presence check before staging | The task asked for a post-commit `--check` to catch a missing sidecar. `--check` reads the index alone, so the step also checks that all four files exist before it stages them (review round 1) |
+| Trailer guard with `endsWith` | The task allowed an exact subject match or a marker. The build uses a trailer matched at the end of the message; `contains` was rejected because a commit that quotes the trailer in its body still needs its own rebuild |
+| Trailing newline unconfirmed | If `head_commit.message` keeps a trailing newline, `endsWith` fails open and the job's own commit starts one extra run that finds nothing to commit. A live run settles it |
 | Dropped research item | Research claimed the job runs "without set -e", but GitHub runs each `run:` step with `bash -e {0}` by default (visible in the job log as `shell: /usr/bin/bash -e {0}`). Dropped this item and removed all pipefail requirements. |
 | Token decision | 2026-10-08, the operator chose to leave the token as it is and keep the `skilled/**` trigger. Token scoping and a main-only GitHub environment were considered because the ruleset-bypass token sits in the checkout credential while repository code runs, and `skilled/**` has no protection. Their requirements, tasks, acceptance rows and goal criteria are removed. At decision time `git ls-remote --heads origin` showed no `skilled/**` branch |
 | Branch protection facts | Checked on 2026-10-08 with `gh api repos/{owner}/{repo}/rulesets` and `gh api repos/{owner}/{repo}/branches/main/protection`. Found: two rulesets, both targeting `~DEFAULT_BRANCH` (main). `main-protection` (id 11725786) is disabled. `message-contract-required` (id 24326453) is active. No ruleset targets `skilled/**`. Classic protection on main returns 404 "Branch not protected". So `skilled/**` has zero protection and main has only the active required status check. Token exposure risk stands, and the operator accepted it. |

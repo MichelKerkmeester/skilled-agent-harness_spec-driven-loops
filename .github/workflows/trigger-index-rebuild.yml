@@ -19,9 +19,11 @@ jobs:
   rebuild:
     name: Rebuild the trigger index
     # The rebuild pushes with a personal token, so its own push starts this
-    # workflow again under the token owner's name. Skip on the rebuild commit's
-    # subject so it cannot trigger itself into a repair loop.
-    if: "${{ !startsWith(github.event.head_commit.message, 'chore(system-spec-kit): rebuild the trigger index') }}"
+    # workflow again under the token owner's name. The trailer the commit step
+    # adds must END the message: a commit that merely quotes it in its body
+    # still needs its own rebuild. Suffix matching errs toward running, and a
+    # fail-open costs at most one run that finds nothing to commit.
+    if: "${{ !endsWith(github.event.head_commit.message, 'Trigger-Index-Rebuild: ci') }}"
     runs-on: ubuntu-latest
     steps:
       # The default token cannot pass the required commit-message check on
@@ -50,18 +52,115 @@ jobs:
       - name: Commit and push if the index changed
         run: |
           set -uo pipefail
-          INDEX=".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
-          # Diff against the committed content: an unchanged index needs no commit.
-          if git diff --quiet -- "$INDEX"; then
+          # The generator writes the index plus three fixture sidecars; staging
+          # the index alone leaves the sidecars stale even though the corpus moved.
+          FILES=(
+            ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
+            ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json"
+            ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json"
+            ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json"
+          )
+          # Diff against the committed content: unchanged outputs need no commit.
+          if git diff --quiet -- "${FILES[@]}"; then
             echo "Trigger index is current; nothing to commit."
             exit 0
           fi
+          # The generator's --check reads the index alone, so a sidecar it failed to
+          # write would slip past it; a partial rebuild must not be committed.
+          for path in "${FILES[@]}"; do
+            if [[ ! -f "$path" ]]; then
+              echo "::error::The generator did not write ${path}; not committing a partial rebuild."
+              exit 1
+            fi
+          done
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$INDEX"
+          git add "${FILES[@]}"
+          # The guard above matches this trailer to recognize the job's own push.
           git commit -m "chore(system-spec-kit): rebuild the trigger index" \
-            -m "The pushed corpus changed the committed trigger index, so this job rebuilt it."
-          if ! git push; then
-            echo "::error::Failed to push the trigger index rebuild. The branch ruleset is the likely cause; set the TRIGGER_INDEX_PUSH_TOKEN secret to a fine-grained token with Contents write, owned by a ruleset bypass actor."
+            -m "The pushed corpus changed the committed trigger index, so this job rebuilt it." \
+            -m "Trigger-Index-Rebuild: ci"
+          # Re-run the generator's checker against the committed tree so a rebuild
+          # that cannot satisfy its own check never reaches the branch.
+          if ! node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check; then
+            echo "::error::The committed trigger index fails its own --check; not pushing the rebuild."
             exit 1
           fi
+          # A push can lose a race with another writer, and the remote rejects
+          # the stale tip. Only that rejection is recoverable; authentication
+          # and ruleset failures need the token guidance, and anything else
+          # needs the raw push output. The rejected commit carries nothing but
+          # regenerated output, so the retry drops it with a hard reset and
+          # rebuilds on the new tip; replaying it through a rebase would stop
+          # on a conflict whenever the new tip regenerated the same files.
+          PUSH_OUTPUT=""
+          PUSH_FAILURE=""
+          classify_push_failure() {
+            if grep -Eq 'non-fast-forward|fetch first|\[rejected\]' <<<"$1"; then
+              PUSH_FAILURE="non-fast-forward"
+            elif grep -Eqi 'authentication failed|could not read username|terminal prompts disabled|permission .* denied|error: 403|repository rule violations|GH013|GH006|protected branch' <<<"$1"; then
+              PUSH_FAILURE="authentication"
+            else
+              PUSH_FAILURE="other"
+            fi
+          }
+          report_push_failure() {
+            case "$PUSH_FAILURE" in
+              non-fast-forward)
+                echo "::error::${1} push was rejected as non-fast-forward again after resetting to the new tip; the branch kept moving, so the rebuilt index was not pushed."
+                ;;
+              authentication)
+                echo "::error::${1} push failed with an authentication or branch-ruleset error. The branch ruleset is the likely cause; set the TRIGGER_INDEX_PUSH_TOKEN secret to a fine-grained token with Contents write, owned by a ruleset bypass actor."
+                ;;
+              *)
+                echo "::error::${1} push failed for a reason other than a non-fast-forward race or an authentication error; see the push output above."
+                ;;
+            esac
+          }
+          if ! PUSH_OUTPUT="$(git push 2>&1)"; then
+            printf '%s\n' "$PUSH_OUTPUT"
+            classify_push_failure "$PUSH_OUTPUT"
+            if [[ "$PUSH_FAILURE" != "non-fast-forward" ]]; then
+              report_push_failure "The initial"
+              exit 1
+            fi
+            echo "::warning::Push rejected as non-fast-forward; fetching the new tip, resetting to it, regenerating the index and retrying once."
+            if ! git fetch origin "${GITHUB_REF_NAME}"; then
+              echo "::error::Fetching ${GITHUB_REF_NAME} failed while recovering from the non-fast-forward push."
+              exit 1
+            fi
+            if ! git reset --hard "origin/${GITHUB_REF_NAME}"; then
+              echo "::error::Resetting to the new tip of ${GITHUB_REF_NAME} failed while recovering from the non-fast-forward push."
+              exit 1
+            fi
+            # The tip moved, so the corpus may differ: rebuild the index on the
+            # new tip and refuse to retry a result that fails its own check.
+            node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
+            if ! node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check; then
+              echo "::error::The regenerated trigger index fails its own --check on the new tip; not retrying the push."
+              exit 1
+            fi
+            # The same presence check applies here: --check reads only the index, and
+            # git add stages a missing tracked file as a deletion.
+            for path in "${FILES[@]}"; do
+              if [[ ! -f "$path" ]]; then
+                echo "::error::The generator did not write ${path}; not committing a partial rebuild."
+                exit 1
+              fi
+            done
+            if ! git diff --quiet -- "${FILES[@]}"; then
+              git add "${FILES[@]}"
+              # The loop guard matches this trailer, so the recovery commit
+              # repeats it.
+              git commit -m "chore(system-spec-kit): rebuild the trigger index" \
+                -m "The branch moved while the first rebuild was pushed, so the index was rebuilt on the new tip." \
+                -m "Trigger-Index-Rebuild: ci"
+            fi
+            if ! PUSH_OUTPUT="$(git push 2>&1)"; then
+              printf '%s\n' "$PUSH_OUTPUT"
+              classify_push_failure "$PUSH_OUTPUT"
+              report_push_failure "The retry"
+              exit 1
+            fi
+          fi
+          printf '%s\n' "$PUSH_OUTPUT"

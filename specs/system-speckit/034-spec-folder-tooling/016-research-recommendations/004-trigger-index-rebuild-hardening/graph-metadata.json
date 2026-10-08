@@ -38,7 +38,7 @@
       "goal"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -105,6 +105,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -124,12 +130,6 @@
       },
       {
         "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The generator writes four tracked files but `.github/workflows/trigger-index-rebuild.yml` diffs and stages only `trigger-index.json` (lines 53-61)",
     "created_at": "2026-10-08T04:22:41Z",
-    "last_save_at": "2026-10-08T07:39:26.807Z",
+    "last_save_at": "2026-10-08T09:55:10.415Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dec4b8e87bbedee5f32514cd16957917ceaefb0c7dfc490b80aab75b8aceea13",
+    "source_fingerprint": "sha256:ad96b4fbcbe77cdb1d4cdb89a76117930ed12b200cddb98ca3ba3b3cf861266c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "81ec50f0859c0f26e9c7373e1695d302fee0564b182d823fc1c82f2d05bf99fa",
+      "spec.md": "8934d5477f3800721a223a560c2a72ad06eb00c63ded1c97855ef03729f2999d",
       "plan.md": "2f62f5c214803e8d060472272676f6dd76f620364d5f50e9451a8a400b4159e7",
-      "tasks.md": "a7be160ac0c08f4fad5103c64743ce7380cc9cb138d8496206cf1105aab11975",
-      "implementation-summary.md": "5713462e3ff7f88fb3943e765dd535dd2bfa400cb62080d2b50c4b8716e452ba"
+      "tasks.md": "92d50c05b425ed0283a86f9b20bef3d0b4c35d99dcc54ab7f48b786ad50c6ba7",
+      "implementation-summary.md": "7e68d22cc0bf8666c94890f1991e563e069a76f065b983a37b7c83dd300e6ff4"
     },
     "last_active_at": null
   }
