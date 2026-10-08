@@ -121,7 +121,8 @@ and findings belong here.
 | Test baseline | Done | `npm --prefix .skilled/skills/system-spec-kit/runtime/cli test` at `c85ec7f8803` exits 0: vitest 161 files passed, 3 skipped, 1,639 tests passed, 19 skipped, legacy and validation suites all passed |
 | Wave 1 build | Done | 001, 002, 004, 005, 008, 014 Complete; 004 closed on a live run of the rebuild workflow. Final gates: CLI test 1,648 passed, 0 failed (baseline 1,639); `check` rc 0; hook tests 0 failed; each phase `validate.sh --strict` PASSED and `check-goal.cjs` 5/5 |
 | Wave 1 ship | Done | Pushed to `main` as a fast-forward (`73be1380b6`, `c65147fca3`); the rebuild job lost a staged push race and recovered as `08af7d089e`; CI on `08af7d089e`: 11 workflows success, Trigger Index Rebuild skipped by its own guard |
-| Wave 2 | In Progress | 006 on opencode-go, 007 on llmgateway, 010 and 016 on Luna |
+| Wave 2 build | Done | 006 (opencode-go), 007 (llmgateway), 010 and 016 (Luna) Complete. Final gates after 010's second review round: CLI test 1,685 passed, 0 failed (baseline 1,639); `check` and typecheck rc 0; hook tests 184 run, 0 failed; each phase `validate.sh --strict` PASSED and `check-goal.cjs` 5/5 |
+| Wave 2 ship | In Progress | Rebase onto `origin/main`, fast-forward push, CI; then two dispatches of the weekly sweep for 007's live first-run and baseline evidence |
 
 ### Deviations and findings
 
@@ -131,5 +132,7 @@ and findings belong here.
 | Orchestrator-found defect | 005's relative `.mjs` import broke the compiled `dist/` build; fixed with a declaration file and a package export, the existing pattern for `repo-root.mjs` |
 | Review-driven fixes | 001 one P1, 004 four (round 2 clean), 005 one P1, 008 one P0 and two P2, 014 one P1; 002's two P2 not applied, reasons in its summary |
 | Follow-ups outside wave 1 | Three Gate 3 menu copies outside 014's frozen list lack "in the same track" (`speckit-implement.yaml:52`, `worked-examples.md:60`, `trigger-config.md:134`); `scaffold-debug-delegation.sh` writes single-token trigger phrases |
+| Wave 2 review fixes | 016 one P0 (packet-type kinds keyed by filename); 010 four findings in each of two rounds; all fixed by their builders |
+| Orchestrator code fix | 010's dry-run preview wrote through nested symlinks because `fs.cpSync` keeps them as links; Luna's sandbox masked the failure and review rounds were spent, so the orchestrator added the link materialization itself |
 | Scope widened to the build | On 2026-10-08 the operator asked for all 16 phases to be built autonomously, so the objective, decisions and criteria now cover the build. The planning record stays in the progress rows |
 <!-- /ANCHOR:log -->
