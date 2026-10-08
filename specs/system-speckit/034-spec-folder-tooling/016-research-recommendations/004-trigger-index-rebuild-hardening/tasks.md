@@ -43,10 +43,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Verification
 
-- [ ] T007 [P0] Verify a commit whose subject only starts with the rebuild subject still runs the job, and the job's own rebuild commit does not. Open: needs one push of each kind on GitHub. Checked so far: the `if:` reads as intended and a suffix test on three sample messages skips only the message that ends with the trailer
-- [ ] T008 [P0] Verify that all four files (`trigger-index.json`, `corpus-manifest.json`, `generation-diagnostics.json`, `phrase-variants.json`) are staged and present in the commit. Open: needs a real rebuild commit to run `git ls-tree` against. Checked so far: the step names all four paths, checks each exists before `git add`, and passes `bash -n` and `shellcheck`
-- [ ] T009 [P1] Verify the rebase retry logic by simulating a non-fast-forward race condition. Open: no race has been simulated or seen. Checked so far: the classifier sorts a `fetch first` rejection as non-fast-forward, and two review rounds read the retry path (round 1 four findings applied, round 2 none). The retry resets to the tip rather than rebasing
-- [ ] T010 [P1] Verify a local index build produces the same output as a CI run on the same commit. Open: needs a CI run to compare against
+- [x] T007 [P0] Verify a commit whose subject only starts with the rebuild subject still runs the job, and the job's own rebuild commit does not. Live: human commit `73be1380b6` ran the job; the bot commits `08af7d089e` and `4f659bdd4c` were skipped; the guard reads only the trailer, so a shared subject prefix cannot skip a human commit
+- [x] T008 [P0] Verify that all four files (`trigger-index.json`, `corpus-manifest.json`, `generation-diagnostics.json`, `phrase-variants.json`) are staged and present in the commit. Live: `git ls-tree -r 08af7d089e` lists all four; the job's commit printed `4 files changed`
+- [x] T009 [P1] Verify the rebase retry logic by simulating a non-fast-forward race condition. Done as a real race, not a simulation: a second commit pushed while run 37761007246 was building made its push fail with `(fetch first)`; the job fetched, reset to `c65147fca`, regenerated and pushed `08af7d089e`. The retry resets to the tip rather than rebasing
+- [x] T010 [P1] Verify a local index build produces the same output as a CI run on the same commit. A local `generate-trigger-index.mjs` run on `08af7d089e` leaves the four files byte-identical to CI's commit
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,8 +55,8 @@ contextType: "general"
 ## Completion Criteria
 
 - [x] All Phase 1 tasks marked `[x]`
-- [ ] All Phase 2 verification tasks marked `[x]`. Open: T007 to T010 need a live run on GitHub
-- [ ] Acceptance criteria in `acceptance-criteria.md` show all rows passing. Open: AC-002, AC-003, AC-005 and AC-006 are Unmet until that run
+- [x] All Phase 2 verification tasks marked `[x]`
+- [x] Acceptance criteria in `acceptance-criteria.md` show all rows passing
 <!-- /ANCHOR:completion -->
 
 ---

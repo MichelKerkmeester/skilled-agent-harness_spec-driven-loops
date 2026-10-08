@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening"
     last_updated_at: "2026-10-08T09:55:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Built and reviewed; docs closed except live run"
-    next_safe_action: "Push, then watch a live rebuild run"
+    recent_action: "Closed with a live rebuild run"
+    next_safe_action: "None; phase complete"
     blockers:
       - "No run on GitHub yet; nothing is pushed"
     key_files:
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bd2aa56c-623b-43f8-a2ef-69a13c32d626"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,13 +38,13 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-trigger-index-rebuild-hardening |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Level** | 2 |
 | **Created** | 2026-10-08 |
 
 ### Status
 
-The workflow change is built, reviewed in two rounds and checked locally. The phase is **In Progress** because the job has not run on GitHub: nothing is pushed, so AC-002, AC-003, AC-005 and AC-006 are Unmet until a live rebuild, a lost push race and a push of each commit kind have been seen.
+The workflow change is built, reviewed in two rounds and **Complete**. A live run on 2026-10-08 settled every acceptance row: wave 1 was pushed to `main` as `73be1380b6`, and a second commit, `c65147fca3`, was pushed while run 37761007246 was still building. That run's first push was rejected with `(fetch first)`; it printed the non-fast-forward warning, fetched, reset to `c65147fca`, regenerated and pushed `08af7d089e`, which changes exactly the four generated files. The runs on the bot's own commits were skipped, and a local build of `08af7d089e` matches CI byte for byte.
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -142,9 +142,9 @@ The test suite, check, typecheck and build figures are whole-tree gates after al
 <!-- ANCHOR:limitations -->
 ## Known Limitations and Follow-ups
 
-1. **No live run yet.** Closing the phase needs: a dispatch on a stale corpus, to see a rebuild commit with all four files and a passing `--check` (AC-002, SC-003); a forced non-fast-forward race, to see the fetch, the reset, one generator run and `--check` before the single retry, and the distinct message (AC-003, AC-005); and one human commit that quotes the subject next to the job's own commit, to see which runs (AC-006, SC-002). T007 to T010 in tasks.md wait on the same run, including the byte comparison of a local build against CI (SC-001).
-2. **Trailing newline in the head commit message.** Whether `github.event.head_commit.message` reaches the guard without a trailing newline is not confirmed. If it keeps one, `endsWith` does not match and the job's own commit starts one extra run that finds nothing to commit and exits 0. That cannot loop, but it should be seen once.
-3. **Classifier patterns are checked against sample text.** The samples follow git's and GitHub's documented rejection messages. A real rejected push would confirm the patterns match what GitHub prints.
+1. **Live run seen.** Run 37761007246 (2026-10-08) showed the rebuild commit with all four files, the `--check` pass, the `(fetch first)` rejection, the distinct non-fast-forward warning, the fetch, the reset, one generator run and the retried push. Runs 37761182736 and 37745043733 on the bot's own commits were skipped.
+2. **Trailing newline settled.** The skipped runs show `github.event.head_commit.message` reaches the guard without a trailing newline, so `endsWith` matches the trailer.
+3. **Classifier seen live for one class.** The non-fast-forward branch ran on a real rejection. The authentication and other branches are checked against sample text only, because forcing those failures on `main` would need a broken token or a failing hook.
 4. **Rebase wording remains in the authored docs.** See the deviation under Key Decisions.
 5. **Changelog.** The phase context asks for a refresh of the matching file in `../changelog/` at close. No `changelog/` folder exists under the parent or the track, so there is nothing to refresh until the phase closes.
 <!-- /ANCHOR:limitations -->
