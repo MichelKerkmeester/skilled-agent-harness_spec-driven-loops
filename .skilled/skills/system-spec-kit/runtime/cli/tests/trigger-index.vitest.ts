@@ -348,6 +348,24 @@ describe('walkCorpus', () => {
     ]);
   });
 
+  // CI rebuilds the committed index from a fresh checkout, so an ignored file a
+  // working checkout happens to hold must not change what a local build indexes.
+  it('skips what git ignores, keeps a tracked file that matches an ignore rule, and lists neither as skipped', () => {
+    const root = makeTempDir('speckit-trigger-gitignore-');
+    spawnSync('git', ['init', '--quiet'], { cwd: root });
+    fs.writeFileSync(path.join(root, '.gitignore'), 'specs/**/containment/\nspecs/track/local.md\nspecs/track/forced.md\n');
+    writeDoc(root, 'specs/track/a.md', frontmatter(['a']));
+    writeDoc(root, 'specs/track/local.md', frontmatter(['local only']));
+    writeDoc(root, 'specs/track/review/containment/copy/spec.md', frontmatter(['containment copy']));
+    writeDoc(root, 'specs/track/forced.md', frontmatter(['tracked anyway']));
+    spawnSync('git', ['add', '--force', 'specs/track/forced.md'], { cwd: root });
+
+    const { files, skipped } = walkCorpus(root, { roots: CORPUS_ROOTS });
+
+    expect(files).toEqual(['specs/track/a.md', 'specs/track/forced.md']);
+    expect(skipped.filter((entry) => entry.path.startsWith('specs/'))).toEqual([]);
+  });
+
   it('refuses a symlinked document whose target is outside the repository', () => {
     const root = makeTempDir('speckit-trigger-outside-');
     const outside = makeTempDir('speckit-trigger-external-');

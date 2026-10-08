@@ -7,6 +7,7 @@
 // tree visit files in the same order.
 // ───────────────────────────────────────────────────────────────────
 
+import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -67,6 +68,7 @@ export const EXCLUSIONS = Object.freeze([
   '**/tests/fixtures/**',
   '**/{fixtures,__fixtures__,test-fixtures,*-fixtures}/** outside specs/',
   '.git',
+  'paths git ignores, when the repository is a git checkout',
 ]);
 
 /**
@@ -176,6 +178,38 @@ export function isExcludedDirectory(name, parentName, relativePath = '') {
   return FIXTURE_DIR_PATTERN.test(name) && relativePath.split('/')[0] !== DOCUMENT_ROOT;
 }
 
+/**
+ * The untracked paths git ignores under the walk roots, as repo-relative POSIX
+ * paths, with an ignored directory collapsed to one entry ending in `/`.
+ *
+ * The committed index is rebuilt in CI from a fresh checkout, which holds no
+ * ignored file, so a local build that read one (a review's containment copy, a
+ * local artifact) published an index CI then rewrote. The grep lane already
+ * skips them, because ripgrep honours ignore files by default. A tracked file
+ * that matches an ignore rule is not listed, so it stays in the corpus.
+ *
+ * Only the committed .gitignore files count. --exclude-standard would also read
+ * the user's global excludes and .git/info/exclude, which differ by machine: a
+ * global rule ignoring specs/ made every uncommitted packet vanish from a local
+ * build. Outside a git checkout, or when git is missing, nothing is ignored.
+ *
+ * @param {string} repoRoot Absolute repository root.
+ * @param {readonly string[]} roots Repo-relative walk roots.
+ * @returns {Set<string>} Ignored file paths and ignored directory paths with a trailing slash.
+ */
+export function gitIgnoredPaths(repoRoot, roots) {
+  try {
+    const output = execFileSync(
+      'git',
+      ['ls-files', '--others', '--ignored', '--exclude-per-directory=.gitignore', '--directory', '-z', '--', ...roots],
+      { cwd: repoRoot, encoding: 'utf8', maxBuffer: 1 << 28, stdio: ['ignore', 'pipe', 'ignore'] },
+    );
+    return new Set(output.split('\0').filter(Boolean));
+  } catch {
+    return new Set();
+  }
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 3. WALK
 // ───────────────────────────────────────────────────────────────────
@@ -184,12 +218,14 @@ export function isExcludedDirectory(name, parentName, relativePath = '') {
  * Collects every markdown document in the corpus.
  *
  * @param {string} repoRoot Absolute repository root.
- * @param {{ roots?: readonly string[] }} [options] Root override for fixtures.
+ * @param {{ roots?: readonly string[], ignored?: ReadonlySet<string> }} [options]
+ *   Root override for fixtures, and the git-ignored set in place of asking git.
  * @returns {{ files: string[], skipped: Array<{ path: string, reason: string }> }}
  *   Sorted canonical relative paths plus everything deliberately not walked.
  */
 export function walkCorpus(repoRoot, options = {}) {
   const roots = options.roots ?? corpusRootsFor(repoRoot);
+  const ignored = options.ignored ?? gitIgnoredPaths(repoRoot, roots);
   /** @type {Map<string, { canonical: string, isLink: boolean }>} */
   const byRealPath = new Map();
   /** @type {Array<{ path: string, reason: string }>} */
@@ -201,7 +237,7 @@ export function walkCorpus(repoRoot, options = {}) {
       skipped.push({ path: root, reason: 'root does not exist' });
       continue;
     }
-    walkDirectory(repoRoot, absoluteRoot, byRealPath, skipped);
+    walkDirectory(repoRoot, absoluteRoot, byRealPath, skipped, ignored);
   }
 
   const files = Array.from(byRealPath.values(), (entry) => entry.canonical).sort(compareCodeUnits);
@@ -214,9 +250,10 @@ export function walkCorpus(repoRoot, options = {}) {
  * @param {string} directory Absolute directory being walked.
  * @param {Map<string, { canonical: string, isLink: boolean }>} byRealPath Accumulator keyed by resolved path.
  * @param {Array<{ path: string, reason: string }>} skipped Accumulator for pruned entries.
+ * @param {ReadonlySet<string>} ignored Paths git ignores, from gitIgnoredPaths.
  * @returns {void}
  */
-function walkDirectory(repoRoot, directory, byRealPath, skipped) {
+function walkDirectory(repoRoot, directory, byRealPath, skipped, ignored) {
   let entries;
   try {
     entries = fs.readdirSync(directory, { withFileTypes: true });
@@ -234,6 +271,11 @@ function walkDirectory(repoRoot, directory, byRealPath, skipped) {
   for (const entry of entries) {
     const absolute = path.join(directory, entry.name);
     const relative = toRelative(repoRoot, absolute);
+
+    // Not listed as skipped: which ignored paths exist depends on the machine,
+    // and a skipped row would make the committed manifest differ between a
+    // working checkout and CI's fresh one. EXCLUSIONS records the policy.
+    if (ignored.has(relative) || ignored.has(`${relative}/`)) continue;
 
     if (entry.isSymbolicLink()) {
       // Only a link named like a document is resolved. Any other link is never
@@ -268,7 +310,7 @@ function walkDirectory(repoRoot, directory, byRealPath, skipped) {
         }
         continue;
       }
-      walkDirectory(repoRoot, absolute, byRealPath, skipped);
+      walkDirectory(repoRoot, absolute, byRealPath, skipped, ignored);
       continue;
     }
 
