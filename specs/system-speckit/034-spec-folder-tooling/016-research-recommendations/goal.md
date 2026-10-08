@@ -119,8 +119,9 @@ and findings belong here.
 | Operator decisions | Done | Ten choices decided on 2026-10-08 after a fresh Opus recommendation, D2 and D4 amended |
 | Lane routes smoke-tested | Done | `llmgateway/deepseek-v4.1-flash`, `opencode-go/deepseek-v4.1-flash` and `gpt-6-luna` max fast each replied PONG on 2026-10-08 |
 | Test baseline | Done | `npm --prefix .skilled/skills/system-spec-kit/runtime/cli test` at `c85ec7f8803` exits 0: vitest 161 files passed, 3 skipped, 1,639 tests passed, 19 skipped, legacy and validation suites all passed |
-| Wave 1 build | Done | 001, 002, 005, 008, 014 Complete; 004 built and reviewed twice, its acceptance rows wait on a live run of the rebuild workflow. Final gates: CLI test 1,648 passed, 0 failed (baseline 1,639); `check` rc 0; hook tests 0 failed; each phase `validate.sh --strict` PASSED and `check-goal.cjs` 5/5 |
-| Wave 1 ship | In Progress | One commit per phase, rebased on `origin/main`, pushed as a fast-forward |
+| Wave 1 build | Done | 001, 002, 004, 005, 008, 014 Complete; 004 closed on a live run of the rebuild workflow. Final gates: CLI test 1,648 passed, 0 failed (baseline 1,639); `check` rc 0; hook tests 0 failed; each phase `validate.sh --strict` PASSED and `check-goal.cjs` 5/5 |
+| Wave 1 ship | Done | Pushed to `main` as a fast-forward (`73be1380b6`, `c65147fca3`); the rebuild job lost a staged push race and recovered as `08af7d089e`; CI on `08af7d089e`: 11 workflows success, Trigger Index Rebuild skipped by its own guard |
+| Wave 2 | In Progress | 006 on opencode-go, 007 on llmgateway, 010 and 016 on Luna |
 
 ### Deviations and findings
 
