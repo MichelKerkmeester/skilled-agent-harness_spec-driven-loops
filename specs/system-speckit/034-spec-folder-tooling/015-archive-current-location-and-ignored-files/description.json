@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/034-spec-folder-tooling/015-archive-current-location-and-ignored-files",
+  "description": "Phase 15: archive-current-location-and-ignored-files",
+  "keywords": [
+    "phase",
+    "archive-current-location-and-ignored-files"
+  ],
+  "lastUpdated": "2026-10-08T03:25:31.626Z",
+  "specId": "015",
+  "folderSlug": "archive-current-location-and-ignored-files",
+  "parentChain": [
+    "system-speckit",
+    "034-spec-folder-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

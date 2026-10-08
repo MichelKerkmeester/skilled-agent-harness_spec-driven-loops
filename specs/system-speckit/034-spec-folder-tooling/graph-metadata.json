@@ -17,7 +17,8 @@
     "system-speckit/034-spec-folder-tooling/011-template-phrase-census-and-cleanup",
     "system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two",
     "system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair",
-    "system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research"
+    "system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research",
+    "system-speckit/034-spec-folder-tooling/015-archive-current-location-and-ignored-files"
   ],
   "manual": {
     "depends_on": [],
@@ -97,16 +98,16 @@
     ],
     "causal_summary": "The scripts that create, number and archive spec packets disagreed with where packets live",
     "created_at": "2026-09-23T00:00:00Z",
-    "last_save_at": "2026-10-07T22:57:38.722Z",
+    "last_save_at": "2026-10-08T03:42:59.220Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:1aee34268f98a2a3f15432d526395b7062a248c78c60daa72764c98acaaf8ba6",
+    "source_fingerprint": "sha256:564617045d7867da5be8616943a13bcb9e1f2df83eae7cbff31679075fe486c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2ab270dcfd664314eb35158fa0f3261305c8b5c3bf111054d1f8b2fb55fddbc5"
+      "spec.md": "0ea0c3efc540a4f1766d30c71dee059f31e1f51cf18860c12b1c05514de25bf9"
     },
     "last_active_child_id": "system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research",
     "last_active_at": "2026-10-07T07:55:17.883Z"
