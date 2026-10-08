@@ -1,0 +1,26 @@
+{
+  "specFolder": "agents/019-haiku-explore-and-context-agents",
+  "description": "Haiku-default Explore override and haiku-pinned context agent across Claude and sibling runtime surfaces",
+  "keywords": [
+    "haiku-default",
+    "explore",
+    "override",
+    "haiku-pinned",
+    "context",
+    "agent",
+    "across",
+    "claude",
+    "sibling",
+    "runtime",
+    "surfaces"
+  ],
+  "lastUpdated": "2026-10-08T09:30:42.984Z",
+  "specId": "019",
+  "folderSlug": "haiku-explore-and-context-agents",
+  "parentChain": [
+    "agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

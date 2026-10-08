@@ -21,7 +21,8 @@
     "agents/015-global-claude-md-agents-symlink",
     "agents/016-repo-rule-advisor-surfacing",
     "agents/017-thinking-discipline",
-    "agents/018-communication-rules-consolidation"
+    "agents/018-communication-rules-consolidation",
+    "agents/019-haiku-explore-and-context-agents"
   ],
   "manual": {
     "depends_on": [],
