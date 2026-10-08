@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 6823,
-    "ok": 13498,
+    "missing-frontmatter": 6794,
+    "ok": 13502,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 23884,
+  "documentsScanned": 23859,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "4518935e1aec3b44c10df194ebeb1d4a6d3d7484de1955c9f2444a29453585b3",
+  "manifestHash": "558d4685ee858463c86ea375a747ab6c3ea129720f36412461902bf2c4f5e961",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 35745,
+      "ok": 35753,
       "prose-sentence": 19,
       "single-token": 164,
       "stop-word-only": 1,
@@ -65173,90 +65173,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/deep-review-dashboard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/deep-review-strategy.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/prompts/iteration-2.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/containment/quarantine/3/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/containment/quarantine/4/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/deep-review-dashboard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/containment/quarantine/4/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/deep-review-strategy.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/containment/quarantine/4/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/containment/quarantine/4/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/prompts/iteration-3.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/containment/quarantine/5/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/deep-review-dashboard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/containment/quarantine/5/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/deep-review-strategy.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/containment/quarantine/5/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/iterations/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/containment/quarantine/5/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/resource-map.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/containment/quarantine/5/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/review-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/deep-research-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -65391,96 +65307,6 @@
       "line": 2,
       "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/1/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/deep-research-dashboard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/1/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/deep-research-strategy.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/1/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/1/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/prompts/iteration-1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/1/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/prompts/iteration-2.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/deep-research-dashboard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/deep-research-strategy.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/prompts/iteration-3.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/prompts/iteration-4.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/3/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/deep-research-dashboard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/3/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/deep-research-strategy.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/3/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-004.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/3/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/prompts/iteration-5.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -71416,6 +71242,10 @@
     },
     {
       "path": "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/015-archive-current-location-and-ignored-files/scratch",
       "reason": "excluded directory"
     },
     {

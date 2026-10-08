@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4518935e1aec3b44c10df194ebeb1d4a6d3d7484de1955c9f2444a29453585b3",
+  "manifestHash": "558d4685ee858463c86ea375a747ab6c3ea129720f36412461902bf2c4f5e961",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11451,6 +11451,21 @@
     "archive container graph node": [
       "archive container graph node"
     ],
+    "archive current location and ignored files": [
+      "archive current location and ignored files"
+    ],
+    "archive current location and ignored files acceptance criteria": [
+      "archive current location and ignored files acceptance criteria"
+    ],
+    "archive current location and ignored files implementation summary": [
+      "archive current location and ignored files implementation summary"
+    ],
+    "archive current location and ignored files plan": [
+      "archive current location and ignored files plan"
+    ],
+    "archive current location and ignored files tasks": [
+      "archive current location and ignored files tasks"
+    ],
     "archive handling": [
       "archive handling"
     ],
@@ -11462,6 +11477,9 @@
     ],
     "archive multipliers decay fix": [
       "ARCHIVE_MULTIPLIERS decay fix"
+    ],
+    "archive re derive recorded paths": [
+      "archive re-derive recorded paths"
     ],
     "archive renumber implementation summary": [
       "archive renumber implementation summary"
@@ -70365,6 +70383,9 @@
     "phase 14 tasks": [
       "phase 14 tasks"
     ],
+    "phase 15 archive current location and ignored files": [
+      "phase 15 archive current location and ignored files"
+    ],
     "phase 15 closure gate": [
       "phase 15 closure gate"
     ],
@@ -103027,6 +103048,9 @@
     ],
     "trigger index skipped paths": [
       "trigger index skipped paths"
+    ],
+    "trigger index skips git ignored files": [
+      "trigger index skips git ignored files"
     ],
     "trigger index stale warning": [
       "trigger index stale warning"
