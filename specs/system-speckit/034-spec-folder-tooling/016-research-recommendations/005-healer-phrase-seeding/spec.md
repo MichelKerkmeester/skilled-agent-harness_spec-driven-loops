@@ -20,7 +20,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-08 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
@@ -57,6 +57,7 @@ Ensure the upgrade path never writes a trigger phrase that phrase-judge grades i
 - Make `inferTriggerPhrases` in frontmatter-migration.ts emit no phrase that phrase-judge grades in a negative class
 - Add a test to upgrade-legacy.vitest.ts that the upgrade writes no phrase in any negative judge class
 - Pin heal-spec-docs output to the seeder output in a test
+- Give the compiled build a loadable import path to phrase-judge, because `inferTriggerPhrases` now calls the judge (package export plus type declarations)
 
 ### Out of Scope
 - Reconstructing documents with missing trigger phrases
@@ -72,6 +73,8 @@ Ensure the upgrade path never writes a trigger phrase that phrase-judge grades i
 | `.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts` | Modify | `inferTriggerPhrases` emits no negative-class phrase |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts` | Modify | Pin heal-spec-docs refill output to the seeder output |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts` | Modify | Assert the upgrade writes no phrase in any negative judge class |
+| `.skilled/skills/system-spec-kit/runtime/package.json` | Modify | Export `./cli/retrieval/lib/phrase-judge.mjs`, because the compiled build could not load a relative `.mjs` import of the judge |
+| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.d.mts` | Create | Type declarations for `judgeTriggerPhrase`, so the TypeScript import of the build-free judge typechecks |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -116,7 +119,7 @@ Ensure the upgrade path never writes a trigger phrase that phrase-judge grades i
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | SH-05 must land before SH-08 | External repo upgrade path cannot ship a healer that writes rejected phrases | Build both SH-05 and SH-06 before SH-08 |
-| Risk | heal-spec-docs is CommonJS and the seeder is an ES module | The healer cannot import it directly | Load it with dynamic `import()`, and pin the output in a test |
+| Risk | heal-spec-docs is CommonJS and the seeder is an ES module | The healer cannot import it directly | Load it with `require()`, which Node runs synchronously for an ES module with no top-level await, and pin the output in a test |
 | Risk | A title yields no admissible phrase in `inferTriggerPhrases` | The field stays empty | Leave it empty so validation reports it and upgrade-legacy records it, rather than writing a rejected phrase |
 <!-- /ANCHOR:risks -->
 
@@ -133,6 +136,12 @@ None open. Decided 2026-10-08 by the operator:
 - **Empty lists are refilled from the slug seeder.** heal-spec-docs writes the exact output of `seededPhrases` (`template-phrase-cleanup.mjs:125`), for example `<slug> plan`. The seeder is deterministic and its phrases pass the judge. It is the value `create.sh` and the Phase 12 cleanup already write. Recording the list as unknown was considered and rejected, because it leaves the document unfindable by its own phrases.
 - **`TEMPLATE_DEFAULTS` is deleted, not pinned.** A list whose only use is writing rejected phrases has nothing worth pinning.
 - **Scope widened to `inferTriggerPhrases`.** The fill-frontmatter step writes rejected phrases too, so this phase covers it, and the upgrade test checks every negative judge class, not only `template-default`.
+
+Questions answered during the build:
+
+- **The healer loads the seeder with `require()`, not dynamic `import()`.** `template-phrase-cleanup.mjs` guards its entry point with `isDirectRun` and has no top-level await, so Node loads it from CommonJS synchronously. The create-root-numbering case runs the real `heal-spec-docs.cjs` and compares its output to `seededPhrases`.
+- **A title with no admissible phrase leaves the field empty.** `inferTriggerPhrases` now returns `undefined` when the judge rejects every candidate, which its `string[] | undefined` signature already allowed. The `memory`, `indexing`, `context` fallback is gone.
+- **The compiled build needed an import path for the judge.** The first version imported `phrase-judge.mjs` by a relative path, which broke the compiled output with `ERR_MODULE_NOT_FOUND` for `dist/retrieval/lib/phrase-judge.mjs`, because the build holds no copy of that `.mjs` file. The orchestrator found it. The import is now `@spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs`, backed by a new export in `runtime/package.json` and a `phrase-judge.d.mts` type surface. That adds two files to Files to Change.
 
 <!-- /ANCHOR:questions -->
 

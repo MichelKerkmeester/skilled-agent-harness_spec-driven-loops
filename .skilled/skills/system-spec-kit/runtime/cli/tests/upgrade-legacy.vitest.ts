@@ -9,6 +9,9 @@ import crypto from 'node:crypto';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
+import { readTriggerPhrases } from '../retrieval/lib/frontmatter.mjs';
+import { judgeTriggerPhrase } from '../retrieval/lib/phrase-judge.mjs';
+
 const skillRoot = path.resolve(__dirname, '../../..');
 const PACKET = 'specs/system-spec-kit/001-legacy-packet';
 
@@ -305,6 +308,36 @@ describe('upgrade-legacy', () => {
       expect(manifest()).toBe(before);
     } finally {
       fs.writeFileSync(source, original);
+    }
+  }, 180_000);
+
+  it('writes no phrase the judge rejects when it repairs a legacy packet', () => {
+    const folder = 'specs/phrase-track/001-phrase-fixture';
+    writeLegacyPacket(folder);
+    // Two documents declare the list but leave it empty, so the healer refills
+    // them from the packet slug; spec.md omits the key, so the fill step infers
+    // candidates from the document and keeps only the ones the judge admits.
+    fs.writeFileSync(
+      path.join(sandbox, folder, 'plan.md'),
+      '---\ntitle: "Phrase Fixture Plan"\ndescription: "Plan for the phrase fixture."\ntrigger_phrases: []\n---\n# Phrase Fixture Plan\n\nOld plan.\n',
+    );
+    fs.writeFileSync(
+      path.join(sandbox, folder, 'implementation-summary.md'),
+      '---\ntitle: "Phrase Fixture Summary"\ndescription: "Summary for the phrase fixture."\ntrigger_phrases: []\n---\n# Phrase Fixture Summary\n\nOld summary.\n',
+    );
+    const result = runUpgrade(['--apply', '--roots', 'specs/phrase-track']);
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+
+    const spec = readTriggerPhrases(fs.readFileSync(path.join(sandbox, folder, 'spec.md'), 'utf8')).phrases;
+    const plan = readTriggerPhrases(fs.readFileSync(path.join(sandbox, folder, 'plan.md'), 'utf8')).phrases;
+    const tasks = readTriggerPhrases(fs.readFileSync(path.join(sandbox, folder, 'tasks.md'), 'utf8')).phrases;
+    const summary = readTriggerPhrases(fs.readFileSync(path.join(sandbox, folder, 'implementation-summary.md'), 'utf8')).phrases;
+    // Without a phrase in hand the judge loop below proves nothing, so pin the
+    // refills first: the empty list is the case the healer exists to repair.
+    expect(plan.length, plan.map((phrase) => phrase.raw).join(', ')).toBeGreaterThan(0);
+    expect(summary.length, summary.map((phrase) => phrase.raw).join(', ')).toBeGreaterThan(0);
+    for (const phrase of [...spec, ...plan, ...tasks, ...summary]) {
+      expect(judgeTriggerPhrase(phrase.raw), phrase.raw).toBeNull();
     }
   }, 180_000);
 });

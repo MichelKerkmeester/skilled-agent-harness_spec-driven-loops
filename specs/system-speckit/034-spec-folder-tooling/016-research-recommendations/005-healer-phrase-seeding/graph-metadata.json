@@ -38,7 +38,7 @@
       "policy"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -49,8 +49,14 @@
       ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts",
+      ".skilled/skills/system-spec-kit/runtime/package.json",
+      "cli/retrieval/lib/phrase-judge.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.d.mts",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts"
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+      "runtime/package.json",
+      "dist/lib/frontmatter-migration.js",
+      "runtime/cli/package.json"
     ],
     "entities": [
       {
@@ -108,6 +114,24 @@
         "source": "derived"
       },
       {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "phrase-judge.mjs",
+        "kind": "file",
+        "path": "cli/retrieval/lib/phrase-judge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "phrase-judge.d.mts",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.d.mts",
+        "source": "derived"
+      },
+      {
         "name": "create-root-numbering.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts",
@@ -117,6 +141,12 @@
         "name": "upgrade-legacy.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-migration.js",
+        "kind": "code",
+        "path": "dist/lib/frontmatter-migration.js",
         "source": "derived"
       },
       {
@@ -172,35 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Fix",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`heal-spec-docs.cjs` at line 45 defines `TEMPLATEDEFAULTS`, placeholder trigger phrases from the plan.md, tasks.md and implementation-summary.md templates per document class",
     "created_at": "2026-10-08T04:22:42Z",
-    "last_save_at": "2026-10-08T07:39:26.806Z",
+    "last_save_at": "2026-10-08T10:01:31.084Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2f11a4b4877dff3793ece59b66daaf8f2a91bf7da733fd2178f82377daff3e6c",
+    "source_fingerprint": "sha256:4c27f108abc6a2f3d97dea7b106e1e184c67f11be2eb3bff208bb0232450b07f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c0b964c51cb2dff5fb5f0d9d24406eefc3f9ad7ae7432bd6dbee9e400b78df62",
-      "plan.md": "14a0c9976e69127829807b672fc4a51ee87fcddfde08061a4588090da63715b6",
-      "tasks.md": "21e188dc3affff67c5d126a3cf9e5b49b58bddd3bd0ffbba95f7e3e33a7cccfb",
-      "implementation-summary.md": "2c5d98230b538ae2e547b12c86c6b97b75bd6aef5b06396d67fff3a2824bbcc9"
+      "spec.md": "ec6c889980322f01ddda000f82b7cb71e457e7442a708af1938999a0995e8d38",
+      "plan.md": "a448e69d888168499365d2de694afc87bbc43cd5857e33211051f42cc7e172ea",
+      "tasks.md": "6cac03d49a4cc51a5f020ab0cb64011582c569cbe14a8f9c75dc2b1740ad7ed4",
+      "implementation-summary.md": "47f6e4da8dd53d7c58c956fa99bb3357c55a7dee2465b18e08e83ad86e3f78ab"
     },
     "last_active_at": null
   }

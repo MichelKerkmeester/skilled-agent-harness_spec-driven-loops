@@ -34,15 +34,15 @@ Fix the mismatch between the upgrade path's phrase writers and phrase-judge.mjs.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Code pathways traced in heal-spec-docs.cjs, phrase-judge.mjs, and upgrade-legacy.mjs
-- [ ] Test stubs for the seeder pin and the upgrade-output grade check identified
+- [x] Problem statement clear and scope documented
+- [x] Code pathways traced in heal-spec-docs.cjs, phrase-judge.mjs, and upgrade-legacy.mjs
+- [x] Test stubs for the seeder pin and the upgrade-output grade check identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] create-root-numbering.vitest.ts passes with the heal-spec-docs seeder pin
-- [ ] upgrade-legacy.vitest.ts passes with a grade check across every negative judge class
-- [ ] Code diff shows TEMPLATE_DEFAULTS deleted
+- [x] All acceptance criteria met
+- [x] create-root-numbering.vitest.ts passes with the heal-spec-docs seeder pin
+- [x] upgrade-legacy.vitest.ts passes with a grade check across every negative judge class
+- [x] Code diff shows TEMPLATE_DEFAULTS deleted
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,7 +54,7 @@ Fix the mismatch between the upgrade path's phrase writers and phrase-judge.mjs.
 Fix at source: the two upgrade-path phrase writers stop writing values that phrase-judge.mjs rejects.
 
 ### Key Components
-- **heal-spec-docs.cjs**: TEMPLATE_DEFAULTS is deleted. An empty list is refilled with `seededPhrases(file, kind, description)`, loaded through dynamic `import()` because the healer is CommonJS.
+- **heal-spec-docs.cjs**: TEMPLATE_DEFAULTS is deleted. An empty list is refilled with `seededPhrases(file, kind, description)`, loaded with `require()`, which Node supports for an ES module without top-level await; the module runs its CLI only when executed directly.
 - **template-phrase-cleanup.mjs**: Exports `seededPhrases` unchanged.
 - **frontmatter-migration.ts**: `inferTriggerPhrases` filters its candidates through `judgeTriggerPhrase` and drops the `memory`, `indexing`, `context` fallback. When nothing admissible remains, the field stays empty.
 - **phrase-judge.mjs**: No change.
@@ -166,9 +166,9 @@ No internal phases. Single-stage fix: modify code, extend tests, validate.
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Tests pass before commit
-- [ ] Code diff reviewed against spec
-- [ ] Backward-compatibility checked (no breaking API change)
+- [x] Tests pass before commit
+- [x] Code diff reviewed against spec
+- [x] Backward-compatibility checked (no breaking API change)
 
 ### Rollback Procedure
 1. `git revert` the commit

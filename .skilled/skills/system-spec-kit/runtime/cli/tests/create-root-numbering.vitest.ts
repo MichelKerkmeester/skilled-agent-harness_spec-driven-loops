@@ -11,11 +11,12 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   AC_TEMPLATE_DEFAULT_PHRASES,
   IMPLEMENTATION_SUMMARY_TEMPLATE_DEFAULT_PHRASES,
+  judgeTriggerPhrase,
   PLAN_TEMPLATE_DEFAULT_PHRASES,
   TASKS_TEMPLATE_DEFAULT_PHRASES,
   TEMPLATE_DEFAULT_PHRASES,
 } from '../retrieval/lib/phrase-judge.mjs';
-import { DESCRIPTION_STOP_WORDS } from '../spec/template-phrase-cleanup.mjs';
+import { DESCRIPTION_STOP_WORDS, seededPhrases } from '../spec/template-phrase-cleanup.mjs';
 
 const CLI_DIR = path.resolve(__dirname, '..');
 const SKILL_ROOT = path.resolve(CLI_DIR, '../..');
@@ -327,6 +328,54 @@ describe('create.sh seeds trigger phrases', () => {
         ([, phrase]) => phrase,
       );
       expect(phrases).toEqual(shellPhrases);
+    }
+  });
+});
+
+// The healer's phrase source is the seeder's derivation of the packet slug, so
+// the value it refills has to equal what the seeder returns and pass the same
+// judge every declared phrase passes.
+describe('heal-spec-docs refills empty trigger phrases', () => {
+  it('writes the seeder phrases into plan, tasks, and implementation-summary', () => {
+    const packet = path.join(workspace, 'specs', '007-refill-empty-phrases');
+    fs.mkdirSync(packet, { recursive: true });
+
+    const seededDocuments = [
+      { filename: 'plan.md', kind: 'plan' },
+      { filename: 'tasks.md', kind: 'tasks' },
+      { filename: 'implementation-summary.md', kind: 'implementationSummary' },
+    ];
+    for (const { filename } of seededDocuments) {
+      fs.writeFileSync(
+        path.join(packet, filename),
+        '---\ntrigger_phrases: []\n---\n\n# Document\n',
+      );
+    }
+
+    const result = spawnSync(
+      'node',
+      [path.join(CLI_DIR, 'spec', 'heal-spec-docs.cjs'), '--folder', packet, '--apply'],
+      { cwd: workspace, encoding: 'utf8' },
+    );
+    expect(result.status, result.stderr).toBe(0);
+
+    for (const { filename, kind } of seededDocuments) {
+      const file = path.join(packet, filename);
+      const document = fs.readFileSync(file, 'utf8');
+      const block = document.match(
+        /^trigger_phrases:\r?\n((?:[ \t]*-[ \t]*"[^"]*"[ \t]*\r?\n?)+)/m,
+      );
+      if (!block) {
+        throw new Error(`${filename} has no quoted trigger_phrases block after healing`);
+      }
+      const phrases = Array.from(
+        block[1].matchAll(/^[ \t]*-[ \t]*"([^"]*)"[ \t]*\r?$/gm),
+        ([, phrase]) => phrase,
+      );
+      expect(phrases).toEqual(seededPhrases(file, kind));
+      for (const phrase of phrases) {
+        expect(judgeTriggerPhrase(phrase), `${filename}: ${phrase}`).toBeNull();
+      }
     }
   });
 });

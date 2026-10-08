@@ -7,10 +7,10 @@
 // than guessed.
 //
 // The line this tool will not cross: it never authors content. A missing
-// trigger phrase is restored only when the template defines a literal default
-// for that document class, and a template-source header is written only when
-// the document's own anchors already match that template's anchor set. Both
-// are recoveries of a known value, not assertions about work someone did.
+// trigger phrase is refilled only from the seeder's deterministic derivation of
+// the packet slug, and a template-source header is written only when the
+// document's own anchors already match that template's anchor set. Both are
+// recoveries of a known value, not assertions about work someone did.
 // Anything it cannot verify is reported and left alone.
 //
 // Usage:
@@ -28,6 +28,9 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+// Node loads an ES module from CommonJS synchronously, so the seeder can stay
+// the single source of the phrases create.sh and the cleanup tool also write.
+const { seededPhrases } = require('./template-phrase-cleanup.mjs');
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -39,19 +42,13 @@ const path = require('node:path');
 const PACKET_NAME_RE = /^\d{3}(?:[-_].+)?$/;
 const SKIP_DIRS = new Set(['scratch', 'memory', 'node_modules', '.git', 'z_archive', 'z_future', 'z-future']);
 
-// Literal defaults the templates define per document class. Restoring one is
-// recovering the scaffold value, which is why only fields listed here are
-// eligible: every value below is copied from the template, never composed.
-const TEMPLATE_DEFAULTS = {
-  'plan.md': {
-    trigger_phrases: ['implementation plan', 'technical approach', 'architecture decisions', 'testing strategy'],
-  },
-  'tasks.md': {
-    trigger_phrases: ['task breakdown', 'implementation tasks', 'verification checklist', 'task dependencies'],
-  },
-  'implementation-summary.md': {
-    trigger_phrases: ['implementation summary', 'what shipped', 'validation evidence', 'continuation notes'],
-  },
+// The seeder derives each phrase from the packet's own folder name, so
+// refilling from it is a recovery of a known value rather than wording this
+// tool would invent. Only document classes with a deterministic seed qualify.
+const SEEDED_KINDS = {
+  'plan.md': 'plan',
+  'tasks.md': 'tasks',
+  'implementation-summary.md': 'implementationSummary',
 };
 
 // The header a document earns by matching a template's anchor set. The anchor
@@ -124,17 +121,20 @@ function healDoc(file) {
   const fm = frontmatterOf(out);
 
   // ───────────────────────────────────────────────────────────────────
-  // RESTORE A LITERAL TEMPLATE DEFAULT FOR AN EMPTY REQUIRED FIELD
+  // REFILL AN EMPTY TRIGGER_PHRASES LIST FROM THE SLUG SEEDER
   // ───────────────────────────────────────────────────────────────────
-  const defaults = TEMPLATE_DEFAULTS[name];
-  if (defaults && fm !== null) {
-    for (const [field, values] of Object.entries(defaults)) {
-      if (!fieldIsEmpty(fm, field)) continue;
-      const block = `${field}:\n${values.map((v) => `  - "${v}"`).join('\n')}`;
-      out = out.replace(emptyFieldPattern(field), block);
-      actions.push(`restored ${field} from the ${name} template default`);
+  // The template phrases are graded template-default, a negative class, so
+  // refilling from them writes exactly what the judge rejects. The seeder
+  // derives each phrase from the packet's own folder name instead, which is
+  // evidence the document already carries.
+  const kind = SEEDED_KINDS[name];
+  if (kind && fm !== null) {
+    if (fieldIsEmpty(fm, 'trigger_phrases')) {
+      const block = `trigger_phrases:\n${seededPhrases(file, kind).map((v) => `  - "${v}"`).join('\n')}`;
+      out = out.replace(emptyFieldPattern('trigger_phrases'), block);
+      actions.push('seeded trigger_phrases from the packet slug');
     }
-  } else if (defaults && fm === null) {
+  } else if (kind && fm === null) {
     refusals.push(`${name}: no frontmatter block at all, so there is nothing to restore into`);
   }
 

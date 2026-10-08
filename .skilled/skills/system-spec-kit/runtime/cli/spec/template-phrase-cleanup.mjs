@@ -122,7 +122,7 @@ function packetDescription(file, kind, frontmatter) {
   return description || readDescriptionJson(packetDirectory);
 }
 
-function seededPhrases(file, kind, description) {
+export function seededPhrases(file, kind, description) {
   const slug = path.basename(path.dirname(file))
     .replace(/^\d{3}-/, '')
     .replace(/-/g, ' ');

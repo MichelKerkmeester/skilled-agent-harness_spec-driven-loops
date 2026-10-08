@@ -14,6 +14,7 @@
 import * as path from 'path';
 import { CANONICAL_CONTEXT_TYPES, IMPORTANCE_TIERS, LEGACY_CONTEXT_TYPE_ALIASES } from '@spec-kit/shared/context-types';
 import { resolveImportanceTier } from '../extractors/session-extractor.js';
+import { judgeTriggerPhrase } from '@spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPES
@@ -1014,10 +1015,12 @@ function inferTriggerPhrases(
     generated
       .map((entry) => entry.toLowerCase().trim())
       .filter((entry) => entry.length >= 3)
+      // The judge owns phrase admissibility; keep only candidates it admits.
+      .filter((entry) => judgeTriggerPhrase(entry) === null)
   );
 
   if (deduped.length === 0) {
-    return ['memory', 'indexing', 'context'];
+    return undefined;
   }
 
   return deduped.slice(0, 8);
