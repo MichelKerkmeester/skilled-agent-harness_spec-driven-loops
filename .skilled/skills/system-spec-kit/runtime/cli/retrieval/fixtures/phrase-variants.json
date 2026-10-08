@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5775720f1cbb52015ba8902e81e235fb9978a9a1794889ba60f79d678244e2ad",
+  "manifestHash": "cef96169646fa172659cab2acfc283b2ca38ded32b4b405c021b1dc80a8dd57c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8024,9 +8024,6 @@
     "add apple health data file": [
       "add apple health data file"
     ],
-    "add checklist to task": [
-      "add checklist to task"
-    ],
     "add comment": [
       "add comment"
     ],
@@ -8045,9 +8042,6 @@
     "add iconic rule": [
       "add iconic rule"
     ],
-    "add item to checklist": [
-      "add item to checklist"
-    ],
     "add manual testing scenarios checkpoint enrichment frontproxy worktree": [
       "add manual testing scenarios checkpoint enrichment frontproxy worktree"
     ],
@@ -8057,26 +8051,23 @@
     "add or remove an obsidian note tag": [
       "add or remove an Obsidian note tag"
     ],
-    "add page to doc": [
-      "add page to doc"
+    "add page to document": [
+      "add page to document"
     ],
     "add readme to runtime lib modules": [
       "add readme to runtime lib modules"
     ],
-    "add subtask to task": [
-      "add subtask to task"
-    ],
     "add tag": [
       "add tag"
     ],
-    "add tag to task mcp": [
-      "add tag to task mcp"
+    "add tag mcp": [
+      "add tag mcp"
+    ],
+    "add task to another list": [
+      "add task to another list"
     ],
     "add task to list": [
       "add task to list"
-    ],
-    "add task to multiple lists": [
-      "add task to multiple lists"
     ],
     "add union alpha": [
       "add union alpha"
@@ -10946,9 +10937,6 @@
     "append block children": [
       "Append block children"
     ],
-    "append checklist entry": [
-      "append checklist entry"
-    ],
     "append exempt implementation summary": [
       "append-exempt implementation summary"
     ],
@@ -11023,6 +11011,9 @@
     ],
     "append to existing parent description json": [
       "append to existing parent description.json"
+    ],
+    "append to page": [
+      "append to page"
     ],
     "appendauthorized internal only": [
       "appendAuthorized internal only"
@@ -11111,9 +11102,6 @@
     ],
     "apply tag to task": [
       "apply tag to task"
-    ],
-    "apply tag via mcp": [
-      "apply tag via mcp"
     ],
     "applytreethinning": [
       "applyTreeThinning"
@@ -12126,6 +12114,9 @@
     "attach file to task": [
       "attach file to task"
     ],
+    "attach url": [
+      "attach url"
+    ],
     "attached image": [
       "attached image"
     ],
@@ -12206,9 +12197,6 @@
     ],
     "audit logic invariants": [
       "audit logic invariants"
-    ],
-    "audit logs": [
-      "audit logs"
     ],
     "audit plan": [
       "audit plan"
@@ -12609,9 +12597,6 @@
     "available mcp tools list": [
       "available mcp tools list"
     ],
-    "available view types": [
-      "available view types"
-    ],
     "avoid ai default design": [
       "avoid AI default design"
     ],
@@ -13001,12 +12986,6 @@
     ],
     "batch rules and related webflow": [
       "batch rules and related webflow"
-    ],
-    "batch task creation": [
-      "batch task creation"
-    ],
-    "batch task update": [
-      "batch task update"
     ],
     "batched rescue hydration": [
       "batched rescue hydration"
@@ -13674,8 +13653,8 @@
     "block misaligned commit messages": [
       "block misaligned commit messages"
     ],
-    "block task sequencing": [
-      "block task sequencing"
+    "blocked by": [
+      "blocked by"
     ],
     "blocked by test sandbox": [
       "BLOCKED_BY_TEST_SANDBOX"
@@ -14373,8 +14352,8 @@
     "bulk index hard clean": [
       "bulk index hard-clean"
     ],
-    "bulk status change": [
-      "bulk status change"
+    "bulk time in status": [
+      "bulk time in status"
     ],
     "bump rule count 39": [
       "bump rule count 39"
@@ -15844,8 +15823,11 @@
     "change icon color": [
       "change icon color"
     ],
-    "change task status": [
-      "change task status"
+    "change task list": [
+      "change task list"
+    ],
+    "change task status mcp": [
+      "change task status mcp"
     ],
     "changed packet gate plan": [
       "changed packet gate plan"
@@ -16223,8 +16205,8 @@
     "channel": [
       "channel"
     ],
-    "channel notification automation": [
-      "channel notification automation"
+    "channel messages": [
+      "channel messages"
     ],
     "channel suppression benchmark tasks": [
       "channel suppression benchmark tasks"
@@ -16880,6 +16862,9 @@
     "charts dataview excalidraw git outliner minimal": [
       "charts dataview excalidraw git outliner minimal"
     ],
+    "chat channels": [
+      "chat channels"
+    ],
     "chat label confirmation": [
       "chat label confirmation"
     ],
@@ -16903,6 +16888,9 @@
     ],
     "chat slice versus objective slice": [
       "chat slice versus objective slice"
+    ],
+    "chat thread replies": [
+      "chat thread replies"
     ],
     "chatgpt oauth sign in": [
       "chatgpt oauth sign-in"
@@ -17045,9 +17033,6 @@
     "check native modules": [
       "check-native-modules"
     ],
-    "check off checklist item": [
-      "check off checklist item"
-    ],
     "check phase parent content validator": [
       "check-phase-parent-content validator"
     ],
@@ -17160,9 +17145,6 @@
     "checklist completion tool": [
       "checklist completion tool"
     ],
-    "checklist container update": [
-      "checklist container update"
-    ],
     "checklist dead link rescan": [
       "checklist dead link rescan"
     ],
@@ -17180,9 +17162,6 @@
     ],
     "checklist full retirement": [
       "checklist full retirement"
-    ],
-    "checklist item creation": [
-      "checklist item creation"
     ],
     "checklist overviews usage subsection": [
       "checklist overviews usage subsection"
@@ -17390,9 +17369,6 @@
     ],
     "child process fast mode handoff": [
       "child process fast-mode handoff"
-    ],
-    "child task creation": [
-      "child task creation"
     ],
     "childpid lease field": [
       "childPid lease field"
@@ -21031,8 +21007,20 @@
     "clickup add tag to task": [
       "clickup_add_tag_to_task"
     ],
-    "clickup add task to multiple lists": [
-      "clickup_add_task_to_multiple_lists"
+    "clickup add task dependency": [
+      "clickup_add_task_dependency"
+    ],
+    "clickup add task link": [
+      "clickup_add_task_link"
+    ],
+    "clickup add task to list": [
+      "clickup_add_task_to_list"
+    ],
+    "clickup add time entry": [
+      "clickup_add_time_entry"
+    ],
+    "clickup attach task file": [
+      "clickup_attach_task_file"
     ],
     "clickup auth failed": [
       "clickup auth failed"
@@ -21040,14 +21028,8 @@
     "clickup cli": [
       "clickup cli"
     ],
-    "clickup create bulk tasks": [
-      "clickup_create_bulk_tasks"
-    ],
-    "clickup create checklist": [
-      "clickup_create_checklist"
-    ],
-    "clickup create checklist item": [
-      "clickup_create_checklist_item"
+    "clickup create comment": [
+      "clickup_create_comment"
     ],
     "clickup create document": [
       "clickup_create_document"
@@ -21055,20 +21037,26 @@
     "clickup create document page": [
       "clickup_create_document_page"
     ],
-    "clickup create subtask": [
-      "clickup_create_subtask"
+    "clickup create folder": [
+      "clickup_create_folder"
+    ],
+    "clickup create list": [
+      "clickup_create_list"
+    ],
+    "clickup create list in folder": [
+      "clickup_create_list_in_folder"
+    ],
+    "clickup create reminder": [
+      "clickup_create_reminder"
     ],
     "clickup create task": [
       "clickup_create_task"
     ],
-    "clickup create task link": [
-      "clickup_create_task_link"
+    "clickup create task comment": [
+      "clickup_create_task_comment"
     ],
-    "clickup delete checklist": [
-      "clickup_delete_checklist"
-    ],
-    "clickup delete checklist item": [
-      "clickup_delete_checklist_item"
+    "clickup delete comment": [
+      "clickup_delete_comment"
     ],
     "clickup delete task": [
       "clickup_delete_task"
@@ -21079,86 +21067,110 @@
     "clickup doc contract tasks": [
       "clickup doc contract tasks"
     ],
+    "clickup doc page": [
+      "clickup doc page"
+    ],
     "clickup documents": [
       "clickup documents"
+    ],
+    "clickup download document page attachment": [
+      "clickup_download_document_page_attachment"
+    ],
+    "clickup download task attachment": [
+      "clickup_download_task_attachment"
     ],
     "clickup examples": [
       "clickup examples"
     ],
-    "clickup get audit logs": [
-      "clickup_get_audit_logs"
+    "clickup execute operator": [
+      "clickup_execute_operator"
+    ],
+    "clickup features with no tool": [
+      "clickup features with no tool"
+    ],
+    "clickup filter tasks": [
+      "clickup_filter_tasks"
+    ],
+    "clickup find member by name": [
+      "clickup_find_member_by_name"
+    ],
+    "clickup get bulk tasks time in status": [
+      "clickup_get_bulk_tasks_time_in_status"
+    ],
+    "clickup get chat channel messages": [
+      "clickup_get_chat_channel_messages"
+    ],
+    "clickup get chat channels": [
+      "clickup_get_chat_channels"
+    ],
+    "clickup get chat message replies": [
+      "clickup_get_chat_message_replies"
+    ],
+    "clickup get current time entry": [
+      "clickup_get_current_time_entry"
     ],
     "clickup get custom fields": [
       "clickup_get_custom_fields"
     ],
-    "clickup get document": [
-      "clickup_get_document"
-    ],
     "clickup get document pages": [
       "clickup_get_document_pages"
+    ],
+    "clickup get folder": [
+      "clickup_get_folder"
+    ],
+    "clickup get list": [
+      "clickup_get_list"
+    ],
+    "clickup get operators": [
+      "clickup_get_operators"
+    ],
+    "clickup get schema": [
+      "clickup_get_schema"
     ],
     "clickup get task": [
       "clickup_get_task"
     ],
-    "clickup get task dependencies": [
-      "clickup_get_task_dependencies"
+    "clickup get task comments": [
+      "clickup_get_task_comments"
     ],
-    "clickup get user groups": [
-      "clickup_get_user_groups"
+    "clickup get task time in status": [
+      "clickup_get_task_time_in_status"
     ],
-    "clickup get views": [
-      "clickup_get_views"
+    "clickup get threaded comments": [
+      "clickup_get_threaded_comments"
     ],
-    "clickup get workspace": [
-      "clickup_get_workspace"
+    "clickup get time entries": [
+      "clickup_get_time_entries"
+    ],
+    "clickup get workspace hierarchy": [
+      "clickup_get_workspace_hierarchy"
+    ],
+    "clickup get workspace members": [
+      "clickup_get_workspace_members"
     ],
     "clickup goals": [
       "clickup goals"
     ],
-    "clickup manage chat": [
-      "clickup_manage_chat"
+    "clickup list document page attachments": [
+      "clickup_list_document_page_attachments"
     ],
-    "clickup manage comments": [
-      "clickup_manage_comments"
-    ],
-    "clickup manage custom fields": [
-      "clickup_manage_custom_fields"
-    ],
-    "clickup manage folders": [
-      "clickup_manage_folders"
-    ],
-    "clickup manage goals": [
-      "clickup_manage_goals"
-    ],
-    "clickup manage guests": [
-      "clickup_manage_guests"
-    ],
-    "clickup manage lists": [
-      "clickup_manage_lists"
-    ],
-    "clickup manage space tags": [
-      "clickup_manage_space_tags"
-    ],
-    "clickup manage spaces": [
-      "clickup_manage_spaces"
-    ],
-    "clickup manage task attachments": [
-      "clickup_manage_task_attachments"
-    ],
-    "clickup manage task dependencies": [
-      "clickup_manage_task_dependencies"
-    ],
-    "clickup manage time tracking": [
-      "clickup_manage_time_tracking"
-    ],
-    "clickup manage webhooks": [
-      "clickup_manage_webhooks"
+    "clickup list document pages": [
+      "clickup_list_document_pages"
     ],
     "clickup mcp": [
       "clickup mcp"
     ],
+    "clickup mcp live tool list": [
+      "clickup mcp live tool list"
+    ],
     "clickup mcp server": [
       "clickup mcp server"
+    ],
+    "clickup merge tasks": [
+      "clickup_merge_tasks"
+    ],
+    "clickup move task": [
+      "clickup_move_task"
     ],
     "clickup official manual": [
       "clickup_official manual"
@@ -21166,47 +21178,69 @@
     "clickup official mcp": [
       "clickup official mcp"
     ],
-    "clickup provide feedback": [
-      "clickup_provide_feedback"
+    "clickup operators": [
+      "clickup operators"
     ],
     "clickup remove tag from task": [
       "clickup_remove_tag_from_task"
     ],
+    "clickup remove task dependency": [
+      "clickup_remove_task_dependency"
+    ],
+    "clickup remove task from list": [
+      "clickup_remove_task_from_list"
+    ],
+    "clickup remove task link": [
+      "clickup_remove_task_link"
+    ],
+    "clickup request attachment upload": [
+      "clickup_request_attachment_upload"
+    ],
+    "clickup resolve assignees": [
+      "clickup_resolve_assignees"
+    ],
     "clickup routing guidance": [
       "clickup routing guidance"
     ],
-    "clickup search tasks": [
-      "clickup_search_tasks"
+    "clickup search": [
+      "clickup search",
+      "clickup_search"
     ],
-    "clickup set custom field value": [
-      "clickup_set_custom_field_value"
+    "clickup search reminders": [
+      "clickup_search_reminders"
+    ],
+    "clickup send chat message": [
+      "clickup_send_chat_message"
     ],
     "clickup skill doc contract": [
       "clickup skill doc contract"
     ],
+    "clickup start time tracking": [
+      "clickup_start_time_tracking"
+    ],
+    "clickup stop time tracking": [
+      "clickup_stop_time_tracking"
+    ],
     "clickup task": [
       "clickup task"
     ],
-    "clickup update bulk tasks": [
-      "clickup_update_bulk_tasks"
-    ],
-    "clickup update checklist": [
-      "clickup_update_checklist"
-    ],
-    "clickup update checklist item": [
-      "clickup_update_checklist_item"
-    ],
-    "clickup update document": [
-      "clickup_update_document"
+    "clickup update comment": [
+      "clickup_update_comment"
     ],
     "clickup update document page": [
       "clickup_update_document_page"
     ],
+    "clickup update folder": [
+      "clickup_update_folder"
+    ],
+    "clickup update list": [
+      "clickup_update_list"
+    ],
+    "clickup update reminder": [
+      "clickup_update_reminder"
+    ],
     "clickup update task": [
       "clickup_update_task"
-    ],
-    "clickup use task template": [
-      "clickup_use_task_template"
     ],
     "clickup webhooks": [
       "clickup webhooks"
@@ -24338,6 +24372,12 @@
     "comment lint guard implementation plan": [
       "comment lint guard implementation plan"
     ],
+    "comment on list": [
+      "comment on list"
+    ],
+    "comment on task mcp": [
+      "comment on task mcp"
+    ],
     "comment only diff assertion": [
       "comment only diff assertion"
     ],
@@ -24350,8 +24390,14 @@
     "comment reconstruction": [
       "comment reconstruction"
     ],
+    "comment replies": [
+      "comment replies"
+    ],
     "comment sweep compliance": [
       "comment sweep compliance"
+    ],
+    "comment thread": [
+      "comment thread"
     ],
     "commented no changes status": [
       "commented no changes status"
@@ -24907,6 +24953,9 @@
     "compiled routing directive": [
       "compiled-routing directive"
     ],
+    "compiled routing directive markers": [
+      "compiled routing directive markers"
+    ],
     "compiled routing evidence": [
       "compiled routing evidence"
     ],
@@ -25002,6 +25051,9 @@
     ],
     "complete recall at 3": [
       "complete recall at 3"
+    ],
+    "complete reminder": [
+      "complete reminder"
     ],
     "complete task": [
       "complete task"
@@ -25203,9 +25255,6 @@
     ],
     "compliance jsonl": [
       "compliance jsonl"
-    ],
-    "compliance log review": [
-      "compliance log review"
     ],
     "component choice agent skill command": [
       "component choice agent skill command"
@@ -26501,9 +26550,6 @@
     "contract versus enforcement drift": [
       "contract versus enforcement drift"
     ],
-    "contractor workspace access": [
-      "contractor workspace access"
-    ],
     "contracts and fixtures": [
       "contracts-and-fixtures"
     ],
@@ -27591,9 +27637,6 @@
     "create benchmark behavior family": [
       "create-benchmark behavior family"
     ],
-    "create bulk tasks": [
-      "create bulk tasks"
-    ],
     "create changelog": [
       "create changelog"
     ],
@@ -27620,24 +27663,6 @@
     ],
     "create chart shipped": [
       "create chart shipped"
-    ],
-    "create checklist": [
-      "create checklist"
-    ],
-    "create checklist item": [
-      "create checklist item"
-    ],
-    "create clickup folder": [
-      "create clickup folder"
-    ],
-    "create clickup list": [
-      "create clickup list"
-    ],
-    "create clickup space": [
-      "create clickup space"
-    ],
-    "create clickup webhook": [
-      "create clickup webhook"
     ],
     "create command": [
       "create command"
@@ -27723,9 +27748,6 @@
     "create commands verify ux complete": [
       "create commands verify ux complete"
     ],
-    "create custom field": [
-      "create custom field"
-    ],
     "create diagram": [
       "create diagram"
     ],
@@ -27777,8 +27799,8 @@
     "create diff workflow": [
       "create-diff workflow"
     ],
-    "create doc with markdown": [
-      "create doc with markdown"
+    "create doc page": [
+      "create doc page"
     ],
     "create doctor shared vocabulary": [
       "create doctor shared vocabulary"
@@ -27786,14 +27808,11 @@
     "create document": [
       "create document"
     ],
-    "create document page": [
-      "create document page"
-    ],
     "create feature catalog reference index": [
       "create feature catalog reference index"
     ],
-    "create from template": [
-      "create from template"
+    "create folder": [
+      "create folder"
     ],
     "create frontmatter command": [
       "create frontmatter command"
@@ -27888,6 +27907,12 @@
     "create lazy add ons": [
       "create lazy add-ons"
     ],
+    "create list": [
+      "create list"
+    ],
+    "create list in folder": [
+      "create list in folder"
+    ],
     "create manual testing playbook": [
       "/create:manual-testing-playbook"
     ],
@@ -27897,17 +27922,11 @@
     "create manual testing playbook v1 0 2 0": [
       "create-manual-testing-playbook v1.0.2.0"
     ],
-    "create multiple tasks at once": [
-      "create multiple tasks at once"
-    ],
     "create new skill": [
       "create new skill"
     ],
     "create new skill steps": [
       "create new skill steps"
-    ],
-    "create okr goal": [
-      "create okr goal"
     ],
     "create packet goal": [
       "create packet goal"
@@ -27932,6 +27951,9 @@
     ],
     "create readme v1 2 0 0": [
       "create-readme v1.2.0.0"
+    ],
+    "create reminder": [
+      "create reminder"
     ],
     "create repo rule": [
       "create repo rule"
@@ -28047,8 +28069,11 @@
     "create task": [
       "create task"
     ],
-    "create task link": [
-      "create task link"
+    "create task comment": [
+      "create task comment"
+    ],
+    "create wiki": [
+      "create wiki"
     ],
     "create with human voice": [
       "create with human voice"
@@ -28061,9 +28086,6 @@
     ],
     "create with human voice v1 2 1 0": [
       "create-with-human-voice v1.2.1.0"
-    ],
-    "create workspace tag": [
-      "create workspace tag"
     ],
     "createclassifyframe code index": [
       "createClassifyFrame code-index"
@@ -28513,9 +28535,6 @@
     "cross surface references acceptance criteria": [
       "cross surface references acceptance criteria"
     ],
-    "cross team task visibility": [
-      "cross-team task visibility"
-    ],
     "cross topic priors": [
       "cross topic priors"
     ],
@@ -28807,6 +28826,9 @@
     "current state discipline validation": [
       "CURRENT_STATE_DISCIPLINE validation"
     ],
+    "current timer": [
+      "current timer"
+    ],
     "current timer state": [
       "current timer state"
     ],
@@ -29068,14 +29090,8 @@
     "custom embed validation": [
       "custom embed validation"
     ],
-    "custom field definition": [
-      "custom field definition"
-    ],
-    "custom field schema for list": [
-      "custom field schema for list"
-    ],
-    "custom field value assignment": [
-      "custom field value assignment"
+    "custom fields": [
+      "custom fields"
     ],
     "custom footer fast indicator": [
       "custom footer fast indicator"
@@ -34642,12 +34658,6 @@
     "delete aware journal mode check": [
       "delete-aware journal mode check"
     ],
-    "delete checklist": [
-      "delete checklist"
-    ],
-    "delete checklist item": [
-      "delete checklist item"
-    ],
     "delete cli deem packet": [
       "delete cli-deem packet"
     ],
@@ -34657,14 +34667,14 @@
     "delete cli deem packet tasks": [
       "delete cli-deem packet tasks"
     ],
+    "delete comment": [
+      "delete comment"
+    ],
     "delete constitutional folder": [
       "delete constitutional folder"
     ],
     "delete doctor rebuild": [
       "delete doctor rebuild"
-    ],
-    "delete folder": [
-      "delete folder"
     ],
     "delete legacy doctor commands": [
       "delete legacy doctor commands"
@@ -34674,9 +34684,6 @@
     ],
     "delete level dirs": [
       "delete level dirs"
-    ],
-    "delete list": [
-      "delete list"
     ],
     "delete local cache": [
       "delete local cache"
@@ -34717,9 +34724,6 @@
     "delete pending rescan workaround": [
       "DELETE pending rescan workaround"
     ],
-    "delete single checklist entry": [
-      "delete single checklist entry"
-    ],
     "delete system spec kit smoke test": [
       "delete system-spec-kit smoke test"
     ],
@@ -34749,9 +34753,6 @@
     ],
     "delete voyage sqlite": [
       "delete voyage sqlite"
-    ],
-    "delete workspace space": [
-      "delete workspace space"
     ],
     "deleted evidence rule no successor": [
       "deleted evidence rule no successor"
@@ -34888,14 +34889,8 @@
     "dependency tree": [
       "dependency tree"
     ],
-    "depends on query": [
-      "depends_on query"
-    ],
     "depends on related to metadata": [
       "depends_on related_to metadata"
-    ],
-    "depends on relationship": [
-      "depends_on relationship"
     ],
     "deploy mcp sh rebuild recycle helper": [
       "deploy-mcp.sh rebuild recycle helper"
@@ -35496,9 +35491,6 @@
     ],
     "desktop app window orca": [
       "desktop app window orca"
-    ],
-    "destroy clickup task": [
-      "destroy clickup task"
     ],
     "destructive scope violation": [
       "destructive scope violation"
@@ -36472,20 +36464,8 @@
     "discover agent surfaces": [
       "discover agent surfaces"
     ],
-    "discover board views": [
-      "discover board views"
-    ],
-    "discover field ids": [
-      "discover field ids"
-    ],
     "discover team names": [
       "discover team names"
-    ],
-    "discover user ids": [
-      "discover user ids"
-    ],
-    "discover user ids bulk": [
-      "discover user ids bulk"
     ],
     "discovery and routing separate headings": [
       "discovery and routing separate headings"
@@ -36930,6 +36910,9 @@
     ],
     "doc optimization patterns": [
       "doc optimization patterns"
+    ],
+    "doc page attachments": [
+      "doc page attachments"
     ],
     "doc quality": [
       "doc quality"
@@ -38208,12 +38191,6 @@
     "doctrine reconciliation tasks": [
       "doctrine reconciliation tasks"
     ],
-    "document content update": [
-      "document content update"
-    ],
-    "document creation mcp": [
-      "document creation mcp"
-    ],
     "document diff": [
       "document diff"
     ],
@@ -38229,15 +38206,6 @@
     "document diff report": [
       "document diff report"
     ],
-    "document metadata retrieval": [
-      "document metadata retrieval"
-    ],
-    "document page content update": [
-      "document page content update"
-    ],
-    "document page listing": [
-      "document page listing"
-    ],
     "document quality gates": [
       "document quality gates"
     ],
@@ -38250,8 +38218,8 @@
     "document score": [
       "document score"
     ],
-    "document sub page creation": [
-      "document sub-page creation"
+    "document structure": [
+      "document structure"
     ],
     "document the enabled system": [
       "document the enabled system"
@@ -38406,8 +38374,14 @@
     "download attachment": [
       "download attachment"
     ],
+    "download doc attachment": [
+      "download doc attachment"
+    ],
     "download file": [
       "download file"
+    ],
+    "download task attachment": [
+      "download task attachment"
     ],
     "dq engine consumer route": [
       "dq-engine consumer route"
@@ -38670,14 +38644,8 @@
     "drive figma from the terminal": [
       "drive figma from the terminal"
     ],
-    "drop checklist and all items": [
-      "drop checklist and all items"
-    ],
     "drop off annotation": [
       "drop off annotation"
-    ],
-    "drop one checklist item": [
-      "drop one checklist item"
     ],
     "drop the injected dispatch mandate": [
       "drop the injected dispatch mandate"
@@ -39196,11 +39164,8 @@
     "edit a notion page with markdown": [
       "edit a Notion page with Markdown"
     ],
-    "edit clickup doc": [
-      "edit clickup doc"
-    ],
-    "edit doc page content": [
-      "edit doc page content"
+    "edit comment": [
+      "edit comment"
     ],
     "edit lines fix plan": [
       "edit_lines fix plan"
@@ -40852,9 +40817,6 @@
     "event rate measurement finding": [
       "event rate measurement finding"
     ],
-    "event subscription endpoint": [
-      "event subscription endpoint"
-    ],
     "event time invalidation pending": [
       "event-time invalidation pending"
     ],
@@ -41236,6 +41198,9 @@
     ],
     "execute cdp with parameters": [
       "execute cdp with parameters"
+    ],
+    "execute operator": [
+      "execute operator"
     ],
     "execute the specs flip": [
       "execute the specs flip"
@@ -43415,14 +43380,8 @@
     "fenced wave scheduling tasks": [
       "fenced wave scheduling tasks"
     ],
-    "fetch clickup doc": [
-      "fetch clickup doc"
-    ],
     "fetch failed state gated": [
       "fetch-failed state gated"
-    ],
-    "fetch task by id": [
-      "fetch task by id"
     ],
     "fetch task file": [
       "fetch task file"
@@ -43462,6 +43421,9 @@
     ],
     "fidelity validator quality check": [
       "fidelity validator quality check"
+    ],
+    "field ids": [
+      "field ids"
     ],
     "fifteen reference files grouped": [
       "fifteen reference files grouped"
@@ -43728,9 +43690,6 @@
     "file upload state management": [
       "file upload state management"
     ],
-    "file upload via mcp": [
-      "file upload via mcp"
-    ],
     "file watcher queue cap": [
       "file-watcher queue cap"
     ],
@@ -43805,6 +43764,9 @@
     ],
     "filter repo message rewrite": [
       "filter-repo message rewrite"
+    ],
+    "filter tasks": [
+      "filter tasks"
     ],
     "filter tasks by label": [
       "filter tasks by label"
@@ -43896,11 +43858,23 @@
     "find critical disagreements council": [
       "find critical disagreements council"
     ],
+    "find doc": [
+      "find doc"
+    ],
     "find element in page": [
       "find element in page"
     ],
     "find every git workflow that can fail": [
       "find every git workflow that can fail"
+    ],
+    "find folder id": [
+      "find folder id"
+    ],
+    "find list id": [
+      "find list id"
+    ],
+    "find member": [
+      "find member"
     ],
     "find notes by title": [
       "find notes by title"
@@ -43910,9 +43884,6 @@
     ],
     "find source root function": [
       "find source root function"
-    ],
-    "find tasks by keyword": [
-      "find tasks by keyword"
     ],
     "find the submit button in this screenshot": [
       "find the submit button in this screenshot"
@@ -44903,9 +44874,6 @@
     ],
     "folder nesting visualization": [
       "folder nesting visualization"
-    ],
-    "folder organization in space": [
-      "folder organization in space"
     ],
     "folder owes a readme": [
       "folder owes a readme"
@@ -46130,14 +46098,8 @@
     "full style reference": [
       "full style reference"
     ],
-    "full task details mcp": [
-      "full task details mcp"
-    ],
     "full task record": [
       "full task record"
-    ],
-    "full text task search": [
-      "full-text task search"
     ],
     "function purpose comments": [
       "function purpose comments"
@@ -46956,20 +46918,17 @@
     "get console logs cli": [
       "get console logs cli"
     ],
-    "get custom fields": [
-      "get custom fields"
-    ],
-    "get dependencies": [
-      "get dependencies"
-    ],
-    "get document": [
-      "get document"
-    ],
     "get document pages": [
       "get document pages"
     ],
     "get flow refero": [
       "get flow refero"
+    ],
+    "get folder": [
+      "get folder"
+    ],
+    "get list": [
+      "get list"
     ],
     "get screen image refero": [
       "get screen image refero"
@@ -46988,12 +46947,6 @@
     ],
     "get theme magicpath": [
       "get theme magicpath"
-    ],
-    "get views": [
-      "get views"
-    ],
-    "get workspace": [
-      "get workspace"
     ],
     "getcanonicalfallback helper": [
       "getCanonicalFallback helper"
@@ -47435,9 +47388,6 @@
     ],
     "goal anatomy contract": [
       "goal anatomy contract"
-    ],
-    "goal and key result setup": [
-      "goal and key result setup"
     ],
     "goal asset templates": [
       "goal asset templates"
@@ -53038,9 +52988,6 @@
     "invert resolver registry": [
       "invert resolver registry"
     ],
-    "invite guest user": [
-      "invite guest user"
-    ],
     "invocation pattern column": [
       "invocation pattern column"
     ],
@@ -53088,9 +53035,6 @@
     ],
     "iron law evidence": [
       "iron law evidence"
-    ],
-    "irreversible task deletion": [
-      "irreversible task deletion"
     ],
     "is hook output visible": [
       "is hook output visible"
@@ -54232,6 +54176,9 @@
     "keyword collision fix": [
       "keyword collision fix"
     ],
+    "keyword search workspace": [
+      "keyword search workspace"
+    ],
     "kill level dirs": [
       "kill level dirs"
     ],
@@ -54621,6 +54568,9 @@
     ],
     "laplace smoothing success probability": [
       "laplace smoothing success probability"
+    ],
+    "large attachment": [
+      "large attachment"
     ],
     "large flowchart split signals": [
       "large flowchart split signals"
@@ -56171,8 +56121,8 @@
     "link integrity guard": [
       "link integrity guard"
     ],
-    "link related tasks": [
-      "link related tasks"
+    "link tasks": [
+      "link tasks"
     ],
     "links and generated state implementation summary": [
       "links and generated state implementation summary"
@@ -56228,14 +56178,11 @@
     "list attachments": [
       "list attachments"
     ],
-    "list attachments mcp": [
-      "list attachments mcp"
-    ],
     "list cdp domains": [
       "list cdp domains"
     ],
-    "list clickup views": [
-      "list clickup views"
+    "list channels": [
+      "list channels"
     ],
     "list comments": [
       "List comments",
@@ -56247,9 +56194,6 @@
     "list components magicpath": [
       "list components magicpath"
     ],
-    "list custom field definitions": [
-      "list custom field definitions"
-    ],
     "list data source templates": [
       "List data source templates"
     ],
@@ -56258,12 +56202,6 @@
     ],
     "list doc pages": [
       "list doc pages"
-    ],
-    "list enterprise user groups": [
-      "list enterprise user groups"
-    ],
-    "list field schema": [
-      "list field schema"
     ],
     "list installed magicpath": [
       "list installed magicpath"
@@ -56280,8 +56218,14 @@
     "list projects magicpath": [
       "list projects magicpath"
     ],
+    "list spaces": [
+      "list spaces"
+    ],
     "list status schema": [
       "list status schema"
+    ],
+    "list statuses": [
+      "list statuses"
     ],
     "list stored baselines": [
       "list stored baselines"
@@ -56309,6 +56253,9 @@
     ],
     "list user groups": [
       "list user groups"
+    ],
+    "list users": [
+      "list users"
     ],
     "list vaults": [
       "List vaults"
@@ -56977,11 +56924,11 @@
     "log state change state gate": [
       "log_state_change state gate"
     ],
-    "log time entry mcp": [
-      "log time entry mcp"
-    ],
     "log time manually": [
       "log time manually"
+    ],
+    "log time mcp": [
+      "log time mcp"
     ],
     "logic errors dimension": [
       "logic errors dimension"
@@ -57009,6 +56956,9 @@
     ],
     "look up a notion user by id": [
       "look up a Notion user by ID"
+    ],
+    "look up user": [
+      "look up user"
     ],
     "loop adherence": [
       "loop adherence"
@@ -57632,44 +57582,14 @@
     "malformed vector shard quarantine": [
       "malformed vector shard quarantine"
     ],
-    "manage chat": [
-      "manage chat"
-    ],
-    "manage comments": [
-      "manage comments"
-    ],
-    "manage custom fields": [
-      "manage custom fields"
-    ],
     "manage feature flags": [
       "manage feature flags"
-    ],
-    "manage folders": [
-      "manage folders"
-    ],
-    "manage goals": [
-      "manage goals"
-    ],
-    "manage guests": [
-      "manage guests"
-    ],
-    "manage lists": [
-      "manage lists"
     ],
     "manage note tags": [
       "Manage note tags"
     ],
     "manage research config": [
       "manage research config"
-    ],
-    "manage space tags": [
-      "manage space tags"
-    ],
-    "manage spaces": [
-      "manage spaces"
-    ],
-    "manage webhooks": [
-      "manage webhooks"
     ],
     "mandated rule load fix plan": [
       "mandated rule load fix plan"
@@ -58043,9 +57963,6 @@
     "mark complete and comment": [
       "mark complete and comment"
     ],
-    "mark item resolved": [
-      "mark item resolved"
-    ],
     "mark task as done": [
       "mark task as done"
     ],
@@ -58096,9 +58013,6 @@
     ],
     "mass git mv renames": [
       "mass git mv renames"
-    ],
-    "mass task reassignment": [
-      "mass task reassignment"
     ],
     "master research packet": [
       "master research packet"
@@ -58301,6 +58215,9 @@
     "mcp click up 1 1 0 0": [
       "mcp-click-up 1.1.0.0"
     ],
+    "mcp click up 1 2 0 0": [
+      "mcp-click-up 1.2.0.0"
+    ],
     "mcp click up frontmatter alignment": [
       "mcp-click-up frontmatter alignment"
     ],
@@ -58324,6 +58241,9 @@
     ],
     "mcp click up v1 1 0 0": [
       "mcp-click-up v1.1.0.0"
+    ],
+    "mcp click up v1 2 0 0": [
+      "mcp-click-up v1.2.0.0"
     ],
     "mcp client reconnect": [
       "mcp client reconnect"
@@ -58462,9 +58382,6 @@
     ],
     "mcp code mode v1 0 8 0": [
       "mcp-code-mode v1.0.8.0"
-    ],
-    "mcp comment creation": [
-      "mcp comment creation"
     ],
     "mcp config 1 1 aligned": [
       "mcp config 1:1 aligned"
@@ -59246,6 +59163,9 @@
     "mcp shared dependency startup fix": [
       "mcp shared dependency startup fix"
     ],
+    "mcp smoke test": [
+      "mcp smoke test"
+    ],
     "mcp startup race root cause": [
       "mcp startup race root cause"
     ],
@@ -59260,12 +59180,6 @@
     ],
     "mcp system skill advisor skill graph": [
       "mcp__system_skill_advisor__skill_graph"
-    ],
-    "mcp tag add": [
-      "mcp tag add"
-    ],
-    "mcp tag remove": [
-      "mcp tag remove"
     ],
     "mcp to cli": [
       "mcp to cli"
@@ -59344,6 +59258,9 @@
     ],
     "mcp tooling 1 8 0 1": [
       "mcp-tooling 1.8.0.1"
+    ],
+    "mcp tooling 1 8 0 2": [
+      "mcp-tooling 1.8.0.2"
     ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
@@ -59431,6 +59348,9 @@
     ],
     "mcp tooling v1 8 0 1": [
       "mcp-tooling v1.8.0.1"
+    ],
+    "mcp tooling v1 8 0 2": [
+      "mcp-tooling v1.8.0.2"
     ],
     "mcp tools": [
       "mcp tools"
@@ -62051,6 +61971,9 @@
     "merge diagnosis tasks": [
       "merge diagnosis tasks"
     ],
+    "merge duplicates": [
+      "merge duplicates"
+    ],
     "merge fanout lineages": [
       "merge fanout lineages"
     ],
@@ -62080,6 +62003,9 @@
     ],
     "merge skilled v4 resolve conflicts": [
       "merge skilled v4 resolve conflicts"
+    ],
+    "merge tasks": [
+      "merge tasks"
     ],
     "merge tasks and checklist": [
       "merge tasks and checklist"
@@ -63854,9 +63780,6 @@
     "modes with no manual testing playbook": [
       "modes with no manual testing playbook"
     ],
-    "modify task fields": [
-      "modify task fields"
-    ],
     "modular lib structure": [
       "modular lib structure"
     ],
@@ -64028,6 +63951,9 @@
     "move skill graph handlers": [
       "move skill_graph_ handlers"
     ],
+    "move task": [
+      "move task"
+    ],
     "move worktrees out of checkout": [
       "move worktrees out of checkout"
     ],
@@ -64123,9 +64049,6 @@
     ],
     "multi iter evaluation sweep": [
       "multi-iter evaluation sweep"
-    ],
-    "multi list task": [
-      "multi-list task"
     ],
     "multi model run artifact sealing": [
       "multi-model run artifact sealing"
@@ -64307,14 +64230,14 @@
     "mxbai vs bge reranker code": [
       "mxbai vs bge reranker code"
     ],
+    "my reminders": [
+      "my reminders"
+    ],
     "n gram extraction": [
       "n-gram extraction"
     ],
     "name": [
       "name"
-    ],
-    "named checklist in task": [
-      "named checklist in task"
     ],
     "named colour tokens": [
       "named colour tokens"
@@ -64700,9 +64623,6 @@
     "nested spec folder paths": [
       "nested spec folder paths"
     ],
-    "nested task under parent": [
-      "nested task under parent"
-    ],
     "nested workflow packet": [
       "nested workflow packet"
     ],
@@ -64754,11 +64674,11 @@
     "new clickup task": [
       "new clickup task"
     ],
-    "new doc section": [
-      "new doc section"
-    ],
     "new headless markdown note": [
       "new headless markdown note"
+    ],
+    "new list in space": [
+      "new list in space"
     ],
     "new only lifecycle": [
       "new only lifecycle"
@@ -65180,9 +65100,6 @@
     ],
     "non deepseek optimization research tasks": [
       "non-deepseek optimization research tasks"
-    ],
-    "non dependency task relationship": [
-      "non-dependency task relationship"
     ],
     "non destructive mcp build": [
       "non-destructive mcp build"
@@ -67478,6 +67395,9 @@
     "operator scenario count": [
       "operator scenario count"
     ],
+    "operator schema": [
+      "operator schema"
+    ],
     "operator surface realignment": [
       "operator surface realignment"
     ],
@@ -68368,6 +68288,9 @@
     ],
     "overcalling prevention": [
       "overcalling prevention"
+    ],
+    "overdue reminders": [
+      "overdue reminders"
     ],
     "overdue task filter": [
       "overdue task filter"
@@ -70040,12 +69963,6 @@
     ],
     "perl sweep advisor vitest": [
       "perl sweep advisor vitest"
-    ],
-    "permanently delete checklist": [
-      "permanently delete checklist"
-    ],
-    "permanently remove task": [
-      "permanently remove task"
     ],
     "permission decision policy": [
       "permission decision policy"
@@ -73482,11 +73399,8 @@
     "post synthesis write back": [
       "post-synthesis write-back"
     ],
-    "post task comment mcp": [
-      "post task comment mcp"
-    ],
-    "post to clickup channel": [
-      "post to clickup channel"
+    "post to channel": [
+      "post to channel"
     ],
     "post verdict routing": [
       "post-verdict routing"
@@ -73677,9 +73591,6 @@
     "pre platform tooling": [
       "pre platform tooling"
     ],
-    "pre populated task from template": [
-      "pre-populated task from template"
-    ],
     "pre projection gate complete": [
       "pre-projection gate complete"
     ],
@@ -73766,9 +73677,6 @@
     ],
     "prebuild clean wipes dist": [
       "prebuild clean wipes dist"
-    ],
-    "precise time entry with timestamps": [
-      "precise time entry with timestamps"
     ],
     "precompact authored continuity snapshot": [
       "precompact authored continuity snapshot"
@@ -74376,9 +74284,6 @@
     "project agnostic stack stubs": [
       "Project-Agnostic Stack Stubs"
     ],
-    "project area management": [
-      "project area management"
-    ],
     "project context handoff": [
       "project context handoff"
     ],
@@ -74949,9 +74854,6 @@
     ],
     "provide descriptive slug": [
       "PROVIDE-DESCRIPTIVE-SLUG"
-    ],
-    "provide feedback": [
-      "provide feedback"
     ],
     "provider adaptation rules": [
       "provider adaptation rules"
@@ -75851,11 +75753,14 @@
     "read cache tasks": [
       "read cache tasks"
     ],
+    "read chat": [
+      "read chat"
+    ],
     "read coverage graph views": [
       "read coverage graph views"
     ],
-    "read doc by id": [
-      "read doc by id"
+    "read doc page": [
+      "read doc page"
     ],
     "read notion page comments": [
       "read Notion page comments"
@@ -75923,8 +75828,11 @@
     "read path soft continuation": [
       "read-path soft continuation"
     ],
-    "read task dependency graph": [
-      "read task dependency graph"
+    "read task": [
+      "read task"
+    ],
+    "read task comments": [
+      "read task comments"
     ],
     "read task notes": [
       "read task notes"
@@ -76528,6 +76436,9 @@
     ],
     "reasonix verification protocol": [
       "reasonix verification protocol"
+    ],
+    "reassign task": [
+      "reassign task"
     ],
     "rebase abort head preservation plan": [
       "rebase abort head preservation plan"
@@ -77830,8 +77741,8 @@
     "related memories backfill collector": [
       "related_memories backfill collector"
     ],
-    "related task reference": [
-      "related task reference"
+    "related task": [
+      "related task"
     ],
     "relation agnostic conflict guard decision": [
       "relation agnostic conflict guard decision"
@@ -78959,6 +78870,9 @@
     "remediation tasks": [
       "remediation tasks"
     ],
+    "remind me": [
+      "remind me"
+    ],
     "remote branch allowlist": [
       "remote branch allowlist"
     ],
@@ -79004,12 +78918,6 @@
     "remove a vault note": [
       "remove a vault note"
     ],
-    "remove checklist from task": [
-      "remove checklist from task"
-    ],
-    "remove checklist item": [
-      "remove checklist item"
-    ],
     "remove clarify default scorer": [
       "remove clarify default scorer"
     ],
@@ -79033,6 +78941,9 @@
     ],
     "remove deep pi tasks": [
       "remove deep pi tasks"
+    ],
+    "remove dependency": [
+      "remove dependency"
     ],
     "remove devin goal remnants": [
       "remove devin goal remnants"
@@ -79060,9 +78971,6 @@
     ],
     "remove gallery tasks": [
       "remove gallery tasks"
-    ],
-    "remove guest access": [
-      "remove guest access"
     ],
     "remove isdeeppiowned carve out": [
       "remove isdeeppiowned carve-out"
@@ -79124,11 +79032,17 @@
     "remove tag": [
       "remove tag"
     ],
-    "remove tag from task mcp": [
-      "remove tag from task mcp"
+    "remove tag mcp": [
+      "remove tag mcp"
     ],
     "remove tagged tasks from results": [
       "remove tagged tasks from results"
+    ],
+    "remove task from list": [
+      "remove task from list"
+    ],
+    "remove task mcp": [
+      "remove task mcp"
     ],
     "remove track narrowing scorer": [
       "remove track narrowing scorer"
@@ -79154,9 +79068,6 @@
     "rename and repoint tasks": [
       "rename and repoint tasks"
     ],
-    "rename checklist": [
-      "rename checklist"
-    ],
     "rename cli usage to cli jev": [
       "rename cli usage to cli jev"
     ],
@@ -79175,6 +79086,9 @@
     "rename council agent": [
       "rename council agent"
     ],
+    "rename folder": [
+      "rename folder"
+    ],
     "rename hard cutover decision": [
       "rename hard cutover decision"
     ],
@@ -79187,11 +79101,17 @@
     "rename invariants restored": [
       "rename invariants restored"
     ],
+    "rename list": [
+      "rename list"
+    ],
     "rename only move completion criteria": [
       "rename-only move completion criteria"
     ],
     "rename only tree move": [
       "rename-only tree move"
+    ],
+    "rename page": [
+      "rename page"
     ],
     "rename pattern checklist": [
       "rename pattern checklist"
@@ -79261,9 +79181,6 @@
     ],
     "reopenactivedatabase tasks": [
       "reopenActiveDatabase tasks"
-    ],
-    "reorder checklist": [
-      "reorder checklist"
     ],
     "reorder validatecontinuityfreshness": [
       "reorder validateContinuityFreshness"
@@ -79407,14 +79324,8 @@
     "rephrased queries": [
       "rephrased queries"
     ],
-    "replace document content": [
-      "replace document content"
-    ],
     "replace mcp with cli": [
       "replace mcp with cli"
-    ],
-    "replace page body": [
-      "replace page body"
     ],
     "replace requirement id comment": [
       "replace requirement id comment"
@@ -79529,6 +79440,9 @@
     ],
     "reply shape tasks": [
       "reply shape tasks"
+    ],
+    "reply to comment": [
+      "reply to comment"
     ],
     "reply versus publish line": [
       "reply versus publish line"
@@ -80916,6 +80830,12 @@
     "resolution inventory consumers": [
       "resolution inventory consumers"
     ],
+    "resolve assignees": [
+      "resolve assignees"
+    ],
+    "resolve comment": [
+      "resolve comment"
+    ],
     "resolve database paths": [
       "resolve database paths"
     ],
@@ -81774,12 +81694,6 @@
     ],
     "retrieve page as markdown": [
       "Retrieve page as Markdown"
-    ],
-    "retrieve page ids from doc": [
-      "retrieve page ids from doc"
-    ],
-    "retrieve task custom fields": [
-      "retrieve task custom fields"
     ],
     "retrieve your bot user": [
       "Retrieve your bot user"
@@ -83980,6 +83894,9 @@
     ],
     "running skilled safely": [
       "running skilled safely"
+    ],
+    "running timer": [
+      "running timer"
     ],
     "runs failed emails": [
       "runs failed emails"
@@ -86232,6 +86149,9 @@
     "search cdp methods": [
       "search cdp methods"
     ],
+    "search clickup": [
+      "search clickup"
+    ],
     "search components magicpath": [
       "search components magicpath"
     ],
@@ -86424,9 +86344,6 @@
     "search surface tasks": [
       "search surface tasks"
     ],
-    "search tasks": [
-      "search tasks"
-    ],
     "search the live obsidian vault": [
       "search the live Obsidian vault"
     ],
@@ -86582,9 +86499,6 @@
     ],
     "security": [
       "security"
-    ],
-    "security event history": [
-      "security event history"
     ],
     "security matrix grid": [
       "security matrix grid"
@@ -86909,9 +86823,6 @@
     ],
     "send chat message": [
       "send chat message"
-    ],
-    "send feedback to clickup": [
-      "send feedback to clickup"
     ],
     "send the standard as the instruction": [
       "send the standard as the instruction"
@@ -87381,8 +87292,8 @@
     "set cookie cdp": [
       "set cookie cdp"
     ],
-    "set custom field value": [
-      "set custom field value"
+    "set custom field": [
+      "set custom field"
     ],
     "set default list": [
       "set default list"
@@ -87401,12 +87312,6 @@
     ],
     "set string playbook update": [
       "set string playbook update"
-    ],
-    "set task dependency": [
-      "set task dependency"
-    ],
-    "set task field value": [
-      "set task field value"
     ],
     "set the default vault": [
       "Set the default vault"
@@ -94921,9 +94826,6 @@
     "sourcesignature null freshness stale": [
       "sourceSignature null freshness stale"
     ],
-    "space level tag definition": [
-      "space-level tag definition"
-    ],
     "spaced alias decision": [
       "spaced alias decision"
     ],
@@ -97239,14 +97141,8 @@
     "sprint list default": [
       "sprint list default"
     ],
-    "sprint list management": [
-      "sprint list management"
-    ],
     "sprint planning tasks": [
       "sprint planning tasks"
-    ],
-    "sprint setup bulk import": [
-      "sprint setup bulk import"
     ],
     "sqlite backed skill graph": [
       "sqlite-backed skill graph"
@@ -97898,9 +97794,6 @@
     "start end oval": [
       "start end oval"
     ],
-    "start end time log": [
-      "start end time log"
-    ],
     "start evaluation and observability": [
       "start evaluation and observability"
     ],
@@ -97927,6 +97820,9 @@
     ],
     "start timer": [
       "start timer"
+    ],
+    "start timer mcp": [
+      "start timer mcp"
     ],
     "starter design tokens css": [
       "starter design tokens css"
@@ -98397,6 +98293,9 @@
     "stop timer": [
       "stop timer"
     ],
+    "stop timer mcp": [
+      "stop timer mcp"
+    ],
     "stop vote signals": [
       "stop vote signals"
     ],
@@ -98745,9 +98644,6 @@
     "strip processing tag": [
       "strip processing tag"
     ],
-    "strip tag mcp": [
-      "strip tag mcp"
-    ],
     "strip yaml frontmatter": [
       "strip yaml frontmatter"
     ],
@@ -98967,9 +98863,6 @@
     ],
     "submit obsidian theme": [
       "submit obsidian theme"
-    ],
-    "submit product feedback": [
-      "submit product feedback"
     ],
     "subprocess env whitelist": [
       "subprocess env whitelist"
@@ -100807,9 +100700,6 @@
     "table wording preregistration": [
       "table wording preregistration"
     ],
-    "tag color configuration": [
-      "tag color configuration"
-    ],
     "tag exclusion": [
       "tag exclusion"
     ],
@@ -100818,9 +100708,6 @@
     ],
     "tag task": [
       "tag task"
-    ],
-    "tag task via mcp": [
-      "tag task via mcp"
     ],
     "tagline and intro rules": [
       "tagline and intro rules"
@@ -100892,35 +100779,29 @@
     "task 36 readme batches": [
       "task 36 readme batches"
     ],
-    "task attachments mcp": [
-      "task attachments mcp"
-    ],
-    "task blocking relationships": [
-      "task blocking relationships"
-    ],
     "task breakdown": [
       "task breakdown"
     ],
     "task cache removal": [
       "task cache removal"
     ],
-    "task checklist creation": [
-      "task checklist creation"
-    ],
     "task context": [
       "task context"
     ],
-    "task creation mcp": [
-      "task creation mcp"
-    ],
     "task dependencies": [
       "task dependencies"
+    ],
+    "task dependency": [
+      "task dependency"
     ],
     "task detail without network": [
       "task detail without network"
     ],
     "task details": [
       "task details"
+    ],
+    "task details mcp": [
+      "task details mcp"
     ],
     "task dispatch guard": [
       "task dispatch guard"
@@ -100930,9 +100811,6 @@
     ],
     "task hierarchy": [
       "task hierarchy"
-    ],
-    "task in multiple lists": [
-      "task in multiple lists"
     ],
     "task intent backend routing schema": [
       "task-intent backend-routing schema"
@@ -100958,14 +100836,14 @@
     "task summary": [
       "task summary"
     ],
-    "task template instantiation": [
-      "task template instantiation"
-    ],
     "task with comments": [
       "task with comments"
     ],
     "tasks": [
       "tasks"
+    ],
+    "tasks by status": [
+      "tasks by status"
     ],
     "tasks checklist completion gate": [
       "tasks checklist completion gate"
@@ -100982,6 +100860,9 @@
     "tasks determinism content id foundation": [
       "tasks determinism content-id foundation"
     ],
+    "tasks due between": [
+      "tasks due between"
+    ],
     "tasks due this week": [
       "tasks due this week"
     ],
@@ -100993,6 +100874,12 @@
     ],
     "tasks eval harness extension": [
       "tasks eval harness extension"
+    ],
+    "tasks in list": [
+      "tasks in list"
+    ],
+    "tasks in multiple lists": [
+      "tasks in multiple lists"
     ],
     "taxonomy tree": [
       "taxonomy tree"
@@ -102402,17 +102289,23 @@
     "tiered spec creation": [
       "tiered spec creation"
     ],
+    "time entries": [
+      "time entries"
+    ],
     "time estimate columns": [
       "time estimate columns"
+    ],
+    "time in status": [
+      "time in status"
+    ],
+    "time report": [
+      "time report"
     ],
     "time series trend": [
       "time series trend"
     ],
     "time tracking": [
       "time tracking"
-    ],
-    "time tracking mcp": [
-      "time tracking mcp"
     ],
     "time tracking script": [
       "time tracking script"
@@ -104222,9 +104115,6 @@
     "unchanged re save churn fix": [
       "unchanged re-save churn fix"
     ],
-    "uncheck checklist entry": [
-      "uncheck checklist entry"
-    ],
     "unchecked completion criteria": [
       "unchecked completion criteria"
     ],
@@ -104272,6 +104162,9 @@
     ],
     "unicode normalized resource path": [
       "unicode-normalized resource path"
+    ],
+    "unified api operators": [
+      "unified api operators"
     ],
     "unified context engine baseline": [
       "unified context engine baseline"
@@ -104378,6 +104271,9 @@
     "unknown surface fallback": [
       "unknown surface fallback"
     ],
+    "unlink tasks": [
+      "unlink tasks"
+    ],
     "unmeasured requests live": [
       "unmeasured requests live"
     ],
@@ -104459,9 +104355,6 @@
     "untag task": [
       "untag task"
     ],
-    "untag task via mcp": [
-      "untag task via mcp"
-    ],
     "untouched resource map entries": [
       "untouched resource map entries"
     ],
@@ -104510,23 +104403,17 @@
     "update a note through obsidian mcp": [
       "update a note through Obsidian MCP"
     ],
-    "update bulk tasks": [
-      "update bulk tasks"
+    "update doc page": [
+      "update doc page"
     ],
-    "update checklist": [
-      "update checklist"
-    ],
-    "update checklist item": [
-      "update checklist item"
-    ],
-    "update document": [
-      "update document"
-    ],
-    "update document page": [
-      "update document page"
+    "update folder": [
+      "update folder"
     ],
     "update implementation summary": [
       "update implementation summary"
+    ],
+    "update list": [
+      "update list"
     ],
     "update page properties": [
       "Update page properties"
@@ -104543,6 +104430,9 @@
     "update recommended field": [
       "update_recommended field"
     ],
+    "update reminder": [
+      "update reminder"
+    ],
     "update sh stricter defaults": [
       "update.sh stricter defaults"
     ],
@@ -104551,9 +104441,6 @@
     ],
     "update task": [
       "update task"
-    ],
-    "update task priority or assignee": [
-      "update task priority or assignee"
     ],
     "update tasks": [
       "update tasks"
@@ -104687,11 +104574,11 @@
     "upload attachment": [
       "upload attachment"
     ],
-    "upload attachment mcp": [
-      "upload attachment mcp"
-    ],
     "upload file": [
       "upload file"
+    ],
+    "upload local file": [
+      "upload local file"
     ],
     "upsert cjs": [
       "upsert.cjs"
@@ -104747,9 +104634,6 @@
     "use strict directive sweep": [
       "use strict directive sweep"
     ],
-    "use task template": [
-      "use task template"
-    ],
     "used vs unused citation signal separation": [
       "used vs unused citation signal separation"
     ],
@@ -104771,14 +104655,11 @@
     "user group filter": [
       "user-group filter"
     ],
-    "user groups": [
-      "user groups"
+    "user id for me": [
+      "user id for me"
     ],
     "user onboarding flowchart": [
       "user onboarding flowchart"
-    ],
-    "user rating submission": [
-      "user rating submission"
     ],
     "userpaused event": [
       "userPaused event"
@@ -106269,9 +106150,6 @@
     "verify iteration dispatch failure": [
       "verify iteration dispatch failure"
     ],
-    "verify mcp connection": [
-      "verify mcp connection"
-    ],
     "verify mjs freshness gate": [
       "verify.mjs freshness gate"
     ],
@@ -106801,6 +106679,9 @@
     "waitforlibrary helper": [
       "waitforlibrary helper"
     ],
+    "waiting on": [
+      "waiting on"
+    ],
     "waiver adr": [
       "waiver adr"
     ],
@@ -107293,9 +107174,6 @@
     ],
     "webflow verification workflows": [
       "webflow verification workflows"
-    ],
-    "webhook event automation": [
-      "webhook event automation"
     ],
     "wedged but loading detection": [
       "wedged but loading detection"
@@ -107915,23 +107793,20 @@
     "workflows green again": [
       "workflows green again"
     ],
-    "workspace audit trail": [
-      "workspace audit trail"
-    ],
     "workspace default": [
       "workspace default"
     ],
     "workspace dependency installs": [
       "workspace dependency installs"
     ],
-    "workspace details mcp": [
-      "workspace details mcp"
-    ],
-    "workspace goals management": [
-      "workspace goals management"
+    "workspace hierarchy": [
+      "workspace hierarchy"
     ],
     "workspace lease": [
       "workspace lease"
+    ],
+    "workspace members": [
+      "workspace members"
     ],
     "workspace path containment": [
       "workspace path containment"
@@ -107948,17 +107823,11 @@
     "workspace specs root membership": [
       "workspace specs root membership"
     ],
-    "workspace task search": [
-      "workspace task search"
-    ],
     "workspace teams": [
       "workspace teams"
     ],
     "workspace trust flag": [
       "workspace-trust flag"
-    ],
-    "workspace user group members": [
-      "workspace user group members"
     ],
     "workspace write": [
       "workspace-write"
@@ -108292,9 +108161,6 @@
     ],
     "write containment tasks": [
       "write containment tasks"
-    ],
-    "write custom field": [
-      "write custom field"
     ],
     "write design md": [
       "write DESIGN.md"

@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 6794,
-    "ok": 13609,
+    "missing-frontmatter": 6792,
+    "ok": 13626,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 23966,
+  "documentsScanned": 23981,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "5775720f1cbb52015ba8902e81e235fb9978a9a1794889ba60f79d678244e2ad",
+  "manifestHash": "cef96169646fa172659cab2acfc283b2ca38ded32b4b405c021b1dc80a8dd57c",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -38,14 +38,14 @@
       "prose-sentence": 10,
       "single-token": 369,
       "stop-word-only": 9,
-      "template-default": 23
+      "template-default": 22
     },
     "phrases": {
       "editor-fallback": 1,
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 35900,
+      "ok": 35855,
       "prose-sentence": 19,
       "single-token": 164,
       "stop-word-only": 1,
@@ -9221,55 +9221,37 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-bulk-and-structure/checklist-lifecycle.md",
+      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-documents/create-document.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-bulk-and-structure/create-webhook.md",
+      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-documents/document-pages.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-bulk-and-structure/custom-field.md",
+      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-documents/read-document-pages.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-bulk-and-structure/manage-lists.md",
+      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-documents/update-document-page.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-documents-goals/create-document.md",
+      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-structure/create-list.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-documents-goals/document-pages.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-documents-goals/get-document.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-documents-goals/manage-goals.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-task-crud/bulk-create.md",
+      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-structure/custom-field.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -9287,25 +9269,31 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-task-crud/filter-tasks.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-task-crud/get-task.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-task-crud/get-workspace.md",
+      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-task-crud/get-workspace-hierarchy.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-task-crud/manage-comments.md",
+      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-task-crud/search.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-task-crud/search-tasks.md",
+      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-task-crud/task-comments.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
