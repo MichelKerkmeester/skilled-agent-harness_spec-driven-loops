@@ -48,7 +48,7 @@ test('list reports every registered gate, all on in a fresh repository', (t) => 
   const f = fixture(t);
   const r = f.run('list');
   assert.equal(r.code, 0);
-  assert.match(r.out, /STATUS=OK GATES=12 OFF=0/);
+  assert.match(r.out, /STATUS=OK GATES=13 OFF=0/);
   assert.match(r.out, /\| cardSync \| pre-commit \| - \| - \| on \(default\) \|/);
   assert.match(r.out, /\| remotePush \| pre-push \| - \| - \| per push only \|/);
 });

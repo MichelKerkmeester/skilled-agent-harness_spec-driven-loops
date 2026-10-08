@@ -99,6 +99,7 @@ DeepSeek V4.1 Flash reviewed read-only through cli-pi on the OpenCode Go route. 
 - **Packet types are resolved by marker, not by file name** (review F1), so the census reads `spec.md` content to classify it.
 - **No README for the atomic write.** Files to Change names none, so the strategy is recorded here.
 - **No dedicated clean-phrase hook test.** The unchanged-phrase and single-token cases stage valid files and exit 0; no case stages only a clean added phrase.
+- **A pinned gate count broke CI after the push.** Registering the gate raised the registry to 13 rows, and `.skilled/commands/doctor/scripts/tests/git-hook-gates.test.cjs` still pinned `GATES=12`. The phase gates did not run the doctor suites, so Spec-Kit Check on main caught it (runs 37783662061 and 37783839054). The orchestrator moved the pin to 13; `run-all.sh` then passed 7 of 7 suites.
 - **No changelog refresh.** The phase context asks for one, but no `changelog/` folder exists under the parent or the track.
 
 ## Follow-ups Outside This Phase

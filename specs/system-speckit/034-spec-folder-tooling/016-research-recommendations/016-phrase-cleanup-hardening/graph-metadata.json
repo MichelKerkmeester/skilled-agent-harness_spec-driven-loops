@@ -50,6 +50,7 @@
       "CLI/spec/template-phrase-lint.mjs",
       ".skilled/scripts/git-hooks/README.md",
       ".skilled/scripts/git-hooks/lib/gates.tsv",
+      ".skilled/commands/doctor/scripts/tests/git-hook-gates.test.cjs",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
@@ -59,8 +60,7 @@
       ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-lint-hook.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-integration.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup.vitest.ts",
-      "templates/core/spec.md.tmpl"
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup.vitest.ts"
     ],
     "entities": [
       {
@@ -118,6 +118,12 @@
         "source": "derived"
       },
       {
+        "name": "git-hook-gates.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/git-hook-gates.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "template-phrase-cleanup.mjs",
         "kind": "file",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
@@ -172,12 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md.tmpl",
-        "kind": "file",
-        "path": "templates/core/spec.md.tmpl",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`template-phrase-cleanup.mjs:420` writes a file and then reads it back to record the hash, but uses in-place truncate-then-write, so a crash or error between write and read leaves a truncated file with no recovery",
     "created_at": "2026-10-08T04:22:50Z",
-    "last_save_at": "2026-10-08T12:21:55.349Z",
+    "last_save_at": "2026-10-08T13:55:54.448Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c6ffc95a0e161d3c5dcd5883b04757159ec361eeeeb485227a52a69df0aa43d",
+    "source_fingerprint": "sha256:3f9c146b98cb5175bc39459cff27dcb647c18eeba6a7a5c9d5fdf751c45da0bb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "259041ca24a6eb6fea2301500e43663954e35409feba156ab28067c22161742a",
       "plan.md": "60828b0404d08406e40835e2ba77efa0a759c00421ac524128869a8f182e451f",
       "tasks.md": "b03ae6643aed790ca32f8a008a6ddab909ee1846fe0088764fd8217ee533a984",
-      "implementation-summary.md": "9272e70a5d6f5e1ea7ed4fd531214626ea0237af92d0c49e162c342329eb20a9"
+      "implementation-summary.md": "a4ccfe022e32b5d8366f0b8f42f5cd1dd8f580a882a1f37f84f50c4b4b1dc335"
     },
     "last_active_at": null
   }
