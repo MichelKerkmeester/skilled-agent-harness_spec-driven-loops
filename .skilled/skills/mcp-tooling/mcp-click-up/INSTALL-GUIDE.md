@@ -32,8 +32,7 @@ Verify:
 
 For MCP: copy the printed `clickup_official` manual into .utcp_config.json's
 manual_call_templates (Code Mode's config, not opencode.json). It launches
-`npx -y @clickup/mcp-server` over stdio and uses `CLICKUP_API_KEY` and
-`CLICKUP_TEAM_ID` from the Code Mode environment.
+`npx -y mcp-remote https://mcp.clickup.com/mcp` over stdio and signs in with OAuth.
 ```
 
 ### Quick Success Check (30 seconds)
@@ -51,7 +50,7 @@ All three succeed: the CLI surface is fully working. Not working? Go to [Trouble
 | Component | Source | Package | Install | Required For |
 |-----------|--------|---------|---------|-------------|
 | **cupt CLI** | [github.com/newz2000/cupt](https://github.com/newz2000/cupt) · [PyPI](https://pypi.org/project/cupt/) | `cupt` | `pipx install cupt` or `bash mcp-servers/clickup-cli/setup.sh` | Daily task ops (primary) |
-| **Official ClickUp MCP** | Official ClickUp MCP package | `@clickup/mcp-server` | `.utcp_config.json` manual using stdio via `npx -y @clickup/mcp-server`; set `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` | Documents, goals, bulk (secondary) |
+| **Official ClickUp MCP** | Hosted ClickUp MCP server | `https://mcp.clickup.com/mcp` | `.utcp_config.json` manual using stdio via `npx -y mcp-remote https://mcp.clickup.com/mcp`, then one OAuth approval | Documents, goals, bulk (secondary) |
 
 ### When to Install What
 
@@ -87,7 +86,7 @@ Agent
 
 - **Python 3.8+** — `python3 --version`
 - **pipx** (recommended) or **pip** — `pipx --version`; install via `brew install pipx && pipx ensurepath` (macOS) or `python3 -m pip install --user pipx`
-- **For MCP only:** Node.js 18+ and npx, plus `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` in the environment available to Code Mode
+- **For MCP only:** Node.js 18+ and npx, plus a ClickUp account that can approve the OAuth prompt
 
 ### Install cupt
 
@@ -135,7 +134,7 @@ cupt config --show                    # Review current config
 
 ## 4. MCP CONFIGURATION (OPTIONAL)
 
-The official server is launched over stdio by the `clickup_official` manual with `npx -y @clickup/mcp-server`. Set `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` in the environment available to Code Mode; there is no browser authorization step.
+The official server is launched over stdio by the `clickup_official` manual with `npx -y mcp-remote https://mcp.clickup.com/mcp`. The first launch opens a browser window for one OAuth approval. No API key is needed.
 
 **Code Mode (`.utcp_config.json`, the path this skill uses):**
 
@@ -148,11 +147,7 @@ The official server is launched over stdio by the `clickup_official` manual with
       "clickup_official": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["-y", "@clickup/mcp-server"],
-        "env": {
-          "CLICKUP_API_KEY": "${CLICKUP_API_KEY}",
-          "CLICKUP_TEAM_ID": "${CLICKUP_TEAM_ID}"
-        }
+        "args": ["-y", "mcp-remote", "https://mcp.clickup.com/mcp"]
       }
     }
   }
@@ -195,7 +190,7 @@ Run every check above end to end when an install misbehaves or when validating a
 | `AuthError: No credentials` | Not authenticated | `cupt auth` or `cupt config --api-token pk_xxx` |
 | `cupt status` shows 401 | Expired or revoked token | `cupt logout && cupt auth` |
 | `cupt list --team X` slow (>20s) | Client-side team filter | Add `--tag Y` to narrow the result set |
-| MCP: connection fails | Manual missing, stdio launch fails, or env vars unavailable | Add/fix the `clickup_official` manual, verify `npx -y @clickup/mcp-server`, set `CLICKUP_API_KEY`/`CLICKUP_TEAM_ID` |
+| MCP: connection fails | Manual missing, stdio launch fails, or the OAuth approval has lapsed | Add/fix the `clickup_official` manual, verify `npx -y mcp-remote https://mcp.clickup.com/mcp`, approve OAuth again |
 | MCP: tool not found | Wrong tool name | Use `clickup_official.clickup_official_{tool_name}` (all lowercase, underscores) |
 | Python version error | Python < 3.8 | Install Python 3.8+ via Homebrew or python.org |
 

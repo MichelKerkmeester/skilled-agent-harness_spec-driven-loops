@@ -30,7 +30,7 @@ CRUD operations on ClickUp Goals. Create: requires `team_id`, `name`. Optional: 
 
 ## 2. HOW IT WORKS
 
-Goals are a ClickUp premium feature. Creating a goal does not create key results — those require additional API calls. The `team_id` must match `CLICKUP_TEAM_ID`.
+Goals are a ClickUp premium feature. Creating a goal does not create key results — those require additional API calls. The `team_id` must match workspace `90151466006`.
 
 ---
 
@@ -40,7 +40,7 @@ Goals are a ClickUp premium feature. Creating a goal does not create key results
 
 | File | Layer | Role |
 |------|-------|------|
-| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y @clickup/mcp-server` (stdio), `CLICKUP_API_KEY`+`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json` |
+| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y mcp-remote https://mcp.clickup.com/mcp` (stdio), OAuth sign-in, registered in `.utcp_config.json` |
 
 ### Validation And Tests
 

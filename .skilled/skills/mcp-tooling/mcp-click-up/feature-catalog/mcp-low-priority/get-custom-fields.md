@@ -38,7 +38,7 @@ Use to discover field IDs before calling `clickup_set_custom_field_value`. Field
 
 | File | Layer | Role |
 |------|-------|------|
-| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y @clickup/mcp-server` (stdio), `CLICKUP_API_KEY`+`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json` |
+| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y mcp-remote https://mcp.clickup.com/mcp` (stdio), OAuth sign-in, registered in `.utcp_config.json` |
 
 ### Validation And Tests
 

@@ -14,18 +14,18 @@ Validates that **Get Workspace via MCP — CRITICAL PATH** behaves as defined in
 
 ### Why This Matters
 
-Verify `clickup_get_workspace` returns workspace object with ID matching CLICKUP_TEAM_ID is required for correct agent operation. Failure here means 401 auth error or workspace `id` missing or mismatch.
+Verify `clickup_get_workspace` returns workspace object with ID matching 90151466006 is required for correct agent operation. Failure here means 401 auth error or workspace `id` missing or mismatch.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- **Objective:** Verify `clickup_get_workspace` returns workspace object with ID matching CLICKUP_TEAM_ID
+- **Objective:** Verify `clickup_get_workspace` returns workspace object with ID matching 90151466006
 - **Real user request:** `Get workspace details via MCP.`
 - **Prompt:** `Get workspace details via MCP and confirm workspace ID.`
-- **Expected signals:** MCP returns JSON with workspace `id` matching CLICKUP_TEAM_ID; workspace name present; exit 0.
+- **Expected signals:** MCP returns JSON with workspace `id` matching 90151466006; workspace name present; exit 0.
 - **Desired user-visible outcome:** Agent reports: workspace 'My Team' (ID: WORKSPACE_ID) confirmed via MCP.
-- **Pass/fail:** PASS if returned workspace `id` matches configured CLICKUP_TEAM_ID; FAIL if 401 auth error OR workspace `id` missing OR mismatch
+- **Pass/fail:** PASS if returned workspace `id` matches configured 90151466006; FAIL if 401 auth error OR workspace `id` missing OR mismatch
 
 ---
 
@@ -33,14 +33,14 @@ Verify `clickup_get_workspace` returns workspace object with ID matching CLICKUP
 
 ### Recommended Orchestration Process
 
-PRE: MCP configured with valid CLICKUP_TEAM_ID.
+PRE: MCP configured and signed in to workspace 90151466006.
 1. Code Mode: `clickup_official.clickup_official_clickup_get_workspace({})`
-2. `bash: jq '.id' <<< "$RESULT"`  # → CLICKUP_TEAM_ID
-3. Verify returned ID matches configured CLICKUP_TEAM_ID
+2. `bash: jq '.id' <<< "$RESULT"`  # → 90151466006
+3. Verify returned ID matches configured 90151466006
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| MCP-H006 | Get Workspace via MCP — CRITICAL PATH | Verify `clickup_get_workspace` returns workspace object with ID matching CLICKUP_TEAM_ID | `Get workspace details via MCP and confirm workspace ID.` | 1. Code Mode: `clickup_official.clickup_official_clickup_get_workspace({})` 2. `bash: jq '.id' <<< "$RESULT"`  # → CLICKUP_TEAM_ID 3. Verify returned ID matches configured CLICKUP_TEAM_ID | MCP returns JSON with workspace `id` matching CLICKUP_TEAM_ID; workspace name present; exit 0. | Code Mode response + terminal output of the verification step(s) above | PASS if returned workspace `id` matches configured CLICKUP_TEAM_ID; FAIL if 401 auth error OR workspace `id` missing OR mismatch | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
+| MCP-H006 | Get Workspace via MCP — CRITICAL PATH | Verify `clickup_get_workspace` returns workspace object with ID matching 90151466006 | `Get workspace details via MCP and confirm workspace ID.` | 1. Code Mode: `clickup_official.clickup_official_clickup_get_workspace({})` 2. `bash: jq '.id' <<< "$RESULT"`  # → 90151466006 3. Verify returned ID matches configured 90151466006 | MCP returns JSON with workspace `id` matching 90151466006; workspace name present; exit 0. | Code Mode response + terminal output of the verification step(s) above | PASS if returned workspace `id` matches configured 90151466006; FAIL if 401 auth error OR workspace `id` missing OR mismatch | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 

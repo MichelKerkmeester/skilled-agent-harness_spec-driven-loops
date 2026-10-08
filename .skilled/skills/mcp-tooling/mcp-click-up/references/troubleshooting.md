@@ -29,7 +29,7 @@ Diagnostic reference for cupt CLI and official ClickUp MCP errors. Start with th
 
 - cupt installed: `cupt --version`
 - Network access to ClickUp API
-- For MCP issues: the `clickup_official` manual registered in `.utcp_config.json`, launching `npx -y @clickup/mcp-server` over stdio, with `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` available to Code Mode
+- For MCP issues: the `clickup_official` manual registered in `.utcp_config.json`, launching `npx -y mcp-remote https://mcp.clickup.com/mcp` over stdio, with a valid OAuth approval
 
 ---
 
@@ -243,23 +243,23 @@ cupt statuses TASK_ID   # List available statuses
 ```bash
 # Check .utcp_config.json (Code Mode's config, not opencode.json) has the clickup_official manual:
 cat .utcp_config.json | grep -A10 '"clickup_official"'
-# Should show: command "npx", args ["-y", "@clickup/mcp-server"], and env vars CLICKUP_API_KEY/CLICKUP_TEAM_ID
+# Should show: command "npx", args ["-y", "mcp-remote", "https://mcp.clickup.com/mcp"], and no env block
 ```
 
 **Fix:**
 1. Run `bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh --mcp-only` to print the manual snippet
-2. Add it to `.utcp_config.json` under `manual_call_templates`, and set `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` in the environment available to Code Mode
-3. Reconnect Code Mode and verify that the stdio server starts; there is no browser authorization step
+2. Add it to `.utcp_config.json` under `manual_call_templates`, then restart the AI client
+3. Reconnect Code Mode, approve the OAuth prompt in the browser, and verify that the stdio server starts
 
 ---
 
 ### MCP tool call returns 403 Forbidden
 
-**Cause:** The account associated with the configured API key has insufficient permissions for the operation
+**Cause:** The signed-in account has insufficient permissions for the operation
 
 **Diagnosis:** Check the specific tool in references/mcp-tools.md, and confirm it actually exists on the real server with `tool_info()` before assuming it's a permissions issue
 
-**Fix:** Configure an API key whose account has appropriate workspace permissions, or use cupt for equivalent daily ops
+**Fix:** Sign in again with an account that has appropriate workspace permissions, or use cupt for equivalent daily ops
 
 ---
 

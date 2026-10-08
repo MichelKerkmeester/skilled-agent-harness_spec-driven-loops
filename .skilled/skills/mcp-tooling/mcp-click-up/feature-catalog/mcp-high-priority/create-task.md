@@ -16,7 +16,7 @@ contextType: "implementation"
 
 Create a single ClickUp task with name, description, priority, assignees, tags, and due date.
 
-> **Callable name unconfirmed.** A live `tool_info()` lookup found no match for `clickup.clickup_create_task` or common naming variants — the manual is not currently registered (no `CLICKUP_API_KEY`/`CLICKUP_TEAM_ID` in this environment), so no callable name can be live-verified. The capability itself is standard for ClickUp MCP servers and is not believed absent; confirm the exact registered name via `list_tools()`/`tool_info()` before first use.
+> **Callable name to confirm.** The hosted server registered on 2026-10-08. Confirm the exact registered name via `list_tools()`/`tool_info()` before first use.
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
@@ -44,7 +44,7 @@ The plain `description` field stores text literally: markdown submitted there sh
 
 | File | Layer | Role |
 |------|-------|------|
-| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y @clickup/mcp-server` (stdio), `CLICKUP_API_KEY`+`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json` |
+| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y mcp-remote https://mcp.clickup.com/mcp` (stdio), OAuth sign-in, registered in `.utcp_config.json` |
 
 ### Validation And Tests
 

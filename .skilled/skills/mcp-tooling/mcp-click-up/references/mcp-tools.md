@@ -15,12 +15,12 @@ version: 1.0.0.3
 
 # Official ClickUp MCP Tools Reference
 
-**MCP Server:** `clickup_official` — the `@clickup/mcp-server` package launched over stdio via `npx -y @clickup/mcp-server`, registered in `.utcp_config.json`. This is NOT the hosted `https://mcp.clickup.com/mcp` OAuth server; that claim was stale reality-drift and has been corrected.
-**Auth:** `CLICKUP_API_KEY` + `CLICKUP_TEAM_ID` environment variables, interpolated into `.utcp_config.json`. Not OAuth — no browser authorization step.
+**MCP Server:** `clickup_official` — the hosted ClickUp MCP server at `https://mcp.clickup.com/mcp`, launched over stdio via `npx -y mcp-remote https://mcp.clickup.com/mcp`, registered in `.utcp_config.json`. The npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08, so the hosted route replaces it.
+**Auth:** OAuth 2.1 with PKCE through the hosted server. The first launch opens one browser approval, and the manual reads no API key.
 **Invocation:** Code Mode `call_tool_chain({ code: "..." })` via `mcp__code_mode__call_tool_chain` (a single TypeScript code string with direct access to registered tools as hierarchical functions — not an array of `{tool, input}` records).
 **Tool naming:** Code Mode namespaces every registered tool as `<manual_name>.<manual_name>_<tool_name>` — one dot then underscore; a second dot is the documented wrong-dot-notation mistake (e.g. `figma.figma_get_figma_data`, `github.github_create_issue`, `chrome_devtools_1.chrome_devtools_1_click`). For this manual that pattern is `clickup_official.clickup_official_<tool_name>`. Do not guess a tool name — confirm every one with `tool_info()`/`list_tools()` before calling.
 
-> **Verification status (2026-07-10):** the ClickUp manual is currently UNREGISTERED in this environment — `CLICKUP_API_KEY`/`CLICKUP_TEAM_ID` are unset and a live `list_tools()` call returns zero `clickup_official.*` entries, so no tool name in this document can be live-reconfirmed right now. Separately, the npm package identifier configured in `.utcp_config.json` (`@clickup/mcp-server`) returned `404 Not Found` on the public npm registry when checked — a real, differently-named ClickUp MCP server package does exist on npm (e.g. `@taazkareem/clickup-mcp-server`), but reconciling the configured package name is a routing/infra change outside this document's scope.
+> **Verification status (2026-10-08):** the `clickup_official` manual runs ClickUp's hosted server through `mcp-remote`. The npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08. The hosted server registered 61 tools on 2026-10-08. Tool names in this document came from earlier inventories, so confirm each name with `tool_info()` before a call.
 >
 > The tool inventory below (Sections 5 and 7) reflects the most recent successful capture on record: a direct `list_tools()` check (2026-07) found 51 tools covering task CRUD, lists/folders/spaces, documents (create + pages only, no top-level get/update-document), time tracking, chat, reminders and custom fields, and found **no goals/OKR, bulk-create, webhook, checklist, user-group, guest or audit-log tools**. That capture could not be independently reproduced in this pass (manual unregistered). Treat every tool name below as unverified until reconfirmed with a fresh `tool_info()`/`list_tools()` call once the manual is reachable; the confirmed-absent goals, webhook, checklist, user-group, guest, audit-log and bulk-create tools have been removed below rather than left as stale rows.
 
@@ -40,9 +40,9 @@ Use this reference when:
 ## 2. PREREQUISITES
 
 - Code Mode MCP configured, with the `clickup_official` manual in `.utcp_config.json` (not `opencode.json`, `.mcp.json` or `claude_desktop_config.json`, those are for native/non-Code-Mode MCP tools)
-- `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` environment variables set — no browser authorization step
+- One OAuth approval for ClickUp in the browser, on the first launch
 - AI client restarted after config change
-- Node.js 18+ and npx available (the manual launches `@clickup/mcp-server` on demand via `npx -y`)
+- Node.js 18+ and npx available (the manual launches `mcp-remote` on demand via `npx -y`)
 
 See `INSTALL-GUIDE.md §4` for platform-specific configuration blocks.
 
@@ -50,7 +50,7 @@ See `INSTALL-GUIDE.md §4` for platform-specific configuration blocks.
 
 ## 3. AUTHENTICATION
 
-`CLICKUP_API_KEY` + `CLICKUP_TEAM_ID` environment variables, interpolated into `.utcp_config.json` for the `clickup_official` manual. Not OAuth — there is no browser authorization step and no PKCE flow for this deployment.
+OAuth 2.1 with PKCE, through the hosted server, with one browser approval on the first launch. The `clickup_official` manual reads no API key.
 
 ---
 
@@ -220,10 +220,10 @@ Common error patterns and recovery:
 
 | Error | Code | Recovery |
 |-------|------|---------|
-| Not authorized / connection fails | 401 | Check `CLICKUP_API_KEY`/`CLICKUP_TEAM_ID` are set and valid — there is no browser step for this deployment |
+| Not authorized / connection fails | 401 or `not_found_or_authorized` | Approve the OAuth prompt again if every call fails. If only one page fails, the page is missing or restricted |
 | Rate limited | 429 | Wait 60s, then retry with exponential backoff |
 | Resource not found | 404 | Check IDs — task/list/space ID may be wrong |
-| Insufficient permissions | 403 | The API key's account may need admin access in that workspace |
+| Insufficient permissions | 403 | The signed-in account may need admin access in that workspace |
 | Tool not found | n/a | Manual not registered, or the callable name has changed — run `list_tools()`/`tool_info()` before retrying |
 
 ```typescript

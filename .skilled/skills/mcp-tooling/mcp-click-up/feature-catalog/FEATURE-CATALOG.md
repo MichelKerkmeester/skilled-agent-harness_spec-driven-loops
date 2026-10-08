@@ -15,9 +15,9 @@ Complete feature inventory for both tools in the mcp-click-up skill. This catalo
 The mcp-click-up skill routes ClickUp work between two complementary tools:
 
 - **cupt CLI** (`pipx install cupt`) — 50 features across 10 command areas. Purpose-built for agent use: per-list status resolution, dry-run safety, offline cache, and `--json` output on 4 of its read commands (`list`, `show`, `statuses`, `teams` — not global).
-- **Official ClickUp MCP** (the `clickup_official` manual — `@clickup/mcp-server` launched over stdio via `npx -y`, `CLICKUP_API_KEY`/`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json`, via Code Mode `call_tool_chain({ code: "..." })`). Covers surfaces cupt cannot reach: documents, time tracking, chat and reminders.
+- **Official ClickUp MCP** (the `clickup_official` manual — the hosted server at `https://mcp.clickup.com/mcp`, launched over stdio via `npx -y mcp-remote`, signed in with OAuth, registered in `.utcp_config.json`, via Code Mode `call_tool_chain({ code: "..." })`). Covers surfaces cupt cannot reach: documents, time tracking, chat and reminders.
 
-> **Verification status (2026-07-10):** the ClickUp manual is currently unregistered in this environment (no `CLICKUP_API_KEY`/`CLICKUP_TEAM_ID`; a live `list_tools()` call returns zero `clickup_official.*` entries), and the npm package name configured in `.utcp_config.json` (`@clickup/mcp-server`) returned 404 on the public registry when checked. The last successful live inventory (2026-07) found 51 tools and confirmed **no goals/OKR, bulk-create, webhook, checklist, user-group, guest, or audit-log tools** — those capability classes are marked UNSUPPORTED on their individual cards below (Sections 12-14) rather than removed from the count, so the totals in this file still include them as documented-but-unsupported entries. See `../references/mcp-tools.md` for the reconciled, confirmed-only tool list.
+> **Verification status (2026-10-08):** the `clickup_official` manual now runs ClickUp's hosted server through `mcp-remote`, after the npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08. The hosted server registered 61 tools on 2026-10-08. The capability marks on the cards came from the 2026-07 inventory of the npm route and have not been re-checked against that list. See `../references/mcp-tools.md` for the notes.
 
 Routing is **operation-based**: each feature belongs to exactly one tool. See `../SKILL.md §2` for the routing pseudocode.
 
@@ -27,7 +27,7 @@ Routing is **operation-based**: each feature belongs to exactly one tool. See `.
 | Official MCP tools | 51 confirmed present + not-yet-reconciled (2026-07 `list_tools()`); catalog below still lists cards for the old assumed 46, with confirmed-absent ones marked UNSUPPORTED |
 | Total catalog entries | 96 (8 MCP cards marked UNSUPPORTED — not live capabilities) |
 | cupt install | `pipx install cupt` |
-| MCP server | `clickup_official` — `@clickup/mcp-server` via `npx -y`, `CLICKUP_API_KEY`+`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json` (not the hosted OAuth server) |
+| MCP server | `clickup_official` — hosted ClickUp server via `npx -y mcp-remote`, OAuth sign-in, registered in `.utcp_config.json` |
 | MCP invocation | `clickup_official.clickup_official_<tool_name>` via Code Mode — confirm every name with `tool_info()`/`list_tools()`, do not guess |
 
 See `../feature-catalog/FEATURE-CATALOG.md` for the agent decision guide.

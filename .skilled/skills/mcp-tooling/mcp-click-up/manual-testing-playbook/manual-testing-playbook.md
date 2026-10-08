@@ -68,7 +68,7 @@ All scenarios share these preconditions. Verify before starting any wave.
 2. cupt v0.7.1+ installed: `cupt --version` prints `cupt X.Y.Z`.
 3. cupt authenticated: `cupt status` shows workspace name and user.
 4. A ClickUp workspace is available with at least one list and one task.
-5. For MCP scenarios: `clickup` server configured in platform config with valid `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`.
+5. For MCP scenarios: the `clickup_official` manual configured in `.utcp_config.json` (hosted server through `mcp-remote`) and a valid OAuth approval.
 6. For MCP scenarios: AI client (OpenCode / Claude Code) restarted after last config change.
 7. Internet access to `api.clickup.com`.
 8. **Destructive tests** (delete task, logout): run only against throwaway test tasks and a test workspace, never against production data.
@@ -630,10 +630,10 @@ Expected: JSON array with matching tasks; exit 0.
 
 ### MCP-H006 | Get Workspace (CRITICAL PATH)
 
-Verify `clickup_get_workspace` returns workspace name and ID matching `CLICKUP_TEAM_ID`.
+Verify `clickup_get_workspace` returns workspace name and ID matching `90151466006`.
 
 Prompt: `"Get workspace details via MCP."`
-Expected: JSON with workspace name and numeric ID matching `CLICKUP_TEAM_ID` env var; exit 0.
+Expected: JSON with workspace name and numeric ID matching `90151466006` env var; exit 0.
 
 > **Feature File:** [mcp-task-crud/get-workspace.md](../manual-testing-playbook/mcp-task-crud/get-workspace.md)
 
@@ -791,9 +791,9 @@ Expected: clear error message naming the status issue; exit non-zero; `cupt stat
 
 ### FAIL-004 | MCP Connection Failure
 
-Verify behavior when `CLICKUP_API_KEY` is missing or wrong.
+Verify behavior when the OAuth approval is missing or lapsed.
 
-Prompt: `"Call clickup_get_workspace with an invalid API key."`
+Prompt: `"Call clickup_get_workspace after the OAuth approval has lapsed."`
 Expected: MCP returns 401/auth error; meaningful error message; exit non-zero.
 
 > **Feature File:** [recovery-and-failure/missing-auth.md](../manual-testing-playbook/recovery-and-failure/missing-auth.md)

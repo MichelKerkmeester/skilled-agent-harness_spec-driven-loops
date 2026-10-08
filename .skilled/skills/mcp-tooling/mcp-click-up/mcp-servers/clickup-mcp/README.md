@@ -21,8 +21,8 @@ version: 1.0.0.0
 |---|---|
 | **Use it for** | Confirming how the official ClickUp MCP server is configured. There is no local package to install. |
 | **Invoke with** | Code Mode `call_tool_chain({ code: "..." })` once the `clickup_official` manual is registered. |
-| **Works on** | `npx -y @clickup/mcp-server` over stdio, launched by Code Mode on demand. |
-| **Produces** | Task, document, time-tracking and chat tools under the `clickup_official.clickup_official_*` namespace once registered. Unregistered in this environment as of 2026-07-10, see Section 4. |
+| **Works on** | `npx -y mcp-remote https://mcp.clickup.com/mcp` over stdio, launched by Code Mode on demand, then one OAuth approval. |
+| **Produces** | Task, document, time-tracking and chat tools under the `clickup_official.clickup_official_*` namespace once registered. Registered in this environment on 2026-10-08, see Section 4. |
 
 ---
 
@@ -34,13 +34,13 @@ mcp-click-up routes document, time-tracking, chat and reminder operations, the s
 
 ### What It Does
 
-The `clickup_official` manual registered in `.utcp_config.json` launches `@clickup/mcp-server` over stdio via `npx -y`, authenticated with `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` environment variables. This is not OAuth, and not the hosted `https://mcp.clickup.com/mcp` server that earlier versions of this document described.
+The `clickup_official` manual registered in `.utcp_config.json` launches the hosted ClickUp server at `https://mcp.clickup.com/mcp` over stdio via `npx -y mcp-remote`, and signs in with OAuth. Earlier versions of this document described the npm package `@clickup/mcp-server`, which returned 404 on 2026-10-08.
 
 ---
 
 ## 3. QUICK START
 
-**Step 1: Set credentials.** Export `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` in the environment Code Mode runs in. See the `clickup_official` entry in `.utcp_config.json` for the exact variable names it interpolates.
+**Step 1: Sign in.** On the first launch, approve the ClickUp OAuth prompt in the browser. The `clickup_official` entry in `.utcp_config.json` needs no environment variables.
 
 **Step 2: Confirm registration.**
 
@@ -62,7 +62,7 @@ Never hardcode a tool name without confirming it this way first. See `../../refe
 
 ## 4. VERIFICATION
 
-> **Verification status (2026-07-10):** the `clickup_official` manual is currently unregistered in this environment. No `CLICKUP_API_KEY`/`CLICKUP_TEAM_ID` are set, and a live `list_tools()` call returns zero `clickup_official.*` entries. Separately, the npm package name configured in `.utcp_config.json` (`@clickup/mcp-server`) returned `404 Not Found` on the public npm registry when checked directly. A real, differently-named ClickUp MCP server package does exist on npm (for example `@taazkareem/clickup-mcp-server`), but reconciling the configured package name is an infrastructure change outside this document's scope.
+> **Verification status (2026-10-08):** the `clickup_official` manual runs the hosted server through `mcp-remote`, after the npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08. The hosted server registered 61 tools on 2026-10-08.
 
 | Check | Result |
 |---|---|

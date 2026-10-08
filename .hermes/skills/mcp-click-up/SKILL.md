@@ -261,9 +261,9 @@ def route_clickup_resources(request: str) -> dict:
 | **Activation** | `cupt <command>` in Bash | Code Mode `call_tool_chain()` |
 | **Best for** | Daily task ops, time tracking, notes, tags | Documents, goals, bulk ops, webhooks |
 | **Output** | Human-readable + `--json` flag | Structured JSON always |
-| **Auth** | `cupt auth` / `cupt config --api-token` | `CLICKUP_API_KEY` + `CLICKUP_TEAM_ID` environment variables |
+| **Auth** | `cupt auth` / `cupt config --api-token` | OAuth through the hosted ClickUp server, one browser approval |
 | **Offline** | `--offline` flag uses local cache | Always requires network |
-| **Install** | `pipx install cupt` (Python) | `npx -y @clickup/mcp-server` (stdio) |
+| **Install** | `pipx install cupt` (Python) | `npx -y mcp-remote https://mcp.clickup.com/mcp` (stdio) |
 | **Dry-run** | `cupt done --dry-run` | No equivalent |
 | **Status auto** | Yes — resolves per-list | No — must specify status |
 
@@ -303,11 +303,11 @@ cupt done <task_id> --note "done"  # Mark complete with note
 
 ### Official ClickUp MCP (Secondary Path)
 
-This is ClickUp's official MCP server package, launched over stdio by the registered `clickup_official` manual with `npx -y @clickup/mcp-server`. It authenticates with `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` environment variables; this deployment has no browser authorization step.
+This is ClickUp's official hosted MCP server, at `https://mcp.clickup.com/mcp`. The registered `clickup_official` manual reaches it over stdio through `npx -y mcp-remote`. It authenticates with OAuth, so the first launch needs one approval in the browser, and the manual reads no API key. The npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08, so the older API-key route no longer works.
 
 **Prerequisites:**
 - Code Mode MCP configured, with the `clickup_official` manual in `.utcp_config.json` (not `opencode.json`, that file is for native/non-Code-Mode MCP tools)
-- `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` set in the environment available to Code Mode
+- One OAuth approval for ClickUp in the browser, on the first launch
 
 **Configuration** (`.utcp_config.json`, `manual_call_templates`):
 ```json
@@ -319,11 +319,7 @@ This is ClickUp's official MCP server package, launched over stdio by the regist
       "clickup_official": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["-y", "@clickup/mcp-server"],
-        "env": {
-          "CLICKUP_API_KEY": "${CLICKUP_API_KEY}",
-          "CLICKUP_TEAM_ID": "${CLICKUP_TEAM_ID}"
-        }
+        "args": ["-y", "mcp-remote", "https://mcp.clickup.com/mcp"]
       }
     }
   }
@@ -389,7 +385,7 @@ const result = await call_tool_chain({
 - cupt is not installed and `scripts/install.sh` fails → report Python version and pip issues
 - `cupt status` shows auth failure → direct to `cupt auth` or `cupt config --api-token`
 - `cupt list --team X` is extremely slow (>30s) → team filter is client-side on large workspaces; suggest combining with `--tag` to reduce result set
-- MCP connection fails → verify the `clickup_official` manual in `.utcp_config.json` launches `npx -y @clickup/mcp-server` over stdio, and that `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` are set in the Code Mode environment
+- MCP connection fails → verify the `clickup_official` manual in `.utcp_config.json` launches `npx -y mcp-remote https://mcp.clickup.com/mcp` over stdio, and that the OAuth approval is still valid. A `not_found_or_authorized` error on every call means the approval has lapsed, so approve again. The same error on one page means that page is missing or restricted
 - Task status after `cupt done` is unexpected → run `cupt statuses <id>` and report available statuses
 
 ---
@@ -479,7 +475,7 @@ Install guide (front door): [INSTALL-GUIDE.md](../../../.skilled/skills/mcp-tool
 - `scripts/install.sh` — Installs cupt + prints MCP config snippet
 
 **Embedded Servers:**
-- `mcp-servers/clickup-mcp/README.md` — Configuration notes for the official `@clickup/mcp-server` package launched over stdio by the `clickup_official` manual with `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`.
+- `mcp-servers/clickup-mcp/README.md` — Configuration notes for the hosted official server, reached through `mcp-remote` by the `clickup_official` manual.
 - `mcp-servers/clickup-cli/requirements.txt` — cupt CLI pip pin (`cupt>=0.7.1`). Run `setup.sh` to install.
 - `mcp-servers/clickup-cli/setup.sh` — cupt install via pipx or pip.
 
@@ -493,5 +489,5 @@ Install guide (front door): [INSTALL-GUIDE.md](../../../.skilled/skills/mcp-tool
 
 **External:**
 - cupt repository: https://github.com/newz2000/cupt
-- Official ClickUp MCP setup docs: https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server
+- Official ClickUp MCP setup docs: https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server-1
 - ClickUp API tokens: https://app.clickup.com/settings/apps

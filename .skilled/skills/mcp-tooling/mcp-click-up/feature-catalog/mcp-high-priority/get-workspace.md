@@ -22,7 +22,7 @@ Get workspace (team) details including ID, name, members, and plan information.
 
 ## 1. OVERVIEW
 
-Returns the workspace object for the configured `CLICKUP_TEAM_ID`. Includes: workspace name, ID, plan type, and member list with user IDs and emails.
+Returns the workspace object for workspace `90151466006`. Includes: workspace name, ID, plan type, and member list with user IDs and emails.
 
 ---
 
@@ -38,7 +38,7 @@ Primary use: discovering user IDs for `assignees` fields, confirming workspace i
 
 | File | Layer | Role |
 |------|-------|------|
-| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y @clickup/mcp-server` (stdio), `CLICKUP_API_KEY`+`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json` |
+| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y mcp-remote https://mcp.clickup.com/mcp` (stdio), OAuth sign-in, registered in `.utcp_config.json` |
 
 ### Validation And Tests
 
