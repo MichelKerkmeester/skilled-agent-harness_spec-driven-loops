@@ -12,7 +12,8 @@
     "sk-code/006-dist-guard-skip-unprovisioned",
     "sk-code/007-sk-code-obsidian-surface",
     "sk-code/008-sk-code-mobile-cli-mode",
-    "sk-code/009-sk-code-mobile-cli-deprecation"
+    "sk-code/009-sk-code-mobile-cli-deprecation",
+    "sk-code/010-drift-guard-cleanup"
   ],
   "manual": {
     "depends_on": [],
