@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-08 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
@@ -182,7 +182,11 @@ Run the graph-metadata derivation for the phase parent and every child before `c
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- None. SH-02 is fully specified.
+None open. SH-02 was fully specified, and three points settled during the build:
+
+- The backfill code became one helper, `backfill_graph_metadata`, that takes a list of folders. The phase block calls it once with the parent followed by the `_child_paths` list, and the child loop in the root path was removed because it never ran for `--phase`: the phase block exits first, and `_child_paths` is only filled inside it.
+- The parent's `children_ids` needed no separate writer. A throwaway `create.sh --phase` run with two children produced `["001-evidence-phase-probe/001-first","001-evidence-phase-probe/002-second"]` from the on-disk directories.
+- Two P2 review findings were not applied. Their reasons are in `implementation-summary.md`.
 <!-- /ANCHOR:questions -->
 
 ---

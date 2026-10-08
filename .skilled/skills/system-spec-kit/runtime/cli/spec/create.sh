@@ -877,6 +877,30 @@ report_missing_generator() {
 readonly BUILD_REMEDY="Run npm run build under runtime to compile it."
 readonly INSTALL_REMEDY="Run npm install at the skill root, then repair-derived.cjs --folder <packet> --apply."
 
+# Derive the graph metadata from the documents that were just written, rather
+# than leaving the stub the scaffolder guessed. A scaffold that disagrees with
+# its own deriver fails validation the moment it exists, which teaches an author
+# that the gate is broken before they have written a line. A missing tool or a
+# failed derivation warns and leaves the scaffold in place.
+backfill_graph_metadata() {
+    local backfill_ts="${SCRIPT_DIR}/../graph/backfill-graph-metadata.ts"
+    local tsx_loader="${SCRIPT_DIR}/../../../node_modules/tsx/dist/loader.mjs"
+    if [[ ! -f "$tsx_loader" ]]; then
+        report_missing_generator "graph metadata derivation" "$tsx_loader" "$INSTALL_REMEDY"
+        return 0
+    fi
+    if [[ ! -f "$backfill_ts" ]]; then
+        report_missing_generator "graph metadata derivation" "$backfill_ts" "Restore it from the repository."
+        return 0
+    fi
+    local folder_path
+    for folder_path in "$@"; do
+        [[ -n "$folder_path" ]] || continue
+        node --import "$tsx_loader" "$backfill_ts" "$folder_path" >/dev/null 2>&1 \
+            || echo "  Warning: graph metadata derivation skipped for ${folder_path##*/}" >&2
+    done
+}
+
 # A track root declares its packets in children_ids, and the pre-push gate
 # blocks a commit whose list disagrees with the packets it holds. Declaring the
 # new packet here keeps the two in step from the moment the packet exists. A
@@ -1908,6 +1932,10 @@ This is **Phase ${_phase_number}** of the ${FEATURE_DESCRIPTION} specification.
         echo "───────────────────────────────────────────────────────────────────"
     fi
 
+    # Derive before the opt-in post-create check so the validator reads metadata
+    # that matches the documents that were just written.
+    backfill_graph_metadata "$FEATURE_DIR" "${_child_paths[@]-}"
+
     # Full post-create validation is opt-in; it is too expensive for default scaffolds.
     if [[ "${SPECKIT_POST_VALIDATE:-}" == "1" ]]; then
         if ! bash "$SCRIPT_DIR/validate.sh" "$FEATURE_DIR" --quiet; then
@@ -2003,27 +2031,7 @@ else
   report_missing_generator "description.json" "$_DESC_SCRIPT" "$BUILD_REMEDY"
 fi
 
-# Derive the graph metadata from the documents that were just written, rather
-# than leaving the stub the scaffolder guessed. A scaffold that disagrees with
-# its own deriver fails validation the moment it exists, which teaches an author
-# that the gate is broken before they have written a line.
-_BACKFILL_TS="${SCRIPT_DIR}/../graph/backfill-graph-metadata.ts"
-_TSX_LOADER="${SCRIPT_DIR}/../../../node_modules/tsx/dist/loader.mjs"
-if [[ -f "$_BACKFILL_TS" && -f "$_TSX_LOADER" ]]; then
-  node --import "$_TSX_LOADER" "$_BACKFILL_TS" "$FEATURE_DIR" >/dev/null 2>&1 \
-    || echo "  Warning: graph metadata derivation skipped" >&2
-  # A phase child's stub was written before its documents; derive it from them
-  # for the same reason the parent's is derived.
-  for _derived_child in "${_child_paths[@]-}"; do
-    [[ -n "$_derived_child" ]] || continue
-    node --import "$_TSX_LOADER" "$_BACKFILL_TS" "$_derived_child" >/dev/null 2>&1 \
-      || echo "  Warning: graph metadata derivation skipped for ${_derived_child##*/}" >&2
-  done
-elif [[ ! -f "$_TSX_LOADER" ]]; then
-  report_missing_generator "graph metadata derivation" "$_TSX_LOADER" "$INSTALL_REMEDY"
-else
-  report_missing_generator "graph metadata derivation" "$_BACKFILL_TS" "Restore it from the repository."
-fi
+backfill_graph_metadata "$FEATURE_DIR"
 
 if [[ "$DOC_LEVEL" == "phase" ]]; then
     scaffold_phase_parent_validation_child "$FEATURE_DIR" "$FEATURE_DESCRIPTION"

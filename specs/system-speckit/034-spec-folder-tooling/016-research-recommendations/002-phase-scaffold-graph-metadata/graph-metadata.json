@@ -39,7 +39,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -191,7 +191,7 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The `create.sh --phase` command scaffolds a parent packet and all its child packets, but exits at line 1919 before running the graph-metadata backfill code (lines 2006 to 2021) that root scaffolds reach",
     "created_at": "2026-10-08T04:22:40Z",
-    "last_save_at": "2026-10-08T07:39:26.806Z",
+    "last_save_at": "2026-10-08T09:55:09.967Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f013b27cc80353f04355ff7d393eee4a5b1f5755b756eeea01ff515108d4d13a",
+    "source_fingerprint": "sha256:12b917c4984370acd918eb8e0df8c97d643b47bea37447937a782b0ebdc7cd7c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "760238be1ebcf19117ec1a953b08a927a94b04de5839b7c4ce4cec1a671471dc",
-      "plan.md": "e81da08b94f21cf6a12a4219f896da37176cc8e54b8908edabc3fa838644e234",
-      "tasks.md": "37840aaf62c04f9cc61a611b5e5ddad6f810a93e3a04ea3e8e528d121cdd73d7",
-      "implementation-summary.md": "88a16a26ecd27817d7afda6e92bf5e7a7085631baae3241ebef85694651434cd"
+      "spec.md": "ce0dc224c4673fb19bd4a7a5464c7ad1eab4075f304e14ff55bb22df7e8fc2a0",
+      "plan.md": "cb85f1b5ebe9decc7add8e105ef7329b1f339b8a69ba5e474c3f3e0740efc5b6",
+      "tasks.md": "57ceeda2932cb51c6730f1b681e1259ebdfc50089f76d7b49d6f74c33e2a4624",
+      "implementation-summary.md": "e9d874dd93d8711d457c5a2a355779aa8fc401ce61ac9e6427897c957f75fefb"
     },
     "last_active_at": null
   }

@@ -28,6 +28,28 @@ function scaffold(level: string, slug: string): string {
   return folder;
 }
 
+function scaffoldPhase(slug: string, phaseNames: string[]): { parent: string; children: string[] } {
+  const result = spawnSync(
+    'bash',
+    [createScript, '--phase', '--phases', String(phaseNames.length), '--phase-names', phaseNames.join(','), slug],
+    {
+      cwd: repoRoot,
+      encoding: 'utf8',
+    },
+  );
+  const match = (result.stdout ?? '').match(/SPEC_FOLDER:\s*(\S+)/u);
+  if (!match) throw new Error(`create.sh produced no phase parent for ${slug}: ${result.stderr}`);
+  const parent = match[1];
+  createdFolders.add(parent);
+  // Read the children from disk so the assertion checks what create.sh wrote,
+  // not this helper's guess at its folder grammar.
+  const children = fs
+    .readdirSync(parent, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && /^\d{3}-/u.test(entry.name))
+    .map((entry) => path.join(parent, entry.name));
+  return { parent, children };
+}
+
 afterEach(() => {
   for (const folder of createdFolders) {
     // Only ever remove something this test created, and only under specs.
@@ -56,6 +78,24 @@ describe('a scaffold passes the gate it ships with', () => {
       expect(result.status).toBe(0);
     });
   }
+
+  it('a phase parent and its children, untouched, report no errors', { timeout: 120_000 }, () => {
+    const { parent, children } = scaffoldPhase('scaffold gate phase probe', ['first', 'second']);
+
+    // A phase run derives each folder's graph metadata separately; one missed
+    // folder would ship a child that fails the gate its parent passes.
+    expect(children, 'create.sh --phase scaffolded no child folders').toHaveLength(2);
+
+    for (const folder of [parent, ...children]) {
+      const result = spawnSync('bash', [validateScript, folder, '--strict', '--no-recursive'], {
+        cwd: repoRoot,
+        encoding: 'utf8',
+      });
+
+      expect(result.stdout, `${path.basename(folder)} did not report a clean gate`).toMatch(/Errors: 0/u);
+      expect(result.status).toBe(0);
+    }
+  });
 
   it('creates every document its level contract calls for', { timeout: 120_000 }, () => {
     const folder = scaffold('2', 'scaffold contract probe');

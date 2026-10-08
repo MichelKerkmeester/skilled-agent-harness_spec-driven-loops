@@ -12,16 +12,18 @@ _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata"
     last_updated_at: "2026-10-08T12:00:00Z"
-    last_updated_by: "planning-agent"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "orchestrator"
+    recent_action: "Phase built and verified"
+    next_safe_action: "Commit with wave 1"
     blockers: []
-    key_files: ["spec.md", "plan.md", "tasks.md", "acceptance-criteria.md"]
+    key_files:
+      - ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
+      - ".skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bd2aa56c-623b-43f8-a2ef-69a13c32d626"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -58,11 +60,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 2. COMPLETION CRITERIA
 
-- [ ] A phase parent scaffolded with --phase passes validate.sh --strict on GENERATED_METADATA_* rules (command: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <parent-path> --strict; exit status 0)
-- [ ] Each child of the parent passes validate.sh --strict on GENERATED_METADATA_* rules (command: for each child, bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <child-path> --strict; exit status 0)
-- [ ] Parent's graph-metadata.json children_ids list contains all created children (command: node -e 'console.log(require("./graph-metadata.json").children_ids.length)'; count > 0)
-- [ ] scaffold-passes-its-own-gate.vitest.ts includes a --phase test case that creates parent with 2 children and validates all three (command: grep -n -e '--phase' <test-file>)
-- [ ] Full spec-kit test suite passes with no new failures (npm test in spec-kit directory)
+- [x] A phase parent scaffolded with --phase passes validate.sh --strict on GENERATED_METADATA_* rules (command: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <parent-path> --strict; exit status 0)
+- [x] Each child of the parent passes validate.sh --strict on GENERATED_METADATA_* rules (command: for each child, bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <child-path> --strict; exit status 0)
+- [x] Parent's graph-metadata.json children_ids list contains all created children (command: node -e 'console.log(require("./graph-metadata.json").children_ids.length)'; count > 0)
+- [x] scaffold-passes-its-own-gate.vitest.ts includes a --phase test case that creates parent with 2 children and validates all three (command: grep -n -e '--phase' <test-file>)
+- [x] Full spec-kit test suite passes with no new failures (npm test in spec-kit directory)
 
 <!-- /ANCHOR:completion -->
 
@@ -71,7 +73,29 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:log -->
 ## 3. LOG
 
-*To be filled as this phase executes.*
+Everything below is VOLATILE. It is not part of the directive, it is not copied
+into the objective, and it is expected to grow. Progress, evidence, deviations
+and findings belong here.
+
+### Progress
+
+| Item | State | Evidence |
+|------|-------|----------|
+| Backfill helper | Done | `backfill_graph_metadata` at `create.sh:885`; called from the phase block (`create.sh:1937`) and the root path (`create.sh:2034`) |
+| Phase test case | Done | `scaffold-passes-its-own-gate.vitest.ts`: 6 passed; the phase case fails against HEAD `create.sh` |
+| Phase scaffold check | Done | Throwaway `create.sh --phase` with two children: parent, `001-first` and `002-second` each `RESULT: PASSED` under `--strict`; `children_ids` lists both; folders removed |
+| Cross-family review | Done | Luna round 1: two P2 findings, neither applied; reasons in `implementation-summary.md` |
+| Full suite | Done | `npm --prefix .skilled/skills/system-spec-kit/runtime/cli test` rc 0: 162 files passed, 1648 tests passed, 0 failed (baseline 161 files, 1639 passed) |
+| Documents closed | Done | `validate.sh --strict` on this folder prints `RESULT: PASSED`; `check-goal.cjs` passes 5/5 |
+
+### Deviations and findings
+
+| Item | Note |
+|------|------|
+| Child loop removed, not reached | The old loop sat in the root path after the phase exit and never ran for `--phase`. The helper takes the children as arguments, so the loop was removed |
+| One call for parent and children | The phase block makes a single helper call with the parent followed by the children, not a separate parent call |
+| Helper defined ahead of the phase block | It sits in the helper section at `create.sh:885`, not in place of the old block |
+| Suite numbers are wave wide | The full-suite run covers every wave 1 phase, so the delta against the baseline is not this phase alone |
 <!-- /ANCHOR:log -->
 
 ---

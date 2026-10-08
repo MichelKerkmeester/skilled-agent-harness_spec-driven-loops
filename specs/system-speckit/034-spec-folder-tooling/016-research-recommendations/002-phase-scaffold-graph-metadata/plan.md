@@ -64,8 +64,8 @@ CLI enhancement: extend existing --phase mode code path in bash.
 1. --phase mode creates parent spec.md, plan.md, tasks.md, acceptance-criteria.md (heredocs)
 2. Each child gets the same set of templated files (heredocs)
 3. Parent description.json is generated from the documents
-4. Helper function is called for parent, which derives graph-metadata and auto-populates children_ids from disk
-5. Helper function is called for each child through the existing _child_paths loop, deriving each child's graph-metadata
+4. One helper call receives the parent followed by the `_child_paths` list from the phase block; it derives each folder's graph-metadata, and the parent's children_ids is populated from the on-disk directories
+5. The old child loop in the root path is removed, because it never ran for `--phase` (the phase block exits before it)
 6. All three packets pass strict validation before create.sh exits
 <!-- /ANCHOR:architecture -->
 
