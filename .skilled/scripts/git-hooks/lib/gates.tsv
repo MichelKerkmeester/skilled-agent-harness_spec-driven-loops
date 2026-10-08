@@ -5,6 +5,7 @@
 # approval: it stays a one-command variable so every push gets a fresh decision.
 # The hooks read this file through gate-config.sh and /doctor:git hooks reads it to list gates.
 pre-commit	commentHygiene	SPECKIT_SKIP_COMMENT_HYGIENE	yes	Blocks ephemeral ids such as spec paths and task numbers in staged code comments
+pre-commit	templatePhraseLint	SPECKIT_SKIP_PHRASE_LINT	yes	Blocks staged phrases that use a template default or editor fallback
 pre-commit	mirrorParity	SPECKIT_SKIP_MIRROR_PARITY	yes	Blocks a commit whose runtime command, agent or prompt mirrors drift from .skilled
 pre-commit	cardSync	SPECKIT_SKIP_CARD_SYNC	yes	Blocks a staged CLI skill or prompt card that leaves the prompt-quality cards out of sync
 pre-commit	mcpMutationClass	SPECKIT_SKIP_MCP_MUTATION_CLASS	yes	Blocks a staged MCP doctor or install script that breaks its read-only or mutating label

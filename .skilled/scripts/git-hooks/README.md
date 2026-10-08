@@ -17,11 +17,11 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.skilled/scripts/git-hooks/` holds the hook scripts this repo installs, usually machine-wide through a global `core.hooksPath`. Most checks here have their own bypass env var. The exceptions block by default: `pre-commit` runs seven blocking sub-gates, `pre-push` blocks outright, and `commit-msg` blocks with no bypass at all (see below).
+`.skilled/scripts/git-hooks/` holds the hook scripts this repo installs, usually machine-wide through a global `core.hooksPath`. Most checks here have their own bypass env var. The exceptions block by default: `pre-commit` runs eight blocking sub-gates, `pre-push` blocks outright, and `commit-msg` blocks with no bypass at all (see below).
 
 Current state:
 
-- `pre-commit` runs seven blocking sub-gates: comment hygiene, agent-mirror sync, mirror parity, prompt-card sync, MCP mutation-class, compiled-routing re-mint and spec derived-metadata re-mint. Six carry their own bypass flag. Agent-mirror sync has none of its own, and `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` (or `SYSTEM_HOOKS_DISABLED=1`) turns off the whole pre-commit chain, that gate included. Comment hygiene checks the staged content, not the working tree, in one checker run. Every block from the two re-mint gates prints its bypass flag, and a packet dirty only in the gate's own derived files re-derives instead of blocking.
+- `pre-commit` runs eight blocking sub-gates: comment hygiene, agent-mirror sync, mirror parity, prompt-card sync, MCP mutation-class, template phrase lint, compiled-routing re-mint and spec derived-metadata re-mint. Seven carry their own bypass flag. Template phrase lint blocks staged template defaults and editor fallbacks, and warns on other negative classes. Agent-mirror sync has none of its own, and `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` (or `SYSTEM_HOOKS_DISABLED=1`) turns off the whole pre-commit chain, that gate included. Comment hygiene checks the staged content, not the working tree, in one checker run. Every block from the two re-mint gates prints its bypass flag, and a packet dirty only in the gate's own derived files re-derives instead of blocking.
 - `prepare-commit-msg` stamps the machine trailer paragraph: it mints a `Commit-Id:` through the sk-git ordinal allocator whenever one is absent, re-mints a fresh one on every cherry-pick (clean or continued after a conflict), keeps the existing id on amend, and appends `Spec:` only when `SPECKIT_COMMIT_SPEC` supplies the packet. It removes `Co-Authored-By:` and `Claude-Session:` lines, never the subject, and names each line it removed; any other line naming a vendor stays for `commit-msg` to report. It identifies this repository by the allocator's path, separates the block from prose with one blank line, keeps trailing comment lines (and a `git commit -v` scissors/diff tail) below the block when git will strip them, and exits untouched anywhere else. `SPECKIT_SKIP_PREPARE_COMMIT_MSG=1` skips it.
 - `commit-msg` blocks a message that breaks the repository's own commit rules: the "Enforced rules" JSON block in its sk-git `commit-message-template.md`, read by `skills/sk-git/scripts/validate-message.mjs`. The validator is found beside the real hook script, so the machine-wide install enforces each repository's own template, and a repository with no rules block is not checked. There is no bypass; `--no-verify` only defers the block to `pre-push` and CI.
 - `post-commit` publishes the just-completed commit to the shared live branch, and only from a linked worktree in a launch-wrapper session that exports both `SPECKIT_AUTOSYNC=1` and `SPECKIT_LIVE_BRANCH`.
@@ -41,7 +41,7 @@ Current state:
 ╰──────────────────────────────────────────────────────────────────╯
 
 ┌──────────────┐      ┌──────────────────┐      ┌──────────────────┐
-│ git commit   │ ───▶ │ pre-commit       │ ───▶ │ 7 blocking       │
+│ git commit   │ ───▶ │ pre-commit       │ ───▶ │ 8 blocking       │
 │              │      │                  │      │ gates            │
 └──────────────┘      └──────────────────┘      └──────────────────┘
 
@@ -70,7 +70,7 @@ Dependency direction: git lifecycle event ───▶ hook script ───▶ 
 ```text
 git-hooks/
 +-- commit-msg                     # Template-contract gate (blocking, no bypass)
-+-- pre-commit                   # 7 blocking sub-gates
++-- pre-commit                   # 8 blocking sub-gates
 +-- post-commit                     # Autosync publish + autostash orphan guard
 +-- post-merge                      # Autostash orphan guard after merge
 +-- post-rewrite                    # Autostash orphan guard after amend/rebase
@@ -89,7 +89,7 @@ Allowed dependency direction:
 ```text
 post-merge / post-rewrite → lib/autostash-orphan-guard.sh
 post-commit → $SOURCE_ROOT/hooks/shared/hook-flags.sh, $SOURCE_ROOT/bin/git-sync.sh
-pre-commit → $SOURCE_ROOT comment-hygiene checker, agent-mirror checker, mirror sync scripts, skill-advisor card-sync guard, doctor mutation-class guard, $SOURCE_ROOT/bin/compiled-route-manifest.cjs
+pre-commit → $SOURCE_ROOT comment-hygiene checker, agent-mirror checker, mirror sync scripts, skill-advisor card-sync guard, doctor mutation-class guard, template-phrase-lint.mjs, $SOURCE_ROOT/bin/compiled-route-manifest.cjs
 pre-push → $SOURCE_ROOT/skills/sk-git/scripts/worktree-naming.sh (sourced for the allowlist), lib/mass-deletion-guard.sh
 pre-commit / prepare-commit-msg / pre-push → lib/gate-config.sh → lib/gates.tsv
 ```
@@ -107,7 +107,7 @@ hooks here → hard-fail without a bypass env var on their primary check (the me
 
 | File | Responsibility | Bypass |
 |---|---|---|
-| `pre-commit` | Runs seven blocking sub-gates when their staged-path trigger matches: comment hygiene (on the staged content, in one checker run), agent-mirror sync, mirror parity, prompt-quality-card sync, the MCP mutation-class contract, compiled-routing re-mint, and spec derived-metadata re-mint. Mirror parity runs only where the toolchain ships. The last two repair their artifact and stage the repair rather than instructing you to, which is the exception in this folder and is confined to artifacts derived from the staged input. Every block from these two gates prints its bypass flag, and a packet dirty only in its derived metadata re-derives instead of blocking. | `SPECKIT_SKIP_COMMENT_HYGIENE=1`, `SPECKIT_SKIP_MIRROR_PARITY=1`, `SPECKIT_SKIP_CARD_SYNC=1`, `SPECKIT_SKIP_MCP_MUTATION_CLASS=1`, `SPECKIT_SKIP_ROUTE_REMINT=1`, `SPECKIT_SKIP_SPEC_REMINT=1` (six of the seven; agent-mirror sync has no switch of its own). `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` or `SYSTEM_HOOKS_DISABLED=1` turns off the whole chain |
+| `pre-commit` | Runs eight blocking sub-gates when their staged-path trigger matches: comment hygiene (on the staged content, in one checker run), agent-mirror sync, mirror parity, prompt-quality-card sync, the MCP mutation-class contract, template phrase lint, compiled-routing re-mint, and spec derived-metadata re-mint. Mirror parity runs only where the toolchain ships. The last two repair their artifact and stage the repair rather than instructing you to, which is the exception in this folder and is confined to artifacts derived from the staged input. Every block from these two gates prints its bypass flag, and a packet dirty only in its derived metadata re-derives instead of blocking. | `SPECKIT_SKIP_COMMENT_HYGIENE=1`, `SPECKIT_SKIP_PHRASE_LINT=1`, `SPECKIT_SKIP_MIRROR_PARITY=1`, `SPECKIT_SKIP_CARD_SYNC=1`, `SPECKIT_SKIP_MCP_MUTATION_CLASS=1`, `SPECKIT_SKIP_ROUTE_REMINT=1`, `SPECKIT_SKIP_SPEC_REMINT=1` (seven of the eight; agent-mirror sync has no switch of its own). `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` or `SYSTEM_HOOKS_DISABLED=1` turns off the whole chain |
 | `commit-msg` | Runs `validate-message.mjs --commit` against the repository's own commit rules block and blocks on any violation, printing each rule id. The rules come from the directory git config `skgit.contractDir` names, otherwise from the first of `.sk-git/`, `.skilled/` and `.opencode/` that holds the sk-git templates. Without node or the validator it blocks only where the repository declares rules. | None |
 | `post-commit` | Publishes the just-completed commit to the shared live branch through `$SOURCE_ROOT/bin/git-sync.sh --auto --quiet`, and only from a linked worktree in a launch-wrapper session that exports both `SPECKIT_AUTOSYNC=1` and `SPECKIT_LIVE_BRANCH`. Also runs the autostash orphan guard. | `SPECKIT_AUTOSYNC=0` (this launch); `SYSTEM_LIVE_SYNC_DISABLED` or `SYSTEM_HOOKS_DISABLED` (whole live-sync loop) |
 | `post-merge` | Sources `lib/autostash-orphan-guard.sh` and anchors any `--autostash` entry the merge left un-applied. | None; the guard is best-effort and never blocks |
@@ -121,7 +121,7 @@ hooks here → hard-fail without a bypass env var on their primary check (the me
 
 | Boundary | Rule |
 |---|---|
-| Blocking vs advisory | `commit-msg`, `pre-commit`'s seven named sub-gates and `pre-push`'s six gates may fail their git operation. Every other check in this folder is advisory or best-effort (`\|\| true` on the guard call). |
+| Blocking vs advisory | `commit-msg`, `pre-commit`'s eight named sub-gates and `pre-push`'s six gates may fail their git operation. Every other check in this folder is advisory or best-effort (`\|\| true` on the guard call). |
 | Missing gate scripts | Where the toolchain ships, a blocking gate whose script is missing exits 1 naming the path. `prepare-commit-msg`, `post-commit`, `post-merge` and `post-rewrite` warn instead, because git ignores their exit status or they never block by contract. Elsewhere a missing script adds no new output and no new block. |
 | Autostash ownership | Only `lib/autostash-orphan-guard.sh` writes `refs/autostash-rescue/*` and the alert log. Hooks source it rather than duplicating the anchor-and-alert logic. |
 | Autosync scope | `post-commit` publishes only from a linked worktree in a launch-wrapper session. The primary checkout never auto-publishes, and a blocked publish stays local. |

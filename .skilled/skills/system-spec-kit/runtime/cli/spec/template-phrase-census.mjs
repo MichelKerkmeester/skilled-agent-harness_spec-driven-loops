@@ -27,10 +27,23 @@ const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const TEMPLATE_ROOT = path.resolve(SCRIPT_DIR, '../../../templates');
 const TEMPLATE_FILES = Object.freeze({
   spec: 'core/spec.md.tmpl',
-  acceptanceCriteria: 'addons/acceptance-criteria.md.tmpl',
   plan: 'core/plan.md.tmpl',
   tasks: 'core/tasks.md.tmpl',
   implementationSummary: 'core/implementation-summary.md.tmpl',
+  decisionRecord: 'addons/decision-record.md.tmpl',
+  phaseParentSpec: 'packet-types/phase-parent.spec.md.tmpl',
+  reviewSpec: 'packet-types/review.spec.md.tmpl',
+  researchSpec: 'packet-types/research.spec.md.tmpl',
+  resourceMap: 'addons/resource-map.md.tmpl',
+  handover: 'addons/handover.md.tmpl',
+  debugDelegation: 'addons/debug-delegation.md.tmpl',
+  research: 'addons/research.md.tmpl',
+  beforeAfter: 'addons/before-after.md.tmpl',
+  timeline: 'addons/timeline.md.tmpl',
+  roadmap: 'addons/roadmap.md.tmpl',
+  reviewReport: 'packet-types/review-report.md.tmpl',
+  acceptanceCriteria: 'addons/acceptance-criteria.md.tmpl',
+  goal: 'addons/goal.md.tmpl',
 });
 const DOCUMENT_KINDS = Object.freeze({
   'spec.md': 'spec',
@@ -38,15 +51,32 @@ const DOCUMENT_KINDS = Object.freeze({
   'plan.md': 'plan',
   'tasks.md': 'tasks',
   'implementation-summary.md': 'implementationSummary',
+  'decision-record.md': 'decisionRecord',
+  'resource-map.md': 'resourceMap',
+  'handover.md': 'handover',
+  'debug-delegation.md': 'debugDelegation',
+  'research/research.md': 'research',
+  'before-after.md': 'beforeAfter',
+  'timeline.md': 'timeline',
+  'roadmap.md': 'roadmap',
+  'review/review-report.md': 'reviewReport',
+  'goal.md': 'goal',
 });
-const COUNT_KINDS = Object.freeze(Object.values(DOCUMENT_KINDS));
-const EXACT_BLOCK_KINDS = Object.freeze([
-  'spec',
-  'acceptanceCriteria',
-  'plan',
-  'tasks',
-  'implementationSummary',
+const PACKET_SPEC_LEVEL_KINDS = Object.freeze({
+  review: 'reviewSpec',
+  research: 'researchSpec',
+});
+const PACKET_SPEC_KINDS = Object.freeze(['phaseParentSpec', ...Object.values(PACKET_SPEC_LEVEL_KINDS)]);
+const COUNT_KINDS = Object.freeze([
+  ...Object.values(DOCUMENT_KINDS).slice(0, 6),
+  ...PACKET_SPEC_KINDS,
+  ...Object.values(DOCUMENT_KINDS).slice(6),
 ]);
+const LEGACY_COUNT_KINDS = Object.freeze(COUNT_KINDS.slice(0, 5));
+const EXACT_BLOCK_KINDS = COUNT_KINDS;
+const SUPPORTED_DOCUMENT_NAMES = new Set(
+  Object.keys(DOCUMENT_KINDS).map((documentPath) => path.posix.basename(documentPath)),
+);
 // Demo snapshots and review quarantine copies are not real packets; both tools leave them alone.
 const SKIPPED_DIRECTORY_NAMES = new Set(['scratch', 'containment']);
 
@@ -281,7 +311,6 @@ export function classifyTriggerPhraseCarrier(parsed, defaultPhrases) {
  * @returns {string[]} Absolute document paths in stable order.
  */
 export function walkDocuments(root) {
-  const supportedNames = new Set(Object.keys(DOCUMENT_KINDS));
   const pending = [root];
   const files = [];
 
@@ -295,7 +324,7 @@ export function walkDocuments(root) {
       if (entry.isDirectory()) {
         if (SKIPPED_DIRECTORY_NAMES.has(entry.name)) continue;
         pending.push(candidate);
-      } else if (entry.isFile() && supportedNames.has(entry.name)) {
+      } else if (entry.isFile() && SUPPORTED_DOCUMENT_NAMES.has(entry.name)) {
         files.push(candidate);
       }
     }
@@ -324,23 +353,58 @@ export function relativeDocumentPath(file, root) {
   return path.relative(root, file).split(path.sep).join('/');
 }
 
+/**
+ * Resolves a document kind from its relative path and packet marker.
+ * @param {string} file Absolute document path.
+ * @param {string} root Spec tree root.
+ * @returns {string | null} Document kind, or null when unsupported.
+ */
+export function documentKindForPath(file, root) {
+  const relative = relativeDocumentPath(file, root);
+  if (relative === 'spec.md' || relative.endsWith('/spec.md')) {
+    const content = fs.readFileSync(file, 'utf8');
+    // Phase-parent specs share level 2, so their template source identifies the packet type.
+    if (/<!--\s*SPECKIT_TEMPLATE_SOURCE:\s*phase-parent-spec\b/.test(content)) {
+      return 'phaseParentSpec';
+    }
+    const level = content.match(/<!--\s*SPECKIT_LEVEL:\s*(review|research)\s*-->/)?.[1];
+    if (level) return PACKET_SPEC_LEVEL_KINDS[level];
+  }
+  const match = Object.entries(DOCUMENT_KINDS)
+    .filter(([documentPath]) => relative === documentPath || relative.endsWith(`/${documentPath}`))
+    .sort(([left], [right]) => right.length - left.length)[0];
+  return match ? match[1] : null;
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 4. CENSUS
 // ───────────────────────────────────────────────────────────────────
 
 function emptyCounts() {
   return {
-    documents: Object.fromEntries(COUNT_KINDS.map((kind) => [kind, 0])),
-    templateBlocks: Object.fromEntries(EXACT_BLOCK_KINDS.map((kind) => [kind, 0])),
-    partialCarriers: Object.fromEntries(COUNT_KINDS.map((kind) => [kind, 0])),
+    documents: Object.fromEntries(LEGACY_COUNT_KINDS.map((kind) => [kind, 0])),
+    templateBlocks: Object.fromEntries(LEGACY_COUNT_KINDS.map((kind) => [kind, 0])),
+    partialCarriers: Object.fromEntries(LEGACY_COUNT_KINDS.map((kind) => [kind, 0])),
     malformedFrontmatter: 0,
   };
 }
 
+function ensureKindCounts(target, kind) {
+  target.documents[kind] ??= 0;
+  target.templateBlocks[kind] ??= 0;
+  target.partialCarriers[kind] ??= 0;
+}
+
 function addCounts(target, source) {
-  for (const kind of COUNT_KINDS) target.documents[kind] += source.documents[kind];
-  for (const kind of EXACT_BLOCK_KINDS) target.templateBlocks[kind] += source.templateBlocks[kind];
-  for (const kind of COUNT_KINDS) target.partialCarriers[kind] += source.partialCarriers[kind];
+  for (const [kind, count] of Object.entries(source.documents)) {
+    target.documents[kind] = (target.documents[kind] ?? 0) + count;
+  }
+  for (const [kind, count] of Object.entries(source.templateBlocks)) {
+    target.templateBlocks[kind] = (target.templateBlocks[kind] ?? 0) + count;
+  }
+  for (const [kind, count] of Object.entries(source.partialCarriers)) {
+    target.partialCarriers[kind] = (target.partialCarriers[kind] ?? 0) + count;
+  }
   target.malformedFrontmatter += source.malformedFrontmatter;
 }
 
@@ -363,7 +427,10 @@ export function runCensus(root, defaults = loadTemplateDefaults()) {
     const archiveState = isArchivedDocument(file, root) ? 'archived' : 'live';
     if (!tracks.has(track)) tracks.set(track, { live: emptyCounts(), archived: emptyCounts() });
     const bucket = tracks.get(track)[archiveState];
-    const kind = DOCUMENT_KINDS[path.basename(file)];
+    const kind = documentKindForPath(file, root);
+    if (!kind) continue;
+    ensureKindCounts(bucket, kind);
+    ensureKindCounts(totals, kind);
     bucket.documents[kind] += 1;
 
     let content;

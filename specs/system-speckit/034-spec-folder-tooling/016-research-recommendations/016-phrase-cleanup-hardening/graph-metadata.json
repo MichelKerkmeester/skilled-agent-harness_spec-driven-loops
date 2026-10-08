@@ -39,7 +39,7 @@
       "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,14 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "CLI/spec/template-phrase-lint.mjs",
+      ".skilled/scripts/git-hooks/README.md",
+      ".skilled/scripts/git-hooks/lib/gates.tsv",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-lint.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup-hardening.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-lint-hook.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-integration.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts",
-      "templates/core/spec.md.tmpl",
-      "templates/packet-types/phase-parent.spec.md.tmpl",
-      ".skilled/scripts/git-hooks/README.md"
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup.vitest.ts",
+      "templates/core/spec.md.tmpl"
     ],
     "entities": [
       {
@@ -94,6 +100,24 @@
         "source": "derived"
       },
       {
+        "name": "template-phrase-lint.mjs",
+        "kind": "file",
+        "path": "CLI/spec/template-phrase-lint.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/scripts/git-hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "gates.tsv",
+        "kind": "file",
+        "path": ".skilled/scripts/git-hooks/lib/gates.tsv",
+        "source": "derived"
+      },
+      {
         "name": "template-phrase-cleanup.mjs",
         "kind": "file",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
@@ -118,27 +142,39 @@
         "source": "derived"
       },
       {
+        "name": "template-phrase-cleanup-hardening.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "template-phrase-lint-hook.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-lint-hook.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "template-phrase-integration.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-integration.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "create-root-numbering.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts",
         "source": "derived"
       },
       {
+        "name": "template-phrase-cleanup.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "spec.md.tmpl",
         "kind": "file",
         "path": "templates/core/spec.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "phase-parent.spec.md.tmpl",
-        "kind": "file",
-        "path": "templates/packet-types/phase-parent.spec.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/scripts/git-hooks/README.md",
         "source": "derived"
       },
       {
@@ -170,41 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Atomic Write Implementation",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Seed Recipes",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`template-phrase-cleanup.mjs:420` writes a file and then reads it back to record the hash, but uses in-place truncate-then-write, so a crash or error between write and read leaves a truncated file with no recovery",
     "created_at": "2026-10-08T04:22:50Z",
-    "last_save_at": "2026-10-08T07:39:26.808Z",
+    "last_save_at": "2026-10-08T12:21:55.349Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7e8c52039b548074ea747e4300838702ee37f516c4e2b1fae39c234b7189ee2",
+    "source_fingerprint": "sha256:1c6ffc95a0e161d3c5dcd5883b04757159ec361eeeeb485227a52a69df0aa43d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bab40d0df2ca13edafd6515b9e07ddcc420a4aad4569b0e6ca894210f8cf751e",
-      "plan.md": "590019520e4e85954b5bd401a367a99d58a28a39da307f07b9f73498ec4fa3c4",
-      "tasks.md": "6460f39046a2773c88e669ea8fde6a0495afbe46c279b7700771e35f39952f83",
-      "implementation-summary.md": "738d17b7ad3b45690005c7b7659d301545d098a97873ca25f8f13cde4ffd00c1"
+      "spec.md": "259041ca24a6eb6fea2301500e43663954e35409feba156ab28067c22161742a",
+      "plan.md": "60828b0404d08406e40835e2ba77efa0a759c00421ac524128869a8f182e451f",
+      "tasks.md": "b03ae6643aed790ca32f8a008a6ddab909ee1846fe0088764fd8217ee533a984",
+      "implementation-summary.md": "9272e70a5d6f5e1ea7ed4fd531214626ea0237af92d0c49e162c342329eb20a9"
     },
     "last_active_at": null
   }

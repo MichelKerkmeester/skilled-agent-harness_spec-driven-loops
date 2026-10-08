@@ -143,6 +143,21 @@ if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && -x "$COMMENT_CHECKER" ]]; t
   esac
 fi
 
+# --- Template phrase lint gate (blocking on tool fingerprints only) ---
+PHRASE_LINTER="$SOURCE_ROOT/skills/system-spec-kit/runtime/cli/spec/template-phrase-lint.mjs"
+if [[ "${SPECKIT_SKIP_PHRASE_LINT:-0}" != "1" ]] && _in_toolchain_repo; then
+  if [[ ! -f "$PHRASE_LINTER" ]]; then
+    echo "WARNING [gate:template-phrase-lint]: linter is missing; skipping phrase checks." >&2
+  elif ! command -v node >/dev/null 2>&1; then
+    echo "WARNING [gate:template-phrase-lint]: node is unavailable; skipping phrase checks." >&2
+  elif ! node "$PHRASE_LINTER"; then
+    echo "" >&2
+    echo "BLOCKED [gate:template-phrase-lint]: staged trigger phrases contain a template or editor fallback." >&2
+    echo "Fix the phrase, or bypass with SPECKIT_SKIP_PHRASE_LINT=1 git commit ..." >&2
+    exit 1
+  fi
+fi
+
 # --- Agent mirror-sync gate (blocking) ---
 # Agents are authored in .opencode/agents/ and mirrored to .claude.
 # Block a commit that desyncs the mirrors. Only staged agent files are checked.

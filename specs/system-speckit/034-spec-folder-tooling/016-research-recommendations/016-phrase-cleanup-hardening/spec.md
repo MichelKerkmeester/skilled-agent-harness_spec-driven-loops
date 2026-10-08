@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-08 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
@@ -86,12 +86,19 @@ Ensure phrase cleanup writes are atomic, every template kind can be seeded with 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs` | Modify | Atomic write, no-frontmatter routing |
-| `.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs` | Modify | Extend DOCUMENT_KINDS to all 18 template kinds |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs` | Modify | Atomic write, no-frontmatter routing, seed suffixes for the add-on kinds |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs` | Modify | Extend TEMPLATE_FILES and DOCUMENT_KINDS to all 18 template kinds, add `documentKindForPath` |
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` | Modify | Extend seeding to all 18 kinds |
-| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs` | Inspect | Confirm five default phrase sets; required for pin test verification |
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/*.vitest.ts` | Modify | Update pin test with recipes for all 18 kinds |
+| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs` | Inspect | Confirm five default phrase sets; required for pin test verification. Left unchanged |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-lint.mjs` | Create | The lint helper the pre-commit hook runs; planned in plan.md as the pre-commit lint module but missing from this table |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup-hardening.vitest.ts` | Create | Atomic write, rename failure, mode retention and no-frontmatter routing (3 tests) |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-lint-hook.vitest.ts` | Create | Runs the real pre-commit hook in a throwaway repository (6 tests) |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-integration.vitest.ts` | Create | Seeds a packet, cleans a restored template block and blocks an added default (1 test) |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts` | Modify | Pin test with recipes for all 18 kinds, plus a case for the phase, review and research spec scaffolds |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup.vitest.ts` | Inspect | Existing cleanup and census regression file, run unchanged (17 tests) |
 | `.skilled/scripts/git-hooks/pre-commit` | Modify | Add phrase-judge lint for staged files |
+| `.skilled/scripts/git-hooks/lib/gates.tsv` | Modify | Added after review: registers `templatePhraseLint` so the new gate is listed and switchable like its neighbours |
+| `.skilled/scripts/git-hooks/README.md` | Modify | Added after review: counts the eighth blocking gate and lists `SPECKIT_SKIP_PHRASE_LINT=1` beside the other bypasses |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -152,7 +159,15 @@ Ensure phrase cleanup writes are atomic, every template kind can be seeded with 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- None open. **Decided 2026-10-08 by the operator:** the lint blocks only `template-default` and `editor-fallback` on newly added phrases, because those classes are tool fingerprints rather than author choices. It warns on every other negative class, since the research ruled out turning phrase warnings into errors on author-declared phrases. A `SPECKIT_SKIP_PHRASE_LINT=1` bypass matches the hook's other `SPECKIT_SKIP_*` gates.
+None open. **Decided 2026-10-08 by the operator:** the lint blocks only `template-default` and `editor-fallback` on newly added phrases, because those classes are tool fingerprints rather than author choices. It warns on every other negative class, since the research ruled out turning phrase warnings into errors on author-declared phrases. A `SPECKIT_SKIP_PHRASE_LINT=1` bypass matches the hook's other `SPECKIT_SKIP_*` gates.
+
+Questions answered during the build:
+
+- **The phase-parent, review and research kinds are packet types, not file names.** `create.sh` writes all three into `spec.md`, so the first build keyed them on file names it never writes and the seeding missed them. The kind now comes from the packet type: `documentKindForPath` reads the `SPECKIT_TEMPLATE_SOURCE: phase-parent-spec` marker or the `SPECKIT_LEVEL: review|research` marker. The census and the cleanup tool both resolve a `spec.md` through it, and `create.sh` reads the matching template source markers.
+- **The atomic write keeps the file mode.** The first temp-file write took the process umask and narrowed a `0664` file. The temp file is now opened with the target's mode and `fchmod`ed to it, and a test pins `0664` under a `022` umask.
+- **The new gate is registered in the hook registry.** The review found the lint missing from `.skilled/scripts/git-hooks/lib/gates.tsv` and the hooks README. Both are now in Files to Change, because the registry is what `/doctor:git hooks` lists and what the persistent `speckit.hooks.<key>` switch reads.
+- **No-frontmatter routing reports a command; it does not run the fixer.** `runCleanup` returns a `routed` list with the fixer name `fill-frontmatter`, the `upgrade-legacy.mjs` path, its arguments and a runnable command. Only a missing opening delimiter routes. Other malformed frontmatter is still reported as skipped.
+- **The lint fails open on its own errors.** If the linter file or `node` is missing, or git cannot be read, the hook prints a warning and lets the commit through. Only a newly added `template-default` or `editor-fallback` phrase blocks.
 
 <!-- /ANCHOR:questions -->
 
@@ -161,7 +176,7 @@ Ensure phrase cleanup writes are atomic, every template kind can be seeded with 
 ## RELATED DOCUMENTS
 
 - **Research**: `../../014-spec-auto-healing-research/research/research.md`, section 11 row SH-16
-- **Cleanup tool**: `.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs` lines 32-38 and 418-427
+- **Cleanup tool**: `.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs`, the atomic write at line 224 and its call at line 509
 - **Census tool**: `.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs`
-- **Pin test**: `.skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts` lines 224+
+- **Pin test**: `.skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts`, the 18-kind pin at line 402
 - **Parent Spec**: `../spec.md`

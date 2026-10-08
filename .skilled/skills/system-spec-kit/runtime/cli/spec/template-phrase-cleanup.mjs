@@ -14,6 +14,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   classifyTriggerPhraseCarrier,
+  documentKindForPath,
   findExactTemplateBlocks,
   findTriggerPhraseEntries,
   isArchivedDocument,
@@ -29,12 +30,28 @@ import { normalizeTriggerText } from '../retrieval/lib/normalize.mjs';
 // ───────────────────────────────────────────────────────────────────
 
 const SCRIPT = 'template-phrase-cleanup';
-const TARGET_KINDS = Object.freeze({
-  'spec.md': 'spec',
-  'acceptance-criteria.md': 'acceptanceCriteria',
-  'plan.md': 'plan',
-  'tasks.md': 'tasks',
-  'implementation-summary.md': 'implementationSummary',
+const FRONTMATTER_FIXER_PATH = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  'upgrade-legacy.mjs',
+);
+const SEED_PHRASE_SUFFIXES = Object.freeze({
+  decisionRecord: 'decision record',
+  phaseParentSpec: 'phase parent spec',
+  reviewSpec: 'review spec',
+  researchSpec: 'research spec',
+  resourceMap: 'resource map',
+  handover: 'handover',
+  debugDelegation: 'debug delegation',
+  research: 'research',
+  beforeAfter: 'before after',
+  timeline: 'timeline',
+  roadmap: 'roadmap',
+  reviewReport: 'review report',
+  goal: 'goal',
+});
+const NESTED_DOCUMENT_DIRECTORY_DEPTHS = Object.freeze({
+  research: 1,
+  reviewReport: 1,
 });
 
 /**
@@ -123,7 +140,11 @@ function packetDescription(file, kind, frontmatter) {
 }
 
 export function seededPhrases(file, kind, description) {
-  const slug = path.basename(path.dirname(file))
+  let packetDirectory = path.dirname(file);
+  for (let depth = NESTED_DOCUMENT_DIRECTORY_DEPTHS[kind] ?? 0; depth > 0; depth -= 1) {
+    packetDirectory = path.dirname(packetDirectory);
+  }
+  const slug = path.basename(packetDirectory)
     .replace(/^\d{3}-/, '')
     .replace(/-/g, ' ');
 
@@ -131,6 +152,9 @@ export function seededPhrases(file, kind, description) {
   if (kind === 'plan') return [`${slug} plan`];
   if (kind === 'tasks') return [`${slug} tasks`];
   if (kind === 'implementationSummary') return [`${slug} implementation summary`];
+  if (SEED_PHRASE_SUFFIXES[kind]) {
+    return [[slug, SEED_PHRASE_SUFFIXES[kind]].filter(Boolean).join(' ')];
+  }
 
   const descriptionPhrase = normalizedDescriptionPhrase(description);
   const phrases = [slug];
@@ -195,6 +219,66 @@ function seededRowsFor(file, kind, description, template, surviving) {
 
 function sha256(content) {
   return crypto.createHash('sha256').update(content, 'utf8').digest('hex');
+}
+
+function writeFileAtomically(file, content) {
+  const mode = fs.statSync(file).mode & 0o777;
+  const temporaryFile = path.join(
+    path.dirname(file),
+    `.${path.basename(file)}.${process.pid}.${crypto.randomBytes(8).toString('hex')}.tmp`,
+  );
+  let descriptor;
+  let created = false;
+  let failure;
+
+  try {
+    descriptor = fs.openSync(temporaryFile, 'wx', mode);
+    created = true;
+    fs.fchmodSync(descriptor, mode);
+    fs.writeFileSync(descriptor, content, 'utf8');
+    fs.closeSync(descriptor);
+    descriptor = undefined;
+    fs.renameSync(temporaryFile, file);
+    created = false;
+  } catch (error) {
+    failure = error;
+  } finally {
+    if (descriptor !== undefined) {
+      try {
+        fs.closeSync(descriptor);
+      } catch (error) {
+        failure ??= error;
+      }
+    }
+    if (created) {
+      try {
+        fs.unlinkSync(temporaryFile);
+      } catch (error) {
+        if (error?.code !== 'ENOENT') failure ??= error;
+      }
+    }
+  }
+
+  if (failure) throw failure;
+}
+
+function shellQuote(value) {
+  return `'${value.replace(/'/g, "'\\''")}'`;
+}
+
+function noFrontmatterRoute(file, root, kind) {
+  let packetDirectory = path.dirname(file);
+  for (let depth = NESTED_DOCUMENT_DIRECTORY_DEPTHS[kind] ?? 0; depth > 0; depth -= 1) {
+    packetDirectory = path.dirname(packetDirectory);
+  }
+  const args = ['--roots', packetDirectory, '--apply'];
+  return {
+    path: relativeDocumentPath(file, root),
+    fixer: 'fill-frontmatter',
+    fixerPath: FRONTMATTER_FIXER_PATH,
+    args,
+    command: `node ${[FRONTMATTER_FIXER_PATH, ...args].map(shellQuote).join(' ')}`,
+  };
 }
 
 function reportIssue(issues, file, root, reason) {
@@ -372,11 +456,12 @@ function planTemplatePhraseChange(file, kind, content, frontmatter, template) {
 export function runCleanup(root, options, defaults = loadTemplateDefaults()) {
   const changes = [];
   const issues = [];
+  const routed = [];
   let changesFound = 0;
   let changed = 0;
 
   for (const file of walkDocuments(root)) {
-    const kind = TARGET_KINDS[path.basename(file)];
+    const kind = documentKindForPath(file, root);
     if (!kind) continue;
     if (!options.includeArchive && isArchivedDocument(file, root)) continue;
 
@@ -390,6 +475,10 @@ export function runCleanup(root, options, defaults = loadTemplateDefaults()) {
 
     const frontmatter = parseFrontmatter(content);
     if (!frontmatter.ok) {
+      if (frontmatter.reason === 'missing opening frontmatter delimiter') {
+        routed.push(noFrontmatterRoute(file, root, kind));
+        continue;
+      }
       reportIssue(issues, file, root, frontmatter.reason);
       continue;
     }
@@ -417,7 +506,7 @@ export function runCleanup(root, options, defaults = loadTemplateDefaults()) {
 
     try {
       const beforeHash = sha256(content);
-      fs.writeFileSync(file, plan.updated, 'utf8');
+      writeFileAtomically(file, plan.updated);
       const afterHash = sha256(fs.readFileSync(file, 'utf8'));
       changes.push({ ...change, beforeHash, afterHash });
       changed += 1;
@@ -433,6 +522,7 @@ export function runCleanup(root, options, defaults = loadTemplateDefaults()) {
     changesFound,
     changed,
     skipped: issues.length,
+    routed,
     issues,
     changes,
     exitCode,
@@ -485,6 +575,9 @@ function formatSummary(report) {
         lines.push(renderBlock('new block', change.newBlocks[index]));
       }
     }
+  }
+  for (const route of report.routed) {
+    lines.push(`${route.path}: routed to ${route.fixer}; run: ${route.command}`);
   }
   for (const issue of report.issues) lines.push(`${issue.path}: skipped: ${issue.reason}`);
 

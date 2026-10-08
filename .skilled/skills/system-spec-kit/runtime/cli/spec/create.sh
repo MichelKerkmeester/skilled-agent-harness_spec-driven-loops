@@ -391,6 +391,29 @@ escape_template_value() {
 # The core templates ship placeholder phrases that name no topic, so new packets
 # may not be found by what they are about. Replace only each exact trigger block
 # with a phrase that includes the packet slug and document kind.
+seed_template_document() {
+    local file_path="$1"
+    local slug_phrase="$2"
+    local suffix="$3"
+    shift 3
+    [[ -f "$file_path" ]] || return 0
+
+    local phrase
+    for phrase in "$@"; do
+        if ! grep -qF "  - \"$phrase\"" "$file_path"; then
+            return 0
+        fi
+    done
+
+    local template_default_block
+    printf -v template_default_block '  - "%s"\n' "$@"
+    local replacement="  - \"${slug_phrase} ${suffix}\""
+    TRIGGER_DEFAULT_BLOCK="$template_default_block" TRIGGER_REPLACEMENT="$replacement" perl -0pi -e '
+        my $block = qq{$ENV{TRIGGER_DEFAULT_BLOCK}};
+        s/\Q$block\E/$ENV{TRIGGER_REPLACEMENT}\n/;
+    ' "$file_path"
+}
+
 replace_template_default_trigger_phrases() {
     local folder_path="$1"
     local packet_name="$2"
@@ -430,6 +453,81 @@ replace_template_default_trigger_phrases() {
         "validation evidence"
         "continuation notes"
     )
+    local -a decision_record_template_default_phrases=(
+        "decision record"
+        "architecture decision"
+        "decision rationale"
+    )
+    local -a phase_parent_spec_template_default_phrases=(
+        "[Trigger phrase 1]"
+        "[Trigger phrase 2]"
+    )
+    local -a review_spec_template_default_phrases=(
+        "review record"
+        "review report"
+        "audit findings"
+    )
+    local -a research_spec_template_default_phrases=(
+        "research record"
+        "research question"
+        "research findings"
+        "investigation notes"
+    )
+    local -a resource_map_template_default_phrases=(
+        "resource map"
+        "path catalog"
+        "files touched"
+        "paths analyzed"
+        "paths updated"
+        "paths created"
+    )
+    local -a handover_template_default_phrases=(
+        "session handover"
+        "continuation context"
+        "resume prompt"
+        "open threads"
+    )
+    local -a debug_delegation_template_default_phrases=(
+        "debug delegation"
+        "debug delegation report"
+        "delegated debugging"
+    )
+    local -a research_template_default_phrases=(
+        "research findings"
+        "evidence and citations"
+        "open questions"
+        "research synthesis"
+    )
+    local -a before_after_template_default_phrases=(
+        "before after"
+        "change comparison"
+        "change record"
+        "migration comparison"
+    )
+    local -a timeline_template_default_phrases=(
+        "packet timeline"
+        "event chronology"
+        "event history"
+        "milestone dates"
+    )
+    local -a roadmap_template_default_phrases=(
+        "roadmap plan"
+        "forward plan"
+        "now next later"
+        "strategic milestones"
+    )
+    local -a review_report_template_default_phrases=(
+        "review report"
+        "review findings"
+        "remediation workstreams"
+        "review verdict"
+    )
+    local -a goal_template_default_phrases=(
+        "packet goal"
+        "durable directive"
+        "completion criteria"
+        "goal binding"
+    )
 
     # A seeded phrase that ends on a function word reads as a fragment, so the
     # shared stop list trims the trailing words. The cleanup tool carries the
@@ -444,6 +542,14 @@ replace_template_default_trigger_phrases() {
     slug_phrase="${slug_phrase//-/ }"
 
     if [[ -f "$spec_file" ]]; then
+        if grep -qF 'SPECKIT_TEMPLATE_SOURCE: phase-parent-spec' "$spec_file"; then
+            seed_template_document "$spec_file" "$slug_phrase" "phase parent spec" "${phase_parent_spec_template_default_phrases[@]}"
+        elif grep -qF 'SPECKIT_TEMPLATE_SOURCE: review-record' "$spec_file"; then
+            seed_template_document "$spec_file" "$slug_phrase" "review spec" "${review_spec_template_default_phrases[@]}"
+        elif grep -qF 'SPECKIT_TEMPLATE_SOURCE: research-record' "$spec_file"; then
+            seed_template_document "$spec_file" "$slug_phrase" "research spec" "${research_spec_template_default_phrases[@]}"
+        fi
+
         local spec_has_default_block=true
         for phrase in "${template_default_phrases[@]}"; do
             if ! grep -qF "  - \"$phrase\"" "$spec_file"; then
@@ -582,6 +688,17 @@ replace_template_default_trigger_phrases() {
             ' "$implementation_summary_file"
         fi
     fi
+
+    seed_template_document "$folder_path/decision-record.md" "$slug_phrase" "decision record" "${decision_record_template_default_phrases[@]}"
+    seed_template_document "$folder_path/resource-map.md" "$slug_phrase" "resource map" "${resource_map_template_default_phrases[@]}"
+    seed_template_document "$folder_path/handover.md" "$slug_phrase" "handover" "${handover_template_default_phrases[@]}"
+    seed_template_document "$folder_path/debug-delegation.md" "$slug_phrase" "debug delegation" "${debug_delegation_template_default_phrases[@]}"
+    seed_template_document "$folder_path/research/research.md" "$slug_phrase" "research" "${research_template_default_phrases[@]}"
+    seed_template_document "$folder_path/before-after.md" "$slug_phrase" "before after" "${before_after_template_default_phrases[@]}"
+    seed_template_document "$folder_path/timeline.md" "$slug_phrase" "timeline" "${timeline_template_default_phrases[@]}"
+    seed_template_document "$folder_path/roadmap.md" "$slug_phrase" "roadmap" "${roadmap_template_default_phrases[@]}"
+    seed_template_document "$folder_path/review/review-report.md" "$slug_phrase" "review report" "${review_report_template_default_phrases[@]}"
+    seed_template_document "$folder_path/goal.md" "$slug_phrase" "goal" "${goal_template_default_phrases[@]}"
 
     return 0
 }
@@ -1604,6 +1721,7 @@ if [[ "$PHASE_MODE" = true ]]; then
 
         mv "$_tmp_parent_spec" "$PARENT_SPEC"
         ensure_template_source_near_top "$PARENT_SPEC"
+        replace_template_default_trigger_phrases "$FEATURE_DIR" "$_feature_slug" "$FEATURE_DESCRIPTION"
         PARENT_CREATED_FILES+=("spec.md")
         create_graph_metadata_file "$FEATURE_DIR" "$FEATURE_DESCRIPTION" "planned"
     fi

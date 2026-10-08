@@ -17,6 +17,11 @@ import {
   TEMPLATE_DEFAULT_PHRASES,
 } from '../retrieval/lib/phrase-judge.mjs';
 import { DESCRIPTION_STOP_WORDS, seededPhrases } from '../spec/template-phrase-cleanup.mjs';
+import {
+  documentKindForPath,
+  loadTemplateDefaults,
+  parseFrontmatter,
+} from '../spec/template-phrase-census.mjs';
 
 const CLI_DIR = path.resolve(__dirname, '..');
 const SKILL_ROOT = path.resolve(CLI_DIR, '../..');
@@ -160,6 +165,69 @@ describe('create.sh seeds trigger phrases', () => {
 
     expect(acceptanceCriteria).not.toContain('  - "closure gate"');
     expect(acceptanceCriteria).toContain('  - "seeded phrases acceptance criteria"');
+  });
+
+  it('seeds packet-type spec.md phrases from real phase, review and research scaffolds', () => {
+    // The shell requires the build entrypoint, but its generated metadata is outside this seeding test.
+    const cliRoot = path.resolve(path.dirname(createScript), '..');
+    const descriptionGenerator = path.join(cliRoot, 'dist', 'spec-folder', 'generate-description.js');
+    fs.mkdirSync(path.dirname(descriptionGenerator), { recursive: true });
+    fs.writeFileSync(descriptionGenerator, '');
+
+    const createdPackets = [
+      {
+        folder: create([
+          '--phase',
+          '--phases',
+          '1',
+          '--phase-names',
+          'first-phase',
+          'Phrase cleanup',
+        ]),
+        kind: 'phaseParentSpec',
+        suffix: 'phase parent spec',
+      },
+      {
+        folder: create([
+          '--level',
+          'review',
+          '--short-name',
+          'phrase-cleanup',
+          'Phrase cleanup',
+        ]),
+        kind: 'reviewSpec',
+        suffix: 'review spec',
+      },
+      {
+        folder: create([
+          '--level',
+          'research',
+          '--short-name',
+          'phrase-cleanup',
+          'Phrase cleanup',
+        ]),
+        kind: 'researchSpec',
+        suffix: 'research spec',
+      },
+    ] as const;
+    const specsRoot = path.join(workspace, 'specs');
+
+    for (const { folder, kind, suffix } of createdPackets) {
+      const file = path.join(specsRoot, folder, 'spec.md');
+      const document = fs.readFileSync(file, 'utf8');
+      const frontmatter = parseFrontmatter(document);
+      if (!frontmatter.ok || !Array.isArray(frontmatter.data?.trigger_phrases)) {
+        throw new Error(`${file} has no trigger phrase list`);
+      }
+      const phrases = frontmatter.data.trigger_phrases as string[];
+      const slug = folder.replace(/^\d+-/, '').replace(/-/g, ' ');
+
+      expect(documentKindForPath(file, specsRoot)).toBe(kind);
+      expect(phrases).toEqual([`${slug} ${suffix}`]);
+      for (const phrase of phrases) {
+        expect(judgeTriggerPhrase(phrase), `${file}: ${phrase}`).toBeNull();
+      }
+    }
   });
 
   it('seeds plan, tasks, and implementation-summary defaults with slug phrases', () => {
@@ -328,6 +396,95 @@ describe('create.sh seeds trigger phrases', () => {
         ([, phrase]) => phrase,
       );
       expect(phrases).toEqual(shellPhrases);
+    }
+  });
+
+  it('pins seed recipes for every template document kind', () => {
+    const recipePins = [
+      { documentPath: 'spec.md', kind: 'spec', shellListName: 'template_default_phrases', expected: ['seed recipes', 'packet phrase seed recipes'], defaults: TEMPLATE_DEFAULT_PHRASES },
+      { documentPath: 'plan.md', kind: 'plan', shellListName: 'plan_template_default_phrases', expected: ['seed recipes plan'], defaults: PLAN_TEMPLATE_DEFAULT_PHRASES },
+      { documentPath: 'tasks.md', kind: 'tasks', shellListName: 'tasks_template_default_phrases', expected: ['seed recipes tasks'], defaults: TASKS_TEMPLATE_DEFAULT_PHRASES },
+      { documentPath: 'implementation-summary.md', kind: 'implementationSummary', shellListName: 'implementation_summary_template_default_phrases', expected: ['seed recipes implementation summary'], defaults: IMPLEMENTATION_SUMMARY_TEMPLATE_DEFAULT_PHRASES },
+      { documentPath: 'decision-record.md', kind: 'decisionRecord', shellListName: 'decision_record_template_default_phrases', expected: ['seed recipes decision record'], suffix: 'decision record' },
+      { documentPath: 'phase-parent.spec.md', seedPath: 'spec.md', kind: 'phaseParentSpec', shellListName: 'phase_parent_spec_template_default_phrases', expected: ['seed recipes phase parent spec'], suffix: 'phase parent spec' },
+      { documentPath: 'review.spec.md', seedPath: 'spec.md', kind: 'reviewSpec', shellListName: 'review_spec_template_default_phrases', expected: ['seed recipes review spec'], suffix: 'review spec' },
+      { documentPath: 'research.spec.md', seedPath: 'spec.md', kind: 'researchSpec', shellListName: 'research_spec_template_default_phrases', expected: ['seed recipes research spec'], suffix: 'research spec' },
+      { documentPath: 'resource-map.md', kind: 'resourceMap', shellListName: 'resource_map_template_default_phrases', expected: ['seed recipes resource map'], suffix: 'resource map' },
+      { documentPath: 'handover.md', kind: 'handover', shellListName: 'handover_template_default_phrases', expected: ['seed recipes handover'], suffix: 'handover' },
+      { documentPath: 'debug-delegation.md', kind: 'debugDelegation', shellListName: 'debug_delegation_template_default_phrases', expected: ['seed recipes debug delegation'], suffix: 'debug delegation' },
+      { documentPath: 'research/research.md', kind: 'research', shellListName: 'research_template_default_phrases', expected: ['seed recipes research'], suffix: 'research' },
+      { documentPath: 'before-after.md', kind: 'beforeAfter', shellListName: 'before_after_template_default_phrases', expected: ['seed recipes before after'], suffix: 'before after' },
+      { documentPath: 'timeline.md', kind: 'timeline', shellListName: 'timeline_template_default_phrases', expected: ['seed recipes timeline'], suffix: 'timeline' },
+      { documentPath: 'roadmap.md', kind: 'roadmap', shellListName: 'roadmap_template_default_phrases', expected: ['seed recipes roadmap'], suffix: 'roadmap' },
+      { documentPath: 'review/review-report.md', kind: 'reviewReport', shellListName: 'review_report_template_default_phrases', expected: ['seed recipes review report'], suffix: 'review report' },
+      { documentPath: 'acceptance-criteria.md', kind: 'acceptanceCriteria', shellListName: 'ac_template_default_phrases', expected: ['seed recipes acceptance criteria'], defaults: AC_TEMPLATE_DEFAULT_PHRASES },
+      { documentPath: 'goal.md', kind: 'goal', shellListName: 'goal_template_default_phrases', expected: ['seed recipes goal'], suffix: 'goal' },
+    ];
+    const manifest = JSON.parse(
+      fs.readFileSync(path.join(SKILL_ROOT, 'templates', 'spec-kit-docs.json'), 'utf8'),
+    ) as { documents: Record<string, { template: string }> };
+    expect(recipePins.map((pin) => pin.documentPath).sort()).toEqual(
+      Object.keys(manifest.documents).sort(),
+    );
+    expect(Object.keys(loadTemplateDefaults()).sort()).toEqual(
+      recipePins.map((pin) => pin.kind).sort(),
+    );
+
+    const createSource = fs.readFileSync(path.join(CLI_DIR, 'spec', 'create.sh'), 'utf8');
+    const templateFiles: string[] = [];
+    const pending = [path.join(SKILL_ROOT, 'templates')];
+    while (pending.length > 0) {
+      const directory = pending.pop() as string;
+      for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+        const file = path.join(directory, entry.name);
+        if (entry.isDirectory()) pending.push(file);
+        else if (entry.isFile() && entry.name.endsWith('.tmpl')) templateFiles.push(file);
+      }
+    }
+
+    for (const pin of recipePins) {
+      const manifestTemplate = manifest.documents[pin.documentPath].template;
+      const matches = templateFiles.filter((file) => path.basename(file) === manifestTemplate);
+      expect(matches, pin.documentPath).toHaveLength(1);
+      const template = fs.readFileSync(matches[0], 'utf8');
+      const block = template.match(
+        /^trigger_phrases:\r?\n((?:[ \t]*-[ \t]*"[^"]*"[ \t]*\r?\n?)+)/m,
+      );
+      if (!block) throw new Error(`${manifestTemplate} has no quoted trigger_phrases block`);
+      const templatePhrases = Array.from(
+        block[1].matchAll(/^[ \t]*-[ \t]*"([^"]*)"[ \t]*\r?$/gm),
+        ([, phrase]) => phrase,
+      );
+      if (pin.defaults) expect(templatePhrases).toEqual([...pin.defaults]);
+
+      const shellList = createSource.match(new RegExp(
+        `local -a ${pin.shellListName}=\\(\\r?\\n([\\s\\S]*?)\\r?\\n[ \\t]*\\)`,
+      ));
+      if (!shellList) throw new Error(`create.sh has no ${pin.shellListName} list`);
+      const shellPhrases = Array.from(
+        shellList[1].matchAll(/^[ \t]*"([^"]*)"[ \t]*\r?$/gm),
+        ([, phrase]) => phrase,
+      );
+      expect(shellPhrases, pin.documentPath).toEqual(templatePhrases);
+      if (pin.suffix) {
+        if ('seedPath' in pin) {
+          expect(createSource).toContain(
+            `seed_template_document "$spec_file" "$slug_phrase" "${pin.suffix}"`,
+          );
+        } else {
+          expect(createSource).toContain(
+            `seed_template_document "$folder_path/${pin.documentPath}" "$slug_phrase" "${pin.suffix}"`,
+          );
+        }
+      }
+
+      const seedPath = 'seedPath' in pin ? pin.seedPath : pin.documentPath;
+      const seedFile = path.join(workspace, 'specs', '011-seed-recipes', seedPath);
+      const phrases = seededPhrases(seedFile, pin.kind, 'Packet phrase seed recipes');
+      expect(phrases, pin.documentPath).toEqual(pin.expected);
+      for (const phrase of phrases) {
+        expect(judgeTriggerPhrase(phrase), `${pin.documentPath}: ${phrase}`).toBeNull();
+      }
     }
   });
 });
