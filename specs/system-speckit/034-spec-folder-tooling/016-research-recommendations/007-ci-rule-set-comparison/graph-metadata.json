@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`.github/workflows/changed-packet-validation.yml` lines 139 to 146 compare only verdicts: if the base passed and the head failed, it is a regression",
     "created_at": "2026-10-08T04:22:43Z",
-    "last_save_at": "2026-10-08T12:24:20.048Z",
+    "last_save_at": "2026-10-08T14:05:30.807Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c91d0da95ee4935731ccc620f143bcfa533d90c79d44cc84695ba97599443acb",
+    "source_fingerprint": "sha256:eede4040d53469f95124f839040652246e2cecd8fb888f3cbd09da80c221383f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3154677c97f248729345a45ae9732005cf7ccc2797deba468a9c428480c38392",
       "plan.md": "6288738cf41a2f3a80c73c4488649adfcb31c79b061cd5befdf3d6008a8363a0",
       "tasks.md": "49b4e7d677eab00260ee2827256479c767faccc690a29c7410229db9a3f32a8e",
-      "implementation-summary.md": "c108f48e2b4c58b79994eaba24866d925ee18a2e4253ef0233f2b028e0d586e8"
+      "implementation-summary.md": "344876eb817ebc135ce3a440480235a0e7ba8021941f8a8e61a2a85f8fee6643"
     },
     "last_active_at": null
   }

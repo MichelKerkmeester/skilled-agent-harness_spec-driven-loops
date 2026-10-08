@@ -96,7 +96,7 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | AC-006 wording | The criterion said packets that "passed before" report as `known-failure` when they still fail. That contradicts the sweep script, where a pass that now fails is a `regression` and a failure that still fails is a `known-failure`. It was an authoring error; Luna's round 1 stopped on it and the orchestrator corrected it to "failed before" |
-| Local tests instead of a test PR and a dispatched sweep | Nothing is pushed, so the PR-gate and sweep scenarios ran as 11 tests over the workflows' own run blocks with a stub validator and a stub `gh`, plus the real sweep script. Criteria 1 to 5 are met on that evidence |
+| Local tests instead of a test PR and a dispatched sweep | Nothing is pushed, so the PR-gate and sweep scenarios ran as 11 tests over the workflows' own run blocks with a stub validator and a stub `gh`, plus the real sweep script. Criteria 1 to 5 are met on that evidence; after the push, dispatched sweep 37783711329 loaded run 37265804421's report live and swept 1580 packets with 1 known-failure and 0 regressions |
 | Download mechanism | plan.md named `actions/download-artifact@v4` with a `run-id` and a fine-grained token. The build uses `gh run download` with the job token and `actions: read`; plan.md was updated |
 | No README examples | The README describes each workflow in one table row, so the four rows carry the behavior and no example block was added |
 | Rule counts versus status | The plan and SC-002 speak of rule counts. The unchanged sweep script compares each folder's status with the baseline, so the observable result is `known-failure` rows and zero regressions |
