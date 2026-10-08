@@ -352,6 +352,26 @@ class VerifyAlignmentDriftTests(unittest.TestCase):
             self.assertNotIn("SECTIONS-", result.stdout)
             self.assertNotIn("FOLDER-", result.stdout)
 
+    def test_skips_spec_evidence_and_fixture_trees(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            spec_evidence = root / "specs" / "demo" / "001-x" / "evidence" / "run.sh"
+            fixture_tree = root / "tools" / "rule-experiment-fixture" / "src" / "run.sh"
+            shipped_evidence = root / "src" / "evidence" / "run.sh"
+            self.write_file(spec_evidence, "echo hi\n")
+            self.write_file(fixture_tree, "echo hi\n")
+            self.write_file(shipped_evidence, "echo hi\n")
+
+            discovered = list(self.module.iter_code_files([str(root)]))
+            self.assertNotIn(str(spec_evidence.resolve()), discovered)
+            self.assertNotIn(str(fixture_tree.resolve()), discovered)
+            self.assertIn(str(shipped_evidence.resolve()), discovered)
+
+            result = self.run_cli(root)
+            self.assertEqual(1, result.returncode)
+            self.assertIn("src/evidence/run.sh", result.stdout)
+            self.assertNotIn("specs/demo", result.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()

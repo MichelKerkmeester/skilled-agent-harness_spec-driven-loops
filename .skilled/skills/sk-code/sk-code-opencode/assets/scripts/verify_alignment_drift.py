@@ -64,6 +64,28 @@ EXCLUDED_DIRS = {
     "venv",
 }
 
+
+def is_unscanned_record_path(path: str) -> bool:
+    """Whether `path` sits under a recorded-evidence or shaped-fixture directory.
+
+    An evidence folder inside a spec packet holds the scripts a packet ran to
+    prove a result; rewriting them to house style would change what was
+    recorded. A directory named `fixture` or ending in `-fixture` holds
+    deliberately shaped input for experiments. Only directory names count,
+    never the file name, and an `evidence` folder outside `specs/` is shipped
+    source that still gets scanned.
+    """
+    parts = [part.lower() for part in path.replace("\\", "/").split("/") if part]
+    dirs = parts[:-1]
+    if any(name == "fixture" or name.endswith("-fixture") for name in dirs):
+        return True
+    if "specs" in dirs:
+        after_specs = dirs[dirs.index("specs") + 1:]
+        if "evidence" in after_specs:
+            return True
+    return False
+
+
 INTEGRITY_RULE_PREFIXES = (
     "COMMON-",
     "JSON-",
@@ -237,6 +259,11 @@ def iter_code_files(roots: Iterable[str]) -> Iterable[str]:
                         continue
                     if any(part in EXCLUDED_DIRS for part in candidate.split(os.sep)):
                         # Resolved generated and external targets stay outside this scan.
+                        continue
+                    if is_unscanned_record_path(os.path.relpath(candidate, abs_root)):
+                        # Recorded evidence and shaped fixture inputs are not authored source.
+                        # Judged below the scan root, so a folder above the checkout named
+                        # `specs` or `*-fixture` cannot hide the whole tree.
                         continue
                     if tracked is not None and candidate not in tracked:
                         continue
