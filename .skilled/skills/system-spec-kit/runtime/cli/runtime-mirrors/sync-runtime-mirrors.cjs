@@ -37,6 +37,12 @@ const EXCLUDED_COMMAND_DIRS = new Set(['assets', 'scripts', 'fixtures']);
 // `permission:` block, so agents deliberately source from .claude/agents.
 // Commands have no dialect split and source from .skilled directly.
 const CLAUDE_AGENTS = '.claude/agents';
+
+// Agents that exist only because Claude Code resolves a subagent by exact name and
+// lets a user or project file replace its built-in. No other runtime has that
+// built-in, and a mirrored copy would register a second, unrelated agent there.
+// Keep in step with the same list in the /doctor agent-roster check.
+const CLAUDE_ONLY_AGENTS = new Set(['Explore']);
 const CLAUDE_COMMANDS = '.claude/commands';
 const OPENCODE_COMMANDS = '.skilled/commands';
 
@@ -69,6 +75,7 @@ function listAgentNames() {
   return fs.readdirSync(dir, { withFileTypes: true })
     .filter((e) => e.isFile() && e.name.endsWith('.md'))
     .map((e) => e.name.slice(0, -3))
+    .filter((name) => !CLAUDE_ONLY_AGENTS.has(name))
     .sort();
 }
 

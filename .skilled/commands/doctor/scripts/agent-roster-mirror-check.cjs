@@ -42,6 +42,12 @@ const USAGE = [
 // and Devin mirrors symlink back to.
 const CANONICAL_REL = '.claude/agents';
 
+// Agents that exist only because Claude Code resolves a subagent by exact name and
+// lets a user or project file replace its built-in. No other runtime has that
+// built-in, so they are not part of the roster the other surfaces must cover.
+// Keep in step with the same list in sync-runtime-mirrors.cjs.
+const CLAUDE_ONLY_AGENTS = new Set(['Explore']);
+
 // Symlink mirrors must resolve to the canonical file, not merely exist -- a real
 // file here would be a silent fork that drifts on the next canonical edit.
 // Each surface names its directory once; `entry` is the agent's path inside it.
@@ -101,6 +107,7 @@ function canonicalRoster(canonicalDir) {
     .readdirSync(canonicalDir)
     .filter((f) => f.endsWith('.md') && !isReadme(f))
     .map((f) => f.slice(0, -3))
+    .filter((name) => !CLAUDE_ONLY_AGENTS.has(name))
     .sort();
 }
 

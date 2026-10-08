@@ -31,6 +31,12 @@ const AGENTS_DIR = path.join(REPO_ROOT, '.opencode', 'agents');
 // the authored agent directory, under either source root, or the Claude mirror.
 const AGENT_PATH_RE = /(?:^|\/)\.(?:opencode|skilled|claude)\/agents\/[^/]+$/;
 
+// Agents that exist only because Claude Code resolves a subagent by exact name and
+// lets a user or project file replace its built-in. No other runtime has that
+// built-in, so there is no authored canonical for them to drift from. Keep in step
+// with the same list in the /doctor agent-roster check and the symlink sync.
+const CLAUDE_ONLY_AGENTS = new Set(['Explore']);
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -61,7 +67,7 @@ function main() {
     ? collectAllAgentNames()
     : args.map(agentNameFromPath).filter(Boolean);
 
-  const uniqueNames = [...new Set(names)].sort();
+  const uniqueNames = [...new Set(names)].filter((name) => !CLAUDE_ONLY_AGENTS.has(name)).sort();
 
   if (uniqueNames.length === 0) {
     console.log('agent-mirror-sync: no agent files to check — nothing verified');

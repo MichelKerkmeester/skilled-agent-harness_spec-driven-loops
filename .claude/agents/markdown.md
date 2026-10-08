@@ -1,6 +1,7 @@
 ---
 name: markdown
 description: Template-first markdown/documentation executor; handles /create:* commands, spec docs, and scoped markdown authoring
+model: haiku
 tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 

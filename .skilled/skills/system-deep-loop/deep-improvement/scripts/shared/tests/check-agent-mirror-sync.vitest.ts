@@ -77,4 +77,13 @@ describe('check-agent-mirror-sync', () => {
     expect(result.status).toBe(1);
     expect(result.stdout).toContain(`DRIFT  ${AGENT_NAME} [claude]`);
   });
+
+  it('does not treat a Claude-only agent with no canonical as an orphan mirror', () => {
+    writeFile('.claude/agents/Explore.md', '# Explore\n\nA Claude-only override.\n');
+
+    const result = runChecker('.claude/agents/Explore.md');
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).not.toContain('DRIFT');
+  });
 });

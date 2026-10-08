@@ -1,6 +1,7 @@
 ---
 name: context
 description: "Production context agent — comprehensive retrieval with canonical continuity recovery and structured Context Packages"
+model: haiku
 tools: Read, Grep, Glob
 ---
 

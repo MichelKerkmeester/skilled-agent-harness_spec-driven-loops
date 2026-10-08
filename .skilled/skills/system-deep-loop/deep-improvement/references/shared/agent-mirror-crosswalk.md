@@ -148,12 +148,21 @@ Provenance markers exist in one tree: every `.codex` agent opens with `# Agent: 
 
 ### 2.5 `model`
 
-No agent file in `.skilled`, `.claude`, `.pi`, `.cursor` or `.devin` declares a model. `.codex`
-pins one on all twelve: `model = "gpt-5.5"` with `model_reasoning_effort` — `high` for most,
-`low` for `context` and `medium` for `markdown` — alongside `sandbox_mode`.
+Three files in the Claude tree declare a model, all `model: haiku`: `context.md`, `markdown.md`
+and the Claude-only `Explore.md` override.
+`.cursor` and `.devin` reach `context.md` and `markdown.md` through their symlinks, so they carry
+the line too, and whether either runtime honors it is untested. No other agent file
+in `.skilled`, `.claude`, `.pi`, `.cursor` or `.devin` declares a model. `.codex` pins one on all
+twelve: `model = "gpt-5.5"` with `model_reasoning_effort`, `high` for most, `low` for `context`
+and `medium` for `markdown`, alongside `sandbox_mode`.
 
-Model and effort are dispatch decisions, not agent declarations. A dispatched route passes both
-explicitly, so the pin in `.codex` governs only invocation that reads the agent file directly.
+`Explore.md` is not a roster agent. Claude Code resolves a subagent by exact name and lets a
+file in `.claude/agents/` replace its built-in Explore, so no other runtime has anything to mirror.
+The roster check and the symlink sync both skip it.
+
+Model and effort are otherwise dispatch decisions, not agent declarations. A dispatched route
+passes both explicitly, and a model passed on a Claude Code Agent call wins over the file's
+`model:`, so a pin governs only invocation that reads the agent file directly.
 
 ---
 
@@ -184,8 +193,9 @@ rather than widening the normalization.
 
 A dispatched route passes model and effort explicitly, so the drift surface is manual invocation
 alone. Read the silence correctly: a tree that declares no model means "no pin", not "unowned
-setting". `.codex` is the only tree that pins one, and only a manual invocation of a Codex agent
-reads that pin; the other five trees run whatever the runtime default is for the invoking session.
+setting". `.codex` pins one on every agent, and the Claude tree pins `context`, `markdown` and `Explore`. Only a
+manual invocation reads those pins; the other trees run whatever the runtime default is for the
+invoking session.
 Manual invokers who need a specific model or effort should pass it at invocation time instead of
 expecting an agent file to carry it.
 

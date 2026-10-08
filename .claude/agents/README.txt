@@ -11,9 +11,13 @@ Inventory rule: if an agent file is not present in this directory, it is not a l
 Translation contract: .skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md
   How every frontmatter declaration lands in each runtime tree, which differences are sanctioned,
   and what stands in for a declaration a runtime cannot carry.
-Model and effort: no agent file here pins a model. Dispatched routes pass model and effort
-  explicitly; manual invocation inherits the runtime default, so a silent tree means no pin,
-  not an unowned setting.
+Model and effort: no agent file here pins a model except context, markdown and Explore.
+  All three declare `model: haiku`. That value is a default: a model passed on the Agent call wins over it, and so
+  do dispatched routes, which pass model and effort explicitly. Every other agent inherits the
+  runtime default, so a silent file means no pin, not an unowned setting.
+Claude-only: Explore is not a roster agent. Claude Code resolves a subagent by exact name and lets
+  a file here replace its built-in Explore, so the file carries `name: Explore` and has no
+  mirror in the other runtimes. The roster check and the symlink sync both skip it.
 
 Agents:
   ai-council:       multi-strategy AI Council planning, writes only ai-council artifacts

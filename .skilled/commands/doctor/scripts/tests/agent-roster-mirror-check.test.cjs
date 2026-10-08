@@ -69,6 +69,14 @@ test('a root whose surfaces all mirror the roster passes', () => {
   assert.match(out, /STATUS=OK agent-roster-mirror/);
 });
 
+test('a Claude-only agent needs no mirror and is not counted in the roster', () => {
+  const root = buildRoot();
+  writeFile(path.join(root, '.claude/agents/Explore.md'), '# Explore\n');
+  const { status, out } = run(['--root', root]);
+  assert.equal(status, 0, out);
+  assert.match(out, /canonical: \.claude\/agents \(2 agents\)/);
+});
+
 test('an authored surface missing an agent is drift', () => {
   const root = buildRoot();
   fs.rmSync(path.join(root, '.codex/agents/beta.toml'));
