@@ -22,8 +22,8 @@ contextType: "general"
 |--------|-------|
 | **Language/Stack** | Bash and GitHub Actions workflow YAML |
 | **Framework** | GitHub Actions, no application framework |
-| **Storage** | Git artifacts (for the baseline) |
-| **Testing** | Manual PR dispatch with test packets, workflow log inspection |
+| **Storage** | Workflow run artifacts: the previous successful run's `report.json` is the sweep baseline |
+| **Testing** | Vitest tests that run the workflows' own run blocks against a stub validator and a stub `gh`, plus the real sweep script. A first run on GitHub is still to come |
 
 ### Overview
 The changed-packet validator and the weekly sweep use GitHub Actions to report spec folder validation. They compare the wrong things today. This phase parses rule names from validator output and compares them between base and head instead of comparing pass/fail verdicts.
@@ -53,11 +53,11 @@ The changed-packet validator and the weekly sweep use GitHub Actions to report s
 Declarative configuration. The workflows chain run steps that extract rule names and compare them.
 
 ### Key Components
-- **Changed-packet gate** (lines 131-147): Compares the validator output from base and head for rule set differences.
-- **Weekly sweep** (lines 47-85): Downloads the previous artifact, extracts its rule counts, and compares them with the current run.
+- **Changed-packet gate** (`changed-packet-validation.yml:89-188`): `failing_rules()` reads each `--json` report and keeps the rule names with status `error`; `comm -23` of the head set against the base set names the rules the base did not fail.
+- **Weekly sweep** (`strict-pass-freshness-report.yml:48-126`): a fetch step downloads the previous successful run's `report.json` and exports `BASELINE_REPORT`; the sweep step passes it as `--baseline`. The sweep script is unchanged and classifies each folder by its baseline status.
 
 ### Data Flow
-The changed-packet gate runs the validator on both the base tree and the PR head, extracts rule names from each output, and compares the sets. The weekly sweep downloads the previous sweep artifact, extracts the rule counts, and reports only regressions (new failures) not all failures.
+The changed-packet gate runs the validator on the PR head, then on a worktree of the base for each packet that fails, extracts the failing rule names from each `--json` report, and blocks only on head rules the base did not fail. A report it cannot read fails closed. The weekly sweep downloads the previous sweep artifact and passes it as `--baseline`; the sweep script reports a `regression` when a folder passed in the baseline and fails now, a `known-failure` when it failed there and still fails, and a `first-run` for every failure when no baseline exists.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -67,9 +67,9 @@ The changed-packet gate runs the validator on both the base tree and the PR head
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `.github/workflows/changed-packet-validation.yml` lines 131-147 | PR gate logic | Update: extract and compare rule sets instead of verdicts | A test packet with different failing rules at base and head is reported as a regression |
-| `.github/workflows/strict-pass-freshness-report.yml` line 56 | Weekly sweep call | Update: pass previous artifact as baseline | The sweep receives `--baseline` and compares with it |
-| `.github/workflows/README.md` | Documentation | Update: describe the rule-set comparison approach | Document is accurate and refers to line numbers |
+| `.github/workflows/changed-packet-validation.yml` lines 89-188 (formerly 131-147) | PR gate logic | Update: extract and compare rule sets instead of verdicts | A test packet with different failing rules at base and head is reported as a regression |
+| `.github/workflows/strict-pass-freshness-report.yml` lines 48-126 (formerly line 56) | Weekly sweep call | Update: pass previous artifact as baseline | The sweep receives `--baseline` and compares with it |
+| `.github/workflows/README.md` lines 28, 49, 62, 64 | Documentation | Update: describe the rule-set comparison approach | Rows match the workflows; the README describes behavior in table rows and carries no line numbers |
 
 Required inventories:
 - Same-class producers: no other gate compares validator output between base and head (other gates like agent-mirror-sync, comment-hygiene, and message-contract compare `github.event.pull_request.base.sha` to scope changed files, but not validator output).
@@ -93,9 +93,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Changed-packet gate | PR with a test packet that changes rule sets | Dispatch a test PR and inspect the gate output |
-| Weekly sweep gate | Run the sweep with and without a baseline | Trigger manually and check the baseline was used |
-| Artifact retrieval | Download the previous sweep artifact | Download from a prior run: retrieve its run-id from workflow history, use `actions/download-artifact@v4` with `run-id` parameter and a fine-grained token with repo:read scope; verify previously-failing packets report as `known-failure` (loaded baseline) vs `first-run` (no baseline) |
+| Changed-packet gate | A packet that changes rule sets between base and head | The gate's run block, extracted from the YAML, run against a fixture repo with a stub validator (5 tests in `ci-rule-set-comparison.vitest.ts`). A test PR on GitHub is not run yet |
+| Weekly sweep gate | The sweep with and without a baseline | The real sweep script with a stub validator and a baseline file (3 tests). A dispatched sweep on GitHub is not run yet |
+| Artifact retrieval | Fetch the previous sweep artifact | The fetch step's run block with a stub `gh`: no run, a good report, an unparseable report (3 tests). The build uses `gh run download` with the job token and `actions: read`, not `actions/download-artifact@v4` with a fine-grained token. Previously failing packets report `known-failure` with a baseline and `first-run` without one (sweep tests). A real artifact download is for the first run on GitHub |
 <!-- /ANCHOR:testing -->
 
 ---

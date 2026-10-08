@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-08 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
@@ -180,7 +180,15 @@ Gates accurately detect when a PR introduces new rule failures or when the corpu
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- None. The research identified the exact lines and the expected behavior.
+None open. The research identified the exact lines and the expected behavior.
+
+Settled during the build, from the local checks and the two review rounds:
+
+- **What counts as a failing rule.** A rule whose entry has status `error` in the validator's `--json` report. A strict run fails only on `error` entries, so warnings are left out of both sets. The changed-packet gate compares the head set against the base set and flags only the head rules the base did not already fail.
+- **Unreadable validator output.** A report that does not parse, has no `entries` list or records a skipped run fails the gate closed, for the head copy and for the base copy, instead of reading silence as a pass.
+- **Where the sweep baseline comes from.** The report uploaded by the last successful run of the same workflow on the same branch, fetched with `gh run list` and `gh run download` using the job's own token. That needs `actions: read`. No run, a failed download, or a report without a `results` array each print a notice and run the sweep without a baseline.
+- **How the weekly sweep compares.** The sweep script is unchanged. It classifies each failing folder by what the baseline recorded for it: a folder that passed there is a `regression`, one the baseline recorded as failing is a `known-failure`, one absent from it is a `new-failure`, and with no baseline every failure is `first-run`. It does not compare rule counts. Success criterion SC-002 says "rule counts"; the observable result is zero regressions and `known-failure` rows.
+- **How it was verified.** Locally, by tests that run the two workflows' own run blocks against a stub validator and a stub `gh`, plus the real sweep script. Nothing is pushed, so neither workflow has run on GitHub. The deviations are in implementation-summary.md.
 <!-- /ANCHOR:questions -->
 
 ---

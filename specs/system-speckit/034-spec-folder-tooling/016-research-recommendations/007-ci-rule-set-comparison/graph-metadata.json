@@ -38,7 +38,7 @@
       "packet"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,7 +48,8 @@
       "implementation-summary.md",
       ".github/workflows/changed-packet-validation.yml",
       ".github/workflows/strict-pass-freshness-report.yml",
-      ".github/workflows/README.md"
+      ".github/workflows/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/ci-rule-set-comparison.vitest.ts"
     ],
     "entities": [
       {
@@ -103,6 +104,12 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci-rule-set-comparison.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/ci-rule-set-comparison.vitest.ts",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`.github/workflows/changed-packet-validation.yml` lines 139 to 146 compare only verdicts: if the base passed and the head failed, it is a regression",
     "created_at": "2026-10-08T04:22:43Z",
-    "last_save_at": "2026-10-08T07:39:26.805Z",
+    "last_save_at": "2026-10-08T12:24:20.048Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7510825f8d199f2a181b36acf359584855a5a4cbc503f30c94c5c2d23ce39de1",
+    "source_fingerprint": "sha256:c91d0da95ee4935731ccc620f143bcfa533d90c79d44cc84695ba97599443acb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "365b5648169d453c51df49a8cdc6b22ccf99c37d566dadace76af1b7ed91a9c3",
-      "plan.md": "cfb4df1276a367408a8887d547911c9b963b2a1e5e0bb17fd92e4007a6b8b41b",
-      "tasks.md": "e605404bdb556c194723ac4b13aa142396c9d717fba33585e3a06c119ffb3ac0",
-      "implementation-summary.md": "37855bc7f65812aeaa7bb51c18077467a4f810b6ba59afa31402a8ee27ab0e8c"
+      "spec.md": "3154677c97f248729345a45ae9732005cf7ccc2797deba468a9c428480c38392",
+      "plan.md": "6288738cf41a2f3a80c73c4488649adfcb31c79b061cd5befdf3d6008a8363a0",
+      "tasks.md": "49b4e7d677eab00260ee2827256479c767faccc690a29c7410229db9a3f32a8e",
+      "implementation-summary.md": "c108f48e2b4c58b79994eaba24866d925ee18a2e4253ef0233f2b028e0d586e8"
     },
     "last_active_at": null
   }

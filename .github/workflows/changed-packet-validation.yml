@@ -89,20 +89,48 @@ jobs:
           # Block on regressions, not on the corpus's existing state. A packet
           # that already failed at the merge base is not this PR's doing, and
           # failing the author for it is the whole-tree behaviour this gate
-          # exists to avoid. Only the base verdict distinguishes the two, so
+          # exists to avoid. Only the base comparison distinguishes the two, so
           # packets that fail here are re-checked against a worktree at the base.
+          #
+          # The comparison is over the SETS of failing rules, not over the bare
+          # verdict: a packet that failed rule A at the base and rule B at head
+          # carries a failure this PR introduced even though it was red before.
+          failing_rules() {
+            # Prints the failing rule names from the orchestrator's JSON report
+            # on stdin, one per line. A strict run fails exactly when an entry's
+            # status is "error" — warnings are advice and summary.errors counts
+            # those entries — so those rules are the set this gate compares. A
+            # report that does not parse, lacks entries, or records a skipped
+            # run exits nonzero, and the caller then fails closed.
+            # shellcheck disable=SC2016 # the quoted script is JavaScript, so its ${} is not the shell's
+            node -e '
+              const fs = require("fs");
+              let report;
+              try { report = JSON.parse(fs.readFileSync(0, "utf8")); } catch { process.exit(1); }
+              if (report.skipped === true || !Array.isArray(report.entries)) process.exit(1);
+              const failing = report.entries.filter((entry) => entry.status === "error").map((entry) => entry.rule);
+              process.stdout.write([...new Set(failing)].sort().map((rule) => `${rule}\n`).join(""));
+            '
+          }
           declare -a broken=()
+          declare -A head_failing=()
           while IFS= read -r packet; do
             [ -n "$packet" ] || continue
             # --no-recursive keeps a phase parent from dragging in children this
             # PR never touched; each changed child is already in the list itself.
-            out=$(bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh \
-                    "$packet" --strict --no-recursive 2>&1) || true
-            # A stale or unbuilt orchestrator makes validate.sh refuse to run and
-            # emit no rule output at all. Requiring the explicit verdict line
-            # means that silence fails the gate instead of reading as a pass.
-            if ! grep -q '^RESULT: PASSED' <<<"$out"; then
+            head_out=$(bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh \
+                         "$packet" --strict --no-recursive --json) || true
+            # A stale or unbuilt orchestrator makes validate.sh refuse to run
+            # and emit no report at all. Anything that does not parse as a
+            # report keeps the packet in play so the comparison below fails
+            # closed instead of reading silence as a pass.
+            if ! rules=$(printf '%s\n' "$head_out" | failing_rules); then
               broken+=("$packet")
+              continue
+            fi
+            if [ -n "$rules" ]; then
+              broken+=("$packet")
+              head_failing["$packet"]="$rules"
             fi
           done <<<"$packets"
 
@@ -125,24 +153,37 @@ jobs:
               regressions=$((regressions + 1))
               continue
             fi
+            # A head run that produced no report has no failing set to compare,
+            # so it fails closed here instead of borrowing the base's verdict.
+            if [ -z "${head_failing[$packet]+set}" ]; then
+              echo "::error file=$packet/spec.md::Validator produced no verdict for the head copy; failing closed"
+              regressions=$((regressions + 1))
+              continue
+            fi
             # This checkout's validator against the base's content. The base
             # worktree has no built dist of its own, and building one there
             # would make every packet read as failing at the base — which would
             # silently disable the gate rather than fail it.
             base_out=$(bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh \
-                          "$base_tree/$packet" --strict --no-recursive 2>&1) || true
-            if ! grep -qE '^RESULT: (PASSED|FAILED)' <<<"$base_out"; then
+                         "$base_tree/$packet" --strict --no-recursive --json) || true
+            if ! base_rules=$(printf '%s\n' "$base_out" | failing_rules); then
               echo "::error file=$packet/spec.md::Validator produced no verdict for the base copy; failing closed"
               regressions=$((regressions + 1))
               continue
             fi
-            if grep -q '^RESULT: PASSED' <<<"$base_out"; then
-              echo "::error file=$packet/spec.md::Regression — this packet validated before this PR"
+            # Only head rules absent from the base's failing set are new. Both
+            # sides are sorted and unique, as failing_rules prints them.
+            new_rules=$(comm -23 \
+              <(printf '%s\n' "${head_failing[$packet]}") \
+              <(printf '%s\n' "$base_rules"))
+            if [ -n "$new_rules" ]; then
+              echo "::error file=$packet/spec.md::Regression — new failing rule(s): $(paste -s -d , <<<"$new_rules")"
               bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh "$packet" --strict --no-recursive 2>&1 \
                 | grep -E '^\s*[x!]|^Summary:' | sed 's/^/    /' || true
               regressions=$((regressions + 1))
             else
               echo "  pre-existing (also fails at the merge base): $packet"
+              echo "    failing rule(s): $(paste -s -d , <<<"${head_failing[$packet]}")"
             fi
           done
 

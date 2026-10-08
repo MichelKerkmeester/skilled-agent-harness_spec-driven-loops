@@ -16,6 +16,7 @@ on:
     - cron: '23 4 * * 1'
 
 permissions:
+  actions: read
   contents: read
 
 jobs:
@@ -44,11 +45,76 @@ jobs:
           ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
           npm --prefix .opencode/skills/system-spec-kit/runtime run build
 
+      # Without a stored baseline every failing folder reads as a first run, so a
+      # regression is indistinguishable from debt the packet already carried. The
+      # last successful run's uploaded report is the only record of what passed
+      # before, and its absence is expected exactly once: the run that records the
+      # baseline for the next one.
+      - name: Fetch the previous baseline report
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -uo pipefail
+          baseline_dir=.strict-pass-freshness/baseline
+          mkdir -p "$baseline_dir"
+
+          # The baseline must come from the same branch as this run, so the ref
+          # name narrows the lookup. No match yields an empty id, which is a first
+          # run rather than an error.
+          run_id=$(gh run list \
+            --workflow strict-pass-freshness-report.yml \
+            --branch "$GITHUB_REF_NAME" \
+            --status success \
+            --limit 1 \
+            --json databaseId \
+            --jq '.[0].databaseId // empty') || run_id=""
+
+          if [ -z "$run_id" ]; then
+            echo "::notice::No baseline report found; this run records the baseline"
+            exit 0
+          fi
+
+          # An expired or deleted artifact fails the download; that is still the
+          # no-baseline case rather than an error of this run.
+          if ! gh run download "$run_id" \
+                 --pattern 'strict-pass-freshness-report-*' \
+                 --dir "$baseline_dir"; then
+            echo "::notice::No baseline report found; this run records the baseline"
+            exit 0
+          fi
+
+          # A pattern match extracts under a per-artifact directory, so locate the
+          # report rather than assume a fixed depth. A report that will not parse
+          # is no baseline either: the sweep aborts on one instead of recording it.
+          baseline_report=$(find "$baseline_dir" -name report.json -type f -print -quit)
+          if [ -z "$baseline_report" ] || ! node -e '
+                const fs = require("node:fs");
+                const report = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+                if (!Array.isArray(report.results)) process.exit(1);
+              ' "$baseline_report" 2>/dev/null; then
+            echo "::notice::No baseline report found; this run records the baseline"
+            exit 0
+          fi
+
+          # Steps are separate shells, and the sweep reads this to decide whether
+          # to compare against the report or record a fresh baseline.
+          echo "BASELINE_REPORT=$baseline_report" >> "$GITHUB_ENV"
+          echo "Baseline report from run $run_id: $baseline_report"
+
       - name: Sweep the corpus
         shell: bash
         run: |
           set -uo pipefail
           mkdir -p .strict-pass-freshness
+
+          # A baseline turns known debt into known-failure rows and surfaces a
+          # regression instead of re-reporting every failure as a first run.
+          baseline_args=()
+          if [ -n "${BASELINE_REPORT:-}" ]; then
+            baseline_args=(--baseline "$BASELINE_REPORT")
+            echo "Sweeping against baseline $BASELINE_REPORT"
+          fi
 
           # The leading ./ is load-bearing: node --import reads a bare path as a
           # package name, so without it the loader never resolves and the sweep
@@ -56,6 +122,7 @@ jobs:
           node --import ./.opencode/skills/system-spec-kit/node_modules/tsx/dist/loader.mjs \
             .opencode/skills/system-spec-kit/runtime/cli/sweep/strict-pass-freshness.ts \
             --roots specs \
+            "${baseline_args[@]}" \
             --format json > .strict-pass-freshness/report.json
           sweep_status=$?
 
@@ -68,6 +135,7 @@ jobs:
             exit 1
           fi
 
+          # shellcheck disable=SC2016 # the quoted script is JavaScript, so its ${} is not the shell's
           node -e '
             const r = JSON.parse(require("fs").readFileSync(".strict-pass-freshness/report.json","utf8"));
             const rows = r.results ?? [];

@@ -25,7 +25,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 |---|---|
 | `advisory-checks.yml` | Runs advisory test suites, doc-model references and the trigger index freshness check (`generate-trigger-index.mjs --check`). Reports without gating. |
 | `agent-mirror-sync.yml` | Keeps the `.skilled` and `.claude` agent mirrors aligned. |
-| `changed-packet-validation.yml` | Validates the spec packets a commit or pull request changed. |
+| `changed-packet-validation.yml` | Validates the spec packets a commit or pull request changed. Compares the set of failing rules at head against the merge base, or the previous tip on a push, and blocks when head fails a rule the base did not. |
 | `chart-corpus.yml` | Checks the chart corpus contract and runs its mutation suite. |
 | `command-tree-parity.yml` | Keeps the OpenCode and Claude command trees identical, and the Hermes skill and prompt copies equal to their sources. |
 | `comment-hygiene.yml` | Rejects forbidden ephemeral-artifact pointers in code comments. |
@@ -46,7 +46,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `skill-advisor-stress.yml` | Runs the skill advisor's stress suite, which needs `SPECKIT_RUN_STRESS` and so ran nowhere else. |
 | `skill-doc-frontmatter.yml` | Validates skill reference and asset frontmatter. |
 | `spec-kit-check.yml` | Typechecks and tests the spec-kit packages and checks that runtime mirrors agree with their sources. |
-| `strict-pass-freshness-report.yml` | Weekly whole-corpus validation report. Does not gate. |
+| `strict-pass-freshness-report.yml` | Weekly whole-corpus validation report. Downloads the previous successful run's report as its baseline, which needs `actions: read`. A first run with no baseline records one instead of failing. Does not gate. |
 | `trigger-index-rebuild.yml` | Rebuilds the committed trigger index after a push to `main` or `skilled/**`, staging `trigger-index.json` plus its three fixture sidecars `corpus-manifest.json`, `generation-diagnostics.json` and `phrase-variants.json`. The loop guard skips commits whose message ends with the `Trigger-Index-Rebuild: ci` trailer. The job retries a non-fast-forward push once after resetting to the new tip and regenerating. |
 
 ### Push versus pull-request coverage
@@ -59,9 +59,9 @@ The repository's documented flow pushes release lines directly, so a gate that r
 | `naming-standard-guard.yml` | release lines only | yes | Runs on `skilled/v*` pushes and every pull request |
 | `gate-inputs.yml` | yes, no path filter | yes, no path filter | Guards a move of the source tree, the one change a path filter could miss |
 | `chart-corpus.yml`, `deep-loop-runtime.yml`, `diagram-corpus.yml`, `markdown-link-integrity.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `sk-doc-rename-harness.yml`, `skill-advisor-stress.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml` | yes, path-filtered | yes, path-filtered | Run only when their inputs change |
-| `changed-packet-validation.yml` | yes | yes | Validates the packets a commit changed; on push it diffs against the previous tip |
+| `changed-packet-validation.yml` | yes | yes | Validates the packets a commit changed and blocks only when head fails a rule the base did not. On push it diffs against the previous tip |
 | `agent-mirror-sync.yml`, `comment-hygiene.yml`, `prompt-card-sync.yml` | no | yes | Review-time checks. The pre-commit hook runs the same checkers on every commit |
-| `strict-pass-freshness-report.yml` | schedule | no | A weekly report, not a gate |
+| `strict-pass-freshness-report.yml` | schedule | no | A weekly report, not a gate. It downloads the previous successful run's report as its baseline and records one when a first run finds none |
 
 ---
 
