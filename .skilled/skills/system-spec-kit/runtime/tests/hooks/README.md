@@ -94,7 +94,7 @@ Main flow:
                   ▼
 ┌──────────────────────────────────────────┐
 │ Hook adapter parses the payload and      │
-│ calls lib/spec-gate/spec-gate-core.mjs   │
+│ calls spec-gate-core.mjs                 │
 └──────────────────────────────────────────┘
                   │
                   ▼

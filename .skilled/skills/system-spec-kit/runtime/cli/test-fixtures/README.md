@@ -38,7 +38,7 @@ Not owned here:
 
 - Runtime JSON fixtures live under `runtime/tests/fixtures/`.
 - Runtime test orchestration lives under `../tests/`.
-- Production templates live under `../../templates/`.
+- Production templates live under `../../../templates/`.
 
 ---
 

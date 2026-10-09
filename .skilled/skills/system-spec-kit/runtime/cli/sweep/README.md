@@ -9,7 +9,7 @@ description: "Runs validate.sh --strict across every spec folder and flags regre
 
 ## 1. OVERVIEW
 
-`runtime/cli/sweep/` holds the strict-pass freshness sweep, a CI gate that walks every spec folder under `specs` (and legacy `.opencode/specs`), runs `runtime/cli/spec/validate.sh --strict` on each and classifies the result against a prior baseline. A folder that fails when no baseline is loaded is `first-run`, not a regression. A folder that passed before and fails now is a `regression`. A folder that fails while a baseline is loaded and is missing from it is `new-failure`. This distinguishes genuinely new breakage from a folder that was already failing.
+`runtime/cli/sweep/` holds the strict-pass freshness sweep, a CI gate that walks every spec folder under `specs` (and the legacy repo-root `.opencode/specs` when that directory exists), runs `runtime/cli/spec/validate.sh --strict` on each and classifies the result against a prior baseline. A folder that fails when no baseline is loaded is `first-run`, not a regression. A folder that passed before and fails now is a `regression`. A folder that fails while a baseline is loaded and is missing from it is `new-failure`. This distinguishes genuinely new breakage from a folder that was already failing.
 
 ---
 

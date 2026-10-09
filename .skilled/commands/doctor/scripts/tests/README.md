@@ -10,7 +10,7 @@ trigger_phrases:
 
 ---
 
-## 1. OVERVIEW
+## 1. OVERVIEW AND PURPOSE
 
 `tests/` holds the automated suites for the scripts in `.skilled/commands/doctor/scripts/`. Every script has at least one suite covering its happy path, the drift or failure it must catch and its error path. Each fixed bug has a regression test.
 
@@ -53,7 +53,7 @@ Naming decides which runner picks a file up: `*.test.cjs` runs under `node --tes
 
 ---
 
-## 3. VALIDATION
+## 3. INSTRUCTIONS
 
 Run from the repository root:
 

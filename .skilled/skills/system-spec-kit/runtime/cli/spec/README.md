@@ -129,7 +129,7 @@ git -C REPO rev-parse --absolute-git-dir
 
 Each worktree has its own Git directory, so its manifest stays separate. A clean committed tree needs no manifest. On the same HEAD, a later dirty apply replaces a completed manifest with a fresh recovery point.
 
-The manifest records `schema`, `repoRoot`, `headSha`, `recordedAt`, `status`, `baselineMap`, `recordedBaselineMap`, `scopeHashes` and `beforeImages`. `baselineMap` records the baselines present before the run. `recordedBaselineMap` records each in-scope packet's findings after repair. The manifest starts with `status: "in-progress"` and becomes `complete` after the repairs and baseline writes finish.
+The manifest records `schema`, `repoRoot`, `headSha`, `recordedAt`, `status`, `baselineMap`, `recordedBaselineMap`, `scopeHashes`, `beforeImages` and `completedAt`. `baselineMap` records the baselines present before the run. `recordedBaselineMap` records each in-scope packet's findings after repair. The manifest starts with `status: "in-progress"` and becomes `complete` after the repairs and baseline writes finish. `completedAt` is set at that point, so an in-progress manifest has no `completedAt` value.
 
 Each `beforeImages` entry has a repository-relative path and a `beforeImage` value. File entries store the original bytes as base64 and the file mode. Missing paths use `kind: "absent"`. Symbolic links store their target.
 

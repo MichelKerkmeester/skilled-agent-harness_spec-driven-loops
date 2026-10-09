@@ -11,7 +11,9 @@ version: 2.3.0.0
 
 Manual testing scenarios for the doctor command surface.
 
-## Scope
+---
+
+## 2. SCOPE
 
 15 scenarios covering the four doctor commands this skill owns and the test environment they share:
 
@@ -25,7 +27,15 @@ The other doctor commands are tested in the playbook of the skill they check: `/
 
 The memory and causal-graph doctor scenarios were removed with the memory server they diagnosed. Their former IDs (DOC-323 to DOC-330) are retired and must not be reused. The standalone rebuild-orchestrator and version-migration scenarios were removed with that command, and their former IDs (DOC-338 to DOC-342 and DOC-344 to DOC-347) are retired as well.
 
-## Test Environments
+---
+
+## 3. SCENARIO CONTRACT
+
+Each scenario has a Markdown file named for its topic (`doctor-<short-name>.md`, with no numeric filename prefix) with five numbered sections: overview, scenario contract, test execution (with prompt, commands, expected results, evidence and pass/fail subsections), source files and source metadata.
+
+---
+
+## 4. TEST ENVIRONMENTS
 
 Scenarios that change state run in one of two long-lived local worktrees instead of a throwaway copy. Both stay local: never push their branches, and never push the `v4.0.0.3-fixture` tag. Run one scenario at a time in each environment.
 
@@ -75,11 +85,17 @@ The local tag `v4.0.0.3-fixture` is `v4.0.0.2` with `sk-code/sk-code-obsidian` d
 - **Commits in the fixture:** the v4.0.0.0 hooks need dependencies the fixture does not have, so fixture commits set `SPECKIT_SKIP_MIRROR_PARITY=1 SPECKIT_SKIP_ROUTE_REMINT=1`, the two bypasses those hooks name. Never use `--no-verify`.
 - **Recreate:** DOC-379 lists every build step.
 
-## How to Run
+---
 
-Each scenario has a Markdown file named for its topic (`doctor-<short-name>.md`, with no numeric filename prefix) with its own numbered sections: overview, scenario contract, prompt, commands, expected results, evidence and pass/fail. Execute each scenario directly per the root playbook's execution policy: run the real commands, inspect real files and record a `PASS`, `FAIL`, or `SKIP` verdict. A scenario that cannot be run deterministically is a `SKIP` whose blocker names that limitation. See [`../manual-testing-playbook.md`](../manual-testing-playbook.md) for the full execution and evidence-capture policy.
+## 5. TEST EXECUTION
 
-## See Also
+Execute each scenario directly per the root playbook's execution policy: run the real commands, inspect real files and record a `PASS`, `FAIL`, or `SKIP` verdict. A scenario that cannot be run deterministically is a `SKIP` whose blocker names that limitation. See [`../manual-testing-playbook.md`](../manual-testing-playbook.md) for the full execution and evidence-capture policy.
+
+---
+
+## 6. SOURCE METADATA
+
+### See Also
 
 - Router sources: `.skilled/commands/doctor/speckit.md`, `runtime-mirrors.md`, `env.md` and `update.md`
 - Route manifest: `.skilled/commands/doctor/_routes.yaml`

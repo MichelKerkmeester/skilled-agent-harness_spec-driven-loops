@@ -20,7 +20,7 @@ Current state:
 
 - All eight modules are `.mjs` ESM with no build step. Callers import them by relative path: `./lib/<name>.mjs` from the sibling `retrieval/` scripts, and `../retrieval/lib/<name>.mjs` from elsewhere in the runtime. `phrase-judge.mjs` is also a package export, with a `.d.mts` declaration file beside it.
 - `normalize.mjs` and the ripgrep-facing functions in `rg-lane.mjs` intentionally mirror the logic of the retired substring trigger lane so the generated index, its recorded fixtures and the ripgrep lane cannot silently diverge on what counts as a match.
-- `grep-convention.mjs` is the largest module: it is the pure, testable half of the document retrofit in `../retrofit-convention.mjs`, covering variant classification, the anchor grammar, the trigger allowlist and the diff classifier.
+- `grep-convention.mjs` is the largest module: it is the pure, testable half of the document retrofit in `../../ops/retrofit-convention.mjs`, covering variant classification, the anchor grammar, the trigger allowlist and the diff classifier.
 
 ---
 
