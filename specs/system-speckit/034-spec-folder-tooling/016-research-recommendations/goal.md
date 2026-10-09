@@ -98,7 +98,7 @@ string, not these files.
 - [ ] `validate.sh` on this packet with `--recursive --strict` prints `RESULT: PASSED`
 - [ ] `npm --prefix .skilled/skills/system-spec-kit/runtime/cli test` shows no failure beyond the baseline taken before wave 1
 - [ ] `check-goal.cjs` exits 0 for this packet and for each of the 16 children
-- [ ] CI on the final main commit reports every check as success
+- [ ] CI on the final main commit reports every check as success, except Trigger Index Rebuild's own-commit skip
 <!-- /ANCHOR:completion -->
 
 ---
@@ -127,6 +127,7 @@ and findings belong here.
 | Amendment: DeepSeek only, parallel lanes | On 2026-10-08 the operator said: "Skip luna, use deepseke only max parallization". D1, D2, D4, D6 and D7 were rewritten, and the remaining phases run as lanes. The operator then said: "Use haiku 5.5 xhigh for things you would do yourself", "You do omly orchestration" and "Final review will be done by fresh opus high", so D4 and D5 were rewritten. Later the operator said: "Cli devin also has deepseek so you can spread it through pi opencodw go and devin" and approved Devin's dangerous permission mode for this build, so D1 names cli-devin. Phases 011, 012, 015, 009 and 003 edit the same two files, so D6 lets them ship as one commit. On 2026-10-09 Devin's daily quota ran out and opencode-go stayed capped, and the operator said: "Clime provider", so D1 adds pi's `cline-pass` provider, which a tool-call probe confirmed. The operator then said: "Continue with luna max fast cli codex and deepseek flash 41 max clinpi cline provider", so D1 brings Luna back through cli-codex |
 | Lanes build | Done | 003, 009, 011, 012, 013 and 015 are built, reviewed and Complete, and the corpus is un-nested (4,642 packets, zero nested), so nesting is now an error. The final gate is tree5, with CLI test 1,775 passed and 0 failed (baseline 1,639) and root-test rc 0, and the reviews ran on DeepSeek or Luna per phase, a fresh Opus high final review, and an Opus sk-code-opencode and overengineering review whose 8 P2 fixes are all applied. |
 | Lanes ship | Done | Pushed to main in two runs ending at 6eaad63719. CI on 6eaad63719 is 11 of 11 success, after 2a45fe1b7c built the spec-kit runtime before the doctor suites. The final gates rerun on 2026-10-09 gave validate --recursive --strict RESULT: PASSED for all 17 folders, check-goal 17 of 17, all 16 children Complete and every acceptance row Met. The bot's index commit 4d16754ad3 shows Trigger Index Rebuild as skipped, which its workflow does on its own commits by design. |
+| Amendment: criterion 5 | Done | On 2026-10-09 the operator chose "Allow the designed skip". Every authored commit changes the trigger index, so the rebuild pushes a bot commit, and the rebuild run on that commit always skips. Criterion 5 now accepts that one skip. Main at d933985159 shows 11 checks success and the designed skip, and the authored commit 231201b32a shows all 10 of its runs success. |
 
 ### Deviations and findings
 
