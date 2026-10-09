@@ -209,7 +209,32 @@ function testEmptyScopesArrayFails() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 6. RUN
+// 6. LOCAL TOOL CACHES
+// ─────────────────────────────────────────────────────────────────────────────
+
+// A tool cache such as .pytest_cache is ignored by git and exists only on the
+// machine that ran the tool, so it must never shift a manifest. A dot-named
+// file is still an authored leaf, which is why the .gitkeep stays listed.
+function testDotNamedDirectoryDoesNotChangeManifest() {
+  const skillDir = makeTmpDir('dot-dir');
+  writeFile(skillDir, 'mode-registry.json', `${JSON.stringify({
+    resourceContractVersion: 1,
+    modes: [{ workflowMode: 'mode-a', packet: 'packet-a' }],
+  }, null, 2)}\n`);
+  writeFile(skillDir, 'packet-a/references/a.md', '# a\n');
+  writeFile(skillDir, 'packet-a/references/.gitkeep', '');
+  const withoutCache = generator.buildManifestBytes(skillDir);
+
+  writeFile(skillDir, 'packet-a/references/.pytest_cache/CACHEDIR.TAG', 'Signature: 8a477f597d28d172789f06886806bc55\n');
+  writeFile(skillDir, 'packet-a/references/.pytest_cache/v/cache/nodeids', '[]\n');
+  assert.equal(Buffer.compare(generator.buildManifestBytes(skillDir), withoutCache), 0);
+
+  const leaves = JSON.parse(withoutCache.toString('utf8')).modes[0].leaves;
+  assert.deepEqual(leaves, ['references/.gitkeep', 'references/a.md']);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. RUN
 // ─────────────────────────────────────────────────────────────────────────────
 
 try {
@@ -222,6 +247,7 @@ try {
   testScopeEscapingPacketOrRootFails();
   testDuplicateScopeModeFails();
   testEmptyScopesArrayFails();
+  testDotNamedDirectoryDoesNotChangeManifest();
 } finally {
   if (tmpRoot) fs.rmSync(tmpRoot, { recursive: true, force: true });
 }

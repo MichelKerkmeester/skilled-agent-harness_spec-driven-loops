@@ -103,7 +103,11 @@ function walkLeafFiles(skillDir, packetRoot, rootName) {
     const cur = stack.pop();
     for (const entry of fs.readdirSync(cur, { withFileTypes: true })) {
       const full = path.join(cur, entry.name);
-      if (entry.isDirectory()) { stack.push(full); continue; }
+      if (entry.isDirectory()) {
+        // Local tool caches such as .pytest_cache are ignored by git, so they must not become leaves.
+        if (!entry.name.startsWith('.')) stack.push(full);
+        continue;
+      }
       if (entry.isFile()) {
         out.push(path.relative(packetRoot, full).split(path.sep).join('/'));
         continue;
