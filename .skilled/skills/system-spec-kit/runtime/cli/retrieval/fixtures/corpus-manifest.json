@@ -1,5 +1,5 @@
 {
-  "corpusHash": "846135853c20094227d0469cf74a0d635b72713807847a1cd5c22b89db167cf1",
+  "corpusHash": "a01198b013618f8bd748ff4389ff944d35f7d054ea8e6b349600e526b8807c99",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23981,
+  "includedPathCount": 23995,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23604,6 +23604,20 @@
     "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/tasks.md",
     "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/goal.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-002.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-003.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-004.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-005.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/prompts/iteration-1.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/prompts/iteration-2.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/prompts/iteration-3.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/prompts/iteration-4.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/prompts/iteration-5.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/research.md",
+    "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/resource-map.md",
     "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/timeline.md",
@@ -24012,7 +24026,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "fb3b3e3df72bde10c94e067f658e6e4e8e8c65d611bde0b820b1710c82137f8a",
+  "manifestHash": "60c559c756b8965bbc06fb5d30919011cd998b26360e485a708bee9816b3e4b1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

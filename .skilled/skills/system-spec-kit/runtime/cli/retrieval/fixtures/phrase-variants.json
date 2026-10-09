@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fb3b3e3df72bde10c94e067f658e6e4e8e8c65d611bde0b820b1710c82137f8a",
+  "manifestHash": "60c559c756b8965bbc06fb5d30919011cd998b26360e485a708bee9816b3e4b1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -49813,6 +49813,9 @@
     "headless stream print capture plan": [
       "headless stream print capture plan"
     ],
+    "heal lane modes cli selector": [
+      "heal lane modes cli selector"
+    ],
     "heal spec docs phrase refill policy": [
       "heal-spec-docs phrase refill policy"
     ],
@@ -54487,6 +54490,9 @@
     ],
     "lane migration legacy retirement": [
       "lane migration legacy retirement"
+    ],
+    "lane modes json output branch": [
+      "lane modes json output branch"
     ],
     "lane registry weight update": [
       "lane-registry weight update"
@@ -80569,6 +80575,9 @@
     "research recommendations": [
       "research recommendations"
     ],
+    "research recommendations overengineering": [
+      "research recommendations overengineering"
+    ],
     "research recovery strategies": [
       "research recovery strategies"
     ],
@@ -88684,6 +88693,9 @@
     ],
     "simple workflow flowchart": [
       "simple workflow flowchart"
+    ],
+    "simplification research recommendations build": [
+      "simplification research recommendations build"
     ],
     "simplified review taxonomy": [
       "simplified review taxonomy"
