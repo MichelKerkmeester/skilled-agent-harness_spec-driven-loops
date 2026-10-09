@@ -1282,6 +1282,53 @@ describe('upgrade-legacy', () => {
     const recheck = validate(folder);
     expect(recheck.stdout, recheck.stdout + recheck.stderr).toContain('RESULT: PASSED');
   }, 180_000);
+
+  // The healer visits one document at a time (spec.md, plan.md, tasks.md) and
+  // runs every mode on it, so it meets these refusals document by document.
+  // The baseline lists them by mode, then document, then reason. The link
+  // refusals pin the last two keys: plan.md sorts before spec.md while its
+  // reason sorts after, and spec.md's own two links are written against reason
+  // order. Reasons are matched by a distinguishing fragment, so a reworded
+  // message does not read as an ordering failure.
+  it('records lane-mode refusals in mode, document and reason order', () => {
+    const folder = 'specs/lane-track/002-refusal-order';
+    const packetFolder = path.join(sandbox, folder);
+    writeLegacyPacket(folder);
+
+    // spec.md carries a section but no ANCHOR marker, and two links nothing can
+    // be matched to, written against reason order. plan.md carries one more
+    // whose reason sorts after both: by document it comes first, by reason
+    // last. None of the three documents declares a level, which refuses
+    // level-from-spec and header-add.
+    fs.appendFileSync(
+      path.join(packetFolder, 'spec.md'),
+      [
+        '',
+        '## 1. OVERVIEW',
+        '',
+        'Read [mike](./mike-absent.md) first, then [alpha](./alpha-absent.md).',
+        '',
+      ].join('\n'),
+    );
+    fs.appendFileSync(path.join(packetFolder, 'plan.md'), '\nSee [zulu](./zulu-absent.md).\n');
+
+    clearUpgradeManifest();
+    const result = runUpgrade(['--apply', '--roots', 'specs/lane-track']);
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+
+    const baseline = JSON.parse(fs.readFileSync(path.join(packetFolder, 'upgrade-baseline.json'), 'utf8'));
+    expect(baseline.refusals).toEqual([
+      { mode: 'anchor-wrap', document: 'spec.md', reason: expect.stringContaining('no ANCHOR marker') },
+      { mode: 'link-repoint', document: 'plan.md', reason: expect.stringContaining('zulu-absent.md') },
+      { mode: 'link-repoint', document: 'spec.md', reason: expect.stringContaining('alpha-absent.md') },
+      { mode: 'link-repoint', document: 'spec.md', reason: expect.stringContaining('mike-absent.md') },
+      { mode: 'level-from-spec', document: 'plan.md', reason: expect.stringContaining('no SPECKIT_LEVEL marker') },
+      { mode: 'level-from-spec', document: 'tasks.md', reason: expect.stringContaining('no SPECKIT_LEVEL marker') },
+      { mode: 'header-add', document: 'plan.md', reason: expect.stringContaining('no level is recorded') },
+      { mode: 'header-add', document: 'spec.md', reason: expect.stringContaining('no level is recorded') },
+      { mode: 'header-add', document: 'tasks.md', reason: expect.stringContaining('no level is recorded') },
+    ]);
+  }, 180_000);
 });
 
 // ───────────────────────────────────────────────────────────────────
