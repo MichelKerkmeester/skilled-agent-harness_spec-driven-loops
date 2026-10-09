@@ -3,7 +3,7 @@
 # ─────────────────────────────────────────────────────────────────
 role: Expert Operator checking this checkout against a spec-kit release
 purpose: Report release position, upstream availability and per-unit changes without changing checkout files.
-action: preflight -> release.check -> status.dashboard -> next.steps -> state.log
+action: preflight -> release.check -> compatibility.check -> status.dashboard -> next.steps -> state.log
 
 operating_mode:
   workflow: sequential_orchestrator
@@ -26,6 +26,8 @@ check_invariant: |
 upstream_assets:
   engine: ".skilled/commands/doctor/scripts/release-update.cjs"
   presentation: ".skilled/commands/doctor/assets/doctor-update-presentation.txt"
+  era_report: ".skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs"
+  layout_map: ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
   pass_policy:
     engine_present: true
     repository_required: true
@@ -83,6 +85,7 @@ state_log_schema:
   upstream_status: "known|unknown"
   status_counts: "map computed from the units array; counts.units is checked against the row total"
   final_status: "ok|unknown|failed"
+  compatibility_layout: "v3|partial|v4|none|unknown|skipped"
 
 workflow:
   phase_1_preflight:
@@ -124,16 +127,36 @@ workflow:
     exit_policy: "Exit 0 means a report was produced, not that upstream is known. Exit 2 is usage failure. Keep UNKNOWN explicit for unavailable upstream or unknown status."
     on_failure: "Present the command output and exit code, then stop without writing a file."
 
-  phase_3_render_dashboard:
+  phase_3_compatibility:
     approval: none
-    render: "Unless --json was requested, use the presentation dashboard with release position, upstream latest or UNKNOWN, ahead/behind counts, and per-unit status groups. When --json was requested, return the parsed engine report as JSON and do not add prose around it."
+    json_policy: "Skip this phase when --json was requested, so the JSON output stays the unchanged engine report."
+    commands:
+      layout_map: "node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map"
+      era_report: "node .skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs ."
+    layout_map_exit_policy: "0 = no collisions, 1 = collisions listed, 2 = error"
+    layout_map_fields: [state, moves, alreadyMoved, collisions]
+    era_report_fields: [packetCount, signals.frontmatter.missing, signals.templateMarkers.legacy, signals.templateMarkers.none, signals.generatedMetadata.stub, signals.generatedMetadata.missing, signals.levelDocuments.mismatch, signals.layout.provenance.residueCount]
+    layout_source: "The layout line comes from the layout map state. The era report does not give it: the layout signal reads a v3 checkout whose specs is a symlink to .opencode/specs as v4, because it takes the alias as the absence of a legacy root."
+    pre_v4_signal_rule: "Pre-v4 signals are present when the sum of frontmatter.missing, templateMarkers.legacy, generatedMetadata.stub, generatedMetadata.missing, levelDocuments.mismatch and layout.provenance.residueCount is above zero. templateMarkers.none is shown but never triggers the rule."
+    routing:
+      v3: "A move is needed. Offer /doctor:update compat."
+      partial: "Both .opencode/specs and specs/ hold packets. Show the moves count and the alreadyMoved count, and recommend finishing the move with /doctor:update compat."
+      v4: "No move is needed. Offer /doctor:update compat --dry-run when pre-v4 signals are present; otherwise report that no compatibility action is needed."
+      none: "Report that no spec folders were found."
+      collisions: "Name the collision count and say that /doctor:update compat lists each collision and stops before any move."
+    failure_policy: "A command that exits 2 or prints unparseable JSON shows Compatibility: UNKNOWN with its stderr tail. A compatibility result never changes the release STATUS mapping."
+    mutation_rule: "Both commands are read-only, and this phase writes nothing."
+
+  phase_4_render_dashboard:
+    approval: none
+    render: "Unless --json was requested, use the presentation dashboard with release position, upstream latest or UNKNOWN, ahead/behind counts, per-unit status groups, and the presentation's 'Spec folder compatibility' block. When --json was requested, return the parsed engine report as JSON and do not add prose around it."
     grouping:
       quiet: "Combine current and local into one quiet line with both counts."
       separate: [update, new, customized, conflict, removed, blocked, downgrade, unknown]
     changelog: "Show available per-unit changelog highlights and mark missing highlights as unavailable."
     counts: "Compute unit counts by status from the units array; confirm counts.units equals the rendered row total and counts.files agrees with the file inventory. Preserve unknown unit values visibly."
 
-  phase_4_next_steps:
+  phase_5_next_steps:
     approval: none
     json_policy: "Do not append prose next steps when --json was requested."
     routing:
@@ -145,7 +168,7 @@ workflow:
       base_recording: "When baseRecording.needed is true (at least one unit with local files has baseSource inferred, none or recorded-unverified), ask the operator for the release the tree was installed from and name /doctor:update record-base --release=<installed-release> [--remote=<framework-remote>]. Recording writes the git-tracked .skilled/release/base.json, so it needs operator approval; check itself never runs it."
       no_changes: "Report that the selected units are current or local."
 
-  phase_5_terminal_status:
+  phase_6_terminal_status:
     approval: none
     fields: [command, start, end, duration_seconds, release, upstream_status, status_counts, final_status]
     report_status_mapping:

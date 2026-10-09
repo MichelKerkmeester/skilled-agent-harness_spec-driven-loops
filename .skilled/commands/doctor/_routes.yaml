@@ -308,8 +308,14 @@ standalone:
       record-base:
         yaml: doctor-update-record-base.yaml
         mutating: mutates
+      compat:
+        yaml: doctor-update-compat-action.yaml
+        mutating: mutates
+        trigger_phrases:
+          - "spec-kit version migration"
+          - "pre-v4 spec folder upgrade"
+          - "move .opencode/specs to specs"
     trigger_phrases:
-      - "spec-kit version migration"
       - "doctor update"
       - "update skills to latest release"
       - "release update"

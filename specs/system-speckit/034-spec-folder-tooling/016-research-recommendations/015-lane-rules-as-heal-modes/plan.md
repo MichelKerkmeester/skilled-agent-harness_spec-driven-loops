@@ -23,10 +23,10 @@ contextType: "general"
 | **Language/Stack** | Node.js CommonJS (`heal-spec-docs.cjs`) and ESM (`upgrade-legacy.mjs`) |
 | **Framework** | system-spec-kit CLI runtime, fixture-based tests |
 | **Storage** | Packet documents (spec.md, plan.md, implementation-summary.md, tasks.md) |
-| **Testing** | Vitest with fixtures from phase 13 lane briefs |
+| **Testing** | Vitest with inline fixtures. The phase 13 lane briefs name the rules |
 
 ### Overview
-Five new modes plug into `heal-spec-docs.cjs` discovery and `upgrade-legacy.mjs` repair sequence. Each mode reads packet evidence (anchors, links, frontmatter, spec.md) and applies a deterministic transformation only when the rule's derivability check passes. Tests prove both the positive case (transformation applied) and the negative (refusal) with fixtures from phase 13.
+Five new modes plug into `heal-spec-docs.cjs` discovery and `upgrade-legacy.mjs` repair sequence. Each mode reads packet evidence (anchors, links, frontmatter, spec.md) and applies a deterministic transformation only when the rule's derivability check passes. Tests prove both the positive case (transformation applied) and the negative (refusal) with inline fixtures.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -40,10 +40,10 @@ Five new modes plug into `heal-spec-docs.cjs` discovery and `upgrade-legacy.mjs`
 - [x] Dependencies identified (SH-01 anchor fix, SH-05 and SH-06 healer honesty)
 
 ### Definition of Done
-- [ ] All five modes implemented with derivability checks
-- [ ] Idempotence tests pass for each mode
-- [ ] Per-folder validation after apply confirms no contradictions
-- [ ] Docs updated: spec, plan, tasks, acceptance criteria, README
+- [x] All five modes implemented with derivability checks
+- [x] Idempotence tests pass for each mode
+- [x] Per-folder validation after apply confirms no contradictions
+- [x] Docs updated: spec, plan, tasks, acceptance criteria, README
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -56,9 +56,9 @@ Plugin modes in heal-spec-docs discovery. Each mode is independent, reads eviden
 
 ### Key Components
 - **Lane rule 2 (anchor-wrap)**: Matches section headings to the template's anchor ids and wraps anchors around the matching sections. Refuses when no template/heading match is derivable. Boundary: anchor numbering and un-nesting belong to sibling SH-11 (anchor-repair-mode).
-- **Lane rule 4 (link-repoint)**: Updates `[text](old-link)` to `[text](new-link)` when old link is broken and one unique new target exists, or removes only the link syntax when zero matches (keep text, repoint-or-unlink). Refuses if multiple matches.
-- **Lane rule 6 (continuity-placeholders)**: Detects scaffold placeholder in continuity fields (empty or template value), fills with fixed constants: `recent_action: "No continuity update was recorded"`, `next_safe_action: "None, the packet is archived"` (if in z_archive) or `"None recorded"` (else). Refuses if field contains an authored non-placeholder value.
-- **Lane rule 8 (level-from-spec)**: Derives level from the packet's own docs per folder-structure.md section 3 (reads spec.md structure), sets `level:` in frontmatter. Refuses when spec.md is unreadable or does not match a known folder structure.
+- **Lane rule 4 (link-repoint)**: Updates `[text](old-link)` to `[text](new-link)` when the old link is broken and exactly one indexed `.md` file ends with the link's last one or two path segments. Refuses on zero matches, on several matches and on an unresolved reference definition. It never unlinks: the unlink branch of the first design was not built (implementation-summary.md, Deviations 4). Scratch and memory folders are not candidates.
+- **Lane rule 6 (continuity-placeholders)**: Detects scaffold placeholder in continuity fields (empty or template value), fills with fixed constants: `recent_action: "No continuity update was recorded"`, `next_safe_action: "None, the packet is archived"` (if under a `z_archive` or `z_future` segment below the specs root) or `"None recorded"` (else). Refuses when only one of the two fields is a placeholder, because that pair is an edit in progress.
+- **Lane rule 8 (level-from-spec)**: Reads the `SPECKIT_LEVEL` markers in spec.md (and the inline `Level: N` form the validator reads) and writes `level: N` into the frontmatter when the markers agree. Refuses when spec.md is missing or has no marker, a malformed marker, or markers that disagree.
 - **Lane rule 9 (header-add)**: Adds a missing template header when section anchors match a template signature exactly. Refuses when no exact anchor match exists or template match is not derivable.
 
 ### Data Flow
@@ -99,8 +99,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Each mode's derivability check and transformation | Vitest with fixtures from phase 13 |
-| Integration | Full upgrade-legacy sequence with all five modes | Vitest with a corpus of failing packets |
+| Unit | Each mode's derivability check and transformation | Vitest with inline fixtures |
+| Integration | Full upgrade-legacy sequence with all five modes | Vitest with one failing packet. The corpus-scale second pass is AC-019 in acceptance-criteria.md |
 | Idempotence | Second run on a fixed packet changes nothing for each mode | Vitest: apply mode, re-validate same packet, assert zero changes |
 | Regression | Existing heal modes and upgrade-legacy behavior | Vitest full suite |
 <!-- /ANCHOR:testing -->

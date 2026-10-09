@@ -34,14 +34,14 @@ Fold remaining one-off repair logic (add-fm-fields.mjs logic, not in repo) into 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Frontmatter value-source order documented
-- [ ] Grouped-detail report format approved
-- [ ] One-off scripts identified
+- [x] Frontmatter value-source order documented (implementation-summary.md, Value source section)
+- [x] Grouped-detail report format approved (frozen as decision D2 in goal.md: the `### folder / x RULE` form, with the count added)
+- [x] One-off scripts identified (implementation-summary.md, Deviations item 10)
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing
-- [ ] Docs updated
+- [x] All acceptance criteria met (AC-001 to AC-004 Met in acceptance-criteria.md)
+- [x] Tests passing (whole-tree gate, see AC-004)
+- [ ] Docs updated (packet docs are updated; the changelog refresh under the parent is open)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -103,7 +103,7 @@ Follow the ordered tasks in `tasks.md`.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| SH-11 anchor repair mode | Internal | Being planned | Does not block this phase |
+| SH-11 anchor repair mode | Internal | Built in lane A, closes in its own phase | Does not block this phase |
 | Node.js 22+ | External | Available | Tests require Node environment |
 <!-- /ANCHOR:dependencies -->
 

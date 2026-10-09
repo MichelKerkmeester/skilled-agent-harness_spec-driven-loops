@@ -39,7 +39,7 @@
       "criteria"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,12 +47,19 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "runtime/scripts/run-tests.mjs",
       ".skilled/commands/doctor/assets/doctor-update-check.yaml",
-      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
       ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+      ".skilled/commands/doctor/_routes.yaml",
       ".skilled/commands/doctor/update.md",
+      ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/README.md",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts"
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+      "spec/README.md"
     ],
     "entities": [
       {
@@ -92,15 +99,21 @@
         "source": "derived"
       },
       {
+        "name": "run-tests.mjs",
+        "kind": "file",
+        "path": "runtime/scripts/run-tests.mjs",
+        "source": "derived"
+      },
+      {
         "name": "doctor-update-check.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/assets/doctor-update-check.yaml",
         "source": "derived"
       },
       {
-        "name": "_routes.yaml",
+        "name": "doctor-update-compat-action.yaml",
         "kind": "config",
-        "path": ".skilled/commands/doctor/_routes.yaml",
+        "path": ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
         "source": "derived"
       },
       {
@@ -110,9 +123,39 @@
         "source": "derived"
       },
       {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
         "name": "update.md",
         "kind": "doc",
         "path": ".skilled/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-compat.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-compat-integration.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/scripts/tests/README.md",
         "source": "derived"
       },
       {
@@ -162,47 +205,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern External",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Affected Surfaces",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`upgrade-legacy.mjs` exists and ships tests but no workflow, hook, or command calls it",
     "created_at": "2026-10-08T04:22:45Z",
-    "last_save_at": "2026-10-08T07:39:26.811Z",
+    "last_save_at": "2026-10-09T09:26:36.902Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:12f111b72cc44ad30a97cb2c3234b722a3a41e3d8c3a8efa510c646a0a9fd48e",
+    "source_fingerprint": "sha256:18c835438d4b0678c34a86b4b03c1954cd4b414fa6f9f4883dcdc347fa754152",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "589615b293b2cac74bc01f2729f59320090f49981e56fdff508ce1d03cf68a6e",
-      "plan.md": "6318e7b206615258f5e9c7db6ed9511c94ea27b2d7cead59469288a4be78db16",
-      "tasks.md": "d62cfa3785a4881026ee2d78c83a9c13a9fedb38ffa0c60aa86f83d604ec6244",
-      "implementation-summary.md": "04069e803d6ce7a888c65f860e0354ead58553af5b9905c0acbc63f34fff0569"
+      "spec.md": "e9aaf2568602e28fdd0c54719a08f0ab272863a5f2d717c7a493fa635f8a9936",
+      "plan.md": "6fda9cf131722271bf3f4a4a49f6d73fa78eef37adbeef44d8b6daefa4a7d5a7",
+      "tasks.md": "a2fe41379020d54415d2598ab5c1b1380673ce44e0cda36d3e9d1cdb0f465892",
+      "implementation-summary.md": "5b7d7fac64a5ac458a9749e87c0e415188016defb6460e449c45ec8803c5ce42"
     },
     "last_active_at": null
   }

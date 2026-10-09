@@ -46,7 +46,9 @@ const COMMAND_CONTRACT = JSON.parse(fs.readFileSync(
 const DOCTOR_CONTRACT = COMMAND_CONTRACT.families.doctor;
 
 function workflowPath(action) {
-  return path.join(ASSET_ROOT, 'doctor-update-' + action + '.yaml');
+  // The compat workflow file is named for what it does, not for the action token.
+  const workflowFiles = { compat: 'doctor-update-compat-action.yaml' };
+  return path.join(ASSET_ROOT, workflowFiles[action] || 'doctor-update-' + action + '.yaml');
 }
 
 function blockAfterKey(source, key) {

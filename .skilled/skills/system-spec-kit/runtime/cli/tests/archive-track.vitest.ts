@@ -70,6 +70,25 @@ function archive(args: string[]) {
   return spawnSync('bash', [archiveScript, ...args], { cwd: repo, encoding: 'utf8' });
 }
 
+// The repair resolves the validator and the metadata writer from the working
+// repository, so the round-trip cases link the real skill instead of copying
+// three scripts; the writer only accepts a workspace anchored on a .opencode
+// directory.
+function linkRealTools() {
+  fs.rmSync(path.join(repo, '.skilled'), { recursive: true, force: true });
+  fs.mkdirSync(path.join(repo, '.skilled', 'skills'), { recursive: true });
+  fs.symlinkSync(path.resolve(CLI_DIR, '..', '..'), path.join(repo, '.skilled', 'skills', 'system-spec-kit'), 'dir');
+  fs.mkdirSync(path.join(repo, '.opencode'));
+}
+
+function validate(relative: string) {
+  return spawnSync('bash', [path.join(repo, '.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh'), relative, '--strict'], { cwd: repo, encoding: 'utf8' });
+}
+
+function graphParentId(relative: string): string | null {
+  return JSON.parse(readMetadata(relative)).parent_id;
+}
+
 describe('archive.sh with tracks', () => {
   it('archives a track packet into its own track and drops it from the list', () => {
     trackRoot('tools', ['tools/001-a', 'tools/002-b']);
@@ -191,6 +210,19 @@ describe('archive.sh with tracks', () => {
     ]);
   });
 
+  it('still archives, and names the repair command, when the re-derive script is missing', () => {
+    trackRoot('tools', ['tools/001-a', 'tools/002-b']);
+    // Force the removal so the case holds whatever the fixture repo ships.
+    fs.rmSync(path.join(path.dirname(archiveScript), 'repair-derived.cjs'), { force: true });
+    const result = archive(['--force', 'specs/tools/002-b']);
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'tools', 'z_archive', '002-b', 'spec.md'))).toBe(true);
+    expect(result.stdout + result.stderr).toContain('were not re-derived');
+    expect(result.stdout + result.stderr).toContain('repair-derived.cjs --roots');
+    expect(result.stdout + result.stderr).not.toContain('may still name the old folder');
+    expect(children('tools')).toEqual(['tools/001-a']);
+  });
+
   it('still archives, and says so, when the writer is missing', () => {
     trackRoot('tools', ['tools/001-a', 'tools/002-b']);
     fs.rmSync(path.join(path.dirname(archiveScript), 'refresh-track-roots.mjs'));
@@ -274,5 +306,124 @@ describe('archive.sh with phases', () => {
     expect(result.stderr).toContain('not in archive directory');
     expect(fs.existsSync(path.join(specs, 'z_archive', '007-old', '001-y', 'spec.md'))).toBe(true);
     expect(fs.existsSync(path.join(specs, '001-y'))).toBe(false);
+  });
+});
+
+describe('archive.sh round trip with the real tools', () => {
+  it('archives, validates, restores and validates a fixture packet with the real tools', { timeout: 120_000 }, () => {
+    linkRealTools();
+    fs.cpSync(path.join(CLI_DIR, 'test-fixtures', '002-valid-level1'), path.join(specs, '001-valid'), { recursive: true });
+
+    const fresh = validate('specs/001-valid');
+    expect(fresh.status, fresh.stdout + fresh.stderr).not.toBe(0);
+    expect(fresh.stdout).not.toContain('RESULT: PASSED');
+
+    const archived = archive(['--force', 'specs/001-valid']);
+    expect(archived.status, archived.stdout + archived.stderr).toBe(0);
+    expect(archived.stdout + archived.stderr).not.toContain('may still name the old folder');
+    expect(archived.stdout + archived.stderr).not.toContain('were not re-derived');
+
+    const inArchive = validate('specs/z_archive/001-valid');
+    expect(inArchive.status, inArchive.stdout + inArchive.stderr).toBe(0);
+    expect(inArchive.stdout).toContain('RESULT: PASSED');
+
+    const restored = archive(['--restore', 'specs/z_archive/001-valid']);
+    expect(restored.status, restored.stdout + restored.stderr).toBe(0);
+    expect(restored.stdout + restored.stderr).not.toContain('may still name the old folder');
+    expect(restored.stdout + restored.stderr).not.toContain('were not re-derived');
+
+    const roundTripped = validate('specs/001-valid');
+    expect(roundTripped.status, roundTripped.stdout + roundTripped.stderr).toBe(0);
+    expect(roundTripped.stdout).toContain('RESULT: PASSED');
+  });
+
+  // A packet nested in the moved one carries the same stale paths as its parent,
+  // and the re-derive reaches both by walking the moved tree.
+  it('re-derives a packet nested in the moved one from its own path', { timeout: 120_000 }, () => {
+    linkRealTools();
+    fs.cpSync(path.join(CLI_DIR, 'test-fixtures', '002-valid-level1'), path.join(specs, 'tools', '001-parent'), { recursive: true });
+    fs.cpSync(path.join(CLI_DIR, 'test-fixtures', '002-valid-level1'), path.join(specs, 'tools', '001-parent', '002-child'), { recursive: true });
+
+    const fresh = validate('specs/tools/001-parent/002-child');
+    expect(fresh.status, fresh.stdout + fresh.stderr).not.toBe(0);
+    expect(fresh.stdout).not.toContain('RESULT: PASSED');
+
+    const archived = archive(['--force', 'specs/tools/001-parent']);
+    expect(archived.status, archived.stdout + archived.stderr).toBe(0);
+    expect(archived.stdout + archived.stderr).not.toContain('may still name the old folder');
+    expect(archived.stdout + archived.stderr).not.toContain('were not re-derived');
+
+    const archivedParent = validate('specs/tools/z_archive/001-parent');
+    expect(archivedParent.status, archivedParent.stdout + archivedParent.stderr).toBe(0);
+    expect(archivedParent.stdout).toContain('RESULT: PASSED');
+    const archivedChild = validate('specs/tools/z_archive/001-parent/002-child');
+    expect(archivedChild.status, archivedChild.stdout + archivedChild.stderr).toBe(0);
+    expect(archivedChild.stdout).toContain('RESULT: PASSED');
+    expect(graphParentId('tools/z_archive/001-parent/002-child')).toBe('tools/z_archive/001-parent');
+
+    const restored = archive(['--restore', 'specs/tools/z_archive/001-parent']);
+    expect(restored.status, restored.stdout + restored.stderr).toBe(0);
+    expect(restored.stdout + restored.stderr).not.toContain('may still name the old folder');
+    expect(restored.stdout + restored.stderr).not.toContain('were not re-derived');
+
+    const roundTrippedParent = validate('specs/tools/001-parent');
+    expect(roundTrippedParent.status, roundTrippedParent.stdout + roundTrippedParent.stderr).toBe(0);
+    expect(roundTrippedParent.stdout).toContain('RESULT: PASSED');
+    const roundTrippedChild = validate('specs/tools/001-parent/002-child');
+    expect(roundTrippedChild.status, roundTrippedChild.stdout + roundTrippedChild.stderr).toBe(0);
+    expect(roundTrippedChild.stdout).toContain('RESULT: PASSED');
+    expect(graphParentId('tools/001-parent/002-child')).toBe('tools/001-parent');
+  });
+
+  // An archived phase sits in z_archive, which is not a packet home, so it
+  // derives no parent; restoring it puts the parent packet back in its path.
+  it('re-derives an archived phase with no parent, then its parent packet again on restore', { timeout: 120_000 }, () => {
+    linkRealTools();
+    fs.cpSync(path.join(CLI_DIR, 'test-fixtures', '002-valid-level1'), path.join(specs, 'tools', '001-a'), { recursive: true });
+    fs.cpSync(path.join(CLI_DIR, 'test-fixtures', '002-valid-level1'), path.join(specs, 'tools', '001-a', '002-p'), { recursive: true });
+
+    const fresh = validate('specs/tools/001-a/002-p');
+    expect(fresh.status, fresh.stdout + fresh.stderr).not.toBe(0);
+    expect(fresh.stdout).not.toContain('RESULT: PASSED');
+
+    const archived = archive(['--force', 'specs/tools/001-a/002-p']);
+    expect(archived.status, archived.stdout + archived.stderr).toBe(0);
+    expect(archived.stdout + archived.stderr).not.toContain('may still name the old folder');
+
+    const inArchive = validate('specs/tools/001-a/z_archive/002-p');
+    expect(inArchive.status, inArchive.stdout + inArchive.stderr).toBe(0);
+    expect(inArchive.stdout).toContain('RESULT: PASSED');
+    expect(graphParentId('tools/001-a/z_archive/002-p')).toBeNull();
+
+    const restored = archive(['--restore', 'specs/tools/001-a/z_archive/002-p']);
+    expect(restored.status, restored.stdout + restored.stderr).toBe(0);
+    expect(restored.stdout + restored.stderr).not.toContain('may still name the old folder');
+
+    const roundTripped = validate('specs/tools/001-a/002-p');
+    expect(roundTripped.status, roundTripped.stdout + roundTripped.stderr).toBe(0);
+    expect(roundTripped.stdout).toContain('RESULT: PASSED');
+    expect(graphParentId('tools/001-a/002-p')).toBe('tools/001-a');
+  });
+
+  // The move never reads the packet's metadata, so a file the re-derive cannot
+  // parse survives the move and fails the step after it. The completed move
+  // stands: rerunning the repair, as the warning says, is the recovery.
+  it('reports a re-derive it could not complete and keeps the move that already happened', { timeout: 120_000 }, () => {
+    linkRealTools();
+    fs.cpSync(path.join(CLI_DIR, 'test-fixtures', '002-valid-level1'), path.join(specs, '001-valid'), { recursive: true });
+    const corrupt = '{\n';
+    fs.writeFileSync(path.join(specs, '001-valid', 'graph-metadata.json'), corrupt);
+
+    const archived = archive(['--force', 'specs/001-valid']);
+    expect(archived.status, archived.stdout + archived.stderr).toBe(0);
+    expect(archived.stdout + archived.stderr).toContain('may still name the old folder');
+    expect(archived.stdout + archived.stderr).not.toContain('were not re-derived');
+    expect(fs.existsSync(path.join(specs, 'z_archive', '001-valid', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, '001-valid'))).toBe(false);
+
+    const retry = spawnSync('node', [path.join(repo, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec', 'repair-derived.cjs'), '--roots', 'specs/z_archive/001-valid', '--apply'], { cwd: repo, encoding: 'utf8' });
+    expect(retry.status, retry.stdout + retry.stderr).toBe(2);
+    expect(retry.stdout).toContain('FAILED');
+    expect(fs.readFileSync(path.join(specs, 'z_archive', '001-valid', 'graph-metadata.json'), 'utf8')).toBe(corrupt);
   });
 });

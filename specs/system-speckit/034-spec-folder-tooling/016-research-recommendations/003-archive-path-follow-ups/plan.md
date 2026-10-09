@@ -34,14 +34,14 @@ Add a fixture test that archives a real packet with full metadata, restores it, 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 15 re-derive implementation is verified
-- [ ] Research recommendations section 7.4 archive policy is understood
-- [ ] All four tool code paths are identified
+- [x] Phase 15 re-derive implementation is verified (archive.sh:181-191 calls repair-derived; the round-trip case passes)
+- [ ] Research recommendations section 7.4 archive policy is understood (not re-read at closeout)
+- [x] All four tool code paths are identified (tasks.md T001-T009)
 
 ### Definition of Done
-- [ ] Fixture test passes and covers archive-restore-validate
-- [ ] Tool alignment: repair-derived, heal-spec-docs, migrate-generated-json, upgrade-legacy
-- [ ] All tests pass with no new failures
+- [x] Fixture test passes and covers archive-restore-validate (archive-track.vitest.ts:280-317; 18 passed at closeout. Closeout 3 (2026-10-09): the case is at `archive-track.vitest.ts:313-338` and the file passes 22 of 22)
+- [x] Tool alignment: repair-derived, heal-spec-docs, migrate-generated-json, upgrade-legacy (verified; only the heal-spec-docs.cjs comment changed)
+- [x] All tests pass with no new failures (tree3 whole-tree gate, 2026-10-09: the cli test exited 0 with 1752 tests passed and 0 failed). Closeout 2: re-cited to the tree4 gate, where cli-test.rc is 0 and the focused run of 8 files printed 152 tests passed, rc 0. The raw cli-test log holds no vitest totals, see acceptance-criteria.md AC-006. Closeout 3: re-cited to the tree5 gate, cli-test rc 0 on the tree before commit c2a0a667e9
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -73,9 +73,9 @@ Test-driven integration verification. The fixture test creates a real packet wit
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `repair-derived.cjs` FROZEN_TREES and comments | Policy owner on archive scope | Clarify current-location scope and remove freeze claim | Grep for "frozen" and "archive" in file |
-| `heal-spec-docs.cjs` archive skip and --folder flag | Conditional archive behavior | Document the policy and why --folder bypasses skip | Code path at lines 40 and 189 |
+| `heal-spec-docs.cjs` archive skip and --folder flag | Conditional archive behavior | Document the policy and why --folder bypasses skip | Code path at lines 66 and 746 (the SKIP_DIRS constant and the discover skip; 723 at closeout, 746 at closeout 3) |
 | `migrate-generated-json.ts` archive rewrite | Applies current-location semantics | Verify it aligns and add a comment citing the policy | Check walk and rewrite path |
-| `upgrade-legacy.mjs` archive test | Tests archive handling under upgrade | Verify test pins current-location behavior | Review test at tests/upgrade-legacy.vitest.ts:197-219 |
+| `upgrade-legacy.mjs` archive test | Tests archive handling under upgrade | Verify test pins current-location behavior | Review tests at tests/upgrade-legacy.vitest.ts:647-750 (361-433 at closeout; the archive cases moved after later edits to the file) |
 | Validator rules for archived packets | Demand current-location semantics | No change; they already validate by current path | `check-metadata-disk-consistency-helper.cjs` path comparison rule (line 99+) |
 
 Required inventories:
@@ -163,9 +163,9 @@ Update comments ──┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] All four tools audited and documented
-- [ ] Fixture test passes locally
-- [ ] Suite passes with no regressions
+- [x] All four tools audited and documented
+- [x] Fixture test passes locally
+- [x] Suite passes with no regressions (tree4 whole-tree gate, cli-test.rc 0, and tree5 cli-test.rc 0 at closeout 3, see acceptance-criteria.md AC-006)
 
 ### Rollback Procedure
 1. Revert the phase commits in order (newest first).

@@ -74,8 +74,8 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 |---------|--------------|--------|--------------|
 | `heal-spec-docs.cjs` | Reads and heals documents | Add anchor-repair mode | New mode alongside phrase mode |
 | `upgrade-legacy.mjs` | Runs repair steps in order | Add anchor-repair as a step. Add the un-nesting move to `repairArchived` and update the header comment | Calls the mode with --apply |
-| `upgrade-legacy.vitest.ts:208` | Pins that archived documents are never rewritten | Update to allow exactly the un-nesting marker move | Archived fixture: prose lines unchanged |
-| Tests: `heal-spec-docs.vitest.ts` | Covers phrase mode | Add anchor-repair tests | New test suite for three defect classes |
+| `upgrade-legacy.vitest.ts`, archived test "repairs only an archived packet's derived files and never rewrites its documents" | Pins that archived documents are never rewritten | Replaced by "un-nests only the questions anchor in an archived packet and leaves every prose line as written", which allows exactly the un-nesting marker move | Archived fixture: prose lines unchanged |
+| Tests: `heal-anchor-repair.vitest.ts` | Covers phrase mode | Add anchor-repair tests | New test suite for three defect classes |
 | Validator `ANCHORS_VALID` | Checks anchor pairing | Unchanged rule | Documents pass after repair |
 
 Required inventories:
@@ -83,6 +83,7 @@ Required inventories:
 - Anchor producers: only `create.sh` via template render.
 - Matrix axes: three defect classes (glued, fenced, nested questions), apply vs dry-run, success vs collision vs ambiguous.
 - Invariant: Anchors only move by recognized pattern. No prose or intended content changes. Dry-run writes nothing.
+- Closeout check (2026-10-09): the producer and consumer inventory found anchor writers beyond `create.sh`, namely heal-spec-docs.cjs `anchorWrap` and scaffold-debug-delegation.sh. See implementation-summary.md, Producer and consumer inventory.
 <!-- /ANCHOR:affected-surfaces -->
 
 

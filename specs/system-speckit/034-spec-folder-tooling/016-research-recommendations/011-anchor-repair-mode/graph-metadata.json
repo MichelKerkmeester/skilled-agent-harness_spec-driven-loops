@@ -39,7 +39,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -49,7 +49,18 @@
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts"
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/anchor-repair-sample.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/workflow-invariance.vitest.ts",
+      "cli/lib/anchor-generator.ts",
+      "extractors/file-extractor.ts",
+      "extractors/decision-extractor.ts",
+      "runtime/lib/validation/orchestrator.ts",
+      "runtime/cli/utils/template-structure.js",
+      "runtime/cli/lib/validator-registry.json",
+      "references/validation/validation-rules.md"
     ],
     "entities": [
       {
@@ -101,9 +112,75 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "heal-anchor-repair.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "anchor-repair-sample.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/anchor-repair-sample.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "upgrade-legacy.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-invariance.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/workflow-invariance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "anchor-generator.ts",
+        "kind": "code",
+        "path": "cli/lib/anchor-generator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "file-extractor.ts",
+        "kind": "code",
+        "path": "extractors/file-extractor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-extractor.ts",
+        "kind": "code",
+        "path": "extractors/decision-extractor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": "runtime/cli/utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "runtime/cli/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "validation-rules.md",
+        "kind": "doc",
+        "path": "references/validation/validation-rules.md",
         "source": "derived"
       },
       {
@@ -129,77 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Build",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Modular",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Document",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 13's one-off script `fix-dup-anchors.mjs` handled duplicate anchor pairs (two anchor copies in one document, paired by literal position)",
     "created_at": "2026-10-08T04:22:46Z",
-    "last_save_at": "2026-10-08T07:39:26.808Z",
+    "last_save_at": "2026-10-09T09:18:55.355Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d009f47c228148071c182d5c5b2d51cfa22f4d252e53b47feab101e008f24f66",
+    "source_fingerprint": "sha256:1c3048d17366c2358491717408303ceff4e6db4bf467b71d3568b7c77603d769",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "42a9b99469111a1ef563a9cbbce70b241b5ca03b7ae1d0620424e79ac1daa633",
-      "plan.md": "13f214bb892f1038dbddbf7560ece6e764cc754b0639c7b8645f14a0432bfb89",
-      "tasks.md": "fdf411704e9da2397fd3598aad4fb48a675ac923ec24f4351ef2ab23100ef1cf",
-      "implementation-summary.md": "23c3929d0ab39d7b18019ebb9500c0e47574f2a9cbc0fd5f81313768f6a1095f"
+      "spec.md": "8db9fd9b45b8f2256a15a20e1376c353404573c59eb7a1712c4d0a64cea4839c",
+      "plan.md": "a04a6754374695648d3c1157362715aa573c2353984a3fb09eb9677e5ed05c3d",
+      "tasks.md": "d8f08d5e8f1c44521d1f57142540532404a82fc052f06c131fedc02319c63f1c",
+      "implementation-summary.md": "e832c69b33c8d6766074fa556679d5463a9a26c59334b4b5fb1ad63ac2e6e9af"
     },
     "last_active_at": null
   }

@@ -88,6 +88,8 @@ External-facing command workflow with mandatory preview and approval steps.
 - **Approval flow**: Test with approval, cancellation, and dirty tree scenarios.
 - **Full integration**: A fixture v3 repo from check through apply to v4, all packets passing strict validation.
 
+**Closeout 2 note (2026-10-09).** The built tests cover the check, the layout map, the collision preview, the dirty and interrupted cases, a failed move step, and the integration run through preview, move, upgrade and validation. Three parts of the plan above are not covered by a test. The approval prompts and the cancel path are not exercised, since the suite replays the commands that follow each approval. The timing check on a 4,000-packet corpus was not run. The manual run on a real v3 repository stays open with the operator.
+
 ---
 
 <!-- ANCHOR:dependencies -->
@@ -95,10 +97,10 @@ External-facing command workflow with mandatory preview and approval steps.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 8 era report (`repo-era.mjs`) | Internal | Blocker | Compatibility check cannot show signals |
-| Phase 5 healer fix | Internal | Blocker | Doctor ships a tool that violates validator rules |
-| Phase 6 provenance fix | Internal | Blocker | Doctor ships invented template versions |
-| Phase 10 reversibility | Internal | Blocker | The action runs `upgrade-legacy --apply` with no undo record |
+| Phase 8 era report (`repo-era.mjs`) | Internal | Met (008 Complete) | Compatibility check cannot show signals |
+| Phase 5 healer fix | Internal | Met (005 Complete) | Doctor ships a tool that violates validator rules |
+| Phase 6 provenance fix | Internal | Met (006 Complete) | Doctor ships invented template versions |
+| Phase 10 reversibility | Internal | Met (010 Complete) | The action runs `upgrade-legacy --apply` with no undo record |
 | `upgrade-legacy.mjs` existing behavior | Internal | Green | Fail-closed apply, baseline recording, v3 detection already in place |
 | Node.js ES modules, Bash | External | Green | Standard runtime, no new setup |
 <!-- /ANCHOR:dependencies -->
@@ -134,10 +136,10 @@ External-facing command workflow with mandatory preview and approval steps.
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Compatibility check is read-only (no mutations)
-- [ ] Layout move is logged at each step for recovery
-- [ ] Collision detection tested on fixture paths
-- [ ] Before-image manifest requirement is enforced
+- [x] Compatibility check is read-only (no mutations): the unit suite runs both check commands and compares the fixture tree before and after (`doctor-update-compat.test.cjs`)
+- [x] Layout move is logged at each step for recovery: the action YAML defines the log fields and events, and the test pins them. The orchestrator writes the lines, so no live log was read
+- [x] Collision detection tested on fixture paths: `collisions stop the move and list both paths with their reasons`
+- [x] Before-image manifest requirement is enforced: the move refuses a dirty spec root, and the upgrade's manifest is written by upgrade-legacy (phase 010)
 
 ### Rollback Procedure
 1. User revert the commit or disable the compatibility action route.

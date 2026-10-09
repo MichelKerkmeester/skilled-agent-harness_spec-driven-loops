@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-08 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
@@ -141,7 +141,7 @@ Promote `fix-dup-anchors.mjs` into a permanent anchor-repair mode with dry-run t
 | Risk | Suffix collision is a subtle defect that may not surface until retrieval breaks | Med | Collision detection is deterministic and tested before any apply |
 | Risk | 549 documents are a large batch to un-nest in one fix | High | Batch the changes, validate each group separately, and keep before/after images for rollback |
 | Dependency | Phase 1 (SH-01) must be built first | The un-nesting target is the fixed template | Coordinate ordering: SH-01 ships before SH-11 starts |
-| Risk | Archived documents change for the first time | An archived record's marker lines move | Marker lines only, checked by a prose-identity test. The existing archived test in upgrade-legacy.vitest.ts:208 is updated to allow exactly this move |
+| Risk | Archived documents change for the first time | An archived record's marker lines move | Marker lines only, checked by a prose-identity test. The existing archived test in upgrade-legacy.vitest.ts (the one that pinned archived documents as never rewritten) is replaced by the un-nesting test, which allows exactly this move |
 | Dependency | Phase 13 waits on this phase | Nesting becomes an error only after this lands | Land this before 013's error step |
 <!-- /ANCHOR:risks -->
 

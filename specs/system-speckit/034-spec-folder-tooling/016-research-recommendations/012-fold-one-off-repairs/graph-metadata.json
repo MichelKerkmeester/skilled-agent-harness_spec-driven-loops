@@ -37,7 +37,7 @@
       "durable"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,7 +47,11 @@
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts"
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+      "spec/README.md",
+      "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/research.md",
+      "lib/frontmatter-migration.ts",
+      "spec/upgrade-legacy.mjs"
     ],
     "entities": [
       {
@@ -102,6 +106,12 @@
         "name": "upgrade-legacy.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "spec/README.md",
         "source": "derived"
       },
       {
@@ -187,17 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 13 used one-off scripts for repairs",
     "created_at": "2026-10-08T04:22:47Z",
-    "last_save_at": "2026-10-08T07:39:26.808Z",
+    "last_save_at": "2026-10-09T09:18:59.028Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd9050bb4388fd5ef5a67cce0d777368d0594e52006b04910364353c0c781aab",
+    "source_fingerprint": "sha256:e83af37711720853fcd8e326b58bad1f9b659ae847af1803444218c9b813011a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0df9577a614ffbd3a86247eafd1f966356b8c83652aaa6be5cdbfb313690e165",
-      "plan.md": "d0105f23cc73241c8ffaf514e41cd8b64076a77c2287bd9f81011e2c23b5c217",
-      "tasks.md": "67e0bec6c9c365c835b0508dcc360fd86c987918cdc293511c76e13538803b09",
-      "implementation-summary.md": "70240763c91ae94f7fef659f89dcb18c95d3616b431c81ec461d8ad67c7adbe8"
+      "spec.md": "f7ba6e86e25727ae5ff7eb9285d8cbde788561f24b9b059a8074649a62cb3f43",
+      "plan.md": "43f83efcbb3fff46a231c9a63bf53c9b5fa5c86f82c7d3b924280f8c5bb47535",
+      "tasks.md": "8908c81e6cb86212cbc00a905102be784c9982ce8e3304340e24c2a0165dd60d",
+      "implementation-summary.md": "fba8b27fc7bbe65a723538aa7398da5127af8124928801fab77fe918aa0be68a"
     },
     "last_active_at": null
   }

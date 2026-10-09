@@ -87,6 +87,10 @@ function isLegacyPhaseCleanupDebt(filePath: string): boolean {
 function isAllowedHit(hit: SurfaceHit, filePath: string, isExtra: boolean): boolean {
   const rel = relative(filePath);
   if (rel.includes('.opencode/specs/')) return true;
+  // Anchor-repair sample fixtures are frozen corpus data replayed verbatim by the repair test; their
+  // vocabulary is the corpus's own, not text this skill publishes, and rewriting it would stop the
+  // sample being faithful.
+  if (hit.surface.startsWith('.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/')) return true;
   if (rel.endsWith('.skilled/skills/system-spec-kit/templates/CONTRACT.md')) return true;
   if (rel.endsWith('.skilled/skills/system-spec-kit/templates/EXTENSION-GUIDE.md')) return true;
   if (rel.endsWith('.skilled/skills/system-spec-kit/templates/MIGRATION.md')) return true;

@@ -4,22 +4,29 @@
 
 // A tree written under the earlier rules can hold hundreds of spec folders that fail today's
 // validator. This command runs the repair tools over the failing ones in the order
-// that keeps each step's output valid input for the next: document edits first, derivation
-// last. No language model is involved. Whatever the tools cannot clear is recorded in the
-// packet's upgrade-baseline.json. The validator reports a recorded finding as a warning, and
-// any finding the file does not list stays an error, so a new mistake still fails.
+// that keeps each step's output valid input for the next: frontmatter fill, anchor repair,
+// healing, lane modes, and derivation last. No language model is involved. Whatever the
+// tools cannot clear is recorded in the packet's upgrade-baseline.json. The validator
+// reports a recorded finding as a warning, and any finding the file does not list stays an
+// error, so a new mistake still fails.
 //
-// Only packets that fail are touched. An archived packet's documents are history and are
-// never rewritten: only its derived fields, the recorded paths and the generated metadata,
+// Only packets that fail are touched. An archived packet's prose is history and is never
+// rewritten; moving the questions anchor opener, a marker line, is the one edit allowed
+// there, because a nested opener is an error and moving it keeps every word while the
+// anchors stay valid. Its derived fields, the recorded paths and the generated metadata,
 // are repaired so they name where it lives now. Dry by default; --apply writes.
 //
 // Usage:
 //   node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [--roots <dir>]... [--include-archive] [--apply]
+//   node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map
 //
-// Exit codes: 0 = every packet in scope passes,
-//             1 = dry run found failing packets,
-//             2 = a rejected argument, a failed step, or a packet still
-//                 failing after --apply.
+// --layout-map prints the planned v3-to-v4 move of the spec roots as JSON and
+// writes nothing.
+//
+// Exit codes: 0 = every packet in scope passes, or --layout-map found no collisions,
+//             1 = dry run found failing packets, or --layout-map found collisions,
+//             2 = a rejected argument, a failed step, a packet still failing
+//                 after --apply, or a layout map that could not be produced.
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -27,6 +34,7 @@
 import { execFile } from 'node:child_process';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
+import { createRequire } from 'node:module';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -96,8 +104,10 @@ const LIVE_RUN_CONTEXT = createRunContext(REPO, SKILL_ROOT);
 const BATCH = 100;
 
 // Archived and future trees hold finished work, so the default scope leaves
-// them alone and --include-archive opts in deliberately. Even then only their
-// derived fields are repaired, never what their documents say.
+// them alone and --include-archive opts in deliberately. Even then their prose
+// is left alone; moving the questions anchor opener, a marker line, is the one
+// document edit, because a nested opener is an error and moving it keeps every
+// word of the record while its anchors stay valid.
 const ARCHIVE_SEGMENTS = new Set(['z_archive', 'z_future']);
 
 // research and review runs keep copies of spec folders inside a packet
@@ -503,6 +513,40 @@ function printDowngrades(packets, findingsByFolder) {
   if (count === 0) process.stdout.write('  none\n');
 }
 
+// The per-packet failing lines name each blocking rule but not how many details
+// sit behind it, so this pairs every rule with its detail count for the packet
+// it blocks. A packet whose report could not be read is named too, so a summary
+// built from failures never quietly drops one.
+function printGroupedDetail(packets, reports) {
+  process.stdout.write('grouped detail:\n');
+  let count = 0;
+  for (const packet of packets) {
+    const relative = repoRelative(packet.folder);
+    const report = reports.get(packet.folder);
+    if (report === null) {
+      count += 1;
+      process.stdout.write(`### ${relative} / unreadable\n`);
+      continue;
+    }
+    if (!report || report.passed === true) continue;
+    count += 1;
+    const byRule = new Map();
+    for (const entry of report.entries) {
+      if (entry.status !== 'error') continue;
+      const details = entry.details.length > 0 ? entry.details : [entry.message];
+      byRule.set(entry.rule, [...(byRule.get(entry.rule) || []), ...details]);
+    }
+    for (const rule of [...byRule.keys()].sort()) {
+      const details = byRule.get(rule);
+      process.stdout.write(`### ${relative} / x ${rule} (${details.length})\n`);
+      for (const detail of details) {
+        process.stdout.write(`    - ${detail.replace(/\s+/gu, ' ').trim()}\n`);
+      }
+    }
+  }
+  if (count === 0) process.stdout.write('  none\n');
+}
+
 // Roots are resolved to real paths and deduplicated because some checkouts
 // symlink .opencode/specs at specs: walking both spellings would validate
 // every packet twice and count every failure twice. A supplied root is also
@@ -682,21 +726,27 @@ function batches(list) {
 // Adds the frontmatter keys a document lacks and never rewrites one it has.
 // The shared builder regenerates a whole block, which would replace authored
 // titles and reorder keys, so its output serves only as the source of values
-// for missing keys. It runs in a child process under the tsx loader, because
-// the builder is TypeScript and this command is plain Node, so it is written
-// to be serialized: everything it uses arrives as a parameter.
+// for missing keys. A missing value follows the document class's template
+// literal before the builder's runtime tables, so a filled document matches
+// what scaffolding writes. It runs in a child process under the tsx loader,
+// because the builder is TypeScript and this command is plain Node, so it is
+// written to be serialized: everything it uses arrives as a parameter.
 function fillMissingFrontmatter({ fs, path, lib }, templatesRoot, folders) {
   const canonical = (key) => key.toLowerCase().replace(/_/gu, '');
   const managed = new Set(['title', 'description', 'triggerphrases', 'importancetier', 'contexttype']);
   let failed = 0;
   for (const folder of folders) {
     for (const name of fs.readdirSync(folder)) {
-      if (!lib.SPEC_DOC_BASENAMES.has(name.toLowerCase())) continue;
+      // The template map also names the addon documents the spec-doc set never
+      // held, so their missing keys are filled from their own template defaults.
+      const eligible = lib.SPEC_DOC_BASENAMES.has(name.toLowerCase())
+        || lib.TEMPLATE_DOC_FILES.has(name.toLowerCase());
+      if (!eligible) continue;
       const file = path.join(folder, name);
       try {
         if (!fs.statSync(file).isFile()) continue;
         const original = fs.readFileSync(file, 'utf8');
-        const built = lib.buildFrontmatterContent(original, { templatesRoot }, file);
+        const built = lib.buildFrontmatterContent(original, { templatesRoot, templateLiteralDefaults: true }, file);
         if (built.malformedFrontmatter) {
           // A block the detector cannot read is left byte-identical, and the
           // run names it, because nothing else tells the user it was passed over.
@@ -746,11 +796,18 @@ const FILL_SCRIPT = [
   'fillMissingFrontmatter({ fs, path, lib }, templatesRoot, folders);',
 ].join('\n');
 
+// Use the context path so preview workspaces load the healer copied with their files.
+const requireFromScript = createRequire(import.meta.url);
+
+function healerFor(context) {
+  return requireFromScript(context.heal);
+}
+
 // Runs the repair tools over the packets that failed the first validation, in
 // an order that keeps each step's output valid input for the next: document
 // edits first, derivation last. Only these targets are touched, so a packet
 // that already passes is never rewritten.
-async function repairPackets(targets, context = LIVE_RUN_CONTEXT) {
+async function repairPackets(targets, context = LIVE_RUN_CONTEXT, refusalsByFolder = new Map()) {
   const failures = [];
   const silent = context.silent === true;
 
@@ -763,6 +820,32 @@ async function repairPackets(targets, context = LIVE_RUN_CONTEXT) {
       !silent,
     );
     if (why !== null) failures.push(why);
+  }
+
+  // Duplicate anchors and a nested questions opener are structural damage the
+  // healer cannot judge: it reads each anchor line as evidence, so the anchor
+  // set is repaired and final before the healer inspects it.
+  let anchorChanged = 0;
+  let anchorFailed = 0;
+  for (const target of targets) {
+    const relative = repoRelative(target);
+    try {
+      const spec = path.join(target, 'spec.md');
+      if (!fs.existsSync(spec)) continue;
+      const result = healerFor(context).repairAnchorFile(spec, { apply: true });
+      if (result.changed) anchorChanged += 1;
+      if (silent) continue;
+      for (const action of result.actions) process.stdout.write(`repaired ${repoRelative(spec)}: ${action}\n`);
+      for (const refusal of result.refusals) process.stdout.write(`left unchanged ${repoRelative(spec)}: ${refusal}\n`);
+    } catch (err) {
+      anchorFailed += 1;
+      failures.push(`${relative}: anchor-repair ${(err && err.message) || err}`);
+    }
+  }
+  if (!silent && targets.length > 0) {
+    process.stdout.write(anchorFailed === 0
+      ? `step anchor-repair: ok (${targets.length} packets, ${anchorChanged} changed)\n`
+      : `step anchor-repair: FAILED ${anchorFailed} of ${targets.length} packets\n`);
   }
 
   let next = 0;
@@ -788,6 +871,27 @@ async function repairPackets(targets, context = LIVE_RUN_CONTEXT) {
     ? `step heal-spec-docs: ok (${targets.length} packets)\n`
     : `step heal-spec-docs: FAILED ${failed} of ${targets.length} packets\n`);
 
+  // Lane modes are document edits too, so they run after the healer and before
+  // any derivation reads what the documents say. A refusal is a defect a mode
+  // cannot derive the fix for; it is kept for the baseline the caller records.
+  let laneRefused = 0;
+  let laneFailed = 0;
+  for (const target of targets) {
+    try {
+      const result = healerFor(context).runLaneModes(target, { apply: true, repoRoot: context.repoRoot });
+      refusalsByFolder.set(target, result.refusals);
+      laneRefused += result.refusals.length;
+    } catch (err) {
+      laneFailed += 1;
+      failures.push(`${repoRelative(target)}: lane modes: ${(err && err.message) || err}`);
+    }
+  }
+  if (!silent) {
+    process.stdout.write(laneFailed === 0
+      ? `step lane-modes: ok (${targets.length} packets, ${laneRefused} refusals)\n`
+      : `step lane-modes: FAILED ${laneFailed} of ${targets.length} packets\n`);
+  }
+
   for (const batch of batches(targets)) {
     const why = await runStep(
       'repair-derived',
@@ -812,11 +916,40 @@ async function repairPackets(targets, context = LIVE_RUN_CONTEXT) {
 }
 
 // An archived packet records where it lives now, like any other, so its derived
-// fields are repaired. The document steps are skipped: they fill frontmatter and
-// heal trigger phrases, which would rewrite a finished record.
+// fields are repaired. Frontmatter filling and healing are skipped because they
+// would rewrite a finished record. The questions anchor opener is a marker line
+// rather than prose, so moving it above its heading is allowed and keeps the
+// record intact while its anchors stay valid once nesting is an error.
 async function repairArchived(targets, context = LIVE_RUN_CONTEXT) {
   const failures = [];
   const silent = context.silent === true;
+
+  let anchorChanged = 0;
+  let anchorFailed = 0;
+  for (const target of targets) {
+    const relative = repoRelative(target);
+    try {
+      const spec = path.join(target, 'spec.md');
+      if (!fs.existsSync(spec)) continue;
+      const result = healerFor(context).unnestQuestionsAnchors(fs.readFileSync(spec, 'utf8'));
+      if (result.changed) {
+        healerFor(context).writeFileAtomic(spec, result.text);
+        anchorChanged += 1;
+      }
+      if (silent) continue;
+      for (const action of result.actions) process.stdout.write(`repaired ${repoRelative(spec)}: ${action}\n`);
+      for (const refusal of result.refusals) process.stdout.write(`left unchanged ${repoRelative(spec)}: ${refusal}\n`);
+    } catch (err) {
+      anchorFailed += 1;
+      failures.push(`${relative}: anchor-unnest ${(err && err.message) || err}`);
+    }
+  }
+  if (!silent && targets.length > 0) {
+    process.stdout.write(anchorFailed === 0
+      ? `step anchor-unnest (archived): ok (${targets.length} packets, ${anchorChanged} changed)\n`
+      : `step anchor-unnest (archived): FAILED ${anchorFailed} of ${targets.length} packets\n`);
+  }
+
   for (const batch of batches(targets)) {
     const why = await runStep(
       'repair-derived (archived)',
@@ -827,6 +960,24 @@ async function repairArchived(targets, context = LIVE_RUN_CONTEXT) {
     if (why !== null) failures.push(why);
   }
   return failures;
+}
+
+// The dry run has no repaired copy to read, so each packet's anchor repair is
+// predicted against the live documents. An archived packet predicts only the
+// questions-anchor un-nesting, the one document edit it would receive. It reads
+// only; --apply is what writes.
+function previewAnchorRepairs(packets, reports) {
+  const { repairAnchors, unnestQuestionsAnchors } = healerFor(LIVE_RUN_CONTEXT);
+  for (const packet of packets) {
+    const report = reports.get(packet.folder);
+    if (!report || report.passed === true) continue;
+    const spec = path.join(packet.folder, 'spec.md');
+    if (!fs.existsSync(spec)) continue;
+    const repair = packet.archived ? unnestQuestionsAnchors : repairAnchors;
+    const result = repair(fs.readFileSync(spec, 'utf8'));
+    for (const action of result.actions) process.stdout.write(`would repair ${repoRelative(spec)}: ${action}\n`);
+    for (const refusal of result.refusals) process.stdout.write(`would leave unchanged ${repoRelative(spec)}: ${refusal}\n`);
+  }
 }
 
 function copyPreviewAncestorFiles(folder, previewRoot) {
@@ -984,22 +1135,43 @@ function findingsOf(report, archived) {
   return findings;
 }
 
+// Refusals are written in the healer's own mode order, then by document and
+// reason, so the same run over the same tree writes the same array and the
+// unchanged check can compare equal.
+function sortRefusals(refusals) {
+  const order = new Map(healerFor(LIVE_RUN_CONTEXT).LANE_MODES.map((mode, index) => [mode.name, index]));
+  const rank = (refusal) => order.get(refusal.mode);
+  return [...refusals].sort((a, b) =>
+    rank(a) - rank(b)
+    || (a.document < b.document ? -1 : a.document > b.document ? 1 : 0)
+    || (a.reason < b.reason ? -1 : a.reason > b.reason ? 1 : 0));
+}
+
 // The validator reads the baseline from beside the packet's documents. A file
 // whose real parent resolves outside the roots would write into some other
 // tree, so that is refused loudly instead of recorded.
-function recordFindings(folder, findings, roots) {
+function recordFindings(folder, findings, roots, refusals = []) {
   const file = path.join(folder, BASELINE_FILE);
   const parent = fs.realpathSync(path.dirname(file));
   if (!roots.some((root) => contained(parent, root))) {
     throw new Error(`${SCRIPT}: refusing to record outside the roots: ${file}`);
   }
+  const sortedRefusals = refusals.length > 0 ? sortRefusals(refusals) : [];
   try {
     const existing = JSON.parse(fs.readFileSync(file, 'utf8'));
-    if (JSON.stringify(existing.findings) === JSON.stringify(findings)) return 'unchanged';
+    const storedRefusals = Array.isArray(existing.refusals) ? existing.refusals : [];
+    if (
+      JSON.stringify(existing.findings) === JSON.stringify(findings)
+      && JSON.stringify(storedRefusals) === JSON.stringify(sortedRefusals)
+    ) return 'unchanged';
   } catch {
     // A missing or malformed baseline simply gets rewritten below.
   }
+  // A refusal records a repair that was not attempted, so it is written beside
+  // the findings and never inside them: the validator relaxes every findings
+  // entry, and a repair nobody attempted is not a finding to relax.
   const body = { schema: 1, recordedBy: 'upgrade-legacy', recordedAt: new Date().toISOString(), findings };
+  if (sortedRefusals.length > 0) body.refusals = sortedRefusals;
   const tmp = `${file}.${process.pid}.tmp`;
   fs.writeFileSync(tmp, `${JSON.stringify(body, null, 2)}\n`);
   fs.renameSync(tmp, file);
@@ -1007,7 +1179,176 @@ function recordFindings(folder, findings, roots) {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 8. MAIN
+// 8. LAYOUT MAP
+// ───────────────────────────────────────────────────────────────────
+
+// A pre-v4 checkout keeps packets in .opencode/specs and tracks specs as a
+// symlink to it; a v4 checkout keeps them in specs and may keep the old path
+// working as a link back. The map is recomputed from disk on every call
+// because an interrupted move can leave either root in any state, and only
+// what is on disk now says which steps are still owed. Symlinks are compared
+// by realpath: the two roots point at each other once the layout is complete,
+// and the resolved target decides that, not the spelling of the link.
+
+const LEGACY_SPECS = '.opencode/specs';
+const CURRENT_SPECS = 'specs';
+
+function isAliasOf(side, real) {
+  return side.kind === 'symlink' && side.real !== null && side.real === real;
+}
+
+// lstat only, so a symlink stays a link rather than becoming its target; a
+// broken link resolves to nothing and can never alias the other root.
+function layoutRoot(target) {
+  let stat;
+  try {
+    stat = fs.lstatSync(target);
+  } catch (err) {
+    if (err && err.code === 'ENOENT') return { kind: 'absent', real: null };
+    throw err;
+  }
+  if (stat.isSymbolicLink()) {
+    let real = null;
+    try {
+      real = fs.realpathSync(target);
+    } catch {
+      // Nothing to compare, so the link cannot match the expected alias.
+    }
+    return { kind: 'symlink', real };
+  }
+  if (stat.isDirectory()) return { kind: 'directory', real: null };
+  if (stat.isFile()) return { kind: 'file', real: null };
+  return { kind: 'other', real: null };
+}
+
+function entryKind(target) {
+  const stat = fs.lstatSync(target);
+  if (stat.isSymbolicLink()) return 'symlink';
+  if (stat.isDirectory()) return 'directory';
+  if (stat.isFile()) return 'file';
+  return 'other';
+}
+
+function compareLayoutTrees(legacyDir, currentDir, legacyRel, currentRel, found) {
+  const read = (dir) => fs.readdirSync(dir)
+    .filter((name) => name !== '.DS_Store')
+    .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+  const legacyNames = read(legacyDir);
+  const currentNames = read(currentDir);
+  const legacyExact = new Set(legacyNames);
+  const currentExact = new Set(currentNames);
+  // The first name in sorted order answers a folded match, so two case
+  // variants in one directory still give the same map on every run.
+  const currentFolded = new Map();
+  for (const name of currentNames) {
+    const folded = name.toLowerCase();
+    if (!currentFolded.has(folded)) currentFolded.set(folded, name);
+  }
+  const legacyFolded = new Set(legacyNames.map((name) => name.toLowerCase()));
+
+  for (const name of legacyNames) {
+    const from = `${legacyRel}/${name}`;
+    if (currentExact.has(name)) {
+      const to = `${currentRel}/${name}`;
+      const legacyKind = entryKind(path.join(legacyDir, name));
+      const currentKind = entryKind(path.join(currentDir, name));
+      if (legacyKind === 'directory' && currentKind === 'directory') {
+        compareLayoutTrees(path.join(legacyDir, name), path.join(currentDir, name), from, to, found);
+      } else if ((legacyKind === 'file' || legacyKind === 'symlink') && legacyKind === currentKind) {
+        found.collisions.push({ from, to, reason: 'exists-in-both' });
+      } else {
+        found.collisions.push({ from, to, reason: 'type-mismatch' });
+      }
+      continue;
+    }
+    const foldedMatch = currentFolded.get(name.toLowerCase());
+    if (foldedMatch !== undefined) {
+      found.collisions.push({ from, to: `${currentRel}/${foldedMatch}`, reason: 'case-only-difference' });
+      continue;
+    }
+    found.moves.push({ from, to: `${currentRel}/${name}` });
+  }
+
+  for (const name of currentNames) {
+    if (legacyExact.has(name)) continue;
+    if (legacyFolded.has(name.toLowerCase())) continue;
+    found.alreadyMoved.push(`${currentRel}/${name}`);
+  }
+}
+
+// A partial tree holds packets on both sides, so the steps move the legacy-only
+// entries across, delete finder metadata and the then-empty legacy directories,
+// and put the old path back as a link. rmdir is the loud one on purpose: it
+// fails if the comparison missed a real entry, so nothing is silently dropped.
+function partialLayoutMove(legacyPath, currentPath) {
+  const found = { moves: [], alreadyMoved: [], collisions: [] };
+  compareLayoutTrees(legacyPath, currentPath, LEGACY_SPECS, CURRENT_SPECS, found);
+  found.moves.sort((a, b) => (a.from < b.from ? -1 : a.from > b.from ? 1 : 0));
+  found.alreadyMoved.sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+  found.collisions.sort((a, b) => (
+    a.from < b.from ? -1 : a.from > b.from ? 1
+      : a.to < b.to ? -1 : a.to > b.to ? 1
+        : a.reason < b.reason ? -1 : a.reason > b.reason ? 1 : 0
+  ));
+
+  const steps = [];
+  if (found.collisions.length === 0) {
+    found.moves.forEach((move, index) => {
+      steps.push({ id: `move-${index + 1}`, argv: ['mv', move.from, move.to] });
+    });
+    steps.push({ id: 'remove-finder-metadata', argv: ['find', LEGACY_SPECS, '-name', '.DS_Store', '-type', 'f', '-delete'] });
+    steps.push({ id: 'remove-empty-legacy-dirs', argv: ['find', LEGACY_SPECS, '-mindepth', '1', '-depth', '-type', 'd', '-empty', '-delete'] });
+    steps.push({ id: 'remove-legacy-root', argv: ['rmdir', LEGACY_SPECS] });
+    steps.push({ id: 'link-legacy-path', argv: ['ln', '-s', '../specs', LEGACY_SPECS] });
+  }
+  return { state: 'partial', ...found, steps };
+}
+
+function layoutRootCollision(legacy, current) {
+  const symlinked = legacy.kind === 'symlink' || current.kind === 'symlink';
+  return { from: LEGACY_SPECS, to: CURRENT_SPECS, reason: symlinked ? 'unexpected-symlink' : 'type-mismatch' };
+}
+
+/**
+ * Plan how the legacy layout should move within the repository.
+ *
+ * @param {string} repoRoot - Repository root containing the layouts.
+ * @returns {{
+ *   state: 'none' | 'v3' | 'v4' | 'partial',
+ *   moves: Array<{from: string, to: string}>,
+ *   alreadyMoved: string[],
+ *   collisions: Array<{from: string, to: string, reason: string}>,
+ *   steps: Array<{id: string, argv: string[]}>
+ * }}
+ */
+export function planLayoutMove(repoRoot) {
+  const legacyPath = path.join(repoRoot, '.opencode', 'specs');
+  const currentPath = path.join(repoRoot, 'specs');
+  const legacy = layoutRoot(legacyPath);
+  const current = layoutRoot(currentPath);
+  const nothing = { moves: [], alreadyMoved: [], collisions: [], steps: [] };
+
+  if (legacy.kind === 'absent' && current.kind === 'absent') {
+    return { state: 'none', ...nothing };
+  }
+  if (current.kind === 'directory' && (legacy.kind === 'absent' || isAliasOf(legacy, fs.realpathSync(currentPath)))) {
+    return { state: 'v4', ...nothing };
+  }
+  if (legacy.kind === 'directory' && (current.kind === 'absent' || isAliasOf(current, fs.realpathSync(legacyPath)))) {
+    const steps = [];
+    if (current.kind === 'symlink') steps.push({ id: 'remove-specs-link', argv: ['rm', '-f', CURRENT_SPECS] });
+    steps.push({ id: 'move-tree', argv: ['git', 'mv', LEGACY_SPECS, CURRENT_SPECS] });
+    steps.push({ id: 'link-legacy-path', argv: ['ln', '-s', '../specs', LEGACY_SPECS] });
+    return { state: 'v3', moves: [{ from: LEGACY_SPECS, to: CURRENT_SPECS }], alreadyMoved: [], collisions: [], steps };
+  }
+  if (legacy.kind === 'directory' && current.kind === 'directory') {
+    return partialLayoutMove(legacyPath, currentPath);
+  }
+  return { state: 'partial', ...nothing, collisions: [layoutRootCollision(legacy, current)] };
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 9. MAIN
 // ───────────────────────────────────────────────────────────────────
 async function main() {
   const { roots: given, includeArchive, apply } = parseArgs(process.argv.slice(2));
@@ -1091,7 +1432,14 @@ async function main() {
       }
     }
 
-    const failures = await repairPackets(failing.filter((packet) => !packet.archived).map((packet) => packet.folder));
+    // Lane-mode refusals are collected so the run can record them in each
+    // packet's baseline beside the findings that survive the repair.
+    const laneRefusalsByFolder = new Map();
+    const failures = await repairPackets(
+      failing.filter((packet) => !packet.archived).map((packet) => packet.folder),
+      LIVE_RUN_CONTEXT,
+      laneRefusalsByFolder,
+    );
     failures.push(...await repairArchived(failing.filter((packet) => packet.archived).map((packet) => packet.folder)));
 
     const mid = await validateAll(packets);
@@ -1102,19 +1450,26 @@ async function main() {
       // would hide the damage; it stays an error and is reported below.
       if (before.get(packet.folder).passed === true) continue;
       const report = mid.get(packet.folder);
-      if (report === null || report.passed === true) continue;
+      if (report === null) continue;
+      // A report that passes mid-run may still owe its pass to findings the
+      // previous baseline recorded, so those entries are carried over rather
+      // than dropped: findingsOf lists the fresh errors plus everything already
+      // recorded, and a baseline that stopped naming a recorded finding would
+      // flip it back to an error on the next run.
       const findings = findingsOf(report, packet.archived);
-      if (findings.length === 0) continue;
+      const refusals = laneRefusalsByFolder.get(packet.folder) || [];
+      if (findings.length === 0 && refusals.length === 0) continue;
       let outcome;
       try {
-        outcome = recordFindings(packet.folder, findings, roots);
+        outcome = recordFindings(packet.folder, findings, roots, refusals);
       } catch (err) {
         failures.push((err && err.message) || String(err));
         continue;
       }
       if (outcome === 'written') {
         recorded.push(packet);
-        process.stdout.write(`recorded ${path.relative(REPO, packet.folder)} (${findings.length} findings)\n`);
+        const refusalNote = refusals.length > 0 ? `, ${refusals.length} refusals` : '';
+        process.stdout.write(`recorded ${path.relative(REPO, packet.folder)} (${findings.length} findings${refusalNote})\n`);
       }
     }
 
@@ -1178,6 +1533,8 @@ async function main() {
       process.stdout.write(`  ${rule}: ${byRule.get(rule)}\n`);
     }
 
+    printGroupedDetail(packets, after);
+
     process.exitCode = failures.length > 0 || notPassing > 0 ? 2 : 0;
     return;
   }
@@ -1195,6 +1552,10 @@ async function main() {
     bad += 1;
     process.stdout.write(`failing ${shown}: ${failingRules(report).join(', ')}\n`);
   }
+
+  previewAnchorRepairs(packets, before);
+
+  printGroupedDetail(packets, before);
 
   let findingsByFolder;
   try {
@@ -1227,11 +1588,35 @@ async function main() {
   process.stdout.write(`  layout: ${layout.kind} (v3=${layout.v3}, v4=${layout.v4})\n`);
   process.stdout.write(`  frontmatter: present=${frontmatter.present} missing=${frontmatter.missing}\n`);
 
-  process.stdout.write('\n--apply would run: fill-frontmatter, heal-spec-docs, repair-derived, migrate-generated-json (archived packets: repair-derived only), then record the remaining findings in upgrade-baseline.json\n');
+  process.stdout.write('\n--apply would run: fill-frontmatter, anchor-repair, heal-spec-docs, lane-modes, repair-derived, migrate-generated-json (archived packets: questions-anchor un-nesting and repair-derived only), then record the remaining findings in upgrade-baseline.json\n');
   process.exitCode = bad > 0 ? 1 : 0;
 }
 
-main().catch((err) => {
-  process.stderr.write(`${SCRIPT} failed: ${(err && err.stack) || err}\n`);
-  process.exit(2);
-});
+// Node resolves the executed path through symlinks, so both sides are compared
+// by realpath: invoking the script through a linked path still starts the CLI,
+// while importing the module stays quiet. A missing argv[1] is not a direct run.
+function directRun() {
+  try {
+    return fs.realpathSync(process.argv[1]) === fs.realpathSync(fileURLToPath(import.meta.url));
+  } catch {
+    return false;
+  }
+}
+
+if (directRun()) {
+  if (process.argv.length === 3 && process.argv[2] === '--layout-map') {
+    try {
+      const layout = planLayoutMove(REPO);
+      process.stdout.write(`${JSON.stringify(layout, null, 2)}\n`);
+      process.exitCode = layout.collisions.length > 0 ? 1 : 0;
+    } catch (err) {
+      process.stderr.write(`${SCRIPT}: layout map failed: ${(err && err.message) || err}\n`);
+      process.exitCode = 2;
+    }
+  } else {
+    main().catch((err) => {
+      process.stderr.write(`${SCRIPT} failed: ${(err && err.stack) || err}\n`);
+      process.exit(2);
+    });
+  }
+}

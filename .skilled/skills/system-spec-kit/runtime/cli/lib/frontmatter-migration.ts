@@ -11,6 +11,7 @@
 // migration has to classify malformed legacy blocks the strict parser rejects,
 // and it must report each malformed shape separately to choose a repair.
 
+import * as fs from 'fs';
 import * as path from 'path';
 import { CANONICAL_CONTEXT_TYPES, IMPORTANCE_TIERS, LEGACY_CONTEXT_TYPE_ALIASES } from '@spec-kit/shared/context-types';
 import { resolveImportanceTier } from '../extractors/session-extractor.js';
@@ -65,10 +66,18 @@ export interface ManagedFrontmatter {
   contextType: string;
 }
 
+/** Represents the template literals a fill step copies when a value is missing. */
+interface TemplateLiteralDefaults {
+  importance_tier?: string;
+  contextType?: string;
+}
+
 /** Represents build frontmatter options. */
 export interface BuildFrontmatterOptions {
   templatesRoot: string;
   maxTitleLength?: number;
+  // Opt-in: fill missing values from the document class template before the runtime tables.
+  templateLiteralDefaults?: boolean;
 }
 
 /** Represents build frontmatter result. */
@@ -113,6 +122,40 @@ const SPEC_DOC_BASENAMES = new Set([
   'handover.md',
 ]);
 
+// Maps a document basename to the template that defines its shape. A fill step
+// reads the template's own importance_tier and contextType so a repaired
+// document lands on the values scaffolding would have written; the
+// document-class tables below predate the current templates and disagree with them.
+const TEMPLATE_DOC_FILES = new Map<string, string>([
+  ['spec.md', 'core/spec.md.tmpl'],
+  ['plan.md', 'core/plan.md.tmpl'],
+  ['tasks.md', 'core/tasks.md.tmpl'],
+  ['implementation-summary.md', 'core/implementation-summary.md.tmpl'],
+  ['decision-record.md', 'addons/decision-record.md.tmpl'],
+  ['research.md', 'addons/research.md.tmpl'],
+  ['handover.md', 'addons/handover.md.tmpl'],
+  ['goal.md', 'addons/goal.md.tmpl'],
+  ['acceptance-criteria.md', 'addons/acceptance-criteria.md.tmpl'],
+  ['resource-map.md', 'addons/resource-map.md.tmpl'],
+]);
+
+// Resolution order for a missing importance_tier or contextType:
+//   1. The value the document already carries — kept except that the legacy
+//      "decision" contextType is rewritten, "normal" importance yields to a
+//      non-default MEMORY METADATA or table tier, and for a memory document
+//      those two sources supersede its frontmatter importance_tier.
+//   2. With templateLiteralDefaults on, the literal readTemplateLiterals finds
+//      for the document class (TEMPLATE_DOC_FILES). The template comes before
+//      the memory metadata and these tables so a filled document reads like a
+//      fresh scaffold of its class — goal.md gets "important" and "planning"
+//      instead of the generic default.
+//   3. For memory documents, the MEMORY METADATA block and its Importance Tier
+//      and Context Type tables.
+//   4. The tables below; a memory importance_tier with no other source is
+//      derived by the session-tier detector instead, so the table's memory
+//      entry never applies.
+// The option is opt-in because callers that predate it were written against the
+// table defaults and still expect them.
 const DOC_DEFAULT_IMPORTANCE: Record<string, string> = {
   spec: 'important',
   plan: 'important',
@@ -865,6 +908,66 @@ function normalizeContextType(rawValue: string | null | undefined): string | nul
   return null;
 }
 
+const TEMPLATE_LITERAL_CACHE = new Map<string, TemplateLiteralDefaults>();
+
+/**
+ * Read the importance tier and context type a document class's template
+ * declares. A missing value is filled from the template in preference to the
+ * runtime tables, so a repaired document matches a scaffolded one; an unreadable
+ * or unmapped template yields no literals and leaves the caller's fallback in charge.
+ */
+function readTemplateLiterals(templatesRoot: string, basename: string): TemplateLiteralDefaults {
+  const relativePath = TEMPLATE_DOC_FILES.get(lower(basename));
+  if (!relativePath) {
+    return {};
+  }
+
+  const templatePath = path.resolve(templatesRoot, relativePath);
+  const cached = TEMPLATE_LITERAL_CACHE.get(templatePath);
+  if (cached) {
+    return { ...cached };
+  }
+
+  let raw: string;
+  try {
+    raw = fs.readFileSync(templatePath, 'utf8');
+  } catch {
+    return {};
+  }
+
+  const literals: TemplateLiteralDefaults = {};
+  const lines = raw.replace(/\r/g, '').split('\n');
+  const openingIndex = lines.findIndex((line) => line.trim() === '---');
+
+  if (openingIndex !== -1) {
+    for (let index = openingIndex + 1; index < lines.length; index += 1) {
+      const line = lines[index].trim();
+      if (line === '---') {
+        break;
+      }
+
+      const importanceMatch = line.match(/^importance_tier:\s*"([^"]*)"/);
+      if (importanceMatch) {
+        const normalized = normalizeImportanceTier(importanceMatch[1]);
+        if (normalized) {
+          literals.importance_tier = normalized;
+        }
+      }
+
+      const contextMatch = line.match(/^contextType:\s*"([^"]*)"/);
+      if (contextMatch) {
+        const normalized = normalizeContextType(contextMatch[1]);
+        if (normalized) {
+          literals.contextType = normalized;
+        }
+      }
+    }
+  }
+
+  TEMPLATE_LITERAL_CACHE.set(templatePath, literals);
+  return { ...literals };
+}
+
 function normalizeTriggerPhrases(value: FrontmatterValue | undefined): string[] {
   if (!value) {
     return [];
@@ -1029,7 +1132,8 @@ function inferTriggerPhrases(
 function inferImportanceTier(
   content: string,
   existingTier: string | null,
-  classification: ClassifiedDocument
+  classification: ClassifiedDocument,
+  templateImportanceTier?: string
 ): string {
   if (existingTier) {
     if (existingTier === 'normal') {
@@ -1046,6 +1150,10 @@ function inferImportanceTier(
       }
     }
     return existingTier;
+  }
+
+  if (templateImportanceTier) {
+    return templateImportanceTier;
   }
 
   if (classification.kind === 'memory') {
@@ -1133,10 +1241,17 @@ function resolveManagedImportanceTier(
   content: string,
   existingTier: string | null,
   classification: ClassifiedDocument,
-  contextType: string
+  contextType: string,
+  templateImportanceTier?: string
 ): string {
   if (classification.kind !== 'memory') {
-    return inferImportanceTier(content, existingTier, classification);
+    return inferImportanceTier(content, existingTier, classification, templateImportanceTier);
+  }
+
+  // A memory document with no authored tier follows its class template before
+  // it follows the document's own MEMORY METADATA.
+  if (!existingTier && templateImportanceTier) {
+    return templateImportanceTier;
   }
 
   const metadataTier = extractMemoryMetadataImportanceTier(content);
@@ -1219,13 +1334,18 @@ function syncMemoryMetadataTriggerPhrases(content: string, triggerPhrases: strin
 function inferContextType(
   content: string,
   existingContext: string | null,
-  classification: ClassifiedDocument
+  classification: ClassifiedDocument,
+  templateContextType?: string
 ): string {
   // For spec docs, override legacy "decision" contextType with the correct default.
   // "decision" was previously the default for spec/plan/decision-record docs but
   // is not a valid consumer value — downstream indexers expect implementation/planning/research/general.
   if (existingContext && existingContext !== 'decision') {
     return existingContext;
+  }
+
+  if (templateContextType) {
+    return templateContextType;
   }
 
   if (classification.kind === 'memory') {
@@ -1269,7 +1389,8 @@ export function buildManagedFrontmatter(
   content: string,
   sections: FrontmatterSection[],
   classification: ClassifiedDocument,
-  maxTitleLength: number = TITLE_MAX_LENGTH
+  maxTitleLength: number = TITLE_MAX_LENGTH,
+  templateLiterals?: TemplateLiteralDefaults
 ): ManagedFrontmatter {
   const existingTitleValue = sectionValueByKeys(sections, ['title']);
   const existingDescriptionValue = sectionValueByKeys(sections, ['description']);
@@ -1299,12 +1420,13 @@ export function buildManagedFrontmatter(
 
   const description = inferDescription(content, existingDescription, classification);
   const trigger_phrases = inferTriggerPhrases(title, existingTriggers, classification);
-  const contextType = inferContextType(content, existingContext, classification);
+  const contextType = inferContextType(content, existingContext, classification, templateLiterals?.contextType);
   const importance_tier = resolveManagedImportanceTier(
     content,
     existingTier,
     classification,
-    contextType
+    contextType,
+    templateLiterals?.importance_tier
   );
 
   return {
@@ -1385,11 +1507,15 @@ export function buildFrontmatterContent(
   const classification = classifyDocument(filePath, templatesRoot);
   const detection = detectFrontmatter(originalContent);
   const existingSections = detection.found ? detection.sections : [];
+  const templateLiterals = options.templateLiteralDefaults
+    ? readTemplateLiterals(templatesRoot, path.basename(filePath))
+    : undefined;
   const managed = buildManagedFrontmatter(
     originalContent,
     existingSections,
     classification,
-    maxTitleLength
+    maxTitleLength,
+    templateLiterals
   );
 
   if (detection.malformed) {
@@ -1437,4 +1563,5 @@ export function buildFrontmatterContent(
 export {
   TITLE_MAX_LENGTH,
   SPEC_DOC_BASENAMES,
+  TEMPLATE_DOC_FILES,
 };

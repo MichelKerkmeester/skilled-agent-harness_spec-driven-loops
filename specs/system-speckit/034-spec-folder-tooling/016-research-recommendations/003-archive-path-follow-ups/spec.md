@@ -20,7 +20,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-08 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
@@ -189,7 +189,14 @@ Verify that archived and restored packets pass strict validation end-to-end, and
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- None. Phase 14 research recommended current-location semantics and the operator approved it.
+None open. Phase 14 research recommended current-location semantics and the operator approved it.
+
+Settled during the build:
+
+- **The round-trip case links the real skill.** `archive.sh` runs `repair-derived.cjs` and the validator from the working repository, so the case replaces the throwaway repository's copied scripts with a symlink to the real skill (`archive-track.vitest.ts:80`, closeout 3; the first-pass lines 286-288 predate the test round). The graph backfill refuses a target outside a configured specs root (`backfill-graph-metadata.ts:309-314`), and the root guard counts a root only when its workspace is anchored on a real `.opencode` directory (`graph-metadata-parser.ts:1797-1799`), so the case also creates an empty `.opencode` directory (`archive-track.vitest.ts:81`, closeout 3; the first-pass line 289 predates the test round).
+- **The SKIP_DIRS policy is a comment, not a code change.** The archive rationale sits above `SKIP_DIRS` in `heal-spec-docs.cjs` (lines 54-65); the set itself is unchanged (line 66). The final review found that the comment did not state the `--folder` bypass, so the comment now says so.
+- **Two files changed; four are verify-only.** The four tools' comments already matched current-location semantics when the build ran, so only the test file and the `heal-spec-docs.cjs` comment changed.
+- **The test round added edge and failure cases, not scope.** Closeout 2 found four more cases in `archive-track.vitest.ts`, at lines 213, 342, 380 and 411: a packet nested in the moved one, an archived phase and its restore, and the two failure branches of `rederive_moved`. The archived and restored track packet parent cases stay untested (tasks.md CHK-022). The round-trip case now sits at lines 313-338 (closeout 3; the earlier 312-338 range began at its describe) because the shared helpers moved above it and one new case sits in the tracks block, see implementation-summary.md.
 
 <!-- /ANCHOR:questions -->
 

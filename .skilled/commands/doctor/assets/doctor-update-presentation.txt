@@ -1,6 +1,6 @@
 # /doctor:update Presentation Contract
 
-This file is the single source of truth for user-facing wording and layout in `/doctor:update check`, `align`, `apply`, `rollback` and `record-base`. The router owns argument parsing and action routing. Each workflow YAML owns execution behavior.
+This file is the single source of truth for user-facing wording and layout in `/doctor:update check`, `align`, `apply`, `compat`, `rollback` and `record-base`. The router owns argument parsing and action routing. Each workflow YAML owns execution behavior.
 
 ## 1. Action and Flag Errors
 
@@ -8,7 +8,7 @@ This file is the single source of truth for user-facing wording and layout in `/
 
 ```text
 ERROR: /doctor:update does not recognize action "[action]".
-Choose check, align, apply, rollback or record-base.
+Choose check, align, apply, compat, rollback or record-base.
 No workflow was started.
 ```
 
@@ -27,6 +27,7 @@ Accepted flags by action:
 | check | `--json`, `--release=<tag>`, `--scope=all|<unit-key,...>`, `--offline`, `--include-prerelease`, `--remote=<name-or-url>` |
 | align | `--release=<tag>`, `--scope=all|<unit-key,...>`, `--offline`, `--dry-run`, `--include-prerelease`, `--remote=<name-or-url>` |
 | apply | `--decisions=<path>`, `--dry-run`, `--release=<tag>`, `--scope=all|<unit-key,...>`, `--include-prerelease`, `--offline`, `--remote=<name-or-url>` |
+| compat | `--dry-run`, `--offline` |
 | rollback | `--run=<runDir>`, `--dry-run` |
 | record-base | `--release=<tag>`, `--remote=<name-or-url>`, `--scope=all|<unit-key,...>`, `--offline`, `--include-prerelease`, `--trust-release`, `--dry-run` |
 
@@ -101,6 +102,31 @@ If the report is unknown, end with:
 
 ```text
 Upstream status is UNKNOWN. The report cannot confirm that this checkout is current.
+```
+
+### Spec folder compatibility
+
+Unless `--json` was requested, show the compatibility result with the check dashboard. A command that exits 2 or prints unparseable JSON shows `Compatibility: UNKNOWN` with its stderr tail.
+
+```text
+Spec Folder Compatibility
+Layout: [v3|partial|v4|none|UNKNOWN]
+Packets: [packetCount]
+Pre-v4 signals: frontmatter missing [n], legacy template markers [n], no template marker [n], generated metadata stub or missing [n], level document mismatch [n], description.json legacy paths [n]
+Move: [needed, [n] entries | finish the move: [n] to move, [n] already moved | not needed | blocked, [n] collisions]
+Next: [compatibility next step]
+```
+
+Add the matching next-step line:
+
+```text
+A move is needed: [move count] entries. Run /doctor:update compat to review them and approve the move.
+Both .opencode/specs and specs/ hold packets: [to move] to move, [already moved] already moved. Run /doctor:update compat to finish the move.
+Pre-v4 signals are present: [signal counts]. Run /doctor:update compat --dry-run to preview the legacy upgrade without writing.
+No move is needed and no pre-v4 signals were found. No compatibility action is needed.
+No spec folders were found.
+Collisions: [count]. /doctor:update compat lists each collision and stops before any move.
+Compatibility: UNKNOWN. [stderr tail]
 ```
 
 ## 3. Align Evidence Cards and Decision Batches
@@ -426,6 +452,7 @@ Doctor Update Check
 Release: [release or UNKNOWN]
 Upstream latest: [tag or UNKNOWN]
 Unit counts: [status counts]
+Compatibility layout: [v3|partial|v4|none|UNKNOWN|skipped]
 STATUS=[OK|UNKNOWN|FAILED]
 ```
 
@@ -465,6 +492,141 @@ STATUS=FAILED ERROR="[sanitized error]"
 Action: [check|align|apply]
 State record: [validated path or not persisted for this action]
 Next: [safe next step]
+```
+
+## 10. Compatibility Action
+
+### Compatibility preview
+
+Show the layout and every planned move before any write:
+
+```text
+Spec Folder Compatibility Preview
+Layout: [v3|partial|v4|none]
+
+| From | To |
+|------|----|
+| [from] | [to] |
+
+Already moved: [paths or none]
+
+| From | To | Reason |
+|------|----|--------|
+| [from] | [to] | [reason] |
+
+Collisions block the move. Resolve each one, then run /doctor:update compat again.
+```
+
+### Compatibility refusals
+
+Show the matching refusal and stop before any write.
+
+```text
+The release apply lock is held. The layout move runs no command until the release transaction finishes.
+Owner: process [pid] ([command]), started [startedAt]
+State: [running, stale or unreadable]
+Wait for the release update to finish, clear a stale lock with /doctor:update rollback, or remove an unreadable lock by hand, then run /doctor:update compat again.
+```
+
+```text
+Units must finish their release update before the layout move: [unit keys].
+Run /doctor:update apply first.
+```
+
+```text
+These spec roots have uncommitted changes:
+[paths]
+The move keeps no before-image. Commit or stash these changes, then run /doctor:update compat again.
+```
+
+```text
+upgrade-legacy refused to write its manifest:
+[verbatim stderr]
+```
+
+### Interrupted run
+
+When the move log shows a run that never reached move-complete, report where it stopped:
+
+```text
+A previous compatibility run stopped after [step]. Done: [steps]. Remaining: [steps].
+```
+
+### Move approval
+
+Ask once for the displayed move steps:
+
+```text
+Move the spec tree as listed? Reply yes to run [n] steps, or no to leave the tree unchanged.
+```
+
+### Move step log
+
+Print one line per step as it runs, then the log path:
+
+```text
+Step [i]/[n] [id]: [started|done|failed]
+Move log: [git-dir]/doctor-update-compat.log.jsonl
+```
+
+### Upgrade preview and approval
+
+Show the dry-run failing count and the Downgrades output:
+
+```text
+Upgrade preview: [failing count] of [total] packets fail.
+Downgrades:
+  [downgrade line or none]
+```
+
+After a move the spec tree is dirty, so upgrade-legacy stores a before-image of each changed file in [git-dir]/upgrade-legacy.manifest.json before its first change. Committing the move first leaves the tree clean and keeps that record small.
+
+```text
+Run upgrade-legacy --apply on these packets? Reply yes or no.
+```
+
+### Failed packets
+
+Show each failing or unreadable packet with its rules, then:
+
+```text
+still failing [path]: [rules]
+unreadable [path]: [reason]
+Run /doctor:update compat again to continue. For archived packets run node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --include-archive --apply, or review the packet by hand.
+```
+
+### Compatibility rollback
+
+Undo the move by reversing its logged steps from the newest to the oldest:
+
+```text
+link-legacy-path -> rm .opencode/specs
+remove-legacy-root -> mkdir .opencode/specs
+move-tree -> git mv specs .opencode/specs
+remove-specs-link -> ln -s .opencode/specs specs
+mv <from> <to> -> mkdir -p "$(dirname <from>)" && mv <to> <from>
+remove-empty-legacy-dirs -> mkdir -p "$(dirname <from>)" before each reverse move
+```
+
+Undo the upgrade from its manifest:
+
+```text
+Restore the beforeImages in [git-dir]/upgrade-legacy.manifest.json as the "Recover an Interrupted Apply" section of .skilled/skills/system-spec-kit/runtime/cli/spec/README.md shows, or use git restore when the tree was clean before the upgrade.
+```
+
+### Compatibility result
+
+```text
+Doctor Update Compatibility
+Layout: [before] -> [after]
+Moved: [paths or none]
+Already moved: [paths or none]
+Upgrade: passing [before]/[total] -> [after]/[total] or not run
+Still failing: [paths or none]
+Move log: [git-dir]/doctor-update-compat.log.jsonl
+Upgrade manifest: [path or none]
+Rollback: [not needed | reverse the move log | restore the upgrade manifest]
+STATUS=[COMPATIBLE|UPGRADED|PARTIAL|BLOCKED|DRY_RUN|DECLINED|CANCELLED|FAILED]
 ```
 
 End interactive presentations with: `What would you like to do next?`

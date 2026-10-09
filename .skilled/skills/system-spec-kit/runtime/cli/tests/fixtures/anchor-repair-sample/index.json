@@ -1,0 +1,257 @@
+{
+  "seed": 20261008,
+  "nameMaxLength": 180,
+  "drawnFromCommit": "02cc1fb94824df6764e0701433df3460b249c09e",
+  "documents": {
+    "specs_agents_009-turn-closeout-next-steps_001-deep-research_spec.md": {
+      "source": "specs/agents/009-turn-closeout-next-steps/001-deep-research/spec.md",
+      "kind": "repairable"
+    },
+    "specs_agents_009-turn-closeout-next-steps_002-decision-and-design_spec.md": {
+      "source": "specs/agents/009-turn-closeout-next-steps/002-decision-and-design/spec.md",
+      "kind": "repairable"
+    },
+    "specs_agents_009-turn-closeout-next-steps_006-synthesis-presentation_spec.md": {
+      "source": "specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/spec.md",
+      "kind": "repairable"
+    },
+    "specs_cli-external-orchestration_071-cli-hermes-creation_001-deep-research_spec.md": {
+      "source": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/spec.md",
+      "kind": "repairable"
+    },
+    "specs_cli-external-orchestration_071-cli-hermes-creation_012-runtime-surface-parity-research_spec.md": {
+      "source": "specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/spec.md",
+      "kind": "repairable"
+    },
+    "specs_cli-external-orchestration_z_archive_021-cli-gemini-deprecation_001-runtime-surface-and-skill-deletion_spec.md": {
+      "source": "specs/cli-external-orchestration/z_archive/021-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion/spec.md",
+      "kind": "repairable"
+    },
+    "specs_cli-external-orchestration_z_archive_030-cli-cursor-creation_009-cursor-hooks-lifecycle_004-hooks-manual-testing-results_spec.md": {
+      "source": "specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/009-cursor-hooks-lifecycle/004-hooks-manual-testing-results/spec.md",
+      "kind": "repairable"
+    },
+    "specs_cli-external-orchestration_z_archive_043-roster-update-luna-deepseek-glm-gemini_001-gpt-5-6-luna-max_spec.md": {
+      "source": "specs/cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/001-gpt-5-6-luna-max/spec.md",
+      "kind": "repairable"
+    },
+    "specs_cli-jev_003-cli-jev-workflow-integration_047-measure-every-jev-feature_spec.md": {
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/spec.md",
+      "kind": "repairable"
+    },
+    "specs_cli-jev_003-cli-jev-workflow-integration_055-alignment-and-hook-parity_spec.md": {
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/055-alignment-and-hook-parity/spec.md",
+      "kind": "repairable"
+    },
+    "specs_sk-communication_001-sk-communication-creation_027-evaluation-and-release-gate_spec.md": {
+      "source": "specs/sk-communication/001-sk-communication-creation/027-evaluation-and-release-gate/spec.md",
+      "kind": "repairable"
+    },
+    "specs_sk-communication_006-sk-communication-clarity_010-review-remediation_spec.md": {
+      "source": "specs/sk-communication/006-sk-communication-clarity/010-review-remediation/spec.md",
+      "kind": "repairable"
+    },
+    "specs_sk-design_018-sk-design-parent-v2_001-sk-create-chart_002-translation-and-voice_spec.md": {
+      "source": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/002-translation-and-voice/spec.md",
+      "kind": "repairable"
+    },
+    "specs_sk-design_019-sk-design-diagram-upgrade_006-capture-and-judgment_spec.md": {
+      "source": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/spec.md",
+      "kind": "repairable"
+    },
+    "specs_sk-design_019-sk-design-diagram-upgrade_007-manual-review-remediation_spec.md": {
+      "source": "specs/sk-design/019-sk-design-diagram-upgrade/007-manual-review-remediation/spec.md",
+      "kind": "repairable"
+    },
+    "specs_sk-design_z_archive_005-design-md-generator_spec.md": {
+      "source": "specs/sk-design/z_archive/005-design-md-generator/spec.md",
+      "kind": "repairable"
+    },
+    "specs_sk-design_z_archive_011-sk-design-styles-utilization_009-foundations-motion_spec.md": {
+      "source": "specs/sk-design/z_archive/011-sk-design-styles-utilization/009-foundations-motion/spec.md",
+      "kind": "repairable"
+    },
+    "specs_sk-design_z_archive_014-template-conformance_005-design-mcp-open-design_003-fixtures_spec.md": {
+      "source": "specs/sk-design/z_archive/014-template-conformance/005-design-mcp-open-design/003-fixtures/spec.md",
+      "kind": "repairable"
+    },
+    "specs_sk-design_z_archive_014-template-conformance_005-design-mcp-open-design_009-changelog_spec.md": {
+      "source": "specs/sk-design/z_archive/014-template-conformance/005-design-mcp-open-design/009-changelog/spec.md",
+      "kind": "repairable"
+    },
+    "specs_sk-design_z_archive_014-template-conformance_007-hub-root_001-identity-and-registry_spec.md": {
+      "source": "specs/sk-design/z_archive/014-template-conformance/007-hub-root/001-identity-and-registry/spec.md",
+      "kind": "repairable"
+    },
+    "specs_sk-design_z_archive_014-template-conformance_007-hub-root_005-benchmark_spec.md": {
+      "source": "specs/sk-design/z_archive/014-template-conformance/007-hub-root/005-benchmark/spec.md",
+      "kind": "repairable"
+    },
+    "specs_sk-doc_049-sk-create-frontmatter_001-inventory-and-contract_spec.md": {
+      "source": "specs/sk-doc/049-sk-create-frontmatter/001-inventory-and-contract/spec.md",
+      "kind": "repairable"
+    },
+    "specs_sk-doc_049-sk-create-frontmatter_003-content-migration_spec.md": {
+      "source": "specs/sk-doc/049-sk-create-frontmatter/003-content-migration/spec.md",
+      "kind": "repairable"
+    },
+    "specs_sk-doc_z_archive_025-skill-doc-currency_004-hub-surface-drift-sweep_spec.md": {
+      "source": "specs/sk-doc/z_archive/025-skill-doc-currency/004-hub-surface-drift-sweep/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-deep-loop_036-deep-loop-innovation_003-mode-contracts-migration-and-cutover_005-synthesis-chat-presentation_spec.md": {
+      "source": "specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/005-synthesis-chat-presentation/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-deep-loop_036-deep-loop-innovation_006-runtime-docs-and-integrity-hardening_013-deep-loop-alignment-review_004-leaf-manifest-and-doctrine-reachability_spec.md": {
+      "source": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/004-leaf-manifest-and-doctrine-reachability/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-deep-loop_036-deep-loop-innovation_006-runtime-docs-and-integrity-hardening_013-deep-loop-alignment-review_012-missing-stress-fixture-root_spec.md": {
+      "source": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/012-missing-stress-fixture-root/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-deep-loop_036-deep-loop-innovation_007-executor-and-cli-hardening_010-fanout-write-containment-hardening_010-containment-on-failed-lanes_spec.md": {
+      "source": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/010-containment-on-failed-lanes/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-deep-loop_036-deep-loop-innovation_007-executor-and-cli-hardening_010-fanout-write-containment-hardening_013-review-lane-advisory-and-strict-config_spec.md": {
+      "source": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/013-review-lane-advisory-and-strict-config/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-deep-loop_036-deep-loop-innovation_007-executor-and-cli-hardening_010-fanout-write-containment-hardening_018-orchestrate-mirror-alignment_spec.md": {
+      "source": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/018-orchestrate-mirror-alignment/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-deep-loop_z_archive_006-deep-skill-evolution_008-deep-stack-playbook-validation_002-deep-ai-council-scenarios_spec.md": {
+      "source": "specs/system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation/002-deep-ai-council-scenarios/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-deep-loop_z_archive_010-deep-context-gathering_008-deep-loop-folder-binding_spec.md": {
+      "source": "specs/system-deep-loop/z_archive/010-deep-context-gathering/008-deep-loop-folder-binding/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-deep-loop_z_archive_025-deep-loop-gpt-reliability_002-routing-dispatch-and-identity_003-agent-dispatch-hardening_spec.md": {
+      "source": "specs/system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/003-agent-dispatch-hardening/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-skill-advisor_z_archive_004-skill-graph_006-system-skill-advisor-package-extraction_016-fix-deep-review-p2-findings-for-package-extraction_spec.md": {
+      "source": "specs/system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/016-fix-deep-review-p2-findings-for-package-extraction/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-skill-advisor_z_archive_015-skill-advisor-phase-parent_001-hard-rule-and-dispatch-preflight-hardening_spec.md": {
+      "source": "specs/system-skill-advisor/z_archive/015-skill-advisor-phase-parent/001-hard-rule-and-dispatch-preflight-hardening/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-speckit_026-graph-and-context-optimization_000-release-and-program-cleanup_004-followup-post-program_003-post-program-quality-pass_006-readme-cascade-refresh_spec.md": {
+      "source": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-speckit_026-graph-and-context-optimization_002-spec-kit-internals_002-template-levels_004-fix-template-deferred-followups_spec.md": {
+      "source": "specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/004-fix-template-deferred-followups/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-speckit_026-graph-and-context-optimization_007-mcp-daemon-reliability_028-live-session-reelection-validation_spec.md": {
+      "source": "specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-speckit_026-graph-and-context-optimization_007-mcp-daemon-reliability_034-rebuild-sentinel-corruption-handling_spec.md": {
+      "source": "specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/034-rebuild-sentinel-corruption-handling/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-speckit_027-xce-research-based-refinement_000-release-cleanup_000-spec-tree-consolidation_spec.md": {
+      "source": "specs/system-speckit/027-xce-research-based-refinement/000-release-cleanup/000-spec-tree-consolidation/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-speckit_028-memory-search-intelligence_001-release-cleanup_013-drift-remediation_004-tool-grant-reconciliation_spec.md": {
+      "source": "specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-speckit_028-memory-search-intelligence_002-speckit-memory_012-query-channel-calibration_spec.md": {
+      "source": "specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/012-query-channel-calibration/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-speckit_028-memory-search-intelligence_003-spec-data-quality_004-novel-research_001-novel-contradiction-detection_spec.md": {
+      "source": "specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/004-novel-research/001-novel-contradiction-detection/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-speckit_028-memory-search-intelligence_003-spec-data-quality_006-generated-metadata-build_010-deterministic-ranking-benchmark_spec.md": {
+      "source": "specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/010-deterministic-ranking-benchmark/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-speckit_028-memory-search-intelligence_003-spec-data-quality_017-graph-metadata-child-drift-audit-and-harden_spec.md": {
+      "source": "specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/017-graph-metadata-child-drift-audit-and-harden/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-speckit_028-memory-search-intelligence_scratch_topology-migration-backup_identity-backups_004-dark-flag-graduation_001-multihop-tail-appends_spec.md": {
+      "source": "specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/004-dark-flag-graduation/001-multihop-tail-appends/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-speckit_033-system-speckit-v4_032-recorded-findings-closure_006-lifecycle-command-asset-merge_spec.md": {
+      "source": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/006-lifecycle-command-asset-merge/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-speckit_033-system-speckit-v4_032-recorded-findings-closure_014-registration-schema-unification_spec.md": {
+      "source": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/014-registration-schema-unification/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-speckit_033-system-speckit-v4_043-v4-root-readme_spec.md": {
+      "source": "specs/system-speckit/033-system-speckit-v4/043-v4-root-readme/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-speckit_048-doctor-command-audit_009-runtime-mirrors_spec.md": {
+      "source": "specs/system-speckit/048-doctor-command-audit/009-runtime-mirrors/spec.md",
+      "kind": "repairable"
+    },
+    "specs_system-deep-loop_036-deep-loop-innovation_005-blocker-closeout_001-completion-evidence-reconcile_spec.md": {
+      "source": "specs/system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/001-completion-evidence-reconcile/spec.md",
+      "kind": "refused",
+      "shape": "open-questions"
+    },
+    "specs_system-deep-loop_036-deep-loop-innovation_005-blocker-closeout_002-shadow-parity-independent-derivation_spec.md": {
+      "source": "specs/system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/002-shadow-parity-independent-derivation/spec.md",
+      "kind": "refused",
+      "shape": "open-questions"
+    },
+    "specs_system-deep-loop_036-deep-loop-innovation_005-blocker-closeout_003-legacy-compat-event-vocabulary_spec.md": {
+      "source": "specs/system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/003-legacy-compat-event-vocabulary/spec.md",
+      "kind": "refused",
+      "shape": "open-questions"
+    },
+    "specs_system-deep-loop_036-deep-loop-innovation_006-runtime-docs-and-integrity-hardening_004-alignment-coverage-integrity_spec.md": {
+      "source": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/004-alignment-coverage-integrity/spec.md",
+      "kind": "refused",
+      "shape": "open-questions"
+    },
+    "specs_system-deep-loop_036-deep-loop-innovation_006-runtime-docs-and-integrity-hardening_007-improvement-promotion-authority_spec.md": {
+      "source": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority/spec.md",
+      "kind": "refused",
+      "shape": "open-questions"
+    },
+    "specs_system-speckit_z_archive_022-hybrid-rag-fusion_007-code-audit-per-feature-catalog_004-maintenance_spec.md": {
+      "source": "specs/system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/004-maintenance/spec.md",
+      "kind": "refused",
+      "shape": "questions-2"
+    },
+    "specs_system-speckit_z_archive_022-hybrid-rag-fusion_007-code-audit-per-feature-catalog_011-scoring-and-calibration_spec.md": {
+      "source": "specs/system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/011-scoring-and-calibration/spec.md",
+      "kind": "refused",
+      "shape": "questions-2"
+    },
+    "specs_system-speckit_z_archive_022-hybrid-rag-fusion_007-code-audit-per-feature-catalog_015-retrieval-enhancements_spec.md": {
+      "source": "specs/system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/015-retrieval-enhancements/spec.md",
+      "kind": "refused",
+      "shape": "questions-2"
+    },
+    "specs_system-speckit_z_archive_022-hybrid-rag-fusion_007-code-audit-per-feature-catalog_018-ux-hooks_spec.md": {
+      "source": "specs/system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/018-ux-hooks/spec.md",
+      "kind": "refused",
+      "shape": "questions-2"
+    },
+    "specs_system-speckit_z_archive_022-hybrid-rag-fusion_009-perfect-session-capturing_016-json-mode-hybrid-enrichment_004-indexing-and-coherence_spec.md": {
+      "source": "specs/system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment/004-indexing-and-coherence/spec.md",
+      "kind": "refused",
+      "shape": "questions-2"
+    }
+  }
+}

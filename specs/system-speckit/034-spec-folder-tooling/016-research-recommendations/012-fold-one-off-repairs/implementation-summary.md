@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "This phase is planned and not yet built. Clarifies frontmatter value-source order, adds grouped-detail reporting, and retires one-off scripts."
+description: "Phase 12: fold one-off repairs is complete. The fill step takes each document class's template literal before the runtime tables, and upgrade-legacy prints its failures grouped by rule with a detail count."
 trigger_phrases:
   - "fold one off repairs implementation summary"
 importance_tier: "important"
@@ -8,15 +8,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs"
-    last_updated_at: "2026-10-08T04:22:48Z"
-    last_updated_by: "claude"
-    recent_action: "Planned fold one-off repairs"
-    next_safe_action: "Implement per tasks.md"
+    last_updated_at: "2026-10-09T06:50:00Z"
+    last_updated_by: "closeout"
+    recent_action: "Third closeout pass: Opus fix recorded, citations re-checked, gate rows on tree5"
+    next_safe_action: "Operator decisions on the open items, then land 012-T2 and rerun the upgrade-legacy file"
     blockers: []
-    key_files: []
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    key_files:
+      - ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
+      - ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts"
+      - ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts"
+    completion_pct: 100
+    open_questions:
+      - "Run the manual --apply on the real corpus (T011)?"
+    answered_questions:
+      - "Pin the four classes that now take template values (CHK-FIX-002)? Pinned by 012-T1 in the value-source case at upgrade-legacy.vitest.ts:365."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -32,69 +37,157 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 012-fold-one-off-repairs |
-| **Status** | Planned, not yet built |
+| **Status** | Complete |
+| **Completed** | 2026-10-09 |
 | **Level** | 2 |
-| **Created** | 2026-10-08 |
 <!-- /ANCHOR:metadata -->
 
 ---
 
 <!-- ANCHOR:what-built -->
-## What Will Be Built
+## What Was Built
 
-This phase is planned and not yet built. Phase 15 delivered archive re-derivation. This phase consolidates the remaining one-off repair logic by clarifying frontmatter value-source order and adding grouped-detail reporting.
+Phase 12 is complete. The frontmatter fill step now takes a document class's template literal before the runtime tables, and `upgrade-legacy` prints its failures grouped by rule with a detail count. Both behaviors have cases in `upgrade-legacy.vitest.ts`. The value-source case pins all ten entries of the template map, and a second case covers a template that cannot be read.
 
-This phase builds:
-1. Clarified frontmatter value-source order: template literal per document class first, respecting that goal.md uses `important` and `planning`.
-2. Grouped-detail report mode in upgrade-legacy showing failures grouped by rule with detail counts.
-3. Tests pinning both behaviors to prevent regression.
+### Value source for a missing tier or context
 
-### Files to Change (not yet modified)
+For a missing `importance_tier` or `contextType`, the order is:
+
+1. The value the document already carries. A fill never rewrites a key that is present.
+2. The template literal for the document class, read by `readTemplateLiterals` (`lib/frontmatter-migration.ts:919`). The option is opt-in, and the fill is the only caller that sets it.
+3. For memory documents, the MEMORY METADATA block and its tables.
+4. The runtime tables, `DOC_DEFAULT_IMPORTANCE` and `DOC_DEFAULT_CONTEXT`.
+
+Before this phase the order was 1, 3, 4. Every fill-eligible class has a template that defines both fields, so the tables are reached during a fill only when a template cannot be read. The research named a spec.md copy as the fallback. The code does not copy from spec.md, and the tables fill that role for the classes with no template literal.
+
+### Grouped detail
+
+`printGroupedDetail` (`spec/upgrade-legacy.mjs:520`) writes one heading per failing rule for each packet, in the form `### <folder> / x <RULE> (<count>)`, with the detail lines under it, sorted by rule. It runs on every dry run and every apply, after the failing lines and before the Downgrades section. A packet whose report cannot be read gets `### <folder> / unreadable`.
+
+### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs` | Modify | Clarify value-source order, add grouped-detail report |
-| `.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts` | Modify | Ensure template literal per document class comes first |
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts` | Modify | Add tests for value-source and grouped-detail |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs` | Modify | Fill step sets the template option, grouped-detail section |
+| `.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts` | Modify | Template map, `readTemplateLiterals`, opt-in option and precedence |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts` | Modify | Value-source case at `:365`, grouped-detail case at `:541`, template-missing fallback case at `:504` (line numbers as of 08:41 CEST, see the note under the test matrix) |
+
+These three files also carry changes from phases 003, 009, 011 and 015, and they ship in one combined commit under parent decision D6.
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
-## How It Will Be Delivered
+## How It Was Delivered
 
-1. Audit fillMissingFrontmatter for value-source order and document class handling.
-2. Update logic to ensure template literal per class comes before spec.md copy.
-3. Implement grouped-detail report in upgrade-legacy.mjs showing failures grouped by rule.
-4. Add tests for both features.
-5. Run the full test suite to verify no regressions.
+The build ran on the opencode-go route with DeepSeek V4.1 Flash max, in five briefs (A1 to A5) and one fix brief (F1). The review ran on the other route as one read-only pass with no command execution, so the reviewer checked the suite and the compiler by reading the code and the build artifacts. The closeout ran the gates itself.
+
+### Review
+
+**Round 1: one finding, P2, applied.** The extended fill case wrote only spec.md, goal.md and tasks.md, so the acceptance-criteria.md and resource-map.md fills were unpinned. Fix F1 extended the same case to both. The builder confirmed on throwaway copies that the case fails when either addon entry is removed. That confirmation is the builder's record and was not repeated in the closeout.
+
+**Round 2: not run.** The build record does not show a request for a second round.
+
+**Final review, fresh Opus high.** The build record's summary of that review names findings for phases 015, 003, 011, 009 and 013. Its checked-clean list does not name this phase, so no final review of phase 012 is recorded. Closeout 3: the later fresh Opus high alignment and overengineering review (Deviations, item 11) raised finding O6 on this phase's `frontmatter-migration.ts`.
+
+### Test round after the first closeout
+
+A later test round added the four missing pins and the fallback case. Builder 012-T1 ran on route DSL after the opencode-go route ran out of quota. The builder reports 39 of 39 passing. A read-only Luna review of that round (TR-R1) returned three P1 findings. The review could not start Vitest (the sandbox denied Vite's cache write), so it judged the tests by reading them. F1 belongs to phase 015 and was accepted there. F3, a phase identifier in a comment of the doctor tests, was rejected because the identifier is a workflow key the test reads. The finding for this phase is F2: the value-source case leaves its `specs/fm-track/001-authored` packet in the shared sandbox, so a case that runs after it can depend on order. The accepted fix was brief 012-T2 on route DSC. At 08:41 CEST, before the verbose run, the test file gained an `afterEach(resetSandbox)` hook at `:220` that resets the shared sandbox after each case. That hook matches the F2 fix. At the first closeout the 012-T2 dispatch had no report in the logs, so its author was not confirmed. Closeout 3: the evidence log attributes the edit to 012-T2, whose dispatch was killed at the 40-minute watchdog before it reported. Order independence is checked by shuffled runs, seeds 101 and 202, at 39 of 39 each (`gates/tests-after-tr/`).
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
-## Key Decisions Made
+## Key Decisions
 
 | Decision | Why |
 |----------|-----|
-| Template literal per document class takes precedence | Goal.md uses `important` and `planning`; respecting class-specific defaults prevents misclassification |
-| Grouped-detail report shows "### folder / x RULE" | Groups failures by rule to show which rules block the most packets |
-| One-offs are retired and folded into permanent tools | Phase 13's batch scripts worked but are not testable or maintainable long-term |
+| The template literal comes before the runtime tables, for fills only | The spec and the research ruled the template first, and the tables predate the current templates. The option is opt-in, so other callers keep their output |
+| The grouped-detail section prints on every dry run and apply, with no flag | It reads the validator report that both paths already compute, and it costs no extra validation pass |
+| The grouped-detail heading carries the count in parentheses after the rule | The spec asked for counts, and the parentheses keep the `### folder / x RULE` form the spec gives |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
-## Verification Checklist
+## Verification
 
-| Check | Verification | Status |
-|-------|--------------|--------|
-| Value-source respects document class | Test with goal.md class in upgrade-legacy.vitest.ts shows template literal precedence | Unmet |
-| Grouped-detail report implemented | Upgrade-legacy.mjs output shows "### folder / x RULE" format with counts | Unmet |
-| Full suite passes | `npm test` in runtime/cli shows 0 failures | Unmet |
-| No regressions | Same test run shows no new failures compared to baseline | Unmet |
+| Check | Result |
+|-------|--------|
+| Value-source, fallback and grouped-detail cases | From `.skilled/skills/system-spec-kit/runtime/cli`, `npx vitest run tests/upgrade-legacy.vitest.ts --config ../vitest.config.ts --root . --reporter verbose` printed `Tests 39 passed (39)`, exit 0, with the three named cases listed as passed (second pass, `gates/closeout2-012/upgrade-legacy-verbose.log`). The first pass printed `Tests 38 passed (38)` before the test round |
+| Grouped detail on real packets | A read-only dry run on the parent folder printed the section with real headings and counts (AC-002) |
+| Whole CLI suite | Tree4, `npm --prefix .skilled/skills/system-spec-kit/runtime/cli test` exit 0: `Test Files 171 passed, 3 skipped (174)`, `Tests 1775 passed, 19 skipped (1794)`. The chained legacy and validation sub-steps passed with it. Baseline before wave 1: 161 files and 1639 passed. Tree4 read the test file as it stood before 012-T2 |
+| Check and typecheck | Tree4: `check` exit 0, `typecheck` and `typecheck-cli` exit 0. `typecheck:tests` exit 2 with 95 `error TS` lines, the same count as tree3, and none in the phase's three files |
+| Hook tests | Tree4: `tests 184, pass 181, fail 0` |
+| Doctor suites | Tree4: `run-all.sh` exit 0, `7 suite(s) passed, 0 failed`. The doctor-update compatibility tests printed `pass 22, fail 0` |
+| Test validation | Tree4: `RESULT: PASSED`, 31 of 31 |
+| Root test | Tree4: `npm --prefix .skilled/skills/system-spec-kit test` exit 124, stopped at the 600000 ms harness bound while the runtime workspace suite was still running. The log has 237 passing markers and no failure marker, and no total. This is not a pass. The script is not the one AC-004 names, so it is recorded here and not re-run |
+| Goal verification command | The command as the goal first wrote it printed nothing, because the default reporter does not list test names. The goal now adds `--reporter verbose` |
+
+The gate outputs are in the closeout's build scratchpad, and the raw logs back every row above. The tree4 logs are under `gates/tree4/`.
+
+### Third pass, tree5 (closeout 3, 2026-10-09)
+
+The whole-tree gate in `gates/tree5/` ran after the Opus alignment fixes. Git HEAD moved to `c2a0a667e9` at 10:37, during the root-test window, because another session committed the working tree. That commit does not touch this folder.
+
+- Focused run of eight files, including `upgrade-legacy.vitest.ts`: exit 0, 152 tests passed (`gates/tree5/focused-vitest.log`).
+- CLI test: exit 0, Test Files 171 passed, 3 skipped (174), Tests 1775 passed, 19 skipped (1794), the same as tree4 (`gates/tree5/cli-test.log`).
+- Cli-check (lint, boundary and AST checks): exit 0. Typecheck and typecheck-cli: exit 0. Typecheck:tests: exit 2, report only, 95 `error TS` lines, as in tree4.
+- Hooks: 184 run, 181 pass, 0 fail, 3 skipped. Doctor suites: 7 passed, 0 failed. Doctor-update compatibility: 22 of 22.
+- Drift guards: exit 0, all 2 guards PASSED. Tree4 did not run this step.
+- Root test: exit 0, its first tree5 verdict. Its cli sub-step reports the same counts as the cli test (`gates/tree5/root-test.log`). It ran from 10:31 to 11:15, across the commit above.
+- Shuffled runs of this file, seeds 101 and 202, 39 of 39 each (`gates/tests-after-tr/`), added in this closeout.
+
+The `validate.sh --strict` and `check-goal.cjs` runs on this folder were repeated after these edits, and their logs are in `gates/closeout3-012/`.
+
+### Test matrix
+
+| Document class | Template literal | Pinned by a case |
+|----------------|------------------|------------------|
+| spec.md | normal, general | Yes, at `:365` |
+| plan.md | normal, general | Yes, at `:365` |
+| tasks.md | normal, general, with an authored tier kept | Yes, at `:365` |
+| goal.md | important, planning | Yes, at `:365` |
+| acceptance-criteria.md | important, implementation | Yes, at `:365` |
+| resource-map.md | normal, general, with an authored tier kept | Yes, at `:365` |
+| implementation-summary.md | normal, general | Yes, at `:365` (second pass) |
+| decision-record.md | normal, general | Yes, at `:365` (second pass) |
+| research.md | normal, general | Yes, at `:365` (second pass) |
+| handover.md | normal, general | Yes, at `:365` (second pass) |
+
+The missing-template fallback is pinned at `:504`. That case renames the decision-record.md template for one `--apply` run, exits 0, and expects the table defaults `important` and `planning`.
+
+The line numbers in this table and in the first-pass rows above it are from the file as it stood at 08:41 CEST. Before that change the value-source case sat at `:312`, the grouped case at `:398` and the fallback had not yet been added. The evidence rows that cite the older numbers are left as recorded.
 <!-- /ANCHOR:verification -->
 
 ---
 
+<!-- ANCHOR:deviations -->
+## Deviations
 
+1. **Fill eligibility widened.** The spec names goal.md. acceptance-criteria.md and resource-map.md also fill now, because they are in the template map. The spec does not name them.
+2. **No spec.md copy.** The spec's second source is a copy from spec.md. The code uses the runtime tables instead, as described above.
+3. **Four classes now take template values.** implementation-summary.md, decision-record.md and research.md were already fill-eligible. A fill of a missing `contextType` now yields the template value, and a missing importance in decision-record.md now yields `normal` where the table gave `important`. The concrete changes are: implementation-summary.md contextType from `implementation` to `general`, decision-record.md importance from `important` to `normal` and contextType from `planning` to `general`, and research.md contextType from `research` to `general`. handover.md is the same either way. These changes follow decision D1. The second pass pins all four in the value-source case at `:365`.
+4. **Grouped detail is a section, not a mode.** The spec asked for a report mode. The section is always on, and no flag controls it.
+5. **Citations corrected.** AC-001 and T008 pointed at `upgrade-legacy.vitest.ts:151+`, which is fixture setup, and the case is at `:312`. T003 cited `research.md:6, 7.4`, and the fill ruling is in section 6 of `014-spec-auto-healing-research/research/research.md`. Section 7.4 is the archive decision.
+6. **Goal verification command corrected.** The completion command in goal.md printed nothing, so it now uses `--reporter verbose` and greps for the test name and the totals.
+7. **Precedence comment matches the code.** The brief asked for "never overwritten" and "tables last". The code lets memory metadata supersede an existing tier for memory documents, as it did before this phase, so the comment states that instead.
+8. **Shared files.** `upgrade-legacy.mjs`, `frontmatter-migration.ts` and `upgrade-legacy.vitest.ts` also carry phases 003, 009, 011 and 015, and ship in one combined commit under D6.
+9. **Route.** The goal's D3 names the LLM Gateway route, and D4 names Luna. The build ran on the opencode-go route with DeepSeek, and the review on the other route, under parent D1 and D7. The test round ran on route DSL and the fix brief 012-T2 on route DSC. The decisions are frozen, so the text stays and the goal log records the difference.
+10. **Retired one-offs.** `add-fm-fields.mjs` is not in the repo, so nothing was deleted for it. `fix-specfolder.mjs` and `fix-dup-anchors.mjs` are outside this phase, as the spec says.
+11. **Module-private exports (closeout 3).** The fresh Opus alignment review found two exports with no consumer. `TemplateLiteralDefaults` and `readTemplateLiterals` are module-private now (OC-O6). `TEMPLATE_DOC_FILES` stays exported.
+<!-- /ANCHOR:deviations -->
+
+---
+
+<!-- ANCHOR:open-items -->
+## Open Items
+
+- **T011 and CHK-021, real-corpus `--apply`.** Not run. A manual `--apply` would write to sibling packets that other closeout workers are still changing. The evidence log records a full-corpus `--apply` in a throwaway clone as skipped, with the operator not objecting, and lists it as a follow-up. The dry run on real packets and the sandbox apply case cover the format. Needs an operator decision.
+- **Test isolation, RLUNA F2 (brief 012-T2).** The value-source case leaves its fm-track packet in the shared sandbox. The file now has an `afterEach(resetSandbox)` hook, which the verbose run at 08:44 CEST passed with. Closed in closeout 3. The evidence log records 012-T2 killed at the watchdog with no RESULT line, and its edit landed at 08:41. Shuffled runs (seeds 101 and 202, 39 of 39 each) and a normal run pass on the file as it stands.
+- **CHK-FIX-006, process-wide cache.** `readTemplateLiterals` caches by template path in a module-level Map. The second-pass unreadable-template case runs the tool in a child process, which starts with an empty cache, so no in-process variant with a warm cache was run.
+- **CHK-FIX-007, evidence pin.** The phase is not committed yet. Pin the evidence to the combined commit SHA under D6.
+- **Root test.** The root `npm test` in the system-spec-kit folder did not finish in tree4 (exit 124). The CLI test named by AC-004 passed. The root script is outside this phase.
+- **README (CHK-042, P2).** `spec/README.md` does not describe the grouped section. Deferred.
+- **Changelog refresh.** The spec asks for a file under `../changelog/`, and no changelog folder exists under the parent. This is outside the closeout write set.
+<!-- /ANCHOR:open-items -->
