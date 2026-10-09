@@ -47,10 +47,24 @@ run_guard "alignment-drift  (verify_alignment_drift.py --check-router)" \
 run_guard "stack-folders    (verify_stack_folders.py)" \
   python3 "${STACK_VERIFIER}"
 
-# The third guard was a router-sync suite that lived inside a retired lane and went with
-# it. It checked that this surface's router stayed in step with the compiled routing
-# snapshot, which nothing here measures now. Rebuilding it needs a home that outlives any
-# one lane, so it is recorded as missing rather than quietly dropped.
+# Retired guard: the router-sync suite (sk-code-router-sync.vitest.ts), deleted with the
+# skill-benchmark lane that hosted it. It checked four things:
+#   1. every path in the machine-readable router exists on disk, every routable
+#      reference or asset doc is routed, and every full path the prose maps name is routed;
+#   2. the parent surface RESOURCE_MAP equals the union of the surface children's maps
+#      plus the parent tier;
+#   3. compiled route-gold destinations, leaf-manifest.json and the code-opencode
+#      RESOURCE_MAP agree through qualifiedIdToLeaf;
+#   4. every playbook routing scenario's expected_resource is emitted by the router.
+# Successor, partial: the dead-path part of check 1 is the alignment-drift guard above
+# (--check-router). .github/workflows/routing-registry-drift.yml covers the compiled side
+# of checks 3 and 4, in CI only: its compiled-serving admission step scores compiled
+# decisions against playbook routing gold through qualifiedIdToLeaf but runs --warn-only,
+# and its leaf-manifest freshness step byte-checks every leaf-manifest.json. No step
+# reads RESOURCE_MAP.
+# Gap: orphan and prose-path coverage (check 1), parent-equals-union (check 2),
+# RESOURCE_MAP-to-manifest agreement (check 3) and the surface-router side of check 4
+# have no guard. Owner: sk-code.
 
 if [ "${failures}" -ne 0 ]; then
   echo "run-all-drift-guards: ${failures} guard(s) FAILED"

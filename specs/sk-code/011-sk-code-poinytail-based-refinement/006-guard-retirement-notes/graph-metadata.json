@@ -36,7 +36,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,7 +48,9 @@
       ".skilled/skills/sk-code/benchmark/README.md",
       ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
       ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
-      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md"
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+      ".skilled/skills/sk-code/leaf-manifest.json",
+      ".hermes/skills/sk-code-opencode/SKILL.md"
     ],
     "entities": [
       {
@@ -109,6 +111,12 @@
         "name": "alignment-verification-automation.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/leaf-manifest.json",
         "source": "derived"
       },
       {
@@ -188,17 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The drift-guard umbrella script already records the retired router-sync guard as missing (`sk-code-opencode/scripts/run-all-drift-guards.sh:50-53`), but it names no owner for the gap and does not mention that `.github/workflows/routing-registry-drift.yml` partly covers it",
     "created_at": "2026-10-09T16:00:51Z",
-    "last_save_at": "2026-10-09T20:08:33.786Z",
+    "last_save_at": "2026-10-09T20:42:51.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10472527e160df85bb9ce937a9a3408da95d1e5a448ac14bf0d769e72cf191af",
+    "source_fingerprint": "sha256:9f4fe89c299913b376026b297597134a82df3395db00fdf7c438484a26cf9a48",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7d6c93365084fb2671bcde3758e5a8477a11a55c4958756bb7ac22eb9deca346",
+      "spec.md": "85af7f84edfc4931c7cf7766bd3e2b0a5ba1d55a5562998a7b366a7432d07e32",
       "plan.md": "c0a8de685521c81ed16c92ac55da0d6b1e34a4544607b8b41bd3144cd30c90cf",
-      "tasks.md": "88d46719daae3da51ae9f4d185862e532fc81ced7d61594512b54fdd721b7603",
-      "implementation-summary.md": "076af1c7f0e01f64fb0319f26bceb12d2481c4d0f66f274cacf9e6631a88f137"
+      "tasks.md": "a84353640cc4d1d28a285c878d02c04f006806f799fcd60a9ae573c1a7ef1999",
+      "implementation-summary.md": "f9c7b0e80c6cd9649eb3e1d063ef9bd109f40f452749ec37be34a0fb998e7447"
     },
     "last_active_at": null
   }

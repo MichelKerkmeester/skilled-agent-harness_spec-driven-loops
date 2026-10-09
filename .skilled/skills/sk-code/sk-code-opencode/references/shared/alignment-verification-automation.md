@@ -56,9 +56,9 @@ checklists and, by default, does not scan markdown. The opt-in `--check-router`
 flag adds one narrow exception: it checks that every RESOURCE_MAP/DEFAULT_RESOURCE
 leaf a `SKILL.md` router names exists on disk (a dead-route guard, scoped to the
 router block only). It still never inspects markdown prose. RESOURCE_MAP
-parent-child *equality* is not checked by this script either. The
-`sk-code-router-sync.vitest.ts` suite that checked it was deleted with the
-skill-benchmark lane. These remain manual review gates:
+parent-child *equality* is not checked by this script either; "Retired
+router-sync suite" below records the suite that checked it and what covers its
+checks now. These remain manual review gates:
 
 - exact visual header shape beyond the marker-level checks above;
 - naming conventions;
@@ -67,6 +67,33 @@ skill-benchmark lane. These remain manual review gates:
 - JavaScript `module.exports` versus plugin ESM default-export decisions;
 - TypeScript package-boundary decisions such as NodeNext ESM versus root
   CommonJS defaults.
+
+### Retired router-sync suite
+
+The `sk-code-router-sync.vitest.ts` suite was deleted with the skill-benchmark
+lane. It checked four things:
+
+1. Every path in the machine-readable router exists on disk, every routable
+   reference or asset doc is routed, and every full path the prose maps name
+   is routed.
+2. The parent surface RESOURCE_MAP equals the union of the surface children's
+   maps plus the parent tier.
+3. Compiled route-gold destinations, `leaf-manifest.json` and the code-opencode
+   RESOURCE_MAP agree through `qualifiedIdToLeaf`.
+4. Every playbook routing scenario's `expected_resource` is emitted by the
+   router.
+
+| Check | Coverage now |
+|---|---|
+| 1, dead paths | `verify_alignment_drift.py --check-router`, run by `scripts/run-all-drift-guards.sh` |
+| 1, orphans and prose paths | None |
+| 2 | None |
+| 3, compiled side | `.github/workflows/routing-registry-drift.yml`, CI only: the compiled-serving admission step (`--warn-only`, never fails the job) and the leaf-manifest freshness step |
+| 3, RESOURCE_MAP to manifest | None; no workflow step reads RESOURCE_MAP |
+| 4, compiled side | The same admission step, scoring compiled decisions against playbook routing gold, `--warn-only` |
+| 4, surface router | None |
+
+Owner of every gap marked None: sk-code.
 
 ### Severity model
 
@@ -121,8 +148,9 @@ below. Later coverage and activation work must consume this interface rather tha
 re-derive a second RESOURCE_MAP parser or a local eligibility map.
 
 1. **Doc pointer.** This file plus the code-opencode `SKILL.md` SMART ROUTING
-   block, which record that the `sk-code-router-sync.vitest.ts` equality guard
-   was deleted and that nothing checks RESOURCE_MAP equality now. The
+   block, which record that the `sk-code-router-sync.vitest.ts` suite was
+   deleted, that nothing checks RESOURCE_MAP equality now, and what partly
+   covers its other checks (section 3, "Retired router-sync suite"). The
    markdown-blind `verify_alignment_drift.py` is not that authority.
 2. **Bijection module.** `qualifiedIdToLeaf` in
    `.skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs`

@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-09 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -113,11 +113,11 @@ These bind every build phase, 002 to 006.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-ponytail-deep-research/ | Ten-iteration deep research over Ponytail 5 with two CLI lineages | Complete |
-| 2 | 002-surface-contract-alignment/ | One surface precedence order, Obsidian coverage, stale stack-folder scenario, Obsidian canary case | Planned |
-| 3 | 003-doctrine-pass/ | Reuse step and reach list in the ladder and implement workflow; never-cut pointer and canary pins | Planned |
-| 4 | 004-webflow-checker-fix/ | Callback error capture in the Webflow pre-deploy checker; known-bad inputs for two checkers | Planned |
-| 5 | 005-review-output-additions/ | "Not checked:" line, workload note, User impact rewording, removal search line, final-line check | Planned |
-| 6 | 006-guard-retirement-notes/ | Owner and partial-successor notes for retired guards | Planned |
+| 2 | 002-surface-contract-alignment/ | One surface precedence order, Obsidian coverage, stale stack-folder scenario, Obsidian canary case | Complete |
+| 3 | 003-doctrine-pass/ | Reuse step and reach list in the ladder and implement workflow; never-cut pointer and canary pins | Complete |
+| 4 | 004-webflow-checker-fix/ | Callback error capture in the Webflow pre-deploy checker; known-bad inputs for two checkers | Complete |
+| 5 | 005-review-output-additions/ | "Not checked:" line, workload note, User impact rewording, removal search line, final-line check | Complete |
+| 6 | 006-guard-retirement-notes/ | Owner and partial-successor notes for retired guards | Complete |
 
 ### Phase Transition Rules
 

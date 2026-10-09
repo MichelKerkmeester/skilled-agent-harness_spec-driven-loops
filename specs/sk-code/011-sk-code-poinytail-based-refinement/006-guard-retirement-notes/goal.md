@@ -79,17 +79,20 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Script and Lane C index notes name successor, gap and owner | Pending | Not started |
-| Three sk-code-opencode docs point at the successor and owner, stale wording gone | Pending | Not started |
-| Four-check description present in all four router-sync files | Pending | Not started |
-| Umbrella script exit code and guard verdicts match the baseline | Pending | Not started |
-| Script and router block changes are comment-only, static checks exit 0 | Pending | Not started |
-| Four docs validate and the router check exits 0 | Pending | Not started |
-| No added em dash, phase validates strict | Pending | Not started |
+| Script and Lane C index notes name successor, gap and owner | Done | one hit per pattern in both files |
+| Three sk-code-opencode docs point at the successor and owner, stale wording gone | Done | counts 1+ each; stale rg exit 1 |
+| Four-check description present in all four router-sync files | Done | 4 and 4 |
+| Umbrella script exit code and guard verdicts match the baseline | Done | verdict diff empty, rc=0 |
+| Script and router block changes are comment-only, static checks exit 0 | Done | filter empty; bash -n 0; shellcheck 0 |
+| Four docs validate and the router check exits 0 | Done | four VALID; Errors 0, no dead path |
+| No added em dash, phase validates strict | Done | rg empty; `RESULT: PASSED` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| Stale leaf manifest from the webflow-checker phase | Freshness check reported `STALE sk-code`; the orchestrator removed an ignored `__pycache__` and regenerated `leaf-manifest.json` (7 entries) |
+| Hermes copy regenerated | The edited `sk-code-opencode/SKILL.md` drifted its Hermes copy; the orchestrator regenerated it |
+| Diff checks run by the orchestrator | The executor sandbox cannot run `git diff` (fsmonitor socket) |
 | No acceptance-criteria.md | Level 1 packet. The criteria come from spec.md REQ-001, REQ-002 and SC-001 and from the Phase 3 Verification tasks in tasks.md |
 <!-- /ANCHOR:log -->

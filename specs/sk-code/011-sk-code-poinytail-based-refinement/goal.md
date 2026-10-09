@@ -109,7 +109,7 @@ and findings belong here.
 | 003 doctrine pass | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed; three dispatches, all stops were task or brief wording |
 | 004 webflow checker fix | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed |
 | 005 review output additions | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed |
-| 006 guard retirement notes | Pending | Not started |
+| 006 guard retirement notes | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed |
 
 ### Deviations and findings
 
