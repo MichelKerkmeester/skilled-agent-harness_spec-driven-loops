@@ -381,6 +381,71 @@ test('the compat move log lives in the git directory', () => {
   }
 });
 
+test('every terminal stop after run-started closes its move log run', () => {
+  const rule = COMPAT_ACTION.move_log.close_rule;
+  assert.match(
+    rule,
+    /Every terminal status reached after run-started appends run-complete/,
+    'every terminal stop must close its run',
+  );
+  assert.match(rule, /The exception is a failed step/, 'a failed step must keep its run open');
+
+  // Recovery reads a run with no run-complete as interrupted, so a stop that
+  // closed its run must not look like one.
+  assert.match(
+    COMPAT_ACTION.workflow.phase_1_preflight.recovery,
+    /no run-complete event, it was interrupted/,
+    'recovery must keep reading an open run as interrupted',
+  );
+});
+
+test('the compat upgrade opens its run when the move logged no line', () => {
+  // A v4 tree with no move this run reaches the upgrade with no run-started
+  // line, so the upgrade opens the run before it writes its own events.
+  assert.match(
+    COMPAT_ACTION.workflow.phase_7_upgrade.logging,
+    /^When this run has appended no line yet, append run-started first\. Then append upgrade-started, then upgrade-done on exit 0 or upgrade-failed otherwise\./,
+    'the upgrade must open the run with run-started when no line was appended',
+  );
+});
+
+test('every terminal stop after the upgrade closes an open run and the rest write nothing', () => {
+  // A stop closes a run only when this run already logged a line, so a run
+  // that moved nothing and upgraded nothing leaves no trace in the log.
+  const closing = [
+    COMPAT_ACTION.workflow.phase_5_upgrade_preview.exit_policy,
+    COMPAT_ACTION.workflow.phase_6_upgrade_approval.no_approval,
+    COMPAT_ACTION.workflow.phase_6_upgrade_approval.cancel_or_interrupt,
+    COMPAT_ACTION.workflow.phase_8_summary.logging,
+  ];
+  for (const text of closing) {
+    assert.match(
+      text,
+      /When this run has appended a line, append run-complete/,
+      'a stop after an open run must append run-complete',
+    );
+    assert.match(
+      text,
+      /A run that has appended none writes no line\./,
+      'a stop with no logged line must write none',
+    );
+  }
+  const failure = COMPAT_ACTION.workflow.phase_7_upgrade.on_failure;
+  for (const key of ['still_failing', 'manifest_refusal']) {
+    assert.match(failure[key], /run-complete/, `the ${key} failure must close the run it opened`);
+  }
+});
+
+test('a failed post-check closes its open run before it stops', () => {
+  // The move has already logged move-complete when the post-check runs, so a
+  // failed check leaves an open run unless the stop appends run-complete.
+  assert.match(
+    COMPAT_ACTION.workflow.phase_4_move.post_check,
+    /Any other result appends run-complete, then stops with STATUS=FAILED/,
+    'a failed post-check must append run-complete before the STATUS=FAILED stop',
+  );
+});
+
 test('the router documents the compat path with declared flags only', () => {
   const section = sectionBody(UPDATE_ROUTER, '## 7. EXTERNAL-USER COMPATIBILITY PATH');
   const forms = [...section.matchAll(/\/doctor:update compat[^\n`]*/g)].map((match) => match[0]);
@@ -586,6 +651,50 @@ test('a tree dirtied after the move approval is refused before the move runs', a
   );
 });
 
+test('an owed recovery step runs without the dirty-roots refusal', () => {
+  // The owed step is a symlink, not a packet move, so the before-image reason
+  // behind the refusal does not apply to it.
+  for (const phase of ['phase_2_layout_preview', 'phase_4_move']) {
+    const refusal = COMPAT_ACTION.workflow[phase].dirty_refusal;
+    assert.match(
+      refusal,
+      /An owed recovery step is not a planned move for this check/,
+      `${phase} must name the owed-step exemption`,
+    );
+    assert.match(
+      refusal,
+      /a resume runs it without this refusal/,
+      `${phase} must let a resume run the owed step`,
+    );
+  }
+});
+
+test('the owed-step exemption covers only the recovery link step', () => {
+  const scope = "This covers only the link-legacy-path step that phase_1_preflight.recovery adds when the recomputed map reads v4 with no steps. Every step the recomputed map lists is a planned move. When the open run has a step-done for remove-specs-link, drop only the porcelain line that equals ` D specs` (unstaged) or `D  specs` (staged), and count every other line as dirty.";
+  for (const phase of ['phase_2_layout_preview', 'phase_4_move']) {
+    assert.ok(
+      COMPAT_ACTION.workflow[phase].dirty_refusal.includes(scope),
+      `${phase} must scope the owed-step exemption to the recovery link step`,
+    );
+  }
+});
+
+test('the interrupted-run template keys on a run without run-complete', () => {
+  const trigger = sectionBody(PRESENTATION, '### Interrupted run')
+    .split('\n')
+    .find((line) => line.startsWith('When the '));
+  assert.equal(
+    trigger,
+    'When the newest run in the move log has no run-complete line, report where it stopped:',
+    'the interrupted-run trigger must key on run-complete',
+  );
+  assert.equal(
+    PRESENTATION.includes('never reached move-complete'),
+    false,
+    'the presentation must not key the interrupted run on move-complete',
+  );
+});
+
 test('an interrupted classic move resumes from the recomputed map', async (t) => {
   const planLayoutMove = await loadPlanLayoutMove();
   const f = fixture(t, 'classic');
@@ -770,6 +879,27 @@ test('collisions stop the move and list both paths with their reasons', async (t
   assert.ok(
     PRESENTATION.includes('| From | To | Reason |'),
     'the presentation must carry the collision table header',
+  );
+});
+
+test('a layout map without parseable JSON on stdout fails whatever its exit code', () => {
+  // Exit 1 is also what Node gives a script that fails to load, so the stdout
+  // parse is the only thing that separates a load failure from listed collisions.
+  const exitPolicy = COMPAT_ACTION.workflow.phase_2_layout_preview.exit_policy;
+  assert.match(
+    exitPolicy,
+    /must parse as JSON whatever the exit code/,
+    'the layout map stdout must parse as JSON before its exit code is read',
+  );
+  assert.match(
+    exitPolicy,
+    /Without parseable JSON on stdout, show the stderr tail and stop with STATUS=FAILED/,
+    'a layout map without JSON must end as failed',
+  );
+  assert.match(
+    exitPolicy,
+    /exit 1 also comes from a script that fails to load/,
+    'the exit 1 ambiguity must be named',
   );
 });
 
