@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e598e06df16bd7d5eb78e7005271f1a0d43f0297a504b10f37e0b0d913b87605",
+  "manifestHash": "5ce6b1d35454c577deb2b0d66b65d0deb4bc168db98cde0277be3edff8ed2622",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20944,6 +20944,9 @@
     "cli subprocess fanout dispatch": [
       "cli subprocess fanout dispatch"
     ],
+    "cli tests write into specs": [
+      "cli tests write into specs"
+    ],
     "cli tooling ux": [
       "cli tooling ux"
     ],
@@ -24844,6 +24847,9 @@
     ],
     "compat readme trigger phrase fixed": [
       "compat readme trigger phrase fixed"
+    ],
+    "compat resume dirty check": [
+      "compat resume dirty check"
     ],
     "compat shim advisor": [
       "compat shim advisor"
@@ -37461,6 +37467,9 @@
     "doctor env command acceptance": [
       "doctor env command acceptance"
     ],
+    "doctor env duplicate variable": [
+      "doctor env duplicate variable"
+    ],
     "doctor env implementation summary": [
       "doctor env implementation summary"
     ],
@@ -40672,6 +40681,21 @@
     ],
     "epic docs alignment tasks": [
       "epic docs alignment tasks"
+    ],
+    "epic follow up fixes": [
+      "epic follow up fixes"
+    ],
+    "epic follow up fixes acceptance criteria": [
+      "epic follow up fixes acceptance criteria"
+    ],
+    "epic follow up fixes implementation summary": [
+      "epic follow up fixes implementation summary"
+    ],
+    "epic follow up fixes plan": [
+      "epic follow up fixes plan"
+    ],
+    "epic follow up fixes tasks": [
+      "epic follow up fixes tasks"
     ],
     "epic status reconcile": [
       "epic status reconcile"

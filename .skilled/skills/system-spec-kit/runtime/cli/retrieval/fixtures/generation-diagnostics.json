@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 56,
     "missing-frontmatter": 6816,
-    "ok": 13647,
+    "ok": 13652,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 24028,
+  "documentsScanned": 24033,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "e598e06df16bd7d5eb78e7005271f1a0d43f0297a504b10f37e0b0d913b87605",
+  "manifestHash": "5ce6b1d35454c577deb2b0d66b65d0deb4bc168db98cde0277be3edff8ed2622",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 35911,
+      "ok": 35919,
       "prose-sentence": 19,
       "single-token": 164,
       "stop-word-only": 1,
@@ -71476,6 +71476,10 @@
     },
     {
       "path": "specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/scratch",
       "reason": "excluded directory"
     },
     {

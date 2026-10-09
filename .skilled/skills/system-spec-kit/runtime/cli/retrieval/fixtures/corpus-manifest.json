@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ac5c3429a1d229b6e404e02985f02f9e204427a6f215e2fe46a867408eb9e531",
+  "corpusHash": "77b078e25d5b29a9189745295be6f9ce981c2723cfa985e62b8f57fe27042438",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24028,
+  "includedPathCount": 24033,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23652,6 +23652,11 @@
     "specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/plan.md",
     "specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/tasks.md",
     "specs/system-speckit/034-spec-folder-tooling/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/timeline.md",
     "specs/system-speckit/035-retire-memory-era-tests/implementation-summary.md",
@@ -24059,7 +24064,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e598e06df16bd7d5eb78e7005271f1a0d43f0297a504b10f37e0b0d913b87605",
+  "manifestHash": "5ce6b1d35454c577deb2b0d66b65d0deb4bc168db98cde0277be3edff8ed2622",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29639,6 +29644,10 @@
     },
     {
       "path": "specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/scratch",
       "reason": "excluded directory"
     },
     {
