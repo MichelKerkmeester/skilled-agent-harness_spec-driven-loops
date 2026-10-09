@@ -18,6 +18,8 @@ import { GATE_3_CHOICE_RELATED } from '../../hooks/lib/spec-gate/spec-gate-core.
 const REPO_ROOT = fileURLToPath(new URL('../../../../../../', import.meta.url));
 
 const GATE_3_MENU_FILES = [
+  '.skilled/commands/create/assets/create-agent-presentation.txt',
+  '.skilled/commands/create/assets/create-command-presentation.txt',
   '.skilled/commands/create/assets/create-feature-catalog-presentation.txt',
   '.skilled/commands/create/assets/create-manual-testing-playbook-presentation.txt',
   '.skilled/commands/create/assets/create-skill-parent-presentation.txt',
@@ -29,7 +31,10 @@ const GATE_3_MENU_FILES = [
   '.skilled/commands/deep/assets/compiled/deep-research.contract.md',
   '.skilled/commands/deep/assets/compiled/deep-review.contract.md',
   '.skilled/commands/speckit/assets/speckit-complete-presentation.txt',
+  '.skilled/commands/speckit/assets/speckit-implement.yaml',
   '.skilled/commands/speckit/assets/speckit-plan-presentation.txt',
+  '.skilled/skills/system-spec-kit/references/memory/trigger-config.md',
+  '.skilled/skills/system-spec-kit/references/workflows/worked-examples.md',
 ];
 
 function findOptionCLine(content) {

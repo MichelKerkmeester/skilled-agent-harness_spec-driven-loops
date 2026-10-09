@@ -14,11 +14,31 @@ import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 
-const REPO = path.resolve(__dirname, '../../../../../..');
+const TOOL_TREE = path.resolve(__dirname, '../../../../../..');
 const TOOL = '.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs';
-const SPECS = path.join(REPO, 'specs');
+
+// The tool takes its working directory as the repository root and refuses any
+// target outside <root>/specs, so each run works in a throwaway root. That root
+// links the checked-in tool tree and owns the specs/ folder the fixtures go in,
+// which keeps every fixture out of the real specs root.
+let ROOT = '';
+let SPECS = '';
+
+beforeAll(() => {
+  ROOT = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'repair-derived-')));
+  SPECS = path.join(ROOT, 'specs');
+  fs.mkdirSync(SPECS);
+  fs.symlinkSync(path.join(TOOL_TREE, '.skilled'), path.join(ROOT, '.skilled'), 'dir');
+});
+
+afterAll(() => {
+  if (!ROOT) return;
+  // Remove the tool-tree link before the recursive remove so it never walks into the real tree. Without recursive, rmSync removes the link itself, and force tolerates setup that failed before the link existed.
+  fs.rmSync(path.join(ROOT, '.skilled'), { force: true });
+  fs.rmSync(ROOT, { recursive: true, force: true });
+});
 
 const created: string[] = [];
 
@@ -32,7 +52,7 @@ afterEach(() => {
 function run(args: string[], env?: Record<string, string>): { status: number; stdout: string } {
   try {
     const stdout = execFileSync('node', [TOOL, ...args], {
-      cwd: REPO,
+      cwd: ROOT,
       encoding: 'utf8',
       env: env ? { ...process.env, ...env } : process.env,
     });
@@ -57,7 +77,7 @@ function fixture(name: string, files: Record<string, string>): string {
   for (const [file, body] of Object.entries(files)) {
     fs.writeFileSync(path.join(dir, file), body);
   }
-  return path.relative(REPO, dir);
+  return path.relative(ROOT, dir);
 }
 
 function summaryDoc(pointer: string, specFolder: string): string {
@@ -126,13 +146,13 @@ describe('repair-derived', () => {
     const dir = fixture('location', {
       'implementation-summary.md': summaryDoc('wrong-track/999-stale', '999-stale-name'),
     });
-    const before = fs.readFileSync(path.join(REPO, dir, 'implementation-summary.md'), 'utf8');
+    const before = fs.readFileSync(path.join(ROOT, dir, 'implementation-summary.md'), 'utf8');
     expect(before).toContain('999-stale-name');
 
     run(['--folder', dir, '--apply']);
 
-    const after = fs.readFileSync(path.join(REPO, dir, 'implementation-summary.md'), 'utf8');
-    const expectedPointer = path.relative(SPECS, path.join(REPO, dir)).split(path.sep).join('/');
+    const after = fs.readFileSync(path.join(ROOT, dir, 'implementation-summary.md'), 'utf8');
+    const expectedPointer = path.relative(SPECS, path.join(ROOT, dir)).split(path.sep).join('/');
     expect(after).toContain(`packet_pointer: "${expectedPointer}"`);
     expect(after).toContain(path.basename(dir));
     expect(after).not.toContain('999-stale-name');
@@ -150,7 +170,7 @@ describe('repair-derived', () => {
     fs.writeFileSync(path.join(dir, 'description.json'), `${JSON.stringify({ specFolder: 'old-track/001-archived', title: 'Fixture' }, null, 2)}\n`);
     fs.writeFileSync(path.join(dir, 'graph-metadata.json'), `${JSON.stringify({ schema_version: 1, packet_id: 'old-track/001-archived', spec_folder: 'old-track/001-archived', parent_id: 'old-track', parent_id_review_required: true, children_ids: [] }, null, 2)}\n`);
 
-    run(['--roots', path.relative(REPO, staging), '--apply']);
+    run(['--roots', path.relative(ROOT, staging), '--apply']);
 
     const expected = path.relative(SPECS, dir).split(path.sep).join('/');
     expect(JSON.parse(fs.readFileSync(path.join(dir, 'description.json'), 'utf8')).specFolder).toBe(expected);
@@ -161,15 +181,15 @@ describe('repair-derived', () => {
   });
 
   it('leaves a packet alone when nothing derived is wrong', () => {
-    const pointerFor = (dir: string) => path.relative(SPECS, path.join(REPO, dir)).split(path.sep).join('/');
+    const pointerFor = (dir: string) => path.relative(SPECS, path.join(ROOT, dir)).split(path.sep).join('/');
     const dir = fixture('correct', { 'implementation-summary.md': summaryDoc('placeholder', 'placeholder') });
     // Write the correct values in, so the only remaining failures are authored.
     const correct = summaryDoc(pointerFor(dir), path.basename(dir));
-    fs.writeFileSync(path.join(REPO, dir, 'implementation-summary.md'), correct);
+    fs.writeFileSync(path.join(ROOT, dir, 'implementation-summary.md'), correct);
 
     run(['--folder', dir, '--apply']);
 
-    const after = fs.readFileSync(path.join(REPO, dir, 'implementation-summary.md'), 'utf8');
+    const after = fs.readFileSync(path.join(ROOT, dir, 'implementation-summary.md'), 'utf8');
     expect(after).toBe(correct);
   });
 
@@ -177,7 +197,7 @@ describe('repair-derived', () => {
     const dir = fixture('dryrun', {
       'implementation-summary.md': summaryDoc('wrong-track/999-stale', '999-stale-name'),
     });
-    const file = path.join(REPO, dir, 'implementation-summary.md');
+    const file = path.join(ROOT, dir, 'implementation-summary.md');
     const before = fs.readFileSync(file, 'utf8');
 
     const result = run(['--folder', dir]);
@@ -219,7 +239,7 @@ describe('repair-derived', () => {
       '',
     ].join('\n');
     const dir = fixture('bodypointer', { 'implementation-summary.md': body });
-    const file = path.join(REPO, dir, 'implementation-summary.md');
+    const file = path.join(ROOT, dir, 'implementation-summary.md');
 
     run(['--folder', dir, '--apply']);
 
@@ -232,7 +252,7 @@ describe('repair-derived', () => {
     const dir = fixture('unwritable', {
       'implementation-summary.md': summaryDoc('wrong-track/999-stale', '999-stale-name'),
     });
-    const packet = path.join(REPO, dir);
+    const packet = path.join(ROOT, dir);
     const file = path.join(packet, 'implementation-summary.md');
     const before = fs.readFileSync(file, 'utf8');
 
@@ -255,7 +275,7 @@ describe('repair-derived', () => {
     const dir = fixture('idempotent', {
       'implementation-summary.md': summaryDoc('wrong-track/999-stale', '999-stale-name'),
     });
-    const file = path.join(REPO, dir, 'implementation-summary.md');
+    const file = path.join(ROOT, dir, 'implementation-summary.md');
 
     run(['--folder', dir, '--apply']);
     const afterFirst = fs.readFileSync(file, 'utf8');
@@ -271,7 +291,7 @@ describe('repair-derived', () => {
     const dir = fixture('switchedoff', {
       'implementation-summary.md': summaryDoc('wrong-track/999-stale', '999-stale-name'),
     });
-    const file = path.join(REPO, dir, 'implementation-summary.md');
+    const file = path.join(ROOT, dir, 'implementation-summary.md');
     const before = fs.readFileSync(file, 'utf8');
 
     const result = run(['--folder', dir, '--apply'], { SPECKIT_SKIP_VALIDATION: '1' });

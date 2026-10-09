@@ -4,9 +4,9 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { spawnSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
-import { afterAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { resolveLevelContract } from '../../lib/templates/level-contract-resolver';
 import { renderInlineGates, type RenderLevel } from '../templates/inline-gate-renderer';
 
@@ -213,13 +213,27 @@ describe('manifest template golden snapshots', () => {
 });
 
 describe('review and research packet scaffolds', () => {
-  // Metadata derivation only runs under a specs root, so the scaffolds land in
-  // a throwaway folder inside the repository's specs tree and are removed after.
-  const repoRoot = path.resolve(SKILL_ROOT, '..', '..', '..');
-  const root = path.join(repoRoot, 'specs', `zz-scaffold-golden-${process.pid}-${Date.now()}`);
+  // Metadata derivation only runs under a specs root anchored on a real .opencode
+  // directory, so each run works in a throwaway git repository that links the
+  // checked-in tool tree and owns the specs/ folder the scaffolds land in.
+  const skilledRoot = path.resolve(SKILL_ROOT, '..', '..');
   const validateScript = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'validate.sh');
-  fs.mkdirSync(root, { recursive: true });
-  afterAll(() => fs.rmSync(root, { recursive: true, force: true }));
+  let sandbox = '';
+  let root = '';
+  beforeAll(() => {
+    sandbox = fs.realpathSync(fs.mkdtempSync(path.join(tmpdir(), 'scaffold-golden-')));
+    execFileSync('git', ['init', '--quiet'], { cwd: sandbox });
+    fs.symlinkSync(skilledRoot, path.join(sandbox, '.skilled'), 'dir');
+    fs.mkdirSync(path.join(sandbox, '.opencode'));
+    root = path.join(sandbox, 'specs');
+    fs.mkdirSync(root, { recursive: true });
+  });
+  afterAll(() => {
+    if (!sandbox) return;
+    // Remove the tool-tree link before the recursive remove so it never walks into the real tree. Without recursive, rmSync removes the link itself, and force tolerates setup that failed before the link existed.
+    fs.rmSync(path.join(sandbox, '.skilled'), { force: true });
+    fs.rmSync(sandbox, { recursive: true, force: true });
+  });
 
   const cases = [
     { level: 'review', number: '999', nestedDoc: 'review/review-report.md' },
@@ -232,7 +246,7 @@ describe('review and research packet scaffolds', () => {
       const created = spawnSync(
         'bash',
         [CREATE_SCRIPT, '--json', '--skip-branch', '--level', level, '--path', target, '--number', number, `${level} fixture`],
-        { cwd: SKILL_ROOT, encoding: 'utf8' },
+        { cwd: sandbox, encoding: 'utf8' },
       );
       expect(created.status, created.stderr).toBe(0);
       expect(fs.existsSync(path.join(target, nestedDoc)), nestedDoc).toBe(true);
@@ -242,7 +256,7 @@ describe('review and research packet scaffolds', () => {
       expect(nested).not.toMatch(/\[NAME\]/u);
       expect(fs.readFileSync(path.join(target, 'spec.md'), 'utf8')).toContain(`<!-- SPECKIT_LEVEL: ${level} -->`);
 
-      const validated = spawnSync('bash', [validateScript, target, '--strict', '--no-recursive'], { cwd: SKILL_ROOT, encoding: 'utf8' });
+      const validated = spawnSync('bash', [validateScript, target, '--strict', '--no-recursive'], { cwd: sandbox, encoding: 'utf8' });
       expect(validated.stdout).toContain(`Level:  ${level}`);
       expect(validated.stdout, validated.stdout).toContain('RESULT: PASSED');
       expect(validated.status).toBe(0);

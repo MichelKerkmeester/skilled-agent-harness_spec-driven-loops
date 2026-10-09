@@ -2,29 +2,53 @@
 // MODULE: Scaffold Gate Self Check
 // ───────────────────────────────────────────────────────────────────
 
-import { spawnSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const scriptsRoot = path.resolve(__dirname, '..');
-const repoRoot = path.resolve(scriptsRoot, '..', '..', '..', '..');
+const skilledRoot = path.resolve(scriptsRoot, '..', '..', '..', '..');
 const createScript = path.join(scriptsRoot, 'spec', 'create.sh');
 const validateScript = path.join(scriptsRoot, 'spec', 'validate.sh');
-const createdFolders = new Set<string>();
 
+// create.sh and validate.sh take their repository root from git on the working
+// directory, and fall back to their own location otherwise. Each file therefore
+// runs in a throwaway git repository that links the checked-in tool tree and
+// owns its specs/ folder, so no scaffold lands in the real specs root.
+let sandbox = '';
+
+beforeAll(() => {
+  sandbox = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'scaffold-gate-')));
+  execFileSync('git', ['init', '--quiet'], { cwd: sandbox });
+  fs.symlinkSync(skilledRoot, path.join(sandbox, '.skilled'), 'dir');
+  // The graph writer only trusts a specs root whose workspace is anchored on a real .opencode directory.
+  fs.mkdirSync(path.join(sandbox, '.opencode'));
+});
+
+afterAll(() => {
+  if (!sandbox) return;
+  // Remove the tool-tree link before the recursive remove so it never walks into the real tree. Without recursive, rmSync removes the link itself, and force tolerates setup that failed before the link existed.
+  fs.rmSync(path.join(sandbox, '.skilled'), { force: true });
+  fs.rmSync(sandbox, { recursive: true, force: true });
+});
+
+// create.sh falls back to the enclosing repository when git cannot resolve the
+// sandbox, so the folder it prints is checked for containment before any test
+// reads from it or removes it.
 function scaffold(level: string, slug: string): string {
   const result = spawnSync('bash', [createScript, '--level', level, slug], {
-    cwd: repoRoot,
+    cwd: sandbox,
     encoding: 'utf8',
   });
   const match = (result.stdout ?? '').match(/SPEC_FOLDER:\s*(\S+)/u);
   if (!match) throw new Error(`create.sh produced no folder for level ${level}: ${result.stderr}`);
-  const folder = match[1];
-  createdFolders.add(folder);
+  const folder = path.resolve(sandbox, match[1]);
+  if (!folder.startsWith(path.join(sandbox, 'specs') + path.sep)) throw new Error(`create.sh wrote outside the sandbox: ${match[1]}`);
   return folder;
 }
 
@@ -33,14 +57,14 @@ function scaffoldPhase(slug: string, phaseNames: string[]): { parent: string; ch
     'bash',
     [createScript, '--phase', '--phases', String(phaseNames.length), '--phase-names', phaseNames.join(','), slug],
     {
-      cwd: repoRoot,
+      cwd: sandbox,
       encoding: 'utf8',
     },
   );
   const match = (result.stdout ?? '').match(/SPEC_FOLDER:\s*(\S+)/u);
   if (!match) throw new Error(`create.sh produced no phase parent for ${slug}: ${result.stderr}`);
   const parent = match[1];
-  createdFolders.add(parent);
+  if (!path.resolve(sandbox, parent).startsWith(path.join(sandbox, 'specs') + path.sep)) throw new Error(`create.sh wrote outside the sandbox: ${parent}`);
   // Read the children from disk so the assertion checks what create.sh wrote,
   // not this helper's guess at its folder grammar.
   const children = fs
@@ -49,14 +73,6 @@ function scaffoldPhase(slug: string, phaseNames: string[]): { parent: string; ch
     .map((entry) => path.join(parent, entry.name));
   return { parent, children };
 }
-
-afterEach(() => {
-  for (const folder of createdFolders) {
-    // Only ever remove something this test created, and only under specs.
-    if (folder.includes(`${path.sep}specs${path.sep}`)) fs.rmSync(folder, { recursive: true, force: true });
-  }
-  createdFolders.clear();
-});
 
 // The generator and the grader are the same system. When they disagree, every
 // packet starts life failing, and an author learns before writing a line that
@@ -67,7 +83,7 @@ describe('a scaffold passes the gate it ships with', () => {
       const folder = scaffold(level, `scaffold gate probe level ${level}`);
 
       const result = spawnSync('bash', [validateScript, folder, '--strict', '--no-recursive'], {
-        cwd: repoRoot,
+        cwd: sandbox,
         encoding: 'utf8',
       });
 
@@ -88,7 +104,7 @@ describe('a scaffold passes the gate it ships with', () => {
 
     for (const folder of [parent, ...children]) {
       const result = spawnSync('bash', [validateScript, folder, '--strict', '--no-recursive'], {
-        cwd: repoRoot,
+        cwd: sandbox,
         encoding: 'utf8',
       });
 
