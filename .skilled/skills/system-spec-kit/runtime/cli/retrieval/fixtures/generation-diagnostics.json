@@ -1,11 +1,11 @@
 {
   "counts": {
-    "duplicate-phrase": 54,
-    "missing-frontmatter": 6805,
-    "ok": 13636,
+    "duplicate-phrase": 56,
+    "missing-frontmatter": 6816,
+    "ok": 13647,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 24004,
+  "documentsScanned": 24028,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a80ae35e49b41a3dbbf6ec57acc22c9a26ffb58bedc46a7c5bcaff40207d7ad0",
+  "manifestHash": "e598e06df16bd7d5eb78e7005271f1a0d43f0297a504b10f37e0b0d913b87605",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 35873,
+      "ok": 35911,
       "prose-sentence": 19,
       "single-token": 164,
       "stop-word-only": 1,
@@ -34691,6 +34691,20 @@
       "reason": "no opening frontmatter delimiter"
     },
     {
+      "category": "duplicate-phrase",
+      "line": 6,
+      "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md",
+      "rawKey": "trigger_phrases",
+      "reason": "duplicate normalized phrase \"heal spec docs anchor repair\""
+    },
+    {
+      "category": "duplicate-phrase",
+      "line": 6,
+      "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md",
+      "rawKey": "trigger_phrases",
+      "reason": "duplicate normalized phrase \"heal spec docs lane modes\""
+    },
+    {
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/context-preservation/resource-map-template.md",
@@ -34766,6 +34780,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-check.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-compat.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -34880,6 +34900,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/anchors-valid-nested-anchor.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/architecture-boundary-enforcement.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -34935,6 +34961,24 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-delegation-scaffold-generator.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-anchor-repair-apply.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-anchor-repair-dry-run.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-lane-modes.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -35025,6 +35069,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/recursive-phase-validation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/repo-era-report.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -35162,7 +35212,37 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-phrase-lint-blocked-commit.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-phrase-lint-bypass.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/tree-thinning-for-spec-folder-consolidation-pi-b1.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/upgrade-legacy-apply-manifest.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/upgrade-legacy-dry-run.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/upgrade-legacy-refusal-without-git.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -71392,6 +71472,10 @@
     },
     {
       "path": "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/scratch",
       "reason": "excluded directory"
     },
     {
