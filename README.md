@@ -1349,7 +1349,7 @@ Code Mode reads each key under its manual's name: the manual name with every und
 
 - **`chrome_devtools_1`** (MCP/stdio) - browser automation (instance 1). No env var needed
 - **`chrome_devtools_2`** (MCP/stdio) - browser automation (instance 2). No env var needed
-- **`clickup_official`** (MCP/stdio) - official ClickUp MCP (`@clickup/mcp-server`). Requires `clickup__official_CLICKUP_API_KEY` + `clickup__official_CLICKUP_TEAM_ID`. Used by `mcp-click-up` skill
+- **`clickup_official`** (MCP/stdio) - official hosted ClickUp MCP via `mcp-remote`. No env var needed, the first launch asks for one OAuth approval in the browser. Used by `mcp-click-up` skill
 - **`figma`** (MCP/stdio) - design files, components, exports. Requires `figma_FIGMA_API_KEY`. This is the optional Code Mode MCP. The primary Figma surface is the `mcp-figma` skill via `figma-ds-cli`
 - **`github`** (MCP/stdio) - issues, pull requests, commits. Requires `github_GITHUB_PERSONAL_ACCESS_TOKEN`
 - **`webflow`** (MCP/stdio) - sites, CMS collections. Requires `webflow_WEBFLOW_TOKEN`
