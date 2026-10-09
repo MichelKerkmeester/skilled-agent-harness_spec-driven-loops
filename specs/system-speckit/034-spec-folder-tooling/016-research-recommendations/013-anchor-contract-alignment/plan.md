@@ -36,16 +36,16 @@ The operator chose on 2026-10-08: add a nesting check that allows `adr-NNN` to c
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Operator decision recorded in spec.md section 10 (done 2026-10-08)
-- [ ] Phase 001 has landed before step A, and phase 011 before step B
-- [ ] Research findings (SH-13) understood
-- [ ] Affected files identified
+- [x] Operator decision recorded in spec.md section 10 (done 2026-10-08)
+- [x] Phase 001 has landed before step A, and phase 011 before step B. Phase 001 is Complete (wave 1, pushed to main). Phase 011's un-nesting is built and census3 finds zero nested documents. Checked 2026-10-09: 011 spec.md reads Status Complete, so this item is met
+- [x] Research findings (SH-13) understood (research.md section 5.2)
+- [x] Affected files identified (spec.md Files to Change)
 
 ### Definition of Done
-- [ ] All acceptance criteria met (decision recorded, code and docs aligned)
-- [ ] Corpus baseline captured before code changes
-- [ ] Tests passing, with fixtures updated where they nest
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met (decision recorded, code and docs aligned). See acceptance-criteria.md, AC-001 to AC-007 Met
+- [x] Corpus baseline captured before code changes (step A baseline, scratch/anchors-baseline-step-a.md)
+- [x] Tests passing, with fixtures updated where they nest (gates/tree5/cli-test.log rc 0)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -113,6 +113,8 @@ Test plan:
 3. Re-run corpus validation and compare: expect nesting warnings, no new errors except duplicate closers (about 0)
 4. Step B after 011: raise nesting to error, re-run, expect about 13 live packets that need a hand fix first
 5. Run full spec-kit test suite after each step
+
+Outcome: step B found zero nesting findings in the working tree, so the hand-fix expectation in item 4 was met by 011's un-nesting before the flip. See implementation-summary.md.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -123,8 +125,8 @@ Test plan:
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Operator decision on anchor rules | External | Decided 2026-10-08 | None |
-| Phase 001 (template anchor nesting) | Internal | Planned | Step A waits, or every new Level 2 or 3 scaffold warns |
-| Phase 011 (anchor repair mode) | Internal | Planned | Step B waits, or about 400 live packets fail |
+| Phase 001 (template anchor nesting) | Internal | Complete | Step A waits, or every new Level 2 or 3 scaffold warns |
+| Phase 011 (anchor repair mode) | Internal | Complete (011 spec.md, checked 2026-10-09) | Step B waits, or about 400 live packets fail |
 | Corpus access for baseline | Internal | Green | Required to measure impact of changes |
 | orchestrator.ts source code | Internal | Green | Required to make the code change |
 <!-- /ANCHOR:dependencies -->

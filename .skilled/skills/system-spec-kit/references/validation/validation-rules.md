@@ -55,7 +55,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `AC_COVERAGE`        | INFO     | acceptance-criteria.md | Advisory traceability scan over each criterion's Verification cell (on by default; `SPECKIT_AC_COVERAGE_ENFORCE=true` makes an under-floor result fail) |
 | `AC_CLOSURE`         | ERROR    | acceptance-criteria.md | Closure gate for Levels 2/3/3+: unmet criteria block a completion claim, waivers must cite a real ADR |
 | `CONTINUITY_FRESHNESS` | WARNING | completion claims | Opt-in strict-only completion freshness check |
-| `ANCHORS_VALID`      | ERROR    | spec docs + memory/*.md | ANCHOR pairs properly opened and closed  |
+| `ANCHORS_VALID`      | ERROR    | spec docs with anchored templates | Anchors present, paired and not nested (adr-NNN may hold adr-NNN-*) |
 | `FOLDER_NAMING`      | ERROR    | Folder path   | Folder follows ###-short-name convention       |
 | `FRONTMATTER_VALID`  | ERROR    | spec docs     | YAML frontmatter properly structured           |
 | `COMPLEXITY_MATCH`   | WARNING  | All levels    | Content metrics match declared level           |
@@ -367,8 +367,8 @@ Add the Level field to your spec.md metadata table:
 
 ## 6. ANCHORS_VALID
 
-**Severity:** ERROR  
-**Description:** Validates that generated continuity artifacts and other support docs use proper ANCHOR format with matching open/close pairs.
+**Severity:** ERROR, nesting included  
+**Description:** Checks anchors in each spec doc whose template defines them, ignoring fenced code, and reports missing, unpaired, repeated or nested anchors as errors.
 
 ### What Are Anchors?
 
@@ -387,66 +387,98 @@ Content goes here...
 
 ### Rules
 
-1. **Every ANCHOR must have a closing /ANCHOR**
-2. **Names must match exactly** (case-sensitive)
-3. **No nesting** - anchors cannot contain other anchors
-4. **Scope:** `memory/*.md` files plus the major spec docs — `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, and `implementation-summary.md` — are validated
+1. **Scope:** the check reads the level's spec docs whose own template defines anchors. A document whose template ships no anchors is skipped, so an anchored surface is never demanded of a document that never had one. `research/research.md` and `review/review-report.md` are skipped as free-form workflow artifacts, and a phase parent is exempt because its lean document set passes without anchor checks.
+2. **Fenced code is ignored.** An anchor written inside a code fence is invisible to the check, which is why the examples below can show raw markup. A marker quoted in inline code is ignored by the nesting check, while the missing, unpaired and repeated checks still count it.
+3. **Names are matched exactly.** An id is a run of lower-case letters, digits and hyphens, and the close marker must repeat the open marker's string exactly.
+4. **Error findings make the rule fail:** a checked document with no anchors (`no anchors found`), an anchor opened twice (`duplicate anchor '<name>'`), an anchor that is never closed (`is never closed`), a close with no matching open (`is closed but never opened`), and a close count that exceeds the open count (`is closed more times than it is opened`).
+5. **Nesting findings are errors:** an anchor opened inside another (`is opened inside '<outer>'`), a close that arrives before its open (`is closed before it is opened`), and a close while another anchor is still open (`is closed while '<outer>' is still open`). A document with nesting findings fails, and they are reported alongside any other error findings.
+6. **One nesting is allowed:** an `adr-NNN` anchor may hold `adr-NNN-*` anchors, so `adr-001` can contain `adr-001-context`.
+7. **Template order is not checked.** The rule never compares a document's anchor set against the template's set or order. A template that moves a section would regrade the whole corpus on every commit, which turns the template into a moving target rather than a contract.
 
 ### Examples
 
-✅ **Pass:**
+✅ **Pass (two flat anchors):**
+
 ```markdown
+<!-- ANCHOR:context -->
 ## Project Context
 
-This feature adds authentication...
+The feature adds authentication.
 
+<!-- /ANCHOR:context -->
+
+<!-- ANCHOR:decisions -->
 ## Key Decisions
 
-We chose JWT because...
+JWT was chosen over sessions.
+
+<!-- /ANCHOR:decisions -->
 ```
 
-❌ **Error (unclosed anchor):**
+✅ **Pass (adr-001 holding adr-001-context):**
+
 ```markdown
-## Project Context
+<!-- ANCHOR:adr-001 -->
+## ADR-001: Use JWT
 
-This feature adds authentication...
+<!-- ANCHOR:adr-001-context -->
+### Context
 
-<!-- ANCHOR:decisions -->        ← ERROR: 'context' never closed
-## Key Decisions
+Sessions do not scale across regions.
+
+<!-- /ANCHOR:adr-001-context -->
+
+<!-- /ANCHOR:adr-001 -->
 ```
 
-❌ **Error (mismatched names):**
+❌ **Error (questions wrapping nfr):**
+
 ```markdown
-## Content
-<!-- /ANCHOR:Context -->         ← ERROR: 'context' ≠ 'Context'
+<!-- ANCHOR:questions -->
+## Open Questions
+
+<!-- ANCHOR:nfr -->
+### Non-Functional Requirements
+
+<!-- /ANCHOR:nfr -->
+<!-- /ANCHOR:questions -->
 ```
 
-### Pair Matching Logic
+Finding: `spec.md: anchor 'nfr' is opened inside 'questions'`
 
-The validator tracks anchor state:
+❌ **Error (a second `<!-- /ANCHOR:questions -->`):**
 
+```markdown
+<!-- ANCHOR:questions -->
+## Open Questions
+
+<!-- /ANCHOR:questions -->
+<!-- /ANCHOR:questions -->
 ```
-Open "context"     → Stack: [context]
-Open "decisions"   → ERROR: "context" still open
-Close "context"    → Stack: []
-Open "decisions"   → Stack: [decisions]
-Close "decisions"  → Stack: [] ✓
-```
+
+Finding: `spec.md: anchor 'questions' is closed more times than it is opened`
+
+Anchors inside fenced code, like every example above, are ignored by the check.
+
+### Stack Matching Logic
+
+The nesting pass walks a document with a stack:
+
+- **Open:** push the id. When another anchor is already on top, that is a nesting finding unless the open is an `adr-NNN-*` child of the `adr-NNN` on top. A repeated open of an id already on the stack is left to the duplicate-anchor finding so one defect is not reported twice.
+- **Close of the top of the stack:** pop it.
+- **Close of an anchor deeper in the stack:** report `is closed while '<outer>' is still open` and remove that anchor from the stack.
+- **Close of an id that is not on the stack:** report `is closed before it is opened` when the id is still opened later in the document; otherwise the never-opened finding already covers it.
 
 ### How to Fix
 
-1. Find the unclosed anchor in the error message
-2. Add the matching close tag: `<!-- /ANCHOR:name -->`
-3. Ensure name casing matches exactly
-
-```markdown
-## Before (broken)
-Content here...
-(missing close tag)
-
-## After (fixed)
-Content here...
-```
+- **No anchors found:** copy the anchor markup from the document's template, or confirm the template is meant to define anchors at all.
+- **Opened twice (duplicate anchor):** delete the extra opening marker so each id opens once.
+- **Never closed:** add `<!-- /ANCHOR:name -->` after the region.
+- **Closed but never opened:** add the missing opening marker before the close, or delete the stray close.
+- **Closed more times than opened:** delete the extra close so the open and close counts match.
+- **Opened inside another anchor:** close the outer anchor before opening the inner one, or move the opening marker of the outer anchor down to its own heading.
+- **Closed before it is opened:** move the opening marker above the close.
+- **Closed while another anchor is still open:** add the close for the inner anchor, or close the anchors in stack order.
 
 ---
 

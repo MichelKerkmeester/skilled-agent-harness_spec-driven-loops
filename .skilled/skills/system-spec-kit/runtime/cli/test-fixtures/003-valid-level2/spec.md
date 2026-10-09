@@ -126,9 +126,6 @@ Tiny Reminder Toggle has a concise fixture packet that strict validation accepts
 
 ---
 
-<!-- ANCHOR:questions -->
-
----
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
@@ -181,6 +178,7 @@ Tiny Reminder Toggle has a concise fixture packet that strict validation accepts
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None for this fixture

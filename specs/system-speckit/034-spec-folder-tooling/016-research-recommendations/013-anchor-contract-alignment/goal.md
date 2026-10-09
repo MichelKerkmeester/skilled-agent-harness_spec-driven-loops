@@ -11,19 +11,19 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment"
-    last_updated_at: "2026-10-08T12:00:00Z"
-    last_updated_by: "planning-agent"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Operator chooses anchor rule option"
-    blockers: ["Operator decision"]
+    last_updated_at: "2026-10-09T11:20:00Z"
+    last_updated_by: "closeout-worker"
+    recent_action: "Closeout pass 3: criteria checked against the evidence, see the Log"
+    next_safe_action: "None for this phase. Criterion 4 needs the parent decision"
+    blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "acceptance-criteria.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bd2aa56c-623b-43f8-a2ef-69a13c32d626"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: ["Which anchor rules should ANCHORS_VALID check?"]
-    answered_questions: []
+    completion_pct: 60
+    open_questions: []
+    answered_questions: ["Which anchor rules should ANCHORS_VALID check? Operator chose option 2 on 2026-10-08"]
 ---
 # Goal: Phase 13: anchor-contract-alignment
 
@@ -60,11 +60,11 @@ Frozen choices, decided 2026-10-08 by the operator. Changing one is an amendment
 <!-- ANCHOR:completion -->
 ## 2. COMPLETION CRITERIA
 
-- [ ] Vitest fixtures pass: nested `questions` reported, `adr-001` holding `adr-001-context` allowed, a duplicate closer reported
+- [x] Vitest fixtures pass: nested `questions` reported, `adr-001` holding `adr-001-context` allowed, a duplicate closer reported
 - [ ] A nesting finding is a warning before phase 011 lands and an error after, shown by a fixture checking the severity
-- [ ] `sed -n '109p' .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json` and validation-rules.md Anchor Rules describe exactly what the code checks
+- [x] `sed -n '109p' .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json` and validation-rules.md Anchor Rules describe exactly what the code checks
 - [ ] A baseline and a comparison report exist for each step, as files in this packet's scratch/ folder
-- [ ] `validate.sh --strict` on this packet prints RESULT: PASSED
+- [x] `validate.sh --strict` on this packet prints RESULT: PASSED
 
 <!-- /ANCHOR:completion -->
 
@@ -80,6 +80,7 @@ Frozen choices, decided 2026-10-08 by the operator. Changing one is an amendment
 | Anchor rules decided | 2026-10-08, the operator chose option 2 with the `adr-NNN` allowance plus duplicate closers. The allowance is needed because the decision-record template nests by design, so a literal "no nesting" rule fails a correct template |
 | Severity steps decided | Warning after 001, error after 011, because about 416 live packets nest today, 403 of them only through the old `questions` layout |
 | Order rejected | Template-sequence order would add about 45 live and 95 archived failures with no repair, and regrade the corpus on template edits |
+| Closeout pass 3 (2026-10-09) | Criteria 1, 3 and 5 checked against the evidence. Criterion 2: the warning state was shown at step A, and its test was replaced at step B, so no live fixture shows it. Criterion 4 stays open: step A has a baseline only, with no comparison file. See implementation-summary.md Open Items |
 <!-- /ANCHOR:log -->
 
 ---

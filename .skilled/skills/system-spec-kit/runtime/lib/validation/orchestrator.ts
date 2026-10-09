@@ -538,6 +538,44 @@ function stripFences(content: string): string {
   }).join('\n');
 }
 
+// Prose that quotes marker syntax in backticks is documentation, not structure.
+// Blank code spans the way stripFences blanks fenced blocks, so a quoted
+// example cannot read as a real anchor. A span closes on a run of backticks of
+// the same length on the same line; an unmatched run is left untouched, so one
+// stray backtick cannot swallow the rest of the document.
+function stripInlineCode(content: string): string {
+  return content
+    .split('\n')
+    .map((line) => {
+      let out = '';
+      let index = 0;
+      while (index < line.length) {
+        if (line[index] !== '`') {
+          out += line[index];
+          index += 1;
+          continue;
+        }
+        const open = index;
+        while (line[index] === '`') index += 1;
+        const runLength = index - open;
+        const delimiter = '`'.repeat(runLength);
+        let close = line.indexOf(delimiter, index);
+        while (close !== -1 && (line[close - 1] === '`' || line[close + runLength] === '`')) {
+          close = line.indexOf(delimiter, close + 1);
+        }
+        if (close === -1) {
+          out += line.slice(open, index);
+          continue;
+        }
+        const end = close + runLength;
+        out += line.slice(open, end).replace(/[^\n]/gu, ' ');
+        index = end;
+      }
+      return out;
+    })
+    .join('\n');
+}
+
 function renderInlineGates(template: string, level: SpecKitLevel): string {
   const lines = template.split(/(?<=\n)/u);
   const output: string[] = [];
@@ -684,6 +722,59 @@ function validateTemplateSource(folder: string, level: SpecKitLevel): Validation
     : entry('TEMPLATE_SOURCE', 'error', 'Template source header missing', missing);
 }
 
+// An anchor opened inside another one hides its section from retrieval: the
+// enclosing region absorbs every span until its own closer, so the outer name
+// returns unrelated sections. The decision-record template nests its per-ADR
+// sections by design, so an `adr-NN` region may contain its own children.
+function anchorNestingFindings(docName: string, body: string): string[] {
+  const findings: string[] = [];
+  const stack: string[] = [];
+  const openedSoFar = new Set<string>();
+  const opensAhead = new Map<string, number>();
+  for (const match of body.matchAll(/<!--\s*ANCHOR:([a-z0-9-]+)\s*-->/gu)) {
+    const id = match[1];
+    opensAhead.set(id, (opensAhead.get(id) ?? 0) + 1);
+  }
+
+  for (const match of body.matchAll(/<!--\s*(\/?)ANCHOR:([a-z0-9-]+)\s*-->/gu)) {
+    const closing = match[1] === '/';
+    const id = match[2];
+    if (!closing) {
+      const top = stack[stack.length - 1];
+      if (top !== undefined) {
+        const decisionChild = /^adr-\d+$/u.test(top) && id.startsWith(`${top}-`);
+        // A repeated open is the duplicate-anchor finding's to report; a second
+        // message for one defect would over-count it.
+        if (!decisionChild && !stack.includes(id)) {
+          findings.push(`${docName}: anchor '${id}' is opened inside '${top}'`);
+        }
+      }
+      stack.push(id);
+      openedSoFar.add(id);
+      opensAhead.set(id, (opensAhead.get(id) ?? 0) - 1);
+      continue;
+    }
+
+    const index = stack.lastIndexOf(id);
+    if (index === -1) {
+      // A closer that precedes its opener only counts when the opener arrives
+      // later; otherwise the never-opened finding already covers it.
+      if (!openedSoFar.has(id) && (opensAhead.get(id) ?? 0) > 0) {
+        findings.push(`${docName}: anchor '${id}' is closed before it is opened`);
+      }
+      continue;
+    }
+    if (index === stack.length - 1) {
+      stack.pop();
+      continue;
+    }
+    findings.push(`${docName}: anchor '${id}' is closed while '${stack[stack.length - 1]}' is still open`);
+    stack.splice(index, 1);
+  }
+
+  return findings;
+}
+
 // Anchors are load-bearing: merging generated content into a document, chunking
 // it for retrieval, and search metadata all read them. What those consumers need
 // is that anchors exist and are well formed — not that a document's anchor set
@@ -699,6 +790,7 @@ function validateAnchorIntegrity(folder: string, level: SpecKitLevel): Validatio
   }
 
   const findings: string[] = [];
+  const nestingFindings: string[] = [];
   let checked = 0;
 
   for (const docName of validationDocsForLevel(folder, level)) {
@@ -731,11 +823,34 @@ function validateAnchorIntegrity(folder: string, level: SpecKitLevel): Validatio
     for (const id of closes) {
       if (!opens.includes(id)) findings.push(`${docName}: anchor '${id}' is closed but never opened`);
     }
+
+    // A stray closer ends its region early for retrieval and merging.
+    const openCounts = new Map<string, number>();
+    for (const id of opens) openCounts.set(id, (openCounts.get(id) ?? 0) + 1);
+    const closeCounts = new Map<string, number>();
+    for (const id of closes) closeCounts.set(id, (closeCounts.get(id) ?? 0) + 1);
+    for (const [id, closeCount] of closeCounts) {
+      const openCount = openCounts.get(id) ?? 0;
+      if (openCount > 0 && closeCount > openCount) {
+        findings.push(`${docName}: anchor '${id}' is closed more times than it is opened`);
+      }
+    }
+
+    // Quoted marker syntax is documentation, not structure: an example in
+    // backticks must not read as a real nested anchor.
+    nestingFindings.push(...anchorNestingFindings(docName, stripInlineCode(body)));
   }
 
-  return findings.length === 0
-    ? entry('ANCHORS_VALID', 'pass', `Anchors well formed in ${checked} file(s)`)
-    : entry('ANCHORS_VALID', 'error', `${findings.length} anchor integrity issue(s) found`, findings);
+  // A nested anchor makes retrieval return the wrong region, so nesting is an
+  // error alongside the other integrity findings.
+  const issueCount = findings.length + nestingFindings.length;
+  if (issueCount > 0) {
+    return entry('ANCHORS_VALID', 'error', `${issueCount} anchor integrity issue(s) found`, [
+      ...findings,
+      ...nestingFindings,
+    ]);
+  }
+  return entry('ANCHORS_VALID', 'pass', `Anchors well formed in ${checked} file(s)`);
 }
 
 function extractSessionIds(content: string): { sessionIds: string[]; parentSessionIds: string[] } {

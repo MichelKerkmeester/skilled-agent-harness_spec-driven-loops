@@ -106,7 +106,7 @@
     "script_path": "native:orchestrator",
     "severity": "error",
     "category": "authored_template",
-    "description": "Validates anchor syntax, pairing, order, and uniqueness."
+    "description": "Checks anchors in each spec doc whose template defines them, ignoring fenced code; a phase parent is exempt, and research/research.md and review/review-report.md are skipped as free-form workflow documents. Errors: a doc with no anchors, an anchor opened twice, never closed, closed but never opened, or closed more times than it is opened. Nesting is also an error: an anchor opened inside another, closed before it is opened, or closed while another is still open, though markers quoted in inline code are ignored by the nesting check; an adr-NNN anchor may hold adr-NNN-* anchors. Template order is not checked."
   },
   {
     "rule_id": "FRONTMATTER_MEMORY_BLOCK",

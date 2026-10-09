@@ -39,7 +39,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,9 +47,17 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "tests/anchor-contract.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
-      ".skilled/skills/system-spec-kit/references/validation/validation-rules.md"
+      ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/anchor-contract.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/test-fixtures/003-valid-level2/spec.md",
+      "scratch/anchors-baseline-step-b.md",
+      "specs/agents/007-orchestrator-inline-authority/spec.md",
+      "scratch/anchors-baseline-step-a.json",
+      "scratch/anchors-baseline-step-a.md",
+      "test-fixtures/003-valid-level2/spec.md"
     ],
     "entities": [
       {
@@ -89,6 +97,12 @@
         "source": "derived"
       },
       {
+        "name": "anchor-contract.vitest.ts",
+        "kind": "test",
+        "path": "tests/anchor-contract.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "orchestrator.ts",
         "kind": "code",
         "path": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
@@ -104,6 +118,24 @@
         "name": "validation-rules.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "anchors-baseline-step-b.md",
+        "kind": "doc",
+        "path": "scratch/anchors-baseline-step-b.md",
+        "source": "derived"
+      },
+      {
+        "name": "anchors-baseline-step-a.json",
+        "kind": "config",
+        "path": "scratch/anchors-baseline-step-a.json",
+        "source": "derived"
+      },
+      {
+        "name": "anchors-baseline-step-a.md",
+        "kind": "doc",
+        "path": "scratch/anchors-baseline-step-a.md",
         "source": "derived"
       },
       {
@@ -161,45 +193,21 @@
         "source": "derived"
       },
       {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Pattern Validator",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Anchor Rules",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The ANCHORSVALID check in the validator code only detects duplicate anchor opens, unopened closes, unclosed opens, and documents with zero anchors",
     "created_at": "2026-10-08T04:22:48Z",
-    "last_save_at": "2026-10-08T07:39:26.805Z",
+    "last_save_at": "2026-10-09T09:21:43.481Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5ee75b75eda737262a364ee21b86333afc997a8836588a29e247179ab5725e04",
+    "source_fingerprint": "sha256:9dad4f902343093778b04843be34e7fdc218b9bc8f5b04c33fe15f03cce6c2de",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "389dca435e19d31b80bada0d205c2d787d9b165f49cad1d99b195fe90c5c38d5",
-      "plan.md": "646ee9bcc138c359f41ce1c9c64f8c8e625e410fdaff1e297a74b43bb9f92e45",
-      "tasks.md": "a0fbcf7c6343f56bd0339e47d4694b7ec1e0bc0b3e1381eecf01e3e424850695",
-      "implementation-summary.md": "437ce332bd1dacc867236abcabfd64c5eceea053b5a20a6fb95514579ef67019"
+      "spec.md": "f62d96ef40a67f210429de83235292d8615289b5859d3623a32183be2f3acbe0",
+      "plan.md": "301ac613cd31b8f9029e46f12932b90eae4dd8868ada561e70413dbbb59a55ae",
+      "tasks.md": "6b3bb1505a48da313effb3784ecacc629e639f53e4c134663c7ac760734da677",
+      "implementation-summary.md": "059672215d66d8ba1d2dd5edb3be5c26f845c253294f574ba37d1c6392deb5a1"
     },
     "last_active_at": null
   }
