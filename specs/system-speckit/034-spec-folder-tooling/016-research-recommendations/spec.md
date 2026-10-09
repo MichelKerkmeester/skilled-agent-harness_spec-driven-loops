@@ -135,6 +135,9 @@ Each child keeps its own file list. This table maps children to recommendations.
 ## 4. OPEN QUESTIONS
 
 - None. The operator decided the open choices on 2026-10-08, and each child records its own decision.
+- Overengineering and simplification in the research-recommendations build: where do the healer, upgrade-legacy, the anchor validator, the frontmatter migration and the doctor update compatibility code carry more than phases 003, 009, 011, 012, 013 and 015 require?
+
+**Research Context:** deep-research is active for this question (started 2026-10-09). `research/research.md` is the canonical synthesis.
 <!-- /ANCHOR:questions -->
 
 ---
