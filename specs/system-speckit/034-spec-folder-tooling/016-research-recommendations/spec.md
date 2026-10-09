@@ -137,7 +137,17 @@ Each child keeps its own file list. This table maps children to recommendations.
 - None. The operator decided the open choices on 2026-10-08, and each child records its own decision.
 - Overengineering and simplification in the research-recommendations build: where do the healer, upgrade-legacy, the anchor validator, the frontmatter migration and the doctor update compatibility code carry more than phases 003, 009, 011, 012, 013 and 015 require?
 
-**Research Context:** deep-research is active for this question (started 2026-10-09). `research/research.md` is the canonical synthesis.
+**Research Context:** deep-research ran five iterations on this question on 2026-10-09. `research/research.md` is the canonical synthesis.
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+Findings, abridged from `research/research.md`:
+
+- The build carries little beyond its phase specs. Three small simplifications survive the evidence, roughly 25 to 35 production lines in all.
+- Rank 1: drop the `--mode` subset selector from `heal-spec-docs.cjs --lane-modes` and keep the `runLaneModes(options.modes)` seam the tests use.
+- Rank 2: drop the lane CLI's `--json` branch only after phase 015's AC-019 evidence procedure stops depending on it.
+- Rank 3: merge the doctor compat action's `step_failure` and `on_step_failure` into one property. Low yield.
+- The writers, parsers, walkers, layout-map states, compat approvals and the close-before-open anchor diagnostic are requirement-backed. The eight applied P2 fixes went far enough for the duplication they targeted.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---
