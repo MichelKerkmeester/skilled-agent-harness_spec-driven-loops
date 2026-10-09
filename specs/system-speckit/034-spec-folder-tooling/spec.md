@@ -125,8 +125,9 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 13 | `013-corpus-wide-validation-repair/` | Repair every live and archived packet until the corpus passes strict validation | Complete |
 | 14 | `014-spec-auto-healing-research/` | Research how to harden these changes and heal old-format specs automatically | Complete |
 | 15 | `015-archive-current-location-and-ignored-files/` | Keep archived packets on their current path through moves, and skip git-ignored files in the index | Complete |
-| 16 | `016-research-recommendations/` | Plan each of the 16 research recommendations as its own child phase | Planned |
+| 16 | `016-research-recommendations/` | Plan each of the 16 research recommendations as its own child phase | Complete |
 | 17 | `017-heal-cli-and-compat-yaml-simplification/` | Apply the phase 16 overengineering research: pin the refusal order, drop the lane-mode CLI's `--mode` and `--json`, merge the compat action's failed-step fields | Complete |
+| 18 | 018-epic-docs-alignment/ | Bring the playbooks, feature catalogs, READMEs, doctor docs and release changelogs in line with the epic's tooling | Complete |
 
 ### Phase Transition Rules
 
@@ -155,6 +156,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | `014-spec-auto-healing-research` | `015-archive-current-location-and-ignored-files` | Phase 14 recommends the archive fix and the operator picks current-location semantics | `validate.sh --strict` passes on each child |
 | `015-archive-current-location-and-ignored-files` | `016-research-recommendations` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
 | `016-research-recommendations` | `017-heal-cli-and-compat-yaml-simplification` | Phase 16 is shipped and its research names the four changes | `validate.sh --strict` passes on each child |
+| 017-heal-cli-and-compat-yaml-simplification | 018-epic-docs-alignment | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

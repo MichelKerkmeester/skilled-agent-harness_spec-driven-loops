@@ -20,7 +20,8 @@
     "system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research",
     "system-speckit/034-spec-folder-tooling/015-archive-current-location-and-ignored-files",
     "system-speckit/034-spec-folder-tooling/016-research-recommendations",
-    "system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification"
+    "system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification",
+    "system-speckit/034-spec-folder-tooling/018-epic-docs-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -100,16 +101,16 @@
     ],
     "causal_summary": "The scripts that create, number and archive spec packets disagreed with where packets live",
     "created_at": "2026-09-23T00:00:00Z",
-    "last_save_at": "2026-10-09T14:34:32.977Z",
+    "last_save_at": "2026-10-09T17:12:19.060Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f182b0e7da7b3774ea84ef87db5c991360a0d9919c9f8a670a9b5446153bb7c2",
+    "source_fingerprint": "sha256:fce414602b870a7e62bf7f0abbcb1ffe83d75e8d782ba70c0efa4c25181361a7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ccbc8cb2583f4fc194cc3b5c65f7e5b85c9eb613251936ea42ac7e2b35e305bf"
+      "spec.md": "e38982bc274d45691c4399147a6f8c65174003b306841c1c3d5c5147388789b9"
     },
     "last_active_child_id": "system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research",
     "last_active_at": "2026-10-07T07:55:17.883Z"

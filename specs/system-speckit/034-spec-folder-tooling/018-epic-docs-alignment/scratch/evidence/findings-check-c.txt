@@ -1,0 +1,17 @@
+## F18 exception text
+24:- `pre-commit` runs eight blocking sub-gates: comment hygiene, agent-mirror sync, mirror parity, prompt-card sync, MCP mutation-class, template phrase lint, compiled-routing re-mint and spec derived-metadata re-mint
+24: Template phrase lint blocks staged template defaults and editor fallbacks, and warns on other negative classes
+31: The skill-metadata gate warns about stale generated metadata and never blocks; CI enforces it
+32: Where the toolchain ships, a missing gate script never passes in silence: a gate that can block exits 1 naming the path and its bypass, and a gate that cannot block warns
+110: Runs eight blocking sub-gates when their staged-path trigger matches: comment hygiene (on the staged content, in one checker run), agent-mirror sync, mirror parity, prompt-quality-card sync, the MCP mutation-class contract, template phrase lint, compiled-
+## F21 new-failure text
+12: A folder that fails while a baseline is loaded and is missing from it is `new-failure`
+20: Classifies each folder as `pass`, `regression`, `new-failure`, `first-run`, `known-failure`, `skipped` or `error`
+## F25 existing packet in same track
+.skilled/skills/system-spec-kit/references/workflows/worked-examples.md:existing packet in the same track
+.skilled/skills/system-spec-kit/references/memory/trigger-config.md:existing packet in the same track
+.skilled/commands/speckit/assets/speckit-implement.yaml:existing packet in the same track
+## F25 wording check on canonical spec-gate-core
+(eval):1: no matches found: .skilled/skills/system-spec-kit/shared/*.mjs
+(eval):1: no matches found: --include=*.ts
+rc=0
