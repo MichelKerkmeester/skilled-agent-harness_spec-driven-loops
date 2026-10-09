@@ -1,0 +1,46 @@
+{
+  "type": "iteration",
+  "iteration": 1,
+  "run": 1,
+  "runId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "sessionId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "lineageId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0,
+  "status": "complete",
+  "focus": "Parent hub two-axis routing and shared design restraint integration",
+  "findingsCount": 2,
+  "noveltyJustification": "Current source confirms that the older restraint-ladder recommendation is implemented in the shared standards and gated after surface and intent routing; the second finding reconfirms the prior rejection of a global intensity mode.",
+  "keyQuestions": [
+    "Which Ponytail 5.1.0 mechanisms complement sk-code's current two-axis hub routing and shared prompt contracts without duplicating them?"
+  ],
+  "answeredQuestions": [
+    "Which Ponytail 5.1.0 mechanisms complement sk-code's current two-axis hub routing and shared prompt contracts without duplicating them?"
+  ],
+  "ruledOut": [
+    {
+      "approach": "Add Ponytail's global lite/full/ultra session intensity switch to sk-code",
+      "reason": "It duplicates the prior rejected intensity state machine and conflicts with sk-code's separate workflow and surface axes.",
+      "evidence": "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:17"
+    }
+  ],
+  "toolsUsed": [
+    "cat",
+    "rg",
+    "nl"
+  ],
+  "sourcesQueried": [
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail.md",
+    ".skilled/skills/sk-code/SKILL.md",
+    ".skilled/skills/sk-code/hub-router.json",
+    ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+    ".skilled/skills/sk-code/shared/references/phase-detection.md",
+    "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md"
+  ],
+  "timestamp": "2026-10-09T13:29:52Z",
+  "durationMs": 51000
+}

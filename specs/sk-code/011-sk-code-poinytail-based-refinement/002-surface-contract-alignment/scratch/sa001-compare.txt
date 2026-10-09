@@ -1,0 +1,23 @@
+OK	N1	sk-code 0.934	sk-code 0.934
+OK	N2	null null	null null
+OK	N3	system-deep-loop 0.95	system-deep-loop 0.95
+OK	N4	cli-external-orchestration 0.95	cli-external-orchestration 0.95
+OK	N5	sk-code 0.861	sk-code 0.861
+OK	P1	cli-external-orchestration 0.95	cli-external-orchestration 0.95
+OK	P10	sk-code 0.8938	sk-code 0.8938
+OK	P11	system-spec-kit 0.864	system-spec-kit 0.864
+OK	P12	sk-code 0.8454	sk-code 0.8454
+OK	P13	sk-code 0.8391	sk-code 0.8391
+OK	P14	sk-code 0.836	sk-code 0.836
+OK	P15	sk-doc 0.82	sk-doc 0.82
+OK	P16	NONE	sk-code 0.9283
+OK	P17	NONE	sk-code 0.9412
+OK	P2	sk-code 0.8502	sk-code 0.8502
+OK	P3	sk-code 0.82	sk-code 0.82
+OK	P4	system-deep-loop 0.93	system-deep-loop 0.93
+OK	P5	sk-code 0.82	sk-code 0.82
+OK	P6	sk-code 0.942	sk-code 0.942
+OK	P7	sk-code 0.8899	sk-code 0.8899
+OK	P8	sk-code 0.8549	sk-code 0.8549
+OK	P9	sk-code 0.8665	sk-code 0.8665
+worse_or_failed=0

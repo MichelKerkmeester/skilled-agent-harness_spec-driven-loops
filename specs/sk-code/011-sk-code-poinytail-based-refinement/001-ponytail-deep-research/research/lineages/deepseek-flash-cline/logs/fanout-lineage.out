@@ -1,0 +1,16 @@
+All ten iterations verify, the terminal ledger chain is committed, and every required artifact is on disk.
+
+**Lineage `deepseek-flash-cline` — 10/10 iterations, 81 findings, synthesis complete.**
+
+What ran (all inside `specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline`):
+
+- **10 iteration narratives + 10 deltas**, each with a numbered `## Findings` section, a delta row plus one JSON finding row per finding, and an immediately-appended canonical state record (declared `findingsCount` matches actual rows in all ten: 9, 8, 9, 8, 8, 8, 8, 7, 8, 8).
+- **Ledger chain:** 15 canonical events via `append-mode-event.cjs` — 10 × `iteration-completed` (seq 2–11), `convergence-evaluated` (12), `spec-synthesis-deferred` (13), `synthesis-complete` (14), `run-completed` (15), each with an authorization receipt and a refreshed legacy projection.
+- **Synthesis:** `research.md` (23.9 KB), `findings-registry.json` (9 resolved questions, 81 key findings, 22 ruled-out directions), `deep-research-dashboard.md`, `resource-map.md`, updated `deep-research-strategy.md`.
+- **Verification:** `verify-iteration.cjs` → OK for all 10 iterations; required artifacts exist, are non-symlink, non-empty; registry finding count equals delta finding count (81 = 81); state log 15/15 rows parse; config status set to terminal `completed`.
+
+Substance in one paragraph: Ponytail's transferable value for sk-code is its measurement and honesty machinery — a behavior-effect eval with a failing control arm, a grader self-test, a deterministic replay that can be restored over the hub's existing 28-scenario corpus, safeguard-preserving size measurement, and published-number hygiene. Twelve of the archived refinement's 17 recommendations are present (four now scenario-verified); two are genuinely pending (`code_loc` metric, `shrink` row); the retired router-sync guard's note no longer describes current coverage. Eight original proposals and twelve reasoned rejections are recorded, with five implementation phases gated on the measurement that proves each safe.
+
+Terminal reason: **`max-iterations-cap-reached` (10/10)** — the 0.05 convergence threshold was not met (ratios 0.5, 0.31, 0.56, 0.56, 0.69, 0.75, 0.5, 0.5, 0.75, 0.3) and no convergence is claimed; all nine key questions are answered, with four sub-questions explicitly bounded rather than answered. Parent-packet writeback was deferred by the detached-lineage boundary. Nothing outside the lineage directory was written.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-flash-cline

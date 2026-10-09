@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/006-guard-retirement-notes",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/006-guard-retirement-notes",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "guard retirement notes",
+      "phase 6 guard retirement notes",
+      "guard retirement notes plan",
+      "guard retirement notes tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "guard retirement notes implementation summary"
+    ],
+    "key_topics": [
+      "guard",
+      "retirement",
+      "notes",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".github/workflows/routing-registry-drift.yml",
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+      ".skilled/skills/sk-code/benchmark/README.md",
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "run-all-drift-guards.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/benchmark/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "alignment-verification-automation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Doc",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The drift-guard umbrella script already records the retired router-sync guard as missing (`sk-code-opencode/scripts/run-all-drift-guards.sh:50-53`), but it names no owner for the gap and does not mention that `.github/workflows/routing-registry-drift.yml` partly covers it",
+    "created_at": "2026-10-09T16:00:51Z",
+    "last_save_at": "2026-10-09T18:03:53.733Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cc7516ad661450304a5e25bca18dfeb93699ed689a921887627b54326eeb1d3d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7d6c93365084fb2671bcde3758e5a8477a11a55c4958756bb7ac22eb9deca346",
+      "plan.md": "c0a8de685521c81ed16c92ac55da0d6b1e34a4544607b8b41bd3144cd30c90cf",
+      "tasks.md": "c477b953fb65345324a32856118a4fe2afffa18952fb612634514decf6eaed1d",
+      "implementation-summary.md": "076af1c7f0e01f64fb0319f26bceb12d2481c4d0f66f274cacf9e6631a88f137"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "hubId": "sk-code",
+  "servingAuthority": "compiled",
+  "shadowOnly": false,
+  "selectedPolicy": {
+    "generation": 2
+  },
+  "effectivePolicyHash": "01f648d783af4488d822f71a8d5a3a3b544a80cdda88cbc41b35772ee93497de",
+  "fenceEpoch": 4,
+  "manifestFingerprint": "4c3c9575b5edd0dcc61f224e9ce8f4eb4538558d42c2bbb1a8b8ca39af082fb6",
+  "causeCode": "compiled-serving",
+  "manifestFreshness": {
+    "manifestValid": true,
+    "fresh": true,
+    "causeCode": "fresh",
+    "currentPolicyHash": "01f648d783af4488d822f71a8d5a3a3b544a80cdda88cbc41b35772ee93497de"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "type": "iteration",
+  "iteration": 9,
+  "run": 9,
+  "runId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "sessionId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "lineageId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.0,
+  "status": "insight",
+  "focus": "Final hook-portability and review-contract recheck",
+  "findingsCount": 0,
+  "noveltyJustification": "No independent product finding was added. The live adapter and host-timeout evidence confirm the open-stdin gap already recorded in iteration 3, and the review checklist matches the earlier adoption audit.",
+  "keyQuestions": [
+    "Does the current hook implementation or review contract add a separate gap beyond the recorded hook and review findings?"
+  ],
+  "answeredQuestions": [
+    "Does the current hook implementation or review contract add a separate gap beyond the recorded hook and review findings?"
+  ],
+  "ruledOut": [
+    {
+      "approach": "Add another general checker timeout layer",
+      "reason": "The shared hook router already has a checker deadline; the unbounded edge is stdin collection before that router runs."
+    }
+  ],
+  "toolsUsed": [
+    "rg",
+    "nl",
+    "cat",
+    "clock"
+  ],
+  "sourcesQueried": [
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/hooks-windows.test.js:107-125",
+    ".skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs:40-50",
+    ".skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs:30-42",
+    ".claude/settings.json:176-207",
+    ".codex/hooks.json:112-146",
+    ".skilled/skills/sk-code/manual-testing-playbook/plugins-and-hooks/post-edit-quality-router.md:50-83,271-287,342-359",
+    ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:108-153"
+  ],
+  "timestamp": "2026-10-09T13:54:23Z",
+  "durationMs": 46000
+}

@@ -1,0 +1,553 @@
+{
+  "sessionId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-which-ponytail-5-1-0-mechanisms-complement-sk-code-s-current-two-axis-hub-routin",
+      "inboxId": null,
+      "text": "Which Ponytail 5.1.0 mechanisms complement sk-code's current two-axis hub routing and shared prompt contracts without duplicating them?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-ponytail-design-restraint-quality-and-review-checks-are-genuinely-missing-",
+      "inboxId": null,
+      "text": "Which Ponytail design restraint, quality, and review checks are genuinely missing from sk-code's nested code-quality and code-review modes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-ponytail-hook-state-and-cross-runtime-portability-mechanisms-can-improve-s",
+      "inboxId": null,
+      "text": "Which Ponytail hook, state, and cross-runtime portability mechanisms can improve sk-code surfaces without violating its read-first, scope, and verification floors?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-what-do-ponytail-s-benchmark-and-correctness-gates-measure-and-where-could-sk-co",
+      "inboxId": null,
+      "text": "What do Ponytail's benchmark and correctness gates measure, and where could sk-code's benchmark and advisor tooling gain decision-useful evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-which-older-ponytail-recommendations-are-already-adopted-lost-or-still-new-in-cu",
+      "inboxId": null,
+      "text": "Which older Ponytail recommendations are already adopted, lost, or still new in current sk-code, and which source-inspired additions should be rejected?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-5-which-older-ponytail-recommendations-are-already-adopted-lost-or-still-new-in-cu",
+      "inboxId": null,
+      "text": "Which older Ponytail recommendations are already adopted, lost, or still new in current sk-code, and which source-inspired additions should be rejected?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-ponytail-5-1-0-mechanisms-complement-sk-code-s-current-two-axis-hub-routin",
+      "inboxId": null,
+      "text": "Which Ponytail 5.1.0 mechanisms complement sk-code's current two-axis hub routing and shared prompt contracts without duplicating them?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-which-ponytail-design-restraint-quality-and-review-checks-are-genuinely-missing-",
+      "inboxId": null,
+      "text": "Which Ponytail design restraint, quality, and review checks are genuinely missing from sk-code's nested code-quality and code-review modes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-which-ponytail-hook-state-and-cross-runtime-portability-mechanisms-can-improve-s",
+      "inboxId": null,
+      "text": "Which Ponytail hook, state, and cross-runtime portability mechanisms can improve sk-code surfaces without violating its read-first, scope, and verification floors?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-what-do-ponytail-s-benchmark-and-correctness-gates-measure-and-where-could-sk-co",
+      "inboxId": null,
+      "text": "What do Ponytail's benchmark and correctness gates measure, and where could sk-code's benchmark and advisor tooling gain decision-useful evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Which Ponytail design restraint, quality, and review checks are genuinely missing from sk-code's nested code-quality and code-review modes?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which Ponytail hook, state, and cross-runtime portability mechanisms can improve sk-code surfaces without violating its read-first, scope, and verification floors?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What do Ponytail's benchmark and correctness gates measure, and where could sk-code's benchmark and advisor tooling gain decision-useful evidence?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which Ponytail benchmark and correctness gates could improve sk-code benchmark and advisor tooling?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which earlier recommendations are already adopted, lost, or still new after checking the current two-axis hub and every relevant tooling surface?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which older recommendations are already adopted, lost, or still new after checking the current two-axis hub, every nested mode, and related tooling?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Which older Ponytail recommendations are already adopted, lost, or still new in current sk-code, and which source-inspired additions should be rejected?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-already-adopted-retained-rejection-preserve-sk-code-s-single-advisor-identity-wi",
+      "text": "**ALREADY-ADOPTED (retained rejection)** — Preserve sk-code's single advisor identity with separate workflow and surface axes; reject Ponytail's session-global intensity switch because it would flatten routing, and the earlier refinement already rejected that state machine. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:15-17] [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail.md:2-5] [SOURCE: .skilled/skills/sk-code/SKILL.md:15-17] [SOURCE: .skilled/skills/sk-code/SKILL.md:52-71] [SOURCE: .skilled/skills/sk-code/hub-router.json:4-18] [SOURCE: specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:74-84]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail.md",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+        ".skilled/skills/sk-code/shared/references/phase-detection.md",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-1-1-already-adopted-ponytail-s-six-rung-smallest-complete-change-ladder-is-already-i",
+      "text": "**ALREADY-ADOPTED** — Ponytail's six-rung smallest-complete-change ladder is already in the shared sk-code standards, and implementation enters it after surface and intent routing. Do not add another hub-level ladder. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:25-33] [SOURCE: .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:42-53] [SOURCE: .skilled/skills/sk-code/shared/references/phase-detection.md:97] [SOURCE: specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-54]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail.md",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+        ".skilled/skills/sk-code/shared/references/phase-detection.md",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-2-2-already-adopted-retained-rejection-keep-one-findings-first-review-baseline-and-r",
+      "text": "**ALREADY-ADOPTED (retained rejection)** — Keep one findings-first review baseline and reject a separate ponytail-review/audit skill or LOC-based severity score. Those would split the current review contract or reward under-solving. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:11-14] [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md:11-14] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:13-16] [SOURCE: .skilled/skills/sk-code/sk-code-review/references/review-core.md:88-103] [SOURCE: specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:77-79]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md",
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-2-1-already-adopted-the-older-standard-library-native-duplication-checks-needed-ness",
+      "text": "**ALREADY-ADOPTED** — The older standard-library/native duplication checks, needed-ness removal prompt, ceiling-comment boundary, and Replacement field already exist in sk-code-review. Do not duplicate the rows. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:46-66] [SOURCE: .skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:108-153] [SOURCE: .skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:46-54] [SOURCE: specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:47-52]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md",
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-2-3-new-for-a-scale-or-performance-finding-include-the-assumed-workload-in-the-exist",
+      "text": "**NEW** — For a scale or performance finding, include the assumed workload in the existing evidence text. Ponytail asks reviewers to find and state expected load, while sk-code asks a 10x-volume question but its finding schema does not capture the workload assumption. A short sentence inside the current evidence field closes that gap without changing the schema. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:26-28] [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md:22-23] [SOURCE: .skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:52-63] [SOURCE: .skilled/skills/sk-code/sk-code-review/references/review-core.md:88-103]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md",
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-3-1-new-give-the-claude-and-codex-posttooluse-quality-adapters-a-short-adapter-local",
+      "text": "**NEW:** Give the Claude and Codex PostToolUse quality adapters a short adapter-local stdin deadline and an open-stdin regression case. Ponytail exits promptly on normal EOF and has a one-second fallback for a stalled stdin stream, with tests asserting both the fast EOF path and self-exit before an external watchdog; sk-code's adapters read stdin to EOF and currently rely on each host's 10-second timeout. This narrows the failure window for a wrapper that fails to close stdin without changing the hook's fail-open policy. Sources: `specs/sk-code/011-sk-code-poinytail-based-refinement/context/hooks/ponytail-mode-tracker.js:160-178`; `specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/hooks.test.js:776-817`; `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs:43-47`; `.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs:35-39`; `.claude/settings.json:200-207`; `.codex/hooks.json:105-112`; `specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:66,82-84`.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/hooks/ponytail-mode-tracker.js:132-178`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/hooks.test.js:776-817`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:3-5,45-49`",
+        "`.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs:43-47`",
+        "`.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs:35-39`",
+        "`.claude/settings.json:200-207`",
+        "`.codex/hooks.json:105-112`",
+        "`.skilled/hooks/post-edit-quality/README.md:60-72`",
+        "`.skilled/skills/sk-code/SKILL.md:52-71`",
+        "`specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:66,82-84`"
+      ]
+    },
+    {
+      "id": "finding-4-1-already-adopted-keep-correctness-as-an-eligibility-gate-and-do-not-blend-it-with",
+      "text": "**ALREADY-ADOPTED:** Keep correctness as an eligibility gate and do not blend it with brevity or format. Ponytail separates correctness and safety gates from size and efficiency measures; sk-code's active Lane B gate already uses correctness for eligibility and removes a saturated correctness column from ranking. The earlier refinement also placed new size and over-engineering measures after that gate and rejected a separate PromptFoo clone. Sources: `specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:71-80`; `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/correctness-gate.cjs:8-20,124-159`; `specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:62,76`.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/README.md:3-13,92-101`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:37-45,71-112,149-159`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/results/2026-10-07-agentic.md:57-95,160-170`",
+        "`.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/correctness-gate.cjs:8-20,124-159`",
+        "`.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16`",
+        "`.skilled/skills/sk-code/benchmark/README.md:14-26`",
+        "`.skilled/skills/sk-code/hub-router.json:4-18`",
+        "`.skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md:11-19,53-59`",
+        "`.skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md:29-35,44-61`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md:65-90`",
+        "`specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:62,76`"
+      ]
+    },
+    {
+      "id": "finding-4-2-new-original-idea-keep-advisor-identity-accuracy-separate-from-sk-code-s-interna",
+      "text": "**NEW — original idea:** Keep advisor identity accuracy separate from sk-code's internal two-axis routing quality, then report compiled-route outcomes by route shape and expected workflow/surface set. Ponytail's separated task tiers show why an aggregate score can hide a weak dimension; sk-code has `single`, `orderedBundle`, `surfaceBundle`, and `defer` outcomes, while the advisor probe battery measures only whether `sk-code` wins top-1. The current compiled-routing corpus has one `surfaceBundle` case for Webflow, and the old Lane C skill benchmark is retired. A compact matrix over those four outcomes, with positive and negative bundle controls, would expose workflow-mode misses and over-bundled surfaces without changing the advisor's outer-skill contract. Sources: `specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:37-45,149-158`; `.skilled/skills/sk-code/hub-router.json:4-18`; `.skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md:11-19,53-59`; `.skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md:29-35,44-61`; `.skilled/skills/sk-code/benchmark/README.md:14-26`.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/README.md:3-13,92-101`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:37-45,71-112,149-159`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/results/2026-10-07-agentic.md:57-95,160-170`",
+        "`.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/correctness-gate.cjs:8-20,124-159`",
+        "`.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16`",
+        "`.skilled/skills/sk-code/benchmark/README.md:14-26`",
+        "`.skilled/skills/sk-code/hub-router.json:4-18`",
+        "`.skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md:11-19,53-59`",
+        "`.skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md:29-35,44-61`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md:65-90`",
+        "`specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:62,76`"
+      ]
+    },
+    {
+      "id": "finding-4-3-new-if-a-future-agentic-code-benchmark-measures-implementation-quality-report-te",
+      "text": "**NEW:** If a future agentic code benchmark measures implementation quality, report test effectiveness separately from test presence: pre-classify which tasks need tests, inject a small fault into the produced code, then run the agent's tests and report fault detection as an advisory signal. Ponytail applies this check to agent-written tests; sk-code's active Lane B scorer currently returns correctness, format, and length measures for one extracted function, while the earlier benchmark recommendation covers code size and over-engineering only. The old sk-code Lane C skill benchmark is retired and measures routing, discovery, and usefulness rather than agent-written test sensitivity, so this belongs in a future agentic benchmark scope, not an unrequested resurrection of Lane C. Sources: `specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:78-95`; `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16`; `specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:62`; `.skilled/skills/sk-code/benchmark/README.md:14-26`.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/README.md:3-13,92-101`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:37-45,71-112,149-159`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/results/2026-10-07-agentic.md:57-95,160-170`",
+        "`.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/correctness-gate.cjs:8-20,124-159`",
+        "`.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16`",
+        "`.skilled/skills/sk-code/benchmark/README.md:14-26`",
+        "`.skilled/skills/sk-code/hub-router.json:4-18`",
+        "`.skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md:11-19,53-59`",
+        "`.skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md:29-35,44-61`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md:65-90`",
+        "`specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:62,76`"
+      ]
+    },
+    {
+      "id": "finding-5-1-already-adopted-the-core-design-restraint-transfer-is-present-ask-whether-code-i",
+      "text": "**ALREADY-ADOPTED:** The core design-restraint transfer is present: ask whether code is needed, prefer existing and standard/platform facilities, then choose a small implementation only after reading the task and its surrounding code. The earlier placement after surface and intent routing remains present; the six-rung order is in sk-code's universal quality standard. Sources: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:16-34; specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-50; .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:42-51.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:16-34",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:49-57",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:13-25",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/commands/ponytail-help.toml:2",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-84",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:42-53",
+        ".skilled/skills/sk-code/SKILL.md:54-71,134-138",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:28-54",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:108-153",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:46-54",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:530-538",
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:66",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:286-293",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py:13-43",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:35-71",
+        ".skilled/skills/sk-code/sk-code-review/scripts/README.md:20",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/sweep-reporter.cjs:167-191",
+        ".github/workflows/agent-mirror-sync.yml:24-35",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:30-32,66-74",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:18-22"
+      ]
+    },
+    {
+      "id": "finding-5-2-already-adopted-the-old-review-additions-are-present-across-the-quality-checklis",
+      "text": "**ALREADY-ADOPTED:** The old review additions are present across the quality checklist, removal plan, review-depth contract, and implementer rule: stdlib/native checks, bounded ceiling comments, neededness/removal, Replacement, review depth, and anti-stall while preserving scope. Sources: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:49-57; specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:55-61,67-70; .skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:108-153; .skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:46-54; .skilled/skills/sk-code/sk-code-review/SKILL.md:530-538; .skilled/skills/sk-code/shared/references/workflow-implement.md:66.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:16-34",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:49-57",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:13-25",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/commands/ponytail-help.toml:2",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-84",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:42-53",
+        ".skilled/skills/sk-code/SKILL.md:54-71,134-138",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:28-54",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:108-153",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:46-54",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:530-538",
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:66",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:286-293",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py:13-43",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:35-71",
+        ".skilled/skills/sk-code/sk-code-review/scripts/README.md:20",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/sweep-reporter.cjs:167-191",
+        ".github/workflows/agent-mirror-sync.yml:24-35",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:30-32,66-74",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:18-22"
+      ]
+    },
+    {
+      "id": "finding-5-3-lost-surface-contract-wording-the-restraint-ladder-remains-but-the-old-single-ax",
+      "text": "**LOST (surface-contract wording):** The restraint ladder remains, but the old single-axis surface precedence was not reconciled after the hub gained an Obsidian surface. The universal standard still says OPENCODE > WEBFLOW > UNKNOWN, and the hub SKILL still lists MOTION_DEV as a surface; the shared detector now defines OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN and treats Motion.dev as a peer resource category. LOGIC-SYNC REQUIRED: .skilled/skills/sk-code/SKILL.md:136 conflicts with .skilled/skills/sk-code/shared/references/stack-detection.md:28-40; .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:53 also retains the old precedence. This is recorded for synthesis; no source rule is selected here. Sources: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:27-34; specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-50; .skilled/skills/sk-code/SKILL.md:134-138; .skilled/skills/sk-code/shared/references/stack-detection.md:28-40; .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:44-53.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:16-34",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:49-57",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:13-25",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/commands/ponytail-help.toml:2",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-84",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:42-53",
+        ".skilled/skills/sk-code/SKILL.md:54-71,134-138",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:28-54",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:108-153",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:46-54",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:530-538",
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:66",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:286-293",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py:13-43",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:35-71",
+        ".skilled/skills/sk-code/sk-code-review/scripts/README.md:20",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/sweep-reporter.cjs:167-191",
+        ".github/workflows/agent-mirror-sync.yml:24-35",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:30-32,66-74",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:18-22"
+      ]
+    },
+    {
+      "id": "finding-5-5-new-codex-only-mirror-check-gap-the-repo-wide-mirror-gate-exists-but-a-codex-onl",
+      "text": "**NEW (Codex-only mirror-check gap):** The repo-wide mirror gate exists, but a Codex-only agent edit can bypass its checker. CI forwards .codex/agents/ changes, yet the checker path matcher recognizes .opencode, .skilled, and .claude only; if no path matches, it exits successfully with “nothing to check.” LOGIC-SYNC REQUIRED: .github/workflows/agent-mirror-sync.yml:24-35 conflicts with .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:30-32,66-74; the verifier lists Codex as an optional mirror at .skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:18-22. This is a partial implementation of the earlier repo-wide mirror recommendation, not evidence that the parity check has no value. Sources: specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:13-25; specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:67-70; .github/workflows/agent-mirror-sync.yml:24-35; .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:30-32,66-74; .skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:18-22.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:16-34",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:49-57",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:13-25",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/commands/ponytail-help.toml:2",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-84",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:42-53",
+        ".skilled/skills/sk-code/SKILL.md:54-71,134-138",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:28-54",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:108-153",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:46-54",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:530-538",
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:66",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:286-293",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py:13-43",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:35-71",
+        ".skilled/skills/sk-code/sk-code-review/scripts/README.md:20",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/sweep-reporter.cjs:167-191",
+        ".github/workflows/agent-mirror-sync.yml:24-35",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:30-32,66-74",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:18-22"
+      ]
+    },
+    {
+      "id": "finding-5-4-new-remaining-validator-gap-the-earlier-stack-folder-validator-recommendation-is",
+      "text": "**NEW (remaining validator gap):** The earlier stack-folder validator recommendation is only partly implemented. The manual-testing contract says adding assets/zzz_fake_surface should fail, while verify_stack_folders.py scans known and orphan language directories only under references/; it does not check assets/. LOGIC-SYNC REQUIRED: .skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:286-293 conflicts with .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py:13-43. The references check is adopted; the documented assets assertion is not observed in the implementation. Sources: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:18-20; specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:64; .skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:286-293; .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py:13-43.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:16-34",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:49-57",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:13-25",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/commands/ponytail-help.toml:2",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-84",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:42-53",
+        ".skilled/skills/sk-code/SKILL.md:54-71,134-138",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:28-54",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:108-153",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:46-54",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:530-538",
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:66",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:286-293",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py:13-43",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:35-71",
+        ".skilled/skills/sk-code/sk-code-review/scripts/README.md:20",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/sweep-reporter.cjs:167-191",
+        ".github/workflows/agent-mirror-sync.yml:24-35",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:30-32,66-74",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:18-22"
+      ]
+    },
+    {
+      "id": "finding-6-1-new-webflow-s-minified-runtime-checker-can-report-pass-while-errors-in-scheduled",
+      "text": "**NEW:** Webflow's minified-runtime checker can report PASS while errors in scheduled or event-driven code are hidden. The mock timer and animation-frame callbacks discard exceptions, Webflow.push does the same, and DOM event listeners are no-ops; the PASS path only requires top-level VM execution not to throw. Ponytail's own open-stdin regression test instead fails on a timeout and checks the process exits cleanly, matching its rule that non-trivial logic needs a test that catches breakage. A minimal improvement is to collect callback errors and fail the script before PASS, then add explicit dispatch for only the lifecycle events the checked scripts require. Sources: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:34-41; specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/hooks-windows.test.js:107-125; .skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:47-48,81-83,118-132,186-191,333-357,398-405; .skilled/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs:150-274.",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:34-41",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/hooks-windows.test.js:107-125",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:47-48,81-83,118-132,186-191,333-357,398-405",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs:150-274",
+        ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md:17-23,54-57,142-160"
+      ]
+    },
+    {
+      "id": "finding-7-1-new-the-skill-advisor-probe-battery-covers-opencode-and-webflow-positive-example",
+      "text": "**NEW:** The skill-advisor probe battery covers OPENCODE and WEBFLOW positive examples, but none for OBSIDIAN, even though the current hub and read-only Obsidian packet support that surface. Its 15 listed positives are all OPENCODE or WEBFLOW; the current compiled-routing test also has a Webflow surface-bundle case but no Obsidian case. Add a small Obsidian positive control, with the expected workflow-plus-surface bundle, to distinguish parent-skill accuracy from surface discovery. Ponytail reports results by task tier, which supports keeping surface classes visible rather than hiding their coverage in one total. Sources: specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:37-45; .skilled/skills/sk-code/hub-router.json:8-12,42-45; .skilled/skills/sk-code/sk-code-obsidian/SKILL.md:27-42; .skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md:21-41; .skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md:29-35,44-61.",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:37-45",
+        ".skilled/skills/sk-code/hub-router.json:8-12,42-45",
+        ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md:27-42",
+        ".skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md:21-41",
+        ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md:29-35,44-61"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 1,
+    "resolvedQuestions": 4,
+    "carriedForwardOpenQuestions": 6,
+    "keyFindings": 16,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0,
+    "coverageBySources": {
+      "code": 62,
+      "other": 35
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/luna-max-fast/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [
+    {
+      "type": "event",
+      "event": "trend_flatline",
+      "mode": "research",
+      "severity": "advisory",
+      "metric": "newInfoRatio",
+      "run": 10,
+      "window": 3,
+      "value": 0,
+      "sparkline": "▄▄▄",
+      "timestamp": "2026-10-09T13:55:38.152Z"
+    },
+    {
+      "type": "event",
+      "event": "trend_flatline",
+      "mode": "research",
+      "severity": "advisory",
+      "metric": "score",
+      "run": 10,
+      "window": 3,
+      "value": 0,
+      "sparkline": "▄▄▄",
+      "timestamp": "2026-10-09T13:55:38.152Z"
+    }
+  ],
+  "strategyWarnings": []
+}

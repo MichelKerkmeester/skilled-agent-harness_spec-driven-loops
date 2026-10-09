@@ -1,0 +1,1 @@
+{"stem":"deep_research.spec_synthesis_deferred","scope":{"runId":"fanout-deepseek-flash-cline-1791552201492-cjjo4q","lineageId":"deepseek-flash-cline"},"data":{"reason":"Detached fan-out lineage: all writes are confined to the lineage artifact directory, so parent-packet spec synthesis is deferred to the orchestrator.","generatedFence":"lineage-deepseek-flash-cline"}}

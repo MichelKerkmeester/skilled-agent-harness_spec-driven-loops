@@ -23,18 +23,18 @@ Authoritative routing reference for sk-code. Consolidates intent classification 
 
 ### Purpose
 
-The smart router maps a detected surface (WEBFLOW / OPENCODE / UNKNOWN) plus a classified intent (IMPLEMENTATION / DEBUGGING / VERIFICATION / etc.) to the exact references, assets, and verification commands needed for the active task. Loads only the smallest relevant set so the active context window stays focused.
+The smart router maps a detected surface (OPENCODE / OBSIDIAN / WEBFLOW / UNKNOWN) plus a classified intent (IMPLEMENTATION / DEBUGGING / VERIFICATION / etc.) to the exact references, assets, and verification commands needed for the active task. Loads only the smallest relevant set so the active context window stays focused.
 
 ### When to Use
 
-- After surface detection (see [`stack-detection.md`](shared/references/stack-detection.md)) determines WEBFLOW / OPENCODE / UNKNOWN
+- After surface detection (see [`stack-detection.md`](shared/references/stack-detection.md)) determines OPENCODE / OBSIDIAN / WEBFLOW / UNKNOWN
 - When classifying task wording into the dominant work intent
 - When mapping intent to concrete reference paths
 - When picking verification commands for the surface
 
 ### Core Principle
 
-Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family (Webflow vs OpenCode vs UNKNOWN); intent narrows the specific files within that family. Motion.dev resources are a **peer category** loaded after either surface, not a third surface.
+Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family (OpenCode vs Obsidian vs Webflow vs UNKNOWN); intent narrows the specific files within that family. Motion.dev resources are a **peer category** loaded after the surface decision, not a surface.
 
 ### Bundled Evidence Surfaces
 
@@ -42,7 +42,7 @@ Beyond the two code surfaces this router maps by detection, the hub can bundle a
 
 ### Key Sources
 
-- [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (WEBFLOW/OPENCODE/UNKNOWN) and OpenCode language sub-detection
+- [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (OPENCODE/OBSIDIAN/WEBFLOW/UNKNOWN) and OpenCode language sub-detection
 - [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and phase-specific resource expectations
 - `SKILL.md` §2 SMART ROUTING — operator-facing summary of this routing contract
 
@@ -257,18 +257,18 @@ When OPENCODE intent is `authoring-new-X`, additionally load the matching author
 
 If no supported surface matches, ask:
 
-1. Is this Webflow/frontend code or `.skilled/` system code?
+1. Is this Webflow/frontend code, `.skilled/` system code, or Obsidian plugin code?
 2. Which files or directories are changing?
 3. Which verification command proves the claim?
 4. Should a new `sk-code` route be planned before implementation?
 
-Do not load Go/NextJS/React Native resources from canonical sk-code; those surfaces live in the Barter sk-code fork (`barter/.opencode/skills/sk-code/references/`). Canonical sk-code only owns WEBFLOW + OPENCODE + MOTION_DEV.
+Do not load Go/NextJS/React Native resources from canonical sk-code; those surfaces live in the Barter sk-code fork (`barter/.opencode/skills/sk-code/references/`). Canonical sk-code only owns the WEBFLOW, OPENCODE and OBSIDIAN surfaces plus the MOTION_DEV resource category.
 
 ### UNKNOWN fallback checklist
 
 Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the user explicitly asks for stack-agnostic guidance:
 
-- Confirm the active runtime surface (WEBFLOW or OPENCODE)
+- Confirm the active runtime surface (OPENCODE, OBSIDIAN or WEBFLOW)
 - Confirm the task intent (implementation / debugging / verification / etc.)
 - Provide one concrete input, error, or expected output
 - Confirm the verification command set before completion
@@ -297,7 +297,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 ## 10. RELATED RESOURCES
 
-- [`./stack-detection.md`](shared/references/stack-detection.md) — surface detection (WEBFLOW/OPENCODE/UNKNOWN) + OPENCODE language sub-detection
+- [`./stack-detection.md`](shared/references/stack-detection.md) — surface detection (OPENCODE/OBSIDIAN/WEBFLOW/UNKNOWN) + OPENCODE language sub-detection
 - [`./phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading
 - `SKILL.md` §2 SMART ROUTING — operator-facing summary of this routing contract
 - Barter equivalent: `barter/.skilled/skills/sk-code/shared/references/smart-routing.md` (different routing key — git-remote project — but same structural pattern)

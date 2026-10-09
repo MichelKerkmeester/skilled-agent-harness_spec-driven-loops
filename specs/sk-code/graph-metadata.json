@@ -13,7 +13,8 @@
     "sk-code/007-sk-code-obsidian-surface",
     "sk-code/008-sk-code-mobile-cli-mode",
     "sk-code/009-sk-code-mobile-cli-deprecation",
-    "sk-code/010-drift-guard-cleanup"
+    "sk-code/010-drift-guard-cleanup",
+    "sk-code/011-sk-code-poinytail-based-refinement"
   ],
   "manual": {
     "depends_on": [],

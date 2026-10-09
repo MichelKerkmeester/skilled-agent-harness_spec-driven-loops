@@ -1,0 +1,45 @@
+{
+  "type": "iteration",
+  "iteration": 8,
+  "run": 8,
+  "runId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "sessionId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "lineageId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.0,
+  "status": "insight",
+  "focus": "Synthesis-oriented audit and lineage write-boundary reconciliation",
+  "findingsCount": 0,
+  "noveltyJustification": "No new Ponytail or sk-code product finding emerged. The workflow YAML's reducer step resolves reducer-owned outputs under the parent spec research directory, which conflicts with the lineage-only write boundary; the conflict is recorded and that write is skipped.",
+  "keyQuestions": [
+    "Can the inline lineage loop refresh reducer-owned strategy and registry state without writing outside the authorized artifact directory?"
+  ],
+  "answeredQuestions": [
+    "Can the inline lineage loop refresh reducer-owned strategy and registry state without writing outside the authorized artifact directory?"
+  ],
+  "ruledOut": [
+    {
+      "approach": "Run the parent reducer with the parent spec folder",
+      "reason": "Its resolved reducer outputs are outside the authorized lineage directory."
+    },
+    {
+      "approach": "Manually update reducer-owned files",
+      "reason": "Those files are read-only under the deep-research agent contract."
+    }
+  ],
+  "toolsUsed": [
+    "rg",
+    "cat"
+  ],
+  "sourcesQueried": [
+    ".skilled/commands/deep/assets/deep-research-auto.yaml:1831-1842",
+    ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2944-2965",
+    ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md:43-53,105-141",
+    ".skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md:40-62"
+  ],
+  "timestamp": "2026-10-09T13:53:13Z",
+  "durationMs": 118000
+}

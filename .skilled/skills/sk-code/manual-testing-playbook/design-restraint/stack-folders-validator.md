@@ -30,7 +30,7 @@ Prompt: `Run the language reference folder validator, confirm a clean pass, then
 **Expected detection**: not applicable — this is a deterministic script run, not a routing decision (no advisor probe, no runtime reference loading).
 
 **Expected behavior**:
-- The clean run exits 0 and reports the known languages: `config, javascript, python, shell, typescript`.
+- The clean run exits 0 and reports the known languages: `config, javascript, python, rust, shell, typescript`.
 - An orphan folder under `references/` that is neither a known language nor `shared` produces exit 1 with an `orphan references folder not a known language` problem line.
 - Removing the orphan restores exit 0.
 
@@ -51,7 +51,7 @@ Prompt: `Run the language reference folder validator, confirm a clean pass, then
    ```
    bash: python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py; printf 'exit=%s\n' "$?"
    ```
-2. **Verify**: exit 0 and the report lists `config, javascript, python, shell, typescript`.
+2. **Verify**: exit 0 and the report lists `config, javascript, python, rust, shell, typescript`.
 3. **Introduce an orphan**:
    ```
    bash: mkdir -p .skilled/skills/sk-code/sk-code-opencode/references/zzz_fake_language
@@ -71,7 +71,7 @@ Prompt: `Run the language reference folder validator, confirm a clean pass, then
 
 | Step | Signal |
 |---|---|
-| 2 | Clean run exits 0 with `OK: 5 language folder(s) all resolve — config, javascript, python, shell, typescript`. |
+| 2 | Clean run exits 0 with `OK: 6 language folder(s) all resolve — config, javascript, python, rust, shell, typescript`. |
 | 5 | Orphan run exits 1 with `orphan references folder not a known language`. |
 | 7 | After cleanup, the run exits 0 again. |
 

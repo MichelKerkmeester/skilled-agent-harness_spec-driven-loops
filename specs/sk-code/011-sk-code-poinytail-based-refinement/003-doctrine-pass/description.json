@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/003-doctrine-pass",
+  "description": "Phase 3: doctrine-pass",
+  "keywords": [
+    "phase",
+    "doctrine-pass"
+  ],
+  "lastUpdated": "2026-10-09T16:00:49.753Z",
+  "specId": "003",
+  "folderSlug": "doctrine-pass",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

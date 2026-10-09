@@ -50,7 +50,7 @@ Before writing NEW code for an implementation task, stop at the first rung that 
 5. **Can it be one line?**
 6. **Only then: the minimum code that works.**
 
-The ladder consumes the detected surface; it does NOT change surface precedence (OPENCODE > WEBFLOW > UNKNOWN) or the Iron Law (Phase 3 verification is still required). For the over-engineering, gold-plating, and scope-creep detectors, see the Restraint Signals table in the repo `AGENTS.md` §3.
+The ladder consumes the detected surface; it does NOT change surface precedence (OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN) or the Iron Law (Phase 3 verification is still required). For the over-engineering, gold-plating, and scope-creep detectors, see the Restraint Signals table in the repo `AGENTS.md` §3.
 
 ---
 

@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement",
+  "parent_id": null,
+  "children_ids": [
+    "sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research",
+    "sk-code/011-sk-code-poinytail-based-refinement/002-surface-contract-alignment",
+    "sk-code/011-sk-code-poinytail-based-refinement/003-doctrine-pass",
+    "sk-code/011-sk-code-poinytail-based-refinement/004-webflow-checker-fix",
+    "sk-code/011-sk-code-poinytail-based-refinement/005-review-output-additions",
+    "sk-code/011-sk-code-poinytail-based-refinement/006-guard-retirement-notes"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk code poinytail based refinement phase parent spec",
+      "sk-code ponytail 5 refinement",
+      "ponytail based refinement",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "code",
+      "poinytail",
+      "based",
+      "refinement",
+      "phase",
+      "parent",
+      "spec",
+      "sk-code",
+      "ponytail",
+      "packet",
+      "goal",
+      "durable"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      "002-surface-contract-alignment/spec.md",
+      "003-doctrine-pass/spec.md",
+      "004-webflow-checker-fix/spec.md",
+      "005-review-output-additions/spec.md",
+      "006-guard-retirement-notes/spec.md",
+      "001-ponytail-deep-research/goal.md",
+      "002-surface-contract-alignment/goal.md",
+      "003-doctrine-pass/goal.md",
+      "004-webflow-checker-fix/goal.md",
+      "005-review-output-additions/goal.md",
+      "006-guard-retirement-notes/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Ponytail",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. COMPLETION CRITERIA",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. LOG",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Ponytail is an external coding-agent plugin that teaches restraint: write the least code that meets the requirement, and still ship tests for risky logic",
+    "created_at": "2026-10-09T13:20:16Z",
+    "last_save_at": "2026-10-09T18:03:43.812Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:e4877d32029c9d0e5dc2d14720651885a5e6c42f8c41f12dd354b48d4a927c67",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8ae976d32bbdd513e5fdd316337bc94d17e4019ab2f132f66159b06218fe506b"
+    },
+    "last_active_at": null
+  }
+}

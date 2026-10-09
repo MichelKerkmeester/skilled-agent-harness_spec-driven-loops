@@ -1,0 +1,34 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement",
+  "description": "sk-code Ponytail-based refinement: mine the Ponytail plugin for teachings, logic and new ideas that improve the sk-code parent hub, every nested sk-co",
+  "keywords": [
+    "sk-code",
+    "ponytail-based",
+    "refinement",
+    "mine",
+    "ponytail",
+    "plugin",
+    "teachings",
+    "logic",
+    "new",
+    "ideas",
+    "improve",
+    "parent",
+    "hub",
+    "every",
+    "nested",
+    "mode",
+    "surface",
+    "related",
+    "tooling"
+  ],
+  "lastUpdated": "2026-10-09T13:20:17.085Z",
+  "specId": "011",
+  "folderSlug": "sk-code-poinytail-based-refinement",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

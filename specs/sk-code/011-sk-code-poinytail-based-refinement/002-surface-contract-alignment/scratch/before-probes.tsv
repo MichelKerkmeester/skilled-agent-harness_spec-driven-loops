@@ -1,0 +1,6 @@
+W1	sk-code 0.8454	{"action":"route","selectionKind":"single","servingAuthority":null,"modes":["sk-code-webflow"]}
+W2	sk-code 0.95	{"action":"route","selectionKind":"surfaceBundle","servingAuthority":null,"modes":["sk-code-review","sk-code-webflow"]}
+C1	system-spec-kit 0.864	{"action":"route","selectionKind":"single","servingAuthority":null,"modes":["sk-code-quality"]}
+C2	sk-code 0.9451	{"action":"route","selectionKind":"single","servingAuthority":null,"modes":["sk-code-opencode"]}
+B1	sk-code 0.9283	{"action":"route","selectionKind":"single","servingAuthority":null,"modes":["sk-code-obsidian"]}
+B2	sk-code 0.95	{"action":"route","selectionKind":"surfaceBundle","servingAuthority":null,"modes":["sk-code-review","sk-code-obsidian"]}

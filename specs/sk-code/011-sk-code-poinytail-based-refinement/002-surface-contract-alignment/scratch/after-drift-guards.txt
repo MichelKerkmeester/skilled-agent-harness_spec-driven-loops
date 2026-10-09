@@ -1,0 +1,3 @@
+PASS: alignment-drift  (verify_alignment_drift.py --check-router)
+PASS: stack-folders    (verify_stack_folders.py)
+run-all-drift-guards: all 2 guards PASSED

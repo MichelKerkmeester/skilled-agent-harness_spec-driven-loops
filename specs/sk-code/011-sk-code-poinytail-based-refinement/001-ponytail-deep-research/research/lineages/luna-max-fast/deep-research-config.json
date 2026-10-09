@@ -1,0 +1,42 @@
+{
+  "topic": "Mine Ponytail 5.1.0 vendored source for teachings, logic, mechanisms and new ideas that improve the sk-code parent hub, nested modes and related tooling; compare each finding with the earlier Ponytail refinement and classify it as NEW, ALREADY-ADOPTED, or LOST; propose original ideas and reject unsuitable transfers.",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "convergence",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "convergence",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": false
+  },
+  "createdAt": "2026-10-09T13:27:48Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}

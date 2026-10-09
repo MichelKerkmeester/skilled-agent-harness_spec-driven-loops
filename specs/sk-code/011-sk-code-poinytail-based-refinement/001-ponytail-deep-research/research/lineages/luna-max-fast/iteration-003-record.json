@@ -1,0 +1,44 @@
+{
+  "type": "iteration",
+  "iteration": 3,
+  "run": 3,
+  "runId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "sessionId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "lineageId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 1.0,
+  "status": "complete",
+  "focus": "Ponytail hook lifecycle, state, and portability mechanisms versus sk-code adapters",
+  "findingsCount": 1,
+  "noveltyJustification": "The prior report considered global prompt injection and persistent mode flags; the tested one-second open-stdin fallback is a distinct adapter-edge resilience idea missing from the Claude/Codex hook implementations.",
+  "keyQuestions": [
+    "Which Ponytail hook, state, and cross-runtime portability mechanisms can improve sk-code surfaces without violating its read-first, scope, and verification floors?"
+  ],
+  "answeredQuestions": [
+    "Which Ponytail hook, state, and cross-runtime portability mechanisms can improve sk-code surfaces without violating its read-first, scope, and verification floors?"
+  ],
+  "ruledOut": [
+    {
+      "approach": "Adopt global intensity state or always-on per-turn instruction injection",
+      "reason": "The older refinement rejected persistent state and always-on injection; the current hub uses two-axis routing and read-only surface bundles. See specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:82-84 and .skilled/skills/sk-code/SKILL.md:52-71."
+    }
+  ],
+  "toolsUsed": ["rg", "nl", "cat", "clock"],
+  "sourcesQueried": [
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/hooks/ponytail-mode-tracker.js",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/hooks.test.js",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md",
+    ".skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs",
+    ".skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs",
+    ".claude/settings.json",
+    ".codex/hooks.json",
+    ".skilled/hooks/post-edit-quality/README.md",
+    ".skilled/skills/sk-code/SKILL.md",
+    "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md"
+  ],
+  "timestamp": "2026-10-09T13:35:46Z",
+  "durationMs": 137000
+}

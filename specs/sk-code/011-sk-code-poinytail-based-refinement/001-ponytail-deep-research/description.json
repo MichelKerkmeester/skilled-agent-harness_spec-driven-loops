@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research",
+  "description": "The earlier refinement studied an older Ponytail and adopted a design restraint ladder, a `ceiling:` comment convention, an anti-stall rule, review",
+  "keywords": [
+    "earlier",
+    "refinement",
+    "studied",
+    "older",
+    "ponytail",
+    "adopted",
+    "design",
+    "restraint",
+    "ladder",
+    "ceiling",
+    "comment",
+    "convention",
+    "anti-stall",
+    "rule",
+    "review"
+  ],
+  "lastUpdated": "2026-10-09T13:22:17.014Z",
+  "specId": "001",
+  "folderSlug": "ponytail-deep-research",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

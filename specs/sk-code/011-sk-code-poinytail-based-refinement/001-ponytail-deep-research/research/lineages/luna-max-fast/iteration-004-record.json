@@ -1,0 +1,45 @@
+{
+  "type": "iteration",
+  "iteration": 4,
+  "run": 4,
+  "runId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "sessionId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "lineageId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.6667,
+  "status": "complete",
+  "focus": "Ponytail benchmark and correctness gates versus sk-code benchmark and advisor evidence",
+  "findingsCount": 3,
+  "noveltyJustification": "One benchmark principle is already implemented in Lane B; new evidence ideas are a separate internal-route outcome matrix for sk-code's two-axis hub and a conditional mutation-sensitivity measure for any future agentic code benchmark.",
+  "keyQuestions": [
+    "What do Ponytail's benchmark and correctness gates measure, and where could sk-code's benchmark and advisor tooling gain decision-useful evidence?"
+  ],
+  "answeredQuestions": [
+    "What do Ponytail's benchmark and correctness gates measure, and where could sk-code's benchmark and advisor tooling gain decision-useful evidence?"
+  ],
+  "ruledOut": [
+    {
+      "approach": "Blend correctness with brevity or format, revive Lane C, or create a standalone PromptFoo clone",
+      "reason": "Lane B already gates on correctness; the prior research rejects a duplicate PromptFoo harness and the Lane C artifact says its runner was removed. See .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/correctness-gate.cjs:8-20, specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:76, and .skilled/skills/sk-code/benchmark/README.md:14-26."
+    }
+  ],
+  "toolsUsed": ["rg", "nl", "cat", "clock"],
+  "sourcesQueried": [
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/README.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/results/2026-10-07-agentic.md",
+    ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/correctness-gate.cjs",
+    ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs",
+    ".skilled/skills/sk-code/benchmark/README.md",
+    ".skilled/skills/sk-code/hub-router.json",
+    ".skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md",
+    ".skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md",
+    "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md"
+  ],
+  "timestamp":"2026-10-09T13:39:38Z",
+  "durationMs":210000
+}

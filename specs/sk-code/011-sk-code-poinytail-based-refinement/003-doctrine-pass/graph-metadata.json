@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/003-doctrine-pass",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/003-doctrine-pass",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctrine pass",
+      "phase 3 doctrine pass",
+      "doctrine pass plan",
+      "doctrine pass tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "doctrine pass implementation summary"
+    ],
+    "key_topics": [
+      "doctrine",
+      "pass",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+      ".skilled/skills/sk-code/shared/references/workflow-implement.md",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
+      ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/design-restraint-ladder.md",
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md",
+      "specs/hooks/022-smart-rule-injection/graph-metadata.json",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/003-doctrine-pass/implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/003-doctrine-pass/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-quality-standards.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-implement.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/workflow-implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-copies.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-copies.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "design-restraint-ladder.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/design-restraint-ladder.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/hooks/022-smart-rule-injection/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Ponytail",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Ponytail 5 asks whether a helper, component, service or pattern already exists in the codebase before reaching for the standard library",
+    "created_at": "2026-10-09T16:00:48Z",
+    "last_save_at": "2026-10-09T18:03:49.482Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:377941976a2f2e2f59a358d1af7390380e6dd5983890aa8c5f74f14e1a007a85",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c2ae38d87d7d7798cb44e5440e05caa17ad64cef4ad51d37180f367762700ce0",
+      "plan.md": "656b6af1057c20f94901853fdf909c9bafbdab56c1d076e6eb9927d064bb88e2",
+      "tasks.md": "d8a4f83965c3d5219358f2bc5440ed2a5e66c2e2020aaf9890c51fe7f52cc474",
+      "implementation-summary.md": "857c6c21ce336634b6f9ef040c6a3f65671d9b6ba63a1f8a0674b8c83f605ba1"
+    },
+    "last_active_at": null
+  }
+}

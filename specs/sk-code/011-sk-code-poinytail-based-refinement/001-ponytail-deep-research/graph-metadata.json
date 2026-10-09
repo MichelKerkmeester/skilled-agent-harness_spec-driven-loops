@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ponytail deep research",
+      "phase 1 ponytail deep research",
+      "ponytail 5 research",
+      "ponytail deep research plan",
+      "ponytail deep research tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "ponytail deep research implementation summary",
+      "ponytail 5 research synthesis",
+      "sk-code ponytail refinement research"
+    ],
+    "key_topics": [
+      "ponytail",
+      "deep",
+      "research",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/findings-registry.json",
+      "research/resource-map.md",
+      "research/fanout-attribution.md",
+      "research/deep-research-config.json",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+      ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md",
+      ".skilled/skills/sk-code/shared/references/workflow-implement.md",
+      ".codex/agents/code.toml",
+      ".github/workflows/routing-registry-drift.yml",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/resource-map.md",
+      "research/lineages/luna-max-fast/research.md",
+      "research/lineages/deepseek-flash-cline/research.md",
+      "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-copies.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+        "source": "derived"
+      },
+      {
+        "name": "code-quality-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-implement.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/workflow-implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.toml",
+        "kind": "file",
+        "path": ".codex/agents/code.toml",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Ponytail",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The earlier refinement studied an older Ponytail and adopted a design restraint ladder, a `ceiling:` comment convention, an anti-stall rule, review checklist rows and a rule-copy canary",
+    "created_at": "2026-10-09T13:20:17Z",
+    "last_save_at": "2026-10-09T18:03:46.688Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:1fa319b294cbbe5e51ca7b7451543d48797cfdfa822e5b6612679e523117919e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cf2e04254d8d6c70b682cf7d07625706b0ff887089c61a877b2095293ec5b042",
+      "plan.md": "a5549259c91bcb00ca92168904ed8291cb5e7af20c9493dc7afb6e16b408983b",
+      "tasks.md": "99df52ffaf4987c0ab1fad56133463933a19ad7fd9646ccf59caf846fc76a665",
+      "implementation-summary.md": "37823b9c9036f2ffb3568286799e303c6097060d795ada2186493217900ae906",
+      "research/research.md": "07bcbbfabf68e013a69ed32ca682279648d43f04773159f2a19e428a496a5207"
+    },
+    "last_active_at": null
+  }
+}

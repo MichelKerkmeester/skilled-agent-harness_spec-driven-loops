@@ -1,0 +1,1569 @@
+{
+  "mergedFrom": [
+    "deepseek-flash-cline",
+    "luna-max-fast"
+  ],
+  "lineageExecutors": {
+    "deepseek-flash-cline": {
+      "kind": "cli-pi",
+      "model": "cline-pass/deepseek-v4.1-flash",
+      "reasoningEffort": "xhigh"
+    },
+    "luna-max-fast": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [
+    {
+      "id": "question-5-which-older-ponytail-recommendations-are-already-adopted-lost-or-still-new-in-cu",
+      "inboxId": null,
+      "text": "Which older Ponytail recommendations are already adopted, lost, or still new in current sk-code, and which source-inspired additions should be rejected?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "q1-doctrine",
+      "text": "What is Ponytail 5.1.0 core doctrine, cost model, and smallest-complete-change ladder, and which parts are absent from the sk-code parent hub and its modes?",
+      "resolvedAtIteration": 1,
+      "status": "resolved",
+      "evidence": [
+        "lineage:q1-doctrine (iteration 1)"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "q2-hooks",
+      "text": "How do Ponytail hooks activate, persist mode, track sessions, and gate behavior per runtime, and which mechanisms are missing from sk-code hooks?",
+      "resolvedAtIteration": 2,
+      "status": "resolved",
+      "evidence": [
+        "lineage:q2-hooks (iteration 2)"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "q3-commands",
+      "text": "How do Ponytail commands and bundled skills delegate work, and how does that compare with sk-code mode-registry and hub-router routing?",
+      "resolvedAtIteration": 3,
+      "status": "resolved",
+      "evidence": [
+        "lineage:q3-commands (iteration 3)"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "q4-portability",
+      "text": "How does Ponytail stay portable across agent runtimes and rule-file copies, and which mechanisms could strengthen sk-code runtime surfaces and rule-copy checks?",
+      "resolvedAtIteration": 4,
+      "status": "resolved",
+      "evidence": [
+        "lineage:q4-portability (iteration 4)"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "q5-verification",
+      "text": "What correctness, LOC-budget and quality enforcement does Ponytail ship, and what could sk-code-quality and sk-code-review adopt?",
+      "resolvedAtIteration": 8,
+      "status": "resolved",
+      "evidence": [
+        "lineage:q5-verification (iteration 8)"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "q6-benchmark",
+      "text": "How does Ponytail measure its own effect, and what should sk-code benchmark harness adopt?",
+      "resolvedAtIteration": 6,
+      "status": "resolved",
+      "evidence": [
+        "lineage:q6-benchmark (iteration 6)"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "q7-reconciliation",
+      "text": "Which ideas from the earlier 015 refinement are still adopted, which are missing after the two-axis hub rebuild, and which are LOST?",
+      "resolvedAtIteration": 7,
+      "status": "resolved",
+      "evidence": [
+        "lineage:q7-reconciliation (iteration 7)"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "q8-rejections",
+      "text": "Which Ponytail ideas should be rejected for sk-code and why, and what original ideas does Ponytail inspire that it does not contain?",
+      "resolvedAtIteration": 9,
+      "status": "resolved",
+      "evidence": [
+        "lineage:q8-rejections (iteration 9)"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "q9-phases",
+      "text": "What implementation phases should the refinement propose, gated on which risks?",
+      "resolvedAtIteration": 10,
+      "status": "resolved",
+      "evidence": [
+        "lineage:q9-phases (iteration 10)"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "question-1-which-ponytail-5-1-0-mechanisms-complement-sk-code-s-current-two-axis-hub-routin",
+      "inboxId": null,
+      "text": "Which Ponytail 5.1.0 mechanisms complement sk-code's current two-axis hub routing and shared prompt contracts without duplicating them?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "question-2-which-ponytail-design-restraint-quality-and-review-checks-are-genuinely-missing-",
+      "inboxId": null,
+      "text": "Which Ponytail design restraint, quality, and review checks are genuinely missing from sk-code's nested code-quality and code-review modes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "question-3-which-ponytail-hook-state-and-cross-runtime-portability-mechanisms-can-improve-s",
+      "inboxId": null,
+      "text": "Which Ponytail hook, state, and cross-runtime portability mechanisms can improve sk-code surfaces without violating its read-first, scope, and verification floors?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "question-4-what-do-ponytail-s-benchmark-and-correctness-gates-measure-and-where-could-sk-co",
+      "inboxId": null,
+      "text": "What do Ponytail's benchmark and correctness gates measure, and where could sk-code's benchmark and advisor tooling gain decision-useful evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-already-adopted-ponytail-s-six-rung-smallest-complete-change-ladder-is-already-i",
+      "text": "**ALREADY-ADOPTED** — Ponytail's six-rung smallest-complete-change ladder is already in the shared sk-code standards, and implementation enters it after surface and intent routing. Do not add another hub-level ladder. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:25-33] [SOURCE: .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:42-53] [SOURCE: .skilled/skills/sk-code/shared/references/phase-detection.md:97] [SOURCE: specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-54]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail.md",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+        ".skilled/skills/sk-code/shared/references/phase-detection.md",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md"
+      ],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "finding-1-2-already-adopted-retained-rejection-preserve-sk-code-s-single-advisor-identity-wi",
+      "text": "**ALREADY-ADOPTED (retained rejection)** — Preserve sk-code's single advisor identity with separate workflow and surface axes; reject Ponytail's session-global intensity switch because it would flatten routing, and the earlier refinement already rejected that state machine. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:15-17] [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail.md:2-5] [SOURCE: .skilled/skills/sk-code/SKILL.md:15-17] [SOURCE: .skilled/skills/sk-code/SKILL.md:52-71] [SOURCE: .skilled/skills/sk-code/hub-router.json:4-18] [SOURCE: specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:74-84]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail.md",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+        ".skilled/skills/sk-code/shared/references/phase-detection.md",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md"
+      ],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "finding-2-1-already-adopted-the-older-standard-library-native-duplication-checks-needed-ness",
+      "text": "**ALREADY-ADOPTED** — The older standard-library/native duplication checks, needed-ness removal prompt, ceiling-comment boundary, and Replacement field already exist in sk-code-review. Do not duplicate the rows. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:46-66] [SOURCE: .skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:108-153] [SOURCE: .skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:46-54] [SOURCE: specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:47-52]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md",
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md"
+      ],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "finding-2-2-already-adopted-retained-rejection-keep-one-findings-first-review-baseline-and-r",
+      "text": "**ALREADY-ADOPTED (retained rejection)** — Keep one findings-first review baseline and reject a separate ponytail-review/audit skill or LOC-based severity score. Those would split the current review contract or reward under-solving. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:11-14] [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md:11-14] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:13-16] [SOURCE: .skilled/skills/sk-code/sk-code-review/references/review-core.md:88-103] [SOURCE: specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:77-79]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md",
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md"
+      ],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "finding-2-3-new-for-a-scale-or-performance-finding-include-the-assumed-workload-in-the-exist",
+      "text": "**NEW** — For a scale or performance finding, include the assumed workload in the existing evidence text. Ponytail asks reviewers to find and state expected load, while sk-code asks a 10x-volume question but its finding schema does not capture the workload assumption. A short sentence inside the current evidence field closes that gap without changing the schema. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:26-28] [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md:22-23] [SOURCE: .skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:52-63] [SOURCE: .skilled/skills/sk-code/sk-code-review/references/review-core.md:88-103]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md",
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md"
+      ],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "finding-3-1-new-give-the-claude-and-codex-posttooluse-quality-adapters-a-short-adapter-local",
+      "text": "**NEW:** Give the Claude and Codex PostToolUse quality adapters a short adapter-local stdin deadline and an open-stdin regression case. Ponytail exits promptly on normal EOF and has a one-second fallback for a stalled stdin stream, with tests asserting both the fast EOF path and self-exit before an external watchdog; sk-code's adapters read stdin to EOF and currently rely on each host's 10-second timeout. This narrows the failure window for a wrapper that fails to close stdin without changing the hook's fail-open policy. Sources: `specs/sk-code/011-sk-code-poinytail-based-refinement/context/hooks/ponytail-mode-tracker.js:160-178`; `specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/hooks.test.js:776-817`; `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs:43-47`; `.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs:35-39`; `.claude/settings.json:200-207`; `.codex/hooks.json:105-112`; `specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:66,82-84`.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/hooks/ponytail-mode-tracker.js:132-178`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/hooks.test.js:776-817`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:3-5,45-49`",
+        "`.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs:43-47`",
+        "`.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs:35-39`",
+        "`.claude/settings.json:200-207`",
+        "`.codex/hooks.json:105-112`",
+        "`.skilled/hooks/post-edit-quality/README.md:60-72`",
+        "`.skilled/skills/sk-code/SKILL.md:52-71`",
+        "`specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:66,82-84`"
+      ],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "finding-4-1-already-adopted-keep-correctness-as-an-eligibility-gate-and-do-not-blend-it-with",
+      "text": "**ALREADY-ADOPTED:** Keep correctness as an eligibility gate and do not blend it with brevity or format. Ponytail separates correctness and safety gates from size and efficiency measures; sk-code's active Lane B gate already uses correctness for eligibility and removes a saturated correctness column from ranking. The earlier refinement also placed new size and over-engineering measures after that gate and rejected a separate PromptFoo clone. Sources: `specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:71-80`; `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/correctness-gate.cjs:8-20,124-159`; `specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:62,76`.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/README.md:3-13,92-101`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:37-45,71-112,149-159`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/results/2026-10-07-agentic.md:57-95,160-170`",
+        "`.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/correctness-gate.cjs:8-20,124-159`",
+        "`.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16`",
+        "`.skilled/skills/sk-code/benchmark/README.md:14-26`",
+        "`.skilled/skills/sk-code/hub-router.json:4-18`",
+        "`.skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md:11-19,53-59`",
+        "`.skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md:29-35,44-61`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md:65-90`",
+        "`specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:62,76`"
+      ],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "finding-4-2-new-original-idea-keep-advisor-identity-accuracy-separate-from-sk-code-s-interna",
+      "text": "**NEW — original idea:** Keep advisor identity accuracy separate from sk-code's internal two-axis routing quality, then report compiled-route outcomes by route shape and expected workflow/surface set. Ponytail's separated task tiers show why an aggregate score can hide a weak dimension; sk-code has `single`, `orderedBundle`, `surfaceBundle`, and `defer` outcomes, while the advisor probe battery measures only whether `sk-code` wins top-1. The current compiled-routing corpus has one `surfaceBundle` case for Webflow, and the old Lane C skill benchmark is retired. A compact matrix over those four outcomes, with positive and negative bundle controls, would expose workflow-mode misses and over-bundled surfaces without changing the advisor's outer-skill contract. Sources: `specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:37-45,149-158`; `.skilled/skills/sk-code/hub-router.json:4-18`; `.skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md:11-19,53-59`; `.skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md:29-35,44-61`; `.skilled/skills/sk-code/benchmark/README.md:14-26`.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/README.md:3-13,92-101`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:37-45,71-112,149-159`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/results/2026-10-07-agentic.md:57-95,160-170`",
+        "`.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/correctness-gate.cjs:8-20,124-159`",
+        "`.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16`",
+        "`.skilled/skills/sk-code/benchmark/README.md:14-26`",
+        "`.skilled/skills/sk-code/hub-router.json:4-18`",
+        "`.skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md:11-19,53-59`",
+        "`.skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md:29-35,44-61`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md:65-90`",
+        "`specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:62,76`"
+      ],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "finding-4-3-new-if-a-future-agentic-code-benchmark-measures-implementation-quality-report-te",
+      "text": "**NEW:** If a future agentic code benchmark measures implementation quality, report test effectiveness separately from test presence: pre-classify which tasks need tests, inject a small fault into the produced code, then run the agent's tests and report fault detection as an advisory signal. Ponytail applies this check to agent-written tests; sk-code's active Lane B scorer currently returns correctness, format, and length measures for one extracted function, while the earlier benchmark recommendation covers code size and over-engineering only. The old sk-code Lane C skill benchmark is retired and measures routing, discovery, and usefulness rather than agent-written test sensitivity, so this belongs in a future agentic benchmark scope, not an unrequested resurrection of Lane C. Sources: `specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:78-95`; `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16`; `specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:62`; `.skilled/skills/sk-code/benchmark/README.md:14-26`.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/README.md:3-13,92-101`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:37-45,71-112,149-159`",
+        "`specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/results/2026-10-07-agentic.md:57-95,160-170`",
+        "`.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/correctness-gate.cjs:8-20,124-159`",
+        "`.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16`",
+        "`.skilled/skills/sk-code/benchmark/README.md:14-26`",
+        "`.skilled/skills/sk-code/hub-router.json:4-18`",
+        "`.skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md:11-19,53-59`",
+        "`.skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md:29-35,44-61`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md:65-90`",
+        "`specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:62,76`"
+      ],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "finding-5-1-already-adopted-the-core-design-restraint-transfer-is-present-ask-whether-code-i",
+      "text": "**ALREADY-ADOPTED:** The core design-restraint transfer is present: ask whether code is needed, prefer existing and standard/platform facilities, then choose a small implementation only after reading the task and its surrounding code. The earlier placement after surface and intent routing remains present; the six-rung order is in sk-code's universal quality standard. Sources: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:16-34; specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-50; .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:42-51.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:16-34",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:49-57",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:13-25",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/commands/ponytail-help.toml:2",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-84",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:42-53",
+        ".skilled/skills/sk-code/SKILL.md:54-71,134-138",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:28-54",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:108-153",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:46-54",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:530-538",
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:66",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:286-293",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py:13-43",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:35-71",
+        ".skilled/skills/sk-code/sk-code-review/scripts/README.md:20",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/sweep-reporter.cjs:167-191",
+        ".github/workflows/agent-mirror-sync.yml:24-35",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:30-32,66-74",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:18-22"
+      ],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "finding-5-2-already-adopted-the-old-review-additions-are-present-across-the-quality-checklis",
+      "text": "**ALREADY-ADOPTED:** The old review additions are present across the quality checklist, removal plan, review-depth contract, and implementer rule: stdlib/native checks, bounded ceiling comments, neededness/removal, Replacement, review depth, and anti-stall while preserving scope. Sources: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:49-57; specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:55-61,67-70; .skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:108-153; .skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:46-54; .skilled/skills/sk-code/sk-code-review/SKILL.md:530-538; .skilled/skills/sk-code/shared/references/workflow-implement.md:66.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:16-34",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:49-57",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:13-25",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/commands/ponytail-help.toml:2",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-84",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:42-53",
+        ".skilled/skills/sk-code/SKILL.md:54-71,134-138",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:28-54",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:108-153",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:46-54",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:530-538",
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:66",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:286-293",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py:13-43",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:35-71",
+        ".skilled/skills/sk-code/sk-code-review/scripts/README.md:20",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/sweep-reporter.cjs:167-191",
+        ".github/workflows/agent-mirror-sync.yml:24-35",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:30-32,66-74",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:18-22"
+      ],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "finding-5-3-lost-surface-contract-wording-the-restraint-ladder-remains-but-the-old-single-ax",
+      "text": "**LOST (surface-contract wording):** The restraint ladder remains, but the old single-axis surface precedence was not reconciled after the hub gained an Obsidian surface. The universal standard still says OPENCODE > WEBFLOW > UNKNOWN, and the hub SKILL still lists MOTION_DEV as a surface; the shared detector now defines OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN and treats Motion.dev as a peer resource category. LOGIC-SYNC REQUIRED: .skilled/skills/sk-code/SKILL.md:136 conflicts with .skilled/skills/sk-code/shared/references/stack-detection.md:28-40; .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:53 also retains the old precedence. This is recorded for synthesis; no source rule is selected here. Sources: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:27-34; specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-50; .skilled/skills/sk-code/SKILL.md:134-138; .skilled/skills/sk-code/shared/references/stack-detection.md:28-40; .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:44-53.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:16-34",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:49-57",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:13-25",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/commands/ponytail-help.toml:2",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-84",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:42-53",
+        ".skilled/skills/sk-code/SKILL.md:54-71,134-138",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:28-54",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:108-153",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:46-54",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:530-538",
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:66",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:286-293",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py:13-43",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:35-71",
+        ".skilled/skills/sk-code/sk-code-review/scripts/README.md:20",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/sweep-reporter.cjs:167-191",
+        ".github/workflows/agent-mirror-sync.yml:24-35",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:30-32,66-74",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:18-22"
+      ],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "finding-5-4-new-remaining-validator-gap-the-earlier-stack-folder-validator-recommendation-is",
+      "text": "**NEW (remaining validator gap):** The earlier stack-folder validator recommendation is only partly implemented. The manual-testing contract says adding assets/zzz_fake_surface should fail, while verify_stack_folders.py scans known and orphan language directories only under references/; it does not check assets/. LOGIC-SYNC REQUIRED: .skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:286-293 conflicts with .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py:13-43. The references check is adopted; the documented assets assertion is not observed in the implementation. Sources: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:18-20; specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:64; .skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:286-293; .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py:13-43.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:16-34",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:49-57",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:13-25",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/commands/ponytail-help.toml:2",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-84",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:42-53",
+        ".skilled/skills/sk-code/SKILL.md:54-71,134-138",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:28-54",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:108-153",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:46-54",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:530-538",
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:66",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:286-293",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py:13-43",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:35-71",
+        ".skilled/skills/sk-code/sk-code-review/scripts/README.md:20",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/sweep-reporter.cjs:167-191",
+        ".github/workflows/agent-mirror-sync.yml:24-35",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:30-32,66-74",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:18-22"
+      ],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "finding-5-5-new-codex-only-mirror-check-gap-the-repo-wide-mirror-gate-exists-but-a-codex-onl",
+      "text": "**NEW (Codex-only mirror-check gap):** The repo-wide mirror gate exists, but a Codex-only agent edit can bypass its checker. CI forwards .codex/agents/ changes, yet the checker path matcher recognizes .opencode, .skilled, and .claude only; if no path matches, it exits successfully with “nothing to check.” LOGIC-SYNC REQUIRED: .github/workflows/agent-mirror-sync.yml:24-35 conflicts with .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:30-32,66-74; the verifier lists Codex as an optional mirror at .skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:18-22. This is a partial implementation of the earlier repo-wide mirror recommendation, not evidence that the parity check has no value. Sources: specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:13-25; specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:67-70; .github/workflows/agent-mirror-sync.yml:24-35; .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:30-32,66-74; .skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:18-22.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:16-34",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:49-57",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:13-25",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/commands/ponytail-help.toml:2",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-84",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:42-53",
+        ".skilled/skills/sk-code/SKILL.md:54-71,134-138",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:28-54",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:108-153",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:46-54",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:530-538",
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:66",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:286-293",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py:13-43",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:35-71",
+        ".skilled/skills/sk-code/sk-code-review/scripts/README.md:20",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:6-16",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/sweep-reporter.cjs:167-191",
+        ".github/workflows/agent-mirror-sync.yml:24-35",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:30-32,66-74",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:18-22"
+      ],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "finding-6-1-new-webflow-s-minified-runtime-checker-can-report-pass-while-errors-in-scheduled",
+      "text": "**NEW:** Webflow's minified-runtime checker can report PASS while errors in scheduled or event-driven code are hidden. The mock timer and animation-frame callbacks discard exceptions, Webflow.push does the same, and DOM event listeners are no-ops; the PASS path only requires top-level VM execution not to throw. Ponytail's own open-stdin regression test instead fails on a timeout and checks the process exits cleanly, matching its rule that non-trivial logic needs a test that catches breakage. A minimal improvement is to collect callback errors and fail the script before PASS, then add explicit dispatch for only the lifecycle events the checked scripts require. Sources: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:34-41; specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/hooks-windows.test.js:107-125; .skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:47-48,81-83,118-132,186-191,333-357,398-405; .skilled/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs:150-274.",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:34-41",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/hooks-windows.test.js:107-125",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:47-48,81-83,118-132,186-191,333-357,398-405",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs:150-274",
+        ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md:17-23,54-57,142-160"
+      ],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "finding-7-1-new-the-skill-advisor-probe-battery-covers-opencode-and-webflow-positive-example",
+      "text": "**NEW:** The skill-advisor probe battery covers OPENCODE and WEBFLOW positive examples, but none for OBSIDIAN, even though the current hub and read-only Obsidian packet support that surface. Its 15 listed positives are all OPENCODE or WEBFLOW; the current compiled-routing test also has a Webflow surface-bundle case but no Obsidian case. Add a small Obsidian positive control, with the expected workflow-plus-surface bundle, to distinguish parent-skill accuracy from surface discovery. Ponytail reports results by task tier, which supports keeping surface classes visible rather than hiding their coverage in one total. Sources: specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:37-45; .skilled/skills/sk-code/hub-router.json:8-12,42-45; .skilled/skills/sk-code/sk-code-obsidian/SKILL.md:27-42; .skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md:21-41; .skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md:29-35,44-61.",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:37-45",
+        ".skilled/skills/sk-code/hub-router.json:8-12,42-45",
+        ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md:27-42",
+        ".skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md:21-41",
+        ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md:29-35,44-61"
+      ],
+      "_lineages": [
+        "luna-max-fast"
+      ]
+    },
+    {
+      "id": "f-iter001-ceiling",
+      "label": "Ponytail's shortcut comment form already landed as neutral ceiling content, banned brand prefixes, and an explicit allowlist exclusion. Classification: ALREADY-ADOPTED.",
+      "iteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/AGENTS.md:28",
+        ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:49"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter001-cost-model",
+      "label": "Ponytail's published restraint deltas (code/time/cost/tokens) and test-rate counter-claim belong in sk-code's benchmark harness as supporting metrics, never as severity gates; prior research already allowed the benchmark-only variant. Classification: NEW (harness-scoped).",
+      "iteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/README.md:46-49,80",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:78,111"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter001-nevercut",
+      "label": "Ponytail pairs the ladder with an explicit never-cut list (trust-boundary validation, data-loss handling, security, accessibility, calibration); the sk-code ladder section carries no local guardrail even though P0/P1/P2 tiers own the floors elsewhere. Classification: NEW (localization gap).",
+      "iteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/AGENTS.md:30",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:46-68"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter001-reach-list",
+      "label": "Ponytail enumerates the change's full reach before editing (callers, tests, fixtures, config, exports); sk-code's implement doctrine names only conventions, callers, and examples. Classification: NEW (narrower enumeration).",
+      "iteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/AGENTS.md:7",
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:51",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:46-56"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter001-reply-close",
+      "label": "Ponytail's one-line reply close (what was skipped, what risk) is already covered by sk-code verification's blind-spot reporting and the framework close-out mandate. Classification: ALREADY-ADOPTED.",
+      "iteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:15",
+        ".skilled/skills/sk-code/shared/references/workflow-verify.md:28,110,143"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter001-reuse-rung",
+      "label": "Ponytail 5's ladder keeps a rung-2 reuse-what-is-already-in-the-codebase step that sk-code's transplanted ladder omits; the date-picker example shows the intended behavior. Classification: NEW.",
+      "iteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/README.md:88,111",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/AGENTS.md:13-18",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:46-53",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45,114"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter001-slider",
+      "label": "Ponytail's lite/full/ultra intensity levels stay rejected as a verification slider; the adopted remnant is the SK_CODE_REVIEW_DEPTH alias that only names an existing tier. Classification: ALREADY-ADOPTED.",
+      "iteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:46-52",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:530-532",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:74-75"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter001-structure",
+      "label": "Ponytail's one-prompt-many-hosts structure vs sk-code's hub-plus-nested-packets structure: sk-code's structure is the stronger fit for multi-mode scope, and the prior refinement already rejected per-host copies and always-on injection. Classification: ALREADY-ADOPTED (divergence by design).",
+      "iteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/README.md:120-122",
+        ".skilled/skills/sk-code/SKILL.md:15,41,167-186",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:84"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter001-test-reflex",
+      "label": "Ponytail's 'lazy code without its check is unfinished' reflex (one small test or assert-based self-check for non-trivial logic) has no sk-code-packet phrasing; the framework AGENTS.md 'Test what changed' rule is the only coverage. Classification: NEW (packet-local).",
+      "iteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/AGENTS.md:27",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:42-56",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:43-54"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter002-codebase-map",
+      "label": "Ponytail's SessionStart hook appends a budgeted codebase map (one line per folder of exported names, shared folders first, fail-open) whose stated purpose is to make reuse-first cost no search; sk-code's hook layer has no equivalent and its post-edit router only runs defect checkers. Classification: NEW - the enabler for the missing reuse rung.",
+      "iteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/hooks/ponytail-map.js:1-10,70-99",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/hooks/ponytail-activate.js:62-67",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/hooks/ponytail-instructions.js:58",
+        ".skilled/hooks/post-edit-quality/README.md"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter002-fail-open-contract",
+      "label": "Ponytail swallows hook failures at every step; sk-code states fail-open as a written router contract (every failure path resolves to no finding; the edit is never blocked) and the same property in session-lifecycle. Classification: ALREADY-ADOPTED (codified, not merely defensive).",
+      "iteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/hooks/ponytail-activate.js:46-67",
+        ".skilled/hooks/post-edit-quality/README.md",
+        ".skilled/hooks/session-lifecycle/README.md"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter002-host-quirk-tests",
+      "label": "Ponytail treats host-quirk regression classes as product surface (stdin stall, BOM, unrecognized host, regex timeout) across four hook test suites; sk-code has hook tests and adapter suites, but whether every one of those failure classes is covered is unverified - a deliberate phase-2 test-audit item, not a claimed gap. Classification: NEW (test-class checklist).",
+      "iteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/hooks.test.js",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/hooks-windows.test.js",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/cursor-hooks.test.js",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.test.sh",
+        ".skilled/hooks/post-edit-quality/devin/post-edit-quality.test.cjs"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter002-mode-flag-reject",
+      "label": "Ponytail's per-project mode-flag machinery (SHA-256 project key plus shared fallback flag, with a documented same-repo concurrency limit) should not be ported: no sk-code consumer exists for a latched session intensity, the prior refinement rejected the intensity state machine, and sk-code keeps per-session state only where a named consumer exists. Classification: REJECT (reasoned).",
+      "iteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/hooks/ponytail-runtime.js:44-81",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:83",
+        ".skilled/hooks/session-lifecycle/README.md"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter002-one-shot-discipline",
+      "label": "Ponytail refuses to latch /ponytail-review as a session level; sk-code likewise has no session latch for review - it routes sk-code-review as a workflow mode and scopes depth to an env alias that names an existing tier. Classification: ALREADY-ADOPTED by design.",
+      "iteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/hooks/ponytail-mode-tracker.js:53-56",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:530-532"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter002-precedence",
+      "label": "Env-over-config-over-default precedence (PONYTAIL_DEFAULT_MODE / config.json, persisted default separate from the session switch) is already the repo idiom in sk-code-review's SK_CODE_REVIEW_DEPTH alias. Classification: ALREADY-ADOPTED.",
+      "iteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/README.md:167-168",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/hooks/ponytail-mode-tracker.js:57-67",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:530-532"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter002-single-policy-source",
+      "label": "sk-code's one path-dispatch table shared by every runtime adapter (priority-ordered, at most one checker per edit, checker code staying in owning skills) is stronger than Ponytail's per-host env detection and per-host output branching. Classification: ALREADY-ADOPTED (stronger).",
+      "iteration": 2,
+      "sources": [
+        ".skilled/hooks/post-edit-quality/README.md",
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:146-160",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/hooks/ponytail-runtime.js:14-42"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter002-subagent-injection",
+      "label": "Ponytail injects its ruleset into subagents through a fail-open SubagentStart hook because SessionStart context never reaches them; sk-code's task-dispatch guard evaluates dispatches but injects no active surface/mode doctrine into the spawned agent. Classification: NEW (candidate, bounded by existing guard layer; adapter cost is real).",
+      "iteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/hooks/ponytail-subagent.js:1-11,32-94",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/hooks/claude-codex-hooks.json",
+        ".skilled/hooks/task-dispatch/README.md"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter003-anti-baseline",
+      "label": "The gain command forbids per-repo savings numbers because the unbuilt version was never written, and declares itself one-shot with no persistence; this anti-fabricated-baseline rule is the honesty guard any sk-code restraint metric must carry. Classification: NEW (benchmark reporting rule).",
+      "iteration": 3,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail-gain.md:5"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter003-dup-reject",
+      "label": "Ponytail duplicates one doctrine across a five-line command paragraph and a multi-section skill file and lists the same names as both commands and skills; sk-code's one-baseline rule and single-source routing make that duplication the wrong pattern, leaving only the runtime-shim idea separable. Classification: REJECT (reasoned).",
+      "iteration": 3,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail-review.md:1-5",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:1-40",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/plugin.yaml:8-19",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:77"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter003-lean-line",
+      "label": "A report-only Lean: -N lines / -M dependencies summary line has no sk-code-review equivalent and stays compatible with the prior LOC-as-gate rejection because it is supporting evidence, not a severity input. Classification: NEW (report-only).",
+      "iteration": 3,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail-review.md:5",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail-audit.md:5",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:40-60",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:78"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter003-no-code-enforced",
+      "label": "Ponytail's change-no-code rule is prose; sk-code-review enforces it structurally by forbidding Edit in its registry toolSurface and scoping Write to an untracked review cache. Classification: ALREADY-ADOPTED (stronger).",
+      "iteration": 3,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail-review.md:5",
+        ".skilled/skills/sk-code/mode-registry.json:42-58"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter003-not-checked",
+      "label": "Ponytail review and audit both end with a Not checked section naming what mattered but was not examined; sk-code-review's output contract ends with Next Steps and the exact Review status line, with no review-coverage-limit section. Classification: NEW.",
+      "iteration": 3,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail-review.md:5",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail-audit.md:5",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:328-395",
+        ".skilled/skills/sk-code/shared/references/workflow-verify.md:110"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter003-removal-artifacts",
+      "label": "Ponytail's audit names the artifact classes to grep before calling code unused (tests, fixtures, config, string references); sk-code-review's removal plan requires a completed codebase reference search but does not enumerate those classes. Classification: NEW (partially).",
+      "iteration": 3,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail-audit.md:5",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:32,44-60"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter003-routing-superior",
+      "label": "sk-code's two-stage registry routing (hub-router stage one, ROUTER.md surface-first intent-second stage two with a machine-readable projection) plus compiled routing with a legacy sentinel and kill-switch has no Ponytail counterpart; Ponytail commands are direct prompts with no routing layer. Classification: ALREADY-ADOPTED (stronger).",
+      "iteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/hub-router.json:1-47",
+        ".skilled/skills/sk-code/ROUTER.md:22-106",
+        ".skilled/skills/sk-code/SKILL.md:56-60",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/README.md:152-163"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter003-skip-consequence",
+      "label": "Ponytail's four-bullet finding format carries an If-we-skip-it consequence field that sk-code-review's schema lacks; Risk and User impact describe the defect, not the cost of deferring the fix. Classification: NEW (additive schema row).",
+      "iteration": 3,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail-review.md:5",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail-audit.md:5",
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md:88-108"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter003-traversal-order",
+      "label": "Ponytail names a fixed review traversal order (correct, safe, holds under load, tested, fast, lean) independent of output severity ordering; sk-code-review orders output by severity but names no fixed check-pass order. Classification: NEW (partially; cheap additive).",
+      "iteration": 3,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:1-40",
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md:53-57",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:288-315"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter004-canary-discipline",
+      "label": "Both systems declare the canary-not-generator discipline: sk-code asserts load-bearing substrings and never rewrites; Ponytail documents canary-not-full-equality for the source-of-truth skill comparison. Classification: ALREADY-ADOPTED.",
+      "iteration": 4,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:15-17",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/check-rule-copies.js:39-43"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter004-delivery-prefix",
+      "label": "sk-code's canary asserts that binding AGENTS.md clauses END inside the smaller runtime truncation prefix (16,384 bytes Devin, 32,768 Codex); Ponytail has no equivalent truncation-position check. Classification: ALREADY-ADOPTED (stronger).",
+      "iteration": 4,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:60-100",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/check-rule-copies.js:1-74"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter004-external-anchor",
+      "label": "Ponytail's version guard pins one version across seven files and compares it to the release tag because an agreement test cannot catch uniform staleness (v4.8.0 manifests all stale together while the test passed); cross-file agreement guards in sk-code, including mirror-sync verification, need a truth source outside the pair. Classification: NEW (guard-design lesson).",
+      "iteration": 4,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/check-versions.js:1-11,21-29,51-60"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter004-generated-copies",
+      "label": "Ponytail generates its transformed OpenClaw skill copies (verbatim bodies, rewritten frontmatter) and fails tests when committed copies are stale, with generation recorded as the canary's upgrade path; sk-code's cross-runtime agent mirrors are hand-maintained, so generation is the stronger mechanism where a copy is pure transformation. Classification: NEW.",
+      "iteration": 4,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/build-openclaw-skills.js:1-11,30-45",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/check-rule-copies.js:43"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter004-invariant-list",
+      "label": "Ponytail's copy guard pins ten verbatim rule phrases in both the long-form skill and AGENTS.md, including the never-cut carve-outs (validation at trust boundaries, prevents data loss, security, accessibility) individually, so a reword cannot silently drop one; this is the concrete mechanism for iteration 1's missing local enumeration of never-cut safeguards. Classification: NEW.",
+      "iteration": 4,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/check-rule-copies.js:18-27,44-67",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:30-60"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter004-retirement-note",
+      "label": "run-all-drift-guards.sh records its retired router-sync check (surface router vs compiled routing snapshot) as missing and does not point at the newer compiled-routing lane, whose activation records name hub-router.json, ROUTER.md and leaf-manifest.json as inputs; the note no longer describes current coverage. Recorded, not resolved. Classification: NEW (small, documentation staleness).",
+      "iteration": 4,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:10-16,47-52",
+        ".skilled/bin/compiled-route-sync.cjs:8-30",
+        "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/activation-record.json"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter004-thin-adapters",
+      "label": "Ponytail's thin-adapter rule (point hosts at existing skills and hooks; only keep copied rule text aligned with AGENTS.md) matches sk-code's consume-don't-copy doctrine, which sk-code enforces with a router-aware alignment verifier and stack-folder verifier run as one gate. Classification: ALREADY-ADOPTED.",
+      "iteration": 4,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:45-49",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:20-45"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter004-verified-rows",
+      "label": "Ponytail's portability table states support tier and verified host version per adapter row (Verified with Goose 1.53.0, CodeBuddy CLI 2.161.2, Muse Code 1.4.2; Junie marked not automatic yet); sk-code ships surface packets and a manual-testing playbook but no per-surface verified-runtime record. Classification: NEW (portability analogue of confirmed-vs-inferred).",
+      "iteration": 4,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:11-43",
+        ".skilled/skills/sk-code/manual-testing-playbook/"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter005-counterweight",
+      "label": "The agentic benchmark reports hidden checks passed beside every restraint measure (-53% LOC, -45% tokens, -26% cost, -41% time, 97% vs 96% checks) plus the risky-logic test rate (98% vs 68%); the separable idea is the counterweight column so no restraint win can be read alone. Classification: NEW (prior research's benchmark-only ruling stands).",
+      "iteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/README.md:3-13",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter005-gate-separation",
+      "label": "Ponytail declares measurement-only versus gating metrics inside the harness (loc.js measurement-only; correctness.js a gate because a wrong answer is wrong however few lines produced it) and names each instrument's weak checks (React and FastAPI checks structural-only); sk-code's frozen index has no correctness arm and no per-check strength statement. Classification: NEW.",
+      "iteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/correctness.js:1-13",
+        ".skilled/skills/sk-code/benchmark/README.md:20-34"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter005-grader-selftest",
+      "label": "Ponytail unit-tests its own graders: behavior.test.js feeds behavior-present and behavior-absent outputs through each probe checker and asserts the verdict, with the stated purpose that this is what makes the eval trustworthy; sk-code has no located self-test of its routing-verdict mechanism. Classification: NEW.",
+      "iteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/behavior.test.js:2-6,18-39",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:1-40"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter005-host-quirk-coverage",
+      "label": "Both systems test host quirks at different layers: Ponytail ships 18 suites including per-host plugin tests plus a Windows stdin/BOM suite; sk-code's .skilled tree holds 177 test files outside sandboxes including per-runtime hook suites. Whether sk-code covers Windows stdin/BOM behavior equivalently was not located and remains unverified, not a claimed gap. Classification: ALREADY-ADOPTED (one sub-question unverified).",
+      "iteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/",
+        ".skilled/hooks/"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter005-measurement-lost",
+      "label": "sk-code's routing-quality measurement path is retired and frozen: the Lane C harness, runner, scoring contract and /deep:skill-benchmark command were removed and no new run can start, yet the document records that the deterministic offline router mode was the CI gate over the 28-scenario playbook corpus with verdicts PASS 84/100 and live CONDITIONAL 71/100. The corpus and replay design still exist, so reinstating a deterministic router gate is the concrete restoration. Classification: LOST.",
+      "iteration": 5,
+      "sources": [
+        ".skilled/skills/sk-code/benchmark/README.md:1-30",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:1-40"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter005-number-hygiene",
+      "label": "Ponytail annotates its own headline number with the instrument bias, credits the external critic who caught it, and re-measures with a better method (single-shot prose-counting win replaced by an agentic session benchmark); combined with the gain command's ban on per-repo savings numbers this is a complete published-number hygiene practice absent from sk-code's frozen verdicts. Classification: NEW.",
+      "iteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/README.md:65-70",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail-gain.md:5"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter005-playbook-contract",
+      "label": "sk-code's live verification path requires persisted PASS/FAIL/SKIP outcomes and reasons and forbids substitutes (no mocks, no stubs, no unautomatable verdicts; PASS, PARTIAL, FAIL, SKIP only), a stronger contract than Ponytail's aggregate-only reporting. Classification: ALREADY-ADOPTED (stronger).",
+      "iteration": 5,
+      "sources": [
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:8-18",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/README.md:21-39"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter005-reproducibility",
+      "label": "Ponytail's benchmark artifact carries its own reproducibility contract: reproduce commands, the promptfoo Node engine constraint with a check instruction, the --env-file directory gotcha, and stated run counts and aggregation; sk-code's frozen index can state verdicts but no reproduce path because the runner is gone. Classification: NEW.",
+      "iteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/README.md:21-39",
+        ".skilled/skills/sk-code/benchmark/README.md:1-20"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter006-behavior-eval",
+      "label": "Ponytail runs a behavior-effect eval (behavior.yaml) that asks whether the ruleset actually produces its refined behaviors rather than merely carrying the text, with the no-skill arm as a control expected to fail; sk-code verifies rule wording presence and routing resolution but has no artifact testing whether carrying the doctrine changes model behavior. Classification: NEW (highest-value transfer).",
+      "iteration": 6,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/behavior.yaml:1-13,20-40",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:1-140"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter006-candidate-arm",
+      "label": "Ponytail's harness loads a candidate plugin from an environment variable so a release candidate, the current release and no skill are scored in one interleaved run; this is the validation mechanism a refinement packet needs instead of a before/after comparison across time. Classification: NEW.",
+      "iteration": 6,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:34-35"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter006-corpus-reject",
+      "label": "Ponytail's 39-task seeded Python/React corpus should not become sk-code's benchmark corpus: it measures model code-writing restraint, while sk-code's measurable object is routing, surface detection, resource loading and review verdicts, whose corpus already exists as the 28-scenario playbook, and importing it would require model dispatch where sk-code's gate is offline and deterministic. Classification: REJECT (reasoned).",
+      "iteration": 6,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:37-54",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:11-18"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter006-deterministic-scoring",
+      "label": "Both systems rely on deterministic offline scoring for the gate path: Ponytail's safety checks are deterministic and stdlib-only, and sk-code's retired router mode was deterministic and offline and served as the CI gate over the playbook corpus, with only the runner and scoring contract removed. Classification: ALREADY-ADOPTED (the runner is the lost part, established in iteration 5).",
+      "iteration": 6,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:44-45",
+        ".skilled/skills/sk-code/benchmark/README.md:14-30"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter006-fair-baseline",
+      "label": "The agentic benchmark's baseline is the real agent with no skill and an edit-existing-file task, chosen because a bare chatty model inflates the baseline; the stated point is honesty, not flattery. Any sk-code measurement inherits this requirement. Classification: NEW.",
+      "iteration": 6,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:11-24"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter006-loc-rules",
+      "label": "Ponytail's size metric counts source LOC plus source file count with tests excluded, tracks tests as a positive signal never as bloat, counts non-blank non-comment lines from fenced or bare code, and records a metric bug it fixed in the metric file itself; this is the safe measurement-only form of LOC that the prior LOC-as-gate rejection leaves room for. Classification: NEW.",
+      "iteration": 6,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:20-21",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/loc.js:1-15"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter006-safety-tier",
+      "label": "The agentic benchmark's safety tier leaves the safety requirement implicit like a real ticket, executes the produced function against adversarial input with deterministic stdlib-only checks, and defines each bad reference as the lazy-but-plausible version that a binary correctness gate passes; the lesson is that correctness-only verification cannot detect the failure mode restraint most plausibly causes. Classification: NEW.",
+      "iteration": 6,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:39-69"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter006-strawman-arms",
+      "label": "Ponytail includes seven-word strawman arms (yagni, yagni-oneliner) on purpose so that a one-line instruction matching the skill shows up in the published result; self-falsification is built into the harness rather than left to critics. Classification: NEW.",
+      "iteration": 6,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:26-33"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter007-adopted-twelve",
+      "label": "Twelve of seventeen archived recommendations are present in the current hub (ladder in the always-loaded doc, review-status canary, ceiling convention and downgrade evidence, needed-ness prompt, Replacement field, Iron Law relocation, stack-folders validator, review-depth alias, agent mirror gate, anti-stall rule), and four gained dedicated playbook scenarios under design-restraint/, discharging rec 1's own not-yet-exercised caveat. Classification: ALREADY-ADOPTED (exceeded).",
+      "iteration": 7,
+      "sources": [
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-67",
+        ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:138",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:53",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter007-aged-rationale",
+      "label": "The DO-NOT-ADOPT rejection of a standalone PromptFoo clone reasoned that it copies ponytail's missing correctness gate; Ponytail's agentic harness now has both a correctness gate and an adversarial safety tier, so that half of the rationale has aged out while the duplication objection stands, and the newly available gate-before-metric pattern is what rec 11's pending metric needs. Classification: NEW.",
+      "iteration": 7,
+      "sources": [
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:74",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/correctness.js:1-13",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md:39-69"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter007-negative-knowledge",
+      "label": "The archived negative-knowledge list is still honored, and iterations 3, 4 and 6 independently re-derived three of its conclusions from new evidence (no second review skill, no byte-equality or per-turn injection for skill surfaces, no ported task corpus). Classification: ALREADY-ADOPTED.",
+      "iteration": 7,
+      "sources": [
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:70-86",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-003.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-004.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-006.md"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter007-priming-infra",
+      "label": "Rec 15's stated blocker is gone: session-lifecycle priming hooks now exist default-on and fail-open across Claude, Codex, Cursor, Devin and Pi with a shared implementation and thin adapters, but they inject spec-folder continuity context rather than a surface/standards payload, so the deferred work is now a payload addition to wired infrastructure. Classification: NEW.",
+      "iteration": 7,
+      "sources": [
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:66",
+        ".skilled/hooks/session-lifecycle/README.md:1-30"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter007-rec10-lost",
+      "label": "Rec 10's shrink row (same behavior, equally clear, fewer lines) is still absent from the review checklist and review-core, and its deferral now lives only in an archived packet with no owner; iteration 3's report-only lean-summary line covers the same information without a subjective per-finding row. Classification: LOST (pending).",
+      "iteration": 7,
+      "sources": [
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:61",
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md:88-118"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter007-rec11-lost",
+      "label": "Rec 11's code_loc plus over-engineering-marker metric was never folded into the Lane B sweep: the lane and its scorer still exist, but no code_loc or over-engineering metric appears in it, while Ponytail's loc.js supplies a working self-corrected measurement-only implementation. This is the clearest pending recommendation with both halves available. Classification: LOST (pending).",
+      "iteration": 7,
+      "sources": [
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:62",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/loc.js:1-15"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter007-rec12-relocated",
+      "label": "Rec 12 landed under a different name: agent mirror parity is enforced at commit time by a staged-only gate in the git pre-commit that calls check-agent-mirror-sync.cjs and blocks the commit, failing open with a warning only when node or the checker is unavailable. Classification: ALREADY-ADOPTED (relocated).",
+      "iteration": 7,
+      "sources": [
+        ".skilled/hooks/git/pre-commit:78-94",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:63"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter007-rec3-partial",
+      "label": "Rec 3 landed halfway: the native platform/runtime duplication row exists in the review checklist, but a distinct hand-rolled standard-library row was not located by the patterns searched. Classification: NEW (partially missing; states what was searched rather than asserting absence).",
+      "iteration": 7,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:123",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:47"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter008-advisory-envelope",
+      "label": "The advisory evidence-handoff envelope fixes its status to advisory and forbids pass, success or done, and may never replace the verification handoff, so the hub is stricter about self-verdict vocabulary than Ponytail's Verdict and scoreboard lines; Ponytail's complementary contribution in this area is its coverage disclosure, not its verdict line. Classification: ALREADY-ADOPTED (stronger).",
+      "iteration": 8,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:206-228"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter008-advisory-slot",
+      "label": "The quality mode's advisory envelope already carries per-severity dispositions and accepted deferrals, so a measurement-only size or test-rate signal has a recording slot that does not touch the gate contract and stays consistent with the prior LOC-as-gate rejection. Classification: NEW (small).",
+      "iteration": 8,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:190-200,206-228",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:78"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter008-layered-hygiene",
+      "label": "Comment hygiene in the hub is enforced by three independent gates (write-time warning, pre-commit block, CI block) with an escalation rule when the layers disagree on a blocking result, which is stronger than Ponytail's rule text plus behavior probe. Classification: ALREADY-ADOPTED (stronger).",
+      "iteration": 8,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:124-137,252-260"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter008-no-size-metric",
+      "label": "The hub's restraint enforcement is qualitative end to end: no LOC, line-budget, complexity or function-length mechanism exists in sk-code-quality or the shared universal standards, only the ladder's YAGNI rung and the P0/P1/P2 gate rule, while Ponytail carries a size metric, a correctness gate and behavior probes over the same concern. The gap is measurement, not gating. Classification: NEW.",
+      "iteration": 8,
+      "sources": [
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:46,63-67",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:190-200",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/loc.js:1-15",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/correctness.js:1-13"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter008-retirement-second-site",
+      "label": "The quality mode's machine-readable router independently acknowledges that the deterministic skill-benchmark router-replay it was written for has since been retired, confirming from a second site that the removed measurement path is a known, documented gap whose corpus and replay design remain in place. Classification: NEW (small; corroborates iteration 5's LOST finding).",
+      "iteration": 8,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:138-160",
+        ".skilled/skills/sk-code/benchmark/README.md:1-20"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter008-role-separation",
+      "label": "Author-side versus review-side separation is explicit and backed by tool authority in the hub (quality mode has no Write or Task authority and may not make passing claims; review mode forbids Edit), where Ponytail separates the roles by instruction text only. Classification: ALREADY-ADOPTED (structural).",
+      "iteration": 8,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:198-204,241-250",
+        ".skilled/skills/sk-code/mode-registry.json:42-58"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter008-test-rate",
+      "label": "Ponytail quantifies its test reflex as a rate (98% of risky logic ships with a test vs 68% without the skill) while the hub states the same reflex as a rule plus a scenario, so no trend is reportable; this is the measurable form of the test-reflex gap iteration 1 identified. Classification: NEW.",
+      "iteration": 8,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/README.md:13"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter009-anti-baseline",
+      "label": "ORIGINAL: an anti-fabricated-baseline rule for research and refinement packets stating that a claimed size, cost or time reduction is not reportable unless a paired measurement ran; derived from Ponytail's refusal to print per-repo savings numbers, and self-applying to this packet's own phases. Classification: NEW/ORIGINAL.",
+      "iteration": 9,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/command/ponytail-gain.md:5",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-003.md"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter009-counterweight-rule",
+      "label": "ORIGINAL: a restraint-counterweight pairing rule stating that a restraint metric may not be published alone but ships with a correctness counterweight and, where warranted, an adversarial tier in the same artifact; specifies what the prior supporting-evidence allowance pairs with, and governs the pending Lane B code_loc metric. Classification: NEW/ORIGINAL.",
+      "iteration": 9,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/README.md:3-13",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-006.md"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter009-doctrine-effect",
+      "label": "ORIGINAL: doctrine-effect scenarios probing whether the hub's own load-bearing rules (SCOPE-LOCK, durable-WHY comment hygiene, ladder reuse rung, no-verdict envelope vocabulary) change model output, with a control arm; inspired by behavior.yaml, impossible in Ponytail because it has no scope-lock, routing or envelope. Classification: NEW/ORIGINAL.",
+      "iteration": 9,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/behavior.yaml:1-13",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-006.md"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter009-external-anchor",
+      "label": "ORIGINAL: an external-anchor requirement for agreement guards, so any guard proving two artifacts agree names the truth source outside the pair; the hub's agent-mirror gate already satisfies it, and the requirement protects the next agreement guard from being written without one. Classification: NEW/ORIGINAL.",
+      "iteration": 9,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/check-versions.js:1-11",
+        ".skilled/hooks/git/pre-commit:78-94"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter009-grader-selftest",
+      "label": "ORIGINAL: a grader self-test precondition requiring scenario detection markers to be machine-checkable and each checker to carry a negative fixture it must reject, so a PASS is not purely a judgment call; inspired by Ponytail's API-key-free grader test, impossible in Ponytail because it has no scenario corpus or detection markers. Classification: NEW/ORIGINAL.",
+      "iteration": 9,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/behavior.test.js:2-6",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-005.md"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter009-retirement-contract",
+      "label": "ORIGINAL: a retirement-note contract requiring a retired guard's umbrella to name the successor guard or record the coverage gap with a named owner; the hub's drift-guard note records the retired router-sync check as missing with neither, and the gap is acknowledged in two places. Classification: NEW/ORIGINAL.",
+      "iteration": 9,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:47-52",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/check-rule-copies.js:43"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter009-reuse-evidence",
+      "label": "ORIGINAL: a reuse-evidence rung on the restraint ladder requiring either a citation of the reused existing export or an explicit statement that the search found none, with removal proposals citing the same inventory to show no consumer exists; fuses Ponytail's codebase-map mechanism, the ladder and the removal-plan evidence field into one citable rule. Classification: NEW/ORIGINAL.",
+      "iteration": 9,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-002.md",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:44-60"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter009-two-layer-verdicts",
+      "label": "ORIGINAL: two-layer scenario verdicts making a deterministic routing precondition and a separate behavior verdict first-class, so the existing 28-scenario corpus regains an offline CI gate while the live behavior claim stays legible; inspired by the retired benchmark report's own note, impossible in Ponytail because it has no routing layer. Classification: NEW/ORIGINAL.",
+      "iteration": 9,
+      "sources": [
+        ".skilled/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md:302",
+        ".skilled/skills/sk-code/benchmark/README.md:14-30"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter010-convergence-status",
+      "label": "Convergence status: rolling new-information ratios were 0.5, 0.31, 0.56, 0.56, 0.69, 0.75, 0.5, 0.5, 0.75 and 0.3, all above the 0.05 threshold because each iteration opened a distinct key question; the honest terminal reason is the 10-iteration cap reached with every key question answered and four sub-questions bounded, not a convergence claim. Classification: NEW.",
+      "iteration": 10,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/deep-research-config.json"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter010-frontier",
+      "label": "Frontier status: all nine key questions are answered, and four sub-questions stay explicitly unverified rather than claimed — Windows stdin/BOM hook parity, the candidate-arm wiring behind the documented plugin-directory variable, whether a hand-rolled standard-library row exists under unsearched wording, and the current pass state of the design-restraint scenarios whose last verdicts came from a retired harness. Classification: NEW.",
+      "iteration": 10,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-005.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-006.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-007.md"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter010-ordering",
+      "label": "Phase ordering is gated on measurements rather than preference: Phase 1 establishes the gate that proves later phases do not break routing, Phase 2 changes output contracts that the canary then protects, Phase 3 edits the always-loaded ladder and therefore follows the contract work, Phase 4 runs in parallel as documentation, and no phase claims any size, cost or time saving because no paired baseline exists for the hub's own work. Classification: NEW.",
+      "iteration": 10,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-009.md"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter010-phase1",
+      "label": "Phase 1 restores the deterministic gate: make the two-layer scenario contract explicit (routing precondition, behavior verdict) and rebuild the offline deterministic replay over the existing 28-scenario corpus, gated on the replay first passing against the unchanged hub; risk is scenario-schema churn, mitigated by additive fields with defaults. Classification: NEW.",
+      "iteration": 10,
+      "sources": [
+        ".skilled/skills/sk-code/benchmark/README.md:14-30",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-009.md"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter010-phase2",
+      "label": "Phase 2 adds grader self-tests and the honesty rows additively: machine-checkable detection markers with negative fixtures, a review coverage-limits section, a consequence-of-inaction bullet, a report-only lean line, the anti-fabricated-baseline rule and the restraint-counterweight pairing rule; gate is the unchanged exact final-line string plus a green rule-copy canary, with delivery-prefix anchors re-measured if AGENTS.md changes. Classification: NEW.",
+      "iteration": 10,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-003.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-005.md"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter010-phase3",
+      "label": "Phase 3 adds the reuse-evidence step to the always-loaded ladder plus matching removal inventory citations, completes the partially-missing standard-library review row, enumerates the artifact classes to search before calling code unused, and then adds the Lane B size metric as measurement-only with a correctness counterweight; gate is that the always-loaded delivery prefix stays inside the smaller truncation limit, measured before and after, and the metric never gates. Classification: NEW.",
+      "iteration": 10,
+      "sources": [
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:46",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:60-100",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-007.md"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter010-phase4",
+      "label": "Phase 4 is documentation-only: give the retired router-sync check a successor or a named owner, state the external-anchor requirement for agreement guards, and add support-tier plus verified-version rows for runtime surfaces, gated on the drift guards and the commit-time mirror gate still running green. Classification: NEW.",
+      "iteration": 10,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:47-52",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-004.md"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter010-phase5",
+      "label": "Phase 5 stays deferred: the sk-code surface/standards priming payload needs a named consumer and a delivery-prefix decision, doctrine-effect scenarios need the Phase 1 deterministic layer plus a model-dispatch lane with a control arm, and the subjective shrink row stays out because the lean line carries the information. Classification: NEW.",
+      "iteration": 10,
+      "sources": [
+        ".skilled/hooks/session-lifecycle/README.md:1-30",
+        "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:61"
+      ],
+      "_lineages": [
+        "deepseek-flash-cline"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 20,
+    "openQuestions": 1,
+    "resolvedQuestions": 13,
+    "keyFindings": 97,
+    "sourceFindings": 97,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  }
+}

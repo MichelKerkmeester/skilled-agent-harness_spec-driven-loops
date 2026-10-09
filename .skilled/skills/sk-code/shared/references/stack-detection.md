@@ -27,11 +27,10 @@ Detect **where the work is happening** before deciding which standards apply.
 | --- | --- | --- |
 | WEBFLOW | Webflow / vanilla HTML, CSS, JavaScript, animation libraries, CDN/minification, browser behavior | `.skilled/` system code |
 | OPENCODE | `.skilled/` skills, agents, commands, MCP/server code, scripts, tests, JSON/JSONC config | Webflow/browser behavior |
-
 | OBSIDIAN | The Note Database Obsidian plugin (`manifest.json` with `minAppVersion`, `esbuild.config.mjs`, `from "obsidian"` imports, the single `styles.css` carrying `.db-*` classes) and its worktrees | `.opencode/` hub code reached through the repo's symlinks; Webflow browser artifacts |
 | UNKNOWN | Fallback for unsupported or ambiguous surfaces | No standards applied until clarified |
 
-`motion_dev/` is a peer resource category rather than a surface. Surface detection still chooses WEBFLOW, OPENCODE, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
+`motion_dev/` is a peer resource category rather than a surface. Surface detection still chooses OPENCODE, OBSIDIAN, WEBFLOW, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
 
 ---
 

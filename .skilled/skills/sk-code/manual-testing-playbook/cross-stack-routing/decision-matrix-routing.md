@@ -21,7 +21,7 @@ For a hover state on cards, should I use motion.dev or plain CSS? I need the rou
 
 **Expected detection markers** (verbatim from `shared/references/stack-detection.md`):
 ```text
-`motion_dev/` is a peer resource category rather than a surface. Surface detection still chooses WEBFLOW, OPENCODE, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
+`motion_dev/` is a peer resource category rather than a surface. Surface detection still chooses OPENCODE, OBSIDIAN, WEBFLOW, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
 ```
 
 **Expected surface**: `UNKNOWN` or `N/A`

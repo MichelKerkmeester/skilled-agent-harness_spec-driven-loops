@@ -1,0 +1,1 @@
+{"stem":"deep_research.synthesis_complete","scope":{"runId":"fanout-deepseek-flash-cline-1791552201492-cjjo4q","lineageId":"deepseek-flash-cline"},"data":{"totalIterations":10,"answeredCount":9,"totalQuestions":9,"stopReason":"max-iterations-cap-reached (10/10); convergence threshold 0.05 not met"}}

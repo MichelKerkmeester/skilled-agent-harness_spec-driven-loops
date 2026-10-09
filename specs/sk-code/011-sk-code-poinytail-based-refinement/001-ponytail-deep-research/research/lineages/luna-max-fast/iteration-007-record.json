@@ -1,0 +1,43 @@
+{
+  "type": "iteration",
+  "iteration": 7,
+  "run": 7,
+  "runId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "sessionId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "lineageId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 1.0,
+  "status": "complete",
+  "focus": "Close the surface coverage audit in the skill-advisor and compiled-routing probes",
+  "findingsCount": 1,
+  "noveltyJustification": "The full skill-advisor probe lists and compiled-routing scenario were checked against all currently routed surfaces; neither includes an Obsidian positive surface case.",
+  "keyQuestions": [
+    "Does the existing benchmark and routing corpus cover each surface now supported by the two-axis hub?"
+  ],
+  "answeredQuestions": [
+    "Does the existing benchmark and routing corpus cover each surface now supported by the two-axis hub?"
+  ],
+  "ruledOut": [
+    {
+      "approach": "Merge surface discovery with advisor top-1 identity accuracy",
+      "reason": "Parent skill selection and nested workflow-plus-surface route outcomes answer different questions."
+    }
+  ],
+  "toolsUsed": [
+    "nl",
+    "cat",
+    "clock"
+  ],
+  "sourcesQueried": [
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/benchmarks/agentic/README.md",
+    ".skilled/skills/sk-code/hub-router.json",
+    ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md"
+  ],
+  "timestamp": "2026-10-09T13:50:54Z",
+  "durationMs": 38000
+}

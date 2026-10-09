@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/002-surface-contract-alignment",
+  "description": "Phase 2: surface-contract-alignment",
+  "keywords": [
+    "phase",
+    "surface-contract-alignment"
+  ],
+  "lastUpdated": "2026-10-09T16:00:48.703Z",
+  "specId": "002",
+  "folderSlug": "surface-contract-alignment",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

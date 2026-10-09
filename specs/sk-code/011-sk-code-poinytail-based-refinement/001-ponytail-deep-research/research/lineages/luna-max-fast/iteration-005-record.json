@@ -1,0 +1,63 @@
+{
+  "iteration": 5,
+  "run": 5,
+  "runId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "sessionId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "lineageId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.6,
+  "status": "complete",
+  "focus": "Audit the older Ponytail refinement recommendations against the current two-axis hub, nested modes, and related tooling",
+  "findingsCount": 5,
+  "noveltyJustification": "Three previously undocumented gaps surfaced in the current-state audit: stale surface-precedence wording after Obsidian became a surface, an assets-folder contract not checked by the validator, and a Codex-only mirror path omitted by the checker. The ladder and most review recommendations were confirmed adopted.",
+  "keyQuestions": [
+    "Which older recommendations are already adopted, lost, or still new after checking the current two-axis hub, every nested mode, and related tooling?"
+  ],
+  "answeredQuestions": [
+    "Which older recommendations are already adopted, lost, or still new after checking the current two-axis hub, every nested mode, and related tooling?"
+  ],
+  "ruledOut": [
+    {
+      "approach": "Restore global intensity or always-on prompt injection",
+      "reason": "The hub uses on-demand two-axis routing; the old global switches and injection route were rejected."
+    },
+    {
+      "approach": "Treat the existing folder validator or mirror gate as complete coverage",
+      "reason": "Specific manual-test and Codex-only path cases are not covered by the current implementations."
+    }
+  ],
+  "toolsUsed": [
+    "rg",
+    "nl",
+    "cat",
+    "clock"
+  ],
+  "sourcesQueried": [
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/commands/ponytail-help.toml",
+    "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md",
+    ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+    ".skilled/skills/sk-code/SKILL.md",
+    ".skilled/skills/sk-code/shared/references/stack-detection.md",
+    ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md",
+    ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md",
+    ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+    ".skilled/skills/sk-code/shared/references/workflow-implement.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py",
+    ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+    ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs",
+    ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/sweep-reporter.cjs",
+    ".github/workflows/agent-mirror-sync.yml",
+    ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs",
+    ".skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs"
+  ],
+  "timestamp": "2026-10-09T13:48:50Z",
+  "durationMs": 549000,
+  "type": "iteration"
+}

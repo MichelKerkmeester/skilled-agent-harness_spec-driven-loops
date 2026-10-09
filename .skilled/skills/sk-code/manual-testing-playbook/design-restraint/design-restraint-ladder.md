@@ -10,7 +10,7 @@ version: 1.5.0.1
 
 This scenario verifies that for an implementation-intent request, sk-code climbs the Design Restraint Ladder and picks the laziest viable rung before writing any new code: does this need to exist at all (YAGNI), then a standard-library primitive, a native platform or runtime feature, an already-installed dependency, a one-line expression, and only then minimal custom code.
 
-The ladder is a post-read reflex that runs AFTER surface and intent routing, so it consumes the detected surface but changes neither surface precedence (OPENCODE over WEBFLOW over UNKNOWN) nor the Iron Law (Phase 3 verification is still required). It is gated to the Phase 0 to Phase 1 transition and named in the SKILL.md Phase Overview.
+The ladder is a post-read reflex that runs AFTER surface and intent routing, so it consumes the detected surface but changes neither surface precedence (OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN) nor the Iron Law (Phase 3 verification is still required). It is gated to the Phase 0 to Phase 1 transition and named in the SKILL.md Phase Overview.
 
 The ladder is defined in `shared/references/universal/code-quality-standards.md`, and the Phase 0 to 1 gate that requires the laziest viable rung is in `shared/references/phase-detection.md`.
 

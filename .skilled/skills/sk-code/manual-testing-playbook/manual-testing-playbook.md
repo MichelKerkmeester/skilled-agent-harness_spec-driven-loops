@@ -88,7 +88,7 @@ Motion peer-resource folders must be present before MR/CB scenarios run: `sk-cod
 
 - The exact user prompt that was tested.
 - The skill advisor output (top-1 skill, confidence score, gap to second, advisorStatus).
-- The detected code surface (WEBFLOW / OPENCODE / UNKNOWN) reported by sk-code.
+- The detected code surface (OPENCODE / OBSIDIAN / WEBFLOW / UNKNOWN) reported by sk-code.
 - The exact list of references/assets the AI loaded (verbatim relative paths under `.skilled/skills/sk-code/`).
 - The agent dispatched (if any) with name and runtime (e.g. `@code` via `.skilled/agents/code.md`).
 - The AI's user-visible response (the answer it produced or the action it took).
@@ -186,13 +186,14 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ---
 
-## 7. SURFACE DETECTION (`SD-001..SD-003`)
+## 7. SURFACE DETECTION (`SD-001..SD-004`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | `SD-001` | WEBFLOW Detection | Verify sk-code routes a vanilla-JS animation request to WEBFLOW surface | `Add a Lenis smooth-scroll initializer to src/2_javascript/scroll.js and gate it behind an IntersectionObserver so it only runs once the hero section is visible.` | advisor probe → invoke sk-code → inspect surface + loaded refs | advisor: sk-code top-1, score ≥ 0.80; surface: WEBFLOW; refs: webflow/* + router/* + universal/code-quality-standards.md | `/tmp/skc-SD001-advisor.txt`, `/tmp/skc-SD001-loaded-refs.txt` | PASS iff advisor wins sk-code AND surface == WEBFLOW AND `sk-code-webflow/references/implementation/*` is in load set | If WEBFLOW not detected, verify `Lenis`, `src/2_javascript/`, `IntersectionObserver` markers in `shared/references/stack-detection.md:30-37` |
 | `SD-002` | OPENCODE Detection | Verify sk-code routes a system-code task to OPENCODE surface | `Add a console.error fallback to .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts when the input prompt is empty.` | advisor probe → invoke sk-code → inspect surface + loaded refs | advisor: sk-code top-1, score ≥ 0.80; surface: OPENCODE; sub-language: TYPESCRIPT; refs: opencode/typescript/* + opencode/shared/* + router/* | `/tmp/skc-SD002-advisor.txt`, `/tmp/skc-SD002-loaded-refs.txt` | PASS iff surface == OPENCODE AND sub-language detected as TYPESCRIPT AND `sk-code-opencode/references/typescript/*` in load set | If OPENCODE not detected, verify CWD/target check at `shared/references/stack-detection.md:39-40` |
 | `SD-003` | UNKNOWN Fallback | Verify sk-code asks for disambiguation on unsupported stacks (Go) | `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return it in the X-Request-ID response header.` | advisor probe → invoke sk-code → inspect surface | advisor: sk-code top-1 with caveat OR no win; surface: UNKNOWN; AI asks "which runtime / verification commands?" | `/tmp/skc-SD003-advisor.txt`, `/tmp/skc-SD003-response.txt` | PASS iff surface == UNKNOWN AND AI explicitly asks for runtime/verification disambiguation AND no surface-specific refs are loaded | If sk-code silently proceeds, verify the disambiguation rule in SKILL.md "Unsupported / Unknown" row |
+| `SD-004` | OBSIDIAN Detection | Verify sk-code routes a Note Database plugin task to the OBSIDIAN surface | `Rename the table cell classes in src/views/DatabaseView.ts of the Note Database Obsidian plugin to the .db-* naming convention.` | advisor probe -> compiled route -> inspect surface and references | advisor: sk-code top-1 at ≥0.80; surface: OBSIDIAN; route: single sk-code-obsidian; refs: stack-detection.md, phase-detection.md, universal/code-quality-standards.md, sk-code-obsidian/references/db-class-naming.md; no Webflow or OpenCode surface refs | `/tmp/skc-SD004-advisor.txt`, `/tmp/skc-SD004-route.txt` | PASS iff advisor wins sk-code at ≥0.80 AND compiled route returns route/single/sk-code-obsidian AND expected references load without Webflow or OpenCode surface refs | If OBSIDIAN is not detected, check the repo-root markers in shared/references/stack-detection.md:46-51 and the OBSIDIAN_PLUGIN map in ROUTER.md:555-559 |
 
 Per-feature files: see `surface-detection/`.
 
@@ -226,7 +227,7 @@ Per-feature files: see `routing-disambiguation/`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| `SA-001` | Advisor Probe Battery | Verify sk-code wins ≥80% of positive controls and loses 100% of negative controls | (multi-prompt battery — see per-feature file) | run `skill_advisor.py` for each prompt at threshold 0.8; tabulate top-1 and score | sk-code wins ≥12 of 15 positives at score ≥ 0.80; sk-code loses all 5 negatives | `/tmp/skc-SA001-advisor-results.jsonl` | PASS iff positive accuracy ≥ 0.80 AND negative-control false-positive rate == 0 | If positive accuracy < 0.80, propose `signals` array additions to skill-graph.json (Phase E5) |
+| `SA-001` | Advisor Probe Battery | Verify sk-code wins ≥80% of positive controls and loses 100% of negative controls | (multi-prompt battery — see per-feature file) | run `skill_advisor.py` for each prompt at threshold 0.8; tabulate top-1 and score | sk-code wins ≥14 of 17 positives at score ≥ 0.80; sk-code loses all 5 negatives | `/tmp/skc-SA001-advisor-results.jsonl` | PASS iff positive accuracy ≥ 0.80 AND negative-control false-positive rate == 0 | If positive accuracy < 0.80, propose `signals` array additions to skill-graph.json (Phase E5) |
 
 Per-feature file: see `skill-advisor-integration/advisor-probe-battery.md`.
 
@@ -290,7 +291,7 @@ These scenarios validate the v3.4.0.0 ponytail-based refinement: the pre-write D
 | `DR-001` | Design Restraint Ladder | Verify sk-code walks the ladder and selects the laziest viable rung before writing new code | `Add a helper to .skilled/skills/system-spec-kit/runtime/lib/util/unique.ts that removes duplicate strings from an array. Before writing, walk the Design Restraint Ladder and pick the laziest viable rung.` | advisor probe → invoke sk-code → capture surface then ladder trace | surface OPENCODE emitted before any ladder reasoning; ladder selects a one-line `new Set` rung over a custom loop; Phase 0 to 1 gate honored | `/tmp/skc-DR001-advisor.txt`, `/tmp/skc-DR001-ladder.txt` | PASS iff the ladder runs after routing AND the laziest viable rung is selected per `shared/references/universal/code-quality-standards.md` AND the Phase 0 to 1 gate in `shared/references/phase-detection.md` is honored | If the AI writes a custom loop, verify ladder rungs in `shared/references/universal/code-quality-standards.md` |
 | `DR-002` | Implementer Anti-Stall | Verify sk-code implements the requirement and raises a scope-amendment note without stalling to ask | `Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call in .skilled/skills/system-spec-kit/runtime/lib/config/load.ts. It only runs once at startup.` | advisor probe → invoke sk-code → capture the response shape | requirement implemented; scope-amendment recommendation raised in the same response; no stall-to-ask; SCOPE-LOCK held | `/tmp/skc-DR002-advisor.txt`, `/tmp/skc-DR002-response.txt` | PASS iff sk-code implements the requirement AND raises a scope-amendment note in one response without blocking to ask, per SKILL.md §4 ALWAYS anti-stall bullet | If the AI stalls to ask, verify the anti-stall ALWAYS bullet in SKILL.md §4 |
 | `DR-003` | Ceiling Comment Convention | Verify sk-code marks a deliberate shortcut with a neutral `ceiling:` comment that passes comment-hygiene without allow-listing | `Add a small in-memory rate limiter to the sk-doc local preview server at .skilled/skills/sk-doc/scripts/preview-server.ts. A fixed in-memory window is fine for local use, so mark the deliberate ceiling.` | invoke sk-code in `/tmp/skc-DR003-sandbox/` → run check-comment-hygiene.sh on the result | `ceiling:` comment names shortcut, ceiling, and upgrade trigger as a plain WHY; hygiene exits 0; `ceiling:` not added to the allowed-pattern list | `/tmp/skc-DR003-hygiene.txt` | PASS iff the ceiling comment follows `shared/references/universal/code-style-guide.md` §4 (neutral WHY, not allow-listed) AND comment-hygiene exits 0 | If hygiene fails, the comment likely embeds a forbidden id — rewrite as a durable WHY |
-| `DR-004` | STACK_FOLDERS Validator | Verify the validator passes clean and fails non-zero on an orphan surface folder | `Run the STACK_FOLDERS validator, confirm a clean pass, then add an orphan assets/<fake-surface> folder and confirm it fails.` | `python3 .../verify_stack_folders.py` (exit 0) → mkdir orphan `assets/zzz_fake_surface` → re-run (exit 1) → rmdir → re-run (exit 0) | clean run exits 0 listing declared surfaces; orphan run exits 1 naming the orphan; cleanup restores exit 0 | `/tmp/skc-DR004-clean.txt`, `/tmp/skc-DR004-orphan.txt` | PASS iff the clean run exits 0 AND an orphan folder in `references/` or `assets/` produces exit 1 naming the orphan, per `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py` | If the orphan is not caught, verify both `references/` and `assets/` trees are scanned |
+| `DR-004` | STACK_FOLDERS Validator | Verify the validator passes clean and fails non-zero on an orphan surface folder | `Run the language reference folder validator, confirm a clean pass, then add an orphan references/<fake-language> folder and confirm it fails.` | `python3 .../verify_stack_folders.py` (exit 0) → mkdir orphan `references/zzz_fake_language` → re-run (exit 1) → rmdir → re-run (exit 0) | clean run exits 0 listing declared surfaces; orphan run exits 1 naming the orphan; cleanup restores exit 0 | `/tmp/skc-DR004-clean.txt`, `/tmp/skc-DR004-orphan.txt` | PASS iff the clean run exits 0 AND an orphan folder in `references/` produces exit 1 naming the orphan, per `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py` | If the orphan is not caught, verify every directory directly under `references/` is scanned |
 
 Per-feature files: see `design-restraint/`.
 
@@ -329,7 +330,7 @@ The sk-code skill currently has these automated tests:
 - `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py` — STACK_FOLDERS-to-disk surface validator (deterministic exit-code check; exercised manually by DR-004).
 
 Tests NOT covered by automation (manual playbook is the only validation):
-- Surface detection routing decisions (SD-001, SD-002, SD-003).
+- Surface detection routing decisions (SD-001, SD-002, SD-003, SD-004).
 - Language sub-detection within OPENCODE (LS-001, LS-002, LS-003, LS-004).
 - Mixed-marker disambiguation (RD-001).
 - Advisor anti-pattern routing (RD-002).
@@ -354,6 +355,7 @@ Tests NOT covered by automation (manual playbook is the only validation):
 | Surface Detection | SD-001 | [surface-detection/webflow-detection.md](surface-detection/webflow-detection.md) | Yes |
 | Surface Detection | SD-002 | [surface-detection/opencode-detection.md](surface-detection/opencode-detection.md) | Yes |
 | Surface Detection | SD-003 | [surface-detection/unknown-fallback.md](surface-detection/unknown-fallback.md) | Yes |
+| Surface Detection | SD-004 | [surface-detection/obsidian-detection.md](surface-detection/obsidian-detection.md) | No |
 | Language Sub-Detection | LS-001 | [language-sub-detection/opencode-typescript.md](language-sub-detection/opencode-typescript.md) | No |
 | Language Sub-Detection | LS-002 | [language-sub-detection/opencode-python.md](language-sub-detection/opencode-python.md) | No |
 | Language Sub-Detection | LS-003 | [language-sub-detection/opencode-shell.md](language-sub-detection/opencode-shell.md) | No |
@@ -383,6 +385,6 @@ Tests NOT covered by automation (manual playbook is the only validation):
 | Tooling And Hooks | TH-002 | [tooling-and-hooks/comment-hygiene-hook.md](tooling-and-hooks/comment-hygiene-hook.md) | No |
 | Plugins And Hooks | `post-edit-quality-router` | [plugins-and-hooks/post-edit-quality-router.md](plugins-and-hooks/post-edit-quality-router.md) | No |
 
-**Total scenarios**: 31
+**Total scenarios**: 32
 **Critical-path scenarios**: approximately 15 (SD-001, SD-002, SD-003, RD-002, SA-001, MR-001, MR-002, MR-003, MR-004, CB-001, CB-002, CB-003, CS-001, CS-002, CS-003)
 **Categories**: 10

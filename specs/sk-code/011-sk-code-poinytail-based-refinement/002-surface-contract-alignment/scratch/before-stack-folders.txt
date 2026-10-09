@@ -1,0 +1,2 @@
+OK: 6 language folder(s) all resolve — config, javascript, python, rust, shell, typescript
+exit=0

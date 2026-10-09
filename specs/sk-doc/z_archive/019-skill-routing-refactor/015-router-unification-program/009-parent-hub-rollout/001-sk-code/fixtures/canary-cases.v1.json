@@ -76,6 +76,19 @@
       }
     },
     {
+      "id": "surface-bundle-obsidian",
+      "prompt": "code review my obsidian plugin",
+      "riskSlice": "actor:mutating:composite",
+      "certificateFixture": "valid-composite",
+      "expectedAction": "route",
+      "expectedSelectionKind": "surfaceBundle",
+      "expectedModes": ["sk-code-review", "sk-code-obsidian"],
+      "gold": {
+        "expectedIntents": ["sk-code-review", "sk-code-obsidian"],
+        "expectedResources": []
+      }
+    },
+    {
       "id": "single-quality",
       "prompt": "run the quality gate before done",
       "riskSlice": "actor:mutating:single",

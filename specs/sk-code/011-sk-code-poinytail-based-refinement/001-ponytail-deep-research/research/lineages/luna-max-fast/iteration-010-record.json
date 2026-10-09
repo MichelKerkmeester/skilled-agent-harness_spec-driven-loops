@@ -1,0 +1,56 @@
+{
+  "type": "iteration",
+  "iteration": 10,
+  "run": 10,
+  "runId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "sessionId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "lineageId": "fanout-luna-max-fast-1791552201492-cjjo4q",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.0,
+  "status": "insight",
+  "focus": "Final coverage and novelty audit at the configured iteration cap",
+  "findingsCount": 0,
+  "noveltyJustification": "No new product finding emerged. The last-three information ratios are 0.0, and cumulative evidence from prior iteration narratives addresses all five initial research questions. The reducer-owned strategy remains stale because the parent reducer's output path conflicts with the lineage-only write boundary.",
+  "keyQuestions": [
+    "Which Ponytail 5.1.0 mechanisms complement sk-code's current two-axis hub routing and shared prompt contracts without duplicating them?",
+    "Which Ponytail design restraint, quality, and review checks are genuinely missing from sk-code's nested code-quality and code-review modes?",
+    "Which Ponytail hook, state, and cross-runtime portability mechanisms can improve sk-code surfaces without violating its read-first, scope, and verification floors?",
+    "What do Ponytail's benchmark and correctness gates measure, and where could sk-code's benchmark and advisor tooling gain decision-useful evidence?",
+    "Which older Ponytail recommendations are already adopted, lost, or still new in current sk-code, and which source-inspired additions should be rejected?"
+  ],
+  "answeredQuestions": [
+    "Which Ponytail 5.1.0 mechanisms complement sk-code's current two-axis hub routing and shared prompt contracts without duplicating them?",
+    "Which Ponytail design restraint, quality, and review checks are genuinely missing from sk-code's nested code-quality and code-review modes?",
+    "Which Ponytail hook, state, and cross-runtime portability mechanisms can improve sk-code surfaces without violating its read-first, scope, and verification floors?",
+    "What do Ponytail's benchmark and correctness gates measure, and where could sk-code's benchmark and advisor tooling gain decision-useful evidence?",
+    "Which older Ponytail recommendations are already adopted, lost, or still new in current sk-code, and which source-inspired additions should be rejected?"
+  ],
+  "ruledOut": [
+    {
+      "approach": "Reopen already-audited source areas without a new contradictory fact",
+      "reason": "Iterations 8 and 9 yielded no distinct product finding, and the accumulated evidence covers every key question."
+    },
+    {
+      "approach": "Claim reducer-authorized legal convergence without refreshing the reducer",
+      "reason": "The reducer step resolves its output under the parent spec research directory, outside the authorized lineage."
+    }
+  ],
+  "toolsUsed": [
+    "rg",
+    "cat",
+    "clock"
+  ],
+  "sourcesQueried": [
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/luna-max-fast/iterations/iteration-001.md through iteration-009.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/luna-max-fast/deep-research-config.json",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/luna-max-fast/deep-research-strategy.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/luna-max-fast/deep-research-state.jsonl",
+    ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md:43-53,105-141",
+    ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md:43-73,97-157"
+  ],
+  "timestamp": "2026-10-09T13:55:14Z",
+  "durationMs": 33000
+}
