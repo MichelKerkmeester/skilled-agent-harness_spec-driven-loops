@@ -13,12 +13,12 @@ Manual testing scenarios for the doctor command surface.
 
 ## Scope
 
-14 scenarios covering the four doctor commands this skill owns and the test environment they share:
+15 scenarios covering the four doctor commands this skill owns and the test environment they share:
 
 - `/doctor:speckit`: 3 scenarios (DOC-349 to DOC-351): a healthy index, a stale index and a target another command owns now
 - `/doctor:runtime-mirrors`: 2 scenarios (DOC-352 and DOC-353): every mirror in sync, and one drifted mirror
 - `/doctor:env`: 3 scenarios (DOC-354 to DOC-356): inspecting switches, saving a preference behind a yes, and secrets and per-invocation switches that are never saved
-- `/doctor:update`: 5 scenarios (DOC-357 to DOC-361): `check`, `align`, `apply`, `rollback` and `record-base`
+- `/doctor:update`: 6 scenarios (DOC-357 to DOC-361 and DOC-381): `check`, `align`, `apply`, `rollback`, `record-base` and `compat`
 - The `/doctor:update` test fixture: 1 scenario (DOC-379): building, checking and resetting it
 
 The other doctor commands are tested in the playbook of the skill they check: `/doctor:skill-advisor` in system-skill-advisor (DOC-348 and DOC-362 to DOC-367), `/doctor:deep-loop` in system-deep-loop (DOC-331 to DOC-333 and DOC-368), `/doctor:git` in sk-git (DOC-369 to DOC-374) and `/doctor:mcp` in mcp-code-mode (DOC-375 to DOC-378 and DOC-380). DOC- numbers are shared across those playbooks, so a new doctor scenario takes the next free number in the whole series.
@@ -41,7 +41,7 @@ Scenarios that change state run in one of two long-lived local worktrees instead
 - **Dependencies:** the worktree is created without dependencies. A scenario that needs a built runtime runs `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .worktrees/.doctor-test-environment` once first.
 - **Advisor state:** an advisor rebuild, which DOC-348 and DOC-362 both run, leaves `advisor_recommend` reporting `stale` with reason `advisor_rebuild` until the next trusted scan. Before DOC-364, run `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --json '{}'` in the environment, or every router-reach probe fails as `probe-error`.
 - **After a scenario:** restore every file it changed with `git checkout -- <path>`, remove any file it added, and confirm `git status --porcelain` prints nothing.
-- **Exceptions:** DOC-370 runs on a disposable clone, because a linked worktree shares the main checkout's `.git/config` and `git config --local` would change the real repository. DOC-331 to DOC-333 keep their own graph setup.
+- **Exceptions:** DOC-370 runs on a disposable clone, because a linked worktree shares the main checkout's `.git/config` and `git config --local` would change the real repository. DOC-381 builds its own disposable v3 fixture outside the checkout and deletes it afterwards, because the compat move renames the spec roots. DOC-331 to DOC-333 keep their own graph setup.
 - **Recreate:** `bash .skilled/skills/sk-git/scripts/worktree-naming.sh create doctor-test-environment origin/main --no-provision`, then point the `.doctor-test-environment` symlink at the new numbered directory.
 
 ### `/doctor:update` fixture

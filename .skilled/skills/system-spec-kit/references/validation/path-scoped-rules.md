@@ -79,7 +79,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 | `FILE_EXISTS`        | ERROR    | Required files present for documentation level      |
 | `PLACEHOLDER_FILLED` | ERROR    | No unfilled `[YOUR_VALUE_HERE:]` placeholders       |
 | `LEVEL_DECLARED`     | INFO     | Level explicitly stated in spec.md metadata         |
-| `ANCHORS_VALID`      | ERROR    | Validate `<!-- ANCHOR:id -->` pairs in spec docs (spec.md, plan.md, tasks.md, acceptance-criteria.md, decision-record.md, implementation-summary.md) and generated continuity support artifacts |
+| `ANCHORS_VALID`      | ERROR    | Validate `<!-- ANCHOR:id -->` pairs and nesting in spec docs (spec.md, plan.md, tasks.md, acceptance-criteria.md, decision-record.md, implementation-summary.md) and generated continuity support artifacts |
 
 > **Partial reference:** This table lists a commonly-encountered subset. The authoritative, complete rule set lives in [`runtime/cli/lib/validator-registry.json`](../../runtime/cli/lib/validator-registry.json).
 

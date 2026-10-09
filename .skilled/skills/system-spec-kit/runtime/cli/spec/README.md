@@ -76,6 +76,10 @@ runtime/cli/spec/
 +-- repair-derived.cjs           # Repair packet facts derivable from disk; refuses authored facts
 +-- README-repair-derived.md     # Derived-vs-authored repair boundary reference
 +-- upgrade-legacy.mjs           # Upgrade a v3.x specs tree: repair failing packets, record the rest
++-- template-phrase-census.mjs   # Read-only census of template trigger-phrase blocks
++-- template-phrase-cleanup.mjs  # Rewrite template-seeded trigger phrases, dry run by default
++-- template-phrase-lint.mjs     # Check trigger phrases a commit adds to staged Markdown
++-- repo-era.mjs                 # Read-only Repo Era Report for a checkout
 `-- README.md
 ```
 
@@ -97,7 +101,7 @@ Disallowed direction:
 
 | File | Role |
 |---|---|
-| `create.sh` | Creates new Level 1 or phase folders from templates. With `--track`, it then runs `refresh-track-roots.mjs` for that track, so the new packet is listed in the track root's `children_ids` from the start. |
+| `create.sh` | Creates new Level 1 or phase folders from templates. It seeds the trigger phrases of the 18 template document kinds with the packet slug. After the documents are written, it replaces the planned `graph-metadata.json` stub with metadata derived from them through `backfill-graph-metadata.ts`, and a failed derivation warns and leaves the stub in place. With `--track`, it then runs `refresh-track-roots.mjs` for that track, so the new packet is listed in the track root's `children_ids` from the start. |
 | `upgrade-level.sh` | Adds missing files and sections for higher documentation levels. |
 | `validate.sh` | Runs the modular validation gate used before completion claims. `resolve_orchestrator()` checks the compiled runtime dist freshness (via `../lib/dist-freshness.cjs`) before trusting it and fails closed with exit `3` when stale: no silent auto-rebuild. |
 | `check-completion.sh` | Confirms the `tasks.md` checklist evidence and, when present, acceptance-criteria closure before a task is called complete; the completion sentinel reads its JSON. |
@@ -111,7 +115,9 @@ Disallowed direction:
 | `refresh-track-roots.mjs` | Rewrites a track root's `children_ids` to its numbered child directories, dropping entries for packets no longer on disk and entries under an earlier identity. Only `children_ids` changes, and a matching track is not rewritten. Dry run by default (exits 1 when changes are pending); `--apply` writes, and `--track <name>` limits it to one track. Unreadable metadata is reported and left alone, with exit 2. |
 | `repair-derived.cjs` | Repairs derivable packet facts (folder name, packet pointer, level, metadata fingerprint) and refuses authored ones; see `README-repair-derived.md`. |
 | `heal-spec-docs.cjs` | Restores scaffold values a spec document lost, and only where the document itself proves the right value. By default it refills an empty `trigger_phrases` list from the packet slug and stamps the template-source header only when the document's anchors prove the render. `--anchor-repair` repairs duplicate anchor pairs in `spec.md` and un-nests only the questions anchor, editing marker lines and never prose, and refuses documents it cannot repair marker-only. `--lane-modes` runs the five lane modes; see the **Heal Lane Modes** subsection below. Dry run by default, printing what it would heal and what it refuses; `--apply` writes. |
-| `upgrade-legacy.mjs` | Upgrades a specs tree written under v3.x. For each active packet that fails `--strict`, it adds the frontmatter keys a spec document lacks without rewriting any value already there, and names any document whose frontmatter it cannot read and so leaves as is. It then runs the anchor repair, `heal-spec-docs`, the lane modes, `repair-derived` and `migrate-generated-json` on that packet alone, then records each finding they cannot clear and each lane-mode refusal in the packet's `upgrade-baseline.json`. The validator reports a recorded finding as a warning, and any finding the file does not list stays an error, so a new mistake still fails. A packet that already passes is never touched, copies of spec trees inside `research/`, `review/` and `context/` are skipped, and `--include-archive` brings archived packets in: they receive the questions-anchor un-nesting and `repair-derived` only, so their recorded paths follow where they live while their documents otherwise stay as written. The un-nesting moves only the questions opener marker line, never prose, and refuses a document it cannot repair marker-only. It works on packets in a top-level `specs/`, and when they still live in `.opencode/specs` it stops before any write and prints the commands that move them, which also clear the `specs` symlink a v3 checkout tracks. Dry run by default (exits 1 when a packet fails); `--apply` writes, stops before any write when a packet cannot be validated, and exits 2 when that happens, a step fails or a packet still fails. |
+| `upgrade-legacy.mjs` | Upgrades a specs tree written under v3.x. For each active packet that fails `--strict`, it adds the frontmatter keys a spec document lacks without rewriting any value already there, filling each missing value from the document class's template literal before the builder's runtime tables, and names any document whose frontmatter it cannot read and so leaves as is. It then runs the anchor repair, `heal-spec-docs`, the lane modes, `repair-derived` and `migrate-generated-json` on that packet alone, then records each finding they cannot clear and each lane-mode refusal in the packet's `upgrade-baseline.json`. The validator reports a recorded finding as a warning, and any finding the file does not list stays an error, so a new mistake still fails. A packet that already passes is never touched, copies of spec trees inside `research/`, `review/` and `context/` are skipped, and `--include-archive` brings archived packets in: they receive the questions-anchor un-nesting and `repair-derived` only, so their recorded paths follow where they live while their documents otherwise stay as written. The un-nesting moves only the questions opener marker line, never prose, and refuses a document it cannot repair marker-only. It works on packets in a top-level `specs/`, and when they still live in `.opencode/specs` it stops before any write and prints the commands that move them, which also clear the `specs` symlink a v3 checkout tracks. Dry run by default (exits 1 when a packet fails); `--apply` writes, stops before any write when a packet cannot be validated, and exits 2 when that happens, a step fails or a packet still fails. The dry run also prints a `repo era report:` block from `repo-era.mjs`, and both the dry run and `--apply` print a grouped detail with one `### <packet> / x <RULE> (<count>)` heading per failing rule, followed by its detail lines. With `--layout-map` it prints the planned v3-to-v4 move of the spec roots as JSON and writes nothing. The JSON holds `state` (`none`, `v3`, `v4` or `partial`), `moves`, `alreadyMoved`, `collisions` and `steps`. It exits 0 when no collisions are found, 1 when it lists collisions and 2 when it cannot produce the map. |
+| `template-phrase-census.mjs` | Read-only census of the trigger phrases that template blocks leave in the 18 document kinds, split into live and archived tracks, with a count of malformed frontmatter. `--root <dir>` picks the tree, `specs` by default, and `--json` prints the report as JSON. |
+| `template-phrase-cleanup.mjs` | Rewrites the trigger phrases that template seeds left behind, for the same 18 kinds. A dry run lists each change, and `--apply` writes. Each write goes to a temp file beside the document and is renamed over it. Archived packets are skipped unless `--include-archive` is given. A document with no opening frontmatter delimiter is not rewritten. The report lists it as routed to `fill-frontmatter`, with a `node upgrade-legacy.mjs --roots <packet> --apply` command to run. |
 
 ### Upgrade Legacy Reversibility
 
@@ -123,7 +129,7 @@ git -C REPO rev-parse --absolute-git-dir
 
 Each worktree has its own Git directory, so its manifest stays separate. A clean committed tree needs no manifest. On the same HEAD, a later dirty apply replaces a completed manifest with a fresh recovery point.
 
-The manifest records `schema`, `headSha`, `recordedAt`, `status`, `baselineMap`, `recordedBaselineMap`, `scopeHashes` and `beforeImages`. `baselineMap` records the baselines present before the run. `recordedBaselineMap` records each in-scope packet's findings after repair. The manifest starts with `status: "in-progress"` and becomes `complete` after the repairs and baseline writes finish.
+The manifest records `schema`, `repoRoot`, `headSha`, `recordedAt`, `status`, `baselineMap`, `recordedBaselineMap`, `scopeHashes` and `beforeImages`. `baselineMap` records the baselines present before the run. `recordedBaselineMap` records each in-scope packet's findings after repair. The manifest starts with `status: "in-progress"` and becomes `complete` after the repairs and baseline writes finish.
 
 Each `beforeImages` entry has a repository-relative path and a `beforeImage` value. File entries store the original bytes as base64 and the file mode. Missing paths use `kind: "absent"`. Symbolic links store their target.
 
@@ -225,6 +231,24 @@ A refusal is recorded only when a mode found the defect it repairs and could not
 
 Reconstructing a missing document and aligning a summary's status with `spec.md` stay reported and are never automated, because both change what a document asserts.
 
+### Repo Era Report
+
+The read-only report prints JSON and writes no files. Run it from the repository root:
+
+```bash
+node .skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs
+```
+
+Pass a repository root as the first argument to inspect another checkout. The report has five signals:
+
+- **Layout:** It uses `.opencode/specs`, packet metadata and the top-level `specs/` tree to report `v3`, `v4`, `both` or `unknown`.
+- **Frontmatter:** It counts markdown documents with and without complete YAML frontmatter.
+- **Template markers:** It counts current markers, legacy markers and documents with no marker.
+- **Generated metadata:** It counts packets with complete, stub or missing `graph-metadata.json`.
+- **Level documents:** It counts packets whose direct documents match, mismatch or cannot be compared with the declared level.
+
+The layout signal reads a v3 checkout whose `specs` is a symlink to `.opencode/specs` as v4, because it takes the alias as the absence of a legacy root. The same checkout reports `both` when its `description.json` files still name `.opencode/specs`. For the layout state of such a checkout, use `upgrade-legacy.mjs --layout-map`, which reports it as `v3`.
+
 ---
 
 ## 5. BOUNDARIES AND FLOW
@@ -268,27 +292,12 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<name> -
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-completion.sh specs/<name>
 node .skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs [--specs <dir>] [--rev <commit>]
 node .skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs [--specs <dir>] [--track <name>]... [--apply]
+node .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs [--folder <packet> | --roots <dir>] [--apply]
+node .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs --anchor-repair [--folder <packet> | --roots <dir>] [--apply]
 node .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs --lane-modes [--folder <packet> | --roots <dir>] [--apply]
 node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [--roots <dir>]... [--include-archive] [--apply]
+node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map
 ```
-
----
-
-### Repo Era Report
-
-The read-only report prints JSON and writes no files. Run it from the repository root:
-
-```bash
-node .skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs
-```
-
-Pass a repository root as the first argument to inspect another checkout. The report has five signals:
-
-- **Layout:** It uses `.opencode/specs`, packet metadata and the top-level `specs/` tree to report `v3`, `v4`, `both` or `unknown`.
-- **Frontmatter:** It counts markdown documents with and without complete YAML frontmatter.
-- **Template markers:** It counts current markers, legacy markers and documents with no marker.
-- **Generated metadata:** It counts packets with complete, stub or missing `graph-metadata.json`.
-- **Level documents:** It counts packets whose direct documents match, mismatch or cannot be compared with the declared level.
 
 ---
 

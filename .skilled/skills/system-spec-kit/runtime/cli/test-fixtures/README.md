@@ -44,8 +44,9 @@ Not owned here:
 
 ## 3. PACKAGE TOPOLOGY
 
-As of this revision, the tree contains 68 numbered fixture directories and
-the highest-numbered fixture is `069-review-record-missing-report`.
+As of this revision, the tree contains 74 fixture directories numbered 001 through 080.
+Numbers 027, 029, 049, 052, 059, 060 and 067 have no directory, and 073 has two.
+The highest-numbered fixture is `080-anchors-duplicate-closer`.
 
 ```text
 runtime/cli/test-fixtures/
@@ -53,14 +54,76 @@ runtime/cli/test-fixtures/
 +-- 002-valid-level1/              # Level 1 baseline
 +-- 003-valid-level2/              # Level 2 baseline
 +-- 004-valid-level3/              # Level 3 baseline
-+-- 005-006-*                      # Placeholder and structure failures
-+-- 007-015-*                      # Anchor and memory support cases
-+-- 016-021-*                      # Evidence and priority cases
-+-- 022-028-*                      # Level declaration and level file cases
-+-- 029-045-*                      # Section, placeholder and priority edge cases
-+-- 046-051-*                      # Config, extra file and template cases
-+-- 053-067-*                      # Template, link and strict evidence cases
-+-- 068-069-*                      # Review-record packet type (valid and missing-report)
++-- 005-unfilled-placeholders/
++-- 006-missing-required-files/
++-- 007-valid-anchors/
++-- 008-invalid-anchors/
++-- 009-valid-priority-tags/
++-- 010-valid-evidence/
++-- 011-anchors-duplicate-ids/
++-- 012-anchors-empty-memory/
++-- 013-anchors-multiple-files/
++-- 014-anchors-nested/
++-- 015-anchors-no-memory/
++-- 016-evidence-all-patterns/
++-- 017-evidence-case-variations/
++-- 018-evidence-checkmark-formats/
++-- 019-evidence-p2-exempt/
++-- 020-evidence-wrong-suffix/
++-- 021-invalid-priority-tags/
++-- 022-level-explicit/
++-- 023-level-inferred/
++-- 024-level-no-bold/
++-- 025-level-out-of-range/
++-- 026-level-zero/
++-- 028-level3-missing-decision/
++-- 030-missing-decision-sections/
++-- 031-missing-evidence/
++-- 032-missing-plan/
++-- 033-missing-plan-sections/
++-- 034-missing-spec-sections/
++-- 035-missing-tasks/
++-- 036-multiple-placeholders/
++-- 037-placeholder-case-variations/
++-- 038-placeholder-in-codeblock/
++-- 039-placeholder-in-inline-code/
++-- 040-priority-context-reset/
++-- 041-priority-inline-tags/
++-- 042-priority-lowercase/
++-- 043-priority-mixed-format/
++-- 044-priority-p3-invalid/
++-- 045-valid-sections/
++-- 046-with-config/
++-- 047-with-extra-files/
++-- 048-with-memory-placeholders/
++-- 050-with-scratch/
++-- 051-with-templates/
++-- 053-template-compliant-level2/
++-- 054-template-extra-header/
++-- 055-template-missing-header/
++-- 056-template-reordered-header/
++-- 057-template-missing-anchor/
++-- 058-template-reordered-anchor/
++-- 061-template-optional-absent/
++-- 062-template-compliant-level1/
++-- 063-template-compliant-level3/
++-- 064-link-formats/
++-- 065-evidence-strict-marker/
++-- 066-template-header-drift-mid/
++-- 068-review-record-valid/
++-- 069-review-record-missing-report/
++-- 070-comment-hygiene-marker/
++-- 071-comment-hygiene-marker-violation/
++-- 072-scaffold-never-touched-violation/
++-- 073-scaffold-never-touched-clean/
++-- 073-template-provenance-title/
++-- 074-evidence-unindented-prose/
++-- 075-evidence-indented-continuation/
++-- 076-evidence-short-deferred/
++-- 077-status-drift/
++-- 078-anchors-nested-questions/
++-- 079-anchors-adr-allowance/
++-- 080-anchors-duplicate-closer/
 `-- README.md
 ```
 
@@ -73,7 +136,7 @@ Category map:
 | Evidence | `010-valid-evidence`, `031-missing-evidence` |
 | Priorities | `009-valid-priority-tags`, `021-invalid-priority-tags` |
 | Placeholders | `005-unfilled-placeholders`, `036-multiple-placeholders` |
-| Levels | `022-level-explicit`, `027-level2-missing-checklist` |
+| Levels | `022-level-explicit`, `025-level-out-of-range` |
 
 ---
 

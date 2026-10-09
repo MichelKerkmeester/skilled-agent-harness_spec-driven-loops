@@ -13,12 +13,12 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`tests/hooks/` holds the `node:test` suites that exercise the Gate-3 hook adapters and the runtime-neutral policy core they call. Each suite is a standalone `.mjs` file that builds an isolated temp root, runs the code under test, and asserts the reply or the state file it wrote.
+`tests/hooks/` holds the `node:test` suites that exercise the Gate-3 hook adapters and the runtime-neutral policy core they call. Each suite is a standalone `.mjs` file that runs the code under test, using an isolated temp root where it needs one, and asserts the result.
 
 Current state:
 
-- One suite imports the shared core directly. The others spawn a per-runtime hook as a child process and read its JSON stdout.
-- Every suite creates its own temp root and its own environment, so no suite reads state written by another.
+- The core suite runs the shared core in process. The adapter and permission suites spawn a per-runtime hook as a child process and read its JSON stdout, and the menu parity suite reads one constant from the core and the menu files.
+- Every suite that writes state creates its own temp root and environment, so no suite reads state written by another. The menu parity suite writes nothing.
 - Decisions are asserted through observable output only: the process exit status, the JSON envelope, and the gate state file under the temp root.
 - Malformed input, missing session identity, disabled mode and child-session mode are covered as fail-open rows rather than as exceptions.
 
@@ -58,6 +58,7 @@ The four adapter suites share the same row shape: fail-open input, disabled and 
 | `spec-gate-devin.test.mjs` | Same matrix for the Devin pair, and adds whitespace-only `cwd` handling plus the `DEVIN_PROJECT_DIR` fallback. |
 | `spec-gate-prebind.test.mjs` | Cursor `SessionStart` prebind rows: a declared folder satisfies the gate, a declaration outside the tree never does, terminal state survives repeated startup, a padded session id is kept verbatim, and the consumer reads the same state key. |
 | `permission-request-policy.test.mjs` | Devin `PermissionRequest` decision matrix: allow and deny rows for write and exec, unclassifiable tools, malformed input, and missing identity. |
+| `gate-3-menu-parity.test.mjs` | Drift guard for the Gate 3 spec-folder menu. It checks that each of the twelve presentation and compiled contract files under `.skilled/commands/` carries the canonical option C wording from `GATE_3_CHOICE_RELATED`, and a failure names the file, the drifting line and the expected text. |
 
 ---
 
@@ -66,7 +67,7 @@ The four adapter suites share the same row shape: fail-open input, disabled and 
 | Boundary | Rule |
 |---|---|
 | Imports | A suite imports `../../hooks/lib/spec-gate/spec-gate-core.mjs` and the Node standard library. It reaches no production module outside the hook tree. |
-| Fixtures | Each suite builds its own temp root with `mkdtempSync` and removes it in a `finally` block. There is no shared fixture folder. |
+| Fixtures | Each suite builds its own temp root with `mkdtempSync` and removes it in a `finally` block. There is no shared fixture folder. The menu parity suite reads the repository's own menu files and builds no temp root. |
 | Process boundary | Adapter rows spawn the real hook script with `spawnSync(process.execPath, ...)` and a JSON payload on stdin, then assert the exit status and the stdout envelope. |
 | Environment | `isolatedEnv()` deletes `SYSTEM_SPEC_FOLDER` and the gate flags before each spawn, so the host environment cannot change a result. |
 | Fail-open | A missing or malformed payload resolves to allow, and a session that never opens a gate writes no state. Both are asserted, not assumed. |

@@ -9,7 +9,7 @@ description: "Runs validate.sh --strict across every spec folder and flags regre
 
 ## 1. OVERVIEW
 
-`runtime/cli/sweep/` holds the strict-pass freshness sweep, a CI gate that walks every spec folder under `specs` (and legacy `.opencode/specs`), runs `runtime/cli/spec/validate.sh --strict` on each and classifies the result against a prior baseline. A folder that failed with no baseline record is `first-run`, not a regression. A folder that passed before and fails now is a `regression`. This distinguishes genuinely new breakage from a folder that was already failing.
+`runtime/cli/sweep/` holds the strict-pass freshness sweep, a CI gate that walks every spec folder under `specs` (and legacy `.opencode/specs`), runs `runtime/cli/spec/validate.sh --strict` on each and classifies the result against a prior baseline. A folder that fails when no baseline is loaded is `first-run`, not a regression. A folder that passed before and fails now is a `regression`. A folder that fails while a baseline is loaded and is missing from it is `new-failure`. This distinguishes genuinely new breakage from a folder that was already failing.
 
 ---
 
@@ -27,6 +27,7 @@ description: "Runs validate.sh --strict across every spec folder and flags regre
   It does not gate. Merge-blocking lives in `changed-packet-validation.yml`, which is
   scoped to the packets a pull request changed; this sweep exists for the case that gate
   cannot see: a toolchain change breaking packets no pull request touched.
+  The workflow passes the previous run's report as `--baseline` when it finds one. Without one, the run records a baseline, so every folder that fails in that run reads as `first-run`.
 - `.skilled/skills/system-spec-kit/runtime/cli/lib/status-classifier.sh` shares the same pass/fail classification vocabulary.
 
 ---

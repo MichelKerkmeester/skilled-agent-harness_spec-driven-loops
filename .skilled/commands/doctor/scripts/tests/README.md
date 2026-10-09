@@ -37,7 +37,7 @@ Current state:
 | `git-standards.test.cjs` | `git-standards.cjs` against throwaway repositories, each change checked with sk-git's `validate-message.mjs` |
 | `release-update.test.cjs` | `release-update.cjs`, every subcommand against throwaway git repositories |
 | `doctor-update-contract.test.cjs` | Checks the `/doctor:update` router, workflows, presentation and command contract against each other and the engine |
-| `doctor-update-compat.test.cjs` | Checks the read-only compatibility phase of `/doctor:update check` against fixture repositories: layout states, era signal fields and that neither command writes |
+| `doctor-update-compat.test.cjs` | Checks the read-only compatibility phase of `/doctor:update check` (layout states and era signal fields, with neither command writing) and the compat action: its YAML and router as contracts, the planned steps against classic, partial, interrupted and colliding fixtures, the dirty-root refusal, the failed-step contract in `on_step_failure`, the failed-packet parsing and the release gate |
 | `doctor-update-compat-integration.test.cjs` | Takes a fixture v3 repository through the compat workflow end to end: layout check, preview, move, upgrade and validation |
 | `doctor-speckit-contract.test.cjs` | Checks that `/doctor:speckit` reports phrase quality as an advisory outside its status, and that every workflow status is one its presentation renders |
 | `doctor-mcp-contract.test.cjs` | Checks the `/doctor:mcp` unknown-flag and cross-sub-action flag errors in its router and presentation |

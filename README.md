@@ -190,7 +190,7 @@ node .skilled/bin/skill-advisor.cjs list-tools --format json
 
 The first AI session you open in the main checkout installs this repository's git hooks. From then on git checks every commit and push you make there.
 
-- **pre-commit** blocks code comments that cite spec packets or task ids, and keeps generated mirrors and metadata in step with the files you stage. A staged file whose content git cannot read blocks the commit instead of going in unchecked
+- **pre-commit** blocks code comments that cite spec packets or task ids, blocks a staged phrase that carries a template default or editor fallback, and keeps generated mirrors and metadata in step with the files you stage. A staged file whose content git cannot read blocks the commit instead of going in unchecked
 - **commit-msg** holds each message to the rules block in sk-git's [commit template](.skilled/skills/sk-git/assets/commit-message-template.md): a `type(scope): summary` subject of at most 100 characters, a prose body, `Spec:` and `Commit-Id:` trailers that search can find, and no `Co-Authored-By` or `Claude-Session` lines
 - **pre-push** blocks a push that deletes more than 100 tracked files, and warns about out-of-date generated metadata, which CI then blocks. It checks the commits the push adds against the same commit rules, so a `--no-verify` commit is caught here, and checks a new branch's name against the [worktree checklist](.skilled/skills/sk-git/assets/worktree-checklist.md). A push to any branch other than `main`, a `skilled/v*` release branch or one on the sk-git allowlist needs your approval for that push, and creating such a branch needs an approval that names it
 
@@ -1280,9 +1280,10 @@ Eight commands cover the diagnostic surface, one per owner. The six routed ones 
 - `debug`. Diagnoses Code Mode with PASS/WARN/FAIL per check. Supports `--fix` for guided repair
 - A flag the chosen sub-action does not accept is refused before any workflow loads, with the flag it does accept
 
-**`/doctor:update [check|align|apply|rollback|record-base]`** - release-aware spec-kit updater with read-only checks, alignment, a gated apply, rollback recovery and approved base recording.
+**`/doctor:update [check|align|apply|rollback|record-base|compat]`** - release-aware spec-kit updater with read-only checks, alignment, a gated apply, rollback recovery, approved base recording and the v3 to v4 layout move.
 
 - A release file below a folder the checkout keeps as a symlink is reported as a `symlink-parent` conflict that only keep-local can answer, so the updater never writes through the link
+- `compat` moves a v3 checkout to the v4 `specs/` layout and then upgrades its legacy packets, with a separate approval for each. A dirty spec root stops the move, and `--dry-run` previews it without writing.
 
 **`/doctor:env [list | <section> | <VARIABLE>] [--dry-run]`** - guided environment switches
 
