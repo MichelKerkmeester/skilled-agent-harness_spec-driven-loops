@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d68dbb1884a6fc8a31cc3cbc122628e8f06c16216a06380c1e59799458794674",
+  "manifestHash": "a80ae35e49b41a3dbbf6ec57acc22c9a26ffb58bedc46a7c5bcaff40207d7ad0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -49825,6 +49825,21 @@
     "headless stream print capture plan": [
       "headless stream print capture plan"
     ],
+    "heal cli and compat yaml simplification": [
+      "heal cli and compat yaml simplification"
+    ],
+    "heal cli and compat yaml simplification acceptance criteria": [
+      "heal cli and compat yaml simplification acceptance criteria"
+    ],
+    "heal cli and compat yaml simplification implementation summary": [
+      "heal cli and compat yaml simplification implementation summary"
+    ],
+    "heal cli and compat yaml simplification plan": [
+      "heal cli and compat yaml simplification plan"
+    ],
+    "heal cli and compat yaml simplification tasks": [
+      "heal cli and compat yaml simplification tasks"
+    ],
     "heal lane modes cli selector": [
       "heal lane modes cli selector"
     ],
@@ -62021,6 +62036,9 @@
     ],
     "merge skilled v4 resolve conflicts": [
       "merge skilled v4 resolve conflicts"
+    ],
+    "merge step failure fields": [
+      "merge step failure fields"
     ],
     "merge tasks": [
       "merge tasks"
@@ -78993,6 +79011,12 @@
     "remove isdeeppiowned carve out": [
       "remove isdeeppiowned carve-out"
     ],
+    "remove lane modes json flag": [
+      "remove lane modes json flag"
+    ],
+    "remove lane modes mode flag": [
+      "remove lane modes mode flag"
+    ],
     "remove llama cpp references": [
       "remove llama-cpp references"
     ],
@@ -94631,6 +94655,9 @@
     ],
     "solid architecture review": [
       "solid architecture review"
+    ],
+    "sort refusals order test": [
+      "sort refusals order test"
     ],
     "source balanced fan in": [
       "source-balanced fan-in"

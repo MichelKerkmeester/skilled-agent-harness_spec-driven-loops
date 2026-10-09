@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 6805,
-    "ok": 13631,
+    "ok": 13636,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 23999,
+  "documentsScanned": 24004,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "d68dbb1884a6fc8a31cc3cbc122628e8f06c16216a06380c1e59799458794674",
+  "manifestHash": "a80ae35e49b41a3dbbf6ec57acc22c9a26ffb58bedc46a7c5bcaff40207d7ad0",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 35864,
+      "ok": 35873,
       "prose-sentence": 19,
       "single-token": 164,
       "stop-word-only": 1,
@@ -71388,6 +71388,10 @@
     },
     {
       "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/scratch",
       "reason": "excluded directory"
     },
     {

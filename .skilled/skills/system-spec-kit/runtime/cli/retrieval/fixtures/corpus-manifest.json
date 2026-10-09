@@ -1,5 +1,5 @@
 {
-  "corpusHash": "276332c71a84650455cd69f720153b7e9a2712bebd4ba3cd72e94c7ed2688a70",
+  "corpusHash": "e888a0c38a2c75f14c2381a0c0ee4dffe70454ec842653c4d3a08763f52782e6",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23999,
+  "includedPathCount": 24004,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23623,6 +23623,11 @@
     "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/research.md",
     "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/resource-map.md",
     "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/tasks.md",
     "specs/system-speckit/034-spec-folder-tooling/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/timeline.md",
     "specs/system-speckit/035-retire-memory-era-tests/implementation-summary.md",
@@ -24030,7 +24035,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d68dbb1884a6fc8a31cc3cbc122628e8f06c16216a06380c1e59799458794674",
+  "manifestHash": "a80ae35e49b41a3dbbf6ec57acc22c9a26ffb58bedc46a7c5bcaff40207d7ad0",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29602,6 +29607,10 @@
     },
     {
       "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/scratch",
       "reason": "excluded directory"
     },
     {
