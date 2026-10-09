@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7db4562f3a925c1e4b8b21fa87f8b10360d3d86f1a7f387ab610640d127b838b",
+  "manifestHash": "d02059b9575ed1e3d181b62d4cca281b02530658372885781bbc4aa322ee9e3a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -21150,6 +21150,18 @@
     ],
     "clickup goals": [
       "clickup goals"
+    ],
+    "clickup hosted route fix": [
+      "clickup hosted route fix"
+    ],
+    "clickup hosted route fix implementation summary": [
+      "clickup hosted route fix implementation summary"
+    ],
+    "clickup hosted route fix plan": [
+      "clickup hosted route fix plan"
+    ],
+    "clickup hosted route fix tasks": [
+      "clickup hosted route fix tasks"
     ],
     "clickup list document page attachments": [
       "clickup_list_document_page_attachments"
@@ -79705,6 +79717,9 @@
     ],
     "repoint frontmatter consumers": [
       "repoint frontmatter consumers"
+    ],
+    "repoint the clickup official code mode manual": [
+      "repoint the clickup official code mode manual"
     ],
     "report gen ts tokens json": [
       "report-gen.ts tokens.json"

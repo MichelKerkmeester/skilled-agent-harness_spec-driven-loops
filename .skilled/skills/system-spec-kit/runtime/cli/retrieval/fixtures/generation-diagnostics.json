@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 6805,
-    "ok": 13627,
+    "ok": 13631,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 23995,
+  "documentsScanned": 23999,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "7db4562f3a925c1e4b8b21fa87f8b10360d3d86f1a7f387ab610640d127b838b",
+  "manifestHash": "d02059b9575ed1e3d181b62d4cca281b02530658372885781bbc4aa322ee9e3a",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 35859,
+      "ok": 35864,
       "prose-sentence": 19,
       "single-token": 164,
       "stop-word-only": 1,
@@ -67520,6 +67520,10 @@
     },
     {
       "path": "specs/mcp-tooling/021-code-mode-fresh-clone-build/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp-tooling/022-clickup-hosted-route-fix/scratch",
       "reason": "excluded directory"
     },
     {

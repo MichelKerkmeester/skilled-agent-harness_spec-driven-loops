@@ -1,5 +1,5 @@
 {
-  "corpusHash": "668f06be546a423cad0e7bd9f82284d3b461dcbaed4f76b964091dade2f38bb2",
+  "corpusHash": "959ab04f96823dd99b20e0d21f6e8f658190a91f75b1e1e2b38086689ba8564e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23995,
+  "includedPathCount": 23999,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9975,6 +9975,10 @@
     "specs/mcp-tooling/021-code-mode-fresh-clone-build/plan.md",
     "specs/mcp-tooling/021-code-mode-fresh-clone-build/spec.md",
     "specs/mcp-tooling/021-code-mode-fresh-clone-build/tasks.md",
+    "specs/mcp-tooling/022-clickup-hosted-route-fix/implementation-summary.md",
+    "specs/mcp-tooling/022-clickup-hosted-route-fix/plan.md",
+    "specs/mcp-tooling/022-clickup-hosted-route-fix/spec.md",
+    "specs/mcp-tooling/022-clickup-hosted-route-fix/tasks.md",
     "specs/sk-code/001-sk-code-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-code/001-sk-code-parent/001-research-and-context/plan.md",
     "specs/sk-code/001-sk-code-parent/001-research-and-context/research/gpt55-taxonomy-recommendation.md",
@@ -24026,7 +24030,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7db4562f3a925c1e4b8b21fa87f8b10360d3d86f1a7f387ab610640d127b838b",
+  "manifestHash": "d02059b9575ed1e3d181b62d4cca281b02530658372885781bbc4aa322ee9e3a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -25730,6 +25734,10 @@
     },
     {
       "path": "specs/mcp-tooling/021-code-mode-fresh-clone-build/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp-tooling/022-clickup-hosted-route-fix/scratch",
       "reason": "excluded directory"
     },
     {
