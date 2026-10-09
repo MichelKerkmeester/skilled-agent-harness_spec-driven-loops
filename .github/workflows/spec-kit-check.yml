@@ -183,6 +183,7 @@ jobs:
       # through sk-doc's own install, and the freshness panel suite runs on the
       # advisor runtime's vitest. The advisor route-contract test parses the
       # route manifest with the yaml package declared in .skilled/package.json.
+      # The doctor update integration test runs upgrade-legacy, which imports the built runtime.
       - name: Install test dependencies
         run: |
           set -euo pipefail
@@ -192,6 +193,8 @@ jobs:
           ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
           npm --prefix .opencode/skills/sk-doc ci
           npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+          npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+          npm --prefix .opencode/skills/system-spec-kit/runtime run build
 
       # One runner, so CI and a developer execute the same set of suites.
       - name: Run every doctor script suite
