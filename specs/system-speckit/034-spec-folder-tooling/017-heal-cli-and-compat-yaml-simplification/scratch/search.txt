@@ -1,0 +1,18 @@
+=== A: lane-modes pattern, outside specs/node_modules/dist/.git (rg default ignores hidden dirs)
+rc=1
+=== B: same pattern with --hidden so .skilled/.opencode/.claude/.codex are searched
+rc=1
+=== C: step_failure, outside specs/node_modules/dist/.git
+./.skilled/commands/doctor/assets/doctor-update-compat-action.yaml:125:    on_step_failure: "On a failed step, append step-failed with the step id and argv, then stop with STATUS=FAILED and run no further step. Show the step id, its argv and the exit code, then every step-done step so far in the presentation's Compatibility rollback block, newest first. Never retry a step automatically."
+./.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:824:  assert.equal(move.step_failure, undefined, 'the failed-step rule must live in one key');
+./.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:827:      move.on_step_failure.includes(phrase),
+./.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:831:  assert.match(move.on_step_failure, /run no further step/, 'a failure must stop the run');
+./.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:832:  assert.match(move.on_step_failure, /Never retry a step automatically/, 'a failure must not retry');
+./.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:834:    move.on_step_failure.includes('Compatibility rollback block'),
+.skilled/commands/doctor/assets/doctor-update-compat-action.yaml:125:    on_step_failure: "On a failed step, append step-failed with the step id and argv, then stop with STATUS=FAILED and run no further step. Show the step id, its argv and the exit code, then every step-done step so far in the presentation's Compatibility rollback block, newest first. Never retry a step automatically."
+.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:824:  assert.equal(move.step_failure, undefined, 'the failed-step rule must live in one key');
+.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:827:      move.on_step_failure.includes(phrase),
+.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:831:  assert.match(move.on_step_failure, /run no further step/, 'a failure must stop the run');
+.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:832:  assert.match(move.on_step_failure, /Never retry a step automatically/, 'a failure must not retry');
+.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:834:    move.on_step_failure.includes('Compatibility rollback block'),
+rc=0

@@ -1,0 +1,41 @@
+# Close-out rechecks, run from the committed state of the three code commits
+## node --check heal-spec-docs.cjs
+rc=0
+## usage comment, lines 20-24
+// Usage:
+//   heal-spec-docs.cjs [--roots <dir>] [--folder <packet>] [--apply]
+//   heal-spec-docs.cjs --anchor-repair [--roots <dir>] [--folder <packet>] [--apply]
+//   heal-spec-docs.cjs --lane-modes [--roots <dir>] [--folder <packet>] [--apply]
+//
+## removed flags in heal-spec-docs.cjs now (rg exit 1 means no match)
+rc=1
+## control: the same search on the base commit finds the flags
+4c3f06e386:.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:23://   heal-spec-docs.cjs --lane-modes [--mode <name>]... [--roots <di
+4c3f06e386:.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1362:  const json = argv.includes('--json');
+4c3f06e386:.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1365:    if (argv[index] !== '--mode') continue;
+4c3f06e386:.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1368:      console.error('heal-spec-docs: --mode needs a mode name');
+## README lines naming a removed flag now (exit 1 means none)
+rc=1
+## ids or spec paths in comment lines the three code commits added (exit 1 means none)
+rc=1
+## control: the same id search matches a planted comment line (exit 0 means it matches)
+rc=0
+## secret-like strings in lines the three code commits added (exit 1 means none)
+rc=1
+## warning-like lines, baseline CLI run vs final CLI run (grep -ci warn)
+baseline-cli.log: 73
+final cli-full.log: 73
+
+## Tracked files outside specs/ where a line names --lane-modes together with --mode or --json
+### at HEAD (exit 1 means no such line)
+rc=1
+### control, at the base commit (the pattern finds the old lines)
+4c3f06e386:.skilled/skills/system-spec-kit/runtime/cli/spec/README.md:113:| `heal-spec-docs.cjs` | Restores scaffold values a spec document 
+4c3f06e386:.skilled/skills/system-spec-kit/runtime/cli/spec/README.md:271:node .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-do
+4c3f06e386:.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:23://   heal-spec-docs.cjs --lane-modes [--mode <name>]... [-
+## Tracked files outside specs/ naming step_failure, with on_step_failure lines removed
+HEAD:.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:824:  assert.equal(move.step_failure, undefined, 'the failed-step 
+rc=0
+### every tracked file outside specs/ holding on_step_failure
+HEAD:.skilled/commands/doctor/assets/doctor-update-compat-action.yaml
+HEAD:.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs

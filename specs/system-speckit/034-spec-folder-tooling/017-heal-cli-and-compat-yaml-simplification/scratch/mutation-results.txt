@@ -1,0 +1,7 @@
+run0-unmutated: Tests  1 passed | 39 skipped (40)
+full-file: Tests  40 passed (40)
+mut-a-no-sort: Tests  1 failed | 39 skipped (40)
+mut-b-no-mode-key: Tests  1 failed | 39 skipped (40)
+mut-c-no-document-key: Tests  1 failed | 39 skipped (40)
+mut-d-no-reason-key: Tests  1 failed | 39 skipped (40)
+mut-e-document-reason-swapped: Tests  1 failed | 39 skipped (40)
