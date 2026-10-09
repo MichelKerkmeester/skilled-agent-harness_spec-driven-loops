@@ -79,17 +79,17 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Ladder and workflow list the same seven rungs, reach list and reuse step widened | Pending | Not started |
-| Coverage floor line unchanged | Pending | Not started |
-| Canary passes and the tamper suite prints 20 PASS lines | Pending | Not started |
-| Ladder section shows the reuse rung and the never-cut pointer | Pending | Not started |
-| Size before, after and delta recorded in implementation-summary.md | Pending | Not started |
-| Playbook scenario and canary README match the change | Pending | Not started |
-| Strict spec validation passes | Pending | Not started |
+| Ladder and workflow list the same seven rungs, reach list and reuse step widened | Done | `PASS: ladder and workflow list the same 7 rungs in order`, exit 0; reach list 2 hits |
+| Coverage floor line unchanged | Done | 1 hit; before/after diff has no Test coverage line |
+| Canary passes and the tamper suite prints 20 PASS lines | Done | canary OK line exit 0; 20 PASS, all named cases, suite passed, exit 0 |
+| Ladder section shows the reuse rung and the never-cut pointer | Done | prints 2 |
+| Size before, after and delta recorded in implementation-summary.md | Done | CQS +4 lines +412 bytes; WI +0 lines +367 bytes |
+| Playbook scenario and canary README match the change | Done | playbook 4; README 1 |
+| Strict spec validation passes | Done | `RESULT: PASSED` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Three dispatches | Stale T006 baseline from the main checkout, the brief's exit-0 rule, and T025's `never-cut` pattern missing T018's `may never cut`; all three were task or brief wording, fixed by the orchestrator, no code repair |
 <!-- /ANCHOR:log -->

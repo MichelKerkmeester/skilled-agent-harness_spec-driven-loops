@@ -9,7 +9,6 @@
 // verification. When an editor updates one copy and forgets the others, the
 // docs silently disagree and the guarantee rots. This canary fails loudly the
 // moment a copy drifts, turning a silent divergence into a required, visible fix.
-// It also pins the items the restraint ladder may never cut, so a reword of the quality standard cannot silently drop one.
 // It also guards WHERE the binding clauses sit in AGENTS.md, because a clause a
 // runtime truncates away is a copy that silently does not exist there.
 //
@@ -57,17 +56,6 @@ const EXACT_INVARIANTS = [
   {
     file: '.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md',
     strings: ['Review status: COMMENTED'],
-  },
-  {
-    file: '.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md',
-    strings: [
-      'never cuts a P0 item',
-      'anything the user asked for',
-      '**Input validation**',
-      '**No silent failures**',
-      '**No hardcoded secrets**',
-      '**Accessibility**',
-    ],
   },
 ];
 

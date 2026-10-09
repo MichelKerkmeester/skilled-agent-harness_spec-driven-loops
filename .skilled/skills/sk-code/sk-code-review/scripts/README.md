@@ -1,6 +1,6 @@
 ---
 title: "Scripts: rule-copy canary"
-description: "Locks load-bearing rule wording (review-status vocabulary, the Iron Law) so it cannot silently drift across skill docs."
+description: "Locks load-bearing rule wording (review-status vocabulary, the Iron Law, the restraint ladder's never-cut items) so it cannot silently drift across skill docs."
 ---
 
 # Scripts
@@ -17,8 +17,8 @@ description: "Locks load-bearing rule wording (review-status vocabulary, the Iro
 
 | File | Purpose |
 |------|---------|
-| `check-rule-copies.js` | Asserts that `Review status: APPROVED/REQUESTED_CHANGES/COMMENTED` appear verbatim in `sk-code-review/SKILL.md` and `sk-code-review/README.md`, that `COMMENTED` appears in the changelog and dedup reference, and that at least one Iron Law line in `workflow-verify.md` and `AGENTS.md` carries both "completion claim" and "verification". A canary, not a generator, it never rewrites anything |
-| `check-rule-copies.test.sh` | Self-contained bash test that runs the canary against the real repo tree (expects pass) and against two tampered copies with a deleted status string and a reworded Iron Law line (expects each to fail) |
+| `check-rule-copies.js` | Asserts that `Review status: APPROVED/REQUESTED_CHANGES/COMMENTED` appear verbatim in `sk-code-review/SKILL.md` and `sk-code-review/README.md`, that `COMMENTED` appears in the changelog and dedup reference, that `code-quality-standards.md` keeps the items the restraint ladder may never cut, that at least one Iron Law line in `workflow-verify.md` and `AGENTS.md` carries both "completion claim" and "verification", and that the binding `AGENTS.md` clauses end inside its 16,384-byte delivery prefix with the file under 32,768 bytes. A canary, not a generator, it never rewrites anything |
+| `check-rule-copies.test.sh` | Self-contained bash test. It runs the canary against the real repo tree and an untampered copy (expects pass), then against tampered copies (expects each to fail): a deleted status string, a reworded Iron Law line, each never-cut item deleted in turn, binding clauses pushed past the delivery prefix, and an oversized `AGENTS.md` |
 
 ---
 
@@ -30,7 +30,7 @@ Run from the repository root:
 node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js
 ```
 
-Expected: `OK: all rule invariants present (4 exact-string file(s) + 3 Iron Law file(s)).` and exit code 0.
+Expected: `OK: all rule invariants present (5 exact-string file(s) + 2 Iron Law file(s) + 21 delivery-prefix anchor(s)).`, then the delivery-prefix byte report, and exit code 0.
 
 Or run the test harness from anywhere:
 

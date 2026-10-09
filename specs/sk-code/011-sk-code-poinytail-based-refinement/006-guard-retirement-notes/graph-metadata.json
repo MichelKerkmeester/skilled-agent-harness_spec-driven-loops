@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The drift-guard umbrella script already records the retired router-sync guard as missing (`sk-code-opencode/scripts/run-all-drift-guards.sh:50-53`), but it names no owner for the gap and does not mention that `.github/workflows/routing-registry-drift.yml` partly covers it",
     "created_at": "2026-10-09T16:00:51Z",
-    "last_save_at": "2026-10-09T18:03:53.733Z",
+    "last_save_at": "2026-10-09T19:51:35.315Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc7516ad661450304a5e25bca18dfeb93699ed689a921887627b54326eeb1d3d",
+    "source_fingerprint": "sha256:42f0b935847a2d653fe5d60716cbd15d8ce06a8204399ec1282bf0fdd41a13ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7d6c93365084fb2671bcde3758e5a8477a11a55c4958756bb7ac22eb9deca346",
       "plan.md": "c0a8de685521c81ed16c92ac55da0d6b1e34a4544607b8b41bd3144cd30c90cf",
-      "tasks.md": "c477b953fb65345324a32856118a4fe2afffa18952fb612634514decf6eaed1d",
+      "tasks.md": "ca708a5a122c1bdcbe074086c5899b6c4bb41e4792deb5e2f102f14933dfcab5",
       "implementation-summary.md": "076af1c7f0e01f64fb0319f26bceb12d2481c4d0f66f274cacf9e6631a88f137"
     },
     "last_active_at": null

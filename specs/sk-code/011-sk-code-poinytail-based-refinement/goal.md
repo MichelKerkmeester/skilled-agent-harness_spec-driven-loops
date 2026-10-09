@@ -85,7 +85,7 @@ string, not these files.
 
 - [ ] In the worktree, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 7 times and `RESULT: FAILED` 0 times
 - [ ] In the worktree, `grep -l 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement/00[2-6]-*/implementation-summary.md | wc -l` prints 5
-- [ ] In the worktree, `git rev-list --count main..HEAD` prints 5, `git log --format=%s main..HEAD` prints 5 conventional-commit subjects naming phases 002, 003, 004, 005 and 006 once each, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
+- [ ] In the worktree, `git rev-list --count main..HEAD` prints 5, `git log --format='%(trailers:key=Spec,valueonly)' main..HEAD` prints 5 `Spec:` values naming phases 002 to 006 once each, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
 - [ ] In the worktree, `node .skilled/bin/compiled-route-guard.cjs` exits 0 listing sk-code `fresh`, and `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints JSON with `"action":"route"` and no `servingAuthority` key
 - [ ] In the worktree, `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` and `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` both exit 0, and `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` prints `PASS: stack-folders`
 - [ ] In the worktree, `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` both exit 0
@@ -105,8 +105,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | 001 ponytail deep research | Done | `001-ponytail-deep-research/goal.md` log; strict validation passed 2026-10-09 |
-| 002 surface contract alignment | Pending | Not started |
-| 003 doctrine pass | Pending | Not started |
+| 002 surface contract alignment | Done | Commit `ee78fc56b9`; all seven child criteria rerun by the orchestrator and passed; strict validation passed |
+| 003 doctrine pass | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed; three dispatches, all stops were task or brief wording |
 | 004 webflow checker fix | Pending | Not started |
 | 005 review output additions | Pending | Not started |
 | 006 guard retirement notes | Pending | Not started |
@@ -116,5 +116,6 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | No acceptance-criteria.md in any child | Every child is Level 1; each child goal takes its criteria from its spec's REQ and SC rows and its tasks' verification commands |
+| Criterion 3 amended 2026-10-09 | sk-git's commit contract bars phase identifiers in subjects, so the phase is checked through each commit's `Spec:` trailer instead of its subject |
 | Handed off, not built here | D2 Codex mirror gap (deep-improvement and git hooks) and D4 stdin deadline (hooks); recorded in the parent spec |
 <!-- /ANCHOR:log -->

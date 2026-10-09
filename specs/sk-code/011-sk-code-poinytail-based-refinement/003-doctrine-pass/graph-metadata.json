@@ -36,7 +36,7 @@
       "binding"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -49,7 +49,6 @@
       ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
       ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/design-restraint-ladder.md",
       ".skilled/skills/sk-code/sk-code-review/scripts/README.md",
-      "specs/hooks/022-smart-rule-injection/graph-metadata.json",
       "specs/sk-code/011-sk-code-poinytail-based-refinement/003-doctrine-pass/implementation-summary.md"
     ],
     "entities": [
@@ -117,12 +116,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/sk-code-review/scripts/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": "specs/hooks/022-smart-rule-injection/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Ponytail 5 asks whether a helper, component, service or pattern already exists in the codebase before reaching for the standard library",
     "created_at": "2026-10-09T16:00:48Z",
-    "last_save_at": "2026-10-09T18:03:49.482Z",
+    "last_save_at": "2026-10-09T19:51:35.327Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:377941976a2f2e2f59a358d1af7390380e6dd5983890aa8c5f74f14e1a007a85",
+    "source_fingerprint": "sha256:8c8051fd8dde9b84c56b7627460b1af7ed03e62820a2c52cc326212fe2d02823",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c2ae38d87d7d7798cb44e5440e05caa17ad64cef4ad51d37180f367762700ce0",
+      "spec.md": "b9ffe22f473c463169bc2600d6ecee5d619162792690a43ba0fbe5a2e657f5e2",
       "plan.md": "656b6af1057c20f94901853fdf909c9bafbdab56c1d076e6eb9927d064bb88e2",
-      "tasks.md": "d8a4f83965c3d5219358f2bc5440ed2a5e66c2e2020aaf9890c51fe7f52cc474",
-      "implementation-summary.md": "857c6c21ce336634b6f9ef040c6a3f65671d9b6ba63a1f8a0674b8c83f605ba1"
+      "tasks.md": "5767c61045453aecd6144176fd142f4c56825677c242f9bfe98a4f22dd34c896",
+      "implementation-summary.md": "441c02f082e5124218ffc92b6a38345e35e9343586b7774756e9ea91de189cc7"
     },
     "last_active_at": null
   }

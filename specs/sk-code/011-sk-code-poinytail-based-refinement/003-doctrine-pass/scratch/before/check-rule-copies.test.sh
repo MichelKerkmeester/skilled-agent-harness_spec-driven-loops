@@ -26,7 +26,6 @@ TARGETS=(
   ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md"
   ".skilled/skills/sk-code/shared/references/workflow-verify.md"
   "AGENTS.md"
-  ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md"
 )
 
 seed_tree() {
@@ -110,32 +109,6 @@ node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.r
   "$CASE_OVERSIZE/AGENTS.md"
 run_case 1 "delivery_prefix_over_ceiling" node "$CHECKER" --root "$CASE_OVERSIZE"
 expect_output 'exceeds the 32768-byte ceiling' "delivery_prefix_names_ceiling" node "$CHECKER" --root "$CASE_OVERSIZE"
-
-# PASS: an untampered seeded tree. This proves TARGETS holds every file the
-# canary reads, so each tamper case fails for its own mutation alone.
-CASE_SEEDED="$TMP_DIR/seeded_untampered"
-seed_tree "$CASE_SEEDED"
-run_case 0 "seeded_tree_consistent" node "$CHECKER" --root "$CASE_SEEDED"
-
-# FAIL: each item the restraint ladder may never cut, deleted one at a time.
-NEVER_CUT_PINS=(
-  'never cuts a P0 item'
-  'anything the user asked for'
-  '**Input validation**'
-  '**No silent failures**'
-  '**No hardcoded secrets**'
-  '**Accessibility**'
-)
-pin_index=0
-for pin in "${NEVER_CUT_PINS[@]}"; do
-  pin_index=$((pin_index + 1))
-  CASE_PIN="$TMP_DIR/never_cut_$pin_index"
-  seed_tree "$CASE_PIN"
-  PIN="$pin" node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.readFileSync(f,"utf8").split(process.env.PIN).join(""));' \
-    "$CASE_PIN/.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md"
-  run_case 1 "never_cut_removed_$pin_index" node "$CHECKER" --root "$CASE_PIN"
-  expect_output "missing exact invariant string: \"$pin\"" "never_cut_names_$pin_index" node "$CHECKER" --root "$CASE_PIN"
-done
 
 if [[ "$failures" -gt 0 ]]; then
   printf '%s rule-canary test case(s) failed\n' "$failures" >&2

@@ -48,7 +48,7 @@ Implementation is the mutating build phase. It owns research before change, the 
 Run research before changing unfamiliar or high-blast code. For simple localized edits, research can be brief, but it still includes reading the actual target file before writing.
 
 1. Read the target files first; do not edit a file you have not read in this session.
-2. List every place the change must reach (callers, tests, fixtures, config and exports), and read them with nearby conventions and existing examples before introducing new shapes.
+2. Read nearby conventions, callers, and existing examples before introducing new shapes.
 3. Resolve surface identity through the shared router; do not re-detect or override it inside the implementation phase.
 4. Load the minimum active-surface resource set for the intent and changed file types.
 5. For broad or risky work, run a bounded read-only research sweep before editing.
@@ -63,14 +63,14 @@ Before writing, record the cheap facts later phases need:
 | Baseline | Starting command status, known failing checks, warning count, runtime issue, or `UNKNOWN` when no safe baseline is available. |
 | Blast Radius | One phrase such as `low-blast, reversible`, `medium-blast: multi-file behavior`, or `high-blast: touches auth/data/filesystem/config`. |
 
-Apply the Design Restraint Ladder from the universal code quality standards before adding code, in its order: verify the code needs to exist, reuse what this codebase already has (a helper, component, service or pattern), then the standard library, then a native platform or runtime feature, then an already-installed dependency, then one line, and only then write the minimum code that satisfies the stated requirement. It never cuts a P0 item or anything the user asked for. If requested scope looks unnecessary or risky, implement the requirement and raise a scope-amendment recommendation; do not silently cut scope.
+Apply the restraint ladder before adding code: verify the code needs to exist, prefer platform/runtime features and existing helpers, reuse installed dependencies only when already appropriate, then write the minimum code that satisfies the stated requirement. If requested scope looks unnecessary or risky, implement the requirement and raise a scope-amendment recommendation; do not silently cut scope.
 
 ### Write
 
 1. Make the smallest correct change that satisfies the request and active-surface standards.
 2. Preserve existing project conventions unless the request explicitly changes them.
 3. Keep changes inside the user's scope and the established documentation scope.
-4. Reuse existing helpers, components, services, templates and patterns the way the surrounding code uses them before adding abstractions.
+4. Reuse existing helpers, templates, and patterns before adding abstractions.
 5. Keep comments durable and explanatory; do not add artifact labels or temporary process markers.
 6. Preserve routing metadata, config shapes, generated metadata ownership, and packet boundaries when authoring system assets.
 7. Prepare the handoff with changed scope, baseline, likely checks, and accepted residual risks.

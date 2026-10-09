@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-09 |
 | **Branch** | `scaffold/003-doctrine-pass` |
 | **Parent Spec** | ../spec.md |

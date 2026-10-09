@@ -8,7 +8,7 @@ version: 1.5.0.1
 
 ## 1. OVERVIEW
 
-This scenario verifies that for an implementation-intent request, sk-code climbs the Design Restraint Ladder and picks the laziest viable rung before writing any new code: does this need to exist at all (YAGNI), then a helper, component, service or pattern already in this codebase, then a standard-library primitive, a native platform or runtime feature, an already-installed dependency, a one-line expression, and only then minimal custom code.
+This scenario verifies that for an implementation-intent request, sk-code climbs the Design Restraint Ladder and picks the laziest viable rung before writing any new code: does this need to exist at all (YAGNI), then a standard-library primitive, a native platform or runtime feature, an already-installed dependency, a one-line expression, and only then minimal custom code.
 
 The ladder is a post-read reflex that runs AFTER surface and intent routing, so it consumes the detected surface but changes neither surface precedence (OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN) nor the Iron Law (Phase 3 verification is still required). It is gated to the Phase 0 to Phase 1 transition and named in the SKILL.md Phase Overview.
 
@@ -41,7 +41,6 @@ Prompt: `Add a helper to .skilled/skills/system-spec-kit/runtime/lib/util/unique
 
 **Expected ladder behavior**:
 - The ladder runs AFTER surface and intent routing, not before.
-- The codebase-reuse rung is checked before the standard library. Reusing a suitable exported helper that already exists is also a PASS; otherwise the trace names where it looked and moves on.
 - The selected rung is the laziest viable one — a one-line expression such as `[...new Set(arr)]` — NOT a hand-written deduplication loop (minimal custom code is the last rung).
 - The Phase 0 to 1 gate records that the laziest viable rung was chosen before any new code.
 
@@ -75,12 +74,12 @@ Prompt: `Add a helper to .skilled/skills/system-spec-kit/runtime/lib/util/unique
 |---|---|
 | 2 | Advisor: top_skill == sk-code, score >= 0.80. |
 | 3 | sk-code router emits `SURFACE: OPENCODE` BEFORE any ladder reasoning. |
-| 4 | The ladder checks the codebase-reuse rung, then selects an existing helper, a standard-library or a one-line rung (e.g. `new Set`) and explicitly rejects writing a custom loop. |
+| 4 | The ladder selects a standard-library or one-line rung (e.g. `new Set`) and explicitly rejects writing a custom loop. |
 | 4 | The Phase 0 to 1 gate is honored: the rung is chosen before new code. |
 
 ### Pass/Fail Criteria
 
-- **PASS** iff: surface == OPENCODE AND the ladder runs after routing AND the selected rung is the laziest viable one (codebase reuse / stdlib / native / one-liner over custom) per `shared/references/universal/code-quality-standards.md` AND the Phase 0 to 1 gate in `shared/references/phase-detection.md` is honored.
+- **PASS** iff: surface == OPENCODE AND the ladder runs after routing AND the selected rung is the laziest viable one (stdlib / native / one-liner over custom) per `shared/references/universal/code-quality-standards.md` AND the Phase 0 to 1 gate in `shared/references/phase-detection.md` is honored.
 - **FAIL** iff: the AI jumps straight to custom code, runs the ladder before routing, overrides surface precedence, or picks a lazy rung without citing the Phase 0 to 1 gate.
 
 Evidence: `/tmp/skc-DR001-advisor.txt` (advisor probe output) and `/tmp/skc-DR001-ladder.txt` (ladder trace).

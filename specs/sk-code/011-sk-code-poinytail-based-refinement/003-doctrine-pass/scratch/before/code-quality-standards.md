@@ -41,17 +41,14 @@ Severity tiers exist so reviewers and authors agree on what blocks "done". A rul
 
 ### Design Restraint Ladder (pre-write)
 
-Before writing NEW code for an implementation task, stop at the first rung that holds. This runs AFTER surface + intent routing, so the rung vocabulary matches the detected surface, and it is a POST-READ reflex — rungs 2-5 require reading what already exists, which reinforces read-first.
+Before writing NEW code for an implementation task, stop at the first rung that holds. This runs AFTER surface + intent routing, so the rung vocabulary matches the detected surface, and it is a POST-READ reflex — rungs 2-4 require reading what already exists, which reinforces read-first.
 
 1. **Does this need to exist at all? (YAGNI)** — if the requirement looks unnecessary, surface a scope-amendment recommendation in the same response; NEVER silently cut scope (SCOPE-LOCK / Logic-Sync HALT still apply).
-2. **Already in this codebase (a helper, component, service, pattern)?** Use it the way the surrounding code does.
-3. **Standard library / language built-in?**
-4. **Native platform or runtime feature?** — surface-flavored: CSS-over-JS or a DB/HTML constraint for WEBFLOW; a stdlib/native API for OPENCODE.
-5. **An already-installed dependency?** — never add a new dependency for what a few lines do.
-6. **Can it be one line?**
-7. **Only then: the minimum code that works.**
-
-Restraint never cuts a P0 item in §3 below, such as input validation, error handling, secrets handling and accessibility, or anything the user asked for.
+2. **Standard library / language built-in?**
+3. **Native platform or runtime feature?** — surface-flavored: CSS-over-JS or a DB/HTML constraint for WEBFLOW; a stdlib/native API for OPENCODE.
+4. **An already-installed dependency?** — never add a new dependency for what a few lines do.
+5. **Can it be one line?**
+6. **Only then: the minimum code that works.**
 
 The ladder consumes the detected surface; it does NOT change surface precedence (OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN) or the Iron Law (Phase 3 verification is still required). For the over-engineering, gold-plating, and scope-creep detectors, see the Restraint Signals table in the repo `AGENTS.md` §3.
 
@@ -82,7 +79,6 @@ P0 covers issues that have caused production incidents or reviewer-author confus
 5. **Naming convention adherence** — surface-specific (snake_case for WEBFLOW JS, camelCase for OPENCODE TypeScript, snake_case for OPENCODE Python/Shell, etc.).
 6. **No hardcoded secrets** — credentials, API keys, tokens never inline; always env vars or secret stores.
 7. **No ephemeral-artifact pointers in comments** — comments must not name a spec folder/number, packet/phase/task/checklist/requirement id (`T###`, `CHK-###`, `REQ-###`), feature-catalog entry, ADR id, or ticket id; these get renamed or archived and rot into dangling pointers. Keep the durable WHY. See `code-style-guide.md` §4 "No ephemeral-artifact pointers" for the allowed-vs-forbidden contract.
-8. **Accessibility** (user-facing UI): interactive elements stay keyboard-operable, carry an accessible name and keep a visible focus state.
 
 ---
 
