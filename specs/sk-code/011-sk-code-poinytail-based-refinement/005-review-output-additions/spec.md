@@ -97,6 +97,7 @@ Readers of a review know what was not checked, and automation can still rely on 
 | `.claude/agents/review.md` | Modify | Authored Claude fork, kept in step by hand; checked by `check-agent-mirror-sync.cjs --all` |
 | `.codex/agents/review.toml`, `.pi/agents/review.md`, `.hermes/skills/agent-review/SKILL.md` | Regenerate | Generated runtime mirrors of the review agent |
 | `.hermes/skills/sk-code-review/SKILL.md` | Regenerate | Generated copy of the review skill |
+| `.hermes/skills/sk-code/SKILL.md` | Regenerate | Stale generated copy of the hub, left behind when an earlier phase edited `sk-code/SKILL.md`; the same sync run refreshes it |
 <!-- /ANCHOR:scope -->
 
 ---

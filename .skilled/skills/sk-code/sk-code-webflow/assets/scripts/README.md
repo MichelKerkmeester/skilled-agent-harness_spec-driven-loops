@@ -69,7 +69,8 @@ Run individual scripts from the repository root with the documented arguments.
 | Path | Purpose |
 |---|---|
 | `minify-webflow.mjs` | MJS source file in this folder. |
-| `test-minified-runtime.mjs` | MJS source file in this folder. |
+| `runtime-fixture/` | Known-bad and known-good inputs for `test-minified-runtime.mjs`. Run the checker from `known-bad/`, which must fail, or from `known-good/`, which must pass. |
+| `test-minified-runtime.mjs` | Runs each minified script in a stand-in browser and fails on top-level errors and on errors thrown by the setTimeout, requestAnimationFrame and Webflow.push callbacks it invokes. |
 | `verify-minification.mjs` | MJS source file in this folder. |
 
 ---

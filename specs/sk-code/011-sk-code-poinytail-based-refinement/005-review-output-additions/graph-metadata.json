@@ -54,10 +54,10 @@
       ".pi/agents/review.md",
       ".hermes/skills/agent-review/SKILL.md",
       ".hermes/skills/sk-code-review/SKILL.md",
+      ".hermes/skills/sk-code/SKILL.md",
       ".github/workflows/rule-canary-sync.yml",
       ".skilled/package.json",
-      "scripts/README.md",
-      "codex/sync-agents.cjs"
+      "scripts/README.md"
     ],
     "entities": [
       {
@@ -145,12 +145,6 @@
         "source": "derived"
       },
       {
-        "name": "sync-agents.cjs",
-        "kind": "file",
-        "path": "codex/sync-agents.cjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -203,11 +197,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Doc",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Ponytail's review ends with one line naming what mattered and could not be checked",
     "created_at": "2026-10-09T16:00:50Z",
-    "last_save_at": "2026-10-09T18:03:52.336Z",
+    "last_save_at": "2026-10-09T20:08:33.788Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,12 +217,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bc6af5f2c4c63596be8f3a5159cb8e490f039fd50ea2ae5b4cdf15a92ca77dec",
+    "source_fingerprint": "sha256:7c09c73913c2b61ec72abc2ab09a71bc54fda6bc91938d5dc143666b51a54fa6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "82404695252243231cff2a71ef1fe01ba8e76052a6a941405a33506cf2077966",
+      "spec.md": "cba8041d2afec7d148206009a19ed38bc5c675a4d46f3a8c6879a6ea044fc62f",
       "plan.md": "85146095961da801c0204b877213334c673b1d6e94c47ba61b4343d96901937a",
-      "tasks.md": "8839bdbbcb70deebc2fdb3c7a1c03e7e97fa31d638994c5f734bb45f9001c5da",
+      "tasks.md": "c89f244171e20756281b6a1c2e80fab7b8fa68674686b64cfb7414644def97b8",
       "implementation-summary.md": "849296b49ea8a4619f4594e5370c7848eb26bac8937d3506ae95ac077e69a744"
     },
     "last_active_at": null

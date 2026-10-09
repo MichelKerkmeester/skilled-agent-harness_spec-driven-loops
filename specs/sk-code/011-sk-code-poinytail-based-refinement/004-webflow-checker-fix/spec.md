@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-09 |
 | **Branch** | `scaffold/004-webflow-checker-fix` |
 | **Parent Spec** | ../spec.md |

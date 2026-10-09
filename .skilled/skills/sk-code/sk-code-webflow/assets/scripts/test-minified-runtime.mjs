@@ -11,6 +11,7 @@
 // - ReferenceError for undefined variables
 // - Runtime exceptions
 // - Missing dependencies
+// - Errors thrown inside setTimeout, requestAnimationFrame and Webflow.push callbacks
 
 import { readdirSync, existsSync, readFileSync } from 'fs';
 import { join, relative } from 'path';
@@ -25,12 +26,31 @@ const OUTPUT_DIR = 'src/2_javascript/z_minified';
 // Folders to skip
 const SKIP_FOLDERS = ['node_modules', '.git'];
 
+// Synchronous timer stand-ins need a cap to keep unbounded retry loops from overflowing the call stack.
+const MAX_SYNC_CALLBACK_DEPTH = 20;
+
 /* ─────────────────────────────────────────────────────────────
    2. MOCK ENVIRONMENT
 ──────────────────────────────────────────────────────────────── */
 
 // Create mock browser environment
-function create_mock_environment() {
+function create_mock_environment(callback_errors) {
+  let callback_depth = 0;
+
+  // Only invoked callbacks are judged because listeners never fire and element lookups return null.
+  const run_callback = (source, callback) => {
+    if (callback_depth >= MAX_SYNC_CALLBACK_DEPTH) return;
+
+    callback_depth++;
+    try {
+      callback();
+    } catch (error) {
+      callback_errors.push({ source, error });
+    } finally {
+      callback_depth--;
+    }
+  };
+
   // Mock element
   const mock_element = {
     style: {},
@@ -116,18 +136,14 @@ function create_mock_environment() {
     addEventListener: () => {},
     removeEventListener: () => {},
     setTimeout: (fn) => {
-      try {
-        fn();
-      } catch (e) {}
+      run_callback('setTimeout', fn);
       return 1;
     },
     clearTimeout: () => {},
     setInterval: () => 1,
     clearInterval: () => {},
     requestAnimationFrame: (fn) => {
-      try {
-        fn(0);
-      } catch (e) {}
+      run_callback('requestAnimationFrame', () => fn(0));
       return 1;
     },
     cancelAnimationFrame: () => {},
@@ -185,9 +201,7 @@ function create_mock_environment() {
     // Library mocks
     Webflow: {
       push: (fn) => {
-        try {
-          fn();
-        } catch (e) {}
+        run_callback('Webflow.push', fn);
       },
     },
     Motion: {
@@ -328,7 +342,8 @@ function test_file(relative_path) {
   const code = readFileSync(file_path, 'utf-8');
 
   // Create fresh mock environment
-  const mock_env = create_mock_environment();
+  const callback_errors = [];
+  const mock_env = create_mock_environment(callback_errors);
 
   try {
     // Create VM context
@@ -339,6 +354,19 @@ function test_file(relative_path) {
       filename: relative_path,
       timeout: 5000, // 5 second timeout
     });
+
+    if (callback_errors.length > 0) {
+      const first = callback_errors[0];
+      const message = first.error && typeof first.error.message === 'string'
+        ? first.error.message
+        : String(first.error);
+
+      return {
+        status: 'FAIL',
+        error: `${callback_errors.length} deferred callback error(s), first in ${first.source}: ${message}`,
+        stack: first.error && first.error.stack,
+      };
+    }
 
     // Check for init flags that should be set
     const init_flag_pattern = /__[a-zA-Z_]+Init/g;

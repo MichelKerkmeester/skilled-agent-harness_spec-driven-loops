@@ -30,7 +30,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 3 |
+| Code files | 4 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -71,6 +71,7 @@ Run individual scripts from the repository root with the documented arguments.
 | Path | Purpose |
 |---|---|
 | `test_verify_alignment_drift.py` | Unit-style coverage for alignment drift file discovery, language checks, severity behavior, and CLI exit codes. |
+| `test_verify_stack_folders.py` | Builds a temporary references tree and proves `verify_stack_folders.py` exits 1 on an orphan folder and 0 on a clean tree. |
 | `verify_alignment_drift.py` | Recurring read-only alignment verifier for TypeScript, JavaScript, Python, shell, JSON, and JSONC files. |
 | `verify_stack_folders.py` | Verifies code-opencode language reference folders match the known language set and flags missing or orphan folders. |
 

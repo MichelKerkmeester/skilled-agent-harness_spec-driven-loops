@@ -79,17 +79,17 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Known-bad fixture fails with exit 1 and `Failed:  4/4` | Pending | Not started |
-| Known-good fixture passes with exit 0 and `Passed:  2/2` | Pending | Not started |
-| In-repo Webflow assets pass `Passed:  16/16` | Pending | Not started |
-| Validator unittest passes and the live validator still prints `OK` | Pending | Not started |
-| Checker syntax check passes and no empty catch remains | Pending | Not started |
-| Both script READMEs validate and carry the new rows | Pending | Not started |
-| Drift gate shows no new ERROR and `PASS: stack-folders` | Pending | Not started |
+| Known-bad fixture fails with exit 1 and `Failed:  4/4` | Done | four FAIL lines, all four sources, exit 1 |
+| Known-good fixture passes with exit 0 and `Passed:  2/2` | Done | both files PASS, no stack overflow, exit 0 |
+| In-repo Webflow assets pass `Passed:  16/16` | Done | `Passed:  16/16`, exit 0 |
+| Validator unittest passes and the live validator still prints `OK` | Done | `Ran 2 tests`, `OK`; live `OK: 6 language folder(s)` |
+| Checker syntax check passes and no empty catch remains | Done | node --check exit 0; grep exit 1 |
+| Both script READMEs validate and carry the new rows | Done | both VALID, 0 issues, rows present |
+| Drift gate shows no new ERROR and `PASS: stack-folders` | Done | Errors 0, Warnings 247, exit 0 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | No deviation recorded |
+| `rm -rf` refused by the command runner | T003 and T004 no longer delete their temporary trees; the orchestrator deleted them and ran criterion 3 with its cleanup |
 <!-- /ANCHOR:log -->

@@ -107,7 +107,7 @@ and findings belong here.
 | 001 ponytail deep research | Done | `001-ponytail-deep-research/goal.md` log; strict validation passed 2026-10-09 |
 | 002 surface contract alignment | Done | Commit `ee78fc56b9`; all seven child criteria rerun by the orchestrator and passed; strict validation passed |
 | 003 doctrine pass | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed; three dispatches, all stops were task or brief wording |
-| 004 webflow checker fix | Pending | Not started |
+| 004 webflow checker fix | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed |
 | 005 review output additions | Pending | Not started |
 | 006 guard retirement notes | Pending | Not started |
 
