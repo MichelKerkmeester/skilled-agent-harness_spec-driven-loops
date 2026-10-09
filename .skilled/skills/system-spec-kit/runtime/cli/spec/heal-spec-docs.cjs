@@ -20,7 +20,7 @@
 // Usage:
 //   heal-spec-docs.cjs [--roots <dir>] [--folder <packet>] [--apply]
 //   heal-spec-docs.cjs --anchor-repair [--roots <dir>] [--folder <packet>] [--apply]
-//   heal-spec-docs.cjs --lane-modes [--mode <name>]... [--roots <dir>] [--folder <packet>] [--apply] [--json]
+//   heal-spec-docs.cjs --lane-modes [--roots <dir>] [--folder <packet>] [--apply]
 //
 // Dry run by default: prints what it would heal and what it refuses, writes
 // nothing. The dry run doubles as the census.
@@ -1359,25 +1359,6 @@ function runLaneModes(packetDir, options = {}) {
 
 function runLaneModesCli(argv) {
   const apply = argv.includes('--apply');
-  const json = argv.includes('--json');
-  const modes = [];
-  for (let index = 0; index < argv.length; index += 1) {
-    if (argv[index] !== '--mode') continue;
-    const name = argv[index + 1];
-    if (!name || name.startsWith('--')) {
-      console.error('heal-spec-docs: --mode needs a mode name');
-      process.exitCode = 2;
-      return;
-    }
-    modes.push(name);
-  }
-  const unknown = modes.filter((name) => !LANE_MODES.some((mode) => mode.name === name));
-  if (unknown.length > 0) {
-    console.error(`heal-spec-docs: unknown lane mode ${unknown.join(', ')}`);
-    process.exitCode = 2;
-    return;
-  }
-
   const folderAt = argv.indexOf('--folder');
   const rootsAt = argv.indexOf('--roots');
   const targets = folderAt !== -1
@@ -1385,14 +1366,7 @@ function runLaneModesCli(argv) {
     : discover(rootsAt !== -1 ? argv[rootsAt + 1] : 'specs');
 
   for (const packet of targets) {
-    const result = runLaneModes(packet, {
-      apply,
-      modes: modes.length > 0 ? modes : undefined,
-    });
-    if (json) {
-      console.log(JSON.stringify(result));
-      continue;
-    }
+    const result = runLaneModes(packet, { apply });
     for (const entry of result.actions) {
       console.log(`${apply ? 'applied' : 'would apply'} ${entry.mode} ${path.join(packet, entry.document)}: ${entry.action}`);
     }

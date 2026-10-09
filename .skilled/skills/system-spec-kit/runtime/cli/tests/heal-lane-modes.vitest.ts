@@ -98,10 +98,10 @@ function writePacket(root: string, plan: string): { packet: string; planFile: st
   return { packet, planFile };
 }
 
-function runLaneCli(packet: string, extra: string[] = []) {
+function runLaneCli(packet: string) {
   return spawnSync(
     process.execPath,
-    [HEAL_SPEC_DOCS, '--lane-modes', '--folder', packet, ...extra],
+    [HEAL_SPEC_DOCS, '--lane-modes', '--folder', packet],
     { encoding: 'utf8' },
   );
 }
@@ -564,7 +564,7 @@ describe('heal-spec-docs lane modes', () => {
     expect(manifest(root)).toBe(afterFirst);
   });
 
-  it('lane-modes-cli-dry-run-and-json', () => {
+  it('lane-modes-cli-dry-run', () => {
     const root = makeRoot();
     const { packet } = writePacket(root, PLAN_ORIGINAL);
     const before = manifest(root);
@@ -574,21 +574,6 @@ describe('heal-spec-docs lane modes', () => {
     expect(dryRun.status, dryRun.stdout + dryRun.stderr).toBe(0);
     expect(dryRun.stdout).toContain('would apply anchor-wrap');
     expect(manifest(root)).toBe(before);
-
-    const jsonRun = runLaneCli(packet, ['--json']);
-
-    expect(jsonRun.status, jsonRun.stdout + jsonRun.stderr).toBe(0);
-    expect(jsonRun.stdout.trim().split('\n')).toHaveLength(1);
-    const parsed = JSON.parse(jsonRun.stdout.trim()) as LaneRunResult;
-    expect(parsed.packet).toBe(packet);
-    expect(Array.isArray(parsed.refusals)).toBe(true);
-    expect(manifest(root)).toBe(before);
-
-    const unknown = runLaneCli(packet, ['--mode', 'not-a-mode']);
-
-    expect(unknown.status).toBe(2);
-    expect(unknown.stdout).toBe('');
-    expect(unknown.stderr).toContain('unknown lane mode');
   });
 
   it('link-repoint-positive', () => {
