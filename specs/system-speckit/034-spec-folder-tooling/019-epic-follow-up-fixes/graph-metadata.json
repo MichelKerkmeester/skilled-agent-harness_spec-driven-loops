@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes",
+  "spec_folder": "system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes",
+  "parent_id": "system-speckit/034-spec-folder-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "epic follow up fixes",
+      "doctor env duplicate variable",
+      "compat resume dirty check",
+      "cli tests write into specs",
+      "epic follow up fixes plan",
+      "epic follow up fixes tasks",
+      "epic follow up fixes acceptance criteria",
+      "epic follow up fixes implementation summary"
+    ],
+    "key_topics": [
+      "epic",
+      "follow",
+      "doctor",
+      "env",
+      "duplicate",
+      "variable",
+      "compat",
+      "resume",
+      "dirty",
+      "check",
+      "cli",
+      "tests"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/commands/doctor/assets/doctor-env.yaml",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/sweep/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/test-fixtures/README.md",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/README.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+      ".skilled/commands/doctor/scripts/tests/README.md",
+      ".skilled/commands/doctor/scripts/README.md",
+      ".skilled/skills/mcp-code-mode/manual-testing-playbook/doctor-commands/README.md",
+      ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/README.md",
+      ".skilled/skills/system-deep-loop/manual-testing-playbook/doctor-commands/README.md",
+      ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-presentation.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-env.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-env.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-compat-action.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The epic's builds and reviews left eleven loose ends",
+    "created_at": "2026-10-09T18:36:35Z",
+    "last_save_at": "2026-10-09T20:18:37.861Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e8338a8b00609cae8b4b7c6d34bfab00aaafcd9666222d3342a1a0cbbfb06c6b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d2e649e4032d4832627cb801f0686d3cb89b151eba6ab44e7d94d4b629d82bc9",
+      "plan.md": "d451165194ec7adc76492bf9961ce8a3b593c983b2abdd88ddea3039f8864dcc",
+      "tasks.md": "498251e79b316af4e01ad7086fd82cd66fc6f0970f0a143cd0e5339a98d5a2bc",
+      "implementation-summary.md": "8e0455c1800f59c273001f15fcbd3cb2e0f730b4aaad07b9014f35a7a6d0d48d"
+    },
+    "last_active_at": null
+  }
+}

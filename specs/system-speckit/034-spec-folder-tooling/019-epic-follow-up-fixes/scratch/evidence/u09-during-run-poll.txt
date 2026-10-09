@@ -1,0 +1,10 @@
+U09 during-run poll of the real specs/ root, 0.1 s interval, per edited CLI test file (probe-one.sh, closeout run)
+Columns: index, file, vitest exit, duration, NEW events, GONE events, before/after diff lines, names seen, vitest summary
+901	tests/repair-derived.vitest.ts	exit=0	dur_ms=11638	new_events=0	gone_events=0	before_after_diff=0	names=none	 Test Files 1 passed (1)  Tests 15 passed (15) 
+902	tests/scaffold-passes-its-own-gate.vitest.ts	exit=0	dur_ms=16402	new_events=0	gone_events=0	before_after_diff=0	names=none	 Test Files 1 passed (1)  Tests 6 passed (6) 
+903	tests/scaffold-golden-snapshots.vitest.ts	exit=0	dur_ms=7388	new_events=0	gone_events=0	before_after_diff=0	names=none	 Test Files 1 passed (1)  Tests 12 passed (12) 
+--- poll file bytes (0 means no entry appeared or vanished during the run)
+       0 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/specs-probe/files/901-repair-derived.poll
+       0 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/specs-probe/files/902-scaffold-passes-its-own-gate.po
+       0 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/specs-probe/files/903-scaffold-golden-snapshots.poll
+       0 total

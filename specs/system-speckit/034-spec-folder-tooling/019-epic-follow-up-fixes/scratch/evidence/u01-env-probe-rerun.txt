@@ -1,0 +1,23 @@
+{
+  "status": "OK",
+  "modernTables": 16,
+  "legacyTables": 2,
+  "otherTables": 2,
+  "dataRows": 177,
+  "uniqueNamesAllTables": 168,
+  "uniqueNamesVariableColumnRule": 164,
+  "malformed": [],
+  "conflicts": [],
+  "textualOnlyDifferences": [
+    "SPECKIT_GENERATOR_HARDENING: \"ON\" vs \"`true`\"",
+    "SPECKIT_GENERATED_METADATA_GRANDFATHER: \"OFF (enforcing)\" vs \"`false`\"",
+    "SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE: \"OFF (report mode)\" vs \"`false`\"",
+    "SPECKIT_IDENTITY_MERGE_SAFETY: \"ON\" vs \"`true`\"",
+    "SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES: \"ON\" vs \"`true`\"",
+    "SPECKIT_GENERATED_METADATA_Z_EXCLUSION: \"ON\" vs \"`true`\"",
+    "SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE: \"ON (enforcing)\" vs \"`true`\"",
+    "SPECKIT_STATUS_CROSS_DOC_ENFORCE: \"ON (enforcing)\" vs \"`true`\"",
+    "SPECKIT_CHILD_DRIFT_ENFORCE: \"ON (enforcing)\" vs \"`true`\""
+  ]
+}
+PROBE_EXIT=0
