@@ -122,8 +122,7 @@ workflow:
     command: "Run each step's argv from the layout map in order, from the repository root."
     post_check: "After the last step, rerun commands.layout_map. The state must now be v4 with no steps. Any other result stops with STATUS=FAILED and shows the presentation's Compatibility rollback block."
     logging: "Append run-started, then step-started before each step runs and step-done after it, then move-complete. Every line carries run, event, step, argv and at. Run the dirty check before run-started: a dirty-roots refusal appends no line, so recovery cannot mistake a refused run for an interrupted one."
-    step_failure: "A failed step appends step-failed and stops with STATUS=FAILED; show the step id, its argv and the exit code."
-    on_step_failure: "On a failed step, append step-failed with the step id and argv, then stop with STATUS=FAILED and run no further step. Show every step-done step so far in the presentation's Compatibility rollback block, newest first. Never retry a step automatically."
+    on_step_failure: "On a failed step, append step-failed with the step id and argv, then stop with STATUS=FAILED and run no further step. Show the step id, its argv and the exit code, then every step-done step so far in the presentation's Compatibility rollback block, newest first. Never retry a step automatically."
     postcondition: "Confirm the layout map state moved from before to after and show what moved."
 
   phase_5_upgrade_preview:

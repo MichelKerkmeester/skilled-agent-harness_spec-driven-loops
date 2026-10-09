@@ -818,11 +818,13 @@ test('a move step that cannot complete stops the run and reports the failed step
   assert.equal(planLayoutMove(f.root).state, 'partial', 'the tree must still owe the move');
 
   // The failure rule must report the step and stop the run, and the
-  // presentation prints the failed state beside the rollback block.
+  // presentation prints the failed state beside the rollback block. One key
+  // owns the rule: a second copy would drift from it.
   const move = COMPAT_ACTION.workflow.phase_4_move;
+  assert.equal(move.step_failure, undefined, 'the failed-step rule must live in one key');
   for (const phrase of ['step-failed', 'STATUS=FAILED', 'step id', 'argv', 'exit code']) {
     assert.ok(
-      move.step_failure.includes(phrase),
+      move.on_step_failure.includes(phrase),
       `the failed-step rule must report the ${phrase}`,
     );
   }
