@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The cli-jev 003 packet shipped 130 files between `f9d701bd13` and `089693d899`, and a read-only audit on 2026-09-30 found conformance gaps against the two skills that own their standards",
     "created_at": "2026-09-30T11:42:55Z",
-    "last_save_at": "2026-10-07T15:56:02.393Z",
+    "last_save_at": "2026-10-08T19:29:23.618Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:11e83c2eab48bb51fd00b42867fb9f91d4dd508f45781b94ec6819058cd6c4ef",
+    "source_fingerprint": "sha256:32d131d677a9a0ddc974d243c4dc80c011c520433619d496d86df3ef802bef54",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "05326d1ed4b0aa508d21b4d76958d48e1562417ec359f9af02ddb4890a51c232",
+      "spec.md": "5450bf0d32a4e5ee452e8f88054de8ed5c05c437b314b48b178157500798e948",
       "plan.md": "6b5ba1878437ab11505969214deb55a2162ddda803e2a25b06f888b31b2134fb",
       "tasks.md": "1ef6d79bb7082c335ad16a10e6f7b3088fecb42e6af1b11815b801111e9c3cf3",
       "implementation-summary.md": "01efeb63ae90c9f8082de4db0f008f1413799ec51d49f83c4507ba2a83a71770"

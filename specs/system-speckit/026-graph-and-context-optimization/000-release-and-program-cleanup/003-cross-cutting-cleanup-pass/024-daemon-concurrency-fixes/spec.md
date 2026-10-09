@@ -147,7 +147,6 @@ Apply localized fixes to the four code paths so that (a) the watcher serializes 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -245,6 +244,7 @@ Apply localized fixes to the four code paths so that (a) the watcher serializes 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should `getLastCacheInvalidation()` consumers be audited for monotonicity assumptions in a follow-on packet? (Flagged in iteration-001's "Questions Remaining")

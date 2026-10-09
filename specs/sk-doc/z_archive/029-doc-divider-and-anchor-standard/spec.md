@@ -153,7 +153,6 @@ One reconciled and mechanically enforced structural standard, so every structure
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -224,6 +223,7 @@ One reconciled and mechanically enforced structural standard, so every structure
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should constitutional memories (unnumbered Title-Case H2) adopt `---` dividers between sections, or remain a distinct, divider-optional class? This is a separate policy decision.

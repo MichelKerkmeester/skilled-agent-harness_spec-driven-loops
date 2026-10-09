@@ -166,7 +166,6 @@ Define and roll out an `ai-council/` subfolder convention so council outputs are
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -247,6 +246,7 @@ Define and roll out an `ai-council/` subfolder convention so council outputs are
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should `ai-council/` validation be added to `validate.sh --strict`, or kept fully free-form (like `scratch/`)? Current preference: free-form, but document expected layout.

@@ -155,7 +155,6 @@ makes it compatible with the evidence rule rather than in tension with it.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -210,6 +209,7 @@ makes it compatible with the evidence rule rather than in tension with it.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does reader triage belong to the decision-shape rule, which fires on a recommendation, or does it need its own trigger since it fires before any drafting at all?

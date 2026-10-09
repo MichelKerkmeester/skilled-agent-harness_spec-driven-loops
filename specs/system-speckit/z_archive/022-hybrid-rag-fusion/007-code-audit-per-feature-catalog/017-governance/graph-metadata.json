@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The feature catalog for Governance has evolved significantly",
     "created_at": "2026-04-12T09:02:50.254Z",
-    "last_save_at": "2026-10-07T20:25:15.225Z",
+    "last_save_at": "2026-10-08T20:05:56.978Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +196,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8257d1c57d42ccdd674bcbd6441e998f8510c7e1cb4195b4651b95e7dd732e5f",
+    "source_fingerprint": "sha256:02cf32a7292d5bb1f469c2093207f130bfc97bd4361021c29b892366bc561934",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7da42d970c789ecc957abe5497ddc4950ffa5238cb7df3b9183b1868c6f629f8",
+      "spec.md": "604a3872c469df6f760c1ad84f28fcffa95cec443f4954ccd60d26a60ac272fd",
       "plan.md": "f5e5edcf682278d4cf0ac2f6365a1d3b6fd99076bbf6ecd24a1aba43eda3828f",
       "tasks.md": "424c9e65c4106ffa7e2ee033f402233dfc4b1230b720d247bdc5ec92fd0b6d96",
       "implementation-summary.md": "893a0571cee245f7373fb7014940a3795647b9073c18c4b598fa040e20eccf17"

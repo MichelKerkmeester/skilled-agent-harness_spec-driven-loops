@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Three of the five parent hubs reported `servingAuthority: legacy` with cause",
     "created_at": "2026-09-01T05:38:12Z",
-    "last_save_at": "2026-10-07T18:14:17.298Z",
+    "last_save_at": "2026-10-08T19:30:16.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3166f2ef280c2412f5d3563028c67290003578881f7456457b270db877c60579",
+    "source_fingerprint": "sha256:e10a5112eb0847bc79cdf557a54034a8fcfb2b713ede72df430559eeba13c895",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c1df3dad85fb69f35859a98a0ea801593a26756b94b58f4924c273d2c30e553d",
+      "spec.md": "14f73a5ae09a40fe29cb093c4390302fb60f8f44e53cdc130247ee3aeaa6d9f6",
       "plan.md": "0269c21f91e06b8e17b524a12a7c10d3dcfc87e6eb0fc39025cd273a34f05e26",
       "tasks.md": "51f613fef30ae621023ee89e3f71c9a0604790f845a52015fb4586e346ed3de2",
       "implementation-summary.md": "92fe27d2a79a425c3fa43a8b0d0e001caf824df435cb999ed717b7b930672563"

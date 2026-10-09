@@ -206,7 +206,7 @@
     ],
     "causal_summary": "A naming migration and a hub consolidation each moved real things, and each left the prose behind",
     "created_at": "2026-07-30T19:29:17.197Z",
-    "last_save_at": "2026-10-07T21:19:44.218Z",
+    "last_save_at": "2026-10-08T19:30:12.251Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +215,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e80d53503211557d0395941fe3dd3dd7c437b81982ecdaedf0367dfd2600d9d3",
+    "source_fingerprint": "sha256:f2dbadaa87d8109dddd1641a032bf113ae2b13092f85ad3478a5a8c748eee2ce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b0c9a92b9369652031f4ea386dd10b3d7fd12c955a0fa48d3cb8cbb0bdd07677",
+      "spec.md": "879f9718a9a8f8e292623405745f0c4a2357a4ea09a01ab72dc935c75b6de269",
       "plan.md": "2e9dc93a4f6c6934ef867d2d91fdccade0076cf69104828283e43cf53bc3f3e9",
       "tasks.md": "9cbe276c5aac27709411ee428c62f96b34085107a7aa3bf696f95876915f6b78",
       "implementation-summary.md": "613e38b5fac06bce7aa2e4c61fb9a5d172d7c23972944f579a41fb79c9e3b87a"

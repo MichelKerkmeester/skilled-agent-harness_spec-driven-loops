@@ -201,7 +201,6 @@ fixture is.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -283,6 +282,7 @@ runs, **Then** it is exempt and exits 0.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Forty-five of fifty-three templates still carry a blocker in their payload, and whether that

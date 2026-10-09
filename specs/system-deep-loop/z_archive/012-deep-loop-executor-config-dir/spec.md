@@ -139,7 +139,6 @@ Allow a specific `cli-claude-code` executor or fan-out lineage to carry `configD
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -194,6 +193,7 @@ Allow a specific `cli-claude-code` executor or fan-out lineage to carry `configD
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

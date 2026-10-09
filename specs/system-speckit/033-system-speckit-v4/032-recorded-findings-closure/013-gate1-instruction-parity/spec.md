@@ -146,7 +146,6 @@ Every runtime this repository supports either carries the Gate 1 lookup instruct
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -201,6 +200,7 @@ Every runtime this repository supports either carries the Gate 1 lookup instruct
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does the Pi CLI read a root-level `AGENTS.md` automatically, the way Codex and (by `.devin/SYNC.md:83`'s own account) Devin's underlying model context does? No document in `.pi/SYNC.md` or `.pi/extensions/README.md` answers this, and it decides whether Pi needs a static pointer or a hook-based injection.

@@ -116,7 +116,6 @@ Confirm the native advisor surface returns prompt-safe, correctly-shaped envelop
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -168,6 +167,7 @@ Confirm the native advisor surface returns prompt-safe, correctly-shaped envelop
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the corpus skill-ID drift (`sk-deep-research`/`sk-deep-review` gold labels vs live `deep-research`/`deep-review` graph IDs) be fixed in the corpus or the graph? Recorded for triage.

@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Implements the host-local Pi RPC supervisor, durable replay, session catalog, mutation ledger, and crash-safe reconciliation core",
     "created_at": "2026-08-10T18:28:40Z",
-    "last_save_at": "2026-10-07T18:11:39.215Z",
+    "last_save_at": "2026-10-08T19:29:19.534Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +196,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:78d72f1b1bdc429d45dd23117121e0c8303267e03b486ae7611af792d9ca5968",
+    "source_fingerprint": "sha256:e928d2da321e75afea6f8592f187980701b198ed5e3804befde4af41cd4129e4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "144cc01dbcba97a54f78938b738cbdd25900a17db82922d19652f7a6c17f3d9f",
+      "spec.md": "d2bf662935470c99657f5ef4430687a1945f54300bb1c97794102d76c19329da",
       "plan.md": "182887f6ea4e512407b7a4503f608efcc61bf62f492701c77ff9da80824cd5e2",
       "tasks.md": "410765832c23982120038130448a3b8cb110d5ee530f32ce977891c81da493f8",
       "decision-record.md": "8742773f1bfb11883082360c9002431d672bbade145aca42f16edddc9314444f",

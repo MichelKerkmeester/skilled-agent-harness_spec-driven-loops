@@ -138,7 +138,6 @@ Expose only the approved reaper knobs through `scripts/start.sh` and document th
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -194,6 +193,7 @@ Expose only the approved reaper knobs through `scripts/start.sh` and document th
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

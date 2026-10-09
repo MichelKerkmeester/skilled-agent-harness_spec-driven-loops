@@ -186,7 +186,6 @@ The option A rows are the same-class inventory from `rg -n 'isPass[^A-Za-z]|>= ?
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -241,6 +240,7 @@ The option A rows are the same-class inventory from `rg -n 'isPass[^A-Za-z]|>= ?
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **Owner choice on the md-generator gate. Made.** Recorded on the next line, which starts with `Owner choice:`, then the letter, the date and who chose.

@@ -146,7 +146,6 @@ A worktree provisioned by `worktree-naming.sh` gets `sk-doc`'s `@spec-kit/shared
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -202,6 +201,7 @@ A worktree provisioned by `worktree-naming.sh` gets `sk-doc`'s `@spec-kit/shared
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **Owner decision (`sk-git`): should a brand-new worktree be proven end to end?** Option A, what this phase plans: the fixture test plus this worktree's repair through the fixed `provision`, which installs `sk-doc` from nothing. It costs no new worktree. Option B: also create a throwaway worktree, provision it and run `parent-skill-check.cjs`. It proves the `shared/dist` question too, but it installs every listed package and needs its own rollback (remove the throwaway worktree with `git worktree remove --force` and delete its branch). Recommendation: A, with B only if the owner wants the `dist` answer

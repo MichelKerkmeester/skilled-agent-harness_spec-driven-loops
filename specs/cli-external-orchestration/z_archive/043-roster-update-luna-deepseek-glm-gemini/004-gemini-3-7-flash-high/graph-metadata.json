@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Gemini 3.7 Flash High is live-available on both external CLIs but neither enforced roster carries any Gemini id: cli-cursor's `CURSORSUPPORTEDMODELS` hard-rejects `gemini-3.7-flash-high`, and cli-devin's `DEVINSUPPORTEDMODELS` hard-rejects `gemini-3-7-flash-high`",
     "created_at": "2026-08-15T09:11:19.337Z",
-    "last_save_at": "2026-10-07T18:11:38.567Z",
+    "last_save_at": "2026-10-08T19:29:22.303Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8eb864e90b81bd9f1913545f1634945e0a447ca65c6f35c27f00097d87580296",
+    "source_fingerprint": "sha256:b8550a82e7e330ca09c9966945db4e107b15258de5efbb0ea13ac99d28c36813",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2182032dff62929b8af8f58abba822fb3a129220d39f6b1939dea9353afdcaf8",
+      "spec.md": "785423af834a09c6735e117878da8c28495826eae4dd98e9fb1c8b1e5dc7d567",
       "plan.md": "a2a2e63ac825dac69a82293ea264985b365218e18f192e11b5082ea4ecc179e4",
       "tasks.md": "cc5f36cec3b2ebfdbe30d12f1f718b896a095306cd36b45fc9da231099a94cc6",
       "implementation-summary.md": "666ab87b3a5d3f801221c63e2bc12db485195952733f974ddcaad03d930f796b"

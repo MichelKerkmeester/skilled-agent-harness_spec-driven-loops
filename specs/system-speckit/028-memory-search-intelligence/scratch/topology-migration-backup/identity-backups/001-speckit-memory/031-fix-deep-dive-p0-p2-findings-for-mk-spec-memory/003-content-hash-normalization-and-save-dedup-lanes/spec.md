@@ -216,7 +216,6 @@ A re-save of an unchanged file returns `unchanged`, an edited same-path re-save 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -297,6 +296,7 @@ A re-save of an unchanged file returns `unchanged`, an edited same-path re-save 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Which continuity lines beyond `session_dedup.fingerprint` and `last_updated_at` churn on no-op saves? Confirm the full zeroing set during T001 probes.

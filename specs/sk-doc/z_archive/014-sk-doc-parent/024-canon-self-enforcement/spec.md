@@ -152,7 +152,6 @@ Convert canon enforcement from fire-based to class-based: one CI gate that watch
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -206,6 +205,7 @@ High cross-cutting surface, low per-edit risk. The trio touches CI config, one n
 1. Given the checker is invoked from a non-root CWD, when it evaluates rule 4a, then it resolves paths against the repo root and does not false-FAIL.
 2. Given a mutated fixture hub, when the fixture harness runs, then the checker flags the injected defect.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Three operator forks (see plan.md §6 and decision-record ADR-003/004/005) shape WU4/WU5/WU9/WU12 and the gated tranche; the DO-NOW trio can proceed on defaults.

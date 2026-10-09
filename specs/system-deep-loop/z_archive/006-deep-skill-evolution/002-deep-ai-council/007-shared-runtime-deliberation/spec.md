@@ -149,7 +149,6 @@ Run a formal four-seat council that tests full extraction, status quo, and hybri
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -220,6 +219,7 @@ Run a formal four-seat council that tests full extraction, status quo, and hybri
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None for this packet. Follow-on implementation requires a new spec folder and a fresh source-read pass.

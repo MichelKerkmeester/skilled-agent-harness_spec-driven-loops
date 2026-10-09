@@ -146,7 +146,6 @@ Surface lightweight substrate stability metrics in `memory_health` and daemon st
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -206,6 +205,7 @@ Surface lightweight substrate stability metrics in `memory_health` and daemon st
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

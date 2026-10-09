@@ -187,7 +187,6 @@ Overlapping sibling names flagged for review, not for automatic merge: `lib/disp
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -235,6 +234,7 @@ Overlapping sibling names flagged for review, not for automatic merge: `lib/disp
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None blocking. Merge verdicts are recorded above.

@@ -256,7 +256,6 @@ Written before the build. `E` is `.skilled/hooks/dispatch/lib/dispatch-rule-chec
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -316,6 +315,7 @@ Written before the build. `E` is `.skilled/hooks/dispatch/lib/dispatch-rule-chec
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **Does `readHardRules` keep the SKILL.md path or take the skill folder?** Proposed: keep the parameter and read `hard-rules.json` as its sibling, so all 10 call sites keep their argument and only the engine changes. The alternative is a folder parameter and 10 call-site edits, which the design chooses only if it proves a reader needs the folder for another reason. UNKNOWN until the design reads each call site's surrounding code.

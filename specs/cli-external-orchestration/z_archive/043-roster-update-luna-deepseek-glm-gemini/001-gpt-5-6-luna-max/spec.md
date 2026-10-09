@@ -137,7 +137,6 @@ Make the Luna Max tier dispatchable on both modes as a pure additive superset, k
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -176,6 +175,7 @@ Make the Luna Max tier dispatchable on both modes as a pure additive superset, k
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Evidence-level decision resolved by the operator (see frontmatter `answered_questions`).

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-archived-tier-and-tombstone-read-exclusions"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/002-archived-tier-and-tombstone-read-exclusions"
     last_updated_at: "2026-07-04T17:51:11.002Z"
     last_updated_by: "plan-remediation"
     recent_action: "Remediated REWORK: added T-004a logic-sync, fixed T-007 predicate, tier config, [CONST] fix"

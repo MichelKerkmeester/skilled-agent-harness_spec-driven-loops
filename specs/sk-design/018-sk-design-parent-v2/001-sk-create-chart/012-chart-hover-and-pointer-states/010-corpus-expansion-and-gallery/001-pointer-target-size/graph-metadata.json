@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`markable()` sets `data-mark` on the visible geometry, so the pointer target is the drawn mark and",
     "created_at": "2026-09-06T06:26:42Z",
-    "last_save_at": "2026-10-07T15:56:34.081Z",
+    "last_save_at": "2026-10-08T19:29:43.455Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a6b6a0190223b1d150076ebf53c08e3b220b8837cb213e35a4a938e72e85b92",
+    "source_fingerprint": "sha256:dd97bb1d77350a62c92c38233c5a5c602ad84c25537638c886948061aa90813b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea096b9c1e5ae93f9f1db5360962e053970333da05be3bd2f1614d63100a09e0",
+      "spec.md": "d6ff7d42dbb4996e3842584309c0a26ee24098577d24632d359d4e82dd7de125",
       "plan.md": "4103e6777f2441b5032327a44032a1c976e655a9f0278c651eb6d5f12bf5af98",
       "tasks.md": "422a27f3aa784ea6be7e39d4cdb08c97ec2fe502f362d493d820deba3c16df18",
       "implementation-summary.md": "a6daa3f8694aecd4f1f48a4533eababcd6d0dfb204aa5f7ffa98b46b8d8f1d2d"

@@ -141,7 +141,6 @@ Measure each capability against a labeled multi-worker fan-out finding set groun
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -196,6 +195,7 @@ Measure each capability against a labeled multi-worker fan-out finding set groun
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether the dedup should graduate ahead of or alongside the lag-ceiling and progress-heartbeat gauges, since all three landed in the same fan-out observability cluster and all three earned a graduate verdict on their own axis

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The packet carries one Style Reference, the stock it was derived from",
     "created_at": "2026-09-09T16:24:27Z",
-    "last_save_at": "2026-10-07T15:56:34.329Z",
+    "last_save_at": "2026-10-08T19:29:45.572Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30115e0639fa213e2bba6f0a88dc76385bf475054b54c15c4f32fe394bf435bd",
+    "source_fingerprint": "sha256:2647d3dc6983ba0e9552916ce5a820c55d91f7163d06c427a260bbcefe1fcc2a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c93fa6e6b2e8bb2a8a7631c7e14d81466c814d9301e398e5058427a1c5176cde",
+      "spec.md": "1e637d94a58e39faacbaf93846b512dfe12c7a2252d5db03611dccb1e805fc33",
       "plan.md": "34b5e223983444134d63b8608dc237668aea5270c261aa8c23aa2ca255f1550e",
       "tasks.md": "a7dc51c2023efdb4f8d623461b969c41f946537983f00b255f38100126d75670",
       "implementation-summary.md": "b9de0e66d16ae250de9518692445143632c3e2a4d6d693dfa2de971ce5c3b165"

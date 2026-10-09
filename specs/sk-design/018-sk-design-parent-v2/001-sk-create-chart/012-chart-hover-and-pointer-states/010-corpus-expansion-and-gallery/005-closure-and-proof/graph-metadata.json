@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Four children changed the corpus from twenty-one forms with placeholder figures to twenty-six with",
     "created_at": "2026-09-06T06:26:46Z",
-    "last_save_at": "2026-10-07T15:56:34.152Z",
+    "last_save_at": "2026-10-08T19:29:43.838Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,10 +199,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:599b87df3cc61fc415fa0b4b9423316c2ee971972f26e13ead30c9586665425f",
+    "source_fingerprint": "sha256:2ebf7c26e9834342dcb6e026ce9783e70c95fe0a8278ce3938686d32e4dd71d9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c64230a3891f9252748f110e10912756749973e7c65007c5efa08a50e9b4596d",
+      "spec.md": "2ba987545e5a3f137bf81201a5daa798faf06da494e70c0f64434a74ef3ff6c4",
       "plan.md": "b1475ac8cac9a65fddefe73fb6de0fe76f82c6c2ea370e22ce63ecfdcc18c98d",
       "tasks.md": "0c05334fe7af85c8713bf95c01c3ed12a7b25eb1f0761c6af7b221b9ad4fe381",
       "implementation-summary.md": "cd9e66f7ab90dee805e724ab02639798a6f219bd074b9c8b2e964da328bc9f87"

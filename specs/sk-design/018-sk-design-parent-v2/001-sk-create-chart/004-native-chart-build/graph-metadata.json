@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The reference implementation is PolyForm Noncommercial and this repository is MIT and public",
     "created_at": "2026-09-02T07:56:50Z",
-    "last_save_at": "2026-10-07T12:55:06.282Z",
+    "last_save_at": "2026-10-08T19:29:39.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:48531b0034d53a91b93c95c619c8411a63184729c6c41c68ce2f175ae9b2dff6",
+    "source_fingerprint": "sha256:92ac29f183f492ac58d57a893c8504700c82e827f61a9035f216f877b9d70d20",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c0504b6bf5cd8caf064208a8c59d1c02202f02123a7e2fddb6839e890848df37",
+      "spec.md": "79380be20916e361f5edc0aaedb71e36402b942875a438668e6722add8b1a368",
       "plan.md": "954212c12349dc7448c4d36367ac1a3571a70894c6c7260576da1ef9e061037e",
       "tasks.md": "7293edcd1830cf994003c44c402c9ba875d2dcf664057a3dbe9b0053bd0c9538",
       "decision-record.md": "8231df66d205cd0d29bdf09468c3eb2040188b70123a1ad3af94a81ba8fcbf7c",

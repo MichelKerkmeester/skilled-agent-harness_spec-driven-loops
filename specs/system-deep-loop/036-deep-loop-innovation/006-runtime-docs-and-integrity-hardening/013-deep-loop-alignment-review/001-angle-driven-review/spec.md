@@ -161,7 +161,6 @@ Each lane runs five iterations. Its label names its angle block below: lane `wav
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -227,6 +226,7 @@ Each lane runs five iterations. Its label names its angle block below: lane `wav
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

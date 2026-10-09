@@ -123,6 +123,7 @@ Run every stress suite and as many manual-testing-playbook scenarios as feasible
 ## 7. OPEN QUESTIONS
 
 None. The one decision (salvage now versus re-run) was answered by the operator: salvage now, no re-run.
+<!-- /ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ### Non-Functional Requirements Detail
@@ -148,4 +149,3 @@ None. The one decision (salvage now versus re-run) was answered by the operator:
 The validation is operationally complex because the daemons resolve their workspace from cwd and pin a global socket, so naive sandboxing leaks back to the real repo. The isolation recipe (per-clone socket and DB dirs committed in each clone, plus killing the orphaned global daemon) is what made the run safe. Scoring is the other cost: each run is read critically against expected signals rather than by its verdict string.
 <!-- /ANCHOR:complexity -->
 
-<!-- /ANCHOR:questions -->

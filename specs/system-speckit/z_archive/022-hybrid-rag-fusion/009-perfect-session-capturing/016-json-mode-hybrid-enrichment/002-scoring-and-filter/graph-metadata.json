@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The extractors quality scorer (extractors/quality-scorer.ts:113-205) assigns bonuses of +0.05 for message count, +0.05 for tool usage, and +0.10 for decisions present — a maximum of +0.20",
     "created_at": "2026-04-12T09:02:50.278Z",
-    "last_save_at": "2026-10-07T20:26:41.939Z",
+    "last_save_at": "2026-10-08T20:06:06.067Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:01f274d4ed0ea408d44fd91a152fa4e33b38cfc141950f6d486392516e52dbef",
+    "source_fingerprint": "sha256:11a8b9e624e778f89c2ca967d112ca21427296d2b0518630a18da05d878b0c71",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9926c33dbf70b2befde453af81dcca313dda817a7b8e296a33960e1c7732870f",
+      "spec.md": "897a59ac08f53177152c73986582345c8fa95e426d4ee8f1cd75d30e2f377dac",
       "plan.md": "993dd042968ec9f8796c02ae50c2aeb5ac745b99f2426dabd05913a8d6eb89d1",
       "tasks.md": "1664292129f6b2b403975819d1ffccac7769b073ee2cf6e197824aabc7eccea0",
       "decision-record.md": "06569dcf12938eaf42bb8577ff3af8f1ed35b18839527a5f6664a7c58f13a328",

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Phase 003 of the numbered-snippet-filename deprecation. Author one deterministic rename engine, denumber-snippet-filenames.mjs, adapted from the proven 108 denumber-snippets.cjs: enumerate exactly the 111 in-scope per-scenario snippet files across 9 skill packets (excluding the 20 legitimate system-spec-kit single-digit files), abort on any collision before writing, derive and inject a stage: routing|holdout|negative frontmatter field for the 63 files that encode that grouping in their filename, and sweep the 3 hub-routing root-index tables that cite the old filenames.",
     "created_at": "2026-07-11T14:47:54.428Z",
-    "last_save_at": "2026-10-07T18:12:32.255Z",
+    "last_save_at": "2026-10-08T20:04:35.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd476280a596691fbddf759c997b8cb2813dfcdd8c340fce89ee2f0d519226e2",
+    "source_fingerprint": "sha256:43e88e2600748195fc02b75c46d83cec635aafab898e33c6e2ea2dc5da184456",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9ad8945a77d36037dd2a5e2a8b7f88d66ac0c505340fb52625845bb93485537c",
+      "spec.md": "b1d347534de5dd56e6f6780dded4f8152d2d8cd41d67dead505c52f0b4c91656",
       "plan.md": "244dd45bfd28fd44f707e5644760b87f87f4e42f9a4e63267784f58c1bcea8c3",
       "tasks.md": "e4f221c542a867d5ad90c91e832a475792b6ba39f146aae26f013433e4a3b8a8",
       "implementation-summary.md": "dddeabcfb92ae4670498e7c51f00dbf46581fd77407c8d08b9453fdd38f2a2cf"

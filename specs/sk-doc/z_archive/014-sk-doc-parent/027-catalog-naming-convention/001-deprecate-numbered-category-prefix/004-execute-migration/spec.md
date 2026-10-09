@@ -84,7 +84,7 @@ rewritten; 115 frontmatter `category:` values updated.
 - *Depends on* Phase 002 (tolerant classifier, ADR-002) and Phase 003 (the reviewed script).
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 Family batching granularity (per-skill vs per-parent-hub) is decided at run time from the dry-run report size.
 <!-- /ANCHOR:questions -->

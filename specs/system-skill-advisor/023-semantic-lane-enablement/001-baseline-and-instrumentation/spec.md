@@ -183,7 +183,6 @@ argue from measurement rather than from a default.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -240,6 +239,7 @@ level 2 because its closure depends on acceptance criteria, which is a level 2 d
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether any existing run scores real embeddings rather than fixture vectors. REQ-006 answers it by naming the run or recording its absence, and phase 004 cannot claim safety from the ratchet until that answer exists.

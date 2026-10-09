@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Four Jev features have a measured keep verdict: the citation drift check (032), the injection screen (035, 84 against 68 of 90), the reviewer verdict fallback (025, 24 against 8 of 24) and the hallucination grader (024, 55 against 47 of 56)",
     "created_at": "2026-10-04T20:12:18Z",
-    "last_save_at": "2026-10-07T15:56:08.503Z",
+    "last_save_at": "2026-10-08T19:29:27.810Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5e62c202705695f47f215d4c707fe5e96785731b4f63d4504e964da42a41a0e1",
+    "source_fingerprint": "sha256:46cae2b74e1d96aa58938a3a5b4ac26b5f311565550384abd4400704ad6b04e9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "70dc04a3482b53886b1206f4b3ef7ceb823ac8291c19b7862944bc55a38591ea",
+      "spec.md": "116b3de0ec41af0213c3e498d103a1ee797284e6f97fadb1b6d7a2ab1845062a",
       "plan.md": "6ac801ed45bfb2d06d4314ebdb99a992ef97a2ce3a53790306dea2c4e230aab8",
       "tasks.md": "f328cb897a56babf943ee72cd908fe576de4a93b42c45115c40b7c602e43e2c5",
       "implementation-summary.md": "148c46263b217010f55bd920d6084d6c1618ed0f1d7441c80fe6065d159f813e",

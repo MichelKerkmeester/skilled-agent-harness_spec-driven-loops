@@ -134,7 +134,6 @@ Decide, with a reproducible matrix against the live corpus, whether `SPECKIT_DET
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -188,6 +187,7 @@ Decide, with a reproducible matrix against the live corpus, whether `SPECKIT_DET
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether a future graduation pass should add a labeled-relevance axis, since this benchmark can show the ranking changes but not that the deterministic order is better

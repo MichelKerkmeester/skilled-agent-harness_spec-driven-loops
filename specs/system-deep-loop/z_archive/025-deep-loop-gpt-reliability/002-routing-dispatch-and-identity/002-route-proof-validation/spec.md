@@ -142,7 +142,6 @@ F23 (iteration_file signals), F24 (jsonl signals), F25 (delta signals), F26 (exe
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -194,6 +193,7 @@ F23 (iteration_file signals), F24 (jsonl signals), F25 (delta signals), F26 (exe
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None for phase 001. Future phases decide whether FIX-5 host hard identity is required after GPT smoke testing.

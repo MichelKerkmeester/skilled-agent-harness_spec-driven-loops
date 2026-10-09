@@ -150,7 +150,6 @@ AI-chosen spec-folder and phase slugs include a specific subject token describin
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -205,6 +204,7 @@ AI-chosen spec-folder and phase slugs include a specific subject token describin
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 All four open questions from the original plan were resolved before exiting plan mode:

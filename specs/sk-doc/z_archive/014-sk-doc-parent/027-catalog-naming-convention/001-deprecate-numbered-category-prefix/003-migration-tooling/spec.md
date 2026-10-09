@@ -105,8 +105,8 @@ the tolerant validator + no-new-numbers guard (Phase 002); the recursive re-vali
   the script authors against the settled target shape and every intermediate commit still validates.
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 None. Script location is proposed in plan.md §3 (packet-local `scripts/`), reversible to the sk-doc scripts area
 if review prefers it.
 <!-- /ANCHOR:questions -->

@@ -108,7 +108,6 @@ Bring every Cursor `.mjs` hook file this packet owns into P0 compliance with `co
 - **Renumbering `hooks.md`'s sections breaking an external cross-reference.** Mitigation: grepped the file for internal self-references to section numbers before renumbering; none exist beyond the sections renumbered here.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - **NFR-C01**: The new `hooks.md` Cursor section matches the existing Claude section's column set (Event/Matcher/Command/Timeout/Purpose) exactly, so a reader comparing runtimes doesn't hit a shape mismatch.
 
@@ -133,6 +132,7 @@ Bring every Cursor `.mjs` hook file this packet owns into P0 compliance with `co
 - As the operator, I want every Cursor hook file to look and read like the rest of this codebase's `.opencode/` system code, so a future contributor auditing hook code doesn't find an inconsistent style island.
 - As a maintainer, I want the canonical cross-runtime hooks reference to actually list Cursor, so "which hooks does this repo have" has one true source that doesn't silently omit an entire runtime.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 None — this was a direct standards-alignment audit against an already-documented, already-authoritative surface.
 <!-- /ANCHOR:questions -->

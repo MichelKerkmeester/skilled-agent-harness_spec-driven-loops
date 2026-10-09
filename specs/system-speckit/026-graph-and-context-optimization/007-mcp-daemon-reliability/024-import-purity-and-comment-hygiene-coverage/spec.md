@@ -132,7 +132,6 @@ Make importing the code-index launcher side-effect-free, and close the high-sign
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -187,6 +186,7 @@ Make importing the code-index launcher side-effect-free, and close the high-sign
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None outstanding; the F-notation exclusion and deferred pre-commit wiring are resolved decisions recorded in scope.

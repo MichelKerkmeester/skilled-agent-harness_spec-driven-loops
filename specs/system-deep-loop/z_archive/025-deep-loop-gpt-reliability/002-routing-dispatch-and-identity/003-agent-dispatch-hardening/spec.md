@@ -135,7 +135,6 @@ F5 (form factor = both), F8 (ai-council `mode: all` dual-reach), F22 (concrete d
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -188,6 +187,7 @@ F5 (form factor = both), F8 (ai-council `mode: all` dual-reach), F22 (concrete d
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None for phase 002. Host-runtime hard identity remains parked for phase 005 trigger evaluation.

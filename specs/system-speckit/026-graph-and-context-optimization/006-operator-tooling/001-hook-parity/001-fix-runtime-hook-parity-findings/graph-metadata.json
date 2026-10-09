@@ -78,10 +78,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "tests/session-resume.vitest.ts",
-      ".github/hooks/scripts/session-start.sh",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -112,24 +109,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "session-resume.vitest.ts",
-        "kind": "test",
-        "path": "tests/session-resume.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-start.sh",
-        "kind": "script",
-        "path": ".github/hooks/scripts/session-start.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -227,11 +206,29 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Checks Evaluation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 2026-04-21 hook parity review found 10 runtime-hook issues",
     "created_at": "2026-04-21T10:15:00.000Z",
-    "last_save_at": "2026-08-30T15:39:32.060Z",
+    "last_save_at": "2026-10-08T19:30:53.823Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -241,10 +238,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b776bd619379b27f7ee602902aed4ce6f79df76515b87b91c01fb3947e5be673",
+    "source_fingerprint": "sha256:12512f4281755737d7b2203b4e116b492399363c2133ddbc43c0c360f34cd72d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "66340abf7f7422acf87f1f3ec419d3352498ecac16a4f3d35297fb61534ab913",
+      "spec.md": "f2a24e924b258c5d8419725b1cbdf31b4e1c67dcc2b6270de9001626dbb704d3",
       "plan.md": "dc4868c734899cb06ae8e6f119a15da0a9bee79524cad954a04370cfc98f15c4",
       "tasks.md": "07d5ef692ab048eba108394171bb8ebd89838b321e3ca6cfef368b7e744f8495",
       "decision-record.md": "c986951cb76556ffa84a597911e5380982c04192054c39f6d9e831bdbb772b37",

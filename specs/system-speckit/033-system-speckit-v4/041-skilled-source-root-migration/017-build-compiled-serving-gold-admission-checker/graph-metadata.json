@@ -51,7 +51,6 @@
       ".skilled/bin/lib/compiled-route-admission.cjs",
       ".skilled/bin/tests/compiled-route-admission.test.cjs",
       ".github/workflows/routing-registry-drift.yml",
-      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
       "baseline/admission-report.json"
     ],
@@ -108,12 +107,6 @@
         "name": "routing-registry-drift.yml",
         "kind": "config",
         "path": ".github/workflows/routing-registry-drift.yml",
-        "source": "derived"
-      },
-      {
-        "name": "frozen-scorer-contract.cjs",
-        "kind": "file",
-        "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs",
         "source": "derived"
       },
       {
@@ -199,11 +192,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A hub serves compiled routing only after it earns the `compiled-serving` verdict, and the only tool that measured it was retired",
     "created_at": "2026-09-19T05:30:03Z",
-    "last_save_at": "2026-09-19T06:44:55.902Z",
+    "last_save_at": "2026-10-08T19:31:30.278Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +212,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d2a14800803b526a0d2906deb65cfa2b4dfd7c4fac7f708ce9f1f9ffb93c7620",
+    "source_fingerprint": "sha256:e2ed59934cbaafbe0e6195018611a76a45e1e1b39aa28652cefb727db47fd57e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e58937eb3aea4abd0e4b7d559fb33a391f4c691c11c29cefaa33af11f47a1333",
+      "spec.md": "89d4e38f143620728f0f00e4c802ede224e322dffcdaddfb0d23194c92df05aa",
       "plan.md": "50aa30713d4bec4c3f5689dc7615d2208cbd81762d0f102bf5b29aac85cc9641",
       "tasks.md": "b1f10c84014cf4b52129b325e15b66c88c5a3753950824ca71de67d56bca758b",
       "implementation-summary.md": "a8e2225ea16cacb9553483d8a06e47890b2611c63babbcc902be22bc1c56d9c0"

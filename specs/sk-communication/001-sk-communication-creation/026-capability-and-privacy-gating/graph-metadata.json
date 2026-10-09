@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The projection seams built in Phases 019-025 gate on enablement and fail open to the byte-exact original on error, but none of them yet consult the compatibility doctor before projecting",
     "created_at": "2026-08-14T05:50:33.697Z",
-    "last_save_at": "2026-10-07T15:56:22.364Z",
+    "last_save_at": "2026-10-08T19:29:35.258Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f50ee3dad9d5990db2c043d15b25ffaa1bb3bfe11f17ebc34ae39cf53f91d8b",
+    "source_fingerprint": "sha256:0c768b46ac16dfe6a57a231f6bb67f1c5d7eff088476db5b6a83986f5e9c8b56",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bcfafccf30d99d616c8a25c719be75348b5fb10d482ce4af982ed23a38ee3dda",
+      "spec.md": "786ce0c91aaae0c29cd8e6da10ee9d46a6c3fefd35a9fe8e764753c03bf66493",
       "plan.md": "25ab9fda96a32acc8e3a1938d9f074566d92519d66875b1413a478bf96935a99",
       "tasks.md": "bcceeec61c7b1bffc516dc50d8af18e10aac39f332e8356e4d4512df20624c85",
       "decision-record.md": "b4aff5f1458e2c310105036190c974dc49e6446ecca99eb0b13d85cde2021cc5",

@@ -147,7 +147,6 @@ A post-restore derived-rebuild failure becomes self-healing: a durable `.needs-r
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -219,6 +218,7 @@ A post-restore derived-rebuild failure becomes self-healing: a durable `.needs-r
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - The follow-up research recommended DEFERRING this work, but the operator explicitly authorized implementing it now alongside packet 004; this packet is therefore active by operator decision rather than by the research recommendation.

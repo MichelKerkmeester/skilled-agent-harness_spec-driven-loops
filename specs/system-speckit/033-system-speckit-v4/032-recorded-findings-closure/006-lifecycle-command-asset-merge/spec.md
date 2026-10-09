@@ -147,7 +147,6 @@ Each lifecycle command's contract lives in one file with one execution-mode bran
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -202,6 +201,7 @@ Each lifecycle command's contract lives in one file with one execution-mode bran
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The merge shape (one asset, an execution-mode branch, a declared checkpoint list) is the literal recommendation recorded in `F3-13`.

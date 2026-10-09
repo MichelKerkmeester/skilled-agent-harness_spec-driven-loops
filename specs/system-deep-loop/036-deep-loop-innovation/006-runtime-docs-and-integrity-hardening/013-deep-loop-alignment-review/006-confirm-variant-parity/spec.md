@@ -139,7 +139,6 @@ Every step an auto variant runs is either present in its confirm twin or named i
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -188,6 +187,7 @@ Every step an auto variant runs is either present in its confirm twin or named i
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

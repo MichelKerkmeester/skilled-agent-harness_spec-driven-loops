@@ -115,7 +115,6 @@ Remove all 7 bare devin-scoped Grok ids from every allowlist, table, example, an
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -163,6 +162,7 @@ Remove all 7 bare devin-scoped Grok ids from every allowlist, table, example, an
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None. All decisions were pre-approved in the task brief.

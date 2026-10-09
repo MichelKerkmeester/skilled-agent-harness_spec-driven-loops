@@ -131,7 +131,6 @@ Every audit finding (P0/P1/P2) is fixed so create-benchmark, its deep-loop consu
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -168,6 +167,7 @@ Every audit finding (P0/P1/P2) is fixed so create-benchmark, its deep-loop consu
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open; the P0 direction and spec folder were operator-resolved.

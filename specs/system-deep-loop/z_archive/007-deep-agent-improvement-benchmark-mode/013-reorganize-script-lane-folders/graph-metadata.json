@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The skill now exposes two co-equal lanes (agent-improvement and model-benchmark) in prose, and phases 010-012 split references, assets, the agent note, the catalog, and the advisor by lane",
     "created_at": "2026-05-29T08:26:20Z",
-    "last_save_at": "2026-08-30T15:39:23.720Z",
+    "last_save_at": "2026-10-08T19:30:29.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:83af1c395962fc5307e0febad9bdaff70664c0d1f4c88f4c44c292e2da262fcb",
+    "source_fingerprint": "sha256:7b9a6838a6cb757f3b73cde134a39162e2b3dfa433950d35b0a0824e0b2e21a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9e8e2f9d130dec50c3ab127a8b30b2b0452cae8e75badbd85b34db598ef369b9",
+      "spec.md": "9369e6928bf14d8928b4d022f1ea2668cc93cad8ea2294448ff18972f5eb0f77",
       "plan.md": "ba835d0df6e1849afb94ba7b2becad41bfd8b06b1bdd5b0fa1801d09b5af7f30",
       "tasks.md": "8626de8c9e6a30fb19eb94543f6ddae07547ded752e8430df881cfeeed246844",
       "decision-record.md": "2c80eba0c6194fafeedacac99a0e3bd6b4383262cd43663781fc301ddd6c7104",

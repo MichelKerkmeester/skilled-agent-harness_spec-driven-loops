@@ -160,7 +160,6 @@ Ship the result-shaping retention/recall-diversity candidates faithful to the 02
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -215,6 +214,7 @@ Ship the result-shaping retention/recall-diversity candidates faithful to the 02
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - C7-A cap key: confirm `spec_folder` is the right primary grain vs `sessionId` (the natural "one conversation dominates" unit here is a spec-folder, aionforge caps episodes, which internal lacks).

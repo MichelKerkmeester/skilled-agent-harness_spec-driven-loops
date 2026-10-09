@@ -141,7 +141,6 @@ Produce the evidence that lets phase 002 run the four decision tests against som
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -196,6 +195,7 @@ Produce the evidence that lets phase 002 run the four decision tests against som
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Is the observed failure the operator describes reproducible in the repository's own history, or is it a preference? The restraint test turns on this.

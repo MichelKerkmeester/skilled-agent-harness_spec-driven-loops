@@ -183,7 +183,6 @@ The 13 Python validators are `validate_document.py`, `quick_validate.py`, `check
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -241,6 +240,7 @@ The 13 Python validators are `validate_document.py`, `quick_validate.py`, `check
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator chose one switch per family, the environment or `hook-flags.env` as the place to set them, and local scope only.

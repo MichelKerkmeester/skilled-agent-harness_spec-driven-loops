@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`deep-alignment` sequences its v1 authorities by determinism (sk-doc, sk-git, sk-design, then sk-code last) because sk-code conformance is the hardest to automate: \"does this code follow the surface's stack patterns\" is a judgment call, not a fixed grammar",
     "created_at": "2026-07-11T06:17:04.546Z",
-    "last_save_at": "2026-10-07T18:15:11.997Z",
+    "last_save_at": "2026-10-08T19:30:34.120Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f4442eda45c1676b71a91b926cf95f615a03ea325b30fff2972774d4cfe1cf5",
+    "source_fingerprint": "sha256:64841135daf23c63e208bbd86f36722f4c09c8b2e3067089a300af63a4d01b01",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "193fefddafa9b581823cdbb8bab32c8751d53775694cf197ac6803bcbc2e7343",
+      "spec.md": "a32d869ef9c0a0ad4c5fc73e6b9afb6fafc7b9bb54c72af2795295c690bcb199",
       "plan.md": "0bb587ce8f2bb31c11e68cf95f9686d051f44b9eb236949e3f64c4b9ef5040ef",
       "tasks.md": "de015642495c9a8c0168d601143e2937b9ec83a4124c5874089ed99adb1a546f",
       "implementation-summary.md": "0d7d8730a1c1f298cdf1f94935d8fb8f87d971556bf9c00eda099fbe9a34a3b4"

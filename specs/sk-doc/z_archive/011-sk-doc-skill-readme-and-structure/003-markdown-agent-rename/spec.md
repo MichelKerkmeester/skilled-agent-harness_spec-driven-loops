@@ -133,7 +133,6 @@ Rename the agent identity from create to markdown without changing create comman
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -188,6 +187,7 @@ Rename the agent identity from create to markdown without changing create comman
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None blocking planning.

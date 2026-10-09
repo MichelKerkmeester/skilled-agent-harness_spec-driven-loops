@@ -158,7 +158,6 @@ Implement the 5 genuinely-open reducer behaviors with vitest coverage, aligning 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -196,6 +195,7 @@ Implement the 5 genuinely-open reducer behaviors with vitest coverage, aligning 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Operator chose full-implementation; by-design dispositions confirmed during investigation.

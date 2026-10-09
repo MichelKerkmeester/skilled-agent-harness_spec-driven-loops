@@ -153,7 +153,6 @@ Goal-authoring requests reach sk-create-goal through both sk-doc routing stages 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -205,6 +204,7 @@ Goal-authoring requests reach sk-create-goal through both sk-doc routing stages 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which exact authoring-only aliases select sk-doc at stage one and sk-create-goal at stage two while all six session-goal and host-command probes remain outside the mode? Settle the candidate set by replay, not by phrase intuition.

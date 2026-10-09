@@ -147,7 +147,6 @@ Each defect is fixed in the file that owns it, with tests that fail on the old b
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -202,6 +201,7 @@ Each defect is fixed in the file that owns it, with tests that fail on the old b
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator chose each fix on 2026-10-01.

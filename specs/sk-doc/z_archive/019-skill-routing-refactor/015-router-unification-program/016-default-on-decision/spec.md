@@ -173,7 +173,6 @@ Record the decision that default-on is a Phase-4 *outcome*, not a switch, and sp
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Reversibility
@@ -235,6 +234,7 @@ Record the decision that default-on is a Phase-4 *outcome*, not a switch, and sp
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **Q1 (resolved).** The ruling is settled: adopt the phased path (default-on as a staged P4 outcome after P0–P3), decided on the analysis and reversible. An operator override to flip `SPECKIT_COMPILED_ROUTING` on now remains available but is not blocking; the steelman for flipping now is recorded in `decision-record.md` ("flip it when compiled does something legacy can't").

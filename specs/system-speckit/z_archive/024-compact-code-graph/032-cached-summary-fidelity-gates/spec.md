@@ -163,7 +163,6 @@ Open the consumer-side cached-summary packet in the train without shifting start
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -231,6 +230,7 @@ As a maintainer, I want stale or lossy summaries rejected so bootstrap and live 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Which fidelity checks should be mandatory for the first packet: transcript identity, coverage ratio, cache age, or all of them together?

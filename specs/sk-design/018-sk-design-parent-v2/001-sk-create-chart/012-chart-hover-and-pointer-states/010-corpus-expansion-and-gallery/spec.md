@@ -175,7 +175,6 @@ join the catalogue, and saying so is a result rather than a failure.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -241,6 +240,7 @@ join the catalogue, and saying so is a result rather than a failure.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

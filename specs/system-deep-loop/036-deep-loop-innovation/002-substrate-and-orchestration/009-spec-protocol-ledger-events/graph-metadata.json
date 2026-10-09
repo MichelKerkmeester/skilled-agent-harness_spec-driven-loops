@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The spec-check protocol (`system-deep-loop/deep-research/references/protocol/spec-check-protocol.md` §6) requires every spec write a research run makes to reach the state log as a typed audit row, and the research workflows ask for seven such rows",
     "created_at": "2026-09-20T08:33:40.541Z",
-    "last_save_at": "2026-10-03T15:12:14.645Z",
+    "last_save_at": "2026-10-08T19:30:18.677Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b59e61cdaf1a8b3bcdbc002598b85d9a3b285d06b992e65dd89f36d7fc200a52",
+    "source_fingerprint": "sha256:95e0e760d283e4789a1f66bc3524764dbd8f37a2a0693917106b7d1a7589cbc6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "49790d180de68d1cb83862aaa90ee1ac6f7c78c4816509cb1df3ab0def66d556",
+      "spec.md": "bfeb8e5ff648e05fcdf94e3aca10ee01ac7a862c78d13c88d19a878990e08755",
       "plan.md": "eef622dc9a3d47262be77ea445c3c43c1179f370d8f621c230fc361a18ce0726",
       "tasks.md": "993aa83e45e70af08fb167cbddbfe05628b3524cb6bae3dca45767559262e035",
       "implementation-summary.md": "d75e48f60daa2d7fbc6989289fec18e75b3568ea5c6d370ba690c79867452c92"

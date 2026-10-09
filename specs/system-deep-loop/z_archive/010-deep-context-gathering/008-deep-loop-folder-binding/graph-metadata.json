@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The shared `:auto`/`:confirm` setup contract (`automodecontract.md`) resolves `specfolder` only from a `--spec-folder` flag, a `PRE-BOUND` marker, or an interactive choice — it never extracts a spec-folder path the user names inline in the positional scope",
     "created_at": "2026-06-07T10:12:50Z",
-    "last_save_at": "2026-10-07T18:14:39.009Z",
+    "last_save_at": "2026-10-08T19:30:30.418Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d08085338a2cbb2c51b60da9bf53d03d0bb05df4d17ad35fbd6fbc566841af56",
+    "source_fingerprint": "sha256:f1a2be234955bcae878aef2b2116ccbb147e905cb8465bbfaead827233cc5034",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e4d3a5735182973ac4ea5404315ba9786f99238b0f8fac310e142bfcb1c7a280",
+      "spec.md": "bb0f59433035215c602ba38412062e4cdbcc1730699df2d13af4f4a272b9f3cc",
       "plan.md": "09a8cc94bc3f8c144a04c79f0a2c3d6311a77075557d6c95cb66f71bbce547d1",
       "tasks.md": "47aa105ac8cf346e4c8a429a35100cce442efdb17102970dd342a80e1c746e99",
       "implementation-summary.md": "1a1855c73aed3f7ba6bd496b0ab3b4eb555faa503bf3b3ad7e31aef4a15cf2d2"

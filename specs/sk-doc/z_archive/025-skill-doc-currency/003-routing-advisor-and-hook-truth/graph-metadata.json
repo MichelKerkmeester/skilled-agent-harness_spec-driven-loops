@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Wrong gates",
     "created_at": "2026-07-30T19:29:16.978Z",
-    "last_save_at": "2026-10-07T21:19:42.785Z",
+    "last_save_at": "2026-10-08T19:30:12.252Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac688565f016634a1eb9b4a2d29a88518accfa0444bd67e5a0a18f3114ee7b3b",
+    "source_fingerprint": "sha256:2d06b150fdf07f66d0b2647cd6e8f89a42a14a41718ea644c8a4063043183997",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8293f85f7bdec6a98297fae718b8dcdca9d7472a0920638443d35e8bd78a33d7",
+      "spec.md": "8875cf2d49b88507b3c7640eba9ddbe40bfb235ffe9f4f77e4d08a0f80eb5be7",
       "plan.md": "1f112bc866bbc6e00359128eec8cc84dc594dc994498742ce0caa778d90e0f40",
       "tasks.md": "e0c4a9db87127a10956bf3290b1808d34382d4effeef56ce2a883c3d3931d675",
       "decision-record.md": "e8c6aa4ffdd9a26e468f8bc405a315016f2f7830aab963ce8f20bfad715385f4",

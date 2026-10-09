@@ -141,7 +141,6 @@ Write exactly 10 new stress tests — one per P0 feature — and confirm all 10 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -227,6 +226,7 @@ Write exactly 10 new stress tests — one per P0 feature — and confirm all 10 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None at scaffold time. P1/P2 follow-on work tracked under release-readiness backlog.

@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The synthesis.md from 003 lists winning prompt patterns, but they live in eval-loop packet artifacts — invisible to future cli-devin dispatches",
     "created_at": "2026-05-16T19:10:00Z",
-    "last_save_at": "2026-08-30T15:39:08.511Z",
+    "last_save_at": "2026-10-08T19:29:11.828Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e737bbf23e02323e69400868f2f0b3fcb00d639db91e0d5a0148b6d01589fdcb",
+    "source_fingerprint": "sha256:fd86458a300f02a785bf6ff7792edc280ab1685dc248445b589b8eb3045ba63f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c59c7ba9671e6eff315802885bb1eddd8c1995508a7582244f9f90067175c03d",
+      "spec.md": "2a8a4e614bd4168af34005af7557b95dd507fe50925726f0ced8f419b3feb929",
       "plan.md": "852d0d89e08a2eaf28f8fccf95188223868a37ab727129457cad79170ae86b68",
       "tasks.md": "acc82360ddaa3afcb7369cb9e127a96fc987101dc23c04dea1fe32609a8e6fe4",
       "decision-record.md": "cc555b105abe49cbf76ab4995650b2cda436f30205384d1354b71bdfce054bc8",

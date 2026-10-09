@@ -143,7 +143,6 @@ Give the rule set a seventh file that binds the delegating posture: orchestrate 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -198,6 +197,7 @@ Give the rule set a seventh file that binds the delegating posture: orchestrate 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the rule prescribe a minimum number of independent lenses for a judgment call, or leave the count to the orchestrator? **Leaning: leave it, and bind the principle instead - a fixed number is the kind of unearned specificity `overengineering.md` exists to stop. Revisit in phase 4 if the research says otherwise.**

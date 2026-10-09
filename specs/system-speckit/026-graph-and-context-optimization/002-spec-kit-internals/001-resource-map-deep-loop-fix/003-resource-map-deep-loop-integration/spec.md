@@ -191,7 +191,6 @@ Auto-emit a filled `resource-map.md` at convergence for every `/deep:start-resea
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -246,6 +245,7 @@ Auto-emit a filled `resource-map.md` at convergence for every `/deep:start-resea
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the extractor live under `scripts/resource-map/` (new folder) or `scripts/memory/` alongside `generate-context.js`? Leaning toward a new dedicated folder for cohesion — confirm during plan phase.

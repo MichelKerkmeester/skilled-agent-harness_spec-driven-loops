@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The launcher's `log()` writes only to `process.stderr`",
     "created_at": "2026-06-07T16:30:00Z",
-    "last_save_at": "2026-08-30T15:39:32.483Z",
+    "last_save_at": "2026-10-08T19:30:56.550Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:429f4d2e35d510b94a3ad4c235324dbc013e56464de6974522bb8cc7bebbc59e",
+    "source_fingerprint": "sha256:8f8f751316098fcc6634592203d7e6de68ea9b7e8d2928537ba87bdd6e47a839",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4ec4ec6cd4eda10504585e9ea164002578bed4818c7f62b83fada315da2ebe16",
+      "spec.md": "9d14cf1b1dd56c944e02fe3616aa88ab03d2ad5f0b5019c57306674e9c992518",
       "plan.md": "23b757769d3ef628a3b1eeefb6641da797ee0f09f2d1e87e9bda0593aadee531",
       "tasks.md": "4f7b697062a614bdc502c629b9321e9b6d3e61dcf4d80da7921786095eb1f894",
       "implementation-summary.md": "f040c3d77dc4f308415514036ecf1725614bdd5e96403e8441c6540e68614c6f"

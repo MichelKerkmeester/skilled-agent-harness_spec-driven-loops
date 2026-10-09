@@ -227,7 +227,6 @@ Named by phase 1's synthesis (`../001-upgrade-research/research/research.md`); t
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -339,6 +338,7 @@ at it" is a verifiable claim, not an assertion nobody can check six months later
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether the fan and gap thresholds this document carries as piloted values (12px fan spacing,

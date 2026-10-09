@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`progress-single`, `unit-ring`, `unit-grid`, `independent-percentages`, `bar-columns` and `bar-rows` each print every value they encode beside the mark that carries it, so none of them needs a hover card",
     "created_at": "2026-09-05T16:03:55Z",
-    "last_save_at": "2026-10-07T15:56:27.532Z",
+    "last_save_at": "2026-10-08T19:29:41.313Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4dbec0698903015d029d5875d9c6165f25184087790da3081ce22961fc4db53f",
+    "source_fingerprint": "sha256:c30f0cd0ee8c6cf7dd8973230523834c014c5182189b221daa9eab0e7e0447b6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1c7aa10e3cac83ae983fa4998e31ad4756aa6b128437187cc1c633392d5f5a9f",
+      "spec.md": "0b2bdba6ab232e3220c2f8df990f551dff5c1e3a7f9fa0b6a894e340d2743157",
       "plan.md": "ec57213a8ec6c3221a91f41495c11ca4ba1437091255bd71024cae138a7639f1",
       "tasks.md": "e25d6f5cd4c902378ad1878579c3c265831c21df72cfd2e10659f7fbfc312754",
       "implementation-summary.md": "ecd84f44abf974f43bcd454070155127e94ad1c4a6e5cadd9e4657d661bb3be0"

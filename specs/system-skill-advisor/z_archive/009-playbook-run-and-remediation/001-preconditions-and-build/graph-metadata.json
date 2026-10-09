@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The playbook's §2 global preconditions require a current MCP server build, an unset `SPECKITSKILLADVISORHOOKDISABLED` flag, and evidence workspaces before any scenario can run",
     "created_at": "2026-05-26T20:10:23.387Z",
-    "last_save_at": "2026-10-07T18:15:48.847Z",
+    "last_save_at": "2026-10-08T19:30:38.841Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:661c051bcba9fc2238a44b8954cc9d7b0b0dde0b9e317910ca6f42bf22147baa",
+    "source_fingerprint": "sha256:efb43759bdd1d22a8aaf5796cc05f01de4635709b2dbd856ac6e9ffcc1e90c31",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "278c6fea3bbba5b040c7031abf84f38d569e9dd2969142eaadc15371d4154161",
+      "spec.md": "1b61a6bbd0be5feb201e1f07f38395ea0225414722a942e3c93d34409144be6f",
       "plan.md": "c1c5795d0df6acd5cf34fc4b8975d0106f199948ac2b9ba6ca8eaa8351336fa6",
       "tasks.md": "4c6fc6cae891471f98514fea140717e18ce62db51aa6121f7a0e2a0a07fd61c9",
       "implementation-summary.md": "66e98743773f83dda58663771aad7c886271815bdeca18844904ab29d1443ce6"

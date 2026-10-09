@@ -169,7 +169,6 @@ Give derived causal edges a content-addressed `derived_id = sha256(canonical-tri
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -234,6 +233,7 @@ Give derived causal edges a content-addressed `derived_id = sha256(canonical-tri
 **Acceptance Criteria**:
 1. Given an existing causal_edges table, When the migration runs, Then the `derived_id` column + unique index are added, derived rows are backfilled with zero legacy-UNIQUE rejections and manual edges are unchanged.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **Answered**: canonical field order is `kind`, `source_id`, `target_id`, `relation`, `source_anchor`, `target_anchor`, `source`, `rule_version`, with `kind = causal-edge`.

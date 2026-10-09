@@ -133,7 +133,6 @@ An agent can decide which Obsidian CLI to reach for, prove the official one will
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -188,6 +187,7 @@ An agent can decide which Obsidian CLI to reach for, prove the official one will
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None blocking. Decisions taken autonomously are recorded in `plan.md` §Decisions.

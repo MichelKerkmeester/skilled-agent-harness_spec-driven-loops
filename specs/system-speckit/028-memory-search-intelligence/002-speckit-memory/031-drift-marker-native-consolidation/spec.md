@@ -337,7 +337,6 @@ for the first time.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -415,6 +414,7 @@ for the first time.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **Staleness-threshold reconciliation mechanism**: should the fix (a) add an optional `staleMs`

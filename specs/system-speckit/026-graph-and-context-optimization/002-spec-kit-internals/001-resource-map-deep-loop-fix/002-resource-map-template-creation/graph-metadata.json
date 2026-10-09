@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Reviewers, auditors, and successor phases have no quick way to answer \"what files did this packet touch\" without reading implementation-summary end-to-end or diffing git",
     "created_at": "2026-04-24T00:00:00.000Z",
-    "last_save_at": "2026-10-07T19:50:23.598Z",
+    "last_save_at": "2026-10-08T19:30:45.421Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:b8f9a4cd968bccca09796190f2df3a376638dd8766032084d26113104c56657a",
+    "source_fingerprint": "sha256:cdfbd4581b7de51d47623463c01985421a66175c7ab0cc7c49dee6aed985197b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eafebe5b6ba55b28435da8eb07e65ae007019466d971211857e199e06d3b0ff4",
+      "spec.md": "7d7be9e9e2c4a08748c1236cb74dc8169fbac52f024ed597b042c3d763f7d300",
       "plan.md": "1796d5c291e52794752cd619e4971a67363ede295218543906fef6ebd5393861",
       "tasks.md": "c553325caea7a55593a8d5d1dc046634d1e6a6e91e99e073e6562f8347ee32f3",
       "implementation-summary.md": "249506c9e77342bafd110b87a4f48e460dc63718d7d8af7535c83101dab5a8c9",

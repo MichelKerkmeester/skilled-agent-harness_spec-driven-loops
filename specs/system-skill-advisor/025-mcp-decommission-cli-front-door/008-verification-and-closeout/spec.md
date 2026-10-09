@@ -158,7 +158,6 @@ Close the packet on evidence taken from the final state, or report exactly which
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -184,6 +183,7 @@ Gate phase. No new code. The complexity is refusing to close on evidence that wa
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None open at authoring time beyond those the parent spec records; anything found during planning is raised there.

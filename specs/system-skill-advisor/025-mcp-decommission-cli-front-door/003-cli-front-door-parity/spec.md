@@ -158,7 +158,6 @@ Turn a working CLI into a front door that callers can depend on, with parity pro
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -185,6 +184,7 @@ Build phase. The risk is not in writing the code but in the blast radius: the ad
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None open at authoring time beyond those the parent spec records; anything found during planning is raised there.

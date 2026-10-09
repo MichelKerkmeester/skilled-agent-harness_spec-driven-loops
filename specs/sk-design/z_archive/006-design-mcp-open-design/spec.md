@@ -159,7 +159,6 @@ For native wiring, the source's dry-run examples are `node "$OD_BIN" mcp install
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
@@ -219,6 +218,7 @@ For native wiring, the source's dry-run examples are `node "$OD_BIN" mcp install
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - What exact `OD_DATA_DIR` does the live daemon dry-run provide on a given machine?

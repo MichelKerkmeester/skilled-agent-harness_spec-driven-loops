@@ -46,7 +46,6 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".claude/settings.local.json",
       "tests/fixtures/hooks/session-stop-replay.jsonl",
       "hooks/claude/claude-transcript.ts"
     ],
@@ -79,12 +78,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Stop hook already captures token snapshots and now persists transcript identity plus cache-token carry-forward data, but that state remains stranded in per-session JSON files",
     "created_at": "2026-04-12T09:02:53.440Z",
-    "last_save_at": "2026-09-10T21:05:12.595Z",
+    "last_save_at": "2026-10-08T19:31:38.209Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +207,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e2df8222e7c2cb79750354d284b426e8cd9473de0dee457f796b1ac42dc885a9",
+    "source_fingerprint": "sha256:e47b025bd965a8f7d0fa6db789dc42c45b756d7a1e1ae75013f8768c8ac70560",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "30e479ade4a7a57bde1055c943f82c2131f6cc0e8298025d452491a19c46c5bf",
+      "spec.md": "364c84ac1291f4e07eaf891445dbb8743a92a1429d874c9f13df92fc454d6c5f",
       "plan.md": "42b1eed9cdd612d34a20df86668f3bb1145da4822ebd472a51575aa3ad4fb242",
       "tasks.md": "844e6fc849f832059f36cc77f96ac8e6293fe034615509d175014dda794a8231",
       "decision-record.md": "d4387c501440285668056de6dbfea64d265f5810025a50f0b32ec5061195ff85",

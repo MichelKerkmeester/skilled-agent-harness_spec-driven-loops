@@ -155,7 +155,6 @@ Overlapping sibling names flagged for review, not for automatic merge: `lib/sear
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -204,6 +203,7 @@ Overlapping sibling names flagged for review, not for automatic merge: `lib/sear
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - The `lib/hooks/` merge reaches `.skilled/plugins/`, outside this skill. Keep it in this packet, or drop it and only record it?

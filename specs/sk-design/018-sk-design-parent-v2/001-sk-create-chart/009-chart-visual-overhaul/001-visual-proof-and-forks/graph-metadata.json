@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Twenty templates share one visual register, so any chrome change is a twenty-file change",
     "created_at": "2026-09-03T08:02:24.685Z",
-    "last_save_at": "2026-10-07T12:55:06.806Z",
+    "last_save_at": "2026-10-08T19:29:39.788Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9438870708047b30371eb4e1ed38b8e113eac78b6cb4e9a29493812178302a7f",
+    "source_fingerprint": "sha256:85bbb4334e1d510da757df2b7d290c6b60835392f00b70b0a766b5bef2f0dbd6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ebb523114f2e9093370752d90af530720866bcb0a90591846b12b8c7f8b79462",
+      "spec.md": "1e8a94affad4d1152180b738f1dc42fabbfd5b29d915dce0493c6eba0d06acf1",
       "plan.md": "4a500ea40c8aa0f23180f14bdf58cabd3322295aacaeecd677325593d633d558",
       "tasks.md": "a39dec368e47c152d8c21b307c115eedffcb2624b1a6c628dd00a1bd199bcbed",
       "decision-record.md": "2438de7efc4ee5c7e188c283b67580c29e51782b6d85dde49a0d67e513535752",

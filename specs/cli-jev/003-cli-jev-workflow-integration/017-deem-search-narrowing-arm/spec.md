@@ -229,7 +229,6 @@ Source: the cross-family review's round 1 P2, which rated the code honest and as
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -286,6 +285,7 @@ Source: the cross-family review's round 1 P2, which rated the code honest and as
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Is the 10-point margin right? It is fixed here so the build cannot tune it. Changing it is an amendment to this spec before the first model run.

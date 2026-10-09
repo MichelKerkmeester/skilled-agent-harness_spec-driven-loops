@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`sk-ai-small-model` over-claims its scope",
     "created_at": "2026-07-15T10:52:29.617Z",
-    "last_save_at": "2026-10-07T18:13:53.272Z",
+    "last_save_at": "2026-10-08T20:53:41.752Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,11 +206,11 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d8ad384a28dcd75e07d7be3b40be42b782be77311557176ef729fe6ce0c78449",
+    "source_fingerprint": "sha256:6aef46cb61e164a9518e5aa4a266549b06bc4cf528914264113de7951695f50f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aa928c19d6385b9fae506ccc9315ce8b16db5524cb662cf28af24c6ace305008",
-      "plan.md": "52fbadd8dba8cde31f9129f004e2a9639cfdeee32d804a48ef681ef9ce1c4a70",
+      "plan.md": "759028abe2586df09cf46fb96c8b210546c3b07b8f325707641b73682d48f4c2",
       "tasks.md": "b14146aa75f2aca1bb11a83d14c0decc953581a3966bd7bdb8979a981dec162a",
       "decision-record.md": "bb33917218ddc02c6263a9c546c1a25b7c3c3ca23eba8bcd6cc4560899291768",
       "implementation-summary.md": "f6e3e589d1d37d021eaca30c126d95cb9b7352a83f20b250b5115587e47970ea"

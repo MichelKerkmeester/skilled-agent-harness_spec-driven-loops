@@ -120,7 +120,6 @@ Produce evidence-backed, buildable design recommendations — relay event schema
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -175,6 +174,7 @@ Produce evidence-backed, buildable design recommendations — relay event schema
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which live Pi RPC events authoritatively supply thinking summaries, plans, tool-input deltas, and file diffs?

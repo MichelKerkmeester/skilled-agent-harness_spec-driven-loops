@@ -201,7 +201,7 @@
     ],
     "causal_summary": "This repo enforces its scope-lock and quality discipline through 7 shared runtime-neutral guard cores, each with existing Claude and OpenCode transports",
     "created_at": "2026-07-24T06:43:36.045Z",
-    "last_save_at": "2026-10-07T18:11:37.033Z",
+    "last_save_at": "2026-10-08T19:29:15.692Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2bf6bfc3cf120bc17635eb2f5813f0449e1d9461bdbf2e76e70ad75204e1003a",
+    "source_fingerprint": "sha256:822c13829a4b763fa89ca017c2de38fc95dbe9c3ed8eb9c4bad03236c70aa5db",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "481865d01705adb858f737296be90300ced04d6eb70f06a3231e16ce7554235e",
+      "spec.md": "2cdcb8256dd36acce9aa594f0e8fd84f5bd3d8e213cc2218022cef13165690e3",
       "plan.md": "6b7a266948485953025429537e3980810ac96cb44a2e8d52abc9c43a965be5d2",
       "tasks.md": "1a5574f2bc61618ad34943ee6d03cfc33a0eed27de01fa2328bb249bf704f3ae",
       "decision-record.md": "195c521cda2ed4b8eae9ae7b8164f5b46edf4a78e15f18a2f6ee30b92d6f1695",

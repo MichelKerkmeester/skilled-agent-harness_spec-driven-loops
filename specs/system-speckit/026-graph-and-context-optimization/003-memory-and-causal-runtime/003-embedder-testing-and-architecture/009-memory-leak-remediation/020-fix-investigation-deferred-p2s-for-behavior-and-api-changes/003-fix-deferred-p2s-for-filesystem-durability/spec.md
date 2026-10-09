@@ -149,7 +149,6 @@ Close the bucket with bounded behavior changes, regression fixtures, and ADRs th
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -201,6 +200,7 @@ Close the bucket with bounded behavior changes, regression fixtures, and ADRs th
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. User specified scope, predecessor, verification, and no-commit constraint.

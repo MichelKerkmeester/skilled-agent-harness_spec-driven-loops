@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The three hubs carried six disagreeing version values across their routing artifacts: system-deep-loop spanned 1.0.1.0 to 3.0.0.0 across five files, sk-code's registry and router lagged its release by a minor version, and cli-external-orchestration split the registry/router pair that sk-code kept paired",
     "created_at": "2026-09-20T08:33:44.101Z",
-    "last_save_at": "2026-10-07T15:56:49.942Z",
+    "last_save_at": "2026-10-08T19:30:20.121Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b14b961fbf3c31a30220bf47ddc7456206c3ae88fe26de03c288268a45077d1",
+    "source_fingerprint": "sha256:e36f84fbc56387b5d62ce461b8ccc835def0ab32a955a51e468c771e426da494",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cf1b94eccf8967167658e0cd70d3c6b9b8223e9853b6ec0ec5cf07a1c7035035",
+      "spec.md": "a580d886457184fef074a05b0b50d876f169150ee36b625ba98ebc3629db1e62",
       "plan.md": "4492414b8697c8f32d6e2524155243a27158f94e98dcfc90938d555892f51901",
       "tasks.md": "cd703c3f7734be2cf142311cdb3c1e76dac85a992a678fae8a27cabc0def91be",
       "implementation-summary.md": "2c042d5e2edd00e019be4a3320e9d792134e101d84e3261b95f9ab2dd1cb391d"

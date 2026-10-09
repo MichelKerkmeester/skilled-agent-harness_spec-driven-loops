@@ -79,6 +79,7 @@ Ran the deterministic tool over all 14 catalog/playbook trees in the worktree; 0
 | Collisions | 0 |
 
 Gate command (per skill): `find .opencode/skills/<skill> -name '*.md' | grep -cE '/[0-9]{2,3}-[a-z][^/]*.md
+<!-- /ANCHOR:verification -->
 
 ---
 
@@ -88,7 +89,6 @@ Gate command (per skill): `find .opencode/skills/<skill> -name '*.md' | grep -cE
 1. Cross-tree + cross-skill references handled in the phase-006 sweep.
 <!-- /ANCHOR:limitations -->
 ` returned 0 for all 7. Rename manifests under `scratch/manifests/<skill>-<tree>/rename-manifest.json`. R-status: 548 R / 0 A / 0 D.
-<!-- /ANCHOR:verification -->
 
 ---
 

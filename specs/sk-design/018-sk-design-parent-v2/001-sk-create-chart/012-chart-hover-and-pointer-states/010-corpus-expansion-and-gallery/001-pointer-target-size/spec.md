@@ -135,7 +135,6 @@ inside one segment sits nearer another segment's centre.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -190,6 +189,7 @@ inside one segment sits nearer another segment's centre.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

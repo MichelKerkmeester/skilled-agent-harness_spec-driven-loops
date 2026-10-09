@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The canonical Node validator (`mcpserver/lib/validation/orchestrator.ts` `validatePlaceholders`) and the legacy shell rule (`scripts/rules/check-placeholders.sh`) disagree on spec-doc placeholder detection",
     "created_at": "2026-05-29T12:33:35Z",
-    "last_save_at": "2026-09-07T16:17:42.023Z",
+    "last_save_at": "2026-10-08T19:30:47.140Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d59c7f11fb76dfc4d8e474c26b427da89a34dc85034f296838c3928e5e7bab6",
+    "source_fingerprint": "sha256:ddb09f58f0864c0d0e6a5406e67d2b3ffad59f78cd9b9f6cf322ba19bc3d647c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4c6adb1359b77238bfbb7ac272a62064afe7710f5f092649899eae513307cfb7",
+      "spec.md": "b5bc0d9633db0ac9d44da6beba2d5dfc98a209e5db05479d82a020e4001d8838",
       "plan.md": "6290aeed0ee1c09061a1c5fa31f8b73d953163cb2d06515b6415e22f63a8caea",
       "tasks.md": "1aeb1b3740fe4df28dc1f0e3aa2db722664e1b3ccd90a424394e98ed57e05ff9",
       "implementation-summary.md": "1d9ec44aadb7f24e8a2c3008ad5d2c84679dffc7e932883d5f484066dd13fc52"

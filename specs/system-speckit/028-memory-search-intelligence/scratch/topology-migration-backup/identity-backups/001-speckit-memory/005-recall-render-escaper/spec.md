@@ -167,7 +167,6 @@ This sub-phase owns exactly six candidates from the 028/001 research. Each is de
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -223,6 +222,7 @@ This sub-phase owns exactly six candidates from the 028/001 research. Each is de
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **C8 threat-model strength**, is "who can write a memory" a real injection vector in this single-tenant store? Round O found the loop closes via `memory_save`, the `source_kind`-gated escaper is shipped regardless (more durable than the threat-model down-scope). [synthesis §C, the single-most-likely-wrong verdict.]

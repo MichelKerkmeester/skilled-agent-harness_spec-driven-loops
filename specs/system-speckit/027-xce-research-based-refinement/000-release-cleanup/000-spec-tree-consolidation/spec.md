@@ -135,7 +135,6 @@ Group every phase under six themed parent tracks (the `026` model), renumber chi
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -183,6 +182,7 @@ Group every phase under six themed parent tracks (the `026` model), renumber chi
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open; shape, numbering, and active-phase handling were settled before execution.

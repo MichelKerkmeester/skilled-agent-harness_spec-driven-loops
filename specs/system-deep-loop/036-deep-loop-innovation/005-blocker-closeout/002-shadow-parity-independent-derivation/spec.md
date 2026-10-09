@@ -216,7 +216,6 @@ Every ID above is assigned to this child and to no other. Locations are the anch
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -302,7 +301,7 @@ Every ID above is assigned to this child and to no other. Locations are the anch
 
 ---
 
-<!-- ANCHOR:open-questions -->
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 > **Resolved at close.** The build answered all three below. Each mode keeps a local independent oracle rather than a shared comparator core; the per-mode protected surface is proven by fold-mutation divergence tests plus the sibling full-surface fixtures; genuine field-fidelity gaps found during the build were fixed rather than deferred (see `implementation-summary.md`).
@@ -310,7 +309,6 @@ Every ID above is assigned to this child and to no other. Locations are the anch
 - Does `assertLegacyProjectionMatchesCurrentState` become the shared comparator core for all six modes, or does each mode keep a local oracle with a shared surface list? ADR-002 proposes the former; the alternative is recorded there.
 - What is the complete protected semantic surface per mode? Enumerating it is the first task of Phase 2 and must be reviewed before the comparators are written, or the rebuild reproduces the original defect at a different granularity.
 - Where the rebuilt harness reveals a genuine legacy/ledger divergence, does it block this child or open a finding against the owning mode? Recommended: open a finding, do not tune the comparator.
-<!-- /ANCHOR:open-questions -->
 <!-- /ANCHOR:questions -->
 
 ---

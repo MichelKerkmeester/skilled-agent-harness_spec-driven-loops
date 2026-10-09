@@ -143,7 +143,6 @@ Every one of the six findings carries a verdict and either confirmed evidence of
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -198,6 +197,7 @@ Every one of the six findings carries a verdict and either confirmed evidence of
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 <!-- /ANCHOR:questions -->

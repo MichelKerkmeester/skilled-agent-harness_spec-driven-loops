@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Protect non-negotiable content, validate rewritten candidates deterministically, and choose a safe presentation mode",
     "created_at": "2026-08-11T10:04:29Z",
-    "last_save_at": "2026-10-07T15:56:18.047Z",
+    "last_save_at": "2026-10-08T19:29:31.881Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:02b1c788b7f96975748ae09700207662b801339b28f3444aa6ab1bb47700b9c0",
+    "source_fingerprint": "sha256:3c1f5bc04e216c346ca991e5c60c13450e44f8eff8219dc71fdeb89a19d50f4d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d1f87a52f809c7c11c36ed9b951f70073c5be013c506075f15771f895cf37b0a",
+      "spec.md": "3ed26a96f22fca691bce3c5aa10c666dad937a5b36a24f0500b46b9e72ba898a",
       "plan.md": "8e1133c29f9d3994603eaa1bbf2f43127b4475edda1dc1b9a5087b879711de26",
       "tasks.md": "b58dbe7b52f80ca7bdd8fc6d0a3535d05bd745811418857ddbf1557a8e32a83a",
       "decision-record.md": "95f7c123a6f1c99fddeb9afa485b5b07236cce7ab4bde0acdef5c04c288329a2",

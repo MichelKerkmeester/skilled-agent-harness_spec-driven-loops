@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The spec validator is a release gate for system-spec-kit packets, phase parents and deep-review output",
     "created_at": "2026-04-29T19:47:00.000Z",
-    "last_save_at": "2026-09-07T16:09:51.206Z",
+    "last_save_at": "2026-10-08T19:30:40.846Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,10 +198,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03dda3ba2a90066d5081a0925c8dc6db18bd00eea07a3ec5cf776b03b57cd747",
+    "source_fingerprint": "sha256:e0eec69e0f3e567d80707a034fcab8a360e7c388e8f27090f41acfa7dda1fc2f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f07bc6e09fb66e379432211f4cbd4d4f1cda2e96a157e20b3cdcb972aa316169",
+      "spec.md": "ee801f2ddcd63557380ff6abb01babda66257aefa413c5cde0330de4025d3562",
       "plan.md": "68136478918fab9744b11206d4f88a4b0c751cffee66f3e3c387150bc122b00b",
       "tasks.md": "19b10728a3f709f5c41e89eb6e2c568e5eb5c094a6f750a1067a6fd481e255d2",
       "implementation-summary.md": "50214c30b7377b502e8dd0869490d26aaff14a8295c3cb6ea5a8ab947f895abf"

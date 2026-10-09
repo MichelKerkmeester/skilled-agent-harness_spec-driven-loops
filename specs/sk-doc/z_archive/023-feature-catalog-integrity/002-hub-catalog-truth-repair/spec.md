@@ -242,7 +242,6 @@ Read-only truth sources: each hub's `mode-registry.json`, `hub-router.json` and 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -307,6 +306,7 @@ that they are inventory entries for already-shipped code.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **OPERATOR-DECISION (Q2)** — description-parity strictness, ruled by `001`. Governs `RC-005-03`, `RC-005-04`,

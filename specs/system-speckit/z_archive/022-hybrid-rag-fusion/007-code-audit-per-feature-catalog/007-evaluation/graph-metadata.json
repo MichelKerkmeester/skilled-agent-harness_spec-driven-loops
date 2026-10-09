@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The feature catalog for Evaluation has evolved significantly",
     "created_at": "2026-04-12T09:02:50.248Z",
-    "last_save_at": "2026-10-07T20:28:53.587Z",
+    "last_save_at": "2026-10-08T20:05:43.882Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +196,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a3f1167bb64b1456528ec25ac3febf494dbb6ffa2aa430b9c00d1e498e8ff8ec",
+    "source_fingerprint": "sha256:54509a3a3c07ac1f6f6890cad4b2d00d8bc57962662fa766d3831d5ac65e4c7e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dd40407119fafcf3c017dd3e09cd94e306d39a1f67d01c952dd468551a9e8c55",
+      "spec.md": "6ed2e9aab8663a816c7ccb7867b434279e4b4b80410fb532b1318c5cdc83f16e",
       "plan.md": "156c60709a66c8b9377b5e3b772ccf123da21ed706c08dff2b57e1ac24408844",
       "tasks.md": "367068ea98f9abbe32249c85eab7cf1c841b2d5db5424aa5073aea499c319585",
       "implementation-summary.md": "1c3306adfb3b7ce97d1ab17c7a18fbeb4f87fb5ced96b16e72d0488c61b67863"

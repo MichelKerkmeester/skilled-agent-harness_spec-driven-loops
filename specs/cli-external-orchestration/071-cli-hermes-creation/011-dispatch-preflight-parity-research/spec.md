@@ -124,7 +124,6 @@ This is **Phase 11** of the Research dispatch preflight parity across runtimes a
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -179,6 +178,7 @@ This is **Phase 11** of the Research dispatch preflight parity across runtimes a
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`deep-alignment` needs to resolve \"what to check, against which standard, and where\" before it can discover any artifact",
     "created_at": "2026-07-11T06:18:37.255Z",
-    "last_save_at": "2026-10-07T18:15:15.240Z",
+    "last_save_at": "2026-10-08T19:30:33.842Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53edf78a1013b32e266f6bbd57fa053b52475be671b5b29b5a28429ba87fed7f",
+    "source_fingerprint": "sha256:49c78da6af509d76cce4b541fb2b016043675217a6cf2664cfa5509682aa0411",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "64a1f055ea32b278496b1fca599d142d9eb449473b1ae5d4573f22eabc586096",
+      "spec.md": "3e7756914a31228c4f0b4c16b3f9761cae6f56875d1547dc1bd43d80c0fb7168",
       "plan.md": "f5a7a2485fd0eebef8eda8712e1cba595eef5ecf9792b6cc1a6bda071c66fbc2",
       "tasks.md": "79a48275707cfb1ac8d1806d521925f926f6bf686ebe94244b781a4c2aa97b1c",
       "implementation-summary.md": "56e001d1fce60026f309f9afbe0c0db5d866282cd3ab0c9336ce71b0959348e3"

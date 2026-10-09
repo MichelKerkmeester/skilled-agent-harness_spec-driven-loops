@@ -154,7 +154,6 @@ templates their own hub publishes.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -209,6 +208,7 @@ templates their own hub publishes.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator reversed the earlier do-not-move instruction, and the count that justified it was measured rather than assumed.

@@ -99,7 +99,6 @@ Execute all 4 hooks-category manual-testing-playbook scenarios (`CU-013` confirm
 - **Re-running isolated-workspace probes could, in principle, touch the repo's real hook state if a `--workspace` flag were mistyped.** Mitigation: explicit `git status --porcelain .cursor/hooks.json` check after every dispatch, confirmed empty each time.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - **NFR-E01**: Every scenario is executed per its own feature file's exact command sequence, not a paraphrased or shortened variant.
 
@@ -123,6 +122,7 @@ Execute all 4 hooks-category manual-testing-playbook scenarios (`CU-013` confirm
 ## 11. USER STORIES
 - As the operator, I want the hooks scenarios re-run for real in this session (not just cited from an earlier build report), so I have independent confirmation the shipped wiring actually behaves as documented.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 None -- straightforward execution of already-specified scenarios.
 <!-- /ANCHOR:questions -->

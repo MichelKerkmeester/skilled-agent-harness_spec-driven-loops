@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Twenty templates were authored one at a time, and every one of them re-types the same chrome by",
     "created_at": "2026-09-03T08:02:24.988Z",
-    "last_save_at": "2026-10-07T12:55:07.167Z",
+    "last_save_at": "2026-10-08T19:29:40.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f581a33a18a7a866941e23bef9bc4ee055ed9067e7723d7e59aa69f61022a82d",
+    "source_fingerprint": "sha256:1ee60be01bc9ccbdde826073383bfe1d08e5e6a6b79a0bd57aca751e8bd24a97",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e9d57b00868d56f2c86c5fa5f4a542d085f93d2e7286eba3339682c9561b8a0e",
+      "spec.md": "6c55705019f00b254a659a57347187bcdb16137669156bbc691087286cd9fa88",
       "plan.md": "cc815191696b4a09d862201aa34d725a8c809ae189fb650b3793f5e2884ff67e",
       "tasks.md": "a4be58c0bd24bcd233e296d0b80ef633516277f985cc3a217b0d2e2eb552fdb6",
       "decision-record.md": "c48f306b5d3a4c62fa0565d43a403912860d32d08c9d1d37f2c47fab0a8895ee",

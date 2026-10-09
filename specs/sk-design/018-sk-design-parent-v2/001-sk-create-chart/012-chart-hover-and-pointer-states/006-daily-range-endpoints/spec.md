@@ -116,7 +116,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -165,6 +164,7 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None. The row count, the never-a-midpoint rule and the hygiene-line gap are decided in `research/research.md` section 2 row 13 and section 6.6, and in `research/phase-recommendation.md` PHASE 6.

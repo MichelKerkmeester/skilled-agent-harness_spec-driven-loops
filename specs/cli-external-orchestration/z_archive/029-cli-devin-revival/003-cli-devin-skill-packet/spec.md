@@ -173,7 +173,6 @@ Build `cli-devin` as a new packet under `cli-external-orchestration/cli-devin/`,
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -242,6 +241,7 @@ Build `cli-devin` as a new packet under `cli-external-orchestration/cli-devin/`,
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Exact env-var namespace Devin uses for an active-session signal (`COGNITION_*` vs. `DEVIN_*`) is unconfirmed pending a live self-invocation-guard test — ADR-002 designs the guard around confirmed signals only and documents this gap explicitly rather than fabricating a lock-file convention.

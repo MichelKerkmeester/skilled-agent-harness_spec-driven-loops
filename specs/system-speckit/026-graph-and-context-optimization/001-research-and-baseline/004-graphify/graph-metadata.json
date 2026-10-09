@@ -48,7 +48,6 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
       "scratch/phase-research-prompt.md"
     ],
     "entities": [
@@ -80,12 +79,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Public already has Code Graph MCP for structural code queries (442.9K nodes, 225.4K edges), CocoIndex for semantic retrieval, Spec Kit Memory for persistent context, and hook-based context injection patterns",
     "created_at": "2026-04-12T09:02:53.448Z",
-    "last_save_at": "2026-08-30T15:39:29.151Z",
+    "last_save_at": "2026-10-08T19:30:45.419Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +208,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dde80ee3dc4fa808730a0842e6bbdb8a99b70fbc1d9c2999ba91fa83330522a4",
+    "source_fingerprint": "sha256:7327fcc9ed5e5997bace6ad1e9a925999c48b0c597946b738bdff5c0517d6d8f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "938ec0ebedeba96d88eaa4fbfb67359273d10aef3439bd2df4adbe387422f0cb",
+      "spec.md": "1c1a351b7a94b0550ca796d55735afd3934f8b485c5537e8801a99c65417e694",
       "plan.md": "eec91cbc100d5f930e21b30275ea4d83322ab0c0173bc7cbde8c14679fd96933",
       "tasks.md": "ab34f08e53e5dfb1ac5d622bf6aa01a2c8fd6d961795d7ebe0d4815c0645d208",
       "decision-record.md": "bad6e491b1bdc685524aa81320fcce57bcec7afb8c25ebe66d6641732b3d5e22",

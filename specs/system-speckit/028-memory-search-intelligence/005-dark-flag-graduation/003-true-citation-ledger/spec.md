@@ -148,7 +148,6 @@ Measure the emitter against the 024 density prerequisite on the production corpu
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -202,6 +201,7 @@ Measure the emitter against the 024 density prerequisite on the production corpu
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether the firing trigger should plumb a stable session id into the production `search_shown` write so the emitter's session-scoped reconstruction can reach the shown universe, which the search handler currently records with a null session id on the non-eval branch

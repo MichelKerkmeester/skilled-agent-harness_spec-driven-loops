@@ -177,7 +177,6 @@ The purpose of this phase is to make install, packing, and LM Studio activation 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -240,6 +239,7 @@ The purpose of this phase is to make install, packing, and LM Studio activation 
 
 1. **Given** the shipped example, **When** the loader parses it, **Then** it returns local-offline projection wiring targeting chat completions.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 No unresolved question blocks implementation. The existing `lmstudio` kind is authoritative, and the wrapper remains dependent on install-built output rather than duplicating loader logic in the launcher.

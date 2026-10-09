@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/001-orphan-sweep-cursor-and-corpus-identity-repair"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/001-orphan-sweep-cursor-and-corpus-identity-repair"
     last_updated_at: "2026-07-04T17:51:11.784Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored Level 3 planning docs from deep-dive report Chains A/B and findings ledger"
@@ -200,7 +200,6 @@ After this phase, a full scan cycle drains orphan rows to zero, every logical do
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -302,6 +301,7 @@ After this phase, a full scan cycle drains orphan rows to zero, every logical do
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **OQ-1**: Winner heuristic for dup-hash collapse: current-prefix row with freshest source mtime is the working rule; confirm against a sample of the 7,012 live pairs before the migration (tracked as T004/T017).

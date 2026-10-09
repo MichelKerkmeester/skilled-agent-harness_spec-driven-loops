@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The 113/003 eval-loop produced bundle-gate-aversion and framework-dominates-anti-hallucination signals on SWE 1.6",
     "created_at": "2026-05-17T12:18:35Z",
-    "last_save_at": "2026-08-30T15:39:08.539Z",
+    "last_save_at": "2026-10-08T19:29:12.003Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c47e2ba0b0eb9385d6b18dd89be07033ee2f10937b64c3d7a2ff3304e041507e",
+    "source_fingerprint": "sha256:22d0bd674ca88f137e7eb821a3cdb8f26e05368a3807902a9dda3821e98153a7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0657fc9746b17dcc1d56f18c826fa882d80be129cf7f01afcd6f7a5962f5717b",
+      "spec.md": "89d453c1a08ea060748a069432ac5ae032c0b049e7d0cf871f3dfed4b3777635",
       "plan.md": "f8b6eeceae435f2da41eef8012387b169c49e0c90daaa18b0d487c0a4da25528",
       "tasks.md": "c36f3093c785e8867470048a67e105fb979ff396fc1bc32c33b747b43d1c51ba",
       "decision-record.md": "afd09954e30a05c117c39a32c032dee3facfb54949cff7cc41a81a628f3a41f1",

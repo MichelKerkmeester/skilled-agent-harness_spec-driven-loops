@@ -111,7 +111,6 @@ A completed lane is never rejected for recording an iteration twice, and no refe
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -162,6 +161,7 @@ A completed lane is never rejected for recording an iteration twice, and no refe
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

@@ -172,7 +172,6 @@ Reconcile `memory_index` and `vec_768` against current disk state: retire the st
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -241,6 +240,7 @@ The exact seams, verified to file:line against the live tree.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does the F10 root-cause investigation find `listStaleIndexedPaths`/`categorizeFilesForIndexing`'s `toDelete` pass is simply not invoked by the production scan entrypoint (a wiring gap), or is it invoked but scoped to a `--roots`/candidate-file list that never included the pre-rename paths (a scope gap)? The fix differs: wire it in, versus widen its scan scope.

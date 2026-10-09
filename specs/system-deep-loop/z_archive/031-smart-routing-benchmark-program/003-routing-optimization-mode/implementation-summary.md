@@ -46,12 +46,12 @@ Lane C gains a routing-optimization capability, extending it from diagnose-only:
 - **Cross-skill audit** (`assets/cross-skill-routing-audit.md`): D5 orphans + D3 over-routing for all 8 children + both hubs. It surfaced a systematic landscape — deep-improvement has 18 orphan references (D5 46), deep-research/deep-review 4 each (88), deep-ai-council 1 (97); D3 over-routing is below 100 almost everywhere.
 - **Methodology reference** (`deep-improvement/references/skill_benchmark/routing_optimization.md`): the signal→fix playbook (orphan-wiring, ALWAYS-mapping, gold-alignment, over-routing gating, hub-union) with a mandatory anti-gaming guard (never invent gold; never add misrouting keywords).
 - **Command optimize mode** (`/deep:skill-benchmark`): the runnable diagnose→remediate→re-benchmark workflow, propose-by-default, with code-review as the worked example.
+<!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 The parser bug fix (plural `DEFAULT_RESOURCES`) from packet 002 is the first engine improvement this capability generalizes. The audit proves the demand; the methodology + command make it repeatable. code-review (packet 002) is the end-to-end worked example (D5 85→100, live 69→100).
 <!-- /ANCHOR:how-delivered -->
-<!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions

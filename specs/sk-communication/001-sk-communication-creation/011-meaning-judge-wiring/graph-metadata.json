@@ -187,7 +187,7 @@
     ],
     "causal_summary": "No production source connects the candidate to `validateProjectionCandidate`, `evaluateFidelityVeto`, or `runProxyReviewers` outside evaluation",
     "created_at": "2026-08-13T04:05:03.387Z",
-    "last_save_at": "2026-10-07T15:56:17.809Z",
+    "last_save_at": "2026-10-08T19:29:31.381Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +196,10 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:76fd816c9510d713b5cee6787ac027eee5c79a2a39e2736047e00add7d4a5632",
+    "source_fingerprint": "sha256:9d66cbb96b53d35003e22f14fad1b0ded0a9fb922789998e65f9502984e0f3c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "03f661bcbef11981b8097ba8b0962f5dc5d037368bf5e471c47a23e53e6bc846",
+      "spec.md": "25daf85821157db4abe0734c65e24a9795ae3e18da2c641bd2e777a6f5a52c89",
       "plan.md": "4065ff857c4ecfe571f8d64f63e472600f598e9e5bf790fdbceea0e367b820cf",
       "tasks.md": "1481b871ae6e07083cf050572eef214fd6337c8f130288e0fdb2d79eb7e09c6f",
       "decision-record.md": "4febc43565282e78ae9570f42b57de2d4329782dbd725e9aa1d70a2b1dd7e94d"

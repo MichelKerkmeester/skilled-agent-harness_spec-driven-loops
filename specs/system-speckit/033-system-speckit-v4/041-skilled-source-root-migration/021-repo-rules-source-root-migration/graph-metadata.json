@@ -58,9 +58,9 @@
       ".skilled/agents/orchestrate.md",
       ".github/workflows/repo-rules-corpus.yml",
       ".github/workflows/README.md",
-      ".skilled/skills/sk-communication/benchmark/reply-harness/generate-prompts.mjs",
       "scratch/rescan-census-before.txt",
-      "scratch/rescan-census-after.txt"
+      "scratch/rescan-census-after.txt",
+      "research/lineages/deepseek/research.md"
     ],
     "entities": [
       {
@@ -166,12 +166,6 @@
         "source": "derived"
       },
       {
-        "name": "generate-prompts.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-communication/benchmark/reply-harness/generate-prompts.mjs",
-        "source": "derived"
-      },
-      {
         "name": "rescan-census-before.txt",
         "kind": "file",
         "path": "scratch/rescan-census-before.txt",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Every authored surface in this repository lives under `.skilled/`, except the rule corpus, which",
     "created_at": "2026-09-20T07:20:12Z",
-    "last_save_at": "2026-09-20T08:35:54.745Z",
+    "last_save_at": "2026-10-08T19:31:30.472Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:91a63c58aeea7c6f6b063009c7d8918baa3a4f99b40deb9fdce25f33dd9e075c",
+    "source_fingerprint": "sha256:8041fdfc601a3e6199b000a77c4c4c2b0272483acb9b4586e438619262203bdf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3444973b55b90283faf9da7291ac179b89d755d0a0dcefcb6311637212bee10c",
+      "spec.md": "6bd620b56583ce986917e8934a32b86aefb9ecb0cf0e5299b3bf0764a0cb7a9e",
       "plan.md": "18e7a1a133d342fce7c9fa8997e48a80317657b56281a3dfe30bc0b71c562a9d",
       "tasks.md": "d555b705feebe54d546fe98d26d3d53982b2fed0b6d0e0dbde345a2df0dcfa2c",
       "implementation-summary.md": "9b9beca16d23ee1c2b242536829bf664f48f8e1db30dbeb23fce29bfe40a9376",

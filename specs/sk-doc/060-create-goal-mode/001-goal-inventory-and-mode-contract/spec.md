@@ -151,7 +151,6 @@ Produce a source-backed goal contract and corpus report that phase 002 can use t
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -206,6 +205,7 @@ Produce a source-backed goal contract and corpus report that phase 002 can use t
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does the evidence place the conformance checker in the mode, or should missing binding completeness be proposed to system-spec-kit under D4? Record one answer in `mode-boundary.md` (`specs/sk-doc/060-create-goal-mode/spec.md:157`; `specs/sk-doc/060-create-goal-mode/goal.md:49-54`).

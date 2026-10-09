@@ -224,7 +224,6 @@ Audit completed 2026-03-22. Results per feature:
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -232,16 +231,18 @@ Audit completed 2026-03-22. Results per feature:
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - CF-01: Should `graph-signals.ts` and `causal-boost.ts` be added to the source file lists for F01–F04, or are they intentionally excluded?
 - CF-02: What is the authoritative minimal source file list for F05–F07?
 - CF-03: Is layer L6 or L7 correct for `memory_get_learning_history`?
 - CF-04/CF-05: Should `includeSummary` and re-correction capability be added to catalog entries for F06–F07?
+<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions-2 -->
 ### Related Documents
 
 - **Implementation Plan**: See `plan.md`
@@ -249,4 +250,3 @@ Audit completed 2026-03-22. Results per feature:
 - **Verification Checklist**: See `checklist.md`
 
 <!-- /ANCHOR:questions-2 -->
-<!-- /ANCHOR:questions -->

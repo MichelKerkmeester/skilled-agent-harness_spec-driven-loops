@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The bespoke deep-loop in 003 needs a binding rubric, fixture catalog, knob set, and convergence rule before any code is written",
     "created_at": "2026-05-16T19:10:00Z",
-    "last_save_at": "2026-08-30T15:39:08.481Z",
+    "last_save_at": "2026-10-08T19:29:11.688Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f0385e136778cddbd94cdcb7dc02543df62732f949a8dfecf8453b1c7589121",
+    "source_fingerprint": "sha256:b9bc74be756d9002cc66a9d6d5ee2c081434f5f6b3466512a068bde5cea7f1a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "752d4b3e3b7e06a92eb19cc7312457c7522592cf3086352b87bac093d6dab46b",
+      "spec.md": "e3fce2f877340789dbe6b39aee27fed6f58b767399b0fc6032c2113326638a2a",
       "plan.md": "58bdd1777fc32ac38c9236c3922161cbf9bf7faf91743add53f02ab446793072",
       "tasks.md": "9b778463081929cabf4043124e105c907d666cdc27f0a30414ad198be697870a",
       "decision-record.md": "771920b4b50f35f7a9b0b8f3d82ffc97367dd476a4449cda26835daeb191daac",

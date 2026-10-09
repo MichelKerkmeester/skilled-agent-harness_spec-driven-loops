@@ -47,11 +47,7 @@
       "implementation-summary.md",
       "scripts/multihop-tail-appends-benchmark.mjs",
       "results/metrics.json",
-      "benchmark-results.md",
-      "lib/search/deterministic-multihop.ts",
-      "lib/search/lane-champion-backfill.ts",
-      "lib/search/hybrid-search.ts",
-      "handlers/memory-search.ts"
+      "benchmark-results.md"
     ],
     "entities": [
       {
@@ -94,30 +90,6 @@
         "name": "benchmark-results.md",
         "kind": "doc",
         "path": "benchmark-results.md",
-        "source": "derived"
-      },
-      {
-        "name": "deterministic-multihop.ts",
-        "kind": "code",
-        "path": "lib/search/deterministic-multihop.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lane-champion-backfill.ts",
-        "kind": "code",
-        "path": "lib/search/lane-champion-backfill.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": "lib/search/hybrid-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "handlers/memory-search.ts",
         "source": "derived"
       },
       {
@@ -197,11 +169,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two finished search features ship dark behind default-off flags with no measured verdict",
     "created_at": "2026-06-24T04:55:43.757Z",
-    "last_save_at": "2026-08-30T15:39:36.133Z",
+    "last_save_at": "2026-10-08T19:31:09.264Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +206,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d784bb1c9ff1f93c6ac19ee4a690e1b36cebd5b4e89da1df34ce0b77faf4a2c9",
+    "source_fingerprint": "sha256:ab0ea52d9602ce290ea158765b89c3a975a8e8eb44656e1c78924334e152b84b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a7fa5ae00c017048a197679b5c8c4834607e072d324a5a15c52ba5247073a150",
+      "spec.md": "7e263b3c98db29e0045d59c9cb6b0f6feb626fa5ef676b39520237c7d3c774b8",
       "plan.md": "3b34732990c20a81ce04a0ab49c8e1832519fc0c20a5a53c77cbffd76df2adb8",
       "tasks.md": "7c236bb3ae52f092b8b100add37a710b22eb31107dbcc9659bb286bb1542be85",
       "implementation-summary.md": "702948f4532e85f46a06841d6a60faf8324067fa35359eea120c685ad6a14776"

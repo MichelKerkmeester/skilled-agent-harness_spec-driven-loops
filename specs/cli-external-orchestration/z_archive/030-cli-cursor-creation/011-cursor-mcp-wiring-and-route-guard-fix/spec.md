@@ -112,7 +112,6 @@ Populate `.cursor/mcp.json` (as a symlink, since Cursor's schema is byte-compati
 - **The guard advises only for Code Mode manifest families**, none of which are currently native Cursor servers — so in today's config it will correctly stay silent. Mitigation: that is its designed purpose (catch a *future* external server wired natively); the fix was still required, since without it the guard could never fire even when it should.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - **NFR-C01**: Runtime-specific payload normalization stays in the Cursor adapter, never in the shared core, matching `post-tool-use.mjs`'s existing `Shell`→`Bash` precedent.
 
@@ -139,6 +138,7 @@ Populate `.cursor/mcp.json` (as a symlink, since Cursor's schema is byte-compati
 - As the operator, I want Cursor to see the same MCP servers Claude and OpenCode already use, without maintaining a third copy of the config.
 - As a maintainer, I want a guard that actually fires when it should — not one that silently matches nothing because it forwards the wrong shape.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 None — the premise was corrected against real evidence and the resulting defect was fixed and verified.
 <!-- /ANCHOR:questions -->

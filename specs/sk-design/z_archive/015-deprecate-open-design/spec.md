@@ -185,7 +185,6 @@ Leave zero live references to the Open Design transport in the main workspace wh
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -256,6 +255,7 @@ Leave zero live references to the Open Design transport in the main workspace wh
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether dated benchmark fixtures and `.private.json` corpora count as live references — adjudicated by the deep review, then recorded in `decision-record.md`.

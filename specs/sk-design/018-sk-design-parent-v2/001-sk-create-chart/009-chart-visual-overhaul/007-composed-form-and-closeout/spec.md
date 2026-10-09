@@ -183,7 +183,6 @@ The catalog answers the count-and-rate question with one form. Every rule this p
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -227,6 +226,7 @@ Scored with `bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 The first item is an operator decision the adjudication named, and this phase does not assume an answer to it.

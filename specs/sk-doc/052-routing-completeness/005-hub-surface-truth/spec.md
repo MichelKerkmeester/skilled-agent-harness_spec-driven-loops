@@ -197,7 +197,6 @@ The hub documents agree with the registries, and a check fails when they stop ag
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -276,6 +275,7 @@ that** a hand-found defect does not need to be found by hand again.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Finding 25, a contract stated in the hub manifest and not honoured by two packets, remains

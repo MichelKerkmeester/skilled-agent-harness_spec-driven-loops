@@ -145,7 +145,6 @@ Produce one deterministic `CompiledPolicyV1` and its three projections for `syst
 
 ---
 
-<!-- ANCHOR:questions -->
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
@@ -198,6 +197,7 @@ Produce one deterministic `CompiledPolicyV1` and its three projections for `syst
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None. Live activation is a separate authorization and is outside this child.

@@ -158,7 +158,6 @@ Keep all CLI prompt quality cards aligned on medium pre-planning density while r
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -228,6 +227,7 @@ Keep all CLI prompt quality cards aligned on medium pre-planning density while r
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None for packet 113/006. The implementation scope is complete.

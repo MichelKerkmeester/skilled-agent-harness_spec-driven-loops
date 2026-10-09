@@ -182,7 +182,6 @@ Correct the phase record so it matches the shipped implementation, preserve the 
 
 ---
 
-<!-- ANCHOR:questions -->
 <!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -277,11 +276,11 @@ Correct the phase record so it matches the shipped implementation, preserve the 
 
 ---
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. The phase scope and delivery are complete, and remaining work moved into successor phases.
-<!-- /ANCHOR:questions-2 -->
+<!-- /ANCHOR:questions -->
 
 ---
 
@@ -292,4 +291,3 @@ Correct the phase record so it matches the shipped implementation, preserve the 
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
-<!-- /ANCHOR:questions -->

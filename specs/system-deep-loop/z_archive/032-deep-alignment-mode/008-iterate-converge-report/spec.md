@@ -168,7 +168,6 @@ This is **Phase 8** of the `system-deep-loop/032-deep-alignment-mode` mode-packe
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -216,6 +215,7 @@ This is **Phase 8** of the `system-deep-loop/032-deep-alignment-mode` mode-packe
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 All three items below are now RESOLVED by this phase's execution pass. ADR-010 (the mode-local-primitive reuse boundary — `reduce-state.cjs`) was already LOCKED and is now also PERFORMED (promoted to shared `runtime/scripts/`, `deep-review`'s import repointed, behavior-preservation regression-proven).

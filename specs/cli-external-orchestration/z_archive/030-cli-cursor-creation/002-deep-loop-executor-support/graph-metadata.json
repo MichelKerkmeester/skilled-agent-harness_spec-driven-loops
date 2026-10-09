@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The deep-loop runtime's typed executor union currently has 4 members (`native`, `cli-codex`, `cli-claude-code`, `cli-opencode`) defined in `EXECUTORKINDS` (`executor-config.ts` line 11, confirmed live)",
     "created_at": "2026-07-24T04:24:28.248Z",
-    "last_save_at": "2026-10-07T18:11:32.600Z",
+    "last_save_at": "2026-10-08T19:29:15.752Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,10 +198,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:729adcc0f01b14539c71a7f2c9ee54a4caec559d7309601fb46698f17616b3c2",
+    "source_fingerprint": "sha256:ee6c80f17f609ab0fb42a2d4d7d33fb91cfc4542c814c3ad3c0d81cd193eb365",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0e1e2b29b4669fa7492239529eb15ae5d4ba33030f9532e5e00c95f64a898df2",
+      "spec.md": "a18101176d3b444066dfa1fcca6bf147ff30c06a68564628135a0f1bd6684bd6",
       "plan.md": "e196594c5118a23c28476738c109be577aad00776c27e65403d55fda1af1a8f4",
       "tasks.md": "d3fcf017d37c84885401eca7fbd4f47790492afaa4661b93f5eaf11b13e4cc54",
       "implementation-summary.md": "71a662307c4ce852899ee97b8b0ef392dc528f7486b66642bbd796c7f7cc4af6"

@@ -146,7 +146,6 @@ Execute the 4-phase implementation plan from packet 002, with explicit gates bet
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -245,6 +244,7 @@ Execute the 4-phase implementation plan from packet 002, with explicit gates bet
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should Phase 1 ship as a single PR or split into "infra" (resolver + renderer + manifest) and "tests" (4 vitest files + leak fixes)? Tentatively single PR for atomicity.

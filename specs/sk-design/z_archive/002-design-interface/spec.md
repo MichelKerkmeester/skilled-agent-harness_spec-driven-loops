@@ -148,7 +148,6 @@ Reconstruct a Level-2 packet that makes the source-defined interface contract in
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
@@ -207,6 +206,7 @@ Reconstruct a Level-2 packet that makes the source-defined interface contract in
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - The source does not define a universal component inventory or a complete sk-code handoff schema; those remain owned by the shared references named by SKILL.md.

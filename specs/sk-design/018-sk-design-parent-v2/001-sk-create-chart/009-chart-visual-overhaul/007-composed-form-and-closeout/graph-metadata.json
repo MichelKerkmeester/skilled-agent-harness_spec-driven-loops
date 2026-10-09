@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Three problems, and they close the packet together",
     "created_at": "2026-09-03T08:01:46.788Z",
-    "last_save_at": "2026-10-07T15:56:27.777Z",
+    "last_save_at": "2026-10-08T19:29:40.520Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:409af46af7ce5e1fd9fca54159b79b36571e98a1f5a4fc074b2fd2d620046169",
+    "source_fingerprint": "sha256:54774abd740e4ff342d38b35c74674c5bc73cedc5c99e13981a32eba98925904",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a1063dc83638f57c1961d822c381e2030bbfc949742a7ebc0cda420f632d9395",
+      "spec.md": "9d12f3c799409fa7499a9eabaaf557e04404efc6d88d23316ec407c0afeb0a73",
       "plan.md": "d9f1bbcdc126e1722805f886b2f031d5c4aee9ae3751cec59ee94e155b3b3df0",
       "tasks.md": "1d50bdcd0fb2c8d73fcbc60cc3c6b2aed98432f540fc13ec25f0f7902777324d",
       "decision-record.md": "0008c2c5812c61c90452a566cbd490c22552c20026505b752d975a2ba41b5eea",

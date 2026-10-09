@@ -105,7 +105,6 @@ cannot ship under the floor again.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -160,6 +159,7 @@ cannot ship under the floor again.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

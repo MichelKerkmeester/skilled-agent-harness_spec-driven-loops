@@ -206,7 +206,7 @@
     ],
     "causal_summary": "`sk-doc` routes fifteen workflow packets, and fourteen of them have their own slash command",
     "created_at": "2026-09-04T08:51:34Z",
-    "last_save_at": "2026-10-07T12:55:07.174Z",
+    "last_save_at": "2026-10-08T19:29:41.319Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:43f4e487311324b390ce469d1f6a4ac8ac4c268f4cb6d3f1ac89fa6f2c616e44",
+    "source_fingerprint": "sha256:6230515783326992b5ba08b69f3243a7b79a7b442ad52cae7ab0bbc12e2f67d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "db9c740100446b82edf11add831e030fa2a6a9b814e9efc17c3833f659235ef3",
+      "spec.md": "f503a512ad06652725acb5d6864a165afce48d2750eb0362dc88f0e1d35e5a3f",
       "plan.md": "a39256d335a37952e1ce917d56bbf91f3090962438a1320477e6ee2b0c7c160c",
       "tasks.md": "72db3b5fe1cb5f17b8f9f438c7e391d739a1e7e634a287b396a996c84115afa0",
       "implementation-summary.md": "4b74c87d282793c6a4f36f608595644788e998dbefab65183b39ef7325ad0f7e"

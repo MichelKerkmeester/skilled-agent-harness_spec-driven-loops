@@ -188,7 +188,7 @@
     ],
     "causal_summary": "`ADR-001: Sliding-Window Convergence Mode For Long Loops` (`.opencode/specs/system-deep-loop/024-deep-loop-improved/009-research-backlog-remediation/009-convergence-design-and-hardening/decision-record.md`) proved via generation-2 forced-depth research — two real 35-iteration lineages run under `stopPolicy=max-iterations` — that the current full-history convergence-novelty calculation suffers \"denominator drag\" on 30+ iteration loops",
     "created_at": "2026-07-01T19:38:04.144Z",
-    "last_save_at": "2026-10-07T18:15:03.573Z",
+    "last_save_at": "2026-10-08T19:30:31.346Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,10 +198,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:05773169e867fab41f1b3cf8c5ff8166a369519dc43bbf208ebb00282b381714",
+    "source_fingerprint": "sha256:5df8aabf8c806215e7b7c17a18d9fa097a8d89abd6ccd0c03b9f6559f08280aa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9bd79c6d474d39d7793ca0e065bd92c8670d7a2841510897d0731e8dc9b60f24",
+      "spec.md": "d0229880611353ab5067f6067d9c104d9c0e1b1805985f49c218f8300423dafa",
       "plan.md": "b1a704ad9857b4c84bb4b160aa0ac180719630d9459b99733b5e0c1d1d4aff1c",
       "tasks.md": "93c46acc8298aab5960cf84801c9280609d63be017dc8f82fcb8419682ec31fe",
       "decision-record.md": "550273b295ada328d2b110e9d3eff3d3ba3b311c7102fe07fa394e7ffea7aa48",

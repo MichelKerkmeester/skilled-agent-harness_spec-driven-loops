@@ -173,7 +173,6 @@ Replace the `restored.text === sourceText` short-circuit acceptance with a no-im
 
 ---
 
-<!-- ANCHOR:questions -->
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
@@ -216,6 +215,7 @@ Replace the `restored.text === sourceText` short-circuit acceptance with a no-im
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 What minimal edit-distance threshold separates a real projection from a near-echo without rejecting legitimately-terse-but-clear rewrites?

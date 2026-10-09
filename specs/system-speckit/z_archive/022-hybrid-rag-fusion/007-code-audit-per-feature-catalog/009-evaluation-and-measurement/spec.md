@@ -206,7 +206,6 @@ Verify that all 14 live Evaluation and Measurement features are accurately docum
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -214,14 +213,16 @@ Verify that all 14 live Evaluation and Measurement features are accurately docum
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - ~~Are there undocumented features in this category not yet in the catalog?~~ Resolved: no undocumented features found.
 - ~~Have any features been deprecated since the last catalog update?~~ Resolved: deprecated entry F04 is no longer part of the certified 14-feature live inventory, and F11 is retired/migrated to `eval-channel-tracking.ts`.
+<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions-2 -->
 ### Audit Findings
 
 **Audit Date**: 2026-03-22
@@ -267,4 +268,3 @@ Verify that all 14 live Evaluation and Measurement features are accurately docum
 - **Verification Checklist**: See `checklist.md`
 
 <!-- /ANCHOR:questions-2 -->
-<!-- /ANCHOR:questions -->

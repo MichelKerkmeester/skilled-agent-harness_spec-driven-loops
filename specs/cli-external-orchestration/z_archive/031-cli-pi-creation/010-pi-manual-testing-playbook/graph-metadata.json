@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`cli-codex`, `cli-devin`, and `cli-cursor` each ship a split-document manual-testing playbook (root file + category folders, `{PREFIX}-NNN` scenario IDs, strict PASS/FAIL/SKIP discipline) as their no-mocking validation gate -- there is no automated test suite for these CLI-dispatch skills, so the playbook IS the gate",
     "created_at": "2026-07-27T06:48:18.351Z",
-    "last_save_at": "2026-10-07T18:11:24.001Z",
+    "last_save_at": "2026-10-08T19:29:19.416Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4582658fdf486a705c8a6c69b1fbf52660ac8658953aef72befebb18bb224fc",
+    "source_fingerprint": "sha256:e6b2267ad3de2a70c432ed22313d2beb89ecd431ba272ab504c8e470513378ba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eaade8070548771e82a1fce1c6be3ec29df0e722098b4c6332fb9e69dde5f78b",
+      "spec.md": "d8d4ec4053e9439d50299f8ad1a21d7780bd858bf376ed4cb167d7f981f1c306",
       "plan.md": "0306d543734ffa202ab3570bf358f481a2954da1e7383cedb4765b53cbe3728b",
       "tasks.md": "ec99dc19a513889f4e5a89c2584f5d93c66818614868864f80de47357ad84cb0",
       "implementation-summary.md": "c9b388315d80b997ff9e8610c900a57f9d264d71c12429b817a4c81407032ba1"

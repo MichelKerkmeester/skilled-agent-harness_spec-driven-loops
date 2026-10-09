@@ -194,7 +194,6 @@ behaves as stated, and every packet document agrees with the shipped state.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -228,7 +227,6 @@ behaves as stated, and every packet document agrees with the shipped state.
 | Files touched | 3 | Nine authored files plus regenerated artifacts |
 | Blast radius | 3 | One hub-wide routing input, held to the canary |
 | Reversibility | 1 | Every file tracked, one `git checkout` per surface |
-<!-- /ANCHOR:questions -->
 
 ---
 

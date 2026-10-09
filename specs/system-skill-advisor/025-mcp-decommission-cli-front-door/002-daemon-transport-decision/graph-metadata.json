@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The resident daemon is why a prompt-time recommendation is fast: SQLite is warm and the embedder is already loaded",
     "created_at": "2026-09-11T06:48:56Z",
-    "last_save_at": "2026-10-07T15:57:06.455Z",
+    "last_save_at": "2026-10-08T19:30:35.945Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9e39a3ca5083a3da34b1112eb72366bcc71403d222a118f0127d026c07ae5e8",
+    "source_fingerprint": "sha256:17a05ec0ea47ce1d366f7ba103a1766f5dbbf805e619c0375d2c13de6f8245da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "33ef05a12f6b0a9690349b5727e3934c10d70712edae9bf4aafb9325ad399a53",
+      "spec.md": "1c11950341032eb897636d29a58938a89ca940223706e69f6670ec834bb25d79",
       "plan.md": "3e7dc391e785dec98ac8527f12dfec3a2a15b6eb9e6955aafb1bb08c880de949",
       "tasks.md": "4cd7f447700984ff67628543fda037dbd03f1a5b9c28e3b353fcbef0a000f376",
       "implementation-summary.md": "efe03797df80314ae010a8a69fad7bde660ca57c2ab81600e7d01d82387e4328"

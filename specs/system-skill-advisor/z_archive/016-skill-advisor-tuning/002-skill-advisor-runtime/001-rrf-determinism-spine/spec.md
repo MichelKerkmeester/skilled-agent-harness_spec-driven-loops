@@ -172,7 +172,6 @@ Replace the incomparable-scale weighted sum with rank-based deterministic RRF by
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -262,6 +261,7 @@ Replace the incomparable-scale weighted sum with rank-based deterministic RRF by
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - What advisor-specific `k` best fits the skill count (far below the ~1000-memory `DEFAULT_K` corpus), and does the `LaneMatch` → `RankedList` adapter preserve current top-1 ordering on the live skill graph (`001` iter-2 F18)?

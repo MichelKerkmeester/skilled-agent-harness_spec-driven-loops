@@ -233,7 +233,6 @@ Core archival behavior confirmed. **Behavioral mismatch on unarchive path**: cat
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -241,16 +240,18 @@ Core archival behavior confirmed. **Behavioral mismatch on unarchive path**: cat
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Are there undocumented features in this category not yet in the catalog?
 - Have any features been deprecated since the last catalog update?
 - **[From audit]** Should the bloated source file lists for F01–F04 be deduplicated to their actual per-feature files?
 - **[From audit]** F07 catalog entry must be corrected: `rebuildVectorOnUnarchive()` (archival-manager.ts:455) performs immediate async re-embedding, not deferred to next scan.
+<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions-2 -->
 ### Related Documents
 
 - **Implementation Plan**: See `plan.md`
@@ -258,4 +259,3 @@ Core archival behavior confirmed. **Behavioral mismatch on unarchive path**: cat
 - **Verification Checklist**: See `checklist.md`
 
 <!-- /ANCHOR:questions-2 -->
-<!-- /ANCHOR:questions -->

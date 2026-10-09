@@ -153,7 +153,6 @@ Produce a ranked, decidable list of changes to the rule set, to `AGENTS.md`, and
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -208,6 +207,7 @@ Produce a ranked, decidable list of changes to the rule set, to `AGENTS.md`, and
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should a second executor family run alongside DeepSeek to give the findings two lenses? **DEFERRED: the operator specified one executor and five iterations. Recorded here because the delegation rule this packet is writing would suggest two, and the tension is worth naming rather than quietly resolving.**

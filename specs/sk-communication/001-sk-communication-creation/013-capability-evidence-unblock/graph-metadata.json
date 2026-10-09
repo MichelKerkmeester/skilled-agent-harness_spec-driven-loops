@@ -154,7 +154,7 @@
     ],
     "causal_summary": "`compilePromptControls` fails closed unless capability, mapping, freshness, and control evidence are confirmed",
     "created_at": "2026-08-13T04:05:03.839Z",
-    "last_save_at": "2026-10-07T15:56:17.943Z",
+    "last_save_at": "2026-10-08T19:29:32.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -162,10 +162,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:c412d63ac02cd62ddbe0c20d959cddb0b15530d2216f9b07922b40f9aebbb0d3",
+    "source_fingerprint": "sha256:3286eb3b46a70526cdae7873a9370c683a9234b2a7a8bc52661d6507eafc7cd5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b1ecd2b610b8338efac45b69dc9eee053f7a9f562054ad85c3924ac43510fbd3",
+      "spec.md": "09c5ed81f7976eaea1b81e799b07b0ae0ab34d00bf170e4e12ca9190c7f9958a",
       "plan.md": "d2f349a41386e606fdc874c483c8bfa20fe5d0fcd9d9c4cbf1474ae7f25c0807",
       "tasks.md": "4b77f275684ba833fd0fdd7d1c77aca373394cd392a3e7161415a10d4691e8b5"
     },

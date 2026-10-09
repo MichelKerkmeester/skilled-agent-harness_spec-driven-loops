@@ -143,7 +143,6 @@ Give spec requirements an EARS grammar plus a constraint tier in the templates, 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -193,6 +192,7 @@ Give spec requirements an EARS grammar plus a constraint tier in the templates, 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does the REQ-to-task linkage live as a new column in `tasks.md` or as an inline `REQ-NNN` marker on each task line, given the existing task rows are checkbox bullets not a table (`tasks.md.tmpl:54-77`)?

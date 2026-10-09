@@ -133,7 +133,6 @@ The enrichment scheduler honors its concurrency cap under any burst and always y
 <!-- /ANCHOR:risks -->
 
 ---
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -203,6 +202,7 @@ The enrichment scheduler honors its concurrency cap under any burst and always y
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None outstanding. The bounded-cap invariant has no isolated unit test (the scheduler is internal); the 10-iteration deep-review is the deep correctness check.

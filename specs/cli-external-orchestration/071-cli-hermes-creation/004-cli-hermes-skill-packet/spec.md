@@ -141,7 +141,6 @@ A Hermes request reaches a documented, checker-validated contract through the ad
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -207,6 +206,7 @@ A Hermes request reaches a documented, checker-validated contract through the ad
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - The nested-packet reference names a stage-two replay script that does not exist at its documented path; its owner decides the amendment.

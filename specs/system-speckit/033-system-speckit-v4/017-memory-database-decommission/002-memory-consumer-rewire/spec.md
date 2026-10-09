@@ -271,7 +271,6 @@ surgical, so each needs either a named replacement or an explicit decision to re
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -339,6 +338,7 @@ surgical, so each needs either a named replacement or an explicit decision to re
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Which of the six `/memory:*` commands survive as anything? `/memory:search` may become a thin ripgrep wrapper, while `/memory:manage` administers a database that will not exist.

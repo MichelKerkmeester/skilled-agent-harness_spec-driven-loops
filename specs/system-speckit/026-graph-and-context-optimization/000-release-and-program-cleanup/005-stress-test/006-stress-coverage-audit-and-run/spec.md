@@ -147,7 +147,6 @@ Produce a coverage matrix (54 rows × locked column schema), a narrative audit w
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -236,6 +235,7 @@ Produce a coverage matrix (54 rows × locked column schema), a narrative audit w
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None at scaffold time. If P0 gaps surface in the audit, packet 043 scope is the only open question for follow-on work.

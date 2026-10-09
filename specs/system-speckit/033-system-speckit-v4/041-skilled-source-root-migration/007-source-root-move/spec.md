@@ -177,7 +177,6 @@ One verified rename commit puts the tree under `.skilled/`, and `.opencode/` kee
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -233,6 +232,7 @@ One verified rename commit puts the tree under `.skilled/`, and `.opencode/` kee
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which `.opencode/` shape will 004 freeze? Answered: option A, one tracked link to `.skilled` with no entry kept in place (ADR-001 Accepted as L1), recorded by T001.

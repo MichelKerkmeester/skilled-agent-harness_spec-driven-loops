@@ -133,7 +133,6 @@ Neither the enrichment scheduler nor the startup scan touches the DB after `clos
 <!-- /ANCHOR:risks -->
 
 ---
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -203,6 +202,7 @@ Neither the enrichment scheduler nor the startup scan touches the DB after `clos
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. The recoverPendingFiles-phase break is a residual (bounded) noted in Edge Cases; not worth the extra complexity now.

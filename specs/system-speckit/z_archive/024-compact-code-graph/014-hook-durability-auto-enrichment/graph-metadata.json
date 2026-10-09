@@ -203,7 +203,7 @@
     ],
     "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-13T04:55:08.077Z",
-    "last_save_at": "2026-09-10T21:05:11.600Z",
+    "last_save_at": "2026-10-08T20:06:20.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dbda98c3c69daa9a0360ae3c4aad69edb27d71f7e84d9ea1856b2ec4d5776520",
+    "source_fingerprint": "sha256:22ce8fc5fe439586c67a635917e2c8ea58e0d65f4fc1009c2cd0332653775dfb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "12ce7d5ea86d685528dac75d3469ef648b0a3f62d3868dd1a97aea8f8d026bed",
+      "spec.md": "cfaaef3915de30f0066acf84e2a9bcd3bf41f9dea98c9176272e751161bfe9d3",
       "plan.md": "3f60f0b491530336045fbe5cf6d376b7a7218ad22a5724f4f23f94c4f7fd05b7",
       "tasks.md": "3c14f0772b60d6a766d595f084b8bd9fcc3b6a63a485f1bdaf90d74439fed40e",
       "decision-record.md": "c1deff01e63b1520ce39b4b3384531f1a9daa95bb5a7010ea7f088b0c310212e",

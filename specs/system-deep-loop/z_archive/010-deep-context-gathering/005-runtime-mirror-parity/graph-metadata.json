@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The framework supports three runtimes — OpenCode, Claude Code, Codex — whose `agents/` directories are real, separate folders (unlike `commands`/`skills`/`specs`, which are symlinks to `.opencode/`)",
     "created_at": "2026-06-07T09:07:23Z",
-    "last_save_at": "2026-08-30T15:39:24.017Z",
+    "last_save_at": "2026-10-08T19:30:29.736Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:67f8ad78ca445b502f7116f168eaba1b21d8b7a78f6000bbe9911aaf574bd597",
+    "source_fingerprint": "sha256:5633762cfbb15d021ab57ecb8d5e22b6780cb9776c28e2d342f3a3b169871359",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "54ee065db08710449a8eca3308bc31d5c2437a1349de2c521d803843f62435dd",
+      "spec.md": "e83065cb8313cc137cc4eede6e6cc8d5935916766611ccd18a622a6cc97a5449",
       "plan.md": "2cc59a39639b189435e8fcfa88621bc895e4e21c8bee9705ac5545528b345cb1",
       "tasks.md": "c2d2837a31de39a52ecbad2e714aab28eea2bbc8ddec3bc58c1fd61ea3020bd9",
       "implementation-summary.md": "2dc1da099d58da53ea9a4b20d72b5863c055eaa7a9fee3d9e5d345a6e590a37d"

@@ -185,7 +185,7 @@
     ],
     "causal_summary": "sk-doc has README templates and skill creation guidance, but lacks a dedicated skill README asset for skill packages",
     "created_at": "2026-05-10T10:33:23Z",
-    "last_save_at": "2026-10-07T21:54:01.048Z",
+    "last_save_at": "2026-10-08T19:30:06.295Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,10 +195,10 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:5e954c9bc44b6bdee9c60f964f249d619ae865bdeae14c21cb75078fb7068127",
+    "source_fingerprint": "sha256:20d2ec6f45fc87e906fdb0916fb9a1785ebc57ac165478eeaab676fd6cbe7242",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5133b665649ea19aea4e0e401a4f092b2161ddb8dc1b84b20fafa2293484d8ed",
+      "spec.md": "f6c1609cefb75a96f2c049619ca3dcb33a43a32c6730ca326bbd120cba4df0ad",
       "plan.md": "10d4687105c958a5b14bfa2a2c68ab6e476823ab14a99314680bb574785d8fb8",
       "tasks.md": "812b310d1eda8c1b94ae5bce7bbaa99c7963a2d4ff00b64fa1005309db1a45f3",
       "implementation-summary.md": "412fc05297cc536e4495976a271489c897866636a4ea54c21717485964c67731",

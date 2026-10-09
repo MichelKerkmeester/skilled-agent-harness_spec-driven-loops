@@ -190,7 +190,6 @@ chose when ruling that it moves in rather than staying a sibling.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -256,6 +255,7 @@ chose when ruling that it moves in rather than staying a sibling.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

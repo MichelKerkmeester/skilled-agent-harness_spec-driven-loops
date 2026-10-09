@@ -167,7 +167,6 @@ Author the `sk-prompt/prompt-models` registry contribution for Pi (a new model p
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - **NFR-C01**: The allowlist is enforced identically at both runtime dispatch entry points (`fanout-run.cjs` and `dispatch-model.cjs`) - no single-entry-point gap, mirroring 030/008's NFR-C01.
 - **NFR-C02**: Whichever branch (A/B) applies, the resulting profile/bookkeeping follows the exact structural shape of the existing `references/models/*.md` profiles or `_index.md` conventions - no bespoke section layout invented for Pi.
@@ -200,6 +199,7 @@ Author the `sk-prompt/prompt-models` registry contribution for Pi (a new model p
 - As the operator, I want `cli-pi` to only ever dispatch a small, deliberately curated set of models with no `"auto"`/router default, so a future edit or a config drift cannot silently reopen an unrestricted roster - without needing a second hardening phase later.
 - As a maintainer, I want `cli-pi`'s prompt-quality card covered by the same CI sync gate as its siblings, so it cannot silently drift from the canonical card.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 - Does `pi.dev/models` document a Pi-native/house model with no existing `sk-prompt/prompt-models` profile (Branch A), or is Pi purely a provider-passthrough surface over already-profiled (plus net-new externally-hosted) models (Branch B)? **Not resolved during this planning pass** - no live fetch of that page was available to this authoring session; resolving this is REQ-001, the first task of this phase's implementation.
 - What is the exact live-confirmed `PI_SUPPORTED_MODELS` roster, and which single id becomes `PI_DEFAULT_MODEL`? **Not resolved** - depends on REQ-001's live fetch and/or phase 001's live pi CLI probe; must never be guessed or seeded with a plausible-looking id.

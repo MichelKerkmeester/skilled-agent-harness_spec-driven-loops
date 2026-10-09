@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Make communication projection build on install, ship its operator entry points, and provide a loader-valid LM Studio example.",
     "created_at": "2026-08-15T09:21:20.673Z",
-    "last_save_at": "2026-10-07T15:56:23.147Z",
+    "last_save_at": "2026-10-08T19:29:35.721Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ef15faaeef20cee4677fc20d030f5c13f2bbbfddc282db5b61255030f62aa1e",
+    "source_fingerprint": "sha256:348439463ce6f648d93072f56e48ccce684e4adfd35bc82f1b0529c353bd2ff6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "252909080cccbf07ba839999e646010538369c804030ac9ffe3ebdc86a366d95",
+      "spec.md": "76eae275576168f9a04ceef21bfb1a631266d5769b5405cf28fbab2625b20d35",
       "plan.md": "9bd664db92ab9b6b457b43807498bdbe3ff869abb20b6be07a8264bd0bb87a84",
       "tasks.md": "251c036d63e3e581b22c286c4e61765bb62ec9389757752d05cb1acceb5e0160",
       "decision-record.md": "bb8ab30ccd41eebb4be0c7da4a2ba65f3cf27c131f7e45475e4038ddeca511c0",

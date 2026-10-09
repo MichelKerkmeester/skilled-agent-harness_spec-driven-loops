@@ -145,7 +145,6 @@ An operator can invoke the mode deliberately, and can check that it behaved.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -211,6 +210,7 @@ An operator can invoke the mode deliberately, and can check that it behaved.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

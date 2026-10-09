@@ -133,7 +133,6 @@ Appended rows survive the serialization token-budget trim, and the true-citation
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -183,6 +182,7 @@ Appended rows survive the serialization token-budget trim, and the true-citation
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

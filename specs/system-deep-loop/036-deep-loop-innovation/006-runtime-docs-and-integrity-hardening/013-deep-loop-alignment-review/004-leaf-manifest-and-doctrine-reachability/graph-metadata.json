@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The generator skipped any directory entry that was not a plain file, and a symlink never reports as one, so every symlinked reference was invisible",
     "created_at": "2026-09-20T08:33:44.259Z",
-    "last_save_at": "2026-10-07T15:56:50.009Z",
+    "last_save_at": "2026-10-08T19:30:20.472Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:226b27dcf0f742b93a061aca7206ef00af42b76df770a95f73cf65c13605c16d",
+    "source_fingerprint": "sha256:d94251e420c7b40ca4c1f16767e91d9ff0c84b1085d4aeb52d81d593cccbec4d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "15900fde33a8f79c66b33b6f00614a67d487c99b19448ec9d5a951f913fa4e74",
+      "spec.md": "f2748ee6189dbbc431fca73b89500817bd137d0643ced5d8c123f95171dceaee",
       "plan.md": "f8998ae1a6068e69df2f94f6638ad2d59f860382010e99b762c40f72a5cb61f7",
       "tasks.md": "3d6f5a799e5a87cf5956ad88894bed25826e722060948b2948e1d241467b6116",
       "implementation-summary.md": "293e67242ead7ea1fc021a86512029a1b3b61e680ad8ad4344902ea11802a535"

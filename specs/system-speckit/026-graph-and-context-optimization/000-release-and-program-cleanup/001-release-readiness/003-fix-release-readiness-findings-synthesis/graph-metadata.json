@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Packet 045 produced ten release-readiness review reports across workflow, memory, advisor, code graph, hooks, schemas, deep loops, validator, docs, and operability",
     "created_at": "2026-05-18T08:15:52.985Z",
-    "last_save_at": "2026-08-30T15:39:27.674Z",
+    "last_save_at": "2026-10-08T19:30:41.649Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:85cabc2b435dbc9b71951619f41ecbd98d17f03ada89f355db88e452a6936ab5",
+    "source_fingerprint": "sha256:d80218659331e80e5d03bc9c88d9d0f43dfb2bd3107f05197833a052a0034dbb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d84c3163397fbdbbb6656e37bed5acdc0f771539059ed33038feb3a735ea2bdb",
+      "spec.md": "158e03f28e2286109a5864f93b4395faed9abe13ee85bf12dbe4de600992fd91",
       "plan.md": "62a20502af02f8bb1f7be5fa83a8b79416600684b3c9c08080ad6d0b5bd14662",
       "tasks.md": "f75070fd9a40e4742649b40a066e86ede0827e34e28bb382312e8438c1193d07",
       "implementation-summary.md": "85918686a18d03d0f2c776b212f9e377afa636eb7ccd75fb5d4d601bb1875bc3",

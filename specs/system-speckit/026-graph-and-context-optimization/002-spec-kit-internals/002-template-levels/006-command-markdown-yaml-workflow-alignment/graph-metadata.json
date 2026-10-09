@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The slash-command entry docs and their YAML workflow assets may still mention deleted artifacts such as `compose.sh`, `wrap-all-templates`, legacy template folders, or the old architecture label",
     "created_at": "2026-05-02T06:53:47Z",
-    "last_save_at": "2026-08-30T15:39:29.320Z",
+    "last_save_at": "2026-10-08T19:30:46.273Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8326f15cbdfa4a757bad4d03f143b110541e9a6c94bd15803ca1b784c2f8e1b9",
+    "source_fingerprint": "sha256:54e9d0bfb9baedaec7fd911d64e64b04fffecf3df5b8acf885a693f0b323dd48",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "93a3721281a71b682d55b4d2efa8a3acd6e8fc14b293980f833de2e9bd1c4a75",
+      "spec.md": "d3c212fda7e961d9c09fa8292d2168de4ecb1afeb8d58fddb5216964c54a9858",
       "plan.md": "341f548a41a85f863eed36ece33e44a472bac9ae82d35603f3d8a3a235ba59de",
       "tasks.md": "61a73c86279828958daeda448b2be50668e0f85ad18fff6111b658eaeed02896",
       "decision-record.md": "7c537c790b65ad82874ed3a65384c81aa9bf27410b09a6f9a7f208caec9061b4",

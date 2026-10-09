@@ -143,7 +143,6 @@ Every place the six runtimes are named also names `cli-hermes`, and the READMEs 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -209,6 +208,7 @@ Every place the six runtimes are named also names `cli-hermes`, and the READMEs 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None open.

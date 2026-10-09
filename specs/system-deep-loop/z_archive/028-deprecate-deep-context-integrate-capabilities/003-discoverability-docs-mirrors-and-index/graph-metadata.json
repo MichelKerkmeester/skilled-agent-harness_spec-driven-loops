@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Even after `/deep:context` is redirected, active discoverability surfaces can continue to tell users and routers that standalone `deep-context` is a supported deep-loop mode",
     "created_at": "2026-07-04T14:32:36Z",
-    "last_save_at": "2026-10-07T18:15:11.657Z",
+    "last_save_at": "2026-10-08T19:30:32.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d68ad94b4ebc21015800e2bb2bf8282c89341a1042b4bdba38ab6e8d26b30ba",
+    "source_fingerprint": "sha256:10b523444b71e24cd204904fa65505675283c12eda6228633990625b865bd03c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0fbb89c335a2c7df6f99cf6e1d0e28f525b4265c946c3e91cdf53c0a012e802e",
+      "spec.md": "16087de1c93b1f7a78273aad22d32d5dc9772e591030338a0dffd376eeb828bf",
       "plan.md": "1894572a43bfc52b74e44563352ab3c5e88bd85551405630fc4672814eb6f727",
       "tasks.md": "fee2f8f1992b7d56d16ae75cd655cb7f888d3741b72f9f9f7d931d08cc8efb5a",
       "decision-record.md": "9a0df7230621b4427bb15fe94626f3c287f363f296d4cbe61c081a366f9120e0",

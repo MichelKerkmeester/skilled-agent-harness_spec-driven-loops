@@ -151,7 +151,6 @@ Give each of the nine `z_archive` roots a container-level `description.json` and
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -201,6 +200,7 @@ Give each of the nine `z_archive` roots a container-level `description.json` and
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does `generate-description.js` / `backfill-graph-metadata.js` already accept a folder with no `spec.md`, or does this phase need to hand-author a lean container node?

@@ -150,7 +150,6 @@ Renumber the selected spec groups into deterministic sequences, update current r
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -205,6 +204,7 @@ Renumber the selected spec groups into deterministic sequences, update current r
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None currently.

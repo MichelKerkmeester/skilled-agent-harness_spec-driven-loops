@@ -243,7 +243,6 @@ Make every durable write ownership-elected, identity-verified and all-or-nothing
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -336,7 +335,7 @@ Make every durable write ownership-elected, identity-verified and all-or-nothing
 
 ---
 
-<!-- ANCHOR:open-questions -->
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 > All resolved — retained with their answers for provenance.
@@ -344,7 +343,6 @@ Make every durable write ownership-elected, identity-verified and all-or-nothing
 - What compensating control covers in-flight callers during the window between adding the gateway path and demoting the direct export? **RESOLVED (ADR-005, Accepted):** a zero-length deprecation window — the gateway path, the caller migration, and the export demotion land as one ordered, `tsc`-atomic edit, so no window exists.
 - Does the fencing token live in the frame envelope or alongside the authorization proof? **RESOLVED (ADR-004, Accepted):** proof-side placement — `authorization_ref.fence_token` is the implemented field, landed at `039fc180f9`.
 - Do the three effect and attestation paths (`F-004-01`, `F-004-02`, `F-004-03`) share one single-winner primitive, or does each keep its own? **RESOLVED (ADR-006/ADR-007, Accepted):** a shared `FencedLeaseCoordinator`-backed single-winner primitive, derived from the ledger context by default. In practice these paths were T001-REFUTED (already single-winner from the ledger append boundary), so no new coupling was introduced.
-<!-- /ANCHOR:open-questions -->
 <!-- /ANCHOR:questions -->
 
 ### P1 hardening delta

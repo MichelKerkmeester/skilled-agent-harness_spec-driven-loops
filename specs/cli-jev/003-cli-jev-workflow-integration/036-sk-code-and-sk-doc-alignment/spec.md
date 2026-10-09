@@ -217,7 +217,6 @@ The audit exempts one audited code file from every edit: `.skilled/skills/sk-des
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -272,6 +271,7 @@ The audit exempts one audited code file from every edit: `.skilled/skills/sk-des
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which revision of the validators the other sessions leave in place at proof time. UNKNOWN until the proof runs. The staged 34-file copy keeps the scanned file set fixed.

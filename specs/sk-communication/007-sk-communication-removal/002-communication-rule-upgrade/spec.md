@@ -152,7 +152,6 @@ Make the repository communication rules sufficient on their own for a clear plai
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -207,6 +206,7 @@ Make the repository communication rules sufficient on their own for a clear plai
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None. The replacement rule behavior, HVR ownership and scope limits are specified in the parent brief.

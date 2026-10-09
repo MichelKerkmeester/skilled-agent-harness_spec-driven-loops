@@ -211,7 +211,6 @@ Verify that all 4 Governance features are accurately documented in the feature c
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -219,15 +218,17 @@ Verify that all 4 Governance features are accurately documented in the feature c
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - F02 flag count stale: catalog claims 24 flags, actual implementation has 46 exported `is*` functions in `search-flags.ts`. Catalog entry should be corrected. — *RESOLVED: document the discrepancy; correction deferred to 020-feature-flag-reference phase*
 - No undocumented features found in this category.
 - No deprecated features identified.
+<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions-2 -->
 ### Related Documents
 
 - **Implementation Plan**: See `plan.md`
@@ -235,4 +236,3 @@ Verify that all 4 Governance features are accurately documented in the feature c
 - **Verification Checklist**: See `checklist.md`
 
 <!-- /ANCHOR:questions-2 -->
-<!-- /ANCHOR:questions -->

@@ -175,7 +175,6 @@ Create measurement infrastructure and telemetry-only query planning so future RA
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -230,6 +229,7 @@ Create measurement infrastructure and telemetry-only query planning so future RA
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The prompt pre-approved the spec folder and restricted this packet to workstreams 1 and 2.

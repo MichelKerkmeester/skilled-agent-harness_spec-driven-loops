@@ -141,7 +141,6 @@ Deliver all ten deferred items with explicit ADRs for the policy choices and ver
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -211,6 +210,7 @@ Deliver all ten deferred items with explicit ADRs for the policy choices and ver
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. The user supplied the packet path, scope, and policy decisions.

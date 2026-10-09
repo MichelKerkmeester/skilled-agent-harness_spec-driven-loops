@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Every git call in the containment guard returned an empty result on any non-zero exit and discarded stderr, and every caller read empty as a clean tree",
     "created_at": "2026-09-20T08:33:41.166Z",
-    "last_save_at": "2026-10-07T15:56:55.531Z",
+    "last_save_at": "2026-10-08T19:30:22.654Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:021d78eec911eb50eba6ddbf9a131cf1fc4a7da46b34e92600de4abcb7d9ae47",
+    "source_fingerprint": "sha256:e462f98bb30c0b1d571f98d61e786043346df3b9600f3ed38b7f24472fa10a87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f29ea742e65d1f77f1ecf0542820761dfc2242fa0db36dc2f708e571f9b87062",
+      "spec.md": "a679122c252f19590fbf8eee115e0da7aaf19bfdd0dc87cf663c9a5961fdba0f",
       "plan.md": "cd27f18df29c816fac9e871bb4b98b6be1f44b76ca2a21ff51bdf59e64d05cca",
       "tasks.md": "10cf725a23cfbf44edd6f48ba4ed51e6300c6780ce50689ec69a4f921b9084bf",
       "implementation-summary.md": "2591cafb4bb64d86773e9de413147bd64fdd8a2ce27b4156f718f92772a5b432"

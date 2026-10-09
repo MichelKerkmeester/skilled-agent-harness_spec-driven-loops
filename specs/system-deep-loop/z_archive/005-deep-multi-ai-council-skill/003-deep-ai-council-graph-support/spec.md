@@ -185,7 +185,6 @@ Implement council-specific graph storage, query, and convergence signals as a de
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -260,6 +259,7 @@ Implement council-specific graph storage, query, and convergence signals as a de
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. The user requested applying the plan fixes and then implementing the dedicated derived council graph.

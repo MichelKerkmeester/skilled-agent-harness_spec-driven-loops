@@ -154,7 +154,6 @@ Add a `data-quality` route to `/doctor` that is diagnostic by default and applie
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -200,6 +199,7 @@ Add a `data-quality` route to `/doctor` that is diagnostic by default and applie
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether the route declares `mutating: mutates` from the first commit or starts `add-only` until the B1 engine apply path is wired, route-validate accepts either as long as `gate3_location` matches the declared class.

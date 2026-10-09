@@ -145,7 +145,6 @@ Close this packet's investigation honestly: land the regression test the T004 wo
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -184,6 +183,7 @@ Close this packet's investigation honestly: land the regression test the T004 wo
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Was `specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md` genuinely edited and reverted between 05:46:36 and 05:53:43 on 2026-08-07? The `memory_history` timestamps are consistent with this but don't prove it directly (no git history was cross-checked against those exact minutes). Would settle the remaining uncertainty in the Risks section if answered.

@@ -203,7 +203,7 @@
     ],
     "causal_summary": "`maybeBridgeLeaseHolder` ran the deep liveness probe once; a single failure returned an immediate `respawn` verdict, so the calling launcher reaped the lease owner and spawned a second daemon",
     "created_at": "2026-06-07T16:45:00Z",
-    "last_save_at": "2026-08-30T15:39:32.491Z",
+    "last_save_at": "2026-10-08T19:30:56.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d44540a7e8a8e19b0aeb41227208fdae39684f5e29624983a3ccc34fb39f6c5",
+    "source_fingerprint": "sha256:655bb4e7f502c70b12bd57d06ac4c26428f35cb36c73cc90ccc792dbb9345b1d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "87c0a4259d6393e427e4dd709f8b64d57cfe0d0693496bd93e7f4af6af09a243",
+      "spec.md": "81c1fea1518efafdc987e5398ad3501d0e2e95ff98ee507a61e499ae0747ec02",
       "plan.md": "4c373345b80833a7befff9c4791cc735d5d8305500a7f13f6d2e9ecfa514ee19",
       "tasks.md": "d1fd189bc69a89df930caa269d936f8b84a755533e8e33c51e7f52d55c438752",
       "implementation-summary.md": "5186952663146cd994e10de0029c61e09bff58fb939fec848e32e7f2df930a34"

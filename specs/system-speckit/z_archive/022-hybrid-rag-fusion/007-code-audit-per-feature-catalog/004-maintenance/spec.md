@@ -194,7 +194,6 @@ Verify that all 2 Maintenance features are accurately documented in the feature 
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -202,15 +201,17 @@ Verify that all 2 Maintenance features are accurately documented in the feature 
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Are there undocumented features in this category not yet in the catalog? — **Resolved: No undocumented features found. Catalog is current for 2 features.**
 - Have any features been deprecated since the last catalog update? — **Resolved: Neither feature is deprecated; both are active in source.**
 - Is BATCH_SIZE a local constant or environment-configurable? — **Deferred: Constant origin not traced in this audit pass; no catalog impact.**
+<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions-2 -->
 ### Audit Findings
 
 ### F01 — Workspace Scanning and Indexing (memory_index_scan)
@@ -262,4 +263,3 @@ Verify that all 2 Maintenance features are accurately documented in the feature 
 - **Verification Checklist**: See `checklist.md`
 
 <!-- /ANCHOR:questions-2 -->
-<!-- /ANCHOR:questions -->

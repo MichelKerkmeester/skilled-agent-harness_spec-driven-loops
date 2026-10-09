@@ -170,10 +170,10 @@ All 13 scenarios below are P0. Each must receive a PASS, FAIL, or PARTIAL verdic
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None at time of writing. Questions discovered during execution should be noted in scratch/ and tracked here.

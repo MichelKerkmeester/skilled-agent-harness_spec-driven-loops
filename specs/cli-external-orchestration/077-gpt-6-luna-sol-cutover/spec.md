@@ -261,7 +261,6 @@ All skill paths are under `.skilled/skills/cli-external-orchestration/` unless t
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -309,6 +308,7 @@ All skill paths are under `.skilled/skills/cli-external-orchestration/` unless t
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - The Opus scope, the rename's reach and the working branch were settled with the operator before the first edit.

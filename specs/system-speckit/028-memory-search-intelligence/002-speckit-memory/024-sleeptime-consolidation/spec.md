@@ -173,7 +173,6 @@ Add a background, cadence-gated reorganization pass that amortizes consolidation
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -252,6 +251,7 @@ Add a background, cadence-gated reorganization pass that amortizes consolidation
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Does the off-turn agent reorganize into the existing causal/archival store, or does the headline candidate require a new archival-passage substrate (internal Memory has no episode/immutable-transcript model)? This gates `LT-bg-sleeptime-agent`.

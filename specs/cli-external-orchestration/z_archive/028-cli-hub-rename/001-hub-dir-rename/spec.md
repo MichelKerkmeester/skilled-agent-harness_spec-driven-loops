@@ -152,7 +152,6 @@ Rename the existing hub with repository history intact and leave consumer update
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 - **Reliability**: One canonical hub path must remain after the move.
@@ -182,6 +181,7 @@ Rename the existing hub with repository history intact and leave consumer update
 
 **As a** CLI workflow maintainer, **I want** one canonical external CLI hub, **so that** routing and documentation share a stable parent identity.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None for this completed phase.

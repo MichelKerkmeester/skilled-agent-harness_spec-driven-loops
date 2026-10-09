@@ -161,7 +161,6 @@ remainder is a requirement rather than a limitation.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -216,6 +215,7 @@ remainder is a requirement rather than a limitation.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 Both questions below were answered in a follow-up pass. They are kept, with their

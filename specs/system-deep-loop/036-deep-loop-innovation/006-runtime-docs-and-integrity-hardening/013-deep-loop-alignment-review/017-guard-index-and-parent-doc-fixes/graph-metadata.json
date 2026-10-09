@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Three checks were red or wrong for reasons unrelated to what they guard",
     "created_at": "2026-09-20T08:33:46.292Z",
-    "last_save_at": "2026-09-20T08:33:46.292Z",
+    "last_save_at": "2026-10-08T19:30:21.533Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +215,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d8cd1d5acc923912a68602107e4edb4d01126e5c119b2b435eb61fb4c2b91230",
+    "source_fingerprint": "sha256:02ce14f75aaf714dcd67e55361aafdccfdb7bf76158fcdc1a60448ddd1d9e5f3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "482d41f60e995ec8d48b25cfd3944ab755aa39e6ba57211019ee014224115b60",
+      "spec.md": "1b385e525c1300f4710220ea132c6c64d112f2de6f236947aaeae827bf22dc54",
       "plan.md": "858a64b34ab73d6a84fbe43fa452eafde1c08faeebd6fd1c7141c9651f79fac9",
       "tasks.md": "19478f4b872e3462e60f1846dbe0f348d537ecf3c785c6a8c7e159e0ba641f2d",
       "implementation-summary.md": "f2c8c82ef15776c07340c44a5e601f09fc56a4c1466824cb93a50b3087faaced"

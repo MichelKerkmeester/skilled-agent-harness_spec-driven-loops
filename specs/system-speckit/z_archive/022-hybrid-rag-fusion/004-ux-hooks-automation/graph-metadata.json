@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Mutation handlers had inconsistent post-mutation follow-up behavior and uneven UX hint output across save/update/delete paths",
     "created_at": "2026-04-12T09:02:50.239Z",
-    "last_save_at": "2026-10-07T19:24:35.545Z",
+    "last_save_at": "2026-10-08T20:05:32.202Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:4282e9e6754f9696e674cf4935c0ae737eae8115803c24b24cd10c25467f061b",
+    "source_fingerprint": "sha256:23131d7bf59b2ab20bea69424518f942b88302d4f595c6edd138484e8f667c98",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7068e373e672672aab1b75c5bbca37b03411e9ddc08d9db82d35a5bd50097356",
+      "spec.md": "e865e6c89bbc3f103dba9ee263ef774449e5f3a0f17a96438d04ac0a3a1c9f76",
       "plan.md": "abe9f58690910bbbb36b7299ec244bfe67951e3342fb4cd459ef2866a3a7ec9f",
       "tasks.md": "dc6019e42fc5ecfd346c1d468a59fe6c072bbd103a8a6daaa86b40c4259b2f7e",
       "implementation-summary.md": "32ab0fd783a8fbb64b25cadaa8e188484505b6d6eeb2bec62fa7bc63952e6c53",

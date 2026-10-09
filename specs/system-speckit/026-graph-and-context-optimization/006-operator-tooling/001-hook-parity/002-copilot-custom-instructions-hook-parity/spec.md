@@ -198,7 +198,6 @@ The managed block is scoped by workspace root. `custom-instructions.ts` renders 
 ---
 
 <!-- /ANCHOR:risks -->
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -291,6 +290,7 @@ As a Copilot CLI user, I want managed Spec Kit context scoped to the current wor
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 None for this closure pass. Historical investigation questions were answered by outcome B and the ADRs.

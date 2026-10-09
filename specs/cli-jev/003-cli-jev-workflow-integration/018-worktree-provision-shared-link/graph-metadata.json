@@ -202,7 +202,7 @@
     ],
     "causal_summary": "In this worktree, `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc` exits 1 with `FAIL: 12-lib: failed to load the root-router contract library: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'` (rerun 2026-09-27)",
     "created_at": "2026-09-27T12:06:40Z",
-    "last_save_at": "2026-10-07T15:56:02.059Z",
+    "last_save_at": "2026-10-08T19:29:23.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31fcaa50da4b457a7866acc32f6e4336818b3916ff669d8611a306970c72dc98",
+    "source_fingerprint": "sha256:68522e9e8b8c076d2875824f64e8891084817b91b69a85614d1ea30307f71492",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f6cf8c47a48b622cc763e66a4f0a0c62cdf3dfa09282886d1a60fa20cd27417d",
+      "spec.md": "8a39a91c6121bee271a58fdd0df98cd2a96b37677fd9d3d46c451e1c587c4156",
       "plan.md": "0cc9a7bbf71a1942268432b2256ebf5dade02c1d0e9a6a462bd4795f72c90e78",
       "tasks.md": "bacd3ec9aab1be5571abf7b08153fc2fc1b36e850c65df12837bc6efe504731b",
       "implementation-summary.md": "272b3431408808e9674e9f8614f4f1122910e8969ab137ef790fe3228ee703e3"

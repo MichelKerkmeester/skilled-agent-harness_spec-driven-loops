@@ -129,7 +129,6 @@ Add the equivalent sibling adapter directories (`mcp-server/hooks/devin/`, `runt
 | Risk | `devin` binary absent on a given machine | A hook registration references a tool that can't run | Fail-closed pattern matching the `cli-codex`/`cli-devin` executor precedent: check `command -v devin` before relying on any hook firing |
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -197,6 +196,7 @@ Add the equivalent sibling adapter directories (`mcp-server/hooks/devin/`, `runt
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **CORRECTED 2026-07-25**: Devin reads `.devin/hooks.v1.json` under `devin -p` when the file uses the documented top-level event schema. The earlier wrapper-shape tests are superseded.

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`deep-alignment` has no reference adapter yet",
     "created_at": "2026-07-11T06:22:12.777Z",
-    "last_save_at": "2026-10-07T18:15:16.910Z",
+    "last_save_at": "2026-10-08T19:30:34.068Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a149fff8e0c0ef5c39fdcbc2a92d5d64af9ac4b821fd6530bc200df0090cb2ea",
+    "source_fingerprint": "sha256:0301964cc3ec244fc34a3e8765d62484d223b02f0d4be9af9f6a196682cbbc9f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f9a9a6d2c2b4549184ae706ec9e253a6e4844329dc3dfa2174dedc4eb0903047",
+      "spec.md": "1dbe9a030ee5d314b1d9066ded70faec530155c413da659fdc043f9d0b777ff4",
       "plan.md": "003f205d273f9d098e3b67051c2f46f972a2b566627722a3f66f8c440f74642a",
       "tasks.md": "d57f53b63f542728c3ddecaecf0c7ae82320b9025236f882d01f4124aedacb67",
       "implementation-summary.md": "8d0568a97002b2be47480b5fa076366589e28396fc977d0ec74a64efa2fc479e"

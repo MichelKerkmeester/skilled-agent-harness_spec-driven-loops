@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The retrieval feature category of the hybrid-RAG-fusion system requires structured manual verification against the official playbook",
     "created_at": "2026-04-12T09:02:50.289Z",
-    "last_save_at": "2026-10-07T19:24:27.163Z",
+    "last_save_at": "2026-10-08T19:31:37.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ff42f323f871b16bcda7c2f57b5c8569e0a44ab5f3092c8d295afd2a7861257b",
+    "source_fingerprint": "sha256:c7e4b7ffa726165ab7f864a7c95e3f8d7bde7ee04aa45880d69ab24c60f7c8a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "79445c966670a77ed9ed5c38046a3c287755aeb4ecb5f0e1b3fbb78865d26bfc",
+      "spec.md": "97eef6687dafb7f1175dc47533e376508e4036e6d366df155ea95d54174d3bc2",
       "plan.md": "daf4e13d6df07f601df39afeb5a43063d14c4f0d5de7b7cce600d3a152e95bce",
       "tasks.md": "523dfb23cd046f53ab9f40acee2d5737aaf2484716d2bdd45723b88b63fe2327",
       "implementation-summary.md": "5d11c7090bf2d49bf83a64208a8b2c897e72801eb50f79f8957bf9b14e0dc59f"

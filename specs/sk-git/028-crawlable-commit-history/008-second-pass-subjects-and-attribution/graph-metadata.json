@@ -197,7 +197,7 @@
     ],
     "causal_summary": "2,466 subjects fail the grammar the hook enforces today, 2,912 carry a packet number or a slash as their scope, 572 run past 100 characters, and none carries a word from the packet it belongs to",
     "created_at": "2026-09-11T17:06:02Z",
-    "last_save_at": "2026-10-07T15:56:49.189Z",
+    "last_save_at": "2026-10-08T19:30:17.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d7281d2c417aa1844c55effb580fe0662bd0bb21c706e3d06bfb0322af205e8",
+    "source_fingerprint": "sha256:f67f3aa7457861cd4e327e39ec5c252d430221fc35441bf42fcc5ad93aeeafcc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7c46ca69ec8baadc4f5841c945ff54baeac3f5db7adc5687c8e16ea20bc14931",
+      "spec.md": "809f89e6aa6cd4093f1b5fa47c9303aff0c974dbaa3d414caa751112f30236a2",
       "plan.md": "36bac0c5932b65009cc637a1bef2ba13755195814d6380356fd5cfb196dc803e",
       "tasks.md": "96c0cc1d9057d7a4edc1048a30aa39b7e310e033403f1003123ffff61b711d96",
       "implementation-summary.md": "3d225e48ad0e577999aef505ba7933b99f71e9795cf4f344e62c912547dca0b9"

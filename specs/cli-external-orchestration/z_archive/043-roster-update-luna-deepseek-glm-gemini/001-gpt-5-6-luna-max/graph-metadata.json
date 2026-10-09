@@ -195,7 +195,7 @@
     ],
     "causal_summary": "GPT-5.6 Luna Max is live-available for external-CLI dispatch but neither enforced roster carries a GPT-5.6 persona: cli-cursor's `CURSORSUPPORTEDMODELS` hard-rejects `gpt-5.6-luna-max` and cli-devin's `DEVINSUPPORTEDMODELS` hard-rejects `gpt-5-6-luna-max` / `gpt-5-6-luna-max-priority`",
     "created_at": "2026-08-15T08:28:37.831Z",
-    "last_save_at": "2026-10-07T18:11:11.616Z",
+    "last_save_at": "2026-10-08T19:29:22.132Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4bae8ab5da2b640785f5f150693c079b1fd125c10794368bb2dcb31084a5572e",
+    "source_fingerprint": "sha256:ae3949b93ecfc6af4acd3df492c9f3eb2598ab5f689218a92a71dcfc9f0544c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "050c779059367eff2ad9e120ef138b3e56983ea6fbcce5abd6f345b0f718b265",
+      "spec.md": "9ec0988a34ad897c2d87c0e27cecb73034311eb49f347a15f5d2a2528c0c5c64",
       "plan.md": "97568f7aea3d6d6265b51cf85c284394615ab32d65e7ea39112effa226781b2d",
       "tasks.md": "93d064b186868fc2aed6e34adb19360f6b563e7e57b6aac8ebf8952f7a220035",
       "implementation-summary.md": "a7161bcbe9e3675778e712446792171bc292b54354427f96fea7107ca9a0b463"

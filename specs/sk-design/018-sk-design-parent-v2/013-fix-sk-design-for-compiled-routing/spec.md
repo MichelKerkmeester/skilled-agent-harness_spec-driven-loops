@@ -149,7 +149,6 @@ Make the current `sk-design` contract replayable through the compiled routing pa
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -179,7 +178,6 @@ Make the current `sk-design` contract replayable through the compiled routing pa
 - Missing activation manifest: status reports `missing-manifest` and the front door returns the legacy sentinel.
 - Stale policy hash or generation: status reports stale or identity drift and serving remains legacy.
 - Router or registry source drift: build and freshness fail before activation.
-<!-- /ANCHOR:questions -->
 
 ---
 
@@ -225,10 +223,12 @@ Make the current `sk-design` contract replayable through the compiled routing pa
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether the existing design playbook's cross-canvas scenario should be refreshed is outside this packet unless admission proves it is a current contract failure rather than stale gold.
 - Whether the broader source-sync migration should be repaired belongs to a separate packet because its baseline failure predates this hub.
+<!-- /ANCHOR:questions -->
 
 ---
 

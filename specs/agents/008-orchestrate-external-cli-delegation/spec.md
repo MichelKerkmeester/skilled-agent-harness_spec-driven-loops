@@ -132,7 +132,6 @@ skill-owned route and frozen scope authoritative, and treats what the run return
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -189,6 +188,7 @@ skill-owned route and frozen scope authoritative, and treats what the run return
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - `sk-create-agent` documents no mirror obligation at all: nothing in its ordered creation workflow or

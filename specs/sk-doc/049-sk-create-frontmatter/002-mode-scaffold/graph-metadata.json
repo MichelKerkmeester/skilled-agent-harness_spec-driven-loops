@@ -202,7 +202,7 @@
     ],
     "causal_summary": "A packet that gains content and structure at the same time cannot tell you which of the two",
     "created_at": "2026-09-01T08:42:57Z",
-    "last_save_at": "2026-09-02T20:20:18.097Z",
+    "last_save_at": "2026-10-08T19:30:00.090Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e82b96bd8465c8bc19d844fdc66e870971689ddf5673d0843a9e5e5f6d4308d",
+    "source_fingerprint": "sha256:00bb97d035085ab547b989655931a78e1e5bb4e54680e757af41644f2e9eee99",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7092e716d7e42767f6b634db020c70573ba51e6e240e4a24c6972d291709813e",
+      "spec.md": "1101f47dadb5debc20017449df26549cea17620b67658aa074b10a6fdd792dba",
       "plan.md": "8aed2f89c4f38c08762dfc133651ab137465da7abcedf42a6fee48c2ec5d0013",
       "tasks.md": "54472c37ea3bc96c8d347c0812cdf2ae83e66ab7bec7ad766aac2267d48ac4da",
       "decision-record.md": "c13b3f3388a56ec7669cf015d79302a9d4e7228a284369963242982b01df4881",

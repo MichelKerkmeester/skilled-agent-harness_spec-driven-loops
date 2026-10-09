@@ -86,6 +86,7 @@ Capture the final parent contract for the shipped remediation train: Phases 1-5 
 | `spec.md` | Modify | Record the final parent packet state and phase map. |
 | `checklist.md` | Modify | Link packet-level remediation items to the phase-local CHK evidence. |
 | `implementation-summary.md` | Modify | Summarize the full PR-1 through PR-11 closeout story. |
+<!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:phase-map -->
 ### Phase Documentation Map
@@ -127,7 +128,6 @@ All 10 sub-phases (001–010) have been merged into `implementation-summary.md �
 
 > **Handoff waiver (recorded 2026-04-08 during deep-review remediation):** The Phase 5→6 and Phase 6→7 handoff gates are explicitly waived for the 026-graph-and-context-optimization remediation cycle. Rationale: the Phase 5 closeout criterion depends on parent strict validation which is blocked by out-of-scope plan/tasks drift (addressed by P1-007), and Phase 6 implementation state is being normalized to placeholder under P1-012. Gates should be re-evaluated when the parent remediation workstream completes. See `implementation-summary.md` §Deep-Review Remediation Cycle for the consolidated cross-reference evidence.
 <!-- /ANCHOR:phase-map -->
-<!-- /ANCHOR:scope -->
 
 ---
 

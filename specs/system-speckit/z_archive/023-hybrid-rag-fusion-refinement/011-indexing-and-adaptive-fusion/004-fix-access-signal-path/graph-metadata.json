@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Adaptive ranking needed access events from the main search pipeline, not only from storage-side batching paths",
     "created_at": "2026-04-12T09:02:50.333Z",
-    "last_save_at": "2026-08-30T15:39:39.577Z",
+    "last_save_at": "2026-10-08T19:31:37.780Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02b0ba51c062838641ad86d79db201182bfa4b8a450b5926fda3fad1c8c850d2",
+    "source_fingerprint": "sha256:549580c0b61140aa2e67dcc2af6f3b37c6dbe5b6ac69e40af709353ca3851330",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "de7cc8732662521c220e10f266ba61deea9f0538d4418cabcf97a2c37f2d1457",
+      "spec.md": "4397d7b993b981e9cd0318e56034c72f8b1d5c515cb7919b810a2b4306bf5c00",
       "plan.md": "c344a9cdf687e28c41b7b433ac59ac54b84cfab545c3d82a40dd022c33c1a6ce",
       "tasks.md": "32b5d42824fe6a085760ba4e8eb76d2d90608d19bd34c39b148016d80a7bfb77",
       "implementation-summary.md": "f6f302092df73080c8c7d2204abcaa3587726ba6d98de292693d5f7443cca27d"

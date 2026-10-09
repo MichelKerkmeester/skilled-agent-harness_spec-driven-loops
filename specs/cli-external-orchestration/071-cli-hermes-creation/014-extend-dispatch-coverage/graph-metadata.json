@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 1 made the preflight enforce, but two runtimes could not reach it and several predicates could be walked past",
     "created_at": "2026-09-15T16:29:32Z",
-    "last_save_at": "2026-10-07T15:55:57.288Z",
+    "last_save_at": "2026-10-08T19:29:11.653Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4b2a0cd362ec06671f7f89e8d4b384a2528fb586aed5f0f3a7cccd8a08c9eebc",
+    "source_fingerprint": "sha256:2befd0bd812f4498302cec6db0c3b9aa40cfbd3dc6ab2879cec58a449c24110b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3461077c9604209b4b206f20ad1569d5dc399a6c61ef86e31d2b7b0e789ff5e6",
+      "spec.md": "0df399d26136bd3df35c836eef9269c89899916e959c60e2ef9e0cb7146c41bd",
       "plan.md": "23bbc8a93dddf435f5faed27e9998d62b980a77df68d233e9e8c27632a640ab8",
       "tasks.md": "22ba811b958cee8f764e2394e1e8ee97fcf9e8b8e148efff764d5a7b99bc40a9",
       "implementation-summary.md": "28dc48f8e0205210912adf58476ffe93d6d94f3c059aeab29c6bb3b605bc9e48"

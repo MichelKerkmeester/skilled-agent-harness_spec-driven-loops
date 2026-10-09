@@ -43,7 +43,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
       "core/config.ts"
     ],
     "entities": [
@@ -69,12 +68,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-drift-marker.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
         "source": "derived"
       },
       {
@@ -176,7 +169,7 @@
     ],
     "causal_summary": "F3 — Git-hook lock directory has no stale-lock recovery",
     "created_at": "2026-07-09T15:11:33.252Z",
-    "last_save_at": "2026-08-30T15:39:35.048Z",
+    "last_save_at": "2026-10-08T19:31:02.362Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,10 +178,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5d65b03c21911bb58c751166915a88ec2541676b6a244e8fa4c1bed4e0ab61a6",
+    "source_fingerprint": "sha256:1921f659f6ba26eb791c4617f7457dfac1c8c1a60de04b0e3843e09de9cbb469",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "487d30cf30c24bf5ba7b851e4ed8e5c520c8b166eca2190aaf7ea380b57b3ac7",
+      "spec.md": "a3f343d797007b64698d2211ce3d48a6dc3ccc7f0bafd38655a8ff6a2e7b1e98",
       "plan.md": "934d78d7ca7bc61cc878635d22545933aa793b29416ee1344837078fbb4ba0d3",
       "tasks.md": "cd0c4b316396dd03b3dc1c45161ff9902ee3ac6856cb0dc89f01826523d36e8e",
       "implementation-summary.md": "7010ad442081ed9384536c231813c04fbaf3a694297a5af055242531dbaa9704"

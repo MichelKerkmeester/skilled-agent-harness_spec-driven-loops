@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "sk-code/z_archive/006-sk-code-opencode-merger",
   "spec_folder": "sk-code/z_archive/006-sk-code-opencode-merger",
-  "parent_id": "sk-code/z_archive",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -49,67 +48,61 @@
       "implementation-summary.md",
       "resource-map.md",
       ".opencode/skills/sk-code/SKILL.md",
-      ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/resource-map.md",
-      ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/spec.md",
-      ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/plan.md",
-      ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/tasks.md",
-      ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/decision-record.md",
-      ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/implementation-summary.md",
-      "scripts/tests/alignment-drift-fixture-preservation.vitest.ts",
       ".opencode/skills/sk-code/README.md",
-      ".opencode/skills/system-spec-kit/scripts/extractors/README.md",
-      ".opencode/skills/system-spec-kit/scripts/loaders/README.md",
-      ".opencode/skills/system-spec-kit/scripts/ops/README.md",
       ".opencode/agents/code.md",
-      ".opencode/agents/review.md"
+      ".opencode/agents/review.md",
+      ".opencode/agents/deep-review.md",
+      ".opencode/agents/orchestrate.md",
+      ".claude/agents/code.md",
+      ".claude/agents/review.md",
+      ".claude/agents/deep-review.md",
+      ".claude/agents/orchestrate.md",
+      ".codex/agents/code.toml",
+      ".codex/agents/review.toml",
+      ".codex/agents/deep-review.toml",
+      ".codex/agents/orchestrate.toml"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/decision-record.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "resource-map.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/resource-map.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "alignment-drift-fixture-preservation.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/alignment-drift-fixture-preservation.vitest.ts",
         "source": "derived"
       },
       {
@@ -128,6 +121,42 @@
         "name": "review.md",
         "kind": "doc",
         "path": ".opencode/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.toml",
+        "kind": "file",
+        "path": ".codex/agents/code.toml",
+        "source": "derived"
+      },
+      {
+        "name": "review.toml",
+        "kind": "file",
+        "path": ".codex/agents/review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
         "source": "derived"
       },
       {
@@ -177,41 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Create Level",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Before this implementation, `sk-code` advertised itself as an umbrella application-code router with Webflow, Go, and React/NextJS branches, while `sk-code-opencode` separately owned OpenCode system-code standards",
     "created_at": "2026-05-03T11:04:06Z",
-    "last_save_at": "2026-08-30T15:39:11.411Z",
+    "last_save_at": "2026-10-08T20:53:27.551Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +221,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:4c5b8f1a032026b27a21178e051346fe0060556ae01d417881b6e63966f8c014",
+    "source_fingerprint": "sha256:e15bd05f5e3ccb0b2aa2aaa8c729838845ac71a7b6faabaaefb8754a149e281f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7628b2e2332b64cae4cb82a1c20ab53e54e62e653c3bd9c0109e3195d0444dba",
+      "spec.md": "696b6453007d84ed36401ee9b41a96feb8b916588dc14a75908a719a2758c6c5",
       "plan.md": "882ad8733dbc10445b8835d41edffbefc1ffc61c8ab81d8494106d2eb6764a86",
       "tasks.md": "6ae39389f0c6f36820ed70a3b528ca032cb8ba5371ef8e693e2fb8331fd49118",
       "decision-record.md": "6af6b6fd09e806fe2b4392bd976c0050b2fa4cbddc5f100c7d16808fdcc8e2d2",
-      "implementation-summary.md": "96c8d07a5ab27ff37fc02650c4c076a29cec2b11e6c02c3a98a0b680cff856cc",
+      "implementation-summary.md": "58a70a21c3e9e5ac5672dad9bd5efc538d1e0b6db8e0e4dadd96247e29ef6b17",
       "resource-map.md": "f8d7d5dd0211a93817350b267291a42d43b97bd7ef160634aaf26daf88f581c6"
     },
     "last_active_child_id": null,

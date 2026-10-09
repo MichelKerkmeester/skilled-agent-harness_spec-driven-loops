@@ -160,7 +160,6 @@ Leave phase 005 with a transport that nothing calls, and prove the automatic rou
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -187,6 +186,7 @@ Build phase. The risk is not in writing the code but in the blast radius: the ad
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None open at authoring time beyond those the parent spec records; anything found during planning is raised there.

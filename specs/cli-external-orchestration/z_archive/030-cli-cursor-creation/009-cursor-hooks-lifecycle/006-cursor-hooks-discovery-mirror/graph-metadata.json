@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The operator asked for a `.cursor` hook folder \"with the name that's conventional according to official docs,\" with every hook this repo has symlinked into it",
     "created_at": "2026-07-24T17:40:29.498Z",
-    "last_save_at": "2026-10-07T18:11:41.026Z",
+    "last_save_at": "2026-10-08T19:29:18.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1235085eaf018dc1ea00403925557e976cca449520bfe7083501719538fcc3aa",
+    "source_fingerprint": "sha256:e794a6348986bace178093a7706b9ff5d6cfc2e28550877a14f006507ddfce42",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5b45e783dd12b916d75922ff56ca4bf506f8e1d37c9d20cdde490657aa3d8668",
+      "spec.md": "2fb1b1d9e282b567e4a7762862d59e075c5859d81d786fcbccde5331c39bf44f",
       "plan.md": "b552f65ee690abab0f4fa9054a886b4dc5b7e916a7e5948468d216eb3fba2e47",
       "tasks.md": "1afac168c0b5121c484b7b849267b6c2f621315524205e87016c0d599731fee2",
       "implementation-summary.md": "f003d286e660de8e216bc3c6bb82a0096e8c8fbea87d7006c57714dbc03e8dc2"

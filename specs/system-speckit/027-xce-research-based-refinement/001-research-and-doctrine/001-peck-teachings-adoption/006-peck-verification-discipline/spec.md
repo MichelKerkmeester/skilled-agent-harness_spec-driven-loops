@@ -231,7 +231,6 @@ The impacted surfaces are taken from integration-plan §2 (impact matrix). Runti
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -326,6 +325,7 @@ The impacted surfaces are taken from integration-plan §2 (impact matrix). Runti
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Clean-tree precondition scope: whole repo versus packet paths only (default: packet-scoped, recorded as an ADR if narrowed).

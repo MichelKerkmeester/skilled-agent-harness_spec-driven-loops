@@ -126,7 +126,6 @@ Scrub the live-code perishable-label backlog so the extended checker reports cle
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -181,6 +180,7 @@ Scrub the live-code perishable-label backlog so the extended checker reports cle
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None outstanding; the excluded scopes and the deferred pre-commit wiring are recorded decisions.

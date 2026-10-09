@@ -209,7 +209,6 @@ recorded.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -286,6 +285,7 @@ the choice recorded, **so that** no vocabulary sits in an unexplained bucket.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 None left inside this phase. The fifty signals that do not resolve each carry a decision in

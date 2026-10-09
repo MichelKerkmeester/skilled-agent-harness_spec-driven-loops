@@ -281,7 +281,6 @@ These re-audit mismatches should be treated as authoritative over the original z
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -289,7 +288,7 @@ These re-audit mismatches should be treated as authoritative over the original z
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - All catalog undocumented-feature questions resolved: no new features found outside catalog inventory.
@@ -298,9 +297,11 @@ These re-audit mismatches should be treated as authoritative over the original z
 - **[Deep Review Update (2026-03-25)]** The original zero-MISMATCH synthesis is superseded: 5 MISMATCHes are now active in phases 009, 010, 011, 013, and 016.
 - **[Deep Research]** BS-001 through BS-005 represent structural blind spots that require a cross-cutting re-audit pass to resolve. These are not addressable within any single per-feature phase.
 - **[Deep Research]** The 32 unreferenced source files (BS-005) need triage: dead code candidates vs. uncataloged features.
+<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions-2 -->
 ### Related Documents
 
 - **Implementation Plan**: See `plan.md`
@@ -308,4 +309,3 @@ These re-audit mismatches should be treated as authoritative over the original z
 - **Verification Checklist**: See `checklist.md`
 
 <!-- /ANCHOR:questions-2 -->
-<!-- /ANCHOR:questions -->

@@ -183,7 +183,6 @@ phase changes the templates on evidence rather than on preference.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -263,6 +262,7 @@ accident.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether any evilcharts form belongs in the catalog as a new template, or whether the gap is

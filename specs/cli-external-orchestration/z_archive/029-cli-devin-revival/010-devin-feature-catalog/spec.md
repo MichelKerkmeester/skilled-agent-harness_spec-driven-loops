@@ -117,7 +117,6 @@ Define the catalog taxonomy, mandatory per-hook-event evidence-state field and a
 | Dependency | Sequential-numbering neighbor is `006`, but the real dependency is 003/004/005/008/009 | A future reader could assume 006 must complete first | Phase Transition Rules note in the parent `spec.md` states this explicitly, mirroring phases 008/009's own precedent |
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - **NFR-C01 (Currency)**: every hook evidence-state claim traces to dated live verification or an explicit statement that the event did not occur.
 
@@ -143,6 +142,7 @@ Define the catalog taxonomy, mandatory per-hook-event evidence-state field and a
 - As an operator, I want the catalog to distinguish events observed live from events that remain unobserved.
 - As a future maintainer, I want 8 stable hook entries so new evidence updates status rather than category structure.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 - Should this phase's implementation wait for all of 003/005/009 to land, or proceed incrementally with explicit stubs? Leaning toward incremental (see frontmatter `open_questions`), but not decided here -- operator to confirm at implementation time.
 <!-- /ANCHOR:questions -->

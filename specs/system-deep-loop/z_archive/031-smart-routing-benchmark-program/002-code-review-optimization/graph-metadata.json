@@ -192,7 +192,7 @@
     ],
     "causal_summary": "After the live-scoring fix (sibling packet 001), `code-review` still scored lowest of all children — CONDITIONAL 69 vs 80-100",
     "created_at": "2026-05-16T09:42:33Z",
-    "last_save_at": "2026-10-07T18:14:56.449Z",
+    "last_save_at": "2026-10-08T20:53:55.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a05b3f7449b7cf618e56d6047b32595278dcc95f6b861c142c6555c3e1a80336",
+    "source_fingerprint": "sha256:0e8fe1611462e9e554e13751a07929703ec5bb220849f5472f1a5047b16a63c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b9d10f13a5de044bb307b083fcf36d9b1f32c0cb798aa7eb6bd143e2bd97c9aa",
+      "spec.md": "14a6674c75461334640a066eabeb8a0ae901122ba62882a33942ff493499be95",
       "plan.md": "8e4327fa2292c9ea24cdff7bb4bf515de7ecc3e1b9908e1c8be6824d7ca675b4",
       "tasks.md": "a5f40f19cd38be95bc95808468cbb3a8b34fe14e5a4304f57fdc79f90674a58f",
-      "implementation-summary.md": "369e705b2917419753c94e8d8d79a7c032ce468805470124886ef2ba09c3c6b6"
+      "implementation-summary.md": "6b86b32f6400121a6c9a27e989b69b0d0fd9c5441fd3be7f9a2a8b0e92794fd0"
     },
     "last_active_child_id": null,
     "last_active_at": null

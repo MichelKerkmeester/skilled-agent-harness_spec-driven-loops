@@ -133,7 +133,6 @@ Keep public documentation portable by replacing internal packet paths with stabl
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -188,6 +187,7 @@ Keep public documentation portable by replacing internal packet paths with stabl
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Answered: Generic `specs/`, `.opencode/specs/`, and `<spec-folder>` examples remain only where they describe the Spec Kit workflow or a user-selected command argument. Concrete internal packet paths were removed from public docs.

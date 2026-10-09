@@ -160,7 +160,6 @@ Produce an actionable, collision-free remediation plan -- spec, plan, and tasks 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -232,6 +231,7 @@ Produce an actionable, collision-free remediation plan -- spec, plan, and tasks 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None blocking. One documented scope nuance: `R1-P1-001` (the shared 4-file vendored-README DQI-floor finding covering `clickup-cli`, `clickup-mcp`, `figma-cli`, `figma-mcp`) is intentionally split -- its ClickUp half is a WS-A task, its Figma half is a WS-C task -- because the four files live in two different hub subtrees; see `tasks.md` for the exact split.

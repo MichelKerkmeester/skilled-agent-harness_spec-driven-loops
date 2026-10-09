@@ -226,7 +226,6 @@ Every ID above is assigned to this child and to no other. Locations are the anch
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -312,11 +311,10 @@ Every ID above is assigned to this child and to no other. Locations are the anch
 
 ---
 
-<!-- ANCHOR:open-questions -->
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 Resolved during implementation. The validator lives in `mode-contracts/strict-gate-validator.ts`; version checks use each mode's installed constants; and the gate families share stable reason codes with family-specific detail at their boundaries. The authorization gateway remains unchanged.
-<!-- /ANCHOR:open-questions -->
 <!-- /ANCHOR:questions -->
 
 ---

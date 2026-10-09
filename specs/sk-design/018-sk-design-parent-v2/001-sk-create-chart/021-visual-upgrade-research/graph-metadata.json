@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The corpus has been upgraded against one reference, shadcn, and re-based on the cursor register",
     "created_at": "2026-09-08T15:38:35Z",
-    "last_save_at": "2026-10-07T15:56:34.186Z",
+    "last_save_at": "2026-10-08T19:29:44.373Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ace59d6aa2e3787d20beb22f480680cbea5abecc3d550537af3ab7d2ee161e63",
+    "source_fingerprint": "sha256:039f17dcc043f8be458be3dcfb792501315011fb84aa1ff0d91022e704ed79f8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a2f1c2a44f3f66d5c3e4cadb2337be5bab57709e9543ebfd532290477f6d2058",
+      "spec.md": "d9491e7a01581101f189c57a8c7f82b27ac65819b162dcd108ef5d51db8e5bce",
       "plan.md": "885bb2fdf6f0c1c547827777560075a4e760791a9a9487a7cc07d52ee5276449",
       "tasks.md": "524a289d3c9ffccef441c24205d057a5d6740e5036052e9a025abfb43f077432",
       "implementation-summary.md": "c8fd147a2885f38162d4d4013bafe1e41767fd270d61bba04029f9da0fc85e0d",

@@ -189,7 +189,7 @@
     ],
     "causal_summary": "All 21 templates print `Source: demo figures`, and the numbers behind them are placeholder-grade",
     "created_at": "2026-09-06T06:26:44Z",
-    "last_save_at": "2026-10-07T15:56:34.068Z",
+    "last_save_at": "2026-10-08T19:29:43.438Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,10 +199,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b75c59c476dd139c449316f72d095c247bcc8c08f57b8a6e97949c3a3deb72e4",
+    "source_fingerprint": "sha256:d248616866e8caa26d4a8ef77e533628d16138ab620e9a2aa6216dbf67e91037",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8785622b08cd1e599789c2184fa2da968a136a04fed3a0825a6da00aa8e67ea1",
+      "spec.md": "a077f3508767eff3966550d28cce518b5329e42aaf20cfbf134574c0e0107c47",
       "plan.md": "a9d3f4621b6629ae21234147d02a49d8de6b91d8ea257c69aad10c165e77ef0d",
       "tasks.md": "4d1fb57335d1a3e34389d10cc2cb8935381a0f66c2f03892d32aa9de03b91607",
       "implementation-summary.md": "0d9780d3548ef022087289d451c47c2f2ed8c5f5e01b679577c08d5cb2e0ce0f"

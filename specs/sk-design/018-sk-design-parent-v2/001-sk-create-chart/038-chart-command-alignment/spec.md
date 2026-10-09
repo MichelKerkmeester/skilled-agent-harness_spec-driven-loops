@@ -102,7 +102,6 @@ Every path, filename, count and skill the command names is one that exists.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -157,6 +156,7 @@ Every path, filename, count and skill the command names is one that exists.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

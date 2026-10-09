@@ -47,12 +47,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "research/research.md",
-      ".opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs",
-      ".opencode/skills/system-spec-kit/scripts/resource-map/README.md",
-      "scripts/resource-map/README.md",
-      "scripts/tests/resource-map-extractor.vitest.ts",
-      "scripts/resource-map/extract-from-evidence.cjs"
+      "research/research.md"
     ],
     "entities": [
       {
@@ -83,24 +78,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "extract-from-evidence.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/scripts/resource-map/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map-extractor.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/resource-map-extractor.vitest.ts",
         "source": "derived"
       },
       {
@@ -198,11 +175,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Autonomous deep-loop runs produce rich evidence across 5–15 iterations, but the output surface is split between iteration markdown files (dense, per-cycle) and `research.md` or `review-report.md` (narrative synthesis)",
     "created_at": "2026-04-24T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:29.226Z",
+    "last_save_at": "2026-10-08T19:30:45.454Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +207,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6122196f76adeb1c152b6a00e380c7125bd6c7ed7c30406cd53f82e0be11d2e6",
+    "source_fingerprint": "sha256:0d214c5e124e69ec9035c0922607a52206d345b9fa039fce8e4d4c9d62358579",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6a2c7be7b0bf87c093071982813ddefb28e16f4ce2327bf31cd8f063d02001f2",
+      "spec.md": "609eb0ba7f930fd20e932553183dfa64c68492366fea5daf40964c96159d90f6",
       "plan.md": "9fcfc7f98795e55b116a5515768e2e7aeadace4f3af3e9ba00cd6c569555d2e6",
       "tasks.md": "51cd6980a05ce7cb18bca76dc5053970fd67f9edd60d730d24e4e2b5abc2a628",
       "implementation-summary.md": "929c6daf7d207b8b3fbeb66cf8e61254068ce5aafa69a7e3e7413ee735ff23cd",

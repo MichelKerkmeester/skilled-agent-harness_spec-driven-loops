@@ -156,7 +156,6 @@ Ship a unified advisor architecture where skill graph freshness, derived metadat
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -232,6 +231,7 @@ Ship a unified advisor architecture where skill graph freshness, derived metadat
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 ### Open Questions
@@ -256,6 +256,7 @@ All 7 sub-phases (001–007) have been flattened into this parent packet (2026-0
 | `005-mcp-advisor-surface` | MCP tool contracts and handlers. | Merged |
 | `006-compat-migration-and-bootstrap` | Legacy compatibility and operator bootstrap. | Merged |
 | `007-promotion-gates` | Shadow cycles and promotion gate bundle. | Merged |
+<!-- /ANCHOR:questions -->
 
 ---
 
@@ -263,4 +264,3 @@ All 7 sub-phases (001–007) have been flattened into this parent packet (2026-0
 
 - Parent 009 packet.
 - Phase 027 plan, tasks, checklist, decision record, and implementation summary.
-<!-- /ANCHOR:questions -->

@@ -116,7 +116,6 @@ The purpose is to resolve the canonical workspace root deterministically so the 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
@@ -146,6 +145,7 @@ Low complexity: one function rewrite plus two call-site swaps (17 insertions, 10
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None. Scope was settled with the operator (full root-cause fix plus cleanup).

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phases 1 and 2 changed what a changelog is, and several surfaces next to them still describe or perform the old behavior",
     "created_at": "2026-09-27T17:18:04Z",
-    "last_save_at": "2026-09-27T18:56:10.122Z",
+    "last_save_at": "2026-10-08T19:30:06.046Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:36ac07e106a7596ea1e02cd189e960a9b111017a060073f5034317f7d6a00727",
+    "source_fingerprint": "sha256:045327fc7e7572e710ddef69173c30e18dad89c60272b4dc1b89b38fb385a322",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f14205b5b34d3551ace8a078fdc42fa221d2cf90c224c76af5e7646127f4101a",
+      "spec.md": "868db56276875d10ecab8883fa20ac0ae3f4eb62ebbf7ccee018b320823d9ac2",
       "plan.md": "a2cbc09d7f1e2d3c33667c52c35279701d05405dd19a2865d25c6e8e24a48de7",
       "tasks.md": "151b5eb2482ffd2e16b08f634fb05ba15fa89f4e9593b526eba919e34618dd8a",
       "implementation-summary.md": "91ba5562bc72f6b32e3c1976b5db0350b6b6852a47fa0d939854464f97ff8eee"

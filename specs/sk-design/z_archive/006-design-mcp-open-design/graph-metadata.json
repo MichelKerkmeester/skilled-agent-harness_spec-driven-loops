@@ -164,7 +164,7 @@
     ],
     "causal_summary": "The shipped `design-mcp-open-design` transport mode had no packet in git or memory",
     "created_at": "2026-07-16T09:10:59.222Z",
-    "last_save_at": "2026-10-07T18:11:21.241Z",
+    "last_save_at": "2026-10-08T19:29:53.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -172,10 +172,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:0fb5d601a508f995e6b99e7361b018b5cfd180847c81c213b33967a8dcb67c02",
+    "source_fingerprint": "sha256:ef00d909059018d9e2fbce560a5a76591c8b6eafd1d5ef36dbc2d685dc1c8bc0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7dd0de56df5a17b6532ae8d6eb1cccfca026cb88df5db4328bde6590c7ff1809",
+      "spec.md": "81c712e29e3c359ea2fe60c618a9f7a422a1a4f9fa803fa36aec2c2098dbfb2e",
       "plan.md": "92c4e464adb6c579c302c9df9ead7206ba301ac672115ab4a1553b0880a8508a",
       "tasks.md": "ce0ea8d8b53b7f841bec5ce4d4944bc213c7d22afbef9725cd5ce088f5bd56a9"
     },

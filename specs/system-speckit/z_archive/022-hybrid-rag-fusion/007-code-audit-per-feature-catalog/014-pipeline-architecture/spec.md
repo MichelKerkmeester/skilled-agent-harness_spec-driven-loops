@@ -265,7 +265,6 @@ Phase 014 was revalidated against the 2026-03-25 deep review findings. Five verd
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -273,15 +272,17 @@ Phase 014 was revalidated against the 2026-03-25 deep review findings. Five verd
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - ~~Are there undocumented features in this category not yet in the catalog?~~ **Resolved**: No gaps found.
 - ~~Have any features been deprecated since the last catalog update?~~ **Resolved**: No deprecations found.
 - **[Deep Review Update (2026-03-25)]** F10, F11, F18, and F21 now require remediation follow-up before this phase can return to an all-MATCH baseline.
+<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions-2 -->
 ### Related Documents
 
 - **Implementation Plan**: See `plan.md`
@@ -289,4 +290,3 @@ Phase 014 was revalidated against the 2026-03-25 deep review findings. Five verd
 - **Verification Checklist**: See `checklist.md`
 
 <!-- /ANCHOR:questions-2 -->
-<!-- /ANCHOR:questions -->

@@ -177,7 +177,6 @@ Make the two-lane split visible on disk for the scripts tree by moving each scri
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -246,6 +245,7 @@ Make the two-lane split visible on disk for the scripts tree by moving each scri
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Do any tests resolve scripts by relative path rather than absolute repo path, which would also need repointing?

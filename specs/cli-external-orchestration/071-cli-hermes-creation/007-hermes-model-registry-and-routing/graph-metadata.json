@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Phase 003 wrote the allowlist, but nothing had shown the runner refusing an off-roster id, the prompt-improver eligibility tables did not know `cli-hermes` existed, and the prompt-card drift guard skipped the new packet",
     "created_at": "2026-09-14T17:24:48Z",
-    "last_save_at": "2026-10-07T15:55:51.858Z",
+    "last_save_at": "2026-10-08T19:29:07.798Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9d92d70b5ca91fb8951b84f08ca6ac9874fdb4f1e27a5c9b2d086ac121ac5555",
+    "source_fingerprint": "sha256:a57bdaea8980ae534c1a3511c1a2ac42443bd9aeddb3a20a2600a3a02beb23d9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aee22ddc6101f0a730c5de6b2cfdc1b547b9af40d46f083537ed9544bef5a9b0",
+      "spec.md": "256f0aade44656750d92d757c9f474ef7454f32f13688e2bb78df0e070642e58",
       "plan.md": "15c454a5809ae6d4703514145d7df3a15291a7a4817dfa38f15a1412300b7310",
       "tasks.md": "448d359793abe4e1b5dd5a87d3025415136799d85cf83eb0725ee9bab7eb46f4",
       "implementation-summary.md": "6cd800da186ed281d53b284d8ed0402293a280f3a7112debe48dbefea29e35e6"

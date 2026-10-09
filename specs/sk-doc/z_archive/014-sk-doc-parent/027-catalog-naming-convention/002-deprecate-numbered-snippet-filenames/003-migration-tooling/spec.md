@@ -148,8 +148,8 @@ recursive re-validation and Lane C re-benchmark (Phase 005).
   003 itself is tooling-only and does not touch the loader or generator.
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 None. Script location is proposed in plan.md §3 (packet-local `scripts/`), reversible to a shared sk-doc scripts
 area if review prefers it, mirroring the 025 analog decision.
 <!-- /ANCHOR:questions -->

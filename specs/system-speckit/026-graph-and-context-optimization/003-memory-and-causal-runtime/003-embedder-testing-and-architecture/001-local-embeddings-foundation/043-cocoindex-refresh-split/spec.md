@@ -171,7 +171,6 @@ Make search predictable by default, make refresh explicit and scriptable, and pr
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -244,6 +243,7 @@ Make search predictable by default, make refresh explicit and scriptable, and pr
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should a later packet add real path-scoped refresh to the daemon protocol?

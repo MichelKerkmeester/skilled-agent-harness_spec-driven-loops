@@ -203,7 +203,7 @@
     ],
     "causal_summary": "`sk-prompt/SKILL.md` promises seven frameworks (lines 3, 12 and 38, rechecked 2026-09-27), and its selection matrix routes to CRISPE and CRAFT (lines 313 and 315)",
     "created_at": "2026-09-27T11:50:19Z",
-    "last_save_at": "2026-10-07T12:54:52.021Z",
+    "last_save_at": "2026-10-08T19:29:23.283Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b351eddbc31e8008b9fa2d2ed1337fc5226a5abca79044ae126ce47b85a46d78",
+    "source_fingerprint": "sha256:efecd9a5609a98d97da6b31bcf91d9f74ba340bb9f0cab86540c2a7c6c997cce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bce3617b69ebd2c6f595a722176481d49e778ab70bace4f972551e1e55ee0b3c",
+      "spec.md": "e677294a6a9fe27716c40b3727e1ae26bd379b5953ebf65a8492095575011ab9",
       "plan.md": "28c647fe7fa95d1b9950e6e3f237acd32626e396cde62ee7161c0b04592ff14d",
       "tasks.md": "0c6933b2109516cbb4005c296d54e968ec481fdae339212b472edacec3ebb9b7",
       "implementation-summary.md": "751b88c0a75b1e6036c21488df041f5c53aa5fb5579469c52f7d8c869384c59f"

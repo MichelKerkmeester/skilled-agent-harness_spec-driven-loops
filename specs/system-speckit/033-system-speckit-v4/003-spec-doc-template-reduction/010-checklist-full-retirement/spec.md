@@ -169,7 +169,6 @@ One home for verification, with nothing left that produces, requires, reads or r
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -232,6 +231,7 @@ One home for verification, with nothing left that produces, requires, reads or r
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. Scope and the no-migration decision were settled by the operator against measured numbers.

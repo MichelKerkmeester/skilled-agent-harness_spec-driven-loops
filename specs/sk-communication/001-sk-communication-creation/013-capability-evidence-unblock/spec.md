@@ -175,7 +175,6 @@ Author a dated capability snapshot for the preset, applied through the existing 
 
 ---
 
-<!-- ANCHOR:questions -->
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
@@ -218,6 +217,7 @@ Author a dated capability snapshot for the preset, applied through the existing 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 No unresolved question blocks planning. Model-tier selection remains outside this phase.

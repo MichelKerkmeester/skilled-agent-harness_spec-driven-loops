@@ -213,7 +213,6 @@ Sprint grouping, metric summaries, trend analysis, `SPECKIT_DASHBOARD_LIMIT`, an
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -221,13 +220,15 @@ Sprint grouping, metric summaries, trend analysis, `SPECKIT_DASHBOARD_LIMIT`, an
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - ~~Source file list for `eval_run_ablation` should be trimmed — who owns the catalog update?~~ Resolved: Deep Review Update (2026-03-25) confirmed the catalog source list is now correctly scoped to 13 files.
+<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions-2 -->
 ### Related Documents
 
 - **Implementation Plan**: See `plan.md`
@@ -235,4 +236,3 @@ Sprint grouping, metric summaries, trend analysis, `SPECKIT_DASHBOARD_LIMIT`, an
 - **Verification Checklist**: See `checklist.md`
 
 <!-- /ANCHOR:questions-2 -->
-<!-- /ANCHOR:questions -->

@@ -238,7 +238,6 @@ A parent goal sent in chat carries only its directive and fits the 4,000 limit b
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -286,6 +285,7 @@ A parent goal sent in chat carries only its directive and fits the 4,000 limit b
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **Older parents, answered by default.** Should their chat slices drop the old instructions now, through a `renderChatSlice()` change, or when each parent is next amended? The recommended default holds: at the next amendment, as section 3 step 3 of `budget-and-handoff.md` says. The operator can still ask for the renderer change. A renderer change cannot help the 4,000 limit, which is measured before the projection. It would have to match at least eight wordings, and it would delete the authored lines at `specs/sk-design/018-sk-design-parent-v2/goal.md:57-61`.

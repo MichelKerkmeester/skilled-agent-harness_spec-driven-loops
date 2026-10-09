@@ -125,6 +125,7 @@ The change was held uncommitted until the source move, import rewires, lifecycle
 1. **No OpenCode hook file exists in this checkout.** The verified hook set is Claude, Codex, and Gemini.
 2. **Memory full-suite baseline remains red.** The stale 011 fixture was fixed, but unrelated failures remain outside D2b scope.
 3. **Two shared-concern seams remain classified for follow-up.** `lib/utils/sqlite-integrity.ts` re-exports advisor freshness integrity, and `lib/utils/skill-label-sanitizer.ts` re-exports advisor render sanitization. Both are candidates for future neutral `@spec-kit/shared` extraction, not D2b moves.
+<!-- /ANCHOR:limitations -->
 
 ---
 
@@ -161,4 +162,3 @@ The change was held uncommitted until the source move, import rewires, lifecycle
 
 Counts: `BROADER_SEAMS_TOTAL=15`, `BROADER_SEAMS_LEGITIMATE=13`, `BROADER_SEAMS_SHARED_FLAGGED=2`, `BROADER_SEAMS_TEST_SEAM=0`.
 <!-- /ANCHOR:broader-seams -->
-<!-- /ANCHOR:limitations -->

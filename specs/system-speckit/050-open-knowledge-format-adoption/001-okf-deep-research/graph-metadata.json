@@ -204,7 +204,7 @@
     ],
     "causal_summary": "No one has compared system-spec-kit against the Open Knowledge Format (OKF) with evidence",
     "created_at": "2026-10-04T05:36:11Z",
-    "last_save_at": "2026-10-07T15:57:44.282Z",
+    "last_save_at": "2026-10-08T19:31:37.031Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:bbf1c343dda41a4b90509595219de4e1e8e5fe8a04251ab7f9c3c0b0a6b3bdd2",
+    "source_fingerprint": "sha256:801c4f4941fc86fdf5604d95bd35c664dcae474581cfdbdb13c2570b30a14de2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c671037c795ce5c6eef2798381acfc918b84d0af14c222db97357d373030b020",
+      "spec.md": "c68f8e24d29f2475030175f9c20af48cd7e8296f65b143205af81b9a16f380c7",
       "plan.md": "88112f8db6584c737d63df8dd941aea6858cc37446c71d249d0ccc5dfdef348c",
       "tasks.md": "5067a33d8baff7279d8b4fb38def1d2255480985f70124b7f18a31579e3484cd",
       "implementation-summary.md": "bf82c2df7cb97d8cf682c337848f3df031b8dc79cb69dcdde8c9ef5a95afa3c1",

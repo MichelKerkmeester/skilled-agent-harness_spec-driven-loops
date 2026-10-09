@@ -122,7 +122,6 @@ Every one of the six deliveries under `assets/examples/` carries the same pointe
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -172,6 +171,7 @@ Every one of the six deliveries under `assets/examples/` carries the same pointe
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator resolved this phase's only open decision, transfer versus record-as-position, choosing transfer (research.md section 9, O1, and phase-recommendation.md PHASE 7).

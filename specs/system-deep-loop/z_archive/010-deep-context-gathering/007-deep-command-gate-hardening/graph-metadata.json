@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The deep commands could begin work without two safeguards",
     "created_at": "2026-06-07T09:59:30Z",
-    "last_save_at": "2026-08-30T15:39:24.032Z",
+    "last_save_at": "2026-10-08T19:30:30.407Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:69e0925abb789fb34dc5c2d1b32449967c623bb92b9465241cbc6b427a72804f",
+    "source_fingerprint": "sha256:8c9ad4efa9e9b52299a238b61dff3d2724ab926e04077fdf159df22576239c80",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fe53549648f1998d307f4f6936bbdac1afe1391267beb16d43304b35092a811b",
+      "spec.md": "3deda8e0569fc9cc7a56f06272a581c3efd75aa9083c03dbd1ac84cf281551dd",
       "plan.md": "92e617de59cc2711c0b3e8e2834a68329d85b38813e0adb11fd5a63fbc9cbef0",
       "tasks.md": "9d4c3a2d017f8fb9862363f45b1e97f9fd2f9842f0b20ddf6574fa0f46830de5",
       "implementation-summary.md": "26461d076c20029c6839888e3a71a5d9f82e32ad7546b2e735c8a71e30a8d3e2"

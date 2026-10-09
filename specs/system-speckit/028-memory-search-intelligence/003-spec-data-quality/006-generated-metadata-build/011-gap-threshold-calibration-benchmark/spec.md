@@ -135,7 +135,6 @@ Decide, with a reproducible sweep against the live corpus, whether the evidence-
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -189,6 +188,7 @@ Decide, with a reproducible sweep against the live corpus, whether the evidence-
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether the relevance-aware redesign should key the gap signal off the `requestQuality` noise-floor-relative banding alone, or require both low absolute relevance and the peakedness signal

@@ -187,7 +187,6 @@ Produce the oracle: a standard with no self-contradiction and no inferred requir
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Reliability
@@ -254,6 +253,7 @@ Produce the oracle: a standard with no self-contradiction and no inferred requir
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **Q1** — Does a complete `CONTENTS`/`FILES`/`Key Files` table satisfy the multi-file Directory Tree requirement, or is fenced tree syntax mandatory? *Recommendation carried from research: require the fenced tree only where the folder has subdirectories or layering; accept a complete table for flat folders.*

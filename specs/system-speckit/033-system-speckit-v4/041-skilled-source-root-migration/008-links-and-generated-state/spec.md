@@ -190,7 +190,6 @@ Paths are post-move. Line numbers cite the pre-move file at `728c4f3efc`.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -246,6 +245,7 @@ Paths are post-move. Line numbers cite the pre-move file at `728c4f3efc`.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Answered: `council-graph.sqlite` needs no migration. Phase 003 records that the graph rebuilds per session through `replay-graph-from-artifacts.cjs`, and the tracked file holds test residue with one `.opencode/specs` namespace key.

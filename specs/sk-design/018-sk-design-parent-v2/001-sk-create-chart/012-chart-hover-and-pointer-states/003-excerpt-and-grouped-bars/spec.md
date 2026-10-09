@@ -109,7 +109,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -160,6 +159,7 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None outstanding for this phase. The mechanism, the readout shape and the byte-cost expectation are all decided ahead of the build. The one thing this phase discovers rather than decides is the exact measured byte delta.

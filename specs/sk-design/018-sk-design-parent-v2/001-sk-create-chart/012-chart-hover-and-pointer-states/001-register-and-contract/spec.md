@@ -121,7 +121,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -171,6 +170,7 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should `AC-005` be restated against the declaration surface (this phase's recommendation, recorded in `plan.md`), or waived with an ADR because the restatement is judged too far from the original criterion's intent? Phase 8 decides which and applies it to `acceptance-criteria.md`. This phase does not edit that file.

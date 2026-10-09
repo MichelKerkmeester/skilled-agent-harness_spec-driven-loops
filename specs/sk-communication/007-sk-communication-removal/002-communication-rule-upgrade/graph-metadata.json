@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`communication.md` §4 currently sends a reader who wants plainer wording to the skill and its rewrite command",
     "created_at": "2026-10-02T04:49:07Z",
-    "last_save_at": "2026-10-07T15:56:27.555Z",
+    "last_save_at": "2026-10-08T19:29:38.918Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53c656f9636f7eeaa233610392213c8ffbc8c21b0fc9a1a898ac12a2d49b9a12",
+    "source_fingerprint": "sha256:7536d7f48ce2001c68aedc29978bca3029d2c55af416ae4bc86be06320bfe4c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aa90205b825d16caa3b1a1da0dba6f29d0cb47d890c0ed7bfc2e9116747f1669",
+      "spec.md": "59dd8b588bcbf0961b13c93f90f8786637ca29e9258db4bd45d4a21e14541834",
       "plan.md": "7c218a1feeb2edc810732e42b8beb98e7b4033a5f832645e86e813e7ae8537a2",
       "tasks.md": "b3b5bb829a747707d9ccf13491a9274f8641c041fb31aba53f82fd54fda313d8",
       "implementation-summary.md": "d60b2766fe83a76990c6d71ffbefcab4bf367a378d301d9a9751019481848409"

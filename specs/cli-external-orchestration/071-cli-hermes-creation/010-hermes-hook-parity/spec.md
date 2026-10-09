@@ -142,7 +142,6 @@ A Hermes session runs the same guards as the other six runtimes wherever Hermes'
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -208,6 +207,7 @@ A Hermes session runs the same guards as the other six runtimes wherever Hermes'
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None open.

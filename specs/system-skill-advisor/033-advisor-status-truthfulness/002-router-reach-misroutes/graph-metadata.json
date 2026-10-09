@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The source audit's fleet run reported `checked=7 hub(s), wrong-hub=14, outranked=18, no-reach=221, allowed=8, probe-error=0`, `advisor generation: unknown`, `RESULT: FAILED` (`specs/system-speckit/048-doctor-command-audit/008-router-reach/scratch/doctor-run.log:303-305`)",
     "created_at": "2026-10-03T05:27:36Z",
-    "last_save_at": "2026-10-07T15:57:10.746Z",
+    "last_save_at": "2026-10-08T19:30:37.614Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f840c5a2bda93114465cdb0318f17cb0b55f6de4a811ee31545f1e3364573aee",
+    "source_fingerprint": "sha256:3a5215c60914c46a4f7d523cea8a78eac689b903b5be96b3bcfa1fd94ff95aec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a69895777b732228d6f68f6af2d635aa9558a7764dd0cac02fb6b5f28264de7e",
+      "spec.md": "3504699a4e7fd515dd214ae9c907f1eea65f5fae580cd8f3e05b5817c3fd1a62",
       "plan.md": "54bafe8e9d56cc048f760633679db847ac5b14c542b7d1683d3055ae32afeb24",
       "tasks.md": "e920a8dc0cd7caa0d6ead5beaff596d1a2328e4648634f4c90b82b6a0a66f889",
       "implementation-summary.md": "333868b8d6a2522326b9dede08d5d803850e2c9e218d6a294249197538dddc4d"

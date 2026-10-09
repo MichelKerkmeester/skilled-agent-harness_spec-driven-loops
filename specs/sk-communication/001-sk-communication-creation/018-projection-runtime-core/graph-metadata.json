@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The provider adapters only prepare and parse; there is no default transport implementation, so the executor cannot run out of the box",
     "created_at": "2026-08-14T05:26:32.058Z",
-    "last_save_at": "2026-10-07T15:56:18.814Z",
+    "last_save_at": "2026-10-08T19:29:33.936Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,10 +199,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a681071abc24cf5caf1a2f49f8c97c5ee958b2fb668d901b343513a424265281",
+    "source_fingerprint": "sha256:6f0d47fbdf2bb6979e8a7da863997fe283693c7a5dea4578cc4930ceb36dd52c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b5095777aeb7af9be9aa1904a33132d523885ebaee2fb8fc322574a512ba7c9b",
+      "spec.md": "e5989bf895d41168cdd5038eedd299a0fe290a48fbdcbe04faa6071357b50779",
       "plan.md": "96689042adf9b0d343938639bd72dc08512ccb9281ffc994dfbbd48756385f89",
       "tasks.md": "07a0a87dd0ea47301d26d733d261d5e004ce7d26e39bdb8ef821a88262bbfa5c",
       "decision-record.md": "b8d0a8056cfa48f038a8969f4ecd84ad001b2eeb7db6c524d0beffdb6ec9b736",

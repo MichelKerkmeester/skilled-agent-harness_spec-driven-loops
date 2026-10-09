@@ -161,7 +161,6 @@ Ship predictable post-mutation automation for memory handlers, expose structured
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -216,8 +215,10 @@ Ship predictable post-mutation automation for memory handlers, expose structured
 
 ---
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
+<!-- /ANCHOR:questions -->
+<!-- ANCHOR:questions-2 -->
 
 - Which deferred follow-on should lead the next phase: structured response actions or a shared success-hint composition layer? See `research/research.md` for the ranked recommendation set and evidence.
 - Should broader hook expansion stay incremental (Option A) or move to a small lifecycle registry (Option B) once the current startup and reliability hardening is stable? See `research/research.md` for the synthesis and tradeoffs.
@@ -233,4 +234,3 @@ CORE TEMPLATE (~80 lines)
 -->
 
 ---
-<!-- /ANCHOR:questions -->

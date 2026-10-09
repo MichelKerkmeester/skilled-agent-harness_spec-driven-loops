@@ -87,7 +87,7 @@ root index table**, not the folder name.
 - *Dependency:* none blocking; can run in parallel with Phase 002.
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 None.
 <!-- /ANCHOR:questions -->

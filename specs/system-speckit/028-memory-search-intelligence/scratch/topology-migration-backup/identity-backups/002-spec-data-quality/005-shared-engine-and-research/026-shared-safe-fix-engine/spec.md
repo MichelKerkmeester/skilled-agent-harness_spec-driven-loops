@@ -144,7 +144,6 @@ One pure engine and one frozen registry, so the front doors share a single sourc
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -219,6 +218,7 @@ The exact seams, grounded to `research.md` sections 4 and 5 and verified to file
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - RESOLVED. The `dq` script directory location is settled at `.opencode/skills/system-spec-kit/scripts/dq/`. The load-bearing decision that location forces is how the engine reaches `computeMemoryQualityScore`, which lives across the enforced `scripts` to `mcp_server/handlers` import boundary. Resolved per the deep-review remediation by re-exporting the pure scorer through the `@public` `mcp_server/api` barrel and importing it via `@spec-kit/mcp-server/api`, which keeps the engine in `scripts/dq/` and the boundary intact.

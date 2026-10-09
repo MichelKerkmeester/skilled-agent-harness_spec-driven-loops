@@ -189,7 +189,7 @@
     ],
     "causal_summary": "A controlled live probe (temporary unconditional-log hook wired into `.devin/hooks.v1.json`, backed up first and restored after) confirmed that `devin -p \"Create a new file at /tmp/...\"` under the CLI's default `--permission-mode auto` dispatches a real `PermissionRequest` event with payload `{hookeventname, toolname, toolinput, tooluseid, sessionid, promptid}`",
     "created_at": "2026-07-27T06:02:22.538Z",
-    "last_save_at": "2026-10-07T18:11:37.731Z",
+    "last_save_at": "2026-10-08T19:29:15.638Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,10 +198,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cdac9283bb52a28bc22ff343e7b52cb1d2ba9f7769801feaa41d9e04e36b9829",
+    "source_fingerprint": "sha256:a05d0a15db4cbddd8676b0f9627e230b8ca02a1ed2ab8867127f906e2c37b288",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7df6886def8de5ab26042553d907641a167053ed63993ef73322c028c1f70f01",
+      "spec.md": "2f30edee36c7b3704ca122f7c3c6a02f9b419dbefd011d650e295fdc9d1d5d62",
       "plan.md": "69659d4adc262cdfdbb60c69f5c7817807fa23cd401697dcc01bad32f71d6035",
       "tasks.md": "974c68db93b01776a7a061d2dcdb6082b9946cc86393df8ab1a819414d510489",
       "implementation-summary.md": "530d509eca80385d80869b7058a752dcb05c0064171d688d7862f75848e0411b"

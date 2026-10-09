@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Council deliberation needs durable structural context beyond append-only artifacts, but the existing deep-loop coverage graph is specialized for research and review coverage",
     "created_at": "2026-05-10T06:35:40Z",
-    "last_save_at": "2026-10-07T18:14:21.049Z",
+    "last_save_at": "2026-10-08T19:30:26.481Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2b567ff61761c90e7c130bbe6081ccf9705c7e994557103e362b23eceaebe5cb",
+    "source_fingerprint": "sha256:31107133b28e518483f2c871708cf09f5d49ac5d518ff6566591bc82391ec1bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d6533c88f9729de7bcf2d2716f49bc1dd4343826a79d5a5101eeb654ce5d3344",
+      "spec.md": "06b7a47e7939089437f3a159d445e61a77929d830b22b4a1dce806d9c6989f29",
       "plan.md": "b0991082dbe79c383067d46fd5b47f0444f2c3debcd72f88accf2be00602e832",
       "tasks.md": "c0ae92288ff87ccc1e7d20b8ed88787c835662fcf0e5916fcec6f0cad3919fea",
       "decision-record.md": "b7c0758ea8f1cab7738930c13fd69684946785e94f68e33ea8d09541bff3bda2",

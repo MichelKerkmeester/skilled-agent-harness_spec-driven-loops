@@ -173,7 +173,6 @@ different CSS rule than the grid.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -228,6 +227,7 @@ this is a child phase and it is not decomposed further.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - Which stroke weight the operator picks, and whether the answer differs between the line form and the bar form.

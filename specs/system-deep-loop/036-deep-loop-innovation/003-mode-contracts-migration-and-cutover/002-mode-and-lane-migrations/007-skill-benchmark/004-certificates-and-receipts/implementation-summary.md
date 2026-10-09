@@ -79,6 +79,7 @@ non-converged, withheld, expired, uncertain, or vetoed evidence.
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
+<!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:closure -->
 ### Cross-Artifact Closure
@@ -121,7 +122,6 @@ unauthorized origin, reordered receipts, broken predecessor linkage, mutated cla
 certificate input, unsupported bundle version, and the frozen closure-map contract. These cases use the real authorized
 ledger, reducer, replay fingerprint, sealed store, receipt issuer, certification provider, common certificate verifier,
 and mode offline verifier.
-<!-- /ANCHOR:how-delivered -->
 
 ---
 

@@ -194,7 +194,6 @@ Make communication projection off by default for everyone, opt-in-able privately
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -267,6 +266,7 @@ Make communication projection off by default for everyone, opt-in-able privately
 1. **Given** a git-ignored local override, **When** the loader runs, **Then** it fully replaces the committed list.
 2. **Given** an empty override list, **When** the loader runs, **Then** every skill is routable again on that machine.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 No unresolved question blocks completion. The post-land advisor rebuild and reindex on main is a recorded deployment step, not an open design question.

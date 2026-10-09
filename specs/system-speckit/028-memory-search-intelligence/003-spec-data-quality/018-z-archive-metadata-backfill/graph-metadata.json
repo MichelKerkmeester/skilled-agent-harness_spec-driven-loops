@@ -44,14 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/descriptions.json",
-      ".opencode/specs/system-speckit/z_archive/description.json",
-      ".opencode/specs/system-deep-loop/z_archive/description.json",
-      ".opencode/specs/sk-design/z_archive/description.json",
-      ".opencode/specs/system-skill-advisor/z_archive/description.json",
-      ".opencode/specs/system-speckit/026-graph-and-context-optimization/z_archive/description.json",
-      ".opencode/specs/system-speckit/z_archive/001-fix-command-dispatch/z_archive/description.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -76,18 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-speckit/z_archive/description.json",
         "source": "derived"
       },
       {
@@ -197,11 +178,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "There are nine `zarchive` root directories across `.opencode/specs` (`system-speckit/zarchive`, `system-deep-loop/zarchive`, `skilled-agent-orchestration/zarchive`, `sk-design/zarchive`, `system-skill-advisor/zarchive`, `system-speckit/026-graph-and-context-optimization/zarchive`, `sk-design/008-sk-design-parent/external/zarchive`, plus two nested roots inside already-archived folders)",
     "created_at": "2026-07-06T06:03:39Z",
-    "last_save_at": "2026-09-11T16:42:44.250Z",
+    "last_save_at": "2026-10-08T19:31:09.099Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:487dd2a7a2e2a7da7f965b4eb0e13fa22b1e117c1d222e95a94eb8d2d7f28d7e",
+    "source_fingerprint": "sha256:ab81ee25e75f30b5842c1334daf01a238b1596ab4578350c5523b69063485ef6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b45fa72fd10e79dca3013a12c5dcb9905343a23a69d0f131cda4df066f9b2664",
+      "spec.md": "fc89755399e101c5b1d72913f3e664b1951428e1df51bcecafed214c3f6d7e16",
       "plan.md": "931da5259cef8f85695c4ea60fae45c9d861232abe197d3a879f33138982fb15",
       "tasks.md": "7e343e9ec673bd00440d9d8a6ababbee5c11baa830a6193c522947aed33dfebd",
       "implementation-summary.md": "dcd2df863017628452db0e7ffb100bef2c47fccbf9ffe8960b118780b5f04434"

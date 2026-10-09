@@ -144,7 +144,6 @@ Replace all 27 hand-written `sha256:<label>` stamps with real, content-derived d
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -194,6 +193,7 @@ Replace all 27 hand-written `sha256:<label>` stamps with real, content-derived d
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None. The writer-regex gap was the one open question this phase's planning read needed to resolve, and it is resolved in the Problem Statement and REQ-001 above.

@@ -268,7 +268,6 @@ The finding list names examples; **the census is the authoritative work list.** 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -360,6 +359,7 @@ The finding list names examples; **the census is the authoritative work list.** 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **[OPERATOR-DECISION: Q4 — exact-header automated check]** Is this lane's header gate an opt-in verifier flag delivered by child 001, or a scripted per-file assertion owned here? The flag is preferable because it prevents recurrence; the assertion is the fallback if Q4 is answered "leave manual". *Recommendation: the opt-in flag.*

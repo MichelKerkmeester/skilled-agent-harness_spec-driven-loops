@@ -141,7 +141,6 @@ Every live description of compiled routing matches the code, and every validator
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -188,6 +187,7 @@ Every live description of compiled routing matches the code, and every validator
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which side changes for the refused spec-mutation audit events: the ledger schema gains stems for them, or the spec-check protocol stops requiring them?

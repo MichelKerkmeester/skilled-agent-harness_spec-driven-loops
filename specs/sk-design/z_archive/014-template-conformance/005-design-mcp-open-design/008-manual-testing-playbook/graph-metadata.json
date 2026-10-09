@@ -186,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/design-mcp-open-design/manual-testing-playbook/` has not been audited against `.opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual-testing-playbook-template.md`",
     "created_at": "2026-07-27T15:02:59.572Z",
-    "last_save_at": "2026-10-07T18:12:32.805Z",
+    "last_save_at": "2026-10-08T19:29:56.717Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,10 +195,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:004fb3b21f65c3e76636e0167eaed360f399a67c9065846b286309af39546d87",
+    "source_fingerprint": "sha256:09487fe9fc808d9702ee4a97ade21416aca38046bf16926e69d5fbcede36ccab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0f9a578d0d2921d54aef63f680e97bc0b277bbd50902678a2c1e62f3bc380af4",
+      "spec.md": "b201a847cae8162c688afae999c9df5bf900057201c399cf6daacb185172c5dd",
       "plan.md": "256001ffde74ccddc23f6701077b90dc443f53485eea143fd17e2aa0235ef54e",
       "tasks.md": "5d1fb6be615f78495e7498cf0eb55504595722945f2cda9444c053d114ecc9a2",
       "implementation-summary.md": "02b6f89e77a82519072a12a35a850466ef918adecdf9c2074142b8b5f23dd813"

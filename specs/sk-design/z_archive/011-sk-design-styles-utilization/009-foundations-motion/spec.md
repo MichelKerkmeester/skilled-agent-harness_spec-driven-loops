@@ -154,7 +154,6 @@ Wire `design-foundations` and `design-motion` to the styles library via the phas
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -225,6 +224,7 @@ Wire `design-foundations` and `design-motion` to the styles library via the phas
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - How much of the Phase 008 proof envelope transfers unchanged to relationship-heavy modes versus needing mode-specific fields?

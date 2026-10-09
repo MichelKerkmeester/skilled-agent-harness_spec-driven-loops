@@ -169,7 +169,6 @@ Produce a cutover sequence that can be executed without judgment calls mid-fligh
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -252,6 +251,7 @@ Risk and blocker classes (CHK-FIX-001): R-001 class-of-bug, R-002 cross-consumer
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Which layout do probes P1 to P3 select? Answered: L1 (`decision-record.md` ADR-001, `../003-layout-probes/probes/runtime-symlink-resolution.md`).

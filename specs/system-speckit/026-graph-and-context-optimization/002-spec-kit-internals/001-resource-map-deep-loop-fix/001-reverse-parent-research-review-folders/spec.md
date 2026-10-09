@@ -182,7 +182,6 @@ Restore the local-owner artifact contract everywhere, migrate misplaced child pa
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -237,6 +236,7 @@ Restore the local-owner artifact contract everywhere, migrate misplaced child pa
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The rollback contract, ownership rules, and migration boundaries are fully specified by the packet brief and evidence trail.

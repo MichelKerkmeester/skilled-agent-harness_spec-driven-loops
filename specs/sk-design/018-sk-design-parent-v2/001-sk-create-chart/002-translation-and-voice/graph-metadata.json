@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Roughly 15,000 Chinese characters sit across six authored documents, the largest being the source `SKILL.md` at 8,304",
     "created_at": "2026-09-02T07:56:49Z",
-    "last_save_at": "2026-10-07T12:55:06.401Z",
+    "last_save_at": "2026-10-08T19:29:39.301Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b2863bd4a0fdad9ae102907e8d00b94a5c070ca1c67beca0deedc0a1ea1bcab",
+    "source_fingerprint": "sha256:69ef04230128291f29dd8982310e16f910b51780f1db4631a6e239c8d5ae2f7e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "09ff0265d1598e8884917d9f7f3f896592914c1f95159175c3ddcfc415b82709",
+      "spec.md": "2fb642585b5e31dad5988d1b35283b4e17758eaacf2a2e5a20c4ca1329bc9bc2",
       "plan.md": "834cb257981a30d8739491a9c1425bf6edc62ebcf934e7796f00c7c59dd93e47",
       "tasks.md": "0e7262064ca36e4b91510d72300a4706f518e39189c8e6f335aac04ac2a434e6",
       "implementation-summary.md": "bf0cd59d27e4e7c2aba9295ad1edab1abe70f3543c5d1e259c7dd9f3a4748e68"

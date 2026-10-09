@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The feature catalog for Scoring and Calibration has evolved significantly",
     "created_at": "2026-04-12T09:02:50.250Z",
-    "last_save_at": "2026-10-07T20:28:59.401Z",
+    "last_save_at": "2026-10-08T20:05:49.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,10 +197,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e0407d21232e163a6675ddac476d565033416166311d278c3c63463e7bf9be57",
+    "source_fingerprint": "sha256:4d93f371771b0fd7d5994010d0b9e038820718ea1e37c169349ac69f6bbb18a5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e0ffaf1cbae3fcd6662d1033069246e063f41c69e403b1a52e7376b07bba3a7e",
+      "spec.md": "2fa91f06da0e5d8b075863b2051437f26014cd652e6b5292fc1976a8f84b56fa",
       "plan.md": "cca3820f892067e6899f613be15bbf29c7e866b547f29646c8fb7588341eb381",
       "tasks.md": "f8120e677ace02763c426509d20ac47454daa7209ba4db7812cb7a7250742096",
       "implementation-summary.md": "632768921435438f7f24c8187e133c9b6b1b6449502314247a976529332b198f"

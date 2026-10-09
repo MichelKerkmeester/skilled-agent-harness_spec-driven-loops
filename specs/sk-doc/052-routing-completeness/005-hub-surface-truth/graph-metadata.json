@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Three hub surfaces state something their registries contradict, and none of them has a gate",
     "created_at": "2026-09-02T16:34:07Z",
-    "last_save_at": "2026-10-07T12:55:22.606Z",
+    "last_save_at": "2026-10-08T19:30:01.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30d4e23ceaad3a00644706fd8d4f97d05f9bf24ccff1b39de305a82737fe2948",
+    "source_fingerprint": "sha256:a85a13930c2dc36ca27f21d2bde03fc2abc848a4aaa92bed7d4ccc109b097fec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f99e54974be93217f4686f414c9a5ebe856f14dd69c131814881ff007e0fad76",
+      "spec.md": "0958456eda5cb29d1719b939deb214772dac620d603a68404b6b1b920fc0c594",
       "plan.md": "7caf406dd164beb38b3a271b8d08b27e04867bbb674ea748c4dc539047da8dc5",
       "tasks.md": "63bfb3d23a588c9f98b91cac365ab6cd40becd6f7d6f090d1827b01dbd3a49d9",
       "implementation-summary.md": "d8c03f0f149b3f5ba4ebd3e118512105e179383dc711d9f890ed9bc7e860b83d"

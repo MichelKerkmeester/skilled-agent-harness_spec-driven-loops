@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The seven governance files carry 50 numbered `##` section headers written in sentence case (`## 1",
     "created_at": "2026-08-31T05:37:21Z",
-    "last_save_at": "2026-10-07T18:14:20.402Z",
+    "last_save_at": "2026-10-08T19:30:13.625Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c08c4d6da0f3c4aaa8841c5fb7122ec1ea43ce5274ce61e66d0875fc5be112bf",
+    "source_fingerprint": "sha256:3e94efd1d9a3bca0fd7f4b1d8147a90b00b8f693c6e37cc8919c721a0363db54",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3453de2ef4979ed1a2eab7c0d7e5ad9df5b79382b33cda0113e973c0727b07c3",
+      "spec.md": "6c6dd6905bf031a161a4fc9d02515fcbedd8bf9b73af2d3d799b56a0515ecb06",
       "plan.md": "4cf69099a3425eb94a3e09b738df6eb17bb45249a1f4b095e68ca1b4fc0d07e1",
       "tasks.md": "cf997a6a9f4493a97060cf2eb1aa1dd48d1869f264e7b3b0ca183a28541d2379",
       "implementation-summary.md": "d0d09d021f8ccee3f0c4b7f5a537dc6ffb7be7fb29b4d7d4ff31ab44c6f6b762"

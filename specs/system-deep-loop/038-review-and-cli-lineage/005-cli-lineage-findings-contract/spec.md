@@ -126,7 +126,6 @@ Every CLI lineage, in every deep-loop mode that runs one, receives its mode's ou
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -175,6 +174,7 @@ Every CLI lineage, in every deep-loop mode that runs one, receives its mode's ou
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open. Council and improvement were checked and carry no instance of the defect, with file:line evidence in `implementation-summary.md`

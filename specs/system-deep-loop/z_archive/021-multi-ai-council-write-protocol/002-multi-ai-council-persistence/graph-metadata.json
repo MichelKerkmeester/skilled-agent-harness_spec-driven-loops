@@ -45,15 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-mirror-parity.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-full.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-minimal.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-missing-required.md",
-      "scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
-      "scripts/tests/multi-ai-council-mirror-parity.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -84,42 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "multi-ai-council-persist-artifacts.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "multi-ai-council-validator.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "multi-ai-council-mirror-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-mirror-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "council-output-full.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-full.md",
-        "source": "derived"
-      },
-      {
-        "name": "council-output-minimal.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-minimal.md",
-        "source": "derived"
-      },
-      {
-        "name": "council-output-missing-required.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-missing-required.md",
         "source": "derived"
       },
       {
@@ -199,11 +155,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Final",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Land Phase",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Helper Language",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 080 documents the `ai-council/` output protocol but provides no persistence machinery",
     "created_at": "2026-05-06T17:06:24Z",
-    "last_save_at": "2026-08-30T15:39:24.280Z",
+    "last_save_at": "2026-10-08T19:30:30.907Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c20476fe6dc64d8e2811ae0bd59b43d8cb2b0f1c9d073396573b5b6757d09bcf",
+    "source_fingerprint": "sha256:79b033b36c3a152ae2474c282bd546f43958826d60e1231a02ee6c82829d3e77",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a3babaf883a2392c3052ae4ad3229eb626516b63e69cb8ab2303e7fccaf5af81",
+      "spec.md": "4a42ad45c632cf59cb967b06dac34b93662d77e9076bfd15fa343b082ff01ca5",
       "plan.md": "90cc969b9fc9543e081a19e74dd54211890f2f0d72924d3d6a412add978aa550",
       "tasks.md": "cd6b5a8657b8618414b467df7f24f8a070f956bdbf0d06a42a5dc56992495621",
       "decision-record.md": "1e0c2dcde277a2ceb37775d82b79b2aa0f1245c853ea92cb4cbd088a3d46c5fe",

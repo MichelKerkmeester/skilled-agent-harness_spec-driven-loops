@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Every colour, corner and type size in the corpus is a gated derivation of one Style Reference, and",
     "created_at": "2026-09-09T15:42:19Z",
-    "last_save_at": "2026-10-07T15:56:34.365Z",
+    "last_save_at": "2026-10-08T19:29:45.550Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:00c7f76a61dedcffe7959b72f3bbca5adf7783a70b3d2012289e709c5093f7a2",
+    "source_fingerprint": "sha256:66cac677aa10e2c42743376b9cc4d2fab8e20dadc7b604f142c14887fd427018",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "99425ab0917dac196acae39e9535b47e9bc7c227c38ed051e55aa3f76bfda1be",
+      "spec.md": "39c076cec8b627fcf133800675e49435a1ac3ec6625de7e544e7932184d0fa37",
       "plan.md": "dc1cb286f08e1ae3cd08dd5aa8f9f506c70ffff27535ca0d1dffd954282d4013",
       "tasks.md": "f868ac2bb385e5b0e099c13503e7ff62c0ab7063675b9f79fb831a6f784bf75f",
       "implementation-summary.md": "7453d4a57b0ca6eb3ed2ca8efe28c56ec2ab4875b1c5776be0303fb6aa693d36"

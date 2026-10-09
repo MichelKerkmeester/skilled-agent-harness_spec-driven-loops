@@ -145,7 +145,7 @@
     ],
     "causal_summary": "Narrow over-broad generic keywords in the deep-loop child routers (deep-research + deep-improvement) so unrelated marketing/billing/UI prompts stop mis-routing to research intents, proving the shipped Type-1 gold is preserved; document deep-review/secondaries and defer sk-code.",
     "created_at": "2026-07-09T12:18:00.439Z",
-    "last_save_at": "2026-10-07T20:53:17.442Z",
+    "last_save_at": "2026-10-08T20:05:09.152Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -153,10 +153,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:484458e9e3e2021e9e98aeba6958c69f42fba9e0fc326cfe9493f29da06be455",
+    "source_fingerprint": "sha256:a548606a0d753760807b98e889d0607594406a1e16062e9158c1950a1de6f581",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8a14e323a83ba41061c992c5fc57c7f8c95b30d755a6829b63d50885254f14d5",
+      "spec.md": "0a4bfa7535e33d652fb01cd637ef708bc7ca551b18da7e42df8dc817118a474b",
       "plan.md": "68c96b89d6e302f1fe17d743bcef353817c7e6269268063321af481da7119841",
       "tasks.md": "93bce0f126e760e0c72e406f21f47c7c41d5291dc38aec4cae1dc64a3dbfaf73"
     },

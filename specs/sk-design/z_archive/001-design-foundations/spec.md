@@ -145,7 +145,6 @@ Reconstruct a Level-2 packet that makes the source-defined foundations contract 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
@@ -199,6 +198,7 @@ Reconstruct a Level-2 packet that makes the source-defined foundations contract 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None stated by the foundations source; the exact shared sk_code_handoff schema remains owned by the shared reference named in SKILL.md.

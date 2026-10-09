@@ -168,7 +168,6 @@ Produce observed evidence that sk-create-goal can author a real packet goal and 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -222,6 +221,7 @@ Produce observed evidence that sk-create-goal can author a real packet goal and 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - UNKNOWN: Does `sk-create-changelog` global component mode accept a nested component target such as `sk-doc/create-goal`? During execution, inspect its current contract and record the supported behavior. The direct mode changelog write and hub directory symlink do not depend on that answer (sk-create-changelog/SKILL.md:58-60, 184-190).

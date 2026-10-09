@@ -172,9 +172,9 @@ Route any explicit executor handoff to its executor from one metadata-derived so
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-<!-- ANCHOR:questions -->
 - None. All resolver behavior verified empirically on both engines (TS native scorer + Python local scorer).
 <!-- /ANCHOR:questions -->
 

@@ -140,7 +140,6 @@ Every Jev code path outside cli-classifier is found by looking for files that st
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -187,6 +186,7 @@ Every Jev code path outside cli-classifier is found by looking for files that st
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

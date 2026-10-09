@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The eval loop in 003 needs (a) a fixture set grounded in real failure modes (not synthetic), (b) a grader harness that produces reproducible scores, (c) a cache that survives free-tier rate-limit pauses, (d) deterministic checks that don't burn grader calls on regex-checkable signals",
     "created_at": "2026-05-16T19:10:00Z",
-    "last_save_at": "2026-08-30T15:39:08.491Z",
+    "last_save_at": "2026-10-08T19:29:11.835Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:84f586114cb230c8b55ef3eef00a401caaac697256fd1d87fa46904bc78dbb4b",
+    "source_fingerprint": "sha256:8a2e0287fc9d79399b41ac54cd749b65ee6b4bd4f2b81551f40b931920459e0a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4e2d9867b23354834fe78a8270f0422ba727065ed24beddc3634960e87b531fd",
+      "spec.md": "1d03912a2ffdd824dc5d7ea44f49514ed15cd074c4171be2a52079fc189b4358",
       "plan.md": "c728135a0003ff92c07f82d0f47bd22b3f95fa55b275a24633853ed1ef91e1e4",
       "tasks.md": "203e6218f85b9e3cf5aa06ffddc448eb58ade971c015adf0b15f15d3df8d11fd",
       "decision-record.md": "7e5161ffb5280e0a9685dde54d28edb998704ba711a321b5dd38e2408f5d3c0c",

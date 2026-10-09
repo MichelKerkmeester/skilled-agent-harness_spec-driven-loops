@@ -60,7 +60,7 @@
       "scratch/verify/c3.txt",
       "scratch/verify/guard.txt",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-      "scratch/context/context.md"
+      ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs"
     ],
     "entities": [
       {
@@ -178,9 +178,9 @@
         "source": "derived"
       },
       {
-        "name": "context.md",
-        "kind": "doc",
-        "path": "scratch/context/context.md",
+        "name": "sync-skills-hermes.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The hub says `cli-usage` where the mode is `cli-jev`",
     "created_at": "2026-09-30T16:29:42Z",
-    "last_save_at": "2026-09-30T17:47:33.301Z",
+    "last_save_at": "2026-10-08T19:29:23.736Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e267d66b2c366b15ce96b1ce1724fa0a02baad991ee6f3b256d493c7cd812c47",
+    "source_fingerprint": "sha256:98d92f075c3c220f7447e446010666bcafe50cfcbb08894322634cd71ff84eb8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "669f4c8365984cddae0348a7a27ebd90488c614ae8a47eea2afd6d247820b07e",
+      "spec.md": "8b1ea71a9dde466ed1e9878a5d0a9671dbb329dfd3a4f5f434b44ceb2caeb9f3",
       "plan.md": "1f14c57f7d2eba8402ddb22e7b2807987da39d975061e57f893b4f82f25820c3",
       "tasks.md": "f0a39708e44ef774cfeaa473226594c14dc14d244d1e446e86832a2c75beb978",
       "implementation-summary.md": "f0ec6d5d271bf68ff9270ba36e37f37b59c7c0997598b4262d1c55158d0dec53"

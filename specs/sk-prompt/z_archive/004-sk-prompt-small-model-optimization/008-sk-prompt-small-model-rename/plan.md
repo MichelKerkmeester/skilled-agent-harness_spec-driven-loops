@@ -171,6 +171,7 @@ Critical ordering: Bucket 6 runs after 1+2; Bucket 8 runs last (its scope expans
 ## 7. ROLLBACK PLAN
 
 Reversible via `git revert` (sed sweep produces clean inverse diff).
+<!-- /ANCHOR:rollback -->
 
 <!-- ANCHOR:enhanced-rollback -->
 ### Enhanced Rollback (ADR-002 aware)
@@ -179,4 +180,3 @@ Reversible via `git revert` (sed sweep produces clean inverse diff).
 - **Procedure**: git stash + git checkout HEAD + recreate old symlink + recompile + verify.
 - **Partial**: revert only Bucket 8 if rewrite-all unwanted.
 <!-- /ANCHOR:enhanced-rollback -->
-<!-- /ANCHOR:rollback -->

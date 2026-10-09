@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The packet is complete and unreachable",
     "created_at": "2026-08-31T11:33:11Z",
-    "last_save_at": "2026-10-07T18:14:21.703Z",
+    "last_save_at": "2026-10-08T19:30:15.374Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f21be3beabd9e27071afa7067b6a3580e2e7fd941bed00e68ef0c06938f0323",
+    "source_fingerprint": "sha256:2835ac910fc20bf792c286fb647515253227a33479765e85d55fc49e02d3a8a2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "47dd9c22cb7792b56f0e612428ed6171767188a78978656ed5884a153302295a",
+      "spec.md": "fb53231539d61ff5c754f8f7317cbb787936b57054a0b5e12e975fb806d8547b",
       "plan.md": "07d00197a91c8203fc1540585c658232266b342f03c3249e064ba3a55a188d04",
       "tasks.md": "46c067856a95c962ac400f83e0f223dd1269bd536fe368ea936b109d0a252ff9",
       "implementation-summary.md": "f1d9d7a823d6570376e8c538c76e534b183ffc817524ef3df4d26a0cb2922487"

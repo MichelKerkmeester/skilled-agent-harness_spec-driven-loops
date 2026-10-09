@@ -198,7 +198,7 @@
     ],
     "causal_summary": "After packets 042-045 closed the documented stress-coverage backlog and known drift findings, the next layer of risk is unknowns: latent production-code bugs, miswired automation paths, and architectural shortcuts that have accumulated across `system-spec-kit` (the umbrella skill), `mcpserver` (the runtime), `codegraph` (subsystem), and `skilladvisor` (subsystem)",
     "created_at": "2026-05-01T03:46:56Z",
-    "last_save_at": "2026-09-10T20:47:11.890Z",
+    "last_save_at": "2026-10-08T19:30:43.788Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:09deadb1b0bc1585696436439ddeb3e3022e3344748e10a81bcfd6ea8f5fc319",
+    "source_fingerprint": "sha256:351d30e40e38355f0ce63f6012e914ea1ce7c93bf6bf834b4345e499c289e8d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "837ee7233584276aa9fd05ad96775c8f266cbf6b8932554e2ba15545ccc10b11",
+      "spec.md": "2b2e16397b6bb24498998f8d76cfb254ced0487ceb6be4458e3cdafd22c9bb43",
       "plan.md": "ad57e834391fde443cd4732322cbeec93c4696d05c84163243b0ab78ea8f6add",
       "tasks.md": "a7eaedb25dfa8874cf013db5de4be7e26138ce74a2deb8e7a138c13c06487525",
       "implementation-summary.md": "6574d1834f36307f6a0186c73e51b794b1d2437b81be1b9ed1ac37c805cd787d",

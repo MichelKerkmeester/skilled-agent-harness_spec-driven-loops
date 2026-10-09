@@ -176,7 +176,6 @@ Replace each ephemeral pointer with the durable behavioural reason the surroundi
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -221,6 +220,7 @@ Replace each ephemeral pointer with the durable behavioural reason the surroundi
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **[OPERATOR-DECISION: Q2 — the non-runtime deep-loop border]** Do RB-003-02 and RB-003-03 belong to this program or to 020? *Recommendation: this program; 020's own wording scopes it to `runtime/**`.*

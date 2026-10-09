@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The MCP layer is a pass-through that costs a declaration in five runtime config roots, an SDK dependency, a bridge process for OpenCode, and an MCP-shaped JSON-RPC framing that the CLI has to speak to reach its own daemon",
     "created_at": "2026-09-11T06:49:01Z",
-    "last_save_at": "2026-10-07T15:57:06.330Z",
+    "last_save_at": "2026-10-08T19:30:36.464Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31a16b037868e8a60d075beee578f7b879512623660606890b97978a0ac5ee31",
+    "source_fingerprint": "sha256:0ddd095eba6f33d445521c917f1d2db8c525b9aedabb2d073bdff4e5b503cb75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "86f5461a3f09566fd3e874bdcfaceb7115539b932c050c8963f6371094163968",
+      "spec.md": "161c3583ce3457c926724e427dcaa937ff0cfc9e3dee171f8b4b15650daf5deb",
       "plan.md": "2d3f986325e13f43b1de2be725156256527f61e51908c25c6c2f94bc882d2382",
       "tasks.md": "cf1fd8ef15b00e70266101bf85e09c4f81b75d8c0ac0e1f19b948a8f36809cab",
       "implementation-summary.md": "8031a86bb8a5cfce3663d55a86b428fc1042476526b1926af89b79f154d901d0"

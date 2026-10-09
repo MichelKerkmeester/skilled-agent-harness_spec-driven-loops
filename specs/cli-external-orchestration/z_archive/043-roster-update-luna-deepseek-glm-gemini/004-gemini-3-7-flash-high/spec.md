@@ -144,7 +144,6 @@ Make Gemini 3.7 Flash High dispatchable on both modes as a pure additive superse
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -184,6 +183,7 @@ Make Gemini 3.7 Flash High dispatchable on both modes as a pure additive superse
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Both decisions resolved by the operator (see frontmatter `answered_questions`).

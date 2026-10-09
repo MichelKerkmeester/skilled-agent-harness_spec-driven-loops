@@ -136,7 +136,6 @@ Also in scope: the gallery pins its light and dark frames so each column renders
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -186,6 +185,7 @@ Also in scope: the gallery pins its light and dark frames so each column renders
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None block the build. Two are recorded for the operator:

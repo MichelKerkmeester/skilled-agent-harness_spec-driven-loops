@@ -146,7 +146,6 @@ Out of the review's write scope: everything in decision D5's preserved set, and 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -201,6 +200,7 @@ Out of the review's write scope: everything in decision D5's preserved set, and 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does the surviving engine package under `system-spec-kit/mcp-server/` drop its name now that it serves no MCP?

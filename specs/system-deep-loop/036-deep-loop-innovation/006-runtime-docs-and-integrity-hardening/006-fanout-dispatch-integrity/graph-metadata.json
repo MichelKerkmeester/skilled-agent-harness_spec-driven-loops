@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Fulfillment accepts a lineage when one non-empty top-level report exists, with no validation of state JSONL, iteration records, deltas, findings registry or terminal synthesis (`F-010-01`), and under the max-iterations policy trusts a single synthesis record's self-reported `totalIterations` and `stopReason` over the actual iteration files (`F-010-02`)",
     "created_at": "2026-07-31T01:25:20.924Z",
-    "last_save_at": "2026-09-11T16:42:25.661Z",
+    "last_save_at": "2026-10-08T20:04:50.986Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5306801bcac88790f1ff2bcff27ca2940b18b11d32a5a98b9bccfd2629e7e0e8",
+    "source_fingerprint": "sha256:6329e1b6c450d19820108739fded58ee334d3e634047720571b4f40954e10650",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fe917637f40fdcf913723ea3003556797ffacee3793c66676bc8bdd2a987feaf",
+      "spec.md": "93d3a9537664bed2c4cdd44d65a08b06ed1c9d1bd8ca11def098f347214c62ac",
       "plan.md": "fd1a56dabbf30db085c992bd486d9c73c2b074ad8b590a97ef6d2536a963977e",
       "tasks.md": "b0964f0d193722f2ce566b0ac04ed052a3d63c688a89def61adfcafac2c7ec3e",
       "decision-record.md": "129e687af6c0ef3e10f04907a72dfe0b17c848a9751db743bf29ce9111727848",

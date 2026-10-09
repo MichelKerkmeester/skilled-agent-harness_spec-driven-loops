@@ -150,7 +150,6 @@ When this phase is done, the grammar candidates, the identifier minting options 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -217,6 +216,7 @@ When this phase is done, the grammar candidates, the identifier minting options 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Is the identifier minted per track, per packet or repository-wide?

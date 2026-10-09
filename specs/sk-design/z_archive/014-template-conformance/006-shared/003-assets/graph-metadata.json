@@ -186,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/shared/assets/` has not been audited against `.opencode/skills/sk-doc/create-skill/assets/skill/skill-asset-template.md`",
     "created_at": "2026-07-27T14:59:52.023Z",
-    "last_save_at": "2026-10-07T18:12:29.571Z",
+    "last_save_at": "2026-10-08T19:29:56.939Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,10 +195,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:48e669547b52682fd45475fde08931aa63a156bc75aa8801e831a2c5c8b0664d",
+    "source_fingerprint": "sha256:23fb8a4d43b827c82a66025752a8c72248b114e784fbd956cae03328baf1a16b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bf3833166ac6e892c88dedf0eec1aa662cec615693c38e5fcd1c14be3929c9f9",
+      "spec.md": "e3ac5574828517c5f019c65cc72ecfc75a4e50fd00f47cddfce17909476780e4",
       "plan.md": "264d121d149c8b89e6372cee83482f5cdaf7eb7c81bb5f45e14a7279beae4943",
       "tasks.md": "da606d519a09608c20d5c01ddd3025373361bf1d292347a83d24f3c2409bc661",
       "implementation-summary.md": "77d1d67fa95633a8c9c08c0a8f86799dc2eaa872220ee028a58cf2090a96ed2f"

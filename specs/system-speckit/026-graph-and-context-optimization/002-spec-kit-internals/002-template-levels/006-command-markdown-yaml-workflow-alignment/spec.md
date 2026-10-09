@@ -163,7 +163,6 @@ Align the 18 in-scope command assets with the current system so users and AI run
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -257,6 +256,7 @@ Align the 18 in-scope command assets with the current system so users and AI run
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. The user supplied Gate 3 selection, scope, target path, verification gates, and final reporting format.

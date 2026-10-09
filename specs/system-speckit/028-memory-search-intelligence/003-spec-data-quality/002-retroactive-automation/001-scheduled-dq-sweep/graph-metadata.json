@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The eight shipped CI workflows are all `on: pullrequest` with `paths:` filters, and a grep for `schedule:` or `cron:` across `.github/workflows/` returns empty, so no data-quality check runs on a timer or on demand",
     "created_at": "2026-06-27T17:15:35.490Z",
-    "last_save_at": "2026-09-07T16:18:20.531Z",
+    "last_save_at": "2026-10-08T19:31:05.500Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +196,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b662b4b54ddf35079e7ae1442fe45567d564234c25f13594a72c879ce7e7e1ec",
+    "source_fingerprint": "sha256:abe1ed87d40c11f6e8360b21b2cb2680f81be13af2b75431b0301d2638fa10ad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eda4b88c3898c3d72b60b4f85b8faae29b17716be0e87e29026cd9a9829cd76b",
+      "spec.md": "1e4ea58c437ed235bddb7ec03f5eeba34df80d845159f273f4b10c3d9d405089",
       "plan.md": "b275b17625860d9c81ac7f2cea92664775dd34ca75e0667c1417c7b1a63a4349",
       "tasks.md": "ae79b44a4f440c044197b647566f31cd778ddf1279d544c92ba0d657e0bee778",
       "implementation-summary.md": "1a46db7840f0d4136a31f30de67b025d6654779028b09c4e31fea74749f3de45"

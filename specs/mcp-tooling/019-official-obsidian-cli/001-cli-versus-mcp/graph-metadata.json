@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The skill described the official CLI and the MCP server side by side and left the choice to the reader",
     "created_at": "2026-09-02T18:51:33Z",
-    "last_save_at": "2026-10-07T12:55:01.341Z",
+    "last_save_at": "2026-10-08T19:29:27.843Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,10 +219,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c8f6931545314df721f0dd9fbb5e21a8e12e4af6fb726596e2501ea235f99dd7",
+    "source_fingerprint": "sha256:30ee33490c64d52c1b93e6f5fc780f9ed64258f84c4a69dca28204a32c338933",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7850076c2fd163a8a06e9fcf2cb79e591e731c248045033af3aa65d304eabe46",
+      "spec.md": "b772a9c82b42703bc7af1997e1d31952a58fcb37e6fc7ca0e32423dda5d5838c",
       "plan.md": "13a4e435ca8d13fb9bbdc5315637c32ff875f0424bbf27547f67c79e78d7482a",
       "tasks.md": "76578ee9e5c14027d4f9d7178666a45ea86c84600adb9e6e00c55dbf53732aa9",
       "implementation-summary.md": "a7e463fc24a2f4e59164a54d9d79513e1388302df5e31e7f7713ca771603446a"

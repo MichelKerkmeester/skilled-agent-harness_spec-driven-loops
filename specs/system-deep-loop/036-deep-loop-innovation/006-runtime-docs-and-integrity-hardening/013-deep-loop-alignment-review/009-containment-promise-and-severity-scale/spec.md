@@ -144,7 +144,6 @@ Each domain has one authority, and every losing site points at it rather than re
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -193,6 +192,7 @@ Each domain has one authority, and every losing site points at it rather than re
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

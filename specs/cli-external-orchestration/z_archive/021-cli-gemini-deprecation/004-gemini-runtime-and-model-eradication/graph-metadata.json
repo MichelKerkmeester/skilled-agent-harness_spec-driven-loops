@@ -47,20 +47,17 @@
       "decision-record.md",
       "implementation-summary.md",
       "resource-map.md",
-      "lib/runtime-detection.ts",
-      "hooks/index.ts",
       "hooks/README.md",
-      "tests/fixtures/runtime-fixtures.ts",
-      "scripts/lib/cli-capture-shared.ts",
       "shared/gate-3-classifier.ts",
-      "scripts/utils/source-capabilities.ts",
-      "scripts/utils/input-normalizer.ts",
-      "scripts/resource-map/extract-from-evidence.cjs",
       ".opencode/plugins/session-cleanup.js",
-      "scripts/loaders/README.md",
       ".opencode/scripts/orphan-mcp-sweeper.sh",
       ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
-      ".opencode/agents/prompt-improver.md"
+      ".opencode/agents/prompt-improver.md",
+      ".opencode/agents/deep-improvement.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+      ".opencode/skills/sk-doc/scripts/validate-doc-model-refs.js"
     ],
     "entities": [
       {
@@ -100,57 +97,15 @@
         "source": "derived"
       },
       {
-        "name": "runtime-detection.ts",
-        "kind": "code",
-        "path": "lib/runtime-detection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "hooks/index.ts",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": "hooks/README.md",
         "source": "derived"
       },
       {
-        "name": "runtime-fixtures.ts",
-        "kind": "code",
-        "path": "tests/fixtures/runtime-fixtures.ts",
-        "source": "derived"
-      },
-      {
-        "name": "cli-capture-shared.ts",
-        "kind": "code",
-        "path": "scripts/lib/cli-capture-shared.ts",
-        "source": "derived"
-      },
-      {
         "name": "gate-3-classifier.ts",
         "kind": "code",
         "path": "shared/gate-3-classifier.ts",
-        "source": "derived"
-      },
-      {
-        "name": "source-capabilities.ts",
-        "kind": "code",
-        "path": "scripts/utils/source-capabilities.ts",
-        "source": "derived"
-      },
-      {
-        "name": "input-normalizer.ts",
-        "kind": "code",
-        "path": "scripts/utils/input-normalizer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "extract-from-evidence.cjs",
-        "kind": "file",
-        "path": "scripts/resource-map/extract-from-evidence.cjs",
         "source": "derived"
       },
       {
@@ -169,6 +124,30 @@
         "name": "prompt-improver.md",
         "kind": "doc",
         "path": ".opencode/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-doc-model-refs.js",
+        "kind": "code",
+        "path": ".opencode/skills/sk-doc/scripts/validate-doc-model-refs.js",
         "source": "derived"
       },
       {
@@ -206,11 +185,29 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Targeted Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After the executor purge in phases 001-003, \"Gemini\" still existed in the repo in two separate roles that phase 003 explicitly deferred: as a host runtime (the `hooks/gemini/` subsystems in system-spec-kit and system-skill-advisor, the `gemini-cli` member of every `RuntimeId` union and its detection logic, runtime fixtures, cross-runtime fallback, hook re-export parity, and the `GEMINI.md` root-doc convention) and as a model (`gemini-flash` in the deep-loop fallback router, the sk-prompt small-model budgets and profiles, and the cli-devin quota-fallback docs)",
     "created_at": "2026-06-08T17:30:58.501Z",
-    "last_save_at": "2026-08-30T15:39:08.695Z",
+    "last_save_at": "2026-10-08T19:29:12.187Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +218,10 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:10495c56787ae5d1314644dbbebeded8fd0bfc98a941935aecf53ceab7b87e40",
+    "source_fingerprint": "sha256:434488030ee44c7ebfccfc0e8f5803367b507a810bd65d0038e7ba22ae6504b0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8b2e92d23c7ff35a4b88fa2ce9316d25b61cde05ec2b07cf322c67bce14fe522",
+      "spec.md": "442db36683c4615d33a26aebb8d9e605699c2a73efa40723b190c31b0026877e",
       "plan.md": "2a83ea6119b6bd57f37c0496c606c10c3e7cf8288ccf8a05905f15ca8ae68893",
       "tasks.md": "4059620b221d70c5f30a4eae41d054c8542eb0075db41aae93607c6e111a03b2",
       "decision-record.md": "6a3bc8bb0e22df3a60afccb1f4067485dfe57520647be034fa7313ee12abd676",

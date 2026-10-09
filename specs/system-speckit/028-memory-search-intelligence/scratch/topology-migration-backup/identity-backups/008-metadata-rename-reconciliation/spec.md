@@ -262,7 +262,6 @@ and the generator can no longer silently drift after a future rename or move.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -327,6 +326,7 @@ and the generator can no longer silently drift after a future rename or move.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the new prune capability default ON after this phase (a third flag graduation), or stay a

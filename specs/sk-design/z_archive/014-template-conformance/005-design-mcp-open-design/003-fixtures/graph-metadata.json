@@ -186,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/design-mcp-open-design/fixtures/` has not been audited against `.opencode/skills/sk-doc/create-skill/references/shared/overview.md directory rules + packageskill.py file-type gates (no authored fixtures/ template)`",
     "created_at": "2026-07-27T15:02:57.567Z",
-    "last_save_at": "2026-10-07T18:12:32.994Z",
+    "last_save_at": "2026-10-08T19:29:55.850Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,10 +195,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:deacefb4002045b69566118c97666e4db281843fde24788e4eaca12548101f41",
+    "source_fingerprint": "sha256:8a579bf03d24146505eb5a070138b81cd9281e706ae606acc9941a9de0e66589",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ed85cb18065686ff53cf084edece1cb0adc327e913b8af0a6ed805620ef0f24a",
+      "spec.md": "45bd361308f38b6eb2917b931c21e344d56f8a75d9222509691588ad78abf021",
       "plan.md": "7fbe73215257a9e8fba0b6cd7bd28cf79b86eb3817e135ecb3e986a420015bde",
       "tasks.md": "bb84f875a924bfdd22a358dbf6549ed2e873396acfcef99cd7aa4ea893efb243",
       "implementation-summary.md": "89136a98aaac2c3301e8f353e25617b7c1f9f7484124670b6e5529496bd280f2"

@@ -132,7 +132,6 @@ Characterize, with a replicated and reproducible matrix, how MiMo, Kimi, DeepSee
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -186,6 +185,7 @@ Characterize, with a replicated and reproducible matrix, how MiMo, Kimi, DeepSee
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether a future pass should add the variant axis (each model at medium and high) to measure how reasoning level changes search-driving

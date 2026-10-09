@@ -157,7 +157,7 @@
     ],
     "causal_summary": "The shipped `audit` mode is the cross-cutting QA and critique child of the `sk-design` family, but its packet was absent from git and memory",
     "created_at": "2026-07-16T09:10:53.520Z",
-    "last_save_at": "2026-10-07T18:11:20.796Z",
+    "last_save_at": "2026-10-08T19:29:52.888Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -165,10 +165,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:9f71197581bc0c97eee7a923fae8acaceff811300d6c459ce70ac0efb3da964e",
+    "source_fingerprint": "sha256:c962a31b9e508759b47b9b6c614e951c908c71b1c09d768bdf0874fd01efe52f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6fbdfa05eed6772d150153cf8316b8da09d7d873c72aa77a5b60e2e25199477e",
+      "spec.md": "3063e976392e335c6890a9c16e45ea525fa26b20fc72d147f6dd9be11c17a706",
       "plan.md": "35c02ca13773bd06dba1a512e0f8f4649ff8ccd69c2018eccadc969a2652caaf",
       "tasks.md": "4debc7d5c1ae67a8ea3b25b17eec5b0327dc5d3350f46864e5c28d1280626aef"
     },

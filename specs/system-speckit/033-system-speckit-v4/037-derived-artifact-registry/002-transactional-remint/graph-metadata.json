@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The re-mint gate exists to keep a packet's generated metadata in step with its documents, and it does that by regenerating and staging",
     "created_at": "2026-09-11T06:37:39Z",
-    "last_save_at": "2026-10-07T15:57:27.877Z",
+    "last_save_at": "2026-10-08T19:31:26.677Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd2240758a30d8cdb5ef654c596eebcb745ac6503253d6986333bab143de19d2",
+    "source_fingerprint": "sha256:2094d3107c9c9288c02cc75ddd547565fefbd71bced191d66a165c03bbf30ca9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4dc373e04d28550da078ec23586e3142d845e77beb2570782f3e3d9d52205372",
+      "spec.md": "952309fd106f76bb423c7aa6aada9e9553c469b547c39bd61a76b838ebd87081",
       "plan.md": "822e19f9dc11441f02bc8b83d5bbf636620568f7fed711d54e7932857ea83086",
       "tasks.md": "2b536a6a6541d1881147c2de56a9515c888125cb4310e49aaeb20f9b56802af6",
       "implementation-summary.md": "c4285bc0ad553636286efb7b144b27d72a2ec7dd22d0af4fd627c6e9af6011c6"

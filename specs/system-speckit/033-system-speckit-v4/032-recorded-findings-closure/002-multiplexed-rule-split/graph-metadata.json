@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`validator-registry.json` names 39 rule rows, and its `scriptpath` field reads as a one-to-one pointer from a rule id to the script that implements it",
     "created_at": "2026-09-07T15:05:41Z",
-    "last_save_at": "2026-09-08T15:47:15.585Z",
+    "last_save_at": "2026-10-08T19:31:25.197Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aa891d00db418c0d0c01a721a8557d4861bcf5e09c70f3c89c9914a6d7cef03a",
+    "source_fingerprint": "sha256:1dca23d7f13b04ffaec36a6d2df233bd31a75b413089f3293cc3e9922be4161e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e10eb73d2c013e0e968feb3ab0318337faa494bdb2a65af13517c57ebd34f788",
+      "spec.md": "2eddaa497bed8ac1ae73b8dd1eadb58b6765aadc1f9d2756d9770415ecaeddb1",
       "plan.md": "0d24e709b6405cdc53b45a7b16390352a0b91faba9076370239203b0e67fb441",
       "tasks.md": "f7be3bb1c7439d9a7ecd05bad2b4d45b152ffa76e6c1377df84e4949238c0f4e",
       "implementation-summary.md": "4de23ec751d70e3efdfe2e1afa24c305c3fe56674f3cf4f5d93b37ed6557a8c0"

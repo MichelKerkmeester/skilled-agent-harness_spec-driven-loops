@@ -84,7 +84,7 @@ categories (flagged as the real cost, a per-skill follow-up).
 - Deterministic + CI-safe → no operator decision; unblocks 007 scoring and precedes 010.
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 None — both changes are deterministic, back-compatible, and doc-blessed.
 <!-- /ANCHOR:questions -->

@@ -142,7 +142,6 @@ The number of independent root-resolution implementations is reduced to the mini
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -197,6 +196,7 @@ The number of independent root-resolution implementations is reduced to the mini
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether `shared/config.ts` and `shared/embeddings/factory.ts` collapse into one predicate or stay separate is decided by the caller audit in REQ-004's task, not assumed here. Both currently derive a database directory, but for different consumers (`getDbDir`/telemetry vs the embeddings profile cascade), and a real behavioral divergence in either caller's expectations would be a reason to keep them apart.

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Currently, the Spec Kit system creates anchors (the `<!-- ANCHOR:id -->` tags) in memory files, but the retrieval system ignores them",
     "created_at": "2026-04-12T09:02:53.539Z",
-    "last_save_at": "2026-10-07T22:55:51.932Z",
+    "last_save_at": "2026-10-08T20:54:16.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7704ed659de927df62c90ec0db1acb73649ce1fb685832eb3970cd8e94d81634",
+    "source_fingerprint": "sha256:b65cf332d7715c69550e6d42cacaeac2d1906e246982aa09a6548a2a7b0ca77c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "40f011bcb09ed7c9e1c27a13c77dbabb65f319044eb5ba6ffe5b3d636b122f9f",
       "plan.md": "c2fb3609bc963374de7f1d9a17a1685ab19ab0b1a561c959652d89b4fd3db5e9",
       "tasks.md": "27fd4431e2e729301efa86b180bab374fbc7de45ee95012511afd2dbe1f37e6a",
-      "decision-record.md": "9e2d687a1909a13eae4b26cc5c77e98033edcce45b68a64eefd86099f1c6af19",
+      "decision-record.md": "84a0c68d58ed13866d59a2f9701ad0a81b356b481b663524942ad3b0b505fbd3",
       "implementation-summary.md": "fdf44c089e40ce4d80013ff8c24f2f15daf8d8533b3147b74a06db1230c78bc5"
     },
     "last_active_child_id": null,

@@ -201,7 +201,6 @@ Every successfully indexed active row has a queryable vector in the active shard
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -296,6 +295,7 @@ Every successfully indexed active row has a queryable vector in the active shard
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Adaptive queue-size-based drain scaling vs a raised static rate: decide in implementation from the T025 throughput measurement.

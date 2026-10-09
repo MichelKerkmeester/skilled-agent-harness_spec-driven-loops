@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Spec 026 shipped hundreds of phases across 8 tracks over months of work, but the packet-local changelog history is roughly 16 percent complete (103 of about 553 shipped phases)",
     "created_at": "2026-05-31T19:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:28.857Z",
+    "last_save_at": "2026-10-08T19:30:44.652Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6f8cdb4cfd21f31c65f4bd29b311e040062a61ad6bf7c38082da8a4660bc19d2",
+    "source_fingerprint": "sha256:15614dfaaa387ebf8571c03f44752d00fd881aa9932ebcff565667a31a874618",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "27ae31a9e3b2c0bbd69fae22369e800a9d4ce04fe30b009db23c1c04b021e396",
+      "spec.md": "cafe24e17e2935d7ff19e20d5281dad817e3267ba6cc6f114647a4c2cd5fe3c4",
       "plan.md": "61850d19174cbd38b93bdefe84cf1508a4c3e794e33d21b50967a86a59f29319",
       "tasks.md": "efc318393365c01cf58d0cc28f900531c69bc5e9f799deb3f0c2798c513a572f",
       "decision-record.md": "a1c1c1b592c62163188f47693c06ce526836500dc0c42f357c3070a3197f8033",

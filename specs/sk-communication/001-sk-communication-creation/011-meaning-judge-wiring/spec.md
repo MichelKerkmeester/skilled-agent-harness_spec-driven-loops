@@ -184,7 +184,6 @@ Add a production composition module that threads `executeProviderRoute` output t
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -254,6 +253,7 @@ Add a production composition module that threads `executeProviderRoute` output t
 1. **Given** timeout, cancellation, exception, absence, or malformed output, **When** the outcome is handled, **Then** exact-original is returned.
 2. **Given** an evaluation-only proxy reviewer, **When** production composition loads, **Then** the proxy is not invoked.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 No unresolved question blocks planning. A hosted judge over restored plaintext remains explicitly disallowed.

@@ -181,7 +181,7 @@
     ],
     "causal_summary": "Coverage gaps in this fleet were previously argued from prose",
     "created_at": "2026-07-30T19:29:16.012Z",
-    "last_save_at": "2026-10-07T18:13:50.862Z",
+    "last_save_at": "2026-10-08T19:30:11.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -190,10 +190,10 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:955c8fafe4909787dcc04da401d7727773de5867cdfed51aa37ab0a84155e2bd",
+    "source_fingerprint": "sha256:a7c42c5dc43df4a6dde7d58629d8138c52c6aa94abb7898efee1c438169da811",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3aa2a94e5c59717985e9ca2b1bab1dd2b2aa65b869c2c1fa0a3bb18aa26f2064",
+      "spec.md": "2dc17880ff47c226d6db19f276e367ab1359a18652191fe3a9bce90f63855840",
       "plan.md": "8609c5d9aab3b8e796117b495defadacb193445da4932a5f89958d4f15422796",
       "tasks.md": "72520d11ecb50fd0a02bfae6485df0797c042c0fd69bebeedf48b6a53bcec168",
       "decision-record.md": "2118a8d0883a6df14c55c8f46f76c7ff2dca51a6f376cafb535ffc7d5c12018d"

@@ -134,7 +134,6 @@ Delete the dead Lane C branch; repair the validator so it reaches VALID without 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -171,6 +170,7 @@ Delete the dead Lane C branch; repair the validator so it reaches VALID without 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open; spec folder (new child 016/006) and option C were operator-directed.

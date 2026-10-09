@@ -152,7 +152,6 @@ Bring the repo's docs, configs, scripts, fixtures, and generated assets into ali
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -207,6 +206,7 @@ Bring the repo's docs, configs, scripts, fixtures, and generated assets into ali
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Are `voyage-3.5` and `voyage-4` both current valid Voyage default model identifiers, or is one obsolete?

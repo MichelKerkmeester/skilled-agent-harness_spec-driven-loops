@@ -137,7 +137,6 @@ Every one of the 17 files is either reachable through `SKILL.md`'s own routing (
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -192,6 +191,7 @@ Every one of the 17 files is either reachable through `SKILL.md`'s own routing (
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether a file worth keeping gets a new `RESOURCE_MAP` intent or a `quick-reference.md` pointer is decided per file once its body is read, weighing the "thin router" design note at `SKILL.md:95` against the file's actual audience.

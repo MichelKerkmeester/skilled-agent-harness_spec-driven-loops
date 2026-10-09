@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Three enforcement mechanisms for the `code-opencode` standard failed independently and simultaneously, and nothing noticed",
     "created_at": "2026-07-30T19:25:14.337Z",
-    "last_save_at": "2026-10-03T15:54:16.026Z",
+    "last_save_at": "2026-10-08T19:29:29.741Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +215,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:23a835c7820aac6039c96564a32bde1fe2d45fc49a6e4d8f4e9803ed8ea7b0a2",
+    "source_fingerprint": "sha256:bd2877ad883e5eaf517b53af9c6175253280399c0dbb1f190e4b7f5b48184322",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3703f290dbb1111bac627f053758c7f5448933a8e91b0b494d72a405b10f9f08",
+      "spec.md": "3aa8895fb47f60c3ce924f80c62f56c383b8d737722458de45a22ad008e6bf9f",
       "plan.md": "c3859b81c47392f6c35d00d7887fe4678e65c62d5ba97a7fd619f0a5ee102d96",
       "tasks.md": "d46709df5045a683ff5bed96fba41b1b49f0802ce9ef55fb0568cd85b98f4a28",
       "decision-record.md": "612450b4468840febb03c941e87ac0ba09ae1613074824f910ac480943600755",

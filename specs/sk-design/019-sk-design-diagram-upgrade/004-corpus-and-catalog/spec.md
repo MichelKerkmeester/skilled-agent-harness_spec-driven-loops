@@ -227,7 +227,6 @@ Named by phase 1's synthesis (`../001-upgrade-research/research/research.md`); t
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -309,6 +308,7 @@ example, variant, ceiling, imports, and skin columns, **so that** I don't have t
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether the extended applicator's examples selector should be a `--forms`/`--all` flag (mirroring

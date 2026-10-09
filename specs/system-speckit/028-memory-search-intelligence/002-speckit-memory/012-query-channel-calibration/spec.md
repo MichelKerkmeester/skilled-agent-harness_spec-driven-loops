@@ -157,7 +157,6 @@ Recalibrate the channel-skip heuristics so that graph/degree escalate for the qu
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -229,6 +228,7 @@ The exact seams, verified to file:line against the live tree.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Of the 5 skipped-but-should-have-run queries in the live 7-query telemetry sample, how many failed the stopword-ratio hatch versus the entity-density hatch? This determines whether Phase 2 recalibrates `query-classifier.ts`, `query-router.ts`, or both.

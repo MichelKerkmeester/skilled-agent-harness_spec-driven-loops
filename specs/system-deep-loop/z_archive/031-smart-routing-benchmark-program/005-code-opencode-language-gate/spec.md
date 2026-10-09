@@ -83,7 +83,7 @@ keyword-collision, not split-fixable).
 - *Residual co-activation* is a separate keyword collision, out of scope — not a reason to force D3=100.
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 None — the split scope and the code-webflow no-sub-slice decision are settled by the surface's design.
 <!-- /ANCHOR:questions -->

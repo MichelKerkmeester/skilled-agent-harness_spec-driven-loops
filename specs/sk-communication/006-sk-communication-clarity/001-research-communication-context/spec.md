@@ -150,7 +150,6 @@ model family, so phase 002 decides from findings rather than from impressions.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -205,6 +204,7 @@ model family, so phase 002 decides from findings rather than from impressions.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which lineage shape is dispatched: one lineage per source per executor, or one lineage per executor across all three sources?

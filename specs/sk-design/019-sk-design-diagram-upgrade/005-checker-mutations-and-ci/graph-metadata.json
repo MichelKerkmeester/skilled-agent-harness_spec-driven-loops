@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`check-diagram-corpus.cjs` with the families phase 002 contracted: accessibility and metadata, no-external with a one-entry allowlist as net-new work (no documented exception precedent exists to port), the 4px grid per the signed exemption list, orthogonal connectors with the type allowlist, marker trio and unique ids at the decided scope, gates against sentinel blocks across three grounds, the derivation re-derivation, the catalog in both directions",
     "created_at": "2026-09-10T18:45:28Z",
-    "last_save_at": "2026-10-07T15:56:39.943Z",
+    "last_save_at": "2026-10-08T19:29:50.993Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:13224e8d624e79b4a49788feab663cce609f6e63286a1bf2d8951d57bd9bb611",
+    "source_fingerprint": "sha256:63ab7f346c6ffb19cf0d711583b389ff830312fa17a5a53f5a2427ccc2931fb5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4f741d5f4647dbe60faba2021279aba336f346b63d1aaa1f0d8812e50256f34b",
+      "spec.md": "a3f559ad748c915894b1646c3b40076a16b7bedea8c01529c4f7781b45151631",
       "plan.md": "5b90cab856868431d9e225c921c084dc8e4b4a6c95a6f33574a76657a4c15206",
       "tasks.md": "66859d573da7d5daf478c264cb7e1ed02b7b6f0ec64d825689554168d4da5369",
       "implementation-summary.md": "f475dd8b4160f2e171dbd21385b842b7eadb3e3870f99606c6f13cb7d7f206c6"

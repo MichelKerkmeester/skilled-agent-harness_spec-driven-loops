@@ -128,7 +128,6 @@ Every quarantine write lands beneath the real artifact root or is refused and re
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -179,6 +178,7 @@ Every quarantine write lands beneath the real artifact root or is refused and re
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

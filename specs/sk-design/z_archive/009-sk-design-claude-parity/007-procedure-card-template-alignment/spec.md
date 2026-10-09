@@ -187,7 +187,6 @@ This table is the concrete evidence gathered while authoring this phase. It grou
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -279,6 +278,7 @@ This table is the concrete evidence gathered while authoring this phase. It grou
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Phase 006's canon decision is not yet made; Path A vs Path B selection stays blocked until Phase 006 closes.

@@ -155,7 +155,6 @@ Remediate every cited finding against the actual deployed source: fix the 4 P1 d
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -225,6 +224,7 @@ Remediate every cited finding against the actual deployed source: fix the 4 P1 d
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - For P1-1, is forward-recovery (keep the new snapshot if it is fully in place) preferred over always rolling back to `.bak`, or should the policy match the existing two-phase journal exactly?

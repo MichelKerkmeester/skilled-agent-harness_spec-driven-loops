@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The weekly job already answers whether the corpus drifted, but it answers in prose",
     "created_at": "2026-09-11T06:37:35Z",
-    "last_save_at": "2026-10-07T15:57:27.932Z",
+    "last_save_at": "2026-10-08T19:31:26.877Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7156adbe5714aab9aa0a671365bc683d809d589b69810420d11d7afb7bcb32b2",
+    "source_fingerprint": "sha256:3fd6c094ca0eb405f0c6f4ad9504cfd7bc9d991c4f603a461a98c31cacd0ac04",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fa881ed2db595671dd5ad25089e5610a4ac362faf600ec911d2db08f5744ff63",
+      "spec.md": "0f18cdf07128ce3ec13c0c9e343fd2aa3ee3a85ac1f8e839b0552aab7bc114ee",
       "plan.md": "4214a7a1bdc8e23549fc046bff2dfc9fb8cd3a563cab83ce158166dc8b9fa259",
       "tasks.md": "0c616e7828d68dc697e0db06cc706d076b9981d65f38ec7dbc12174ef57da02d",
       "implementation-summary.md": "9f11322812e498a1925428146caa3d31ec0a61cbeead785ac826f8aa463e6553"

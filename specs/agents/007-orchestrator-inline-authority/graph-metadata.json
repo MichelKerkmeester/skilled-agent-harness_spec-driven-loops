@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The orchestrator held no write capability in any of its four runtime dialects, and its prose forbade direct execution outright",
     "created_at": "2026-08-31T06:37:55Z",
-    "last_save_at": "2026-10-07T12:54:42.688Z",
+    "last_save_at": "2026-10-08T19:29:07.595Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5088d85471002ddafe6e86482a5870a19ee93ee0d15c9d62066ccd132fa33a4",
+    "source_fingerprint": "sha256:c3bec6156f2dbecf65606b9b62b2f189c0c9dba1e050980b2967a3a329589106",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5e2ddbf637c98beb553c203c6ecbff8574e562ed2f7c6d2e0e741cdb13157fa4",
+      "spec.md": "3617d563ce096e5c64629c2eb5e364395c0b08c480236c10f5db9bad3e105296",
       "plan.md": "b0e7fdc2a5519a624133c2e8b619eb7ea7104f28d677d8ffa604e610e84c2b5f",
       "tasks.md": "58a0d22249ff3b17e0bfd25b16fb2f4c8cc71049b92a6a52e388f6cac3c12737",
       "implementation-summary.md": "3cdab68de84cb776d2d753b26a9ff968d4a5a6721b93aa33f7c0de305c721c1d"

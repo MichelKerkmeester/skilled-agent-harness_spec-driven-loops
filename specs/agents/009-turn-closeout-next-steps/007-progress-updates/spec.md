@@ -157,7 +157,6 @@ returns nothing.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -212,6 +211,7 @@ returns nothing.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **For the operator, and the only thing blocked.** Apply the drafted `AGENTS.md` §3 bullet from `research/research.md` section 7, or override the verdict and direct the rule-file route as you did in phase 001. The bullet is new normative content rather than a pointer, so this packet will not apply it unasked.

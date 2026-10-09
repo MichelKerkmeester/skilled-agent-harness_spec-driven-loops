@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The dispatch preflight is the only surface that can refuse an incorrect `cli-` dispatch before it runs, and six conditions let it approve one silently",
     "created_at": "2026-09-15T16:29:31Z",
-    "last_save_at": "2026-10-07T15:55:57.388Z",
+    "last_save_at": "2026-10-08T19:29:11.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:761d588e52af1a5b441c6ca3119124cb93bbb54ac24c757c8e67a1ca8c19398e",
+    "source_fingerprint": "sha256:1b4a2d7721b47241c00b63673de656111997d0042997a52eedf72bf005c2ae3c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "02c6f7fdb8a90b0e825d5f94336231a151f1fa4e9ae1060b1285e7189b0ea8ef",
+      "spec.md": "8b39f4ba4c097ba936816202773ca7e7fd4fa4213213d18dff112fac702ca5a8",
       "plan.md": "ed1e7eccae7692c8c22e9fbae9a32424e0e0a3fa6f6e36a58c44621211282644",
       "tasks.md": "5c7b45f4f44301c69f6a286b6cbcc25733dcc0fff58a099d27c378ec3a5b9108",
       "implementation-summary.md": "f1328e0ce6ebd9fc8f5c5392cd05533593bdf8c5a0518c123dcf6d6b43db6632"

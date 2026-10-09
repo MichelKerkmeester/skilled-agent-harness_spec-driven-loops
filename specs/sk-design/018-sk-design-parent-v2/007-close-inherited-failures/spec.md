@@ -170,7 +170,6 @@ No gate this packet touched is red, and nothing is left failing without a named 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -238,6 +237,7 @@ No gate this packet touched is red, and nothing is left failing without a named 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Which pair the repointed cross-hub fixture should model. `sk-design-chart` versus

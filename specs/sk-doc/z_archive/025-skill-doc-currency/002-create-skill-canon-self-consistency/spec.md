@@ -224,7 +224,6 @@ This phase assumes the executable module and its markdown contract are the corre
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -303,6 +302,7 @@ This phase assumes the executable module and its markdown contract are the corre
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **[OPERATOR-DECISION: DR-4 — required or recommended]** Is the workflow section required, as the governing prose implies, or advisory, as the packaging script has it? Two of the research loop's open questions are this same question asked twice. The finding's own warning stands: **do not change the validator alone.** Recorded as a decision to be made during execution; it is not pre-decided here.

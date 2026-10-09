@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "sk-code/z_archive/004-sk-code-merger",
   "spec_folder": "sk-code/z_archive/004-sk-code-merger",
-  "parent_id": "sk-code/z_archive",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -200,7 +199,7 @@
     ],
     "causal_summary": "Two parallel code skills (`sk-code-web` and `sk-code-full-stack`) overlap in phase model, intent vocabulary, and advisor scoring keys, causing routing ambiguity and operator confusion",
     "created_at": "2026-04-30T08:30:00Z",
-    "last_save_at": "2026-08-30T15:39:11.383Z",
+    "last_save_at": "2026-10-08T19:29:31.086Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +209,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5087a0d5e584bfcc10cb8c98ec8a33db9c0498851e61fd7386f3a2b64215f237",
+    "source_fingerprint": "sha256:b36dd2792d4e665a37450efd84900c91975a2b28722376c1dee199f416b87956",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6e4a848c221d18cb93ef7cea638b95f03e78d548f6a8c66f5fe6a88993f1bdb3",
+      "spec.md": "5a3f009ab9faa2091faec30c54b57c99acc211167ab99acadc962dfc0bd9b20d",
       "plan.md": "d352a4f11432645b0438e9139bfefd9b1a965dede18cb70ec4cab221a4cb659a",
       "tasks.md": "0893e6a10e6e1f434395967b4b6bdc4fb0aa34bc8b97d62d83179a8492137f86",
       "decision-record.md": "66bc27511674d1b9d8ba05ecf7f096accb6d90d7a74300abc618d8b0701555f1",

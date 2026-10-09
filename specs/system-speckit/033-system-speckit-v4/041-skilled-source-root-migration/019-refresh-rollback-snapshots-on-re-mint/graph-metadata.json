@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Every compiled-serving hub keeps a `manifest.serving-prior.json` in the authored activation tree, and `flip-serving.cjs --rollback` restores it byte for byte",
     "created_at": "2026-09-19T06:42:24Z",
-    "last_save_at": "2026-09-19T06:44:49.030Z",
+    "last_save_at": "2026-10-08T19:31:30.214Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3620e0fa2a35fe8376a7e4d3c5bd2044e49006daef706b45b8739e82ab17c5de",
+    "source_fingerprint": "sha256:8ca8955cec3987d0c9d80778c0038bffc8269ddc1e6400a935d03c8bea041d49",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "da5c520f115774edac958ea55118129e43ba3658efea563f99e2a4dbaa27175b",
+      "spec.md": "ae3643e99196bf5480d7dbc3d9cff80a1865376305ca7cf8e6d65705ed859e13",
       "plan.md": "538ec20eeb5b0e6d105d2fb0dfcab7cad6b9aaf0dea8c8b74359883c8a757ebb",
       "tasks.md": "f911c8a42cceb4094011550485351c078e9292715c2cf3f91065e06530d843ba",
       "implementation-summary.md": "8d02f44fbb1b5778f438d329523ba26f260bf6358c6050ea7e6cde652b6891f8"

@@ -144,7 +144,6 @@ Align both files with the recent sk-code documentation style sweep while preserv
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -193,6 +192,7 @@ Align both files with the recent sk-code documentation style sweep while preserv
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. User specified scope, files, verification commands, and no-commit constraint.

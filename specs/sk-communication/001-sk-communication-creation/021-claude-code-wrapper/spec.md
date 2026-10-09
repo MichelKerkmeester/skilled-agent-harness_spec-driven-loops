@@ -203,7 +203,6 @@ Wire Claude Code headless output projection through the CLI-output wrapper so th
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -240,6 +239,7 @@ Wire Claude Code headless output projection through the CLI-output wrapper so th
 | Research | 8/20 | The stream-json shape is the main unknown and is pinned by a recorded snapshot |
 | **Total** | **39/70** | **Level 2** |
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 No unresolved question blocks planning. The exact Claude Code version pinned for the stream-json snapshot and the exact stream-json event vocabulary are recorded as versioned inputs at implementation time, not open design questions.

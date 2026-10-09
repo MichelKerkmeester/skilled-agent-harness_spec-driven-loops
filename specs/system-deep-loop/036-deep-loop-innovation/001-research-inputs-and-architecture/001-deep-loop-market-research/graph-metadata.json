@@ -204,7 +204,7 @@
     ],
     "causal_summary": "`system-deep-loop` improvements are currently sourced only from local incident experience; the repo has no systematic map of what the wider ecosystem has learned about running agentic/iterative loops (termination policy, evaluator loops, reflection, durable state, fan-out determinism, novelty-driven broadening, budget control, observability)",
     "created_at": "2026-07-15T19:00:45.940Z",
-    "last_save_at": "2026-09-10T20:46:16.748Z",
+    "last_save_at": "2026-10-08T19:30:18.643Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +215,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:1073a1f1d14790a9471e75e2256fb8222130926b2f6d3e8d40a1db31e2decd6b",
+    "source_fingerprint": "sha256:8f66a98e8c5e8b22ff34e33c6d064c4cf83c1efdad723ae6398c7b602eb20277",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7b45e54e5a63069f757bde225bbbd847a9f582270dacf945b890f94912c2c567",
+      "spec.md": "ba42841ee71a27993b6e523b450a0d14030424e389e654193c7c182666867ebb",
       "plan.md": "b406eea4ee01d7c87cf5704969026d25b6f50a82f32a25b9f6d2ae43614f3448",
       "tasks.md": "d192d7abd04b981cc6c522883f19eb852e1ee3b629cc24170a88e68ddb499f09",
       "decision-record.md": "61adae755833ec2b863167674dc7b6fe826506721f64081393ba094434a373c1",

@@ -159,7 +159,6 @@ Every shipped phase in 026 has one faithful, HVR-voice changelog that matches th
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -220,6 +219,7 @@ Every shipped phase in 026 has one faithful, HVR-voice changelog that matches th
 **Acceptance Criteria**:
 1. Given the audit report, When I read the HALT inventory, Then every uncovered packet has a reason and no packet is silently skipped.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. The four scoping decisions were answered before authoring.

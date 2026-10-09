@@ -149,7 +149,6 @@ The lane is gone from every reachable surface, the hub registers exactly five mo
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -218,6 +217,7 @@ The lane is gone from every reachable surface, the hub registers exactly five mo
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should the dead `'skill-benchmark'` string constant be stripped from the shared improvement type unions, adjudication contracts and write-set census, which would touch two live lanes and five test files?

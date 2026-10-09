@@ -132,7 +132,6 @@ The goal offer works in whichever runtime the operator is actually in, and a doc
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -187,6 +186,7 @@ The goal offer works in whichever runtime the operator is actually in, and a doc
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

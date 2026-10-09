@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 003 audit flagged routing defects beyond code-review: orphan references (deep-improvement 18, deep-research/deep-review 4 each, deep-ai-council 1) and D3 over-routing below 100 across ~6 skills",
     "created_at": "2026-04-29T12:04:01Z",
-    "last_save_at": "2026-10-07T18:14:52.228Z",
+    "last_save_at": "2026-10-08T20:53:58.430Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e66a5937d3f7992bdd60208670abbf1766237e1fb9d008751c481a08c6a66a9f",
+    "source_fingerprint": "sha256:166c65cf82ac36885e14b7f7052973a0423437b843506f7159cbb2c9605e3056",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a95192e3d2e835f90cd7282f27317370cabedcce454c35dd182c73f37e4d97c5",
+      "spec.md": "3a9206b0478e814c94cb5c97b6487d858ccfd4f7d71a533a2fecc2b2f3fef4ab",
       "plan.md": "33e7343b9d58ed2f07c26338bc9165db3e3e3a6f878c056b6a8fce158f15130c",
       "tasks.md": "6588e3c68315931234542fe686c0b1ec6cdf21f412154dc693bc85eacb22fc14",
-      "implementation-summary.md": "7c2cfcfdabd9ff7056ebd428be1b89bd30552173155d47dffbd599370bd5849a"
+      "implementation-summary.md": "fd3342d8a20aaa8723d1c48b017f6c0e5f67e646db9009d254ae759d04fbdf62"
     },
     "last_active_child_id": null,
     "last_active_at": null

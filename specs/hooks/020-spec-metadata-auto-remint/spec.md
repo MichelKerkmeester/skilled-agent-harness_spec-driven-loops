@@ -118,7 +118,6 @@ The backlog is cleared, and a packet's derived metadata is regenerated in the sa
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -169,6 +168,7 @@ The backlog is cleared, and a packet's derived metadata is regenerated in the sa
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether the excluded `sk-design/019` subtree should be swept once that session lands is left to the operator. It is a one-command run against a clean tree.

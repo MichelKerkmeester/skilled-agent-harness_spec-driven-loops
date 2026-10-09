@@ -228,7 +228,6 @@ Every ID above is assigned to this child and to no other. Locations are the anch
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -315,13 +314,12 @@ Every ID above is assigned to this child and to no other. Locations are the anch
 
 ---
 
-<!-- ANCHOR:open-questions -->
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Does one shared binding validator serve all four certificate emitters, or does each keep a local check against a shared field list? ADR-001 proposes the shared validator; the local-check alternative is recorded there.
 - For `F-007-01`, the fix can land on either side: the issuer stops inventing `result_head.sequence`, or the verifier stops re-deriving it. Both are needed for the property to hold, but the order matters for compatibility with certificates already issued. Decide before Phase 3.
 - Which historical certificates must continue to verify? Enumerating that corpus is a Phase 1 task; a rejection of a genuine historical certificate is a finding to investigate, not an accepted cost of tightening.
-<!-- /ANCHOR:open-questions -->
 <!-- /ANCHOR:questions -->
 
 ---

@@ -162,7 +162,6 @@ Real build surfaces this session, all under `.opencode/skills/sk-design/styles/_
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -212,6 +211,7 @@ Real build surfaces this session, all under `.opencode/skills/sk-design/styles/_
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which stage (JSON-fetch/decode, cosine+sort, or embedding throughput) will telemetry surface as the first SLO-crossing candidate?

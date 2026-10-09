@@ -44,8 +44,6 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/agents/review.md",
       ".claude/agents/review.md",
       ".codex/agents/review.toml",
@@ -58,7 +56,9 @@
       ".opencode/agents/deep-review.md",
       ".claude/agents/deep-review.md",
       ".codex/agents/deep-review.toml",
-      ".opencode/agents/orchestrate.md"
+      ".opencode/agents/orchestrate.md",
+      ".claude/agents/orchestrate.md",
+      ".codex/agents/orchestrate.toml"
     ],
     "entities": [
       {
@@ -89,18 +89,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "continuity-freshness.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -158,6 +146,12 @@
         "source": "derived"
       },
       {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
+        "source": "derived"
+      },
+      {
         "name": "Peck Verification Discipline",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -204,11 +198,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Peck's source carries a coherent verification-discipline bundle in its agent prompts that the README-only analysis pass never surfaced, and live spec-kit has a real gap against each piece",
     "created_at": "2026-06-06T10:22:05.626Z",
-    "last_save_at": "2026-08-30T15:39:33.209Z",
+    "last_save_at": "2026-10-08T19:30:58.273Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6323a39b9aa5825aafa5153b830663209f25b33893e06d6f60af6a980830c2b",
+    "source_fingerprint": "sha256:5c78142d5e0ff17ebb15465b6a272e0b59431b4380a2719f6f8ff993c8c324d6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cf651b168d8bedbb0ac4aa06919a80b929727f5193028fedb69d0763ae217ef6",
+      "spec.md": "a2a2120a4b4f1834d011d75cc8d16a0fc2e317ff518385d7eaee5ddec78e1ac4",
       "plan.md": "f1d71443ea3dbfbb73fc4cea8441a06732d418b10d052fcbc106008a0562b5e1",
       "tasks.md": "05d2bd96d526128faf80e41c0baeee1898a00471e0398bb8b5db820428429024",
       "decision-record.md": "95742876c5c46270bb1c180d22f0576fa513b3bc913f6b9f6095eca2cc6db97b",

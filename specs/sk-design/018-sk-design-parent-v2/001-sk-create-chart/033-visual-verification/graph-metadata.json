@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The palette was replaced wholesale and the checks stayed green throughout, which proves that colour",
     "created_at": "2026-09-10T06:10:51Z",
-    "last_save_at": "2026-10-07T15:56:39.013Z",
+    "last_save_at": "2026-10-08T19:29:47.308Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0e18215469a6061fddd04d834543a117afcdc1cfc422e4dabdb6cc64bdc88b18",
+    "source_fingerprint": "sha256:475c821789be2797b433f66983f19c690d15540f62e10103aeaa7ff49e2da0f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "20ea6ae865c175ad5911419a668c600f47065ebb499333de6ea7e32da2aed4ab",
+      "spec.md": "269fd6cf29f5157596929e87b533da761893ce8350149e62fda220ac2eb5dbe3",
       "plan.md": "49130d1ce86effbce64040855bfa1ea92ab1d473bf4caad42fee4657563e5863",
       "tasks.md": "766962aa0670c72597296efab73158a896031eba68f7e5ebc721c19eab6fb945",
       "implementation-summary.md": "27184b45c0be2fac9d8e475edd0a1462c464b54575c3415a59a319e7729e76f2"

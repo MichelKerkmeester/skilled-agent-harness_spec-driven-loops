@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The local Deem server sends `Access-Control-Allow-Origin: ` on every answer (`serve/deemserver.py:809`) and on every preflight (`:837`) and checks no credential, so any web page open in the operator's browser can post questions to `127.0.0.1:8300` and read the answers",
     "created_at": "2026-09-27T11:50:22Z",
-    "last_save_at": "2026-10-07T12:54:52.417Z",
+    "last_save_at": "2026-10-08T19:29:23.422Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d7c0a84798c3261ec94ca38fcbe430f066ee8bfff6cd7e8c013b1f6c4474ad76",
+    "source_fingerprint": "sha256:9b384a6247a988740d67324730f3aa2a1e8c4d17265233ae3bf194402d06d91d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c8c035f3373add9941e3b69ef8f9134c51f3f28196c85fa34c8c5d4f20ff5d2e",
+      "spec.md": "19801497f3e17748d98b4c85dc0920b32427391bf90eb05bdbf05042900a9d58",
       "plan.md": "35f15467370c61a1b9993c2732a5629ca7eb69645b0471435c10810bea9862b6",
       "tasks.md": "7677e1ed5d4194abdda3650c41f8774c5c37d8797cc99a90f50ce021836f89fe",
       "implementation-summary.md": "36997a07d1c6511fdb8be1d4144fa597b35b39e215dc22d93c2f525a3ff07771"

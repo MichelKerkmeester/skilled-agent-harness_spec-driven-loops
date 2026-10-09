@@ -167,7 +167,6 @@ Delete the four `deep_loop_graph_*` MCP tools cleanly so `mcp tools list` shows 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -246,6 +245,7 @@ Delete the four `deep_loop_graph_*` MCP tools cleanly so `mcp tools list` shows 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should the empty `handlers/coverage-graph/` folder be left in place for the brief window between 004 and 006, or removed immediately? **Provisional: remove the folder in this phase; phase 005 + 006 land in the same arc.**

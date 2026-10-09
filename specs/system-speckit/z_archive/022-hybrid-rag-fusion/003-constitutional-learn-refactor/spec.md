@@ -86,6 +86,7 @@ Complete rewrite of `.opencode/commands/memory/learn.md` with:
 - `memory_save()` MCP handler — already supports constitutional indexing
 - `tier-classifier.ts` — already handles constitutional (no decay, always HOT)
 - No new MCP tools needed
+<!-- /ANCHOR:scope -->
 
 ---
 
@@ -130,7 +131,6 @@ Complete rewrite of `.opencode/commands/memory/learn.md` with:
 | `.opencode/commands/memory/README.txt` | Edit | ~15 |
 | `CLAUDE.md` | Edit | ~5 |
 | `.opencode/skills/system-spec-kit/README.md` | Edit | ~3 |
-<!-- /ANCHOR:scope -->
 
 ---
 

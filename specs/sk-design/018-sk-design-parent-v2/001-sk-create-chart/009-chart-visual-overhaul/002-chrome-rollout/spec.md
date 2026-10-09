@@ -225,7 +225,6 @@ Only the visual treatment is adopted.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -305,6 +304,7 @@ pass over one tree.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether the radius tokens belong inside the `CHART_PALETTE` sentinels or beside them. The block is documented as the only place a colour value appears, and a length is not a colour.

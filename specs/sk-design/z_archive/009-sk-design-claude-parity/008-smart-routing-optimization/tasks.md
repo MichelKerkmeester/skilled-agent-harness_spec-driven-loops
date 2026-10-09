@@ -120,6 +120,7 @@ _memory:
 - [x] Negative controls prove no new public modes, no registry-key renames, and no `toolSurface` changes were introduced.
 - [x] Checklist.md reflects current evidence state.
 
+<!-- /ANCHOR:completion -->
 <!-- ANCHOR:implementation-evidence -->
 ## Implementation Evidence
 
@@ -136,7 +137,6 @@ _memory:
 
 <!-- /ANCHOR:implementation-evidence -->
 
-<!-- /ANCHOR:completion -->
 ---
 
 <!-- ANCHOR:cross-refs -->

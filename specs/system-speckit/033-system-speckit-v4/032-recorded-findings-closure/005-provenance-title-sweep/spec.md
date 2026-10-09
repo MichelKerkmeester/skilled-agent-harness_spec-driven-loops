@@ -146,7 +146,6 @@ The committed titles this session owns read like the feature they describe inste
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -201,6 +200,7 @@ The committed titles this session owns read like the feature they describe inste
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The exclusion list, the token shape and the fixture set are grounded in the grep results and file reads captured during planning.

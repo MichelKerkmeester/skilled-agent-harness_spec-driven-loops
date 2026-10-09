@@ -150,7 +150,6 @@ Every Skilled release has one entry in `.skilled/changelog/skilled/`, system-spe
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -205,6 +204,7 @@ Every Skilled release has one entry in `.skilled/changelog/skilled/`, system-spe
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open. The operator settled the history rule, the spec-kit versioning and the executor on 2026-09-27.

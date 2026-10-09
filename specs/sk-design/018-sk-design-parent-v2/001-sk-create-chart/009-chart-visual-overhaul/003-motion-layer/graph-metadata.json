@@ -206,7 +206,7 @@
     ],
     "causal_summary": "`grep -rn 'prefers-reduced-motion' assets/` over the corpus returns nothing, and so does a search",
     "created_at": "2026-09-03T08:02:25.308Z",
-    "last_save_at": "2026-10-07T12:55:07.119Z",
+    "last_save_at": "2026-10-08T19:29:39.894Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79c7037e4e0f5236cc4d969381a79450a670cc52f78b33021a7f899c2f3ac537",
+    "source_fingerprint": "sha256:7e0a0df3639b8d385b418de9664d9b88fc681c50d8d622c04fe42d7c83d0d090",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f5845000e5a90f47a78d20ea6e6c4b902a31fbafa1a21a3046231b29400b2e64",
+      "spec.md": "42ad86be2fa850a877d824bd7e790b680c60a09ca820bfd2a25928ed7a66b9f6",
       "plan.md": "f60664427b851e0ce37c67e60e651fcf2c9c1d7716c46e112081dfc750ce15b0",
       "tasks.md": "07fecc28062abe6c540fc7550c42b924a7d937abd9a062daee79df1564a01bfe",
       "implementation-summary.md": "a92ac3ca42b33da8de3df9209f2ffeabee1a01b6d9c0495e8c2630f71e341639"

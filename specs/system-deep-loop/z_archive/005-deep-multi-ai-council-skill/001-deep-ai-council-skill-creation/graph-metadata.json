@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Council planning is a specialized multi-agent workflow, but its references, persistence scripts, and routing language currently live under `system-spec-kit`",
     "created_at": "2026-05-10T06:35:39Z",
-    "last_save_at": "2026-10-07T18:14:17.912Z",
+    "last_save_at": "2026-10-08T20:53:47.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:656487ecc51b73b8e832ece38b34b1ce07cc6067a33dbfe70004d5795e685282",
+    "source_fingerprint": "sha256:ced5920c54465c4d31985ef5a49220098cd292d3be1ef26ac9e19b099200b845",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "be3197766cbb146b2b7d3be0e0a30ed3c98a7180233c435e52063fd08f1fdad5",
       "plan.md": "85efbe0c8fe76cc8a3f9e49e2a41b80ed9d620ccf556586a6aceb6cfc3993fe2",
-      "tasks.md": "e5e0fa56b0ecea8b9484ecc52eb77351e32dea3c90afe75dc2e1b2fe60f547eb",
+      "tasks.md": "2ab84097201e7bbaf87e5865968426517d815b9317c3992f38c26879c8a8ac4c",
       "implementation-summary.md": "aef42fcb16d98b189c1737105247a0727a805d53e090bca938e92091f6231980"
     },
     "last_active_child_id": null,

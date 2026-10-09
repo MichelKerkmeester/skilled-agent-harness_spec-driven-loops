@@ -221,7 +221,6 @@ Make every completion claim in the migration program reproducible from a named t
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -311,13 +310,12 @@ Make every completion claim in the migration program reproducible from a named t
 
 ---
 
-<!-- ANCHOR:open-questions -->
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **OD-1 (OPERATOR-DECISION).** Relocate the `016` pre-014 validation artifacts (`review/`, `alignment/`) to their own packet, or formally re-scope `016` around them? Adding children 021-032 makes re-scoping strictly more work, which argues for relocation. Gates REQ-007 only.
 - Does the bounded child manifest belong in `validate.sh` (a spec-kit-wide mechanism) or in the parent `graph-metadata.json` (a per-packet mechanism)? ADR-002 proposes the former with per-parent opt-in; the alternative is recorded there.
 - After `031` Lane B removes duplicate test registration, must every citation issued here be re-verified, or does the suite-content digest survive de-duplication unchanged? Resolve empirically before closing.
-<!-- /ANCHOR:open-questions -->
 <!-- /ANCHOR:questions -->
 
 ---

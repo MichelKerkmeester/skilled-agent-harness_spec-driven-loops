@@ -202,7 +202,7 @@
     ],
     "causal_summary": "`/doctor:speckit speckit-retrieval` checks the trigger index and the ripgrep retrieval recipes",
     "created_at": "2026-10-02T16:10:27Z",
-    "last_save_at": "2026-10-07T15:57:40.589Z",
+    "last_save_at": "2026-10-08T19:31:35.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:68350ee84a3cad4cc02f875c70621e86baea4406b84d557a3b412111f9e14be8",
+    "source_fingerprint": "sha256:6a0175a1d8ff6a02b01ea751c339d9acaaefd87466233b10b1095061341a2051",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "40b06ac7f712a9b95a25e99436f51ac24e855cafc0d4d4ffd71aaba4d3cf0af1",
+      "spec.md": "6e664bc8209ec7f4622827ef0b414129cd2643dc52f4ebe2fa2c12702bee1624",
       "plan.md": "2a6cc8d67800421af2e393d18a2eecc686f2263cb2c0eb1d3d39a2250ede589d",
       "tasks.md": "003458b46722b5be54983b8838993e9cb0f362167c2223b68c7df37cd6754a52",
       "implementation-summary.md": "40bdd30fd9bb85c7376b743b288f26d72908ad0ff3d32f1a72d7a4423089db40"

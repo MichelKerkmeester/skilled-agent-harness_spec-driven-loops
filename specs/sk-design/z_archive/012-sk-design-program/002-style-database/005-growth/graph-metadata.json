@@ -173,7 +173,7 @@
     ],
     "causal_summary": "At 10x-100x corpus growth (roughly 129,000 bundles versus today's ~1,290), the eligible-ID SQL-parameter shape used for broad queries can approach or exceed SQLite's 32,766-variable limit at ~25.4% eligibility",
     "created_at": "2026-07-20T09:21:24.207Z",
-    "last_save_at": "2026-10-07T18:12:06.687Z",
+    "last_save_at": "2026-10-08T19:29:54.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,10 +182,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e72fe0e9e5d26b842cd0ff3a481253e98906622562499e87fe36cfacd405333",
+    "source_fingerprint": "sha256:a6677776c1234f349721770c2c12133192d90c3dc818dcae977b77fbbeb296d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9d268f08b0d2ea344e79cfddfe2191d869154d5c197187a37f81063601fddda6",
+      "spec.md": "e6a6e4254156bb13d242c6147dcac8ec1aac8f6afea79ec09a2aa6605fceacf3",
       "plan.md": "5c3745153e0a54e036989102d5b35b997ade795f763b05c1e513721a1a36d0ee",
       "tasks.md": "04b4a84450e573e1ce3b8b03aead8f0831b438823ac72cd24e444eb5fbdff24e",
       "implementation-summary.md": "d34cf128aa7228911704cd2531dd0eb0d1135b04b41e1b5fc4cf0e46f3170a2a"

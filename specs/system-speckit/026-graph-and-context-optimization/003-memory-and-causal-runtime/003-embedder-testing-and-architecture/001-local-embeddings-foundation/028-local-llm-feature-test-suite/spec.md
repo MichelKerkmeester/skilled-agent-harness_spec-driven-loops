@@ -114,7 +114,6 @@ A new packet, `029-local-llm-feature-test-suite-completion/`, will own the remai
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -165,6 +164,7 @@ A new packet, `029-local-llm-feature-test-suite-completion/`, will own the remai
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the perf benchmarks be gated behind `SPECKIT_RUN_BENCHMARKS=true` env var to keep `vitest run` fast for CI? (Lean: yes; benchmarks are opt-in)

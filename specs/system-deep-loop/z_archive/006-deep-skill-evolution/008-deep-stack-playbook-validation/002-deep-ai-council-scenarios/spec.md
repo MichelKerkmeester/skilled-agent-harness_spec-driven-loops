@@ -126,7 +126,6 @@ Execute all 32 `deep-ai-council` scenarios — the deterministic majority via `c
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -172,6 +171,7 @@ Execute all 32 `deep-ai-council` scenarios — the deterministic majority via `c
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Batch granularity: one dispatch per category (default) vs combining the small two-scenario categories (01/02/05/06).

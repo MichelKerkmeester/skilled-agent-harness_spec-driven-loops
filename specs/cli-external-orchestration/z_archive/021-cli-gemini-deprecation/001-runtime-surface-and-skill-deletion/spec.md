@@ -156,7 +156,6 @@ Remove the project `.gemini` surface and align active non-spec repo references s
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -236,6 +235,7 @@ Remove the project `.gemini` surface and align active non-spec repo references s
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. The user clarified deletion semantics and historical spec scope.

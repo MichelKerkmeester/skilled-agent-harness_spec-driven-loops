@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The Human Voice Rules carry an explicit Em Dash Ban: never use one, prefer a comma, full stop or",
     "created_at": "2026-09-06T17:43:46Z",
-    "last_save_at": "2026-10-07T15:56:40.008Z",
+    "last_save_at": "2026-10-08T19:29:49.281Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a5c96854d76905fc79a8440696c5595d29804b0cb9a817ad29d268f38ce1619",
+    "source_fingerprint": "sha256:d529e60965ed5b6a7698a6ff7c0c2b1ecc529c256344ef86c40202d2332786a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e3044de437a713fa0854f2d6204205a52ee66884c97f1ee1f0922df324120a3c",
+      "spec.md": "3dd17cedc20846a9a102ae20e940dfce6a6f43bd39a7e371a9592f597a6dc9a8",
       "plan.md": "53e8dedf125ad6aae28894cb3fa488033381f0c09389662183edde8258146650",
       "tasks.md": "318e87db2d62adbc234a417a2faef8a8533665286597ef2d76e693b7df059327",
       "implementation-summary.md": "dad0a27ff50151981a60ab980bc4b756e66dd8eef39e0d7715ae556e5472a16e"

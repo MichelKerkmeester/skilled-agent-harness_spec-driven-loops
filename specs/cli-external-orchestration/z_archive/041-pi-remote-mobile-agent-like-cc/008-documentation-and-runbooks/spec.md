@@ -133,7 +133,6 @@ Deliver a bounded, independently verifiable workstream whose outputs and stop co
 
 ---
 
-<!-- ANCHOR:questions -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -176,6 +175,7 @@ Deliver a bounded, independently verifiable workstream whose outputs and stop co
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which exact repository package paths and commands does implementation preflight confirm?

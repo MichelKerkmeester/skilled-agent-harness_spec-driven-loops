@@ -129,7 +129,6 @@ The advisory fires only when a lane truly registered nothing, and a stale config
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -179,6 +178,7 @@ The advisory fires only when a lane truly registered nothing, and a stale config
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

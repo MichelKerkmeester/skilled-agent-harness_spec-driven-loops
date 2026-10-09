@@ -132,7 +132,6 @@ Run the exhaustive audit of every file under `.opencode/skills/sk-design/feature
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -176,6 +175,7 @@ Run the exhaustive audit of every file under `.opencode/skills/sk-design/feature
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None — scope is fully bounded by the known-defects list above and the exhaustive-audit mandate.

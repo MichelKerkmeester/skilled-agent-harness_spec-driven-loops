@@ -176,7 +176,6 @@ Extend `contracts/prompt.ts` with the example/rubric surface; author the token-c
 
 ---
 
-<!-- ANCHOR:questions -->
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
@@ -219,6 +218,7 @@ Extend `contracts/prompt.ts` with the example/rubric surface; author the token-c
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 No unresolved question blocks planning. Model-tier proliferation remains deferred to the separate experiment already identified in scope.

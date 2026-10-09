@@ -176,7 +176,6 @@ Make the public standalone context route safe by redirecting or halting new runs
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -249,6 +248,7 @@ Make the public standalone context route safe by redirecting or halting new runs
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should `.opencode/commands/deep/context.md` be restored as the maintained source, or should the command compiler be updated to use `.opencode/commands/deep/assets/legacy/deep_context.body.md`?

@@ -161,7 +161,6 @@ A request for a chart reaches the chart skill, and a check fails if that stops b
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -229,6 +228,7 @@ A request for a chart reaches the chart skill, and a check fails if that stops b
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 Both questions are answered, and the reasoning is recorded as ADR-002 and ADR-001 in `plan.md`.

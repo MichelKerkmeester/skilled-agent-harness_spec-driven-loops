@@ -127,7 +127,6 @@ Every lane's writes are contained and reported, whatever its outcome; the verdic
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -178,6 +177,7 @@ Every lane's writes are contained and reported, whatever its outcome; the verdic
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

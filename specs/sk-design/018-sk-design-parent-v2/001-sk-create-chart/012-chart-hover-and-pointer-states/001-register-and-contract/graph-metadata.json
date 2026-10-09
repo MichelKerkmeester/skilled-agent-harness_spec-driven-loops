@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`check-corpus.cjs` recognizes three interaction registers, `data-chart-tooltip`, `data-chart-legend` and `data-chart-dim`, and enforces hygiene, state and formatting rules against them",
     "created_at": "2026-09-05T16:03:54Z",
-    "last_save_at": "2026-10-07T15:56:27.523Z",
+    "last_save_at": "2026-10-08T19:29:41.098Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9bd33d3f47a59a8482fc332642c722a07f8e3b45920ac9f0cba5c219a3b8dc4c",
+    "source_fingerprint": "sha256:c63fe655377171ecee2f6534d7555790988e1f183d49f15263e3f6a6eee4390a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b1ab9d60abd85c38e2ef03b59cfa03f1d92ce0051f80c02f033367ad21adae46",
+      "spec.md": "af106be675b6f5edcd5b7a17b1fa235fab0da83ef474ecce3285e38dc090f743",
       "plan.md": "8941363aa2e3a4bb7a3fdf91fc2483014b5c4e5dc2ab84da2c7b905a7a0363cc",
       "tasks.md": "d9aaaaed337bb739e090972eb5108141be14ba967e3d9b8be47eed7d19044c45",
       "implementation-summary.md": "43ff2f6bfb6c4112bea4eafd31f0a29ef0e344a51d9e3637d0c61be2818c358e"

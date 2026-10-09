@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-archived-tier-and-tombstone-read-exclusions"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/002-archived-tier-and-tombstone-read-exclusions"
     last_updated_at: "2026-07-04T17:51:11.002Z"
     last_updated_by: "plan-remediation"
     recent_action: "Remediated REWORK: corrected predicate SQL, fixed FTS/BM25 premise, added logic-sync gate"
@@ -203,7 +203,6 @@ Every read channel applies one shared active-row predicate, so deprecated, archi
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -288,6 +287,7 @@ Every read channel applies one shared active-row predicate, so deprecated, archi
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Retention window for the tier-migration audit trail (default: keep permanently; revisit in phase 009 ledger-retention sweeps if size matters).

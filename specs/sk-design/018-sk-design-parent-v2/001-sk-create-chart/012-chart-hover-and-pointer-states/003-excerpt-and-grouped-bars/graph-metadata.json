@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`box-plot.html` carries a complete, working hover card, a click-to-pin path, a reduced-motion guard and a no-script fallback, all self-contained, because `REQ-008` forbids any file in this corpus from depending on a shared runtime",
     "created_at": "2026-09-05T16:03:56Z",
-    "last_save_at": "2026-10-07T15:56:27.705Z",
+    "last_save_at": "2026-10-08T19:29:41.340Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0e084fb674870394916df4be4152acedf43df62b533387aea89a8f8d6ef03c4b",
+    "source_fingerprint": "sha256:7fe9577d69d99f72ee1561f3e452db514757c0ffffef16f7e056bfd4c7ec6075",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9a66d97e48974ada4c12162799bd05c0d21c8f4a4fc9b667c635d73806893f35",
+      "spec.md": "0517813e2284c6c3def690731e930e1faed7734bb28d0b25d40506b104a58603",
       "plan.md": "91b56b9ebc76bc3bfe0293ed23df2d52f17da0836653b283530bcbf67e177df7",
       "tasks.md": "54e7912b139293e9d96173e5b4ffd4ac0a9ed240758cabc1484946f9260fdf61",
       "implementation-summary.md": "b71d503eafa704db91927e1e03845064e8df59050e79a46de6797444056a6c6a"

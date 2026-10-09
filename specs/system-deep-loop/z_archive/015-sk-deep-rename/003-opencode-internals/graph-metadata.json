@@ -46,8 +46,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "graph-metadata.json",
-      ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json"
+      "graph-metadata.json"
     ],
     "entities": [
       {
@@ -197,7 +196,7 @@
     ],
     "causal_summary": "Phase 002 renamed the skill folders and updated the advisor graph source, but many `.opencode/` consumers still point at `sk-deep-review` and `sk-deep-research`",
     "created_at": "2026-05-05T20:00:00Z",
-    "last_save_at": "2026-08-30T15:39:24.116Z",
+    "last_save_at": "2026-10-08T19:30:30.409Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T20:00:00Z",
     "source_docs": [
@@ -206,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5f3bcbed060a8d6080f6106e29d41cc1fe0fed70221315bd4b1f9235d33bfb9e",
+    "source_fingerprint": "sha256:6a9c3702cd7b998e9fbb94355dcca2f61171c1b31b89e49a3d1eeac1f7e2952b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea7d594ae4c5dbfa7da90ddc818e63e8b97718c762be5c2ef041d4aff633efe8",
+      "spec.md": "f26da0b4689a27375b25349e11ac7c64ff7b30b656445a8a6ccd45be50eeb73a",
       "plan.md": "f4a155a7a1c9f56437f4843c5526c7e31cfe9e796d2f5588abe1304669d01591",
       "tasks.md": "363a76827161a725a5dc9a8d71f7290daf10bcb5ff3d7cd5ded523291c512731",
       "implementation-summary.md": "7708a907de97718f9df29e9b3d4f118f39cdadee0a30eb45014b6711f4539d3c"

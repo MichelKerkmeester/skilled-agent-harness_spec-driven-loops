@@ -209,7 +209,7 @@
     ],
     "causal_summary": "`/doctor:mcp debug` diagnoses MCP servers that fail to start or expose no tools",
     "created_at": "2026-10-02T16:10:11Z",
-    "last_save_at": "2026-10-07T15:57:40.191Z",
+    "last_save_at": "2026-10-08T19:31:33.266Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34bf956954a71f8b4b324a1bb2351139398ddf11d2e0d34060c747e014846ab1",
+    "source_fingerprint": "sha256:dfa7c0ffacc6105ebdd2553a12826060dd6939b9a45e6ab76c290663302f508a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9f4da6f6f0a3287fddf945af8edd971dd0eb32b8b64b493c753d2f7dc5ffe20a",
+      "spec.md": "0d963585ac647a3715d369b1fc6e2a0bd19abba9c72b264eb429916071ce6758",
       "plan.md": "ff5dd80432221b0c0cd4bc8a278680ff35dd4c4107473400cd73e50166dc133d",
       "tasks.md": "448d6afe0490f71574157c4501abe68cd513de9dfe238fc625b7b5fe05914f7c",
       "implementation-summary.md": "1e16611a92c88fe33ddb64e24360af1ee57f250b8c292b0160f298047f880b74"

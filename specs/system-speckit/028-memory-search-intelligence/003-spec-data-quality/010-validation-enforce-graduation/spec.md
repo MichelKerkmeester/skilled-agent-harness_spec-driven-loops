@@ -182,7 +182,6 @@ Turn all three rules from silently-advisory to actually-enforcing, using the rep
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -266,6 +265,7 @@ Turn all three rules from silently-advisory to actually-enforcing, using the rep
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Does the census scope for all three phases include `z_archive/` folders, or are they exempted via the existing per-folder `legacy_grandfathered` marker in `graph-metadata.json`? Resolved during Phase 1 implementation, not assumed in this spec.

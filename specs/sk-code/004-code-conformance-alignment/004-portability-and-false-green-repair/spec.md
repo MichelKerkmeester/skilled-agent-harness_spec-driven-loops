@@ -190,7 +190,6 @@ Make this code work on any machine and stop it from reporting verification it ne
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -277,6 +276,7 @@ Make this code work on any machine and stop it from reporting verification it ne
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should the dual-threshold Python test be repointed at the advisor's real package location, or explicitly retired? Repointing is preferred if the assertions still describe real behaviour; retirement is honest if they do not. Resolved at T001 by reading the test.

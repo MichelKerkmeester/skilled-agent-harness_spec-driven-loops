@@ -189,7 +189,6 @@ Capture the `codex exec` output stream in its headless JSON-stream mode, split i
 
 ---
 
-<!-- ANCHOR:questions -->
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
@@ -237,6 +236,7 @@ Capture the `codex exec` output stream in its headless JSON-stream mode, split i
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 No unresolved question blocks planning. The exact Codex headless and JSON-stream flags and the stream event shape are a pre-implementation identification step, not an open design question.

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The perfect-session-capturing subsystem has grown to 20 child phases (000-019), 96+ TypeScript source files, 44 MCP handlers, and multiple audit passes",
     "created_at": "2026-04-12T09:02:50.282Z",
-    "last_save_at": "2026-10-07T19:24:33.203Z",
+    "last_save_at": "2026-10-08T20:54:24.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:41cea6f001fecb437cdd6dfa4147f209a26c6c664267231861092df099274fc4",
+    "source_fingerprint": "sha256:3fbe3f538ae037d4f9acab21ee86256935c859b0bc8c5929205776f3f14dae75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "369b2a586ef24710e86272a9f4840df651debe65308a4206f2a0bd52bcfb4974",
+      "spec.md": "28835dbaf39367ab2d0b6892380a15c3dc12353cf46caaec68d25be5821d2f63",
       "plan.md": "cd8460cad8fb6343e3325724d0f19e14aa39a99a1a33f9e449496b85e6155419",
       "tasks.md": "39dc9a5155855645bde70bbd0a0f743f9fd8591ed8e18e1d7382441ee952ab26",
       "decision-record.md": "c9cff2ed8a5b021fd75dde391fef8bdbde8035564d3e0d0c818c109ab2b4bd09",

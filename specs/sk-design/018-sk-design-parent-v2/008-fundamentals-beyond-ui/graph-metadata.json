@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`sk-design-fundamentals` reads as a UI skill",
     "created_at": "2026-09-06T16:22:20Z",
-    "last_save_at": "2026-10-07T15:56:40.197Z",
+    "last_save_at": "2026-10-08T19:29:49.386Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab68d6ae1d379991ca779f9df726c80fadd3090969a8855b37ea7905d7c83de4",
+    "source_fingerprint": "sha256:626216de6abec5920ec2d4cd3b6d401b3a6f79d2a93ccc2ce90f15ded0baa837",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e385d8bd71b6d158ce4a6901670dd2acbbc98dafadeebe1a371bd6eb2e30a305",
+      "spec.md": "28130a930a5d580efeb5686cc153005198aceec731b7a0c7f85ba8564e8b11ee",
       "plan.md": "750f1e00223cbf7e07d5ec02cada32340a753d1a426a750dc131a0e029a4c532",
       "tasks.md": "8947764cb7c441a12d61cf1edd7d048245e9daa21bbdffcee9fd10228e277a7b",
       "decision-record.md": "e8ef13b6797f14478dd18d18b17c9242bbac68d43ab33ae7229ff4c423ea7d42",

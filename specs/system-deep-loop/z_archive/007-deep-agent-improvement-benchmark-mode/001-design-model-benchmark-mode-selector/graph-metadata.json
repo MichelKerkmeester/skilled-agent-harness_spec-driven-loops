@@ -195,7 +195,7 @@
     ],
     "causal_summary": "We now have two near-identical evaluation loops: `deep-agent-improvement` (mutate + score an agent definition, promote the best) and the 120/003 benchmark rig (run a model against fixtures under prompt-framework variants, score, pick the best)",
     "created_at": "2026-05-28T13:38:37Z",
-    "last_save_at": "2026-10-07T18:14:23.770Z",
+    "last_save_at": "2026-10-08T19:30:29.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:733fad409aa217a3487d79da45cf487e90e1dad8fef3619c7cef2ccd99bd8eb7",
+    "source_fingerprint": "sha256:e1df9c1eec59fc7b4b72fd39e24b2829bb86f846deb48482ae07923a2f526ec4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "80b64b4863784d2cbb8f4bfd604763290d077ab8437ffa718942d5c6899862fe",
+      "spec.md": "2e1a997fd582e98f6eb421b9d04c9b64a89bb32b54794f2df0039dc6aa479a8c",
       "plan.md": "e274f5abde74ff078481c460da83eaf8412171dcd31feba0369cd3c804d2fd99",
       "tasks.md": "d842ece37a22243740310679580031ab11154115eda98ec73355d186e26d5c18",
       "decision-record.md": "b08782b1cc111a1f143e5a7563ba397f9b7246f8a150cb66c443795bfca80107",

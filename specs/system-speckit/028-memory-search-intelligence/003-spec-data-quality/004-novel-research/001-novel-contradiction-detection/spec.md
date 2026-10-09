@@ -142,7 +142,6 @@ A new report-only detector class on the B1 sweep pairs only the docs that share 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -215,6 +214,7 @@ The exact seams, verified to file:line against the live tree.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - What confidence threshold separates a reported contradiction from a discarded low-confidence pair, given the cost of reviewer noise versus a missed real conflict.

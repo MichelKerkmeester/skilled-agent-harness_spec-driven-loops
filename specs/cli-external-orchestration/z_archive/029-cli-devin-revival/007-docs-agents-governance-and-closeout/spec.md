@@ -112,7 +112,6 @@ Restore every live agent-roster and governance-doc mention against the CURRENT t
 | Risk | Silently reverting the D4/D5 regression guards | Re-couples the excluded IDE-hooks surface or reintroduces a prescriptive executor, both against explicit operator scope decisions | Explicit checklist items forbidding edits to those 2 surfaces; diff review scoped to the Files to Change table before commit |
 | Risk | Historical record falsification | Editing old spec prose to read as if `cli-devin` was never removed destroys an accurate audit trail | D1-preservation constraint; scope every edit to only the files in this phase's Files to Change table |
 <!-- /ANCHOR:risks -->
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 ### Reliability
 - **NFR-R01**: The whole-packet validation gate (`validate.sh --recursive --strict`) is deterministic -- re-running it against an unchanged tree produces the same Errors/Warnings count.
@@ -146,6 +145,7 @@ Restore every live agent-roster and governance-doc mention against the CURRENT t
 **As a** governance reviewer, **I want** `AGENTS.md` and `CLAUDE.md` each independently edited to mention `cli-devin`, **so that** neither document silently diverges from the other or gets skipped under the assumption that editing one is sufficient.
 **Acceptance Criteria**:
 1. Given both files before this phase, When the restoration completes, Then both `AGENTS.md` and `CLAUDE.md` show a `git diff` for the `cli-devin` mention, not just one of the two.
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 - Do the other 3 `cli-external-orchestration` modes' `SKILL.md` files cross-reference each other as siblings in hand-authored prose, or is that relationship entirely registry-driven (`mode-registry.json`/`hub-router.json`)? If hand-authored, this phase's restoration should also add `cli-devin` as a 4th sibling cross-reference; if registry-driven, that is phase 003's registration responsibility, not this phase's. Recommend verifying at implementation time.
 - Exact archived line numbers for the original 022 deprecation's edits are unknown at spec-authoring time by design (see Problem Statement); implementation must grep the current tree for insertion points rather than infer them from this document. Any line number written elsewhere in this packet is marked "TBD -- verify against the live file at implementation time."

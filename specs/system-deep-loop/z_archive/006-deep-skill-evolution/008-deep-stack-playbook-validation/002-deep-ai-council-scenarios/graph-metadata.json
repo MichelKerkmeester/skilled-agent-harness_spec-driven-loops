@@ -182,7 +182,7 @@
     ],
     "causal_summary": "`deep-ai-council` is the multi-seat planning skill (seat diversity, cross-seat critique, convergence/rollback, artifact persistence, state JSONL, output-schema fail-close, five-dimension scoring, Hunter/Skeptic/Referee critique, derived graph projection, and the council-graph value comparison)",
     "created_at": "2026-05-27T07:08:08.393Z",
-    "last_save_at": "2026-10-07T18:14:18.874Z",
+    "last_save_at": "2026-10-08T19:30:28.087Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,10 +191,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:66dc15c3def9fe7c2c7af4945924d5647a554b127b9356bd4b741e21c1116337",
+    "source_fingerprint": "sha256:2a21a4c2c8afa03c5d5d555f191bd2b2a78bbbd5020222d14d01f214564435af",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6da2e1bfa1bcadced3f37363efa9e96bc3e38e823aff87d73236670276e856a1",
+      "spec.md": "db48240c512c6b5775b1cd38c46aa3c25d204257933e6ca1e83c4e680c0bc3fb",
       "plan.md": "77336f0d125a605b9c7a390266e6ce239310854afb60e2ce06f6c83ecac1d648",
       "tasks.md": "1528170c1d1a26067850e03e70a555974640122676378dcb41c124e3b5f9f7dc",
       "implementation-summary.md": "79c79e4a0740520f75cf898bdf8ab42a2fac62dbdad8f12d7b723f87b15f0fd4"

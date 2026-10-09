@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `sk-design` root router passes its contract validator and still does not read like any other",
     "created_at": "2026-09-06T17:43:45Z",
-    "last_save_at": "2026-10-07T15:56:39.983Z",
+    "last_save_at": "2026-10-08T19:29:49.227Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:afbbdf6e4bb38ecf66b6b22bfcd12b150fbd62de62df9d43972947453ce68433",
+    "source_fingerprint": "sha256:f8268fdaa1ebd9c265dca10e2d2a40f687b71fb25a1788fcd371c0e5021197f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8e8dd52410e52d70b0491ce799ba47a0e23d70415589eccd540ac17db88cdf10",
+      "spec.md": "415422b4b32187695f31768dd9a03551c41f241f423ce455ac905d1058061de1",
       "plan.md": "a48033975d4a6c1f54f2fa2931ca19b34f96a76ea6ddb2f4548939f577b084b1",
       "tasks.md": "5e67bac19d9a91725fbc3210dadad9d51aa6f576d875aee1ef170d0ef40ad0f3",
       "implementation-summary.md": "18c5d62fbb39c5593f99204ce9fe4c09f0fdeb30c6dd8cfbb3cb88eddf7ca3a5"

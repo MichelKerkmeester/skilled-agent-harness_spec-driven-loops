@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Gated design spike (O8, single-lineage hypothesis): design a way to project high-specificity per-mode vocabulary from hub-router.json/mode-registry.json into an existing parent-selection scorer input, without changing scorer math, and measure it against a pinned corpus before deciding to ship.",
     "created_at": "2026-07-29T08:00:32.153Z",
-    "last_save_at": "2026-10-07T18:13:33.899Z",
+    "last_save_at": "2026-10-08T20:53:40.394Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9a40097256655225dd8ff70b23b7bcd2a1211a0222b852d2b692ff7a658b4802",
+    "source_fingerprint": "sha256:32d3828f78795626e20d72661e8c920e5372831dfd95baed6971755d1d2da22c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "53a32bec754239b1ef28a56ba1a2727e38cd9f7c341e2748b5645c2dcfeba341",
       "plan.md": "cf669ca3cd04fbab3728982f4c0618709fdd68f1aecf1997933979314196a07c",
       "tasks.md": "d9b8db06a541541a7da3dd7975b5b8b78877e5c202c8889d75ee6d74ed073190",
-      "decision-record.md": "6f4bf6caf67cad863730b7b81dc84c74475f51469801f3ec42b575949bc65579",
+      "decision-record.md": "af05c1ac9f803cc9d1812b6320b089e4e49e45b373ec4652e928093511732481",
       "implementation-summary.md": "cfd8799e0bed3452efd0a59b348149ca62021967846153c2a206be73258edb5e"
     },
     "last_active_child_id": null,

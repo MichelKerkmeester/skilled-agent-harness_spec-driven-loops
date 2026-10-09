@@ -180,7 +180,6 @@ This packet is investigation-only. The deep-research loop will produce findings 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -274,6 +273,7 @@ This packet is investigation-only. The deep-research loop will produce findings 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Can `level_1/` … `level_3+/` directories be eliminated entirely, or do some references force partial retention (audit/migration window)?

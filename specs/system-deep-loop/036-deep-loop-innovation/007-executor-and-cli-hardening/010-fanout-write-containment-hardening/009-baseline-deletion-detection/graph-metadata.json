@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The detector iterated the post-dispatch git status and subtracted the baseline, so an untracked file present at baseline and deleted by the lane was absent from status and never seen",
     "created_at": "2026-09-20T08:33:41.936Z",
-    "last_save_at": "2026-10-07T15:56:56.177Z",
+    "last_save_at": "2026-10-08T19:30:23.601Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:030f80b42904961bb486cff06c10b95dff6248c19eb21143364fcb7d1714fe5a",
+    "source_fingerprint": "sha256:8edd687a4162fd47e02256dea5f9fea2e104f105976742a2f38dae2d9778a86f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "91673e1babae71c92c655621bf57d89578d74e5f6027e941f9d64149f6b82d71",
+      "spec.md": "65a0b70f2d91ffeeef9640fc845b49b0d02e0d18038e4594275f465ae4b60d79",
       "plan.md": "49f929ce6404d7b6a459690ff70ecd11d7393520ea97d0adfd558fe53fc64107",
       "tasks.md": "314d8242e42eed194cd0c7b1b21742032785ab6ddc5c38eb84a14e0d5a75f94f",
       "implementation-summary.md": "f61c78a26ef72eb4a7492df71462911d4d1ce96711bbb8347a60d8a86dd0fdf1"

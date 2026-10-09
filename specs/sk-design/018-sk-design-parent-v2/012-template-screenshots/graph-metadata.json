@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Both canvas modes ship HTML that has to be opened in a browser to be judged",
     "created_at": "2026-09-06T20:37:15Z",
-    "last_save_at": "2026-10-07T15:56:40.219Z",
+    "last_save_at": "2026-10-08T19:29:50.140Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40c626760bb2b6265409305db219973222e500ddd67ab5077752e5e5a96490b6",
+    "source_fingerprint": "sha256:b8b198963d84fa1a8ff277aba84dabd6aad30799381e6cb0301ff095ceb1a3d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a4f2a826930192154bc8e78c324082517bf70f62c44d886bcbdebcb13c6b6068",
+      "spec.md": "9df7150a766d131a080d8e6ca614841680d6127cc0f637cda3cb99971cb5f6e7",
       "plan.md": "825123b0779b3825fc5e8c120a3903cbee2b4b527456589c7600ffbeecbcf887",
       "tasks.md": "a03e8e5c2f019afc4262453d471a3192bbd900be4e7057bc2919a6eb6f9dd6f8",
       "decision-record.md": "20d51ab978075d378c3f5a677efb25b07b7db50357247fd2d3c5d81b4c6ec330",

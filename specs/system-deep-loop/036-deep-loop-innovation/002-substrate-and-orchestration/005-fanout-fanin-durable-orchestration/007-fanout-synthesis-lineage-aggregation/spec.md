@@ -162,7 +162,6 @@ Make fan-out synthesis consume all lineage evidence deterministically, preserve 
 | Risk | Worktree support broadens writes to arbitrary sibling directories | Workflow containment no longer protects the workspace | Trust only bidirectional Git worktree registrations and retain realpath containment |
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -233,6 +232,7 @@ Make fan-out synthesis consume all lineage evidence deterministically, preserve 
 **Acceptance Criteria**:
 1. Given a merged research registry, when fan-in publishes it, then both paths pass byte comparison.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 None. The implementation and rollback boundaries are frozen by the approved plan.

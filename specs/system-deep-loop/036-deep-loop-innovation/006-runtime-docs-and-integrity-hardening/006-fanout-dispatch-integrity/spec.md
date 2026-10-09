@@ -229,7 +229,6 @@ Make a fulfilled lineage mean the work exists, make an audit block distinguish m
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -324,13 +323,12 @@ Make a fulfilled lineage mean the work exists, make an audit block distinguish m
 
 ---
 
-<!-- ANCHOR:open-questions -->
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Does the per-mode artifact contract live in the mode registry or beside each mode asset? The registry keeps one place to look; per-asset keeps the contract next to the thing that produces it. Decide before Phase 2.
 - What is the containment policy for a dispatch kind that genuinely cannot enforce a computed sandbox mode? Rejecting the dispatch is correct where recording-as-effective was the defect, but the policy for such a kind must be written down rather than emerging from a rejection.
 - Which fan-out wrappers rely on shell features that argv dispatch removes? Enumerate before Phase 4; anything relying on a shell feature needs an explicit replacement rather than a silent behavior change.
-<!-- /ANCHOR:open-questions -->
 <!-- /ANCHOR:questions -->
 
 ---

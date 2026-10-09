@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Four narrow, evidence-backed gaps remain open around an otherwise-complete, already-tested feature:",
     "created_at": "2026-07-09T20:30:03.148Z",
-    "last_save_at": "2026-09-07T16:18:11.216Z",
+    "last_save_at": "2026-10-08T19:31:03.123Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,10 +198,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c71abbc54251b9960ee45bcb416c7ce5770fbec762732abd177a95677c77222",
+    "source_fingerprint": "sha256:1d5dd5590d4a2581357c396c9cd977ddcc258144ac0786946e1ea40c2583a3da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7b9aac25f06ca260c0b0d421687943b7a774002e04dbc03598c6fe62e96a79eb",
+      "spec.md": "8158172b8592e4fc003148bae900373b15ac91456275a432d7b088db757567d3",
       "plan.md": "0e31dfa08c2fee06af8b08a23c0928f46dfc3a04bf6ee9d4c9dedcdd5f59c63a",
       "tasks.md": "34d9d7a8ab8aa47c9e8b1ec5dcbe2f83c36e06dc30904a87a7a5d80b737f5289",
       "implementation-summary.md": "038c1fea50615bf7dd82b95d81809aa157bdab5435c4d5fe1154874ef766c299"

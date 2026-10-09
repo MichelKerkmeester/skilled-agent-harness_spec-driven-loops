@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 037 measured Pi's native classifier runtime as good enough for the packet's Jev `choice` questions",
     "created_at": "2026-09-30T16:01:03Z",
-    "last_save_at": "2026-09-30T19:53:31.140Z",
+    "last_save_at": "2026-10-08T19:29:23.774Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8dadfcfbf493187ded9547fff91f2667f5e1b6a579035b405571ffae17fbf1a",
+    "source_fingerprint": "sha256:383249455b7b29f0cabb6292aecfc1d5d6691fe0de72be0572ec9630933d5530",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eeefc846957e3330a12c636236342923a2cb4de99038d061b569fd33016c6250",
+      "spec.md": "0c5ad70e59430e905e5508a889f735921cf2dd34835508aad4590b12519f5103",
       "plan.md": "28d65c208f0a90c4a0e17dc52038df10f6d15e9a952e56a49ca5ce111e8eb748",
       "tasks.md": "cc6fc1e49a250280a190c08bcca77e15906c8702a7a5ef6a0a248975d79b6cdb",
       "implementation-summary.md": "4b6e4b26c1d7e5ea268dfe84ebe8fad281f7e05f4854a33d42de5e09b370f582"

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The 041 Pi remote packet reproduces the engine of the Claude Code + Claude mobile app pairing (local-first relay, cross-device resume, network-resilient replay, steer/stop) but not the app feel",
     "created_at": "2026-08-12T06:00:00.000Z",
-    "last_save_at": "2026-10-07T21:49:15.263Z",
+    "last_save_at": "2026-10-08T19:29:22.029Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9fe91191bd397e67c69f9d776878f02d107eac925edc8fb307f594b60a0764fd",
+    "source_fingerprint": "sha256:a3c96dab9d965d156a3b4085d5f2c1d31635f10afe8154e96582f01a9cf2f5c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2a2a48d9ac7e2c3a4f4b19f4f8c303a355592dabbe969da917131b5fcf6d9314",
+      "spec.md": "8490a33bed708dec7a4f807dcf2e3946ae8ae73105b5ab42e14a044a60ee57af",
       "plan.md": "b722d3c215f3914cd421f4fc4c59f0aa88508a7cc152946ea9f4a3082cfdd29a",
       "tasks.md": "fc1ab7b30cdcdda637b07e82e343afb438c3a713946093a05548445f8e25845b",
       "implementation-summary.md": "82fd26a99e36ea5c91d29dfa295ee70a43f57dcae954257ad8b1d6e4bb80f357",

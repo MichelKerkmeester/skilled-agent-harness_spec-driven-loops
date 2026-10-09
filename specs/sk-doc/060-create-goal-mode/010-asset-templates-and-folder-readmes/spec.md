@@ -153,7 +153,6 @@ Give every goal kind a checked blank that cannot drift from system-spec-kit, doc
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -201,6 +200,7 @@ Give every goal kind a checked blank that cannot drift from system-spec-kit, doc
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator chose checked per-kind copies on 2026-09-26.

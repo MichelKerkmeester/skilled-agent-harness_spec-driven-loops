@@ -123,10 +123,10 @@ Make provenance stamping evidence-gated so the upgrade path never invents templa
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None open. Decided 2026-10-08 by the operator:

@@ -146,7 +146,6 @@ One `.state/` parent under the skills root, so the skills directory lists skills
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -219,6 +218,7 @@ One `.state/` parent under the skills root, so the skills directory lists skills
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether a standing guard check should fail the test gate when any code writes to a pre-`.state` path. The one-time residual scan proved the current state; nothing prevents a regression. Recorded as the packet's single follow-up.

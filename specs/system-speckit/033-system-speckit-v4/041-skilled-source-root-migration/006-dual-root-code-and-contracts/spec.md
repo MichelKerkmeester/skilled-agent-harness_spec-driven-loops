@@ -226,7 +226,6 @@ Every component that defines what `.opencode` means resolves under either root n
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -281,6 +280,7 @@ Every component that defines what `.opencode` means resolves under either root n
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Answered: phase 004 recorded L1, one `.opencode -> .skilled` link, so the `.skilled`-only row of REQ-012 is recorded rather than required to pass.

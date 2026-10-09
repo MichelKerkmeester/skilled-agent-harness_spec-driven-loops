@@ -124,7 +124,6 @@ This is **Phase 1** of the four-iteration deep review of the chart and diagram m
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -179,6 +178,7 @@ This is **Phase 1** of the four-iteration deep review of the chart and diagram m
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

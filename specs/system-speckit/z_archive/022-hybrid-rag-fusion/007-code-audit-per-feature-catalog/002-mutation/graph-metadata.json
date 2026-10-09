@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The feature catalog for Mutation has evolved significantly",
     "created_at": "2026-04-12T09:02:50.245Z",
-    "last_save_at": "2026-10-07T20:28:46.262Z",
+    "last_save_at": "2026-10-08T20:05:36.623Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,10 +198,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eeda297b49e0cb7c69bd15d3338b151eeb97a92f035b73b59edc13c99aa59a78",
+    "source_fingerprint": "sha256:b79c9a6737d326f126cd6490c80589b3d6dca0f4e192ec43df9cc91cb29b3fa7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "99243bcd47c1bc6f18acc4b1247a7b65e6ef8cc2c0644394b6a6f45440fd95de",
+      "spec.md": "47416e62ca9b4af5cac558a7d4334de2691a1ea211a9449f4caf0e98c83bfa34",
       "plan.md": "43d18b40a30862ebdf6f068ca6e6cf2e5aa89062610b900131796f915f0d8fdd",
       "tasks.md": "71447d3713eaecb938962b62b5b5be779754043f2ca825e6e127fb05a7848889",
       "implementation-summary.md": "519914540b5ff7eb2dea192c53b49f6ab4e5baa455f6f5c3793f80ab34edf5df"

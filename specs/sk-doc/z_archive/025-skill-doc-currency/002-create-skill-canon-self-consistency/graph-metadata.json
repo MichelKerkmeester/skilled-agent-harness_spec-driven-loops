@@ -204,7 +204,7 @@
     ],
     "causal_summary": "A canon that contradicts itself cannot be enforced, and this one contradicts itself in the most consequential place",
     "created_at": "2026-07-30T19:29:16.753Z",
-    "last_save_at": "2026-10-07T21:19:41.350Z",
+    "last_save_at": "2026-10-08T19:30:12.260Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aaa0a478d4fe34fc36569a1aea109aeb91ba64c78a608aa9796ed59415df2e25",
+    "source_fingerprint": "sha256:43637436b2d703c0814fbaa0fa14ae56f435fad72265f31fa0003135b57a8f57",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6a34daf0d13bbabc23e9db7ce6f42c83cabcc6d3fba8a5d74215ba55696bc16b",
+      "spec.md": "f770dfb4300aa3df800e5777f57a1e5ef4c5b0e8e1bfdd6a790d2594353d08b5",
       "plan.md": "2c2bc724c9b849f09d51dacd2ad9755cecf5285f3de2e05d11413a42cc54d90a",
       "tasks.md": "5d5f7f3e229d21e8a7e757914ce0a240d8959decea671c2be46082abbcaefb05",
       "decision-record.md": "3e101aee69d74a62f980f86f1592af764b89432b9ab5c8b310c9eee00eb90ba8",

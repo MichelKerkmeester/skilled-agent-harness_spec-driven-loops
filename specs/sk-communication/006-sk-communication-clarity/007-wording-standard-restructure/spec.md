@@ -162,7 +162,6 @@ anything the structure can express.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -217,6 +216,7 @@ anything the structure can express.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does the base keep the current filename, which avoids repointing every consumer, or does the supplement keep it because documents were the original audience?

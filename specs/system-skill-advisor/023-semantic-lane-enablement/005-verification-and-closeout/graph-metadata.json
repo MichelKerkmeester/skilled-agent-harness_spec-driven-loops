@@ -197,7 +197,7 @@
     ],
     "causal_summary": "A packet that measured well during its work can still leave a repository that disagrees with",
     "created_at": "2026-09-02T22:17:29Z",
-    "last_save_at": "2026-10-07T12:55:37.392Z",
+    "last_save_at": "2026-10-08T19:30:35.365Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:de2819194b5955ea90182acd6e0fa65f69db560daeeeed5660f4e738f7e4eb70",
+    "source_fingerprint": "sha256:b4c04f35329d5f379504ed35df2109627c86635a5e85f208dc10f69d0532274a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "21dcdb07729935582446990406f923711f5619eb54384f0350d92b1460d3a98f",
+      "spec.md": "4fb1197c314d21039d4a3dadb0039f819d9e1584f43319ba3a44c183b624eb51",
       "plan.md": "551549ab24dab35b184a77ba84b57689c5a74b91c56f78f633d7218fe78386dc",
       "tasks.md": "a3407f83cee43776eedde26a8a0a120e1bbb2f14c9c6f8795900e2ff31eef2cf"
     },

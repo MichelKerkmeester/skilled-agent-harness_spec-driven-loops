@@ -137,7 +137,6 @@ Document the two already-working discovery mechanisms (skills, rules) so future 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -178,6 +177,7 @@ Document the two already-working discovery mechanisms (skills, rules) so future 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - What is the live-confirmed `AGENT.md` front-matter/body format Devin's `run_subagent` actually expects? Must be resolved via a live-docs fetch before REQ-001/REQ-002 can be satisfied — this is the phase's own first task, not a pre-existing blocker.

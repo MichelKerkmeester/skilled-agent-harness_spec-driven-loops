@@ -208,7 +208,6 @@ worth buying, and the five contract questions are decided by their owner.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -275,6 +274,7 @@ worth buying, and the five contract questions are decided by their owner.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 Both questions this phase opened are answered. An empty research graph scores

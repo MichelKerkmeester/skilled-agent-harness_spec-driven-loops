@@ -171,7 +171,6 @@ Ship every active 014 finding closed with exactly one disposition, the P0 verifi
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 | ID | Requirement | Target |
@@ -216,6 +215,7 @@ Level 3. The packet touches multiple lane-separated scripts, two Lane B YAMLs, s
 - As a security reviewer, I see grader dispatch run read-only by default and criteria-exec fail closed, so an evaluation run cannot mutate the workspace or run shell unprompted.
 - As an auditor, I read a failure report and ledger row that name the scorer, grader, and profile, so I can tell a failed 5dim/llm run from a pattern/noop run.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should the criteria-exec gate default fail-closed (secure-by-default, may break trusted profiles) or remain open (backward-compat)? Chosen: fail-closed with a documented opt-in (see decision-record ADR-004).

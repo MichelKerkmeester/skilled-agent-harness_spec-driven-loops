@@ -42,8 +42,7 @@
       "tasks.md",
       "implementation-summary.md",
       "resource-map.md",
-      "audit-findings.md",
-      "tests/matrix-adapter-test-utils.ts"
+      "audit-findings.md"
     ],
     "entities": [
       {
@@ -80,12 +79,6 @@
         "name": "audit-findings.md",
         "kind": "doc",
         "path": "audit-findings.md",
-        "source": "derived"
-      },
-      {
-        "name": "matrix-adapter-test-utils.ts",
-        "kind": "code",
-        "path": "tests/matrix-adapter-test-utils.ts",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "git",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 033, 034, and 036 added retention-sweep, half-auto advisor, hook freshness, and matrix-runner code",
     "created_at": "2026-04-29T15:28:00.000Z",
-    "last_save_at": "2026-08-30T15:39:28.191Z",
+    "last_save_at": "2026-10-08T19:30:42.609Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +202,10 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:54906e0602b18b0a3a0fbd08d8be6e0cf7d08ae8eb98e479bea4ba7ecffff4e9",
+    "source_fingerprint": "sha256:1aa72252c6299ad54eb6bb5e213a3ee6808c5099db0b0ea2bcae5dff9bea6b9c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "96d1b590499bd0e44012d10a7341fc6e47a9d2a0dfe541dd91621b0a3374117e",
+      "spec.md": "8749b6fbbd5c5777495570864954f0d81997af39812bdedce776ff4aaaf9a23b",
       "plan.md": "3ef128931aa49d8685fc394600f801b64d4d7d244a144a00e553b4c519a9e283",
       "tasks.md": "a04242a87b7e288e67905a27b7462c9c88f5e7b801dd5bd4cd55253ccb44588d",
       "implementation-summary.md": "5d7349733d7c15b448e7295cec353bbbc56c13533e9b0a1afe2acd28685be089",

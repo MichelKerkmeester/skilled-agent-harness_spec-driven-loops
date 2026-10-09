@@ -126,7 +126,6 @@ Execute all 37 `deep-agent-improvement` scenarios via `cli-devin` SWE-1.6 (deter
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -172,6 +171,7 @@ Execute all 37 `deep-agent-improvement` scenarios via `cli-devin` SWE-1.6 (deter
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Batch granularity: one dispatch per category (default) vs combining the smaller categories (03/04).

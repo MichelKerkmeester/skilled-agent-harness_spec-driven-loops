@@ -131,7 +131,6 @@ Give the corpus one request-time path from a `DESIGN.md` to themed chart files: 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -181,6 +180,7 @@ Give the corpus one request-time path from a `DESIGN.md` to themed chart files: 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None block the build. Recorded for the operator:

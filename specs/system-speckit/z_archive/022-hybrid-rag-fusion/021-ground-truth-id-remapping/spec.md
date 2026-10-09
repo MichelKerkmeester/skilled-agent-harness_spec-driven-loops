@@ -141,7 +141,6 @@ Create `map-ground-truth-ids.ts` so that all 297 relevance judgments in `ground-
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -197,12 +196,12 @@ Create `map-ground-truth-ids.ts` so that all 297 relevance judgments in `ground-
 
 ---
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the script also update `ground-truth-data.ts` by regenerating `GROUND_TRUTH_RELEVANCES`, or is modifying `ground-truth.json` sufficient (given that `ground-truth-data.ts` imports the JSON directly)?
 - Is a `--dry-run` flag required before GA, or is the atomic write + backup sufficient safety?
-<!-- /ANCHOR:questions-2 -->
+<!-- /ANCHOR:questions -->
 
 ---
 
@@ -212,4 +211,3 @@ CORE TEMPLATE (~80 lines)
 - No boilerplate sections
 - Add L2/L3 addendums for complexity
 -->
-<!-- /ANCHOR:questions -->

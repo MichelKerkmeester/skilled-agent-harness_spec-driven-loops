@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Local embedding defaults changed, but catalog/playbook documentation can still imply API-first, Voyage-only, or stale `all-MiniLM-L6-v2` expectations",
     "created_at": "2026-05-13T14:20:00Z",
-    "last_save_at": "2026-08-30T15:39:29.805Z",
+    "last_save_at": "2026-10-08T19:30:48.427Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-13T15:45:00Z",
     "source_docs": [
@@ -207,10 +207,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a7a88ef3869e1b8a0c5e5db4f25da17f2c3c80ecd48d0c103e110d3e8a56347",
+    "source_fingerprint": "sha256:b7533033b9f8d0f490f20b4addb6c06d11751c8f20b3108721c88e5d9d9ac04a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "01e5dc644403006232152b5ac74b749b22c37ab1b69608024251b23c5a1cfa13",
+      "spec.md": "6fe423e48a408a702f66e072dd980bd8c18f130dcdb0dab868b44841cff76f85",
       "plan.md": "dee64ae19ae98f453510586ae5285c9570a3d344b903121f778990c419076d21",
       "tasks.md": "d268868eb2df4ff52df2412849b075847db5e2d60d530deacfb4d6ef97fb4d8b",
       "decision-record.md": "a9fb8ad2780a967cd4b0eedc4d765b5d7927dd9e9d730b47f3bff82f1109a781",

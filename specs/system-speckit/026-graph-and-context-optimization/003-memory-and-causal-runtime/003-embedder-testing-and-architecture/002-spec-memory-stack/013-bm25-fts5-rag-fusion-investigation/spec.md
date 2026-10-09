@@ -156,7 +156,6 @@ Produce a read-only, evidence-cited decision packet that identifies JS-only lexi
 <!-- /ANCHOR:risks -->
 
 ---
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -223,6 +222,7 @@ Produce a read-only, evidence-cited decision packet that identifies JS-only lexi
 3. **Given** a regression in golden queries, **When** the recommendation is revisited, **Then** the packet names Option C as the targeted fallback.
 
 ---
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - What are measured nDCG@5 and recall@10 for the 30 proposed golden queries once a safe non-production fixture runner exists?

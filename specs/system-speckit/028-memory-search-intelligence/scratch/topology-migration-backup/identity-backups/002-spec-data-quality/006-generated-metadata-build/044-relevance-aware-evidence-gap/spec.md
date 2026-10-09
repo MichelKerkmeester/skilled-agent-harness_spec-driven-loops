@@ -138,7 +138,6 @@ Replace the gap decision, behind a default-off flag, with the verdict banding's 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -192,6 +191,7 @@ Replace the gap decision, behind a default-off flag, with the verdict banding's 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether the noise-floor 0.15 should be recalibrated so off-corpus high-background queries (`kafka`, `terraform`) read as true gaps, a question that affects the verdict banding identically and is its own benchmark

@@ -247,7 +247,6 @@ envelope at `memory-index.ts:1160-1167,1571-1576`.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -328,6 +327,7 @@ envelope at `memory-index.ts:1160-1167,1571-1576`.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 _All three questions below are resolved; kept under this heading per the template's fixed section contract._

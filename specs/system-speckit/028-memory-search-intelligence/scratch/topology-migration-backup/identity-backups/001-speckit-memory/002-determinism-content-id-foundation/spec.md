@@ -175,7 +175,6 @@ Establish the determinism + content-id foundation, one total comparator, two SHA
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -258,6 +257,7 @@ Establish the determinism + content-id foundation, one total comparator, two SHA
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Does the live fusion-bonus unit test confirm the C-X1 `'active'` default is byte-identical to pre-change fusion (the still-open determinism gate that conditions every "byte-identical-by-default" claim, `synthesis/03` §B)?

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "This phase's own research run replaced its premise",
     "created_at": "2026-09-12T12:44:37Z",
-    "last_save_at": "2026-10-07T15:56:24.066Z",
+    "last_save_at": "2026-10-08T19:29:36.966Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b3720d32e36a2b7d9baf8c16330328439035e28498fa8b5dc6221edfaf98d63a",
+    "source_fingerprint": "sha256:60029e2ae151afe94e8f4100d886c106e62db917b693f00e1bbb624ffb065765",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "515cfc107a5b987974bf4c06477722ced273d24e3d5a92d82cf608984f36fe67",
+      "spec.md": "a60704bfa819e444cb8e9935a9b9065d26f4afafaea0ba4676eb67e15c6a5f8d",
       "plan.md": "c40bb9e89fc39620fcfaaadfb259cd417c70931eecb6d7949a545df0ce35f128",
       "tasks.md": "75fc719e377da22734bc2a89748dd63a6a8943a77a906f6af07c419341576790",
       "implementation-summary.md": "2db0ad699674c0c674e8404a53aac69beb4c6d200205ccce27219a8d1eed0f6f",

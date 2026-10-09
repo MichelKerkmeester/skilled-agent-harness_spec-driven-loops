@@ -146,7 +146,6 @@ Every gate is green from the tree as it finally stands, and the evidence says so
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -212,6 +211,7 @@ Every gate is green from the tree as it finally stands, and the evidence says so
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

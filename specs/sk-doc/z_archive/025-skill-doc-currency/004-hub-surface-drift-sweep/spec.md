@@ -233,7 +233,6 @@ These three iteration-6 entries sit in the registry's `repeated[]` bucket, outsi
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -284,6 +283,7 @@ These three iteration-6 entries sit in the registry's `repeated[]` bucket, outsi
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 These four are genuine forks from the research loop, and each must be answered **before** the edits it governs, not during them.

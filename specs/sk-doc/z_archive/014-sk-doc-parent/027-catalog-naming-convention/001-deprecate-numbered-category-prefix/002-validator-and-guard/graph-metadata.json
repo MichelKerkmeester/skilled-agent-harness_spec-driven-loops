@@ -183,7 +183,7 @@
     ],
     "causal_summary": "Phase 002 of the numbered-prefix deprecation. Re-base the sk-doc catalog/playbook leaf classifier in validate_document.py (both copies) from the number-anchored `^\\\\d{2}--` parent test to a structural test — the file sits in a SUBfolder of feature_catalog/ (resp. manual_testing_playbook/), so both the numbered NN--slug form and the de-numbered slug form validate during the transition while the root index file stays excluded.",
     "created_at": "2026-07-10T18:51:12.779Z",
-    "last_save_at": "2026-10-07T18:12:14.998Z",
+    "last_save_at": "2026-10-08T20:04:26.501Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,10 +192,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d3ca2525c6f44c28a5229180f9275cd22fda3f555c2c0858bd2feba419b2c2c2",
+    "source_fingerprint": "sha256:4b4977c25f029345a277ab1ac445e5f4ca9b0c89d4ecf0d0ebe67054621870a7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e1f5df5b1c92bed272739009863a92c6fab15e07cf7a177fd5475edf6dce79a3",
+      "spec.md": "eb74d01da0a2337a36ca8cd9441f5a7474f0ed1025514e17979168327ee285ff",
       "plan.md": "e89b4dbbfacee1e7b125794ca0430e7564235467dee6f1285f43f5717797d5cf",
       "tasks.md": "c5bc69e5b0dfdfa535bae239f2b9f5c9221d0047ba8ba4e822a69a320d77c6b6",
       "implementation-summary.md": "57114933b14e23f1f4da7501f23e7ba38500b34feab57c14c8080c3fe4d5e08a"

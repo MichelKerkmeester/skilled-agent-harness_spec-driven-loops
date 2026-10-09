@@ -104,7 +104,6 @@ worked case and the corpus can be themed to a chart-library register rather than
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -159,6 +158,7 @@ worked case and the corpus can be themed to a chart-library register rather than
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

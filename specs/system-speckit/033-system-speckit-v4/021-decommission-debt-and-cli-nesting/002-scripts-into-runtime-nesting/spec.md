@@ -136,7 +136,6 @@ Two items were excluded when this phase was planned and then executed in this fo
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -191,6 +190,7 @@ Two items were excluded when this phase was planned and then executed in this fo
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open. The `recommend-level.sh` run REQ-003 required was made and recorded before execution started in this folder.

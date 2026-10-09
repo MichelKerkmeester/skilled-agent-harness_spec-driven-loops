@@ -164,7 +164,6 @@ Make `system_skill_advisor` the sole runtime owner of skill graph code and lifec
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -235,6 +234,7 @@ Make `system_skill_advisor` the sole runtime owner of skill graph code and lifec
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None for D2a. D2b remains responsible for hooks, schemas, and broad tests.

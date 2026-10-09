@@ -156,7 +156,6 @@ Restore reliable, visible hook behavior across OpenCode, Codex, and Copilot whil
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -230,6 +229,7 @@ Restore reliable, visible hook behavior across OpenCode, Codex, and Copilot whil
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - No blocking product questions remain for this remediation packet.

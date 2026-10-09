@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The source script tree under `.opencode/skills/deep-agent-improvement/scripts/` is split into two lanes plus shared and a nested scorer subtree, but only `scripts/`, `scripts/lib/`, and `scripts/tests/` carry a README",
     "created_at": "2026-05-29T13:17:54Z",
-    "last_save_at": "2026-08-30T15:39:23.751Z",
+    "last_save_at": "2026-10-08T19:30:29.600Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0cec5db88d511ae3a7beb8f6de7dcf87fca75c78774f6d659edee2036d3d932e",
+    "source_fingerprint": "sha256:5050940434f2cd4e3e84eb4aab1a1764c3cc8cfb5141d0d5c0f9d8a75d7f3903",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f8535b934fb3ed315e24bd6c7ef7ffe7a861017b1596950b6ed7f4314aa2e7b8",
+      "spec.md": "83aafd94d91473720cd259455768779bc24d186680a109cab13f9f333b3a3694",
       "plan.md": "2e84404a14df8ba9d49e2b690de3825d1d13d45bc8edec9444744a8fb2e10ff6",
       "tasks.md": "915a82e88574865ddcfbb85be6b1e7d0c64ecad9c37a0799b67d5a03c5954622",
       "implementation-summary.md": "7444ab1b64790f12db9308d89cb31b1c948d1787ca88751a3e055bbbbe5239da"

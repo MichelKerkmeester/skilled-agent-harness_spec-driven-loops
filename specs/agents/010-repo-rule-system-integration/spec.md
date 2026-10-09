@@ -125,7 +125,6 @@ Ask three independent model families what the system actually justifies, rather 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -191,6 +190,7 @@ Ask three independent model families what the system actually justifies, rather 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None at dispatch. The run shape, iteration counts, executors and no-early-convergence requirement were all set by the operator before launch.

@@ -190,7 +190,7 @@
     ],
     "causal_summary": "In `check-section-counts.sh`, `sectionexpectedspech2` counts every `sectionGates` entry active at the declared level from `template-structure.js level-contract` output — a cross-document total (25 at Level 1, 59 at Level 3) — and the rule then warns whenever spec.md's own `##` count is below it",
     "created_at": "2026-07-02T15:14:06.999Z",
-    "last_save_at": "2026-10-07T18:15:14.756Z",
+    "last_save_at": "2026-10-08T19:30:32.923Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0609771df64dca3a0f0957d0b2e07f263842c9745acfc59b30d390067c82e620",
+    "source_fingerprint": "sha256:52a8b7097b67bf1f47b080d0e2477ab82c361b6d742e71b434b25dcdec376c9e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4c7175ac12a7351230da7a6a35a8e13e6aa7be02c5d058e4108868eee239d48f",
+      "spec.md": "63eb71c719fdbc329a5b7fc1670274ee4dd8fc997444f3415b343b6ee8855e50",
       "plan.md": "d0ebd10e355d6f3b1c892dd6a133a860d397b86ecf0b80e0bb055ed2e034940e",
       "tasks.md": "58431f088757d615926c1ee0da2548d5b61be2141dae8524a8ed10ab62b094a9",
       "decision-record.md": "5fba1f0f029b2cc8c515841d994211f0f9141585fd548fdeab06c808bf31bda9",

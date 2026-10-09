@@ -148,7 +148,6 @@ After this pass every subject reads and searches the same way, a packet query fi
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -228,6 +227,7 @@ Applied in order to every subject that is not git-generated. Each row of the pla
 | R6 | A subject over 100 characters is trimmed at a word boundary to 97 or fewer, keeping the type and scope |
 | R7 | The result must pass the hook's grammar, numeric-scope, lowercase, vague-summary and length checks, or the row is a residual |
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether the 40 prose mentions of Anthropic in bodies are stripped, kept, or reworded: listed in the review table for the operator.

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Two scorers answer the same question",
     "created_at": "2026-09-02T16:34:04Z",
-    "last_save_at": "2026-10-07T12:55:22.469Z",
+    "last_save_at": "2026-10-08T19:30:01.175Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d7cb210ab365f2ae1af1d63e114f968746b27501ebc959ee3b49590634adae16",
+    "source_fingerprint": "sha256:1b5f0ef2db8d4a716395c13abce5463b7d09353d0d5a3d2fb6db691b24d19c5c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7f42fb49a48718798483252b65d9e1a6ea5325a9ba5a0ccab20fa7acf4a827a4",
+      "spec.md": "ce9c739bceb453bd7949ab70c6e59b6d700fffec6337129623275d5c42c29a0c",
       "plan.md": "ee1669388194b8047a9bdb39abdcf5899873bd16535c5342ffe04bf663172738",
       "tasks.md": "65fafae56f99bc131bbfd16aa04df8d4a9414f308dafbe47b4d38d0bfa4a466a",
       "implementation-summary.md": "b58cedbc7f1167b18dc587aac4838b1e9470f694aaf92db4a3f08b979bd78847"

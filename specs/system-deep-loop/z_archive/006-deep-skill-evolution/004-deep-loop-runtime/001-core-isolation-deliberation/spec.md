@@ -151,7 +151,6 @@ Run a formal AI Council deliberation that argues all three positions (ISOLATE | 
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -212,6 +211,7 @@ Run a formal AI Council deliberation that argues all three positions (ISOLATE | 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should lib/deep-loop/*.ts files relocate inside deep-review/deep-research skill folders?

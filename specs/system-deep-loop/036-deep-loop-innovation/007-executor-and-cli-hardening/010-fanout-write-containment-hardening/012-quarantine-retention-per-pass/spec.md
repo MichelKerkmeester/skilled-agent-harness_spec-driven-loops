@@ -128,7 +128,6 @@ Every containment pass leaves its own manifest, content copies and patches on di
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -179,6 +178,7 @@ Every containment pass leaves its own manifest, content copies and patches on di
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

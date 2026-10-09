@@ -194,7 +194,7 @@
     ],
     "causal_summary": "A run could spend twenty minutes producing a ranked set of findings and then report an iteration count, four file paths and a status token",
     "created_at": "2026-09-20T08:33:39.910Z",
-    "last_save_at": "2026-10-07T15:56:49.398Z",
+    "last_save_at": "2026-10-08T19:30:18.668Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7563723fc8818c324585e72fc001fe7039d862d136b37d4aa0a727089d2f6e24",
+    "source_fingerprint": "sha256:742273427bec0ed56b3c2a6c7bece075c7c3cd28e7b610a1507c6573079cc481",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e442fc9d7b8cda14a8b9d6d537fef2b9dc9e04101ca5736f3ecb0b6d3eb3243c",
+      "spec.md": "a765c9dfbcd54b5af1a208d4e1eba7e2c3d0e39082b371d65c59cc7e4b951185",
       "plan.md": "02a82fadb781b7d7c45f788d49c73a2fe58bd0eaabccc774213e8c35ae5a94f1",
       "tasks.md": "a8d281c8a02e8fe86dc0a2d22ea0f554610ef6fdd4fb89a673262918def26b86",
       "implementation-summary.md": "40c026fc3a8c6f69070354696d4218b0c49b0007a1bcb66d84bb84052a4e0015"

@@ -72,6 +72,7 @@ Audit every README.md file in the `.opencode/` directory tree to ensure all stat
 ### Low-Priority README Files (P2) — HVR + Anchor Compliance
 
 All 60+ system-spec-kit sub-READMEs:
+<!-- /ANCHOR:scope -->
 - Verify `<!-- ANCHOR:name -->` / `<!-- /ANCHOR:name -->` pairs present (spec 013/129)
 - Verify no HVR violations (spec 122)
 - Verify YAML frontmatter present
@@ -87,7 +88,6 @@ Workflow skill READMEs (6 files):
 MCP skill READMEs (2 files):
 - `.opencode/skills/mcp-code-mode/README.md`
 - `.opencode/skills/mcp-figma/README.md`
-<!-- /ANCHOR:scope -->
 
 ---
 
@@ -112,10 +112,10 @@ MCP skill READMEs (2 files):
    - memory-save document_type/spec_level preservation in update/reinforce paths
    - vector-index metadata update plumbing
    - causal edge conflict-update semantics for stable edge IDs
+<!-- /ANCHOR:audit-criteria -->
 6. **Missing anchor tags**: Every H2 section should have `<!-- ANCHOR:name -->` / `<!-- /ANCHOR:name -->` pairs (specs 013/129)
 7. **HVR violations**: No three-item inline lists, no superlatives, no marketing language (spec 122)
 8. **Stale file/test counts**: Counts should reflect current state after all implementations
-<!-- /ANCHOR:audit-criteria -->
 
 ---
 

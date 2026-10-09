@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`stacked-bars`, `daily-line` and `bar-line-composed` each carry a legend, a dim or both, but none of the three opens a hover card",
     "created_at": "2026-09-05T16:03:56Z",
-    "last_save_at": "2026-10-07T15:56:27.757Z",
+    "last_save_at": "2026-10-08T19:29:41.920Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a13fa9809b57a638dba5d083908f5a8ac92c23245ad69520fc44f6d44107dd5",
+    "source_fingerprint": "sha256:359913c6e0d12d59b6292edd6af3f232a1da7893834cb9120569acdd05709d83",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e4d0986e5a12cb808e70b9f6ec10b5b5c93580cc5ccf5c3919b40b5e97091a49",
+      "spec.md": "c2823ac67c561f535463e6c4304d111fb94c72dbb13114a120ddd7bf0d6cd2a1",
       "plan.md": "ed98a6b2b839fd33bf6a34969a8aad98764e00be8403b0ad7dc4727d755ba8c3",
       "tasks.md": "2d9c553edc03a11bed36233c12a737d823580499fdfb6ac11591ba319a72e396",
       "implementation-summary.md": "3da68dafa72873e4c68bcddbe29a46867c47e02f354308a1b411d981e0a56f24"

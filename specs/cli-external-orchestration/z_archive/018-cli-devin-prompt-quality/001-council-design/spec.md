@@ -153,7 +153,6 @@ Produce a council-ratified design contract that 002 and 003 consume verbatim. Af
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -220,6 +219,7 @@ Produce a council-ratified design contract that 002 and 003 consume verbatim. Af
 **Acceptance Criteria**:
 1. Given a completed council run, When 002 starts, Then 002's spec.md can cite `council-report.md` § Rubric / § Fixtures / § Knobs / § Budget without ambiguity.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Grader model choice: claude-sonnet-4.6 (cheap, fast) vs codex-gpt-5.5-high (rigorous, costly) vs dual-grader with median + dispute detection? Council recommends; operator can override.

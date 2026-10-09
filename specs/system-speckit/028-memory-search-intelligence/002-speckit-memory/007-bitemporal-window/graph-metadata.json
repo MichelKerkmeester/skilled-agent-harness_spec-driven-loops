@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The Memory MCP's causal-edge currentness machinery records the wrong time and the wrong number of times",
     "created_at": "2026-06-19T05:40:37.444Z",
-    "last_save_at": "2026-09-11T16:42:41.550Z",
+    "last_save_at": "2026-10-08T19:31:01.101Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5f74f9013531bd0d3ac0e139c7d415e95a62dc405d719138207d47d47f0fc514",
+    "source_fingerprint": "sha256:701327b9bce997ac523a8ef4069e6e7dafe54e978d706f0f35c8678c6259d8e6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9c5e634b34cd2369a7a97b5f2bf149f0ac801c557c79539152bbaa2659ff04f6",
+      "spec.md": "b8a8e0fdb4c6cf0387a9132e57d3c431252bdf5ec1b9f88873330b7512791076",
       "plan.md": "7ae0644eaea330b735b72473ee3932e954a8fadc61097d68c8cd3140d9ebe611",
       "tasks.md": "bc055f82224a43bec64fc43f9c8e63c2c06c38001cc6cc5b7dd1214780202255",
       "decision-record.md": "e941927ce39dfb05fd2ce3e7c2787f5f7b16ea2989a04e6a321fccdecfd13f98",

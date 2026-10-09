@@ -149,7 +149,6 @@ One canonical source describes the hook set once, and the four JSON registration
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -203,6 +202,7 @@ One canonical source describes the hook set once, and the four JSON registration
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the canonical source be JSON (matching the runtime files it feeds) or a small TypeScript module (matching `sync-runtime-mirrors.cjs`'s own `HOOK_CONFIGS` constant style)? Either satisfies REQ-001. The choice should follow whichever makes the per-runtime template functions easiest to keep in sync with their four source files during implementation.

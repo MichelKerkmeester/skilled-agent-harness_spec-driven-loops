@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`/doctor` is an argv router whose route manifest at `.opencode/commands/doctor/routes.yaml` lists nine targets and zero of them inspect or remediate source-doc and metadata-JSON quality",
     "created_at": "2026-06-27T17:15:35.763Z",
-    "last_save_at": "2026-09-07T16:18:20.753Z",
+    "last_save_at": "2026-10-08T19:31:05.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1bdf0d3f559c23e4af5023b88398655213cd9938af0cdd7ab052d0e0b98425e5",
+    "source_fingerprint": "sha256:7644cf9718aadebedf26002b2819b9731fe1fb16b04a48b9c558658797a87a87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e664d2c56e8b5cde7f8f75586e25543f291f40170a9218f1ff60a1b16d7fe29c",
+      "spec.md": "167b300638aa4eb3607e3683a386b80f9c4b9b6f85dad869bf28a095e038eb31",
       "plan.md": "eba3c9b5b971b0837d7762515bee437aa2fed8d3e24d3141ae099379610db469",
       "tasks.md": "15df1dfe732c4938dc43dedc5589389e9a64af2ccc0c90e16fed172b0e2abe37",
       "implementation-summary.md": "d2957c5478b34656ed9c5179b093d3d5d7a6d4073ca16df8ee177dc390efc060"

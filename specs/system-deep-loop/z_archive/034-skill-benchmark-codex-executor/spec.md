@@ -147,7 +147,6 @@ Add a runtime-hosted single-shot codex dispatch helper plus a thin skill-benchma
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -202,6 +201,7 @@ Add a runtime-hosted single-shot codex dispatch helper plus a thin skill-benchma
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - How far should the live benchmark breadth (Tier-2 skills) scale, given each xhigh dispatch is minutes-long? (operator decision; Tier-1 deep-improvement runs by default)

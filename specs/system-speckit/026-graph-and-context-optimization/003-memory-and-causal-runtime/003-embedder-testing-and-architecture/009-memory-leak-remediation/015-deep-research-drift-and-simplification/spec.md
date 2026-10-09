@@ -143,7 +143,6 @@ Produce a 20-iteration deep-research evidence base that categorizes actionable f
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -184,6 +183,7 @@ Produce a 20-iteration deep-research evidence base that categorizes actionable f
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - No open scaffold questions. Research iterations may add evidence questions to the strategy and dashboard.

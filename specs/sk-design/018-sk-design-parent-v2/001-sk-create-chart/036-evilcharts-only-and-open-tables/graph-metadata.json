@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The stock palette has been derived from evilcharts since v2.1.0.0 and `--default` has themed from",
     "created_at": "2026-09-10T07:41:56Z",
-    "last_save_at": "2026-10-07T15:56:39.361Z",
+    "last_save_at": "2026-10-08T19:29:47.847Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6855115e5655854ba672f29b3c2da62ea3aaac40d3b362a85050390b3497c810",
+    "source_fingerprint": "sha256:91401cd9333b96a260127c96e59636bd0a569a1d751498c7440274768ab0c3c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4322dbb8df3398de1d8aac54f20e53935de08f0c4c0882bb4a13ab9b5c5e2f0d",
+      "spec.md": "ebc944f92a116728006e33082f11ec87e17945a2653534c554265d78e6ae312d",
       "plan.md": "e74e9e4de4d8dfcea8f00a36adcf7072fc0c90b898a958d4d0784fb4a49ab755",
       "tasks.md": "b40caa26f0d55767bd9415ee4b4fe7e2f0abc699679dfb5e1b20ea87404c5f39",
       "implementation-summary.md": "fb1e4bc2d70f2fb68d7cefa3e68a078b6af30189d60e1f3bee2121fb0a461d88"

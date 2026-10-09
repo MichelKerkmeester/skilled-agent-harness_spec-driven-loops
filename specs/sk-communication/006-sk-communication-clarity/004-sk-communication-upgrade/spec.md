@@ -177,7 +177,6 @@ the five open engine decisions to phase 002 rather than settling them here.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -232,6 +231,7 @@ the five open engine decisions to phase 002 rather than settling them here.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does a cut-and-reorder pass stay inside the projection contract, or does reordering count as changing what the original claimed?

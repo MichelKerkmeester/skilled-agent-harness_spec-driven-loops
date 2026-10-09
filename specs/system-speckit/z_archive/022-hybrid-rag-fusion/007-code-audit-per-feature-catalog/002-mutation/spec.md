@@ -202,7 +202,6 @@ Verify that all 10 Mutation features are accurately documented in the feature ca
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -210,16 +209,18 @@ Verify that all 10 Mutation features are accurately documented in the feature ca
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Are there undocumented features in this category not yet in the catalog?
 - Have any features been deprecated since the last catalog update?
 
 > **POST-AUDIT STATUS**: Open questions resolved. No undocumented features found. No deprecated features identified. history.ts was missing from multiple catalogs (F01–F05) and has been noted as a systemic gap. F06 and F07 source lists require cleanup to remove over-enumerated unrelated files.
+<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions-2 -->
 ### Audit Findings
 
 Audit completed 2026-03-22. Ten features (F01–F10) verified against source code.
@@ -323,4 +324,3 @@ All 4 correction types, stability adjustment, undo operation, and feature flag c
 - **Verification Checklist**: See `checklist.md`
 
 <!-- /ANCHOR:questions-2 -->
-<!-- /ANCHOR:questions -->

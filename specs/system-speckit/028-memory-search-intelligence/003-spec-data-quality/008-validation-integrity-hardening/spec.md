@@ -162,7 +162,6 @@ Close all four gaps without silently breaking the corpus: add a real disk-compar
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -233,6 +232,7 @@ The exact seams, verified to file:line against the live tree and reproduced live
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should F8's freshness sweep and `011-scheduled-dq-sweep` end up as one consolidated workflow, or two narrowly-scoped ones? Deferred to plan.md's coordination-check task rather than decided here, since `011` is still unbuilt and blocked on a different dependency chain.

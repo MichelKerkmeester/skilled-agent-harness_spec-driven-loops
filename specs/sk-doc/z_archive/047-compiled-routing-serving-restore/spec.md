@@ -144,7 +144,6 @@ Every hub serves the router it compiled, and every mode owns the words that mean
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -199,6 +198,7 @@ Every hub serves the router it compiled, and every mode owns the words that mean
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None. The scorer specificity gap is recorded in Out of Scope with the measurement behind it,

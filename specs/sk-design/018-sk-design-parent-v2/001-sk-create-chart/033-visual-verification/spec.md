@@ -100,7 +100,6 @@ Every rendered capture is read by someone who did not make the change, and what 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -155,6 +154,7 @@ Every rendered capture is read by someone who did not make the change, and what 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

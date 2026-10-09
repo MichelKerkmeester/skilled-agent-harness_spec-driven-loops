@@ -170,7 +170,6 @@ Produce `synthesis.md` — a binding variant ranking that 004 applies verbatim. 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -245,6 +244,7 @@ Produce `synthesis.md` — a binding variant ranking that 004 applies verbatim. 
 **Acceptance Criteria**:
 1. Given a converged loop, When 004 starts, Then `synthesis.md` provides top-variant winners + alternates + confidence + insights ready to apply.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should pause-resume be transparent (resume picks up exactly where left off) or always re-validate cache integrity first?

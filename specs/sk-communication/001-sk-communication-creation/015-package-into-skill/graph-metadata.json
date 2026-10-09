@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The package lived under a generic `packages/` root even though it is owned and consumed exclusively by the sk-communication skill, unlike system skills (for example, system-spec-kit) that bundle their code inside the skill directory",
     "created_at": "2026-08-13T17:02:13.812Z",
-    "last_save_at": "2026-10-07T15:56:18.354Z",
+    "last_save_at": "2026-10-08T19:29:33.459Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,10 +198,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:54563abd731160e1e1eed9cfd6b71696855e6ac73f8074df8505706645bc2ced",
+    "source_fingerprint": "sha256:50ce11382884b0a930cc4e1723f7e4b44bba5c6235e2fbd947e667aafcf3e5cc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6f15056bf5ae4cd633f9718181c55d6aead131ce65a61f54a743e5c7c70ffe81",
+      "spec.md": "29e47b9734db223ef38d343e189675f9fbd4e9e70c0431ee6491a9a4a3735f85",
       "plan.md": "262ccaca4c8bdf8d3bb8e9e3fb6054cafc2b57abf971598569c28dfe078e9326",
       "tasks.md": "03b127b55a3f80a391182746ced75981d0baa5fb34c1ae83905d0e28f4088f2b",
       "implementation-summary.md": "64c2e11b84917ec5322bfa943b5464d7fbf73d36f70e6172024827953f7c5736"

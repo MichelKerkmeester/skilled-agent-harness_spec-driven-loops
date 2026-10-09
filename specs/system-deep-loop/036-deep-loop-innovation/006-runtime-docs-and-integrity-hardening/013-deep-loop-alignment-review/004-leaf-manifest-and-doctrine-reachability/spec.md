@@ -129,7 +129,6 @@ A symlinked reference is a leaf like any other, and a link that cannot be one is
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -178,6 +177,7 @@ A symlinked reference is a leaf like any other, and a link that cannot be one is
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

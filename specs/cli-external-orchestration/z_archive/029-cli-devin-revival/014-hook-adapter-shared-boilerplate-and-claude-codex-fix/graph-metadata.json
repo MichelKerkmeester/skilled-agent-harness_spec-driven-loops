@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Two independent findings from the 5-iteration deep-research pass (GPT-5.6-SOL, high effort) on the cli-devin and cli-cursor hook adapter layers:",
     "created_at": "2026-07-27T06:06:41.642Z",
-    "last_save_at": "2026-10-07T18:11:35.416Z",
+    "last_save_at": "2026-10-08T19:29:15.676Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,10 +197,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0f868691277b834fb2540425a92e91d0a6453537a3de09e7ae08697da1ea7ebc",
+    "source_fingerprint": "sha256:dc8febcd9d87e49035da56d5b2b33bfc61d66f956474fb8826d973ef37a16676",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "50cb65705cbd4ff324ebd071d51ab470e5b2bd856053fb68f443c6cd38e12e12",
+      "spec.md": "e159587dccb1034eb21739fd14e81a332bff90539076eef073a6ac266d9cb8c6",
       "plan.md": "a05fa80ba6b4dc240d71b4f80c2eb73148e3452e1466206fa002a9fccb56af87",
       "tasks.md": "643179478e1457fc94239b2a323870e356136cfd4ed82347f28e458e26dc2a94",
       "implementation-summary.md": "72e0ccdca5be7b5d40a0e8462586526f075e291c132407653ef3c0aac28f16b7"

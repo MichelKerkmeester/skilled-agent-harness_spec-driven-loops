@@ -196,7 +196,7 @@
     ],
     "causal_summary": "A move is only as safe as the inventory behind it",
     "created_at": "2026-09-01T08:42:56Z",
-    "last_save_at": "2026-10-07T12:55:21.898Z",
+    "last_save_at": "2026-10-08T19:29:59.974Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:655d73696bd5e3dbc2f0934696042019b1519601dc6d8aa8e73295c5cd7fb1d4",
+    "source_fingerprint": "sha256:976421899da799e679a47329b1665f0f451bab8e18061af473c2cfb32efb5d73",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5204c7a1b790c9ebbd3e9c476c3b1e38faabd68425b5bc69efd96a71597b50d1",
+      "spec.md": "42f8c68492a2f8a57e8dad9ad6be187ae0a55388e7b968190e9f9f5602a5a585",
       "plan.md": "3513f177e7fcccbeceed9f22bc731bcb97ba3645c7d78a757b20a49f6227acd9",
       "tasks.md": "0083de5c9a156fee92c12fbb206aab5b0316100416cd92087cdc39db106e80ec",
       "implementation-summary.md": "4bff416dd02ae03b38e6be9be06dbafeec8c331becaeedf9afcb0ebd15550d07"

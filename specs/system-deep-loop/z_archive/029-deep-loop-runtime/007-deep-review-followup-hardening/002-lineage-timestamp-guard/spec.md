@@ -137,7 +137,6 @@ Make fabricated lineage timestamps detectable at the boundary that already owns 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -176,6 +175,7 @@ Make fabricated lineage timestamps detectable at the boundary that already owns 
 - **US-001**: As a fan-out operator, when a lineage invents its timeline I see it in the run summary immediately instead of discovering it during manual verification. Acceptance: anomaly counts in orchestration summary.
 - **US-002**: As an analytics consumer, I can filter lineages with anomalous telemetry before trusting duration data. Acceptance: ledger event queryable per lineage.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. The defect, ground-truth source, and integration point were all identified from the live 2026-07-02 incident.

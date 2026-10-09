@@ -167,7 +167,6 @@ Remove every active `cli-gemini` executor reference outside `specs/**` so no sou
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -247,6 +246,7 @@ Remove every active `cli-gemini` executor reference outside `specs/**` so no sou
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. The operator approved purging everything outside `specs/**`, including changelogs, and deferred the Gemini-runtime and Gemini-model surfaces.

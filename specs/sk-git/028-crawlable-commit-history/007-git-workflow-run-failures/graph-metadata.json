@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Automated runs in this repository hand work to detached children and fan-out lineages, and git behaviors that a human shrugs off end those runs: a revert that erases an orchestrator's work, a hook that blocks a commit nobody can answer for, an advisory that cries wolf on every add",
     "created_at": "2026-09-11T08:06:45Z",
-    "last_save_at": "2026-10-07T15:56:49.332Z",
+    "last_save_at": "2026-10-08T19:30:17.682Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:083eb036eeae8f528b74fc9ee6d0ee2704cac68b1768c03366766fd2cc236c98",
+    "source_fingerprint": "sha256:604c19194da4a787989e8c394586eb1f0c2896de230f41e41414b96eb160e92c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f98bd3ea8929dcc3fec1abac5ff701a90319fc3e352b048e32d1c30bbb4189b0",
+      "spec.md": "b73b67923b39d1684eef7ddc0886e755980fcbc6b931f8de5baa78087dc46bcc",
       "plan.md": "92af838202200949e35ad63615d581bc5566f243f578954a2282c0b46a31de06",
       "tasks.md": "44cfd835cd643bfde6a0d4619a3dd174823b5aabb06063da1282205742d5a6ed",
       "implementation-summary.md": "d098b173b5d5b6d21132b8ad3b5507da10ed1e2ca3ae11f5c1fe85df20a71352",

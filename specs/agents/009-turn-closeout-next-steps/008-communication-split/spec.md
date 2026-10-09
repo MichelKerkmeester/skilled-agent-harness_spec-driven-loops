@@ -137,7 +137,6 @@ Split it so each half carries its own trigger, and so the rule set stops refusin
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -192,6 +191,7 @@ Split it so each half carries its own trigger, and so the rule set stops refusin
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator approved the split, the two-way shape and the timing before it ran.

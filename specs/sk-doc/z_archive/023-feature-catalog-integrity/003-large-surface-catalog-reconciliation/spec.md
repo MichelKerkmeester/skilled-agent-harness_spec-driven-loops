@@ -232,7 +232,6 @@ Read-only truth sources: `system-spec-kit/mcp-server/{tool-schemas.ts,handlers/s
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -322,6 +321,7 @@ state, **so that** I do not build on behavior that is dark or shadow-only.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **OPERATOR-DECISION (Q5)** — Who adjudicates the rollout state of each `system-deep-loop` typed-spine module?

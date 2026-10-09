@@ -192,7 +192,7 @@
     ],
     "causal_summary": "All 10 downstream phases of this packet plan their work against pi.dev's live-fetched documentation, not against a locally-installed and tested binary",
     "created_at": "2026-07-27T06:48:17.288Z",
-    "last_save_at": "2026-10-07T18:11:08.524Z",
+    "last_save_at": "2026-10-08T19:29:19.074Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f32f18f5d4b946a53ed71d861ff0a74e016ff942cc28069e65db3bd1d38339dc",
+    "source_fingerprint": "sha256:a8dae0a66558315b2c2fd91bd5b1414580a3f5e9b1d4ff0ef67d638d874bb79e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1ce9547ad0922aae036f33616a4e0d2d3bcf762a8de604b2d809610a916d527f",
+      "spec.md": "a856bb6b8239636e3cf29c45901abf56c9602b8debd022e3875547aa74c2d481",
       "plan.md": "b5cbedfc49768366dfc1fe2cdf080976f17a9d582cbf1016dcff4a67ca7f8b47",
       "tasks.md": "413f7d1c1d13cb3f02bdf7aa00598cea92630e0f6af8de0684e6dabdd4954d64",
       "implementation-summary.md": "e6c031bc90b973175c227ed07b4031a7a2b375b07053d75eb82fc19cac5b241f"

@@ -137,7 +137,6 @@ Prove that the phase parent binds all three mapped child goals and that recursiv
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -188,6 +187,7 @@ Prove that the phase parent binds all three mapped child goals and that recursiv
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The map defines the phase set, and the final check compares it with disk and bindings.

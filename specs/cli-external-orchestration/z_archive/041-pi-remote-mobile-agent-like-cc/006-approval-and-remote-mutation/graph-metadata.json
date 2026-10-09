@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Introduces the final-boundary Pi approval extension, containment, shared redaction, and evidence-gated remote mutation",
     "created_at": "2026-08-10T18:28:42Z",
-    "last_save_at": "2026-10-07T18:11:39.791Z",
+    "last_save_at": "2026-10-08T19:29:19.652Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +196,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:74fc2d4e898b9888b80c51dad89def22a4f41c8f1a8ef21ec2ba2707911496ed",
+    "source_fingerprint": "sha256:624a75437e154bdaec4c6cd79f17cfaf84115253a456335da08e77a27a4119d7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0343748e506c22dce7092dc368da1eafe17f920f2f512591d037689848658fe6",
+      "spec.md": "fb43167cecacad72cf4a2464b5d3479ed0029a026cdc24e517f301af727984a1",
       "plan.md": "7bc6ab16d1aac251537ff5fd59911281bc33a8523640d92ca898bc63e5f18db5",
       "tasks.md": "4f39bd95bd06d005dde400a24ccd220effd6b57391d4233635979e93665676ce",
       "decision-record.md": "06a0c08fc4f858604e618f8713f39b788f23c67461f850bf6496b546a1f446f7",

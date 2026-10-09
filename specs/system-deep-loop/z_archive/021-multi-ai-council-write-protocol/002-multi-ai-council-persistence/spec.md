@@ -174,7 +174,6 @@ Land the persistence helper, schema contract, caller protocol documentation, and
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -256,6 +255,7 @@ Land the persistence helper, schema contract, caller protocol documentation, and
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Does the helper need a `--dry-run` mode for CI usage? Current preference: yes, but defer to a P2 if scope creeps.

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The six shipped rule files govern the AI working alone: what to build, what to touch, what counts as proof, what can break, how to diagnose, what to admit",
     "created_at": "2026-08-31T05:37:22Z",
-    "last_save_at": "2026-10-07T18:14:22.054Z",
+    "last_save_at": "2026-10-08T19:30:13.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2b9510613fde5f4015c0531e0078ba659cd11776039ef4d7f4050152a43822b2",
+    "source_fingerprint": "sha256:50cc494dde8df47e213533b452153ab37d314a11d58902ba00dd27e9069a98c3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2cc093d3b687ca96e3a9534756cb1c4d43c86be5ed00e07bebc4ccd5af96802c",
+      "spec.md": "472e42685b216f7de928b77bfe6f51b369389034c0721515145050778347c0d7",
       "plan.md": "bafa6e76fbc661d6911b2c8f9a747b763b9a82f9fa283a0a7600eb90d18f6f89",
       "tasks.md": "9ec77357c6d476e5ebb577454e12ba5942400760e8d08863f48578c125fc7d80",
       "implementation-summary.md": "d5768d18c1b9231e7ef9f00622c91fc2ba7e0009931509be7f7f9cb24d8af7e0"

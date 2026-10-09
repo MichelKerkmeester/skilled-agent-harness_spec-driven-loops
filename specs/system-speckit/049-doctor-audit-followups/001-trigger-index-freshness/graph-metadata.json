@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`generate-trigger-index.mjs --check --json` exits 1 on this checkout: the committed index is stale (176 documents differ, 175 indexed paths are missing, 23,052 documents scanned in the planning run) and the corpus manifest hash has moved past the index's",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-07T15:57:41.019Z",
+    "last_save_at": "2026-10-08T19:31:35.308Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d02ee97191b283eab963969f22ff519febfe0c1202f6d8dc0a0246da01b15fc9",
+    "source_fingerprint": "sha256:506759b5658d89b5ee267f228a05f9ec69492acee8dcc6cb733de300e6d151cf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c6742fb4c79935f38ff3527577d74f716867799e3e09c8cba2f44953a72d08f1",
+      "spec.md": "105e2e0292f798bb7e2c64f566d5366b09ae1aef43d0bebbaf3f0d719968457c",
       "plan.md": "c8f475c91ce6e363dd5215ca741d1db319500a22a16514d9a7c3c15259409d5e",
       "tasks.md": "4b44fa8be48466afa804c005580382498c05846c477c5576ad0c11f86e881a8e",
       "decision-record.md": "e430c1af861544c9682ee770427d8ceebacbf38a119f8a81759c2906c0799190",

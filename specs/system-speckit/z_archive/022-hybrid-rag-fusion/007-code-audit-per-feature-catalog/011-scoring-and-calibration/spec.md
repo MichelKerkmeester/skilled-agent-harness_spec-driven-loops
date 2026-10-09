@@ -257,7 +257,6 @@ Behavioral drift is limited but real: F19 and F20 document capabilities that exi
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -265,14 +264,16 @@ Behavioral drift is limited but real: F19 and F20 document capabilities that exi
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - F13: Remove retired `rsf-fusion` references from the scoring/fusion corrections catalog entry.
 - F19/F20: Decide whether to wire learned/shadow evaluation paths into production or narrow catalog language to shadow/test-only behavior.
+<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions-2 -->
 ### Related Documents
 
 - **Implementation Plan**: See `plan.md`
@@ -280,4 +281,3 @@ Behavioral drift is limited but real: F19 and F20 document capabilities that exi
 - **Verification Checklist**: See `checklist.md`
 
 <!-- /ANCHOR:questions-2 -->
-<!-- /ANCHOR:questions -->

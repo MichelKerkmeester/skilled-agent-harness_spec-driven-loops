@@ -113,7 +113,6 @@ Put the answer in the message and the path after it, with the content shaped by 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -168,6 +167,7 @@ Put the answer in the message and the path after it, with the content shaped by 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - `deep-skill-benchmark` is excluded because it is being deprecated. If that deprecation is abandoned, this packet owes it a sixth block, and its own presentation boundary forbids the router from emitting verdicts or bottlenecks, so its content would have to come from the loop host instead.

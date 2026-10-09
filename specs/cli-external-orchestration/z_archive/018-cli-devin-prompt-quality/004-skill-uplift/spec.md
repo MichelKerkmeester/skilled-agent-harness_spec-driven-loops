@@ -158,7 +158,6 @@ Ship the optimization wins as updated cli-devin defaults. Future dispatches use 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -226,6 +225,7 @@ Ship the optimization wins as updated cli-devin defaults. Future dispatches use 
 **Acceptance Criteria**:
 1. Given v1.0.5.0.md, When a reader scans it, Then they see (a) what changed, (b) why (data-driven citation to synthesis.md), (c) how to revert if needed.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should we tag the cli-devin release with a git tag (e.g., `cli-devin-v1.0.5.0`)? Convention review needed.

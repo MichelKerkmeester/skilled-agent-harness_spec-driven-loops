@@ -49,7 +49,6 @@
       ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
       ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
       ".opencode/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
       "runtime/vitest.config.ts",
       ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
       ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs"
@@ -128,12 +127,6 @@
         "source": "derived"
       },
       {
-        "name": "run-skill-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
-        "source": "derived"
-      },
-      {
         "name": "vitest.config.ts",
         "kind": "code",
         "path": "runtime/vitest.config.ts",
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Capture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Twenty-three findings in three lanes share one shape",
     "created_at": "2026-07-31T01:25:21.556Z",
-    "last_save_at": "2026-09-11T16:42:26.264Z",
+    "last_save_at": "2026-10-08T20:04:54.251Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +211,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:77c75279acbb7e0ca11edb4cffd7d31766891318cfac32fbc5cec5a61fc72485",
+    "source_fingerprint": "sha256:6d37563846e12a65f6d5bcf2155c3c00e71815a3013299f5bc6977b95d96f751",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8283ace2429c3d9b8fdabce7d475b90b60e85167c1f7321fc98fe186bcc06933",
+      "spec.md": "93c18c948aafcf8c887fc13c84a0db148416ef2df4b8e8c4e52794a279fa8c7c",
       "plan.md": "035645f67a7a9c55def2ec0153ebad18519714e6793f7a5869f81a81ea79f70b",
       "tasks.md": "637d5e304f3b728aad079bce733c3d214eb4db2ce20741a1a94e7a8ae250b41e",
       "decision-record.md": "d3b20a64db573eece0604bd1fdb216b361bcbdae118778293cc3e8fb2fd467e0",

@@ -202,7 +202,7 @@
     ],
     "causal_summary": "mk-spec-memory fronts its daemon with a reconnecting session proxy so secondary clients survive a recycle or owner change transparently",
     "created_at": "2026-06-07T17:00:00Z",
-    "last_save_at": "2026-08-30T15:39:32.500Z",
+    "last_save_at": "2026-10-08T19:30:56.649Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:95f961bfda1c50c5973ceeb26ae4753730e35ff12b3481884a628b9daae59b57",
+    "source_fingerprint": "sha256:85ca7d8d124a064183f7d061718104c1a796319bae4b489e1e605974165dc682",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f5f78c7a2fb91b2629e7e9b3123438ec1267615e55ee65fd3a77bc58b064d6e1",
+      "spec.md": "48c01a743f96cb4696798bd4fbddab1c803021b20eec0c6458167ad8881279a5",
       "plan.md": "bb80cbb83d432093df4c694abd56c796602fca7d66b5b54b71b278eec02e4782",
       "tasks.md": "e143888d506ee590e4388d1431a22367f7b0affe06b2f84802a0e03cbb538510",
       "implementation-summary.md": "3c7e03bf0df282ab1dbf40fb9bf47ca65386040a06aa2e2805e948b74d355df8"

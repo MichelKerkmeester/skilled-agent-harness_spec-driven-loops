@@ -146,7 +146,6 @@ Make secondary enrichment durably recoverable by tracking enrichment completion 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -217,6 +216,7 @@ Make secondary enrichment durably recoverable by tracking enrichment completion 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Deploy gate: the v30 migration runs against the shared production DB only on the next daemon deploy. The deploy window must be confirmed separately, and concurrent v29 sessions must drain or the upgrade must be confirmed safe under the launcher's single-writer lease before restart.

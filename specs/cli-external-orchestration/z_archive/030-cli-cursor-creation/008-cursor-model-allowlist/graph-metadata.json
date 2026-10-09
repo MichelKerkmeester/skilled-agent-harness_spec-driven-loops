@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 002 gave `cli-cursor` a permissive model reference (`CURSORSUPPORTEDMODELS = ['auto', 'composer-2.5', 'composer-2.5-fast']`) explicitly documented as \"not exhaustive by design.",
     "created_at": "2026-07-24T11:23:29.374Z",
-    "last_save_at": "2026-10-07T18:11:37.682Z",
+    "last_save_at": "2026-10-08T19:29:16.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aba9416bad2f3929bef721088d26136c096ff4cd7aa569a525cfba76aecfec31",
+    "source_fingerprint": "sha256:6cee07486c0ef9ecdac690d0c11653e22be9c6b88ad66f7830a70e8e0e632840",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "79809c9f03d80420db9ce6f2817bcae4b11248a56c5aee20cef5602298f7170d",
+      "spec.md": "e2e3926f6ae91e4b8272e097796134060c6847df01f3deb341c66b9509e9e8dd",
       "plan.md": "ccb693ab152125781a8cbfaa7c60afbc3d477f3bd2fa87a6e9148699e069a8b4",
       "tasks.md": "a54e278448db081b341421bedb55acb63c627f649a33e69cfba9d0a6ab4f2765",
       "implementation-summary.md": "4b87e57f364c9f0b989788bece42e3326679b2e6576014153ed3404e2cc5026c"

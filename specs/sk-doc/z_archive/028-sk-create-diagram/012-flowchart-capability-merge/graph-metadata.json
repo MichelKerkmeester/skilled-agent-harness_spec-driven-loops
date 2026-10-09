@@ -191,7 +191,7 @@
     ],
     "causal_summary": "`sk-create-flowchart` (ASCII/markdown-only) and `sk-create-diagram` (HTML/SVG-only) are two separately-routed skills for overlapping request shapes (decision trees, workflows, system interactions)",
     "created_at": "2026-08-12T18:18:41.897Z",
-    "last_save_at": "2026-10-07T18:14:20.258Z",
+    "last_save_at": "2026-10-08T19:30:12.524Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6c94964111037a5ee59416eaeb8dae2a590025d48cf53f5040dbb1cababa01bf",
+    "source_fingerprint": "sha256:e93bd695cf603792173bc06ad76779169b61b3159913b024f2f5f495802cf6c7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "29e818ca7d3c105f1ff939f693a429f753db5c51cd09a29ce85f6934c447ba27",
+      "spec.md": "22668c097f014c2a55605ecc9978acf5ee5ba489805ca28f335ef230dbed700d",
       "plan.md": "9274cf473ed3918c8d6f00ecd3f24e02c489fbb25ff8a04cc9770a3afe3cd813",
       "tasks.md": "18a8a7f54a49eba832388606345de8b6e8b3ff19a8d119f49d82f20d45bbb904",
       "decision-record.md": "0a2d2b7b4b1ca75f779664631901be3a8fff4560806752d0da88273f202261ef",

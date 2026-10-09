@@ -181,7 +181,6 @@ The current packet remains a single Level 3 folder rather than a phase-parent mi
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -264,6 +263,7 @@ The current packet remains a single Level 3 folder rather than a phase-parent mi
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. The user selected a new packet and requested deprecation plus all operational mentions.

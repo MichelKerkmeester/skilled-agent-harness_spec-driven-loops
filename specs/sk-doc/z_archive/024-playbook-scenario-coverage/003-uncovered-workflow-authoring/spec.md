@@ -261,7 +261,6 @@ three sibling runtimes are covered.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -355,6 +354,7 @@ a misfire is observable rather than silent.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **OPERATOR-DECISION Q3** — who owns cross-skill end-to-end workflow scenarios? Gates Lane B placement and the

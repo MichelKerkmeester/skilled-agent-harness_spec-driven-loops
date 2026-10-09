@@ -268,7 +268,6 @@ Audit completed 2026-03-22. 24 features verified. Overall result: **19 MATCH, 5 
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -276,16 +275,18 @@ Audit completed 2026-03-22. 24 features verified. Overall result: **19 MATCH, 5 
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should `entity-linker.ts` (F13) be added to the catalog source list, or is it intentionally omitted?
 - Should the bloated source lists for F12 and F14 be trimmed in a follow-on catalog-cleanup pass?
 - F12: Should `scripts/core/file-writer.ts` be added as the primary source file in the catalog?
 - F21: Should assistive reconsolidation archive be moved inside the save transaction, and should recommendation payloads be surfaced to callers?
+<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions-2 -->
 ### Related Documents
 
 - **Implementation Plan**: See `plan.md`
@@ -293,4 +294,3 @@ Audit completed 2026-03-22. 24 features verified. Overall result: **19 MATCH, 5 
 - **Verification Checklist**: See `checklist.md`
 
 <!-- /ANCHOR:questions-2 -->
-<!-- /ANCHOR:questions -->

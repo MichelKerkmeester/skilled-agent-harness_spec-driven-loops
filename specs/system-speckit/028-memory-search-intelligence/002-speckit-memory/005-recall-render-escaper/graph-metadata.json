@@ -176,7 +176,7 @@
     ],
     "causal_summary": "The Memory MCP captures arbitrary content via `memorysave` and later renders recalled bodies directly into the consuming agent's prompt loop, with no untrusted-content boundary at either end",
     "created_at": "2026-06-19T05:40:47.073Z",
-    "last_save_at": "2026-09-11T16:42:41.297Z",
+    "last_save_at": "2026-10-08T19:31:00.675Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,10 +185,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2f6c64fb3e30c55de755f0e1f257f6a91d04cedcfc777a67827a2e7d243e9d51",
+    "source_fingerprint": "sha256:9e0988339b7a2d191b5fbc79eeec949957dbf9f1e6da46aeee2946370e1fbe67",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f242a7e97621b02218be6d718edde87f4bd0edd8071af6f40d74ee343cdd4d0b",
+      "spec.md": "02e69d08ba4ad0c3cc784e2dae258da1251d5e9dd9de216a3ed1e7b4d1fba860",
       "plan.md": "b0c6000a3d64a0c0db6b648da4f4519ab4fcb5680c45ca134ad211391e72af1f",
       "tasks.md": "61c424038de43f2e3e0a80cf91bd9ec282e197446214d9ee3c9b2a3fc4de720c",
       "implementation-summary.md": "127f6b559f28d47bde77447912d9fc24c7988e138d712ccd47a837d4c923f1ae"

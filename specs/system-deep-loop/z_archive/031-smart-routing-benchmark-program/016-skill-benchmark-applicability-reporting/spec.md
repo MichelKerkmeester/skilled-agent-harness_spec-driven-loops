@@ -88,7 +88,7 @@ Out of scope (FROZEN): any change to `advisor-probe.cjs` scoring, the advisor sc
 - **hub-D1 delta.** Fixing skillId may legitimately change sk-code's D1-inter and its aggregate; baseline and land that separately from the report-only change.
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 None open. Vehicle (targeted harness patch, not advisor, not /deep:improvement) and scope (reporting + hub-D1 bug) are operator-decided.
 <!-- /ANCHOR:questions -->

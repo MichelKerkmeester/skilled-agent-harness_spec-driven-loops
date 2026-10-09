@@ -126,7 +126,6 @@ Make the backfill walk unconditionally skip `z_future` so a default run no longe
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -180,6 +179,7 @@ Make the backfill walk unconditionally skip `z_future` so a default run no longe
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether the existing backfill test should gain a dedicated z_future-exclusion case, currently it covers z_archive inclusion only

@@ -156,7 +156,6 @@ Every template and example can be judged without opening a browser.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -224,6 +223,7 @@ Every template and example can be judged without opening a browser.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether coverage should be a gate rather than an on-demand check. A changed template silently keeps

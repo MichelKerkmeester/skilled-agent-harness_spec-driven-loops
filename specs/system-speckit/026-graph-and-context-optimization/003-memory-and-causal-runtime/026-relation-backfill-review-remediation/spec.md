@@ -147,7 +147,6 @@ Protect every existing valid edge (manual + auto) from being invalidated by a lo
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -215,6 +214,7 @@ Protect every existing valid edge (manual + auto) from being invalidated by a lo
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 Resolved: the canonical `contradicts` direction (predecessor contradicts successor) is intentional and unchanged; the remediation suppresses the backfill EMISSION when a conflicting valid edge exists rather than altering the detector or the labeling. See decision-record ADR-001.

@@ -139,7 +139,6 @@ Every hard blocker and always-binding clause in `AGENTS.md` ends before byte 16,
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -175,6 +174,7 @@ Every hard blocker and always-binding clause in `AGENTS.md` ends before byte 16,
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Is Devin's 16,384-byte cap per file or shared with `.cursor/rules/skill-routing.md`? UNKNOWN; the SC-002 probe answers it.

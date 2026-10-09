@@ -233,7 +233,6 @@ Written before the build. `M` is the proposed `.skilled/skills/cli-classifier/sh
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -290,6 +289,7 @@ Written before the build. `M` is the proposed `.skilled/skills/cli-classifier/sh
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **What is the switch called?** Proposed: the environment value `JEV_TRANSPORT=pi` plus a per-call function option (for example `{ transport: 'pi' }`), resolved in one place, with unset or `jev` meaning today's CLI. The design fixes the exact names and the unknown-value line.

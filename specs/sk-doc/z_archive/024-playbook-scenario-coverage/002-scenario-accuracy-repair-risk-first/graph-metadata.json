@@ -207,7 +207,7 @@
     ],
     "causal_summary": "A dedicated research pass walked existing scenarios against current behavior and found a class the census work",
     "created_at": "2026-07-30T19:29:15.790Z",
-    "last_save_at": "2026-10-07T18:13:43.300Z",
+    "last_save_at": "2026-10-08T19:30:11.661Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:25698cccc16c70a1c4991c4eb31f9db7d9e12b67ca8aefba79180ef2a5a3afe9",
+    "source_fingerprint": "sha256:b564bf97f30b8743552960b928a9b06d814b318ef4c9b41c894c3f71ab4cd4fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1d415bd59b3bf45b5e6290453a1f83d386e4524255808b4ea5913fdea59ae50e",
+      "spec.md": "b6e171cafbaa1330a80cfb134b977bb59fa57b0753f1f5387106a8d8a8f39d7c",
       "plan.md": "6ec4a9ed734ab968da13cdad0bcdf5ac061d1cba205e886c1e2c3633abce7c3a",
       "tasks.md": "6803240e353eebf9ad967d4cd4c72774509382683d154055efeb82f3e43f9287",
       "decision-record.md": "84eb10a6918f30dcc3242b0d5724db50444a5be2b5ebb7b3c6ee8a2d8df8a509"

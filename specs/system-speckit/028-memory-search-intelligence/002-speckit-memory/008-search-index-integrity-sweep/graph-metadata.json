@@ -37,11 +37,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "scripts/memory/verify-index-identity.ts",
-      "handlers/memory-save.ts",
-      "handlers/save/dedup.ts",
-      "handlers/memory-index.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -66,30 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "verify-index-identity.ts",
-        "kind": "code",
-        "path": "scripts/memory/verify-index-identity.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "dedup.ts",
-        "kind": "code",
-        "path": "handlers/save/dedup.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": "handlers/memory-index.ts",
         "source": "derived"
       },
       {
@@ -187,11 +159,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resumed Execution",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mk-spec-memory search backend (`memoryindex` + `vec768`) has drifted from the current on-disk spec corpus, primarily as a side effect of the July 2026 `system-spec-kit` → `system-speckit` re-nest, which moved and renamed thousands of spec folders without reconciling their old index rows",
     "created_at": "2026-07-09T06:17:43.016Z",
-    "last_save_at": "2026-08-30T15:39:34.903Z",
+    "last_save_at": "2026-10-08T19:31:01.046Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +196,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7bab87ebe537023ef17ba91ace7a517b8bfe0ecb72a3a337ee7c287cb21e8b54",
+    "source_fingerprint": "sha256:86d085451ec36143c5884f59890dd4ef78eb59edc13e1f04007b44235fa031ad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "df8828c1223016b661ff5b7e4c2d4210742500f1e19052b2b3f80f6e9d128728",
+      "spec.md": "36faf63b71b155c74c9aae04fd4b2f45d3ba19a308882e480586ebf9036a89b1",
       "plan.md": "bfd6a8bd5a2c053273bef79e105f015a1d53c4708e84a8e90906aaf5bf8a9517",
       "tasks.md": "bc1f67871a6aa279a341ffbe5fd5113420b0e8d410e3fabc926d4bc0f02d8628",
       "implementation-summary.md": "51d2fe7b1795ff826f91d9514c5ee56b7fc49af474a55239e770e703cd74a306"

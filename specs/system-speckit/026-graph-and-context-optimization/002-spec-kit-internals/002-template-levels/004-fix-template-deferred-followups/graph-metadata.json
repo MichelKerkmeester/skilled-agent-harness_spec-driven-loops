@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 003 implementation packet left ten Gate 7 items deferred after the round-3 sweep",
     "created_at": "2026-05-01T20:32:55Z",
-    "last_save_at": "2026-10-04T09:20:48.559Z",
+    "last_save_at": "2026-10-08T19:30:46.061Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eae2916b645c8b3d84bcb1c4819d9da2995ee0814d36670979c800440bcca392",
+    "source_fingerprint": "sha256:8144b9dfbbaea2e00a53c7cc31bfed368331298b891f8f77bcf3d9659d448b5f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "18a7242aabb38652cd640ab10393c1833b4eb322c1051a8a077bbb1be1f96a73",
+      "spec.md": "5895afbfe58df4c5fde17e7a4053f50ccb80e5fb341eeeada47b4b4223f1baf8",
       "plan.md": "f63e458a239eeafec8944290d85e2a7b9c8af9b93e6c05be0b1aeb25c9092b04",
       "tasks.md": "22992db1649e7f3ea191d8d74739b066e8a3502ae432df1db0e32b02e36db530",
       "decision-record.md": "4cfde59d7f21f4d4f25511c71758e3cc53446b303f1c07691985ea295f428202",

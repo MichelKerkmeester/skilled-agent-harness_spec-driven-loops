@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The diagram skill's rules live in prose with nothing holding them, and the chart skill solved",
     "created_at": "2026-09-10T17:17:40Z",
-    "last_save_at": "2026-10-07T15:56:40.206Z",
+    "last_save_at": "2026-10-08T19:29:50.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f75467de40a2fcacfcdda83c41b3debe1e7e968118889737480e5f1b5ca51676",
+    "source_fingerprint": "sha256:05dec7db005de79007899f2254e07f61b4d6f6056b91f20053f8ac4d771e3426",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cfbb8070be8c8249daa548297c5e247300d2b3f13dd7b5de445bfee72cbea09e",
+      "spec.md": "9ed56457a6d8b1d5c379254952b5ef030fcc735f5240f5960b6f45382440e1cb",
       "plan.md": "c4f13b389ad66821e13494656d8aef0c1939efa68cbb7dc133cf850d2506172a",
       "tasks.md": "6705b89537533460623053b80bba944e65461386d694dd2ce1e7d05192b2166b",
       "implementation-summary.md": "9438fe940ada3451b1961c9968491815b990d6b05881a93f4775f3f8c5e79b52",

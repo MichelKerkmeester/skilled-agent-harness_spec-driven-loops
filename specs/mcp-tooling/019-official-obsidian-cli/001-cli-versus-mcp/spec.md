@@ -160,7 +160,6 @@ The skill names one default app-backed surface, states when to leave it, and bac
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -229,6 +228,7 @@ The skill names one default app-backed surface, states when to leave it, and bac
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Where `obsidian delete` without `permanent` puts the file. It reported `Moved to trash` and the file was in neither `<vault>/.trash` nor `~/.Trash`

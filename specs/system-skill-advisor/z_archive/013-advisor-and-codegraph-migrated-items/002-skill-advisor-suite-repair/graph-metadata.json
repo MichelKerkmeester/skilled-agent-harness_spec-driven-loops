@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `system-skill-advisor/mcpserver` vitest suite reported 61 of 553 tests failing in the working tree",
     "created_at": "2026-06-15T16:20:19Z",
-    "last_save_at": "2026-10-07T18:16:05.881Z",
+    "last_save_at": "2026-10-08T19:30:39.735Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a3ba1da0110086f38fca5f7416d97a551a4092ee70910b6d73e7546f1bd1ef8",
+    "source_fingerprint": "sha256:1a877990840cec7397b2a576b571fcda1e25312c3a80fc134f464f4b809eb8ac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cec93e0c93fd0be00d8834e807056b36451d064781e30db027189b63acd9b639",
+      "spec.md": "302ce4c537acc2d6bfbeb5c60855cfb74ab614974df9600901cddf2da939e79d",
       "plan.md": "9df93d7eb7bd82b258d5c2e59614ce8dfd924b3a7d58bda7ced10481869ecc6b",
       "tasks.md": "9bd161eaa1b635ee54da7ef3377b878b216291c1507a26d86d807ad0567c6d58",
       "implementation-summary.md": "187207cb2ce63c97369c0ab4497115df76d0ef631f76f037ce622584571db681"

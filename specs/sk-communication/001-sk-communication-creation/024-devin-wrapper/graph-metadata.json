@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Devin exposes only input, tool, and session-lifecycle hooks, so no hook rewrites the rendered assistant answer; the CLI-output wrapper is the only integration path",
     "created_at": "2026-08-14T05:42:48.044Z",
-    "last_save_at": "2026-10-07T15:56:18.685Z",
+    "last_save_at": "2026-10-08T19:29:35.069Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b98514622a346f19fd4d4456b93e6eed086edf39d01fdb57ca64f744edc7327e",
+    "source_fingerprint": "sha256:ca1ff149f14f1393eb50b50514aefb9e53a55212c0f3d0d70ff6ea87e843b306",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a469eea5418b1d3d4154659ae8cbcac33c1fa345116289ca36a2ce7e6a78598f",
+      "spec.md": "df79c213ac8027f174a92ae0cd1c222722e9884e1e951de3f8eed7997670288d",
       "plan.md": "9b16d00351e0edfb62b035e1d99e8566cb25123611601b7e517a2d2735cb7324",
       "tasks.md": "2bbe0b2245d9ae60bc1cf3f32763c18822a6834deb4e4f427f32640134454dbe",
       "implementation-summary.md": "4cc49de021ac0f3fdab3f992bbc8d6ce4c77bf5146166fe5d1a0bb27bb519986"

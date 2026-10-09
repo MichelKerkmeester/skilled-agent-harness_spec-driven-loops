@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Freshness is defended per artifact, and the artifacts are not unproved",
     "created_at": "2026-09-11T06:37:35Z",
-    "last_save_at": "2026-10-07T15:57:27.889Z",
+    "last_save_at": "2026-10-08T19:31:26.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e7ce74fcb52fe9c9be364b1439c5a00441af7a2cfee418d009296e75aacc9a65",
+    "source_fingerprint": "sha256:09264776aa5a30b8a4a8e6fa7f748d6cadff53a888a92632102aad3270bd0cbe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9d618434d41bf56f1e62729a277d52bebf0ffc5fefd769b0a30ac9877c75fa5e",
+      "spec.md": "0ce50276f1bd2e8dbd5320f191efcd0564f78b391d4b3196bfc0225961f6b42a",
       "plan.md": "2e63bcded7bf88b32ac1c35b0bd748e7cc3adb0474e0a8d879d18b94249b471a",
       "tasks.md": "312b8e0df9890f03f209df6e26f377ef120bb1b4c865711d29b8d9e62d5b514c",
       "implementation-summary.md": "6828f1bbb4ce3caef1c0eae59eb6b5f96d511581db2f49b8a181c3722a9ab3de"

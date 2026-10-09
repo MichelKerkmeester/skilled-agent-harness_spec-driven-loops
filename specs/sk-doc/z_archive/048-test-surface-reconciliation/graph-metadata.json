@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Seven test suites were carrying failures, and running them together made the shape obvious",
     "created_at": "2026-09-01T06:54:11Z",
-    "last_save_at": "2026-10-07T18:14:20.582Z",
+    "last_save_at": "2026-10-08T19:30:16.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fed6aa46809df5bdb0b232c221fe66abdce85428f879e648613de70a845f9053",
+    "source_fingerprint": "sha256:8e866253079207fc7d093461ff49fa54fff5440bc3999bc4ddaa6aa167a8629a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "10cfac6528f661e88fd5ef4b0884ff63cf48dfd66211cc7abe5d3e3b3498ebb7",
+      "spec.md": "d814793fc6eb252a5d04d0c39bc048bbeebfebe55a94de8a1ebf5e69651814eb",
       "plan.md": "38c8a13176785731d993755b5c982e986ff55399e19bdef89e5bdf49c1a1c4a0",
       "tasks.md": "46813fc31fba2ce96d5a4dc068deb4d65502bfe664d876957cf2040932212351",
       "implementation-summary.md": "ab9f8abf7ae3933c4040d1bc84cf39260897c2a68aadac6d4740afc594bcfb20"

@@ -197,7 +197,6 @@ Make non-inferiority evidence the reject-only gate in front of every projection 
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -272,6 +271,7 @@ Make non-inferiority evidence the reject-only gate in front of every projection 
 1. **Given** evidence whose expiry timestamp has passed, **When** the gate runs, **Then** the gate reports blocked with the stale lane named.
 2. **Given** a measured regression on any dimension, **When** the gate runs, **Then** the gate returns blocked and rollout is held.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 No unresolved question blocks planning. The first rollout gate's prompt-profile baseline and evidence expiry horizon are recorded as gate inputs during implementation, not open design questions.

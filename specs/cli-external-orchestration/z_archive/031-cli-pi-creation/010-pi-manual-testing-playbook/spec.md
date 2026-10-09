@@ -157,7 +157,6 @@ Plan (this phase authors ONLY spec.md/plan.md/tasks.md/checklist.md -- no playbo
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -240,6 +239,7 @@ Category rollup: `cli-invocation` (3), `skill-discovery` (3), `command-dispatch`
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which lifecycle events does Pi's extension API actually expose? **Substantially answered** by phase 008's direct read of the installed package's `types.d.ts`: 32 named events including block-capable `tool_call`. TYPE-CONFIRMED, not yet LIVE-SESSION-CONFIRMED - `PI-015` still needs to capture a real invocation.

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The lifecycle suite existed, but the docs overstated what it covered",
     "created_at": "2026-04-12T09:02:50.334Z",
-    "last_save_at": "2026-09-10T21:05:10.166Z",
+    "last_save_at": "2026-10-08T19:31:38.097Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04b29e0b7dd5c16153cb625f2771160b4bcdf3c4c58c4262b372da01e479f32b",
+    "source_fingerprint": "sha256:746dfccd441a7c699dc2bc79abef6aa00e1990dc1e1b5eeedd4278123d43f6e7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "51319fd49bad1869c7b6eb506e5be89952956164a22dfd88fd8548bcc7f628d2",
+      "spec.md": "9c965d1481fc5ca97b493ae3c4ebfc1db8d3f4074a746f7fe02a06c3c987f70b",
       "plan.md": "14da8aa6ff68a75fbb3d09d0b078a5853b7d5911aa537226e12814e07c337e8d",
       "tasks.md": "b20d1b263e870546483b2c57596cc9a7423b0e35c3e1de2451d8fb7c1e442ace",
       "implementation-summary.md": "b476c9316231dfc59681adba0a6a370ac23962de9e0f176cd128ad8069061e79"

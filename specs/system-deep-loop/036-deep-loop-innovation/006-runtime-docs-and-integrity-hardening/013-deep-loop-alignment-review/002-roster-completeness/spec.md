@@ -132,7 +132,6 @@ No document states a roster or count that its own registry or the executor confi
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -180,6 +179,7 @@ No document states a roster or count that its own registry or the executor confi
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

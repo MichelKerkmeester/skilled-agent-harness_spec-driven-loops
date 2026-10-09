@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Both research lanes found the same anatomy gap: our scalar and time-series forms carry their reading only as 14px prose while Apple, Vercel and Tremor lead with a value and a signed delta",
     "created_at": "2026-09-08T18:22:03Z",
-    "last_save_at": "2026-10-07T15:56:34.523Z",
+    "last_save_at": "2026-10-08T19:29:44.782Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:90f8d0a4f14721d291159f8365844b70448c9b71e3c66598cc0ff8dfc861f131",
+    "source_fingerprint": "sha256:f07aeac04256f87ee19870686d7fbf400bb0e0409ad6656831d81c84aacb6542",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "35d9d27451acc91043afe811ad8aa033d241309652eaf7df53fde876d6b99512",
+      "spec.md": "04825ce6eef83fba8f9e218a7a27f65b7d55161f49ee236a08cd3f25d3490f62",
       "plan.md": "d185d5a13ceb44d551f043f3f2bab749fb519f2515dcc32ffcdc048d2e4e1b58",
       "tasks.md": "c7e5d3e9758063d2510ba960049b4f325d8ff6c92f55e9b0a7c2bb44490852b3",
       "implementation-summary.md": "862348d9bf54dcb1b5a9fec0366acb5b1423fc70853c6b2e5acc5e558b37a7c5"

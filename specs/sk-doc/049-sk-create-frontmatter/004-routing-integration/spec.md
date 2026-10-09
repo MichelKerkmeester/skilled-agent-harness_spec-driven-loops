@@ -148,7 +148,6 @@ A frontmatter request reaches the frontmatter mode, and a gate fails if it stops
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -214,6 +213,7 @@ A frontmatter request reaches the frontmatter mode, and a gate fails if it stops
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

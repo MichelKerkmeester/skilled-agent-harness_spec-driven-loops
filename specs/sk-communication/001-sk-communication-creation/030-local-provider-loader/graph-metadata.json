@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`createOllamaModelRecord`, `createLlamaCppModelRecord`, the OpenAI-compatible and Ollama-native adapters, and `createLocalHttpTransport` are all shipped and tested, but no entry point builds the `projectMessage` input from them",
     "created_at": "2026-08-14T17:53:14.584Z",
-    "last_save_at": "2026-10-07T15:56:22.706Z",
+    "last_save_at": "2026-10-08T19:29:35.526Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b3bb5124d46fada0451f53fa97cde05721cd44fe4d4222e1dced65027b5283b",
+    "source_fingerprint": "sha256:826829e872bdfa625255160a28edcf85b911eb18c908ea2fa55254f8c70dd5aa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0901372fd00cf64bb1813f28a96f4aae9b6a764dc21d56713a49bae32a55a8f2",
+      "spec.md": "17caff69f8119630afa319e4eaf6bba8016b6f9ba951a5561dce8775032dd774",
       "plan.md": "1896bd2a651b80af128736651c55f494bfcf2650ba9d6d5626ffdc04f53ae541",
       "tasks.md": "267cc7b89840d55357ffaf05c8dc9c9f313e6cb0936071b270c70d7cc6bda6e3",
       "decision-record.md": "75eb6d371ccd8f09e04de71069c54e480b627616d7174aa02a226dbd3cdd759e",

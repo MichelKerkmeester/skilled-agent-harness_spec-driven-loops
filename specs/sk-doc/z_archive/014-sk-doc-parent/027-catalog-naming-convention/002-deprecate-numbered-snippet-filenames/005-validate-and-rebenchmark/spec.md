@@ -117,8 +117,8 @@ single-digit files (untouched by the migration, so not part of this phase's delt
   markdown-link guard unchanged — no new tooling is authored in this phase.
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 None. The set of "affected" skills for the benchmark is fixed by Phase 004's touch list (the same 9 packets
 named in the parent packet's scope), and the baseline/delta method mirrors the completed 025/005 sibling
 gate.

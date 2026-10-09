@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Spec 026 shipped capabilities across 8 tracks over months",
     "created_at": "2026-04-25T10:48:09.975Z",
-    "last_save_at": "2026-08-30T15:39:28.847Z",
+    "last_save_at": "2026-10-08T19:30:43.961Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5cb9d209dd72ee62ccd4b12845eebe8e3d8dff69af7c3b79bf8a431a48d8583",
+    "source_fingerprint": "sha256:287e397b293bc44f72d56f255f41553c04c0298b16c11084bc9c57fb81925a4a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7512d283a5beeac6e95367ea33fcfe8245ae6d0b8700fd596316401457ae772c",
+      "spec.md": "a58ecb616501801b3b0e08b7a0bb63fb1f5d0b1f4684f4c65d71058614049238",
       "plan.md": "e0a74bf5c97459f9432d2461702547a96fae3a56d3d3edb7fd262ebb0751a6f1",
       "tasks.md": "9ffe4aad1cabf96d79d0e1f2abfd1d634c3c7b2a9c353780c08e4cb8a13e3cfa",
       "implementation-summary.md": "be361aa95ad514694a87e1b7ab4a48645f971cc252be4f4a8096500cfa47829f"

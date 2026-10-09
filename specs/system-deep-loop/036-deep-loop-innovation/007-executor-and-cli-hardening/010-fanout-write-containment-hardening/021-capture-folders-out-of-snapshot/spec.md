@@ -150,7 +150,6 @@ Containment capture output stays out of every later run baseline and out of viol
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -205,6 +204,7 @@ Containment capture output stays out of every later run baseline and out of viol
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

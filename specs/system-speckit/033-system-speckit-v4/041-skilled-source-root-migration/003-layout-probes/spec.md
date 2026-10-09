@@ -178,7 +178,6 @@ Q6 and Q7 decide cutover work inside a chosen layout rather than which layout, s
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -233,6 +232,7 @@ Q6 and Q7 decide cutover work inside a chosen layout rather than which layout, s
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Can Claude Code, Cursor Agent and Codex authenticate with their config directories pointed under `/tmp`? `strings` on the installed binaries finds `CLAUDE_CONFIG_DIR`, `CURSOR_CONFIG_DIR` and `CODEX_HOME` as literals, but whether authentication survives the redirect stays UNKNOWN until T010 runs.

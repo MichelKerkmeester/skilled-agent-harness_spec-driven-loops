@@ -160,7 +160,6 @@ Build the packet and the two templates, and run that test: author the rule templ
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -214,6 +213,7 @@ Build the packet and the two templates, and run that test: author the rule templ
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the rule template ship a filled example alongside the blank? **Leaning yes, but as a pointer to a shipped rule rather than a second maintained artifact - a worked example that drifts from the corpus is worse than none.**

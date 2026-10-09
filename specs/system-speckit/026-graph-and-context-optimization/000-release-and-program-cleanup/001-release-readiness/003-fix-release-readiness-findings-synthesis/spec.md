@@ -141,7 +141,6 @@ Create the aggregate release verdict, rank the remediation backlog, and apply su
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -194,6 +193,7 @@ Create the aggregate release verdict, rank the remediation backlog, and apply su
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should governed embedding-cache retention be implemented as deletion by content hash or documented as reusable derived cache?

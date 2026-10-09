@@ -107,7 +107,6 @@ Out of scope:
 - **Daemon startup race.** If Ollama isn't running when `ccc index` starts, all chunks fail to embed. Add a graceful failure path with a clear error message.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
@@ -148,6 +147,7 @@ Out of scope:
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Full `ccc index` smoke is tracked as a known sandbox limitation in `implementation-summary.md`, not an open design question.

@@ -155,7 +155,6 @@ Create the nested workflow packet foundation that later phases can fill with goa
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -210,6 +209,7 @@ Create the nested workflow packet foundation that later phases can fill with goa
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Phase 001's local-checker versus system-spec-kit amendment decision remains pending. Execution must follow its final `mode-boundary.md` and create `scripts/` only for the local-checker choice (`specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/implementation-summary.md:52-56,85`).

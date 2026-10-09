@@ -48,6 +48,7 @@ Critical prerequisite: workflow fan-out/join capability must be proven before wa
 | **Predecessor** | `../002-semantic-coverage-graph/spec.md` |
 | **Successor** | `../004-offline-loop-optimizer/spec.md` |
 | **Handoff Criteria** | Phase 004 can replay wave runs as deterministic, segment-aware traces with stable board and merge artifacts. |
+<!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:phase-context -->
 **Phase Context**: This phase adds orchestrator-managed parallel batches on top of the coverage-graph substrate from Phase 002. The goal is scale without architectural drift: the workers stay LEAF, while orchestration logic handles segmentation, fan-out, pruning, promotion, and merge.
@@ -68,7 +69,6 @@ Critical prerequisite: workflow fan-out/join capability must be proven before wa
 - Segment JSONL contract and merge rules keyed by explicit identifiers rather than append order.
 - Verification for segment isolation, merge correctness, and default-path preservation.
 <!-- /ANCHOR:phase-context -->
-<!-- /ANCHOR:metadata -->
 
 ---
 

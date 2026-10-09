@@ -163,7 +163,6 @@ Acceptance scenarios:
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -216,6 +215,7 @@ Acceptance scenarios:
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 None for Phase 003. SQLite and advisor/cache rebuilds are intentionally handled in Phase 006.

@@ -163,7 +163,7 @@
     ],
     "causal_summary": "The sk-design family shares a backbone of register, context, proof, transport-boundary, token, procedure, and verification contracts, but this packet was absent from git and memory",
     "created_at": "2026-07-16T09:11:04.878Z",
-    "last_save_at": "2026-10-07T18:11:07.584Z",
+    "last_save_at": "2026-10-08T19:29:53.129Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -171,10 +171,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:26d6a68976e0f6e68f3043946d483f6798ebe95609b60265e7ebe9ab3f1c0e5c",
+    "source_fingerprint": "sha256:b4982d2b5d205e9dcea61e47980ce564cd0de06dfe762347e2f93911c6b9002b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b712da9b6ebf859ab4b8bdb04d25a25a9d0973b9a8a48fb20edf13cce4cdca08",
+      "spec.md": "1e218007243cfee326c8c1c5f319113354f18367c06b12871ab64f672afacfbc",
       "plan.md": "233c3a6d0abade34b94640b83120a6d76826e8c1625659fb7d6974bd039b5a27",
       "tasks.md": "79344e963823d38a23e149ab1d481f1af92e7335d739e7c84e2727681883255f"
     },

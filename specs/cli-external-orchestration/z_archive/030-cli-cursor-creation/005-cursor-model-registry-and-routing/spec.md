@@ -103,7 +103,6 @@ Add a Composer prompt-craft profile grounded in phase 001's confirmed facts plus
 - **Dependency — phase 003**: `cli-cursor/assets/prompt-quality-card.md` must exist (phase 003) for the sync gate to have something to check. Resolved — phase 003 landed first (committed `b5926f2a45`), so the gate had a real card to check from the start.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - **NFR-C01**: The Composer profile follows the exact structural shape of the existing `references/models/*.md` profiles — no bespoke section layout.
 
@@ -129,6 +128,7 @@ Add a Composer prompt-craft profile grounded in phase 001's confirmed facts plus
 - As a dispatcher, I want Composer to have a prompt-craft profile like every other model, so dispatching Cursor with Composer follows the same craft guidance as any other model dispatch.
 - As a maintainer, I want `cli-cursor`'s prompt-quality card covered by the same CI sync gate as its siblings, so it cannot silently drift from the canonical card.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 Both questions below are now resolved.
 - Composer's exact version slug: **Resolved** — `composer-2.5`/`composer-2.5-fast`, confirmed via `cursor-agent --list-models` on an authenticated Pro-tier account (2026-07-24), plus a live smoke dispatch returning `pong`. Context window and pricing remain TBD — not exposed by the CLI even authenticated.

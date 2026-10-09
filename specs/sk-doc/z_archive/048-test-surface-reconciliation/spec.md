@@ -131,7 +131,6 @@ A failing test means something is broken, and the suites say so honestly again.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -186,6 +185,7 @@ A failing test means something is broken, and the suites say so honestly again.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None outstanding. The one genuine fork, whether the documented-compliant validation fixtures

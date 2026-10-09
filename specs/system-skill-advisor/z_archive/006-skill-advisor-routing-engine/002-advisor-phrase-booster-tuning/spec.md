@@ -174,7 +174,6 @@ Migrate tokenizer-broken multi-word entries from `INTENT_BOOSTERS` to `PHRASE_IN
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -242,6 +241,7 @@ Migrate tokenizer-broken multi-word entries from `INTENT_BOOSTERS` to `PHRASE_IN
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **Q-A**: For the 24 misplaced multi-word entries, is the preferred disposition always "delete if duplicate, migrate with equivalent weight otherwise"? **Lean**: yes, with per-entry audit documented in delta report. If any entry has an intentionally lower weight (to act as a tiebreaker rather than a strong match), surface for discussion.

@@ -176,7 +176,7 @@
     ],
     "causal_summary": "The advisor scorer routed explicit OpenCode delegation prompts to `cli-opencode` through an inline pre-clamp band-aid in the explicit lane (`+0.9` cli-opencode / `-3.0` sk-code)",
     "created_at": "2026-07-06T19:37:38.596Z",
-    "last_save_at": "2026-10-07T18:16:08.726Z",
+    "last_save_at": "2026-10-08T20:05:24.852Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,10 +185,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7ce36c7e152dc009d51128f56b2e70b2a986926b1d91228079277eebbc7f31e",
+    "source_fingerprint": "sha256:20f7412c5aa940f66069c2eb52e426947cf4c6810ea8a9903f177dea855507a8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3487408e29d9036725dfe18ce13e05bab3b23768248ccbf21ec0910e72c14100",
+      "spec.md": "80a8637d27ffb9d10580325cc060f51403ac86ca8dd39429852eb1ce7646e59f",
       "plan.md": "8a1e342b4feb07b0e8cbb371f3afa5728cab2c3a3c913e83983005ccadfa24a3",
       "tasks.md": "7c0b5f328b49cd3c506ff2a4e594564cc86df662976c4b5571492c0164037b16",
       "implementation-summary.md": "686a9ba1fd223e6bd1045951c747e71f90caaccbaa91aacdb698424ae720c33d"

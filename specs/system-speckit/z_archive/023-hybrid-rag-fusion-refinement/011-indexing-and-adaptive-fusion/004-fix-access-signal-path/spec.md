@@ -157,7 +157,6 @@ Keep adaptive access signals aligned with the existing `trackAccess` guard so se
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -212,6 +211,7 @@ Keep adaptive access signals aligned with the existing `trackAccess` guard so se
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None at this phase. The shipped path is batched, query-aware, and verified against the current stage-2 implementation.

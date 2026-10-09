@@ -162,7 +162,6 @@ were adopted, and leave every derived surface consistent with its source.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -217,6 +216,7 @@ were adopted, and leave every derived surface consistent with its source.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which scoring surface judges the replies, given that a self-judged run is the same opinion twice?

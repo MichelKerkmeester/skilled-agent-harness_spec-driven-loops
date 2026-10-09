@@ -129,7 +129,6 @@ A lane cannot pass forced-depth validation on records the runner cannot use, and
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -178,6 +177,7 @@ A lane cannot pass forced-depth validation on records the runner cannot use, and
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

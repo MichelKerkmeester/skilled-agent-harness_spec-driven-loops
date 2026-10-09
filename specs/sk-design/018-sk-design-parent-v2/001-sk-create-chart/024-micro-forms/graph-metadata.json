@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Tremor, Vercel and LayerChart answer three reader questions our 26 forms do not: a trend at KPI size, a run of discrete statuses over time, and a ranked list where long names beat the bar",
     "created_at": "2026-09-08T18:22:03Z",
-    "last_save_at": "2026-10-07T15:56:34.573Z",
+    "last_save_at": "2026-10-08T19:29:44.823Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:edc17c38742a311b9a216839f3e7bf8f943522cbf8766166fbec60ac49a66e8a",
+    "source_fingerprint": "sha256:64f9ccdedfbcc94963d86f468245f4ed59679f6ac975ec2d0c3de43495dd47a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "16375afd11c48aabc84f369e8e90bd54060b8a844b302d9843386cec7663aa6c",
+      "spec.md": "670d6cd6b8aa5c9a33574a65b9b0cfc1a1feb608aff6cce033b29169bb2c1088",
       "plan.md": "6626878955cb5d6942e4650356f7bc106de380a8cde12d8ba994a446409d3f6a",
       "tasks.md": "45b2f2a7924a1f433a2d61feb9b0ee125db15cca7396f8ebb7be95534ca3f80d",
       "implementation-summary.md": "e966fcb15ca44610ad82c18e02a24662404861cbdcf7cfd1d3caf2061a9c797e"

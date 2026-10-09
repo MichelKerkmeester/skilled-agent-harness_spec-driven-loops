@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Code under `.skilled/skills/system-skill-advisor/runtime/` does not follow the sk-code-opencode comment and structure rules in `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md` §2 and §4",
     "created_at": "2026-09-30T05:43:45Z",
-    "last_save_at": "2026-10-07T15:57:10.558Z",
+    "last_save_at": "2026-10-08T19:30:38.169Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ad51229d69bf32a7cf8ba3279ad5a6fd7037830fad9610ff2a1836934177a2ff",
+    "source_fingerprint": "sha256:edd51533a71d2b302f82fb75896852e7bdd1259b359fcb16a79e94676e694f88",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e90bce93c2ead0b09903ac8fc8760976a09842b8629969e20018a65ab2db38db",
+      "spec.md": "c12ab3d8e205accc85b99caf252b82d0ec2d6fce189f8fe26e6fbafc5eb4502d",
       "plan.md": "7d8870d1e19003de7317dab1f4f936b806e62712253c3b9174652aa43582ab4e",
       "tasks.md": "01901a03a1a2007cd903fd872a79c4a627d37fef623cb56cbf508c3542190b32",
       "implementation-summary.md": "626634f154d5b145f52adf77e7a8a2aadf31654975681cab33d13db9642f55d7"

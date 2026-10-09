@@ -158,7 +158,6 @@ Overlapping sibling names flagged for review, not for automatic merge: `tests/fi
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -208,6 +207,7 @@ Overlapping sibling names flagged for review, not for automatic merge: `tests/fi
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None blocking. The dead-code rule (delete unless worth keeping and only broken) is applied in the merge table.

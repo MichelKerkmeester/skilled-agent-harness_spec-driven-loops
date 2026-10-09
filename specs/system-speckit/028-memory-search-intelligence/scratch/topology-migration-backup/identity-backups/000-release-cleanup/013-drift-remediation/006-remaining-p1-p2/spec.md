@@ -125,7 +125,6 @@ Every finding in this phase reaches a terminal state — fixed-and-verified or f
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -180,6 +179,7 @@ Every finding in this phase reaches a terminal state — fixed-and-verified or f
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

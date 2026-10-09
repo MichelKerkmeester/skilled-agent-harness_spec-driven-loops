@@ -168,7 +168,6 @@ Add telemetry-first runtime wiring so W3-W7 decisions are observable, durable, a
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -223,6 +222,7 @@ Add telemetry-first runtime wiring so W3-W7 decisions are observable, durable, a
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None blocking. Behavior promotion for W5/W6 remains a future measurement decision outside this packet.

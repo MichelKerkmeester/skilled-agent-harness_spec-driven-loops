@@ -143,7 +143,7 @@ change.
   snippet file (sequencing invariant, ADR-002).
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 None.
 <!-- /ANCHOR:questions -->

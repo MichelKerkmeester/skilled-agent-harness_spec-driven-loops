@@ -257,7 +257,6 @@ entries instead of leaving them orphaned forever.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -320,6 +319,7 @@ entries instead of leaving them orphaned forever.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 Both implementation-time decisions from planning were resolved during implementation (see plan.md and

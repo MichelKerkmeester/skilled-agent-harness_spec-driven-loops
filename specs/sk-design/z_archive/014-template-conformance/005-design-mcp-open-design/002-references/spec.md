@@ -137,7 +137,6 @@ Audit every file under `.opencode/skills/sk-design/design-mcp-open-design/refere
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -181,6 +180,7 @@ Audit every file under `.opencode/skills/sk-design/design-mcp-open-design/refere
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None — scope is fully bounded by the known-defects list above and the exhaustive-audit mandate.

@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Phases 004, 006, 009, 010, and 011 each captured live-fire evidence for the hooks category's events as part of their own build/wiring work, but no single session had independently re-executed the hooks category's playbook scenarios end-to-end afterward, purely as a verification exercise separate from any build",
     "created_at": "2026-07-24T17:05:15.833Z",
-    "last_save_at": "2026-10-07T18:11:40.280Z",
+    "last_save_at": "2026-10-08T19:29:18.730Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b21e53c8252adaf24479f70e9d3690f00f8aacdb76b3301eb74189e4bfd35883",
+    "source_fingerprint": "sha256:718c39eeae891769196cc1b54a618983d3ca66fcda957c31c611f8d81b0169da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "06122d9632ef76b15abbfbcc0d02ff6b52c96b0ae85aeee2cafdea1556ec1f6e",
+      "spec.md": "a41cdcf8a980226227a83c3e05fc4f44eef57156abca919f8e2cc80b7b7307a7",
       "plan.md": "91992e7e7b5512fdecdb19783bc8ebc11542d31d7c4781cbd90b3cf9250a4c79",
       "tasks.md": "7bf5e561d437399a31325a1f631c691fc6e65015a4d52f43498d3c0b477d77cb",
       "implementation-summary.md": "d3e44ab15025252b01d30f1f7c4fcad4dfa97a0d05d9456aacd18e3f536899b7"

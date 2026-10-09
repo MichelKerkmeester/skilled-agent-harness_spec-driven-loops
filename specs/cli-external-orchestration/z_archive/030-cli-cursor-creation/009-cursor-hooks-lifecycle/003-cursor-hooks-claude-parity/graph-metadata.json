@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Phase 010 registered exactly the 4 adapters ADR-001 originally scoped (`sessionStart`/`sessionEnd`/`preToolUse`/`beforeSubmitPrompt`), deliberately excluding everything else pending further review",
     "created_at": "2026-07-24T14:11:06.037Z",
-    "last_save_at": "2026-10-07T18:11:39.582Z",
+    "last_save_at": "2026-10-08T19:29:18.548Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51b79537d7196fccd74e7f8e2ddc6df21d9c4d4937b121c71481dc36b2d30f6c",
+    "source_fingerprint": "sha256:261f0e6cc6221efd9e07e6e5139947346dc8572749e4135e59775a6ff7101f21",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c2e89e85ff8e4062ebb8f99a96b263e420a4c535b6beeabb4956850089f642b4",
+      "spec.md": "583ac7b68790f2738059af46a1e9533d608a8fc21581b30b4caeb9cac5d904c4",
       "plan.md": "bff0aa16f3e603db2458d80ba99f1b97d80848329eee4dab47145bf70ffa2f57",
       "tasks.md": "21b8dff4cf7f58b3ab38086ccc5f116091ad8592d68175323fc73ff22f673372",
       "implementation-summary.md": "d692ae339e3428b1a6d0086d900a7f086404ec1473b44df8bdb34d621dcdf39a"

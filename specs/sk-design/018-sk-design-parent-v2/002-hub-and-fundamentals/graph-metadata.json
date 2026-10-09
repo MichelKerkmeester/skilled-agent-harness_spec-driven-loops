@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`sk-design` is a standalone skill: a 501-line `SKILL.md` at the root doing both the routing and the",
     "created_at": "2026-09-06T13:52:15Z",
-    "last_save_at": "2026-10-07T15:56:39.437Z",
+    "last_save_at": "2026-10-08T19:29:48.589Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e8fba8ea52f98e4af1b0504372ba24134a337674825a9553102838b963275091",
+    "source_fingerprint": "sha256:db795553930482b17f54dbbf60fd579d18174f051fa951b5b16e13958f659bcc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "162ea531e484490e383a167c70f478588d16b4980fd4dec0fcdedbb15b576516",
+      "spec.md": "8bbe661d4642dcf9efd19b0cd2e40d19007b53d8fede96c1edbb302b11f1ed93",
       "plan.md": "c2276f8e61e48399fa911371e801943ba2a4c730f68daee14ae2d0155ed26c1d",
       "tasks.md": "6e5fe42aad15ef22408a891cc242bd34aa2d9e7b61cc01304559e897486aaf85",
       "implementation-summary.md": "246c26d1552a4e3c977df9d8617c6758df0d49bbcfee8e804a995ce3333876d8"

@@ -129,6 +129,7 @@ The exemplars under `.opencode/skills/system-spec-kit/README.md`, `.opencode/ski
 
 - **Trigger**: The packet repair misstates the landed documentation changes or points to the wrong repo files.
 - **Procedure**: Revert the packet docs, then rebuild them from the committed sk-doc and cli-codex files.
+<!-- /ANCHOR:rollback -->
 
 <!-- ANCHOR:phase-deps -->
 ### L2: PHASE DEPENDENCIES
@@ -144,6 +145,5 @@ The repair effort is moderate because the target files already landed and this p
 ### L2: ENHANCED ROLLBACK
 If rollback is needed, keep the committed sk-doc and cli-codex file changes as the source of truth and roll back only the packet docs until they are rewritten accurately.
 <!-- /ANCHOR:enhanced-rollback -->
-<!-- /ANCHOR:rollback -->
 
 ---

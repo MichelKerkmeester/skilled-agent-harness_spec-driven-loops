@@ -138,7 +138,6 @@ Encode the three-mode contract as executable assertions so any single-mode edit 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -175,6 +174,7 @@ Encode the three-mode contract as executable assertions so any single-mode edit 
 - **US-001**: As a maintainer editing one mode's YAML, a broken session-id contract fails CI-grade tests immediately with the mode named. Acceptance: injected drift produces a naming failure.
 - **US-002**: As the program owner, the GPT-F004 recommendation is closed with executable enforcement, not documentation. Acceptance: suite exists and is green.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. The contract shape is fixed and live in all three YAMLs.

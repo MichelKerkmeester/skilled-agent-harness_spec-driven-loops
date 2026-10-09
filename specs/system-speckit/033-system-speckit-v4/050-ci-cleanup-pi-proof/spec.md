@@ -158,7 +158,6 @@ The Pi Gate-3 contract is proven in a live headless run and a live TUI run, and 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -213,6 +212,7 @@ The Pi Gate-3 contract is proven in a live headless run and a live TUI run, and 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open. The operator decisions of 2026-09-23 are recorded in implementation-summary.md.

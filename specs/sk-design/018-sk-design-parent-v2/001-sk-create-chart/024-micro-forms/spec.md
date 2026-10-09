@@ -108,7 +108,6 @@ Three new forms that pass every existing family and read as the corpus does, eac
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -163,6 +162,7 @@ Three new forms that pass every existing family and read as the corpus does, eac
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None until the build starts; phase 022 must land first.

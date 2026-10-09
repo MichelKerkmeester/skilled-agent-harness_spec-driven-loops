@@ -61,6 +61,7 @@ The `leaseHeldFromFile()` function probes lease liveness via `process.kill(pid, 
 | Any other throw | Unknown error | re-throw |
 
 skill-advisor's `mk-skill-advisor-launcher.cjs:171-180` has all 4 branches. spec-memory + code-index were missing the EPERM one.
+<!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:affected-surfaces -->
 ### Affected surfaces
@@ -70,7 +71,6 @@ skill-advisor's `mk-skill-advisor-launcher.cjs:171-180` has all 4 branches. spec
 
 No other call sites depend on these functions' error contracts beyond ESRCH/throw.
 <!-- /ANCHOR:affected-surfaces -->
-<!-- /ANCHOR:architecture -->
 
 ---
 

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Recent release-readiness work moved stress tests, added matrix runners, refreshed install docs, and extended database and hook surfaces",
     "created_at": "2026-05-18T08:15:52.983Z",
-    "last_save_at": "2026-09-07T16:09:54.372Z",
+    "last_save_at": "2026-10-08T19:30:41.407Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a34eb9300e4b224e6f26e731ed6b2636c5287f0c5dd3cb575925abc83ed0b62e",
+    "source_fingerprint": "sha256:1b6c3dbe8f0cdde1904c63edea6fad13839a5d1fd415e2cb48730d0cd78e53bb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "64d21e91f74f6ce05d1c247f972fc9ba49a631a62bbd9469a5b3ed70da6d773c",
-      "plan.md": "f2fd4f031324ae876101ec19e78ec5ed710679d427ece0f209b859cc2b24c27f",
-      "tasks.md": "80efb3e71bf0106086fc8696c6853de0b1db284b147dde33fbf9b69153fa1c36",
-      "implementation-summary.md": "bdcb84786c644702fc5a8503e1e334832e00f4eb68d01f59f4b1a85d6d94a2f4"
+      "spec.md": "f938f610b3f76e88707c5f25038d3cad0af22630c228668c3450b2492c74a368",
+      "plan.md": "c8a1e7dccd84407f13207b73b4d6b61cd7d0fee8b22562aba447f196c19fa673",
+      "tasks.md": "50d1a3353584a1daa3a0bda091f92616d014bdf357f050e041ce705e05c227c2",
+      "implementation-summary.md": "01c506b4f088defb918b0f665bad70ee9299f7287c900ef5566e8240a7fc74c9"
     },
     "last_active_child_id": null,
     "last_active_at": null

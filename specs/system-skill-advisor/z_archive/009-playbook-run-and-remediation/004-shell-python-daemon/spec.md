@@ -122,7 +122,6 @@ Run every remaining scenario, delegating where safe, and verify all CLI-produced
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -174,6 +173,7 @@ Run every remaining scenario, delegating where safe, and verify all CLI-produced
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - The PC-004 regression suite fails at 50% P0 in the main environment (P0-MEM-001, P0-UNC-001/002, P0-CMD-001/002/003). Is this the same root cause as the NC-003 corpus accuracy regression? Recorded for triage.

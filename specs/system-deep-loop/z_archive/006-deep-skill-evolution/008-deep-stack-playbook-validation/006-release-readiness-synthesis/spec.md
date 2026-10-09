@@ -122,7 +122,6 @@ Provide the two synthesis artifacts: `dispatch-runbook.md` (the canonical cross-
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -167,6 +166,7 @@ Provide the two synthesis artifacts: `dispatch-runbook.md` (the canonical cross-
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Release verdict thresholds: confirm "READY" requires zero FAIL AND all critical-path scenarios PASS across all five skills.

@@ -85,8 +85,8 @@ native on `origin/system-speckit/028` (all 46 files); `origin/skilled/v4` has on
 - Depends on ALL sibling phases + the migration; (a) and (b) parallelizable, (c) strictly last.
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 None. The successor `055-doc-design-hub-benchmark-extension` (sk-doc + sk-design parents) is named but
 explicitly deferred, not planned here.
 <!-- /ANCHOR:questions -->

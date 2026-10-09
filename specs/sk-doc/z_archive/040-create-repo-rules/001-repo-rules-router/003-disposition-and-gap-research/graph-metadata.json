@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Three things are unverified about the rule set",
     "created_at": "2026-08-31T05:37:23Z",
-    "last_save_at": "2026-10-07T18:14:22.413Z",
+    "last_save_at": "2026-10-08T19:30:14.126Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:11dce079ae85f2302381302981486f02cf8872a7f53a7d77804ac0542e673429",
+    "source_fingerprint": "sha256:3b05722ef881a6cc324ebaf69e3f9d35674786653181f165441672e233de31d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2b0386f22eb1f42c187c75555481749aad68f190bdc3b5f61cc544cc51e123a5",
+      "spec.md": "225f61b816631015c3ce95186b0ad3f0a1626e0c8795d0c3c371dad4f10ca5bb",
       "plan.md": "7f60d935b316d11ea857360ef96a392599df2a1d440f30d3d7f11ce51c6f4b1b",
       "tasks.md": "3c5e1ab54f47a6eabed3f3f5c3d7c580bdfef55d8d74cca3fdddad2f328526f3",
       "implementation-summary.md": "24d50d7db2c8bd2d68bf1ecbef3dcc10c181c124b1eb571f82733ad5626b5ff0",

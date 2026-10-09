@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 004 cannot choose what `.opencode/` becomes until nine runtime and git behaviors are measured, and the two research phases left every one of them open",
     "created_at": "2026-09-16T17:54:06Z",
-    "last_save_at": "2026-10-07T15:57:29.143Z",
+    "last_save_at": "2026-10-08T19:31:28.591Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f89d9e1fa0d96c35a8431b050ac76cd67d41319ff1a26dbce8bbf4f956a30a34",
+    "source_fingerprint": "sha256:ab8674045c3c15b2b64cfcf65deb87a05411b24a65114394e1e0e1b481d43a12",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "24038cf0165d6e2b00908092d3f07038441254e225729ab32c84c9ba8bc9f62f",
+      "spec.md": "8fc02545536e781a2f7c51b90bfbc07591bca585b9fff3e58f79539f37d3af70",
       "plan.md": "2ff366ec5a28c871c14ee76fcec9e6d6ebd02ee66cc5b352f267a42890c8987d",
       "tasks.md": "b3416f23600c894119047cbfd7c3b03618ed26650a07e755102f7fa2646bb660",
       "implementation-summary.md": "49be5a20578af72e883c9608c893a513c67137f704596c7009c5eb9cb15bfb75"

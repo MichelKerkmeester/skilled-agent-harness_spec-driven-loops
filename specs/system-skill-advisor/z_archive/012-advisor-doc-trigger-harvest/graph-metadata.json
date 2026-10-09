@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The frontmatter-benefit investigation (`027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation`) proved with code evidence that the detailed frontmatter block (`triggerphrases`, `importancetier`, `contextType`) carried by 103 of 369 skill reference/asset docs has zero runtime consumers: Spec Kit Memory's index gate (`memory-parser.ts` `isIndexablePath`) admits only spec documents and constitutional memories; the skill advisor compiles only each skill's root `graph-metadata.json` (`skillgraphcompiler.py`, `indexSkillMetadata`,",
     "created_at": "2026-06-11T07:50:07Z",
-    "last_save_at": "2026-10-07T18:16:01.366Z",
+    "last_save_at": "2026-10-08T19:30:39.675Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:72827a7314dc7e00662cd9b3462f3e1eb3d7cfb83f1fe01163f6dbc5b69e9f93",
+    "source_fingerprint": "sha256:b7b2066a06409c817058a1fbbb701bd69fdaa70282e785601195adda955ed0ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "378e3b1fb100224f1e7719da255164b18375228147efbb5c31c828b2cbb3cbd2",
+      "spec.md": "7b0e72b9096d4b3ed6d9aff8907f3d2ae5070c1f9c3bd3708b6472baffdcd8ea",
       "plan.md": "c5c0d0dd3a616dfe2efb02477ac39b621990232ea31042b6cae8aa5a2f817356",
       "tasks.md": "87eef88395a84b97c3990d9b46a93bc50bbf7e254fc1a276aa81bfaf865ff723",
       "implementation-summary.md": "07ddd11d136c989078a684f526010a7a6573309cdfa7ce835b11345f38cc5d4d",

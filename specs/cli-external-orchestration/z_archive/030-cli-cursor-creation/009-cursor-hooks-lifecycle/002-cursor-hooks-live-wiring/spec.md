@@ -108,7 +108,6 @@ Create the committed, project-level `.cursor/hooks.json` ADR-001 always intended
 - **`preToolUse` deny path remains inert.** Wiring `spec-gate-enforce.mjs` does not by itself make Gate-3 enforcement deny anything: `evaluateMutation()` only reaches `deny` when the gate state is `'open'`, and nothing in this phase's scope opens it (`session-start.ts` only primes context; only the unwired `spec-gate-prebind.mjs` opens the gate). This is a known, documented limitation, not a defect in this phase's own work.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - **NFR-P01**: Hook command paths must remain portable across clones/machines — no absolute, machine-specific paths in the committed file.
 
@@ -135,6 +134,7 @@ Create the committed, project-level `.cursor/hooks.json` ADR-001 always intended
 - As the operator, I want the hook adapters this repo built to actually run during real Cursor sessions in this repo, not just in an isolated test sandbox, so the "confirmed fires" claims mean what they say.
 - As a maintainer, I want every doc that claims the registration file doesn't exist corrected the moment it does, so the docs never trail the actual repo state.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 All questions below are resolved.
 - Commit or gitignore the file? **Resolved: commit.** ADR-001's original decision, now viable because relative paths (verified portable) remove the machine-specific-absolute-path objection that would have forced a gitignored, local-only file.

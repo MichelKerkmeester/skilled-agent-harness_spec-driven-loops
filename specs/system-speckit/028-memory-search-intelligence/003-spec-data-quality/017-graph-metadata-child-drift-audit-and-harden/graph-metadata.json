@@ -45,8 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/specs/descriptions.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Five Checks Evaluation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A phase parent's `graph-metadata.json` `childrenids` array is populated only when `backfill-graph-metadata.js` is explicitly re-run against that parent",
     "created_at": "2026-07-06T06:03:21Z",
-    "last_save_at": "2026-09-07T16:18:34.349Z",
+    "last_save_at": "2026-10-08T19:31:09.063Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7564442421acef72ea1ca9589568714a04182e6d2ac7c6869fac0788e7432d45",
+    "source_fingerprint": "sha256:ea4b1553eff3938007331a44ce0ee459d3dbbe74ff6e1366626e4e995e4496e7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "35abf1f866248f551b1fe0f63197ad9aefbff595c199b00513694a2178b1c8a5",
+      "spec.md": "b5a95c26cae2acd9c0e0db76fef7fae51df8ed8b323a0a8a6b10ed1add7e5256",
       "plan.md": "633fca85743a4e0386fd09693b6d04ab66f94cc8cf14d0001401e3d6f7222102",
       "tasks.md": "0b63470a7f481d84e5dfc73771e0c604b52f74a047e166dbdce333b7c03a0543",
       "decision-record.md": "00fe25a89f864d7dcccf0e962efd78ee1fa2b6a97f53705a5ebe2b983912d85c",

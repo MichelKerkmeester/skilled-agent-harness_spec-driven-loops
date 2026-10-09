@@ -133,7 +133,6 @@ A goal document that has drifted out of shape says so, before an operator discov
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -188,6 +187,7 @@ A goal document that has drifted out of shape says so, before an operator discov
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - The measured template boilerplate floor is 1276 characters at phase level, which leaves roughly 724 characters of

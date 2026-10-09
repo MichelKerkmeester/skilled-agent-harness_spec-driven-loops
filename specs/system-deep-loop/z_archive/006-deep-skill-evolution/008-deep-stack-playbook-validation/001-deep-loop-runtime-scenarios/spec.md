@@ -125,7 +125,6 @@ Execute all 22 `deep-loop-runtime` scenarios via `cli-devin` SWE-1.6 (determinis
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -171,6 +170,7 @@ Execute all 22 `deep-loop-runtime` scenarios via `cli-devin` SWE-1.6 (determinis
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Batch granularity: one dispatch per category (default) vs combining the small single-scenario categories (02/03/05).

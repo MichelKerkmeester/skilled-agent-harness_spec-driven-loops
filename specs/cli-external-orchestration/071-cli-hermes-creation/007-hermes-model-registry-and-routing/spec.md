@@ -143,7 +143,6 @@ Every Hermes dispatch from this repo uses a rostered model with a known effort b
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -209,6 +208,7 @@ Every Hermes dispatch from this repo uses a rostered model with a known effort b
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None open.

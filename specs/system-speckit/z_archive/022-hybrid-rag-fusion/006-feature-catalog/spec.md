@@ -112,6 +112,7 @@ Remediation backlog: 8 P0 critical, 15 P1 required, 5 P2 recommended. Full detai
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
+<!-- /ANCHOR:problem -->
 <!-- ANCHOR:problem-2 -->
 
 ### Problem Statement
@@ -120,13 +121,13 @@ This packet still preserves important historical audit evidence, but downstream 
 ### Purpose
 Preserve the March 8 snapshot as historical record while making the live wrapper denominator explicit so other packets stop treating older milestone counts as current truth.
 <!-- /ANCHOR:problem-2 -->
-<!-- /ANCHOR:problem -->
 
 
 ---
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
+<!-- /ANCHOR:scope -->
 <!-- ANCHOR:scope-2 -->
 
 ### In Scope
@@ -158,13 +159,13 @@ Preserve the March 8 snapshot as historical record while making the live wrapper
 | `scratch/remediation-manifest.md` | Create | Synthesis output |
 | `scratch/analysis-summary.md` | Create | Statistics |
 <!-- /ANCHOR:scope-2 -->
-<!-- /ANCHOR:scope -->
 
 
 ---
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
+<!-- /ANCHOR:requirements -->
 <!-- ANCHOR:requirements-2 -->
 
 ### P0 - Blockers (MUST complete)
@@ -190,6 +191,7 @@ Preserve the March 8 snapshot as historical record while making the live wrapper
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
+<!-- /ANCHOR:success-criteria -->
 <!-- ANCHOR:success-criteria-2 -->
 
 - **SC-001**: All 180 historical-snapshot snippets (2026-03-08) have been read and verified against source code
@@ -198,13 +200,13 @@ Preserve the March 8 snapshot as historical record while making the live wrapper
 - **SC-004**: All file paths in existing snippets resolve to real files on disk
 - **SC-005**: All 14 omitted current snippets (2026-03-16 addendum) are explicitly classified with remediation status
 <!-- /ANCHOR:success-criteria-2 -->
-<!-- /ANCHOR:success-criteria -->
 
 
 ---
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
+<!-- /ANCHOR:risks -->
 <!-- ANCHOR:risks-2 -->
 
 | Type | Item | Impact | Mitigation |
@@ -214,7 +216,6 @@ Preserve the March 8 snapshot as historical record while making the live wrapper
 | Risk | Source files moved since last annotation | False invalid paths | Agents report both invalid and new paths |
 | Risk | Context window overflow in agents | Incomplete verification | Partition into manageable chunks per agent |
 <!-- /ANCHOR:risks-2 -->
-<!-- /ANCHOR:risks -->
 
 
 ---
@@ -236,7 +237,6 @@ Preserve the March 8 snapshot as historical record while making the live wrapper
 - **NFR-X02**: Remediation manifest covers every finding from both streams
 
 <!-- /ANCHOR:requirements-3 -->
-<!-- /ANCHOR:requirements -->
 
 ---
 
@@ -317,6 +317,7 @@ Preserve the March 8 snapshot as historical record while making the live wrapper
 
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
+<!-- /ANCHOR:questions -->
 <!-- ANCHOR:questions-2 -->
 
 - None currently. Historical (2026-03-08) and addendum (2026-03-16) boundaries are now explicit.
@@ -524,4 +525,3 @@ Analysis required to build the full file list. The scope covers all `.ts` files 
 | **Parent Spec** | ../spec.md |
 | **Previous Phase** | ../005-architecture-audit/spec.md |
 | **Next Phase** | ../007-code-audit-per-feature-catalog/spec.md |
-<!-- /ANCHOR:questions -->

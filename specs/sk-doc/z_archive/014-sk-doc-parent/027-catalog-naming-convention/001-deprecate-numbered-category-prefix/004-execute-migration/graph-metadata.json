@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Phase 004. Run the Phase 003 migration tooling against the live tree, fanned out by skill family so each batch validates independently: rename all 390 numbered category folders to their bare slug, rewrite every in-scope reference (115 frontmatter category values, ~1,052 index-table rows, ~5,298 nav/cross-ref links, the two SKILL.md router-prefix blocks), and leave the changelog/history surface untouched. Path-scoped commits inside the isolated worktree. Gated on Phase 002's tolerant classifier landing first (ADR-002).",
     "created_at": "2026-07-10T18:51:13.032Z",
-    "last_save_at": "2026-10-07T18:12:31.748Z",
+    "last_save_at": "2026-10-08T20:04:29.513Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +196,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0624ccbf8f6a04c3f67f813e9ad9b3e581483caa66770b7a6ab48c40d4ce98fe",
+    "source_fingerprint": "sha256:d4acd43b8daeadf46828d3f2b957f37b6749f0a19624c21ad76d0c9afc5e8c57",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3eae07e33c30e4b2c56567711c1919b5a345b63e7d39b1822689ccc809933485",
+      "spec.md": "b5015c38e82c51617c5f170801434bfbf6218cf7e5790b2030f3f603aee6f16d",
       "plan.md": "008ca18dc77068b140dd3cd61e68691ae30f6a64fd03d4e761100d24553d314f",
       "tasks.md": "1174b251b5d770e8e56976c0ba9960ac5f913751729c48ff7e7f5520f8a6f3aa",
       "implementation-summary.md": "57d814d5604db7180c2bc13b575a7689d586f5cb434244d2df19d516d27723f2"

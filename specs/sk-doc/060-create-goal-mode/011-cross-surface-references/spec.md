@@ -146,7 +146,6 @@ Name `sk-create-goal` everywhere its siblings are named and bring every projecti
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -193,6 +192,7 @@ Name `sk-create-goal` everywhere its siblings are named and bring every projecti
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator chose the current branch in the main checkout on 2026-09-26.

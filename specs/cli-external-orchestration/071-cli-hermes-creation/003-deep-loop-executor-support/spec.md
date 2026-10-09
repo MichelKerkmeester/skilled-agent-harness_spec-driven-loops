@@ -150,7 +150,6 @@ A Hermes lineage builds, runs under the same containment and recursion guards as
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -216,6 +215,7 @@ A Hermes lineage builds, runs under the same containment and recursion guards as
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Does `chat -Q` emit any parseable stderr marker on run-budget expiry? Phase 002 records it.

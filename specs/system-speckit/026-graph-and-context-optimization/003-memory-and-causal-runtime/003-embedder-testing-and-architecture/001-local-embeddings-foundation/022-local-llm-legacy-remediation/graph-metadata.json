@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Sibling packet 021 produced a 10-iter `/deep:start-review-loop:auto` finding tray with verdict FAIL; hasAdvisories=true (P0=2 P1=83 P2=31)",
     "created_at": "2026-05-13T14:30:00Z",
-    "last_save_at": "2026-10-07T19:54:08.439Z",
+    "last_save_at": "2026-10-08T19:30:48.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:00:00Z",
     "source_docs": [
@@ -212,10 +212,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e10c8dbb72d448b0b5ddc32367ecea0f6590a52e6f9626b40c795cf8fa83744",
+    "source_fingerprint": "sha256:62579d96962a078d0fb55c43e29a849428158cae9925dca16dba0d0023d7ed7e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e83b1aa17cb23afc8e5e49cb467c893101bc02121580fb6d2e62a10aa9fcaa7a",
+      "spec.md": "40498e89650802c5451e1a5b9b910f73197d5f8a4fa71ef1038d231a9dd5e8f2",
       "plan.md": "16c90c04af0e9693b5127cde74f410ef2d5d16abfb0965a748ef7079d717d303",
       "tasks.md": "bfb1023fdd83a53269a5fa3cfcc04c2c18a1c2e8a8cc7078c085f471654bbd17",
       "implementation-summary.md": "743ef4c31ad5e3097753813a6f9e23b94a333d79d66b02f572f297561bfca20c"

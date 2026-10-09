@@ -191,7 +191,7 @@
     ],
     "causal_summary": "`stacked-area` carries a legend and a dim but no tooltip",
     "created_at": "2026-09-05T16:03:57Z",
-    "last_save_at": "2026-10-07T15:56:27.771Z",
+    "last_save_at": "2026-10-08T19:29:41.918Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a524e3c37e62c2e3f52866e274ac9818a7687d420583c0cdde598022cef9bdd7",
+    "source_fingerprint": "sha256:9919bd7acd14b082f02cea7bf116d736ad1eb725b41e302f909fc93161015040",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3b8cfcc9d8cce308066566a8c803360f36cd081a41621584e3a35db32f824393",
+      "spec.md": "f9f79ab0d25a6b4ee309fd7c56a478e1630e74e8741a9f3241b373cc3fa51274",
       "plan.md": "c91bf6e0af1377fbcc4b7ce605374b8f3c46d2b447b27fcc209d6a7b2f7a2ca6",
       "tasks.md": "583fafd9e9e25e0ab7e478c21d9ad81934f7a8a172dee94447456aa5a5f49b28",
       "implementation-summary.md": "2b575166acf9c48e6d6c3a8d1819f26900098fecc16eb4fb70b3ec06d0a985d1"

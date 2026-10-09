@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The 2026-06-27 drift audit converged 44 findings in this phase covering agent MCP grants across .claude/.opencode/.codex and command allowed-tools versus workflow needs",
     "created_at": "2026-06-27T17:00:00Z",
-    "last_save_at": "2026-08-30T15:39:34.611Z",
+    "last_save_at": "2026-10-08T19:31:00.183Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-06-27T17:00:00Z",
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2474ccbc02726045506e570f0bce80a0c805a314bb6d0a8d9f89853c1a291699",
+    "source_fingerprint": "sha256:36c89e91585a395d8ca31b86b9fefa9280792e97e12c8283e334502a3b7ce876",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f0740022ab185919dfdf1afce1a32305de12a25a66871c907adba0e93a519a8c",
+      "spec.md": "fc22a041d46be1d5265e1be32e1152e89a35402a0e7c55d6f97334246ed9a9a7",
       "plan.md": "99ab3e8f38c37ed6ac32997e1487fa33d87e2d49c5fba0f280a90089c4429950",
       "tasks.md": "a6b704f108bfc78349c4b77d3f9cc898c337b9c2f29a0f79b3a9da0ec678df91",
       "implementation-summary.md": "10516221f425877de38b3cb277c709c9b7e454a74f0383553b57b213fae7dc6a"

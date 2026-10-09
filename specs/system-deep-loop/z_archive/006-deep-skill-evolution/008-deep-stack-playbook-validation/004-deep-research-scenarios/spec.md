@@ -125,7 +125,6 @@ Execute all 41 `deep-research` scenarios via `cli-devin` SWE-1.6 (deterministic 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -171,6 +170,7 @@ Execute all 41 `deep-research` scenarios via `cli-devin` SWE-1.6 (deterministic 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Batch granularity for 04--convergence-and-recovery: single dispatch (default) vs sub-split into two dispatches if token pressure is high.

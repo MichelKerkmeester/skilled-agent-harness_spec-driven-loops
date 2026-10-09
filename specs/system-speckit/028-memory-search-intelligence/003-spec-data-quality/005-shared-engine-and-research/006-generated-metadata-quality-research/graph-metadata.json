@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The spec-kit generators that produce `description.json` and `graph-metadata.json` over-reach and churn",
     "created_at": "2026-06-27T17:15:40.899Z",
-    "last_save_at": "2026-09-07T16:18:29.570Z",
+    "last_save_at": "2026-10-08T19:31:07.072Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9ae9f26e19b1e507f69ee8c7037dbe532b447608c435235ff0b1a1f987fc5828",
+    "source_fingerprint": "sha256:3d2f98cb131c166b5f8cb536086b2740e736db584f2943f29f5b7a6d1de487d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "be7992c617f44609116f227f197da93f81b86e2574e8b2632d945159ce847be3",
+      "spec.md": "6c2cb1a85cfe1dd73c3d8dbd4efef84f6ab9e01b2830aa497da6f7a558a9a60f",
       "plan.md": "1fa06613f773905ffe9da2dc8625515b109b2d96a2ae31eb22b4d81d73b09308",
       "tasks.md": "647454f2a37974df3e65ad0d84ab69de691a5e89ce079652d070a74458d98fb0",
       "implementation-summary.md": "fc7b53a0f98154ae12e20c872fc2c8d871948fd58fcf67ce19d6f19325142a48",

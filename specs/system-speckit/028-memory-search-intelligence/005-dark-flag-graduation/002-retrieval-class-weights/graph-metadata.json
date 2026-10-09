@@ -47,10 +47,7 @@
       "implementation-summary.md",
       "scripts/retrieval-class-routing-benchmark.mjs",
       "results/metrics.json",
-      "benchmark-results.md",
-      "lib/search/query-router.ts",
-      "lib/search/retrieval-class-classifier.ts",
-      "lib/search/search-flags.ts"
+      "benchmark-results.md"
     ],
     "entities": [
       {
@@ -93,24 +90,6 @@
         "name": "benchmark-results.md",
         "kind": "doc",
         "path": "benchmark-results.md",
-        "source": "derived"
-      },
-      {
-        "name": "query-router.ts",
-        "kind": "code",
-        "path": "lib/search/query-router.ts",
-        "source": "derived"
-      },
-      {
-        "name": "retrieval-class-classifier.ts",
-        "kind": "code",
-        "path": "lib/search/retrieval-class-classifier.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "lib/search/search-flags.ts",
         "source": "derived"
       },
       {
@@ -196,11 +175,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "only",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`SPECKITRETRIEVALCLASSROUTING` is built, default-off, and never measured against the real corpus on the production path",
     "created_at": "2026-06-24T04:58:22.472Z",
-    "last_save_at": "2026-08-30T15:39:36.139Z",
+    "last_save_at": "2026-10-08T19:31:09.621Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +206,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:750fcb4da53d0978396767df7065c2f9308912487ebc5f1bbf6d4e06e8f85b6f",
+    "source_fingerprint": "sha256:36d3427befbf603562070a78aeb46a92a40a423bf1cdea7426e95b456692a221",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1bbc1f6aa30d0fc5340427d9ffc626c9075fb28da237bba802f849e6827d985c",
+      "spec.md": "7f0d902f782a260a49a5832fcee59483e9823142c46b639d47d8beb2eabd50fc",
       "plan.md": "2aad12c47e56abf895712c7f957313c861592f1d03efd37b16d31e9260a07a4d",
       "tasks.md": "b4af1609bde278d055b7e958f3f67f4359e8182b674ecb75fd91f9b0e7fd071d",
       "implementation-summary.md": "b29339ec8f775bd6de54064c88273a3c123426b5224adf8ae494054d8e307494"

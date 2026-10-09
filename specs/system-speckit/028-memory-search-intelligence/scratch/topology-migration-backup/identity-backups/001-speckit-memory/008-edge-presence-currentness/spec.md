@@ -164,7 +164,6 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 - No retention-TTL coupling and no physical deletion introduced by any candidate.
@@ -209,6 +208,7 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 - As a user, a temporal NL query filters by the time range I named instead of treating recency as a soft boost.
 - As a governance maintainer, `unforget(id)` is a provably safe bare-key removal under the disjointness invariant.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 1. Does C3-C "Current" read alongside `active_memory_projection` (M) or replace it with causal edge-presence reads (L, ~12 JOIN sites / 2 writers)? Default to alongside, replacement is a separate decision.

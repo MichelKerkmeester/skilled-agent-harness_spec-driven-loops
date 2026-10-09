@@ -43,6 +43,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 Two live-tier scorer corrections in `score-skill-benchmark.cjs`: fold the model's stated `assets` channel into `resourceRecall` (credit correct asset routing), and score live `d1-intra` on resource recall alone (the live prompt never asks the intent key, so the intent term was an always-zero halving). Router mode is untouched; D3 over-routing stays references-only.
+<!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
@@ -63,7 +64,6 @@ Two live-tier scorer corrections in `score-skill-benchmark.cjs`: fold the model'
 
 The two 0.00 cases (code-review, code-quality — all-asset gold) confirm the root cause: correct asset routing was landing in a channel `resourceRecall` ignored.
 <!-- /ANCHOR:how-delivered -->
-<!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions

@@ -157,7 +157,6 @@ Make advisor routing discover the `cli-external-orchestration` parent and resolv
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 - **Reliability**: routing projection must be reproducibly fresh.
@@ -187,6 +186,7 @@ Make advisor routing discover the `cli-external-orchestration` parent and resolv
 
 **As a** CLI dispatcher, **I want** `cli-opencode` to resolve through `cli-external-orchestration`, **so that** executor selection remains deterministic after the hub move.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None for this completed phase.

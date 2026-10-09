@@ -121,7 +121,6 @@ Explore runs on Haiku by default and the `context` and `markdown` agents are pin
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -176,6 +175,7 @@ Explore runs on Haiku by default and the `context` and `markdown` agents are pin
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Do Cursor and Devin accept `model: haiku` in an agent file? Unanswered until each runtime runs the `context` agent.

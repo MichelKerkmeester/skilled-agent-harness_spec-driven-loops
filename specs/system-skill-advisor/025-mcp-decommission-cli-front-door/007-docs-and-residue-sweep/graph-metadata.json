@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Documentation that describes a removed transport is worse than no documentation: it sends a reader to a surface that will not answer",
     "created_at": "2026-09-11T06:49:04Z",
-    "last_save_at": "2026-10-07T15:57:06.516Z",
+    "last_save_at": "2026-10-08T19:30:36.666Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b0cad499122de4bca6b96abaa749097d14effde9c477512188c7924a92360081",
+    "source_fingerprint": "sha256:5ef51f223dd3a2b471b8b9d279f0d0a28b4de1ebca9fb4169b89004846caadec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cce3ea34290fb48bc6b867143931222e97f11bc2ec04aa08d72642efaa56e3a5",
+      "spec.md": "ed06b2a54da59e57e3a3200eb7c35d9c17c6c8bb361d249cf04ac0df1f982c45",
       "plan.md": "61508f28d957ec01259eba5884543be6fc83f20cb5385ebea7c4310e5010c402",
       "tasks.md": "321e1bf51232e146c78df044c0376e31fa8ac6dbdc77f96426f3a19197a30f56",
       "implementation-summary.md": "911e4736e0f7e09676f166dac2cf9eccc15e7e04700a29de91bca789b9972b54"

@@ -127,7 +127,6 @@ Widen the deep-loop runtime's typed executor union to 5 members, restore `cli-de
 - **`KNOWN_EXECUTORS` parity is only partial by design**: `dispatch-model.cjs` and `profile-validator.cjs` are already mutually inconsistent for kinds other than `cli-devin` before this phase. Mitigation: REQ-009 adds parity for the new kind only and documents the pre-existing gap rather than silently "fixing" it as an unplanned scope expansion.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - Reliability: an absent Devin binary fails before spawn, matching `cli-codex`'s `isCodexBinaryAvailable` preflight precedent exactly — no retries burn wall-clock time against an executor that can never succeed.
 - Consistency: the `cli-devin` addition is a widening-only change — it must not alter the runtime type shape (`ExecutorKind`) or default behavior observed by any of the other 4 existing kinds.
@@ -157,6 +156,7 @@ Widen the deep-loop runtime's typed executor union to 5 members, restore `cli-de
 - As a deep-loop operator, I want to declare `kind: "cli-devin"` in a fan-out lineage and have it dispatch a real, non-interactive Devin invocation, the same way I already can for `cli-codex`/`cli-claude-code`/`cli-opencode`.
 - As a deep-loop operator, I want a lineage requesting `cli-devin` to fail immediately and clearly when `devin` isn't installed, not hang or crash with an opaque subprocess error.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 - Devin's session-id environment variable is unconfirmed (not found in the fetched `docs.devin.ai` pages during phase 001) — verify via `devin --help` or a live session's environment at implementation time; do not invent a name.
 - The exact mapping from the runtime's 3-value `SandboxMode` enum to Devin's boolean `--sandbox` flag is not yet decided — a concrete decision is required before REQ-006 can be implemented byte-for-byte.

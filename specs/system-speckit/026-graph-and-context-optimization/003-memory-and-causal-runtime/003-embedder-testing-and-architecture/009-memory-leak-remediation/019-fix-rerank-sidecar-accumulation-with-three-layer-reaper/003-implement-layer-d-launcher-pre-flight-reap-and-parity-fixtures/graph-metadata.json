@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The detached rerank sidecar launchers could reuse or spawn sidecars without first removing rows whose registered launcher owners were all dead",
     "created_at": "2026-05-23T07:46:28Z",
-    "last_save_at": "2026-10-07T19:59:48.965Z",
+    "last_save_at": "2026-10-08T20:54:06.801Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2f9ff474ac2f49aa97468a52b64d5c21b133740684188370f797f47171b0e42f",
+    "source_fingerprint": "sha256:2c9d6326121a7fff65a2df90fb566de3bc758d07870a040e5bf259af8c55e49f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f14dee7014b38c3e65ce116990b7ab0d2c01c2406e59a465f97cf4eb564dc181",
+      "spec.md": "c73bbbf1888b1c7a24903b654ba54cc7ddeecffffc4ce70b95cb57f179977bfd",
       "plan.md": "2aa30148baf5c3742373bbec95f39ad9978463a13d0143d9bf3f060ac2fdae5e",
       "tasks.md": "5adc2da57499038b7d9f320dc733b932113ac49cfeaf63dac3c6e6c4b10bb30b",
       "decision-record.md": "6ef4296b045dff6788d350c216574685c85e7f12e982c25b2cf4acea0d449fdc",

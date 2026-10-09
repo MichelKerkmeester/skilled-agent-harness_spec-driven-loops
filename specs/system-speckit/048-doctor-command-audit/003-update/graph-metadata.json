@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`/doctor:update` was a database rebuild",
     "created_at": "2026-10-02T16:10:13Z",
-    "last_save_at": "2026-10-07T15:57:40.934Z",
+    "last_save_at": "2026-10-08T19:31:33.496Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,10 +223,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:09e6f2511cef2051a28865705b4a6a008b09aa429a3e4f39a71cb3e979ad4089",
+    "source_fingerprint": "sha256:1a8f4cbf751c7903ddb54b7fb1d6d82f9e9a6fbfb224729faa52e9136e99c726",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "68c58bd6a488146e10c3d87168a0a0a8f804119878fa11145b4287f857b9f055",
+      "spec.md": "e9601624683a8de066ae26051f0ef485af348b09c70fab817c34aede5392fe24",
       "plan.md": "55bf2780f334caa6bd8cc37e2996b852fe2afff1760fc37e1c900106ab53864e",
       "tasks.md": "8a50d68b54c2f1019a3c1b57dcbefe8fdeedb22e5a36a5fed83a3926a45945c2",
       "decision-record.md": "d15f90ded7024ef2560253bbdfbfd78798068b80ef58fd3296714cb4e67ffaa1",

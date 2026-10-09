@@ -129,7 +129,6 @@ The doctor tooling stops treating a decommissioned server as installable, and `s
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -184,6 +183,7 @@ The doctor tooling stops treating a decommissioned server as installable, and `s
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does `deep-ai-council` Depth-1 dispatch need a replacement inline mechanism, or should Depth 1 be retired along with the server it depends on? Raised as a finding; not decided here.

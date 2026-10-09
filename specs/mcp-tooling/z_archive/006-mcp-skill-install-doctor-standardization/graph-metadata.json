@@ -45,7 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "scripts/doctor.sh",
       ".opencode/commands/doctor/mcp.md"
     ],
     "entities": [
@@ -71,12 +70,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor.sh",
-        "kind": "script",
-        "path": "scripts/doctor.sh",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five mcp- skills had drifted out of a shared shape",
     "created_at": "2026-06-15T05:45:12Z",
-    "last_save_at": "2026-08-30T15:39:10.726Z",
+    "last_save_at": "2026-10-08T19:29:27.777Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:59b84816614ff9ce9b42e2ac912a6518e095b64faa7591e291549742efeeee4a",
+    "source_fingerprint": "sha256:c445a8d9c9700b7bb9e718293c7c13a677b2ae38ece635736c69cda7b2b3bea4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4c819df7ff685a7dd4e5d8cb2fe04620f1b40c700763482e76634cd8447846db",
+      "spec.md": "f5f18a3eb46adf880d306f2de5a678ed6b71c0b55ae9a0d1c06fdea543e4b9d7",
       "plan.md": "0fd4bd9d996351104ca4dd6ef6f2f1e0d42159ef471f79847ed04e41d05e7499",
       "tasks.md": "c1630a1f8284b7fcc562db21d5d1462e501758710548323392960d00ff957089",
       "implementation-summary.md": "3aedb8d3803fcf25193a1834fb91a3c12f4ba540a0d0ad7e043910cf71e23406"

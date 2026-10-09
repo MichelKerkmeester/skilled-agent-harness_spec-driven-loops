@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The research left the workflow split and token-insight surfaces as later work because they depend on already-stable measurement, continuity, and publication contracts",
     "created_at": "2026-04-12T09:02:53.441Z",
-    "last_save_at": "2026-08-30T15:39:39.841Z",
+    "last_save_at": "2026-10-08T19:31:38.764Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:87d98185440e337271a8eb2cc5055ba8e630fd4405c9b172189e8ea2055d2c23",
+    "source_fingerprint": "sha256:98bc4c53fe8f3c160016d7ca60e3efb75c502fcb4cc55d517b37870f7efce0b7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "90c47061263400dfbbb8de6e29a238ea82f0306b65de5607390974db30c6b19f",
+      "spec.md": "f28a5a4d42967c2b0d347710120e27e4da695b553232f3cb8fd77f72eba90a92",
       "plan.md": "483b08269399123782bc6d3a680a072182c0a14a2d394f8284a4a875bf4080e3",
       "tasks.md": "d26a0ae49f20a3db85722445fa9feb3c1c4604c7c67bb0fb911fcaa0e7ababda",
       "decision-record.md": "b86e7362fa4efbbdddeaca462036a8120d578697b6c2510ba84ce31e2e4baf86",

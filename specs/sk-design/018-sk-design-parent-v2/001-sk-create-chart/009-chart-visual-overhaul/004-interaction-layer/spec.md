@@ -181,7 +181,6 @@ Every form whose marks carry values the picture cannot print answers a pointer w
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -226,6 +225,7 @@ Scored with `bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 All three are closed.

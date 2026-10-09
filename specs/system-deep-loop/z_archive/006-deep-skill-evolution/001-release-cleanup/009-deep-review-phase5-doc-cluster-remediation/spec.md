@@ -160,7 +160,6 @@ Bring every documentation-side backlog gap to a terminal state. Author dedicated
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -195,6 +194,7 @@ Bring every documentation-side backlog gap to a terminal state. Author dedicated
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. All dispositions resolved during pre-build verification.

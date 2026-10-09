@@ -201,7 +201,6 @@ Place one typed pre-projection gate at the projection seam, before `projectMessa
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -286,6 +285,7 @@ Place one typed pre-projection gate at the projection seam, before `projectMessa
 
 1. **Given** each runtime activation path from Phases 019-025, **When** the gate is exercised, **Then** each path consumes the same typed gate before projecting.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 No unresolved question blocks planning. The exact doctor report schema, the privacy-fact expiry thresholds, and the pinned runtime and provider versions are recorded as versioned gate inputs at validation time, not open design questions.

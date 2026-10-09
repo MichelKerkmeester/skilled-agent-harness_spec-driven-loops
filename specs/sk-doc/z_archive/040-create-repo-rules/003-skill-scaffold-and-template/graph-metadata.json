@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 2 produced a contract nothing can execute",
     "created_at": "2026-08-31T11:33:09Z",
-    "last_save_at": "2026-10-07T18:14:21.808Z",
+    "last_save_at": "2026-10-08T19:30:14.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79abf6a81cd7487269070adfc8b96b3d5e5d56fa4ffc15a985e2729854a2ac95",
+    "source_fingerprint": "sha256:aacd4fe3176dfad7a69ee67a8d6ba041c44985cb506eaf4c8feabe5b5f5c1832",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1b2562857d2047bc4b9c406be423ee18947a2eaac75c5442ed4712fa47a4a203",
+      "spec.md": "16c39d7beb8e70079613e7dd42c8942e82f2a5cbb3851bb2c19450f3b1b26648",
       "plan.md": "0e60e810501ccbf94cade9e67340eba1fd734302b95f920fc676095180fa67d6",
       "tasks.md": "3aaac898c198a04980027d8475e3ecd19643aa1ba22bf512367ea9a6e64eb30d",
       "implementation-summary.md": "b40bc1c2b8e65e392a610b74d7508de67104439a91ff64250e52a4ee0331b22c"

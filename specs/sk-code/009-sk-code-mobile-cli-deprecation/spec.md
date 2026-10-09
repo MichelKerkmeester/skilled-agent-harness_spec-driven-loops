@@ -176,7 +176,6 @@ removed packet is gone, replaced, or enumerated as intentional residue.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -233,6 +232,7 @@ Level scorer (`recommend-level.sh`, observed at plan time): Level 2, total 46/10
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open. The four decisions the plan needed were settled before approval: hard-remove over soft-deprecate; `PI_REMOTE` detection removed rather than retargeted; scrub reach limited to the skills tree plus the live compiled-routing program artifacts; and this packet's own path.

@@ -167,7 +167,6 @@ authority. At packet level the surfaces are:
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -235,6 +234,7 @@ authority. At packet level the surfaces are:
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 Two, and both are decisions rather than unknowns.

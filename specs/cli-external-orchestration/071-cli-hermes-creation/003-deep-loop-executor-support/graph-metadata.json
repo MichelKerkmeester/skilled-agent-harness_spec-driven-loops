@@ -202,7 +202,7 @@
     ],
     "causal_summary": "`/deep:research` and `/deep:review` could dispatch to six CLI kinds but not to Hermes, and nothing in the runtime knew Hermes's dispatch shape, its self-invocation markers or its roster",
     "created_at": "2026-09-14T17:24:45Z",
-    "last_save_at": "2026-10-07T15:55:51.866Z",
+    "last_save_at": "2026-10-08T19:29:07.953Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:26c36ddfdff842e5fd71f1e173cad0a4839f36d5fa50a6ddb26a6187327374b8",
+    "source_fingerprint": "sha256:15ecf84b5dbadc229b7e01ae50f90e9a17ef253b307d49a116b37d4a89fd4f78",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "49862b7fc9a48124a1cb9c4890145d39dd501045489eae44ae69a1ea16d1f3c7",
+      "spec.md": "f20168a98acf0a625567d72d77464dcbbd0a2b7a7801b4f72808e6c47c8dc043",
       "plan.md": "52bce33fec9bbbbea30eb68072b3aa0eddea41c219213789b6c2be008e6dfdb6",
       "tasks.md": "bb2ea7095c2b7c270641715a2377cc9cf0eaa7e83ed475f780976cd151016be4",
       "implementation-summary.md": "2cdb8dd5c1ba7c1bbf4b0c5b848d00fb4e14bd09d2ab0779ad0e1a4f92a76296"

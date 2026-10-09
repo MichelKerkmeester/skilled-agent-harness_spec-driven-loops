@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The final arc 020 bucket left the highest-risk provider and adapter cleanup items",
     "created_at": "2026-05-23T11:03:25Z",
-    "last_save_at": "2026-09-11T16:42:32.952Z",
+    "last_save_at": "2026-10-08T19:30:52.323Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e6ba75ddedf0161896d6d54b9ca84fd5700ae60a4727ef742b6381eee294717",
+    "source_fingerprint": "sha256:c6eacce219df7236c1fff29ff9f3d6429ed31b15d41cc8ea9f5b9b326514fbcc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "20bfd80ecaad055446de9609ddfc5321e66b670276bd4225d9d1ba7b5739ed0f",
+      "spec.md": "e46a7f6e53fe8dc34cd2871b33b8098e3af4e3ad7512dd02a7589c8976168f22",
       "plan.md": "237d0fde60f8b1a2501261397e09d3d4c85ddd6c0b95269aef245a783a2de8e4",
       "tasks.md": "0224e2eafba7f968980000c2164fd5420ae2718092f73793c628fcb67c2a09d1",
       "decision-record.md": "a667dc8e610de920f296ab7a78c7dc8de7709f4814beb66d6f4a9ef5b9a28c9a",

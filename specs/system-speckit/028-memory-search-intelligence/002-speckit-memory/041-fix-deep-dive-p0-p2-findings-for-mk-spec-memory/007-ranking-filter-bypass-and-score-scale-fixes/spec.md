@@ -238,7 +238,6 @@ These were traced to no phase owner by the program-coherence reviewer and routed
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -323,6 +322,7 @@ These were traced to no phase owner by the program-coherence reviewer and routed
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Agent B's pipeline-core ledger section is pending: exact MPAB clamp and adaptive-fusion divisor mechanics are second-hand until T004 confirms them at the cited modules.

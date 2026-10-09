@@ -189,7 +189,7 @@
     ],
     "causal_summary": "An independent review of the 10 Devin hook adapters (built in phases 004 and 008) found four hardening gaps:",
     "created_at": "2026-07-26T10:00:00Z",
-    "last_save_at": "2026-10-07T18:11:15.762Z",
+    "last_save_at": "2026-10-08T19:29:15.664Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,10 +198,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1d4996e286d9ca67e3e397f407649402d7045cc03a19c0c33d55bbb049b5b93f",
+    "source_fingerprint": "sha256:4e2ca48aeca7284df914384125947391661175b293e82f62578dc7f2e9218968",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8eddf161369bd8c6172b9b05005ef5e7ee67fbd29f1072662b8d0c568331598f",
+      "spec.md": "49ced775ef08eae41bf994eb5dbbd8e1f4086006f7b8b0ab47e505895a46b24d",
       "plan.md": "73d38a7f8eac8d3167d5fad76b90d9da92327b9acbe45dfb210222a52b48cd24",
       "tasks.md": "a23db3b76d46b60051bec374f4f32a31249455f102f72d7c7664f43ed392799b",
       "implementation-summary.md": "d2949a1a3fac9fb06e26615f03961bb9721b2f37b54babc860010d2f2e7fc675"

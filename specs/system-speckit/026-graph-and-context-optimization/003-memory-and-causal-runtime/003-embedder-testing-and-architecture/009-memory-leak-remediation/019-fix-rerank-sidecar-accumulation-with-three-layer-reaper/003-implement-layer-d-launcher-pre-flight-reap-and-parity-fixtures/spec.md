@@ -133,6 +133,7 @@ Add Layer D pre-flight cleanup to both launcher twins and prove JS/Python reap d
 ## 7. OPEN QUESTIONS
 
 No open questions remain for this child phase. The later docs/env-forwarding packet still owns operator-facing documentation.
+<!-- /ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
@@ -174,4 +175,3 @@ No open questions remain for this child phase. The later docs/env-forwarding pac
 | Rollback difficulty | Low | Revert the three scoped implementation files and packet docs. |
 <!-- /ANCHOR:complexity -->
 
-<!-- /ANCHOR:questions -->

@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The archived `016`/`017`/`018` cli-devin packets and the `022` deprecation were all authored against the Devin CLI as it existed 2026-05/06",
     "created_at": "2026-07-23T19:51:58.474Z",
-    "last_save_at": "2026-10-07T18:11:33.825Z",
+    "last_save_at": "2026-10-08T19:29:15.482Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,10 +199,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b2055ab4c399e2eddd7d6b6639f3ffc2996b348a2161949380c93bc0fd5746aa",
+    "source_fingerprint": "sha256:a4dd4068e0ef94f389cc20f69d40d76e25c864dfeaa35fc546f1545e953dbd64",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b474c9a44fc44647593a46ac0d4440c096da2d7270c6dff956779ce530531243",
+      "spec.md": "3fe2fcd3a714c7c849f4b1260cee33c66bfb9ab812279170968e10dd9075489b",
       "plan.md": "15921ba493f007e2f397941ab32145a7ba96114f73d03e6a67a51fbeb5254196",
       "tasks.md": "e7441f2bc98d641e2b4d8959830e20d552a401b57752badc06ec726637262dbd",
       "implementation-summary.md": "5718fdf3c21f67010ef5ee2e678e72713b50396b108daa0acb28198ec983c1a8"

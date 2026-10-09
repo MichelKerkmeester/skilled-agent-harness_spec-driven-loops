@@ -155,7 +155,6 @@ Make `checkpoint_create` and `checkpoint_restore` work on the full ~1 GB databas
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -224,6 +223,7 @@ Make `checkpoint_create` and `checkpoint_restore` work on the full ~1 GB databas
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should v2 use a lower `MAX_CHECKPOINTS` than the v1 value of 10, given that each v2 snapshot is roughly the size of the database?

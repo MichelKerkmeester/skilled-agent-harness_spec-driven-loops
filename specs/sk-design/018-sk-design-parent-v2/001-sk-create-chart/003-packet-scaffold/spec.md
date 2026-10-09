@@ -155,7 +155,6 @@ An empty package in the right shape, proven by the gate that will judge it when 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -223,6 +222,7 @@ An empty package in the right shape, proven by the gate that will judge it when 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Does the manual testing playbook directory sit at the package root or under a shared location, given the placement?

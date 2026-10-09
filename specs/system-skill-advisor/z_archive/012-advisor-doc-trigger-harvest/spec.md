@@ -166,7 +166,6 @@ The operator resolved the resulting contract decision as **Option B with a corre
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -222,6 +221,7 @@ The operator resolved the resulting contract decision as **Option B with a corre
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The consumer-architecture question (memory vs advisor) was settled by operator directive on 2026-06-11: advisor only, memory never. The doc-only confidence calibration (whether `important`-tier docs should clear the surfacing floor unaided) is intentionally deferred to evidence from the 009 authoring campaign.

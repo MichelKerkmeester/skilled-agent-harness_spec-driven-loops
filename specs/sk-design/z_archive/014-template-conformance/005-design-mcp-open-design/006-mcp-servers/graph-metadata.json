@@ -186,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/design-mcp-open-design/mcp-servers/` has not been audited against `.opencode/skills/sk-doc/create-skill/references/shared/overview.md directory rules (no authored mcp-servers/ template; this is a bespoke transport-only directory)`",
     "created_at": "2026-07-27T15:02:58.984Z",
-    "last_save_at": "2026-10-07T18:12:34.961Z",
+    "last_save_at": "2026-10-08T19:29:56.598Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,10 +195,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f7123d9e1ae9c714b82077560892b456a400e8e99290a89dc056a0d54920a2d9",
+    "source_fingerprint": "sha256:7091a88e439f35b159ec43c75a2bf5bfd53941354aca5a0e1c41bd3a597fc308",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a4c6fc99c023791ffcaf693364944fb239771061b46b959347b3845720a86b80",
+      "spec.md": "a29765820bd42ab7f7176e1eb6915f980263cbeeb38a5e401471158cb272e663",
       "plan.md": "9e9717ecaff99bd903312b4ba0759d344f42a8c72af3b17e51e80e47abb50a2d",
       "tasks.md": "41555ab3e1c2d483196f214d3554249263c8f937e554a68fc98dbd57d29ec45b",
       "implementation-summary.md": "d3807000e844ff3f9312630315b29867007512e4ee21c78d64231970d77d564c"

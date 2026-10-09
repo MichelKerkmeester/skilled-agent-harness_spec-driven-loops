@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The documentation authoring agent is currently named create, but the desired long-term identity is markdown",
     "created_at": "2026-05-10T10:33:24Z",
-    "last_save_at": "2026-10-07T21:54:02.505Z",
+    "last_save_at": "2026-10-08T19:30:06.327Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:e4f701ef3b8f17ef7310e5ec4796fb8144617e403106413902f3c6092e8fc2c0",
+    "source_fingerprint": "sha256:f9d058a1fc1dafc9ed91f7d0a743626d83d79418edb94fe6d7f4d7a2a4a864f6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d5b25dda387195c3ca6d8beec9930e3ebf909874517d4a631797da1f10d118b2",
+      "spec.md": "23cb5c156521981c2067a02b4b7d9c46347f7520a298fa20c574bde30eae8d3a",
       "plan.md": "67bd4c3a59b8ec3e5d49fffa293c7b6c2312cbc668590becfa2f75676fb7c091",
       "tasks.md": "2f98c3328fa86471413382f4c3370d942b31374d3d0bd19eeaf8347de11850b3",
       "implementation-summary.md": "84b0bdcd1585430140546b74a9deae65292201b3127281e6a03038a6554ae6d2",

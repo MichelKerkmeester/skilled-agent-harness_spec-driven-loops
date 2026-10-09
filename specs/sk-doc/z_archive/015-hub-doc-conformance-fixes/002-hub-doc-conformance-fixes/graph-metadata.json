@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The `cli-external` and `mcp-tooling` hub docs (feature catalogs, testing playbooks, references, vendored server READMEs, SKILL.md prose) have drifted from the live CLI/MCP surfaces they document",
     "created_at": "2026-07-10T16:47:22.469Z",
-    "last_save_at": "2026-10-07T18:12:33.033Z",
+    "last_save_at": "2026-10-08T19:30:07.605Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5d5e454399be4e98c9193bb980bfb8e4755ba73d509a73da7d6440a1e589d5a4",
+    "source_fingerprint": "sha256:dbfc481915e0a356abb5d1a785a27e8cee8a69753cc49d511b48be3397be0ff7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "11ec1d8af3346bf9a1c47ec0d27fcd1c51cc3bf061f3497d0ade6dd978f05340",
+      "spec.md": "b14fb58ceca1650ed8636b07c4b6f0969ea0b5a9a85160a0f8aadd3c704e68e5",
       "plan.md": "abb81527d8dce0688282f457512c18a4d3beeb5fbf60f7e6f8d747f3f33ad725",
       "tasks.md": "34ef8a0abd2ef66a42c7877f5530045c10eb379cd72f5b74c7c9f8c066ec2e44",
       "decision-record.md": "d8e61b86f55e941bcf16c41eaac2e95ccf8111987845cfed46f15b888a4f0e1b",

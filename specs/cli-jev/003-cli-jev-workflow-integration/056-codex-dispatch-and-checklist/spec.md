@@ -144,7 +144,6 @@ Codex runs every repo shell hook again, its task-dispatch cell states what a pro
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -191,6 +190,7 @@ Codex runs every repo shell hook again, its task-dispatch cell states what a pro
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

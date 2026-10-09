@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The external CLI hub used a directory identity that no longer matched the canonical parent-skill name",
     "created_at": "2026-07-13T03:34:30Z",
-    "last_save_at": "2026-10-07T18:11:40.426Z",
+    "last_save_at": "2026-10-08T19:29:12.180Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:84f6d0d7502197bd343844e81e9ef741b6ae8afb061621656e11474804fcf3f1",
+    "source_fingerprint": "sha256:1d8729db495c0928f3cf954022553b3dd54e2a7b366940ddb0d9947bfce81d27",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c7d7aaa42b0ae5cefbfd69231c769426a1b9b9f0f5693500a12412d73aa2a9f4",
+      "spec.md": "be0aa698381680e91c237b068f47c5c9b7b0d9c7319be5afe5b9cad2a908b45b",
       "plan.md": "ee5762802203d894aeb9483f15278a29ca8ba766f7391abd8271b0a32aa21276",
       "tasks.md": "e61d594f91e08dd4d0a6828c115e9f59f58a3d921fc79b34960f8513bed14fbc",
       "decision-record.md": "f44cba3358abe8f0dbcb3bea37ca33e6998b6016e5edd3919678630f7184f816",

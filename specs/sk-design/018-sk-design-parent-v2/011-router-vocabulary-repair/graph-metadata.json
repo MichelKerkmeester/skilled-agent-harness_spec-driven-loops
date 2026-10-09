@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The sk-design router declares 55 keywords its own scoring vocabulary never sees",
     "created_at": "2026-09-06T20:37:14Z",
-    "last_save_at": "2026-10-07T15:56:40.060Z",
+    "last_save_at": "2026-10-08T19:29:49.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:90dd1f73ae31e9d78fb4290c58677255a27d3c4216416169da80efb818c0b882",
+    "source_fingerprint": "sha256:93ae3f65bd79da5feb5a30ccf353a5aea487811386c16437391702c5a6b7d34d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "613e903fb72d9d0b319506c390b41d41c0a6dbeb88823cde54d44317693a71ef",
+      "spec.md": "6998438e9b055740ec114c85246948d22de978832951e917805fd7b0daac0305",
       "plan.md": "bcad95911e9ce87eb52e24ae69d628a9d14c5761506c3eaa92055e6006147ed5",
       "tasks.md": "71ac4de53022db8d161af0ff15bfba8c5b406a8e4eae648576350f1414a276d0",
       "implementation-summary.md": "4ec9d631679350f68a0cc9ef824342f4862ebd9b9f51adae89d80496b0251f1e"

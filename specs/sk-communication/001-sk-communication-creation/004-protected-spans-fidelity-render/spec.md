@@ -183,7 +183,6 @@ Make improved communication feel reference-like while guaranteeing that code, co
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. Non-Functional Requirements
 
 ### Performance
@@ -253,6 +252,7 @@ Make improved communication feel reference-like while guaranteeing that code, co
 1. **Given** a valid Phase 004 input, **When** the primary behavior runs, **Then** its output satisfies the relevant contract and preserves the canonical original.
 2. **Given** an unsupported, unsafe, or failed condition, **When** the same boundary is exercised, **Then** it returns a typed reason and the exact-original or fail-closed outcome.
 
+<!-- ANCHOR:questions -->
 ## 12. Open Questions
 
 None blocking. Implementation may refine internal file placement without changing the frozen phase boundary or handoff.

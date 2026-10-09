@@ -185,7 +185,6 @@ A reader who types a changelog's name, version or topic finds that entry first, 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -273,6 +272,7 @@ A reader who types a changelog's name, version or topic finds that entry first, 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 All four questions were answered in the Stage 2 release, and none is open.

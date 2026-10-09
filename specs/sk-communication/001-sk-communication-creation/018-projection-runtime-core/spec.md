@@ -214,7 +214,6 @@ Add a default `ProviderTransport` module that the executor consumes, add a top-l
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -298,6 +297,7 @@ Add a default `ProviderTransport` module that the executor consumes, add a top-l
 1. **Given** the root barrel, **When** the clients surface is imported, **Then** both presentation functions resolve.
 2. **Given** a full-projection-capable client, **When** presentation applies, **Then** the projection or the exact original is selected deterministically.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 No unresolved question blocks planning. The default reject-only judge must satisfy the Phase 011 local-boundary constraint, and the proxy-judge alternative remains conditional on a separately approved redacted boundary.

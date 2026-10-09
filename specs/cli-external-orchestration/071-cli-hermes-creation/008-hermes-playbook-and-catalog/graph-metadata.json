@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The packet had a playbook root with categories and no scenarios, no recorded execution, and no catalog",
     "created_at": "2026-09-14T17:24:49Z",
-    "last_save_at": "2026-10-07T15:55:51.861Z",
+    "last_save_at": "2026-10-08T19:29:11.662Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:548c524bed61c326cbf2e801f865262216fc88d92743152000f65a60d3dd2c6e",
+    "source_fingerprint": "sha256:0616608869d92c26b881ff9c74beaccfae0a8fa22667f731dda4989c746f0e77",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7510ec500f8cec023c0a929b9420d8ff6b64497cdf8cf11fefe0b6d2dba72ab7",
+      "spec.md": "12ab0640c4aaaafc1b7e7de5a96ab2429d425448e855c50afe00bea6f98071fa",
       "plan.md": "1b0efd5100f3bf88e555a2f70f597327d2ee274651a85a692cf2fc702c9b0147",
       "tasks.md": "e3db1e0f18f831308ff8e52691971f1ecb13ff147c536ef2b036f098d7b80ea9",
       "implementation-summary.md": "ee4ec0ea4350e696f9582fa7f10aaca388e268fe052c240592e08d7b4a7c7656"

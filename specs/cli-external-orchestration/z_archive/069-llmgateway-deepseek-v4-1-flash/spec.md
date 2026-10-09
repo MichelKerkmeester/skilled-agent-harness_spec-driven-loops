@@ -143,7 +143,6 @@ The DevPass DeepSeek route names a model the gateway actually serves, and every 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -193,6 +192,7 @@ The DevPass DeepSeek route names a model the gateway actually serves, and every 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - The fan-out still maps two OpenRouter literals to a provider the operator says is not in use. An earlier packet left them deliberately as the deep-loop runtime's contract rather than either skill's. Whether they should now go is that owner's call, not this packet's.

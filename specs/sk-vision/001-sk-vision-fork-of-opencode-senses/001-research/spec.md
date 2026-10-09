@@ -195,7 +195,6 @@ Produce a one-shot research pack that names the skill class, the fork baseline, 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -267,6 +266,7 @@ Produce a one-shot research pack that names the skill class, the fork baseline, 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None remaining for this child. GPU smoke test belongs to a later implementation child.

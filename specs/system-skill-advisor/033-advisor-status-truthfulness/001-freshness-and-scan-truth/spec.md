@@ -163,7 +163,6 @@ Make the recorded truth visible: `advisor_status` reports index staleness from t
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -233,6 +232,7 @@ Make the recorded truth visible: `advisor_status` reports index staleness from t
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Does the staleness signal belong in `freshness` itself or in a sibling field such as `indexStaleness` with counts? The plan records the recommended shape and the tests pin it.

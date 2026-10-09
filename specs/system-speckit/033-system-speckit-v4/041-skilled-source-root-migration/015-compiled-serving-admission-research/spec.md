@@ -128,7 +128,6 @@ Decide, on evidence, how admission should work from now on: restore the retired 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -175,6 +174,7 @@ Decide, on evidence, how admission should work from now on: restore the retired 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Q1 to Q5 are answered in `research/research.md`. The operator accepted the restated admission bar on 2026-09-19. Still open for the build: how a `clarify` decision counts, and what coverage floor each workflow mode needs.

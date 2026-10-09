@@ -132,7 +132,6 @@ Every admitted hub passes the admission check, and CI blocks any new drift.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -179,6 +178,7 @@ Every admitted hub passes the admission check, and CI blocks any new drift.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should mode hints be honored in every hub's compiler, or only where gold asks for them?

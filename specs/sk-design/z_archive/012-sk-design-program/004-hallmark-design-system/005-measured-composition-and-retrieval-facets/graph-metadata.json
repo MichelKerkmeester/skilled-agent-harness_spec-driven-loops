@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The shipped style database can query text, generic facets, token axes, capabilities, and vectors, but it cannot describe or query the measured page shape already present in each style's canonical record, token axes, and `DESIGN.md` headings",
     "created_at": "2026-07-22T19:16:29.110Z",
-    "last_save_at": "2026-10-07T18:12:31.330Z",
+    "last_save_at": "2026-10-08T19:29:55.450Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,10 +182,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d6754b661c40caaa2956486273bd73d13ba36f9b857468a0852e1afa78c7edb",
+    "source_fingerprint": "sha256:21558face78705af7b1cb726b1501f2779a03cf159cc368daed87f6e51f76ec8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "74db752f2dd39720b7f43fd3bcf7b82358af6d5795c8e04b7a4ed06d2b489c27",
+      "spec.md": "f72474c43316a7c44c6cd529661a14b8d762acc6bfb400b6ee726b414270742e",
       "plan.md": "cfbd97ab60bf99a91850b6c67b82ee4d662913dbd8e2076c58d78e0d2c54feaf",
       "tasks.md": "c56993584c8ce1bf9c488bc508118703fcbe6bef264648d84155cd3e9ec5e2c1",
       "implementation-summary.md": "ad231732f84cbdc9e6422f13a8f4f52e5afc91f2d1f4502285fddd5269f99c43"

@@ -108,7 +108,6 @@ Add a feature-catalog entry documenting cli-cursor's hook/spec-gate integration 
 - **Feature-catalog placement ambiguity**: no sibling CLI packet has its own nested `feature-catalog/`; the only existing one is hub-level and routing-scoped. Mitigation: flagged as an open question (§12) — the planning-only nature of this spec defers the final placement call to plan.md/tasks.md, informed by a quick check of whether any sibling packet's docs already reference the hub catalog for non-routing features.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - **NFR-C01**: New feature-catalog and playbook content matches the exact structural section order each sk-doc sub-skill requires — no freehand section layout.
 
@@ -135,6 +134,7 @@ Add a feature-catalog entry documenting cli-cursor's hook/spec-gate integration 
 - As the operator, I want the feature catalog and playbook to name every hook adapter this repo has for Cursor, so nothing (including brand-new, in-flight work from another session) silently falls off the documented inventory.
 - As a maintainer, I want an unreviewed adapter labeled honestly as unreviewed, so the catalog never implies more confidence than the evidence supports.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 Both questions below are now resolved.
 - Should this phase wait for `spec-gate-prebind.mjs` to be committed/reviewed before documenting it, or document it now with explicit unreviewed-status hedging? **Resolved: documented now with hedging.** The file remained unchanged and uncommitted throughout this phase; both new docs carry 21 hedged mentions and 0 unhedged confirmed-working claims about it.

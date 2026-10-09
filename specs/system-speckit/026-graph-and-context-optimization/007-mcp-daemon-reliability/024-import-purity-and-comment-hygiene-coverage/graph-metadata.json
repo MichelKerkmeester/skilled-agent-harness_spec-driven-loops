@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The post-merge gpt-5.5 cross-check of the daemon-reliability work surfaced two follow-ups",
     "created_at": "2026-06-07T17:55:39Z",
-    "last_save_at": "2026-08-30T15:39:32.533Z",
+    "last_save_at": "2026-10-08T19:30:57.089Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3ee8571221bccaf93923da3b7593152b298546e91f808a3b602ea7342d2cc833",
+    "source_fingerprint": "sha256:ce58a98c70b16fbc9f94adf1a44bfb21957654d8732911159effa21da4f01ad5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ec38b5385c961f40700743312f71842434fba91ac5618f14fcf08ea64f952cf0",
+      "spec.md": "3b599b8e4df5c59f283be70b5d53ffee63186d292305ee392697587ba800803d",
       "plan.md": "30299486830b6e94a5fe8e7ef324267cf244f8f81846c068df9b973c87eae295",
       "tasks.md": "38f1848521429dd1faad8449869b16a3ac6ea5489c2b93241469413c5c9b1c7f",
       "implementation-summary.md": "c535b08493e7569b6c68790243681806acc066bee72408bdefecc7337823dac8"

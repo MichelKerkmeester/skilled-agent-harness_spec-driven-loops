@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The legacy skill-advisor stack depended on manually refreshed graph files, hand-maintained trigger phrases, fixed Python scoring, and split ownership between Python scripts and the system-spec-kit MCP server",
     "created_at": "2026-04-21T08:25:00.990Z",
-    "last_save_at": "2026-10-07T21:54:09.292Z",
+    "last_save_at": "2026-10-08T20:05:20.513Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:705667fb38662cbab397b9ff8c515e3e5a40329d6dee0cf47895869f81984360",
+    "source_fingerprint": "sha256:faa877a677b94d15f8297872b4d1734eb5858297700eab36b87b59d0840e49ac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "57874451cd6536523549d64c79e58c1607e6131d8f53a3c26ae083acaddbb863",
+      "spec.md": "1b7f8097fa80f9eac3962b492653d09e34ba02f7ba652f571e99c61f13ef0512",
       "plan.md": "447e4c93e920485fedb2d441e76e07a2e7e69dc68990c8355315921c7de92cce",
       "tasks.md": "f1a6772fb91fd2424d6048232096e79d7ea33448d548f11769448504a23a320e",
       "decision-record.md": "d9882d26f7c591b943e6cf89ad9ae21db453fb4dbb7c8fb5a94751809b541962",

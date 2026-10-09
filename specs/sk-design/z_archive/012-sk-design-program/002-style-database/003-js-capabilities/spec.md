@@ -149,7 +149,6 @@ Sequence these six capabilities into Roadmap Phase 1, each shipped behind a shad
 <!-- /ANCHOR:risks -->
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -192,6 +191,7 @@ Sequence these six capabilities into Roadmap Phase 1, each shipped behind a shad
 <!-- /ANCHOR:complexity -->
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which viewports/features carry the most retrieval signal?

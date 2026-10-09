@@ -135,7 +135,6 @@ Decide from evidence on this checkout whether `/doctor:speckit speckit-retrieval
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -182,6 +181,7 @@ Decide from evidence on this checkout whether `/doctor:speckit speckit-retrieval
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None yet. Findings from the inventory go to `implementation-summary.md`.

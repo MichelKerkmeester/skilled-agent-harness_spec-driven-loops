@@ -133,7 +133,6 @@ A packet can scaffold a goal document whose durable directive, binding block and
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -188,6 +187,7 @@ A packet can scaffold a goal document whose durable directive, binding block and
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The lazy-versus-optional placement was settled by reading the document collector.

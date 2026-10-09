@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The lane weight is 0.05 because that is what the registry has always said",
     "created_at": "2026-09-02T22:17:12Z",
-    "last_save_at": "2026-10-07T12:55:37.365Z",
+    "last_save_at": "2026-10-08T19:30:35.131Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:046d3db0f39a6bc95795fd5c3988dbffeb148f6a0ba77e8f0010aac10b7d1e44",
+    "source_fingerprint": "sha256:8b623edd725aa695d773e69acf9e412d9db8a3a6bd1b160bfaf7d3c57ba167a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c0437fe74d33e22b32d2455e48c269b35a6080e8e03b7e58d70477f134cf7b6c",
+      "spec.md": "93817a015191c8caa5d30a258805504606b4c36d5769c6d437a1f27fdd589fd6",
       "plan.md": "5adad489c45c29bf039f3ce40e48f2ca33150b8bca73b8236a9dd677e60bd629",
       "tasks.md": "b3f3ac2680f2293566838a48344f8186106ca51f2264998541f149c43c54bf60"
     },

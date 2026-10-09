@@ -159,7 +159,6 @@ Design the simplest greenfield template backend that:
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -248,6 +247,7 @@ Existing 868 packets stay valid as git history. Their `<!-- SPECKIT_TEMPLATE_SOU
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 1. What is the **irreducible core** every packet needs? (Hypothesis: spec.md + description.json + graph-metadata.json — nothing else.)

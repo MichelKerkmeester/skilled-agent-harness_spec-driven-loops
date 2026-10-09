@@ -106,7 +106,6 @@ Add `cli-cursor` to every roster/governance/cross-skill surface where its siblin
 - **Concurrent-session churn**: governance docs (`AGENTS.md`/`CLAUDE.md`/`README.md`) may be edited by other sessions. Mitigation: check `git status` for a clean tree on those files before editing; scope edits narrowly.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - **NFR-C01**: Each added `cli-cursor` mention matches the exact phrasing/format its siblings use in that surface — symmetric, not a bespoke variant.
 
@@ -133,6 +132,7 @@ Add `cli-cursor` to every roster/governance/cross-skill surface where its siblin
 - As a maintainer, I want `cli-cursor` to appear wherever its 3 siblings do, so the 4th mode is a first-class peer across rosters, governance, and cross-skill docs, not a half-integrated addition.
 - As the operator, I want the whole packet to pass `validate.sh --recursive --strict` 0/0 and the hub to pass both skill validators, so the creation is provably complete.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 Both questions below are now resolved.
 - Should the repo's own root `AGENTS.md` gain a Cursor-specific note, or stay executor-agnostic? **Resolved: executor-agnostic.** Neither `AGENTS.md` nor `CLAUDE.md` carries any per-CLI special-casing for the 3 existing siblings today, so Cursor gets none either.

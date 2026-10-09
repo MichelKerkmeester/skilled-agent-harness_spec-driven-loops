@@ -155,7 +155,6 @@ Provide automated, reviewable leak prevention that preserves active developer wo
 <!-- /ANCHOR:risks -->
 
 ---
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -238,6 +237,7 @@ Provide automated, reviewable leak prevention that preserves active developer wo
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. The user selected Layers 1, 2, and 3, repo-local Claude config, and dry-run-first rollout.

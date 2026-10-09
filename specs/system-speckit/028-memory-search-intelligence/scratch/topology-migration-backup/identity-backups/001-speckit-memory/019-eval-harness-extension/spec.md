@@ -179,7 +179,6 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 - The existing ranking ablation path is byte-identical when the new diagnostic lanes are not requested (additive-only).
@@ -226,6 +225,7 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 - As a promotion-gate operator, I can promote a calibration candidate on its own metric class off the same spine that promotes ranking candidates.
 - As an auditor, the promotion ledger records the candidate class and the metric-JSON, so a promote decision is legible per class.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 1. Exact ECE bin count and Brier formulation for the CLASS-G panel, pin a documented scheme and cross-check against a reliability diagram. **TENTATIVE: 10 equal-width confidence bins, standard Brier over binary labels.**

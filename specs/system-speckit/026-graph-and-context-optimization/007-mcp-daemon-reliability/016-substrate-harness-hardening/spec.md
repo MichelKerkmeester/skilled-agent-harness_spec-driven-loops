@@ -135,7 +135,6 @@ Make the harness trustworthy under adversarial and clean-env conditions: a SKIP 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -203,6 +202,7 @@ Make the harness trustworthy under adversarial and clean-env conditions: a SKIP 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should the optional temp `SPECKIT_CODE_GRAPH_DB_DIR` isolation also be implemented? RESOLVED: documented in ADR-003 as a deferred deeper lever.

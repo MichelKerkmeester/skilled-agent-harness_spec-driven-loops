@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phase C found no surviving P0 regression and no current-runtime regression, but it did find that search optimization lacks shared outcome evidence",
     "created_at": "2026-04-28T21:02:24Z",
-    "last_save_at": "2026-09-07T16:09:57.478Z",
+    "last_save_at": "2026-10-08T19:30:41.870Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8f991fb65002c7ec9175a86c90c2cd16caaf035516fa53e9cf28a5adc4087bd1",
+    "source_fingerprint": "sha256:e4578a5f0dffeba410e2f6b5b9cff1caefacc23aa7ba65ff6abe8c4e11a4c6bc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "50879c6828d6c91cbf1e15dab4ea6ec273f1f8bcf9e695d8938346c29aed9404",
+      "spec.md": "522d998715f8e22c2ba6eb0f9243385ac08e1b067f6a44b10112aaf56b14c027",
       "plan.md": "6f78c4c6ef1bf5fa69ced2a9c21b0b1c204d1e91d6a8f82c42278f3cbb685b2c",
       "tasks.md": "f938e4a4468b76d4d43af3c1a2893fa670b5377df7a08b5caa9fddf0e52f9dc8",
       "implementation-summary.md": "aa208ad9dcfda4c01975179fd4aa7c64a5ebaf4a3a0219b0c648a01208741a09"

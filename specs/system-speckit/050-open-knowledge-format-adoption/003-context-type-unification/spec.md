@@ -150,7 +150,6 @@ One list, checked the same way on both sides, with existing outliers mapped and 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -205,6 +204,7 @@ One list, checked the same way on both sides, with existing outliers mapped and 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does `review` stay as a behavior-carrying value or fold into `general`?

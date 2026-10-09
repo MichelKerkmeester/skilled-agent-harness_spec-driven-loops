@@ -146,7 +146,6 @@ Catch missing and stale sources mechanically in new research and review docs, us
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -201,6 +200,7 @@ Catch missing and stale sources mechanically in new research and review docs, us
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Where is the cutoff recorded?

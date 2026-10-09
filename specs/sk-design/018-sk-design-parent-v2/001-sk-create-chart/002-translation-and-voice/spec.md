@@ -158,7 +158,6 @@ translation log and the analysis rather than the translated text.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -226,6 +225,7 @@ translation log and the analysis rather than the translated text.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Do user-visible strings inside the chart templates count as authored text? They are seen by a reader of the output, not of the skill.

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The Fix 5 flag `SPECKITDETERMINISTICRANKING` ships default-off",
     "created_at": "2026-06-27T17:15:43.899Z",
-    "last_save_at": "2026-08-30T15:39:35.919Z",
+    "last_save_at": "2026-10-08T19:31:07.243Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da87eb54ae8695248cf7d32cb80043a48b72ab89ce982b7c60a13b92f9257c7c",
+    "source_fingerprint": "sha256:3576b490b67f27c2fb08b3dd9f7092a825ceeb7020f3920872a528aaf5c398d3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5ff4ba8c842c8a1a47dff40163e0b0aacb370825c3a6d7ac2fccfc5be147bd61",
+      "spec.md": "277144e5f67b404c4f806cf7703b56307d2ad468a243fb199d83127ae9a662d3",
       "plan.md": "f61515c2f4d96d10bd55fb57dc05f08229b45b9a458731eb001d2721b1be9b57",
       "tasks.md": "d299c3f9f1f67633eb0c5f71006341554b5a9f991ef6d80b7822da4953a90bd9",
       "implementation-summary.md": "bc4c362affd0fe7f44ff519554be518f6b7586fbc2c21a1dd1457f703ed44f98"

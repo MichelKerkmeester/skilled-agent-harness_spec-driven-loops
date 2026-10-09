@@ -141,7 +141,6 @@ A standing scheduled sweep, a thin fan-out over the A1 detectors plus `validate.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -212,6 +211,7 @@ The exact seams, verified to file:line against the live tree.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - What cron cadence does the `schedule:` trigger use, weekly versus daily, given the corpus size and the cost of a full fan-out.

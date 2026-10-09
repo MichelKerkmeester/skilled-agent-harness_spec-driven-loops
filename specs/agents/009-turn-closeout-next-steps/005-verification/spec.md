@@ -124,7 +124,6 @@ This is **Phase 5** of the Repo rule for turn close-out next steps and structure
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -179,6 +178,7 @@ This is **Phase 5** of the Repo rule for turn close-out next steps and structure
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

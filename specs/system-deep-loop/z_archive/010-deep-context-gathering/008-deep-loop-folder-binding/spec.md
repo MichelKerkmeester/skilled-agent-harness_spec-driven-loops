@@ -136,7 +136,6 @@ A spec folder named inline in the scope is auto-bound at Tier 1 and the packet l
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -191,6 +190,7 @@ A spec folder named inline in the scope is auto-bound at Tier 1 and the packet l
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the extraction be enforced by a deterministic runtime helper (+fixture test) rather than prose alone? (Flagged as optional hardening.)

@@ -185,7 +185,6 @@ Every caller that needs the source tree asks one resolver, which recognises the 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -238,6 +237,7 @@ Every caller that needs the source tree asks one resolver, which recognises the 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open. Findings that angle 10 returns are triaged under REQ-015.

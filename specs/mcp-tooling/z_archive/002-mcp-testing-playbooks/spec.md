@@ -173,7 +173,6 @@ Ship a uniform, validator-clean playbook for each of `mcp-chrome-devtools`, `mcp
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -266,6 +265,7 @@ Ship a uniform, validator-clean playbook for each of `mcp-chrome-devtools`, `mcp
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 (None — all resolved during plan-mode review. See decision-record.md ADR-001..ADR-003.)

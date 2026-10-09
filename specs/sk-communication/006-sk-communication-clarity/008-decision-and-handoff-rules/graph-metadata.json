@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Five adopted candidates belong to rules that shape a decision, a handback and a claim rather than a",
     "created_at": "2026-09-12T16:39:31Z",
-    "last_save_at": "2026-10-07T15:56:27.339Z",
+    "last_save_at": "2026-10-08T19:29:37.995Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:696b177f801c915915cf8ee0436b855ecbbdedbf5cb0ce70e9416e2faa76dc2f",
+    "source_fingerprint": "sha256:84ba764a1de5abda6dd6050e2ccf91bd90fc159afc525fce0afc0fdd95524dda",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "078a9a138aa9101fe0723c91046713e6d1106a63ae1e382c57d53275aaff660d",
+      "spec.md": "d5e825dddf2ebb7a85e0f98c53441d93ac20f0dfd157a8a7ef2187cbad094d12",
       "plan.md": "828e2aed7f3553ec2bc893a6ce5b636f5c7da17c027cb6e0a2400d5bb90e5ef1",
       "tasks.md": "17e76a01ba04160c29a919a9755f2366aaeba686542a5fa920284e677c47afa5",
       "implementation-summary.md": "b8848ce1a22f8a287f814b566eda24d41c3a0dd6389367dc3f09b45bd611dbfa"

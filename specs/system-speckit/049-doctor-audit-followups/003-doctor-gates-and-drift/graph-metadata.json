@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nine defects recorded across the audit remain open",
     "created_at": "2026-10-03T05:27:41Z",
-    "last_save_at": "2026-10-07T15:57:41.031Z",
+    "last_save_at": "2026-10-08T19:31:35.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cd8febb05b409d69b6d4990f3ae3a2a7d1d41a212d4311339a5df5ff10892e3f",
+    "source_fingerprint": "sha256:8459eb7530c6aceb66bb2009f0482d1e6051cc1d3d267d00ac1832e9562394e0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a787caa3754704ff331c38c6c338aecdb1a703f47c5856717e80092e03b52806",
+      "spec.md": "e15083eb5ed28b3b422dec3618a1cb725d5060fff3a1158562e8d2356f35c8bc",
       "plan.md": "4619d281242fe70ce5047c46cae2e1758b543a1a32a7ce5a617a692960e0e8f1",
       "tasks.md": "78fba583049373c2d39799f09fbff1ccafd3e29a10ee446e91cad9278861d2b9",
       "decision-record.md": "3ea81a72b4475911680ff6aef876c3d0a74f7ee7675ad34ce770c57041b8e567",

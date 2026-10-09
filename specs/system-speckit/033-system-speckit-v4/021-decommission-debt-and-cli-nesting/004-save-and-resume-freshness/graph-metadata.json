@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Problem A - save completes without proving index freshness",
     "created_at": "2026-09-05T06:13:06Z",
-    "last_save_at": "2026-10-07T12:55:46.151Z",
+    "last_save_at": "2026-10-08T19:31:23.741Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +215,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b6b96e5191b6a00c444541138d1f641e218e1d8e8dff613a09f4fd050dcdb655",
+    "source_fingerprint": "sha256:7bd48b38762034cc2bcceee425a5f4c7bab29974f6d16e667ad58fb46cb7c6dd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5331e8091697343e5e27d0adf491f0c8314e2d77cec3bb7b097956ea31687062",
+      "spec.md": "0764a28a9a0b592c16c32ffb7abd412d91c6a0925438fdba3ac9c36204175c8b",
       "plan.md": "f86b7d70d3a4f07311defa99630c299b0af4dd3b0edfe19435abac3c576ab8c0",
       "tasks.md": "a5fcb0e4a132f42c1d9aa03be4785ba590b386eb14c6e612554ed1c9f0b5d118",
       "implementation-summary.md": "31331ce27d5ecb93d22c4b7b93d74957e62f7d362c56d86e94d0ee6ed084a9fc"

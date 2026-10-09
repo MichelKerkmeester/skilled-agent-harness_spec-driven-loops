@@ -135,7 +135,6 @@ One inventory and four decisions that phases 002 to 004 work from.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -179,6 +178,7 @@ One inventory and four decisions that phases 002 to 004 work from.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator set the scope on 2026-10-02.

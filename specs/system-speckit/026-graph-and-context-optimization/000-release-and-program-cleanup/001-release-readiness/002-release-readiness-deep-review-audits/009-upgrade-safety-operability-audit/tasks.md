@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "review"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-audits/010-upgrade-safety-operability-audit"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/009-upgrade-safety-operability-audit"
     last_updated_at: "2026-04-29T23:15:00+02:00"
     last_updated_by: "codex"
     recent_action: "Completed upgrade safety audit tasks"

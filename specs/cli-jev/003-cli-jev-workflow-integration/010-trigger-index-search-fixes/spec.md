@@ -169,7 +169,6 @@ The trigger index rebuilds again, matches the corpus it was built from, can say 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -225,6 +224,7 @@ The trigger index rebuilds again, matches the corpus it was built from, can say 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **Score-0 miss shape (owner decision, REQ-005). Decided 2026-09-27: option C, with the `AGENTS.md` edit, built as REQ-006.** The lookup keeps score-0 candidates on purpose (`lookup-trigger-index.mjs:53`, `:173`) so its output matches the retired lane's recorded results (`:5-7`), and `fixtures/semantic-probes.json:4-5` separates `returnedHit` from `scoringHit` for that reason. `AGENTS.md:202` says "A miss is a clean no-hit". Option A, keep today's shape: parity holds, but a miss prints up to 20 rows and exits 0, so every caller filters `score > 0` itself. Option B, drop score-0 rows by default and exit 1 when none score: the miss becomes clean, but parity with the recorded results breaks, the probe counts shift and any caller relying on exit 0 changes. Option C, keep the default and add an opt-in flag that drops score-0 rows and exits 1 on no scoring row: no caller changes, but Gate 1's instruction must pass the flag to get a clean miss. Option D, keep the code and have the operator reword `AGENTS.md` to say score-0 rows are not hits: no code change, but the noisy output stays. No option is built without the owner's yes. The owner said yes to C and to the `AGENTS.md` edit it needs.

@@ -144,7 +144,6 @@ Recompute `content_hash` on read so silent storage or migration drift becomes a 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
@@ -195,6 +194,7 @@ Recompute `content_hash` on read so silent storage or migration drift becomes a 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether the recompute should run on every read or only inside the on-demand integrity sweep. The research verdict places it as a standing drift guard in the sweep, so the sweep is the default home and a per-read mode stays out of scope unless the operator asks for it.

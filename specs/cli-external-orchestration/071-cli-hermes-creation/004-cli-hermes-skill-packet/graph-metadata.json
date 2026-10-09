@@ -199,7 +199,7 @@
     ],
     "causal_summary": "No packet described how to dispatch Hermes, which flags a dispatch must carry, which operator steps the repo cannot perform, or which models are allowed",
     "created_at": "2026-09-14T17:24:46Z",
-    "last_save_at": "2026-10-07T15:55:51.868Z",
+    "last_save_at": "2026-10-08T19:29:07.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6577c6a355752c0f48444ff3586a75aa874ba2c0e9b01c4a875ac5a06e49afd",
+    "source_fingerprint": "sha256:ce172faf498ec35cd6fbb47c9232dcb4b3520ad82bc0c2d8db0165f331a0d326",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "00faeddcc6ab2c17bd3f65fb80700d61368cd3678d5376df1cfddaaa2d4c6837",
+      "spec.md": "96ecddcf1fcd6a703546c3fa150e1dceccd2b5f428aae54d3e51da2fd26c5f27",
       "plan.md": "bafd5fb1f2f1b26b89bf29eb38aa94e78ee9c1b2243f1de04e10b348868e7471",
       "tasks.md": "5a9ee6159999ac935576cf9d2ac993160e0a565ce7372814f61dbae3e71ba490",
       "implementation-summary.md": "08f75202f1f5726ce8c8c65e228113c5052d2ce5432debf545980b220ae0010d"

@@ -150,7 +150,6 @@ Know why each executor skips a mandated load, and fix it on the delivery surface
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -188,6 +187,7 @@ Know why each executor skips a mandated load, and fix it on the delivery surface
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - How do arms vary the global instructions? The root `AGENTS.md` reaches Claude Code through the `~/.claude/CLAUDE.md` symlink, so an arm cannot edit it without changing every live session. Arms can only add a project-level `AGENTS.md` to the environment or point the executor at a copied global. This phase decides which, under REQ-008.

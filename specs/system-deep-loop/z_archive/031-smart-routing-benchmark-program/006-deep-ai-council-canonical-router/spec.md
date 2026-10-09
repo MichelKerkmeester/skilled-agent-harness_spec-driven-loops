@@ -83,8 +83,8 @@ the concurrent migration edits entangled in the same file (preserve verbatim).
 - Depends on recovering the ADR-006 blob (byte-parity) or re-deriving; independent of other phases.
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 **DECISION NEEDED — weight semantics.** Canonical INTENT_SIGNALS has one weight per intent, so
 per-keyword weights (5/4/3) are lost (a narrow regression: loses intra-intent keyword-strength
 gradient; does NOT affect Mode-A gate-passing since gold is single-intent). Options: (A2, recommended)

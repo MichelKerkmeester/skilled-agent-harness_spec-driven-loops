@@ -218,7 +218,6 @@ Run a 5-iteration deep-research loop with a convergence threshold of 0.05. Use a
 
 ---
 
-<!-- ANCHOR:questions -->
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
@@ -266,6 +265,7 @@ Run a 5-iteration deep-research loop with a convergence threshold of 0.05. Use a
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 No open research questions remain for close-out. The outcomes are:

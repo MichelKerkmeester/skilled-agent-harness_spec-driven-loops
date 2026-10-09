@@ -166,7 +166,6 @@ One exclusion and root policy governs both retrieval lanes - either literally sh
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -221,6 +220,7 @@ One exclusion and root policy governs both retrieval lanes - either literally sh
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open. Resolved: `.opencode/install-guides` joins the trigger-index corpus; root `README.md` and the five runtime mirrors join neither lane. See the Resolution subsection under Problem & Purpose.

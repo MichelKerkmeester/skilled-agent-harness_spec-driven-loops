@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Chart and diagram live under `sk-design` but still carry `sk-create-` in their mode names and",
     "created_at": "2026-09-06T16:22:19Z",
-    "last_save_at": "2026-10-07T15:56:39.909Z",
+    "last_save_at": "2026-10-08T19:29:48.908Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e58e0d310cb4884c6130c81b14f188ba5ebf8502147ff52af8d9f0e08f3a304",
+    "source_fingerprint": "sha256:d2694c9d5536c62a93691209762b8ed21d809a0f0ac4522dd39c66edcd9da6be",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "46516b01b8d410f5604358a1b7d3c18b0c7175e53c2549dc850d7fd1d1cdd4d2",
+      "spec.md": "01b3a63836ce259a460c5e80aed9c9aa3dee8ce4278503de6df186142bf2dbab",
       "plan.md": "79b8477901521e268cb4879fc8139e9fe6c871029c7702d413a4c3975b3a6183",
       "tasks.md": "5e5207fb4cac3606d733542aa2d9bacc1f57ae4ebe753236eefbf51845df0209",
       "implementation-summary.md": "576a10e659304d18e452ed0e207f6d3d608b06dce5e78f66baa741530aecf843"

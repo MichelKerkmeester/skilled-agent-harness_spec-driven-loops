@@ -142,7 +142,6 @@ Every documented dispatch resolves to its runtime's rules, and each of the six s
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -197,6 +196,7 @@ Every documented dispatch resolves to its runtime's rules, and each of the six s
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

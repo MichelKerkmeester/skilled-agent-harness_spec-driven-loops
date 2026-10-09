@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The root README rework produced formatting patterns the skill never documented: decorative section emoji on a marketing front page versus semantic-only emoji elsewhere, headings that name the feature and its benefit, inventories where every item carries a description and a per-feature H2 structure for large documents",
     "created_at": "2026-09-20T12:52:07Z",
-    "last_save_at": "2026-10-07T15:56:46.517Z",
+    "last_save_at": "2026-10-08T19:30:03.714Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:295027ea48c2a692e70d27d7e41157b100dcf25e98449a81fa4f0466cd9d992c",
+    "source_fingerprint": "sha256:3252fb2706f0271c7cccfa0d2a713f95696e3aa9c097a979d63f12f5785f7382",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f42fad7fbfb7361cce7d0f1f97efe784543440d3942a98fbff5b89cfefd249f0",
+      "spec.md": "8799dc3ef9b7b11558a316872d2f65e536317d0b97f1be4785a975d2a971cf6f",
       "plan.md": "97b862a85b5837f71b7d0f0b0f058a766fc969d538ef54bd4a8dedc592534947",
       "tasks.md": "99e3316f719dc8fdaf4e3664268b69db1ed58f3ecfcd0ac4f38ce63e829f27ec",
       "decision-record.md": "07dd688b90bfdda7c6ee03078cbd2145c04214b3380145480c4f6d192f1f9210",

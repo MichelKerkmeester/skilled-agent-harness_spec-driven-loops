@@ -171,7 +171,6 @@ Every ported file works from its new home, proven by the source's own checks rat
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -239,6 +238,7 @@ Every ported file works from its new home, proven by the source's own checks rat
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - How many chart types does the first corpus carry? The reference ships 49 in its primary tier by its own count, which is a reference point rather than a target.

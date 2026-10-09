@@ -166,6 +166,7 @@ preserving the shared store as the sole integrity authority.
 **How to roll back**: Revert the named-dependency rule map, recursive identity check, and matching tests together. The
 shared store, landed schema, and legacy execution path need no rollback because they were not modified.
 <!-- /ANCHOR:adr-001-impl -->
+<!-- /ANCHOR:adr-001 -->
 
 ---
 
@@ -308,7 +309,6 @@ places cross-artifact closure where certificates and receipts can authenticate t
 shared sealer, dependency map, test, or artifact content changes are part of this ADR.
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
-<!-- /ANCHOR:adr-001 -->
 
 ---
 

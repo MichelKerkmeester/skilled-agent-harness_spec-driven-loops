@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The feature catalog for Analysis has evolved significantly",
     "created_at": "2026-04-12T09:02:50.248Z",
-    "last_save_at": "2026-10-07T20:28:52.143Z",
+    "last_save_at": "2026-10-08T20:05:42.414Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +196,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fbc8698218d9d15e79454b2a5344ecf97cd6edb7f76319b30a0a32da54c75092",
+    "source_fingerprint": "sha256:bbede134d295fcd3e6c8b49ae495472c843c5fbbdf8dfd66442cf13ab9144196",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2b3506093465c48ba6630717cff4471a66d0c90bffaf4fe2340851d331b3d7ae",
+      "spec.md": "d4692dbf12122ee33be069acd43fcefacaf362cf9f3b53bf54317f3bb1b9f5ec",
       "plan.md": "a75814a08e6c7a240b4303189060aa874229b5c7e661a0ded4d80334e4e4fd58",
       "tasks.md": "16af541aed951ee603ff981dc680656ab45befb255bbf8c4cb96e751acecd722",
       "implementation-summary.md": "43b528ece791e2daf9a5918b1d1061f5d4b7b5fca2fa0878b5aa604d4ab03ca5"

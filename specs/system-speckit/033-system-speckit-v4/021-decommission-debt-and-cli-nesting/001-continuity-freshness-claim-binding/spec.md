@@ -146,7 +146,6 @@ A completion claim binds to exactly one documented fingerprint owner, the rule c
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -201,6 +200,7 @@ A completion claim binds to exactly one documented fingerprint owner, the rule c
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open. The binding model (implementation-summary.md as sole attestation point) is recommended in-line above because it is the only document the writer already populates; an operator preferring Option B (every claiming document carries its own fingerprint) can override during planning.

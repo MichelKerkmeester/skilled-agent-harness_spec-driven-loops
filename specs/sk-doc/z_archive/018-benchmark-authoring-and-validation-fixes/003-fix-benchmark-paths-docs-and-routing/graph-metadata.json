@@ -191,7 +191,7 @@
     ],
     "causal_summary": "An independent two-model audit (GPT-5.6 SOL max + LUNA max) of `sk-doc/create-benchmark` confirmed the packet's benchmark-family coverage is intentionally complete, but the code and docs around it carry real staleness and drift: three broken `shared` references in `SKILL.md`, a semantically stale `README.md`, a confirmed hyphen/underscore Lane B path defect where 70 committed references point at `benchmark-profiles`/`benchmark-fixtures` while the on-disk dirs are underscore, a `deep-alignment` behavior-benchmark index that contradicts its own captured baseline, and hub routing metadata that",
     "created_at": "2026-07-14T06:43:53.836Z",
-    "last_save_at": "2026-10-07T18:12:24.847Z",
+    "last_save_at": "2026-10-08T19:30:07.950Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:65985fbe5e2ba274c54f1daee6bc5b18237d46997510d52e487cdfddfd1c0ae3",
+    "source_fingerprint": "sha256:7e754d9d2b99370efe50f2aa041d4e7da129825c693210aebab3d440db8abb28",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e3a586491cb4f31cfb45612625aa88bf2db3e6eb1db1bd74a8967485743a5dad",
+      "spec.md": "4a6730f83f575da3080cfadf91b0c5dfad3e4d5dc2ca42422f8eaa1951881ba4",
       "plan.md": "c54999909ae3fa813d126221696a64423e0ae57fa1d15faae2ca31968f4a95f5",
       "tasks.md": "521c3bf14357b4958956adf2b6e467375ed7a08edf165aa4c37f8568983cafae",
       "implementation-summary.md": "b997525b7c125fd4053bf16fa0bd775b18472f366012fe8604d61df2e024c58b"

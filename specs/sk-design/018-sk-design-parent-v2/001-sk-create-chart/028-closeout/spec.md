@@ -108,7 +108,6 @@ rather than work nobody did.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -163,6 +162,7 @@ rather than work nobody did.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

@@ -154,7 +154,6 @@ The refactor MUST be **score-preserving for holdout-free corpora**: any corpus w
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -204,6 +203,7 @@ The refactor MUST be **score-preserving for holdout-free corpora**: any corpus w
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open. Stage semantics (holdout excluded from fitted, separate holdout score + gap, negatives via the existing advisor-inversion lane) were operator-locked before implementation.

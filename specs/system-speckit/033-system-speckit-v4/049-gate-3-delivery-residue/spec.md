@@ -174,7 +174,6 @@ Every runtime that owns a Gate-3 delivery path — Hermes included — delivers 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -229,6 +228,7 @@ Every runtime that owns a Gate-3 delivery path — Hermes included — delivers 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

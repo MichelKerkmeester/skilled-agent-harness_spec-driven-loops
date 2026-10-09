@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Cursor CLI has never existed in this repo before — this is a first-time creation, not a revival",
     "created_at": "2026-07-24T04:20:23.355Z",
-    "last_save_at": "2026-10-07T18:11:37.032Z",
+    "last_save_at": "2026-10-08T20:04:15.711Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,10 +198,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f719c5edc2dab1d7dde5ccd60224cc31f902db97fb26e445a83054fefeb65c9d",
+    "source_fingerprint": "sha256:c035ff625e2c3f1cda9a24b12b7a77bdac28427bf83333c013cd60a8c47d9723",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b661eec742b91754697fca6b04fed5eed95d37a4368b4f9688218dccc18fa9d3",
+      "spec.md": "e265dda90c2d791ce4accc837ec93160d4c0d73e039558b2e7441f0abf5b3f25",
       "plan.md": "4ea9df099face6645b15fad3b593340d99ad897b55830d93cecef06f3ffc5e4e",
       "tasks.md": "26b1ab57f33f3ed915daea471b961f38271adb2b8d874dbdb41704f25ff77e4a",
       "implementation-summary.md": "697d58a5b6a9d52c7149a0814fcb29af6b9d2109a7e7dc4bc85940b6bfcde2a5"

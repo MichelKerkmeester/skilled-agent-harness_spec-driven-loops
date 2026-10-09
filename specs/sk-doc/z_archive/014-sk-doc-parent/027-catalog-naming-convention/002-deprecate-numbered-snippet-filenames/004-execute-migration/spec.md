@@ -125,8 +125,8 @@ history/narrative — frozen, records what files were named at the time.
   filenames) and Phase 003 (the reviewed, dry-run-verified rename engine).
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 Family batching granularity (per-skill vs per-parent-hub, e.g. whether `mcp-tooling`'s three sub-skills land as
 one commit or three) is decided at run time from the Phase 003 dry-run report size.
 <!-- /ANCHOR:questions -->

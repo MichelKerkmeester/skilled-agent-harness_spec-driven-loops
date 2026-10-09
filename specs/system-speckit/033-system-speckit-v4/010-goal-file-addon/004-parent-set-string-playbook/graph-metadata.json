@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Nothing dereferences a path inside a goal string",
     "created_at": "2026-08-29T18:09:19Z",
-    "last_save_at": "2026-09-06T07:09:14.134Z",
+    "last_save_at": "2026-10-08T19:31:21.317Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aa067a612c16cb24d377afd56afcdb77af2778099afd2f49227403d6a9ad1ab2",
+    "source_fingerprint": "sha256:61f5aa232f062ade27bfd2a4c847ce364c83c08188759c7d6ce9d550e989e3b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ebafc30082a8f6fdb1505da3324018e170f82df6606f9173877e1acc26e28751",
+      "spec.md": "c40ff2cacaf1164a65b71565fac44bc90db58458878c832ae3789a08dd184d7d",
       "plan.md": "b234d046b3be9660b96a179a746e74b5cbdc760d8826134504f5aa01268a0c27",
       "tasks.md": "e68bf84931285e7e4c182b4d49a4abfe5b6d3ca5f261767c35536e613073169b",
       "implementation-summary.md": "b816d2e8ac22252baa4b31a5fe8dcd71a133ad4ed47f1c975b066599be36b66d"

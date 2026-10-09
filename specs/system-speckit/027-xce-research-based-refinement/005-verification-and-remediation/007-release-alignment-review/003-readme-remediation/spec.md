@@ -136,7 +136,6 @@ Restore README currency surgically, README by README, so docs match current post
 <!-- /ANCHOR:risks -->
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -181,6 +180,7 @@ Restore README currency surgically, README by README, so docs match current post
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None — all themes resolved against live source and accuracy-audited.

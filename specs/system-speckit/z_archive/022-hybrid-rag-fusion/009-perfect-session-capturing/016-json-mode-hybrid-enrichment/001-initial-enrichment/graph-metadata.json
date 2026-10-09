@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The original phase-016 pack had drifted away from the code that actually shipped",
     "created_at": "2026-04-12T09:02:50.277Z",
-    "last_save_at": "2026-10-07T20:28:21.397Z",
+    "last_save_at": "2026-10-08T20:54:22.761Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:16db3d549e9954456e64b88f4b5b2d2703296d9c2ccd0276cf62ca6e8a622c3f",
+    "source_fingerprint": "sha256:dc356749c001b7e9a0d878be0fad5004189e1883f46a8283e495358d3174e89f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eeac4f7e353775827ee138f46b3616a5f666806fd649349450af8e59c6ca9a0c",
+      "spec.md": "4088c6db746899a00f1073d8809fb58533d07d043ef461c5a5209d42a2fddb12",
       "plan.md": "fb62959b8698ccd2d2b9e88ad531f53b1526441e60ef09c6374acac3cbdff80c",
       "tasks.md": "8df96cbe75cb7f59df2bcc71ecc430b8261d2788adf04ec1240afbf122f005fa",
-      "decision-record.md": "9d282b93a93cad2a876802648242d651242d1fb922783da3d5ab4010fdad8ddb",
+      "decision-record.md": "c7304bf53d20b87059fbadddcb784f3d5b2b8e1439d83bb6137dfa54512b5262",
       "implementation-summary.md": "28a4393dabd55e80514776ace8194bad2b23317edb8c767761bf4f8f096d3166"
     },
     "last_active_child_id": null,

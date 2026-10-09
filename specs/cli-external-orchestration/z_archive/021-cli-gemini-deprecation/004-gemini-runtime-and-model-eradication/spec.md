@@ -170,7 +170,6 @@ Remove every Gemini host-runtime and Gemini-model reference outside `specs/**` s
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -251,6 +250,7 @@ Remove every Gemini host-runtime and Gemini-model reference outside `specs/**` s
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. The operator directed "no Gemini anywhere" outside `specs/**`, approved changelog edits, and the external `~/.gemini` / `.geminiignore` binary state is left intact by design.

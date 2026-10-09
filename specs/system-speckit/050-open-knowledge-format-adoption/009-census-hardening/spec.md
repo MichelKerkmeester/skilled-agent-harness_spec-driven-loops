@@ -144,7 +144,6 @@ Each class the census prints carries a measured accuracy with its interval, and 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -199,6 +198,7 @@ Each class the census prints carries a measured accuracy with its interval, and 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - What accuracy threshold per class makes the census fit to act on? The protocol answers this before data.

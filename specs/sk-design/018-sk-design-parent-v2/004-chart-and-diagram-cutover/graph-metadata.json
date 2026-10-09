@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`sk-create-chart` and `sk-create-diagram` live in a documentation hub whose other thirteen modes",
     "created_at": "2026-09-06T13:52:16Z",
-    "last_save_at": "2026-10-07T15:56:39.655Z",
+    "last_save_at": "2026-10-08T19:29:48.773Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:42b2a3622eb9f391c515cc0e395362627c4990d88c800e30f015f238a8a0e24c",
+    "source_fingerprint": "sha256:984266b6d0ee08714c55efd86e74d8031c0d7d655f9468e7d5262eeccf90805c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c5dec1613f1ab66e42458697c781cbd37981bc6ec19be3f216757dc2e363decd",
+      "spec.md": "b3df87d9e8daefe955bba53b619a70eea193e4011da2396ebbc16e56f1f33252",
       "plan.md": "931df8286b5450de2a3b4ed1ef8c2f6f49ecda244a23bf7a37fa408c1339ee25",
       "tasks.md": "d89e5236b90fae1ff8bce5793b28f2761a730c49a6a237e1657f1442e5b5d0df",
       "implementation-summary.md": "95626c95b4f234415ff180cab9d9e9340123b272b980a93447f3956dfb22af8e"

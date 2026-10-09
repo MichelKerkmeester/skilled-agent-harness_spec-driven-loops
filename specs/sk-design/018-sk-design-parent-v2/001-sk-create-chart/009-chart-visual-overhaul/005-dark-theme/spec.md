@@ -175,7 +175,6 @@ A delivered chart answers the theme the reader's system has already chosen, with
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -249,6 +248,7 @@ Scored with `bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 All three are answered. Each answer is written up in `decision-record.md` with what it cost.

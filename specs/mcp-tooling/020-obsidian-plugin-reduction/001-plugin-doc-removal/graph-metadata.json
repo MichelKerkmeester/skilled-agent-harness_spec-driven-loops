@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Twelve of the mode's fourteen dedicated plugin doc sets are unwanted",
     "created_at": "2026-09-11T06:41:59Z",
-    "last_save_at": "2026-10-07T15:56:13.657Z",
+    "last_save_at": "2026-10-08T19:29:27.756Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b9352a3e961f2d9036fbc14c53a82010f332d61e86c93243d5ae7832b6902cf",
+    "source_fingerprint": "sha256:4b43e2f8276ccea4da48edbb24be4152b703bc3667444d7ac219742a703046b5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9d4ca384c8ec3c3a64b9a0f87400b5134ad57f0c607927d49b9afc6fc356c08d",
+      "spec.md": "54fcf56170ba42b075f02290434aeac197985bd87d8e5f3206ae04414740cbf2",
       "plan.md": "405ae90bc6f9d8b144ad69c778efe64add178b5a0dcdf8daeb8bcbdeb47d2397",
       "tasks.md": "0876c5d86651fa82d61e3a050a22d70c64fca9f47f31eabac5b47aa931b3b17e",
       "implementation-summary.md": "4cef48b74a3929886b2f304dd509acfa2f23573fddc12da1b0cc283ad64d0b5d"

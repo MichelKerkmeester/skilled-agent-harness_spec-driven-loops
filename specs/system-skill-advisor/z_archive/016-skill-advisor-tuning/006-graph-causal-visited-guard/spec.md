@@ -167,8 +167,8 @@ Score every qualifying edge before deciding expansion, so a weaker or earlier ed
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-<!-- ANCHOR:questions -->
 - None. The bug was reproduced, the fix verified correct (`beta = +0.145`), corpus-neutral (0/193), and terminating; the Python mirror was ruled out with evidence.
 <!-- /ANCHOR:questions -->

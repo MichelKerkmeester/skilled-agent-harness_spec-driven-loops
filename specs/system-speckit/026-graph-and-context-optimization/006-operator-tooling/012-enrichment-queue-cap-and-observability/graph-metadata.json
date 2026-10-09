@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`scheduleBackgroundEnrichment` (`memory-save.ts`) caps concurrency but pushes overflow to an unbounded queue; a live-save flood grows it (and each entry's retained `parsed`) without bound (F-007)",
     "created_at": "2026-06-15T06:00:22Z",
-    "last_save_at": "2026-09-11T16:42:34.832Z",
+    "last_save_at": "2026-10-08T19:30:55.244Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:1bca58a3bdcd5985d0e6ddd4437bc73e72bee1a33503771d5a35fd758d6a6336",
+    "source_fingerprint": "sha256:60d7b1fe723255c4da194b9d4bb1eab947e726883c8daf997e96708558c3d843",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4df2d9e80b9e28fb26db197360e01cbc9277e407fa3f5a436ee0721a8bf4251e",
+      "spec.md": "8f41f44c7ca436ca9addb9212549bd9ef39ce9db55e9fca0d63deed0267f722c",
       "plan.md": "854672b26a01c753b3b91463ef764423033a965db5f82be3b7cb1ead19a9bb65",
       "tasks.md": "c633051426b5009ef09b5d21db653ab9a13867d5bfd2a907181cb7cd3fe07663",
       "decision-record.md": "bff745ace57d38d24a8f9cdc73afe6ad101dd33a19e97d9e440e6f4654ddd762",

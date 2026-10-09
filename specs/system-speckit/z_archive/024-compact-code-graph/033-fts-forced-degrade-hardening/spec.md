@@ -162,7 +162,6 @@ Hold the conditional hardening packet so the train has a place for remaining lex
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -230,6 +229,7 @@ As a reviewer, I want chosen lexical paths and forced-degrade reasons to be expl
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Is the current runtime already truthful enough to fold this packet into 032, or does one canonical matrix still need its own child packet?

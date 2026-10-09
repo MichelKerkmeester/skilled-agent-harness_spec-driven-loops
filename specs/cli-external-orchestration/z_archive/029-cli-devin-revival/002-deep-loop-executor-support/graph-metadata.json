@@ -169,7 +169,7 @@
     ],
     "causal_summary": "`cli-devin` was fully removed as a deep-loop executor kind on 2026-06-08",
     "created_at": "2026-07-23T19:51:58.603Z",
-    "last_save_at": "2026-10-07T18:11:09.801Z",
+    "last_save_at": "2026-10-08T19:29:15.049Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -177,10 +177,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:b12158c2f43e87cbadb2de5f4e3efd4fea29035c230d6b702fec507113390cc8",
+    "source_fingerprint": "sha256:0b16a96b1b070b31a5dda07c036968d10fa1e45d88926c4074298d5cb2cef44e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7bbb1fec1062c7931e25c3feb3f890fa0af71b730b5c5b68af724838e4e6c715",
+      "spec.md": "2ef7d8bd2290f4f3897d9f440b7cde51576d3861f9442aacdbf1b893b582b9f2",
       "plan.md": "a56a8420c9968edce73099a17098a13446f48535c9030ba79cc79e680d4fb490",
       "tasks.md": "eae30663a662a3908407379e8d182e34514bbb52e8edf37b317d5debb0074392"
     },

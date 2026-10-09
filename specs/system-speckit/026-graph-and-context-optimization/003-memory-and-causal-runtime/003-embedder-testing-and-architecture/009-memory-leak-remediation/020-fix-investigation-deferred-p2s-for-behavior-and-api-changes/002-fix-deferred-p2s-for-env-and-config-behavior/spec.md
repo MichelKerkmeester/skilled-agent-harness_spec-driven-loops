@@ -146,7 +146,6 @@ Close the four findings with bounded behavior changes, regression fixtures, and 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -197,6 +196,7 @@ Close the four findings with bounded behavior changes, regression fixtures, and 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. User specified the closure behavior and halt-on-first-regression rule.

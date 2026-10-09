@@ -144,7 +144,6 @@ Reconstruct a Level-2 packet that records the shared sk-design backbone, its sou
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
@@ -200,6 +199,7 @@ Reconstruct a Level-2 packet that records the shared sk-design backbone, its sou
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - The shared source names mode-owned contracts and downstream consumers, but this packet does not define their undisclosed schemas or implementation details.

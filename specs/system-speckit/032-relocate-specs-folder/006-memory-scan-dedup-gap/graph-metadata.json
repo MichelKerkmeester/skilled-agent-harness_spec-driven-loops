@@ -40,11 +40,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp-server/tests/memory-save-supersede-reindex.vitest.ts",
-      "handlers/save/dedup.ts",
-      "specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md",
-      "handlers/memory-save.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,24 +65,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save-supersede-reindex.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/tests/memory-save-supersede-reindex.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "dedup.ts",
-        "kind": "code",
-        "path": "handlers/save/dedup.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "handlers/memory-save.ts",
         "source": "derived"
       },
       {
@@ -182,7 +160,7 @@
     ],
     "causal_summary": "Revised twice after real evidence",
     "created_at": "2026-08-07T16:31:56Z",
-    "last_save_at": "2026-08-30T15:39:36.455Z",
+    "last_save_at": "2026-10-08T19:31:19.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,10 +169,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:46769aba5c1c3531af37ac7ee99dfd962c080b701f8ed372ab65a1f39d1d398e",
+    "source_fingerprint": "sha256:3c69bb20beaa877eab44c56ee603f7fae157b314ba54eaf3c184998ebd216fe5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4699c8591cb36502ad8ed2002292a45c63db82461cbfa503e18826f0164f63ac",
+      "spec.md": "8422eed9100764e703c8a597e73113ef80639b7323056250ed88e25531af4c52",
       "plan.md": "e57906e5af1d27c26b540c15b8b85ab3bd298b829efb5396aaaa0b38dd3dfbeb",
       "tasks.md": "c19d175888ab20b3ef15a863317daf1a7c9ce37ff6a73f9cf64e346892690c28",
       "implementation-summary.md": "cc276a5cf98dcb21bf34ccc9baca53b3351db5f144847a96fbcc286b6f1da55b"

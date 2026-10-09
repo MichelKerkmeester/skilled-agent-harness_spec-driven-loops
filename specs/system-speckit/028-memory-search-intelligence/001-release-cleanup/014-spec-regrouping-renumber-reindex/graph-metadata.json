@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The selected spec tracks were manually moved and regrouped, leaving gaps, duplicate numeric prefixes, and stale path references in spec metadata and markdown",
     "created_at": "2026-06-30T12:13:28.471Z",
-    "last_save_at": "2026-08-30T15:39:34.637Z",
+    "last_save_at": "2026-10-08T19:31:00.375Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,10 +197,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:55bd334469f13c367d78f9a6ebb4e14512239e3b1c7839feaabc5558eb54fef1",
+    "source_fingerprint": "sha256:bc2b8d1f91ad0d814c9c7e6aa79470f87ca428dc413a4513d9b175dda7f493e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cf513375b2b24c22222f83406fcaff61464799f8e892b6290afb042eb4f93759",
+      "spec.md": "4b37d7acef4adf69d910a635bfde565318b12afae4eb3e82c1e8db78b2eb86b7",
       "plan.md": "cc8795315a1251be1326de0f596bfcc7bc2120906c5796ea332d0137afa9b943",
       "tasks.md": "fe129aae854c2d3fb9a2f7c845298b2e802deb4698042e84e16d8426405e9d3d",
       "implementation-summary.md": "58c88348c01aa3b843ba53bc0891d26ac9b738ff90858fa7b4169db82ec30bec"

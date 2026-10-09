@@ -149,7 +149,6 @@ Add new human-run `EX-###` scenarios — in the existing EX feature-file format 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -218,6 +217,7 @@ Add new human-run `EX-###` scenarios — in the existing EX feature-file format 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None blocking. The new scenarios are additive and live-runnable; the only judgment call (which `NN--category/` folder each scenario lands in) is resolved by topic affinity and recorded in `decision-record.md`.

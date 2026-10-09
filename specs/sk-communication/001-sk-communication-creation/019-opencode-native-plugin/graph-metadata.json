@@ -196,7 +196,7 @@
     ],
     "causal_summary": "OpenCode is the only supported runtime with a native output-transform hook, but no runtime yet consumes the projection core, so the enablement flag gates nothing end-to-end",
     "created_at": "2026-08-14T05:28:35.233Z",
-    "last_save_at": "2026-10-07T15:56:18.888Z",
+    "last_save_at": "2026-10-08T19:29:34.684Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:898a113d4c3e13b5e2beeb71c93881c4422cad396d2515ba3d6ec52bcc470cde",
+    "source_fingerprint": "sha256:1152b460a49f2dc54ddebd52aebc59fc1fd0cafb7e067b3de0e8a6f296fa38f6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "70c793f519a0bbec96e42cc5e6338578ce54cce80f15e4898e604da6b9ada162",
+      "spec.md": "8d9c1d10366c9fb43e1889538e1351c3bc8e2e360c8c1ef0af1e15b3b67ec0ec",
       "plan.md": "51cdd26642ae60d5abc6571fc2527d7982375237a0e69e66b0f809529d9cc8a6",
       "tasks.md": "5d343daf4d291431da933442384740b93087e42e7f0a4385f8d17acbf699d896",
       "decision-record.md": "1dbd61a94ab72d216df741e37aa8bd99ec4554dad738667535237ef42ee821a7",

@@ -150,7 +150,6 @@ An operator can see every shipped hook gate and keep any optional one off for go
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -199,6 +198,7 @@ An operator can see every shipped hook gate and keep any optional one off for go
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator chose the command shape, git config keys for persistence and the `.sk-git/` override folder before work began.

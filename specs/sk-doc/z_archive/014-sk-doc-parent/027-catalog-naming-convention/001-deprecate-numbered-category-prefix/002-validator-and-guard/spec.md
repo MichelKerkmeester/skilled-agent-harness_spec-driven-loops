@@ -108,7 +108,7 @@ the migration script (Phase 003); any non-sk-doc skill.
   them and before Phase 004 renames any folder (sequencing invariant, ADR-002).
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 None.
 <!-- /ANCHOR:questions -->

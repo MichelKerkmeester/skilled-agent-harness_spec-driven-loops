@@ -141,7 +141,6 @@ Make the spec.md expectation come from the spec.md template contract for the dec
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -179,6 +178,7 @@ Make the spec.md expectation come from the spec.md template contract for the dec
 - **US-001**: As a spec author following the template exactly, I stop seeing a warning telling me my complete spec is incomplete. Acceptance: REQ-001 live checks.
 - **US-002**: As a reviewer, a SECTION_COUNTS warning once again means something real. Acceptance: REQ-002 thin-spec fixture.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. Root cause read directly from the rule source during scoping (2026-07-02).

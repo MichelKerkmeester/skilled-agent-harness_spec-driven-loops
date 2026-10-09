@@ -153,7 +153,6 @@ Every source file has a recorded disposition, and the placement question has an 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -221,6 +220,7 @@ Every source file has a recorded disposition, and the placement question has an 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Do the 57 binary assets come across at all? They are 18M of documentation imagery, and a chart skill may be better served by a handful of representative shots.

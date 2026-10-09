@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Package the system with explicit provider privacy choices, a tested compatibility matrix, diagnostics, rollback, and six-runtime release gates",
     "created_at": "2026-08-11T10:04:33Z",
-    "last_save_at": "2026-10-07T15:56:18.236Z",
+    "last_save_at": "2026-10-08T19:29:31.884Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:a474bc0c634f71d0bc540617afd1499a64af7acad322d265d11867a91b95d972",
+    "source_fingerprint": "sha256:12bc194621616745f3be0906b6e32a6868b2c1639f4dd4f06386fd306cef95a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ef94277a4866bd96c2fa66bff8865ca4f0e949fa82a496933025e949c70f2163",
+      "spec.md": "e59849fc6e583277ae616ad5cda2e2f24f0e33d54b0de9fd249e89abfd7e9020",
       "plan.md": "dfdca8b550abf5d673bfa7b1c557d2c0fd019a1372aef9fdd18183c4349fff4d",
       "tasks.md": "24f7022468dfc218221b69d14b3ce02b0ae993756894f6158864b117562ac3da",
       "decision-record.md": "a2d558b9f74209522c664ec122c65191a87bed7fa61a48db7f9057718730722c",

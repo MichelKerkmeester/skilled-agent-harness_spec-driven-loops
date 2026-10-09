@@ -140,7 +140,6 @@ Land the flag-gated, default-off foundation for the daemon to outlive its owner:
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -193,6 +192,7 @@ Land the flag-gated, default-off foundation for the daemon to outlive its owner:
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Secondary ownership adoption (recycle responsibility) and the released daemon's terminal death need runtime validation before the flag is enabled by default. The foundation ships dormant.

@@ -44,7 +44,6 @@
       ".opencode/skills/sk-doc/scripts/quick_validate.py",
       ".opencode/hooks/goal/cursor/goal-inject.mjs",
       ".opencode/skills/sk-code/sk-code-webflow/assets/patterns/performance-patterns.js",
-      ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts",
       ".opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
     ],
     "entities": [
@@ -82,12 +81,6 @@
         "name": "performance-patterns.js",
         "kind": "code",
         "path": ".opencode/skills/sk-code/sk-code-webflow/assets/patterns/performance-patterns.js",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts",
         "source": "derived"
       },
       {
@@ -195,7 +188,7 @@
     ],
     "causal_summary": "The governing standard states verbatim that ephemeral-artifact pointers in code comments are a HARD-BLOCK gate, naming spec paths and ADR, requirement, checklist, task, packet and phase identifiers",
     "created_at": "2026-07-30T19:25:14.577Z",
-    "last_save_at": "2026-08-30T15:39:11.145Z",
+    "last_save_at": "2026-10-08T19:29:29.489Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +196,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:5caf18b5e47584d5cbbbd9fa9c1e93daef614d3ef3fd82b29cb9162ef1bb3ac2",
+    "source_fingerprint": "sha256:2f5ef8ad3412251e2694c86041227f9b44630082e80594fef5e990e795d349fb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "de480b45a4480dffbcc93bd79a0e0f5dc7a2da5f3896de9ce08f66a3c2cb3b5a",
+      "spec.md": "95c4c2cc6abaca5757cf179cc5552fa582522b21978b806411a33ed6e9f4b111",
       "plan.md": "1be8f484fdd92091d0a2c6a5bcdd71d7e5c07695dda7d07405f40679d711ae44",
       "tasks.md": "46fa5bf26dbe25cd96885744068442e7e564f0f9bea840ca48395dd79c854009"
     },

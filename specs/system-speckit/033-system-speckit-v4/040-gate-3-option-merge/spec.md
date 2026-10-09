@@ -162,7 +162,6 @@ tests, or parses the option list carries the same four letters and the same word
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -219,6 +218,7 @@ tests, or parses the option list carries the same four letters and the same word
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 <!-- /ANCHOR:questions -->

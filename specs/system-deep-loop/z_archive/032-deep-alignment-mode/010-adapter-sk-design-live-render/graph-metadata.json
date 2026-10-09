@@ -195,7 +195,7 @@
     ],
     "causal_summary": "ADR-004 locked `sk-design`'s v1 adapter (phase 006) to static `DESIGN.md`/token checks only — live-render (chrome-devtools-driven) accessibility/performance/responsive audits were explicitly out of that phase's scope",
     "created_at": "2026-07-11T09:41:59.522Z",
-    "last_save_at": "2026-10-07T18:15:13.246Z",
+    "last_save_at": "2026-10-08T19:30:34.455Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:16f7f09125676b2a609ff0ace3f86a757289b969dcc6c5581cf9964c8700d957",
+    "source_fingerprint": "sha256:d00eebed1e879e71125e81257cb21142984f55274cf06c70398fff169732a586",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "93d5046247558e52c7254c81d42025aade5f8b8517cd5a7ec9507bfc163294d7",
+      "spec.md": "b8f0a6644e8d20a2fa1e9a867673e8e6801ffe3c01b1d08b7b0af5ea989a53d6",
       "plan.md": "3bf48d5dba0032c87f0fccf6ac682cdec53ee15f99283b738fb9b8a391510170",
       "tasks.md": "24c936a5480854fde4774262f2a16261c44a2a1989e45e3e4d9d8bd796c754d4",
       "implementation-summary.md": "5e13e25bf0793c4f640ffb89ff5179ecbc77971f39b47a8778ba329266a03ff4"

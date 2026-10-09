@@ -197,7 +197,7 @@
     ],
     "causal_summary": "There is no goal document anywhere in the documentation-level contract",
     "created_at": "2026-08-29T18:09:17Z",
-    "last_save_at": "2026-09-06T07:09:14.822Z",
+    "last_save_at": "2026-10-08T19:31:20.995Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6fe4de6367aaba5d140ac7d8c1b12bcc80135d29e9c8850a6b62d1821729846e",
+    "source_fingerprint": "sha256:76f314dd05bad9967e36399f4c168a76a49861be1f81a9b2cbb0e683086f5467",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7bf2ea850bcb66f163ef9e4aa9dc0431e3212b971e3f8bc498f3ad7134ae39ba",
+      "spec.md": "1d07d416ec5d28f6ee2d2d61bbe6f416f4d3ff3faa4f8ff18dc14fc998a23400",
       "plan.md": "8d16bf0c76df3d46a63e5ef704f016f18953d95e37acfc00ead6045fd064612a",
       "tasks.md": "5b091cd815a5c07f3f4aec139e42821dcb183362e3233992367008037b3d8716",
       "implementation-summary.md": "fd6f3115336eb32e2089a0a2746d4c5c855bea76dc2ff35d8bb46510b7e278ef"

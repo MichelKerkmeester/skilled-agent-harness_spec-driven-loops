@@ -138,7 +138,6 @@ None in this packet beyond its own spec-folder documentation (`spec.md`, `plan.m
 <!-- /ANCHOR:risks -->
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -183,6 +182,7 @@ None in this packet beyond its own spec-folder documentation (`spec.md`, `plan.m
 <!-- /ANCHOR:complexity -->
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which stage (JSON-fetch/decode, cosine+sort, or embedding throughput) crosses an SLO first, if any?

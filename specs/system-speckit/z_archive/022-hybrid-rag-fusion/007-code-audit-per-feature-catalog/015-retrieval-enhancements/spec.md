@@ -227,7 +227,6 @@ Verify that all 9 Retrieval Enhancements features are accurately documented in t
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -235,11 +234,11 @@ Verify that all 9 Retrieval Enhancements features are accurately documented in t
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. F09 source-list trimming remains a catalog follow-up and does not block this audit packet.
-<!-- /ANCHOR:questions-2 -->
+<!-- /ANCHOR:questions -->
 
 ---
 
@@ -248,4 +247,3 @@ Verify that all 9 Retrieval Enhancements features are accurately documented in t
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
-<!-- /ANCHOR:questions -->

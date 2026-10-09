@@ -146,7 +146,6 @@ Each of the five items reaches the state its owning surface's own gate defines a
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -199,6 +198,7 @@ Each of the five items reaches the state its owning surface's own gate defines a
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does this program hold write authority over `specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/spec.md`'s own report text, or is that packet considered closed and out of bounds the same way its own children were when they recorded F12 and the 036 manifest issue as out of scope? REQ-007 is written P1 and conditional pending this answer.

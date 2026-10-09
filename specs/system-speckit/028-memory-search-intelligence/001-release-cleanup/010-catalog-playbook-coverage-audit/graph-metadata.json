@@ -45,8 +45,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "research/research.md",
-      ".opencode/specs/system-speckit/028-memory-search-intelligence/before-vs-after.md"
+      "research/research.md"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "before-vs-after.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/before-vs-after.md",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 028 shipped many features into three daemon-backed system skills (system-spec-kit, system-code-graph and system-skill-advisor), but the release-cleanup that aligned feature catalogs and testing playbooks only ever touched system-spec-kit, and even there it ran edits-only",
     "created_at": "2026-06-22T04:40:16.647Z",
-    "last_save_at": "2026-09-11T16:42:40.438Z",
+    "last_save_at": "2026-10-08T19:30:59.006Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +205,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:807d371b2a7ac54c5c02e35f2f5f6848532368791da6f422d80ba3a9a6928c57",
+    "source_fingerprint": "sha256:6b21037940d99580b9a4549037d0926f6ff1aa2c39e4d22044f137c3a66914f3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "09c8f924ba374cf922c81d15fab2d6e72511ef5f317ba9e7c19628c880508223",
+      "spec.md": "51670398dbaf9098f0d7d469158e172a26f91a8cf86a5a5ecfbb7fa3580e8387",
       "plan.md": "32090e87dc2d0ffb963cc8709ee6a4a9cf93308014b5ed2af38f071d5197ba2d",
       "tasks.md": "9d0fddac073019795deb52f750d2da2093b2f10b37d4d427fec0f9475ba31a21",
       "implementation-summary.md": "56568d0de97feb0b8821ad7951e2a0d4a904389d4a798292d9afe28426288bf9",

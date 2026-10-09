@@ -119,7 +119,6 @@ Each of the three forms opens the same hover card that `003-excerpt-and-grouped-
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -170,6 +169,7 @@ Each of the three forms opens the same hover card that `003-excerpt-and-grouped-
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None. The mechanism, the per-form readout and the row counts are decided in `research/research.md` section 6.6 and carried into this spec unchanged.

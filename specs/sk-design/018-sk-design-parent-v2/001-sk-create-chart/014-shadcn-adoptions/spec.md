@@ -126,7 +126,6 @@ Also in scope: recording the kept decisions where the research said they live (`
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -173,6 +172,7 @@ Also in scope: recording the kept decisions where the research said they live (`
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 Operator decisions carried from phase 13. Each becomes a checker assertion only once its policy exists; none is implemented here.

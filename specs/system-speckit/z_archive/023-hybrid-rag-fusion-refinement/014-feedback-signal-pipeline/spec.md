@@ -157,7 +157,6 @@ Synchronize this packet with the current repo so the implementation, verificatio
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -213,6 +212,7 @@ Synchronize this packet with the current repo so the implementation, verificatio
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None at packet closeout. Future work would only be needed if the transport model changes or if the benchmark harness should be formalized into a checked-in script.

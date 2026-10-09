@@ -177,7 +177,6 @@ deep-loop/cli-dispatch reliability thread.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
@@ -216,6 +215,7 @@ convention. This phase itself is design-only, so its complexity is in the analys
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 Six questions require operator sign-off before implementation — enumerated in full in

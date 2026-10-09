@@ -145,7 +145,6 @@ Give sk-create-goal a conformance check that exposes each named gap and reports 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -197,6 +196,7 @@ Give sk-create-goal a conformance check that exposes each named gap and reports 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 - Which route did phase 001 select: the mode-local checker or a system-spec-kit validator amendment? The parent spec assigns that decision to phase 001 (specs/sk-doc/060-create-goal-mode/spec.md:157).
 - Has phase 005 delivered the cut fixture within budget with its criterion count unchanged and chat slice printed? That evidence is the incoming handoff (specs/sk-doc/060-create-goal-mode/spec.md:146).

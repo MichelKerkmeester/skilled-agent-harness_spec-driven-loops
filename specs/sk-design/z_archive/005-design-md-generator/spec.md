@@ -160,7 +160,6 @@ Document the shipped `md-generator` contract for measured design-system extracti
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 <!-- ANCHOR:nfr -->
@@ -234,6 +233,7 @@ Document the shipped `md-generator` contract for measured design-system extracti
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 No product questions remain for this reconstruction. Runtime-specific questions are intentionally deferred until a real source URL and output path are supplied:
 

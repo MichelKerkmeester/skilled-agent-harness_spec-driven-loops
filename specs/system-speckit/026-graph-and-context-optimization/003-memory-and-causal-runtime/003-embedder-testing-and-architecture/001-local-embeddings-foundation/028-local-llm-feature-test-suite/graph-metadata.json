@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 014-local-embeddings-setup-a phase parent + the 021/022 remediation packets shipped a major change to the local-LLM embedding stack: cascade resolution (Voyage → OpenAI → llama-cpp → hf-local), profile-keyed sqlite filenames, auto-migration between hf-local and llama-cpp, model-keyed prefix registry, q8 default quantization, and Apple-Silicon Metal acceleration via llama-cpp",
     "created_at": "2026-05-13T19:09:45Z",
-    "last_save_at": "2026-10-04T09:22:15.209Z",
+    "last_save_at": "2026-10-08T19:30:48.790Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d238e1020d05827504d3a4f5bca26f6f28d1be185a862f2c7dc78722ba9e841b",
+    "source_fingerprint": "sha256:f78d646a67158779f686600f24b4debebe8396ec0987226cb67c56e622540e99",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1fa090be9a2a5c6533949e36e138e7fb76ffe509ce3c7ab3692cfbda4c4011f6",
+      "spec.md": "1e9c2ef03ae2f52887526dcf27e052219163aae99ff7d0fe0a5d28d13b2aa5ad",
       "plan.md": "7c295dbd647b2ba22286b9dbc4ce4be372a2c1aa5cfabee2ce1393eec93b25d9",
       "tasks.md": "49151812d831cdcb28133d3186f07f997407e07bd3fee10cc8ec53007a6cb2dc",
       "implementation-summary.md": "9ccb369ae54e30829c39ecd3acc9cebd8d3e821a849c470d9a8b1db83b8f4ba8"

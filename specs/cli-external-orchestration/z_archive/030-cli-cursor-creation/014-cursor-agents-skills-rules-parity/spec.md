@@ -136,7 +136,6 @@ Resolve the `UserPromptSubmit` open question first by reading the actual hook so
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -177,6 +176,7 @@ Resolve the `UserPromptSubmit` open question first by reading the actual hook so
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 The `beforeSubmitPrompt` entry is designed to inject a shared skill-advisor-equivalent brief, but live delivery is dormant under the tested Cursor CLI build. The static `.cursor/rules/skill-routing.md` file carries concise repository-specific routing pointers until that dynamic path delivers.

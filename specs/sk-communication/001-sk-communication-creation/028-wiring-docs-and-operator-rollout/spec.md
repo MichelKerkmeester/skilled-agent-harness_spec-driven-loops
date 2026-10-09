@@ -205,7 +205,6 @@ Author three operator references against the wired seams, extending the Phase 01
 
 ---
 
-<!-- ANCHOR:questions -->
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
@@ -253,6 +252,7 @@ Author three operator references against the wired seams, extending the Phase 01
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 No unresolved question blocks planning. The exact spellings of the wrapper launch commands and the evaluation-gate report fields are recorded as versioned doc inputs at authoring time, not open design questions.

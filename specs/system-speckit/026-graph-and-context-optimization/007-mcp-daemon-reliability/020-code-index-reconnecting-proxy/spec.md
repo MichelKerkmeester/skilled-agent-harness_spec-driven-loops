@@ -139,7 +139,6 @@ mk-code-index bridges secondary clients through the same reconnecting session pr
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -192,6 +191,7 @@ mk-code-index bridges secondary clients through the same reconnecting session pr
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The proxy machinery is reused as-is; only the replayable tool set is code-index-specific.

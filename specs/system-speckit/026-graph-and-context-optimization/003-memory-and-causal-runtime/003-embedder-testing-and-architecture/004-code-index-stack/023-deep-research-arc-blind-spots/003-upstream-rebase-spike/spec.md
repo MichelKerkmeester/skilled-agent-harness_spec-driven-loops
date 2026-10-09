@@ -142,7 +142,6 @@ Close the upstream-drift findings with evidence, apply only cheap compatible win
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -197,6 +196,7 @@ Close the upstream-drift findings with evidence, apply only cheap compatible win
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should Phase A attempt the CocoIndex SDK `>=1.0.6,<1.1.0` bump before 023A1 starts?

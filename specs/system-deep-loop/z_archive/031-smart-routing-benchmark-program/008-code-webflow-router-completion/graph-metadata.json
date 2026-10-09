@@ -157,7 +157,7 @@
     ],
     "causal_summary": "Land code-webflow's inline INTENT_SIGNALS/RESOURCE_MAP router on skilled/v4 (the parent already declares the webflow surface; the child block is absent, so the drift guard fails on the webflow side) and correct its LANGUAGE_STANDARDS keywords from ts/py/shell to css/html/js, co-rewriting the WF-013 gold prompt.",
     "created_at": "2026-07-09T12:18:00.729Z",
-    "last_save_at": "2026-10-07T20:53:18.771Z",
+    "last_save_at": "2026-10-08T20:05:10.493Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -165,10 +165,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:1aa4e694cff63d96c8fcb01ce3d16a18da68e54a14c09cd78076de80aad9b2e0",
+    "source_fingerprint": "sha256:678694697d00c50966ef577aa8f03a4ea6489ee08509f7f5365b539234d5acbc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0f15a53e944fa5a42f69c8fff0c79dfeebb94d41efe948bd541ef425efced8cb",
+      "spec.md": "6f6d79de71a39cad61238d52ca6653df65bf9b607042ab466da6d3d97537d12a",
       "plan.md": "1606bdc2b170c1e4759a49245d55e3836d618005baa08fc55f6f5ce966e033e8",
       "tasks.md": "f4e9b603244d5ae18608063483704acef911928c55f23387a0b60fe08c3ff0a4"
     },

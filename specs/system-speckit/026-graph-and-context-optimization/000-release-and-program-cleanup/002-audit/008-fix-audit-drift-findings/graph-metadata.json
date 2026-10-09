@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Packets 042-044 surfaced 4 drift findings between the feature catalogs and product code, all flagged with `FIXME(<featureid>)` markers in stress tests",
     "created_at": "2026-05-01T03:28:16Z",
-    "last_save_at": "2026-08-30T15:39:27.769Z",
+    "last_save_at": "2026-10-08T19:30:41.656Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +196,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:873453186a9ae8778acd1d6535302e1b12c60949477d1124694da4bb366c371a",
+    "source_fingerprint": "sha256:4fafa3d44ea01bda5ca82ea41d1e0c37f5f3634c95c62fd3d36dfce9b1375945",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dacbe918c8da53a3774e25fa3dcc4ef3e8280168944844e177b1d52c1945d7a8",
+      "spec.md": "83bfe30f90c20e0350f147e6a5d277ac081b75988ff2e0740fa35c7113b7b33a",
       "plan.md": "b482a21ffdcb462cf9c3da448717c5ab288c2d67968bd2c9f68f12f3b053a48f",
       "tasks.md": "fe3b872c21c737766252add4c484df1d8213bc3d7e28a4db5f7b115c02b08963",
       "implementation-summary.md": "6017241ee42c8bf28548151e6c8c9d42c29c4c238fc8ad8452370c50501b3442"

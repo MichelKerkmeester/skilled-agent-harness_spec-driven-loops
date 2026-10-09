@@ -192,7 +192,7 @@
     ],
     "causal_summary": "`daily-range` carries no interaction register at all today",
     "created_at": "2026-09-05T16:03:58Z",
-    "last_save_at": "2026-10-07T15:56:27.773Z",
+    "last_save_at": "2026-10-08T19:29:42.560Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd76c9ddcb88d0082bcef01c5b359a5a36a8804215ebc4ba86b5cf1e8dbfbecc",
+    "source_fingerprint": "sha256:d0ca6fc7de378bcd69e21b18b30a84c662f900934e96ee6b4768809826636be1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2899df8c89d3af1ed2816637280cc395e98f0cc078a573321dc0cdd2eb46711a",
+      "spec.md": "d76165ff86c4635f2646a334e700bfa75237bb256c2e420e22c1b697765b5694",
       "plan.md": "4e2db4b3de6824edcb57a167ff423a0d116ba1168c1bd0b499cf5b3d778a4142",
       "tasks.md": "5297b333294a075dd59c962dedb27448b5e44b79486b3ce8972c122c0f128dd4",
       "implementation-summary.md": "058459d8c11e5f839d0725c4e1ab9b0b9f9c31fff66c7dc7db262bd837d604da"

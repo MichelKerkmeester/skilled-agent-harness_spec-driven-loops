@@ -159,7 +159,6 @@ Replace fallback-scoring observations with live routing facts: rerun the full fl
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -229,6 +228,7 @@ Replace fallback-scoring observations with live routing facts: rerun the full fl
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - How many of the 18 outranked phrases reproduce once the live scorer answers? The live run answers this before any edit.

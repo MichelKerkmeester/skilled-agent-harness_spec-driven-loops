@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`DIAGRAMPALETTE:BEGIN skin=light|dark|terminal … :END` blocks, one per file, in the four templates",
     "created_at": "2026-09-10T17:17:42Z",
-    "last_save_at": "2026-10-07T15:56:39.525Z",
+    "last_save_at": "2026-10-08T19:29:50.394Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b94326c213104b84a236acffb65d136816af241e1c1119a17c188051085c4010",
+    "source_fingerprint": "sha256:64bd9c6b135788a43868e948fbfe1e0784cef828461084f52c639c3496464f7f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d46539d27c28b0c2d0bef6ecf3aac90955ecd327eed0e62afa8976deff4d86a1",
+      "spec.md": "d78ab87157044eddf741118b1bd7879347bd597dcc7b1c194c305abc8848aba3",
       "plan.md": "35e569d1fe60b76c5ca1fc7cc17752bd33ea940dcd3250cc9a4a1c59e0334d6b",
       "tasks.md": "3d2a0c84c867f6544430d964d830a8201b1efdceb839f05196b40a6fffa511bf",
       "implementation-summary.md": "677512b18799e484d09c91df9c9a645b7c89fb42cfeb70e2c753f91f1e4bdddf"

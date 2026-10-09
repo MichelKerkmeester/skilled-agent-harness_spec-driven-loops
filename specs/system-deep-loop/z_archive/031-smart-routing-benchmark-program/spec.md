@@ -213,8 +213,8 @@ Every routing target (8 children + 2 hubs) has a reproducible Mode-A gate score 
 
 ---
 
-## 12. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 12. OPEN QUESTIONS
 
 - Trim Mode-B to the representative-per-family sample permanently, or run all 10 configs once the migration unblocks the deep-loop hub?
 <!-- /ANCHOR:questions -->

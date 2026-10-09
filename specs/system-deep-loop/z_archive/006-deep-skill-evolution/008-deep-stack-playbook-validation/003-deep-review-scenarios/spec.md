@@ -125,7 +125,6 @@ Execute all 45 `deep-review` scenarios via `cli-devin` SWE-1.6 (deterministic `r
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -171,6 +170,7 @@ Execute all 45 `deep-review` scenarios via `cli-devin` SWE-1.6 (deterministic `r
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Batch granularity: one dispatch per category (default) vs combining the smaller categories (04 convergence sub-groups) — 07 stays isolated regardless.

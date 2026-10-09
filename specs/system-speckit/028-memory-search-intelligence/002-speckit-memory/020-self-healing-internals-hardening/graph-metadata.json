@@ -38,14 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "dist/handlers/memory-search.js",
-      "dist/startup-checks.js",
-      "dist/context-server.js",
-      "tests/memory-search-drift-suspect-write-timeout.vitest.ts",
-      "tests/startup-checks-processing-marker-sigkill.vitest.ts",
-      "tests/memory-drift-healing.vitest.ts",
-      "tests/startup-checks.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,48 +63,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.js",
-        "kind": "code",
-        "path": "dist/handlers/memory-search.js",
-        "source": "derived"
-      },
-      {
-        "name": "startup-checks.js",
-        "kind": "code",
-        "path": "dist/startup-checks.js",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.js",
-        "kind": "code",
-        "path": "dist/context-server.js",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search-drift-suspect-write-timeout.vitest.ts",
-        "kind": "test",
-        "path": "tests/memory-search-drift-suspect-write-timeout.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "startup-checks-processing-marker-sigkill.vitest.ts",
-        "kind": "test",
-        "path": "tests/startup-checks-processing-marker-sigkill.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-drift-healing.vitest.ts",
-        "kind": "test",
-        "path": "tests/memory-drift-healing.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "startup-checks.vitest.ts",
-        "kind": "test",
-        "path": "tests/startup-checks.vitest.ts",
         "source": "derived"
       },
       {
@@ -191,11 +142,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "F8 — synchronous drift-suspect write can block the search hot path up to 10s ([MEDIUM], flag-gated OFF today)",
     "created_at": "2026-07-09T15:13:35.568Z",
-    "last_save_at": "2026-08-30T15:39:35.070Z",
+    "last_save_at": "2026-10-08T19:31:02.595Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +185,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d79dcdd3beb66d9a546b9019198c928fffdced398f5e3022e32b37b10dea9363",
+    "source_fingerprint": "sha256:750483b20c24b93aceca824bc57ae683aee462d16c30c765e3e22f29d4924fb5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9a9f8bb232706878befe650ccf349c35df9643fa8a91d4f0641b5d06337310b9",
+      "spec.md": "700ca2fdd83f779ce0e1ed81c24e3ac04855c2aafb781e6cc1ac4f1d38bceaf7",
       "plan.md": "3326cecca7ced4f22d4bab209d5e2cc506232130c294123022fb5845a96707b3",
       "tasks.md": "f6bb41733dda3bdaa2ae25360f7a0bf28913beb696eb82cc3c9837436e26cdbc",
       "implementation-summary.md": "9eaddd8c6a580a32efe84ab22ead602e5d4340b0b0b4ae1b3fcf31e0e9d8daaa"

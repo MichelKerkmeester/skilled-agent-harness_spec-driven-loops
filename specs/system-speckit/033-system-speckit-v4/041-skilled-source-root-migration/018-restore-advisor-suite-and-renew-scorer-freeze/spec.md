@@ -142,7 +142,6 @@ The advisor suite passes, runs leave the tree clean, and the scorer freeze is cu
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -189,6 +188,7 @@ The advisor suite passes, runs leave the tree clean, and the scorer freeze is cu
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None for this phase. The runtime-engine harness findings in `implementation-summary.md` need their own decision.

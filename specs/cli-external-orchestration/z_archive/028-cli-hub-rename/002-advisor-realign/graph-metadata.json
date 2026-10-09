@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Moving the hub invalidates advisor paths and projections unless they are regenerated or repointed",
     "created_at": "2026-07-13T03:34:31Z",
-    "last_save_at": "2026-10-07T18:11:41.151Z",
+    "last_save_at": "2026-10-08T19:29:15.289Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f1b72f81dddd4278f22dc75c1ebb6a7bc2b5bc6e5a0dde289f19affcbf54c863",
+    "source_fingerprint": "sha256:a1c006e5ac0870d0c0d487166c5cc056e16ad36ee36bf63c4a6735942497a285",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ff1d4d8062c52dc6c1e1b37b69582dff5c9fe91d1e5e08a94d33021a6711a451",
+      "spec.md": "d49c5bc283b10f1229b1da51290b0c2387980f814e8cfb1a90c5cf8c6dcb8f87",
       "plan.md": "6ae6b1a54a9189e79e9515d8b681c93c34f732a9921afe420143b2fb2163022f",
       "tasks.md": "fd6164919712b90e8853e081c969a1f35fba312ab3bdf970e0e979eef72f1c8d",
       "decision-record.md": "f427135babab7c00f5bcb52b96cf78de0e522752e4d7bfd34f3c4ed43b15b78f",

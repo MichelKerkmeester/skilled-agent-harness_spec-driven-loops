@@ -142,7 +142,6 @@ This is **Phase 15** of the Recorded findings closure specification.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -195,6 +194,7 @@ This is **Phase 15** of the Recorded findings closure specification.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should REQ-006's Manual-infeasible exemption, if ported, use the same three-word class marker `_ac_analyze_traceability()` uses, or a simpler single `Status` value? The canonical schema's `Status` column already carries `Met/Unmet/Waived/Superseded`. Adding a fifth value changes the closure semantics in `check-ac-closure.sh` too and needs that rule's owner to weigh in before implementation.

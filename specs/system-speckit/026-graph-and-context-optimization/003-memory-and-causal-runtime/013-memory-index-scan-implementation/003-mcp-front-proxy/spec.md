@@ -155,7 +155,6 @@ Make an RSS recycle survivable and transparent. Keep the launcher alive across a
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -229,6 +228,7 @@ Make an RSS recycle survivable and transparent. Keep the launcher alive across a
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should `SPECKIT_BACKEND_ONLY` ship default-on in this packet's final phase, or stay opt-in for one release while the live RSS-recycle proof accumulates soak time?

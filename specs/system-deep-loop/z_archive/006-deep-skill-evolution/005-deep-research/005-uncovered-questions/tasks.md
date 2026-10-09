@@ -86,6 +86,7 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Decision Record**: See `decision-record.md`
+<!-- /ANCHOR:cross-refs -->
 
 <!-- ANCHOR:architecture-tasks -->
 ### Architecture Tasks
@@ -94,4 +95,3 @@ _memory:
 - [x] Keep the field additive to avoid registry migration.
 - [x] Reuse existing strategy and JSONL inputs instead of adding new state files.
 <!-- /ANCHOR:architecture-tasks -->
-<!-- /ANCHOR:cross-refs -->

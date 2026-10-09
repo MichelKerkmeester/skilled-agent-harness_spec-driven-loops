@@ -147,7 +147,6 @@ Give sk-create-goal a reader-checkable standard for goal content, with corpus ex
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -194,6 +193,7 @@ Give sk-create-goal a reader-checkable standard for goal content, with corpus ex
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None for this phase. The standards and example paths are fixed in this specification.

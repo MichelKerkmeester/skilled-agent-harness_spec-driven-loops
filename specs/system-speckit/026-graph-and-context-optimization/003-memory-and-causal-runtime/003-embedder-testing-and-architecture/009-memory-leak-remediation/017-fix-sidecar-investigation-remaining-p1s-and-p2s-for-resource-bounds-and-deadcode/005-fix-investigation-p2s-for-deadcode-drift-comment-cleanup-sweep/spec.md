@@ -140,7 +140,6 @@ Close every non-behavioral P2 finding that can be safely changed in the leaf pac
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -190,6 +189,7 @@ Close every non-behavioral P2 finding that can be safely changed in the leaf pac
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Behavior-changing P2s are explicitly deferred.

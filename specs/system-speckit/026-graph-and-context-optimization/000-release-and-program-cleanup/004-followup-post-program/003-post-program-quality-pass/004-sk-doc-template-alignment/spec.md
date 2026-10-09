@@ -151,7 +151,6 @@ Produce an auditable target list, fix confirmed sk-doc violations in packet scop
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -200,6 +199,7 @@ Produce an auditable target list, fix confirmed sk-doc violations in packet scop
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

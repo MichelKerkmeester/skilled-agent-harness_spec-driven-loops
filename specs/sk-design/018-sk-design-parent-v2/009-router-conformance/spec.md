@@ -156,7 +156,6 @@ A reader who knows one hub's router can read this one without relearning its sha
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -223,6 +222,7 @@ A reader who knows one hub's router can read this one without relearning its sha
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether the root-router contract should encode the section skeleton it currently leaves to

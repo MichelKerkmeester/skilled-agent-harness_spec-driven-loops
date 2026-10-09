@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The deep-review legal-stop gate model has drifted across documentation surfaces",
     "created_at": "2026-05-23T18:38:12.948Z",
-    "last_save_at": "2026-10-07T18:14:15.081Z",
+    "last_save_at": "2026-10-08T19:30:26.411Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9f828a3dc59e5b7903c11791fe443fd48eb33f45c4ea1afcde7709057cd833c",
+    "source_fingerprint": "sha256:b50e784c9f13f67ad661ceee17eb9aed616cba519d16c76b23c9e9f3febc6dd1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bb5bace3525407078222701a2060aae2b1f425e96b9632e7f5b33bae28309fc3",
+      "spec.md": "402f6a6bc39f5d4d53bc9c89c8a29fbb29501fbb4639f2771ba7c5fe0e9f7990",
       "plan.md": "e925061431a710f49375666e3eeb72093293023053e83f1abb8299cbf7ec4f65",
       "tasks.md": "d4a686f41a7074bfcbea9ab49bb1e4af83b1958193ee76578f44d80e4893b9e3",
       "implementation-summary.md": "424d6996be5531ef7c67c428f1ceef2a8111a79aaae9f013f96eefbbb398d887"

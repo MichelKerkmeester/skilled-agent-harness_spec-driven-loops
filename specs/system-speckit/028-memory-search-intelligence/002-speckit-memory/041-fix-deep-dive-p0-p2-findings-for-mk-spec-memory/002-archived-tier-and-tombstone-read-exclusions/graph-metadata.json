@@ -45,15 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "lib/graph/community-detection.ts",
-      "lib/parsing/trigger-matcher.ts",
-      "handlers/memory-triggers.ts",
-      "handlers/memory-crud-stats.ts",
-      "handlers/memory-crud-health.ts",
-      "lib/scoring/importance-tiers.ts",
-      "lib/search/vector-index-schema.ts",
-      "lib/search/active-row-predicate.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -84,54 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "community-detection.ts",
-        "kind": "code",
-        "path": "lib/graph/community-detection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-matcher.ts",
-        "kind": "code",
-        "path": "lib/parsing/trigger-matcher.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-triggers.ts",
-        "kind": "code",
-        "path": "handlers/memory-triggers.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-stats.ts",
-        "kind": "code",
-        "path": "handlers/memory-crud-stats.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-health.ts",
-        "kind": "code",
-        "path": "handlers/memory-crud-health.ts",
-        "source": "derived"
-      },
-      {
-        "name": "importance-tiers.ts",
-        "kind": "code",
-        "path": "lib/scoring/importance-tiers.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": "lib/search/vector-index-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "active-row-predicate.ts",
-        "kind": "code",
-        "path": "lib/search/active-row-predicate.ts",
         "source": "derived"
       },
       {
@@ -199,11 +143,59 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow Query",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "SQL",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Non-active rows dominate search results because read exclusion is channel-inconsistent",
     "created_at": "2026-07-03T09:44:18Z",
-    "last_save_at": "2026-08-30T15:39:35.329Z",
+    "last_save_at": "2026-10-08T19:31:04.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,12 +205,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c407dbe8efe9662c512215fbc68fbabb74328e04676a42c612471c586f49bd0",
+    "source_fingerprint": "sha256:63f5ac32ec57ca9ab0ce0765e7b372185525e014888b92a3c9bef6d1113266bd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0e5a15ee939f22ff5cc8c1403d4344da0beaa186ffe99567461b5d971d67f59b",
-      "plan.md": "fbfe1d4f2023e7f5c0e101324f9335750c6073d550e2b290a897e080125725ca",
-      "tasks.md": "abf27cdb5a61d04c6e9cf9c2b0b9b64687613544d8e6223ade166217db48763d",
+      "spec.md": "78508646cdc29a75d3ee1f8888b21bb845fbab937243205846b528768f3656f4",
+      "plan.md": "4938513a200555d1c20a6e8b48f05c13996c4078eabb2c66245a38fed1246e3f",
+      "tasks.md": "6738c68a5e6956c82fecf435696e2d87bb19ab047665f1c41bc4d1c868058a2d",
       "decision-record.md": "ae468b802af0506386ec72c20aef0d3d7a1851aa3f60ffe3f419a033fbb9e121",
       "implementation-summary.md": "a6109ed07ec2c1d0bdb591cf4e98e6cfe00c5aec384c170786fa58e4c76fa1a6"
     },

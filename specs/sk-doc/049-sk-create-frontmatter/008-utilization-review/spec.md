@@ -170,7 +170,6 @@ what they came for, and fix what that shows to be broken and inside the mode.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -238,6 +237,7 @@ what they came for, and fix what that shows to be broken and inside the mode.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Who owns the repair of `sk-doc/graph-metadata.json` so the eight dead triggers resolve, and does the mode's `Keyword triggers:` line stay the declaration of record when the hub metadata is what the advisor reads?

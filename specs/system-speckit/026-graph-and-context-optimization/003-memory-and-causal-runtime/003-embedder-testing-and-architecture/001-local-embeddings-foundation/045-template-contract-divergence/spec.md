@@ -128,7 +128,6 @@ Make `memory_save` and strict validation agree for canonical spec documents with
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -179,6 +178,7 @@ Make `memory_save` and strict validation agree for canonical spec documents with
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

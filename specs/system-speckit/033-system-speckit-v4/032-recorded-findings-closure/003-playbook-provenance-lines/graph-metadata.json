@@ -50,7 +50,6 @@
       "manual-testing-playbook/manual-testing-playbook.md",
       "runtime/cli/tests/playbook-provenance-paths.vitest.ts",
       ".github/workflows/playbook-operator-contract.yml",
-      "runtime/cli/tests/manual-playbook-runner.ts",
       "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/005-overengineering-simplification/research/confirmed-findings.md",
       ".opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
       ".opencode/skills/system-spec-kit/runtime/cli/tests/playbook-provenance-paths.vitest.ts",
@@ -109,12 +108,6 @@
         "name": "playbook-operator-contract.yml",
         "kind": "config",
         "path": ".github/workflows/playbook-operator-contract.yml",
-        "source": "derived"
-      },
-      {
-        "name": "manual-playbook-runner.ts",
-        "kind": "code",
-        "path": "runtime/cli/tests/manual-playbook-runner.ts",
         "source": "derived"
       },
       {
@@ -200,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The manual-testing-playbook under `.opencode/skills/system-spec-kit/manual-testing-playbook/` holds 85 markdown files (1 root index plus 84 per-feature scenario files, confirmed by direct count: `find .../manual-testing-playbook -name \".md\" | wc -l` returns 85)",
     "created_at": "2026-09-07T15:05:43Z",
-    "last_save_at": "2026-09-08T15:47:15.720Z",
+    "last_save_at": "2026-10-08T19:31:25.206Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +214,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b08a20d84debecc8efdbb3dc3fde767949118a5ea5e2619991f4c37f2db2a1d",
+    "source_fingerprint": "sha256:2705ebef19f34c721720430c4d59ecc1fa3f8f8a96a03f28fe23cd8bafd9cd5b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f420d924758588f50f0de7a11e5d008bfc7c3f2c86c6ab708cba4c58c73e569e",
+      "spec.md": "961087e89692a907259efc40ce8760b150425f1610f1ee35260fc67005a195af",
       "plan.md": "b45d2922acb629aafaf24cdc16a53545549a720f7b64113d171b0517d4fa1f87",
       "tasks.md": "ad310ee3d2a27a7e4c3aea25573e927ed4802ec3d0fd017ef9035fd56cbf131b",
       "implementation-summary.md": "131cb908b51d51485b2e6f811b92f51728a41e69eadb8e104eb310fa4675a0b0"

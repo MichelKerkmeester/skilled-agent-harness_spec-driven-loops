@@ -151,7 +151,6 @@ Expand the relevant existing catalog files and add the missing ones, then regist
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -219,6 +218,7 @@ Expand the relevant existing catalog files and add the missing ones, then regist
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None blocking. The sk-git convention is documented as a catalog cross-reference to the sk-git skill rather than duplicating skill-owned detail.

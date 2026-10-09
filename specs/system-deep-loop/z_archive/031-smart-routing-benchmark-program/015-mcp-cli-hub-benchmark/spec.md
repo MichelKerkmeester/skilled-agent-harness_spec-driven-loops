@@ -89,7 +89,7 @@ needs advisor-class scenarios + the live advisor daemon).
 - *Mode-B live dispatch cost/nondeterminism* → advisory only; a configured provider; generous timeout.
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 Whether the D1inter advisor probe needs the advisor daemon warmed at run time — resolved during 003/005.
 <!-- /ANCHOR:questions -->

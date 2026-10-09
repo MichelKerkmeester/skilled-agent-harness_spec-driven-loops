@@ -162,7 +162,6 @@ Produce a Level 3 Spec Kit research packet that turns Contextador's source code 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -253,6 +252,7 @@ Produce a Level 3 Spec Kit research packet that turns Contextador's source code 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - How granular is the `routeQuery(...)` decision between AI routing, keyword fallback, and fan-out, and is fan-out bounded?

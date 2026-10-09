@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The create-skill creation/validation path does not enforce its documented contract",
     "created_at": "2026-07-14T04:26:32.723Z",
-    "last_save_at": "2026-10-07T18:12:29.368Z",
+    "last_save_at": "2026-10-08T19:30:07.542Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc289fbff979adc60b16101bb604733836426f93ecd7813379e900e0e311b248",
+    "source_fingerprint": "sha256:bd86cbf9bb687215806113f371bb878a36cf4157479650c177fff2882ab838d0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cdf32362ea1525f163a8308aca478146341db430bd315edddebd93b645525f0d",
+      "spec.md": "8bf43afc98be5c09181db13cba33bad52532663b0c1b726524e35837ceec884f",
       "plan.md": "2a45fe2bb78d7bfadf23980227cbd7778a0f5ac08f569ca546edd01f7da2b995",
       "tasks.md": "f69d69a68583a54fbbb5c2c8edca157724aea19eec8854e144c7eb5981e59c0a",
       "decision-record.md": "b7c836cfd0ce7d210ce62b4b091ea35738e63c388f9ca01874625b43765d7159",

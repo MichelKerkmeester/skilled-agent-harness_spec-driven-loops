@@ -127,7 +127,6 @@ Fifteen review iterations read the remediated tree along six alignment dimension
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -175,6 +174,7 @@ Fifteen review iterations read the remediated tree along six alignment dimension
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

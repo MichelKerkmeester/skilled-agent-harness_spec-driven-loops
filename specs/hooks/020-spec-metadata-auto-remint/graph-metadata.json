@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Every spec packet carries a `graph-metadata.json` holding a fingerprint of the documents it was derived from, plus fields summarised out of them",
     "created_at": "2026-09-10T20:45:38Z",
-    "last_save_at": "2026-10-07T15:56:13.876Z",
+    "last_save_at": "2026-10-08T19:29:27.861Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b007e43d8a28c257c6b3594f3d9dd739adddedf3909c442adeadd3b52515971",
+    "source_fingerprint": "sha256:5e7d80c9ec37f0245ea0d0873df74c9a0b11afe76669957ec591b9de5bcd6c27",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7425db3070712c8f9ac1f912ea4d11e33d6cda08560aed83d9875ccb52b2c8b7",
+      "spec.md": "7db587441d0285b8b21afef5c8d2c1da123fc0fc138e27ef3218d61088e8138a",
       "plan.md": "65a176ac6d61a430785aac2939412343f50e50a7bddfc2fb4503215fd9c14781",
       "tasks.md": "80ece0c056783041d3a142ae96a4dcacbb84a45d24cdaef8d1d0b8db83085000",
       "implementation-summary.md": "6252c23296d043e713f5515386c2a0b6adba2fa096173e9a0afe4c1c2c7dbf14"

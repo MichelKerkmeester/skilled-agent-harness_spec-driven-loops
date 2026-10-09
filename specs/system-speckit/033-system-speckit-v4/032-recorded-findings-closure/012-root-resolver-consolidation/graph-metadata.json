@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Finding R6-03 (`specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/003-shared-package-utilization/research/lineages/deepseek-v4-flash-shared-package/findings-registry.json:36`) counted 8 root-resolution implementations: `shared/config.ts`, `shared/embeddings/factory.ts`, `shared/embeddings/profile.ts`, `shared/workspace/repo-root.mjs`, `check-source-dist-alignment.ts:98`, `check-architecture-boundaries.ts:92`, `retrofit-convention.mjs:1057`, and `generate-trigger-index.mjs:81`",
     "created_at": "2026-09-07T15:05:53Z",
-    "last_save_at": "2026-10-07T15:57:24.117Z",
+    "last_save_at": "2026-10-08T19:31:26.320Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:61e65a6ca4039f4de8e45f55a99c329a5d39a1b6d5f939615c44660f332d9630",
+    "source_fingerprint": "sha256:332ba9e97cef377fcd8c4c8f0532e7db9da588c48396edf4b4fc21aeccc220a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5c88991bc7370e11f1ab669d6ecd87cf51289f648b9a5fb2a55e84cad5bbc400",
+      "spec.md": "cdc29fcfb670a36a1c9eb5685848d9e6d66353bd787ec13165209367d98612a4",
       "plan.md": "5a75bb8ca2ea4e0b22946d949c8f9f044ba2f0e0462a9cd357af2c04928e2a30",
       "tasks.md": "6c89913d8268d08578cc257fab222a846bca137806760b57caf586a802bae1f6",
       "implementation-summary.md": "3d19081c305051bfe7004ced0b6fd5b6d684be21ff7d2387f7fa702b3324de7a"

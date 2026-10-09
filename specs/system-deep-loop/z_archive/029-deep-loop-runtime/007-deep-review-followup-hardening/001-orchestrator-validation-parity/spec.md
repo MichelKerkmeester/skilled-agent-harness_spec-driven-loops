@@ -144,7 +144,6 @@ Make the Node path's strictness equal to the shell path's in both directions and
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -186,6 +185,7 @@ Make the Node path's strictness equal to the shell path's in both directions and
 - **US-002**: As an author of an honestly Not Started scaffold, validation does not demand a completion document for work that has not begun. Acceptance: 030/011/007 validates clean.
 - **US-003**: As a maintainer changing the registry bridge, unit tests catch filtering/mapping regressions before any bash fixture runs. Acceptance: new vitest file fails on injected filter regression.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. Both gaps verified against live code with exact line references during the 2026-07-02 session.

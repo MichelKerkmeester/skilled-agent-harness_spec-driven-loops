@@ -136,7 +136,6 @@ After this phase, the `sk-code` verification guidance makes a test prove it bite
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -191,6 +190,7 @@ After this phase, the `sk-code` verification guidance makes a test prove it bite
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - OQ-1: Should decision-economy and/or fail-closed-by-construction also become standalone constitutional rules (always-surfacing), or live only inside `sk-code`? Recommendation: ship inside `sk-code` first; promote to a constitutional rule only if the doctrine needs to surface outside code work. (Drives REQ-005.)

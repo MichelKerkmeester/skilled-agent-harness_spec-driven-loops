@@ -151,7 +151,6 @@ Write down what the eight files already agree on, and what the six phases alread
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -205,6 +204,7 @@ Write down what the eight files already agree on, and what the six phases alread
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the contract permit the 190-line `communication.md` as a variant, or hold the ~160-line ceiling and record it as a known exception? **Leaning: hold the ceiling, record the exception with its reason. A ceiling with one exception is still a ceiling; a ceiling that moves to fit its largest violation is not one.**

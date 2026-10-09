@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`renderChatSlice()` removes the frontmatter, comments, anchors, dividers and section numbers, but it keeps every line of the template's author instructions",
     "created_at": "2026-09-26T13:49:44Z",
-    "last_save_at": "2026-10-07T15:56:45.104Z",
+    "last_save_at": "2026-10-08T19:30:06.304Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f727e0bd3bcf194dfd79ba61d1b692141a2b80af0c38ea5c2c8950c636613309",
+    "source_fingerprint": "sha256:07626110d552e52a468c47cfbfe25a51677a6aee975a5997e38c739c3da9bb30",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8c2d2bb4739f472ec399afe1570786acb8fab6f3863cd8239ebd24d84a383542",
+      "spec.md": "97848066eed12793b252cea47d3303b305703aa996a49eff9baed4f03fd21d6f",
       "plan.md": "6417e2907e33edb5609a59cf75f4c24551add072467b84606a8ab992f6f6cff3",
       "tasks.md": "a19431cb696ad3a451055b68bbcf12c7d6f9d9c4e14bd1ec613dfd12231d2108",
       "implementation-summary.md": "c48f7eda4ed114982171abf1606391fc4d1a3903bdc168bc6035f8cd40381771"

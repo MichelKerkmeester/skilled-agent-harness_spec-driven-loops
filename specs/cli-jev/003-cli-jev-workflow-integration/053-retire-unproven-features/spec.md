@@ -141,7 +141,6 @@ Nothing outside spec folders describes or runs the three retired features, and e
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -189,6 +188,7 @@ Nothing outside spec folders describes or runs the three retired features, and e
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

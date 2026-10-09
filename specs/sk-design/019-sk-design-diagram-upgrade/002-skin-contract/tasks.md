@@ -109,10 +109,10 @@ contextType: "general"
 ## Document Quality
 
 - [ ] CHK-010 [P0] No bracketed placeholder (`[word]`) remains in any of the seven authored documents
+<!-- /ANCHOR:code-quality -->
 - [ ] CHK-011 [P0] Every `<!-- ANCHOR:x -->`/`<!-- /ANCHOR:x -->` pair is intact and correctly nested
 - [ ] CHK-012 [P1] Every decision row in goal.md cites the parent decision id (D1-D12) it refines
 - [ ] CHK-013 [P1] No code snippet in any document embeds a task id, finding id, ADR id, or REQ id in a comment (comment-hygiene hard block)
-<!-- /ANCHOR:code-quality -->
 
 ---
 

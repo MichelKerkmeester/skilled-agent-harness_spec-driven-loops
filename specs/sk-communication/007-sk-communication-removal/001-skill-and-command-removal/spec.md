@@ -155,7 +155,6 @@ Remove the complete runtime feature and its active integration references while 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -210,6 +209,7 @@ Remove the complete runtime feature and its active integration references while 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None. The authorized deletion set, active-reference boundary and history exclusions are specified in the parent packet.

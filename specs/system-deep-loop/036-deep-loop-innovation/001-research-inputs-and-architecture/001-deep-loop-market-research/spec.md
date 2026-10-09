@@ -179,7 +179,6 @@ LangGraph (persistence/checkpointing), AutoGen/AG2, CrewAI, DSPy, TextGrad, Refl
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -256,6 +255,7 @@ LangGraph (persistence/checkpointing), AutoGen/AG2, CrewAI, DSPy, TextGrad, Refl
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - GLM exact provider prefix (e.g. `zai-coding-plan/glm-5.2`) and whether a `max` variant exists for GLM in cli-opencode — confirm at execution start; record the probe result in decision-record.md.

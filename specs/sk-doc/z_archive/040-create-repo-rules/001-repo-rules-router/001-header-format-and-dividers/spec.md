@@ -144,7 +144,6 @@ Bring the seven files to the repository's established numbered-section conventio
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -198,6 +197,7 @@ Bring the seven files to the repository's established numbered-section conventio
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the unnumbered `## Fires when` / `## The rule` preamble headers eventually be numbered too, so every heading in a rule file is uppercase? **DEFERRED: outside the operator's stated scope for this phase; raised rather than absorbed.**

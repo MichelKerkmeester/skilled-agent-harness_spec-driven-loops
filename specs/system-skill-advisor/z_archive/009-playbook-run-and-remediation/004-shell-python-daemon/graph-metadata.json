@@ -186,7 +186,7 @@
     ],
     "causal_summary": "The remaining 32 scenarios span seven categories: compat/disable (CP), operator-H5 daemon states (OP), auto-update daemon (AU), auto-indexing (AI), lifecycle routing (LC), scorer fusion (SC) and python compat (PC)",
     "created_at": "2026-05-26T20:10:30.278Z",
-    "last_save_at": "2026-10-07T18:15:57.076Z",
+    "last_save_at": "2026-10-08T19:30:39.061Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,10 +195,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f1efb6dd421575b3e6a20407a583dcc28eb3adec89dd5dd5b9345dad6d3c589f",
+    "source_fingerprint": "sha256:2110d99561e7100c8caedc985306d779f87a03543061f5855b88852738ec9ff5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dd0f2cecb8513b58da32983d6cad60012785a04d7cc87736d40af35163927d92",
+      "spec.md": "eec1f703d66aeb314b9893712b940af7a7e91df3950f2a5b1da095a7a64a034e",
       "plan.md": "49068e7ce03df5c498ba48fa486c1ac314f054ade5209c47ea83133e9371e397",
       "tasks.md": "eac3ef16c265e7ea514a27528725b4adbf5a4ded3d69bc8847fc84304a6d4aac",
       "implementation-summary.md": "b317081f69d6fdd79ea8848e91afeeda2cad2f8edce2412a2eab4193370635ab"

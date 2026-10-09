@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Packet 046 fixed the release-blocking P0s and a small Tier beta set, but 24 P1",
     "created_at": "2026-05-18T08:15:52.987Z",
-    "last_save_at": "2026-08-30T15:39:27.682Z",
+    "last_save_at": "2026-10-08T19:30:41.754Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:a9c51e7ff893059195df12fc13f895126626f73c2b42cde685fb569f5447b24c",
+    "source_fingerprint": "sha256:573ad983f34a074ba5b362758bc0d14ad92a24c5e52de848239947b5bb8a93c2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c1631162c03b951cdda9e840d5e71da00dd99bdd1ad8ee7d572db71616ebb88f",
+      "spec.md": "c923dbf12fb0770aacb54202a421de898b7967684b8f04ca982642f347da7ec5",
       "plan.md": "216e683cae7f8c5e03074796b379226a71ff1ae163230b7bc9ef85dbeb87c188",
       "tasks.md": "2a807d727a5ea6fbd570f00cd0a6cf2661b20352110bfc332e0726506809acf7",
       "decision-record.md": "afe2cd968debc4c6e7c6b5966d132b42687f66d219295aed4d5998953f48129b",

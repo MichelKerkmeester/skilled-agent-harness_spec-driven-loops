@@ -184,7 +184,7 @@
     ],
     "causal_summary": "The shipped sk-design hub is the public advisor-routable home for the design family, but its hub-level routing contract was absent from git and memory as a spec packet",
     "created_at": "2026-07-16T09:11:02.038Z",
-    "last_save_at": "2026-10-07T18:11:07.958Z",
+    "last_save_at": "2026-10-08T19:29:53.107Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,10 +192,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:38965f1fcbd461f1d774e06109f61d6b967120921f8bf6a42f4b11b4fe9535ff",
+    "source_fingerprint": "sha256:a9218c077cc46f297b5b49fe8064d9af844fab5e9565420510609fcbd4ec6526",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6a62b16fbd8d6a669746af5cb75b34f1ba1981f4020f42865ef7cca67e8125e6",
+      "spec.md": "98fd53893e7f00a375e0a1ed064557d07372f05b2b942efa0df84c57d955ee7a",
       "plan.md": "3c9ab4bd509d075ef14de62ef6b8c0fa4fce3a19ac9652e5d2865a225d24c7e7",
       "tasks.md": "35e90da0d81ef490f4665e05fceac87a135db631475d9f344de97d8a91e6f38d"
     },

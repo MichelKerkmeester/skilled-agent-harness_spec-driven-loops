@@ -201,7 +201,6 @@ Capture the rendered assistant message from a non-interactive `cursor-agent` run
 
 ---
 
-<!-- ANCHOR:questions -->
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
@@ -249,6 +248,7 @@ Capture the rendered assistant message from a non-interactive `cursor-agent` run
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 No unresolved question blocks planning. The exact `cursor-agent` version and print-flag spelling are recorded as versioned seam inputs at validation time, not open design questions.

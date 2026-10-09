@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Under memory pressure the daemon recycles by exiting the launcher process",
     "created_at": "2026-06-01T00:00:00.000Z",
-    "last_save_at": "2026-09-10T20:48:02.256Z",
+    "last_save_at": "2026-10-08T19:30:52.845Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:8a72374c147cc1d5c35aac53fba63dc34cdf2bf02efd0a979cbd8b9a56b23a28",
+    "source_fingerprint": "sha256:2bbb6c705e5e8f14b30e977fa09c0324c99ce59a4526a5e651acfc9e825731d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0eefe7e7fa2757a18528daa96a411f01117590eda62794ed1605d292a1b5d6b7",
+      "spec.md": "dbe419bae6618ba1cb8b28a6532abf0e3d3c05ef3799a0625520830150e54c25",
       "plan.md": "9fe35f86de68e6e992a530c6c652efc041094afe400c3dd04bb2b3578f8e7ec4",
       "tasks.md": "eeef3574c0c54af6b38640c65b680cc26e979b536b6897cef665628a13638a5d",
       "decision-record.md": "5ad8819cf731a138e7fb7c4c685d8923f7df863cde3e46c981583e955fac6f78",

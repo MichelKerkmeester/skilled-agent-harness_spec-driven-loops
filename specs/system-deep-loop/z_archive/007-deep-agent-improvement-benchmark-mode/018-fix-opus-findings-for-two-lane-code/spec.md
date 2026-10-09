@@ -176,7 +176,6 @@ Ship every active 017 finding closed with exactly one disposition: the first-wri
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 | ID | Requirement | Target |
@@ -222,6 +221,7 @@ Level 3. The packet touches multiple lane-separated scripts, the scorer hard gat
 - As a benchmark operator, I run the Lane B promotion step and it promotes on a passing benchmark-complete report, so Lane B promotion is executable instead of dead.
 - As an auditor, I read the SKILL.md and command docs and they describe the actual promotion behavior, so no doc claims mode-awareness the promoter does not implement.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should the benchmark-mode promotion branch promote into the same agent-canonical manifest target, or a benchmark-specific target? Chosen: promote on the benchmark-complete report basis through the existing guarded path, gated by `--benchmark-report` (see decision-record ADR-003).

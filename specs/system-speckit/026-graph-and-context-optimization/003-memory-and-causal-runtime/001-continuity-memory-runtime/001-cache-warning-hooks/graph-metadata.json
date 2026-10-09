@@ -49,7 +49,6 @@
       "decision-record.md",
       "implementation-summary.md",
       "research.md",
-      ".claude/settings.local.json",
       "tests/fixtures/hooks/session-stop-replay.jsonl",
       "tests/hook-session-stop-replay.vitest.ts"
     ],
@@ -88,12 +87,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -197,11 +190,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Effect Fencing",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet `002` was originally framed as a six-phase cache-warning rollout with `SessionStart` estimator and `UserPromptSubmit` behavior",
     "created_at": "2026-04-12T09:02:53.453Z",
-    "last_save_at": "2026-08-30T15:39:29.405Z",
+    "last_save_at": "2026-10-08T19:30:47.423Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +211,10 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:95b1b7c492cbb34166687805ac3f86774173daec1e7932b2d4510ad3401537b1",
+    "source_fingerprint": "sha256:167e53e5287b93775682642a11631e2bb6fbe3469a227eda33c8817ade2f19a6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2d58b9386d1ac115e862dcc55e90ddf8de97fde742b9c604fffabbffd94c5842",
+      "spec.md": "a3a711333a0353e27fbef0bcdc84df1203cfac7a2b7466c136704acb882b6c0c",
       "plan.md": "3530168aa0f5bdff8581490d96470d02dde0790df54887464143b0defa67d045",
       "tasks.md": "91a21006788ea89e3cc6d1d39e6afc4e1689b4824ffe79adc6367f72b1e63ba2",
       "decision-record.md": "1fe7c122d651fac85fec8e5df5c05b16f3e9391e7974c46bbf46f8f53ae5bcd2",

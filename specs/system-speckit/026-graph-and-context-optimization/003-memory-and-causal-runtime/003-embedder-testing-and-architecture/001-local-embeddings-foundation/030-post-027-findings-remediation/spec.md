@@ -118,7 +118,6 @@ _memory:
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -173,6 +172,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

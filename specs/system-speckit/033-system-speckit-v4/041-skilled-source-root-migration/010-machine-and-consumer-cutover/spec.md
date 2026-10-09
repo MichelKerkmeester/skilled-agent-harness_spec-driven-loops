@@ -179,7 +179,6 @@ Every machine-level reference resolves into `.skilled/` in the main checkout, no
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -238,6 +237,7 @@ Every machine-level reference resolves into `.skilled/` in the main checkout, no
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - UNKNOWN: which `.opencode/` shape phase 004 freezes, which consumer contract it publishes and which step lands the move in `MAIN`. Its unfrozen draft places the landing in this phase and prefers a relative-link `.opencode` (`goal.md` log). T001 reads the frozen record.

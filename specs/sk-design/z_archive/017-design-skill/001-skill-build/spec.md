@@ -173,7 +173,6 @@ Two items began out of scope and were brought in on operator instruction to fix 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -255,6 +254,7 @@ Two items began out of scope and were brought in on operator instruction to fix 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 Both questions this packet opened are now closed.

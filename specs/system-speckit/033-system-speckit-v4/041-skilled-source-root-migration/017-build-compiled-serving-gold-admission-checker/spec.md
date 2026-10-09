@@ -150,7 +150,6 @@ Any hub can be checked against the admission bar with one command, the check run
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -199,6 +198,7 @@ Any hub can be checked against the admission bar with one command, the check run
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 The operator accepted all five recommendations on 2026-09-19, so none is open:

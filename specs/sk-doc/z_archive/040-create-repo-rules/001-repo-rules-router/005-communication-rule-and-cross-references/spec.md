@@ -153,7 +153,6 @@ Give the communication rules somewhere to expand, and make every rule file reach
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -208,6 +207,7 @@ Give the communication rules somewhere to expand, and make every rule file reach
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the pointers be compacted into one mapping table beside GATE 5 instead of distributed? **No, and deliberately: a central table re-centralizes exactly what the operator asked to distribute. The cost is measured and reported instead.**

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Both surfaces are structurally outside the validator: `system-spec-kit` because it is a single skill rather than a mode",
     "created_at": "2026-07-30T19:29:15.080Z",
-    "last_save_at": "2026-10-07T18:13:27.916Z",
+    "last_save_at": "2026-10-08T19:30:10.550Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:7440807df53b32225dc9d95af8f264d372946bb0d1cccba1475a30c88bf23ebf",
+    "source_fingerprint": "sha256:44379043da63e579410f3be8ba11d0a7aaa21a72a03127b9223e89b84824aa42",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "53c48c941129eb8385d47fbdaaf86737d0d81b46afa30a2fb5757f1826a2df40",
+      "spec.md": "2ffefe6f418178a662abfc5fb5b02e91e22078348e3b3b8c9b1f9d5a83becc93",
       "plan.md": "d77926171ff782a109739d00dba13407e962edfb9365bae66cfe3cf0a9b6c134",
       "tasks.md": "7e35aa03d7cb3fa889ab7a8ff782a11ed086802c5059d78efa3eaa2e2dd3a6aa",
       "decision-record.md": "9b57f71d066e60f9468a07c2444aeeffa20aba4dcb2e48689c4c4ffe1947826e"

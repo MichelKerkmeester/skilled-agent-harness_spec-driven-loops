@@ -136,7 +136,6 @@ Bring the umbrella docs and catalog indexes into sync with the capabilities 026 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -167,6 +166,7 @@ Bring the umbrella docs and catalog indexes into sync with the capabilities 026 
 | **Total** | **30/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

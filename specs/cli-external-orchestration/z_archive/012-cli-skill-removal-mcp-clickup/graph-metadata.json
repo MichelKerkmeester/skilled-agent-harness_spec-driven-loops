@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The `mcp-clickup` skill is being decommissioned",
     "created_at": "2026-04-30T08:00:00Z",
-    "last_save_at": "2026-08-30T15:39:08.402Z",
+    "last_save_at": "2026-10-08T19:29:12.057Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:17b73eb5104ad0be320b64ffad9b6c5899c8ee099f19aec5ac44e5d7a692052a",
+    "source_fingerprint": "sha256:167e4ffa1533862915a86a066b2b28674d8bc25452d0b0eba835f1ffcff12eb9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bf15d3cb8c4570b97cfa007818592fe0b8edb0a35b88d15a8180d548dc2a8614",
+      "spec.md": "f27a522d9b9bed0dbeadbcfbbd7a339b536a7fe0bdb475cb0410de8d78f23151",
       "plan.md": "49d0bbea4398b4007c3a12b5799976cfbb0bf45098a7d1b4d4198c08554384d8",
       "tasks.md": "2e5c1f3be67903fc234b37d052909b2cae5c237c1bf552168cca1c111609fedf",
       "implementation-summary.md": "fa5a02d7fb34a698de1aff8ee3cc4bd8c64931f1ecce8ecbfe765ff26be1bc29"

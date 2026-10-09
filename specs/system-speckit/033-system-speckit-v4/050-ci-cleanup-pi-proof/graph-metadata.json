@@ -46,8 +46,6 @@
       "implementation-summary.md",
       "handover.md",
       ".skilled/commands/deep/assets/compiled/deep-ai-council.contract.md",
-      ".skilled/skills/cli-jev/SKILL.md",
-      ".skilled/skills/cli-jev/graph-metadata.json",
       ".hermes/skills/cli-jev/SKILL.md",
       ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
       ".github/workflows/routing-registry-drift.yml",
@@ -58,7 +56,9 @@
       "evidence/pi-tui-select.txt",
       "evidence/pi-tui-input.txt",
       "evidence/pi-tui-final.txt",
-      "evidence/pi-tui-state.json"
+      "evidence/pi-tui-state.json",
+      "evidence/pi-tui-warning.log",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts"
     ],
     "entities": [
       {
@@ -106,13 +106,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-jev/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".skilled/skills/cli-jev/graph-metadata.json",
+        "path": ".hermes/skills/cli-jev/SKILL.md",
         "source": "derived"
       },
       {
@@ -164,6 +158,18 @@
         "source": "derived"
       },
       {
+        "name": "pi-tui-warning.log",
+        "kind": "file",
+        "path": "evidence/pi-tui-warning.log",
+        "source": "derived"
+      },
+      {
+        "name": "projection.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -198,17 +204,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 049 closed the Gate-3 residue but left two loose ends",
     "created_at": "2026-09-22T13:07:30Z",
-    "last_save_at": "2026-09-23T12:43:26.003Z",
+    "last_save_at": "2026-10-08T19:31:31.384Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,10 +219,10 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:5157ebda35f626f6ccf686583d6835d5542dc5885e54b5da3c7ed10febae5d54",
+    "source_fingerprint": "sha256:ab65e6c6c445f7eb8710db7877024d3323ee7782ad36f210b5b1e06f8a76ce7a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f1faab8897d008c9e95f695dee0fbd2ad3cc44887fe86b62506d3371a44d9655",
+      "spec.md": "2197c493b15fe13a0921ff295d0cf8e45e8d5aea7c109d5cf377153f76484761",
       "plan.md": "3b28bdb22dbfd4b8a7ed69dc8362183942eb5838679efd07662d7592ad00c9dc",
       "tasks.md": "b70727451cbf0f015057a90950e14569ea746ccdf244d8ace0c18bd88d2ac447",
       "implementation-summary.md": "0f4794a5918ce3567e90be35095d535930ee703711e252ddbe21510f7ebad16e",

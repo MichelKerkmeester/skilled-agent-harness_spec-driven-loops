@@ -111,8 +111,8 @@ re-benchmark and no-new-numbered-snippet guard proof (later verification phase).
   phase — but both must land before the execute-migration phase touches the existing 111 files.
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 None — the stage-field decision and the slug-is-canonical decision are already locked by the parent packet's
 decision record; this phase implements the generator side of those decisions.
 <!-- /ANCHOR:questions -->

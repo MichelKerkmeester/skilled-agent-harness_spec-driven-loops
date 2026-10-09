@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The operator wants every turn to end with what they have to do next, and wants a structured question used where a choice is needed",
     "created_at": "2026-09-11T10:54:55Z",
-    "last_save_at": "2026-10-07T15:55:51.869Z",
+    "last_save_at": "2026-10-08T19:29:07.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e2b12d3ca12a4c75fa4ce7409c40128f0d276fdf5cec4e70e5b6dce737e5179",
+    "source_fingerprint": "sha256:d666585692f650f27e38b82b45de4fdee1ab07129e1366b9a2e0b914260bc8a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "35da76bfb5a18543f28234a61eb6674576b3f66b13a3baf054a4a98549b70a4f",
+      "spec.md": "a05e1416baf85201400b57ab8a7784b8575e3e5a0ffadefea36520ae87cf7fa4",
       "plan.md": "5845763366a5f76cef9fdf198c241e91140f4387893e12e54fc8737d01f7bf93",
       "tasks.md": "7085d4681dee0c575d2ac11362287ce0a473e60f392528c0d07dd0a5cf420bbd",
       "implementation-summary.md": "4e37c181a5517c7682d75aacdbe0e567616e209d0a2d2d2bcc4fbf4871208665"

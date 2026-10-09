@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The memory quality and indexing feature category is the largest single phase in the hybrid-RAG-fusion manual testing playbook, spanning 27 scenario files that expand to 34 exact IDs through sub-scenario decomposition (M-005 expands to M-005a/b/c, M-006 expands to M-006a/b/c, 155 expands to 155-F)",
     "created_at": "2026-04-12T09:02:50.300Z",
-    "last_save_at": "2026-10-07T19:24:35.499Z",
+    "last_save_at": "2026-10-08T19:31:37.717Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a6ff3b45395f92ff76a0028b6f37b9c9fd8fa6a4d4b60146463fe6ae8d92a85d",
+    "source_fingerprint": "sha256:ef73e4c776c74cab3ce5a0984afc9b9ba4dbc2590f04f9482bfcc41e7ba4e54f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0f7f0851e5a1038d93a2c4cdd49a237fe2c6cd909380d5f75b6898f81f8b4697",
+      "spec.md": "bdbb1cff462ae2a1a787a820fca7e4ce2eb5ce01b593e30887fdf29c17bdbb76",
       "plan.md": "34eaa2f203c52477d302719bffb021a1022852821ef927f7694521d798ded0ab",
       "tasks.md": "a653c66cc229f9ec83552e5f8847126371d2425e170637d59bf434acb01f2a83",
       "implementation-summary.md": "f9b0e6ca69513e5b1ae39aad4303dabbdabb1cf4468055b31bc0e93e1b5cda3c"

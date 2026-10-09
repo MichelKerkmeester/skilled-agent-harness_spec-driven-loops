@@ -141,7 +141,6 @@ None of the three joins the shared gate until it passes the proof standard in `r
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -196,6 +195,7 @@ None of the three joins the shared gate until it passes the proof standard in `r
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator chose the scope on 2026-10-04: wire the proven features, then research the rest.

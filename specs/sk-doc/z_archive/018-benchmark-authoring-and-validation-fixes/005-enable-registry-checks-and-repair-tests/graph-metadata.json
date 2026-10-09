@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Packet 004 shipped the D5 exit-code hard-fail but recorded two limitations it left untouched as out-of-scope",
     "created_at": "2026-07-14T17:33:04.434Z",
-    "last_save_at": "2026-10-07T18:12:28.192Z",
+    "last_save_at": "2026-10-08T19:30:08.185Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,10 +199,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7f27d02831602c18f2e3e59e0366f1cf6d1dc88eb3be93c367cbf56733b5385",
+    "source_fingerprint": "sha256:e77cc9d756c6a983128d59c1f9173a160f5ac5540b93e535bc350a12d633d6ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "700fc95e41e65781911c1b13bb94e7c5c2df5d65edb98b6679e04d4244165b0d",
+      "spec.md": "be120667e2298b2ca5e1402bb68d3116216b7edc78bd4eed050dbff937324bc2",
       "plan.md": "8df3276d415a2d9f4f44911ad2bbdf71a8f4e4b07fd4a2a9db8bc6586785467f",
       "tasks.md": "7a4c0c70fdf58f5fc45e4cb9b78620403ba279683cbd50ed4b6173228f8ccbbb",
       "implementation-summary.md": "bf54d5e787a31480b13f5c47ff94bbafbf75a8cbd49be5b2a38a74c1bd0c7cbe"

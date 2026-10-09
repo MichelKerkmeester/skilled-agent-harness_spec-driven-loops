@@ -129,7 +129,6 @@ One delegation declaration, carried by every mirror in that runtime's own vocabu
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -176,6 +175,7 @@ One delegation declaration, carried by every mirror in that runtime's own vocabu
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

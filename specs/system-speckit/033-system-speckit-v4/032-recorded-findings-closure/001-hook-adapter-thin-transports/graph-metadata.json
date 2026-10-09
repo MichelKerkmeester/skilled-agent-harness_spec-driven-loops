@@ -49,7 +49,6 @@
       "implementation-summary.md",
       "runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
       "runtime/hooks/pi/spec-gate-classify.ts",
-      "runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs",
       "runtime/hooks/README.md",
       "hooks/lib/spec-gate/spec-gate-core.mjs",
       "hooks/README.md",
@@ -60,7 +59,8 @@
       ".opencode/skills/system-spec-kit/runtime/hooks/lib/hook-adapter-shared.mjs",
       ".opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs",
       ".opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs",
-      ".opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs"
+      ".opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs",
+      ".opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs"
     ],
     "entities": [
       {
@@ -109,12 +109,6 @@
         "name": "spec-gate-classify.ts",
         "kind": "code",
         "path": "runtime/hooks/pi/spec-gate-classify.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec-gate-core.test.mjs",
-        "kind": "file",
-        "path": "runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five runtime hook adapters under `.opencode/skills/system-spec-kit/runtime/hooks/` each re-implement the same Gate-3 classify and enforce orchestration instead of sharing it",
     "created_at": "2026-09-07T15:05:40Z",
-    "last_save_at": "2026-09-08T15:47:15.444Z",
+    "last_save_at": "2026-10-08T19:31:25.089Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2975515dde651aacd7bc98c7b40188cd2bb4347ec714c41a2ff3b6cbb6b29353",
+    "source_fingerprint": "sha256:4ade89ee82a0a0d5b179f43a733bbc415863cf7830702d89a4ce3a266b7ac2f8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aa5019fcce8ffa68713a6a18ba3d7d3cabdf439c1e28ca9c4033e8a3335ac7b0",
+      "spec.md": "d72b0948cead490ba22c4e55e4c35ca6ea935585922629e79886d16049784d3c",
       "plan.md": "ecdffab3359d65ee8de83537090b22e8588bafd4120dc9832b3935fef0dcb008",
       "tasks.md": "9108b87aed5cb7c5baf23fa05de2403974972d5f78b57278330a476880c3c948",
       "implementation-summary.md": "905fda6673205a4be009f39a63b0e0a2ea542faf54a667655596c4b71f98b13f"

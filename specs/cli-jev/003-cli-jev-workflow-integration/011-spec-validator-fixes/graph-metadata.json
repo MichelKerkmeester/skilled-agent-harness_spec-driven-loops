@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`ACCOVERAGE` treats any `file:line` shape in a Verification cell as evidence",
     "created_at": "2026-09-27T11:50:17Z",
-    "last_save_at": "2026-10-07T12:54:51.749Z",
+    "last_save_at": "2026-10-08T19:29:23.413Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:15a94f1a0df91cf284de49f9ca64da606eb37b810e27f415d5f62a0a5e56fe5b",
+    "source_fingerprint": "sha256:9139e3e7dd80de4e4174fd92ac784458305d728af03ab7c60ed16c6fbf9461c3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f65826bbaf7b733296b7dfb5407f4a1c3e899c3e3604b575956e9203095aec69",
+      "spec.md": "21e5ede1a871def3f26918d1a49d5ab0aa89508a3b00dacba62ff9673d341e9b",
       "plan.md": "a978db9c35755be3f78f3c929aff36b9c33a56b0c403d35f57e842745f37e743",
       "tasks.md": "530e7aee4d1a0ed05dc1f60f6c0c3b8972c82dbc61b2802656188f8207c075d2",
       "implementation-summary.md": "8b48a9d9d046b210023f148d4a111c753f3f5b6de9f2e8b412009f92834e495d"

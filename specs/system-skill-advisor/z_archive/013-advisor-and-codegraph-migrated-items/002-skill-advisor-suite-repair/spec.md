@@ -158,7 +158,6 @@ Drive the full vitest suite to 0 failures with `npm run build` clean: fix the de
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -213,6 +212,7 @@ Drive the full vitest suite to 0 failures with `npm run build` clean: fix the de
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - RESOLVED: the reciprocal symmetry edges were added to `deep-loop-runtime`, `mcp-code-mode`, and `deep-loop-workflows` graph-metadata; `advisor-graph-health` now passes.

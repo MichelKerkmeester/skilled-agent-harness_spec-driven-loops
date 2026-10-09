@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The user asked to \"scaffold a phase that makes sure cli-cursor and cli-devin have all the agents, commands and skills properly working and supported, like .claude and .opencode have.\" Live investigation during the 5-iteration deep-research pass found a mixed picture for Devin specifically:",
     "created_at": "2026-07-27T06:09:14.024Z",
-    "last_save_at": "2026-10-07T18:11:37.541Z",
+    "last_save_at": "2026-10-08T19:29:15.699Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,10 +197,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fab437162c285a74f3bc628c7ad9d0916b4b30b382c1946cab543e17d1d515d9",
+    "source_fingerprint": "sha256:ecefc084fea6588f04ddd9fe66520e727c0f15323f9952ab3f08b75812012a54",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2ce8ddd0d666ba8c68cfd6d84ee626ccd9454e3c02e52ae0e71e556b3ffc676e",
+      "spec.md": "933582d9c32bff929e8e907ec64e18456ced7271850f10811b366d8cc07ccec9",
       "plan.md": "145b8794019264f207e48a3f6f5267bd25fb3b8216503bbb6b4f76e816aea8a3",
       "tasks.md": "6e7620777a82df046c844377270c62feea2e67417acffa6e2b5b02c019e08421",
       "implementation-summary.md": "cf458e7afda2249d9311d84526a695fe71ac3d5324385053d62c14b30b3fb3cc"

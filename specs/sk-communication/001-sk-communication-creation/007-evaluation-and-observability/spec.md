@@ -177,7 +177,6 @@ Turn subjective communication quality into a versioned, blind, repeatable releas
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. Non-Functional Requirements
 
 ### Performance
@@ -249,6 +248,7 @@ Turn subjective communication quality into a versioned, blind, repeatable releas
 1. **Given** a valid Phase 007 input, **When** the primary behavior runs, **Then** its output satisfies the relevant contract and preserves the canonical original.
 2. **Given** an unsupported, unsafe, or failed condition, **When** the same boundary is exercised, **Then** it returns a typed reason and the exact-original or fail-closed outcome.
 
+<!-- ANCHOR:questions -->
 ## 12. Open Questions
 
 Project-owner approval of the Proposed architecture decision blocks implementation. Before candidate scoring, the owner must also approve the pre-registered sample plan, frozen quality margins, and release-critical strata.

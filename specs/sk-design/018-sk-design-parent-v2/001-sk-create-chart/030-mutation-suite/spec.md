@@ -106,7 +106,6 @@ run without anybody choosing to run them.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -161,6 +160,7 @@ run without anybody choosing to run them.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

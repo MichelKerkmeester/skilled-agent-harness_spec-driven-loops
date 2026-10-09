@@ -144,6 +144,7 @@ _memory:
 - [x] Phase 007 handoff criteria are explicit.
 - [x] `checklist.md` reflects the real verified state once this phase executes.
 
+<!-- /ANCHOR:completion -->
 ---
 
 <!-- ANCHOR:execution-evidence -->
@@ -164,7 +165,6 @@ _memory:
 
 <!-- /ANCHOR:execution-evidence -->
 
-<!-- /ANCHOR:completion -->
 ---
 
 <!-- ANCHOR:cross-refs -->

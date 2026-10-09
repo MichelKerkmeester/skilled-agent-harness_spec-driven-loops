@@ -186,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/design-mcp-open-design/feature-catalog/` has not been audited against `.opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md`",
     "created_at": "2026-07-27T15:02:59.272Z",
-    "last_save_at": "2026-10-07T18:12:34.410Z",
+    "last_save_at": "2026-10-08T19:29:56.713Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,10 +195,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe2f7168f7fa77bb968c6f5a984713c0087e2647cf6ffe11bc7c0a2742644ba7",
+    "source_fingerprint": "sha256:c80edd8207aae6c4217fa8e71e2da40993df26b1bc6953676a745ac6483e19c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8cca6616b82215a68204ea158e345d351950d00ad8933f563746b99d6fa70585",
+      "spec.md": "3563eec5f8d8be9c7ea4fec6dbf54851a07aa326e966a4280634d559593433c5",
       "plan.md": "77f5f5fec4f2ed5e125bab53a4f3e70acfc7b2334f02a58a677f70c17f5bae76",
       "tasks.md": "9cb67e0cde78edd9597fdcabe8115104c204d09c9da1888ca9efe3fb57173139",
       "implementation-summary.md": "fbbb8f19b748c20a6b5f5848e0624d1e0881be6b6bf8c56350f443f8c7146199"

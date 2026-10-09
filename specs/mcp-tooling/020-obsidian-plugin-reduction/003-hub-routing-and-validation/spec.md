@@ -176,7 +176,6 @@ from the final state.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -248,6 +247,7 @@ tell a gate that passed from a gate that never ran.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 None. The hub's `graph-metadata.json` exclusion was verified by inspection rather than assumed.

@@ -163,7 +163,7 @@
     ],
     "causal_summary": "The shipped foundations mode defines the static visual system for the sk-design family, but its packet was absent from git and memory",
     "created_at": "2026-07-16T08:42:11.070Z",
-    "last_save_at": "2026-10-07T18:11:21.607Z",
+    "last_save_at": "2026-10-08T19:29:52.967Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -171,10 +171,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:15e9db4c49989d308396b47b3a1fc548c93ecf45976728adf0f6872d448ff781",
+    "source_fingerprint": "sha256:3a9c9fc8a01eb949e8ae10edd9ab1b6ba6558a2e5a17f5b7b104fe4d5483f1d2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0d2c870694b1d28610a4bbabaf7dd86eceb7828de53c7898cef623aefb9fc50d",
+      "spec.md": "81d29d9e91dfa85b5787dd9cb38427679f1808e08a3bfdacabcf11091c32af45",
       "plan.md": "655041d23b83f4322a781788637625b697e83c5dd3a905803218d1ce5d30491c",
       "tasks.md": "02f07cc36f74cab8bcf03b0eab0377938cd89c87a28f02223e0864836802535d"
     },

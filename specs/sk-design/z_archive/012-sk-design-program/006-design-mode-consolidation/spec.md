@@ -144,7 +144,6 @@ Remove the two unnecessary hub-mode identities by retiring both commands (ADR-00
 | Risk | Historical references are mistaken for live consumers | Scope broadens into archives | Classified before editing; six now-dead playbook scenarios deleted rather than rewritten |
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -214,6 +213,7 @@ Remove the two unnecessary hub-mode identities by retiring both commands (ADR-00
 **Acceptance Criteria**:
 1. Given advisor or hub routing, when mode candidates are enumerated, then only `interface`, `motion`, `md-generator`, and `design-mcp-open-design` appear, and `commandSubworkflows` does not exist anywhere in the schema.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 None currently open. Two decisions are now on record: ADR-001 (embed both as permanent interface subworkflows) was accepted first, then superseded by ADR-002 (retire both entirely) once the embedding design was found to violate the create-skill one-entry-per-packet doctrine rule. ADR-002 also revisits and again rejects the canonical research's ranked recommendation to extract audit as a standalone skill. See `decision-record.md` for both ADRs.

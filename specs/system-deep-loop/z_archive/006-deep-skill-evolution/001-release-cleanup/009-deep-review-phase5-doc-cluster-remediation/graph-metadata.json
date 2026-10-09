@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The `003-deep-review` phase-5 loop deferred a set of documentation gaps",
     "created_at": "2026-05-23T18:52:00.000Z",
-    "last_save_at": "2026-10-07T18:14:15.678Z",
+    "last_save_at": "2026-10-08T19:30:26.411Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,10 +199,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8244b8f0ef8611cf1c54fcf8996b5d4722e88e30360af34835e06956f48383e7",
+    "source_fingerprint": "sha256:baeabbb8b921f607618ab7d361941091dd39e77867fd3fb6b0f116ded807501a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7ea5c964070360504865a5d67aa23cde11b67e47b351acee182a4c5bbcfc93e7",
+      "spec.md": "c8c64cc23ab2df70b5802d281359e73aa9b6e6ecbc04e654fc7c98d4ddc16925",
       "plan.md": "bf89ac62dca0405468208e41940529acc37c4e20c11d4b137bbbee6e92d151aa",
       "tasks.md": "7abfe0284df6a47143dddea5f640643cb266cbaad49de224a1bd0e2419f50340",
       "implementation-summary.md": "4144c1d4c38351a27b709d346b3b4e1c9b5fa2b7e891a49d8423fc77a9d1ef23"

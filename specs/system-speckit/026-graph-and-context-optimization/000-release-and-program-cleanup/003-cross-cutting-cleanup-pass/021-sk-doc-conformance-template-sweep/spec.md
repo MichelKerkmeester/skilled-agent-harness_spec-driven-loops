@@ -176,7 +176,6 @@ Bring every sk-doc-governed surface into strict conformance with the canonical s
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -295,6 +294,7 @@ Bring every sk-doc-governed surface into strict conformance with the canonical s
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None at this time. All 3 architectural decisions resolved (D-001 through D-006). Strict validation gating + Tier 2 wave structure defined.

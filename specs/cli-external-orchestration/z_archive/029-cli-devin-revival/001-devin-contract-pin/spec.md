@@ -98,7 +98,6 @@ Install the CLI, verify its live version, and pin the current contract for every
 - **Docs-vs-binary drift**: fetched documentation could describe a newer/older feature set than the exact installed build. Mitigated by cross-checking every doc claim against a live `--help`/subcommand where one exists (`essential-commands.md` and `reference/commands.md` were both fetched and agree on the command surface).
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 None beyond standard evidence-based verification.
@@ -122,6 +121,7 @@ Low - read-only verification, no code changes.
 
 - As the operator, I want the revival's later phases built against the CLI I actually have installed, not a 14-month-old assumption.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 None - all findings evidence-backed (see `implementation-summary.md`).

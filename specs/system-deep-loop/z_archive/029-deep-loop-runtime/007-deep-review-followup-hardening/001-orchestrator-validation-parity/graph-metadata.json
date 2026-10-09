@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`runRegistryShellRules` filters the validator registry with `rule.strictonly !== true` unconditionally (`orchestrator.ts:269` at time of writing), so strict-only shell rules such as `CONTINUITYFRESHNESS` and `EVIDENCEMARKERLINT` never execute through the default Node path even under `--strict` — while the legacy shell path runs them",
     "created_at": "2026-07-02T15:14:06.540Z",
-    "last_save_at": "2026-10-07T18:15:11.764Z",
+    "last_save_at": "2026-10-08T19:30:32.466Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e346d7114325aa119e6f3c5ff7c92736208c5efff914f5922126f6aa8a1f6a95",
+    "source_fingerprint": "sha256:2c48189ef2f302b446ed73b6ed8aca1a2a277b61b0b0c6f0b2baa73df65281cc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eebc8143f383a872bed94e9e9a2a05c4a619f4da3f5753cce461203e27305eb4",
+      "spec.md": "a81245753e52a1502818a450044fda900d32a2ad7435ff4e4471ca98477d881c",
       "plan.md": "55ea4c6a3691a34bc36b8fc94738df376ca1d10ea9d2ba5f1d5750055c705827",
       "tasks.md": "419374ab9fa573f7165204973990496f24964a9880c6bdc1102e0235e4d38eb8",
       "decision-record.md": "a63b14f5fab8371886e9edfe7219bcbbd05f6f7fbea5b419bd57fc9c7c3bc90c",

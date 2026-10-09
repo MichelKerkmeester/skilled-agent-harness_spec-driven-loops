@@ -136,7 +136,6 @@ One version per hub, declared in one artifact, carried by the rest, with every e
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -184,6 +183,7 @@ One version per hub, declared in one artifact, carried by the rest, with every e
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The mode's vocabulary was the contract's vocabulary",
     "created_at": "2026-09-06T06:39:02.253Z",
-    "last_save_at": "2026-10-07T15:56:44.312Z",
+    "last_save_at": "2026-10-08T20:04:23.681Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dbdcc8988cc16966651cdedb65fe45a696cea73a79768a29be481ebda98cfc6f",
+    "source_fingerprint": "sha256:1071e3339e05043e3a59fec4c1ba1b24fa26d314139ff39b16894927433af034",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5f908d07ad1543177d86441ab13b290d041f3fb55f120695a71d927647779133",
+      "spec.md": "6f3ae3a154055168dc55d80b911a76dbe5d07339b09b536e7b29be00aa939c75",
       "plan.md": "51f06e1d2673a7450945951f156d877c883d985f1ebdc15bb36b465b5bc55bb3",
       "tasks.md": "f15097e1f9a0082320c4d249b9ed899a7cedbe6925aa80429f178fbe1cc99477",
       "decision-record.md": "49629aa24e68b415f9eb22257eada5d18f471111c3b0ef22e81650960888da19",

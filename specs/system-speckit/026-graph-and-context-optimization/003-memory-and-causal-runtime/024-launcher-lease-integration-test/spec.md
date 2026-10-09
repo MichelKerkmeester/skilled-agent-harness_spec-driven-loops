@@ -118,7 +118,6 @@ Un-skip the suite, fix its real root cause, and add an end-to-end test that prov
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -167,6 +166,7 @@ Un-skip the suite, fix its real root cause, and add an end-to-end test that prov
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The flake was fully root-caused and the fix verified.

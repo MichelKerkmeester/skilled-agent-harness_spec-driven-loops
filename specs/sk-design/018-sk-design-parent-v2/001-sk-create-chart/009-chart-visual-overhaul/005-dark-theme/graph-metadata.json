@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Twenty chart forms, six family deliveries and three palette proof sheets all paint on a warm paper surface",
     "created_at": "2026-09-03T07:52:32.972Z",
-    "last_save_at": "2026-10-07T15:56:27.742Z",
+    "last_save_at": "2026-10-08T19:29:40.410Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d88b4384b4b86ee61f91c454816f982472236f7344cd0bde5767c9a2bb64db6",
+    "source_fingerprint": "sha256:fd6e08323f71f18c9d9347b6b71cfca748ad1b3dbf6019ad324064a0a869a7c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "db46d8b7e8eb3e536461a7e29421a716e814e9d01ea0d8addf985c61a906fa47",
+      "spec.md": "e796168f0e8e4c4fdeb7bc8d3b16838e85670f9b3ecc4260ae59bc687f4b52cf",
       "plan.md": "af7f1b0ec48556ae1f7fcce32591e66632e39e073a36e09ea8abea2338227167",
       "tasks.md": "b42da6dc0924b7f8ce49b192b1ec26196d3b0c40eadc4c76f35b022b74cb12b1",
       "decision-record.md": "c8fc711b7c87f20e060d33e63893cda70ce628629158e6fa28da795544f2da21",

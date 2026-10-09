@@ -31,6 +31,7 @@ Architecture Decision Record (ADR) documenting the choice of parsing strategy fo
 ## 2. CONTEXT
 
 ### Problem Statement
+<!-- /ANCHOR:context -->
 The Anchor System requires extracting specific sections of content from Markdown files based on `<!-- ANCHOR:id -->` HTML comments. We needed a reliable, performant way to parse these tags and their content without introducing excessive complexity or heavy dependencies.
 
 ### Constraints
@@ -42,7 +43,6 @@ The Anchor System requires extracting specific sections of content from Markdown
 - Anchor tags follow a strict format: `<!-- ANCHOR:id -->` and `<!-- /ANCHOR:id -->`.
 - Files are relatively small (max 100KB per spec validation rules).
 
-<!-- /ANCHOR:context -->
 ---
 
 <!-- ANCHOR:decision -->
@@ -143,12 +143,12 @@ function extract_anchors(content) {
 - **Token Savings**: Immediate reduction in context usage (verified ~58-90%).
 
 ### Negative Consequences
+<!-- /ANCHOR:consequences -->
 - **Strict Syntax**: Users must strictly follow the `<!-- ANCHOR:id -->` format; typos might lead to missed anchors (mitigated by existing validation logic).
 
 ### Risks
 - **ReDoS**: Maliciously crafted regex inputs could cause CPU spikes (mitigated by simple, bounded regex patterns).
 
-<!-- /ANCHOR:consequences -->
 ---
 
 ## 6. IMPLEMENTATION NOTES

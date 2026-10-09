@@ -192,7 +192,7 @@
     ],
     "causal_summary": "After phase 1 the mode's own documents are wrong",
     "created_at": "2026-09-11T06:42:00Z",
-    "last_save_at": "2026-10-07T15:56:13.818Z",
+    "last_save_at": "2026-10-08T19:29:27.836Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6dc9bd9f78b0fef955c53ffdb43fe63cc68c4efd2f3fd856eabdd50d0453f8ba",
+    "source_fingerprint": "sha256:2af60f6c921eac72c8c4fec8cd30f047463c9a6f1eb075a4daa8f8c458a2a4a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fe966fec31e3ce6095e163fbf0c90e7f7e8066f9e13da2090381340a7bedca4e",
+      "spec.md": "6c05d657203edf1b89a939e0cadef68e57a6b52e443af7292d54adab22fff1e6",
       "plan.md": "8ccf4f9115372cdf10810b86ce6431c0f74ae18045c0ec41ecd3e7e07dd94830",
       "tasks.md": "6d759706d8c8b52b2b16659dcd83f36cc16e5c742831699ed2814f40fc4e3aaf",
       "implementation-summary.md": "78aef5552ab139b16710ad9ad41b062998ddff60a5f81b50c291027d2aa6bca6"

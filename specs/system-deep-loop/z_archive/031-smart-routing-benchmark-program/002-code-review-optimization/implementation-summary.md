@@ -46,12 +46,12 @@ Three correct changes took code-review from CONDITIONAL 69 (live) to **PASS 100*
 1. **Parser bug fix** (`router-replay.cjs`): the regex matched only singular `DEFAULT_RESOURCE`, silently ignoring code-review's plural `DEFAULT_RESOURCES` — so Mode-A never modeled the ALWAYS tier. Fixed to `DEFAULT_RESOURCES?`. Blast radius bounded (only `code-review` + the un-benchmarked `system-skill-advisor` use the plural); sibling Mode-A baselines verified byte-identical.
 2. **Orphan wiring** (`SKILL.md`): 4 additive intents (`CORE`, `COMPLETENESS`, `PR_STATE`, `SETUP`) make all 5 previously-unreachable references routable → D5 85→100, 0 orphans.
 3. **Gold = declared designed load**: each scenario's `expected_resources` = the router's designed load (DEFAULT tier + intent-specific asset), so D3 stops mis-counting always-loaded resources. R05–R07 still discriminate intents (they add solid/removal/test_quality).
+<!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 code-review Mode-A: **PASS 100** (D1intra 100, D2 100, D3 100, D5 100). code-review Mode-B: **PASS 100** (all dims 100, meanResourceRecall 1.00). Sibling regression guard: code-opencode Mode-A byte-identical after the parser fix.
 <!-- /ANCHOR:how-delivered -->
-<!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions

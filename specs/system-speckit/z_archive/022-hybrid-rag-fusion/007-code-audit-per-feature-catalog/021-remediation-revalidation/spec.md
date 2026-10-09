@@ -356,7 +356,6 @@ These require new catalog feature entries before any re-audit can consider them 
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -364,7 +363,7 @@ These require new catalog feature entries before any re-audit can consider them 
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Are there undocumented features in this category not yet in the catalog?
@@ -373,9 +372,11 @@ These require new catalog feature entries before any re-audit can consider them 
 - **[Deep Research]** DR-002 re-audit plan requires 27-38 hours — should this be executed as a single campaign or phased across sprints?
 - **[Deep Research]** DR-004 identifies 6 uncataloged files — should new catalog entries be created before or during the re-audit?
 - **[Deep Research]** DR-005's 22 graduated flags may have invalidated early-phase audit verdicts — what is the threshold for re-auditing those features?
+<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions-2 -->
 ### Related Documents
 
 - **Implementation Plan**: See `plan.md`
@@ -383,4 +384,3 @@ These require new catalog feature entries before any re-audit can consider them 
 - **Verification Checklist**: See `checklist.md`
 
 <!-- /ANCHOR:questions-2 -->
-<!-- /ANCHOR:questions -->

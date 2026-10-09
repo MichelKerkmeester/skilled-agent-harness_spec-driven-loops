@@ -127,7 +127,6 @@ Document `opencode-go/glm-5.3` in the opencode-go catalog. Documentation-only: c
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -164,6 +163,7 @@ Document `opencode-go/glm-5.3` in the opencode-go catalog. Documentation-only: c
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

@@ -136,7 +136,6 @@ Build `permission-request-policy.mjs`: a real adapter that classifies the incomi
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -180,6 +179,7 @@ Build `permission-request-policy.mjs`: a real adapter that classifies the incomi
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - None currently blocking. `PostCompaction` live-verification remains a separate open question tracked in the parent `spec.md`, not this phase.

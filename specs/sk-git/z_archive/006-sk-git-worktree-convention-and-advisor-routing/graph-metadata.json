@@ -191,7 +191,7 @@
     ],
     "causal_summary": "sk-git's documented worktree convention is directory `.worktrees/{short-desc}` plus branch `type/{short-desc}` with no number and no single grouping namespace, so feature worktrees were created ad-hoc as siblings of the repo with inconsistent prefixes that neither group in the Git UI nor sort in any stable order",
     "created_at": "2026-07-15T04:22:54.513Z",
-    "last_save_at": "2026-08-30T15:39:18.828Z",
+    "last_save_at": "2026-10-08T19:30:17.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5326c3e999207f223e460bfe84a4bdfab5f8589e693edc21ce97912a26ed0b25",
+    "source_fingerprint": "sha256:7a377fa4935b9072f24fa4a871bfda4f5550d925836f0ff8a249467dca6c29fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6634187d43abe7014faee7e5942556a66fe93244b539b1eabec310ba1acb9e6a",
+      "spec.md": "47729e623408c25cf2d70f56d226cde57d469d89d4aef766d8a9ab95f1388e29",
       "plan.md": "cb04cff5648aa407fcb19d8d53c2c70a1769b139498c1545bdbfbe0c08084dfb",
       "tasks.md": "f5f7012e946f68ef38c6c6a514ced07c83580c634c756538efa9b470417388b4",
       "implementation-summary.md": "2e2aba1964bb570cd2d3a4f674b2d8ab55de0e718c58955c3b2da53bc6b18463"

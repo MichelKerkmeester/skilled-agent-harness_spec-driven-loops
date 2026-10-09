@@ -155,7 +155,6 @@ Every mcp-* skill ships the same install-and-doctor surface and is reachable fro
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -209,6 +208,7 @@ Every mcp-* skill ships the same install-and-doctor surface and is reachable fro
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open. The one decision point (claude2 logged out) was resolved by using gpt-5.5-fast xhigh write seats.

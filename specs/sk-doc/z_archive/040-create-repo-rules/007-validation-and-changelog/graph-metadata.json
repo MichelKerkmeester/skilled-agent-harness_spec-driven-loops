@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Six phases have produced a contract, a packet, two templates, a quality bar, a lifecycle contract and a registered command - and not one of them has been used",
     "created_at": "2026-08-31T11:33:12Z",
-    "last_save_at": "2026-10-07T18:14:23.815Z",
+    "last_save_at": "2026-10-08T19:30:15.754Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:43083e570e9843a170da0f3fec8a6b5086b6e117a306f4de2b212942874028db",
+    "source_fingerprint": "sha256:9dc781990f6ba7245b372621fca86bb212d103359f97c85cff4a83866b82d099",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "68f3394f11677df93657f85dc0bc5d48c57ff1d7656fea3777de6916cfe17959",
+      "spec.md": "e3c109ce3f9f66971687cd3334b598509535219dfc73e2f0df834eded81d325e",
       "plan.md": "c86ee0f85c08377aea72ff3e57b285f2959c2c49b042c28acbe4cebc79c8f977",
       "tasks.md": "e5956c96765147b6c1118e93491ec7f6fbeef2e1203fb1e484c0ed1e4e5034bb",
       "decision-record.md": "fc265e1c0b35de6e069f5c49d574dc5542d91863c1f0106b84dca46d0130ce4e",

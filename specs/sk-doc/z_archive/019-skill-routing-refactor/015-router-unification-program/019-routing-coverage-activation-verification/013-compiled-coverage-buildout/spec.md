@@ -172,7 +172,6 @@ Grow every thin or stale hub's compiled policy to the same production-grade cove
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -246,6 +245,7 @@ Grow every thin or stale hub's compiled policy to the same production-grade cove
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Does the `defer` contract inconsistency (root cause 4: the engine intends `defer` to mean legacy fallback, but `sk-code/SKILL.md:56` maps `defer` to disambiguate) need a fix under Path 1, or is it strictly a Path-2-only concern? Current read: Path 1 does not require it, since Path 1 converts defers into real `match` outcomes rather than relying on the defer-to-legacy fallback contract.

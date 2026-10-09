@@ -128,7 +128,6 @@ Close the hygiene pack without broad refactors: deduplicate negative knowledge b
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -178,6 +177,7 @@ Close the hygiene pack without broad refactors: deduplicate negative knowledge b
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - None.

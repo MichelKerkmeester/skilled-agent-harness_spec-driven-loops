@@ -221,7 +221,6 @@ All six carry the CUTOVER BLOCKER cross-tag. `F-022-02` is CONFIRMED-WITH-CORREC
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -308,13 +307,12 @@ All six carry the CUTOVER BLOCKER cross-tag. `F-022-02` is CONFIRMED-WITH-CORREC
 
 ---
 
-<!-- ANCHOR:open-questions -->
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - For each currently unmapped stem, the map-versus-pin disposition is a per-stem decision that must be recorded with a rationale in `decision-record.md` ADR-003 as it is made. The census (REQ-007) is the input; a pin that contradicts the census is a defect.
 - Does the alignment iteration-versus-lane-completion semantics fix belong to this child (migration mapping) or to `026` (reducer lane semantics)? Current split: `023` owns the mapping, `026` owns the reducer. Confirm before Phase 3 so the two children do not both edit the same understanding.
 - Can a real state log be captured for every mode, or must some fixtures come from existing run artifacts? Record the substitution per mode rather than silently authoring a synthetic fixture.
-<!-- /ANCHOR:open-questions -->
 <!-- /ANCHOR:questions -->
 
 ---

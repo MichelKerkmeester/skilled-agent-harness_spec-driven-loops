@@ -153,7 +153,6 @@ Hand phases 003 through 007 a complete, classified worklist so no later phase ha
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -176,6 +175,7 @@ Research phase. Complexity sits in coverage rather than in change: the cost of a
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Which surfaces count as live instruction rather than historical evidence, and who decides the borderline cases?

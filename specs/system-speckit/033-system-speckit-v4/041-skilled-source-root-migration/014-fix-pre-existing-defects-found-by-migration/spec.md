@@ -158,7 +158,6 @@ Every check runs where it should and passes for a real reason, and the source-tr
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -209,6 +208,7 @@ Every check runs where it should and passes for a real reason, and the source-tr
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which compiled-serving admission path should the next phase build: the restored legacy-parity lane, a new checker against routing gold, or none? Phase 15 researched it, and its `research/research.md` recommends the checker; the choice stays the operator's.

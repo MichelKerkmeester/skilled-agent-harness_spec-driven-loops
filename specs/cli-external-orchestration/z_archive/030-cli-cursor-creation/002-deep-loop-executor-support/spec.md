@@ -120,7 +120,6 @@ Widen the deep-loop runtime's typed executor union to include `cli-cursor`, add 
 - **Self-invocation guard gap (by design, deferred)**: after this phase, `cli-cursor` is dispatchable at the runtime layer with no self-invocation guard of its own — phase 003 owns that design. Mitigation: explicitly out of scope here; flagged for 003.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - Reliability: an absent `cursor-agent` binary fails before spawn, matching `cli-codex`'s `isCodexBinaryAvailable` preflight — no retries burn wall-clock time against an executor that can never succeed, and the guard never trusts the (always-0) dispatch exit code as an availability signal.
 - Consistency: the `cli-cursor` addition is a widening-only change — it must not alter the runtime type shape (`ExecutorKind`) or default behavior observed by any of the existing kinds.
@@ -150,6 +149,7 @@ Widen the deep-loop runtime's typed executor union to include `cli-cursor`, add 
 - As a deep-loop operator, I want to declare `kind: "cli-cursor"` in a fan-out lineage and have it dispatch a real, non-interactive `cursor-agent` invocation, the same way I already can for the sibling CLIs.
 - As a deep-loop operator, I want a lineage requesting `cli-cursor` to fail immediately and clearly when `cursor-agent` isn't installed, not hang or crash with an opaque subprocess error.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 - Cursor's session-id environment variable is unconfirmed (not surfaced during phase 001) — verify via a live session's environment or `--resume` semantics at implementation time; do not invent a name.
 - The exact mapping from the runtime's `SandboxMode` enum to Cursor's approval/sandbox flags (`--sandbox enabled|disabled`, `--force`/`--yolo`, `--auto-review`) is not yet decided — a concrete decision is required before REQ-006 can be implemented byte-for-byte.

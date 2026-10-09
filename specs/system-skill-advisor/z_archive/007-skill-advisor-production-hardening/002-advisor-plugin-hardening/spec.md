@@ -172,7 +172,6 @@ Convert all three into hard guarantees:
 
 ---
 
-<!-- ANCHOR:questions -->
 **Non-functional requirements** (folded here under SC § for Level 2 brevity):
 
 - *Performance*: in-flight dedup reduces subprocess spawn rate by N for concurrent identical-key bursts. LRU eviction is O(1) amortized via insertion-order Map iteration. Per-instance state has zero runtime overhead.
@@ -188,13 +187,14 @@ Convert all three into hard guarantees:
 - **Given** a bridge response with a 10KB brief, **When** `appendAdvisorBrief` runs, **Then** `output.system[0].length <= MAX_BRIEF_CHARS`.
 - **Given** `MAX_CACHE_ENTRIES + 1` distinct cache keys are inserted in order, **When** the (MAX+1)th insertion happens, **Then** the cache size stays at MAX and the first-inserted key is gone.
 - **Given** the existing 23 Phase 5 tests, **When** the refactor lands, **Then** all 23 still pass.
-<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None remaining at spec time. ADR-005 in packet 007 enumerated the three deferrals; this spec turns them into requirements REQ-001 through REQ-005.
+<!-- /ANCHOR:questions -->
 
 ---
 

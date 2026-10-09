@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The skill-advisor system has already passed through sibling sub-phases `001`, `008`, and `009`, plus targeted parity closure in `007/006-integrity-parity-closure/`",
     "created_at": "2026-04-24T01:10:00Z",
-    "last_save_at": "2026-10-07T22:27:14.959Z",
+    "last_save_at": "2026-10-08T20:05:22.021Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:c7aad9121af7207d521f10da9937cb8a425c1f30a2c7273b9efd0372af4d9773",
+    "source_fingerprint": "sha256:adab561e5b07b7f10dd1d97b7fb0ee15c9cf2104c06cf2324b4e1af6b05554f8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0e0db2e78ed36d22760bb724464ec28bf2cb54ea575795660fdea066de1d65d9",
+      "spec.md": "2c6a4ce4267adc1cc9350a136deb92d493099f2a6504949b99a403f6245b53bd",
       "plan.md": "311644c46a1af9dd76f60219ecdb53de018f03560c3f4ea33c8fbd2b4c3a590c",
       "tasks.md": "595af8776ebd5fa81679cc7aea488d58147d84e1837442add9b621c375f9c4f7",
       "implementation-summary.md": "9a70894cb624cecfddc34d8922fe16728c12d24a1c39cd178556dcbfed7fbd33",

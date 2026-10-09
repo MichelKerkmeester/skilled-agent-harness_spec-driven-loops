@@ -139,7 +139,6 @@ Deliver a coverage matrix, create genuine missing code READMEs, and record named
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -208,6 +207,7 @@ Deliver a coverage matrix, create genuine missing code READMEs, and record named
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. Operator pre-approved a new Level 3 packet and auto mode.

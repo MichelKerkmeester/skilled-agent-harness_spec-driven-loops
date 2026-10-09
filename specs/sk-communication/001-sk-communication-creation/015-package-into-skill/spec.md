@@ -177,7 +177,6 @@ Move the package inside its owning skill so ownership is explicit and consistent
 
 ---
 
-<!-- ANCHOR:questions -->
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
@@ -223,6 +222,7 @@ Move the package inside its owning skill so ownership is explicit and consistent
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 No unresolved question blocks completion.

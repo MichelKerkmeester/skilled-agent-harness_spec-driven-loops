@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The pointer targets are far smaller than the operator's \"sometimes way too small\" suggests",
     "created_at": "2026-09-06T06:24:10Z",
-    "last_save_at": "2026-10-07T15:56:29.032Z",
+    "last_save_at": "2026-10-08T19:29:43.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:94923bf9b16d8d49cd601b1b63a4a40ba3c3091a326f05d3b3425b5cf7c05c02",
+    "source_fingerprint": "sha256:846df92725d55fed9ea39db9629a7cd4cc603a898b7989690b566d2524bdb9fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0a09270ded93409bb1fb316657bd310de82fe82953fde4968fa28d5b1a8e8083",
+      "spec.md": "d91d4ecff6d75a8d87b7b72d47896429214dbf0e1a772c3e4f4041a9b99a0462",
       "plan.md": "6967bce6979596b6a16cc5ed7f3153892d42fa3f4fb5036cda4d1e3eaa910666",
       "tasks.md": "a574f71b1e5d84e3e1ee912d652e2ea3ae0a913b5a04e9d1ea77a250a95cc767",
       "implementation-summary.md": "c727c7512944f76fcf5b0a9c51ddb6c42ccd06069aa5fcb8ce9162a0c14405fa"

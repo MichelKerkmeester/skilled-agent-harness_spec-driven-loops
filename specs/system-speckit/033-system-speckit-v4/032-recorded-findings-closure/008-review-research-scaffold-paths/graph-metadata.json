@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`templates/spec-kit-docs.json` declares both `review` and `research` as full level entries with `requiredCoreDocs` of `['spec.md', 'review/review-report.md']` and `['spec.md', 'research/research.md']` (verified by loading the manifest 2026-09-07)",
     "created_at": "2026-09-07T15:05:49Z",
-    "last_save_at": "2026-10-07T15:57:23.881Z",
+    "last_save_at": "2026-10-08T19:31:26.078Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0082b2293f1a98303798c3016b8e7ec2353ced9b18a98b4563e66104f7a7f530",
+    "source_fingerprint": "sha256:909d1deb2ae29332b66c0023c37660fe633cdba4adc2e6188f656852dc3c81c9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b0f792675a5a377c5f47952c2d69aba721ccb931f3f8860c39ec21aac452f1c0",
+      "spec.md": "3bfdad71da92fda29342ab8541ed795a2d6a183445b62525d2646ad60f44f2d8",
       "plan.md": "f3304a0ba8ed71cae6d444868216beaab9653375a61f019ff4ec17604158ddcd",
       "tasks.md": "e0a4d73b5851d3bd4dc1806f85291abf8f99cb6b57fc84b74d99619f819d4170",
       "implementation-summary.md": "f0273dcac1fcb76a7f30fb9467c5732d8b9652b819db9dd0b9c5b5756b92fc30"

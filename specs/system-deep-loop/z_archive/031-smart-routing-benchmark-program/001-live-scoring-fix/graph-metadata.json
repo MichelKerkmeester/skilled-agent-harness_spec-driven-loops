@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The parent program's live (Mode-B) scores under-represented real routing quality",
     "created_at": "2026-05-16T09:42:34Z",
-    "last_save_at": "2026-10-07T18:14:56.682Z",
+    "last_save_at": "2026-10-08T20:53:54.453Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c21d1e45498b40c14ac71ef991405d5bf905008d7f8687d9a7c6031ba52cba68",
+    "source_fingerprint": "sha256:3eea62aaa7c4233a5f50aea7006da96ed9b569f59cfc16a1306a1fca18192343",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "66cbaef393691fd273983c9084926b98d1b34b3e6f0760645a31f1a97bad9746",
+      "spec.md": "1219865e75e1236a2ff9172e2a46caacd327991bdd2509ccfc2be7110dbdc8da",
       "plan.md": "c67227c156ccbf8e015181a22721507893543d7d69aa4654e39db35cc8bf0dfa",
       "tasks.md": "cc42e638a76bd79dafffaa3cf9772f6424f1d33397f8af258932fc49269e481f",
-      "implementation-summary.md": "b6f15827434660b85d089c4855794443ec3cd2438d57916a791176835d0962e2"
+      "implementation-summary.md": "a5a22cfee6e42256fe1f71fb041073a29f3bb2f4a5a68d288ae6d669de8e4d20"
     },
     "last_active_child_id": null,
     "last_active_at": null

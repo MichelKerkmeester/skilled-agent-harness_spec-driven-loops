@@ -107,7 +107,6 @@ The palette source, every stock palette block, the body typeface and the corner 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -159,6 +158,7 @@ The palette source, every stock palette block, the body typeface and the corner 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

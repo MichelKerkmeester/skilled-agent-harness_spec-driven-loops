@@ -162,7 +162,6 @@ Make the existing consolidation machinery durable and clock-driven by landing th
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -239,6 +238,7 @@ Make the existing consolidation machinery durable and clock-driven by landing th
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Does C4-A stay overloaded (default-on also enables near-dup hints at `near-duplicate.ts:95`) or split into two flags before the flip?

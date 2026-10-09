@@ -137,7 +137,6 @@ When no session pid is available, the Stop hook can fall back to the existing or
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -190,6 +189,7 @@ When no session pid is available, the Stop hook can fall back to the existing or
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Enabling live reaping is an operator decision after a dry-run review; the default is off.

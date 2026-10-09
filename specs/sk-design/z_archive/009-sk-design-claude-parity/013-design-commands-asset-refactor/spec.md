@@ -175,7 +175,6 @@ Plan a behavior-preserving refactor that relocates each command's existing conte
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -270,6 +269,7 @@ Plan a behavior-preserving refactor that relocates each command's existing conte
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should the consolidated setup prompt for `md-generator` include an inline confirmation step before Playwright extraction runs, given its wider `Write`/`Edit`/`Bash` tool surface? Defer to the implementation phase's operator.

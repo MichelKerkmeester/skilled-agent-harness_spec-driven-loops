@@ -159,8 +159,8 @@ This phase amends wording the goal unification program froze. The frozen records
 
 ---
 
-<!-- ANCHOR:questions -->
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should a nested phase parent report a real `packet_budget` instead of `unknown`? `isPhaseChild` in `goal-slice.cjs` treats a nested phase parent as a child, while the validator applies the budget to it. Recorded, not changed in this phase.

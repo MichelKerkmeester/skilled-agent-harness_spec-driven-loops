@@ -146,7 +146,6 @@ Define a repeatable workflow that gives each packet and phase child an accurate 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -201,6 +200,7 @@ Define a repeatable workflow that gives each packet and phase child an accurate 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Resolved: Yes. Retrofitting an existing packet with no goal.md is a named goal-authoring operation. For a phase parent with no parent goal, render the phase-level goal contract; create.sh’s fresh phase path renders the lean parent spec and scaffolds child documents (.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1275-1335, 1492-1504; specs/sk-doc/060-create-goal-mode/spec.md:159).

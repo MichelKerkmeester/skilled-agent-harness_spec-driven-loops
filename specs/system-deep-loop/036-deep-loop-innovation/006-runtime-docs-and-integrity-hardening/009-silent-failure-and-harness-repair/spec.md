@@ -247,7 +247,6 @@ Make invalid input fail loudly with a distinct classification, and repair the ha
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -339,13 +338,12 @@ Make invalid input fail loudly with a distinct classification, and repair the ha
 
 ---
 
-<!-- ANCHOR:open-questions -->
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Does Lane B run before or after `021` re-reconciles its citations? The two children can invalidate each other's numbers. The `MANIFEST.md` sequencing rule states the constraint; the operator or packet owner picks the order.
 - What is the disposition of the five pre-existing command-contract failures? Options are fix, re-scope the contract, or delete the obsolete assertions. Each needs a recorded rationale; only a genuine defect should be fixed inside this child.
 - Should `PARTIAL` be removed from the playbook vocabulary, or should the governing execution policy be extended to allow it? Either resolves `F-030-03`, but they have different consequences for existing scenario results.
-<!-- /ANCHOR:open-questions -->
 <!-- /ANCHOR:questions -->
 
 ---

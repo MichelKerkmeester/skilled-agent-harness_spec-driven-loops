@@ -207,7 +207,7 @@
     ],
     "causal_summary": "OpenAI's GPT-6 Luna and Sol are live",
     "created_at": "2026-09-23T04:51:35Z",
-    "last_save_at": "2026-09-23T18:46:01.492Z",
+    "last_save_at": "2026-10-08T19:29:12.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8105bd132bc933bcce06e99f49919f0c559e95338c3a3e61ad14d7ce451a4249",
+    "source_fingerprint": "sha256:c8e3fec7457d0b3b2d4a433fd21cb66a53db40afc8bba2386f05b50d1858c2fb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5ef3b0ab68a8a9163af6056f69c1251460d68bfb8a888ef6377e0691ba25904a",
+      "spec.md": "af93a36f1c1608a9bedf2f6be7e8a56faf9173125ebfe299b97d4e1c56ea2fc6",
       "plan.md": "d7c773ac639d7ac8b78e88b716e9a12e0359f98df70107dbf4ce79277e19ce47",
       "tasks.md": "3f278882bfa80d65437d20d15a2dc33f95e94a25a3e96e5221b21af0fb920995",
       "implementation-summary.md": "3a0c0cb17903f8775b8d59ebbf365c14b110c48049ee5e1bb44f6330bdb69ef2"

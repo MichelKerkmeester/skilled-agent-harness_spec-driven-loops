@@ -159,7 +159,6 @@ that actually runs against it, and nothing in `references/` claims a state that 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -238,6 +237,7 @@ excluded.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None outstanding. The two judgment calls (changelog treatment, baseline disposition) were put to the

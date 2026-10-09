@@ -170,7 +170,6 @@ entirely from content the root already owns. Nothing new is authored except the 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -236,6 +235,7 @@ entirely from content the root already owns. Nothing new is authored except the 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

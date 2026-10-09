@@ -202,7 +202,6 @@ with a reason, at today's paths, without touching a systemic pattern or moving a
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -275,6 +274,7 @@ with a reason, at today's paths, without touching a systemic pattern or moving a
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether F26 belongs here or to 008's systemic-pattern work, since its underlying shape (a

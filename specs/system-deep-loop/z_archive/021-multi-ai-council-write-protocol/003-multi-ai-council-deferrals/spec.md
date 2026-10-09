@@ -145,7 +145,6 @@ DO NOT use Level 3 if:
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -213,6 +212,7 @@ DO NOT use Level 3 if:
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

@@ -135,7 +135,6 @@ This is **Phase 6** of the cli-hermes creation packet; its durable directive and
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -201,6 +200,7 @@ This is **Phase 6** of the cli-hermes creation packet; its durable directive and
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

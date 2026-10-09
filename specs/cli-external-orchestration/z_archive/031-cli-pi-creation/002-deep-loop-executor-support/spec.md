@@ -172,7 +172,6 @@ Widen the deep-loop runtime's typed executor union to 6 members, add `cli-pi`'s 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -224,6 +223,7 @@ Widen the deep-loop runtime's typed executor union to 6 members, add `cli-pi`'s 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Pi's exact non-interactive/headless invocation syntax (SDK embedding vs `pi rpc`-style subcommand vs a `--json-event-stream`-style flag) is UNKNOWN — the docs nav names the "Programmatic Usage" section (SDK, RPC Mode, JSON Event Stream Mode) as the likely surface but the fetched pages did not confirm exact syntax. Phase 001 must live-probe it; this phase must not guess.

@@ -100,7 +100,6 @@ Install the CLI, verify its live build, and pin the current contract for every s
 - **Auth-gated facts**: the live model roster and any account-scoped behavior cannot be enumerated without account auth, which requires an operator-only OAuth flow. Mitigated by marking those facts TBD rather than guessing.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 None beyond standard evidence-based verification.
@@ -120,16 +119,17 @@ Low - read-only verification, no code changes.
 |---|---|---|---|
 | Docs describe editor-only or unshipped features | Medium | Medium | Cross-checked docs against live `--help` output and installed subcommands |
 | Model roster fabricated from pretrained IDE knowledge | Medium | Medium | Live enumeration marked auth-gated TBD; only `--help`/product-page-confirmed model shapes recorded |
-<!-- /ANCHOR:questions -->
 
 ## 11. USER STORIES
 
 - As the operator, I want the creation's later phases built against the Cursor CLI I actually have installed, not IDE-era assumptions or a fabricated CLI contract.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Exact live model roster (ids/families available to a given account) is auth-gated — TBD, verify at implementation time via `cursor-agent models`/`--list-models` once authenticated.
 - Whether the Cursor CLI (as opposed to the editor) fires every hook event defined in `hooks.json` is not guaranteed — a documented community caveat notes the CLI may not send all events; TBD, verify per-event live at hook-adapter time (phase 004).
+<!-- /ANCHOR:questions -->
 
 ---
 

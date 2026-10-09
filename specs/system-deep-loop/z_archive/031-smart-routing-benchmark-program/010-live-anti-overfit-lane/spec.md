@@ -85,8 +85,8 @@ non-deterministic (it stays the sole hard CI gate).
 - Depends on 009; feeds the phase-011 optimizer's anti-overfit awareness.
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 **DECISION NEEDED — circularity gap threshold + warn-vs-block.** Recommendation: default advisory
 (`report.circularity` never touches verdict); `CIRCULARITY-WARN` at a chosen gap; hard
 `BLOCKED-BY-OVERFIT` reserved for an explicit opt-in flag with the sample floor enforced.

@@ -113,7 +113,6 @@ Register all 3 servers under a two-tier permission policy: a shared, committed p
 - **Dependency**: This phase depends only on `001-devin-contract-pin` (Complete). It does not depend on 002-008, per the research's own "Eliminated Alternatives" analysis. Shares the packet-wide `devin auth login` blocker for live verification.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - NFR-P01: No silent dependency on a developer's local daemon (e.g. Ollama) that Devin's sandbox may lack.
 
@@ -136,6 +135,7 @@ Medium-high - host-level integration work is more contained than phase 008's hoo
 - As a maintainer, I want Devin to be able to search this repo's spec memory and code graph the same way Claude Code and OpenCode already can.
 - As a security-conscious maintainer, I want mutation tools denied by default under Devin, with an explicit, auditable opt-in path only I control.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 - Does Devin normalize hyphenated server IDs (e.g. `mk-spec-memory`) to underscores in emitted tool names, and do deny rules need to match the normalized form? (REQ-007)
 - Which embedding tier is reliable and acceptable in Devin's sandbox, especially without an available Ollama daemon on first start? (REQ-008)

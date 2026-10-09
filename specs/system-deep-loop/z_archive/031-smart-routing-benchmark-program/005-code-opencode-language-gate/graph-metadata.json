@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Split code-opencode's single LANGUAGE_STANDARDS intent into per-language intents (JAVASCRIPT/TYPESCRIPT/PYTHON/SHELL) so a single-language task stops routing all four languages' guides; mirror the split into the sk-code parent projection under the existing drift guards.",
     "created_at": "2026-05-16T09:42:35Z",
-    "last_save_at": "2026-10-07T19:23:37.703Z",
+    "last_save_at": "2026-10-08T20:05:06.477Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,10 +197,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f789717409bb64de6dda94ba337bacc4191ac3515435e2a442dc6a017814ea29",
+    "source_fingerprint": "sha256:77c144ba58e76e9d1f52a7400c618fb6fac184823bf87340439b5f54cd40e451",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5f0a18aed726ef1f448f9a8ddcde4a4dd6b5851a5e2205ce7f739ec60a486e4a",
+      "spec.md": "930cacf7cafe54640dd57b73eeaace61f2d5bf5692fdcb9b22915b3d7261fe88",
       "plan.md": "17b1ff12ba4e433054645d4fbe95f5b0b1e0eed301d00af7468fce385042c4dd",
       "tasks.md": "b00cf6bbc349ae1f6dee92acb8637bcf78fffd8eb9f2dcd4a3c233e5159109eb",
       "implementation-summary.md": "845769ec775f0605d7f4f52442adbf964696b56771186eeba7d4d2893bda4da8"

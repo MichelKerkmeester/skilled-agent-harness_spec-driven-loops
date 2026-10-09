@@ -156,7 +156,6 @@ Refresh the existing catalogs with line-cited current-reality entries while keep
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -206,6 +205,7 @@ Refresh the existing catalogs with line-cited current-reality entries while keep
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None.

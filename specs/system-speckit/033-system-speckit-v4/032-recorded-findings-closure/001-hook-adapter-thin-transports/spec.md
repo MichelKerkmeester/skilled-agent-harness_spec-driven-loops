@@ -154,7 +154,6 @@ Give claude, codex, cursor and devin's classify and enforce hooks the same thin 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -206,6 +205,7 @@ Give claude, codex, cursor and devin's classify and enforce hooks the same thin 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None. The envelope-shape and pi-registration risks above are resolved by keeping envelope construction runtime-local. The only unresolved item (live hook-matrix registration status) is explicitly out of scope, not an open question this phase must answer.

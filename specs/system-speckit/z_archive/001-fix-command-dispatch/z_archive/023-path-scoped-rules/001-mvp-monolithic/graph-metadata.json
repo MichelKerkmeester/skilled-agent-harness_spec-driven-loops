@@ -194,7 +194,7 @@
     ],
     "causal_summary": "1. No quality enforcement: Incomplete specs pass silently",
     "created_at": "2026-04-12T09:02:53.515Z",
-    "last_save_at": "2026-10-07T20:09:57.256Z",
+    "last_save_at": "2026-10-08T20:54:15.510Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e4889c7b117b5950fca491e0a03adf477f5537cf5d197e08f8341c1e1e70328b",
+    "source_fingerprint": "sha256:16a05ccc0e694fd27375ea24fe68d548f5bbd9d799207f24d6c0bc018a615784",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "04042739985d61f600ac23fe886df169d11ae9312caaddcf203e9d9e6ae0b893",
       "plan.md": "7ad90f66f485c58f20a753a50995843dfe2f474a66c90bc4827ff80e17ee24b1",
-      "tasks.md": "fca2efa974e544702c1eeb8ea4eb438102e4775cfbb95556b4594f32fb1a93a9",
+      "tasks.md": "ca2e2c96dee92a4a002f497532caf3502ed31ae01cd2143e523c4b3e8fb22d83",
       "decision-record.md": "e08f416420eb2fc4bb65c66f443dce9f509cb28f0027410c8eaea1b686733639",
       "implementation-summary.md": "2f37d76044672445369e25053b7061f8bdcb6312e4e3af09026cde29a8e90cec"
     },

@@ -238,7 +238,6 @@ Written before the build. `C` is a labeling card, `D` a decisions log, `L` a lab
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -297,6 +296,7 @@ Written before the build. `C` is a labeling card, `D` a decisions log, `L` a lab
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **Does 029's read find 20 not-real P0s among the 95 rows?** Proposed: label the whole sheet, and if the read finds fewer than 20 negatives, record the exact count and close on `stop: fewer than 20 labeled P0 negatives`, which 029's own spec already allows. UNKNOWN until the operator's labels exist.

@@ -151,7 +151,6 @@ One list, every consumer, each marked owned or shared with the reason.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -217,6 +216,7 @@ One list, every consumer, each marked owned or shared with the reason.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

@@ -160,7 +160,6 @@ Every committed screenshot shows its form's full content, `sk-design-chart`'s ow
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -214,6 +213,7 @@ Every committed screenshot shows its form's full content, `sk-design-chart`'s ow
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether the measurement pass should apply a small safety margin above the raw measured height, or use the raw value exactly. This authoring pass's own test used the raw value with no margin and produced a clean, uncropped capture — left to the implementer to confirm still holds against the full corpus, since a margin that is too large would just reintroduce a smaller version of today's problem (blank space in every capture).

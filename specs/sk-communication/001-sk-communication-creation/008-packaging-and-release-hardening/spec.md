@@ -178,7 +178,6 @@ Make the portable projection safe to install and operate without hiding unsuppor
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. Non-Functional Requirements
 
 ### Performance
@@ -248,6 +247,7 @@ Make the portable projection safe to install and operate without hiding unsuppor
 1. **Given** a valid Phase 008 input, **When** the primary behavior runs, **Then** its output satisfies the relevant contract and preserves the canonical original.
 2. **Given** an unsupported, unsafe, or failed condition, **When** the same boundary is exercised, **Then** it returns a typed reason and the exact-original or fail-closed outcome.
 
+<!-- ANCHOR:questions -->
 ## 12. Open Questions
 
 Project-owner approval of the Proposed architecture decision blocks implementation. Release also remains blocked until Phase 007 evidence is accepted and all expiring provider and privacy facts pass their release-time freshness checks.

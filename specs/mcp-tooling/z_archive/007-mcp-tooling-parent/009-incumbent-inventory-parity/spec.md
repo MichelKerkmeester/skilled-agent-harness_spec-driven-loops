@@ -182,7 +182,6 @@ Every incumbent packet exposes the same inventory surface (feature catalog, inst
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -231,6 +230,7 @@ Every incumbent packet exposes the same inventory surface (feature catalog, inst
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The click-up link-direction question was resolved during implementation (see implementation-summary.md Key Decisions).

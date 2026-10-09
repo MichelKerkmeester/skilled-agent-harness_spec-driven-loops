@@ -189,8 +189,8 @@ Expose the already-computed provenance governance fields as first-class JSON fie
 
 ---
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 - Does `content_type` or `document_weight` have an existing compute site to reuse, or must each be derived fresh on-write? The two named files compute `source_kind` but the grep for `document_weight`, `content_type` and `freshness` in `pe-gating.ts` and `write-provenance.ts` is empty.
 - Should the freshness binding compare `source_docs` mtime or a stored `last_save_at`, given `graph-metadata-schema.ts:49 last_save_at` already exists?
 <!-- /ANCHOR:questions -->

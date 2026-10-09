@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Human Voice Rules are a 510-line linguistic standard at",
     "created_at": "2026-08-31T19:48:50Z",
-    "last_save_at": "2026-10-07T18:13:51.782Z",
+    "last_save_at": "2026-10-08T19:30:13.757Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eef778b209221a433bfe66f3993549d1a5c258ee752118a4ddfda4344936d593",
+    "source_fingerprint": "sha256:1dfdb4d828604c20499fce4e90155ecf1d6a5b2c21fefd59d47f2a92e6444868",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1d89da4ee14a853535825024cda87864147aacb5159222d43849083f6ebf3ee8",
+      "spec.md": "f65fe89d6d2cb249dd0b97c77ff363d8ce24991b8ef8f0be50fbd02150cc6f8b",
       "plan.md": "c5fd3d8539a879929ca2a7acfb4f1427069bcdb93b0552181f9f0220a15ddb55",
       "tasks.md": "0f29841bf85348ca8479fe1922c6d71243ca0ce75964bffaf0b4fc8628074848",
       "implementation-summary.md": "6afeb2b0a85478619fd9eccff1e2031f2ec79630df4fc22fbd3baa9120aa6a06"

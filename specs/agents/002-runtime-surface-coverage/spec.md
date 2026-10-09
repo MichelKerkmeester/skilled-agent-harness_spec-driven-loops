@@ -206,9 +206,9 @@ Every runtime enumeration in the repo reflects the true six-surface topology (Op
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-<!-- ANCHOR:questions -->
 
 - Should Devin MCP registration be **added** (new work, out of current scope) or remain absent? Default: remain absent.
 

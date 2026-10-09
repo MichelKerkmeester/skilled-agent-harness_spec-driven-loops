@@ -115,7 +115,6 @@ Every spec-protocol row the research workflows emit is accepted by the gateway, 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -162,6 +161,7 @@ Every spec-protocol row the research workflows emit is accepted by the gateway, 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

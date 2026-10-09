@@ -160,7 +160,6 @@ Document the actual test boundary so the phase describes the shipped regression 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -216,6 +215,7 @@ Document the actual test boundary so the phase describes the shipped regression 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None at this phase. The suite boundary, seam coverage, and seed counts are all confirmed against the current test file.

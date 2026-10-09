@@ -196,7 +196,7 @@
     ],
     "causal_summary": "After a checkpoint-v2 restore, `runPostRestoreRebuilds()` (`mcpserver/lib/storage/checkpoints.ts`, approx lines 1701-1772) rebuilds derived artifacts (FTS, communities, derived graph) best-effort and catches failures; `restoreCheckpointV2()` (approx lines 2456-2464) calls it after the DB swap and reopen",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:31.830Z",
+    "last_save_at": "2026-10-08T19:30:52.868Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a6b110188b6e1f0acd874fece795da3bb761d9cd506f161e4ae93433f7a57593",
+    "source_fingerprint": "sha256:82c2b6f506de7d83456682bca4615371eb2b9ed8bbe615b786641dfa50798091",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1cd4721ef4c75bed810cc8f4b70105434ac596aef8d895c82e30030e9805b83e",
+      "spec.md": "28f1893681137d1cd28442afbba62b154d830a00886aebf1f42df633a1e3d393",
       "plan.md": "9da1b51efeefb6f64f107f6f524f3ea3d297850c25416d345594e67c82c24b0e",
       "tasks.md": "bd418ab6baf048801d7818fc96cfaf944bf19447fd515aa01467ed5ffeeafcd1",
       "decision-record.md": "da0f8c08e20165d529e554b06d7b0f52c6540651c5f98c9c76cdd38c7080fb51",

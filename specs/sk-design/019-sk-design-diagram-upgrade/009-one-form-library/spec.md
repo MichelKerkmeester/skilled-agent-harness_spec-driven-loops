@@ -180,7 +180,6 @@ One directory, `assets/diagrams/`, holds all 38 forms under names that say what 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -229,6 +228,7 @@ One directory, `assets/diagrams/`, holds all 38 forms under names that say what 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether the merged `assets/diagrams/README.md` orders its table by the four starters first or interleaves them alphabetically with the 34 forms - left to whichever task authors the merge, since neither ordering affects the corpus check's own catalog-bidirectional assertion.

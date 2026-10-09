@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The parent required both loop protocols to describe the containment model, but only the deep-research protocol did; the deep-review protocol's only containment mention was an unrelated executor flag",
     "created_at": "2026-09-20T08:33:43.170Z",
-    "last_save_at": "2026-10-07T15:57:00.556Z",
+    "last_save_at": "2026-10-08T19:30:25.088Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3c533b2eaccc21a94a1a4fe64d17b65e437086b5b084cc15eb3f9b670cf89eeb",
+    "source_fingerprint": "sha256:15234096e8797ba83485c07146eb0da78c710e6ffe7a206454254e52186d7117",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "16a706981acd807c63010c02ebd24a4fc4264b95720a6a6ba15c13e9e1d71d13",
+      "spec.md": "5f363e287233b80da78cfcd817eb75c24d450c6925b0f5de067038edfa086bcf",
       "plan.md": "deb496164bf6e17ff6f0d77c51a3fd2b0c8c7fc4ccc43485d99275e009c0ade5",
       "tasks.md": "3ed7f3c9963d7ff3e897ded5463bc9152ba0ab1cecc1bb438569f9f78e8ecb57",
       "implementation-summary.md": "16cc7b3070551abc16c63107b0ed41608825837e9d6a767664b9e611ea65e056"

@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Turns the implemented contracts and observed operations into accurate API, security, setup, maintenance, incident, and rollback documentation",
     "created_at": "2026-08-10T18:28:43Z",
-    "last_save_at": "2026-10-07T18:11:40.292Z",
+    "last_save_at": "2026-10-08T19:29:19.536Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,10 +194,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:911a78e650e80ce8390fefa9d6999581f0364e1047cc9758cca7971b84b23b24",
+    "source_fingerprint": "sha256:0180be1911ea3e317fe2c88229d830802523b21077edbf851face241fe135ff4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "205fc7a739729b556538eefdbafff5648abac08918849792148682e08cb9d804",
+      "spec.md": "7a9ee1480ac168e35f3e70afdf55bef9361a22dd1c42b894241d82d4b532df6f",
       "plan.md": "ff7c3fe7d7cba8a5a6db5d68a3aa2800f4c4fb1fcf7ed65c935a874fdedf4fba",
       "tasks.md": "d3c4be47710c28680baecc1579803618c7d6ae54ebe58a3c53cf29e1541b89fb",
       "implementation-summary.md": "c366adf063fd989200696b3e5b692ed9b44ad39c83d89f04c054f83eaaa55ad3"

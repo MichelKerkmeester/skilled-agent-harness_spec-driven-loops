@@ -129,7 +129,6 @@ Both validators apply one principled placeholder rule: catch `YOUR_VALUE_HERE` p
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -184,6 +183,7 @@ Both validators apply one principled placeholder rule: catch `YOUR_VALUE_HERE` p
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None - the target behavior is fully specified by the existing `check-placeholders.sh` rule and the scoping facts in the task brief.

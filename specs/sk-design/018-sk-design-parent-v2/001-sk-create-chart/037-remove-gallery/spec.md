@@ -101,7 +101,6 @@ Remove the gallery and everything that existed only to serve it, and rebuild eve
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -156,6 +155,7 @@ Remove the gallery and everything that existed only to serve it, and rebuild eve
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

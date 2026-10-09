@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The mode ships twenty templates, three colour systems and a corpus validator",
     "created_at": "2026-09-03T07:26:12.232Z",
-    "last_save_at": "2026-10-07T12:55:06.548Z",
+    "last_save_at": "2026-10-08T19:29:39.788Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c9489d406d7089a0eacc4c2f3a4c5a73d4cb88206c2ac4318b2135113234d6c6",
+    "source_fingerprint": "sha256:d8c5f4441fe80760d43cbd869b8747ab235a99c1e06b89336830e0b997074806",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "75746f9f40ce7ab39a59bdf202385958c905134dd1cd1859919b03ffd2950538",
+      "spec.md": "1b71c59c24854f019b83caba5cea28f63ebf9eec1688e4c8b98472f8837d62c1",
       "plan.md": "365d6ec4a85eacb3847bc7907ea833a1f2d335b24da7522d073c4f7f15e1267f",
       "tasks.md": "086e8e2b1b141dd3527f4dfb178a95a8c3831fdeb91bc53a4ba78f9b358f3d9c",
       "implementation-summary.md": "1133945cfc9673539cdde2dd856ed1e513a5b2bf3b1b02909e7b834a57371459",

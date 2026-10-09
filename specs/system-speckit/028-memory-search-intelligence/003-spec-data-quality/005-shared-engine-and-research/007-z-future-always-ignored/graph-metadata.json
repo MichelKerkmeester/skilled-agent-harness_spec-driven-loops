@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The graph-metadata backfill generator refreshed `zfuture/` by default",
     "created_at": "2026-06-27T17:15:41.172Z",
-    "last_save_at": "2026-09-07T16:18:30.025Z",
+    "last_save_at": "2026-10-08T19:31:07.039Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,10 +199,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:41cba70b2433c4ce273e5ac74423196afd018ba6a529579eb6cc5f55c1cd3459",
+    "source_fingerprint": "sha256:d0f74363ff381f2a8d43b169c8bd6d14d269422896ed910e6f31b190f2e4bd9c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7d41c77644b21f1d65a882f67f24f7c49db2cfdc6ad5e001d51c1b33d51ecb2c",
+      "spec.md": "ae3f2901009b7254ced8e4894674364fad4bfefc4cb1f2d97937222c51113de5",
       "plan.md": "3a1c43c5c22ce04da1eb4d4b6bf6bd3117f46c2eb40cb587cb31899e240448dd",
       "tasks.md": "4a0dcb7bc14cafea3e6efda368d6b6f84ebb68aa1845d8f89ef779469a10839c",
       "implementation-summary.md": "57f93e72739f0bd31bc6a35ff812a2a4b8419d0918faa8d6610fcf46b07f838f"

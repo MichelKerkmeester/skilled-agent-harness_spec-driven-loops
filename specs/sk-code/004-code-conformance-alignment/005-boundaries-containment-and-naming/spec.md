@@ -214,7 +214,6 @@ Make each of these decisions explicitly, record it, and then implement it in the
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -306,6 +305,7 @@ Make each of these decisions explicitly, record it, and then implement it in the
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **[OPERATOR-DECISION: Q3 — containment helper ownership]** The security register has the higher-severity containment instances and should own the canonical helper, which this child consumes. If that program will not land soon, should this child author the helper in a shared location for later adoption, or fix its five instances locally and accept a later consolidation? *Recommendation: consume; if unavailable, author in a shared location designed for adoption — never a private copy.*

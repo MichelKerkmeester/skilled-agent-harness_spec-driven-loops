@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The three incumbent mcp-tooling modes carried uneven inventories",
     "created_at": "2026-07-16T12:58:36Z",
-    "last_save_at": "2026-10-07T18:11:40.296Z",
+    "last_save_at": "2026-10-08T19:29:27.562Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ae46d6a91c07904a873a23db42c6f88cd305806e05857052825318e3dc17099",
+    "source_fingerprint": "sha256:6f0ab0c9e42797f86430543e5f9d3ea35d74b45c724eaa162dfd34217fc3dd0c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e52307a7f4c8d39d82c63bf565693f0f78b260405b58fce6abf797aeb2be9ac4",
+      "spec.md": "1fb9da929ef196b5f79ac611b5e55d12d80698e1a5784e23c5c52191744fe103",
       "plan.md": "4435d5c2200be7c5008748ac0bd9e19e62c2fe1beb5c0d57c45504eb096ebe98",
       "tasks.md": "b1d0d9205d618b398b273a09d5303304dfdb11f6d6c1d829498589d0f549ff50",
       "implementation-summary.md": "bf65385780bddef9b43c1b4e2678eb0574d7c8560f6aac55d94232df18e3707f"

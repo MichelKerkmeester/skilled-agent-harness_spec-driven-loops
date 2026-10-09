@@ -200,7 +200,7 @@
     ],
     "causal_summary": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 7 guard hooks",
     "created_at": "2026-07-24T04:46:37.220Z",
-    "last_save_at": "2026-10-07T18:11:38.266Z",
+    "last_save_at": "2026-10-08T19:29:16.064Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5ac91b85cfd13405ad7e540267c94573e8d802738c2f567682ed21336bd2167b",
+    "source_fingerprint": "sha256:f4e453499ab3a76f34ad52d16a0e1ac80ff026084ad25ca1fde53f5393c17207",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "31f720c43097cb1bdd427dcac8a7e0fff40febb3c15bd751f3e593603e40b5de",
+      "spec.md": "f1b4038839e4b5c39b144c343d289ad53065be747704054048cd6e0841c0fc6c",
       "plan.md": "5d361d399ce22797863842b2b027becc174fca93a052414a85b261a708dce798",
       "tasks.md": "beab882b22ff7f2f0fe3cc59d48571487f2eb55d497024a729a0fcad92b2f09a",
       "decision-record.md": "f0a9f90ac0a5e7a502d214a0a7f46b67a27079b46b1d898f91e1ca9b0769622d",

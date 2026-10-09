@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Four shapes repeat, and their counts overlap because most files carry more than one:",
     "created_at": "2026-07-30T18:58:50.819Z",
-    "last_save_at": "2026-10-07T21:35:06.793Z",
+    "last_save_at": "2026-10-08T19:30:10.451Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:d3c61beb90cd8e96ba753d92f691be821828f57169d3709ef89bbc46ea8bf2b2",
+    "source_fingerprint": "sha256:0acad205925d95c17863e88ba8f1a07eaef5564a7d0a45910991a3c46e1d2fdb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6e4e636a2234d057797f75698c882b4cb612c543820ed152926a61fb92cd76c0",
+      "spec.md": "c32f606658a13706de13d8058ff6ab4eea58278d6aca940fd485644b96e13737",
       "plan.md": "51c4ec9971206229c0cede7e90442b25b74c9183e476fd61a3607b8071518b25",
       "tasks.md": "fb7b6c1cd5ded641f1cc87fb21a2a38092c90180173483794ba6c417368dda91",
       "decision-record.md": "ce069ff0d161a98eb6e9bb271f43011d6d2585674e415522573abe2740fe9dd4"

@@ -44,12 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/lib/shell-common.sh",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-      "scripts/lib/shell-common.sh",
-      "scripts/lib/validator-registry.json",
-      "scripts/rules/check-folder-naming.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -74,24 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "shell-common.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/shell-common.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "check-folder-naming.sh",
-        "kind": "script",
-        "path": "scripts/rules/check-folder-naming.sh",
         "source": "derived"
       },
       {
@@ -195,11 +172,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Intended Feature",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Spec folders can be created at the wrong location with a slug that embeds an existing sibling packet number (the `028-026-program-research` shape, where a track-root slug starts with an existing phase-parent's 3-digit number), and nothing in the toolchain detects this",
     "created_at": "2026-06-06T08:49:08.130Z",
-    "last_save_at": "2026-08-30T15:39:32.231Z",
+    "last_save_at": "2026-10-08T19:30:54.351Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:643c66cd6d958826466fde589feda2cbc9fa98c323390deb475e304a5361b45c",
+    "source_fingerprint": "sha256:0b68acfcee51e2fc4c8b4aeacbf7108bfc783d0fddc4c18ed92116d839b89214",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b4a3708cb94c277591e704d34f47eab25149fcb1892307d0458f94304f1fdbe5",
+      "spec.md": "fe84885ee097742fbdab584034bf355984a494b4486bffc0a3927b78091f7cb6",
       "plan.md": "836b6194b1882323985854d5818f2165e6a3c5fbb77251dcbd04b194062abcf6",
       "tasks.md": "de2a51c47538f2b9e21118185ede9d8482e5a122af0511f653a40000fb89b782",
       "implementation-summary.md": "8cd7766572ed64606d108ccc7f51c759c6b1f8532a70cae8c66b3d98367ee0f0"

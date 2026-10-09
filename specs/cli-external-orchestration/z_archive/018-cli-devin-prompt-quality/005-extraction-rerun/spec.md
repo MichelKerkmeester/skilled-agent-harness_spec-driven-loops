@@ -157,7 +157,6 @@ Build the file-extraction layer the 003 limitation deferred. Re-run with extract
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -228,6 +227,7 @@ Build the file-extraction layer the 003 limitation deferred. Re-run with extract
 **Acceptance Criteria**:
 1. Given the re-run completes, When 004-style uplift consumer reads synthesis-v2.md, Then they see a clear verdict ("ranking stable: RCAF still wins" OR "ranking shifted: <new winner>").
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - If the re-run produces a different winner, does the operator want me to also ship cli-devin v1.0.6.0 in the same packet, or split it into a follow-on?

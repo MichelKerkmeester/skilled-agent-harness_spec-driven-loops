@@ -111,7 +111,6 @@ A write guard whose refusal means what it says: the destination is inside a conf
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -166,6 +165,7 @@ A write guard whose refusal means what it says: the destination is inside a conf
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

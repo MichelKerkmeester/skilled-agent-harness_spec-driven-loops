@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The source repository is already shaped like a skill",
     "created_at": "2026-09-02T07:56:48Z",
-    "last_save_at": "2026-10-07T12:55:06.536Z",
+    "last_save_at": "2026-10-08T19:29:39.480Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:055ea59effefcad84fb9986f807a21c76fe746be47dd5de5dcd35a198ca8c98d",
+    "source_fingerprint": "sha256:3f809bd0f0ea7592a6738576e657711d3217b2a53aadbc1e4d2f8c20325dec05",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "464aec1c534c59ea42a4cf6b809154dd639cec4894ebff0a40fa87b464bde187",
+      "spec.md": "cc3fd8bab80e7762106f2573c08179c20317c17056af4e05771f6ea71b279553",
       "plan.md": "fd30bcf2054d65042ce83a6679352fffed28e76e18f929e8fb38ee25d0b94a87",
       "tasks.md": "379a49e7084ca44b9a4f5d17f3282e3d2961f442eb9587c8bfc4009b113e9ca0",
       "decision-record.md": "829c353e3629619f4f76623027d482b7a8a0a724ca934a0d13276670ae577936",

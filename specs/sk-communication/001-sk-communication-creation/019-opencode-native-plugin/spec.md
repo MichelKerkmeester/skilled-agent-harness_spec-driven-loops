@@ -204,7 +204,6 @@ Author the plugin as a CJS module that returns a plugin factory registering the 
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -280,6 +279,7 @@ Author the plugin as a CJS module that returns a plugin factory registering the 
 1. **Given** the kill-switch off for the concern, **When** the hook runs, **Then** the parts stay untouched.
 2. **Given** the kill-switch off and the enablement flag on, **When** the hook runs, **Then** the kill-switch still wins.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 No unresolved question blocks planning. The Phase 017 LOW-CONFIDENCE `chat.message` display caveat is a pre-implementation validation step, not an open design question.

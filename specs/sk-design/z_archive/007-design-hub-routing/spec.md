@@ -213,7 +213,6 @@ Verifier cadence is intake before routing, visible plan before substantial desig
 | Risk | A transport could be treated as design authority. | Tool output could be mistaken for taste, critique, or acceptance. | Preserve mandatory pairing, transport proof, and `sk-design` ownership of design judgment. |
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
@@ -264,6 +263,7 @@ Verifier cadence is intake before routing, visible plan before substantial desig
 | **Total** | **37/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None are required to reconstruct the stated hub contract; child packet behavior remains owned by each routed packet and the shared resources remain outside this packet.

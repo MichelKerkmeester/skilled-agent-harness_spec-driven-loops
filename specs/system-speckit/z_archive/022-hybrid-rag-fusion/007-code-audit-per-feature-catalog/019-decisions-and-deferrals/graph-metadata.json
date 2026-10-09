@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The feature catalog for Decisions and Deferrals has evolved significantly",
     "created_at": "2026-04-12T09:02:50.255Z",
-    "last_save_at": "2026-10-07T20:25:18.194Z",
+    "last_save_at": "2026-10-08T20:05:59.905Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,10 +197,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed62039bce13e0d76d215e3e1d67cd4d8e59356f5bc0686e02c33dc07e66a353",
+    "source_fingerprint": "sha256:ed47deafcf146882eb8fba597656c361ec142bf92cbaadee7f804f3e240cd005",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d60cfeec7b1a73f0582ac34f920a6f556b0e7b9507a2c87cfc3a634211a0d880",
+      "spec.md": "da9809b94b114f85ae8a05459978786152f4e130d39dbe2413b1102d230d7725",
       "plan.md": "32845b50b296780d2b0345ab015b647869f1a2981a3baacd383f8b303a150ceb",
       "tasks.md": "8ac1dbf3280249392e52dba7a31fdf3be2d6bba956a682deb6f2cebc23a74b6b",
       "implementation-summary.md": "321eeab26e45d42f10acecf965328cee3c9852ebd666b1ac1a2b223733d6b8ef"

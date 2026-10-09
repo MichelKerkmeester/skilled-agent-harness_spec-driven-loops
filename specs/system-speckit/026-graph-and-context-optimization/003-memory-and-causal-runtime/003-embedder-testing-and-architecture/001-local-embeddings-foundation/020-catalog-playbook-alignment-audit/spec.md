@@ -176,7 +176,6 @@ Capture and apply an evidence-backed update map for feature catalog and manual t
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -253,6 +252,7 @@ Capture and apply an evidence-backed update map for feature catalog and manual t
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 None. The dispatch supplied the source-of-truth defaults and exact finding set for this audit packet.

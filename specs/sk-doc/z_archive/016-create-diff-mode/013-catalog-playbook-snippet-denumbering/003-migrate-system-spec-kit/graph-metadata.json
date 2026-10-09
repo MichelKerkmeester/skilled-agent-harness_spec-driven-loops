@@ -188,7 +188,7 @@
     ],
     "causal_summary": "`system-spec-kit` is the largest catalog/playbook package: 673 numbered snippet files (308 featurecatalog + 365 manualtestingplaybook) across ~67 category folders",
     "created_at": "2026-06-06T06:46:12.387Z",
-    "last_save_at": "2026-10-07T19:23:53.403Z",
+    "last_save_at": "2026-10-08T20:53:36.229Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:21612184e607ae962bac32568ee44759610618e66c7b72460d261db97c9b5b21",
+    "source_fingerprint": "sha256:b1317b66661b3fb6574b7a85b25c75ee4e225bc37de75d7b8d8de39a4b26b31c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0087d88fbf182c761d8ae13302d370078cc79601f149026e239d19ce0d8f3145",
       "plan.md": "e14086c58ab4874ea9c005de5bebd7b6173ffcef34d27e4ea395c076df5338eb",
       "tasks.md": "90107320a848b5d1579ba9af4759a9a9d55b67afb5b5fd749612c3c90e2875f3",
-      "implementation-summary.md": "c4c6efc764444b751e6aac274b6cc8a530427acd9da8112957889278337cd3ea"
+      "implementation-summary.md": "a88765e0de298ff8e4389ddedc36972c532aa1ff9ecdac5053987a68afdef8b6"
     },
     "last_active_child_id": null,
     "last_active_at": null

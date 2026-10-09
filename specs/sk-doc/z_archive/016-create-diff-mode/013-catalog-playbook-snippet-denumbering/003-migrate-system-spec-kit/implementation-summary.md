@@ -80,6 +80,7 @@ Ran the phase-002 deterministic tool per tree in the dedicated worktree after pr
 | Collision files preserved | Yes, under distinct slugs |
 
 Gate command: `find .opencode/skills/system-spec-kit/{feature_catalog,manual_testing_playbook} -name '*.md' | grep -cE '/[0-9]{2,3}-[^/]*.md
+<!-- /ANCHOR:verification -->
 
 ---
 
@@ -89,7 +90,6 @@ Gate command: `find .opencode/skills/system-spec-kit/{feature_catalog,manual_tes
 1. Cross-tree references (catalog<->playbook) were rewritten in the phase-006 global sweep, not this phase.
 <!-- /ANCHOR:limitations -->
 ` returned 0. Rename manifests: `scratch/manifests/ssk-fc/rename-manifest.json` (318) + `scratch/manifests/ssk-mtp/rename-manifest.json` (377). R-status: `git diff --cached --find-renames -M50% --name-status` -> 699 R / 0 A / 0 D.
-<!-- /ANCHOR:verification -->
 
 ---
 

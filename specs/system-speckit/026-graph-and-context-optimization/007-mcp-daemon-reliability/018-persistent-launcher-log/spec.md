@@ -136,7 +136,6 @@ The launcher keeps a bounded, best-effort, durable log file so daemon flaps and 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -189,6 +188,7 @@ The launcher keeps a bounded, best-effort, durable log file so daemon flaps and 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. This is the foundational observability item; the remaining hardening is phases 019-021.

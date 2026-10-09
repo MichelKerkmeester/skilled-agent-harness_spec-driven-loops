@@ -163,7 +163,6 @@ Categories:
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -246,6 +245,7 @@ Categories:
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None at scaffold time. Convergence threshold (0.85) may be tuned during the first few iterations; defer to workflow owner.

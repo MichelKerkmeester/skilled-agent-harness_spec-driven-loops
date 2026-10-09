@@ -48,9 +48,6 @@
       "scripts/citation-ledger-feasibility.mjs",
       "results/metrics.json",
       "benchmark-results.md",
-      "handlers/memory-search.ts",
-      "lib/feedback/true-citation-emitter.ts",
-      "lib/feedback/feedback-ledger.ts",
       "hooks/claude/claude-transcript.ts"
     ],
     "entities": [
@@ -94,24 +91,6 @@
         "name": "benchmark-results.md",
         "kind": "doc",
         "path": "benchmark-results.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "true-citation-emitter.ts",
-        "kind": "code",
-        "path": "lib/feedback/true-citation-emitter.ts",
-        "source": "derived"
-      },
-      {
-        "name": "feedback-ledger.ts",
-        "kind": "code",
-        "path": "lib/feedback/feedback-ledger.ts",
         "source": "derived"
       },
       {
@@ -197,11 +176,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 028 packet ships the true-citation emitter dark behind a default-off flag",
     "created_at": "2026-06-24T04:52:32.182Z",
-    "last_save_at": "2026-08-30T15:39:36.146Z",
+    "last_save_at": "2026-10-08T19:31:09.656Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +207,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:601a6de10dd5f6da53385c644c6d3334c54b1885a820ddca5f479125249680b6",
+    "source_fingerprint": "sha256:0b081cdd568e4f46ea0eaa482008c3df495104217dcae689d92d096a76f8c31a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d162b7eb148bd98bf4b6a9b241dce776b88528682e01a8d8f74e8260e806427a",
+      "spec.md": "0ce4a698968736b7ab9060b34a5c6f2471234bf206fe3cbe09a1bfb752a4e46e",
       "plan.md": "31bcf883e2c79c63904f29d4794790b76e12f83a31740ce2b63c1df2253516f7",
       "tasks.md": "e0ad049f57c822d63970436b3820fb9927852b9e8dbd3ecef04be1856d1a15da",
       "implementation-summary.md": "7c8efde41d5577dcc19b54e495c6fdb18782037355645e749d950c27dac1280e"

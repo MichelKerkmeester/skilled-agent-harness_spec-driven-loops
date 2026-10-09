@@ -192,7 +192,6 @@ Deepen the most promising 001 findings into actionable, evidence-backed recommen
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -270,6 +269,7 @@ Deepen the most promising 001 findings into actionable, evidence-backed recommen
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - The automated fan-out fix (live-tool `--search` policy + capability matrix + executor adapters + manifest compiler) is proven in the `scratch/` prototype but NOT yet wired into the shipped `runtime/scripts/fanout-run.cjs`; that production change is a gated phase-002/003 follow-on.

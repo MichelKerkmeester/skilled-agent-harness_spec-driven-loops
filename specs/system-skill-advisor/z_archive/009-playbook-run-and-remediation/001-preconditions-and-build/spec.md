@@ -119,7 +119,6 @@ Bring the environment to a known-good state so the 46 scenarios run against a cu
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -171,6 +170,7 @@ Bring the environment to a known-good state so the 46 scenarios run against a cu
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

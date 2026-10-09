@@ -152,7 +152,6 @@ Contract all three operations, so wiring a rule is reproducible and unwiring one
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -203,6 +202,7 @@ Contract all three operations, so wiring a rule is reproducible and unwiring one
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should retirement archive the rule rather than delete it? **Leaning delete: git holds the history, and an archive directory becomes a place rules go to be ignored. Record the decision either way.**

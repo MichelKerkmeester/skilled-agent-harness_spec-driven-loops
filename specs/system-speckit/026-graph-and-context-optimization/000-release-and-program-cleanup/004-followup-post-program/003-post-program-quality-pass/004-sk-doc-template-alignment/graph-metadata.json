@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Packets 031 through 036 changed operator documentation, runtime references, matrix-runner README files, matrix prompt templates and packet-local spec docs",
     "created_at": "2026-04-29T15:41:50.000Z",
-    "last_save_at": "2026-08-30T15:39:28.219Z",
+    "last_save_at": "2026-10-08T19:30:43.172Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:650067692d5449ef8e579d47c2e4a9826abb14c1b7e48a5dd2a74abbfc2afafb",
+    "source_fingerprint": "sha256:decbf2e5af80074ec37ae98bbba0fde52458f0941b78e3a9efc88c3ed858c181",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7bebbe6bc90ef3c3c1ca949189eae4d0662f02df9b3815fdc83116141f115e08",
+      "spec.md": "f5ccb66f896ff072c0974ddad15f5bd3cda64bad5941c44df2b97007d4116de7",
       "plan.md": "db871c96c0f9de396028cc4ea5aea706ad290ced62a749e2b3bd9f6bf331625d",
       "tasks.md": "aa8cc7b99c4fc38e74870fec9f321f97eb672b559c3325502e2f3e11c421c758",
       "implementation-summary.md": "453c53bf2b0b45f0089e504ab31d3d0c6e3dc5e4aa772c1acb01469813abec80",

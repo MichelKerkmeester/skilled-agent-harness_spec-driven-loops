@@ -184,7 +184,6 @@ or written down as moved with an owner.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -252,6 +251,7 @@ or written down as moved with an owner.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 One, and it is an advisor question rather than a packet question. `trigger_phrases` is

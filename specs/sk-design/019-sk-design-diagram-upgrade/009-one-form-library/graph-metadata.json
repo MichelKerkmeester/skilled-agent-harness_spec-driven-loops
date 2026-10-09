@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The diagram skill splits its 38 worked diagrams into two directories by a distinction nobody uses: `assets/templates/` (4 skin skeletons) and `assets/examples/` (34 finished diagrams, each named with a redundant `example-` prefix)",
     "created_at": "2026-09-11T03:52:47Z",
-    "last_save_at": "2026-10-07T15:56:43.964Z",
+    "last_save_at": "2026-10-08T19:29:52.198Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:687bc1d2de2714debf1af29c041d17a9975152c03e32272b4f212d60bfec1a14",
+    "source_fingerprint": "sha256:10141b8a245d6d2a7318d58bc7710060476dd647e160a8ac8bd02af431de60f7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "47d8bd45ef632630b085c56c1b73679b9be71ffc0c89f3f43a743c9acc2a54c8",
+      "spec.md": "93a972965250d6abf4ad298e3a0e9ba9f40b7297e1c8be14152a74337d68ec1b",
       "plan.md": "d2a052009c28a181331fca25e8883cb136bdc68400148dd07b1c7655c781c250",
       "tasks.md": "13867af3d706081ff15f23ce2bceeadc3700d8fea13c0390c116d9fbfa26bac2",
       "implementation-summary.md": "1436c28572d39879891179bf6b3b6056f0a5affa06bd9b994c012b99d67f409b"

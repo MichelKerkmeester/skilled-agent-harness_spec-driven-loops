@@ -183,7 +183,6 @@ The catalog and the contract say what the corpus actually does, an empty figure 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -227,6 +226,7 @@ Scored with `bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 All three are answered. Each answer is recorded in `decision-record.md`, which carries the reasoning this list only summarises.

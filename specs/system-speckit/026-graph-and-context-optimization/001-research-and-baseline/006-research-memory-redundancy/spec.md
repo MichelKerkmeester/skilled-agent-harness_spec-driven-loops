@@ -188,7 +188,6 @@ Turn the completed redundancy findings into a validator-clean follow-on packet t
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -280,6 +279,7 @@ Turn the completed redundancy findings into a validator-clean follow-on packet t
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. The research conclusions are already complete, and this packet now records their coordination consequences.

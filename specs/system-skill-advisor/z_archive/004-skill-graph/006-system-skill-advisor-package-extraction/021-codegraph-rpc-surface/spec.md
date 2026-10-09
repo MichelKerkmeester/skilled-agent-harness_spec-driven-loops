@@ -143,7 +143,6 @@ Expose the canonical code-graph classifier as `code_graph_classify_query_intent`
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -198,6 +197,7 @@ Expose the canonical code-graph classifier as `code_graph_classify_query_intent`
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

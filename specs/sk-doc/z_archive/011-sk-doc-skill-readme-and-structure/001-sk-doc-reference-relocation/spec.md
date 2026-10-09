@@ -121,7 +121,6 @@ Relocate the creation guides and make every path reference point to the new root
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -176,6 +175,7 @@ Relocate the creation guides and make every path reference point to the new root
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None blocking planning.

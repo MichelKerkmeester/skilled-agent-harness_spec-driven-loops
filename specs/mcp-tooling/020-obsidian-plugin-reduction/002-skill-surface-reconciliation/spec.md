@@ -190,7 +190,6 @@ All paths are relative to `.opencode/skills/mcp-tooling/mcp-obsidian/`.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -261,6 +260,7 @@ actually documented, **so that** I do not go looking for a doc set that was remo
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 None. The retained set is settled and the out-of-scope boundary was verified against the files.

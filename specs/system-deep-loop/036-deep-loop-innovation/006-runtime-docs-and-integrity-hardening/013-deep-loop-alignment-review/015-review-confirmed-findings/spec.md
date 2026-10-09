@@ -140,7 +140,6 @@ Every confirmed finding is closed, and the guard that missed them can no longer 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -188,6 +187,7 @@ Every confirmed finding is closed, and the guard that missed them can no longer 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

@@ -50,13 +50,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "dist/lib/search/vector-index-types.js",
-      "dist/lib/search/vector-index-store.js",
-      "dist/lib/storage/checkpoints.js",
-      "dist/context-server.js",
-      "database/checkpoints/README.md",
-      "scripts/migrations/restore-checkpoint.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -81,42 +75,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-types.js",
-        "kind": "code",
-        "path": "dist/lib/search/vector-index-types.js",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-store.js",
-        "kind": "code",
-        "path": "dist/lib/search/vector-index-store.js",
-        "source": "derived"
-      },
-      {
-        "name": "checkpoints.js",
-        "kind": "code",
-        "path": "dist/lib/storage/checkpoints.js",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.js",
-        "kind": "code",
-        "path": "dist/context-server.js",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "database/checkpoints/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "restore-checkpoint.ts",
-        "kind": "code",
-        "path": "scripts/migrations/restore-checkpoint.ts",
         "source": "derived"
       },
       {
@@ -202,11 +160,35 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The needs-rebuild sentinel file conflates two failure classes: half-finished checkpoint restores, safely auto-repaired, and physical page corruption, which its one consumer was never built to handle and cannot even reach",
     "created_at": "2026-07-08T16:02:23Z",
-    "last_save_at": "2026-08-30T15:39:32.617Z",
+    "last_save_at": "2026-10-08T19:30:58.089Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +197,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:800993b286c3849372d2b072ddc000c686321f0a1ffa789a80dcee02e693b0e4",
+    "source_fingerprint": "sha256:0eae2e60d5240e30e8e1d82f895ddd81c83451160daa5759b4127987f2911522",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "709265708977b7e1c14f5084ab349b50281b4e6c585cb201e1817faf197b8818",
+      "spec.md": "8299feba176cad2e6122d0a2722ea5273649501cda441e8d9301529369a7c1ba",
       "plan.md": "e37c5266f0eb92619f20cc912fd1b5bbc145515b07c2b060ecc7ea298bdea6e9",
       "tasks.md": "f9897095823b6681bcc3fd40775cf0233a4aa35ca27480220c396e0877a7960b",
       "implementation-summary.md": "4f487ee91177fae80def3e185364b37800153366fdd262ee45e17940dec3df7e"

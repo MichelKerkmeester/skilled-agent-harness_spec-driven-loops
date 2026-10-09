@@ -210,7 +210,7 @@
     ],
     "causal_summary": "About 1,919 files use `[SOURCE:]` tags and 1,186 delta files hold structured `evidence` lists, yet nothing resolves the tags",
     "created_at": "2026-10-04T08:04:52Z",
-    "last_save_at": "2026-10-07T15:57:44.486Z",
+    "last_save_at": "2026-10-08T19:31:37.445Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62d83000fc4e0f4c5452c5cf871b3a7d75db300a959f081d237aabd98faa06b5",
+    "source_fingerprint": "sha256:2e595a971ea5c1a7a2d0776911692f8ab5203094c379091c31e5733a6272f059",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c7454cd6dd3af6a5469f5b2dec024d9c2a39e716a3071904f9eee6dfb0c5a9a5",
+      "spec.md": "04ba096e1f0a48eeb1c016a4e111f5e3770ee8a1696a8c34d6539f1bb2b01c08",
       "plan.md": "44bde5e54ffdf4f0186ae491a22e29a64a8c7d280c82ac8707671fd078f22160",
       "tasks.md": "ec5050f7e29575dbaba8097ba45d8b4ba02ba7e2484f5a68fd52da48e3787901",
       "implementation-summary.md": "77cb2379fb466c8c921c1edc5262907350a654ad82600780ec594d5ff09cf4de"

@@ -174,7 +174,6 @@ Paths assume 004 moves the parent's in-scope entries (`../spec.md:80`). T008 rec
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -229,6 +228,7 @@ Paths assume 004 moves the parent's in-scope entries (`../spec.md:80`). T008 rec
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does ADR-001 resolve to L1 (`.opencode` becomes one link and every entry moves) or to L2 (opencode's install files can stay), per `../004-migration-design/decision-record.md:70,82-83`? And what does `.opencode/specs` become beyond the link K5 keeps? The answers settle the moved list, 790 specs occurrences and the 48 review occurrences naming `logs`.

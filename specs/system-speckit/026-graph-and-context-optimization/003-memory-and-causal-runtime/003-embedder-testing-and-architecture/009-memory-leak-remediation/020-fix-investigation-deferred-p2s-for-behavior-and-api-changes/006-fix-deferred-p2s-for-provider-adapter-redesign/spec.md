@@ -151,7 +151,6 @@ Close the six deferred P2 findings with a smaller direct-adapter surface, creati
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -207,6 +206,7 @@ Close the six deferred P2 findings with a smaller direct-adapter surface, creati
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. All six requested findings were closed without DEFERRED-AGAIN items.

@@ -174,7 +174,6 @@ Define a research-aligned Level 3 packet that captures the producer-side continu
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -269,6 +268,7 @@ Define a research-aligned Level 3 packet that captures the producer-side continu
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 1. Which exact transcript-identity field shape should be persisted in `HookState` without prematurely introducing the later reader schema?

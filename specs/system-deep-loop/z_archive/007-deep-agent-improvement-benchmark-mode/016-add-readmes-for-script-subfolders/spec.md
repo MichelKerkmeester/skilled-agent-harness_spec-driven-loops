@@ -162,7 +162,6 @@ Give every source script subfolder a scannable, sk-doc-aligned code-folder READM
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -215,6 +214,7 @@ Give every source script subfolder a scannable, sk-doc-aligned code-folder READM
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - None open. Scope and target subfolders are fixed by the current on-disk tree.

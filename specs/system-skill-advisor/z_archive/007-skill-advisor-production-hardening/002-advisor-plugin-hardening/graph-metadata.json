@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Three latent risks in `spec-kit-skill-advisor.js` deferred from 007 Phase 5:",
     "created_at": "2026-04-23T08:35:00.000Z",
-    "last_save_at": "2026-10-07T18:16:07.507Z",
+    "last_save_at": "2026-10-08T20:05:23.446Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f5ccbf3edc23048f3506ed07792f79fb694402d68bda35c5bb2631d58cdaaa92",
+    "source_fingerprint": "sha256:66beec4158081217cb102188384be07a113305c7867c33009075fbb46e70dea3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eb13afa9c09f233d5ab4bd459367459b8360e2246bdd383007088072bf9e7e54",
+      "spec.md": "40bc2a8b3c35c97a2e06c1ac60aa13700ef0838045845321c9ca0fc6a9121663",
       "plan.md": "85390fa3033f9d93df6a389c0e9dff09800cf2dfab200aa2292af6742608a8fb",
       "tasks.md": "f0b7e18a825277ab97f68cca001aaf536540b356aa35956d7aaf63186085b10e",
       "implementation-summary.md": "47a237af2ebc22576ab709059c8a8975ce91ecef43154ffe9db735d3976eb0bf"

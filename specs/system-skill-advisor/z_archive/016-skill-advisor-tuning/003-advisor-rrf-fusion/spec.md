@@ -142,7 +142,6 @@ Measure the advisor RRF-fusion cluster on the production routing path against a 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -198,6 +197,7 @@ Measure the advisor RRF-fusion cluster on the production routing path against a 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether the live corpus should be seeded with `conflicts_with` edges so the conflict-rerank seam adds routing value rather than only preventing an RRF regression, which is a separate corpus-authoring decision outside this read-only benchmark

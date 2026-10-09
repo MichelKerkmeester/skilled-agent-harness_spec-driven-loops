@@ -202,7 +202,6 @@ Record the confirmed per-runtime feasibility and the integration contract so tha
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -288,6 +287,7 @@ Record the confirmed per-runtime feasibility and the integration contract so tha
 1. **Given** a hosted routing request, **When** the pre-checks run, **Then** a failing check blocks hosted routing.
 2. **Given** a passing pre-check set, **When** routing proceeds, **Then** the recorded policy governs it.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 No unresolved question blocks planning. The exact OpenCode version pinned for the display-validation probe and the Pi version pinned for the mutation probe are recorded as versioned matrix inputs at validation time, not open design questions.

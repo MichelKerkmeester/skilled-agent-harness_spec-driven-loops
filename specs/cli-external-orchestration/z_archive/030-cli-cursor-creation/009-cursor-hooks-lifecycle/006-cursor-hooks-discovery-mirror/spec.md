@@ -100,7 +100,6 @@ Create `.cursor/hooks/` and symlink every file `.cursor/hooks.json` currently in
 - **The mirror drifts from `.cursor/hooks.json` as new hooks are added/removed.** Mitigation: this is the same class of drift the pre-existing "Adding/Removing a Hook" maintenance checklist in `hooks.md` already covers for every runtime; a future hook change should update the mirror as part of that same checklist step.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - **NFR-P01**: Symlink targets remain portable across clones (relative, not absolute).
 
@@ -125,6 +124,7 @@ Create `.cursor/hooks/` and symlink every file `.cursor/hooks.json` currently in
 - As the operator, I want every Cursor hook script visible at the path Cursor's own docs call conventional, so browsing `.cursor/` shows the full hook inventory at a glance.
 - As a maintainer, I want the symlink-vs-real-path behavioral difference documented before anyone assumes the mirror is safe to wire directly.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 None — a direct, fully-executed request with one real technical finding along the way.
 <!-- /ANCHOR:questions -->

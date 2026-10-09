@@ -195,7 +195,6 @@ Named by phase 1's synthesis (`../001-upgrade-research/research/research.md`); t
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -265,6 +264,7 @@ Named by phase 1's synthesis (`../001-upgrade-research/research/research.md`); t
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether `apply-diagram-tokens.cjs` needs a `--forms`/`--all` selector like the chart's (to later theme the 34 examples in 004), or whether 004 adds that flag itself when it extends the applicator beyond the four templates — left to 004 to decide against its own actual repaint needs, since this phase's own gate only requires the four templates.

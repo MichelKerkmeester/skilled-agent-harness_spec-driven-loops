@@ -203,7 +203,6 @@ Answer the Pi `turn_end`-mutation question with evidence, then wire Pi output pr
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -241,6 +240,7 @@ Answer the Pi `turn_end`-mutation question with evidence, then wire Pi output pr
 | Research | 9/20 | The `turn_end` mutation behavior is the main unknown and is pinned by the probe |
 | **Total** | **41/70** | **Level 2** |
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 No unresolved question blocks planning. The `turn_end`-mutation verdict is a validation outcome recorded at execution time, and the Phase 017 feasibility note already records the read-only finding that motivates the probe.

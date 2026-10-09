@@ -156,7 +156,6 @@ Bring the documentation gates to a truthful clean state while preserving deliber
 <!-- /ANCHOR:risks -->
 
 ---
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -250,6 +249,7 @@ Bring the documentation gates to a truthful clean state while preserving deliber
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. Findings are classified from repository evidence and the guard's documented exception policy.

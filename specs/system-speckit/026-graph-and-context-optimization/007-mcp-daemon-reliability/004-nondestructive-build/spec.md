@@ -124,7 +124,6 @@ Rebuilding the mcp-server no longer destroys the live `dist/`, so a running daem
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -179,6 +178,7 @@ Rebuilding the mcp-server no longer destroys the live `dist/`, so a running daem
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The full `dist.next` atomic-rename variant is documented as out-of-scope (composite-tsc fragility); revisit only if a from-scratch build must run against a live daemon.

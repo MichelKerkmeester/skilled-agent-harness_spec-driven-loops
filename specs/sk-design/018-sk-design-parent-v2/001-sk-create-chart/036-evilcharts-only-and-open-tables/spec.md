@@ -110,7 +110,6 @@ they show.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -165,6 +164,7 @@ they show.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

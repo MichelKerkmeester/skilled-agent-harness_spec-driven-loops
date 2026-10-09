@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Review finding F044 records that `active-critic-overfit.md`, `proposal-only-boundary.md` and `skill-load-not-protocol.md` list `deep-improvement/test-fixtures/060-stress-test/` as their fixture source, and that `setup-cp-sandbox.sh` hard-requires paths under it, while no `test-fixtures/` directory exists: the corpus was pruned by a bulk checkpoint commit that never repointed its consumers",
     "created_at": "2026-09-20T08:33:45.508Z",
-    "last_save_at": "2026-10-07T15:56:55.808Z",
+    "last_save_at": "2026-10-08T19:30:21.052Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:06931c7339ee831b1c2a77b599387c96ab2a6f8fba321d92b86c8e0354a35219",
+    "source_fingerprint": "sha256:f44542616485bd5b04872025de003990f36bee0f8592ab14876ea16d4b2c2b63",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d956d1292d78aca5b0ec5c1682f8debaa4b812fbca3bd976c1de7aab01924352",
+      "spec.md": "6df96739de035d4a249c799f095e0ee19116483cb3eb1b8e01198b084d6a345a",
       "plan.md": "8147a9f6278d071a4637e50187a1b1ad332f202627805665ff51a5e5d10fd745",
       "tasks.md": "034d73beeeff64118a3445550b1f03f1be33570dbc09eab835e4f53f7c3be812",
       "implementation-summary.md": "fb3c3ab9b0fb9a9f885f7966f4296fd944651eb26ba8d75ef7b2afd1b7faf8ad"

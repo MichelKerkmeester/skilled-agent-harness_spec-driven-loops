@@ -158,7 +158,6 @@ Every scenario has a recorded outcome, every provable defect inside the mode is 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -226,6 +225,7 @@ Every scenario has a recorded outcome, every provable defect inside the mode is 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should the standard's five category weights be reconciled with the point system, or should one of the two be retired

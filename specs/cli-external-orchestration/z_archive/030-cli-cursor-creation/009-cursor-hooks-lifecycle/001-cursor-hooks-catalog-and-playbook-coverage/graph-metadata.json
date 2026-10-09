@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`cli-external-orchestration/feature-catalog/feature-catalog.md` (the hub-level feature catalog) was never updated for `cli-cursor` at all — it still describes \"three packets\" (`cli-opencode`, `cli-claude-code`, `cli-codex`) and covers only routing concerns (two-axis dispatch, compiled routing)",
     "created_at": "2026-07-24T11:47:21.101Z",
-    "last_save_at": "2026-10-07T18:11:39.220Z",
+    "last_save_at": "2026-10-08T19:29:16.057Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f0eb05d509180f697d3db6caf62f23c828ad6bdd410cc00eaf1214f28c60db6",
+    "source_fingerprint": "sha256:c9150335a9f81fd2559156d0ee611c419240e0f1afc94ffe8414c82b30aa9b5e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e14c6928d01ff8033bcc602f6ed4a9662cf0bde34cfb23f4f2aa9780cd061d3c",
+      "spec.md": "faa9eda201458139b91ac6fbec26210528a86f41f2e790651f4473dca7ceb50f",
       "plan.md": "dc52103bf0be7b0c74ac27bf413cbc245f723cc9787428e81aff2f47ab6d8a45",
       "tasks.md": "752e5bf8022d0f08e84d61108d2d41fb0257aa6a1acd5564b8d80414df29a956",
       "implementation-summary.md": "8c812221f0d0179ab15c58cc98e57a2b6bb9dc4dee6b2e87db458f1ca423215c"

@@ -107,7 +107,6 @@ Under preserve, an out-of-scope untracked path is an advisory the ledger records
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -158,6 +157,7 @@ Under preserve, an out-of-scope untracked path is an advisory the ledger records
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

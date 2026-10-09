@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`/memory:save` mutated by default, did work that had nothing to do with the caller's intent, and still honored an artifact family that had supposedly been retired",
     "created_at": "2026-04-15T10:00:01Z",
-    "last_save_at": "2026-10-07T15:57:11.232Z",
+    "last_save_at": "2026-10-08T19:30:47.554Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a6f597723000eefc411f90f9cf7aabba991f7e047a617ccdd05c7216eaca44d6",
+    "source_fingerprint": "sha256:968133ca9e6e523ea867a4eece039152cb6e953e8fa34b07812e4ec3c7304de6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4329df78dd284d574d58bcebd7a2765cbd1d4c74ab787011f16857abe58091a0",
+      "spec.md": "4f63f39e7ae71458b768c373fa8a430845de37ada8256eb55e68517eac1d54ef",
       "plan.md": "7fbb39506461d749554163b7caab1a0070d46c6ad52c1519e68ba74fe6d8267a",
       "tasks.md": "255d4556f14c8bcf22ef387bb16673822c73b9373b455d3c81fc793b183953fc",
       "decision-record.md": "ddc1aa7e8adb1ef2ad0eb766d9f8af042599309f0cb75e76aa59ca9535f56085",

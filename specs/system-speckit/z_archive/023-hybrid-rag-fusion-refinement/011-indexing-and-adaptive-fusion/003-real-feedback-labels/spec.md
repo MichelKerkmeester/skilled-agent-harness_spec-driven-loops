@@ -159,7 +159,6 @@ Use stored query-matched validation feedback as replay truth so holdout evaluati
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -214,6 +213,7 @@ Use stored query-matched validation feedback as replay truth so holdout evaluati
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None at this phase. Query-scoped replay, `queryText` persistence, and unlabeled-query skipping are all implemented and verified.

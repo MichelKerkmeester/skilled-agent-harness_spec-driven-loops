@@ -190,7 +190,7 @@
     ],
     "causal_summary": "No sibling mode has a feature-catalog package today",
     "created_at": "2026-07-24T13:08:08.318Z",
-    "last_save_at": "2026-10-07T18:11:37.219Z",
+    "last_save_at": "2026-10-08T19:29:15.504Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,10 +199,10 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:377782d30ec02d2724a6ecfdb07d8b3cada3346c0bbbc6741a66b461b301bede",
+    "source_fingerprint": "sha256:b501f3df9f1a333c324f8fcae011a3589b568efefbaa91ecd6a6dee7f103b6d9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "711141c76bd2c134ddfbe516425abd490e60ceea0e816e29773ee2d8755804e5",
+      "spec.md": "c6c8ea361adf464fce78ecdb7826b4bdb651804c830509d20760d19197a192e0",
       "plan.md": "52b47f6e282f1d5a2e255d65b2f6ba2a20e8a5eabbad0907ebb1021f50fa2f1e",
       "tasks.md": "e6160da6fd5bf148a2a8aeaf403572ec257ac33351022edf7c1d3cd4db288f83",
       "decision-record.md": "6b4c83becad1439460d1ea12fcf76cb96aa93f15860efccc35b7bdf721bb5164"

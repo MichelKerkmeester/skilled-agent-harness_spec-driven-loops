@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Four reporting defects were recorded by the doctor command audit and re-verified live while planning this phase",
     "created_at": "2026-10-03T05:27:36Z",
-    "last_save_at": "2026-10-07T15:57:10.488Z",
+    "last_save_at": "2026-10-08T19:30:37.601Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:58467dc12bc8588fd9fcb9abe832bfc295bd526fb9f12a9e45fcadef0b4df75d",
+    "source_fingerprint": "sha256:f165d3a1435d464216079dc624afcbba75446f4a3b7cea2dcd3857246f147109",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7e6f8b79a205cfea358ea3156c9419e391146d6e2855973b92c75abd1d980935",
+      "spec.md": "e40ce5db1e88b3e922f3357b267530a49ef0f072d27f7dc572b2bd21ededab6b",
       "plan.md": "8db0b63e6346ab4c77d261e824770d2dfef63ea4ec1bcee62b20807d1ddc5b82",
       "tasks.md": "ea549c85330df0759ce651e691827f863fe7afbe233804e9abfb7915b336aef1",
       "implementation-summary.md": "c20472fe03cba5e722f434d1353e4d8f5f5d9f3063162005a14df3a7e5b94aa4"

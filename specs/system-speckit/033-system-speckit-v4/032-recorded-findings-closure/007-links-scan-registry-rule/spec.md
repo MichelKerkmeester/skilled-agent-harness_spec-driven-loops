@@ -142,7 +142,6 @@ The wikilink scan runs as part of the validation gate instead of only when someo
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -197,6 +196,7 @@ The wikilink scan runs as part of the validation gate instead of only when someo
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The decision to scope the rule to `system-spec-kit` rather than the full `.opencode/skills` tree, and to prefer an allowlist over a blanket rewrite for the memory-name citations, is recorded above with its reasoning.

@@ -194,7 +194,6 @@ Make acceptance-criteria coverage measurable and enforceable without breaking in
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -300,6 +299,7 @@ Make acceptance-criteria coverage measurable and enforceable without breaking in
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Final `SPECKIT_AC_COVERAGE_FLOOR` default: confirm 0.9 (the proposal value) or adjust during phase 3 authoring.

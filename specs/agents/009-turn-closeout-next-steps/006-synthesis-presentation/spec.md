@@ -143,7 +143,6 @@ Establish whether the fix belongs in a repo rule, in the deep-loop contracts, or
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -198,6 +197,7 @@ Establish whether the fix belongs in a repo rule, in the deep-loop contracts, or
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does the rule and the deep-loop contract change duplicate each other, or does the rule bind the behaviour while the contracts carry the per-mode shape?

@@ -128,7 +128,6 @@ A reader who follows any citation in these documents arrives at the file it name
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -176,6 +175,7 @@ A reader who follows any citation in these documents arrives at the file it name
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

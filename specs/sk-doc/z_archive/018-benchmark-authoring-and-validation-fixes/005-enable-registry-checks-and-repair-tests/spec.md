@@ -127,7 +127,6 @@ Wire the hub-registry scan into the real run path so `BLOCKED-BY-REGISTRY` is re
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -164,6 +163,7 @@ Wire the hub-registry scan into the real run path so `BLOCKED-BY-REGISTRY` is re
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open; spec folder (new child 016/005) and caveat-3 deferral were operator-resolved.

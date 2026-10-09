@@ -192,7 +192,6 @@ document without a ranking layer compensating for the corpus.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -262,6 +261,7 @@ document without a ranking layer compensating for the corpus.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - ~~Does the convention touch document bodies at all, or strictly frontmatter, markers and naming?~~ **Resolved** by section 15. The convention governs frontmatter, anchor marker lines and naming. Prose bytes are frozen by an exact preimage rule, which is what lets marker retrofit and no-body-rewrite hold at the same time.

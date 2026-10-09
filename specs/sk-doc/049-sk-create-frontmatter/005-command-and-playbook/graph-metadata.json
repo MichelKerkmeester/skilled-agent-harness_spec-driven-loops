@@ -198,7 +198,7 @@
     ],
     "causal_summary": "A mode with no operator surface is reachable only by the router, and a mode with no playbook",
     "created_at": "2026-09-01T08:43:00Z",
-    "last_save_at": "2026-09-02T20:20:18.645Z",
+    "last_save_at": "2026-10-08T19:30:00.615Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a570f85178915977abcbee6fb8b8697ef327fe577fc189e9140fbd635a84e027",
+    "source_fingerprint": "sha256:57e9a62e0b794f8d8bec00ced63114ea6f6abb4bf25cc86a7289024603d07754",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "57f7ad8db3ed379e15ce2ddd833956f3c0195afeeb773cf018328103aad42151",
+      "spec.md": "3defe08c74a275539b2f998b8f9d7e1ce45f27768ee5379efb7fdd373c132d83",
       "plan.md": "d2c80583ee736e610c4df7247fe95c124896c35043dcbca71a925b4dc6e996ac",
       "tasks.md": "d7a31eb361a6f275c1439d91eb8f7219088b578e1743f8e08e28871352c1e219",
       "implementation-summary.md": "02dfb7d95d8d569d8527d65f4be4d04269dd516a9b7eab19e7c35ec02da063bf"

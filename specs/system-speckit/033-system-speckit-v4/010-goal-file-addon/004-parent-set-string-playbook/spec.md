@@ -131,7 +131,6 @@ An operator knows exactly what to set: short enough to survive the cap, complete
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -186,6 +185,7 @@ An operator knows exactly what to set: short enough to survive the cap, complete
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

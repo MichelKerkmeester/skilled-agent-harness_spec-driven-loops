@@ -142,7 +142,6 @@ Every claim about the warnings' forward value rests on a number with its command
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -197,6 +196,7 @@ Every claim about the warnings' forward value rests on a number with its command
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - How many cold-written docs per model does the protocol need for an interval narrow enough to act on? The protocol answers this before data.

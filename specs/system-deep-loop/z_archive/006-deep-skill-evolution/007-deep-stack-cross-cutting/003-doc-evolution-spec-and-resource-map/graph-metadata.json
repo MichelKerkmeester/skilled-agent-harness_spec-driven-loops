@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The 008 cluster improves documentation across five mature deep- skills, but a sibling cluster (`000-release-cleanup`) already shipped uneven per-skill cleanup",
     "created_at": "2026-05-25T14:26:45.200Z",
-    "last_save_at": "2026-10-07T18:14:05.120Z",
+    "last_save_at": "2026-10-08T19:30:27.980Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37fd5c2c8bdbb514bfeb6a34da986104d0173a7086220335c7d3117c9f94be9c",
+    "source_fingerprint": "sha256:6ac305721ec237cbff2e2368458eaf1d5a2504ab4201d1ee0fdb840488228223",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1221215d2cf076d0a29b593695ffcc9a887e552014bcc6e1a6e6809d16ff4bba",
+      "spec.md": "5120502f3c019fbc186cdd42f10c06dddd635a7f70cf111f95efb02fc722833b",
       "plan.md": "3b87137d0abe7a95e3ba92d15de8be321ef159153fc491b33e57926c3fb5c843",
       "tasks.md": "9d60a50c23356a5cc547fd64a4990e4df6df2ce9765d97213522d456d57b14bd",
       "implementation-summary.md": "9ab3d3e5dded193b170c5abf2cbdce7b3bbf49aa22dc5fe034619418c8cae30f"

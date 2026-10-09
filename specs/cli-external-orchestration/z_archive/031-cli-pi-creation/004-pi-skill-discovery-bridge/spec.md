@@ -173,7 +173,6 @@ Planning-only phase: no repository file outside this phase folder is touched. Th
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -222,6 +221,7 @@ Planning-only phase: no repository file outside this phase folder is touched. Th
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does Pi's recursive `SKILL.md` discovery, when pointed at `.opencode/skills/` (or any hub subdirectory), surface ONLY the pointed-at directory's own `SKILL.md`, or every `SKILL.md` found at any depth below it? UNKNOWN, needs live verification — this is the central question this phase's plan is built to test, not to answer from docs alone.

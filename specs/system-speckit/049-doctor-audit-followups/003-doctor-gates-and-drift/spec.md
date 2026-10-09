@@ -176,7 +176,6 @@ Restore the coverage the gates claim, make the failing fixtures pass, extend the
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -244,6 +243,7 @@ Restore the coverage the gates claim, make the failing fixtures pass, extend the
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Does the activity assertion check only that scripts named in activities exist, or also that every route `script_invocations` entry appears in an activity? The build decides with the self-test fixture that proves the stronger reading.

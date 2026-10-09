@@ -125,10 +125,10 @@ Ensure the upgrade path never writes a trigger phrase that phrase-judge grades i
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None open. Decided 2026-10-08 by the operator:

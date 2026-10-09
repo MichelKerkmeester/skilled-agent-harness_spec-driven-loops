@@ -202,7 +202,7 @@
     ],
     "causal_summary": "`/doctor:speckit runtime-mirrors` checks that each runtime mirror agrees with its source",
     "created_at": "2026-10-02T16:10:21Z",
-    "last_save_at": "2026-10-07T15:57:40.845Z",
+    "last_save_at": "2026-10-08T19:31:34.207Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a65c19006f30123bba67529c9929beaa5430bbabf0b008565ce79159f0922ffd",
+    "source_fingerprint": "sha256:16c29d576efc6d40247ba0d51856d5ff66caa6b898b2a63af5a0a01894204bdf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f67bcb954563ac46a08bbbb680183369492121709876c5b4fc986ad692e25afc",
+      "spec.md": "85783c884d65bb346137f0e51f2218c12e29d6b633e438c55548da9479134ee1",
       "plan.md": "14bf646cab72ce8cba5828e08ab3b6d3013848ef439ffde5b8f168d140ab4f97",
       "tasks.md": "e36b5ebec574dd2e22cbccbe76938958b996146660f4097a815e38a62906e2d8",
       "implementation-summary.md": "0fa0f81503fe6b9cfc8983a247557572adbdb1dd772ccd5352946cece364060a"

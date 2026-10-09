@@ -163,7 +163,6 @@ Define a private procedure-card layer that preserves one public `sk-design` iden
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -258,6 +257,7 @@ Define a private procedure-card layer that preserves one public `sk-design` iden
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None remain open for Phase 003.

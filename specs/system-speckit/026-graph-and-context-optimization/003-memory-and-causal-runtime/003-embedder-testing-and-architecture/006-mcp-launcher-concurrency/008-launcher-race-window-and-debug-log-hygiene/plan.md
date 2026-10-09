@@ -69,13 +69,13 @@ function debug(message) {
 ```
 
 Route 4 sensitive log sites through `debug()`. Lines 384 + 478 (childProcess on('error') + main catch) keep a one-line `log()` summary so operators see *that* something failed, with full stacks moved to `debug()`.
+<!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:affected-surfaces -->
 ### Affected surfaces
 
 - `.opencode/bin/mk-skill-advisor-launcher.cjs`: ~30 line delta (helper add + 4 log-site changes + structural reflow).
 <!-- /ANCHOR:affected-surfaces -->
-<!-- /ANCHOR:architecture -->
 
 ---
 

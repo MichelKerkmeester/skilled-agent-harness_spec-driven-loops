@@ -188,7 +188,7 @@
     ],
     "causal_summary": "sk-doc keeps creation guides in references specific, but the requested structure moves those guides to the root references folder",
     "created_at": "2026-05-10T10:33:22Z",
-    "last_save_at": "2026-10-07T21:53:59.480Z",
+    "last_save_at": "2026-10-08T19:30:05.832Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,10 +198,10 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:91de25337066cf440897a614bf4eb5758d396b48ccc4f61bc9ddd095b6ac2b30",
+    "source_fingerprint": "sha256:af205f315f50a3ed9dcb2facaf83eaeadcaea33b4b0a75c9e9083796a9c3c099",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3cac40831ee9dc36631ad47906163733ad65bdaed2a09989fc149ce9f72f108a",
+      "spec.md": "1285d04a6282b47c316ac9d9464ec3c47aecfd1224f3663c2053befcbdc31a65",
       "plan.md": "c0c366853dccf765ace227621e997ecdf10e3c4a1664b05b347b47b40864cd30",
       "tasks.md": "c48eec7553de38f1e9534f2b0dbd374f1b12fe6cbae2b660fb745c639a56ec00",
       "implementation-summary.md": "8f8b715bc69f359037b79676e3d5c793c91860c1f88c0845ec4bc499a758ec36",

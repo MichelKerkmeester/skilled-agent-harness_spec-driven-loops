@@ -51,6 +51,7 @@
       "README.md",
       ".claude/mcp.json",
       ".codex/config.toml",
+      ".devin/config.json",
       ".opencode/agents/README.txt",
       ".opencode/agents/deep-improvement.md",
       ".opencode/agents/deep-review.md",
@@ -59,8 +60,7 @@
       ".opencode/commands/create/README.txt",
       ".opencode/commands/create/agent.md",
       ".opencode/commands/create/skill.md",
-      ".opencode/commands/doctor/_routes.yaml",
-      ".opencode/commands/doctor/mcp.md"
+      ".opencode/commands/doctor/_routes.yaml"
     ],
     "entities": [
       {
@@ -124,6 +124,12 @@
         "source": "derived"
       },
       {
+        "name": "config.json",
+        "kind": "config",
+        "path": ".devin/config.json",
+        "source": "derived"
+      },
+      {
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/agents/README.txt",
@@ -172,12 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "mcp.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/mcp.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The checked-in project `.gemini/` directory is still treated as an active runtime surface by docs, command scaffolds, tests, runtime capability manifests, and MCP setup guidance",
     "created_at": "2026-06-05T06:49:52Z",
-    "last_save_at": "2026-09-07T16:16:53.282Z",
+    "last_save_at": "2026-10-08T19:29:12.144Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:63764a9e017a05d275ead1418c7203000e02f79effe074a409628acec4f9f009",
+    "source_fingerprint": "sha256:2fa3b2c8ff51066ce18ff328ba6fa3de12b89c3a84beb955fe259c22422ef6cd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3ca49f0ea4c30a771f8c996985c597d683b18b3162900a88f440c779dfbe5170",
+      "spec.md": "6c2aa02280eb96735d11c6ccd27c18fd032c0068515cfa52b67304b7815bb68d",
       "plan.md": "6d597777ea1a7f7fcd2813d85cd69af1b9d9df6121047e40689804bb2e755fd2",
       "tasks.md": "cc6df12e9fe371899165b06776ed16b1c9c51ce84d6a9d128c9b5cfee2472434",
       "decision-record.md": "d9181d39d6dceed10050fd0781e7339100a1bc5b0eeebdcebc6bbc22fa296ab7",

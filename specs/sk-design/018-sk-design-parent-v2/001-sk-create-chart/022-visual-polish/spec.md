@@ -110,7 +110,6 @@ Every form and delivery reads as a finished product card: clean source line, a t
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -165,6 +164,7 @@ Every form and delivery reads as a finished product card: clean source line, a t
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the disclosure default open for every form rather than only inert ones? The build takes open for inert, closed for tooltip forms, and it is one attribute per file to reverse.

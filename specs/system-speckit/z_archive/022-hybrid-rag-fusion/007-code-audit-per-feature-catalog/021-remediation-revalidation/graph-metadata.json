@@ -188,7 +188,7 @@
     ],
     "causal_summary": "After completing 20 feature-category audit phases covering 220+ features, a set of cross-cutting catalog hygiene issues emerged that require structured remediation",
     "created_at": "2026-04-12T09:02:50.256Z",
-    "last_save_at": "2026-10-07T20:25:21.205Z",
+    "last_save_at": "2026-10-08T20:06:02.871Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,10 +197,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a41058e7921c5ff602d2ec39a7cc01c950b21aec30dba5e2abf86294c01c6ae6",
+    "source_fingerprint": "sha256:e2ce403e146b05b7403befac27f95df6972b30fc12b877387db79e0ba7e025a7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2465f2604514e882f409cd3721f398da3ac61800b2b7f863307cafe40cb2ebae",
+      "spec.md": "1d3fca0dc25a3de83e23cc212eacba2f85a06066b8a4629464d38efbe54fb556",
       "plan.md": "18587fffd8a1963cc6348a299f68e7ba5d550309fd3c10484b3ab599d4dabbbe",
       "tasks.md": "af28b0838b3f5006aee58fa368645cc362d6114b22da7ce347cadb211108eb39",
       "implementation-summary.md": "309cd6896ba102354d77c84e3a2d5af6fac4caeb71b0757e3dadfc262410b08f"

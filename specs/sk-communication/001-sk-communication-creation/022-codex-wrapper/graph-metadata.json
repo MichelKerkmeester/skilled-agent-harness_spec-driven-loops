@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Codex exposes only input, tool, and lifecycle hooks, and none of them can rewrite the rendered answer, so there is no native seam to project Codex output in place",
     "created_at": "2026-08-14T05:42:55.586Z",
-    "last_save_at": "2026-10-07T15:56:18.584Z",
+    "last_save_at": "2026-10-08T19:29:34.959Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,10 +197,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:abfcf69e0624ef864776b25059d73530ed172317d38d2c77bc9005aa31bea36b",
+    "source_fingerprint": "sha256:851f9585236c56ed661a952c1541514d2a151694f312296846a90a5c9d56a0df",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7d0790d8ab9dd7b0cae011c97b171510c86e67b0309f434ab80de2ee8a4b0e21",
+      "spec.md": "68746432b5fe93514cfea96a7abaf0a2db942b65e0d675895c029e5f460748ec",
       "plan.md": "960a8bbdac353d64b5c26916c8e0c9d16e6b962a808c335cf61cb0479dc3b6fe",
       "tasks.md": "3f0869f97e72f449023ca076265e2bd4b8f4477cdd3ce7b443fef519e106c957",
       "implementation-summary.md": "a40c0b1ab01cb436eb6097b180ec2ac3b18c5299aa6296ba015b84ae2282ddf4"

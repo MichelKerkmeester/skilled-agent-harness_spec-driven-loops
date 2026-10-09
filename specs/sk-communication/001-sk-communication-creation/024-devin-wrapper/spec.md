@@ -190,7 +190,6 @@ The wrapper captures a single `devin -p` run's stdout, wraps it in a Devin runti
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -226,6 +225,7 @@ The wrapper captures a single `devin -p` run's stdout, wraps it in a Devin runti
 | Research | 10/20 | Devin's single-turn print behaviour needs a live CLI probe before it is relied on |
 | **Total** | **39/70** | **Level 2** |
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 No unresolved question blocks planning. Devin's `-p` print-mode capture shape is a pre-implementation validation step (REQ-002), not an open design question.

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "AI-derived spec-folder and phase slugs frequently default to generic placeholders that do not describe the concrete work being shipped",
     "created_at": "2026-05-19T07:48:17Z",
-    "last_save_at": "2026-09-07T16:17:41.564Z",
+    "last_save_at": "2026-10-08T19:30:46.835Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d69a27ada3c7cf603c12346e87cac168d677a759fd5108907b56a86280884e9",
+    "source_fingerprint": "sha256:ce516ce956630e21812159e40258f26fcfbecfd835a7c2fe37bf45013de18b00",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "51313159cc7c0096d9adb6fe835309fa0a468bd8f9b9ffa1a45ec7d9c3733fc9",
+      "spec.md": "c8f94e36fb565f22fb2183e58968939684719777f9e3ffa68a0b66ae35566e0d",
       "plan.md": "1e4796ceac907c5b923fafaa1c84b26c10f92f6096ffebc53b3b1cec3bf04f66",
       "tasks.md": "80fa3ded89fb6adab28ad960a4f5ae86341fad8031507b9a82b5461bd5d2c816",
       "implementation-summary.md": "419e00b7d1ef29cde19fbcbe0ca601e64880b5f58f6ea95f97578053540193b8"

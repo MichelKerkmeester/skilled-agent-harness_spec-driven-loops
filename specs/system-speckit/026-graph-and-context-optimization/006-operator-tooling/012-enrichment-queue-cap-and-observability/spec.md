@@ -137,7 +137,6 @@ The enrichment scheduler is bounded in queue length, its failures are counted an
 <!-- /ANCHOR:risks -->
 
 ---
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -207,6 +206,7 @@ The enrichment scheduler is bounded in queue length, its failures are counted an
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. Thresholds (`MAX_QUEUED_ENRICHMENTS=2000`, hint backlog>500) are heuristics, env-tunable in a later pass if needed.

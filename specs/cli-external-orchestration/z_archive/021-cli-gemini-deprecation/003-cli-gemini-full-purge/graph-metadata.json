@@ -47,11 +47,7 @@
       "decision-record.md",
       "implementation-summary.md",
       "resource-map.md",
-      "scripts/tests/fixtures/multi-ai-council/council-output-full.md",
-      "scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
-      "templates/README.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-full.md"
+      "templates/README.md"
     ],
     "entities": [
       {
@@ -88,18 +84,6 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "council-output-full.md",
-        "kind": "doc",
-        "path": "scripts/tests/fixtures/multi-ai-council/council-output-full.md",
-        "source": "derived"
-      },
-      {
-        "name": "multi-ai-council-persist-artifacts.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
         "source": "derived"
       },
       {
@@ -197,11 +181,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "direct",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Some",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phases 001 and 002, `cli-gemini` still existed as a first-class executor across active source: deep-loop executor unions and audit maps, deep-improvement model-benchmark dispatch, the system-spec-kit matrix runner adapter set, the multi-AI council fixture, plus a wide spread of feature catalogs, manual testing playbooks, references, a constitutional file, and release-history changelogs",
     "created_at": "2026-06-08T16:11:50.617Z",
-    "last_save_at": "2026-08-30T15:39:08.677Z",
+    "last_save_at": "2026-10-08T19:29:12.062Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +208,10 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:0cc9871448e0b754c29426d245f601fa1fe20353369deea810d8963aca0c5ac2",
+    "source_fingerprint": "sha256:a845d27810cd99293957138c806e1c12f2adc010ce211fd143e42648a2c4d36e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1d789c7e6bf0463e43648750d2a21b275e5c13f91d77c7cdc1b121bbfa9a1486",
+      "spec.md": "613bbfe1bd6a34fcf1910f315afcaac7c44b91538e817672d59953598ee79648",
       "plan.md": "239c0a4d812cde776262cbc52e562f28c80613ee330e6164c638e6f216e6413b",
       "tasks.md": "f6c08ade47e2447a3b4645cf6dc2096655827b2e20d39434edd247d268025ecf",
       "decision-record.md": "0641a5e752af97ab3dbddd914c62f59702d89b693bf9fdb0dfb50220a1a4e714",

@@ -163,7 +163,6 @@ Reconcile all 6 documentation surfaces to the authoritative 9-gate model emitted
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -198,6 +197,7 @@ Reconcile all 6 documentation surfaces to the authoritative 9-gate model emitted
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The authoritative gate model was confirmed during investigation and the reducer was verified gate-name-agnostic.

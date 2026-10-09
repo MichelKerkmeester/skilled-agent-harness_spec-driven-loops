@@ -140,7 +140,6 @@ The corpus shrinks by 20% to 28% while every norm, test, exception, Fires-when b
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -176,6 +175,7 @@ The corpus shrinks by 20% to 28% while every norm, test, exception, Fires-when b
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the post-change window run before phase 007 starts, or overlap its first block? Recommendation: run at least one week alone so its effect is not mixed with the wording test.

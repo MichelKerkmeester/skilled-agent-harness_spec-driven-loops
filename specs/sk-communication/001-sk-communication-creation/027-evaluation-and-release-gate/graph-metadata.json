@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The evaluation harness can already produce a blind non-inferiority verdict and the release gate can already block on dated evidence, but the production projection path does not yet consult the verdict before offering projection for a runtime / prompt-profile combination, and rollout is not yet gated on that evidence",
     "created_at": "2026-08-14T05:53:50.234Z",
-    "last_save_at": "2026-10-07T15:56:22.465Z",
+    "last_save_at": "2026-10-08T19:29:35.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e9ac94b4e4ad03fda24dd217e949e03e77359be4e5585743a44eeb4b90f193a",
+    "source_fingerprint": "sha256:6872baa59bf2950ebaf5a784184e4539f1e127822edfa7431533eec43fbf25e6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "17e1b511dc890cc92693631ff1d5389d12ce6b10eb1198b1d8c72b57b7b7b56c",
+      "spec.md": "20f682bc6aaf6c8cd14023f0b6eb18a31dacf774c81300bcf6061585470cc78c",
       "plan.md": "7b73c9faca3d9a2b739f643e2aa72199e4f708d39794c14616cda86a9b6ef280",
       "tasks.md": "0a682f79d583d9b249055be16d87e5b4b0336347e9726afb12ff072a8f341255",
       "decision-record.md": "03fad2f6997020e6a067bdf6e04fe31cc017ac9333c4817ad81e0861ef75debc",

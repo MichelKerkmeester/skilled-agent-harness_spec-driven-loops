@@ -155,6 +155,7 @@ The v30 migration is deploy-gated. It will affect the shared DB only after a sep
 2. **`deferred` rows need explicit backfill.** Normal replay and scan backfill skip `deferred`; an operator backfill is the only path that enriches them.
 3. **Project typecheck is not clean.** The packet-specific tests pass, but project-level `tsc` is blocked by ambient/broad type-resolution diagnostics. The full second typecheck output was captured by the runtime at `/Users/michelkerkmeester/.local/share/opencode/tool-output/tool_e86fdc9e5001whNk0I0Dk4rCtN`.
 4. **Shared-file integration risk.** `memory-index.ts` is also edited by packet 005 (lines 249-333); this packet's edit stayed additive and in a distinct region to ease integration.
+<!-- /ANCHOR:limitations -->
 
 ---
 
@@ -166,4 +167,3 @@ The v30 migration is deploy-gated. It will affect the shared DB only after a sep
 3. If typecheck evidence is required before merge, fix or scope the existing ambient module/type-resolution issues first; they are broader than this packet's new files.
 4. Pin evidence to a commit SHA or explicit review diff range after the orchestrator-owned commit step.
 <!-- /ANCHOR:continuation -->
-<!-- /ANCHOR:limitations -->

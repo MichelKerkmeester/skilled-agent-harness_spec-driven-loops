@@ -126,7 +126,6 @@ Produce a prioritized, evidence-grounded set of improvement proposals for the ge
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -180,6 +179,7 @@ Produce a prioritized, evidence-grounded set of improvement proposals for the ge
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which verified proposals warrant a build phase versus a backlog entry

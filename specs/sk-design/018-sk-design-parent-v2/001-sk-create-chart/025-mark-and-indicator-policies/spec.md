@@ -108,7 +108,6 @@ Every mark decision that a reader can misread is declared once in the form and h
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -163,6 +162,7 @@ Every mark decision that a reader can misread is declared once in the form and h
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None until the build starts; phase 022 must land first.

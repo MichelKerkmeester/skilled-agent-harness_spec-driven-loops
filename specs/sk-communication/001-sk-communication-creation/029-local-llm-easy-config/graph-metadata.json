@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Produce a validated, ranked design recommendation that specifies the operator UX and the activation seam for local LLM easy-config: config-file and environment-variable discovery, provider auto-construction, a judge default that permits local accepts without weakening the reject-only safety contract, privacy defaults that keep traffic local-only, and how the plugin and wrapper automatically pick up the configured provider with no further operator steps",
     "created_at": "2026-08-14T14:57:53.601Z",
-    "last_save_at": "2026-10-07T15:56:22.489Z",
+    "last_save_at": "2026-10-08T19:29:35.419Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:8f45891b5b5d4874e7e44c6d16950637e7bdaf08f58b2c03b8a888acb9153d5a",
+    "source_fingerprint": "sha256:e614274786cb1f4484b1436f5e587a830c3163cced53c319b344214119e54bcf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6c7d16582d9d7f07cfb8334dcf04238bf07e1b7b80ad1931fa723fbee3e79182",
+      "spec.md": "16363065262484f0c6a3ff421fbe29690de806c2f1daf8da1799070be73c2fa2",
       "plan.md": "4d805c19aa8f3d7232a71891fced0c4b763e731f0a3ad486f094aa90dbbe7e13",
       "tasks.md": "99c3b0747b3099724a790e2e8aaa4c0b1ed04681d9aed712a2dfcc5a22f7a5eb",
       "implementation-summary.md": "6b06a0b533f3b822a397bb33bfff96efe44c7e4ad139125430c58b9667a7ca16",

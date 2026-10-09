@@ -179,7 +179,6 @@ This is **Phase 10** of the `system-deep-loop/032-deep-alignment-mode` mode-pack
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -227,6 +226,7 @@ This is **Phase 10** of the `system-deep-loop/032-deep-alignment-mode` mode-pack
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Exact chrome-devtools render harness invocation shape through `design-mcp-open-design` (which of its documented dispatch entry points this adapter calls) - TBD, resolve when this phase executes against the real transport.

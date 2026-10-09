@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 003 research settled that the styles library is a mode-owned evidence system and ranked `design-foundations` (rank 4) and `design-motion` (rank 5) as the highest-semantic-complexity consumers, but neither mode has a wired path to the library",
     "created_at": "2026-07-18T14:16:42.726Z",
-    "last_save_at": "2026-10-07T18:12:33.350Z",
+    "last_save_at": "2026-10-08T19:29:54.052Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:620a65760c4c3753af5f6b5619b06f4965221731e72890b8c9a0a582068af23e",
+    "source_fingerprint": "sha256:bcf1b34a8769744c6f5edc476d5b42c25f7b2ae9c11db3b02a851372ae9dca3d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "48bd8bc162fde6df921014a2c3b327e4d73d811fc141e3f0d13d6d2d9eda0d49",
+      "spec.md": "12776b4259e85fa12781c9728f11a119241a7a80c57886d77cd956e6539a43f7",
       "plan.md": "b8eeb0eb9123ebcfa295d147f63bc45b4422a881d0500ae71e6d5f4cd06dbfe4",
       "tasks.md": "8eb4f545c9538d74d2c7481fa5e67bd2a5ca767b99a3354ea78c90883f61d668",
       "decision-record.md": "af05f812a9707e94dbe80faf9fa90526de227a7b73ac75e2e42739c8c66a660e",

@@ -165,7 +165,6 @@ Leave the committed index fresh, its diagnostics honest about which phrase class
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -233,6 +232,7 @@ Leave the committed index fresh, its diagnostics honest about which phrase class
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Does a reachable `folder-token-fallback` need a diagnostics `schemaVersion` bump, or can schema 2 absorb a new key? The build decides after reading `artifact.mjs`'s shape assertion.

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Define the versioned contracts and golden fixtures that every core, provider, and runtime adapter must share",
     "created_at": "2026-08-11T10:04:28Z",
-    "last_save_at": "2026-10-07T15:56:17.678Z",
+    "last_save_at": "2026-10-08T19:29:31.639Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:11f7bc86e717196371028c529a4b2cb72d48359976f0b8e2871ca7e70a92dfea",
+    "source_fingerprint": "sha256:3e24d85f92aabc44777677f714f3086e58ada9f80389d60a89cd3233caa07ddb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b7ac15bd650f0f7b473ced5515b1daabfb34f996759f15e5c272b87dc2909ad2",
+      "spec.md": "40d12c7c4be90fd8038ac08d65ae6f1935fb100c3377bee80ce57615b7402958",
       "plan.md": "d832a49ffc044a8b0bab50128fc2e82286c778d50c95172e1c5244dccbce5087",
       "tasks.md": "5dc018e8f1cb4e75b7d72b564344aab3ee871225ade95d8d4e9692221e30443b",
       "decision-record.md": "a5a48a39ce49f2d9493c34015c9653c4684ad74a63b0ce7c877d2a5836ffcf8f",

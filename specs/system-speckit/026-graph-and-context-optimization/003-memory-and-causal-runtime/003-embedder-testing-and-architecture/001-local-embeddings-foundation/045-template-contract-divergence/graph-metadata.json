@@ -197,7 +197,7 @@
     ],
     "causal_summary": "During the 2026-05-14 substrate repair wave, several Codex-authored spec packets passed `validate.sh --strict` but `memorysave` dry-runs rejected the same canonical docs with `missingblanklineafterfrontmatter` and `missingsection` violations",
     "created_at": "2026-05-14T16:44:57Z",
-    "last_save_at": "2026-09-07T16:17:45.574Z",
+    "last_save_at": "2026-10-08T19:30:49.119Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec4bcb76984329c73ba7cc2c2189cc32f96e10112068d6dca0d59c0b52e2c7f3",
+    "source_fingerprint": "sha256:ee998b654a57cf685f45e2ac80eee4c721662928c2742a1601ba95f77db95ae3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6b0c426cc787dda1eb53cf231049be86a7d8ab5011e4de7b3a1ed1d40d58551c",
+      "spec.md": "ef3639c127fefe9456005a2167743b92988602787eca013996be34c72141a11c",
       "plan.md": "096895576317e03007dfb672d1fc1a1a2bf1b9cd03b892a43e6682365973957e",
       "tasks.md": "039d9e58e0e0ed593b0c936a849aa0e32c4832b3ee3fd7dfa3efb16d81039114",
       "implementation-summary.md": "fefa7a890647806813503abb827ee2384e8b4e235b393325bcadd3f56168feaf"

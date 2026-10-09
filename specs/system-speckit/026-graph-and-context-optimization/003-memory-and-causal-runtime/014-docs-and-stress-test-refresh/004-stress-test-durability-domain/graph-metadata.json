@@ -48,9 +48,6 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "lib/storage/checkpoints.ts",
-      "handlers/save/enrichment-state.ts",
-      "core/db-state.ts",
       ".opencode/bin/lib/launcher-session-proxy.cjs"
     ],
     "entities": [
@@ -82,24 +79,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checkpoints.ts",
-        "kind": "code",
-        "path": "lib/storage/checkpoints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "enrichment-state.ts",
-        "kind": "code",
-        "path": "handlers/save/enrichment-state.ts",
-        "source": "derived"
-      },
-      {
-        "name": "db-state.ts",
-        "kind": "code",
-        "path": "core/db-state.ts",
         "source": "derived"
       },
       {
@@ -197,11 +176,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The durability surfaces shipped by the 013 roadmap each have a correctness unit test under `mcpserver/tests/` (`checkpoints-v2-create/restore`, `vector-index-schema-enrichment-v30`, `handler-memory-index-async-scan`, `launcher-session-proxy`)",
     "created_at": "2026-06-02T11:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:31.889Z",
+    "last_save_at": "2026-10-08T19:30:53.452Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +208,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce69da844a30c464dd535585fd4d121a574c979545e38d05065c8fd3eb3d0c21",
+    "source_fingerprint": "sha256:2462ad082e79e1213b089c90d22c178fc967ac581de1f2b171db6f83dd46ff1b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9f79a7859fb5913956cc2526f4f7b0d538657b8db00538dd97cc993b850f8e2f",
+      "spec.md": "ec15d7939464246a87cfe95d6763537532532711a4f629d63ce83ef67f4d8a8c",
       "plan.md": "c6ca1185471c94da26ca903cf399276e8bd725b62b59df3fbc6fd4f062dc39ec",
       "tasks.md": "de68bcb97fa01ab1ef1fca6d608bf27b14b642f21cbbd14815c9761f0980a94f",
       "decision-record.md": "45a1c60dc861cf776fd82d0338122c782fc7feff442f92b4456b19f901bbc243",

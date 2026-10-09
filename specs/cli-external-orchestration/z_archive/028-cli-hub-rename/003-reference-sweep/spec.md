@@ -157,7 +157,6 @@ Make every live consumer name the correct hub or executor while preserving trust
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 - **Accuracy**: live paths must resolve to existing canonical locations.
@@ -187,6 +186,7 @@ Make every live consumer name the correct hub or executor while preserving trust
 
 **As a** repository reader, **I want** active references to resolve while historical evidence stays honest, **so that** both operation and audit remain trustworthy.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None for this completed phase.

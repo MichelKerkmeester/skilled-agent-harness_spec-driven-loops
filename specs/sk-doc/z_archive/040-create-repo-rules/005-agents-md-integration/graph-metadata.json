@@ -196,7 +196,7 @@
     ],
     "causal_summary": "A rule file that nothing points at is inert: the router's trigger table is the only thing that loads one, and the pointer from the governed `AGENTS.md` section is the only thing that makes it findable at the moment of need",
     "created_at": "2026-08-31T11:33:10Z",
-    "last_save_at": "2026-10-07T18:14:21.336Z",
+    "last_save_at": "2026-10-08T19:30:14.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c05b1f57c7ef28da6fb9937e3929207fc6bfb21ed85ec54487148a122309c7a7",
+    "source_fingerprint": "sha256:339ece163186bce15c19486ca6c372971d748fdf82de99627967c5d784d4f0e1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a48cd2dc85513bbb3c1d17afe1eef4e9347a7333b49ded5b82273ac14849b214",
+      "spec.md": "04a36e6fd83ccb441ff8b40dc2496ff1bc3614e53860626f10f1413c216f0701",
       "plan.md": "6ade71d7584004d7cc9448bb1a35a2fb15ca62f700f2b810e3c30e24e01696bc",
       "tasks.md": "2dd3e0dac6bb2b7e0e1b1b3b504f012b0d63d1a4dc506445927bd01235f7b36f",
       "implementation-summary.md": "19017f6416422872a157a421309957cc01d422b593accf6a16d2a612a0685c2a"

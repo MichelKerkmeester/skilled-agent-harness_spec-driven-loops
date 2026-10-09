@@ -49,8 +49,6 @@
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "ai-council/council-report.md",
       "ai-council/ai-council-state.jsonl"
     ],
@@ -89,18 +87,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "multi-ai-council-validator.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -198,11 +184,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architecture Decision Records",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Council deliberation outputs are transient: they return inline to chat and any intermediate seat outputs land in unstructured `scratch/` files",
     "created_at": "2026-05-06T12:31:00.902Z",
-    "last_save_at": "2026-08-30T15:39:24.270Z",
+    "last_save_at": "2026-10-08T19:30:30.598Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +211,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f9e84c95d63a6049e7342958c926617e8b767c77eaaefb1592a4a623664265e3",
+    "source_fingerprint": "sha256:36d005b1c1f3bcfb0040e3db8e8d613561547aeaf388daabb1710f7cdd4b6cb9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f0a49c92835476c708f952a6d9afd5a6efec2dee25a5e798c5f574463680ebbf",
+      "spec.md": "0cf0a3dc50d35a737b7f03a294f90151b3c20efbbe773dcb57d6c6522c15a411",
       "plan.md": "1942a7a83ae0a6e05e49fa2ab24295ab5cdd2653a0ea0112c163dc063f4685c8",
       "tasks.md": "b479d3f792fef963c6232bda0a516ff3d79f3658278e84f19615540192914e90",
       "decision-record.md": "0b24d7ec2e165cea9ff2fc9aafec19eee2cef82e804cd76f1940b423c3b616c2",

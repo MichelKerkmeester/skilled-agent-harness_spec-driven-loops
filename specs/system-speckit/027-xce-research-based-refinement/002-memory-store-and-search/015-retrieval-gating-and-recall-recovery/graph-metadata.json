@@ -197,7 +197,7 @@
     ],
     "causal_summary": "On-topic memory searches return `requestQuality: weak`, `citationPolicy: donotciteresults`, and a \"Retrieval quality is weak\" response policy even when the exactly-right specs are indexed and surfaced",
     "created_at": "2026-06-17T19:57:25.095Z",
-    "last_save_at": "2026-09-10T20:48:31.686Z",
+    "last_save_at": "2026-10-08T19:30:58.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e48155376f5f2f71e26f70b82cd82f853a0ca638c8d468b67528f8fa80f16e05",
+    "source_fingerprint": "sha256:e0d5e7d3d12f2e3c30dff1ae4867df63fa0a1205b5968f191469f7f4add5a937",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b3d3b273a345476575f212446a17f2c5bb07f106a095f5aec0f62b8e567fbbff",
+      "spec.md": "571700730f0ee203bad8542946e01be1ba43b842a623762df22158ed5e7cc753",
       "plan.md": "e899ca310eec1f4c5bb7e1e42a735eb726b8fa0453beb5729cc05a9666aa1347",
       "tasks.md": "8b836c586e4e699a84a33e7594fcf3ba1749773904c88b57a5ea181382ac4b11",
       "decision-record.md": "cf34872041f67a70a06a282735a5e1f70ee8f8f5e5c7487536df2a5ca4bef675",

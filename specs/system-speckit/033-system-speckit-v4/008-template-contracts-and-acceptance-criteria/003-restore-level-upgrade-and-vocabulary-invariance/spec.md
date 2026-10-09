@@ -133,7 +133,6 @@ The upgrade chain works end to end again without reintroducing fragment files, a
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -188,6 +187,7 @@ The upgrade chain works end to end again without reintroducing fragment files, a
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

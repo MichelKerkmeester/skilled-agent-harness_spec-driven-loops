@@ -86,8 +86,8 @@ is also what keeps it honest. The `D3-ex-default` diagnostic stays **optimizer-l
   awareness. Pure build — no operator decision.
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 None blocking. The one deliberate design boundary (never auto-apply new intents) is settled by the
 anti-gaming methodology, not an open decision.
 <!-- /ANCHOR:questions -->

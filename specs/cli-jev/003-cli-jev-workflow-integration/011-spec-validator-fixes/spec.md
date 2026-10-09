@@ -169,7 +169,6 @@ A reader of `validate.sh` output can see which cited `file:line` does not resolv
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -225,6 +224,7 @@ A reader of `validate.sh` output can see which cited `file:line` does not resolv
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **Owner decision (system-spec-kit): should an unresolved citation stop counting as coverage?** Measured on 2026-09-27 by a read-only scan of 374 criteria files. Option A, report only, is what this phase builds. It costs nothing in outcomes, and a shape-only citation still counts, now with a visible detail. Option B: a row whose citations all fail to resolve stops counting. 56 of the 97 packets at or above the 0.9 floor today would fall under it, and with `SPECKIT_AC_COVERAGE_ENFORCE=true` a post-cutoff packet among them would fail. Option C: option B plus a wider resolution rule (a skill root or a unique `git ls-files` suffix match). It recovers skill-relative citations, but adds ambiguity, more reads and a second rule to maintain. Recommendation: A now, then B once the owner retrofits or accepts the drop

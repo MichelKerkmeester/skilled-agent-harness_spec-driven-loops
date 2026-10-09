@@ -139,7 +139,6 @@ Give the repository a real `REPO RULES.md` that behaves as a router — trigger 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -194,6 +193,7 @@ Give the repository a real `REPO RULES.md` that behaves as a router — trigger 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should `AGENTS.md` §3's pointer be strengthened from "when the repository has one" to a named load, now that the file exists? **DEFERRED: `AGENTS.md` is out of scope for this packet; raised for the operator rather than absorbed.**

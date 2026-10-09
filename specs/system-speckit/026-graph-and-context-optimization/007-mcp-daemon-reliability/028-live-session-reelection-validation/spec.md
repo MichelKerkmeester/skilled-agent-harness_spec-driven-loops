@@ -125,7 +125,6 @@ Prove re-election end to end with two real launchers in an isolated root, and fi
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -180,6 +179,7 @@ Prove re-election end to end with two real launchers in an isolated root, and fi
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None outstanding; option (b) true adoption is recorded as a deferred follow-up.

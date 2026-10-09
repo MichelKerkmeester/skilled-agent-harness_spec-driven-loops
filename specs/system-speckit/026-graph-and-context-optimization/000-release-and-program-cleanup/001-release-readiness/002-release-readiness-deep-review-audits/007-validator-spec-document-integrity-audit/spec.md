@@ -145,7 +145,6 @@ Produce a severity-classified review report that identifies validator integrity 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -200,6 +199,7 @@ Produce a severity-classified review report that identifies validator integrity 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Remediation choices are captured in `review-report.md`.

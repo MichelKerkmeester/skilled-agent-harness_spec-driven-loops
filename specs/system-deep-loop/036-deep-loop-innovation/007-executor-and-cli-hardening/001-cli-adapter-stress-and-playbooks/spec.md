@@ -242,7 +242,6 @@ Subjects for every row: `cli-codex`, `cli-opencode`, `cli-pi`, `cli-claude-code`
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -354,11 +353,10 @@ Subjects for every row: `cli-codex`, `cli-opencode`, `cli-pi`, `cli-claude-code`
 
 ---
 
-<!-- ANCHOR:open-questions -->
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 No design questions remain. The frozen fan-out support probe demonstrates destructive-scope refusal and before/after repository state; the only non-leaf signal is out-of-scope global command-tree parity drift already fixed on origin.
-<!-- /ANCHOR:open-questions -->
 <!-- /ANCHOR:questions -->
 
 ---

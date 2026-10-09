@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 014 deep review returned a CONDITIONAL verdict",
     "created_at": "2026-05-29T10:49:24Z",
-    "last_save_at": "2026-08-30T15:39:23.740Z",
+    "last_save_at": "2026-10-08T19:30:29.291Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dfeae2ba90ff8ede609534df2a09da927ab0647e79ba9b020374fa81409b3819",
+    "source_fingerprint": "sha256:63880ae8a3fc30694f9afe293483b38e0faa5a724b56f6634188acf8188d04d9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cb6e11998690d137a33c72ed2a4061d7f5b4c040276f8a6d3b412ef2f0a25ab1",
+      "spec.md": "3ecd08bb47becd46813346aab2f58f20a64e4f231ca0a741acb350c8acf0b117",
       "plan.md": "87872013138b1e51b31ab12953533bed42e937b07c6fa6854087f6e8c7b8c7da",
       "tasks.md": "2659fe729b1ee853449e826477892ec363c3b1cfa2171a4878578709f8c7cb14",
       "decision-record.md": "3ce6e87ddf2b384398b840b34bab0fadd6a324c088312819dd1bf1ef2035e68b",

@@ -158,7 +158,6 @@ Make the mode reachable by every path that should reach it, and verify each path
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -209,6 +208,7 @@ Make the mode reachable by every path that should reach it, and verify each path
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Do other runtimes beyond `.claude/` need mirrors? **UNKNOWN. Only `.claude/` mirrors were observed; whether `.codex/`, `.cursor/`, `.pi/` or `.devin/` carry command directories was not checked. Enumerate before assuming one mirror is enough.**

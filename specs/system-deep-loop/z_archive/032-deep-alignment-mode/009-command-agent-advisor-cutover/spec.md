@@ -169,7 +169,6 @@ This is **Phase 9**, the final phase, of the `system-deep-loop/032-deep-alignmen
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -216,6 +215,7 @@ This is **Phase 9**, the final phase, of the `system-deep-loop/032-deep-alignmen
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None remaining. All three questions this phase carried are resolved:

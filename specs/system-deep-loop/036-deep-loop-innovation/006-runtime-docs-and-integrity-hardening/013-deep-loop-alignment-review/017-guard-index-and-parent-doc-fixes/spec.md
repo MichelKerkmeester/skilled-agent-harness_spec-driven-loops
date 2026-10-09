@@ -144,7 +144,6 @@ Each check reports on what it exists to guard, and the parent documents say what
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
@@ -184,6 +183,7 @@ Each check reports on what it exists to guard, and the parent documents say what
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - None.

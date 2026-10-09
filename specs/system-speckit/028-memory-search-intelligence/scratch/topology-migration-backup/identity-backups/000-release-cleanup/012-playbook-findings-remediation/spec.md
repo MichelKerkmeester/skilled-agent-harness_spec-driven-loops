@@ -133,6 +133,7 @@ Fix every real product finding from the validation, exclude the isolation and ha
 ## 7. OPEN QUESTIONS
 
 None blocking. The one open item is operational, not a decision: run the whole suite across all clusters together before the 028 review branch merges to main. The code is verified per cluster and landed on the 028 review-branch mainline.
+<!-- /ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ### Non-Functional Requirements Detail
@@ -159,4 +160,3 @@ None blocking. The one open item is operational, not a decision: run the whole s
 The remediation is complex because the findings cluster by failure mode, not by file. The dead-wiring class spans five separate call sites across the search pipeline, the schema drift spans two write paths against two tables, and the advisor persistence cluster touches the scorer lanes, the skill-graph DB, the lifecycle rollback and the CLI manifest at once. Each cluster was verified against its full blast radius rather than the single changed file, and the risky fixes were mutation-checked so a green test could not hide a fix that never proved the bug.
 <!-- /ANCHOR:complexity -->
 
-<!-- /ANCHOR:questions -->

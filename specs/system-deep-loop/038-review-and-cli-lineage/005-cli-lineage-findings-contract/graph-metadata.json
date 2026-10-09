@@ -200,7 +200,7 @@
     ],
     "causal_summary": "A `/deep:research` fan-out with two CLI lineages, DeepSeek V4.1 Flash on cli-pi and GPT-6 Luna on cli-codex, finished all ten iterations, and every iteration passed `verify-iteration.cjs`",
     "created_at": "2026-10-04T13:23:40Z",
-    "last_save_at": "2026-10-07T12:55:37.686Z",
+    "last_save_at": "2026-10-08T19:30:26.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5bd1b1ee414669b2011a90a6b58b437721702c211955d05546ee6b7d5eca23bf",
+    "source_fingerprint": "sha256:c41b49eed66eecda2f9ce0cd7588a3575e2c4cd53f32fcd4b253a4e183b6e784",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b25dc331563b5c6f6d2ca372d4b958426bf346e034f07b1b264ed96bf7fb1219",
+      "spec.md": "6893dcfbb09d643e294e9e79be594fce1aea8c3a44e0b14c01d0a494edb73104",
       "plan.md": "ba4315f604670967e987daab4e8d8635115775c9202206da9ddb4039a9f36cdf",
       "tasks.md": "515ecdcab158cd6399e22348c64e35ee217642b8388edc41f24b9d73dad913a4",
       "implementation-summary.md": "78406a99caedf5f351c13f44ead36931695fe1e1bc8b731fdf0fd417fca42d7b"

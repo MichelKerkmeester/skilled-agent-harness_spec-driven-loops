@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Three of the four MCP- skills (`mcp-chrome-devtools`, `mcp-clickup`, `mcp-code-mode`) ship without a manual testing playbook",
     "created_at": "2026-04-26T09:17:15.287Z",
-    "last_save_at": "2026-10-07T21:54:03.408Z",
+    "last_save_at": "2026-10-08T19:29:27.802Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:55bc33d16906ac628b8f6b26bcfab77ad35d122143e71a2d14a442b007488f7e",
+    "source_fingerprint": "sha256:bc4217f6d7bb04066a601268f69b1131ae57d9b66124db1bbf089c73803a3fba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "07b48c4aa06839a6044bde132b1f459ade7319b3f0156e84df908aef61a0565a",
+      "spec.md": "e82dac558cec39b137def5a5a010c4ad7cb7ec45d80b87df41c9dfb68d697c6e",
       "plan.md": "95eb40c6c0a3b88eb6184f798734e9237325b3f69775afafbaf76f4a3ef3b35d",
       "tasks.md": "3e7838e3dd48331c7b885eb065cad3a06d3097a701e002e3e835daa72960e231",
       "decision-record.md": "e9f50899288e4c16881f34d6c6d8e6a2863a8cf4c3f87145634e15eb0e214035",

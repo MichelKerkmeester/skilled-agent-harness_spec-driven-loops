@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Phases 001 through 007 land the register, the annotations and the delivery transfers, but nothing yet proves the corpus checker actually fails a form whose rendered output contradicts its declared contract",
     "created_at": "2026-09-05T16:03:59Z",
-    "last_save_at": "2026-10-07T15:56:29.128Z",
+    "last_save_at": "2026-10-08T19:29:43.036Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b90a8ea2faba0a66d01188792562244d3b1cd1e6e7280896fc5f2cf54d548ce6",
+    "source_fingerprint": "sha256:d06c8f952c23337ca2e44ad8140d48f384b7f3ce3cd96f7fccf7dffe47ed85d7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "87c448df2b5a84f3e1db7fb993e7c99c71ae1a8d801cf3319d14857ae08d849f",
+      "spec.md": "c8927df3cdbc6ecf8b99acf0839eaae897b3ccdc2b88f0991ad3ebe075aac927",
       "plan.md": "efd9c2c0df2b1223ea7065f8089d245fb4eb2306d5bb32185d5a96d841063e97",
       "tasks.md": "6b0774060b9292a9b9727d17cbabab7f5500dd669c019767ed280c8d1db4ba23",
       "decision-record.md": "34331d069f67b72740921d543207944df517edbef5b9a682e8631d81dd9d7ac7",

@@ -150,7 +150,6 @@ Wire a fail-open `sessionStart` prebind that activates opt-in enforcement only f
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -211,6 +210,7 @@ Wire a fail-open `sessionStart` prebind that activates opt-in enforcement only f
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - **Autonomous-child Gate-3 contract — RESOLVED.** `AGENTS.md` §2 (autonomous-child exemption: "must not emit Gate-3 questions") and the shared core's prior advise-only child behavior contradicted. Resolution: `AGENTS.md` prevails; a child session is a complete no-op in the shared core.

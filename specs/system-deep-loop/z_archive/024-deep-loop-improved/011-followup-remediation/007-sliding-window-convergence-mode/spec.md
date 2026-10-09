@@ -134,7 +134,6 @@ Implement the ADR's own proposed follow-up build target: add an explicit, OPT-IN
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -176,6 +175,7 @@ Implement the ADR's own proposed follow-up build target: add an explicit, OPT-IN
 - **US-002**: As an operator evaluating the new mode, I can read both the windowed and full-history ratio from each iteration's telemetry and decide which signal to trust. Acceptance: both fields recorded in sliding-window mode.
 - **US-003**: As an operator of existing loops, I change nothing and my loops behave exactly as before. Acceptance: full existing vitest suite passes untouched.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. Scope bounded by the packet ADR's follow-up build target (`decision-record.md` Implementation section), independently re-verified against current code before this phase was scaffolded.

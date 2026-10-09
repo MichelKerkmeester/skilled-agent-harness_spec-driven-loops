@@ -141,7 +141,6 @@ The daemon reaches one Ollama embedding implementation instead of two, every adv
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -196,6 +195,7 @@ The daemon reaches one Ollama embedding implementation instead of two, every adv
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether the merged Ollama implementation keeps the `adapters/ollama.ts` path (the one the advisor's own `lib/embedders/adapters/ollama.ts` shim already re-exports) or the `providers/ollama.ts` path as its home file - decided after both bodies are read in full and their divergent config surfaces are compared line by line.

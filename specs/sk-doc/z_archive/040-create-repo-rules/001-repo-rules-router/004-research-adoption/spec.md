@@ -154,7 +154,6 @@ Turn phase 3's proposals into recorded decisions, implement only what survives t
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -208,6 +207,7 @@ Turn phase 3's proposals into recorded decisions, implement only what survives t
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - If the research recommends restoring the governor disposition as a rule file, does that need operator approval even though it touches no hard blocker? **Leaning yes: retiring it was an operator-level call, so re-homing its content is one too. Confirmed or corrected when the recommendation actually exists.**

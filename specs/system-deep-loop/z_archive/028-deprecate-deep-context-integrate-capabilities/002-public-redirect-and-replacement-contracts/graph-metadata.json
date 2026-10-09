@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Standalone `deep-context` still has an executable asset chain: presentation text, auto YAML, confirm YAML, a compiled command contract, deep-context packet docs, and a dedicated agent",
     "created_at": "2026-07-04T14:32:35Z",
-    "last_save_at": "2026-10-07T18:15:09.905Z",
+    "last_save_at": "2026-10-08T19:30:31.997Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:368c05e5dc8673eca7f0155bfadd4be6862dfc99e1d08b348828cb3e8c034fbd",
+    "source_fingerprint": "sha256:3a29233974efcb8ac017199bd55259c1146d2630b7ab0df04906b52b71371e1b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e376cf9083015285db84e289396f1ed7e5f83b2a121000f2efc71dfd946c6cf8",
+      "spec.md": "47bb7115afc2b8c0f92636fc8217e7fe046d0f6f253a9f90cb22a2d478ecd3ee",
       "plan.md": "f65772431be743d425587593e1b813a075dbad2ece52f38572fda8deb953f772",
       "tasks.md": "38176ac45ec5d1f9d8e547013cdadbf99a3ebb091fe87d3d8a0b52a2e582120e",
       "decision-record.md": "56020881f0eb8241bd3b66b221c0824ab6477675d824b2029bbc358e41626ef4",

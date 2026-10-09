@@ -274,7 +274,6 @@ replace, and it is not resolved by removing configuration alone.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -342,6 +341,7 @@ replace, and it is not resolved by removing configuration alone.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Does `@spec-kit/scripts` import anything from `@spec-kit/mcp-server` that validation actually needs? Its `package.json` declares a `file:../mcp-server` dependency, so this must be resolved before the tree goes.

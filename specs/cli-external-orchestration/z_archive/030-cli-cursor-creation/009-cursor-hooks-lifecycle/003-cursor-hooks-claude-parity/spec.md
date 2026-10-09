@@ -121,7 +121,6 @@ Close as much of the Claude-adapter parity gap as the confirmed Cursor hook voca
 - **Concurrent-session collision (established precedent from phase 010).** The same shared working directory carried unrelated concurrent-session activity during this phase (archive-moves, research folders); this phase's own `git status --porcelain` sweep before staging distinguishes its files from that activity, per phase 010's T012 precedent.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - **NFR-P01**: Every new adapter script stays fail-open -- a spawn error, parse error, or missing field never denies a tool call or session event by accident.
 - **NFR-P02**: No adapter renames or reshapes a target script's own required input fields; each proxy either forwards the payload as-is (`task-dispatch-guard.mjs`) or performs only the minimum documented normalization the target's own matcher requires (`Shell`->`Bash` in `post-tool-use.mjs`).
@@ -150,6 +149,7 @@ Close as much of the Claude-adapter parity gap as the confirmed Cursor hook voca
 - As the operator, I want the Cursor CLI hook surface to reach the same repo-guard coverage the Claude Code hook surface already has, wherever Cursor's own event vocabulary actually supports it.
 - As a maintainer, I want every newly wired adapter's status (confirmed-firing vs. registered-for-parity vs. deliberately-unwired) stated honestly, so a future session never assumes more coverage than this phase actually proved.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 All questions below are resolved.
 - Wire the 5 Tier-0 scripts directly, or through a thin TS proxy? **Resolved: directly.** They take no Cursor-specific input shape and already print advisory text / fail open on their own; a proxy layer would add indirection with no behavioral benefit.

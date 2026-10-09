@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The gallery framed the corpus twice over and needed a height handshake in every template to show",
     "created_at": "2026-09-10T10:17:17Z",
-    "last_save_at": "2026-10-07T15:56:39.368Z",
+    "last_save_at": "2026-10-08T19:29:47.882Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8e960d09c84d882afabf6a14eadfa04c3c716342b4472728a35f80f5dd3b8913",
+    "source_fingerprint": "sha256:eb3cca51a56f01e3245533693deeb76280f8396270f9fafaa17193b041d539c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b75327e0679ecbe4abbf32e19ec59cb3a959bea06228a738aed4cab06652de47",
+      "spec.md": "af6dc41066c1b2570b9cbeb9d2bdf950f7df5c12d07a04885db6f0f0d2b97a51",
       "plan.md": "329b27c819d43f2f846a606e6dd836654b52e3a9f8802664787ac1b4a35511cf",
       "tasks.md": "87bcd2ad7f2c1794d78105c8a3655d3bbd50f4a5ccbbf6c42c7ad200f3ff574c",
       "implementation-summary.md": "71c6789281fe0cbbfe569cc1d1852a97a4b8140a73a2cb4d338ea69b3af06a83"

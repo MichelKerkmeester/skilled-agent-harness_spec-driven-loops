@@ -141,7 +141,6 @@ Leave both skills' docs describing exactly what shipped.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -196,6 +195,7 @@ Leave both skills' docs describing exactly what shipped.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which changelog does each skill release under? Resolved: each changed skill gets an entry in its own `changelog/` folder, which `.skilled/changelog/` links to: system-spec-kit 2.7.0.0, sk-doc 2.3.0.0, sk-create-frontmatter 1.0.1.0, system-skill-advisor 0.14.3.0, deep-research 1.15.2.0 and deep-review 1.11.3.0.

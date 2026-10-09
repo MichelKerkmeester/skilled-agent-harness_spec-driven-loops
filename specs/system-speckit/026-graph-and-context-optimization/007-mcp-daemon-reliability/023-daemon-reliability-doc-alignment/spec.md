@@ -140,7 +140,6 @@ Bring the operator-facing docs into alignment with 018-022: ENV_REFERENCE flags,
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -191,6 +190,7 @@ Bring the operator-facing docs into alignment with 018-022: ENV_REFERENCE flags,
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Alignment verified (counts match, 0 broken links, grep-traceable).

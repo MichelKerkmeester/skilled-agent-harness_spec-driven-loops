@@ -108,7 +108,6 @@ A registry the reducer has built is always written, and a lane that fulfilled wi
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -159,6 +158,7 @@ A registry the reducer has built is always written, and a lane that fulfilled wi
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

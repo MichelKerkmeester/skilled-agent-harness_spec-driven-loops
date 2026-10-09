@@ -175,7 +175,6 @@ Specify AND build a structured, non-ambiguous scoping question and discovery con
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -226,6 +225,7 @@ Specify AND build a structured, non-ambiguous scoping question and discovery con
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None remaining for this phase's own scope. ADR-011 in 002-architecture-decision is LOCKED: config-file-only (`--lane-config <file.json>`, not repeated flags, not an inline JSON-array flag). This phase's own remaining design work — the concrete JSON schema's field-level detail — is now written in `references/lane_config_schema.md`: a bare top-level JSON array of `{authority, artifactClass, scope}` lane objects, no envelope/version wrapper, designed alongside the interactive tree so both paths resolve to the same lane representation with zero information loss (verified — see §5 SC-002 and `implementation-summary.md`).

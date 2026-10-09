@@ -155,7 +155,6 @@ A fallback verdict says it is a fallback, one MCP-token rule holds for every pac
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -212,6 +211,7 @@ A fallback verdict says it is a fallback, one MCP-token rule holds for every pac
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **Other drifted playbook citations (for `system-deep-loop`).** The same deep-research playbook tables hold citations that are in range but no longer point at their anchor, such as `spec-fence-writeback.md:102` citing `research.md:35-38` for a lock note that now sits at `:51-54`. `iteration-citation-jsonl.md:102` cites `research.md:157-179`, which ends past line 159. The research counted only start lines past the end as dead. Should the owner fix these by hand now, or wait for a drift scanner?

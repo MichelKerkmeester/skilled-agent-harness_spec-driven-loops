@@ -203,7 +203,7 @@
     ],
     "causal_summary": "`/doctor:speckit router-reach` checks that every declared dispatch rule is reachable",
     "created_at": "2026-10-02T16:10:20Z",
-    "last_save_at": "2026-10-07T15:57:40.349Z",
+    "last_save_at": "2026-10-08T19:31:34.192Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b547f36e7f809be3fad31696d159b8e76877cf73ce0d3c415f8ce68a42528b1",
+    "source_fingerprint": "sha256:77c5002e21b4f9759f85d1cd926d5edb5964da3209f7a4bec22bac5a48338ab1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e4d883076e735214bfc0a14034fcb5273992fb0f6d9b87ad9e3ce29517eb6839",
+      "spec.md": "2c56fea735bfcac80fe42baf87b3dbc4a56f64bdce48a42b883ce5454b4996e5",
       "plan.md": "a659cd3d6ebe07b4eb1e9d33784e0153e7445e5f493bd453d1953d1e17793ded",
       "tasks.md": "b48f0d5fcea1737329ab1b8527b2c9209d384592fc4318a78709723e72c541d8",
       "implementation-summary.md": "b2961a7d96a94e3de9e2b463303d4ceaec15f952e56b66d0aaaf045d07f4dfc8"

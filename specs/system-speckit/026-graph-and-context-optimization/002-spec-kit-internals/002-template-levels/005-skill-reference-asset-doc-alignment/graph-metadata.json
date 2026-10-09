@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Earlier rounds cleaned `.opencode/agents/`, `.opencode/commands/speckit/`, `AGENTS.md`, `CLAUDE.md`, and three top-level READMEs",
     "created_at": "2026-05-02T06:36:10Z",
-    "last_save_at": "2026-10-04T09:20:51.762Z",
+    "last_save_at": "2026-10-08T19:30:46.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c2da85a149d29a9e0d099f0c2e28d05296b1bc9957882048851f6dc0961076b",
+    "source_fingerprint": "sha256:386f593de3dbd6850aeaf171b6d5c74b0bf5d34b415eb418978b3c994bdbfd35",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a8bbc258395f261c11f7063f8227af1a9a82b4709604d96d0c1fc38f98b6e063",
+      "spec.md": "dc62a70bb32ad479fe7ca5cdbac245b5c03c8d76da70c90dd2d44ba3f99a7b65",
       "plan.md": "023e780854b0d23902a7f8a7edce4d1e152480cbda3f65bb75dfe998f9f86925",
       "tasks.md": "48cad496dfc68ce57b029934e8ccccde4aa9bb375614e486071777d07450b45d",
       "decision-record.md": "a38d613ae7edd277773bda7eb166a46394ceb875b393bb11137aba9f2c468eec",

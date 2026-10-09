@@ -152,7 +152,6 @@ Promote the path-references-audit shape to a first-class optional template disco
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -202,6 +201,7 @@ Promote the path-references-audit shape to a first-class optional template disco
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None blocking. A P2 decision on whether scripts/ should ship an optional resource-map-emit.sh auto-generator is deferred.

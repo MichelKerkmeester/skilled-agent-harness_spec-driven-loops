@@ -127,7 +127,6 @@ Close all four: ship the template, add a hermetic live re-election test, prove s
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -182,6 +181,7 @@ Close all four: ship the template, add a hermetic live re-election test, prove s
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None outstanding; the full-live-spawn rejection and the deferred scenario re-runs are recorded decisions.

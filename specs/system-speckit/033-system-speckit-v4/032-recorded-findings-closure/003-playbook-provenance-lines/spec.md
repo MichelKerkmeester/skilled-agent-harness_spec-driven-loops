@@ -150,7 +150,6 @@ Give every one of the 85 playbook files a real provenance line - either the path
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -196,6 +195,7 @@ Give every one of the 85 playbook files a real provenance line - either the path
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None. The classification method (suite-backed vs. manual-only) and the no-fabrication constraint are both settled by the cited research.

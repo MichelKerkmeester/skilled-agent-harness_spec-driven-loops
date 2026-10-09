@@ -46,11 +46,8 @@
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
-      ".opencode/plugins/sk-vision.js",
       ".pi/extensions/sk-vision.ts",
-      "specs/sk-vision/description.json",
-      ".opencode/skills/sk-communication/SKILL.md",
-      ".pi/extensions/deep-pi/extensions/deeppi/hashlines.ts"
+      "specs/sk-vision/description.json"
     ],
     "entities": [
       {
@@ -90,12 +87,6 @@
         "source": "derived"
       },
       {
-        "name": "sk-vision.js",
-        "kind": "code",
-        "path": ".opencode/plugins/sk-vision.js",
-        "source": "derived"
-      },
-      {
         "name": "sk-vision.ts",
         "kind": "code",
         "path": ".pi/extensions/sk-vision.ts",
@@ -105,18 +96,6 @@
         "name": "description.json",
         "kind": "config",
         "path": "specs/sk-vision/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "hashlines.ts",
-        "kind": "code",
-        "path": ".pi/extensions/deep-pi/extensions/deeppi/hashlines.ts",
         "source": "derived"
       },
       {
@@ -196,11 +175,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist Before",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The workspace has an OpenCode Senses source dump but no spec, no skill, and no Pi path",
     "created_at": "2026-08-15T15:38:25Z",
-    "last_save_at": "2026-08-30T15:39:19.431Z",
+    "last_save_at": "2026-10-08T19:30:18.539Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +208,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:3f4d1007970164835fa8a2bedbf15f3fdd2ba90ae45be108395859e1b5a93d66",
+    "source_fingerprint": "sha256:f9a5ba062410dc00b1c1441356dca1a0ac64c225f26166fbf1f187e3c7f3f1ad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a8535c29d320ff10bed0263f289a85e0e0efd46c3af2a3bf475ff9d1e8ef3e3b",
+      "spec.md": "a35a2c50439256094ceccf9044d25ea1b1ba4089731dd88ec3d5e256678fc0b8",
       "plan.md": "a4581ec8bd8324f44423447f2cdc10f6953176b20715e1dc71b2574908120ac1",
       "tasks.md": "0868436bade87e816007142088d15b233910c86faf61840a9433765160654102",
       "decision-record.md": "0614bec1c850a2972770ec8d95bc1117a7ef67425d72ad703b8a9e1126505e2e",

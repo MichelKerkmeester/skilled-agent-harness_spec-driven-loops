@@ -138,7 +138,6 @@ Move test consumers to direct source-module imports, then remove the two public 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -185,6 +184,7 @@ Move test consumers to direct source-module imports, then remove the two public 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. User specified the direct-import cleanup path and halt condition.

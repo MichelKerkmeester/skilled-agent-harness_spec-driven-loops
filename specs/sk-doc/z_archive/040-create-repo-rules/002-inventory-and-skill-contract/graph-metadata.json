@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The eight rule files agree on a shape, and no document states it",
     "created_at": "2026-08-31T11:33:08Z",
-    "last_save_at": "2026-10-07T18:14:22.597Z",
+    "last_save_at": "2026-10-08T19:30:14.759Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4904db4891b21a5a8512a713ef39eb54f7ac9e154b5a4a54958ad8e9fb18d46",
+    "source_fingerprint": "sha256:396f1ec42be81b0b4837cdca1e9ec982b990c3a4fcc642f5b91a4ba5ea9018fb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1497f7ccf299fe5b506650e7063523f420f9baac3b2a638890874a74e564c28c",
+      "spec.md": "79e899bb06db67e2da208462bf617c647467c15bf5a8d3f3412460734a938479",
       "plan.md": "5de0ab2619ab1520d55d90aa4fd63ba629297fb65f07aab05f2107fae55f4796",
       "tasks.md": "fab383c89fad7b8a0c6b912d1b80ab081ce68e6f71acfe7d186aeedf074fe51f",
       "implementation-summary.md": "8c974f05bff37d1fa3e9881fe9db7abdec7c7e9514d3abe42e4f2f2a1ba4bd56"

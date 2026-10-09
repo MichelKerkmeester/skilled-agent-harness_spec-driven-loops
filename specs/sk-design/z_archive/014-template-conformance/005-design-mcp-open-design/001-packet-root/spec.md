@@ -132,7 +132,6 @@ Audit `SKILL.md`, `README.md`, and `INSTALL-GUIDE.md` against their respective t
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -176,6 +175,7 @@ Audit `SKILL.md`, `README.md`, and `INSTALL-GUIDE.md` against their respective t
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None — scope is fully bounded by the known-defects list above and the exhaustive-audit mandate.

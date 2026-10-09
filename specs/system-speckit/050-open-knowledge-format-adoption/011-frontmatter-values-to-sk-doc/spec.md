@@ -149,7 +149,6 @@ The document values and tiers live with the skill that owns the frontmatter cont
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -204,6 +203,7 @@ The document values and tiers live with the skill that owns the frontmatter cont
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator approved the split on 2026-10-04.

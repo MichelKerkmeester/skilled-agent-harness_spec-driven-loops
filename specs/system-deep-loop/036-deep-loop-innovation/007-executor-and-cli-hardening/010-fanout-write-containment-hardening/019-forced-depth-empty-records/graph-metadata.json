@@ -198,7 +198,7 @@
     ],
     "causal_summary": "One alignment-review lane wrote its five iteration records numbered under `run` instead of `iteration`",
     "created_at": "2026-09-20T08:33:43.475Z",
-    "last_save_at": "2026-10-07T15:57:00.898Z",
+    "last_save_at": "2026-10-08T19:30:25.300Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38fcac8ca41035cff5295d87ce6a91eeabfaf8fbc16322ff9c8caa9f9c9852fd",
+    "source_fingerprint": "sha256:7323abde07af32eeaf7817229ddeca7a4a1b9d12fdee84301ecc69d44187e898",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "049b30e4ce9b4a035eaecef2a6fd4339f65528135458d2d703011510525ccffb",
+      "spec.md": "ea5c8a9d37151c3ec46e25af6aebf353be5fd9348ef65787d07273a64c9cab28",
       "plan.md": "3213aebd3778388aaca5b0b9333c9188b4c9430c01b78bc1bce0c7726fc618e0",
       "tasks.md": "aa32442dd9596233a4ae489eb54d57b0ef73a5fe3c66ad4e6b0d49464acd3f57",
       "implementation-summary.md": "d99c39d8e20dabc8f93c326ef529a7c9bae22dc8a3976ba391416e35cd3237db"

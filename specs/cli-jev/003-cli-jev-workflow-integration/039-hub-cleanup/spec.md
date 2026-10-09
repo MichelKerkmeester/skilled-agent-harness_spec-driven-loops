@@ -207,7 +207,6 @@ One row per file or file family with an edit. Every path below was read from `re
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -262,6 +261,7 @@ One row per file or file family with an edit. Every path below was read from `re
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which exact grep defines "every cli-classifier version field" for criterion 3, and whether recorded benchmark reports fall inside it. The design pass fixes the command and the full table before the first edit. UNKNOWN until then.

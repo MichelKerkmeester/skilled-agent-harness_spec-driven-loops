@@ -155,7 +155,6 @@ Eliminate silent child-drift: reconcile every drifted phase parent repo-wide, an
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -237,6 +236,7 @@ Eliminate silent child-drift: reconcile every drifted phase parent repo-wide, an
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should the drift check be a hard error (blocks completion under `--strict`) or a warning that must be documented?

@@ -169,7 +169,7 @@
     ],
     "causal_summary": "Claude Code exposes no output-transform hook, so its rendered assistant output cannot be rewritten natively",
     "created_at": "2026-08-14T05:39:14.471Z",
-    "last_save_at": "2026-10-07T15:56:18.613Z",
+    "last_save_at": "2026-10-08T19:29:34.766Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,10 +178,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc1c726175c9d23b4585e18809a7b6e857ebfe52b9199c7e7b40adb167bc8d65",
+    "source_fingerprint": "sha256:dacf7c4d0315cf57b3a50f6685286ad8e03cee97cb50d1bf4da630a7435ffd89",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6a42cff18e051ceb9aed0d0227d1f68ba2336981afa7a22a4a641e86e5b3fd57",
+      "spec.md": "4e93cef7eb847779df919bf6bbcba37d97a88a74d81a73d39831a2b5790f8781",
       "plan.md": "b17a3155662ef87c33d93728ffdd5c399260ce3728833fc62c4a67d1511a558b",
       "tasks.md": "084b5f4c680de491269170f2beb3b3c1150fac38a87e8629eeee9ceb11588548",
       "implementation-summary.md": "6c1001a37e5b6ced2e93ec6a9662efdc51fb78a39b70feaee8d601168f99ff14"

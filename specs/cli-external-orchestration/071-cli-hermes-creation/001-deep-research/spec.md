@@ -178,7 +178,6 @@ Produce an evidence-cited answer to those questions and a recommended phase plan
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -246,6 +245,7 @@ Produce an evidence-cited answer to those questions and a recommended phase plan
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Is the `-Q` final response parseable enough to serve as a machine-readable event stream, as `opencode run` is today?

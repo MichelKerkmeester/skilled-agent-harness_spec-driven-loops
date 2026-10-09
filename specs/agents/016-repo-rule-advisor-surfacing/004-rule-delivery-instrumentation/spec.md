@@ -146,7 +146,6 @@ One command reports, per runtime and with denominators and intervals, how often 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -184,6 +183,7 @@ One command reports, per runtime and with denominators and intervals, how often 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which runtimes keep a readable transcript besides Claude Code and Codex? T002 probes Devin, Cursor, OpenCode and Pi.

@@ -152,7 +152,6 @@ untouched by either.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -207,6 +206,7 @@ untouched by either.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 Both answered during the build.

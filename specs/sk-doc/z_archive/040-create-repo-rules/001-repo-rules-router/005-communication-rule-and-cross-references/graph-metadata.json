@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Two problems, one cause",
     "created_at": "2026-08-31T10:21:19Z",
-    "last_save_at": "2026-10-07T18:14:22.894Z",
+    "last_save_at": "2026-10-08T19:30:14.529Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5658edea045b4a7b5d7c24d6543f436443e39c084c2013407f3b3cbe40b276c6",
+    "source_fingerprint": "sha256:580423e963c4a62b2736cec203f8266f5b12a6661caa538e0d19ab9cbe732107",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "93781d7133d97f9fdaa11234fc80980189d308a2d24e712a36e6c40dad88b5b5",
+      "spec.md": "9e2d28eaf810c54f373eb59e6b41a593873ae9728e5cddb076dc582926a74e3b",
       "plan.md": "45bf0d47f56de133672ea544d4ebca30e3ffe1aa767712d75e09665f32f979ca",
       "tasks.md": "32dfc513bc7547482dbbeeddaac13873e8989227d07303a4bec50e1222d04496",
       "implementation-summary.md": "59c3d4a3e7cef9017b4c68c590be5ab996b6eec04f4ab97db317c7d9750f70b9"

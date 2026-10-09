@@ -169,7 +169,6 @@ separate commits leaves the shared branch broken in between, and other sessions 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -235,6 +234,7 @@ separate commits leaves the shared branch broken in between, and other sessions 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

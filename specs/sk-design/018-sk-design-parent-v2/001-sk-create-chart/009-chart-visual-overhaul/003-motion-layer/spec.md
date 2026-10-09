@@ -175,7 +175,6 @@ sitting there from the first frame, which reads as a glitch rather than as an en
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -232,6 +231,7 @@ corpus check and amends a contract rule, rather than because it edits nine files
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 All three are answered. The answers are kept here because each one shaped the implementation.

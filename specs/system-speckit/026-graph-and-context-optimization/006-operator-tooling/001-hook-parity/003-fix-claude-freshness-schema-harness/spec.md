@@ -177,7 +177,6 @@ Restore a trustworthy advisor freshness contract, normalize Claude hook registra
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -229,6 +228,7 @@ Restore a trustworthy advisor freshness contract, normalize Claude hook registra
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Is `sourceSignature: null` an unimplemented feature, a regression, or an intentional opt-out? Need to read `freshness.ts` + recent commits touching `.advisor-state/`.

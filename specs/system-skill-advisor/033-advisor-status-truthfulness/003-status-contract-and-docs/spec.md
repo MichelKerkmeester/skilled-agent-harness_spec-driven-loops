@@ -170,7 +170,6 @@ Put each contract where the operator reads it: the trusted gate on the commands 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -240,6 +239,7 @@ Put each contract where the operator reads it: the trusted gate on the commands 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should the embeddings health surface live inside `semanticLaneHealth` or as a sibling `embeddings` object? The plan recommends the sibling shape so the health facts are readable without the semantic lane option, and records the choice.

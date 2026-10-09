@@ -135,7 +135,6 @@ Paths are under `.skilled/` unless stated otherwise.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -192,6 +191,7 @@ Paths are under `.skilled/` unless stated otherwise.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. `anobel.com`'s `description.json` was rewritten for its own track on the operator's answer.

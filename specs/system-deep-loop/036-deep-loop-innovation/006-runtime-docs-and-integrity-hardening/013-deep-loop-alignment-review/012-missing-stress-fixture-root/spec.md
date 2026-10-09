@@ -137,8 +137,8 @@ The fixture root at the exact path the four files name is live again, shaped lik
 
 ---
 
-<!-- ANCHOR:questions -->
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Where does the fixture's benchmark-boundary bait live now that CP-037 proves completion through the real runner's report? Resolved for this phase: the superseded sentinel is not restored; the scenario contract owns completion.

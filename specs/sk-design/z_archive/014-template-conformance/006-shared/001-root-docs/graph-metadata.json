@@ -186,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/shared/ (11 root markdown files)` has not been audited against `no single authored template for loose shared-root contracts; closest structural analog is .opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md (numbered OVERVIEW, --- separators) — apply as a judgment call and record it`",
     "created_at": "2026-07-27T14:59:51.122Z",
-    "last_save_at": "2026-10-07T18:12:30.987Z",
+    "last_save_at": "2026-10-08T19:29:56.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,10 +195,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce1f836e90defa199a3fd56a89c9f3ab7a2b6ae4cbdd5611ecbeed7edf92f9ce",
+    "source_fingerprint": "sha256:24b28d6c39def485a7d9a409cd1541bf57d2e86b71a3f120ed59f2d04f1468d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bb554eeec522a826f391a268e718d5ec38d66cc79a1adf1d8952e656f62a9fe2",
+      "spec.md": "6b2d62d9d4e7824a6127711ab3613f520c0ce633373fb0c069574bea7846db00",
       "plan.md": "0d4d2faad8d3d713d1d499da291b176809850d3db9a42370e36657f41d3e9828",
       "tasks.md": "3c49e9b978468b45034bd00eee1f5953eef8895a6010c4337473d1b9eac0b852",
       "implementation-summary.md": "61678738f273cdd6f4cb77d8b10c7ff9bf1a9cecc222aafa20d7b73b0b42ab4e"

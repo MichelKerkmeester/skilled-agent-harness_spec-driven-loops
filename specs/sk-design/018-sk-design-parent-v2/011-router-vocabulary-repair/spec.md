@@ -157,7 +157,6 @@ A phrase the router declares reaches the hub, or is not declared.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -225,6 +224,7 @@ A phrase the router declares reaches the hub, or is not declared.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether the router's stage-two keyword list and the hub's stage-one vocabulary should be

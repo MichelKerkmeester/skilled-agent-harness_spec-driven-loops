@@ -147,7 +147,6 @@ All three paths belong to `sk-prompt`, a standalone skill since the completed pa
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -202,6 +201,7 @@ All three paths belong to `sk-prompt`, a standalone skill since the completed pa
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the owner trim `references/depth-framework.md` (21,817 bytes) the same way? A `$improve` run loads it as `DEFAULT_RESOURCE`, so a full run reads 81,478 bytes today, not the research's 59,661. This phase does not decide it.

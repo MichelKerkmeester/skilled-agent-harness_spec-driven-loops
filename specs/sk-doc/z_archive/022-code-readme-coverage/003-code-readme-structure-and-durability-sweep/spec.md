@@ -290,7 +290,6 @@ Plus the durability grep gate, wired into CI so the class cannot re-enter.
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Reliability
@@ -354,6 +353,7 @@ Plus the durability grep gate, wired into CI so the class cannot re-enter.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **Q1** — the tree ruling decides whether this phase carries 88 findings or ~62. Re-triage is Task 1.

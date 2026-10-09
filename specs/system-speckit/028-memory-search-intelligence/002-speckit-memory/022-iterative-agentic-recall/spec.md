@@ -158,7 +158,6 @@ Give complex asks an agentic, multi-tool `memory_context` retrieval path, added 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -228,6 +227,7 @@ Give complex asks an agentic, multi-tool `memory_context` retrieval path, added 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - What step-cap and cost-ceiling defaults keep p95 latency and per-call cost inside an acceptable budget? (UNKNOWN until the prototype benchmark runs.)

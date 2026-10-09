@@ -132,7 +132,6 @@ Make the contract describe the tree that actually ships, correct the templates a
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -187,6 +186,7 @@ Make the contract describe the tree that actually ships, correct the templates a
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - The two `command-metadata.json` files carry ten prose divergences from command frontmatter. Should the hub descriptions be reworded to match frontmatter, or should the metadata be allowed its own routing phrasing and the check's prose tier retired?

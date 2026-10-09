@@ -100,7 +100,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -155,6 +154,7 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

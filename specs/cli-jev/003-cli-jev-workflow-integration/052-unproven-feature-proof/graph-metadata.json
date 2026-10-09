@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Spec-track narrowing kept once and stopped on its repeat",
     "created_at": "2026-10-05T04:56:52Z",
-    "last_save_at": "2026-10-07T15:56:07.082Z",
+    "last_save_at": "2026-10-08T19:29:27.489Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31456a66452255e897e7cdec05ae4402bb26ef62c667c8c8168e4e4275941709",
+    "source_fingerprint": "sha256:686c394fe178d24fce50e2e4119ab4eebc350aed7aeeef856e137e7cb7c760bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e22d9f8b400a2343ae7f573be0ffed40cbddb7535d22721a34a6617959e69cd9",
+      "spec.md": "70d55a32069bdaa350be7effeecb616bb2b4d39e1cd1f62c2a6faf01fba77a4e",
       "plan.md": "778f610ebd4dd4f06ebe5b7ab1caf36d356b7113b3e501ffa15cf40ac974673f",
       "tasks.md": "cb0c586bbb73ed50e8938dc8729a67338258ab5703d0a65776e018c2ec64881e",
       "implementation-summary.md": "42ddc8c93d038dad3df39916a24b1a52b07a88167be68b88f353add889d66e65"

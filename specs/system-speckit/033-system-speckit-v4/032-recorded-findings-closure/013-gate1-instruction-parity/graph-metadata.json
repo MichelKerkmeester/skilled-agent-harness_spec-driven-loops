@@ -39,7 +39,6 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".codex/AGENTS.md",
       ".cursor/rules/skill-routing.md",
       ".pi/SYNC.md",
       "runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs",
@@ -89,12 +88,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "AGENTS.md",
-        "kind": "doc",
-        "path": ".codex/AGENTS.md",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview The Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Gate 1's trigger-index lookup instruction is authored in exactly one place, the root `AGENTS.md` (`AGENTS.md:83`), and `CLAUDE.md` is a symlink to it (`lrwxr-xr-x CLAUDE.md -> AGENTS.md`)",
     "created_at": "2026-09-07T15:05:54Z",
-    "last_save_at": "2026-09-08T15:47:16.854Z",
+    "last_save_at": "2026-10-08T19:31:26.381Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +212,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aebe39dbe042d9cbe9891b8221a822d025a296fcd8f7f39a937dbd7e09d99424",
+    "source_fingerprint": "sha256:58f0af3afb381836b0bb794c491fa6979dc82ebb02a406837786d98c78938e00",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "da8dec2e516bbb46be6fc6c9537a69c7f3caaafcec5cf6cc7d0fbf75869cc520",
+      "spec.md": "a60c627e4be0b4d42c0de31a7e3b9ea298227f1a28485b0fc66854835660812e",
       "plan.md": "1488d49750d962c766ff640bdc1ce110815bcea55ac6142fa61d0caa72d4d0a7",
       "tasks.md": "c7cd1f25ea3e8c6b55ca0fb57f4d27ca95969022304601596a8ef70ebe111be0",
       "implementation-summary.md": "f7948d8f42c070596a494ab276eff0fb14e695ed8342eb2748c1b77a542cd31b"

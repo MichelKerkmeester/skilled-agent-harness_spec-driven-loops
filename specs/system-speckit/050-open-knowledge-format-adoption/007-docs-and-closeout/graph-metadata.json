@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Behavior that ships without its contract text, catalog entry and changelog leaves two skills documenting different rules, which is the drift this program set out to remove",
     "created_at": "2026-10-04T08:04:54Z",
-    "last_save_at": "2026-10-07T15:57:44.453Z",
+    "last_save_at": "2026-10-08T19:31:37.438Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dcdd463e0b03e8980a3aabdd6e439f4b87cbc3197abe8db8ed3128ee29654aac",
+    "source_fingerprint": "sha256:b6c1f2c76694eead7d2f3c48654e2f9b3c86d9d2835db5e3c0770db48db2fca3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f7ca7011190fc473faf2bf8ff0cd485f31dc214b874ad36d8d07bb45b05403be",
+      "spec.md": "81e9ea1bbc29661b9b46cf51394be49ae188fb5a1fc31a7055044898f3efeef7",
       "plan.md": "1927cfa5a79c95629c34dcf4f9fd6a37b6c6800f0cbf662008437e5cb7ebde07",
       "tasks.md": "3386da78eb9f95df5bb391b643f534adf26e14cf95709d2f1692884c71ea614c",
       "implementation-summary.md": "fdb55df91d2c2623a2ccc6db8ff35003b5b0ad530cd53f4a34807dc6b6e6d340"

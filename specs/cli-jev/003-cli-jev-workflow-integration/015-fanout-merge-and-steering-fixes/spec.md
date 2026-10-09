@@ -170,7 +170,6 @@ The merge rebuilds every count-only finding the lineage's own files can account 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -225,6 +224,7 @@ The merge rebuilds every count-only finding the lineage's own files can account 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the unrebuilt round 3 grok findings (35 counted and 9 in its registry, with no iteration whose delta or markdown count matches) count as a lineage defect for the executor report? The merge can only name the gap.

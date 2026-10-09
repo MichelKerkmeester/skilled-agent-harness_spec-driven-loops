@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Claude Code's built-in Explore subagent no longer runs on Haiku",
     "created_at": "2026-10-08T09:30:42Z",
-    "last_save_at": "2026-10-08T10:23:23.497Z",
+    "last_save_at": "2026-10-08T19:29:07.773Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c9e2a9e9413803f504347fd8d3e027819ad5df3a28665d5c5960e763e90c20e7",
+    "source_fingerprint": "sha256:1e8e20e20efb645610f369e2ee648ce3921d6b8709cfd0d55f32da6e51d33302",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fb0b2ccff8dd4cbcd04be99807ac3a5a253a84ef634778bc335dfc50d859f954",
+      "spec.md": "91aa46d7d015419d9d16e75fab2646c2a57170196724cb93ce8d2cf9a544ce7a",
       "plan.md": "2a2dcc2a2617062e60beaeecc66885176262126e4921cc12d3675950b7df2b12",
       "tasks.md": "06dc926b8ecbcaa1fd0c421f34210b0554d07282fbb894b2e055985fed631f51",
       "implementation-summary.md": "2bf6460ba1a29f661607a4d3c8faae24acf16a7d77411853a17bb2d6e4b52dc6"

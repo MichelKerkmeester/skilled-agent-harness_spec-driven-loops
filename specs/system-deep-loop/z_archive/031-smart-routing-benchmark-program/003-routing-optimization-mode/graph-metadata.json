@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The Lane C skill-benchmark (`/deep:skill-benchmark`) diagnoses routing quality but is diagnostic-only — it emits a ranked report and never proposes or applies fixes",
     "created_at": "2026-05-23T13:10:01Z",
-    "last_save_at": "2026-10-07T18:14:47.436Z",
+    "last_save_at": "2026-10-08T20:53:57.078Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:daf51ff96d259b5cc92b9b20f98454cf27d651263ba33d0f39a9d8c535c58815",
+    "source_fingerprint": "sha256:b37a2eea86e2a9d9427aa034d9d3448067128d08aec8620218866a9d6f6369b4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a948f8a661ba9af98e853815fc18fabe47e59bd4b528cb618225527a4b173442",
+      "spec.md": "cd3b858cd14362b44d9f70700a34afa5cd0287c2ca1ff429f5dc88b7e88235b0",
       "plan.md": "01bf24f785c78cf06d0c85656573f84baba09f5e76eedea2fbc709318c1dc78e",
       "tasks.md": "016a0474aa088a76b8c582e3501085026d5bcaa59e2b303dda746ee2d22dae82",
-      "implementation-summary.md": "675deb161cb60b8f987250376145fd76401674f648d6dd2ce3bcf6498f9598c5"
+      "implementation-summary.md": "5adb75a238f41275893ed82fe3129f34d34859ce59cf4e4288ff197fab9edd7d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -130,7 +130,6 @@ Every confirmed audit finding is fixed so create-benchmark's authoring surface t
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -167,6 +166,7 @@ Every confirmed audit finding is fixed so create-benchmark's authoring surface t
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open; spec folder and the runtime-vs-docs direction were operator-resolved.

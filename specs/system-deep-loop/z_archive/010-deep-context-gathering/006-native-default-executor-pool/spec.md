@@ -147,7 +147,6 @@ The default pool is native-only (2 `@deep-context` seats); the pool question off
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -200,6 +199,7 @@ The default pool is native-only (2 `@deep-context` seats); the pool question off
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Default (native-only, 2 seats) and option wording confirmed with the user.

@@ -138,7 +138,6 @@ Adopt one numbered, grouped worktree convention for named feature worktrees (bra
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -193,6 +192,7 @@ Adopt one numbered, grouped worktree convention for named feature worktrees (bra
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which exact set of representative git/worktree prompts should be the routing acceptance fixture for sk-git after the rebuild?

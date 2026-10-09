@@ -150,7 +150,6 @@ Give MCP memory, skill-advisor, code-graph, session, and matrix stress coverage 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -205,6 +204,7 @@ Give MCP memory, skill-advisor, code-graph, session, and matrix stress coverage 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

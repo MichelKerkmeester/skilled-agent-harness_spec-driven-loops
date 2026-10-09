@@ -289,7 +289,6 @@ commit message that cites the 0/42 without naming the contract is repeating the 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -380,6 +379,7 @@ verdict is caught at authoring time rather than by a reviewer's eye or not at al
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **OPERATOR-DECISION Q2** — corpus split: frontmatter discriminator or file move? Gates Lane A's shape.

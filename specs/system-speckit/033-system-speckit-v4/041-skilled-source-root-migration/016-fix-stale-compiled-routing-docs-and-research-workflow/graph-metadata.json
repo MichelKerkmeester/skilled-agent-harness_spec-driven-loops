@@ -52,8 +52,7 @@
       ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
       ".skilled/commands/deep/assets/deep-research-auto.yaml",
       ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
-      "references/workflows/spec-folder-write-recipe.md",
-      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs"
+      "references/workflows/spec-folder-write-recipe.md"
     ],
     "entities": [
       {
@@ -203,7 +202,7 @@
     ],
     "causal_summary": "Compiled routing serves five hubs, but four places still say seven: the resolver's cohort comment, the advisor's cohort comment, a test header, and the compiled-routing architecture reference",
     "created_at": "2026-09-19T05:02:14Z",
-    "last_save_at": "2026-09-19T05:27:37.689Z",
+    "last_save_at": "2026-10-08T19:31:30.287Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +212,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:798c03007761ad7c28e1559027c1bb5a2457ae38be40794ef82fc847a0d36607",
+    "source_fingerprint": "sha256:502f28dedf1b8f434c59329cbaedc356f5d0f907c6a1aa87e10198c804ddfc1c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7a52e8c0c06420cf5ce624341e762d1031761d4eeb902a8342de17eaeb719399",
+      "spec.md": "bd4e1c8bc362f9be17b65bdc60f9ee043095fc1097fcc023ec717fade4ecf5cc",
       "plan.md": "4a37666c3383a4d3204303dab3723de632991955cc3cee84c1de65d0913274ad",
       "tasks.md": "7b3a440babe054fa2457da93f795388bbf704f1882db9c318ca1111fc6a05998",
       "implementation-summary.md": "8fa0913b3e14a12dc65b14a15e6860260edf3fd03e13d2a0dd543a74720784af"

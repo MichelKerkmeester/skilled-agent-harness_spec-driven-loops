@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Standalone `deep-context` has many active and historical references",
     "created_at": "2026-07-04T14:32:34Z",
-    "last_save_at": "2026-10-07T18:15:04.483Z",
+    "last_save_at": "2026-10-08T19:30:31.838Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:fbbe436d5e80d2826ceb8b4528d80fa5fa7b125299fe757ab43ef0dddf210554",
+    "source_fingerprint": "sha256:8a413518277568750241fa96c6b44fea6e4902c37ddaae0f392434be562213bc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3f2709c2daf9c17e9f7d80b62515c74163361ac46836f5c1ddf8e0d7bc0155bf",
+      "spec.md": "85990b265d2753dc8617aaa8e5703a39d487f1d4272cbd0101124b9118479798",
       "plan.md": "dd15727d322a4d21a4989a695aad3d46b105be3dee87e6a9d7a318d9020d4701",
       "tasks.md": "e0143447b1a5ccb30cdc8b58905aa7867c88379206e0a5c3b71116bb7fd31a4e",
       "decision-record.md": "52ae1b5df26b124d47653311b4ce0a2bea6e372343318dfcb291e511ea2e330c",

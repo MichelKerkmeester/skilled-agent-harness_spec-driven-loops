@@ -153,7 +153,6 @@ Add a `mcp_server/stress_test/durability/` domain that load/soak/concurrency-tes
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -222,6 +221,7 @@ Add a `mcp_server/stress_test/durability/` domain that load/soak/concurrency-tes
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should the contention case also drive the real `reopenActiveDatabase` coordinator (currently the live verification's job), or is the in-process `flatReopen` swap sufficient for a stress gate?

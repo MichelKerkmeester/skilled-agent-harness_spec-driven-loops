@@ -64,14 +64,16 @@ Template compliance shim section. Legacy phase content continues below.
 
 ## 11. USER STORIES
 Template compliance shim section. Legacy phase content continues below.
+<!-- /ANCHOR:metadata -->
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 Template compliance shim section. Legacy phase content continues below.
+<!-- /ANCHOR:questions -->
 
 ## RELATED DOCUMENTS
 Template compliance shim section. Legacy phase content continues below.
 
-<!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
 Template compliance shim anchor for problem.
@@ -88,9 +90,7 @@ Template compliance shim anchor for success-criteria.
 <!-- ANCHOR:risks -->
 Template compliance shim anchor for risks.
 <!-- /ANCHOR:risks -->
-<!-- ANCHOR:questions -->
 Template compliance shim anchor for questions.
-<!-- /ANCHOR:questions -->
 <!-- SPECKIT_TEMPLATE_SHIM_END -->
 
 ### Summary

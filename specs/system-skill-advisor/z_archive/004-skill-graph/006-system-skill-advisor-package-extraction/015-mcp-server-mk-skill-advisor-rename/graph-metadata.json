@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The advisor runtime is still registered as `systemskilladvisor`, which no longer matches the custom MCP identity pattern established by `mkcodeindex`",
     "created_at": "2026-05-14T20:09:35Z",
-    "last_save_at": "2026-10-07T18:16:08.837Z",
+    "last_save_at": "2026-10-08T19:30:38.134Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8971db8402f87348558215e7b545abc368c196ec88cab7adf873ea9bb017b42b",
+    "source_fingerprint": "sha256:e4728f8fb8cc245b9800ecd7bff965a6226dc32253334300ec49c1a6499df168",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "56ae96343a30df0c6d2c7295e520795c5e38581f9e285e9542c8b21ab3076dd3",
+      "spec.md": "a2844bbf1d5ebbe7177cd2db1ce7db1feff0c9c880055ca43e58cc1b3220d54e",
       "plan.md": "6dd7b3f17c92d3d014a564fd85a215ee05c67b30d70658e4a59f5828642c88cf",
       "tasks.md": "91aa084e527d3937c4a799467281b068eb9845b5ca39e4ca17de6f0aebc2d848",
       "decision-record.md": "1e15d253b513a8c77df4449568ca4409b00eeb3f4e64bc60c4824531ea2bdc40",

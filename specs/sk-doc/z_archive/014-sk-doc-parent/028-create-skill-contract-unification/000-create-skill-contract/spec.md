@@ -157,7 +157,6 @@ Convert the create-skill contract from triplicated-and-drifting to single-source
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -211,6 +210,7 @@ Medium. High breadth (templates + initializer + three validators) but low per-ed
 1. Given the contract changes the required section order, when the templates and validators run, then all read the new order from the single source.
 2. Given `init_skill.py` renders a skill, when I diff it against the canonical template, then they agree (no embedded copy).
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - One operator fork: which description budget wins (see decision-record ADR-003) — the workflow's ≤130 soft target, or `package_skill.py`'s 150-300 recommendation. RESOLVED by the operator to the recommended default (≤130 soft, 1,536 hard cap retained); shipped in WU1b (`440f41a05b`).

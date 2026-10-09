@@ -165,7 +165,6 @@ Eliminate the eight root causes, preserve the existing pipeline shape, and raise
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -220,12 +219,11 @@ Eliminate the eight root causes, preserve the existing pipeline shape, and raise
 
 ---
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - No open questions remain for this completed phase; any newly discovered save-quality regressions should start a new follow-up phase.
 - The unrelated `memory-render-fixture.vitest.ts` failures tied to separate `workflow.ts` work remain outside this phase's ownership boundary.
-<!-- /ANCHOR:questions-2 -->
+<!-- /ANCHOR:questions -->
 
 ---
-<!-- /ANCHOR:questions -->

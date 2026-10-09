@@ -152,7 +152,6 @@ These need files this packet does not own. Each is a proposal, not a change.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -207,6 +206,7 @@ These need files this packet does not own. Each is a proposal, not a change.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The scope was fixed by the brief, and the two judgment calls it left open (whether to move the standard, and whether the mode gets a command) are both resolved and recorded in `plan.md`.

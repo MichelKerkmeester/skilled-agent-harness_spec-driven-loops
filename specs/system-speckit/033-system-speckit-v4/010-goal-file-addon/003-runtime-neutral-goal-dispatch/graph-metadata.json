@@ -47,8 +47,7 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
-      ".opencode/commands/speckit/assets/speckit-complete-auto.yaml"
+      ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs"
     ],
     "entities": [
       {
@@ -91,12 +90,6 @@
         "name": "speckit-goal-offer-contract.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "speckit-complete-auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/speckit/assets/speckit-complete-auto.yaml",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The speckit commands already offer to set a session goal, and the offer calls one runtime's tool by name",
     "created_at": "2026-08-29T18:09:18Z",
-    "last_save_at": "2026-09-06T07:09:14.330Z",
+    "last_save_at": "2026-10-08T19:31:21.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:14e27e548f2e648982ed6549120be94efff3f636a77d0022fd658e1151bd69e9",
+    "source_fingerprint": "sha256:195f1632a8c0d1caf65cc90023a8447c563f15e44cc79334a5bf0def395ea550",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f185c28502696299e67935726e3a6d3b7ce23e7baf5bfc09b775ffe49484f886",
+      "spec.md": "7f9ee585314ae7a8c0497ceccdf48a7810612b902f1be2144d28c69095da00a2",
       "plan.md": "acd179ee9b7fe82e4954c2fd4537e38b4cd46353601d3c7207daccc6c9d08fb3",
       "tasks.md": "5ff8d245c137bb8517389efd71926ff8ae7bfc50b8cb9b3e258843cfa131844f",
       "implementation-summary.md": "d45025e2e450c1610c3610d83081caf393e8889ba84ec36114c1cbc411bf8b8c"

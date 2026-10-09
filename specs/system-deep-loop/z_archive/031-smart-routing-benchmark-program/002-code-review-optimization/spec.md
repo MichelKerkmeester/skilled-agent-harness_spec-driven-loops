@@ -127,8 +127,8 @@ After the live-scoring fix (sibling packet 001), `code-review` still scored lowe
 
 ---
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 
 - None — direction operator-locked (wire orphans + map ALWAYS into intents; no thoroughness change).
 <!-- /ANCHOR:questions -->

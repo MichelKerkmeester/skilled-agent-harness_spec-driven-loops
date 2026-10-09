@@ -154,7 +154,6 @@ Preserve the 10-iteration research synthesis, classify active surface types, and
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -226,6 +225,7 @@ Preserve the 10-iteration research synthesis, classify active surface types, and
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None blocking. Baseline probe outputs still need to be captured immediately before phase 002 edits.

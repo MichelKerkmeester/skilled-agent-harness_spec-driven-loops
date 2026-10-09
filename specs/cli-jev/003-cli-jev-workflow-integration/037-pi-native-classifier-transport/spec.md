@@ -222,7 +222,6 @@ Written before the build. `S` is the proposed `.skilled/skills/cli-classifier/be
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -279,6 +278,7 @@ Written before the build. `S` is the proposed `.skilled/skills/cli-classifier/be
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does `score-suggested-order.mjs` export the prompt builder a replay needs? UNKNOWN until the design reads it. The script sits in the skill-advisor runtime tree, which this phase reads and never edits. Proposed answer: if it exports a usable builder, the arm replays its rows. If not, both sides rerun (`--pi --cli`) on a fresh fixture the design builds, so both sides see identical rows.

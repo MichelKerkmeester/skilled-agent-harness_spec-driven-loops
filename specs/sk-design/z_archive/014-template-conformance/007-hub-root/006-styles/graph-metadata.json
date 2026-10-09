@@ -186,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/styles/ (top-level shape only)` has not been audited against `.opencode/skills/sk-doc/create-skill/references/shared/overview.md directory rules (no authored styles/ template; this is a 1,304-dir/7,812-file bespoke data library, audited at top-level shape only)`",
     "created_at": "2026-07-27T14:59:55.205Z",
-    "last_save_at": "2026-10-07T18:12:31.195Z",
+    "last_save_at": "2026-10-08T19:29:59.141Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,10 +195,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b9aebdb4629d7f5b0df8e8172c906eaaeabd736a0a7ab729139b95ecc4c1ca8",
+    "source_fingerprint": "sha256:cb2fe59ac5581dbdb42948917f6b82af539a223dd27b63d528187409fe6360b4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6d118ba1884525f379462fb1bb67548f1613008afa6b854ee8eafe1703fe0c94",
+      "spec.md": "131e015244464697b9c12a966f167b9fcf7923c74409ae9c9678d81277c8aa91",
       "plan.md": "16aba81c298655b4a4d9c1486c3d8744eab90e1f06664664d03ae264ec090186",
       "tasks.md": "be953172acc6943263362d37ed6e555245fe38b51d36cc984b964f80ac4ddc25",
       "implementation-summary.md": "556744bac4816f7effff44814504135ebd482bbc53e0fa854cc086f741481e0d"

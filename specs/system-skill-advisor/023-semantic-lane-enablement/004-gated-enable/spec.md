@@ -202,7 +202,6 @@ measures, and keep the revert to one command.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -283,6 +282,7 @@ a bad result costs a restart rather than a release.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether the researched weight becomes the committed default or stays an override. REQ-007 sequences the decision rather than answering it here, because the answer depends on how the override behaves across a full gate run.

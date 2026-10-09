@@ -130,7 +130,6 @@ One runner contract across the four commands, one native model, and prompt packs
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -178,6 +177,7 @@ One runner contract across the four commands, one native model, and prompt packs
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

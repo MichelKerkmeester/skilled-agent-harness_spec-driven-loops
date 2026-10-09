@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "sk-code/z_archive/010-sk-code-review-playbook",
   "spec_folder": "sk-code/z_archive/010-sk-code-review-playbook",
-  "parent_id": "sk-code/z_archive",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -199,7 +198,7 @@
     ],
     "causal_summary": "sk-code-review is the findings-first review baseline used by `@review`, `@deep-review`, and `/speckit:deep-review`",
     "created_at": "2026-05-18T07:49:27.225Z",
-    "last_save_at": "2026-08-30T15:39:11.515Z",
+    "last_save_at": "2026-10-08T19:29:31.081Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +207,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0566cd29a4051a9cf18d73a81b59267af7da7f24a70f073b4d3431053c152622",
+    "source_fingerprint": "sha256:35276c65a69825a84af174ccce6c2bc5cf2335e2e19bf5a557742c74735c262c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "188bf707c42ccb1a57b206869064b7c517bfe384e0df0c52ef0eed15eec81686",
+      "spec.md": "0999c0e753e0a7eac4e9a559dc542a26a7ea9981ff20de4f54ced16c1725802f",
       "plan.md": "c4654e0993dffbf3525280941463dfd9444f42af3328786c40b0fabef584ee39",
       "tasks.md": "ded79f6ee4b0bef4afaff0acc1fef1a37ac8e54059ce1dec3601e01559f36e2a",
       "implementation-summary.md": "319b3c50e72e2200dc5c34b7d367b0ee876ba9453537ac321fc2c32623941b67"

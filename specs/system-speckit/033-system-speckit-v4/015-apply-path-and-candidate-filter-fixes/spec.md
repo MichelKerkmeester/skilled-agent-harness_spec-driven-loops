@@ -124,7 +124,6 @@ Make the sweep's default safe and its judgement fresh, and stop a playbook from 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -179,6 +178,7 @@ Make the sweep's default safe and its judgement fresh, and stop a playbook from 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

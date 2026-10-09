@@ -179,7 +179,6 @@ Provide one strict-conformant completion record proving that package documentati
 
 ---
 
-<!-- ANCHOR:questions -->
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
@@ -223,6 +222,7 @@ Provide one strict-conformant completion record proving that package documentati
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 No unresolved question blocks completion.

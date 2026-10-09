@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`check-ac-coverage.sh` already ships a floor (default 0.9), an advisory default and an `SPECKITACCOVERAGEENFORCE` switch that is off by default (`runtime/ENV-REFERENCE.md:166-168`)",
     "created_at": "2026-09-07T15:05:56Z",
-    "last_save_at": "2026-09-08T15:47:17.126Z",
+    "last_save_at": "2026-10-08T19:31:26.742Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e38764dc1e277d7dae1e1c134ea1be6db0b089f2710afc40a721356d239c7127",
+    "source_fingerprint": "sha256:85eacd69f868e2e6eb3d90c0acdb82fcd344fde976fe797c395e2be13d4d24da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "84c133993b20f23fb6ad64e766557181796447b4b6aab403d16b8eb1b43bb04d",
+      "spec.md": "b35fa2a7fac8cd53991b0b7b43ad46ca645d0e1857116b4876e0cc846dc3a188",
       "plan.md": "8819e07f0906d1d55baafe7427577ed998d1c16dd8a7be731937d15699ea80bc",
       "tasks.md": "ece779e2375bc92e3a879489bc2d85ccdb196f9ed7cf37618d880886129d3591",
       "decision-record.md": "2ce42d29a693e6a468921f6e9b964404d44a34e82add18add70f22b668feeaaa",

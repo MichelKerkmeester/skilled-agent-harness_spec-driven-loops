@@ -160,7 +160,6 @@ acted on after one pass, without the rule set growing past what a reader can hol
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -215,6 +214,7 @@ acted on after one pass, without the rule set growing past what a reader can hol
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does the first-line rule's positive test belong in the reply-shape half or with the decision-shape rule that already governs verdict placement?

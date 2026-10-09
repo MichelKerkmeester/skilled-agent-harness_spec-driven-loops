@@ -124,7 +124,6 @@ Fix the real bug (sa-011), update the catalog text to match reality (sa-036, sa-
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -211,6 +210,7 @@ These are tracked separately and do not block this packet's release.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None at scaffold time.

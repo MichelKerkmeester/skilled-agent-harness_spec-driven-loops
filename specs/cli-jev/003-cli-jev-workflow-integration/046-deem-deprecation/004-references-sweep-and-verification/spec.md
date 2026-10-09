@@ -137,7 +137,6 @@ No live doc mentions a Deem backend, each changed skill records the removal in i
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -181,6 +180,7 @@ No live doc mentions a Deem backend, each changed skill records the removal in i
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator set the scope on 2026-10-02.

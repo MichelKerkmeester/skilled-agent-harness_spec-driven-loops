@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The empty-registry advisory checked `keyFindings` for every loop type, but a review registry carries `openFindings`, so both lanes of the ten-iteration review, holding 24 and 8 open findings, raised `lineageregistryempty`",
     "created_at": "2026-09-20T08:33:42.550Z",
-    "last_save_at": "2026-10-07T15:57:00.119Z",
+    "last_save_at": "2026-10-08T19:30:24.467Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6a6b9375655d30f3368355d740ccd6c7c475f024116476a7053a34d97ac7148",
+    "source_fingerprint": "sha256:3d56420205f68926567db1cd8d0757aae6f7f97a0d035a4a2cd63c54d491829f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2a8fc8e855e442b5cf2e076e44852acdd75dbd5ba187a78b0414dbb7036fa842",
+      "spec.md": "1050c27a4a4b1d0b253fe115f40d30e78218e29a51d3e54258859eaa8eb8cc14",
       "plan.md": "d1620fffaca205a41991cde264c37308b731274936bed20f14f1de2c2ddca38c",
       "tasks.md": "aa3e5a02dc6d86f40741716043ac9d4bd695672d4f942e15ed76c355c88010ae",
       "implementation-summary.md": "bfcaa4db1710473bbbe7f832b1b61f6291dba58c2076419165704b790e00966e"

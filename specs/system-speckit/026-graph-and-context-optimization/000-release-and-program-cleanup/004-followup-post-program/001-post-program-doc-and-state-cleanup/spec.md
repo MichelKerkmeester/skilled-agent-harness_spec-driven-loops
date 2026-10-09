@@ -164,7 +164,6 @@ Make the post-program state auditable, traceable, and validator-clean where the 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -215,6 +214,7 @@ Make the post-program state auditable, traceable, and validator-clean where the 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Tier C and CHK-T15 are explicitly deferred by the prompt.

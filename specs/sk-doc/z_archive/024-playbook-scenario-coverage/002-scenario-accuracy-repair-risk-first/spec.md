@@ -262,7 +262,6 @@ native tool; and single-adapter coverage of a six-runtime advisory.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -353,6 +352,7 @@ scenario is not sitting on top of a live contradiction.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **AMENDMENT-DECISION (OPERATOR-DECISION Q4)** — the Gate-3 D/E contradiction. See §5 of the parent spec. Blocks

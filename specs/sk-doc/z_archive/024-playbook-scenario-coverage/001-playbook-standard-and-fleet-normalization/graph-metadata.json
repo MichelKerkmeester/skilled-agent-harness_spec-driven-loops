@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Two contracts share one directory name, and only one of them is checked",
     "created_at": "2026-07-30T19:29:15.567Z",
-    "last_save_at": "2026-10-07T21:56:21.801Z",
+    "last_save_at": "2026-10-08T19:30:11.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f4dc22ac60fc57d00d82bf6643177c4cc2566dd23acbb3c5516b170a0834147",
+    "source_fingerprint": "sha256:c789c2a12cb9347756b12f7f4b5ed4752618fd3bac69c8ec1641a53ec48746cb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "176ecb0d1e79fc694302f7b4e2fb5edfe76cca1869ea6ed4aabd093a04ef1b15",
+      "spec.md": "2849096c70abf304f0558464419267916df583f240a92d66d5b4de3b055ade4c",
       "plan.md": "26c57fe5b5af5c069708d45bcd8021896c927a30176a630c1522d5528130b70e",
       "tasks.md": "9d77d50beb237caa6bb36c847778c92aa2f94300f7ff0fbe97d04877afaa9ac2",
       "decision-record.md": "631ff176d14c8a111d54ca86aa704648c19102609c93179998d17b40ed3c64fa",

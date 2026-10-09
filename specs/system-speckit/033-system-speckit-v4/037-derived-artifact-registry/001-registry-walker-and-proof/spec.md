@@ -179,7 +179,6 @@ Red when: the question is left unanswered in the plan or answered without a test
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -249,6 +248,7 @@ Red when: the question is left unanswered in the plan or answered without a test
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether the stored fingerprint should survive at all is deferred to the parent, which needs the phase 3 sweep before it can be answered.

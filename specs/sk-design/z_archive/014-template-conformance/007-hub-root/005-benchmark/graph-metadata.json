@@ -186,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/benchmark/` has not been audited against `.opencode/skills/sk-doc/create-skill/references/shared/overview.md directory rules (no authored benchmark/ template; these are frozen dated-run-record directories)`",
     "created_at": "2026-07-27T14:59:54.938Z",
-    "last_save_at": "2026-10-07T18:12:28.248Z",
+    "last_save_at": "2026-10-08T19:29:58.693Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,10 +195,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f84fe8fb93421935a756ddf94fdea145692f6da2ee00c66be6ea72885654d672",
+    "source_fingerprint": "sha256:b336002b070422e033166fb0cbb6c0fe03873a219ee6437ee38bf410eb742358",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9feeb739f7f17488b948507ba9682a8ff47eea7bd41f483c502fdf25c9888ea0",
+      "spec.md": "af83a5df0e221ab970919c53f1ee90cdc1e5da58fac1ef0b68ff7fc2d7e863ef",
       "plan.md": "2771475b08d55a471ffbd0a87fdf203e5f281395a14880af5c489280725371f9",
       "tasks.md": "2eab6c54a31adabd42919e548feace1d861f1d50392c1220cfc37a36abe8c808",
       "implementation-summary.md": "0e92614d5b645c6ff85ec5ce9df5479ca6fb6f121912c33bd8cb0b6d264e0df0"

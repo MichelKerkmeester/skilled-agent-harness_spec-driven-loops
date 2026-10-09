@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Targeted rename and routing checks pass, but broader suites cannot all execute because compiled artifacts are stale and unrelated graph keys are absent",
     "created_at": "2026-07-13T03:34:32Z",
-    "last_save_at": "2026-10-07T18:11:25.988Z",
+    "last_save_at": "2026-10-08T19:29:15.478Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8490dacc6c1b3d5198c90cabbd118d21701d49532cc8f4d42334b55217783cd1",
+    "source_fingerprint": "sha256:f99d73532383ea43bab279fe63f9c52a704e9c2251d7948bf956de7cf198e9a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "022101cec635cb1c50c933c0f97fa7ba92ee2e47a3b801dfa4e54febf3447575",
+      "spec.md": "ffd91e330e9f3a0126a7cb696bb75494b3b85f3a54ddea80f4557b02b510db6c",
       "plan.md": "86922c58d7066e9474fe0c330388c03d03a3ea6b6048affea8b47096ed4adcf4",
       "tasks.md": "9939260ab3246e916932217208407114ca2852826856d4002a25d79aef3bc3f3",
       "decision-record.md": "9d77548d0317e931e8f567c0675a700f3301ce379625fb31c0628b3140176ae2",

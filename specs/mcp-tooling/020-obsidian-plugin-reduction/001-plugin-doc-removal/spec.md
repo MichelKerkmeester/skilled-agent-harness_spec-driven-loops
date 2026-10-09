@@ -193,7 +193,6 @@ All paths are relative to `.opencode/skills/mcp-tooling/mcp-obsidian/`.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -265,6 +264,7 @@ two doc sets untouched, **so that** the reduction costs me nothing I use.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 None. The retained set was named by the operator, and the theme boundary is settled in Out of Scope.

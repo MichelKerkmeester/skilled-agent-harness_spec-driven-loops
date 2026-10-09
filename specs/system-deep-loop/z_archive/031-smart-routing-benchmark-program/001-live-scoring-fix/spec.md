@@ -130,8 +130,8 @@ Live-mode benchmark scores reflect true routing quality: correct asset routing i
 
 ---
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 
 - None — the fix direction and re-baseline scope were operator-locked.
 <!-- /ANCHOR:questions -->

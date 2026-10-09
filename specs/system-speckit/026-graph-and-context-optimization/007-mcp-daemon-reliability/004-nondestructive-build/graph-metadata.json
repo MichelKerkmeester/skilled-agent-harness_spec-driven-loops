@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The `@spec-kit/mcp-server` build runs `prebuild` → `clean` → `rmSync('dist', {recursive,force})`, deleting the live `dist/` before `tsc --build` repopulates it over several seconds",
     "created_at": "2026-05-28T18:15:02Z",
-    "last_save_at": "2026-08-30T15:39:32.318Z",
+    "last_save_at": "2026-10-08T19:30:56.034Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:489f0ac3e715158f1010d38be6925fac29ed2b65a86a76abf041d7d57ccf12f9",
+    "source_fingerprint": "sha256:78ed4ae166f48d6a6bee09438d3a634b8483858365fd1d30c132573e1901d167",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "310227de473e193e843b9e2ab6dd8ba1a621d9f7d86a6f55c72687f22e67c6b4",
+      "spec.md": "30187982992603fb2a44b6a90a3f8e35255b5da904dff3e58b338a8fec921b36",
       "plan.md": "46792c185a60970506aff55653ead8061aae0a1144e6e1af3adc6a10bb3eabad",
       "tasks.md": "b579b35ca4b7d8c503200fe7d6e766f42903ee7e688abe99e6e0eece695decd5",
       "implementation-summary.md": "336c79b9a97534b0050c4a20a670ab3da52afb846d91767101e48bb56277ee57"

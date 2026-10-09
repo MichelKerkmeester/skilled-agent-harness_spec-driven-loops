@@ -129,8 +129,8 @@ A repeatable routing-optimization capability in deep-improvement, driven by a co
 
 ---
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 
 - None — capability scope operator-locked.
 <!-- /ANCHOR:questions -->

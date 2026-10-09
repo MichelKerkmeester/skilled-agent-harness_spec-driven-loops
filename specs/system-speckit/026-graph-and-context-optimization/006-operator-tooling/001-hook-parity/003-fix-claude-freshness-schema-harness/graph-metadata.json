@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Hook testing surfaced three defects",
     "created_at": "2026-04-23T10:15:00.000Z",
-    "last_save_at": "2026-10-07T15:57:12.857Z",
+    "last_save_at": "2026-10-08T19:30:54.239Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8365dab057e291ee448b526a73bcd4288be8c9541edcefbf8243333b1626ac64",
+    "source_fingerprint": "sha256:db8e9c77d14a661a9a568b5c546c333af424e2703595aa9a20ebbe1f3cc4aebc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "afc04a59709284cf1421b43f6c3fc29bba51e9f3a16d84f96802e614984eaf05",
+      "spec.md": "02dd4135e1980f8fca004c409c426b8534fb8d6494350d883bf7333bbfb9487f",
       "plan.md": "d6a557ea18e776eaa488376dcf173c81dca5366a89a44f92c597e77caa7c0415",
       "tasks.md": "531d1aef20bb48b7714909b1e856ea93c0056f4497902ce73a144ef1ef88c831",
       "implementation-summary.md": "e8e4f3da7582d0a46158ebeee3b5482ba594c6386176a2e83b6ac96eaf12b613"

@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Every phase in this packet closed against evidence it gathered itself, at the moment it ran",
     "created_at": "2026-09-06T13:52:17Z",
-    "last_save_at": "2026-10-07T15:56:40.225Z",
+    "last_save_at": "2026-10-08T19:29:48.954Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a418ba54a1dc7e7f314274126e87ca943ad7c59b92e27e30f3a266e2b24778d6",
+    "source_fingerprint": "sha256:518e408b265ffb7287577fb3a131e693821d45e0b1d47248a793f154faa41ed1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8c3a4259d83d5e390d47d0b22b924061de34840fccf056aee812c16e3776d01a",
+      "spec.md": "9bee26ce0ab32a4d38403ae731cd82ae6d2989c3a51b15956c1b0fccff8ac2ce",
       "plan.md": "1c6c409834663f931d5659879e3f51cc5a309a417246f40561ea5110000f42e1",
       "tasks.md": "f3aa14bae26082d19bc7a44b04a922c55f3a2a13bd29d8cc24159ef8510d6831",
       "decision-record.md": "41c2332e2e3cb4de68de83fa06afa6b1cd094ed599af42a580b1354dfb3cf626",

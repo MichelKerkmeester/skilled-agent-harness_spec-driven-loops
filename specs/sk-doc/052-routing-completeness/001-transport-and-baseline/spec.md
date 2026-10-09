@@ -179,7 +179,6 @@ baseline exists for every later phase to measure against.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -255,6 +254,7 @@ as rules, **so that** I do not report a floor as a score or a re-sort as a ranki
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 None open in this phase. Whether the two scorers should be reconciled at all is carried by

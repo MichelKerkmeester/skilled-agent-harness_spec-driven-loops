@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Rule statement is 57,847 of 107,092 bytes (54.0%)",
     "created_at": "2026-10-04T14:39:59Z",
-    "last_save_at": "2026-10-07T12:54:42.850Z",
+    "last_save_at": "2026-10-08T19:29:07.975Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10f69519a4a2c3c9a2d7417dbe7ad9f099f2588fb4c9605a9466f8e919921e5a",
+    "source_fingerprint": "sha256:3c71684127a2fa238e508b456876f5e8f00509c9313d1ba661314ea73fb22ffc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c334fb4cb4ca451ca82ffcff3fab1d008a51f40ceba4c8d7f33897257cfc7802",
+      "spec.md": "d3e3542a4577dee3f38239e9b5bbb9f135dd6f69fe7671db8e51095917494f39",
       "plan.md": "317962ff0bbfa42677e29c1ca33a6aadec9f7f8be041d92d29f92d20f0e3aba9",
       "tasks.md": "56c980c392a69aeb00af9a2de40559e8797755a59d16246b0ee78b4d9902516c",
       "decision-record.md": "4360894908ed1121c0376bf11678acf63f096c0f0a95bbd6f52ae6019a6f67c1",

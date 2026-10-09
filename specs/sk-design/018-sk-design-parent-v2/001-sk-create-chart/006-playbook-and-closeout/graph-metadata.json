@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Nothing yet states what this skill doing its job looks like, so nothing can tell a later reader whether a change broke it",
     "created_at": "2026-09-02T07:56:52Z",
-    "last_save_at": "2026-10-07T12:55:06.645Z",
+    "last_save_at": "2026-10-08T19:29:39.671Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:087169c9ef3bcea850087612d09f3c0a84aa6c7abc0045885191387d4618d1fc",
+    "source_fingerprint": "sha256:9cfeff0b8caef51a5faadb22a752fc5d58e705dadcb9ed2a731e35dbf01c5b2b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "01cb40892d3078e64772c49f40ee7a5f005a8eabdf4218bac3d91ba23a151672",
+      "spec.md": "e012c1c52198b36d45a8336a7dd2eaab66657048f6b5a8884fc309ffe28e5998",
       "plan.md": "fbb536319d304507d8116830be49caebf836f4d63d14f4432b5cb8996e4db235",
       "tasks.md": "7befa7de4b8fb15727384173fb9dcced1973e8242ee4defda05268b391e1265d",
       "decision-record.md": "c75d7a3d73b7bdb8c6b67d9f49eb1b96f7419457bbe4bbc0962f3da748a79c74",

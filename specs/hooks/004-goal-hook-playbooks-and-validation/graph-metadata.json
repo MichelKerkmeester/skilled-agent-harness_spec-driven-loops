@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Packet `003-goal-hooks-cross-runtime` shipped the runtime-neutral session-goal hook for Devin, Cursor, and Pi (plus the OpenCode plugin symlink mirror), but it closed without any manual-testing-playbook coverage for the hook and without live evidence that the hook's injected `[activegoal]` block actually reaches the model turn in each runtime",
     "created_at": "2026-07-29T09:41:34.533Z",
-    "last_save_at": "2026-10-03T15:11:49.813Z",
+    "last_save_at": "2026-10-08T19:29:27.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +215,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e8fd83b1411aff634fafc66f132ebae76a7b8f46a68aeb3f9744ce10175b772",
+    "source_fingerprint": "sha256:d978d3d24c6a146e72251a17e81d9bebf9ca8dfb7be34b308e166389407dab4c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "defc5f0e4bdac3e4125b781787977ca00a1c71bed826e9c7cc4942162daad69f",
+      "spec.md": "a969e64551e415b6c381ebb0742d27cf8e1fbaa36e4287ba776dfb5c1ba29d0d",
       "plan.md": "d4ec2024043e848aa05ccd0b7c718530c1e4075b96f6cb45812c38bb0922e37b",
       "tasks.md": "7b7d0bca554fa9e5615499fccfeef9ea3594c1b92b445206d9f35f763148a664",
       "implementation-summary.md": "b29fa458f025c37d414f664b56057cae1da5b81083e6553874d07061eb44089a"

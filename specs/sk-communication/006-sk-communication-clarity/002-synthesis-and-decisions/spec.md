@@ -163,7 +163,6 @@ contradictions resolved in writing rather than left for whoever edits next.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -218,6 +217,7 @@ contradictions resolved in writing rather than left for whoever edits next.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does the colon-clause ban survive contact with this repository's own prose, or does it reject sentences the reply-shape rule currently recommends?

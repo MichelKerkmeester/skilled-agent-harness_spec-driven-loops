@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The causal graph is substrate-blind at the edge",
     "created_at": "2026-06-19T05:47:05.578Z",
-    "last_save_at": "2026-09-11T16:42:42.549Z",
+    "last_save_at": "2026-10-08T19:31:02.807Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:567b2f468545506b95e217b0b1eb40985434c4670d26da212c66593fb87ae8d1",
+    "source_fingerprint": "sha256:041218d6a5eae3d4800c1a5a850835316682e691392b49a9026b0231be1691b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "05faa06fbf32b53a2eacd11685cd5c8261a70b3e988ec90c25daa824259a22b7",
+      "spec.md": "44990af820377e4da78608f04d5634172687c63843e39525a7b2fe8117f6c6e2",
       "plan.md": "b41e5537152824511bd748947530c746f5a00afeb29a540b0e30a981117bc38d",
       "tasks.md": "29347bdb1b3a57045272382bc1f3023af1f75e705b6749efae52f2cf7784143e",
       "decision-record.md": "dec224c60fc6e519a2f7cff072bb4f7ea6f8f203ae938be02e948db216fa25fd",

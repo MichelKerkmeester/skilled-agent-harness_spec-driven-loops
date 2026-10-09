@@ -109,7 +109,6 @@ has now failed twice in a row.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -164,6 +163,7 @@ has now failed twice in a row.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

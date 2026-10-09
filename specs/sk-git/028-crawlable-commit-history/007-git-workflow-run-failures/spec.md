@@ -144,7 +144,6 @@ After this phase a run that touches git survives the behaviors this packet met, 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -210,6 +209,7 @@ After this phase a run that touches git survives the behaviors this packet met, 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether the containment adjustment belongs to this packet or to a system-deep-loop packet: decided when the analysis names the seam.

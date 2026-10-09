@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The anti-disconnection investigation left four follow-ups",
     "created_at": "2026-06-07T19:23:50Z",
-    "last_save_at": "2026-08-30T15:39:32.551Z",
+    "last_save_at": "2026-10-08T19:30:57.431Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4388dc6d6eca474b7adee327654ae3df91f8366a985a1b4d519db8da5f187d1a",
+    "source_fingerprint": "sha256:c4dd308d004526093d283666d63d889996e6a869eb8d2eb859f632bf1a09f734",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "55262c3e4ba6640746cec5d44297e7a359578ae300eaaebe2348729612ae863f",
+      "spec.md": "9ea78a380cbdcfbca979772a98f018591318a2055ab1b6708d0b7cd0233b8036",
       "plan.md": "c9266d9388a9cf26b91362c217f1edaeb1d8e0b57013a53d58a181741d8ebe1b",
       "tasks.md": "1bd852b6593d4620e679568605f43a6f99d2237e7dd2bf639dd41a746d3cfac5",
       "implementation-summary.md": "56c67e83f086eae78a8a603fb81f159715879a7d3e018881ba23cd4c28609796"

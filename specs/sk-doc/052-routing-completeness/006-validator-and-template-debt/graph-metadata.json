@@ -201,7 +201,7 @@
     ],
     "causal_summary": "A template is the one document where the fenced block is the deliverable rather than a",
     "created_at": "2026-09-02T16:34:08Z",
-    "last_save_at": "2026-10-07T12:55:22.635Z",
+    "last_save_at": "2026-10-08T19:30:02.021Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8f9ab9101cd0dba673445c4649370b62bff6b991479356a6b9ff5d38bd522522",
+    "source_fingerprint": "sha256:42b1ea9b55ca63877d3f17cc41bae8a0e9cc1bcc0167a2a136d3eea9ea42d895",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f1bbc92a9cfa2017386d053b7e0099ba1861e5f4bffbb8f54e9aab1b85017e3a",
+      "spec.md": "8fd5a1168451bf0ce5bfe4884dd2f6864884c91979efbc900aac50166cb10d92",
       "plan.md": "87f6dcf88bbc94cf8f15a12d0d7e329e35a79a05dc2a1347a051b3253068988d",
       "tasks.md": "436d69bdc3f1f721028f2075370e3ce401fcd14bc79ceccda5bf106dd3b8ad04",
       "implementation-summary.md": "e57803f37ffacd7e107a0dd9f8ff67569f7654555c5d757b68b32eda8b8c7ba3"

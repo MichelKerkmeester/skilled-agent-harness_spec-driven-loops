@@ -146,7 +146,6 @@ A completed save either proves the trigger index reflects the packet's current p
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -201,6 +200,7 @@ A completed save either proves the trigger index reflects the packet's current p
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should a stale trigger index at save time warn (current default-safe choice) or trigger inline regeneration? This spec recommends warn-first, with auto-regenerate as a follow-up once Phase 3 confirms the generator's wall-clock cost is acceptable to run on every save.

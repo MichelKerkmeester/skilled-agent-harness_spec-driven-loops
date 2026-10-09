@@ -140,7 +140,6 @@ An honest census of citation breakage across both doc families that tells a move
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -195,6 +194,7 @@ An honest census of citation breakage across both doc families that tells a move
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does a spec-kit validator call a script that lives in `sk-doc`, or is the resolver copied?

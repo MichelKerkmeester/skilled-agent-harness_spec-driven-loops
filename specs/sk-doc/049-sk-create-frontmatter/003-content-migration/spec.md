@@ -148,7 +148,6 @@ The spec lives in its mode, and nothing points at where it used to be.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -214,6 +213,7 @@ The spec lives in its mode, and nothing points at where it used to be.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

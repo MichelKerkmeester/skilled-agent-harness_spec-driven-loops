@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Phase 3 returns a ranked list from a single executor family running five iterations",
     "created_at": "2026-08-31T05:37:24Z",
-    "last_save_at": "2026-10-07T18:14:23.304Z",
+    "last_save_at": "2026-10-08T19:30:14.466Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2281753dd09468c567949dc9767d8f6ad38c73182e3f3953519a004e82b976b8",
+    "source_fingerprint": "sha256:2014b8d582b09053fcf23cc3b3c28298d7b4cbe11759a9a1a30a4be8eed333df",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a250dfa9c53c7a91a26f9aa13063c5d3eb10f27e95008435189ff51263ca8719",
+      "spec.md": "fbf26bbd871101c22b80aa0f7b197f519dbd11e2c8f2342ce1c97133c3caa2c0",
       "plan.md": "c3155eb568ec3c070beb1e4c05cf213b5798346818bca698e741894d36d0c234",
       "tasks.md": "0130b801e2748f80fcb4ee46202ba2131ec4f086ff38afd26977bad0362326c7",
       "implementation-summary.md": "149c5224a15a3dfde03fb230de761bd85ae5a6e3c9f85f943474ea21cc639c0e"

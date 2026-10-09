@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Phases 001-005 refactored `sk-design` toward Claude Design-like manager behavior while preserving the OpenCode-native parent-hub shape: one advisor identity, registry-driven routing, five public modes",
     "created_at": "2026-07-06T04:36:21.215Z",
-    "last_save_at": "2026-10-07T18:11:38.708Z",
+    "last_save_at": "2026-10-08T20:53:30.569Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +215,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:49a9ef8dbf24d5eb81c96213e80efafafd7dd79f3d636b70f874c97736de823f",
+    "source_fingerprint": "sha256:0e82977ecf0ce1e18bc17592829690ce6bb59fecd2dd66c218b142db25ed7bc1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "17cea5560ee1f59352d24ea86290c0424932a1234a7cb92e3db6b9d3cd362f2e",
       "plan.md": "e855f9e5e80f39692e87882e12c4a6536ea7f88b02d21b0e6eed460e7e7a01f0",
-      "tasks.md": "b58bc549f9433ba5bca21f60352c1d063f36dd82277be4ef63c9d88574b80c5d",
+      "tasks.md": "861ec1208cc56a6a0a53dcfacd734bb998f31123d806c926f7b926b53b95cf69",
       "decision-record.md": "072166ce28d01dd7e2a215c7d7c719dfdde755a9249c7399b75edaf3e0e951fb",
       "implementation-summary.md": "2c3626e60f235c2bc981e5f2a74e73c5f2f7e533f1fde3b87a801fcfe635f632"
     },

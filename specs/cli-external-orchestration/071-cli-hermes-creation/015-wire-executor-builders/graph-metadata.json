@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The fan-out builder is the only caller that cannot get a flag wrong, so anything it fails to set is unreachable rather than merely risky",
     "created_at": "2026-09-15T16:29:33Z",
-    "last_save_at": "2026-10-07T15:55:57.204Z",
+    "last_save_at": "2026-10-08T19:29:11.763Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:49a2cb72885f33539100f3d5f72a6a221de6c48a8dd84ce5014d10f57be0000e",
+    "source_fingerprint": "sha256:c2724994e827397a802f13c4cd4922429485b0d788372f789734b27f8475d6aa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5b2edb5f42b872435e964ab0ff03f028a3e86e0c5edef9856b4f18284b162327",
+      "spec.md": "94b8d810896e90f6dd96963c23d8e075c75481bb3c1b9c9f91d364c3b4746a88",
       "plan.md": "7fe2cb49e590247514f20fff123a450e8ead993b8a7d2a022e3aa8780e957d60",
       "tasks.md": "338a721ca16ad7dc95309b155a7f3eca55754e837f68bf691cce173d4518f9ef",
       "implementation-summary.md": "41cafb65331b832d23f8eaf5f73396039381ea0e2163a6db6004a76850210287"

@@ -156,7 +156,6 @@ Cut what has stopped being true, keep what has no other home, and leave alone th
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -210,6 +209,7 @@ Cut what has stopped being true, keep what has no other home, and leave alone th
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the doctor tooling stop installing the decommissioned server? **Yes, and it is the most consequential thing this review found - `/doctor:mcp install` would put it back. Deliberately not done here: it is 31 references across executable tooling with its own tests, and this phase has not exercised that surface. Raised for the operator.**

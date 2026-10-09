@@ -194,7 +194,7 @@
     ],
     "causal_summary": "After the Sprint 1 pipeline hardening landed, a `/memory:save` run still produced a memory file that scored 88/100 while carrying 10 structural quality issues",
     "created_at": "2026-04-12T09:02:50.281Z",
-    "last_save_at": "2026-10-07T19:24:33.339Z",
+    "last_save_at": "2026-10-08T20:06:09.099Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6968068cee264c95f2fadce5d3b645083d831aea3cc64ebf320041c74444bf74",
+    "source_fingerprint": "sha256:3433335a00c11c53fec9ea8d55cfed93ed9edcdfb1ccb43634d8b8de40a17dd1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f2e07b2c3df8be7852205a25dce72ef300bdcb5b4bdd4317a98c2adb06534ecf",
+      "spec.md": "9d6f6715e63e8f5efbed3dc850bbe66e76cb3801dd8d03f1e3c02a2f2a255b92",
       "plan.md": "4b7c6ada80cdf51d6b2170fe8646ee3e8a417815def331bb1be6038b176d43c5",
       "tasks.md": "defb52f36d3cf3f08201b2665dff0867a6fefd11c9c1c270b08c389401efa066",
       "implementation-summary.md": "938613a8cde87058d53a75b952a2cbca78fbf16c87ceb26e223a956be46518f5"

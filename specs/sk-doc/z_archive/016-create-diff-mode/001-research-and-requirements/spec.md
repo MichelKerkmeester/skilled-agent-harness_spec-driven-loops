@@ -197,7 +197,6 @@ Research a local, predictable workflow that captures a baseline before an AI edi
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -374,6 +373,7 @@ See `research/research.md` for full corrected synthesis, fixture corpus, elimina
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 14. OPEN QUESTIONS
 
 - Should v2 use WASM for PDF parsing (PDFium) to improve structure extraction?

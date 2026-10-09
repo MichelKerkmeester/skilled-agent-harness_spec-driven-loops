@@ -122,7 +122,6 @@ Build the remaining Devin hook adapters using the exact pattern already proven f
 - **Dependency**: This phase depends only on `004-devin-hook-adapter-layer` landing first. Hook live verification succeeded without treating authentication as a hook-availability blocker.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - NFR-P01: Hook adapters add no perceptible latency to a dispatched Devin session.
 - NFR-S01: No adapter logs or transmits raw payload contents that could contain user secrets.
@@ -146,6 +145,7 @@ High - 9 new files across 6 different skill-packet directories, 1 genuinely nove
 - As a maintainer, I want every guard hook that protects this repo to fire correctly regardless of which CLI executor (Claude, Codex, OpenCode, or Devin) is doing the work.
 - As the implementer of phase 009, I want `mcp-route-guard.cjs`'s no-external-family status documented so I know what to re-evaluate once real MCP servers are registered.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 - **CORRECTED 2026-07-25**: project-level `.devin/hooks.v1.json` works under `devin -p` with top-level event arrays and nested matcher groups. The old wrapper-shape tests are superseded.
 - **ANSWERED**: the current registration contains 8 events, 11 matcher groups and 19 commands; six lifecycle events fired in one corrected-schema session.

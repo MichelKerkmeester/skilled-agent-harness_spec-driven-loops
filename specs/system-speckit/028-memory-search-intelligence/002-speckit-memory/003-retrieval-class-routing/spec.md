@@ -199,7 +199,6 @@ Give recall a retrieval-shape axis: classify each query's shape (single-hop / mu
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -284,6 +283,7 @@ Give recall a retrieval-shape axis: classify each query's shape (single-hop / mu
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Per-class `RetrievalProfile` weight VALUES, calibrated on the ~1000-memory corpus (deferred to a benchmark follow-up, mechanism-only here). [028 roadmap §Provenance]

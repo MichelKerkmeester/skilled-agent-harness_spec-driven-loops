@@ -163,7 +163,6 @@ This doc-reconciliation pass edits only authored markdown. Earlier alignment wor
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -231,6 +230,7 @@ This doc-reconciliation pass edits only authored markdown. Earlier alignment wor
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - No blocking open questions. The full live-loop e2e remains optional evidence and was deliberately not run.

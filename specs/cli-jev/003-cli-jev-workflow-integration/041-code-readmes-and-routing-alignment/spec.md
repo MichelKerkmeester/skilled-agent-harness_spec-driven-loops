@@ -222,7 +222,6 @@ Written before the build. `R` is one of the eleven code-folder READMEs, `H` the 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -280,6 +279,7 @@ Written before the build. `R` is one of the eleven code-folder READMEs, `H` the 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **Which ten prompts form the probe?** Proposed: the eight rows that were correct at baseline, replayed unchanged, plus the two former misses. The design records the exact ten prompts under `scratch/` before the build, and every row pins its expected `workflowMode` and `packetId`. UNKNOWN until the design writes the corpus from the baseline recording.

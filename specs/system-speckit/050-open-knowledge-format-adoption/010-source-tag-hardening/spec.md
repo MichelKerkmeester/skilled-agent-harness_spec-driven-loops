@@ -141,7 +141,6 @@ A `SOURCE_TAGS` warning means the same thing everywhere, and its accuracy and re
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -196,6 +195,7 @@ A `SOURCE_TAGS` warning means the same thing everywhere, and its accuracy and re
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - What accuracy per class makes the rule fit to keep at warn? The protocol answers this before data.

@@ -143,7 +143,6 @@ Every defect this packet measured is either fixed or refuted, with nothing left 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -192,6 +191,7 @@ Every defect this packet measured is either fixed or refuted, with nothing left 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

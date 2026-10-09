@@ -125,7 +125,6 @@ Bring every hook entrypoint in the repo -- not just Cursor's -- to full P0 confo
 | Dependency | Phase 013 established the box-header format and the `.mjs` `'use strict'` rule | Green - Complete | This phase reuses 013's exact 79-character format rather than re-deriving it. |
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - **NFR-P01**: Header and section comments add no runtime cost — they are stripped by neither Node nor any build step, but comment parsing is negligible against the existing hook budget.
 - **NFR-M01**: A future maintainer opening any hook file sees the same five-band shape, so navigating an unfamiliar runtime's adapter costs no re-orientation.
@@ -149,6 +148,7 @@ Low logic complexity, high blast radius. The transformation itself is mechanical
 - As a maintainer opening any hook adapter in any runtime, I want the same header and section shape so I can find the entrypoint without reading the whole file.
 - As the next person auditing this repo against `code-opencode`, I want zero P0 header findings across the hook tree so the audit signal is real rather than noise.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 - **ANSWERED (2026-07-24)**: headers are prescribed per language, not uniformly — box for `.js`/`.cjs`/`.mjs`, thin `MODULE:` for `.ts`. Escalated when the request conflicted with the standard; the operator chose the per-language rule, confirming phase 013 was already correct.
 - `spec-gate-prebind.mjs` still needs the same treatment once the concurrent session that owns it lands its work — deliberately not touched here.

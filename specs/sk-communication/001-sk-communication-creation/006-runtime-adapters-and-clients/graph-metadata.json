@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Integrate the projection core with six CLIs through their safest supported event and presentation boundaries",
     "created_at": "2026-08-11T10:04:31Z",
-    "last_save_at": "2026-10-07T15:56:18.295Z",
+    "last_save_at": "2026-10-08T19:29:31.881Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:a0520dc625c391fa73d728e780767999f1b8755aad68dc0ed09ec6c792a4b8b4",
+    "source_fingerprint": "sha256:46a334dd81dd35177db6ec2a431f3b75c00b6fa98878490e269d0b6c18fbe51e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "97b647f6a39495cf8a9bb4563f40fde2801c2eb2dcbc53341c0a89d4ea219231",
+      "spec.md": "914b6f6023d0df821aee84b357719f6bfe20e83519fa5cdc4efec3317d244e04",
       "plan.md": "ab2e61773c0806d9ad1fff247cba5298e131f4fe3c3ac541b080b994a3defe6a",
       "tasks.md": "bba0eb1bbe55added028fca067757c5c3512dc8ceccdc5dcc8e8c1d0081fa9c6",
       "decision-record.md": "3dd36b9e4726220ddb644a0a57d120158645f49fab5bab7391df99fb7b437b57",

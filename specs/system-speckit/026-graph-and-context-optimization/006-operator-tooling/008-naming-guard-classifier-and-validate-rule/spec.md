@@ -135,7 +135,6 @@ Ship a shared, near-zero-false-positive naming classifier plus a `validate.sh` W
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -186,6 +185,7 @@ Ship a shared, near-zero-false-positive naming classifier plus a `validate.sh` W
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Ruleset, severities, and integration points are settled by the 007 research recommendations and iteration 2 implementation design.

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`cli-devin` never previously existed as a mode inside `cli-external-orchestration` — before its 2026-06-08 deprecation it was a standalone top-level skill (`.opencode/skills/cli-devin/`), and the hub (with `cli-opencode`/`cli-claude-code`/`cli-codex` as its 3 modes) was created after that deprecation",
     "created_at": "2026-07-23T19:51:58.753Z",
-    "last_save_at": "2026-10-07T18:11:30.838Z",
+    "last_save_at": "2026-10-08T19:29:15.637Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e31c22da46090c20d50f9330e95d0ba573469686db245bf63eee67e76e6c8216",
+    "source_fingerprint": "sha256:4c2705c6f1f6286fcbb6ea63e63545c3e3401166051b88649ace7f1c5879beec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "001a74c8eec251d91ef2d3a4e14e7d44fd4d469a2ccacc4f6512a61bb8e512c1",
+      "spec.md": "0af614f599a6377a85c29cf4d53eecea859bb26762ef17efa57ca5b046784a19",
       "plan.md": "aa5db9a977dba9a955ee28b0bfa159878467bc5fca3723b23e814a9cf444951f",
       "tasks.md": "8013aea2e3627f34f9b1e554726b98f89bd360d1a42fade9bb8db7f773dec12c",
       "decision-record.md": "d0541b41de41027fece115ee5cde9effd0c654a8a6019de0953c6fd59bde4411",

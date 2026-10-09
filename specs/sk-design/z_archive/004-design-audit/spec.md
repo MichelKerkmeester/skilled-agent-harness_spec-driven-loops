@@ -149,7 +149,6 @@ Reconstruct a Level-2 packet that makes the source-defined audit contract inspec
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
@@ -208,6 +207,7 @@ Reconstruct a Level-2 packet that makes the source-defined audit contract inspec
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - The exact shared register, context-loading, and `sk_code_handoff` schemas remain owned by their shared references and are not reconstructed here.

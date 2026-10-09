@@ -157,7 +157,6 @@ A reader can tell whether the chart skill still works, and the gates that judge 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -225,6 +224,7 @@ A reader can tell whether the chart skill still works, and the gates that judge 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 Both questions are answered, and two new items close as recorded unknowns rather than as answers.

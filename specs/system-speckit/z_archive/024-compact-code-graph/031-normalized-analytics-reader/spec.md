@@ -177,7 +177,6 @@ Deliver a narrow Level 3 packet that turns the producer seam into a queryable re
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -272,6 +271,7 @@ Deliver a narrow Level 3 packet that turns the producer seam into a queryable re
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 1. Should the next packet wire a CLI or MCP surface for replaying historical state files into the normalized analytics DB?

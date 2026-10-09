@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Cursor exposes only input, tool, and lifecycle hooks, and none of them rewrite the rendered assistant answer, so projection cannot hook the rendered output natively",
     "created_at": "2026-08-14T05:38:37.896Z",
-    "last_save_at": "2026-10-07T15:56:21.904Z",
+    "last_save_at": "2026-10-08T19:29:35.095Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +196,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a2863278c58f92c11d8744d79eddf1a802b31009736ec2d02d3d1c8a6017e63e",
+    "source_fingerprint": "sha256:014870ea96e6c399699af38ba908d173ee1b87adea59a1d11ca32b85df4b00d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c7b364190e02c72c3d19834386afb38a1b31c90d99faa2d790f02955cfb02f04",
+      "spec.md": "997f4494e57cad155534ca88aa1223c063081ea5fe5facd1f153e092ba5b7ba4",
       "plan.md": "8c68c4c887cf0e8fcfdd3f2714ad64f63aa579095b61059b81dff37c808af7e4",
       "tasks.md": "002e1015684a153ac2d82091bf527cba2a4fd0ea10ca1cba5c5aa9e1254f39cc",
       "implementation-summary.md": "caab26dfdb86d2a615d24dfb3fcad9a4a2a5959178ada657a67050c154b31cbb"

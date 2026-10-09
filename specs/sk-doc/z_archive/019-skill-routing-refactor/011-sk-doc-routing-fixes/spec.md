@@ -179,7 +179,6 @@ Close all three failure classes by giving sk-doc a canonical, enforced leaf-reso
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -252,6 +251,7 @@ Close all three failure classes by giving sk-doc a canonical, enforced leaf-reso
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Legacy-read telemetry cutoff for removing the dual-read bridge is an operator-policy decision deferred past this packet.

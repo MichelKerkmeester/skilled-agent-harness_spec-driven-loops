@@ -173,7 +173,6 @@ than opinions, and which phase 004 can apply directly.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -231,6 +230,7 @@ criteria and because its output decides a scoring change.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether any run scores real vectors rather than fixtures. Phase 001 answers it, and if the answer is none, this plan must design that run rather than assume it.

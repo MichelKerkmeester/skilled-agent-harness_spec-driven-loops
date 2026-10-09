@@ -144,7 +144,6 @@ Create `hook-adapter-shared.mjs` (and a `.cjs` twin for CommonJS consumers) expo
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -187,6 +186,7 @@ Create `hook-adapter-shared.mjs` (and a `.cjs` twin for CommonJS consumers) expo
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - None currently blocking.

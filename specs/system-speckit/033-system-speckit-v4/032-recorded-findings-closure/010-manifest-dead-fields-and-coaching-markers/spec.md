@@ -136,7 +136,6 @@ Neither dead field survives in the manifest and neither dead marker block surviv
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -191,6 +190,7 @@ Neither dead field survives in the manifest and neither dead marker block surviv
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether `templates/README.md` needs any edit at all once the fields are gone, since its current line only names the manifest's general purpose ("Defines Level contracts, document registry, template versions and section gates") without citing the two fields by name - decided by re-reading the line after the manifest edit lands.

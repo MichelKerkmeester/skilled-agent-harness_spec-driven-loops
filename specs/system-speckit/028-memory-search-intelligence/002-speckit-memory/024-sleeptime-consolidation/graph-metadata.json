@@ -46,12 +46,6 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "handlers/save/reconsolidation-bridge.ts",
-      "handlers/chunking-orchestrator.ts",
-      "lib/cognitive/pressure-monitor.ts",
-      "lib/search/search-flags.ts",
-      "lib/runtime/timer-registry.ts",
-      "lib/session/session-manager.ts",
       "tests/flag-ceiling.vitest.ts"
     ],
     "entities": [
@@ -83,42 +77,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "reconsolidation-bridge.ts",
-        "kind": "code",
-        "path": "handlers/save/reconsolidation-bridge.ts",
-        "source": "derived"
-      },
-      {
-        "name": "chunking-orchestrator.ts",
-        "kind": "code",
-        "path": "handlers/chunking-orchestrator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "pressure-monitor.ts",
-        "kind": "code",
-        "path": "lib/cognitive/pressure-monitor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "timer-registry.ts",
-        "kind": "code",
-        "path": "lib/runtime/timer-registry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-manager.ts",
-        "kind": "code",
-        "path": "lib/session/session-manager.ts",
         "source": "derived"
       },
       {
@@ -198,11 +156,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reuses Letta",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context We",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The internal Memory MCP has no off-turn memory reorganization",
     "created_at": "2026-06-19T05:47:05.579Z",
-    "last_save_at": "2026-08-30T15:39:35.118Z",
+    "last_save_at": "2026-10-08T19:31:03.070Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +206,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8907c5419fde0302c00a4df1f5c752f723d356c524c4b27cb41b162992daf35",
+    "source_fingerprint": "sha256:3fd1e2b8294a56ae1272019c697c7527db04b1d38841a5505f010fb96bc577f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b52db362e0c8ddeaef2b68f24a6b9c2c2ce8aecf797a941b01b0a7c8956c0d37",
+      "spec.md": "9cc801d4c8f92743b253bfd2580da73bad83bf5d5db41ea36c19e71ceed8c02c",
       "plan.md": "608011245fa579dc623b52d86f5cf767f5a77cfd18148d4644f29fe4c5e9b224",
       "tasks.md": "d25a206e7bcd16c40643570ef04d2272e1ebb558d9c56edbdc5b016010cb423e",
       "decision-record.md": "78772836c1d57106a1765cfcbbb83e06175bf74834f3b2abeb0a0aecf2181c01",

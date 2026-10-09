@@ -180,7 +180,7 @@
     ],
     "causal_summary": "Pi exposes a `turnend` event that delivers the ending assistant message, but in-repo the event handler only reads that message and injects context with `display: false`; no handler ever mutates the rendered bubble",
     "created_at": "2026-08-14T05:41:31.435Z",
-    "last_save_at": "2026-10-07T15:56:18.668Z",
+    "last_save_at": "2026-10-08T19:29:35.053Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -189,10 +189,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f50383ad307c8ec9b4bf0d26c132dc7454af7b56abe555895bc15b78e134127",
+    "source_fingerprint": "sha256:1bb6b8c81915f32f6af56f2c63b481937b7d1e35776a029a9ef6453c1b16534b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "27a56c6998ef8897daf74291b266bdc83b3c32d5eef476f85d9ef6d8fb28227c",
+      "spec.md": "008fc39be0db20107e827111423f375d7d6c0fd8a7db1179af403f6f1b569587",
       "plan.md": "3c0c7bb1d7134e6515314bd30310543baf9376149d010c94b3bff4519ba6d4e6",
       "tasks.md": "cbe0d7e76b5cff95dbf1abb45252facd5ff1b08d543ee7c3e43917cbe443a404",
       "implementation-summary.md": "0304e676b067b100d8fd78a16ebfb005dc9b6cd14a32593b91176e898290ac8a"

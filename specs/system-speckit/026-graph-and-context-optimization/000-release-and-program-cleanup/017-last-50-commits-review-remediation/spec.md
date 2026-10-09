@@ -164,7 +164,6 @@ Drive the 016 report's actionable findings to closed by shipping verified source
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -232,6 +231,7 @@ Drive the 016 report's actionable findings to closed by shipping verified source
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. All actionable findings are remediated or recorded as deliberate accept-no-action decisions. The only deferred step is the operator build + deploy of the dist so the running daemon picks up the source fixes.

@@ -214,7 +214,6 @@ Audit completed 2026-03-22. Results per feature:
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -222,16 +221,18 @@ Audit completed 2026-03-22. Results per feature:
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Are there undocumented features in this category not yet in the catalog?
 - Have any features been deprecated since the last catalog update?
 - **[From audit]** Should the F03 catalog entry be updated to list `memory-index-alias.ts` as a primary source file?
 - **[From audit]** Should the F03 catalog entry document all undocumented full-mode response fields (embeddingRetry, repair.partialSuccess, orphan cleanup, integrity verification)?
+<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions-2 -->
 ### Related Documents
 
 - **Implementation Plan**: See `plan.md`
@@ -239,4 +240,3 @@ Audit completed 2026-03-22. Results per feature:
 - **Verification Checklist**: See `checklist.md`
 
 <!-- /ANCHOR:questions-2 -->
-<!-- /ANCHOR:questions -->

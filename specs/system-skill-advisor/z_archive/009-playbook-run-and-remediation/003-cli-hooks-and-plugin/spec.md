@@ -116,7 +116,6 @@ Confirm every compiled hook adapter behaves per contract against the current bui
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -168,6 +167,7 @@ Confirm every compiled hook adapter behaves per contract against the current bui
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Why does the OpenCode plugin bridge fall to the python route + `SYSTEM_SKILL_ADVISOR_UNAVAILABLE` even though `dist/mcp_server/compat/index.js` exists? Recorded for triage.

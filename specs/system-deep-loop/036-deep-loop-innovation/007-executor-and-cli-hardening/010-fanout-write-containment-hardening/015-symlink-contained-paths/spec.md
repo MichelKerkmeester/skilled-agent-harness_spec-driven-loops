@@ -128,7 +128,6 @@ No byte the guard moves can be redirected by a symlink, anywhere in the path, at
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -178,6 +177,7 @@ No byte the guard moves can be redirected by a symlink, anywhere in the path, at
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

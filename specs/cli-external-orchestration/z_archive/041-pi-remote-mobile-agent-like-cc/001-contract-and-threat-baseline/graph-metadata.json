@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Pins the live Pi, host, ingress, browser, storage, and extension contracts and freezes the threat model before production implementation",
     "created_at": "2026-08-10T18:28:38Z",
-    "last_save_at": "2026-10-07T18:11:39.054Z",
+    "last_save_at": "2026-10-08T19:29:19.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +196,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8e695beffd75db7857143a5c6496fb91ed65699ef97cde955c7d8be58de637d7",
+    "source_fingerprint": "sha256:54b27dc07232926429342b45d976c36c1c057f864a32a04d0a8e4e9e9b30c4e9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2c193b34e827b8bf2a42a5a773f899e115c19bcac79737b15c6be70f3c9731bb",
+      "spec.md": "9e30ba6e155188a51d96226161485b95c0cd965f2d96a3670a8ad6f9405c865c",
       "plan.md": "d6b71041a2f93dbc5e84371abb316e55db248cb8edcca756248bb6316e95259f",
       "tasks.md": "69900731ae23a1c2600fda731d2a05c9adbb9729dff1192040907ca58d6b1dfc",
       "decision-record.md": "77c9769939b49c3c94608e29cc8997196076bdb1076ad89a5de57fda35b8cbf3",

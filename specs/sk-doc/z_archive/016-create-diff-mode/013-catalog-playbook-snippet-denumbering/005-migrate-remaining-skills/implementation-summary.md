@@ -79,6 +79,7 @@ Ran the deterministic tool per skill in the worktree. A zsh word-splitting bug i
 | Digit-initial slugs (e.g. 4-stage) preserved | Yes (verified as rename DSTs) |
 
 Global gate: `find .opencode/skills -name '*.md' \( -path '*/feature_catalog/*' -o -path '*/manual_testing_playbook/*' \) | grep -cE '/[0-9]{2,3}-[^/]*.md
+<!-- /ANCHOR:verification -->
 
 ---
 
@@ -88,7 +89,6 @@ Global gate: `find .opencode/skills -name '*.md' \( -path '*/feature_catalog/*' 
 1. Cross-tree references handled in the phase-006 sweep.
 <!-- /ANCHOR:limitations -->
 ` returned 0 across all 20 skills. R-status: 310 R / 0 A / 0 D.
-<!-- /ANCHOR:verification -->
 
 ---
 

@@ -166,7 +166,6 @@ Rename the MCP server id, launcher, state file, and live namespace references to
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -245,6 +244,7 @@ Rename the MCP server id, launcher, state file, and live namespace references to
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 None. The operator locked the architecture and pre-approved Gate 3 as Option B.

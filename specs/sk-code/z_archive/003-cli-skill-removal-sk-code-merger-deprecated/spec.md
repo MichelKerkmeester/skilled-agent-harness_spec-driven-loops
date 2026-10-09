@@ -154,7 +154,6 @@ Delete both skill folders, prune every cross-reference, and neutralize sk-code's
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -203,6 +202,7 @@ Delete both skill folders, prune every cross-reference, and neutralize sk-code's
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 (none)

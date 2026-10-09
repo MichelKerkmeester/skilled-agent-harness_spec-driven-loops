@@ -115,7 +115,6 @@ A ranked, evidence-cited list of visual upgrades for templates, assets and the s
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -181,6 +180,7 @@ A ranked, evidence-cited list of visual upgrades for templates, assets and the s
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - The glm lane has four angles left. Rerun it in an isolated worktree so the runner's containment sweep cannot touch another session's edits, and at `high` thinking unless the operator wants the pace of `max` (one angle per hour).

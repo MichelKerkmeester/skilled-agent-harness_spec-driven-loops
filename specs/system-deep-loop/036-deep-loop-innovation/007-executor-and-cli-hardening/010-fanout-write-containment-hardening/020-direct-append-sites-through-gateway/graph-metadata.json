@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The projection store appends only when the current state log is a durable prefix of the folded projection and otherwise replaces the file, so any row a YAML appended outside the ledger was dropped on the next gateway write",
     "created_at": "2026-09-20T08:33:43.642Z",
-    "last_save_at": "2026-10-07T15:57:00.949Z",
+    "last_save_at": "2026-10-08T19:30:25.358Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a3e78811d0b7494dc9da836dc6c517b6c9a29a6f53f9639a476e11797a05b4a",
+    "source_fingerprint": "sha256:a1f3db271a92240d8a5a205b5c6e9f7ad6ab49a9a8a93725f1029da430aa7e2c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4c9560d8e55de8ede58a27cf3dd73082f09e8bc5983737da21b0bc52181bfd86",
+      "spec.md": "4171249490f9e1062975d9e880998aa42b759808823d1c08bdafc127e9e7da85",
       "plan.md": "35db0de9c1f120f8d9c193d222b415d0311fa520b9f9a2bc86931a561c22e315",
       "tasks.md": "a17fec81e98c0e1c2f236e65d538b05fc99241cb1c2bef02319da2de62696924",
       "implementation-summary.md": "f034a1c81f0fb58bd4291ece7050f2ed7342a34f31fb085b24526598cd381d1d"

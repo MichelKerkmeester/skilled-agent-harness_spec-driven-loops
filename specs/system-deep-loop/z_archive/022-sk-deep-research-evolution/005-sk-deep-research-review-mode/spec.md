@@ -121,6 +121,7 @@ Add a review mode to sk-deep-research that repurposes the iterative loop infrast
 | Dependency | `.opencode/skills/sk-code-review/` reference docs | Review mode depends on the shared scoring and review doctrine | Keep the packet references pointed at committed repo files |
 | Dependency | `.opencode/skills/sk-deep-research/` and `.opencode/commands/speckit/` docs | Review-mode implementation depends on those runtime-facing surfaces | Preserve direct repo references in the packet and handover |
 | Risk | Temporary local artifacts from the original session are gone | Resume instructions could point at files that no longer exist | Reword those references as temporary notes rather than committed repo files |
+<!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:nfr -->
 ### Non-Functional Considerations
@@ -139,7 +140,6 @@ Add a review mode to sk-deep-research that repurposes the iterative loop infrast
 - Moderate documentation complexity because review mode touches multiple command and skill surfaces.
 - Low repair complexity because this pass fixes structure and references, not feature behavior.
 <!-- /ANCHOR:complexity -->
-<!-- /ANCHOR:risks -->
 
 ---
 

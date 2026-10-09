@@ -163,7 +163,6 @@ Deliver a clean, scannable, authoritative root `README.md` reflecting current v4
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -211,6 +210,7 @@ Deliver a clean, scannable, authoritative root `README.md` reflecting current v4
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. All scope items and target improvements are identified.

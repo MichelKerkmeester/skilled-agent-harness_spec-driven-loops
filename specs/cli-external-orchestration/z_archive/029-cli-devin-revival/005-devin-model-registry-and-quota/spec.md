@@ -158,7 +158,6 @@ The final allowlist is 7 model IDs, not 6: `grok-4-5-high`, `glm-5-2`, `glm-5-2-
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -228,6 +227,7 @@ Low-to-medium. No runtime code changes; the work is JSON/Markdown/Bash-array dat
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should `sk-prompt/prompt-models/SKILL.md`'s own model-executor table (~line 210), its Keywords comment, and its "in-scope model set" prose also gain an `swe-1.6`/`cli-devin` mention? Not in the parent packet's declared Files to Change table for this phase; recommended as a phase 005 follow-up or folded into phase 007's closeout sweep. Operator to decide.

@@ -215,7 +215,6 @@ Named by phase 1's synthesis (`../001-upgrade-research/research/research.md`); t
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -323,6 +322,7 @@ change breaks a named family, **so that** I find out before a reviewer has to no
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether the ten named families should ship as ten separate functions or fewer functions each

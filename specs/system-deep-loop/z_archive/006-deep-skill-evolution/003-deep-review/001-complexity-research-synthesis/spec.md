@@ -172,7 +172,6 @@ Use 15 autonomous research iterations to identify why deep-review underperforms 
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -241,6 +240,7 @@ Use 15 autonomous research iterations to identify why deep-review underperforms 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Which follow-up implementation packet should own deep-review `searchLedger` changes?

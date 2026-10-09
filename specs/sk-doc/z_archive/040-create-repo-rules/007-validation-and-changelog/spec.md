@@ -156,7 +156,6 @@ Exercise the mode against a real request in both directions - one accepted, one 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -206,6 +205,7 @@ Exercise the mode against a real request in both directions - one accepted, one 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the rule the exercise produces be shipped into `repo-rules/`? **Leaning no by default: it exists to prove the mode works, and shipping a rule because it was convenient to generate is exactly the restraint failure the decision tests refuse. Operator call if the rule turns out to be genuinely wanted.**

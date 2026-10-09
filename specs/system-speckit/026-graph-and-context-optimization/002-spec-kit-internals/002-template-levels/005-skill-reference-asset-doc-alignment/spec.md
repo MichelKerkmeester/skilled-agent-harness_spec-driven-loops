@@ -140,7 +140,6 @@ Bring the remaining AI-facing system-spec-kit docs into alignment with the curre
 <!-- /ANCHOR:risks -->
 
 ---
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -219,6 +218,7 @@ Bring the remaining AI-facing system-spec-kit docs into alignment with the curre
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. The user supplied the packet path, scope, constraints, and verification gates.

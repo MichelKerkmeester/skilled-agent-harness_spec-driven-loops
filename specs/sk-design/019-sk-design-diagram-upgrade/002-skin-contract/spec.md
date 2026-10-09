@@ -201,7 +201,6 @@ Five loci disagree today; T010 collapses them to one (`SKILL.md`'s frontmatter f
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -281,6 +280,7 @@ Five loci disagree today; T010 collapses them to one (`SKILL.md`'s frontmatter f
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - The exact byte path for the derivation-record artifact (`references/foundations/derivation-record.md`, inferred here) is not independently confirmed against 003's expectations; 003's own planning should re-confirm it before the applicator is built.

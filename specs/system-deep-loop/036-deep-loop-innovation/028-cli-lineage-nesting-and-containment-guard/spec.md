@@ -137,7 +137,6 @@ A CLI fan-out lineage runs its iterations in the process it was given, and any f
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -192,6 +191,7 @@ A CLI fan-out lineage runs its iterations in the process it was given, and any f
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the recovery patch be pruned on a later clean run, or kept for the life of the artifact directory?

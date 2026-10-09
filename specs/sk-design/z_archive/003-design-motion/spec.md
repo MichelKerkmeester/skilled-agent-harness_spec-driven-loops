@@ -143,7 +143,6 @@ Reconstruct a Level-2 packet that makes the source-defined motion contract inspe
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
@@ -199,6 +198,7 @@ Reconstruct a Level-2 packet that makes the source-defined motion contract inspe
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None stated by the motion source; the exact shared register and sk_code_handoff schemas remain owned by the sibling paths named in SKILL.md.

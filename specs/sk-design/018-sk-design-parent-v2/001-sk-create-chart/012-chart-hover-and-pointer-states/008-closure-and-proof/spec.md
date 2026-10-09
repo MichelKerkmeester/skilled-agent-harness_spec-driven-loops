@@ -126,7 +126,6 @@ Every one of the eleven rows in `acceptance-criteria.md` reads `Met`, `Waived` o
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -176,6 +175,7 @@ Every one of the eleven rows in `acceptance-criteria.md` reads `Met`, `Waived` o
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - The O3 completeness question (research.md section 9): whether silence should keep passing an unannotated form now that all 21 templates are annotated, or whether that should become an error in a future phase. This phase must answer it in writing, not implement a checker change either way.

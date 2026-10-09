@@ -135,7 +135,6 @@ The supervisor reaps and respawns a live-but-unresponsive daemon instead of adop
 <!-- /ANCHOR:risks -->
 
 ---
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -205,6 +204,7 @@ The supervisor reaps and respawns a live-but-unresponsive daemon instead of adop
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None outstanding. Root cause #1 (the enrichment loop that wedges the daemon) is tracked as separate, out-of-scope work.

@@ -170,7 +170,6 @@ On-topic memory searches that return strong cosine matches report `requestQualit
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -252,6 +251,7 @@ On-topic memory searches that return strong cosine matches report `requestQualit
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Vector-lane cold inclusion design: **RESOLVED — option A** (admit only archived rows whose logical key has no active winner; no superseded dedup-losers). Implemented behind opt-in `SPECKIT_INCLUDE_ARCHIVED_VECTOR` (default OFF), unit-tested. **OPEN: one live activation + spot-check on the running daemon (logical-key match against real data, no duplicate explosion); independent of the reindex.**

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The shared mk-spec-memory daemon is owned by one launcher",
     "created_at": "2026-06-07T17:32:00Z",
-    "last_save_at": "2026-08-30T15:39:32.516Z",
+    "last_save_at": "2026-10-08T19:30:56.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c153ce628078df3277be614c6dfc4944c16ee80bb35cdf41304e443594cf2d14",
+    "source_fingerprint": "sha256:c95f80d3cf3000b07775335cea7ea0df48c84bfb6e8559272cb7988f583e0e9d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "24745d95765a1cc7c5bb38f67752715176630d50c7e8b4d3b8e6d97744e4e670",
+      "spec.md": "149dc035587624fa76a189ff934d0086fd7c51b7df023920e804bdce4101ab23",
       "plan.md": "db38729861de03cd479cc9f310272108c4098f88e4851698799a769a8a343900",
       "tasks.md": "70d600f6e81440c4a36ba4e1f41c694a1358d8726e0be3865f0fdc4a1c3afc50",
       "implementation-summary.md": "f88acf89b19f3d1c427883fd0b66eee554b243d29c5162d2f1c278b5355b1c12"

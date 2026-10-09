@@ -144,7 +144,6 @@ The operator has, in one place, the full blast-radius comparison between staying
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -199,6 +198,7 @@ The operator has, in one place, the full blast-radius comparison between staying
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Keep literal (Option A) or rename with a compatibility window (Option B)? This is the operator decision this phase exists to capture, not to pre-answer; the blast-radius evidence above is provided so the choice is informed.

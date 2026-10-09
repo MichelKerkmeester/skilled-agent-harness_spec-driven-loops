@@ -193,7 +193,6 @@ Repair the three P0 correctness defects and the P0-4 measurement freshness gap f
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -268,6 +267,7 @@ Repair the three P0 correctness defects and the P0-4 measurement freshness gap f
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - RESOLVED (ADR-007, Accepted): the no-brief output contract adopts the governance fallback directive, since it already reaches production on every prompt today. Phase 1 aligns the 4 stale hook tests and the reference doc, the implementation stays as-is.

@@ -166,7 +166,6 @@ Make the updater tell generated files from authored ones and regenerate the form
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -234,6 +233,7 @@ Make the updater tell generated files from authored ones and regenerate the form
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Is the generated-file inventory a path allowlist or a content-marker rule? The build decides from the writers' output shapes and records the rule in `scratch/`.

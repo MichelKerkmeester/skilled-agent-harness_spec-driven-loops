@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Foundations and audit were registered as peer hub modes despite being interface-domain workflows",
     "created_at": "2026-07-26T09:12:46.542Z",
-    "last_save_at": "2026-10-07T18:12:34.615Z",
+    "last_save_at": "2026-10-08T19:29:56.200Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:9575fff14449fb28cbaf66dedd19fc5ff672d50834f043ee043d03b2865c6217",
+    "source_fingerprint": "sha256:86d51e52b74b51acdc55cb9beb51e4d81c0b3cbc55580fcf1ce308ed40a47d97",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "94279ea42304fb4c0da8a121b3ab57e8bb4899912d7e5d2a41506ab2f2ffd7ae",
+      "spec.md": "ae14b1ea566cbfaaf623d008afe6cec68c89f099592d6ea6789ae3843722136c",
       "plan.md": "c2695d1029018b20d2e88c4bfd9313b793cfa41d09c81d0a0aed8579168fc272",
       "tasks.md": "8cc3fdea5f33d4fef8de1b9b6d8e0be3ba4c1b08119536256bcf68c9b12e37bd",
       "decision-record.md": "856e63422b21c36e780cd931e821915626ca9a2d339bf34fb3c54c706de68946",

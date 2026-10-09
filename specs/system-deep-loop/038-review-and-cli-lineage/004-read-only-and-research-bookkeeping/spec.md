@@ -172,7 +172,6 @@ Give the three deep-loop graph scripts a read-only mode that leaves the filesyst
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -227,6 +226,7 @@ Give the three deep-loop graph scripts a read-only mode that leaves the filesyst
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Each unconfirmed finding carries a reproduce-first task, and a finding that does not reproduce is recorded with its observation instead of being fixed.

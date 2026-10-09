@@ -138,7 +138,6 @@ Close or document all 11 bounded items without changing locked ids, package owne
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -193,6 +192,7 @@ Close or document all 11 bounded items without changing locked ids, package owne
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Gate 3, branch policy, commit authorization, and scope are pre-answered by the operator.

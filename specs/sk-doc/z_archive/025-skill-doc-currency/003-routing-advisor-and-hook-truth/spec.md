@@ -230,7 +230,6 @@ The installation-drift check reports missing and orphaned hook paths at **user-g
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -310,6 +309,7 @@ The installation-drift check reports missing and orphaned hook paths at **user-g
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **[OPERATOR-DECISION: DR-6 — gate policy]** Is the advisor gate an absolute floor, or a bounded delta from a dated snapshot? Two of the research loop's open questions are this same question. **Not pre-decided by this package** — it is a policy choice, and editing the numbers before ruling it just relocates the inaccuracy.

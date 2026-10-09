@@ -182,7 +182,6 @@ Land the demand-listener re-arm and the hf-local fail-fast so a dead embedder si
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -228,6 +227,7 @@ Land the demand-listener re-arm and the hf-local fail-fast so a dead embedder si
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 All resolved during implementation:

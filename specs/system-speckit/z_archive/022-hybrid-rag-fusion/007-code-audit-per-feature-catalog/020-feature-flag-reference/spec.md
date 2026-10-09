@@ -227,7 +227,6 @@ Commit `09acbe8ce` ("feat(system-spec-kit): graduate all Wave 1-4 feature flags 
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -235,14 +234,16 @@ Commit `09acbe8ce` ("feat(system-spec-kit): graduate all Wave 1-4 feature flags 
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - F05 source file paths require a catalog update to point to production files (tracked finding, not a blocker).
 - Post-audit flag graduation: 22 flags changed from opt-in to default-ON (commit `09acbe8ce`). Individual flag default values were not in scope for this category-level audit.
+<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions-2 -->
 ### Related Documents
 
 - **Implementation Plan**: See `plan.md`
@@ -250,4 +251,3 @@ Commit `09acbe8ce` ("feat(system-spec-kit): graduate all Wave 1-4 feature flags 
 - **Verification Checklist**: See `checklist.md`
 
 <!-- /ANCHOR:questions-2 -->
-<!-- /ANCHOR:questions -->

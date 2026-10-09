@@ -243,7 +243,6 @@ no other timing changes required to close the SIGKILL loop.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -311,6 +310,7 @@ no other timing changes required to close the SIGKILL loop.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does a single `beginMaintenance()`/`.end()` wrap around `runBootFtsIntegrityCheck()` suffice,

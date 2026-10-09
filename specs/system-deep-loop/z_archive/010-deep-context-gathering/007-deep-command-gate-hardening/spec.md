@@ -149,7 +149,6 @@ Every deep command opens with two un-skippable, ordered HARD-BLOCK gates: **Gate
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -202,6 +201,7 @@ Every deep command opens with two un-skippable, ordered HARD-BLOCK gates: **Gate
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Enforcement level (markdown) and both-gates scope confirmed with the user.

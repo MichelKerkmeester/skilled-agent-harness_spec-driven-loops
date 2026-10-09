@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The redundancy research finished with a clear contract, but the packet family still needed one coordination layer to apply it",
     "created_at": "2026-04-12T09:02:53.452Z",
-    "last_save_at": "2026-08-30T15:39:29.176Z",
+    "last_save_at": "2026-10-08T19:30:45.285Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7a84af0f910ad8f20124724252fe9aef13ddc688f0a44c7cd1d934a74f5295d7",
+    "source_fingerprint": "sha256:96e0002bdcad8f1459693aeb2eb93b10d46f1fcf13967ba2c01ce3f1ed4f7359",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f2257ddd6c6b571c898948c3be6c21489068d44645d4b09d75c95466967a9cd2",
+      "spec.md": "30c35ca4281fa0460f83ea5bf8b326a20542b1fea56c9e330ab0bc3b4066ac17",
       "plan.md": "0d7a401fc6f28e33ff55f064b1325f53d6640575a177790df2ca3034e620e51f",
       "tasks.md": "1d562b7b26d39d0816c0d445a728868b90be9fe9345472309a7b34be3a1a66a4",
       "decision-record.md": "2cd7879fd60eb75453340251729c9b3bc5e76b46eaa4961945a9ce08427352be",

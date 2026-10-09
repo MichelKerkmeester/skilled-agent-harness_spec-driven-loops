@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The advisor's current-source holdout accuracy is 73.08 percent (57/78) with 85.25 percent selective precision, so it routes correctly far more often than not",
     "created_at": "2026-07-16T08:23:16.276Z",
-    "last_save_at": "2026-10-07T18:13:21.000Z",
+    "last_save_at": "2026-10-08T19:30:08.968Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:f4642fc401261a17615845184e5e9f2701db3053d12ecc5bd961c5ee566726c1",
+    "source_fingerprint": "sha256:7fc9ab3e1b5bbfc6ed30d3094e5cdf9f08f1d395fd723cbfdcf23e2930a04d53",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "47ff4a0d0c2bb903aac2a06510e0bb8ddc163fd3593a4a56b4ff87ab7b803e77",
+      "spec.md": "efe9e584248f07990c818224bb32d3647bbf4c89dc4725c50f209108487f6b61",
       "plan.md": "f1c2d2ab32f12fd7060bfe727e36596509b912c286a4a71fa8d9d2c3c138f35c",
       "tasks.md": "ce76e47be15a8f18468bdac6fe4fad524de79fd71f364c5111deb0b5006fa6c7",
       "decision-record.md": "858797cd100b33b1a666f2aff8a68b2e843bdfbb23b66dac56c980694e2c67d3"

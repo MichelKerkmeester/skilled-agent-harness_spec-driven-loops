@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Gate 3 offers five options today",
     "created_at": "2026-09-14T20:22:06Z",
-    "last_save_at": "2026-10-07T15:57:29.413Z",
+    "last_save_at": "2026-10-08T19:31:28.851Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98caf8a45a1107368202652c9972cdac33f99c9b062cde33400cc73305c19c6e",
+    "source_fingerprint": "sha256:47e0dc03458cde4c960b3ed2292e443b154cdbef746a3b902b13bc9c9df7af8b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ef6b92e86d4cd64f0d0b614d5119ae012e0eec2f3c00e67afebbd1566a9e75fb",
+      "spec.md": "7f0c25caf7d7d041160fa3b850f917834b7d9c685e78fe35cdb65865add3be17",
       "plan.md": "4a7b15615c42c2ba7a73a5fce361deffa8661ef3324211c6a6de1ae7c5bb716c",
       "tasks.md": "b9fbcac7e46a4701449ed383dacb38afa4d199a30d067d052dd823cd8e83a4e4",
       "implementation-summary.md": "391d4d1e07ae0285a72305dfc0aa21a38a4656392fa38e4c92e714050e7abc5a"

@@ -173,7 +173,6 @@ Produce an evidence-backed translation layer that tells Public exactly which gra
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -300,6 +299,7 @@ Produce an evidence-backed translation layer that tells Public exactly which gra
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None remaining. All 22 research questions are answered (final coverage 1.0 at iter 20). Q12 is fully covered in section 12, and Q13-Q22 are covered in section 13.B.

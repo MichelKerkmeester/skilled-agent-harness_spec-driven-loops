@@ -167,7 +167,6 @@ canonical path.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -216,6 +215,7 @@ canonical path.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the three sibling repositories be re-pointed at `.skilled/repo-rules/<rule>.md`? Recorded as a

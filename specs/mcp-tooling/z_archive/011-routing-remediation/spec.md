@@ -191,7 +191,6 @@ Mapping note: the review's "advisory maintenance" bucket groups F011 with F015. 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -290,6 +289,7 @@ Mapping note: the review's "advisory maintenance" bucket groups F011 with F015. 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - ADR-001 final ruling: fallback-only vs remove vs universal-base semantics for `routerPolicy.defaultResource` (recommended: fallback-only; operator confirmation required at implementation start).

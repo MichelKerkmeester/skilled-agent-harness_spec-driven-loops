@@ -46,8 +46,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "review/review-report.md",
-      "handlers/memory-save.ts"
+      "review/review-report.md"
     ],
     "entities": [
       {
@@ -84,12 +83,6 @@
         "name": "review-report.md",
         "kind": "doc",
         "path": "review/review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "handlers/memory-save.ts",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`scheduleBackgroundEnrichment` (`handlers/memory-save.ts`) incremented `activeBackgroundEnrichments` inside the deferred `run` callback (executed later via `setImmediate`), then gated scheduling on `activeBackgroundEnrichments < MAXBACKGROUNDENRICHMENTS`",
     "created_at": "2026-06-14T18:42:07Z",
-    "last_save_at": "2026-08-30T15:39:32.249Z",
+    "last_save_at": "2026-10-08T19:30:55.024Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +206,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:626131d6d3aa766a950afd999e3ed32519b4f55e202d42c8b9220a2f689dc6eb",
+    "source_fingerprint": "sha256:528ce70013d072ee691a44f16514042de0c21805bae8edf0ead7846c1985dfd7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a93cbdfb143cc3dade59c86b8aad107478589caac82899b7276b093f35867d31",
+      "spec.md": "db6bc353a2516cda1e96a9a4c4fcf93f502ad9d2e8d5ab76cbabccc490d3db99",
       "plan.md": "381c7ff469f6c24c06afac21fa219f1b076862196f6afa0bab453f35f10074a4",
       "tasks.md": "649fac7d19bf0325e593cd48d278f5d288ef09a6714d832851aa403015f535fc",
       "decision-record.md": "fbbb33a816273a6a39bdd1e3804d495679e67d5b3a0449cbeb28110414ef340f",

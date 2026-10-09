@@ -45,10 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "tests/orphan-sweep-corpus-repair.vitest.ts",
-      "scripts/migrations/heal-system-speckit-track-identity.mjs",
-      "scripts/migrations/collapse-duplicate-content-rows.mjs"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -79,24 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "orphan-sweep-corpus-repair.vitest.ts",
-        "kind": "test",
-        "path": "tests/orphan-sweep-corpus-repair.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "heal-system-speckit-track-identity.mjs",
-        "kind": "file",
-        "path": "scripts/migrations/heal-system-speckit-track-identity.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "collapse-duplicate-content-rows.mjs",
-        "kind": "file",
-        "path": "scripts/migrations/collapse-duplicate-content-rows.mjs",
         "source": "derived"
       },
       {
@@ -194,11 +173,29 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Michel Kerkmeester",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sweep Cursor",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`handlers/memory-index.ts:684` calls `sweepOrphanIndexRows({ limit: 200 })` with no cursor; the function defaults cursor=0 and returns `nextCursor`, which is echoed in scan results but never persisted or fed back, so every scan re-checks the same ~200 lowest-id rows forever (report §2 Chain B; ledger L2, live-verified 🟢)",
     "created_at": "2026-07-03T09:44:17Z",
-    "last_save_at": "2026-08-30T15:39:35.313Z",
+    "last_save_at": "2026-10-08T19:31:04.349Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +205,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e7c58b284be34db777071f2c0f22102e81b38feefe3c1c2fd249c7cd90aed7c3",
+    "source_fingerprint": "sha256:51747531905f073d59965a6b1fb23227b85bc0c93d8cd6aaabaf850a0d60873e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "de7090e9aaf2f286b2688a94dca45ed9cf4ecaf428354816f1a26db744e83719",
-      "plan.md": "b8a32d10ce5dc939145d47da3adf544a1d7b4d3fcddfbbe01c66cecac3f8421d",
-      "tasks.md": "64a440693501e357e2a4d94a0141ace94b5ec8c2e0a44807f7c7a989e365c0f0",
+      "spec.md": "2ac788df17d2d7cbf3be134dbb33b906fc9d57b6e3ca97a4969664058f85f13b",
+      "plan.md": "a7e2730069e0cc8be28fab927591b03a5231cde19a827dba4c95e46a66203d9f",
+      "tasks.md": "ca58cede36668888d2fee3b03853c472644fc31f8c4f8de0f5904995361f39df",
       "decision-record.md": "79570294b383195e215a6d7849d58edb1910c17c7e7c402010391c2c5e02adaf",
       "implementation-summary.md": "01422bcf48bdca23f48d48df06a5fd82d328c866121c2157d60b62da0c8770ad"
     },

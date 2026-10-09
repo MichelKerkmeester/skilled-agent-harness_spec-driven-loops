@@ -112,7 +112,6 @@ rule the first fix turned out to depend on.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -167,6 +166,7 @@ rule the first fix turned out to depend on.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

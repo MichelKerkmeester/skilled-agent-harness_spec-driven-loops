@@ -141,7 +141,6 @@ Produce a line-cited audit, apply minimal code fixes for confirmed violations, a
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -190,6 +189,7 @@ Produce a line-cited audit, apply minimal code fixes for confirmed violations, a
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

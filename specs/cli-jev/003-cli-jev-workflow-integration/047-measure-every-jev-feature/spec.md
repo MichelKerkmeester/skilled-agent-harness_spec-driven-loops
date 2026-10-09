@@ -154,7 +154,6 @@ The 15 features and what each needs before its scorer can print a result:
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -203,6 +202,7 @@ The 15 features and what each needs before its scorer can print a result:
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator asked for every feature to be measured on 2026-10-02.

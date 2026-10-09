@@ -25,7 +25,6 @@ _memory:
 
 ---
 
-<!-- ANCHOR:adr-001 -->
 <!-- ANCHOR:metadata -->
 ## ADR-001: Restore Metadata Through Safe Hybrid Enrichment
 
@@ -40,6 +39,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 <!-- ANCHOR:adr-001-context -->
 ### Context
 

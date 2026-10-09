@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Public-facing docs, commands, setup guides, skill references, assets, feature catalogs, and manual testing playbooks contained direct links to this repository's internal spec packet folders",
     "created_at": "2026-05-18T09:12:49Z",
-    "last_save_at": "2026-10-07T15:57:10.909Z",
+    "last_save_at": "2026-10-08T19:30:42.379Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,10 +193,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c72ccec6a538d0924c9fc0d56987b8c48ffa367ea3a2af1be61f2cfb0d57560f",
+    "source_fingerprint": "sha256:61b4a409628c94b5256831228ed235ed69f5452b00eef5eb959e7cbd427f0634",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "218a0d844c83a60e2bdaad32747cdfd142810efc42e1bcb040157354f78e7252",
+      "spec.md": "9e75ed4fafec97c1a70813fe0515945daf4bb822d578d9774bf89b2035b6b743",
       "plan.md": "5281863dd4d1b629b0f034dccdcdc2353104e9453d5e660f70b81aef4c6cd2ad",
       "tasks.md": "0ac7042f7742fb9a2945751614d75d9c03c653f44495d7144117db1575a96347",
       "implementation-summary.md": "359fb229ffe1f6bd898ac34e001eab06b45ff3da0abd62490bf232a17337e519"

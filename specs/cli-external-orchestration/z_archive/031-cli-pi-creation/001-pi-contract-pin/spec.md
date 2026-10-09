@@ -147,7 +147,6 @@ Install Pi for real, then convert every pi.dev-doc-sourced claim this packet cur
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -201,6 +200,7 @@ Install Pi for real, then convert every pi.dev-doc-sourced claim this packet cur
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **RESOLVED**: Headless dispatch is `--print`/`-p`, structured output is `--mode json` (one-shot JSONL event stream: `session` header then `agent_start/end`/`turn_*`/`message_*`/`tool_execution_*` events) or `--mode rpc` (a **persistent** stdin/stdout JSON-Lines protocol, architecturally different from every sibling CLI's one-shot pattern - phase 002 should default to `--mode json -p`, not `--mode rpc`). Exit-code behavior is confirmed **unreliable**: the same auth failure returned exit 0 on the first invocation and exit 1 on every later one - phase 002's guard must inspect stderr content, never exit code alone.

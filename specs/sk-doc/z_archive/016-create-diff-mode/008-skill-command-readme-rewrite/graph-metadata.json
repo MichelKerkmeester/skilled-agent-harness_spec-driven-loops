@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Skill READMEs and command READMEs vary in quality, structure and voice",
     "created_at": "2026-04-12T09:02:50.178Z",
-    "last_save_at": "2026-10-07T18:12:32.984Z",
+    "last_save_at": "2026-10-08T20:53:34.851Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,11 +209,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a3c6fff939066718d6b00e05afaf64e89f983ee623fbf24809958d5c19f7f490",
+    "source_fingerprint": "sha256:21158f8f7460ae16b81b25c696302f09bbf0bb29412fd0d23f2e1f09b4bd7044",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c580d4227d29db871fbb9367e37608148c56792873ff36fa0ff0ba26553eef91",
-      "plan.md": "c0d8b924b9cc5dc71c484339dbdb383d401df2376984888fc09c0c5eabac0242",
+      "plan.md": "1b2d0fb5cd9883ee709d657aade9797e3258510451f6c726fb50153f56b224a9",
       "tasks.md": "1752a6c284be49d5e0b3eebae94c01578b305906770c1b2a8a0ead2cfd1b5651",
       "implementation-summary.md": "85d48a637e9e719c16d71b16777072f0cbbfe80db8ede1f90654aed1609a960d"
     },

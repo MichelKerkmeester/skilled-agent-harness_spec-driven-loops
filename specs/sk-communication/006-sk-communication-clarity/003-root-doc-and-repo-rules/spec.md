@@ -167,7 +167,6 @@ baselines every later phase measures against.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -222,6 +221,7 @@ baselines every later phase measures against.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does any adopted clause genuinely need the root doc, or does the router's reach cover it once Gate 5 is satisfied?

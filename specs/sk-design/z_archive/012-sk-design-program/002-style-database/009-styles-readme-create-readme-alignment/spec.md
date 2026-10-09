@@ -180,7 +180,6 @@ Align and expand these twelve README files to the create-readme standard:
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -265,6 +264,7 @@ Align and expand these twelve README files to the create-readme standard:
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should the sk-design skill-root README use the full skill-README shape or the lighter folder shape? RESOLVED at planning (ADR-002): skill-README shape.

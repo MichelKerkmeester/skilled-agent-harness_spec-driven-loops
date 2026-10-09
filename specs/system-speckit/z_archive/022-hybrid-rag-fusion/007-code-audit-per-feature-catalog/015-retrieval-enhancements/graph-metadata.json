@@ -175,7 +175,7 @@
     ],
     "causal_summary": "The feature catalog for Retrieval Enhancements had evolved significantly",
     "created_at": "2026-04-12T09:02:50.253Z",
-    "last_save_at": "2026-10-07T20:25:13.728Z",
+    "last_save_at": "2026-10-08T20:05:55.507Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -184,10 +184,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:43d56fc4861c7ac53597ccf50fddb0ec04c60ef0654e0044d32a4a5dd051d25f",
+    "source_fingerprint": "sha256:b6e62c4322868904f46444c72e0afc66d7bc3873261dc92bfe1b20f0c5654383",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "399416a039bb664d3eebf16e13fdcc1d9fa65a283f97c245f21fc622df70692e",
+      "spec.md": "c139b782c4bac53cbbab49e85a3e57642b03f3d4ce62e609e7962ff49bd9b2b5",
       "plan.md": "1bfcc69e276fc538c15ba601caaff82a02f703aabbc4f0ee836b5c2564a1be6d",
       "tasks.md": "a5cdd55a3bb27d09a1ecd7cf27b7d6bc904450685f25e7726cec828d3951c22f",
       "implementation-summary.md": "5ff50e11d2f475773b134d090fece15664b92518bc8793785a1655ae89a5b7da"

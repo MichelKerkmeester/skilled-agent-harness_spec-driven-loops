@@ -140,7 +140,6 @@ The hub serves `cli-jev` alone, still passes as a parent hub, and is ready for a
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -184,6 +183,7 @@ The hub serves `cli-jev` alone, still passes as a parent hub, and is ready for a
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator set the scope on 2026-10-02.

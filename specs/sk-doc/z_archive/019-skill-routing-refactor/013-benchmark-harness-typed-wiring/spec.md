@@ -210,7 +210,6 @@ Make the typed routing contract flow through the real dispatch path (not just re
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -284,6 +283,7 @@ Make the typed routing contract flow through the real dispatch path (not just re
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - The exact shared location for the relocated contract library (system-level lib vs shared skill-support tree) is an implementation choice deferred to Phase 2 after the consumer inventory.

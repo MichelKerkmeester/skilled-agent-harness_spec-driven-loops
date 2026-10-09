@@ -241,7 +241,6 @@ Verify that all 19 UX Hooks features are accurately documented in the feature ca
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -249,14 +248,16 @@ Verify that all 19 UX Hooks features are accurately documented in the feature ca
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - F12: Should the catalog source-file list for Hooks README/export alignment be pruned to the primary files only, or is the broad list intentional?
 - F17: Is the retrieval-session-state feature intentionally enabled at runtime despite the module header marking it OFF, or should the header be updated to reflect the live default?
+<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions-2 -->
 ### Related Documents
 
 - **Implementation Plan**: See `plan.md`
@@ -264,4 +265,3 @@ Verify that all 19 UX Hooks features are accurately documented in the feature ca
 - **Verification Checklist**: See `checklist.md`
 
 <!-- /ANCHOR:questions-2 -->
-<!-- /ANCHOR:questions -->

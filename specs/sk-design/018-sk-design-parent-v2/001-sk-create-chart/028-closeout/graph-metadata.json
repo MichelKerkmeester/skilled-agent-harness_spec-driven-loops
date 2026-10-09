@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Four phases closed with items recorded rather than done",
     "created_at": "2026-09-09T17:46:09Z",
-    "last_save_at": "2026-10-07T15:56:34.463Z",
+    "last_save_at": "2026-10-08T19:29:45.574Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de836b8424e655f6f15b2da33cc271ec530d5bc2863b09b698b72c4109845cc2",
+    "source_fingerprint": "sha256:7276b5bdc8b731831fc801d6703a411d755523af3c442d47d6272abc142546ca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "64713fd2956e475583e97f059a8a177ef2e973848dfe4ba47a282d26fc376e4b",
+      "spec.md": "093f51750c39ad66b750455e4818d44eb8715d1f2873fd5140725113e0c1eedb",
       "plan.md": "2d29660a91ecb7801ce308ceb75457fe2ba64476ac28d8db5ac32f40b855edc9",
       "tasks.md": "01ae606692280b333f1e1fa23361f3cda50420c88b868c3439b13cf0db468226",
       "implementation-summary.md": "8d1bd87ce6990066f3ae388bf5c2e868e2870b67a640ba5c012f47565b0920cb"

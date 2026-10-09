@@ -189,7 +189,6 @@ Red when: the counts differ, which ordering or parallelism in the reporting path
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -260,6 +259,7 @@ Red when: the counts differ, which ordering or parallelism in the reporting path
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether the stored fingerprint should survive at all is deferred to the parent, and this phase's baseline is the measurement that question was waiting on.

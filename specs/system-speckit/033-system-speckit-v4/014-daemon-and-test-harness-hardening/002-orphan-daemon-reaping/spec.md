@@ -178,7 +178,6 @@ Make an orphaned launcher terminate itself, and give the sweep that already iden
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
@@ -231,6 +230,7 @@ Make an orphaned launcher terminate itself, and give the sweep that already iden
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the same treatment extend to the other launchers (skill advisor, code mode), or stay scoped to spec-memory for now?

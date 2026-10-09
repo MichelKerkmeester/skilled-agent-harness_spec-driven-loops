@@ -128,7 +128,6 @@ A baseline restore writes only to a regular file at the violated path; a symlink
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -178,6 +177,7 @@ A baseline restore writes only to a regular file at the violated path; a symlink
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

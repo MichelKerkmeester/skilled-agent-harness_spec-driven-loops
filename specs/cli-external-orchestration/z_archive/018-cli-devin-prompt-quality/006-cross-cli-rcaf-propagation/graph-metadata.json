@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 113/003 cli-devin eval-loop measured that medium-density pre-planning outperformed dense pre-planning by roughly 10-15% on SWE 1.6",
     "created_at": "2026-05-17T12:18:18Z",
-    "last_save_at": "2026-08-30T15:39:08.529Z",
+    "last_save_at": "2026-10-08T19:29:11.995Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d6e339b01e1608132eb9d489e5152277e01ea588e24b8547624c08e1638034f0",
+    "source_fingerprint": "sha256:ac15e237d22fd8b88c1df8bacfd280c321dd899a1b4260cce97f974f63f40005",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e72432fef64b960fc1cf56b126575c43721ca6b2fe900b44e78d28580fc2cf5c",
+      "spec.md": "96ad26e7717da25e7bfb43242142fad91ec7eab6f8abd2f53337e28902d03c98",
       "plan.md": "955b9029ac6910be42a634ce95f9de82cccac4097948ce93506d2ed37c93a8ef",
       "tasks.md": "859499a377ea9b9d52a0a06b3a198af1e382589f37d66e4518aad1970f59962b",
       "decision-record.md": "7f3a8e5f8228f52d9ae02b4dcdff346b69d25c72f5cc10011083bc6ea7ae4d35",

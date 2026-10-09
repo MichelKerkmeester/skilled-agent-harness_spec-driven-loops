@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The manual review read all 38 corpus files and rendered each fresh, finding 34 numbered defects",
     "created_at": "2026-09-11T03:52:45Z",
-    "last_save_at": "2026-10-07T15:56:43.964Z",
+    "last_save_at": "2026-10-08T19:29:51.904Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:721108b7bcf980af103183b1b26240297bbbb4d4a6d26bbc9e767e60e744b14c",
+    "source_fingerprint": "sha256:29cbe7f40ac752d0c21edcf4bc6c10e670088b807dd88edaa18f748d97052c48",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "03266b60945d66072f1ec858e4241634ed0a6f9dfee963e7134fc4eb8d26775d",
+      "spec.md": "8c40fa971d30e967d93492ebfc9d38170151b7c30b4ed105e66092d107041eb3",
       "plan.md": "800940157c4d2af9005ae8c45a75512c7160d03ee93ef11c09fd05ddaf3ef47c",
       "tasks.md": "bbde30da44b4815e1aa7ba365b796e82346501d0e8e85e086bcff42b3a8113ea",
       "implementation-summary.md": "cda9da4ffbf8bab34959e2c251fb9fc953c8aa0e8a6056aef25d7a1359a6665b"

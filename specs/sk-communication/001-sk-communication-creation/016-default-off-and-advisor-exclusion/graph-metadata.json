@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The projection layer was reachable by default, and the advisor could recommend `sk-communication` automatically",
     "created_at": "2026-08-13T18:51:56.591Z",
-    "last_save_at": "2026-10-07T15:56:18.853Z",
+    "last_save_at": "2026-10-08T19:29:33.573Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:628113cad898b90614129ba93037147735093a300b35f1f1052a4d1b3c5443e4",
+    "source_fingerprint": "sha256:0bc5b8489041cdd7d11b340a3478aef5b1fa1cf41bd0c6ca55cf25bf1844af41",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e6480d52e7de69b5e40c02b48b6478423a17fcd82b1260700591b752d6a55884",
+      "spec.md": "af80fdea0f7311bce31fd0a1975d5c2e3af4e098d8303767537ddf5155596fab",
       "plan.md": "02d95205835bd3df893ae22c7b655f54d5bbeb408514c0ebce3915d8dcb049a0",
       "tasks.md": "394a98bc6681ac3e1fd929bed024aca38227ad614eb998c09cf475bd63927210",
       "decision-record.md": "e86f9eac90a9bf3053f3dca1df3350169f55bafab7e43bcf7c6b470def2cd5e0",

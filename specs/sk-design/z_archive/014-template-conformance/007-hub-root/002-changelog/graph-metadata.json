@@ -186,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/changelog/` has not been audited against `.opencode/skills/sk-doc/shared/assets/changelog-template.md`",
     "created_at": "2026-07-27T14:59:54.043Z",
-    "last_save_at": "2026-10-07T18:12:18.682Z",
+    "last_save_at": "2026-10-08T19:29:57.993Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,10 +195,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:080e96d0c23500738b14957f3b6d0a73b4a1200f616d6ef67722d5ac307db68c",
+    "source_fingerprint": "sha256:ad91687b8784dd23945103b828324c17422a83e5302c0d78d112b07fa53a9af9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "23dc209f97b418102df092382afeaf4398b2e3698bd2f2301f8503b96d9daa3b",
+      "spec.md": "70427c83390c21b7d9107ea27e51f21bdbbc90bfed1123138d90efb5aaca7819",
       "plan.md": "070298d3d5276e53417cc060302ca8d16432b145e4c107075518780713d0556c",
       "tasks.md": "a354073d45ed5792645eb04d43b36a8126bd5f67a797ef19a583e68bf6c09656",
       "implementation-summary.md": "0e03149c5b868ef52c141967e1b2ff2d33a10b24b00d38c5a05cc85f08fbda46"

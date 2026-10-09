@@ -173,7 +173,6 @@ Every name a reader or a router sees for chart and diagram says `sk-design`.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -241,6 +240,7 @@ Every name a reader or a router sees for chart and diagram says `sk-design`.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether any external consumer outside this repository invokes `/create:chart` or `/create:diagram`.

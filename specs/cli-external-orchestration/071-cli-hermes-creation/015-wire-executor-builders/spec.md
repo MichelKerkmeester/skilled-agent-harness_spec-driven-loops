@@ -131,7 +131,6 @@ Every builder refuses before it spawns when its binary is missing, and a fan-out
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -186,6 +185,7 @@ Every builder refuses before it spawns when its binary is missing, and a fan-out
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

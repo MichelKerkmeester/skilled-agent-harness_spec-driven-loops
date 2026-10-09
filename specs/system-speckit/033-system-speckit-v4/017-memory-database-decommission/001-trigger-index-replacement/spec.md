@@ -281,7 +281,6 @@ retired surface also carried. No downstream reader should treat it as though it 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -359,6 +358,7 @@ retired surface also carried. No downstream reader should treat it as though it 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **Answered. One file, not sharded.** Schema 1 measured 37,017,883 bytes, of which the `tokenTrigrams` block alone was 21.9 MB, and its cold lookup missed the budget at p95 237 ms and max 239 ms. Schema 2 measures 3,814,726 bytes over 35,481 phrases, 13,597 paths and 45,578 declarations, with pretty-printing and round-trip validation kept. Sharding was rejected because it multiplies files without touching the encoding that caused the size.

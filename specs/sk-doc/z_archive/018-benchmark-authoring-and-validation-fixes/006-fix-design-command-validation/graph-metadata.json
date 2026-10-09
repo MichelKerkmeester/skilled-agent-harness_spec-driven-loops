@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Packet 005 removed a false-positive from the Lane C scorer's `validateRecipeChoreography()`: the \"wrapper `## CHOREOGRAPHY` section is missing\" penalty, which became unsatisfiable once the `/design:` commands became thin routers (choreography moved to asset YAML step keys)",
     "created_at": "2026-07-14T19:20:48.890Z",
-    "last_save_at": "2026-10-07T18:12:31.285Z",
+    "last_save_at": "2026-10-08T19:30:08.301Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a7c07307a3be02a330161d9c39a17fbfae333b467e821aef65ae63796d8f9da",
+    "source_fingerprint": "sha256:61a566e1645992f37ec79fe127eb12bf56527d3f474358343b074c669be4f8f8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1fd98bb5388bfbf593aa657406f52d9276d6171f6ff748f2d63b9fc80655c417",
+      "spec.md": "704d7cf3911d55abf1e500fdd7d4d7eafa5abd11e24c3d9420716209fbbdcf78",
       "plan.md": "7c9c2620bb3e56217ad19c0664832bf3fc47f6d645bf4b4b806a95cde86f3f47",
       "tasks.md": "1584ef66cc1ffc227d288669b71ecd18dd4d52fcb128de3066bd724477b215a6",
       "decision-record.md": "0239f57a06b1a20c77a423cb5ed8ee43c0e377fa454fd5a841659e15bdeec561",

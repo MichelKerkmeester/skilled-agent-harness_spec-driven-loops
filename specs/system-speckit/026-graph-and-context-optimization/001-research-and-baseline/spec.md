@@ -177,7 +177,6 @@ Produce the coordination packet that converts the frozen research deliverables i
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -278,6 +277,7 @@ Produce the coordination packet that converts the frozen research deliverables i
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Which follow-on packet should own the `research/findings-registry.json` retagging pass that reduces the over-assigned `new-cross-phase` count without changing the rigor-lane narrative? [SOURCE: research/archive/v1-v2-diff-iter-18.md:27-35] [SOURCE: research/findings-registry.json:7-18]

@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The official `obsidian` binary is already registered on this machine at `/usr/local/bin/obsidian`, symlinked into the desktop app bundle",
     "created_at": "2026-09-02T08:06:41Z",
-    "last_save_at": "2026-10-07T12:55:00.899Z",
+    "last_save_at": "2026-10-08T19:29:27.584Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,10 +223,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9f37fabbd525674a01e44af3d8860d09cc6239c0ec41e0b9a82a414ae27b8bc",
+    "source_fingerprint": "sha256:b49d2579603092ccdaff749d098c79a30b6ed88515823181eb998ca703eae072",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "83868a101df58e28394f77a06619c6b1472e40905344b8d86298c47aaf91ec0f",
+      "spec.md": "3eeebc3c5f8d43365bb132fdd571861c4c5888e20e02d8711e27bab26a7fecf2",
       "plan.md": "a9bd88cd55d1a759b3e746e552b3f6777742829b4fdb6ce81d8520c491ab52fd",
       "tasks.md": "5f56b80af5bd6b1949b76620934618ca31f8fb346843c599a82f6b887826d25e",
       "implementation-summary.md": "6b877fec469846e11606bbdc3aa81263c480e22f7a61f1f62d87e44561c55e96"

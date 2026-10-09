@@ -123,7 +123,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -173,6 +172,7 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None left blocking. One judgement call is recorded rather than left open: REQ-002 defines "its value" as the band's total across the period, reusing the file's own Total concept along the other axis, because the mechanism cannot deliver a genuine per-x reading without hit-target machinery this phase does not build (`research/research.md` section 9, item O4).

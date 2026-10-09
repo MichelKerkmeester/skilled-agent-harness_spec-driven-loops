@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Six things make a rendered chart read as a template rather than a product",
     "created_at": "2026-09-08T18:22:02Z",
-    "last_save_at": "2026-10-07T15:56:34.640Z",
+    "last_save_at": "2026-10-08T19:29:44.775Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e3b9040202c250e88e1eda10e3456591ef7c5a2532745ad2144f12d7a0fe2956",
+    "source_fingerprint": "sha256:35270d9848ccf62e047f0eb253dca761c3ba1be928a3366f7bd6c5e134621d18",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "06f56035fa9446003ac7e72adc66df0ecb8667f41818a2af2f51a5a3e8dff166",
+      "spec.md": "af80a5542b95f00964232636da004c0dafd741985b6e334a13cd8fbb6968386a",
       "plan.md": "59ca3807919984ad306ac6512b54a2a32e8ad98bfd3b6cdabf05aa1a4e0e95e8",
       "tasks.md": "7c92c77ce48ef128268e50896f1e3e42ca5f41839f894eb3c00464511904ce3b",
       "implementation-summary.md": "0d60d71c830f2ade2969576bc559dbf85393f3bb22cd7c87aba88f6d6eb54297"

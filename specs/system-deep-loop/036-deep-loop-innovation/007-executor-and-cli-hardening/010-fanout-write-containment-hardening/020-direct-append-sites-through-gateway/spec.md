@@ -131,7 +131,6 @@ No command YAML writes a state log except through the gateway, and every event t
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -179,6 +178,7 @@ No command YAML writes a state log except through the gateway, and every event t
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

@@ -122,7 +122,6 @@ Create a reusable sk-doc skill README asset and wire it into the skill creation 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -177,6 +176,7 @@ Create a reusable sk-doc skill README asset and wire it into the skill creation 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None blocking planning.

@@ -153,7 +153,6 @@ A different change to the same artifact joins or creates a series parent, and th
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -204,6 +203,7 @@ A different change to the same artifact joins or creates a series parent, and th
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

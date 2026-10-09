@@ -125,7 +125,6 @@ Every recorded debt item is fixed at source or deleted, the skill has one data f
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -180,6 +179,7 @@ Every recorded debt item is fixed at source or deleted, the skill has one data f
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open. The `scripts/` nesting is deferred by decision, not by uncertainty.

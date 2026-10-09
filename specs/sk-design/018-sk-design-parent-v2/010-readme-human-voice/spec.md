@@ -155,7 +155,6 @@ Authored READMEs follow the punctuation rule the repository already documents.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -223,6 +222,7 @@ Authored READMEs follow the punctuation rule the repository already documents.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether the same sweep should run on the 835 semicolons the scanner flags in the same files. The

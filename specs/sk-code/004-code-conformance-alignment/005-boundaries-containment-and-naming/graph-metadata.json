@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Four defect classes here share one property: the standard states what to do, and the code does something else that a machine cannot mechanically rewrite",
     "created_at": "2026-07-30T19:25:15.332Z",
-    "last_save_at": "2026-10-03T15:54:25.044Z",
+    "last_save_at": "2026-10-08T19:29:30.127Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:cc35713f5cd47d2784b3a42368bec9da22a56d4684c025cff3aa45fa5cdab03c",
+    "source_fingerprint": "sha256:04a4bf281eb6934698f89fa9a53ce76f56271d2c952c2bf4512f924ff8ff09b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2426ff2e18e986506f9520c7b33f8e6c482f0b54183b75be971c3978d749e2b4",
+      "spec.md": "34e79cf06d384ecda79300b18f257af2141c9819d6baac7b492aa01afdae59a4",
       "plan.md": "f434e6f6b0f319aec3940a7ea88e417b978f7b111e8ce003f12fea6ea84b595b",
       "tasks.md": "5b5ab438b0f2ba35e5d2e40a84b7f6def76d81b07b6ae71a46eb5bca0ceb4da1",
       "decision-record.md": "1ae54bf1df3a098058b41f358598051760bd48d5b20a73a579ec724999fae2dc"

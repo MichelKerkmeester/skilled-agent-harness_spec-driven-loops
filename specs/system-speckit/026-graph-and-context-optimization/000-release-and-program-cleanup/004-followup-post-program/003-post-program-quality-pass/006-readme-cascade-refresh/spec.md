@@ -150,7 +150,6 @@ Refresh the first-party README cascade so operators can trust tool counts, folde
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -206,6 +205,7 @@ Refresh the first-party README cascade so operators can trust tool counts, folde
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None.

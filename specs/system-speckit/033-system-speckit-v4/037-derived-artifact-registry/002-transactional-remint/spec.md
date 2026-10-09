@@ -178,7 +178,6 @@ Red when: `git status --porcelain` shows any modified path other than the hook a
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -248,6 +247,7 @@ Red when: `git status --porcelain` shows any modified path other than the hook a
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None open. The parent carries the two architectural questions this decomposition deliberately defers.

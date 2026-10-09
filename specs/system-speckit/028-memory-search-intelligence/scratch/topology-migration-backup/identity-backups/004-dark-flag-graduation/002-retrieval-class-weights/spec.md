@@ -134,7 +134,6 @@ Measure the flag on the production path and return a graduate, refine, or cut ve
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -188,6 +187,7 @@ Measure the flag on the production path and return a graduate, refine, or cut ve
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether an entity-density-aware suppression that keeps graph and degree when the single-hop query hits high-degree memory rows would recover the skill-advisor-daemon precision while still trimming noise elsewhere, a refinement the verdict notes but does not pursue since the flat suppression as built shows no win

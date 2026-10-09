@@ -151,7 +151,6 @@ Give each `CANONICAL_SAVE_*` registry row its own script, so `script_path` means
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -201,6 +200,7 @@ Give each `CANONICAL_SAVE_*` registry row its own script, so `script_path` means
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None. The `ts:spec-doc-structure` scope decision is resolved in Out of Scope above, not left open.

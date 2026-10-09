@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Today's spec-kit template system has 86 files / ~13K LOC split across `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`, four materialized `levelN/` outputs, `phaseparent/`, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`)",
     "created_at": "2026-05-01T12:37:22Z",
-    "last_save_at": "2026-10-04T09:20:45.418Z",
+    "last_save_at": "2026-10-08T19:30:46.025Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:386797eb24cd9357b09655def25b014523edeaf98c1ee244cc48070766b8657a",
+    "source_fingerprint": "sha256:e737458b63be53ff38a16d9581ecd8a08e8fced5c7a6b983032f80be5a7a346c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "acb5d5478d68e7af2e8b7be4422a058e5d6998f7b603c10afa790fd1dceb8525",
+      "spec.md": "431f8347a4365899bb90846b7c2fbff0ac5e2353996770024cdbc33bd22d4fc0",
       "plan.md": "e3b8cf9cd0415cd132aa7681e90bb5e0c0ff0c5a8ba9a43c9b8e76d8bf503364",
       "tasks.md": "eb151e734634bb8c6e9a807b9caf731331801490ebb68e38e0250aa4b291c8b0",
       "decision-record.md": "26a1805f837a643ef6df5b486bae9edb44b68cd8aaaf2eb4737937bcfe49bc07",

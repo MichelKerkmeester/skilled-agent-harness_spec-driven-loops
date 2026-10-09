@@ -124,7 +124,6 @@ This is **Phase 12** of the Research runtime surface parity for commands, skills
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -179,6 +178,7 @@ This is **Phase 12** of the Research runtime surface parity for commands, skills
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

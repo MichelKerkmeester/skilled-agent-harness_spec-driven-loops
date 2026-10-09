@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 2 moved acceptance criteria into `acceptance-criteria.md` and repointed the advisory's total at that document",
     "created_at": "2026-08-29T20:32:46Z",
-    "last_save_at": "2026-09-06T07:09:15.104Z",
+    "last_save_at": "2026-10-08T19:31:21.134Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24e1896dd6ff44579211981dee40aff4ecf014c94a01acfa8a03b35b38f1a647",
+    "source_fingerprint": "sha256:4d61333cbc13bd507892f00d100789b4979f9ece13801af29288928d76d64ad1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "235225172c430cf73517b96f539bb2ca4276f21139284068252c06f55695d36f",
+      "spec.md": "99356188db29ac4992632a7ddc31a7d847e1a741a949702159be6c26fc786a18",
       "plan.md": "43c2d733a012b0ccf06d6c2855f43aa4e6bbadcabc8d8fa07591aade5c385584",
       "tasks.md": "f58ee998d504167541102eaa5e7937b33592b04008720ec0758129a0001bf15a",
       "implementation-summary.md": "8b5fae2c7e60ae10df585aef920b0bdde88a8ef9635df15e2a5e2b782030bf09"

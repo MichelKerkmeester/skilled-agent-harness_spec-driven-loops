@@ -252,6 +252,7 @@ it enforces, in the order that bit:
 1. **Every doc needs a `SPECKIT_TEMPLATE_SOURCE:` line within its first 70 lines.** The check is literal —
    any line containing `SPECKIT_TEMPLATE_SOURCE:` passes, there is no allowlist — but it *is* enforced, and
    it was missing from both new files. Use `handover | v1.0` and `decision-record | v2.2`
+<!-- /ANCHOR:session-notes -->
 2. **Every doc needs at least one `<!-- ANCHOR:name -->…<!-- /ANCHOR:name -->` pair.** `handover.md` uses
    `when-to-use`, `handover-summary`, `context-transfer`, `next-session`, `validation-checklist`,
    `session-notes`; `decision-record.md` uses `adr-001` plus its `-context` / `-decision` /
@@ -295,6 +296,5 @@ bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh \
    children; only `--all` repairs it, and it would bump hundreds of timestamps
 3. **Fix `upsertDescriptionCacheEntry`'s docstring,** or wire the per-folder save to the aggregate cache as
    it claims? It is currently documented-but-untrue
-<!-- /ANCHOR:session-notes -->
 
 ---

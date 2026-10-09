@@ -201,7 +201,7 @@
     ],
     "causal_summary": "This phase was scoped before either gate was measured, on the belief that a cross-hub",
     "created_at": "2026-09-02T16:34:06Z",
-    "last_save_at": "2026-10-07T12:55:22.503Z",
+    "last_save_at": "2026-10-08T19:30:01.867Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e56611218cd9fa3c81d9016fb874af2f31aeaa2dde313bcc7b58181530e07a7e",
+    "source_fingerprint": "sha256:633c0ad61d595f0262a4e2b8c0005252ab3cf7bcdd6aaf4784a3f1c2fea7bfdb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9946edce922bab22b31dc06e230873bded27943a0695fb5701ad8bdbb88700d9",
+      "spec.md": "654d8dc614d0afd87c1ea67888be9726ab6039228066f57b1ec2928aa629321f",
       "plan.md": "62c01c0ad24065a691c56a0f193f7352c47cebb874f82139a5846875e9777068",
       "tasks.md": "ee67f9e6219b49e89707729bc59a59fd1e0939e57718d49a937f541918b47e9f",
       "implementation-summary.md": "373fbef9b7e66dfae2adb44257455e8b3bc0357218871503583d878e646704b9"

@@ -224,7 +224,6 @@ Restore OpenCode TUI startup by hardening the named parser export against legacy
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -291,6 +290,7 @@ This is Level 3 because the change spans:
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 1. What exact glob does OpenCode 1.3.17 use for plugin discovery? `.opencode/plugins/*.{js,mjs,ts}`? `.opencode/plugins/**/*.{js,mjs,ts}` (recursive)?

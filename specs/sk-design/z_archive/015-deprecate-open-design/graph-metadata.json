@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The Open Design transport (`sk-design-mcp-open-design` skill + `opendesign` MCP server registration in `.utcpconfig.json` + `od` CLI wiring) is being retired by operator decision",
     "created_at": "2026-08-10T08:15:00Z",
-    "last_save_at": "2026-10-07T18:12:31.373Z",
+    "last_save_at": "2026-10-08T19:29:59.826Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b3515ac590630dfea2afcc3fc2ee40defed2a127568e54f1468e3e8388f5266",
+    "source_fingerprint": "sha256:f476bd613312346d361124f3aa20ab76840321edb1b291e430195421a28c24b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cc63508957dbb352733294c224c9aceeabdaacfbb5a9aad6a3db29fe3a272c7a",
+      "spec.md": "069f06ce0465777e80d00919ecc22ae0c1407f503c6d09014cccaebe783d8cb5",
       "plan.md": "f4163ed079c196ba0c9c8c57eb8ce21614498887dd3facb8979c136a8936ecb5",
       "tasks.md": "5a840362fd82a54a5b6b35cefb7b58a79fc7306f2a9fa396218dfc641b3496fa",
       "decision-record.md": "4eafc4d59f203a3875ae3a7b14f66a1c5eec992c6378fc7a21fb157acaed0e9c",

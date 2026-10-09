@@ -216,7 +216,6 @@ After this phase, `causal_edges` contains a sane relation histogram where real c
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -321,6 +320,7 @@ After this phase, `causal_edges` contains a sane relation histogram where real c
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - ADR-001 disposition is Proposed with down-weight-in-place as the recommended default (keeps `relation='supports'`, no schema migration); relocation to `entity_cooccurrence` stays a flip-option but pays a full CHECK table rebuild. Ratify from the dry-run counts + consumer inventory during execution.

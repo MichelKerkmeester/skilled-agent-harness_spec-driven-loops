@@ -139,10 +139,8 @@ Implement the packet-02 findings in one Level-2 packet by:
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 6. EXECUTION NOTE
 
 Packet 014 consumes the packet-02 research bundle at `../../research/002-advisor-hook-followup-research/` as its upstream implementation input and records the authorized execution in this folder's `plan.md`, `tasks.md`, `implementation-summary.md`, and `checklist.md`.
 
 Implementation execution followed the same direct `codex exec` pattern documented in `../../007-deep-review-remediation/006-integrity-parity-closure/decision-record.md#adr-001`, but the canonical implementation record for this work lives in packet `014-skill-advisor-hook-improvements/` rather than in a separate child packet.
-<!-- /ANCHOR:questions -->

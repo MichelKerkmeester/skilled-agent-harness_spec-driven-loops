@@ -137,7 +137,6 @@ Every runtime that can host a dispatch refuses a violating one before it runs, a
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -192,6 +191,7 @@ Every runtime that can host a dispatch refuses a violating one before it runs, a
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

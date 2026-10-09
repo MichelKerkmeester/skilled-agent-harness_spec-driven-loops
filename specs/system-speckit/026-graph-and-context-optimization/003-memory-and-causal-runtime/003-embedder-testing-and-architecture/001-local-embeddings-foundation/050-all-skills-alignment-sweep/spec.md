@@ -159,7 +159,6 @@ Produce a verified doc-only sweep where every skill has an explicit aligned/pass
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -234,6 +233,7 @@ Produce a verified doc-only sweep where every skill has an explicit aligned/pass
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None for execution. Config/source mismatches found during audit are out of this doc-only scope and must become explicit follow-ons.

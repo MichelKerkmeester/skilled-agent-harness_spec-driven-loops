@@ -201,7 +201,6 @@ Build the P0 foundation so that: the runtime never reads under `.opencode/specs`
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Reversibility
@@ -271,6 +270,7 @@ Build the P0 foundation so that: the runtime never reads under `.opencode/specs`
 - **US-003 (advisor integrator).** As the author of `003-flag-propagation`, I want the flag documented and tri-state and the closure stable, so I can un-strip the flag and thread the decision against a foundation that will not move under me.
 - **US-004 (reviewer).** As a reviewer, I want a durable CI rule that fails any future runtime import from `.opencode/specs`, so the coupling this packet removes cannot quietly return in a later change.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **Q1.** Which stable runtime directory hosts the promoted closure — `.opencode/bin/lib/` (beside the shim, per the parent ADR-003 example) or a dedicated `.opencode/runtime/` root? (Recommendation: `.opencode/bin/lib/`, matching the ADR-003 illustration and keeping the shim's require relative and short.)

@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The feature catalog for Retrieval has evolved significantly",
     "created_at": "2026-04-12T09:02:50.244Z",
-    "last_save_at": "2026-10-07T20:28:44.800Z",
+    "last_save_at": "2026-10-08T20:05:35.145Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +196,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:50d3054a6074ffc81c07bdbc0584dc2a18df1960503e14dbac321a7eec573523",
+    "source_fingerprint": "sha256:56c2a89a3bb223e44c421fb085240b5c1fac6238c1bb9bd98bb741bea2bd12c3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "563a326214504c42a928c2fb777c7bc2ca391d70c27857e9a8f370baa894516e",
+      "spec.md": "e97a56a8700292072f32ec126496aec7f865be986b73568c624bdc6ef89287f2",
       "plan.md": "d8bc690e57b600d938bf1beaf45b33b41fc8f578a696e648c943fae988081364",
       "tasks.md": "93a8c56be08fc576564dd0768543feda9c81e3ddb671504d8f9da62b40441253",
       "implementation-summary.md": "88ab725ba24c95ad57a6eba09d3a67c87060fddb63e7d8cd82a74e79f2dc38e1"

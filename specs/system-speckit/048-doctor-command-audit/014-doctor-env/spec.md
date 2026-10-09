@@ -138,7 +138,6 @@ Give operators a `/doctor:env` command that walks them through the switches by g
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -185,6 +184,7 @@ Give operators a `/doctor:env` command that walks them through the switches by g
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Where `/doctor:env` writes: the command asks the operator each run; the phase decides the offered destinations.

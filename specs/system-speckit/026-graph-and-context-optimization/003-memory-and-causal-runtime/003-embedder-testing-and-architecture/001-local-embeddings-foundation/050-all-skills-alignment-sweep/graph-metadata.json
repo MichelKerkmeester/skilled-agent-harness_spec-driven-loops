@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The skill docs have accumulated mixed current-state language across recent restructures: standalone `systemskilladvisor`, the `mk-code-index` code-graph rename, post-040 embedding behavior, and sk-doc template hardening",
     "created_at": "2026-05-14T18:47:27Z",
-    "last_save_at": "2026-09-11T16:42:30.570Z",
+    "last_save_at": "2026-10-08T19:30:49.786Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fcfd55151568a8434c6d582c01d26807bb8411b842fd023b7725350484069ce9",
+    "source_fingerprint": "sha256:1e1a871516f6d1f612c4d5ed611b71dd63576baa6096337b3ebb6b80d9b76d12",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a1c2d4bafb61e650f536c2dc620816498694508d3a5178d60e02cfcb95cecaca",
+      "spec.md": "f071a7447734d17492d5d8f1a4347a9ec67b9b83dc178b73146902839d529276",
       "plan.md": "68b83c4dbaf75dbe248409323899b8f6161bbd090e5321e17915ab3844cb7b37",
       "tasks.md": "bb7e71b64627312a37d527a5a7e7fe6b567fbac764799d0d4c747072be48641a",
       "decision-record.md": "05fb5462bf0c26209717fc815bf3a52a13cfd5ebe09ddb262ae8a35e9254e321",

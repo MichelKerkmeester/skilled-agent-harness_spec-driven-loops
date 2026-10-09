@@ -149,7 +149,6 @@ Close the five findings with explicit runtime contracts, test-only seams where b
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -200,6 +199,7 @@ Close the five findings with explicit runtime contracts, test-only seams where b
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The packet used the prompt's pre-approved scope and halted only for non-F48 regressions.

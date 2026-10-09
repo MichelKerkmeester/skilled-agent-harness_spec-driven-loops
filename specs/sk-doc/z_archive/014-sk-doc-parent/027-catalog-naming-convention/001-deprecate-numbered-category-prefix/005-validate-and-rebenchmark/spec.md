@@ -82,7 +82,7 @@ the owning phase, not invented here.
 - *Depends on* Phases 002–004 being complete; uses the Lane C harness unchanged.
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 Which skills are "affected" for the benchmark is derived from the migration's per-family touch list.
 <!-- /ANCHOR:questions -->

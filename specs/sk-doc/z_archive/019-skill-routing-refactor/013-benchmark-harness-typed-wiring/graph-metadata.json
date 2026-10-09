@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The shared skill-benchmark harness and the sk-doc surface router cannot currently prove that the typed routing contract works, and in the real dispatch path it does not",
     "created_at": "2026-07-16T14:14:43.463Z",
-    "last_save_at": "2026-10-07T18:13:22.495Z",
+    "last_save_at": "2026-10-08T19:30:09.128Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:6bd0550319914d911e9ea8d0f6f06edbca4db025078bb66b07e5c3b8cf67595c",
+    "source_fingerprint": "sha256:5df0cf4342285a2ad0c9090ea9bae5b1f8e4024837e305114071609d2814fd70",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e51fbe0b662b5ee65f4ec68ae1159ebd5c6d93af7db97ac2befd6ccd1b974299",
+      "spec.md": "730f52bc2ca358617d40869d0c0f0dd44c1308876098beb4dabb59392995b0af",
       "plan.md": "1ffcbebbf4a9e742b5209ff41276cda5941c6cd3405d6df33ca119413745b791",
       "tasks.md": "32a08a1a247c14f512017dde9dad1e0cb23815281e8946991944c61c0bcd0cf5",
       "decision-record.md": "69cf2d53f93d254cd580e2fd646b8c0c30d07d09634d0e1d55ec499303f13494"

@@ -204,7 +204,7 @@
     ],
     "causal_summary": "People use AI to edit documents outside Git repositories and cannot reliably inspect the exact before-and-after change",
     "created_at": "2026-07-15T09:53:39.812Z",
-    "last_save_at": "2026-10-07T18:12:35.597Z",
+    "last_save_at": "2026-10-08T19:30:08.180Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:c1bce03c83edeecf8b6a82e351c6dd8df9c7d90444d5b5d6d52793716d91827d",
+    "source_fingerprint": "sha256:b02686d6429c4ea6bece1ff064c0256946f2497b2ee12b9cf1bd820ebcf5acbd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8a1cee455ac0cec8927610d319ee7f0e7f80ea535c9697ba3bcd383618866480",
+      "spec.md": "da37d4552ec3a1c7942fa3d8360122a4754fbea7a251342424898b2b8e5fcdc7",
       "plan.md": "899d30b8f508b927ccaf7bb59ad0fe3ba46fe1de9d8b2cecd4f3dc3d5d609a19",
       "tasks.md": "f2313ae20fcc76fdd4d551b806c39cde6ca05943671a7e2e4cd3e31216eb30c5",
       "decision-record.md": "0bfa76df71b3af09c71650279be3adcc1acf6b8124407ea9431ad9510a1281e2",

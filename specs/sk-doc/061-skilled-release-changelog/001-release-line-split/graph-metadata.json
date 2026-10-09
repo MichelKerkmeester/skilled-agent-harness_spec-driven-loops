@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The system-spec-kit changelog folder had become the repository's release notes",
     "created_at": "2026-09-27T12:01:29Z",
-    "last_save_at": "2026-10-07T12:55:26.754Z",
+    "last_save_at": "2026-10-08T19:30:05.961Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +215,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bbdb48c6b9c5d41983552d6e351e52ce52976a90c17887a6171bd0d3301f2c06",
+    "source_fingerprint": "sha256:f957c1d00ff1efde1d7df95235aa5fac2a334b80e5231b3c1e5ccb8543e2c35c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2e1c1949fa383e7788dd56d18c349ce0f536ffa90ac0f43dcad4b6660065579e",
+      "spec.md": "9fc88cc232368b28019ee88e460ce2465159a31986b856a199dd07c1cacf4746",
       "plan.md": "f86eecc4383fceb379d4d2652f21a6739ee34873bd22f53a7e8787bcc15e8aa1",
       "tasks.md": "dc6fdb16fcb5445aa6b38b53fd876e468f743bda58d8d494540c1f439bb93287",
       "implementation-summary.md": "48864eaf748af013126304ec6d8d72fc633f144e094be1057285eaa268dee14e"

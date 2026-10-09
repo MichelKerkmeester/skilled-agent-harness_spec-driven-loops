@@ -185,7 +185,6 @@ Make `SPECKIT_COMPILED_ROUTING` reach the advisor daemon child and make the comp
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Reversibility
@@ -246,6 +245,7 @@ Make `SPECKIT_COMPILED_ROUTING` reach the advisor daemon child and make the comp
 - **US-003 (release owner flipping the kill-switch).** As the owner of the `=0` kill-switch, I want a manifest flip or a `=0` to immediately stop a stale compiled brief from being served, so the kill-switch is a real control and not defeated by a prompt-keyed cache.
 - **US-004 (maintainer).** As a maintainer, I want the fix to be byte-identical to legacy on routing fields and reversible by removing the additions, so enabling consumption never risks changing what routes and can be backed out cleanly.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **Q1.** Thread the full `compiledRoute` object through every surface, or a compact top-level `metadata.compiledRouteSummary`? (See `decision-record.md` ADR-001. Recommendation: a top-level summary keyed for the brief, with the full object available where a consumer needs it, to minimize the field surface crossing the CLI interface.)

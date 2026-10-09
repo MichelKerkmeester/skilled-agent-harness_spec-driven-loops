@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The `contenthash` column on `memoryindex` is written once at save time and used only as an embedding-cache key and an idempotency receipt key",
     "created_at": "2026-06-27T17:15:34.952Z",
-    "last_save_at": "2026-09-07T16:18:19.435Z",
+    "last_save_at": "2026-10-08T19:31:05.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,10 +197,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:33aca47e3c6199c460b8202756ef007bc3d0ef80f9731a0d4ed93b1748030e63",
+    "source_fingerprint": "sha256:4ae888a32938c5ba9b78c7017658299ab442c58eceaeca9d6813cc661dcebaf5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "49b127a3f0f377c425ee70aac77f291ec4f0154eacf7edf4824f3b99fad37e62",
+      "spec.md": "5374a9fa69d946ec08e729a48bb058bc16f79c2282bed7f5f227bd2c9c370420",
       "plan.md": "5721964ad07026af8f71c62f167c5892a568ca9af457d3b1114caaece56e54b3",
       "tasks.md": "30020f82f97deec669e964e706a1d18c20405c116d5be9eff5a07820080a8862",
       "implementation-summary.md": "a2cebf25e6cabb927be2bf4db7a2a5958f5ba9f0d76bbe2727c7f72520ae9862"

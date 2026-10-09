@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Codex CLI sessions do not receive the two payloads Claude Code receives:",
     "created_at": "2026-04-22T06:39:13.790Z",
-    "last_save_at": "2026-10-07T18:16:08.757Z",
+    "last_save_at": "2026-10-08T19:30:38.707Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5559174ddf839f299ebc793c209cb5858584caf5f04af4dfd066ff5385da5eb6",
+    "source_fingerprint": "sha256:3b453d990180ad6e9287741fab2d4db2f73a2ac15ca705410e0ee6a0eb27b95b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "890704c9e5c774cc0f9867ada886802395660d3f1bdda849d5913fc530c6a496",
+      "spec.md": "1e5e38c4b03f889dc3b960001d212f3cc66d766dddd6f8d6a2d3bbd30e1c356a",
       "plan.md": "0bf57466af87d158f5f2f333244393ea55db262add21f9c1a5d13f3164380c6c",
       "tasks.md": "87f1fa647dcd55b19d4e7988814b0b2eda489d08681511f0e0f2953c2a7767f5",
       "decision-record.md": "2b7024cb10777f153b0f47f69e40c85d763eb01643615673255399511fdd42d4",

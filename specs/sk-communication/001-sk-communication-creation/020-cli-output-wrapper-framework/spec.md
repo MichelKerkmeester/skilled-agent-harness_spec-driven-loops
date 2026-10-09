@@ -208,7 +208,6 @@ Author the wrapper as a parameterized entrypoint that resolves the target runtim
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -293,6 +292,7 @@ Author the wrapper as a parameterized entrypoint that resolves the target runtim
 1. **Given** the launch pattern, **When** it runs, **Then** it starts the wrapper for the named runtime.
 2. **Given** an invoked wrapper, **When** the runtime emits output, **Then** the capture-project-render path runs.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 No unresolved question blocks planning. The exact pinned headless, stream, and print modes per runtime and the precise adapter envelope shapes are recorded as versioned inventory at validation time, not open design questions.

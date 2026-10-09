@@ -164,7 +164,6 @@ Leave the advisor with one transport, one front door, and no protocol dependency
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -191,6 +190,7 @@ Build phase. The risk is not in writing the code but in the blast radius: the ad
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None open at authoring time beyond those the parent spec records; anything found during planning is raised there.

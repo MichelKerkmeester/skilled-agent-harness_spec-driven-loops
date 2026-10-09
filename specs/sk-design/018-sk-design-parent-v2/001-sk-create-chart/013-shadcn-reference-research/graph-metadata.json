@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Our 26 chart forms were authored without reference to how the most-used open chart library in the same design tradition solves the same problems",
     "created_at": "2026-09-07T12:45:39Z",
-    "last_save_at": "2026-10-07T15:56:34.692Z",
+    "last_save_at": "2026-10-08T19:29:44.112Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0d2d3d555050420b6cf790b80471f2309794e66a5f39455385287c7f26585d57",
+    "source_fingerprint": "sha256:33f0f97bcac79383c48ae35c5b135f6d4e05276cb5a528b8d5dd633f280caf3e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9a22723cac6be67c51855b112322b48ede400f10483ee2ad9e6872b76c2656de",
+      "spec.md": "e8314dd7487935dbf431c2675774e755c68581c66deeb388c8afdc8df4fa6476",
       "plan.md": "c91db83e5680f223859cfa481d6116d8aacef1796d510c3459a8de42cd856225",
       "tasks.md": "49f277f67983dba1da02f97fb484a0bca088300ca7698d29bcb1e4b1673d114e",
       "implementation-summary.md": "fe3ef18f4d56b91506ff4540aadcbd063ab5d9212e22effea980b5791824977a",

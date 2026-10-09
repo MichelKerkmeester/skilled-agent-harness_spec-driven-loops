@@ -167,7 +167,6 @@ Out of the review's write scope: everything in packet 052's decision D5 preserve
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -231,6 +230,7 @@ Out of the review's write scope: everything in packet 052's decision D5 preserve
 
 **Acceptance:** the dependency audit table names a consumer or a removal for every entry, and the lockfile matches the manifest.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Does `@huggingface/transformers` move to a manifest owned by `.opencode/bin` alongside the model server, or stay declared here as its resolution root?

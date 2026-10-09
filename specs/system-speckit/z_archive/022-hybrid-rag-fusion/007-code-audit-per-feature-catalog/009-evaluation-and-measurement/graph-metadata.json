@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The feature catalog for Evaluation and Measurement has evolved significantly",
     "created_at": "2026-04-12T09:02:50.249Z",
-    "last_save_at": "2026-10-07T20:28:56.541Z",
+    "last_save_at": "2026-10-08T20:05:46.807Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,10 +197,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6357669ab7e4cce019191404fc28a3916aa86939c367e39b2c9a4046710494cb",
+    "source_fingerprint": "sha256:e205f5c8267541a18b791233f7a2cbbc9659cda73c54cc8083e7d988adfda4f8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ba4edc3e7420c17a136eacbba4641a544169331c874578879b9c845f015d15b9",
+      "spec.md": "d6dc6590acd2102b6085c7a45a7f9802a239fbce7298f3e268d69895a94fc70b",
       "plan.md": "378f7364aad33bea74ec79e32b81fe0783b30dfda4ea1cad7a27c943d9a9cfcb",
       "tasks.md": "f3f2c54ef3a82aab3f680f26008468cd7d1e40c722523a4a1d16e56f07544b8b",
       "implementation-summary.md": "d4286fdac8878d45fdad3310d56939ff204697608e74f3b32e06115454e89e43"

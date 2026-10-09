@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Deep-loop iteration records name their iteration number two ways",
     "created_at": "2026-09-20T08:33:46.135Z",
-    "last_save_at": "2026-09-20T08:33:46.135Z",
+    "last_save_at": "2026-10-08T19:30:21.460Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b67c588674ee8f2cfa0d4aaa580cdf5411c6106825825ce2249b6558ff30496b",
+    "source_fingerprint": "sha256:fb959185194d5eaedd33942ced60762adb492c0e3453e555af83503ea83a0445",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "898b16a7e2fa1b92d6f981fe0a928d31be91cb373092245309360a61126ea7c5",
+      "spec.md": "515b9541b05be777d64dd5f942d95cca0a99bbf1c1c1a7f1f40a7af4e0380f3f",
       "plan.md": "9c0ff60e63b1ad7bb173967d77f6fea0e7397b5491b6b8690c7428523ddbe93a",
       "tasks.md": "596a48653b73f8dc1146a8874c362ddd6fb88d92d4ada139e3765faf65b90e59",
       "implementation-summary.md": "2f143161eed90b8ac30bd9b81d3e4775755200c1dd0aca352bf7ad69b8e819af"

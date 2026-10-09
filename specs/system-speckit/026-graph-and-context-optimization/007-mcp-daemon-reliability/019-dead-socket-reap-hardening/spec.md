@@ -137,7 +137,6 @@ The owner is declared dead only after N consecutive deep-probe failures, so a si
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -190,6 +189,7 @@ The owner is declared dead only after N consecutive deep-probe failures, so a si
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Reap mechanics unchanged; only the dead-decision gate is hardened.

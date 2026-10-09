@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The feature catalog for Maintenance has evolved significantly",
     "created_at": "2026-04-12T09:02:50.246Z",
-    "last_save_at": "2026-10-07T20:28:49.291Z",
+    "last_save_at": "2026-10-08T20:05:39.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +196,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8b01225d8505714bc23d236696afbbff1d838992271b0830c4d878079d3bc841",
+    "source_fingerprint": "sha256:752457b1970e92be86106d6c0e2bf74cb1d4e2bcb5a3b5783e990a16f1acc51b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5a773e26744c30f45e94e06d9b47b10fa6683f8812845693fea32b58d4e4fa13",
+      "spec.md": "945344771540edf8e26699c91f1d7b355bba83ee1e51a900509fd7692a4c5051",
       "plan.md": "d0ecc6e354a9dcdd0752905ee39e6897254cefbc04bfd894e50982cbb5f7580b",
       "tasks.md": "466ebaddc871db6074e154c2b697d8cda25a8aeea9f471f95cc86aa8c4293ce1",
       "implementation-summary.md": "32019b407e95452455d9f73ab903ea5963824a1ef649414291047d080b6c87bb"

@@ -191,7 +191,6 @@ Turn unordered and imperfect runtime streams into bounded, replayable message ca
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. Non-Functional Requirements
 
 ### Performance
@@ -262,6 +261,7 @@ Turn unordered and imperfect runtime streams into bounded, replayable message ca
 1. **Given** a valid Phase 003 input, **When** the primary behavior runs, **Then** its output satisfies the relevant contract and preserves the canonical original.
 2. **Given** an unsupported, unsafe, or failed condition, **When** the same boundary is exercised, **Then** it returns a typed reason and the exact-original or fail-closed outcome.
 
+<!-- ANCHOR:questions -->
 ## 12. Open Questions
 
 None blocking. Implementation may refine internal file placement without changing the frozen phase boundary or handoff.

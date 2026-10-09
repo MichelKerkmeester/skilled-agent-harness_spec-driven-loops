@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Two documented conventions are unenforced and have drifted across 8,620 structured `.md` files",
     "created_at": "2026-08-13T06:06:24Z",
-    "last_save_at": "2026-10-07T18:14:19.711Z",
+    "last_save_at": "2026-10-08T19:30:13.690Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:dee413db383765c02bbac491a1df4b170cb5578e9210735d17e03979945bd0d3",
+    "source_fingerprint": "sha256:20f6fd7b1240c9395295f332a3bb68d09c8c7417ba21848a05b6f9e34611ed23",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea39782386ef2963d86bcb035501a4980d752770d374c6580b9f3530d11a8ee5",
+      "spec.md": "5e0db4a5699f7b91bec53bb760e89234b341dc938f82e5f23e7e84a0ea965564",
       "plan.md": "f28b8796bd7149cee6b2c7c39c59f3e67f911676b51221e8a0d2d50c17298401",
       "tasks.md": "1f65967a96d7263c4f67a1d90a6be2289698353c703a0d64ea349f08896fa8f9",
       "decision-record.md": "eaa2ee31921b9313ca917a2b4faf5acaf5bca9fcd5cf663b45d1c3b20f480787",

@@ -48,7 +48,6 @@
       "tasks.md",
       "implementation-summary.md",
       "research/research.md",
-      "scripts/lib/trigger-phrase-sanitizer.ts",
       "research/deep-research-config.json",
       "research/deep-research-strategy.md",
       "research/iterations/iteration-001.md",
@@ -92,12 +91,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-phrase-sanitizer.ts",
-        "kind": "code",
-        "path": "scripts/lib/trigger-phrase-sanitizer.ts",
         "source": "derived"
       },
       {
@@ -207,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Operational Tail State",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The original research packet identified eight distinct JSON-mode memory defects across content shaping, metadata consistency, lineage capture, git provenance, and template structure",
     "created_at": "2026-04-12T09:02:53.454Z",
-    "last_save_at": "2026-08-30T15:39:29.415Z",
+    "last_save_at": "2026-10-08T20:54:02.625Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +220,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c16c2e354bc2d5a9e77f497050514a0974766014be006d10ebb47ee9c1f70399",
+    "source_fingerprint": "sha256:a89a1e5165da20bff400f879c2d1f569a83675ab4b571fffd27a6be9e3de8ac0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f6ceeba93580982290d9e86ac0a6cf32dcbfcb0ef7195cd38e77b4f539085ddb",
+      "spec.md": "f12d8319a03a20971486551e5498414b2001394bebe49733eac97f66314df521",
       "plan.md": "004b752f3d348560e7cdf2ccf180d51645701bd33c1dd4dff6943b83ddd42c4b",
       "tasks.md": "73758a9890b8b41cfc26093184703f6ecadc1ef3d30d4a29cca42b723bd9ab82",
       "implementation-summary.md": "be4c049f7f0194af3af502da31f16d168559137da7c05deee93bfe85c2e904d0",

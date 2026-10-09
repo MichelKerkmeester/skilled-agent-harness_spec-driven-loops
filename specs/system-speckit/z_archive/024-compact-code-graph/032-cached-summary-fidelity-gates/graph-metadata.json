@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The research kept cached startup value only under fidelity and freshness gates",
     "created_at": "2026-04-12T09:02:53.440Z",
-    "last_save_at": "2026-08-30T15:39:39.823Z",
+    "last_save_at": "2026-10-08T19:31:38.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e324d3f81656a6e7cf0ea61e149f52bd6efd86c636ce7aed91bcc276dc9d2aed",
+    "source_fingerprint": "sha256:a9fb528f9130274f5d43dffe296872fc2305264fe5e4ef1295d7f08abf2744b6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a5bbc36c08f406b09ce7c9ccd225085c591658b072a258ff1dd98f43835a9f87",
+      "spec.md": "7b258be5a6c80f4b52cdbbe664667f82837f3f8f4bcf5cbbe50e0248725f007d",
       "plan.md": "d6061e8a77c8ac4436ece8cfdb218f8ee3cbc32d8dfd42500ba60bd12e928a5f",
       "tasks.md": "99023abde13e5b2b5249cb08fad0d3910c952052812b58176dba5237d6e3ae3a",
       "decision-record.md": "bc6076dfbb1180a05eeb74fa5d289de507e4a6a3700ccdf170d3f9638af3ac7b",

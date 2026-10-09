@@ -174,7 +174,6 @@ Retire active standalone context fixtures and runtime dependencies safely, prese
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -247,6 +246,7 @@ Retire active standalone context fixtures and runtime dependencies safely, prese
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Will runtime `context` parsing be removed entirely, or retained narrowly for historical artifact compatibility?

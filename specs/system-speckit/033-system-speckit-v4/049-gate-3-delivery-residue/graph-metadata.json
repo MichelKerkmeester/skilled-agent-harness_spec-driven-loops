@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Phase 048 removed turn-time Gate-3 injection and moved delivery to the first mutation for six runtimes",
     "created_at": "2026-09-22T07:42:02Z",
-    "last_save_at": "2026-10-07T15:57:33.233Z",
+    "last_save_at": "2026-10-08T19:31:31.243Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6dab85e21919309fbe66637fc3dc910eb9f5a0504181743b29df28409145989e",
+    "source_fingerprint": "sha256:c4641162f2a2f7f9dd4b7952bf38dd1768e9bb03e09d004eb1d0c0022d3c940f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "347d9b4d11a0f3d2c48d3ce7dc810080519dca4fd91f71727df464eddcb3c70a",
+      "spec.md": "67f62c1e876e2b246e4e990945ffe792ec4a93801d108511b305d656d4c3149a",
       "plan.md": "d3256d35a8ab75671a9146306e93d7ae8fa2f2b81182d887a7c58812b6f05ad8",
       "tasks.md": "85015a2a2d00e96362a879abdd38b9b76287eee3d5e0b9e473214a60c93b4388",
       "implementation-summary.md": "6c6d5783a89aae1d401c9b23a42d94913d0ac337924a9b2ccb3ccb65e8d5bc61"

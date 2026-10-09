@@ -132,7 +132,6 @@ Produce the planning contract for the whole cluster: JSON schemas for the data e
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -184,6 +183,7 @@ Produce the planning contract for the whole cluster: JSON schemas for the data e
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Final subfolder taxonomy is proposed here and confirmed during 002 once the inbound-link inventory is complete.

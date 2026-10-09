@@ -146,7 +146,6 @@ A reader of any hook doc, env file or registry entry learns what really runs on 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -194,6 +193,7 @@ A reader of any hook doc, env file or registry entry learns what really runs on 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

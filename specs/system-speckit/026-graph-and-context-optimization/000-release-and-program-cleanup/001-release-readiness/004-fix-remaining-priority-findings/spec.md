@@ -157,7 +157,6 @@ the packet scope.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -218,6 +217,7 @@ the packet scope.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Conservative defaults were supplied in the packet brief.

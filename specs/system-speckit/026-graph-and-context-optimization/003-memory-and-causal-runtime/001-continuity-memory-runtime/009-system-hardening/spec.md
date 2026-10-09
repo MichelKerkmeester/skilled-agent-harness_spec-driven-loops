@@ -223,7 +223,6 @@ Coordinate all six Tier 1 investigation items through one research wave (`001-in
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -300,6 +299,7 @@ Coordinate all six Tier 1 investigation items through one research wave (`001-in
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **Q-001**: Should the research wave include any Tier 2 candidates (DR-2 runtime-matrix review, DR-3 018 adversarial, SSK-DR-2 boundary audit)? Default: no, keep 019 tight on Tier 1 unless evidence from 001 research demands broader scope.

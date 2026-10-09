@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Nobody wired any of this machinery to run without a human typing a command, so drift silently",
     "created_at": "2026-07-09T06:52:38.317Z",
-    "last_save_at": "2026-09-07T16:18:09.605Z",
+    "last_save_at": "2026-10-08T19:31:01.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,10 +195,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:70ca37b7c82255ca9e577f50ac5c9629b280806e88cb35b0947bf2c0ea367741",
+    "source_fingerprint": "sha256:e2dd9b6118fb91566b2659629fa26d0589084bb19675a8932eaea9f921849933",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d96933a57bfc9e5a072077a9d91ad8020b35068bff3084cd96f05293040c5442",
+      "spec.md": "19130c89de6d714452f2eec855e258f879b71701ba3479d2e30c94ea274c6cd2",
       "plan.md": "5c64745513f54183ee2e2841834e24d042cd722c3ccae583291335ea5a658b64",
       "tasks.md": "3ff76a218c368fb77f5c0097a53913adfce4deb5a4003a23105e2c78e72ebf91",
       "implementation-summary.md": "f04bdd07921d41aedcb73a592ef7ef1ba4f99a0528d7631683708ee5ad72acfa"

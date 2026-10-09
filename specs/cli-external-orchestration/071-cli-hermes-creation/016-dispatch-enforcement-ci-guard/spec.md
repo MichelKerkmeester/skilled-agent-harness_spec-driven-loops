@@ -132,7 +132,6 @@ A dispatch rule that stops discriminating, loses its implementation, or loses it
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -187,6 +186,7 @@ A dispatch rule that stops discriminating, loses its implementation, or loses it
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

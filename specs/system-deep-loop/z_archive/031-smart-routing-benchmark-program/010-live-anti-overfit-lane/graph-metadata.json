@@ -133,7 +133,7 @@
     ],
     "causal_summary": "Route the fixture corpus through the existing live executor seam (today the fixture path hardcodes the deterministic router) so T2 decontaminated holdouts get a real live resourceRecall, publish the T1↔T2 circularity meter as a real anti-overfit signal, and add an opt-in gate — advisory by default with sample-floor + repeat-median flakiness controls so Mode-A stays the only hard CI gate.",
     "created_at": "2026-07-09T12:18:01.367Z",
-    "last_save_at": "2026-10-07T20:54:51.212Z",
+    "last_save_at": "2026-10-08T20:05:13.169Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -141,10 +141,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:b0d215705bed6171d8c5f9269f407922e627e88ffab618b1e00ff5ff178cfc9a",
+    "source_fingerprint": "sha256:e91cac0f3ecba915be835c73b81f5e54f3d115536b08b9b48739a316d2d5f639",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "09508a43f64c6323bc3e151e2063a6bbe1546a8335ffd312453090666abdddb4",
+      "spec.md": "433616c28f4f35524f4091b6a95de78e5458a2f437c6058745376dcbe6b3e5d2",
       "plan.md": "50024881c8034914cfdf10c14cd29b204351be6cd74fd8f9a8c2742037ae326d",
       "tasks.md": "0e75daa47d667c74dac92063c677efa619fa80166852e01fb460d5abfae0a780"
     },

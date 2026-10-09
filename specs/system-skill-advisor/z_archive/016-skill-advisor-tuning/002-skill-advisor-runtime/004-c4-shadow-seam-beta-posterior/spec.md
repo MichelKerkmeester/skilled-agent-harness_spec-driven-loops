@@ -167,7 +167,6 @@ Close the estimator→registry seam, build a shared flood-immune Beta-posterior 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -245,6 +244,7 @@ Close the estimator→registry seam, build a shared flood-immune Beta-posterior 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Q-001: Does the shadow-delta sink already partition records by query-class (could QCR buckets be reused as the distinct-source dimension for held-out attestation)? (iter-7)

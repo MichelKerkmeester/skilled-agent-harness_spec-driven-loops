@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The corpus check is 3,435 lines, forty-two families and about 7,300 assertions, and it is the",
     "created_at": "2026-09-09T20:01:11Z",
-    "last_save_at": "2026-10-07T15:56:34.358Z",
+    "last_save_at": "2026-10-08T19:29:46.179Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:27d841ba64be509e9d0cf3fdeeff0a99f00b82d22fc230a8c83c4e6d590e47e6",
+    "source_fingerprint": "sha256:fe1b76a0696e38c5833315907c4decf4252514c1f0ab32084b8d148531c73f0f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6c1d458b1f2b1994e766b749e2e0c75c4ab3a6ff36c70283c2be72d797919874",
+      "spec.md": "d13936ef73a54730ba70c23354077b7a9a3e5043ac6751454ffd473c7750116f",
       "plan.md": "18a1f44e8f789cc3e469d761b0ca779fb9a4562b0ff344f651aa5d713754e57e",
       "tasks.md": "1cbfe935969198aa7b09147b930374e25afe13b43bc7006811f9439d6d3896d9",
       "implementation-summary.md": "f04213c166ab799265e454a033a5ec868741f7f581e833bdcfefc4b9b2786d2f"

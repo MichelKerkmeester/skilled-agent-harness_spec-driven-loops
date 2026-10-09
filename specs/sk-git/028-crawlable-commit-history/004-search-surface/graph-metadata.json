@@ -196,7 +196,7 @@
     ],
     "causal_summary": "A reader who knows a packet or an ordinal has no documented way to get from it to a commit",
     "created_at": "2026-09-11T07:16:28Z",
-    "last_save_at": "2026-10-07T15:56:48.829Z",
+    "last_save_at": "2026-10-08T19:30:17.095Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:39a5a106c8687b4c22944a3d83ec9d001983d12ed6854a7744a355dfcb6ca727",
+    "source_fingerprint": "sha256:c5748378b71694eef4cacd1ed3d6640b2b28111dd48da92e9cd198813fd387ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b8d4e149e0703d5d4a49af052ea5f5d3ed424ece2a974ea25e639831b582368b",
+      "spec.md": "0d8a15becdc49ebbc09b1ebbd366aedb17a6deaff7593215dec3a4ed5bb40125",
       "plan.md": "5b757f12060ba426e83f1d47d46fc5950f9d0363411814f404a4b9462ab16416",
       "tasks.md": "15a6ffea8fb3278c1acc13a78250f34bb77e345a3231fbb22fd7848ec55f9916",
       "implementation-summary.md": "16d0f4961ceed25fc826ba882797b97f0eaa805dc0473828ed54ae2a084a8459"

@@ -140,7 +140,6 @@ Every scorer's Deem arm has one recorded run on the real server, and the open De
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -190,6 +189,7 @@ Every scorer's Deem arm has one recorded run on the real server, and the open De
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator asked for every Deem item on 2026-10-02.

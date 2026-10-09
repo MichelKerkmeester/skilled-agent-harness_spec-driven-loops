@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The parent integrated Jev into 23 features",
     "created_at": "2026-10-02T18:40:29Z",
-    "last_save_at": "2026-10-07T15:56:02.567Z",
+    "last_save_at": "2026-10-08T19:29:27.256Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fbc4015507fbde6617bd044e26cc27fbf88c2171cbe41e01a97f7a52e652498c",
+    "source_fingerprint": "sha256:c1870b6537028715c575486e47b2f39ad41e7c5112e833d5382bd3df5742fe1a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f8f665b87cc68ab1ac58c9004ba9f1d7932297eafd01cbea2494206fd80581f8",
+      "spec.md": "588edf943450a90b65bd0400da07ca29895a23a39cc53582a99d24d26b64a9ba",
       "plan.md": "672c3e7afe553b9a8585fd647a4ece7d45f978fd99a10a89a1d1f6bfdad06d36",
       "tasks.md": "ab962f492064aff6a5b8f520ef135facd50b0d1b30dbca9c2c7edc57d763973c",
       "implementation-summary.md": "76b4719143b5db9673315c4c92b5bca32280631af3a039933f350877f59033b9"

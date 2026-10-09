@@ -175,7 +175,6 @@ Upgrade `sk-create-diagram` to route and serve both HTML/SVG (existing, unchange
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Routing
@@ -255,6 +254,7 @@ Upgrade `sk-create-diagram` to route and serve both HTML/SVG (existing, unchange
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 None — merge scope, redirect-not-delete decision, and format-dial architecture are resolved in `decision-record.md`.

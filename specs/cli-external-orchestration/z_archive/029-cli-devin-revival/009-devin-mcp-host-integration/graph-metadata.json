@@ -190,7 +190,7 @@
     ],
     "causal_summary": "This repo runs 3 stdio MCP servers (spec-kit-memory, code-graph, skill-advisor) that every other CLI executor (Claude Code, OpenCode) can already reach",
     "created_at": "2026-07-24T06:43:36.338Z",
-    "last_save_at": "2026-10-07T18:11:32.933Z",
+    "last_save_at": "2026-10-08T19:29:15.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,10 +199,10 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:6bb225041e5193e642682459b2b3529f177c9293ad3bfb9e7a01a336ea8b970b",
+    "source_fingerprint": "sha256:4d4f33d15da234497e9605a2828703780121cd5cd3c7ab4ece94f5314666e5b6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fa21c3420cd312cd5e295e663376e180c6ae8ea35d8d52260590c6d8eb24ae96",
+      "spec.md": "b12ab8b45f4a485c7aba02240e1e0676d5ef2be20edf0ae7616e5cc153446a28",
       "plan.md": "b3cc43c5b379e0a594fd4926f9d8568639c77bd78906a9f3bae9e0257dfb8ee1",
       "tasks.md": "6e5ad6c638451d6d46795692dffd359507a70708d9f6d01fe0ce3faea480fa5a",
       "decision-record.md": "878ffc9dd6c793c88fe022780dbb8948a3a839ec1c71aa4b56fc3d8da31bcd7d"

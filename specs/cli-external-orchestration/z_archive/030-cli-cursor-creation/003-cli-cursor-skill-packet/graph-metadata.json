@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Cursor CLI (`cursor-agent`) has no presence in this repo — no standalone skill, no hub mode, no archived packet",
     "created_at": "2026-07-24T04:34:03.998Z",
-    "last_save_at": "2026-10-07T18:11:35.576Z",
+    "last_save_at": "2026-10-08T19:29:16.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38ab6a75233357099cf68439569cc2d20084eb81a477a62f337ad2708badd101",
+    "source_fingerprint": "sha256:6254575468ac8f44e7967e729531d5b9869d059ac2d88aea38535aec7f7676c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bcc115b42c7ab8072fb280e675de6f7d7e13dac94e6bcac7c6265c9722b96891",
+      "spec.md": "5f5c5dffcb4efe080289b02e829a4b4e25d2704ba2c5284a28c7d3fb601554a3",
       "plan.md": "2ca1c94ddbc010ff3fa8f3bf8bd45aeafc1579dfc857ba7bfad89a566a4d5846",
       "tasks.md": "f88a0af3f534ed6746d7aca02961084eedfb3a54627c84af935410321d7638f2",
       "decision-record.md": "331bba3896ed3ab4c3dbcf32c5ad04e2cedaedb9c685fa725eafebc3aa1540b9",

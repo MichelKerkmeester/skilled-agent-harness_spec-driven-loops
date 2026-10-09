@@ -150,7 +150,6 @@ These three modes can be checked by an operator following a written scenario.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -209,6 +208,7 @@ These three modes can be checked by an operator following a written scenario.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 None.

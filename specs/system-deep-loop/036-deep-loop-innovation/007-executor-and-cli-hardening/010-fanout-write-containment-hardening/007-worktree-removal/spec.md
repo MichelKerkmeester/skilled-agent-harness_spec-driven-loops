@@ -113,7 +113,6 @@ One code path: lanes write, spawn and are inspected in the shared checkout, and 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -162,6 +161,7 @@ One code path: lanes write, spawn and are inspected in the shared checkout, and 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

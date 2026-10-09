@@ -99,6 +99,7 @@ O8 observes that `hub-router.json`'s `vocabularyClasses` (e.g. sk-doc's `create-
 | Projected phrases dilute precision on unrelated prompts | M | Fleet-wide distinctiveness gate required before a phrase becomes a candidate (`plan.md` §3, step 3) |
 | Phase 009 resolves with a producer design incompatible with a simple additive write | L | This spike's scratch writer is explicitly scoped to go through whichever path 009 designates; if incompatible, the spike documents the mismatch in its decision-record rather than working around it |
 <!-- /ANCHOR:adr-001-consequences -->
+<!-- /ANCHOR:adr-001 -->
 
 ---
 
@@ -156,4 +157,3 @@ Anything less is a NO-SHIP. The bar is deliberately asymmetric: the projection o
 
 **How to roll back**: see `plan.md` §7 Rollback Plan — every artifact lives under this phase folder's scratch workspace; discarding the folder, or simply not opening the follow-up phase, fully reverts the spike.
 <!-- /ANCHOR:adr-001-impl -->
-<!-- /ANCHOR:adr-001 -->

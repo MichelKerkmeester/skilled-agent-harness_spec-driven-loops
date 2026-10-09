@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The 015 deep review passed the `systemskilladvisor` to `mkskilladvisor` rename but left nine P2 advisories: stale parent graph metadata, an env-var discoverability gap, build freshness evidence, three missing rename-invariant tests, and one stale advisor README validation path",
     "created_at": "2026-05-19T15:11:02.193Z",
-    "last_save_at": "2026-10-07T18:16:08.193Z",
+    "last_save_at": "2026-10-08T19:30:37.893Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:88106621dfb07283cfe817fc3016ccd35c1568bdf356d5e9312f78a8ad5dbbf5",
+    "source_fingerprint": "sha256:582273af546748d69ffbb4e41a36866112631e0455e7f6377030d5293a27dbe7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "116b2d28c261004978688341fbc594e3f9a579aca6cba2be287dd44a392813b7",
+      "spec.md": "ab374e1ffe24f6e5679512843afe3e34053476dbaf984408f3febe087adfb509",
       "plan.md": "eadfaa66462ed76c3c569e0ccdd20a6e286a375a6db6aef89c25b22fbc76aabc",
       "tasks.md": "45e0c4a03ff5b1a3e5bc346a59b0439b6748b667aa00f2c2a436849a2f148e5f",
       "implementation-summary.md": "e0a13d713f19b88e3fe9b38d92c3d9902565d1d65cc807c9cd9ea76d00a9b589"

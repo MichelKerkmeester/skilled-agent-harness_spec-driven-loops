@@ -186,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/shared/procedures/` has not been audited against `.opencode/skills/sk-doc/create-skill/assets/skill/skill-procedure-template.md`",
     "created_at": "2026-07-27T14:59:52.385Z",
-    "last_save_at": "2026-10-07T18:12:21.603Z",
+    "last_save_at": "2026-10-08T19:29:56.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,10 +195,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c873e88b6c8ac54fa65396e325358df90553358585880a66f431fd3294a7c00e",
+    "source_fingerprint": "sha256:09d6788e69e048acf54dffffc9e053b79db888a69755b8ced1a524cb1cc177d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d3c11e76369b5bb99b2e7b0cb6c313bcf7cb1c6eaaaf4a6dee3187cf021ec23b",
+      "spec.md": "3f74630f290cb21ea2d7e159de10f3ba87660ccb6b292a622001f91f6f40b893",
       "plan.md": "4f51d269f9fbabcdb57bae4ca7ac461c344e0abffeb3ee3ff5c923ca73f644d5",
       "tasks.md": "d29c239e43c2fa59fcca4a1c72226e4b54c8c20179afa1353afe91113ba2c976",
       "implementation-summary.md": "82bd6e0b3f7ec553f0c94781826835f71a7d2ed05a8b3cd909a49ee18dadc078"

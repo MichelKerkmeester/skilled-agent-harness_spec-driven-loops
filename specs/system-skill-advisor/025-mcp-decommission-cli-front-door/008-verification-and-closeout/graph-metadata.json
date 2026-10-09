@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Each earlier phase proves its own claim at the moment it makes it, on a tree that later phases keep changing",
     "created_at": "2026-09-11T06:49:05Z",
-    "last_save_at": "2026-10-07T15:57:06.787Z",
+    "last_save_at": "2026-10-08T19:30:37.164Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:25a15baca6dc581c24aea52e18997fa6e7d48c59d84f98af543077c1dca5c0b1",
+    "source_fingerprint": "sha256:d149c31776a753e80778ef102fd864a972999209e39ce202ee37803b4271f4a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ad1aaf99572c0d8823c8d0249bfa1f8ddd92433e917bae215712e2c68355f94a",
+      "spec.md": "c4f1371d4f37b569cd5b23d08c983c6f86f49dc03cb762992302dca964586ee8",
       "plan.md": "f4de137b9848dec1d292480cf8375f4a532c62079f76618b843d9cdd87d80d03",
       "tasks.md": "ab52991914360db54dd989eedaa4f3061be7085a5cb82f29f99448afced0a76f",
       "implementation-summary.md": "5c43777cabb71d68580a8535c78396384d627faa75ea93a774a14eb7c5009b67"

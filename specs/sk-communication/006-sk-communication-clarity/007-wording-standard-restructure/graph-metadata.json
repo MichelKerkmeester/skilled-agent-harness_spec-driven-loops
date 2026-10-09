@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The standard is written for documents",
     "created_at": "2026-09-12T16:39:30Z",
-    "last_save_at": "2026-10-07T15:56:27.141Z",
+    "last_save_at": "2026-10-08T19:29:37.580Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab69a06a03f8536134e130b8b5ba844e68e88436e807b0ac1a3c55fa037b5d64",
+    "source_fingerprint": "sha256:44ad1e441e06dc2ade9fbb08d00c271bb4419ce502bb80d31059d48051cbfd15",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bb9b1f1cbaa106c02b5115baa115830420cd097eb849ed5f1bfb52972c8ad4f5",
+      "spec.md": "b73fd4b6e112925cb622abcbac9e0a38f5831789c9ac4302f14e6e210ab036e7",
       "plan.md": "3465bac2d07a309d8a23bd65b67e969c12a4f18b151d781a119a8c864107129d",
       "tasks.md": "6e5ceba17f988668f5a7679eeb3163b2135aa10fb38cb0dd33ee5df46c2cd5d2",
       "implementation-summary.md": "dbbd88999e6db6ce54669593e1cf6629c68c74aaa6902de517b718517021189a"

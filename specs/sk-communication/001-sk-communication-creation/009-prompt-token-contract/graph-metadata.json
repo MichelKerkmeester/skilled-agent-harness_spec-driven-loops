@@ -154,7 +154,7 @@
     ],
     "causal_summary": "The wire body is one system instruction plus one user message containing the whole encoded text; the instruction references values the model cannot see and never states the token contract",
     "created_at": "2026-08-13T04:05:03.043Z",
-    "last_save_at": "2026-10-07T15:56:17.395Z",
+    "last_save_at": "2026-10-08T19:29:31.273Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -162,10 +162,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:d85550178dd56bfb25be21db3a7e4732601105832c552b5144e12aadc8b3fbd0",
+    "source_fingerprint": "sha256:d8a520b7d921fdf809879ba5ae5da71e2a5e5a020db76f1fd0eb1a98be011dea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "282c3fce15f6f2d806d60e00bc69b56706620e352914011f948315ff2ba432a0",
+      "spec.md": "ee905e41bd9a010f140dfeb5914e5dcde4dff771058cc65a9c414a505a12d38a",
       "plan.md": "13b24897a564544f0828c5cf2d4995011440a87094c9fa265f4c29cc236628dc",
       "tasks.md": "b4de73b7573221e1b58f68d8ce66a5275888f14a827fceb1a262d8af4d759992"
     },

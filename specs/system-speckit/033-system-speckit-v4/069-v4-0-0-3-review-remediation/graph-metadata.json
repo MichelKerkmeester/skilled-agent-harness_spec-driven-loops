@@ -210,7 +210,7 @@
     ],
     "causal_summary": "On the default convergence policy, every `/deep:review` iteration writes `type:\"event\"` rows that `append-mode-event.cjs` rejects with exit 1",
     "created_at": "2026-10-06T10:15:27Z",
-    "last_save_at": "2026-10-07T15:57:33.747Z",
+    "last_save_at": "2026-10-08T19:31:33.303Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,10 +223,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:36044e419b9b18e4f30e0e21b1f148285be00db89bfdae5edf5f80ed428f4731",
+    "source_fingerprint": "sha256:4a63622d780e8c227eaab0e9e819aed1bf2ebac5e972ddcabfbde838d149db82",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "29a8b19e5aff0e5b1dd5028468b560514e9cfc09530af0279f1f93568cbff892",
+      "spec.md": "22a82bbe4c66c9f80e95f05c2de265339ee897081604980c99ea457193134bea",
       "plan.md": "2b9dfcd8211a04aac87b111436d5ec72055b4f7a63d92580a33bcc01697ce513",
       "tasks.md": "6e8cc7062bd215a2d266db204414599533dd7557d5b083ec861d7d50b1479cb7",
       "decision-record.md": "56cd001859a41bbb41615fb81f7c43ae5b7d3b46944350bfb2ce463e54af4fa3",

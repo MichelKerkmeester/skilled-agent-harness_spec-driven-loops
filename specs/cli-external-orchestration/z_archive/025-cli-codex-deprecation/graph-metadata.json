@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`cli-codex` remains a first-class skill and executor in active OpenCode surfaces even though the user wants it deprecated",
     "created_at": "2026-06-30T06:25:16Z",
-    "last_save_at": "2026-08-30T15:39:08.878Z",
+    "last_save_at": "2026-10-08T19:29:12.321Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:528dbcd4cd3d37e0d49564096246ba7246b6b878fe0a8796cf09158b2cb7e1d4",
+    "source_fingerprint": "sha256:438d94cc55f4acd68ec7b30c75a434ba3167cb5280166c1df2be9776496091ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "299643e1ac494b550aeb4c6945f89c8aa4420435f65242f531002e7a1f9b795b",
+      "spec.md": "edf794c2f9456998adb648e182b7a2e931fa6e83a800a06093f75276d02d543c",
       "plan.md": "ea3b43c2b6ff83ed08412efb8e658be48afaebe271f2818c9ed90a0ce70eee36",
       "tasks.md": "921bd9fd991e0280025c3b9a3299b80ba2a786204973945cabef75cf8989f4b0",
       "decision-record.md": "33572244ebde07ed8cf9442b9d90ad254a317ca58752feec77901e250c492aef",

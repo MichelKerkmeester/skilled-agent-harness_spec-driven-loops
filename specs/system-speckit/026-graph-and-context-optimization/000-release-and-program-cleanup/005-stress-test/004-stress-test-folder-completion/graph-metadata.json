@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Packet 037/005 migrated only two filename-matching stress files into the dedicated stress folder",
     "created_at": "2026-04-29T18:45:00Z",
-    "last_save_at": "2026-08-30T15:39:28.654Z",
+    "last_save_at": "2026-10-08T19:30:43.493Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:20f4b0897c97a604c5a69d636c0fcfa43e5252cc12ab47dce582ef4456e265d3",
+    "source_fingerprint": "sha256:b20a6b6cb9f905cee0d2aa0cfa5b57437b80826f63e1badceb323008ed20f36e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ba72bed59bbf5f8b480c50bef8f32742c638b63bc9075cab9cf1a872188a7977",
+      "spec.md": "9733c07f45ed9cedb81bb41bf4fe219a16d72c6783cd759a897e8314702e1b66",
       "plan.md": "1b0eed50d1289f58b8b63098cd91a151109d81b07454d8fbb241eace19355962",
       "tasks.md": "eada128a3b97296cc20599fa8e79495af6235f47ddb039f8fc7eca93e0379423",
       "implementation-summary.md": "233b75905442afad830641f097ebd2a9809fc0b6408f5a7080eab62157bb197a",

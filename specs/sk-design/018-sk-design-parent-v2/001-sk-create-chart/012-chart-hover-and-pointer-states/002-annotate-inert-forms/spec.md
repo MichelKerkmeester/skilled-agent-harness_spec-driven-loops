@@ -105,7 +105,6 @@ Each of the six forms declares `data-chart-inert` on its figure wrapper, with th
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -153,6 +152,7 @@ Each of the six forms declares `data-chart-inert` on its figure wrapper, with th
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. `research.md` section 2 and phase 1's contract table already name every form and every reason this phase needs.

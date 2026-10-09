@@ -47,8 +47,6 @@
       "research/deep-research-state.jsonl",
       "research/deep-research-strategy.md",
       "research/research-report.md",
-      "lib/rag/trust-tree.ts",
-      "lib/search/pipeline/stage3-rerank.ts",
       "research/deep-research-config.json"
     ],
     "entities": [
@@ -92,18 +90,6 @@
         "name": "research-report.md",
         "kind": "doc",
         "path": "research/research-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "trust-tree.ts",
-        "kind": "code",
-        "path": "lib/rag/trust-tree.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stage3-rerank.ts",
-        "kind": "code",
-        "path": "lib/search/pipeline/stage3-rerank.ts",
         "source": "derived"
       },
       {
@@ -195,11 +181,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases C–E delivered W3 (composed RAG trust tree), W4 (conditional rerank, now default-on), W5 (advisor shadow learned weights), W6 (CocoIndex adaptive overfetch, opt-in), W7 (degraded-readiness stress cells)",
     "created_at": "2026-04-29T06:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:28.507Z",
+    "last_save_at": "2026-10-08T19:30:43.410Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +206,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a85e6c7215b304282d18a0d4dba9a9cd18bf9bd27ee4b4d2ed5b367a1c6151f9",
+    "source_fingerprint": "sha256:9efa51ecc46535360015f08cd06e7f478dc6cfca29c1bdab4dfaca61ed426dc9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "95a606c7d560bbf7ef7ddc1433c86cef34dfa383bc78a9f54cd1cfbd156c83d6",
+      "spec.md": "a5704b9f3dbd3ccc1d366b63e31b01591ed180e3823406cc01915190cc21ea1d",
       "plan.md": "218f132ebc8b935b8dc38a75d765722de9241fae1f9d8dd2847273402ac49e77",
       "tasks.md": "6a0119bc4b82ac05455eeddc3795500ca120b0f5df4d95c8a3acd038f7948f7a",
       "implementation-summary.md": "dc860e70d1027539c57b9fc7a936c55a4e9c6f9c3ec555d8c9c17d730b071f1b"

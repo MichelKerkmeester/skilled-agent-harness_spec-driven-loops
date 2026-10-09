@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Add Ollama provider support to CocoIndex's embedder registry. Today CocoIndex's MANIFESTS is sbert-only; the config.py comment claims non-sbert names route via LiteLLM, but the path is unverified. This packet verifies that path or extends the loader, registers at least one Ollama embedder (e.g., ollama/nomic-embed-text), and smoke-tests end-to-end indexing + search.",
     "created_at": "2026-05-18T17:44:39.189Z",
-    "last_save_at": "2026-09-10T20:47:47.780Z",
+    "last_save_at": "2026-10-08T19:30:49.942Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c058d25a5fc85a84fbfbf1732ec74b6213c2f1f7b4becf36ae2be93f28a3be23",
+    "source_fingerprint": "sha256:adcb7249d94b7348bda7bd4916a1449745c55d6f19f5499ecdfe264eb264ded3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "128c91717bb8ace5d4d3ba795a1dec372ccf455d0e5266e5adc313aaf3faf4b0",
+      "spec.md": "bb047fb6d454b4d237deadf64d40a1a447117bf71e2aeb52c1ff93513da724ff",
       "plan.md": "fd7899068775913c70712ea17a7364f2b7cebc1af6277ae1e76a0faf106f236f",
       "tasks.md": "d6ad68250235301901e931bb0fd23dcc132b934dae58e5f7d53e1fc893c5ceb7",
       "implementation-summary.md": "aab4c850692f32361b0434fd06ba8eb467e98be81e1362891e2d5f6b394a24f1"

@@ -163,7 +163,7 @@
     ],
     "causal_summary": "The shipped interface mode defines the overall direction for distinctive UI, including visual voice, information architecture, component direction, interface-level composition, motion posture, critique, and writing",
     "created_at": "2026-07-16T09:10:47.132Z",
-    "last_save_at": "2026-10-07T18:11:21.292Z",
+    "last_save_at": "2026-10-08T19:29:52.880Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -171,10 +171,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:a9f4798601ba1eb9e70aa930c2e1a6e2ffa09895760e20aa61f430ba028dd37d",
+    "source_fingerprint": "sha256:e072938e10978ba9c0cbefe3cba62ab0f4b1af10fdbd85c86029d44eff0d92f8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "584f426cb494d131f42287502da8e7ca00ea80ddb8a5605749e4a25a2d718885",
+      "spec.md": "b027c1b865733c87124dca460ff2f678511e3b2b036e1911ac6f18600734ac2a",
       "plan.md": "edcbf320d788717b874e491a88031f73808d419a150c9fc60551a6b1442833e8",
       "tasks.md": "bd740b86e4aec8d6c86d580e8a56e9f2337add8cb9b391472d6babb90d9dcbf0"
     },

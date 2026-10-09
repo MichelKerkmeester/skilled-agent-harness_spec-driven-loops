@@ -161,7 +161,6 @@ This is **Phase 7** of the `system-deep-loop/032-deep-alignment-mode` mode-packe
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -210,6 +209,7 @@ This is **Phase 7** of the `system-deep-loop/032-deep-alignment-mode` mode-packe
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - RESOLVED: ADR-008's specific deterministic-vs-reasoning split is now built and evidence-cited. Layer 1 reaches exactly `verify_alignment_drift.py`'s existing 12-rule-type/7-language coverage for OPENCODE (no new linter added, per scope) plus the two read-only Webflow scripts for WEBFLOW (gated on project-root discoverability, currently zero in this repo); layer 2 covers everything else via a dispatch-packet-and-pass-through, never self-judged. Full split: `sk_code_adapter.md` Section 9.

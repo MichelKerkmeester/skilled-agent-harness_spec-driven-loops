@@ -139,7 +139,6 @@ Close the API boundary coverage gaps by migrating unnecessary direct imports to 
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -157,7 +156,6 @@ Close the API boundary coverage gaps by migrating unnecessary direct imports to 
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

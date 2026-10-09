@@ -214,7 +214,6 @@ fail-closed validator; and a real gate.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -302,6 +301,7 @@ I do not act on a capability that does not exist or miss one that does.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **OPERATOR-DECISION (Q1)** — Does `mcp-code-mode` owe a feature catalog, or does a repaired README remain canonical?

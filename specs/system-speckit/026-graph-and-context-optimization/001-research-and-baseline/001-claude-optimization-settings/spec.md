@@ -169,7 +169,6 @@ Produce an evidence-anchored recommendation set, cross-checked against this repo
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Research Quality
@@ -251,6 +250,7 @@ Produce an evidence-anchored recommendation set, cross-checked against this repo
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Q2 (exhausted without closure): What are the first-tool-use latency, discoverability, and task-completion ergonomics tradeoffs of deferred tool loading in this repo's specific startup environment? The post does not provide a latency or ergonomics benchmark; local A/B measurement is needed.

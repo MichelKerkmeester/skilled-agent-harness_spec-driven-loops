@@ -193,7 +193,6 @@ Build `cli-pi` as a new packet under `cli-external-orchestration/cli-pi/`, wire 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -248,6 +247,7 @@ Build `cli-pi` as a new packet under `cli-external-orchestration/cli-pi/`, wire 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether the bare single-token alias `"pi"` creates elevated cross-hub or cross-skill collision risk given it is an extremely common short word/math constant — this phase's mitigation is to exclude any bare `"pi"` alias entirely (REQ-006), using only multi-word phrases; a broader repo-wide alias/keyword search is recommended before the implementation phase locks in the exact alias list.

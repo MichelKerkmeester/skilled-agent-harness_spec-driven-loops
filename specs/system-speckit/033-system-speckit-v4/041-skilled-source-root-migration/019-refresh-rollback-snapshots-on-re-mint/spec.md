@@ -132,7 +132,6 @@ A rollback restores the hub's current policy with legacy authority.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -179,6 +178,7 @@ A rollback restores the hub's current policy with legacy authority.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the snapshot also record the generation it was refreshed from, for audit?

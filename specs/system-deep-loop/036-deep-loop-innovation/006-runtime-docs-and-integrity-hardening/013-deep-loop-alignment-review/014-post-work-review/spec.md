@@ -130,7 +130,6 @@ A model that did none of the work reads every claim the program made and says wh
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -178,6 +177,7 @@ A model that did none of the work reads every claim the program made and says wh
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

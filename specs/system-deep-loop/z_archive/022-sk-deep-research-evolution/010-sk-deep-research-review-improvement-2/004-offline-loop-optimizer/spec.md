@@ -46,6 +46,7 @@ Phase 004 is now explicitly split into two sub-phases. Phase 4a is the realistic
 | **Predecessor** | `003-wave-executor` |
 | **Successor** | `../005-agent-improver-deep-loop-alignment/spec.md` |
 | **Handoff Criteria** | Phase 4a outputs are replay-verified, audit-trailed, and emitted as advisory-only candidate patches until Phase 1 replay fixtures and Phase 3 behavioral suites exist. |
+<!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:phase-context -->
 **Phase Context**: This phase closes the moonshot chain by turning prior run traces into an offline improvement engine, but the research findings show the safe near-term scope is narrower than originally drafted. Phases 001 through 003 make deep-loop behavior explicit, graph-aware, and segment-capable; Phase 4a should use those artifacts to tune deterministic thresholds and recovery settings without experimenting live in production, while Phase 4b stays deferred until the replay and behavioral foundations are real.
@@ -62,7 +63,6 @@ Phase 004 is now explicitly split into two sub-phases. Phase 4a is the realistic
 - **Phase 4a**: rubric and scoring framework for run quality, deterministic replay runner, random-search baseline, optimizer manifest, and audit-trailed advisory candidate reports.
 - **Phase 4b (deferred)**: prompt-pack optimization, task-shape-aware meta-learning, and gated production promotion after prerequisite suites and corpus diversity exist.
 <!-- /ANCHOR:phase-context -->
-<!-- /ANCHOR:metadata -->
 
 ---
 

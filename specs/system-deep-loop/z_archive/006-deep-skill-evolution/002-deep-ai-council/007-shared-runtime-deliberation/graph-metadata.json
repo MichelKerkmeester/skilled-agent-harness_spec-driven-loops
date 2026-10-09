@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`sk-ai-council` already contains runtime-like helpers for artifact persistence, append-only JSONL state, graph replay, and convergence guidance",
     "created_at": "2026-05-23T05:04:55Z",
-    "last_save_at": "2026-10-07T18:14:21.486Z",
+    "last_save_at": "2026-10-08T19:30:26.560Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-23T05:04:55Z",
     "source_docs": [
@@ -211,10 +211,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7a5b6865d6aa307830eedd64df36b3baf34c90e5ae10822115a1edf22f219692",
+    "source_fingerprint": "sha256:5cc03a1bd774775768658654a0dd2a3ddebb8bd2c71bb2ef30b02a26a03a00c2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3f43711546882de8db2bfea073cbfe3cbcf2a15c08f7a621f4e66ed0436ac213",
+      "spec.md": "bcace10b0a7fdea8b57972247542ee645f00be6f40e276bd61831a33f28f8d83",
       "plan.md": "ed4e992895d66aae1b813087fac2e390e80933a2edce05a9e354247440ed81b7",
       "tasks.md": "a39534c02db8f17486dc6d517e179ed19862c92d98c6c5646d2ace49f823ba0c",
       "decision-record.md": "71a154173bd8ae7d4b529366dc5e842706deceb70afb5fce2add4ff7ce0495c5",

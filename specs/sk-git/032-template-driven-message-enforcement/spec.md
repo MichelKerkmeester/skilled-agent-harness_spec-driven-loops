@@ -164,7 +164,6 @@ Every commit message and PR description that reaches the remote matches the stan
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -245,6 +244,7 @@ Every commit message and PR description that reaches the remote matches the stan
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None.

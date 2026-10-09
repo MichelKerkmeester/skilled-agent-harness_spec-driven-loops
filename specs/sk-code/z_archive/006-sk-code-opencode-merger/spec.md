@@ -174,7 +174,6 @@ Document the implementation and verification path for the merger, including what
 <!-- /ANCHOR:risks -->
 
 ---
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -262,6 +261,7 @@ Document the implementation and verification path for the merger, including what
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 All four open questions were resolved during deep-analysis session (2026-05-03):

@@ -175,7 +175,6 @@ consistent account of what happened.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -232,6 +231,7 @@ level 2 because it closes against acceptance criteria.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether the running weight and the committed default agree at closeout. The reconciliation answers it, and a disagreement is recorded rather than quietly fixed.

@@ -162,7 +162,6 @@ Reserve the optional orchestration and insight packet in the continuity train wi
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -230,6 +229,7 @@ As a reviewer, I want later workflow and token-insight work to consume existing 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - What proof points should count as stable enough to activate this packet: passing corpora, publication-ready rows, or both?

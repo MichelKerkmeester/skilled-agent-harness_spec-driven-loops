@@ -182,7 +182,7 @@
     ],
     "causal_summary": "`deep-agent-improvement` is the evaluator-first bounded agent improvement skill (integration scanner, dynamic profile generator, 5-dimension scorer, benchmark integration, dimensional reducer/dashboard, end-to-end loop, runtime-truth surfaces, and agent-discipline stress tests)",
     "created_at": "2026-05-27T07:08:08.397Z",
-    "last_save_at": "2026-10-07T18:14:22.969Z",
+    "last_save_at": "2026-10-08T19:30:28.592Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,10 +191,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0b37f1e2602a181379c1acaf0ec80ff1f61c43f3808ccb7a9a2add3765cb75e9",
+    "source_fingerprint": "sha256:44e95a9f486aefe4f8ffc5c00c65ecf6c5907b63f32cc3594ca21df625ee8525",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "69bd1a9c703097ffde828a8b65009cb4897d5ac4f1425116d74112b1f9be6862",
+      "spec.md": "e9a46b6853557a35682598b83304ca13e8bf3e957717da3d3f88ef97e485db63",
       "plan.md": "b59b1e69c01489db7efc7c822547088a949dbad72db57111c3bf470b0dfdf676",
       "tasks.md": "da8dfea36371722bde60ac47bd6f37fdfe5e0ecd80ec085622610c0240d4097c",
       "implementation-summary.md": "058b9205491e60a6aca4d8a9a94b66b16e2d1e57b2b61a9d9c9b79277a88cecf"

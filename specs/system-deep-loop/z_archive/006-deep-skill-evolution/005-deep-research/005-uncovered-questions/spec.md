@@ -137,7 +137,6 @@ Expose uncovered questions as reducer-owned state so the registry and dashboard 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -218,6 +217,7 @@ Expose uncovered questions as reducer-owned state so the registry and dashboard 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None.

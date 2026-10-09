@@ -154,7 +154,6 @@ Each of the three features gets one keep rule shared across scorers, the cheapes
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -207,6 +206,7 @@ Each of the three features gets one keep rule shared across scorers, the cheapes
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which routing owner would approve an additive alternatives contract for clarify default?

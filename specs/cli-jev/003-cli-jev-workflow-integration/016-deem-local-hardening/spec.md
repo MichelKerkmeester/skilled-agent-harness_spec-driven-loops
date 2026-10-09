@@ -165,7 +165,6 @@ At planning, `git log -5` on `../007-classifier-deep-research/context/deem-local
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -220,6 +219,7 @@ At planning, `git log -5` on `../007-classifier-deep-research/context/deem-local
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 These are the four operator decisions. The operator answered all four on 2026-09-28, each with the recommended option (D4 of the parent `goal.md`), and each answer below replaced its pending line.

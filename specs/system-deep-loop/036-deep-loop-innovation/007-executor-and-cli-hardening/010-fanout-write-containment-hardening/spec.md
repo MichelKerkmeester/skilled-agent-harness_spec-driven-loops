@@ -205,7 +205,6 @@ Ordered by safety gained per line changed. The first three requirements stop the
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -318,6 +317,7 @@ The two `buildLineageCommand` importers are the reason the worktree phase must k
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should the restore opt-in be rejected outright when the churn sampler has already fired, or only suppressed for the rest of the run? The specification takes the second reading; the first would be stricter and is a one-line change.

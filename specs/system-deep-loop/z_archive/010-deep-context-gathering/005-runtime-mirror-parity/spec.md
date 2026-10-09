@@ -147,7 +147,6 @@ Make the native `@deep-context` seat dispatch correctly in all three runtimes an
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -202,6 +201,7 @@ Make the native `@deep-context` seat dispatch correctly in all three runtimes an
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Approach and note location were confirmed with the user before implementation.

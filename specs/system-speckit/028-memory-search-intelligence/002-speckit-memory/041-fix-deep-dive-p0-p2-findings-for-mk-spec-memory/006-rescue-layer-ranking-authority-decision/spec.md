@@ -199,7 +199,6 @@ Make eval measure production, then decide explicitly, with benchmark deltas, whe
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -283,6 +282,7 @@ Make eval measure production, then decide explicitly, with benchmark deltas, whe
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Does the 026 packet record which query class motivated the 0.78 lexical weight, and is that class already covered by the fixed query set? (Resolve during T004 lineage archaeology.)

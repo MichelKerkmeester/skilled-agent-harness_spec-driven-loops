@@ -182,7 +182,6 @@ Establish operator visibility into embedding pipeline health, enforce signal qua
 
 ---
 
-<!-- ANCHOR:questions -->
 <!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -285,13 +284,13 @@ Establish operator visibility into embedding pipeline health, enforce signal qua
 
 ---
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should the toolCalls Mustache section render the full ToolCallSummary[] or a condensed count + top-N by frequency? (Prefer top-3 by call count to avoid verbosity)
 - Does the pre-save overlap check (REQ-012) need to be synchronous for the first save of a spec folder, or advisory-only across all saves? (Recommend advisory-only to keep P2 scope contained)
 - Are any of the 9 un-suppressed OPTIONAL_PLACEHOLDERs conditional on feature flags? If so, un-suppression must preserve the flag gate.
-<!-- /ANCHOR:questions-2 -->
+<!-- /ANCHOR:questions -->
 
 ---
 
@@ -303,4 +302,3 @@ Establish operator visibility into embedding pipeline health, enforce signal qua
 - **Decision Records**: See `decision-record.md`
 - **Research**: See `../research/research.md` (Round 2, Domains D + F)
 - **Sibling Phase 003**: `../003-field-integrity-and-schema/` (template-renderer.ts — coordinate changes)
-<!-- /ANCHOR:questions -->

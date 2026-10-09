@@ -108,7 +108,6 @@ A form that has a meaningful baseline can lead with its number and its change, d
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -163,6 +162,7 @@ A form that has a meaningful baseline can lead with its number and its change, d
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None until the build starts; phase 022 must land first.

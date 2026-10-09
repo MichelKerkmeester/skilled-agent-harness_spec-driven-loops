@@ -152,7 +152,6 @@ Every named orphan is deleted with grep proof or re-homed with a stated reason, 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -207,6 +206,7 @@ Every named orphan is deleted with grep proof or re-homed with a stated reason, 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open. Each of the six items has a clear default (delete unless a reason to keep surfaces during implementation), stated in Scope.

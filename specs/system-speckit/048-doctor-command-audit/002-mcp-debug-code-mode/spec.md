@@ -139,7 +139,6 @@ Make `/doctor:mcp debug` cover only MCP Code Mode and its `.utcp_config.json`, a
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -186,6 +185,7 @@ Make `/doctor:mcp debug` cover only MCP Code Mode and its `.utcp_config.json`, a
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None yet. Findings from the inventory go to `implementation-summary.md`.

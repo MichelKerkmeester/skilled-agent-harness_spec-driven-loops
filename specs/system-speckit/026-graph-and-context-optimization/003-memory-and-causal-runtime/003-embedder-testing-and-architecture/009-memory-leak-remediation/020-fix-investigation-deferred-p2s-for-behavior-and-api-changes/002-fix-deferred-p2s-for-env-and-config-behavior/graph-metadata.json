@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Four deferred P2 findings remain in the rerank sidecar env/config surface",
     "created_at": "2026-05-23T10:01:51Z",
-    "last_save_at": "2026-10-07T19:59:51.906Z",
+    "last_save_at": "2026-10-08T19:30:50.772Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5cd6e3b9979c12f0ab4c07cce5ceb44df3a2fde9e5d12a0af0f83cc3ed15b75",
+    "source_fingerprint": "sha256:e172383e66dc78f55ab0ea9e4f125edefa74a94d80c8a0dcdfdcd0bddaeed3f5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e7c7cf66c0c60bdd4ac9821772ca3daedfd438da317a184e0368fb0b0248bd0b",
+      "spec.md": "74cbc5604073ec252341fa737ad972f664a8ac4f4471d954ac57ac7bd58256db",
       "plan.md": "96fe5634438858605799a7dad97957f53d5859447b7ad8b4d7166901f3166677",
       "tasks.md": "abe43fea9d37f05e92572d8bf9cb8a3538bba224157559f8d515526b6db4e91e",
       "decision-record.md": "492994a2b65fd58d51bef188448940e58bf8d3debbd096aa719e3b0a4a34b8a6",

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The CLI works today but is not yet something the rest of the repository can be pointed at with confidence",
     "created_at": "2026-09-11T06:48:58Z",
-    "last_save_at": "2026-10-07T15:57:06.290Z",
+    "last_save_at": "2026-10-08T19:30:35.942Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5243888946c3721ad0d35dd15db23af8f2ae2cc1c933042206c010cb1a0375f9",
+    "source_fingerprint": "sha256:a09f53eda1870cb1038d184ee281bce9910b7f14a51316d04188bcf90a8856d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4cb033510692b8153ee0e33b856496e0245327894378939922c6e6d4f1f807c7",
+      "spec.md": "f35face3810a2b17f6e110d62f07ca1ec6c0c65d20b04a71f657d5775bb083b6",
       "plan.md": "daf0661db1898204fe6f0c7091fc74aed7850ff08405081cf4a7821f6ce32ed8",
       "tasks.md": "d0291e234c65548627fb7a73ecc81cb86d78342f7fe96dd00688259d24051db7",
       "implementation-summary.md": "11be0c9b98398cbd459a386a0ed2812324efa137ac95a0d70d6186438e62b674"

@@ -109,7 +109,6 @@ from the state each child left.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -164,6 +163,7 @@ from the state each child left.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

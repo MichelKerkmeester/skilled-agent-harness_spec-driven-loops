@@ -168,7 +168,6 @@ Give operators a resolvable command and a reproducible playbook for the mode's p
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -222,6 +221,7 @@ Give operators a resolvable command and a reproducible playbook for the mode's p
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - UNKNOWN: Which exact operation tokens did Phase 004 settle? The current Phase 004 spec and task files still contain planning scaffolds (specs/sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/spec.md:42-48, 89-103; specs/sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/tasks.md:34-61). Resolve this from Phase 004's accepted output before finalizing the argument hint, as the parent assigns that decision to Phase 004 (specs/sk-doc/060-create-goal-mode/spec.md:157-159).

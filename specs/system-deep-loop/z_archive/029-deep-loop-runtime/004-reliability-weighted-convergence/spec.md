@@ -280,15 +280,16 @@ Land the reliability-weighted-learning cluster as a sequenced, off-by-default, b
 <!-- /ANCHOR:user-stories -->
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
-<!-- ANCHOR:questions -->
 > All questions below are **deferred under the NO-GO**, none is resolved this cycle. They are the open items to settle if and when the cluster is revisited after the benchmark tier.
 
 - Does a measured `convergenceThreshold` recalibration confirm D3 is safe to enable, or does the all-0.5 regime make the recalibration meaningless until a reliability writer exists? **PENDING, decide at D3 benchmark time** (iter-3 D3, iter-4 remaining).
 - Is the exact 001 content-derived ordering call site truly absent (research [INFERRED] it was unread)? The synthesis `03` REFUTED reuse and named D-orderhelper as the extract-first prereq, confirm at C1 build time by reading `council-graph-query.ts:280` and grepping for any sibling helper. **PENDING, confirm at D-orderhelper build time.**
 - Does any non-prompt-pack continuity path consume reliability that the read-only D2 walk would miss? **PENDING, trace before wiring Q7's registry field** (iter-2 F12-15 remaining).
 - Is `kMin≥2` / `stopThreshold` from aionforge right for the deep-loop fixture profile, or does the recalibration suggest different defaults? **PENDING, confirm at D4 config time.**
+<!-- /ANCHOR:questions -->
 
 ---
 
@@ -303,4 +304,3 @@ Land the reliability-weighted-learning cluster as a sequenced, off-by-default, b
 - **Synthesis**: `../../research/synthesis/01-go-candidates.md` ("Needs validation / benchmark BEFORE go" + Shared-infra), `03-corrections-caveats-and-residuals.md` (§11 D2 absent. §27 D-reproducible-fold REFUTED → D-orderhelper), `04-sibling-and-cross-cutting.md` (§40 shared Beta primitive. §41 D3 weights the existing conjunction).
 - **Shipped record (Wave-0)**: Wave-0 record, NONE of this cluster shipped (Q6-anchor, Deep-Loop trio, Q4-C1 are the only Deep-Loop/adjacent entries marked Done).
 
-<!-- /ANCHOR:questions -->

@@ -106,7 +106,6 @@ Every published lineage names the executor kind and model that produced it, and 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -157,6 +156,7 @@ Every published lineage names the executor kind and model that produced it, and 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

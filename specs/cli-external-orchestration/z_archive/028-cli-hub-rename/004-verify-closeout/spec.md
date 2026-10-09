@@ -161,7 +161,6 @@ Record exactly what passed, what was blocked, and what must be rerun before fina
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 - **Integrity**: every PASS must come from an executed check.
@@ -191,6 +190,7 @@ Record exactly what passed, what was blocked, and what must be rerun before fina
 
 **As a** reviewer, **I want** passing and blocked checks separated, **so that** I can trust the packet's closeout status.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - When will rebuilding the stale distributions be authorized?

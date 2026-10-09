@@ -97,7 +97,6 @@ Every family is held by at least one case, and the suite fails if that stops bei
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -152,6 +151,7 @@ Every family is held by at least one case, and the suite fails if that stops bei
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

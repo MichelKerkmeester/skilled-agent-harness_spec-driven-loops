@@ -107,6 +107,7 @@ A config sweep gated the prune and a catalog↔runtime re-check caught the DeepS
 1. **Aliases pruned only for the deep-loop runtime.** Manual `devin -p --model opus` still works — the prune governs orchestrated fan-out dispatch, by design.
 
 (The originally-noted cursor-mirror gap was closed by the addendum below.)
+<!-- /ANCHOR:limitations -->
 
 ---
 
@@ -115,4 +116,3 @@ A config sweep gated the prune and a catalog↔runtime re-check caught the DeepS
 
 The parity pattern was extended to the remaining two mirrors in the same session: `CURSOR_ALLOWED_MODELS`/`CURSOR_DEFAULT_MODEL` and `PI_ALLOWED_MODELS`/`PI_DEFAULT_MODEL` are now exposed on the script's export surface and pinned to their TS sources by four new assertions (`fanout-run.vitest.ts:1285-1297`). No allowlist content changed — both mirrors already matched. Orchestrator-run suites: Test Files 2 passed, Tests 186 passed (186). All three executor mirrors are now CI-guarded against drift.
 <!-- /ANCHOR:addendum -->
-<!-- /ANCHOR:limitations -->

@@ -126,8 +126,8 @@ Every flagged skill is remediated by the CORRECT fix class — orphan-wire / exe
 
 ---
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 
 - D5 CI-gate policy: ship as `orphans ⊆ allowlist`, or keep D5 a warning as designed and gate only on regressions? (operator call)
 <!-- /ANCHOR:questions -->

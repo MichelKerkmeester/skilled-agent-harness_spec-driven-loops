@@ -140,7 +140,6 @@ No data flow changes. Import paths change but runtime behavior is identical.
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -157,7 +156,6 @@ Phase 1 (Constant + Indexer) ──► Phase 2 (Reindex Audit) ──► Phase 3
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

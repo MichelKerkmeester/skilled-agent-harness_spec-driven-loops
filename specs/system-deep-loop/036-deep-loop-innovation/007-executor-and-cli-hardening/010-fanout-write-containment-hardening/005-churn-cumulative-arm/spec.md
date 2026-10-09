@@ -133,7 +133,6 @@ The parent's REQ-004 and its plan state twelve newly dirty paths per window and 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -184,6 +183,7 @@ The parent's REQ-004 and its plan state twelve newly dirty paths per window and 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

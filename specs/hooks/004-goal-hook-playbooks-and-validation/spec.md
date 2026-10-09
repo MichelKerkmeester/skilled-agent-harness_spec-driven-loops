@@ -146,7 +146,6 @@ Every goal-capable CLI runtime has an authored goal-hook manual-testing-playbook
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -196,6 +195,7 @@ Every goal-capable CLI runtime has an authored goal-hook manual-testing-playbook
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None — scope and verdict tiers were settled by operator choice before this packet closed.

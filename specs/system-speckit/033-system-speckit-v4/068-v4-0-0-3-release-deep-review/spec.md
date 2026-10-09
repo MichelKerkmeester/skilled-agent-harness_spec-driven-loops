@@ -144,7 +144,6 @@ Produce one ranked, evidence-cited finding list for the whole v4.0.0.3 release, 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -199,6 +198,7 @@ Produce one ranked, evidence-cited finding list for the whole v4.0.0.3 release, 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Executors, iteration counts, workspace and synthesis model were set by the operator on 2026-10-05.

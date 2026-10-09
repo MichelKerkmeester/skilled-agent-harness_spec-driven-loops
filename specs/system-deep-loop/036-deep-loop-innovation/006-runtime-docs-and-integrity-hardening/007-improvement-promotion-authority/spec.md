@@ -234,7 +234,6 @@ These eight P0s are the severity-inflation batch. Per the review calibration, th
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -326,13 +325,12 @@ These eight P0s are the severity-inflation batch. Per the review calibration, th
 
 ---
 
-<!-- ANCHOR:open-questions -->
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - What is the approval model for autonomous mode? Advisory-only is the safe fallback; a candidate-and-target-bound operator receipt preserves autonomy while making approval real. The autonomous workflow currently declares `approvals: none` and then invokes `--approve`, so either model is an improvement, but the choice is the operator's.
 - Which evaluator identity source replaces candidate frontmatter? It must be something the candidate cannot edit. Record the chosen authority in ADR-002 before implementing.
 - Does the acceptance receipt live beside the acceptance JSON or in a separate append-only log? Append-only is the point of the receipt, so a location the promotion flow cannot rewrite is preferred; decide before Phase 2.
-<!-- /ANCHOR:open-questions -->
 <!-- /ANCHOR:questions -->
 
 ---

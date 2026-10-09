@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The evidence pack counts a rule as read only when the `Read` tool named its path, so shell reads and hook injections are missed and the counts undercount (`002-rule-concision-and-loading/prep/evidence-pack.md` §2)",
     "created_at": "2026-10-04T14:39:56Z",
-    "last_save_at": "2026-10-07T12:54:42.791Z",
+    "last_save_at": "2026-10-08T19:29:07.610Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a7132cc2bb4c3b7e2f2a904e728e1ceea3ae79c44e5adfd129d3302e2e9b207c",
+    "source_fingerprint": "sha256:23a1d3ab9827a601ef3ea17ffa6fdd48164cc40a4b1e3c273e3a92058c75d518",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "553363a6b2076bb3af9388e89df4fb402d9ade5ecebe4fb2fedf878d5d88842f",
+      "spec.md": "37ed34ca6597d0e5368495e632af195650a5e2185d0a6c993748909208fa29d8",
       "plan.md": "590512ee495958679e5ddb89e019fdcbb4695d4627bb6241d71a4427977923e7",
       "tasks.md": "102ddade8862c1040001c0134affbf049be13f3a1fa7c15dc7eb4e24b2f4d512",
       "implementation-summary.md": "1d1285e9efee0bf368a1f1e271afa35d86eae70ac412e87ff49558f7ae9554e1"

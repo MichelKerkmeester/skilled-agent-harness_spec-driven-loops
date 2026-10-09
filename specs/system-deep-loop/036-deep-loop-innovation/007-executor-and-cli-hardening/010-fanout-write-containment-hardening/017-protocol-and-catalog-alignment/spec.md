@@ -128,7 +128,6 @@ Both protocols state the same containment rules, and the catalog describes the h
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -175,6 +174,7 @@ Both protocols state the same containment rules, and the catalog describes the h
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

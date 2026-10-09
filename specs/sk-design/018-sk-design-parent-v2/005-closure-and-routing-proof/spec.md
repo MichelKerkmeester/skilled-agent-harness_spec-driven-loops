@@ -174,7 +174,6 @@ Every claim this packet makes matches what the fleet does, measured from the clo
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -242,6 +241,7 @@ Every claim this packet makes matches what the fleet does, measured from the clo
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - How `sk-doc`'s four blocked FLOWCHART fixtures should be resolved: moved to a `sk-design` hub

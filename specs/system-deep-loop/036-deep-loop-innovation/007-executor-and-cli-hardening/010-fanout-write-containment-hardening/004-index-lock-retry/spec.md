@@ -109,7 +109,6 @@ Lock contention is waited out, and when it cannot be, the loss is visible on the
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -160,6 +159,7 @@ Lock contention is waited out, and when it cannot be, the loss is visible on the
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The per-lineage worktree mechanism cost 1.6 GB and about 22 seconds per lane, existed only to make write attribution exact, and attribution is not a requirement: the operator's need is that a lane never halts on a neighbour's write and that no output is lost, which preserve-by-default plus the never-fatal untracked rule already meet",
     "created_at": "2026-09-20T08:33:41.631Z",
-    "last_save_at": "2026-10-07T15:56:56.291Z",
+    "last_save_at": "2026-10-08T19:30:22.989Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5acc6dbc2f517b0689a0a46518631615f58bcef199b86af34a565d3a50b0d73d",
+    "source_fingerprint": "sha256:f079e50a70db78851938264a0a0140a4f833e3077bf2ce32dfdd78ef3f717ad8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "66e1a4cf00e86b67af978170def5451ab0e7012ce002b464eda06414f788e396",
+      "spec.md": "a7e66018155f74db1863828d8310ea984b4cf2beaf23f655f2839546145133da",
       "plan.md": "386148af2710ac7d52217112a369775c7b7baae5127f22d7ce7132a049051a17",
       "tasks.md": "3d4e73c9f249ad63bbeacc52a38d9e1f0c703f4e2f8a8b87fd0016631a16ff47",
       "implementation-summary.md": "227a40897c1371a7806e40b49b4a0500bfa7171a53370b9ff856d32871193704"

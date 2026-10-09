@@ -128,7 +128,6 @@ A lane that deletes a neighbour's untracked file is reported, and the file comes
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -179,6 +178,7 @@ A lane that deletes a neighbour's untracked file is reported, and the file comes
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

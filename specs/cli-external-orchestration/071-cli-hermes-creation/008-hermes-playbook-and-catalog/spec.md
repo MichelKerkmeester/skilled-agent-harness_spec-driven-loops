@@ -140,7 +140,6 @@ The cli-hermes packet carries a playbook and a catalog at the sibling depth, and
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -206,6 +205,7 @@ The cli-hermes packet carries a playbook and a catalog at the sibling depth, and
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None open.

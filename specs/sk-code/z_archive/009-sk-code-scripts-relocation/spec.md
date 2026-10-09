@@ -145,7 +145,6 @@ Move the five targeted script files to the correct asset-owned home, update all 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -196,6 +195,7 @@ Move the five targeted script files to the correct asset-owned home, update all 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Alignment-drift destination resolved to `.opencode/skills/sk-code/assets/scripts/`, because the validator describes OpenCode codebases and recurring multi-language alignment checks rather than Webflow/CDN behavior.

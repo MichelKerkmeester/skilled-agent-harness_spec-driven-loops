@@ -112,7 +112,6 @@ Let the orchestrator do work whose delegation would cost more than the work, wit
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -167,6 +166,7 @@ Let the orchestrator do work whose delegation would cost more than the work, wit
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

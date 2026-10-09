@@ -210,7 +210,6 @@ Add `src/config/local-provider.ts` exporting `parseLocalProjectionConfig(parsed,
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -287,6 +286,7 @@ Add `src/config/local-provider.ts` exporting `parseLocalProjectionConfig(parsed,
 
 1. **Given** one `localProvider` block, **When** both entry points load it, **Then** both resolve the same record, policy, judge, prompt, and endpoint.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 No unresolved question blocks implementation. The exact capability-expiry window the loader stamps and the prompt version string are recorded as loader constants, not open design questions.

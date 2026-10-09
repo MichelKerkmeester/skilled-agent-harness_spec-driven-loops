@@ -151,7 +151,6 @@ Write the bar the shipped set already meets, as standards a generator can apply 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -197,6 +196,7 @@ Write the bar the shipped set already meets, as standards a generator can apply 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should a standard exist for how a rule opens, given all eight use the same two-line preamble? **Leaning no: that is structure and phase 3 owns it. Recorded because the temptation to restate it here is real.**

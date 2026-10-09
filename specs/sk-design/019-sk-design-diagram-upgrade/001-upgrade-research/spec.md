@@ -135,7 +135,6 @@ enforceable and judged, and the phase plan the parent now carries.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -201,6 +200,7 @@ enforceable and judged, and the phase plan the parent now carries.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

@@ -177,7 +177,6 @@ Restore discriminative power to quality_score by removing the bonus system and r
 
 ---
 
-<!-- ANCHOR:questions -->
 <!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -280,12 +279,12 @@ Restore discriminative power to quality_score by removing the bonus system and r
 
 ---
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should post-save review findings apply a fixed penalty (e.g., -0.10 per HIGH finding) or a scaled one? Document final decision in decision-record.md ADR-003.
 - Is `nextAction` fallback "continue" the right default? If not, what should it be? Decision required before REQ-011 can be closed.
-<!-- /ANCHOR:questions-2 -->
+<!-- /ANCHOR:questions -->
 
 ---
 
@@ -297,4 +296,3 @@ Restore discriminative power to quality_score by removing the bonus system and r
 - **Decision Records**: See `decision-record.md`
 - **Research Source**: `../research/research.md` (Round 2, Domains C + E)
 - **Sibling Phase**: `../001-initial-enrichment/spec.md` (Complete)
-<!-- /ANCHOR:questions -->

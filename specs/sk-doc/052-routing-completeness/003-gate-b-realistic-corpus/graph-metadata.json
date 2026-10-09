@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Against a corpus of 180 prompts written the way people write, 8 reach the intended mode",
     "created_at": "2026-09-02T16:34:06Z",
-    "last_save_at": "2026-10-07T12:55:22.598Z",
+    "last_save_at": "2026-10-08T19:30:01.988Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02836c393619441a3251c1f2655cede6b92ba29c84952c50ccd03a8d57c01110",
+    "source_fingerprint": "sha256:a74275c14da2a4f230d836c3b40cba4c31836a70b86da89fc08003306eed509d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8888d6755b93bf75fc590b65c30c2070ef4a29c2bce2c4a32744c15656f44b61",
+      "spec.md": "ed9327ef3d1cdb09c3a325dfd9e0cef48392ecbcbfb24d5c6a3909cd60514ef3",
       "plan.md": "16d1f44b8872db9deb5b6bb0ee79fcf2f3aa75f2f38ae188f92127003b5bc22f",
       "tasks.md": "f076bedfdf8ec21e53ce6858c2b09d60a82f0999a12c9e7b0ee2b7adcdbf23d1",
       "implementation-summary.md": "10c3d35e8351f081d1a1a687a8d633721ee6193756975ce707144f04ffc1c7c2"

@@ -147,7 +147,6 @@ Add an additive, human-approved generator that proposes worked examples and test
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -198,6 +197,7 @@ Add an additive, human-approved generator that proposes worked examples and test
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does the generated artifact live as a new `examples.md` file under the spec folder or as a clearly-marked EXAMPLES anchor appended to `spec.md`, given the additivity rail forbids touching the REQUIREMENTS prose either way?

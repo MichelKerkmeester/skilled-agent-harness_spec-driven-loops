@@ -162,7 +162,6 @@ Give every Level 2, 3 and 3+ packet one acceptance-criteria document that decide
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -225,6 +224,7 @@ Give every Level 2, 3 and 3+ packet one acceptance-criteria document that decide
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. D1, D2 and D3 were settled by the operator on 2026-08-29 and are recorded in `decision-record.md`.

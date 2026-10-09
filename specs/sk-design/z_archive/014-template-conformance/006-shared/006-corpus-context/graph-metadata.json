@@ -186,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/shared/corpus-context/` has not been audited against `.opencode/skills/sk-doc/create-skill/references/shared/overview.md directory rules + packageskill.py file-type gates (no authored corpus-context/ template)`",
     "created_at": "2026-07-27T14:59:52.924Z",
-    "last_save_at": "2026-10-07T18:12:28.697Z",
+    "last_save_at": "2026-10-08T19:29:57.621Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,10 +195,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1f462bdd0e82eb5553391d27eb6dcdeb50b64799e64bdaf7367d225c6045a469",
+    "source_fingerprint": "sha256:0efcae0c7f15817fae161c349fbd5c69175cdf975212d37b8d144d02b88b7711",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "769c982d96938eb4e84bb1bc14b820664b67233146a97d16b04fa64cec56ed6d",
+      "spec.md": "f97d84ec8c79fefc6bfa9db7f3fb8dbe0854f29f660de1eef6e114bb88374616",
       "plan.md": "681ff415341d5cacf0c3aa33f1297cf7633eeae9f58507cab0251902085b0b3f",
       "tasks.md": "d94fadd222d0bfecb9d6b1a8bf11b7d9c2ddfef9e9ef9e25f66d814e8d3d952f",
       "implementation-summary.md": "0c35508abf26f7f4a1525654ea7c532ce251b7cbeb7651d24bc3d98d59e1efb7"

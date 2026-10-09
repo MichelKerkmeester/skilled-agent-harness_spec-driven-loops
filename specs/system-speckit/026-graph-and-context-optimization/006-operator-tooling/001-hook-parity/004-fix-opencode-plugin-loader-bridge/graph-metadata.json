@@ -200,7 +200,7 @@
     ],
     "causal_summary": "OpenCode 1.3.17 fails to start the TUI in any directory whose `.opencode/plugins/` resolves through the symlink at `/Users/michelkerkmeester/MEGA/Development/CodeEnvironment/Public/.opencode/plugins/`",
     "created_at": "2026-04-22T13:32:00.000Z",
-    "last_save_at": "2026-10-07T20:08:50.223Z",
+    "last_save_at": "2026-10-08T19:30:54.643Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f0ce49d09cff75b3a7a796dea2136334adb9456f276f2555ce37c72829f845e",
+    "source_fingerprint": "sha256:8047acd00132189788bedc80c89305308e62fb6369bd7965b91a4df96b70069d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eb99a857f8999326a617a02809714905ae37eedc10c18b3e50f05ee3ce73dce4",
+      "spec.md": "b25878dc60b811c049174ee9da1159016bb66765ab1a1dd92a994d5d665b685d",
       "plan.md": "0c33bb47a58772f4a14531bc9d1f1de74e39449ec901a383ea8902fc4e4c9ad3",
       "tasks.md": "ceb8b154f73ec26924a72aa5d0c44e70831c8a932e56c2552dcd4d75f02374e6",
       "decision-record.md": "8675f33e22db2e81d12247c58b3aecd5708c9ee29a18ceddc2ce4cb0f38d96fc",

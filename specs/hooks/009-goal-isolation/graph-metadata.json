@@ -230,7 +230,7 @@
     ],
     "causal_summary": "The cross-runtime core resolves every Pi and Cursor goal operation to one fixed file, `active-goal.json`",
     "created_at": "2026-08-10T10:17:19Z",
-    "last_save_at": "2026-09-13T07:05:34.954Z",
+    "last_save_at": "2026-10-08T20:04:18.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -240,10 +240,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cb97eea420c43425f8f106bddc313f940c70ecfe086ff664f53d962922e24b5a",
+    "source_fingerprint": "sha256:dbe97627f4e8f2bb6582ae5c00dc97e39c3d1b527a49188b05476a79c90944b0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2c929e92ce3864c996cf83f28b1053b1dbc38018716fde885ab5eb8f5c63b8eb",
+      "spec.md": "a92286b0131776925f564fff011bcb92f661619c49a6282c253dfec944677ca6",
       "plan.md": "1515971baa25e90f0bec0ac426205c9275e38191abe0e16e506cbeee7c8c3157",
       "tasks.md": "d5cb1b2439003d99988f1bfec7f67746d00166991b942fcdf8f56fe41da58a5e",
       "decision-record.md": "1d9ecf4fa4c331f6b40ee0c2828b80ecd7aee1c693d5c111f48a3513792d2db1",

@@ -203,7 +203,7 @@
     ],
     "causal_summary": "`check-template-staleness.sh --auto-upgrade` at line 181 uses sed -i '' to bump template versions on any old marker with no structural check, inventing history for documents that changed templates only in version number",
     "created_at": "2026-10-08T04:22:43Z",
-    "last_save_at": "2026-10-08T12:21:20.038Z",
+    "last_save_at": "2026-10-08T19:31:33.131Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c738b3c11e578cbe5d6e186fc0b5e1d111c6508526a871803dbaefe3eec3e023",
+    "source_fingerprint": "sha256:bc66323a6979b09f286fb81dc521a19d04f1516d5a8d1b9469b15f156be5110a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e72e2d6f9c257351d174b905bd9a45af81a921bc60480312c94f42774525707d",
+      "spec.md": "d8084cff4c6b81e524e0ff2281ba8afdbec03daaa81872aa6219a4f63802ed9d",
       "plan.md": "26ff4893a2d7c564443b4ac20092049c340624f854b4f113a13fd032e9350bbc",
       "tasks.md": "d7c95f781032ee1f4d3597ca9fd7cc6cd76bc315126b0713541572e29f35b7d3",
       "implementation-summary.md": "93f6ce6686b806d417f414e43583d6882bcf662d3b867b7a4cb687699e16f2b5"

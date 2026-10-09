@@ -147,7 +147,6 @@ Apply the trim-and-fallback pattern uniformly across all 10 adapters, add `paylo
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -191,6 +190,7 @@ Apply the trim-and-fallback pattern uniformly across all 10 adapters, add `paylo
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - None. The hardening pattern is established; the test matrix mirrors the proven Cursor prebind suite.

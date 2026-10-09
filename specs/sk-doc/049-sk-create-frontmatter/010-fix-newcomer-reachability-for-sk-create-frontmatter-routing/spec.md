@@ -159,7 +159,6 @@ pulling in prompts that belong elsewhere.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -191,7 +190,6 @@ pulling in prompts that belong elsewhere.
 | Files touched | 2 | Five routing surfaces plus regenerated artifacts |
 | Blast radius | 3 | Hub-wide vocabulary, held to replays and the canary |
 | Reversibility | 1 | Every file tracked |
-<!-- /ANCHOR:questions -->
 
 ---
 

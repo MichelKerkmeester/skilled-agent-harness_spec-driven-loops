@@ -147,7 +147,6 @@ Measure merge precision and recall preservation for the save-time reconsolidatio
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -201,6 +200,7 @@ Measure merge precision and recall preservation for the save-time reconsolidatio
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether a content-hash exact-duplicate merge path, which would merge only the 32 cosine-1.000 pairs and never a distinct document, is worth building as the safe replacement for the cosine-band path this benchmark cuts

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Phase 011 recorded a blocker: \"no MCP server is configured for Cursor CLI on this machine… fabricating one was out of scope (would need credentials not present here),\" and on that basis deliberately left `mcp-route-guard.mjs` built-but-unwired",
     "created_at": "2026-07-24T18:01:53.772Z",
-    "last_save_at": "2026-10-07T18:11:41.418Z",
+    "last_save_at": "2026-10-08T19:29:18.918Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:220289b63c87de0eaf26b65a08f320eca61738776dc29bca03bec657e7ae9165",
+    "source_fingerprint": "sha256:75f6fc34bd3de7060d29a2b70c215bddd6032cf52547384a38a2a0325317be82",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ebbb764d10fbab26084479a0bece4b83eaf4ac3a1f049ea4cbf68778caf90169",
+      "spec.md": "1e2e9f36dd1f6bf31b9634313747ebeb66d48121564d8e03eff6e367dd690b4d",
       "plan.md": "5c59bf80cf8b0501ca9fc0d00a45474359561854f4f1993090e6d8b680a8f1da",
       "tasks.md": "9f43dd3ecef58a31e469ea0c3c0d520a7b0f99e8586de6c0b5cfa9e3e389d668",
       "implementation-summary.md": "037f6d59e81a8322e366ff081b4d10b6105d7fbcb351ccaedb399b1ac76d1456"

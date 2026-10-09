@@ -171,13 +171,13 @@ contextType: "implementation"
 
 ### 2.7 ANCHORS_VALID Check
 - [ ] Scan memory/*.md files
+<!-- /ANCHOR:phase-2 -->
 - [ ] Find `<!-- ANCHOR:id -->` opening tags
 - [ ] Find `<!-- /ANCHOR:id -->` closing tags
 - [ ] Verify each opening has matching closing
 - [ ] Verify IDs are unique within file
 - [ ] Report mismatched anchors as ERROR
 
-<!-- /ANCHOR:phase-2 -->
 ---
 
 <!-- ANCHOR:phase-3 -->

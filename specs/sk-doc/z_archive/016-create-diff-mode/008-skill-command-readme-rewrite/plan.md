@@ -130,6 +130,7 @@ The standards files define structure and voice, the skill and command sources pr
 
 - **Trigger**: The packet repair misstates the rewrite program or cites command and skill paths that do not exist in the current repo.
 - **Procedure**: Revert the packet docs and rebuild them from the committed skill, command, and standards files.
+<!-- /ANCHOR:rollback -->
 
 <!-- ANCHOR:phase-deps -->
 ### L2: PHASE DEPENDENCIES
@@ -145,6 +146,5 @@ The packet repair is moderate because it consolidates a large rewrite history in
 ### L2: ENHANCED ROLLBACK
 If rollback is needed, treat the committed README and README.txt surfaces as the source of truth and re-author only the packet docs.
 <!-- /ANCHOR:enhanced-rollback -->
-<!-- /ANCHOR:rollback -->
 
 ---

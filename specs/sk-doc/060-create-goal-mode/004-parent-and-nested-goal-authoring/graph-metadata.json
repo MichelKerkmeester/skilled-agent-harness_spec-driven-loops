@@ -48,7 +48,6 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/sk-doc/sk-create-goal/references/parent-and-nested-goals.md",
-      ".skilled/skills/sk-doc/sk-create-goal/references/README.md",
       ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
       "scratch/phase-add-check.md"
     ],
@@ -93,12 +92,6 @@
         "name": "parent-and-nested-goals.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/sk-create-goal/references/parent-and-nested-goals.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-goal/references/README.md",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A parent goal can omit a phase folder that exists on disk: the 017-memory-database-decommission binding table ends at 006, while the 007-decommission-review-p1-p2-fixes directory exists with no goal.md (specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:44; specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/goal.md:66-73; test ! -f specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes/goal.md)",
     "created_at": "2026-09-25T18:48:48Z",
-    "last_save_at": "2026-09-26T04:29:17.302Z",
+    "last_save_at": "2026-10-08T19:30:04.170Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de822bf31fa807c8a45b94e2c83f656651fdf9dc50df0f5464bc21d55f78fe3b",
+    "source_fingerprint": "sha256:728e31236d43e395fce9f06513a9ec15ea28627843d9608325f5b39dbb00c79e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c8c8f06d5fdd6e87102a5da279436c1b65622181e821c3ecc0f6e39a5f903032",
+      "spec.md": "7db6e203467a306e6d1fbcbd0e75e17ebdd622dcb925b33e3e3dbd9e7dc07615",
       "plan.md": "ee301e46caa123504d76b21fa0b3353abe53a4e5a6224eb071020419456c6297",
       "tasks.md": "3126e3a2a0a6ff641278bb167a78c616e169aba14b75adba9051a672edc09a4b",
       "implementation-summary.md": "f056fa76e6d20b27790f674d4ef269ae4365bf657f92ce9d331d64cc23928839"

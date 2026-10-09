@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Deep Alignment mode binding for immutable, content-addressed reference artifacts across authority resolution, lane discovery, verify-first findings, conformance convergence, alignment reports, and resume handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
     "created_at": "2026-07-16T03:43:43.383Z",
-    "last_save_at": "2026-08-30T15:39:21.469Z",
+    "last_save_at": "2026-10-08T20:53:44.561Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bb9586ced95d58c1012887396a11278ca646d6db403d143524da755258df940c",
+    "source_fingerprint": "sha256:243f676b748b77acf7548b8fa56093ea79248ffe7e60d1d468add5065a21e467",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "027874acb4dcce80935156340a5d1c4663dab4a1f457469e38e4f251f372aec6",
       "plan.md": "86d98696430a3715546e0cd65c6a9b6964e213d7992143154ddd01b230b58655",
       "tasks.md": "5b08b5690ce838bf66e58b92c8422ba11e0691f017c17c95bef1cc1f3454d978",
-      "decision-record.md": "82962f9ceb971bdd105b7f19ce18e6482c9780b3761bee7376ceb8437956027e",
+      "decision-record.md": "c3a67ac23d9d57ad81b6aaf05587a6cfb42aeddcd40873a391cad8e4976147d9",
       "implementation-summary.md": "3b941b9caf30e09db91c7725fad32aa71412b90e3b273cb72b48f5905cc2e0d0"
     },
     "last_active_child_id": null,

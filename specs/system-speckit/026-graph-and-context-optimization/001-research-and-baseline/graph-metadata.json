@@ -157,17 +157,17 @@
     ],
     "causal_summary": "The parent folder held the authoritative research deliverables for the graph-and-context optimization program, but it had no root Level 3 packet tying those deliverables into a formal requirements set, decision record, execution plan, or verification contract",
     "created_at": "2026-04-12T09:02:53.443Z",
-    "last_save_at": "2026-09-06T04:27:55.915Z",
+    "last_save_at": "2026-10-08T19:30:45.841Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:6586bc094810ab78d04430177fb02b1fc1beb63ae372a83f1dab8b351ce33167",
+    "source_fingerprint": "sha256:c924a10b1d6a080f3af4bafccf40c72cf921eb7d5bf8c8a6142f53e82e9b43c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "11740d1beb290f516a0f723ccf8feb6093a93ecb6a48b0389d3002c5592ec4d8",
+      "spec.md": "04b784f3345a7e2033b7d8594654afc3ecc4b2bdaae8549d74e0329bb094cb89",
       "resource-map.md": "47db0e290105977a356fe1e4bc3ef1a53b537baa1298cab07a55af2c41af52fc"
     },
     "last_active_child_id": "system-speckit/026-graph-and-context-optimization/001-research-and-baseline/006-research-memory-redundancy",

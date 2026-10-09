@@ -182,7 +182,6 @@ Carry the genuine `aionforge-procedural` follow-on as documented, evidence-cited
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -263,6 +262,7 @@ Carry the genuine `aionforge-procedural` follow-on as documented, evidence-cited
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Q-001: Where is the right write-path seam for the execution-success emitter, the advisor `advisor-validate` hook outcome path (`handlers/advisor-validate.ts:120-136`), the Completion-Verification gate (`scripts/spec/validate.sh`, currently skill-blind) or a new post-task signal? (iter-018 proxy-only)

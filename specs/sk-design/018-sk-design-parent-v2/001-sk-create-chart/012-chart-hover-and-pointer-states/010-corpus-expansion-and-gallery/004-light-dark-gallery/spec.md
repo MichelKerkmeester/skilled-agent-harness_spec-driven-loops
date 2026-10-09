@@ -123,7 +123,6 @@ copies of whatever the reader's system happens to be set to, which is not a comp
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -178,6 +177,7 @@ copies of whatever the reader's system happens to be set to, which is not a comp
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

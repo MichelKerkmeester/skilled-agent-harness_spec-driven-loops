@@ -165,7 +165,6 @@ Every surface next to the changelog work does and describes what ships, and each
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -220,6 +219,7 @@ Every surface next to the changelog work does and describes what ships, and each
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open. The operator asked to fix every gap the audit found, on 2026-09-27.

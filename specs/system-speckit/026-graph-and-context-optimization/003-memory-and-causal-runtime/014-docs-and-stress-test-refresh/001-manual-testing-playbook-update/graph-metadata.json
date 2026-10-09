@@ -48,11 +48,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "lib/storage/checkpoints.ts",
-      "lib/search/vector-index-schema.ts",
       ".opencode/bin/lib/launcher-session-proxy.cjs",
-      "handlers/save/enrichment-state.ts",
-      "handlers/memory-index.ts",
       ".opencode/skills/sk-git/SKILL.md"
     ],
     "entities": [
@@ -87,33 +83,9 @@
         "source": "derived"
       },
       {
-        "name": "checkpoints.ts",
-        "kind": "code",
-        "path": "lib/storage/checkpoints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": "lib/search/vector-index-schema.ts",
-        "source": "derived"
-      },
-      {
         "name": "launcher-session-proxy.cjs",
         "kind": "file",
         "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "enrichment-state.ts",
-        "kind": "code",
-        "path": "handlers/save/enrichment-state.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": "handlers/memory-index.ts",
         "source": "derived"
       },
       {
@@ -199,11 +171,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Source Metadata",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Records",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The manual testing playbook (`manualtestingplaybook/manualtestingplaybook.md` plus its `NN--category/` feature files) is the operator-facing validation directory for the Spec Kit Memory MCP server",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:31.854Z",
+    "last_save_at": "2026-10-08T19:30:53.012Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +209,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9be3078d37de7121d969b3c7eefeb03d0bcdf2f87eb8a2ec4deafea2f9b89ef1",
+    "source_fingerprint": "sha256:0bb76f87bc4497fa79f47c0f5bd4dea0419a5199309a758ec559d9c15c4f1404",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a0d8d5cbdae74b0a173130330a5d7ddc9446a5a7fc17eeca4d827b65bca97e2f",
+      "spec.md": "ffb956a48b75746eb2ee407983415ddc966c623bdfb6bdd012033662127a040e",
       "plan.md": "99c60d1c74ee44341f0040f773338a089e7384038e4c17f96aceb4d6766197a2",
       "tasks.md": "b571cd99df7915d22fcf4657caf91298bafb691a37a16bc06ff23f48611aa820",
       "decision-record.md": "90f85c9095acb6f8c992de9c09684c09bf81fb6881bc84170c17209b7879ac7e",

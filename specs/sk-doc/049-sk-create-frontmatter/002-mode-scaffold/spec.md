@@ -145,7 +145,6 @@ An empty, conforming mode packet that passes every structural gate before it hol
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -211,6 +210,7 @@ An empty, conforming mode packet that passes every structural gate before it hol
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

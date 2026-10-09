@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The Skill Advisor ranks skills by metadata similarity (the 5-lane fusion scorer), not by whether the recommended skill has historically WORKED on tasks like the current one",
     "created_at": "2026-06-19T06:06:27.156Z",
-    "last_save_at": "2026-10-07T18:16:06.136Z",
+    "last_save_at": "2026-10-08T19:30:40.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0011657e89e145f3dc0a31d54b18f729083d6dd4710512a0f1ea28abc3c8dae1",
+    "source_fingerprint": "sha256:f434cd672fbd2e77f59ba65addb62feaabbbecbeb76915241818b2b52dc19c4f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2e1477540c826f2a3edfbf798f60fec0ed67c279536fddfec874bbbfbb900923",
+      "spec.md": "fced13f83cfec7a883da8912882f48a0af9f47707b52bbccb3604c3d8e50a123",
       "plan.md": "d2a7c660cb348cb0def9bf9fe5953f9de14960348f0c17e73392ad9749791fb8",
       "tasks.md": "40f4de156ddd278bb031f77f54e5f388ecdb6acb48fa5f30ad4cc2f16937017c",
       "decision-record.md": "24459c6aa3b14b1bb0cfc758ede9ada695979727c37bcb7cbfbe3b545927d97c",

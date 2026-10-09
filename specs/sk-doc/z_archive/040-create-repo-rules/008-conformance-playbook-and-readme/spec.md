@@ -156,7 +156,6 @@ An operator can validate the mode from a written contract, and a reader arriving
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -210,6 +209,7 @@ An operator can validate the mode from a written contract, and a reader arriving
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator asked for template alignment, a playbook and an extended README, and all three were fully specified by the contracts they route through.

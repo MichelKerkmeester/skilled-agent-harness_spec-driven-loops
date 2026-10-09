@@ -128,7 +128,6 @@ Update `sk-create-readme` guidance and its fillable template so new and revised 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -183,6 +182,7 @@ Update `sk-create-readme` guidance and its fillable template so new and revised 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Scope, spec handling and template inclusion were answered before this packet was scaffolded.

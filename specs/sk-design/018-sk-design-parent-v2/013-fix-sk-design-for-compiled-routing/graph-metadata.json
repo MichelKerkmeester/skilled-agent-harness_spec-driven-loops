@@ -205,7 +205,7 @@
     ],
     "causal_summary": "`sk-design` is a live parent hub with four registered workflows, five root-router intents, and a populated leaf manifest",
     "created_at": "2026-09-21T20:42:12Z",
-    "last_save_at": "2026-09-22T15:48:11.803Z",
+    "last_save_at": "2026-10-08T20:04:20.502Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3eaedf1c022ac435599910bef55aaaa7d1ab9a6f77bdda2365c64e98fc8e047c",
+    "source_fingerprint": "sha256:7eed7ff52cabba58bd0cbbd41eae20449e878743389646329e3916a7ee7bc501",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e81be27d5133a520ab416d7b91c7b94f3787a10e1cd73480cdbc51af66d29b0b",
+      "spec.md": "e1d8d73d5657fcbed1ee66f09e8c6fbf8c4daaac419c1143e78ac16dc772071a",
       "plan.md": "0d792c59dccb74ff0cd54e2d1e8ddd3b1d763c44b46a9d47f855bbf3769107cf",
       "tasks.md": "608344edc5eccf831a1f01279cefc38b282508fc2138a4d31f7fb2c0f517d328",
       "decision-record.md": "acdb962fcfe5761a4672f1e835c8ad1a82ef3ac2f6aa99382aef13b3d29f859d",

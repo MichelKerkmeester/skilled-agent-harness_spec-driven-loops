@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The admission baseline in phase 17 found four failures among the admitted hubs",
     "created_at": "2026-09-19T06:42:25Z",
-    "last_save_at": "2026-09-19T06:44:52.452Z",
+    "last_save_at": "2026-10-08T19:31:30.244Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:280edc03a04c69c10e863cc3183586d508e1084f6d6623481a25240974e371fe",
+    "source_fingerprint": "sha256:5ef6db6e5578e1936ab31327cffdaca43538424e6c1aa7b99aacf1c1cc950cfa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e1a006ea196428f6036467bf8220beb2ac12c92263dfd80875017ab80068bf8c",
+      "spec.md": "c7d4cf1f85dd831f954dd61e1ec661a81791d06517de848d21c89b71f6dbee2c",
       "plan.md": "1012b089b04f5112a743dcebc18cd0bbeb1beb7730466050bcc355713ba0191f",
       "tasks.md": "d21dd11b5b321e373e849cff21546f2dbc5c04472a3b527705a3e24615cc6378",
       "implementation-summary.md": "c3f28551f2cf6808110fb4adb30cca9aad3aa74cd55769931899771811853a13"

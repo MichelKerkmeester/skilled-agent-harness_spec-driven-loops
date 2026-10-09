@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The deep-loop products now have richer runtime state, but tuning them is still largely manual: convergence thresholds, stuck detection, recovery escalation, and related numeric controls are adjusted by human judgment and one-off testing",
     "created_at": "2026-04-12T09:02:50.194Z",
-    "last_save_at": "2026-10-07T20:55:13.714Z",
+    "last_save_at": "2026-10-08T20:53:53.113Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1cc4f9fca184e7234281db4e393baa19a401c6742579a1132554e10e53e9fe36",
+    "source_fingerprint": "sha256:4c5d8ff03bda99de833332c9b51fed54c00255d8a0a6e9f46c9d6cd50309ea4b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e2ba99cb6caaf284c9f508cd58267f096cf2a29edbe81c7c8d9daa41bbab34d2",
+      "spec.md": "2c470be472ee2290a54301e55f9d9a2ff940bd6c34851d28718107d83f5c465e",
       "plan.md": "93c454436f679140a14b62d4aac08a5f7aa32a0ee0e82bcad437effe320b113f",
       "tasks.md": "057da1770045eb24d54d602f962fa0723c6fad02f40ce86a384a5a2b947ac51a",
       "decision-record.md": "9ccae0f5ef2c4bd6d87ea864030d389990e66fe1a457bd6ec516f329eb802699",

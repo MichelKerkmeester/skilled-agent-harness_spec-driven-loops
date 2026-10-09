@@ -183,7 +183,6 @@ Make goal ownership explicit and session-scoped so each AI session sees and muta
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -267,7 +266,6 @@ Make goal ownership explicit and session-scoped so each AI session sees and muta
 - Cursor hook reads bind to `session_id`; the current shell-style management prompt is unsupported until a native bridge can supply that same id.
 - Devin goal hooks remain decommissioned. Phase 4 removes stale support claims rather than restoring deleted adapters.
 - Missing identity never falls back to a shared `"default"` scope or the legacy singleton.
-<!-- /ANCHOR:questions -->
 
 ---
 

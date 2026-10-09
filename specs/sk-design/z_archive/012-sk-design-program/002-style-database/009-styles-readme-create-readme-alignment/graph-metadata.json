@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The `007-styles-folder-readmes` packet gave every styles folder a README, but most are minimal stubs",
     "created_at": "2026-07-22T05:45:30.641Z",
-    "last_save_at": "2026-10-07T18:12:23.713Z",
+    "last_save_at": "2026-10-08T19:29:54.968Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0ddff192a4839bb2497a69d2dea6a248fd2c365cecb8b50ae9d2a2ebacb9569",
+    "source_fingerprint": "sha256:8c16594fd948fe329c54f9991118a3f200f780ce07d060080caa22119eafdc41",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dd3f29441e1aff66b31f0e9ecdc0a8cc303a84ec0bea66666c2daabdbfc1deac",
+      "spec.md": "79ab75a1134a79bc1a8608c0e820002661bac70d1d30959152d16bf88872aea0",
       "plan.md": "d6c13b53e261f2fc68ddd1f26c4e9a0791bcabd8865cf9c5a4010662a65bdd75",
       "tasks.md": "5397afc2b120669c836824bc7a98f60a064addd063463e74e68a3457dbc2dc58",
       "decision-record.md": "eeb03374bbe006e37a0b3ef1b5753c1b1669b891731db0bcb3b35dc193f18e71",

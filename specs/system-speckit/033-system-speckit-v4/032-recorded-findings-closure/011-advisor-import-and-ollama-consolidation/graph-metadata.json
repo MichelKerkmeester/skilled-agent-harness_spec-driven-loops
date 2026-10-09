@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Finding R5-01 (`specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/003-shared-package-utilization/research/lineages/deepseek-v4-flash-shared-package/research.md:25`) found two parallel live implementations of the same Ollama embedding backend, both reached from the same daemon flow: `shared/embeddings/adapters/ollama.ts` (366 lines) and `shared/embeddings/providers/ollama.ts` (424 lines), together ~790 lines with two separate contracts and two config surfaces",
     "created_at": "2026-09-07T15:05:52Z",
-    "last_save_at": "2026-10-07T15:57:24.215Z",
+    "last_save_at": "2026-10-08T19:31:26.419Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +215,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:691df864adf63eea5f32a67ce6d860bdca9e95c8ba0a1fbc909d8121b04090dd",
+    "source_fingerprint": "sha256:42c606ffe56d7d85fac456222ff8546678791a5fae34952acd99e476f6bb8cf4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ee285faf3a9669477e68a40038ed3b4bb2162f332c8ca26a14571dbb304261fc",
+      "spec.md": "75959f98d1bebce629d7ff4a818776426930b6b71bb7f1be533b168cd624eb01",
       "plan.md": "8152825d5b22ae9be7f520f3bd08ee104c03e0e3aba1261ebb5becfd58d03cb6",
       "tasks.md": "d4738d6ad049d987973674ffb1c03c01a69e6040e2728a9b7613bcf0b9e8f84d",
       "decision-record.md": "dc290767dd94cd62cf99b32b3ca1babd7b250b4eee2a56064a62da48e90b77ce",

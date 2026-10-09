@@ -160,7 +160,6 @@ A design question about any surface reaches fundamentals and finds guidance writ
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -228,6 +227,7 @@ A design question about any surface reaches fundamentals and finds guidance writ
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Which surfaces to name. Screen UI, slide decks, and printed or document layouts are clear; whether

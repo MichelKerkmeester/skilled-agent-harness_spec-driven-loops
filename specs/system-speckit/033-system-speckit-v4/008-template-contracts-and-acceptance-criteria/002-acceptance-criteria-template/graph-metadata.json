@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Acceptance criteria are split across two documents and owned by neither",
     "created_at": "2026-08-29T12:08:53Z",
-    "last_save_at": "2026-10-07T12:55:42.804Z",
+    "last_save_at": "2026-10-08T19:31:20.624Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02006167c884c6975af0d385c7a5b73d310a3523c77d40d840660114955333cd",
+    "source_fingerprint": "sha256:f5f193bb96b477e8820476f549b4a71211b8eb89dbdf66fa1d200849e342a5b7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "137a87f65bd09a0b0090c6623718ece3b06e29c1d9489415ed1e405f32645fd6",
+      "spec.md": "4e28d6c23fba5223f956ff51afb71dc34e571c96401a8691c86e88925f4526ad",
       "plan.md": "d2afa140e7dbb04b4147457491b4ef39b65ba946f00f5c6b178a6c3251c44f9e",
       "tasks.md": "d4e9941497486bd9b62147bd8c0e37ecffe47955f2cd064412c3b9c68db64643",
       "decision-record.md": "66caddd1d97eeb52ce30388673f4825f3b968c38c62adea4f38fa9dda53daaa1",

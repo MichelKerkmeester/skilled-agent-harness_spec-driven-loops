@@ -144,7 +144,6 @@ Produce an authoritative findings list (P0/P1/P2) of code/doc/config residue tha
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -199,6 +198,7 @@ Produce an authoritative findings list (P0/P1/P2) of code/doc/config residue tha
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should `factory.ts` Voyage shadow-guard error message text count as residue if no user is on Voyage? (lean: intentional-historical, retained for future re-enable)

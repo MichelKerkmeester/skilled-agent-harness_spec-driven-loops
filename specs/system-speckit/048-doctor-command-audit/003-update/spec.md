@@ -154,7 +154,6 @@ Split the target. Today's database rebuild moves unchanged in behaviour to `/doc
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -201,6 +200,7 @@ Split the target. Today's database rebuild moves unchanged in behaviour to `/doc
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None yet. Findings from the inventory go to `implementation-summary.md`.

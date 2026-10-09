@@ -184,7 +184,6 @@ Add a representation layer between `protectMarkdown` output and the wire body; r
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -254,6 +253,7 @@ Add a representation layer between `protectMarkdown` output and the wire body; r
 1. **Given** a proposed representation, **When** its wire bytes are inspected, **Then** no raw protected value appears.
 2. **Given** an alias with a category label, **When** no privacy approval exists, **Then** that alias design cannot ship.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 Does a short wire alias schema disclose protected-value categories, and is that acceptable under the privacy policy?

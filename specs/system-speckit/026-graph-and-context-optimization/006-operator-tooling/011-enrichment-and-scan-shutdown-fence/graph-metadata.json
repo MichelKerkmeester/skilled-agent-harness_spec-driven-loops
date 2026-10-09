@@ -43,8 +43,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "handlers/memory-save.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -75,12 +74,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "handlers/memory-save.ts",
         "source": "derived"
       },
       {
@@ -190,11 +183,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`fatalShutdown` (`context-server.ts`) fences `fileWatcher` and `ingestWorker` before `closeDb()` because both write through `requireDb()`, which reopens a closed DB",
     "created_at": "2026-06-15T05:48:42Z",
-    "last_save_at": "2026-08-30T15:39:32.257Z",
+    "last_save_at": "2026-10-08T19:30:55.199Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +203,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9a66382b9f43d2b5485cef5240a1b900e5180e56e02e9eab24d64bbc195ebb58",
+    "source_fingerprint": "sha256:a2f5c31d1da86e9f542d7d9e13dc556827316e970d0d34f759d0b878e7c170a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "472306fa670ef8e2d0f178eb0e6bebe80ef1862fa503b36d251d91f6583b2a10",
+      "spec.md": "1e6c0e5ee1def76103d18da305185ed3a99634d28b8aa255c195d87eb0a800df",
       "plan.md": "c947e3536d3c1a42ebd9c52682e24abd006e064b869314d5dd7ea97541ee4a65",
       "tasks.md": "854218a266e6e8668a92459f1782d3cbb38b1ccffae9c666a7481f529567ed34",
       "decision-record.md": "dfaef96c3f919c05d6bf4f667e946326656d11a566c7a87fe757efa24403c1d3",

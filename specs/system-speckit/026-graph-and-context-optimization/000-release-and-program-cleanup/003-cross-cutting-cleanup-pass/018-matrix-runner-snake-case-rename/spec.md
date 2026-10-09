@@ -143,7 +143,6 @@ Rename the runtime folder to `.opencode/skills/system-spec-kit/mcp_server/matrix
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -194,6 +193,7 @@ Rename the runtime folder to `.opencode/skills/system-spec-kit/mcp_server/matrix
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

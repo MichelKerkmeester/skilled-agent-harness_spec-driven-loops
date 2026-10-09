@@ -136,7 +136,6 @@ Remove the `mcp-clickup` skill folder, its changelog entry, and every repo-wide 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -185,6 +184,7 @@ Remove the `mcp-clickup` skill folder, its changelog entry, and every repo-wide 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 (none)

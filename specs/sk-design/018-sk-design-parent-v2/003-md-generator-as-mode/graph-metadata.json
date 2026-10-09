@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`sk-design-md-generator` is a standalone skill with its own advisor identity",
     "created_at": "2026-09-06T13:52:16Z",
-    "last_save_at": "2026-10-07T15:56:39.608Z",
+    "last_save_at": "2026-10-08T19:29:48.647Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac8b26c9c4f58f74fdfb208f595eeb469ffaf3f37c06b1943aafc231a9c7d11e",
+    "source_fingerprint": "sha256:59078d5e40a85ace2f63bcde7840c430b982a27db2c8d8848eb0be8a8363ac57",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea8fbfa558405ad2a76e9123578be2088534e914c6e0f8158f8c97616651c4d3",
+      "spec.md": "556580f0327a501b263f07d33acd20cf6caa9c6850cfc1d367a94921a95c4b5f",
       "plan.md": "176d8a27f5250ffdcb31e6496bee9c9fdeea923b2285c5a6900fd67720a86325",
       "tasks.md": "4fa07314483bf5bfaa373eecc08ee2a42fd850ced8e5772584003367cba9e3ae",
       "implementation-summary.md": "5b46481e89ae0e92edf2f1092094f10d7816e3aeb6343323cfeb5c3beca08af3"

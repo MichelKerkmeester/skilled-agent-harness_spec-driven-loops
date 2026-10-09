@@ -150,7 +150,6 @@ A repository under /tmp is gated like any other, the CI workaround that existed 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -205,6 +204,7 @@ A repository under /tmp is gated like any other, the CI workaround that existed 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open.

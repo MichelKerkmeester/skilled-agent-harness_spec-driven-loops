@@ -296,7 +296,6 @@ phase's empirical SCAN-only testing left unverified, not confirmed.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -378,6 +377,7 @@ phase's empirical SCAN-only testing left unverified, not confirmed.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Exact wall-clock budget value for the orphan-sweep loop (REQ-001) and exact refresh-cadence interval

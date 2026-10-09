@@ -129,7 +129,6 @@ Add the equivalent sibling adapter directories (`mcp-server/hooks/cursor/`, `run
 | Risk | `cursor-agent` binary absent on a given machine | A hook registration references a tool that can't run | Fail-closed executor precedent (phase 002): guards only matter when `cursor-agent` is actually on PATH |
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -197,6 +196,7 @@ Add the equivalent sibling adapter directories (`mcp-server/hooks/cursor/`, `run
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **ANSWERED**: Does the Cursor CLI actually fire every event registered in `.cursor/hooks.json`? No — live-verified (temporary uncommitted probe hooks.json + 3 dispatches). `sessionStart`/`preToolUse`/`postToolUse`/`sessionEnd`/`beforeShellExecution`/`afterShellExecution`/`beforeReadFile`/`afterFileEdit`/`afterAgentThought` all confirmed to fire; `beforeSubmitPrompt`/`stop` confirmed to NEVER fire. This inverts the phase's original assumed "safe starting set" — see `decision-record.md` ADR-002 for the full table and methodology.

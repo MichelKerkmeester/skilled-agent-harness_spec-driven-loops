@@ -158,7 +158,6 @@ After this phase a commit made on this machine carries a unique ordinal and, whe
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -225,6 +224,7 @@ After this phase a commit made on this machine carries a unique ordinal and, whe
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None.

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The 19-skill tree contains many first-party code folders, but not every code-bearing folder has local README coverage",
     "created_at": "2026-05-15T11:40:19Z",
-    "last_save_at": "2026-10-07T18:16:07.732Z",
+    "last_save_at": "2026-10-08T19:30:38.447Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ea94477752421bafae811476d14676af7572bee1e647b650f7a9a263c9e5370c",
+    "source_fingerprint": "sha256:4bb9e5925dce6fe13aeb369daaad99b7b06fcc23db1e09dc4f015e70e5a8c5cc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4e68b8c91528e29bbda0642f42be85af7f3bf58a7c7330e49104f7040d39ee2b",
+      "spec.md": "6aa58552aadd04ec93a1c77e09e59649729b26fc14bd40fc086dc594c6037eb2",
       "plan.md": "a520ee3713f5926417d04a7c1f7ab781ef669dc6ab4e93bbc15ae3b617289c1b",
       "tasks.md": "4a31a3294dba5516ed86178c3ed19eff10bbbea9200e9e2737ae4b2df2dc316e",
       "decision-record.md": "7965886164b9e410738111b11707e42f18fe73e6f1a8837b4ad8a043f0ea1eb3",

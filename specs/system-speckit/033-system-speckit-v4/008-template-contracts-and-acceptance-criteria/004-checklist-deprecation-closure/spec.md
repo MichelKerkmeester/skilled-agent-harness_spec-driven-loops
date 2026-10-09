@@ -147,7 +147,6 @@ An advisory that measures the document it counts from, so a packet that recorded
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -202,6 +201,7 @@ An advisory that measures the document it counts from, so a packet that recorded
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The evidence source follows the count, which is the only arrangement in which the ratio means anything.

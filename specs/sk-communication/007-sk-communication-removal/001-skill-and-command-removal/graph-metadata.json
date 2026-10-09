@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The communication projection feature has several linked runtime surfaces: a skill package, two operator commands, mirrors for supported runtimes and an OpenCode plugin",
     "created_at": "2026-10-02T04:49:06Z",
-    "last_save_at": "2026-10-07T15:56:27.508Z",
+    "last_save_at": "2026-10-08T19:29:38.696Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f5145be6bce63b636d3eadb29197a4c5f538072fe8874789731ecee1cd084eb3",
+    "source_fingerprint": "sha256:f853a25944a2eebb649b168861f3d7bfe077950d01efddf0b0a0161992f1b80a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9d4fb9d4731f332f6d050080a8fb6bbe88477b0e1ef223457023b659b3816ba4",
+      "spec.md": "17b02ae9b8bc64f724098873c8461316e437f43c3a20874066d2ab5406841771",
       "plan.md": "bd901ed8b6add73858031330a5ffd2f21bf9782aab69d8f078da48ac28555e74",
       "tasks.md": "88123f2e92aea1b522acecbca57f3f9d770f70fa86fbb16abf651be871a0d86f",
       "implementation-summary.md": "f0e2f809f70ef49f39cfa29734c54884636c1f7b37f2d6f74f59ea003f9248d8"

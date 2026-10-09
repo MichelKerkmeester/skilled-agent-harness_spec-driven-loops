@@ -146,7 +146,6 @@ Close the five findings with bounded public API compatibility, one-release depre
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -196,6 +195,7 @@ Close the five findings with bounded public API compatibility, one-release depre
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. User specified mandatory backward compatibility and DEFERRED-AGAIN criteria.

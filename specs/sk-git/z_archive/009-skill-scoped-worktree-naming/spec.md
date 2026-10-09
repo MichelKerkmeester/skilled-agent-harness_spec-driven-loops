@@ -163,7 +163,6 @@ Give every managed branch an unambiguous owner-first name, keep the numbered cou
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -220,6 +219,7 @@ As an operator scanning the branch tree, I want every managed branch to start wi
 
 As a parallel AI session, I want the allocator to give me a collision-free numbered owner-first worktree and the reaper to never remove my worktree while I am live, so concurrent work stays isolated and nothing I own is lost.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **Resolved:** Phases 1-4 (grammar + docs + allocator + wrapper/reaper hardening + pre-push enforcement) all landed together, verified by test harnesses, ahead of any cleanup beyond the six-branch slice.

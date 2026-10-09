@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Four sections of the always-loaded document were suspected of being routing content that had outgrown its value: the Gate 2 artifact trigger, the code-search decision tree, MCP tool routing, and the Quick Reference workflow table",
     "created_at": "2026-08-31T11:08:08Z",
-    "last_save_at": "2026-10-07T18:14:22.857Z",
+    "last_save_at": "2026-10-08T19:30:14.542Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d1d6512f2b726184665c87d133584b3810a9a902176fb3a18d200985458caa2",
+    "source_fingerprint": "sha256:4e8e7e57130c2d573c4c5289253fbcba0bacbd02adbb03919555218a013a9744",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "28d9f51ab410485dae75303fbf0e30a37fe891a7eeff326fa736d7314855146c",
+      "spec.md": "4042aa6179519467d0c450533f23b07f78f6f8dd7f202e05fe5088c6aa98a78e",
       "plan.md": "43998c7a8f085fe8a0b6a312868a392a2378c44055da2f1f4a5efba7f34f9de0",
       "tasks.md": "7a3d583e723cb7a69b9952dc9ae3502d7a84622ea2a507b232e9420573eb8d51",
       "implementation-summary.md": "1661d2fc4f737ade43b031734ac3f8b70d0a1d380edb481d6e855245dfa42aa1"

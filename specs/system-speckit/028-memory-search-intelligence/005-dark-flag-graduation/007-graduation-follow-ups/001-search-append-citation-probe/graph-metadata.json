@@ -44,12 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "lib/search/deterministic-multihop.ts",
-      "lib/search/lane-champion-backfill.ts",
-      "formatters/search-results.ts",
-      "lib/feedback/true-citation-emitter.ts",
-      "handlers/memory-crud-health.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -74,36 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "deterministic-multihop.ts",
-        "kind": "code",
-        "path": "lib/search/deterministic-multihop.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lane-champion-backfill.ts",
-        "kind": "code",
-        "path": "lib/search/lane-champion-backfill.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "true-citation-emitter.ts",
-        "kind": "code",
-        "path": "lib/feedback/true-citation-emitter.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-health.ts",
-        "kind": "code",
-        "path": "handlers/memory-crud-health.ts",
         "source": "derived"
       },
       {
@@ -199,7 +164,7 @@
     ],
     "causal_summary": "The 009 dark-flag validation found two production-readiness gaps in the search layer",
     "created_at": "2026-06-24T08:04:02.092Z",
-    "last_save_at": "2026-08-30T15:39:36.179Z",
+    "last_save_at": "2026-10-08T19:31:09.486Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +173,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97a70798f58a34507d20813c5d78c945d53cf5da536a4e3b975ed532bf0f58bd",
+    "source_fingerprint": "sha256:ed2c7cd3328678c882502feebd5923aea892924639bfa91fcbaaefc0b89130eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5ee38e9e888caa99581d144864d775303fa9794c65af949b154cd18b43e1cf8b",
+      "spec.md": "4baa9a84fd56bcd224143e78367f6f4221b09cee3864c3a6ac745720e82d55b9",
       "plan.md": "7fc5a1949cf7db82b663820f7ce4f88c183fe446a663618357f537a3730f5c1d",
       "tasks.md": "aedd251d02d7932e85abd3dd139678a54086a6084346e50249ff31281c5b13ee",
       "implementation-summary.md": "fe3c7b497027c2c71470193be33a618ab50d78cbf21141e00ac63f44d65d25d9"

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`contenthash` is a raw sha256 with no normalization (`memory-parser.ts:914`; deep-dive-report Chain A step 1 cites :913), so any CRLF/trailing-whitespace or `memory.continuity.lastupdatedat` churn registers as new content; each same-path re-save then retires the predecessor to `tier='deprecated'` and inserts a new row, accumulating snapshots unboundedly (Chain A steps 2-3)",
     "created_at": "2026-07-03T09:44:19Z",
-    "last_save_at": "2026-09-07T16:18:14.939Z",
+    "last_save_at": "2026-10-08T19:31:04.407Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a929110fcf75908ac36ca29191e9c650bd5fc2570c39818145c07ee04b55e7b4",
+    "source_fingerprint": "sha256:fd5182e715072b6687e6c859b18027c05147dbf87c7821c46f3bb0ee88fbf9e5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dffaaaf9d888524861b9c8c06a8dca6faf4f5a6f269f09644b7f9a2ac2caa26a",
+      "spec.md": "709c0c7331085b8becbd680bd4f80a367cad06adf6c5e2fa9a555297d458a5af",
       "plan.md": "f327e30fd42aae364f62dcc231dbc42afa31de1795e99b7d3a5ab518159b052b",
       "tasks.md": "ec9ce2751ed1abce5bb939d5dbad38f7d5d4b3465d2b97ade6078b43f1ee3f42",
       "decision-record.md": "0a26e994d15f048192e84db48e1730a2de09dd362cccb1d614d62d8b14914a99",

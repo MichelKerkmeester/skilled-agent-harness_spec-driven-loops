@@ -201,7 +201,6 @@ This implementation did not modify `resolve.cjs`, `compiled-route.cjs`, the advi
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 | Category | Requirement | Verification |
@@ -263,6 +262,7 @@ This implementation did not modify `resolve.cjs`, `compiled-route.cjs`, the advi
 
 **Acceptance**: Status reports freshness and legacy authority while the resolver still returns the legacy sentinel.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Which future packet owns refresh, generation increment, and overwrite authorization after the initial create-skill mint? This does not block the initial-only contract.

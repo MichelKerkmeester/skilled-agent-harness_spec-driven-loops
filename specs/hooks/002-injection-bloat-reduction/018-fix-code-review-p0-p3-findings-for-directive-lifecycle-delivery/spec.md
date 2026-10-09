@@ -225,7 +225,6 @@ Formal priorities are only P0, P1, and P2. The user-requested P3 tier appears be
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -346,6 +345,7 @@ Formal priorities are only P0, P1, and P2. The user-requested P3 tier appears be
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 None. The review supplies the required behavior, protected symlink policy, evidence taxonomy, formal-priority interpretation, predecessor, successor, and rollback direction. Implementation must reopen this section only if new evidence changes a formal gate or a host cannot expose a safe epoch reset seam.

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Phase 003 gave three hubs one version authority and wrote the remaining two into its own out-of-scope list, so `sk-doc` and `mcp-tooling` still carry four and three disagreeing values across their five routing artifacts",
     "created_at": "2026-09-20T08:33:45.195Z",
-    "last_save_at": "2026-10-07T15:56:55.564Z",
+    "last_save_at": "2026-10-08T19:30:20.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a03a6c6fd00cc4d10f5b188f252bdcc79d14bace909a737f8446a4a05ed0c52",
+    "source_fingerprint": "sha256:d68bbd638514f1489fcceb8ba16425e79320f6a464e33b0f65ed84a9ec0ea299",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fb5733e24ec9f327d58e7819b862903a3853f8dabccd36d4109ec7f58ae8680a",
+      "spec.md": "7c0195938e3e8f5d25ad7c3fd81404655b728208c304186c5071512b5f8a74f8",
       "plan.md": "d1f52a39e9bff92260afdd09df59362cdc44fa0d5d00dbc4b02138e11849266b",
       "tasks.md": "2158389d38a813329816a2ff72eb28eeb5042e2d75b89ac112e26eb48f65989c",
       "implementation-summary.md": "710fe0d52dc53ee7bdbaa8c22a30097ca50c69768b61440f42ca365e4065495e"

@@ -150,7 +150,6 @@ Build and run a confirm-only cross-model harness that decides whether those two 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -232,6 +231,7 @@ Build and run a confirm-only cross-model harness that decides whether those two 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Do both configured provider routes work from the operator environment without additional credentials or gateway changes?

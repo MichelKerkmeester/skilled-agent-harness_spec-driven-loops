@@ -182,7 +182,6 @@ gap cannot reopen quietly.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -240,6 +239,7 @@ at level 2 because it touches persistence and closes against acceptance criteria
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Why the last refresh left five nodes without a row. REQ-001 answers it by reproduction rather than by argument, and the answer decides whether any code changes at all.

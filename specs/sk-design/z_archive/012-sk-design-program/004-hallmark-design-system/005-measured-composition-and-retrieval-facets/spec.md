@@ -147,7 +147,6 @@ Store a compact, independently designed `compositionDNA` projection for each sty
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -202,6 +201,7 @@ Store a compact, independently designed `compositionDNA` projection for each sty
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The bounded derivation and query contract are fixed for this phase.

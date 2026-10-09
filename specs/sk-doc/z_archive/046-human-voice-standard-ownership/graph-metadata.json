@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The Human Voice Rules standard lives at `.opencode/skills/sk-doc/shared/references/hvr-rules.md`,",
     "created_at": "2026-09-01T03:42:36Z",
-    "last_save_at": "2026-10-07T18:14:20.834Z",
+    "last_save_at": "2026-10-08T19:30:16.537Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:078bf8e57ae6975159a23b879e83318491645eaa1c00c636b08b0f3f2ef234a9",
+    "source_fingerprint": "sha256:0b4cebcf2d08c84737b3034b879af2c5985bf755b055d72ab9a323cbbe5f8613",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "342a11875b0272c816141b13b382ac61175e5cd46cae0bdae2c426e551be2de9",
+      "spec.md": "659851a951b97a7fc1ff6eb1395abaac905ac6c2e8068819892aa9be02922caa",
       "plan.md": "09d1194f392741ef44ba3a853c6456fcd61c2aab93daf2d157b7aa8f6ef295e6",
       "tasks.md": "de53ebf35743666a22f1d0825683f9a2a986b0c204a8a2cd2ad853cf214db0a9",
       "implementation-summary.md": "8aa2c9a915e9f7c92b0bd6623cfd5831d837f875297df9c0a09bb7166894480b"

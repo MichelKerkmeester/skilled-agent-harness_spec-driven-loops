@@ -151,7 +151,6 @@ Six angles, one per iteration, in order.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -218,6 +217,7 @@ Six angles, one per iteration, in order.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 Carried into `014-shadcn-adoptions` as operator decisions, since each needs a policy before a checker assertion means anything:

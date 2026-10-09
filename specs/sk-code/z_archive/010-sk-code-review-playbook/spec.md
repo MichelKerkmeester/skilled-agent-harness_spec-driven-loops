@@ -145,7 +145,6 @@ Author a `manual_testing_playbook/` package for sk-code-review that covers ~17 r
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -200,6 +199,7 @@ Author a `manual_testing_playbook/` package for sk-code-review that covers ~17 r
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 (none - all clarifications resolved in approved planning document)

@@ -231,7 +231,6 @@ Audit completed 2026-03-22. 11 features verified against source code.
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -239,15 +238,17 @@ Audit completed 2026-03-22. 11 features verified against source code.
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - F08: Are the remaining unfixed spread calls in `k-value-analysis.ts` and `graph-lifecycle.ts` intentional (safe data sizes) or an oversight?
 - F09: Confirm actual transaction count (2 vs 3) against latest source before next catalog update.
 - General: Are there undocumented features in this category not yet in the catalog?
+<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions-2 -->
 ### Related Documents
 
 - **Implementation Plan**: See `plan.md`
@@ -255,4 +256,3 @@ Audit completed 2026-03-22. 11 features verified against source code.
 - **Verification Checklist**: See `checklist.md`
 
 <!-- /ANCHOR:questions-2 -->
-<!-- /ANCHOR:questions -->

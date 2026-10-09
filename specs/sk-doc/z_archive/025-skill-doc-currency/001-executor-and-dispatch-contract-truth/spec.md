@@ -231,7 +231,6 @@ The ID stays closed — it is not resurrected and it holds no slot in the arithm
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -312,6 +311,7 @@ The ID stays closed — it is not resurrected and it holds no slot in the arithm
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **[OPERATOR-DECISION: Q1 — unsound refutation]** Correct the deep-alignment README inside the frontmatter edit? Recommendation: yes; cost is one table, and the ID stays closed.

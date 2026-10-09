@@ -163,7 +163,7 @@
     ],
     "causal_summary": "Design references generated from a live site need to preserve measured CSS values and clearly separate observed facts from interpretation",
     "created_at": "2026-07-16T09:27:32.433Z",
-    "last_save_at": "2026-10-07T18:11:15.052Z",
+    "last_save_at": "2026-10-08T19:29:53.026Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -171,10 +171,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:f86559d35767e0c136af64a73515d0de2d06e1470234acc0dd8f3b83509e7194",
+    "source_fingerprint": "sha256:240db86f06c25b6c0028f98931a8545028ebcc520a490221ecd87cb6ffddfb44",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "73aa42571b8a86959519381701dbd9f955ec1b65e354a81fe687fe267aefac9e",
+      "spec.md": "83976b2aec5521af21576c873ea383df48c701e92808eab81e9ef0a32a7c6cff",
       "plan.md": "ec021a72b1ac9359f886218b7137d229d2ff910a2bc416e9c80da458a0c6f8ac",
       "tasks.md": "e9c94fa5ab770f0e00f497ab9e994be3cf7cda9d96ab25a7f51d8760b00e7f9b"
     },

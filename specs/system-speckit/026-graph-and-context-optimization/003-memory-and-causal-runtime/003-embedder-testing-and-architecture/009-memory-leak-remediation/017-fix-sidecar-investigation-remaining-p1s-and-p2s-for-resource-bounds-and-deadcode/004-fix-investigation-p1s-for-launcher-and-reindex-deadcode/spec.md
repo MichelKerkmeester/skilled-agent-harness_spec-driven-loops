@@ -137,7 +137,6 @@ Close the three P1 findings with surgical edits, fixture coverage, and packet-lo
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -190,6 +189,7 @@ Close the three P1 findings with surgical edits, fixture coverage, and packet-lo
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. F105 uses the requested default: delete dead branches and document removal.

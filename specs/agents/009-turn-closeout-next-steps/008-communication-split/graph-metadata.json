@@ -191,7 +191,7 @@
     ],
     "causal_summary": "`communication.md` bundled three different trigger conditions under one",
     "created_at": "2026-09-11T17:16:17Z",
-    "last_save_at": "2026-10-07T15:55:51.863Z",
+    "last_save_at": "2026-10-08T19:29:07.585Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8c511940ee0c9b467636dcdfb6f38da18b107f31d82c5eef79bdb1b28e2e4ee",
+    "source_fingerprint": "sha256:4201950563d9d1bae2849e24c7f54d3cdf509a1e661346612e10786e0386d137",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a48e560416e3593d59274aadad6996add67e8cdbf7fba94ebe0de147024a7bef",
+      "spec.md": "61e098809321669140c9a547c0d8bbc78e6f59f2cd49d7aaabc17825bd595fdb",
       "plan.md": "6af76d42d8857ade80f23d8b517fb1963ff830dd01ff201e008b3e0d02f8611c",
       "tasks.md": "4f505e3f4b91fe26003aad75ec36ea576040dec3a1e8e20b3abb518dd6f65922",
       "implementation-summary.md": "6a7da0b1204287484c8d229a619cc18eac7988c150ebddf86527658f1cd47a1e"

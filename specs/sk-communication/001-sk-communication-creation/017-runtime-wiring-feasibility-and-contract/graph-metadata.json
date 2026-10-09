@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The projection layer must be wired into runtime output, but the runtimes do not share a uniform hook surface",
     "created_at": "2026-08-14T05:27:23.988Z",
-    "last_save_at": "2026-10-07T15:56:18.812Z",
+    "last_save_at": "2026-10-08T19:29:33.891Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9dfa3df9bd6a6f57126cf257ebecaa1ed3ae1107b350b9f50ad735d452a6bfb",
+    "source_fingerprint": "sha256:10f7240fbb17f358d2cc107f6a62c7af1917203d662c94c22f72fde4c60d804e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "336edf302d18fbe45ffcdfea4021c7fade397df67cb60fab6b9065cc2c4d8d66",
+      "spec.md": "9a3d66fd7a87539c78aacf1916759f9a2a60152d84c0f7e3bdfdbdf8402cad05",
       "plan.md": "17ed61ac0c54ce6b1ca6e3d526a69c9d8f7f4828f5c56039497bf13fb0624434",
       "tasks.md": "f1c38886ea46abe245170b78f994a99f6aad3f22bb0bd46904a4571b86f42438",
       "decision-record.md": "9e08a7bb56071d62d785cc3ea210d08a66b7abe778fe8ea923b90b226f1858c7",

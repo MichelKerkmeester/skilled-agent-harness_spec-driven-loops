@@ -199,7 +199,7 @@
     ],
     "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-12T09:02:50.347Z",
-    "last_save_at": "2026-09-10T21:05:11.594Z",
+    "last_save_at": "2026-10-08T20:06:19.220Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4df11f43d064a402320c1b905a3f27d3bf9472b6da05810095d02846a76d5eaa",
+    "source_fingerprint": "sha256:f0df2113a57901fceceba4832365d1d001216b1d85b83735e4d87b1d153a0c9c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3d31f6d4961298c16b3adb1dd0e4702ea6946148ef1f0cfc7be3b16304357dca",
+      "spec.md": "64676d6ec85f28b02f75eb47fb274f8ab67625dccab25b4302de618a46052c6e",
       "plan.md": "d97c4c11060a3f39ce2f47ca7793d02b550087042d663fd1110bf85c717d92c8",
       "tasks.md": "8ddb84806482e90a90f58943f5c06564ea9913e98e4bedd2094bd7a2d039e17f",
       "implementation-summary.md": "141a0ca7b728f467bd78435d63d41a44e8653ef2244fe7489c9772ab17916a59"

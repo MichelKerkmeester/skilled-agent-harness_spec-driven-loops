@@ -182,7 +182,7 @@
     ],
     "causal_summary": "Plan the Skill Benchmark certificates and receipts over the deep-improvement-common backbone: attest paired skill scenarios, scoring evidence, replay inputs, validity domains, and transition outcomes while leaving shared services single-sourced and independently verifiable offline.",
     "created_at": "2026-07-16T03:43:41.856Z",
-    "last_save_at": "2026-08-30T15:39:21.409Z",
+    "last_save_at": "2026-10-08T20:53:43.150Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,13 +191,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a91c4c88e4daed43703463aae53367767cc7fe25bcf089b6809cbdf18fea04a",
+    "source_fingerprint": "sha256:45a1daf6231c97a3c7fdf64f5a0a6e0751d8f657ece948870cb15e0f910db45f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "225c7221e43953bae56d7ef45d9092f90dca81e07ee23858606749face777da6",
       "plan.md": "1cb07e3734abcc3888122cf3b4a319cb2ddf713383b82973751989c64527c7cc",
       "tasks.md": "407d935e8722d8ac15d3571d95a3ada8885124c5e42238c2f3efcd8ce0db59fc",
-      "implementation-summary.md": "d92fe3cd7b58c50dab55660ea4c3204bb65e359c49e9c93dc45e1af226d6f084"
+      "implementation-summary.md": "31f00fead483ed819dd0e566973a0e416b6697c86dc84ab96742756b639aa5a0"
     },
     "last_active_child_id": null,
     "last_active_at": null

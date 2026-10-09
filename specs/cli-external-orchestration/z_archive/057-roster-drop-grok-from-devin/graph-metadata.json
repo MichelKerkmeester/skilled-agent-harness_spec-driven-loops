@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The cli-devin allowlist advertised Grok 4.5 and 4.6 model ids (`grok-4-5-high`, `grok-4-5-low`, `grok-4-5-medium`, `grok-4-6-high`, `grok-4-6-low`, `grok-4-6-medium`, `grok-4-6-xhigh`)",
     "created_at": "2026-08-29T17:59:26Z",
-    "last_save_at": "2026-10-07T18:11:40.428Z",
+    "last_save_at": "2026-10-08T19:29:22.921Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73ea21c0592b43ec08c024d7a5650614fe1687bcb48f08c9d94a2491888c3150",
+    "source_fingerprint": "sha256:e7b1d48a0fc6f4369f47179bf209e6fdf7801e7d1f1013a8bc8ec554b1de0b47",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cefc6a64ee036982323848c1bb903ec712d5f4c4bea91752e50f2c02950ecdff",
+      "spec.md": "47ecf7b5956c8c565c593babd4b7bc4e2b365319ffd5d486fadf76f52b3b5e1d",
       "plan.md": "94ed5edd53734d6e9a9a742ce4c671624cf9f3fd70edf75cde16cf82cf679f59",
       "tasks.md": "1e383ff70d7f68599ce79a8cfd281f557dcba8175e8a7763f6b49fd313dd52b2",
       "implementation-summary.md": "c727f55410c55427fad7e7ce78f24aef184488cd4caeaac04f5b70a9c49047e8"

@@ -139,7 +139,6 @@ Add stress coverage for the remaining 36 features. Consolidation is allowed wher
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -222,6 +221,7 @@ Add stress coverage for the remaining 36 features. Consolidation is allowed wher
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None at scaffold time.

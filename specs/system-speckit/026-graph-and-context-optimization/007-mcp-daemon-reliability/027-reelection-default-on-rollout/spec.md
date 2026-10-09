@@ -129,7 +129,6 @@ Enable re-election by default for all users by setting it in all three committed
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -184,6 +183,7 @@ Enable re-election by default for all users by setting it in all three committed
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None outstanding; orphan-sweep staying opt-in and the code default staying off are recorded decisions.

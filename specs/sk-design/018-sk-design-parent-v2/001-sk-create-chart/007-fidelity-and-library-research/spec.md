@@ -153,7 +153,6 @@ The overviews are numbered from one, and the corpus has a measured, cited accoun
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -222,6 +221,7 @@ The overviews are numbered from one, and the corpus has a measured, cited accoun
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Whether the tick-formatting and legend-collision gaps the research names are worth the per-template cost across twenty files.

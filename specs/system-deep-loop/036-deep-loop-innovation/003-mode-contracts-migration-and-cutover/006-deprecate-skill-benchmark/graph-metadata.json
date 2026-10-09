@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The `skill-benchmark` lane is carried by the `system-deep-loop` hub as a sixth workflow mode, with a command in five runtime trees, a 56-file script tree, a large fixture corpus, three runtime ledger libraries and its own reference, catalog and playbook documentation",
     "created_at": "2026-09-20T08:33:40.065Z",
-    "last_save_at": "2026-10-07T15:56:49.569Z",
+    "last_save_at": "2026-10-08T19:30:18.977Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:610211c144a1e151d208763c917cf01fd87a9c3b5ad818565d663f973accef0f",
+    "source_fingerprint": "sha256:7f9fd7a23447c907811af4cb5fd6bd6c27543a3cff88123c11b051d8927a0792",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "16859970170592488c5654d3136bab355ad1202cc5b1bd676c2197db005a5ac4",
+      "spec.md": "076ea040fbc33741fde61a26f77aba563297b3bf51f9770096dd9c3ad8fbdced",
       "plan.md": "1af7b1eed5f4cafa3c7738d6ed2b6ad6f8d5f238c75a347cecc01a58db2b4653",
       "tasks.md": "e23b8bbf8918404f3dffc83e9c808a5cdddbb4f652924eea374675c6d4f6551a",
       "implementation-summary.md": "da873a42ed4ea2be7c9af078cf516581d31d356ff815179b5c0af58b1c794eca"

@@ -268,7 +268,6 @@ genuinely separate future packet).
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -343,6 +342,7 @@ genuinely separate future packet).
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does the operator want launcher-level exit-code distinguishability for this failure mode (a

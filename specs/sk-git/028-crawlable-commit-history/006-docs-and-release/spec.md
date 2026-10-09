@@ -150,7 +150,6 @@ After this phase a reader, the advisor and the rules all know what commit identi
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -216,6 +215,7 @@ After this phase a reader, the advisor and the rules all know what commit identi
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None.

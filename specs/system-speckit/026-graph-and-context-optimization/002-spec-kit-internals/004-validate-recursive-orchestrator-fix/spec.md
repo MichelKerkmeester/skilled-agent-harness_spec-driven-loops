@@ -124,7 +124,6 @@ On the orchestrator path, `--recursive` validates the parent and every phase chi
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -175,6 +174,7 @@ On the orchestrator path, `--recursive` validates the parent and every phase chi
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The bug, fix design, and child-skip rule were fully specified.

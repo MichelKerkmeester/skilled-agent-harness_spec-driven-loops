@@ -136,7 +136,6 @@ Record the parent and child source set, then prove that the phase map and direct
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -187,6 +186,7 @@ Record the parent and child source set, then prove that the phase map and direct
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The parent map names three phases, and all three source pairs are present.

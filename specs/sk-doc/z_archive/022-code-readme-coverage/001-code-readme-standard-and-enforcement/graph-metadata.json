@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Three defects in the governing surface, each independently confirmed against source:",
     "created_at": "2026-07-30T18:58:50.551Z",
-    "last_save_at": "2026-10-07T21:35:06.812Z",
+    "last_save_at": "2026-10-08T19:30:10.396Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5c7c52a56f9623b381df00aae9f9bfdf2bc6f9a4fd4a05e6a766ff58b0d172cd",
+    "source_fingerprint": "sha256:1f2018d58e4f049ce7e5c419ceaab5558d8e7e8dcc8fd5afc9a5d34e5a7d8009",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "701b067ce7297611c16b9b363a65498d9b03742c29e4fc8d2e8b9e451aaa7201",
+      "spec.md": "fa24cd976a7dac2442e37cf4fa0e9742ff05a522e90e3b67003d3cadabd98b8a",
       "plan.md": "93fa846cbd01541262fbbda811033d17dee1e8108492c124f8b34666d9c7d8e3",
       "tasks.md": "9975ab0b445e23f9a69061c98a7829e400e69e8d884c55c1431288861eeb8ffc",
       "decision-record.md": "373242489f573fb8b59aa6e82644203ae6ec37ac4989802a75d204ebdc685db1",

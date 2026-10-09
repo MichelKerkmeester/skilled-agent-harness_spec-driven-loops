@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Generated (DERIVED) causal edges have no content-addressed identity",
     "created_at": "2026-06-19T05:40:37.445Z",
-    "last_save_at": "2026-09-11T16:42:41.797Z",
+    "last_save_at": "2026-10-08T19:31:01.639Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9d54f404d1f409e4db908d8f99d831cb0895613f62a0692ad76c73de4d35153",
+    "source_fingerprint": "sha256:243d5f0502f89f4e77fe9a50a6f617956292edd855f89f30d959b64d289b8b2e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "14596f5b03860e7099b6820431da297f9fcef640015effd1655645943cf9fe25",
+      "spec.md": "8c348c7d2d6fbd93612007e81e4340e367d8b46f10787a74c3fd11eed4232f67",
       "plan.md": "1e84e9484327490b05cbf16458046c0c00e7818ec0c7b33d0740eb3c9b18a72d",
       "tasks.md": "63130001e3562a8c93002f7286e2f71642348316a6eaddfda49cca3c15e4d2bd",
       "decision-record.md": "9cec0ee9d82ba2339f5fc94b1cf2d624ce0ab98f5e696c8a64a3ba7c3a9d71db",

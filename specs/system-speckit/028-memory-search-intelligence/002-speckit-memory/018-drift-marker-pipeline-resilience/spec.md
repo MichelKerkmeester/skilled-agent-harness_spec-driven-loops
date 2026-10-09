@@ -278,7 +278,6 @@ node invocation rather than re-deriving the algorithm a second time in pure bash
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -341,6 +340,7 @@ node invocation rather than re-deriving the algorithm a second time in pure bash
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the hook resolve the live DB directory by shelling out to a small node snippet that

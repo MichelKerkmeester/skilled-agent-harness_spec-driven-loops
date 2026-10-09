@@ -145,7 +145,6 @@ Every Deem and Jev judgment the scorers ask reaches a measured answer on the rea
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -195,6 +194,7 @@ Every Deem and Jev judgment the scorers ask reaches a measured answer on the rea
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator asked for the fix on 2026-10-02.

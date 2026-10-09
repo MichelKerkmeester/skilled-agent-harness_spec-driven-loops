@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Nine of fourteen skill nodes carry a vector",
     "created_at": "2026-09-02T22:17:11Z",
-    "last_save_at": "2026-10-07T12:55:37.434Z",
+    "last_save_at": "2026-10-08T19:30:35.169Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:87fc3a78fe643d251d0e978d260436f67bf30f1506f0cb3b80b7b6b704c6546c",
+    "source_fingerprint": "sha256:d364f14048275a7ae48de743e4ed7648cdc5dd6b9b9b1e75b7d0691d33b7bb6a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0ced8c6f034d28a93d8b7e03d37722e79fd3c339eb5d4a35a6978ccb875743c2",
+      "spec.md": "4388a7b0356563bc13c156d94fd8514fe7cb90d0f62e91ccf6e400b1d05d8080",
       "plan.md": "e1facbe50320a00aae33f4655e7e7373730b9f956f919918a0d022620060b389",
       "tasks.md": "ec7394d5be51fa302c7db78dfe9610469cfc36040dcf3a36e5d391df8ae399f9",
       "decision-record.md": "8889d180c653db50e9de8e82ab12debc17ccece1c4db1f996077ba0b8fa9eb42"

@@ -136,7 +136,6 @@ Fix the facts and make four decisions before any product code changes.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -191,6 +190,7 @@ Fix the facts and make four decisions before any product code changes.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Do the 10-value and 11-value lists classify documents or sessions?

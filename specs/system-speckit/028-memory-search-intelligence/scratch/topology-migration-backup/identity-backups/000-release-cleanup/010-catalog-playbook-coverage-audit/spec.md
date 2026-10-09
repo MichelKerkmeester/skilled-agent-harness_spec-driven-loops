@@ -124,7 +124,6 @@ Produce a verified inventory of every 028 feature that has no feature-catalog en
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -178,6 +177,7 @@ Produce a verified inventory of every 028 feature that has no feature-catalog en
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Close the gaps now or scaffold a follow-on cleanup phase that does

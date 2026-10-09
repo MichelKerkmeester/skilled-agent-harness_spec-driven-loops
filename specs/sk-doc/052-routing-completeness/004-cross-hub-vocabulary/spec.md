@@ -214,7 +214,6 @@ the part that keyword ownership cannot reach is stated plainly rather than absor
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -295,6 +294,7 @@ re-measured, **Then** the row still resolves to its owner.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Findings 13, 14 and 15 name collisions this phase did not attempt, and they remain owned

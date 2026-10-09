@@ -149,7 +149,6 @@ Allow autonomous alignment runs to select a contained cli-opencode leaf and to d
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -210,6 +209,7 @@ Allow autonomous alignment runs to select a contained cli-opencode leaf and to d
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None.

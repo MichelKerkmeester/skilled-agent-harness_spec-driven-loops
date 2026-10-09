@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The CLI matrix runner folder used kebab-case while adjacent MCP server support directories use snakecase",
     "created_at": "2026-05-18T08:15:53.134Z",
-    "last_save_at": "2026-08-30T15:39:28.012Z",
+    "last_save_at": "2026-10-08T19:30:41.947Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:d9f533dcb9d1ab02c6a489b361c8e576ee9eff38b81b8f9328ac84866df38511",
+    "source_fingerprint": "sha256:9a4173ada26d24d29f7cef9ef267cfbe454b68f47aabf953dd64169da3c5b399",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ef335af581485e5d1713a1b7712c4d075ac52330c98da1d5ede15bfffc82e8ca",
+      "spec.md": "31dcb6d4cba0328a8d1e6bb313f41d3db093fc5d0988c62b5a4d45a63149f391",
       "plan.md": "ec509ccc852e1e245404c23ca6984036e632e7b88b40adb9ca7b919d453b04bc",
       "tasks.md": "33add72102e00e3c36b3e33357ffbcd6907ce224cf8c7c922b34904a8dc6c75f",
       "implementation-summary.md": "e1358178b6fe142c1ccfe33bdde8856d8531abe1e15e5fa732f99a3ddcbcd963",

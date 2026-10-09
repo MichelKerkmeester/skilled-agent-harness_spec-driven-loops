@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The Memory MCP fuses ranked signals and renders a result set the downstream agent loop caches against, but its ordering is not reproducible: the candidate-merge comparators sort score-only with non-content tie-breaks (input-order or clock-derived `updatedat`), the four ranked ANN `ORDER BY distance` queries have no tie-break so which rows survive the LIMIT into fusion is run-to-run unstable, and recall serialization is a bare `JSON.stringify` with no content-derived render-order stage (`research.md` Internal Baseline, `001` iter-3 Q5)",
     "created_at": "2026-06-19T05:40:47.071Z",
-    "last_save_at": "2026-09-11T16:42:40.739Z",
+    "last_save_at": "2026-10-08T19:31:00.788Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:85f42f4342dd84609e1afda9915218cb1f694328d800bcab3893f20d9b1c7f29",
+    "source_fingerprint": "sha256:eeaea86f2153ceb21c2e4070b50a3ea5fc527b3b6879a4265ae75977e0788a75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e328d686dc2cc908488872008abfe7808f83dda4c184245e734953c02783a0d0",
+      "spec.md": "85100809df0389b967266978318c2df65e24d9d7679f9763f2c48d1141dac5a1",
       "plan.md": "b972fcde5a30c860c44fdabea0aef822cc6798b4ab97595bf7e3b5768aa373c0",
       "tasks.md": "75834d2bd7389f2760e8473428a2f324e73526be2462199b669eb9534b33a1ae",
       "decision-record.md": "f4a222a1c97cb1a7f33b3873a4a488e5c2d0d9ca2bb8e23f7653f379c2578e68",

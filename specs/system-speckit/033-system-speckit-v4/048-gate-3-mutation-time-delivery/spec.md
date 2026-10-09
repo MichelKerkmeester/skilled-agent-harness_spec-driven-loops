@@ -172,7 +172,6 @@ Ask Gate 3 once, at the first mutation that actually needs it, through the stron
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -228,6 +227,7 @@ Ask Gate 3 once, at the first mutation that actually needs it, through the stron
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator settled the three design forks before this packet was created: hybrid dialog plus reframed text, all runtimes in scope, and hooks only with `AGENTS.md` untouched.

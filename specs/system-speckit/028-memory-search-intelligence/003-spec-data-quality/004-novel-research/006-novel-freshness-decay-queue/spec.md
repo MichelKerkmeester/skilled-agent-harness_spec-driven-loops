@@ -143,7 +143,6 @@ A report-only freshness queue reads the SHIPPED retrievability number, queues a 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -216,6 +215,7 @@ The exact seams, verified to file:line against the live tree.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does the staleness threshold sit exactly at the COLD to DORMANT tier edge, or one configured step below, given the corpus decay profile.

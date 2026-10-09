@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Adds privacy-minimized Web Push hints and hardens installation, lifecycle, revocation, and stale-state behavior across supported mobile platforms",
     "created_at": "2026-08-10T18:28:42Z",
-    "last_save_at": "2026-10-07T18:11:39.166Z",
+    "last_save_at": "2026-10-08T19:29:19.650Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +196,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:07c5ec9e2a8dcab725b78715d7cb4aa9764a76bfca7dcb43734587c57de18243",
+    "source_fingerprint": "sha256:26272f76128d025e7561f1c13a14c383f7aab6613d5a655e009c49fb2c8a7d5d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b7c5d1a1fe16db41cc4734267dbb02e58d89e672ef2316c1b99cb05a7ab54ce3",
+      "spec.md": "23a5651432056ce2dee95ce5f62d6f7e5dc36fe5785669f28bfcbd34edbb496a",
       "plan.md": "7d52d9a710c820bed2dcdc73fa36c9bdb234dc74d0740cff8c7fc0db5d7a0732",
       "tasks.md": "2f6ad4e00af26655b0a442b46e510e4c6d5486e9469afb0b4c872838337dfa2c",
       "decision-record.md": "c92dd81288dbfdaccecacdb1ff256da3e89e34f22263de6af7c7402d26d0c5bc",

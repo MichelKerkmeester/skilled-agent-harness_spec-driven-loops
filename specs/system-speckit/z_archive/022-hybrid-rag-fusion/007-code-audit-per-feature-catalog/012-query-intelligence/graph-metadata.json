@@ -175,7 +175,7 @@
     ],
     "causal_summary": "The feature catalog for Query Intelligence has evolved significantly",
     "created_at": "2026-04-12T09:02:50.251Z",
-    "last_save_at": "2026-10-07T20:25:09.269Z",
+    "last_save_at": "2026-10-08T20:05:51.113Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -184,10 +184,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:820c8f7247e526d56add0ddc68f7ece2ffc07e6a7bdaa7e9614fd1713bffea46",
+    "source_fingerprint": "sha256:a54512a96fb8d8c126de44e01b91effff336834b0f4b0f7c21c5c79473c9bde4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b61916e88c9c3a1b80e8cc327df1414f82fae818c9bcc0f175491c66441d8af6",
+      "spec.md": "81d964f75c0ab0d7147b69b5e283c358242e3902d84051ab741fb0fa2273e4e9",
       "plan.md": "3bed772e3314ed21f66310204589005700c6efd3f65effe7a9a7d8630ac177cf",
       "tasks.md": "5b3d1764d034965fe3bfeaaf4d52774900646a4dbc29a33983021b04feac6216",
       "implementation-summary.md": "6c27dc8e98089f74ff57f4ff661b7eaf7140d45ae75efc99bc42e22fe45c7ebc"

@@ -99,6 +99,7 @@ _memory:
 - [x] Advisor routes council prompts to `deep-ai-council`
 - [x] Runtime mirror names are consistent across all four runtimes
 - [x] Phase 001 validation passes without warnings
+<!-- /ANCHOR:completion -->
 
 ---
 
@@ -116,7 +117,6 @@ _memory:
 | Typecheck | `npm run typecheck --prefix .opencode/skills/system-spec-kit` passed. |
 | Advisor routing | Direct source scorer returns `topSkill: "deep-ai-council"`, confidence `0.95`, uncertainty `0.12` for `Run an AI council deliberation to compare implementation plans and persist council artifacts.` |
 <!-- /ANCHOR:evidence -->
-<!-- /ANCHOR:completion -->
 
 ---
 

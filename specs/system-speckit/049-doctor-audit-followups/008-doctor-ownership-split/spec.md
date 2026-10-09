@@ -148,7 +148,6 @@ Each doctor command diagnoses one owner's surface, the advisor's database rebuil
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -197,6 +196,7 @@ Each doctor command diagnoses one owner's surface, the advisor's database rebuil
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator chose the homes for `parent-skill` and `runtime-mirrors` and an outright delete of `/doctor:rebuild` before work began.

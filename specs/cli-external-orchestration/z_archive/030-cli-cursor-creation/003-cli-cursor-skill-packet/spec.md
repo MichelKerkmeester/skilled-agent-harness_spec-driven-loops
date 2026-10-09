@@ -172,7 +172,6 @@ Build `cli-cursor` as a new packet under `cli-external-orchestration/cli-cursor/
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -242,6 +241,7 @@ Build `cli-cursor` as a new packet under `cli-external-orchestration/cli-cursor/
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **ANSWERED**: The exact env-var Cursor sets during an active session is now confirmed — a live authenticated dispatch surfaced `CURSOR_AGENT=1` (unconditional, whenever running under `cursor-agent`) and `CURSOR_CONVERSATION_ID` (session-id marker). ADR-002 updated to use these as fully-confirmed guard signals rather than best-effort.

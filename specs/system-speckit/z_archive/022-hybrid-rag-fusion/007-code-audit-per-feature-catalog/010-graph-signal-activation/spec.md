@@ -239,7 +239,6 @@ Verify that all 16 Graph Signal Activation features are accurately documented in
 ---
 
 <!-- /ANCHOR:complexity -->
-<!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
 - **Given** a feature catalog entry in this phase, **when** the packet is reviewed, **then** the primary implementation or discrepancy is explicitly documented.
@@ -247,15 +246,17 @@ Verify that all 16 Graph Signal Activation features are accurately documented in
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
 
-<!-- ANCHOR:questions-2 -->
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **RESOLVED**: 14 of 16 features are confirmed as accurately documented (MATCH).
 - **OPEN — F15**: Graph calibration profiles are wired into Stage 2, but community-threshold integration remains incomplete.
 - **OPEN — F14**: Which of the two conflicting defaults in the `llm-graph-backfill` catalog entry is authoritative?
+<!-- /ANCHOR:questions -->
 
 ---
 
+<!-- ANCHOR:questions-2 -->
 ### Related Documents
 
 - **Implementation Plan**: See `plan.md`
@@ -263,4 +264,3 @@ Verify that all 16 Graph Signal Activation features are accurately documented in
 - **Verification Checklist**: See `checklist.md`
 
 <!-- /ANCHOR:questions-2 -->
-<!-- /ANCHOR:questions -->

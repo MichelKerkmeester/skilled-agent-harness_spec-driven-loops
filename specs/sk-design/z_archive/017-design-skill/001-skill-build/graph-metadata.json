@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Agents building UI in this repo have no source of design values, so they invent them: 17px padding, a hand-picked hex, a 400ms transition because 400 is round",
     "created_at": "2026-08-28T10:50:34.606Z",
-    "last_save_at": "2026-10-07T18:12:34.462Z",
+    "last_save_at": "2026-10-08T19:29:59.969Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:69032ecb1a1622b546f732a6296927a35c84d0351e1239e72da9d5fe21972c2d",
+    "source_fingerprint": "sha256:0341f3ec6f3f9fe3859b944090c81d2b8d883000b9aa636ea3b2651432442beb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ddabe67af1fce267c18f706751e44046e862b8f369b7f96a8a5145b2f2adbe0f",
+      "spec.md": "3389e160f2ca2cdb895037b0ddd0731bffa0ee0aa271f970edd725c5d5ed7e7f",
       "plan.md": "8ccadacfc8f00902148b3de9239170d27b13de91fc245559008e0e9b2bdaf83c",
       "tasks.md": "e39fee12da021037044a68d796709d94132e7f5bf2a6b7e6b2809534536f3557",
       "decision-record.md": "cd074b4c99745932db63f9a61ff09d6beecf4f15162c82bc5ce72cf03a009403",

@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`deep-alignment` is specified to MAXIMALLY reuse the deep-review/runtime engine rather than rebuild a loop from scratch, but the runtime's convergence entrypoint hard-validates its loop type: `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` lines 659-660 accept only `\"research\"`, `\"review\"`, `\"council\"`, or `\"context\"` and throw an input error otherwise",
     "created_at": "2026-07-11T06:20:25.587Z",
-    "last_save_at": "2026-10-07T18:15:13.033Z",
+    "last_save_at": "2026-10-08T19:30:34.183Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e0a21ec42c1b52f1f10908ea317d709de4872bee2938f81a3f4414aa75bf5c98",
+    "source_fingerprint": "sha256:9e16ecc9aa46eedf701d1f7fb4d4f3d1edbf6966be4ed577e218f4f131696604",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7e36bc453ac2b92ef967aab65bf2fbdcc4de6212ddc3bd8dde5ec341ace9ab6b",
+      "spec.md": "2d9a7fec39253ad8c1dd318f07e93f3e634c2a480f1179cc2a5bd912e235d80f",
       "plan.md": "4162013fcd78cdfee269d8afec049edad6e467ecea4cc0166020717cc1217555",
       "tasks.md": "f5107bb81668e8f2dc1cf36723616f9135db1483838632c195b45f073eea66f4",
       "implementation-summary.md": "586400a8b60a2612271622b45f011229e8e1f901ce45d88735c5d245de9d3806"

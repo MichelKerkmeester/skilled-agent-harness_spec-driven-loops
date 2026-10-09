@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The deep-review and deep-research skills are consumers; system-spec-kit/mcpserver is the producer",
     "created_at": "2026-05-22T17:50:00Z",
-    "last_save_at": "2026-10-07T18:14:23.980Z",
+    "last_save_at": "2026-10-08T19:30:26.902Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b08df278e7608cb1f2153dee33258939b234009029617d3b949f546656744d80",
+    "source_fingerprint": "sha256:e0aa5fd42b539f80a75128a55bf2bc7cb3af3e733d4ac5ff07e47e44b4c7a328",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b7776a8ab7ee8045e3113fe2ef874c44b55f9efa6a0471ccae68cdaaea1e532e",
+      "spec.md": "b09057b1ca7681ce50b97d33451fa98210c402f96d692dc47bf9353018f8923d",
       "plan.md": "d19a3ced65644f04bc1886b3c860a844cfc1c1de38415e7a68f1389907960da0",
       "tasks.md": "14150fc0d4ccb52c7fa51929392fa7d653ad900cb15cedc77d91b6f34ba454db",
       "decision-record.md": "f2f9ead01827c913c761ca195eb6ee4fa4cf7471d58a7807e368c7a64d915e39",

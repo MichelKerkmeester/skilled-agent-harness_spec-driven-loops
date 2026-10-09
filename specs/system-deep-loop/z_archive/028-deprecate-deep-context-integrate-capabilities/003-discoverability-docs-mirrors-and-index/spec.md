@@ -174,7 +174,6 @@ Remove active standalone `deep-context` discoverability after public behavior is
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -248,6 +247,7 @@ Remove active standalone `deep-context` discoverability after public behavior is
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None remaining for phase 003. Active current-state docs remove live standalone guidance, while registry and mirror surfaces retain explicit deprecation notes. Generated metadata refresh uses owner tooling and records non-blocking owner warnings in `implementation-summary.md`.

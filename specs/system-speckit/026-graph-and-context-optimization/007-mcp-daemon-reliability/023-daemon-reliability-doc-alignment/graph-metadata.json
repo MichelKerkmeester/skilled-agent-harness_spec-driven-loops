@@ -43,7 +43,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "database/README.md",
       "scripts/README.md"
     ],
     "entities": [
@@ -74,7 +73,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": "database/README.md",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -194,7 +193,7 @@
     ],
     "causal_summary": "The five daemon-reliability features (018 persistent log, 019 reap hardening, 020 code-index reconnecting proxy, 021 orphan-sweep activation, 022 RC-2 re-election) shipped as code + spec packets, but a gpt-5.5 doc-alignment audit plus a grep pre-scan confirmed they were absent from every operator-facing surface: 0 of 8 new env flags in ENVREFERENCE, no featurecatalog entries, no playbook scenarios, and no README/SKILL mentions",
     "created_at": "2026-06-07T18:10:00Z",
-    "last_save_at": "2026-08-30T15:39:32.524Z",
+    "last_save_at": "2026-10-08T19:30:56.973Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +202,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:99c2988f57fe5a8023a996e9204d33f587b5f2138422b0d540abe411df13d211",
+    "source_fingerprint": "sha256:4804dec4ac3d15ba36c91d26ce020b8c63be49fcb34111518040be61ad9ad0a8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1b799c38e8099951663f49d5d817bd44573fee08502acb73454d571624ac69e1",
+      "spec.md": "faaf80c91650033dbc869b51882ce96af6a9fc60c7f4a591a91ee5f37829d1ba",
       "plan.md": "df7b5275fb87aff3cca7b7341895200e44c9addd2de141969512a35eb34598a0",
       "tasks.md": "7d10c54c4fef2ab309104dd5f77cdea46d2110ce5e86afacc4069ff0d93a1abc",
       "implementation-summary.md": "524c6f775c72769971379151b702c02d152c99313f1a1092ac66cb8f29aacf43"

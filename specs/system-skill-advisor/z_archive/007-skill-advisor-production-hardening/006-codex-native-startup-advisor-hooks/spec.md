@@ -191,7 +191,6 @@ Wire Spec Kit Memory hooks into Codex CLI's existing hook surface so Codex sessi
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -253,6 +252,7 @@ This is Level 3 because the change spans runtime hooks, live user configuration,
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 1. What's the exact stdin payload format Codex passes to UserPromptSubmit hooks — JSON, plain text, nothing? Does it include the user's prompt, the session context, both?

@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "In `validate.sh`, `runnodeorchestrator()` built the command with `--folder \"$FOLDERPATH\"`, ran the compiled orchestrator (`mcpserver/dist/lib/validation/orchestrator.js`), then called `exit $?`",
     "created_at": "2026-05-29T11:47:40Z",
-    "last_save_at": "2026-08-30T15:39:29.359Z",
+    "last_save_at": "2026-10-08T19:30:47.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2609adf10a126d682d7bd4a0351ab5025fe57c289abc14f1f8bc1d61972ad49f",
+    "source_fingerprint": "sha256:8e54b887600483928f2994f557ea04f041d1049ad4d10c2977dcca1d1320e9a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5727162e6e44e94022beb0c178fb14b7669738c69ec9fd0da3aca7637a5d8917",
+      "spec.md": "60d8dd562a84773e1e33cce007dd3ff154d64bcc31eae0d97b21588598febd45",
       "plan.md": "040fbbe7caeea1a9cf2e54a3df2d604b7d1b839e18cec29dc81839bbdef74166",
       "tasks.md": "d2049dd7e2a7d4a5797526d505a61703e1fb529426113a14fd2c5439153405dd",
       "implementation-summary.md": "3bbb1866609c3771763252eb2ed2d17a37049e140f70aed822b56350abe9a933"

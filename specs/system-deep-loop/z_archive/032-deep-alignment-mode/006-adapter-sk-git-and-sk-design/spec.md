@@ -167,7 +167,6 @@ This is **Phase 6** of the `system-deep-loop/032-deep-alignment-mode` mode-packe
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -215,6 +214,7 @@ This is **Phase 6** of the `system-deep-loop/032-deep-alignment-mode` mode-packe
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 All three resolved at build time (2026-07-11):

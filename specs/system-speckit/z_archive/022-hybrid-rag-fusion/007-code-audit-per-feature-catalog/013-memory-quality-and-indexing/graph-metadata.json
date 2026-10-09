@@ -176,7 +176,7 @@
     ],
     "causal_summary": "The feature catalog for Memory Quality and Indexing has evolved significantly",
     "created_at": "2026-04-12T09:02:50.251Z",
-    "last_save_at": "2026-10-07T20:25:10.771Z",
+    "last_save_at": "2026-10-08T20:05:52.568Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,10 +185,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dab8e19afa2c8f2bc5a293d536a207ab6aa160997c7eff244c61198b886825bb",
+    "source_fingerprint": "sha256:9ef75d74b3fc18c8b132da9f0eebca1d753fff74bfc84c2ef6efdba8b4e5e8c9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "139fba00d4d243d78a6df399fad44d30895fd487cbf0c11603f4e2780160bcb5",
+      "spec.md": "5528200916eb3c4f92c5501682b6c66995d5057742c54d11646c20cc7cdd8417",
       "plan.md": "1f7538d7c260bc3047f350b15dc68e516e9f1921571ae178de10edb07c5451ff",
       "tasks.md": "e47c0551e371d93dfc86a5babeba4f25f81206d95c754d71a797b0878f3293c9",
       "implementation-summary.md": "a1f7ae1af8d78abde56ddbd6e87a459d7f58722a298e0b9d404e9fb3bda0ce1d"

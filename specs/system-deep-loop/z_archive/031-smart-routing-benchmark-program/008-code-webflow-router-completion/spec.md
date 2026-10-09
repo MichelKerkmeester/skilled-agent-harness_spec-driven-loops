@@ -82,8 +82,8 @@ migration itself (path-scope to webflow only).
 - Depends on 005; low blast radius, single surface.
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 **DECISION NEEDED (low-stakes) —** (1) commit scope: land router + keyword fix as one webflow
 commit (recommended — the only way the guard goes green); (2) tokens: `["css",".css","html",".html",
 "javascript",".js"]` (recommended, extension-inclusive, no bare `js`); (3) WF-013 wording, e.g.

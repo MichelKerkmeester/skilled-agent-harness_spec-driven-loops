@@ -175,7 +175,6 @@ Specify the sk-doc adapter so a future implementation pass can wrap the existing
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -223,6 +222,7 @@ Specify the sk-doc adapter so a future implementation pass can wrap the existing
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 None remaining from this phase's own scope. Resolved: the suppression list ships as a structured reference doc (`sk_doc_known_deviations.md`) whose embedded fenced `json` block is the queryable rules file `sk-doc.cjs`'s `loadKnownDeviations()` parses directly at runtime — one file, one source of truth, satisfying ADR-005's per-authority-list requirement without a hand-synced duplicate.

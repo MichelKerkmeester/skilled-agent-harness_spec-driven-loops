@@ -209,7 +209,7 @@
     ],
     "causal_summary": "`/doctor:mcp install` installs MCP servers and registers them in each runtime config",
     "created_at": "2026-10-02T16:10:10Z",
-    "last_save_at": "2026-10-07T15:57:40.755Z",
+    "last_save_at": "2026-10-08T19:31:33.320Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:13735da29a61ccadfeca6c42737604689c81a12f890537d451f68dc75b9c1166",
+    "source_fingerprint": "sha256:ad520ea9893d9107a94e0bc843f4d0ec9d2f418c2a282537856695b6bbf2ea56",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7be24ed37b8aec1ba753a131c6ad44ee06ec765a02032c92651245c7f95b3cb2",
+      "spec.md": "c5d4e6d4f29bb62be2c8ff7f1c66be77429b2caa6acba93bdc26dfafd40578e7",
       "plan.md": "1ddb22ae47995e26cf552cc000580396e18090ce211383f6d5f0f7250f7fccf7",
       "tasks.md": "12b2078e9ba1b2c8fd47642563e1b0c49c08b7a6c65080cc81b0cfc9ed7ee2a8",
       "implementation-summary.md": "12f41342d332083a99c08ddc4c821c9f5f0d2a00baee46c0bc2267049608e14a"

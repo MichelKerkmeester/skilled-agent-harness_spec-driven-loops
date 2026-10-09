@@ -171,7 +171,6 @@ Make the causal + lineage temporal model bi-temporally correct: close superseded
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -242,6 +241,7 @@ Make the causal + lineage temporal model bi-temporally correct: close superseded
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Is the C3-B four-timestamp window additive against `active_memory_projection`? No migration spec exists to verify (005 most-likely-wrong runner-up).

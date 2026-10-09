@@ -208,7 +208,6 @@ Make the gate real and settle the rulings, so that every subsequent child's conf
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -293,6 +292,7 @@ Make the gate real and settle the rulings, so that every subsequent child's conf
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **[OPERATOR-DECISION: Q4 — exact-header automated check]** Should exact header shape become a blocking automated check? *Recommendation: yes, as a new opt-in verifier flag, promoted to default only after 003 completes, with documented exceptions for plugins, fixtures, assets and examples.*

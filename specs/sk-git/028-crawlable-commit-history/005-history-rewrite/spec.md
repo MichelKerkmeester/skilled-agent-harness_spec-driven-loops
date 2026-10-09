@@ -154,7 +154,6 @@ After this phase `git log --grep` by packet or ordinal resolves old commits on o
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -221,6 +220,7 @@ After this phase `git log --grep` by packet or ordinal resolves old commits on o
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Second pass for the 551 hash citations inside commit messages: the record recommends yes. Confirmed with the operator at the push gate.

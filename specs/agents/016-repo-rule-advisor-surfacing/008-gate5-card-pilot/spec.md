@@ -148,7 +148,6 @@ Data that decides whether Gate 5 should load cards with full text on demand. Whe
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -185,6 +184,7 @@ Data that decides whether Gate 5 should load cards with full text on demand. Whe
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Is arm C worth its always-on cost of about 1.9k tokens? Settled without data: it does not fit under 32,768 bytes, so REQ-005 drops it.

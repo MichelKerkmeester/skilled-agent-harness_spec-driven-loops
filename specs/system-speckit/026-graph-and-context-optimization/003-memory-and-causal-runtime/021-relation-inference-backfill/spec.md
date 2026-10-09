@@ -147,7 +147,6 @@ Build a bounded, safe, reversible relation-inference backfill that promotes exis
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -213,6 +212,7 @@ Build a bounded, safe, reversible relation-inference backfill that promotes exis
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 Resolved: high-similarity 'supports' neighbors and `contradicts` detection are deferred best-effort extensions (require sqlite-vec embeddings, not deterministically testable in a unit fixture); the MVP ships the two deterministic signals that fully satisfy REQ-001..004.

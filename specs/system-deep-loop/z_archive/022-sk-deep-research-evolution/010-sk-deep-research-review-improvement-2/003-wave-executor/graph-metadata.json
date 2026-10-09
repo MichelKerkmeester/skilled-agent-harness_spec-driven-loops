@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The deep-loop products are currently optimized for one iteration stream at a time",
     "created_at": "2026-04-12T09:02:50.193Z",
-    "last_save_at": "2026-10-07T20:55:12.149Z",
+    "last_save_at": "2026-10-08T20:53:51.637Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c1243392ac53ea1b333d9e2755eade173fc69b5f57d05db1e8ab613031dc2b26",
+    "source_fingerprint": "sha256:b90412015859b1b46f17a6b662e1af311a9ff0540793f75c58cfba3af4aec0e4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8addec630c856bd31fffed5ea6c7343b129942fa0e54bcc08b99ee2b76258bef",
+      "spec.md": "a73902f0a3c657ead086371407136c03c99ce2af28d1c124d0b3d81a39cd3d65",
       "plan.md": "cf73ba29acc25c26a0fcf90bd8722087eaa620b3fafdbe28629b068b57fb2c0b",
       "tasks.md": "c6ce54ba58a3bece50dd33e86944c3f291017c983da5ae8bfa6a009e2bd0503b",
       "decision-record.md": "990b60f464499a23d7fbf12e8c00b3ffe8c3f2457fa5766ecce75ed806214c1e",

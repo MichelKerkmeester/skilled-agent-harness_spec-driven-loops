@@ -201,7 +201,6 @@ work that would actually move it is separated from the work that would only look
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -272,6 +271,7 @@ the cause rather than to the symptom that is easiest to fix.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 None open in this phase. The semantic lane is the structural cause of the 94-row bucket, and

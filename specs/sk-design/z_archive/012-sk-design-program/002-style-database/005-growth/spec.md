@@ -145,7 +145,6 @@ None in this packet beyond its own spec-folder documentation. The table below li
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -197,6 +196,7 @@ None in this packet beyond its own spec-folder documentation. The table below li
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether corpus growth ever reaches 10x-100x; if not, this phase never triggers

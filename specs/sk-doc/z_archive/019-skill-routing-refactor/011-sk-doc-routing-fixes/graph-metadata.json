@@ -200,7 +200,7 @@
     ],
     "causal_summary": "sk-doc's Tier-2 gpt-5.6-luna benchmark run scored 20/100 with roughly 19 percent exact-resource recall (`tier2-sk-doc-luna-opencode.report.json`)",
     "created_at": "2026-07-16T08:08:19.396Z",
-    "last_save_at": "2026-10-07T18:13:18.327Z",
+    "last_save_at": "2026-10-08T19:30:08.625Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c4b77d65ebe518dbe54fea77a701f0d3fcfd42a94cecad17d607a4d10f085b7c",
+    "source_fingerprint": "sha256:a05defb704e3690fc1a28369c1cc41a3dbf10e0a2f60cd7f48aca45b70b1d8c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "65725025889cb4711c321fa0a6bd2e03f6d4b33a0561d7bb521c101ece8d93ca",
+      "spec.md": "6604151407287ced9a62ce04e306bb9f66ffc3b9b314e78cae3f59b29278495f",
       "plan.md": "f4cc81ae6e520708a9c080505c453b3f410952dae4eacaa54a7488ba3d664960",
       "tasks.md": "0f28fa684a74728e08c0fed3ac533c9e17611aa788b36284d60fc439d0073240",
       "decision-record.md": "c3f251fcc570d8efec57a391c278fbda87d00d139ba0795fe4347b1d1be47db2",

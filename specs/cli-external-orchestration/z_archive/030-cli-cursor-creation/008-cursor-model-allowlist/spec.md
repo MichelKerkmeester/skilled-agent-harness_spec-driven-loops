@@ -108,7 +108,6 @@ Replace the permissive reference list with a hard, enforced 10-id allowlist at t
 - **Compiled-routing bookkeeping drift**: editing `SKILL.md` content stales the hub's pinned routing hash. Mitigation: same verified-safe realignment pattern used in phases 003/007 (confirmed via `resolve.cjs` that the pinned hash gates only the compiled fast-path's activation, not routing correctness).
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - **NFR-C01**: The allowlist is enforced identically at both runtime dispatch entry points (`fanout-run.cjs` and `dispatch-model.cjs`) — no single-entry-point gap.
 
@@ -136,6 +135,7 @@ Replace the permissive reference list with a hard, enforced 10-id allowlist at t
 - As the operator, I want `cli-cursor` to only ever dispatch Composer, Grok 4.5, or GLM 5.2, so I never get surprised by an unexpected model in the roster being used.
 - As a maintainer, I want the allowlist enforced at the code layer, not just documented, so a future edit to the skill docs cannot silently reopen the unrestricted roster.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 All questions below are resolved (asked and answered before implementation began).
 - Allowlist scope: exactly the 4 named variants, or the full family per model? **Resolved: full family** — all 6 Grok 4.5 tiers, both Composer variants, both GLM 5.2 tiers (10 ids total).

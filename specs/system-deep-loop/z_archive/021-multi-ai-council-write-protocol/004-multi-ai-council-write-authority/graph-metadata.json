@@ -213,7 +213,7 @@
     ],
     "causal_summary": "The multi-ai-council agent is intentionally planning-only as of v3.4.1.0",
     "created_at": "2026-05-08T21:45:00Z",
-    "last_save_at": "2026-08-30T15:39:24.301Z",
+    "last_save_at": "2026-10-08T19:30:31.317Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -225,10 +225,10 @@
       "research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:e1b5f52a21d0ddd6209bc7491f863f358facd4fe09525a0b603da6cc9a931888",
+    "source_fingerprint": "sha256:d1500380a2608cf09668e57fe92823e5fffa6b66babceef2cb74cd512e1e87c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6984baf62d99b4bdfb455bca3d0ad91abf2b30fe4bc984698f666c1e7e8d1da3",
+      "spec.md": "664bd8b851b1c5f418e2fbed7137cd1ebfdccac7a2c013447b8270b56a539cb2",
       "plan.md": "a03fcf0c0696a83992f38c67334bbc88f2c2721be3eca4a3ab52b1a0bdfa448e",
       "tasks.md": "5890fe0a5fedef498dbeeee3c61d95065a67973dbc8dd23ed7b39cd9538680e6",
       "decision-record.md": "b4a0fb665cfe8f9a6c2f771aaba2fe14c30dcf50c8f0d70b01684ba13293f546",

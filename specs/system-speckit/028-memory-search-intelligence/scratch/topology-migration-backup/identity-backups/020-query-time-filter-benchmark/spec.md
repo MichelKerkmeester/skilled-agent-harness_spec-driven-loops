@@ -249,7 +249,6 @@ practice (`016-cross-package-flag-governance`, `004-dark-flag-graduation`).
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -317,6 +316,7 @@ practice (`016-cross-package-flag-governance`, `004-dark-flag-graduation`).
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does REQ-001's p50/p95 overhead get pinned as a numeric pass/fail threshold in this phase, or only

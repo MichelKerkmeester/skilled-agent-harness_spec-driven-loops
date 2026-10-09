@@ -151,7 +151,6 @@ Run a 10-iteration deep research loop covering these four threads, externalize s
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -206,6 +205,7 @@ Run a 10-iteration deep research loop covering these four threads, externalize s
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Q1: Where should a future `SearchDecisionEnvelope` contract live?

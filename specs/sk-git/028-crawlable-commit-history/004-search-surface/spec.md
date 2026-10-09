@@ -142,7 +142,6 @@ After this phase the catalog says what commit identity is, the playbook proves t
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -208,6 +207,7 @@ After this phase the catalog says what commit identity is, the playbook proves t
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None.

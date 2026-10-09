@@ -290,7 +290,6 @@ suspect row whose file has reappeared is cleared from the queue with no write.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -372,6 +371,7 @@ suspect row whose file has reappeared is cleared from the queue with no write.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Should the Layer 1 query-time filter default ON at ship time, or stay an explicit opt-in until it has run

@@ -170,7 +170,6 @@ A single new skill `sk-code` that smart-routes by detected stack: web → live f
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -264,6 +263,7 @@ A single new skill `sk-code` that smart-routes by detected stack: web → live f
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - (resolved) Suffix for new skill name → bare `sk-code`, no suffix

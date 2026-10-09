@@ -147,7 +147,6 @@ Measure whether these two tail-appends lift multi-target recall on the productio
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -201,6 +200,7 @@ Measure whether these two tail-appends lift multi-target recall on the productio
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether the refinement that wires the appends into the prod path should position them inside the pipeline Stage-3 rerank ahead of token-budget truncation, or whether the appended tail rows should be exempted from token truncation entirely, since both land outside this phase's write scope and are designed for a follow-up

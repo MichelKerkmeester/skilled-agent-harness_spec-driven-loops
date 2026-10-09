@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The skill advisor's `INTENTBOOSTERS` dict (`skilladvisor.py:496`) contains 24 multi-word keys that the advisor's tokenizer splits on whitespace — making those booster entries effective no-ops",
     "created_at": "2026-04-15T10:54:05.055Z",
-    "last_save_at": "2026-10-07T18:15:41.900Z",
+    "last_save_at": "2026-10-08T19:30:38.134Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +215,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:70a54a16543e2079c5cfa009f64b58776da4140b9a6019e1fda639efdcb99ba9",
+    "source_fingerprint": "sha256:4f006dd2415f060750e402343b7c4e3331de00bfe18f71bfde55a0273f04fc71",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "00195996cb9f31d92e642ac74685e2254b04315d1c781437fe1d2eac78259f08",
+      "spec.md": "2095c0d9a426b4c9c4127ffdcd71ce5bb6e09f3111e00799575e943eaa90517f",
       "plan.md": "e67611e97b6ae9a5bf39fa0d824b4b13b28d1996293a9419fae9276757af5edb",
       "tasks.md": "7a4a0abf6d3212bda86eb0d0e21e59e999ef24f865acc2753cdd0ea20a82c1e6",
       "implementation-summary.md": "d5bf88e2ea77ec0e2f7c53d793ea131d0e938c47b37cfcc587da3de8225f94af",

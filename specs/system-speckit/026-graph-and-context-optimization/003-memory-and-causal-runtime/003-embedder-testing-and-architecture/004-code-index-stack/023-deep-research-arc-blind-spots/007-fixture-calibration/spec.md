@@ -198,13 +198,13 @@ Provide the fixture, harness, taxonomy, and gates needed to decide whether the c
 
 ---
 
-<!-- ANCHOR:open-questions -->
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 The full n>=3 sweep remains an operator-time task, not an unresolved design question.
-<!-- ANCHOR:questions -->
-Question anchor mirror: no packet-blocking questions remain.
 <!-- /ANCHOR:questions -->
+<!-- ANCHOR:open-questions -->
+Question anchor mirror: no packet-blocking questions remain.
 <!-- /ANCHOR:open-questions -->
 
 ---

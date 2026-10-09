@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`/deep:alignment` had a working cli-codex leaf but no cli-opencode branch, even though the shared executor runtime already supported cli-opencode",
     "created_at": "2026-07-23T04:55:05.803Z",
-    "last_save_at": "2026-08-30T15:39:22.001Z",
+    "last_save_at": "2026-10-08T19:30:21.262Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:77cc8b98caf8d41b0e49f64110c0926492efb60d7c33624b40d3efa9f59002f1",
+    "source_fingerprint": "sha256:954d3ebd67f67779b7aa340c63241cd29cbfc11d25f57b22053137e393a1d4c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d2dc3342b3c5f3adfb61c81201f89d45767899529494ba9ef91d76384ed71eda",
+      "spec.md": "db1161f845846eeaad3449041ad5d0d1bb1183e15ef1d8a91adefa181602d22c",
       "plan.md": "580bf74ae5fef8abf555b19353ff7ae95e4026c28f95c0441987abae0035ef94",
       "tasks.md": "87c54328c03e47692ae4061d1a85670d062d6c954f061e9cf9d3eca33feb593c",
       "implementation-summary.md": "6854c537271a18108d9f2a2922d14c48517c5f080a9b7031280135d0f0e890de"

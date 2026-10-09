@@ -137,7 +137,6 @@ Author three short child goals from their own phase sources and keep parent bind
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -188,6 +187,7 @@ Author three short child goals from their own phase sources and keep parent bind
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The three child source pairs define the phase-local goal work.

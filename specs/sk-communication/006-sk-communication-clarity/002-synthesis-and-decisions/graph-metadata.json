@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Two model families will return overlapping and sometimes conflicting recommendation sets, and a",
     "created_at": "2026-09-12T12:44:35Z",
-    "last_save_at": "2026-10-07T15:56:24.094Z",
+    "last_save_at": "2026-10-08T19:29:36.158Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:555aa9496cdf1370092e4adf66918b6bf373980a08836ad30551eec602fbb001",
+    "source_fingerprint": "sha256:4016117594be62f28eaf07c3091f09083b4e29092bf930064532444c1b0b8ed3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bb4d99ae794f41e7213737fe885c7c98e737de61aaad8eee3edba6b6a557edc0",
+      "spec.md": "b6709bf20bd156328eaa0956cd46687dcfcfa2d3cf49ba5eefd3d45342e13e0f",
       "plan.md": "b790733a3cf5430dd16b8d2e264c0b1ab3a65fecb7d3891d4ffc310956538313",
       "tasks.md": "1bf2d445739781ddca5a8ef20f9f1f3bb7e01efa9143d919b2ff364b431a175c",
       "decision-record.md": "06d29e0a8748ee77cabf2710b0d4a177f77a2088294579794d631796b6ba5e66",

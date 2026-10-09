@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`sk-create-frontmatter` owns the frontmatter contract, but the list of allowed `contextType` and `importancetier` values lives in `system-spec-kit/shared/frontmatter-values.json`",
     "created_at": "2026-10-04T19:31:12Z",
-    "last_save_at": "2026-10-07T15:57:44.496Z",
+    "last_save_at": "2026-10-08T19:31:37.880Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,10 +222,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c1903fb75416cd3e29b67351a4d23aa362e7625b4f982edd17f21fb46a5886fe",
+    "source_fingerprint": "sha256:ee72478aa842e49311f1dcde236a9e424cfb1190761df5f586916fd664f82b56",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0bc3ebad43dbe6b6b0db4e674de0b387c3fac46a1ea542cbc7f6330177c70371",
+      "spec.md": "1b64d149655d045b4cce17aca05a7c5107afe047fd5bda35b076b46f2b6c2b91",
       "plan.md": "b58c3de6c23b85e313d742459544115603c858144c9d9189674a1185b1a5bc4b",
       "tasks.md": "5fdc6ccdf018b3156d04f7517c4ebff72ec1a7131e1891a2f4e908a35ff3485f",
       "decision-record.md": "0017f908d7ffc0f92dd5cee6cf29bb8fbfa242dc23340ca13477cef67523d484",

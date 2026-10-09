@@ -154,7 +154,6 @@ Bring runtime config identity into parity and leave a traceable ledger for every
 <!-- /ANCHOR:risks -->
 
 ---
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -224,6 +223,7 @@ Bring runtime config identity into parity and leave a traceable ledger for every
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None. The dispatch SHA mismatch and 048 count mismatch were resolved against local repository evidence.

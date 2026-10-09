@@ -217,7 +217,6 @@ Run the recorded deep-research loop against the shipped code as the ground truth
 
 ---
 
-<!-- ANCHOR:questions -->
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
@@ -265,6 +264,7 @@ Run the recorded deep-research loop against the shipped code as the ground truth
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Extend the git-ignored `enablement.local.json` with `localProvider: { kind, model, endpoint? }` while retaining environment force-on and force-off precedence.

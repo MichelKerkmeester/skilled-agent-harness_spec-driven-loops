@@ -133,7 +133,6 @@ Make the DeepSeek V4 max tiers dispatchable on cli-devin as a pure additive supe
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -171,6 +170,7 @@ Make the DeepSeek V4 max tiers dispatchable on cli-devin as a pure additive supe
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Tier-scope decision resolved by the operator (see frontmatter `answered_questions`).

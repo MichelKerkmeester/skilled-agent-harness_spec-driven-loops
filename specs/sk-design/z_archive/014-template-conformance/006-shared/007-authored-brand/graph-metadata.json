@@ -186,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/shared/authored-brand/` has not been audited against `.opencode/skills/sk-doc/create-skill/references/shared/overview.md directory rules + packageskill.py file-type gates (no authored authored-brand/ template; bespoke shared subdir)`",
     "created_at": "2026-07-27T14:59:53.186Z",
-    "last_save_at": "2026-10-07T18:12:20.946Z",
+    "last_save_at": "2026-10-08T19:29:57.639Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,10 +195,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ba060d9dfee42fdd4e2315584a83a54f104d8549134d61637329cb1495b6917d",
+    "source_fingerprint": "sha256:c706896531a44006b43d2b37bd12b418924222581b391d1ad160a36229948844",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "87fa61f1dbc0b3c00bf00fee8000b22337871b026e8ad0da1daf87a0cf4f03ad",
+      "spec.md": "c4e0b78660f59d01782b303c4109391310dafa1bef4dc79e0c9673dd011de425",
       "plan.md": "cabc8050124608388cd6d03196ed7477660e7f2414b6d5b4d5903a20838a1d9c",
       "tasks.md": "bdfc68f341cc633fdc29ea64c2a7db9aecc94628011f0d167f2d8c4784e77322",
       "implementation-summary.md": "354b4826f271aeeddb67df5ba26ba091023f5ef86c49b083d7064439eeba04c1"

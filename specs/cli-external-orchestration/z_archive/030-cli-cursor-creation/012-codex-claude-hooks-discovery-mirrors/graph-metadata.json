@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The `.cursor/hooks/` discovery mirror gave the Cursor runtime a single place to see its full hook inventory",
     "created_at": "2026-07-24T18:29:18.029Z",
-    "last_save_at": "2026-10-07T18:11:41.479Z",
+    "last_save_at": "2026-10-08T19:29:19.007Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:558363757180e0b2560bdf5c2da868cf6c825a36f8b9465202fdaa66c7d8a6d6",
+    "source_fingerprint": "sha256:3b9c99170c809ad2ccc025eaa00ba3dfd5ebae7be2f7cba9ab32c472ee09098e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b0dc45ceaa3d11ad61db56337b7b602f002497402b018500ffc5210a5b87f575",
+      "spec.md": "d091d2b1c29f98395a08b6f6647cd7ed87fa94f3b4238438df3d0399c6d9a1a1",
       "plan.md": "b548ca1d019b7310e008bc5ee1c012388ef5d363a36b2b2fb7820eb2a5a86683",
       "tasks.md": "574ad860c8030e2e67b1e895c848f318043c44002cb9afd8d4833854705d4037",
       "implementation-summary.md": "4d6d8ee461f7c54c649a816e03b273a77ca8655dff8243a31ad5e0aaff3cb181"

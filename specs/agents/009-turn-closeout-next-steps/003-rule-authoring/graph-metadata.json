@@ -190,7 +190,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-11T10:54:56Z",
-    "last_save_at": "2026-10-07T15:55:51.854Z",
+    "last_save_at": "2026-10-08T19:29:07.451Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8ea9ec04a8aaadeed7f5b0c16b40ac735e56fe1888f8be2a412f76cdca83c82",
+    "source_fingerprint": "sha256:aef8520d7da4fe1f1906f4dad68c5e70024f96094211b6699d0606a6c85af581",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8a86cf8c14ba815738467ba3ddda2e461283fd46403fe9b47ffd7ea5d9d35013",
+      "spec.md": "0ce153b8e9f77061d3c4e2eec9c8250cc32b8f9cbfc276b71082ed34478b778c",
       "plan.md": "4cdcf416c8ec961d274b2ed870a46bc43186c0408a6e36228402c746131a6eee",
       "tasks.md": "02d133f50a221dd0f9ac0b0e098cf59edc33aae0d6071d79851dc8c016a8d906",
       "implementation-summary.md": "9936eb1ac6e26a9fff84ecdc6f8fa9d1c32b9b5dbd897bd8b7659ef7931e39bd"

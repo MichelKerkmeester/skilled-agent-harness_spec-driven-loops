@@ -137,7 +137,6 @@ The launcher no longer respawns the daemon under a disposing session: the relaun
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -190,6 +189,7 @@ The launcher no longer respawns the daemon under a disposing session: the relaun
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None blocking. The complete daemon-outlives-owner fix (RC-2) is a deliberate follow-up phase, not an open question.

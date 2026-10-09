@@ -147,7 +147,6 @@ An agent or operator can scaffold a review or research packet the same way they 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -202,6 +201,7 @@ An agent or operator can scaffold a review or research packet the same way they 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Whether the loops should switch to scaffolding through `create.sh` is explicitly deferred to a documentation note, not a behavior change, per the Out of Scope section above.

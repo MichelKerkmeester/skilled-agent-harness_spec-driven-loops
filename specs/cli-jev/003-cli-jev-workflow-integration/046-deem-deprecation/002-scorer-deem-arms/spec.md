@@ -136,7 +136,6 @@ No scorer offers a Deem arm, and nothing else about any scorer changes.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -180,6 +179,7 @@ No scorer offers a Deem arm, and nothing else about any scorer changes.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. The operator set the scope on 2026-10-02.

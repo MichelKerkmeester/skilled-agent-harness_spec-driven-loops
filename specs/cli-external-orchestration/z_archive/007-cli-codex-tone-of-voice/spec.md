@@ -161,7 +161,6 @@ Produce Codex-specific personalization artifacts that shift its default voice to
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -247,6 +246,7 @@ Produce Codex-specific personalization artifacts that shift its default voice to
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None at spec time. If Codex product team introduces a native "voice profile" configuration surface, a follow-up spec can migrate these artifacts into that surface.

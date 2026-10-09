@@ -103,6 +103,7 @@ What REMAINS — three packet-scale builds + a defer-by-design bucket, folded in
 
 Structure the follow-on as design units (vector-truth, shadow/feedback+replay, launcher parity) per the AI Council report at `ai-council/council-report.md`. Recorded non-blocking verifier nits carry too: tri-140 regression-only coverage; L2 F2/F3 (orchestrator ignores recovery.status; refusal-by-throw remnants).
 
+<!-- /ANCHOR:next-session -->
 <!-- ANCHOR:session-notes -->
 ## 4. OPERATIONAL NOTES
 
@@ -119,4 +120,3 @@ Structure the follow-on as design units (vector-truth, shadow/feedback+replay, l
 1. Re-read this handover; summarize understanding; wait for operator confirm (compaction protocol).
 2. Confirm DB health (`node .opencode/bin/spec-memory.cjs memory_stats --json '{}' --format json --timeout-ms 120000`) and exactly one `context-server.js` daemon.
 3. Pick the next unit from §3 in risk order (L7 clusters and L2 four are the meatiest; tri-033 is the first L5 careful). Per finding: re-confirm still-real if code moved → implement (hand/fence by class) → fresh Fable adversarial re-verify against the original proof → scoped lane commit → disposition update → push (gate is open).
-<!-- /ANCHOR:next-session -->

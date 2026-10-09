@@ -138,7 +138,6 @@ Make routing efficiency **not-applicable** when a positive scenario routes nothi
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -187,6 +186,7 @@ Make routing efficiency **not-applicable** when a positive scenario routes nothi
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open. The deeper Mode-B semantic-holdout evaluation is a documented follow-on, not a gap in this packet.

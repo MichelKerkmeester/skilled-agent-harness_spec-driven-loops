@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Six delivered charts live under `assets/examples/`, and measured across all six, none carries `data-chart-tooltip`, `data-chart-legend`, `data-chart-dim` or the `:focus:not(:focus-visible)` hygiene line",
     "created_at": "2026-09-05T16:03:58Z",
-    "last_save_at": "2026-10-07T15:56:28.872Z",
+    "last_save_at": "2026-10-08T19:29:42.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,10 +199,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a00a65aac7b3dfbbcaf35fdef9dcf54e726748543cdfc773d97ec2e48020ef39",
+    "source_fingerprint": "sha256:bc07435a1362d8d02eecf0a8226b71e3cf7af6ef9a470ddb1fc341b07b421d32",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a8032a3cc489fcef0f7cc53d2961b0ac6c718b09326e89dfdb2d4e477691ab3c",
+      "spec.md": "6fa71cc17cddc2b3b7abe1650f6909a50b2edcd179f4ea1f473a0731d4573e71",
       "plan.md": "47c35d46056012d23b678b2df0b84342fd43d57a9c4cad88646d38ba3b070f68",
       "tasks.md": "bcbc5e5d351264bd650202624e270ebe14feccab1b8a0982974e83c1e53dc9ea",
       "implementation-summary.md": "55ca130845e8a836360f1881a6062a52a8262b999094f710582cce678210960b"

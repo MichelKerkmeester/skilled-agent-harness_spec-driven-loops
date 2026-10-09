@@ -165,7 +165,6 @@ Ship a rig that 003 consumes verbatim. Dry-run gate proves rig works on canned o
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -234,6 +233,7 @@ Ship a rig that 003 consumes verbatim. Dry-run gate proves rig works on canned o
 1. Given a clean rig, When operator runs `scripts/dry-run.cjs`, Then exit 0 means rig is ready for 003.
 2. Given a corrupted cache, When operator runs `scripts/dry-run.cjs`, Then it reports the issue with file paths and exits non-zero.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Cache eviction policy: none (manual cleanup) vs time-based (>30 days) vs size-based (>1GB)?

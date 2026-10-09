@@ -178,7 +178,6 @@ Build the per-edge semantic substrate **once**, off the foreground turn, so edge
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -250,6 +249,7 @@ Build the per-edge semantic substrate **once**, off the foreground turn, so edge
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - What edge-aware-triplet recall lift do edge vectors actually buy against the reindexed corpus, and is it worth the substrate + consolidation cost? (UNKNOWN until the gate-zero reindex + benchmark run, `synthesis/06:165-166`.)

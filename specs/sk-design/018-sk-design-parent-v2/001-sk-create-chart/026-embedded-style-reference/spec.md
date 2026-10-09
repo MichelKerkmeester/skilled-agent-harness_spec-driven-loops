@@ -107,7 +107,6 @@ while any other reference can still be applied by naming its path.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -162,6 +161,7 @@ while any other reference can still be applied by naming its path.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

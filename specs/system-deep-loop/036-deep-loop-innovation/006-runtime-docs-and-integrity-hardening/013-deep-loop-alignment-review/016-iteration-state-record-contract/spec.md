@@ -142,7 +142,6 @@ A record that follows the documented contract passes validation and renders its 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
@@ -183,6 +182,7 @@ A record that follows the documented contract passes validation and renders its 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - None.

@@ -208,13 +208,13 @@ Persist durable index metadata at index time, compare it before every daemon/que
 
 ---
 
-<!-- ANCHOR:open-questions -->
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 All packet questions are answered. The only follow-on is operational: existing live indexes should run the backfill helper before search if they lack `index_meta.json`.
-<!-- ANCHOR:questions -->
-Question anchor mirror: no unresolved design questions remain.
 <!-- /ANCHOR:questions -->
+<!-- ANCHOR:open-questions -->
+Question anchor mirror: no unresolved design questions remain.
 <!-- /ANCHOR:open-questions -->
 
 ---

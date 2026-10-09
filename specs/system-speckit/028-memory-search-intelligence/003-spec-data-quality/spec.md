@@ -232,7 +232,6 @@ These two are the only folder-to-folder build edges. The full sequence is five i
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -300,6 +299,7 @@ These two are the only folder-to-folder build edges. The full sequence is five i
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Which ranked candidates survive corpus-specific verification once the loop runs. ANSWERED by the five-lineage loop: one measured GO that is unconditional as a decision but flip-gated on a re-measure-to-zero backfill (the JSON-schema gate), a cluster of floor-bypassing GO-on-cost fields and gates plus seven novel floor-bypassing capabilities, a conditional retrieval slate of five items that stay hypothesis-until-prod-measured, plus a consolidated no-go list of eighteen already-shipped or premature or over-engineered techniques. See `research/research.md`.

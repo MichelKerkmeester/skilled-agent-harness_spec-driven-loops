@@ -526,7 +526,6 @@ The packet carries packet-local snapshots of the audit report, research synthesi
 ---
 
 <!-- /ANCHOR:risks -->
-<!-- ANCHOR:questions -->
 ### Questions
 
 | Area | Question | Answer | Evidence |
@@ -552,6 +551,7 @@ The packet carries packet-local snapshots of the audit report, research synthesi
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 16. OPEN QUESTIONS
 
 None. The packet records the shipped and remediated state of `/memory:save` as of 2026-04-15.

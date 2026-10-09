@@ -144,6 +144,7 @@ Implementation used exact reference searches, direct file inspection, focused pa
 1. **Generated advisor graph size warning remains.** `skill_graph_compiler.py --export-json` reports `WARNING: Output exceeds 4KB target (4631 bytes)`, but validation passes.
 2. **Historical references remain intentionally.** Old skill strings remain only in spec-folder identifiers or historical changelog text.
 3. **No packaged release was created.** This was a repository refactor/metadata update, not a release workflow.
+<!-- /ANCHOR:limitations -->
 
 ---
 
@@ -152,4 +153,3 @@ Implementation used exact reference searches, direct file inspection, focused pa
 
 If this needs rollback, restore `.opencode/skills/sk-code-opencode/` and the previous advisor graph/telemetry from git, then rerun `skill_graph_scan` and advisor rebuild. If continuing forward, use `sk-code` for both Webflow frontend and `.opencode/` system-code work, and use `sk-code-review` only for findings-first review output.
 <!-- /ANCHOR:runbook -->
-<!-- /ANCHOR:limitations -->

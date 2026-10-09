@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Several checks failed or ran nowhere, and several callers still assumed the source tree is named `.skilled`",
     "created_at": "2026-09-18T16:30:31Z",
-    "last_save_at": "2026-09-18T22:30:16.311Z",
+    "last_save_at": "2026-10-08T19:31:30.162Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5912940c1e9939ee19425833ced473ab8290d1d978ebb427091a8dc0492edf4a",
+    "source_fingerprint": "sha256:04f5b751735a0c5123e5faabd7bcab5a4a63e31889108970a6f9f9f81191e242",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fa263a7f0a1ca697a61b280824884a8306885c997917e4c76361b569b17a93c3",
+      "spec.md": "85c47d616eb933df23a210d2cff5e962bf82cf045aca8f68278e2975c0ad54b8",
       "plan.md": "d1b1fc928c4e7235a9d2cd1c9885c23fcf4b04d272b45489b896c9f38d1f3842",
       "tasks.md": "2e7399d859dcdb3f6e900607f04940fbcf7bde50ef7ce3b9648b9c86375a8a79",
-      "implementation-summary.md": "0c65d4abafa825c3f328889671dc20fccf33dccca3f8fbaca615c2f7f19402b6"
+      "implementation-summary.md": "49594c09a20670fd5aab384139361520bbe530cf3f336998e6ef7eb5d2c548ae"
     },
     "last_active_at": null
   }

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The 2026-06-27 drift audit converged 22 findings in this phase covering the retired per-profile context-index.sqlite names (canonicalized to context-index.sqlite) and stale tool counts (corrected to spec-memory 39, advisor 9, code-index 8)",
     "created_at": "2026-06-27T17:00:00Z",
-    "last_save_at": "2026-08-30T15:39:34.595Z",
+    "last_save_at": "2026-10-08T19:30:59.006Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-06-27T17:00:00Z",
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5dd88ffc5066189bb9b03ad6ebfe81771fdd6af00515badc075ea22faf0c8c54",
+    "source_fingerprint": "sha256:9d2b4213f1c2232a2daebed12eeabe41cc3eeb0daa3fc52d741d10ca9c6d48c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "400026803069471b92498c5298d519498f23107174e824db26f3561979982470",
+      "spec.md": "49fa975090921115b80a1a829ac094d4a49dcc0c18682a2a0920e1a34cd7bc5b",
       "plan.md": "7c4ec7cf5f4e0740dc4a2cc13c34cf27d144644c366145f3f0d7aa609cd313ff",
       "tasks.md": "fb3a416f7ec29f9b591d31ca20743335dd79fd8f5d8a35c4cb968f3c3217d1a6",
       "implementation-summary.md": "ee80fdb921a0f7b625c951e418f8f3416caf56372e3e8f549368d6dbd9dd50ef"

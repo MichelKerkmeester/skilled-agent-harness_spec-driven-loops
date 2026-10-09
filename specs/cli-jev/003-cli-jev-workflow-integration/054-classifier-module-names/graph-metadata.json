@@ -197,7 +197,7 @@
     ],
     "causal_summary": "A reader cannot tell from file names where the classifier runs",
     "created_at": "2026-10-05T08:28:47Z",
-    "last_save_at": "2026-10-07T15:56:07.061Z",
+    "last_save_at": "2026-10-08T19:29:27.573Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:20131cab3a2df90adee64459fdd86eae15116c46ae58bf31176b232e9ef887af",
+    "source_fingerprint": "sha256:024ecaf314c1cfeea7d67dfaaa77a38b08389eb032ad3232e5194a939167ef57",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3e7212a8cb1fb52649579c200a42b63d28010d9bb806b70c0eee6296ec89fa66",
+      "spec.md": "6d8b5c2726055f8156ed47b3049868454c874aba4df44a301739dc90699a6ee7",
       "plan.md": "bb8d38d6872db9cd9ef9951d0c1c70853d57de729f5146ef639f82f35b15533e",
       "tasks.md": "8c7c9bba1273179052f2344367aab2885b4faa9670ac5653f2322b211bdfbffc",
       "implementation-summary.md": "003b5983e015fd7d011602637459eb605210dccf996a8895f6f9247c820ce7a7"

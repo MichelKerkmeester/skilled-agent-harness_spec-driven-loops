@@ -159,7 +159,6 @@ Leave every live surface describing the CLI front door, and every historical rec
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -183,6 +182,7 @@ Documentation phase. The cost is breadth rather than depth, and the failure mode
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None open at authoring time beyond those the parent spec records; anything found during planning is raised there.

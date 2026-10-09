@@ -195,7 +195,7 @@
     ],
     "causal_summary": "43% of the 33,101-row memory corpus is invisible to vector search: 8,761 rows are pending, 4,247 failed, and 1,260 sit in retry, while 367 rows report embedding success with no stored vector",
     "created_at": "2026-07-03T09:44:20Z",
-    "last_save_at": "2026-08-30T15:39:35.358Z",
+    "last_save_at": "2026-10-08T19:31:04.747Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3dee5af4f07e02354b814e59d3299650106fa1e6e54ac3bb58321687d3094351",
+    "source_fingerprint": "sha256:98c3530e520573aa092d324fcc42f76c5515937ba273c0b35c6d1e2d71b338ee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "20d693cbc949a798ec898fe05ec7a7afb885c5c0a8decc34b579995b57d6910b",
+      "spec.md": "ba06e73dc9963005ced33134c92dcf20c1d7ce6d2947557c3ad9964df9abff4a",
       "plan.md": "159b90caca1e345c5a833e335846e5ba64a748922b4d4665ce8ea58e5398c0a5",
       "tasks.md": "3f4899d4ec0ebbda640533e41171522a747f4318cc90a758258b1105d9f830ce",
       "decision-record.md": "6f25c82480399c6c66dc9a26572f9febbab68246ce3e27a75a62bd02afcb92ce",

@@ -122,6 +122,7 @@ The packet defines the review-mode intent, shared review references provide the 
 
 - **Trigger**: The compliance repair distorts the original review-mode intent.
 - **Procedure**: Revert the repaired packet docs and re-derive them from the preserved handover and spec notes.
+<!-- /ANCHOR:rollback -->
 
 <!-- ANCHOR:phase-deps -->
 ### Phase Dependencies
@@ -137,6 +138,5 @@ Most effort sits in verifying shared documentation surfaces rather than writing 
 ### Enhanced Rollback
 If needed, keep `handover.md`, `research/`, `memory/`, and `scratch/` untouched while rolling back only the repaired packet docs.
 <!-- /ANCHOR:enhanced-rollback -->
-<!-- /ANCHOR:rollback -->
 
 ---

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "323 spec documents across 137 packets carried a required frontmatter field with no value, almost always `triggerphrases` written as an empty inline list",
     "created_at": "2026-09-11T04:56:54Z",
-    "last_save_at": "2026-10-07T15:57:28.712Z",
+    "last_save_at": "2026-10-08T19:31:27.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd6a9d859e72517d524cc96f174f284835d067ae625cb1bfa25689f3d70d2e1a",
+    "source_fingerprint": "sha256:04e644db4035fedbe222462d11615bdf7bf767befdabbc295a6effdddbabc122",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b433ffd1eb074bf0fb4b5024c14954a86c73d7105296f12efd548a170c0f4095",
+      "spec.md": "9a9b6e1fbe39ac4116dcaad4196b11f1a5d80b7c9448219bfdf2d359e77aebdc",
       "plan.md": "f3294beb9f4548470e5e427ae854d348ef4ebfe3bee1dcd6b7efe12adedd5a68",
       "tasks.md": "5c252e095a003196dac4fa32031cf3e888ae1429a3dc509f04449faa83fb34a4",
       "implementation-summary.md": "613774af899465957953250d5fad51dfebbd664c2b1939aca67f52436731a63c"

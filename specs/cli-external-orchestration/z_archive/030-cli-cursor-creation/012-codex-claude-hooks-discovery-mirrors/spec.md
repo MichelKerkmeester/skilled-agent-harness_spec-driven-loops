@@ -105,7 +105,6 @@ Create `.codex/hooks/` and `.claude/hooks/` as symlink mirrors of exactly what e
 - **Mirrors drift as hooks are added or removed.** Mitigation: same class of drift the existing "Adding/Removing a Hook" maintenance checklist already covers for every runtime; the extraction is scripted, so regenerating is cheap.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 - **NFR-P01**: Symlink targets stay relative so the mirrors survive a fresh clone on another machine.
 
@@ -132,6 +131,7 @@ Create `.codex/hooks/` and `.claude/hooks/` as symlink mirrors of exactly what e
 - As the operator, I want each runtime's full hook inventory visible in one folder, the same way Cursor's now is, instead of scattered across five skill trees.
 - As a maintainer, I want to know precisely which scripts are unsafe to invoke through the mirror, per runtime, rather than a blanket warning I have to re-verify myself.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 None — the affected set was determined empirically for every mirrored script.
 <!-- /ANCHOR:questions -->

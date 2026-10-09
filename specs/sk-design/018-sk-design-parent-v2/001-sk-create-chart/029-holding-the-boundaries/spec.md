@@ -102,7 +102,6 @@ measured terms rather than as an open question.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -157,6 +156,7 @@ measured terms rather than as an open question.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

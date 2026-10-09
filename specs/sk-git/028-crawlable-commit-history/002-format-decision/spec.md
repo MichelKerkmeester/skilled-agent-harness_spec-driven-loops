@@ -143,7 +143,6 @@ Freeze a grammar that survived an attack, with the operator's approval recorded,
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -209,6 +208,7 @@ Freeze a grammar that survived an attack, with the operator's approval recorded,
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None.

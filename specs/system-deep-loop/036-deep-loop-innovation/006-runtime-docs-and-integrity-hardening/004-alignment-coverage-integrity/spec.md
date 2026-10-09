@@ -244,7 +244,6 @@ Fifteen of these twenty carry a CONFIRMED mark, which makes this the densest con
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -347,13 +346,12 @@ Fifteen of these twenty carry a CONFIRMED mark, which makes this the densest con
 
 ---
 
-<!-- ANCHOR:open-questions -->
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - `F-SOL-04`, `F-SOL-06` and `F-SOL-07` ship with "Recommended action: Not supplied by the reporting iteration — derive one when triaging". Deriving those three actions is design work; each is recorded as an ADR in `decision-record.md` as it is derived, not assumed here.
 - Does the evidence-binding design generalize beyond alignment? The same fabrication mode was observed live when a fan-out lineage emitted formally valid iteration artifacts it had not earned, which argues the binding belongs in the leaf writer layer rather than in the alignment reducer. ADR-003 takes that position; confirm before Phase 4.
 - `F-RES-05`'s consequence is inverted from the original defect: legitimate distinct lanes now collide into a duplicate-corpus integrity fault and halt the run. The fix must restore injectivity without re-introducing the original collision. Both directions need a fixture.
-<!-- /ANCHOR:open-questions -->
 <!-- /ANCHOR:questions -->
 
 ---

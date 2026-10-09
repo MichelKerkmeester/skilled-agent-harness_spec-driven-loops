@@ -35,6 +35,6 @@ For each target folder, read source files to understand:
 For each target README:
 - Insert architecture diagram after Overview heading
 - Insert/update topology tree in Structure section
+<!-- /ANCHOR:phases -->
 - Format: `<!-- ANCHOR:architecture -->` wrapper, box-art diagram, `<!-- /ANCHOR:architecture -->`
 - Style: match `shared/README.md:46-78` box-drawing characters
-<!-- /ANCHOR:phases -->

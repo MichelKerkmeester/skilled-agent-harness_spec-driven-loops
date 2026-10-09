@@ -182,7 +182,6 @@ Every systemic pattern S1-S9 is resolved in the direction the review already cho
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -231,6 +230,7 @@ Every systemic pattern S1-S9 is resolved in the direction the review already cho
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Every S1-S9 pattern in the manual review already states its resolved direction; this phase executes each one rather than adjudicating a still-open choice.

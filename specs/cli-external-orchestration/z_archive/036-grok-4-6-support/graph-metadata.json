@@ -218,7 +218,7 @@
     ],
     "causal_summary": "cli-cursor's enforced `CURSORSUPPORTEDMODELS` allowlist and cli-devin's enforced `DEVINSUPPORTEDMODELS` allowlist both curated only Grok 4.5 (6 ids on Cursor, 3 uids on Devin)",
     "created_at": "2026-08-12T16:53:55.000Z",
-    "last_save_at": "2026-10-07T22:28:00.771Z",
+    "last_save_at": "2026-10-08T20:04:17.322Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -228,10 +228,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e3c34540d1d2c45ecf945a16d0b0e1b72f799b0fd992d31073462954ad82bf4a",
+    "source_fingerprint": "sha256:10dad60781bdee2e3e9474ded49be883791bfd3442934df273fa5e3ade5569cb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1f09ed394255f623d2c59b356272610590ed17a65687f0aa00e75f61e2febde6",
+      "spec.md": "cc6ef219cd716f03d6b4b1501be066948e458dd926491e988f3eb18c3e0b2553",
       "plan.md": "055e4ea987d48c81f9b3ebb007cca190b7a20614bb9a31fecc8492347a381a67",
       "tasks.md": "ccfb588e304bea6bbe8664113949235d46ef0c2fadd6ae5a6fd9bb2e83dd3be0",
       "decision-record.md": "12bf17c2614f142d9242ffa6c2d85e1cce791b6f6bcfa1e81cae7f90fb48a35f",

@@ -170,7 +170,6 @@ Create a direct Node MCP client runner that starts shared Spec Kit Memory and Co
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -225,6 +224,7 @@ Create a direct Node MCP client runner that starts shared Spec Kit Memory and Co
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None. Answered: 045 uses a second shared MCP client connection for CocoIndex while still avoiding per-scenario child agents.

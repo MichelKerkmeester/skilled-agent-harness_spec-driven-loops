@@ -132,7 +132,6 @@ A ranked list of OKF-derived ideas, each marked adopt, adapt or reject, with rep
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -204,6 +203,7 @@ Ten iterations, one focus each. Every focus cites `file:line` for repository cla
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Does the OKF v0.2 trust and lifecycle model (`generated`, `verified`, `status`, `stale_after`) map onto spec-kit `importance_tier` and `_memory.continuity`, or does it add something missing?

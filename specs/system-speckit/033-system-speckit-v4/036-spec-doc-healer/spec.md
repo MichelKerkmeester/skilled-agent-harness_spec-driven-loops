@@ -119,7 +119,6 @@ The documents that lost a scaffold value get it back, and every document whose c
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -170,6 +169,7 @@ The documents that lost a scaffold value get it back, and every document whose c
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - The remaining failures need documents written by hand. Whether that is worth doing for packets already shipped is an operator decision, not a tooling one.

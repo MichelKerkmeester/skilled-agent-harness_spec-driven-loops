@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The fresh review found three residual gaps in one class: the restore guard checked only the final component, so a symlinked parent directory still redirected the write outside the repository; baseline capture and baseline read copied bytes through unchecked components; and the quarantine writer resolved its destination and then created it, so a link planted in between landed the create at the link's target",
     "created_at": "2026-09-20T08:33:42.859Z",
-    "last_save_at": "2026-10-07T15:57:00.386Z",
+    "last_save_at": "2026-10-08T19:30:24.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6fbc758948ea842761ed6e91063b2c9c3f83e66ca37019fa9cd265abd0e4e105",
+    "source_fingerprint": "sha256:39c4fcb8bf534908ea7801e6cce587f096cd20a69e860cace69e967e9bb34d06",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a1ffdc5413b69ea2103cb36934dd65d17562b982b84e8ee3ef0c9daf04994e9a",
+      "spec.md": "8f414c573a8a6e0c25bd350315f4a2e6062111311a1f5ecca1508470fab081a6",
       "plan.md": "03f75a0f8535137fbd07cbeb5f3a742c8bd8d280846f6b1ca014503bc0f7dae5",
       "tasks.md": "f6d082f9e04ec3b86463cf3b9bf9606cf54d8cde2047cb6b83e68baae442769d",
       "implementation-summary.md": "eac4d0cff2ce5236b745bc9d60458dfe7e9c44361eb08f61b506c57ab7c75e5d"

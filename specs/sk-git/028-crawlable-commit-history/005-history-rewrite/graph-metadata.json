@@ -200,7 +200,7 @@
     ],
     "causal_summary": "New commits carry an address",
     "created_at": "2026-09-11T07:16:30Z",
-    "last_save_at": "2026-10-07T15:56:49.070Z",
+    "last_save_at": "2026-10-08T19:30:17.466Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cf3318219495d9a137c0a7de8877abbab4188d39303ac26a1766716f0678e9cb",
+    "source_fingerprint": "sha256:e187c47699824f078b3b898474ffc909185cba781197611f5041b34f85e3bd6c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e0fa5977c6019057a777bda6fb604ba11f76798876b76c8a37f90e5ad7eb9f1d",
+      "spec.md": "aa32a9e2722fd0a1e78b3b49037b664181389dce75c04dfc7e6312f7a4a6a5cb",
       "plan.md": "6284096844ff2723d48862f42b0692e1e1f7ce496ce2482bee41719482a248a4",
       "tasks.md": "7dc0a9d168f24cf9420e08031eda91d0c3f9e32df783fce3f5a20d0d4e74a529",
       "implementation-summary.md": "e0dc2e0849deb88881b8c71ace26f6842dff6b6dd88738abda8c72adb415740c"

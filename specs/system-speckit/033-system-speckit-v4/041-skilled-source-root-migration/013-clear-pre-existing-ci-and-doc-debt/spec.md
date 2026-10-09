@@ -165,7 +165,6 @@ Every push shows green on these workflows unless something new broke, the Hermes
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -216,6 +215,7 @@ Every push shows green on these workflows unless something new broke, the Hermes
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None open. The census question was answered on 2026-09-18: it stays as a record of its spec program.

@@ -45,6 +45,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 Phase 0 — read-only, no skill mutated. A computed `D3-ex-default` diagnostic (waste minus each skill's always-loaded DEFAULT tier) plus a classified orphan triage, both in `assets/phase0-triage.md`.
+<!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
@@ -69,7 +70,6 @@ GPT-5.5-fast workers proposed each sweep; every result was re-verified independe
 ### Phase 3 — code-opencode intent-gate (diagnosed, deferred turnkey)
 The one GENUINE over-routing case: `LANGUAGE_STANDARDS` loads all four languages' guides for a single-language task (a TypeScript task routes 18, gold 3), and `code-webflow` carries the identical defect. Gold-aligning would be dishonest (it would bless loading Python/shell guides for a TypeScript task). The honest fix is a per-language intent split that matches the already-written design (`code-opencode/SKILL.md` §1; parent `smart_routing.md` prose rows 217-219, 476), but it is a runtime-behavior change to the live sk-code hub touching both surface children + the parent projection + advisor vocab + three drift guards + a hub-baseline re-capture. It was **deferred** to a dedicated follow-up child rather than half-landed at the tail of a long session on a shared branch; the full diagnosis and fix design are captured turnkey in `assets/code-opencode-language-split-design.md`.
 <!-- /ANCHOR:how-delivered -->
-<!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions

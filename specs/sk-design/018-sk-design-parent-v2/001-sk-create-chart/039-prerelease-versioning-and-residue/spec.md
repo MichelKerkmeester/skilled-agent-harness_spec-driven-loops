@@ -151,7 +151,6 @@ The version numbers say what the packet is, and every live surface names a file 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -201,6 +200,7 @@ The version numbers say what the packet is, and every live surface names a file 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Whether the eight historical spec packets that name an old changelog path should carry a pointer to the new name is left to the operator. Rewriting them falsifies a record, and leaving them means a reader following a Files-to-Change entry finds nothing.

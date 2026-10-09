@@ -155,7 +155,6 @@ carrying the specific commit and `path:line` that justifies it.
 
 ---
 
-<!-- ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
@@ -197,6 +196,7 @@ carrying the specific commit and `path:line` that justifies it.
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - **RESOLVED (Q-A).** The `packet-033` benchmark dependency survives its renumber under `z_archive/027-deep-loop-behavior-benchmarks` as provenance authority; active execution rebases onto `shared/behavior-benchmark/`. Phase 003's literal "Packet 033" string now resolves to an unrelated packet (`69aee63cb8a`). Detail in `research/research.md` §5-B.

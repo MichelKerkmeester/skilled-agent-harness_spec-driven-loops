@@ -150,7 +150,6 @@ Add the two deferred collectors as OPT-IN extensions to the existing backfill so
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -217,6 +216,7 @@ Add the two deferred collectors as OPT-IN extensions to the existing backfill so
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 Resolved: the cached `related_memories` column is read instead of a live `vector_search` so the similarity collector is deterministic and unit-testable; `contradicts` is driven by structural supersession rather than embedding similarity to avoid false positives.

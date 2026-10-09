@@ -155,7 +155,6 @@ deep-agent-improvement can run a `model-benchmark` mode (real model dispatch + f
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -225,6 +224,7 @@ deep-agent-improvement can run a `model-benchmark` mode (real model dispatch + f
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - Should the model-benchmark mode also gain a "promotion" step (auto-apply the winning framework to the executor's prompt card), or stay synthesis-only (operator integrates manually, as 120/003 did)?

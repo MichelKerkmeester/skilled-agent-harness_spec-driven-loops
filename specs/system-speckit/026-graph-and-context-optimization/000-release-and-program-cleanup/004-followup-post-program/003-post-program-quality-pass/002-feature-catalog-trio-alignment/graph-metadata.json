@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Packets 031-036 added MCP tools, hook diagnostics, CLI matrix runners, and changed freshness contracts",
     "created_at": "2026-04-29T15:38:44.000Z",
-    "last_save_at": "2026-08-30T15:39:28.201Z",
+    "last_save_at": "2026-10-08T19:30:42.666Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:876245bfa27440fd7371019a3bbcfa4cea5cddfc7a258966b08bae5d745d2f4a",
+    "source_fingerprint": "sha256:32fa01f8f1acb10ef03bc4a1f2f013d9f2d3f13ad9919606388279f47be19e46",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "67076c45daeffa41b7a5b0bb844ab35f73f1e07f2fc46c237f9f40b4fbf41548",
+      "spec.md": "bbc36b5817e89d75c19dee718ec2456d0fc6728948c59b35867f41c3dbadc6f5",
       "plan.md": "0cedcb5d699e50948ec9d3194e053c847cc9b9e12846ebda6f260d118f1810b0",
       "tasks.md": "431df182bc2e20aa501de97373d1a13a35d278d469644f4dcf3498185d0dd8bf",
       "implementation-summary.md": "afa5336031c7cea3e8d1aa10d4213e514162cc298aa554f1c0d0eef229303e6a",

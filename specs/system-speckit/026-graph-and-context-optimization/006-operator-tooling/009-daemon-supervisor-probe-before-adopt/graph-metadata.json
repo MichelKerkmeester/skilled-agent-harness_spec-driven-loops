@@ -46,8 +46,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
-      "handlers/memory-save.ts"
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs"
     ],
     "entities": [
       {
@@ -84,12 +83,6 @@
         "name": "launcher-ipc-bridge.cjs",
         "kind": "file",
         "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "handlers/memory-save.ts",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The stale-reclaim adoption branch (`mk-spec-memory-launcher.cjs:1580`) adopts a released daemon when `processLiveness(orphanChildPid) !== 'dead'` AND `bridgeReadiness(adoptResult).ready`",
     "created_at": "2026-06-14T17:37:27Z",
-    "last_save_at": "2026-08-30T15:39:32.239Z",
+    "last_save_at": "2026-10-08T19:30:54.687Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +206,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47d7a03a638b72ca589b0c9fa1b3a272aea2576001effab166dba09d189148da",
+    "source_fingerprint": "sha256:6e758d7031d3d16a1cf533fc0b3ebeffe21024ec9e3121b33b14d0afa859421a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f4139aa25405eec3811b312976c2e8eba1ccc1c8e7c0c143ba5019d7d6813d24",
+      "spec.md": "ec511da072f9d3bdf355549b952d52758b583221423132aa646114f1774e5d0f",
       "plan.md": "fe8ff8459f1d38608fed9e304e9e9186d53436791e8cec065e4252aacae6a684",
       "tasks.md": "b20ae4e0642a27059ac1083336cd8f18c3349870925f24736ed7f1bb46449471",
       "decision-record.md": "48db6a1381d5058e0ab5e1462947d2c33b8eab5fc028c77968fdb31d82e3edad",

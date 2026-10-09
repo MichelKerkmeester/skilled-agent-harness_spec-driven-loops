@@ -188,7 +188,6 @@ Specify a controller that turns "make compiled routing the default" into a seque
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Reversibility
@@ -246,6 +245,7 @@ Specify a controller that turns "make compiled routing the default" into a seque
 - **US-003 (skill author).** As someone creating a new skill via create-skill, I want both parent templates to describe the current cohort-accurate posture and reach fleet-default-on wording only when the fleet does, so I never scaffold against a posture that is not live yet.
 - **US-004 (operator).** As the operator, I want cutover blocked until the coverage and verification children and siblings `013`/`014` are implemented-and-verified, so P4 cannot pass having proven nothing.
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **Q1.** The concrete hub cutover order within the ascending-blast-radius principle, and the exact stop-on-first-failure thresholds (parity tolerance is zero by invariant; the question is the status/fallback evidence bar per hub). Confirmed at execution against per-hub route-shape and routing-volume evidence; `sk-code` is terminal regardless.

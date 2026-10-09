@@ -238,7 +238,6 @@ Flip the council from planning-only to scoped-write. Council writes the artifact
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 8. EDGE CASES
 
 ### Data Boundaries
@@ -311,6 +310,7 @@ Flip the council from planning-only to scoped-write. Council writes the artifact
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - **Q1**: Resolved (per pre-authored decision in `_memory.continuity.answered_questions`): bash and patch stay denied. Only `write` and `edit` flip.

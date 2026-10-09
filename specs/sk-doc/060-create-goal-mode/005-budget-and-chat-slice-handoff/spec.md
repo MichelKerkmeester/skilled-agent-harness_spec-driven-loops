@@ -140,7 +140,6 @@ Give sk-create-goal a sourced procedure for measuring and fitting parent goals w
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ---
 
@@ -197,6 +196,7 @@ Give sk-create-goal a sourced procedure for measuring and fitting parent goals w
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - None for this phase's plan. The fixed-text cost decision is recorded in REQ-006. An unresolved conflict with the current contract would be escalated under parent decision D4 (specs/sk-doc/060-create-goal-mode/goal.md:52-54).

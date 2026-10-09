@@ -163,7 +163,7 @@
     ],
     "causal_summary": "The shipped motion mode defines the temporal layer for the sk-design family, but its packet was absent from git and memory",
     "created_at": "2026-07-16T09:10:50.637Z",
-    "last_save_at": "2026-10-07T18:11:15.877Z",
+    "last_save_at": "2026-10-08T19:29:52.928Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -171,10 +171,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:3fd21a03f64716f4b9236397a26ca69c4bf56fbbbf250e395a867e2862edfb3a",
+    "source_fingerprint": "sha256:4d2dc25678c319723ebee4be3966a0c9f38aad923d0f687468855683dae299d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "08aaa48b8f8b4e49328b3a17d94a9fca626f812ddf201153d3e9e6e7f5b40a15",
+      "spec.md": "9055bd0a6b60c7bb65d7a5a4a3a2b432d0276bb8f69cf228bb21f0f0fdc7efd4",
       "plan.md": "d4ab3968ae12705588e70e41892dbff445248332267c1291e4d37141d32b0d38",
       "tasks.md": "9dc90ddd0cd7b4b53261f7cce78793a0d850e8ceeea411743ad0bf6e229cf90c"
     },

@@ -186,7 +186,6 @@ The four P1s cannot recur without a test failing. Each P2 is fixed or carries a 
 
 ---
 
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -331,6 +330,7 @@ The four P1s cannot recur without a test failing. Each P2 is fixed or carries a 
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 16. OPEN QUESTIONS
 
 - None. The operator accepted ADR-001 and ADR-004 on 2026-10-06, and chose DeepSeek V4.1 Flash at max through `cli-pi` as the implementer executor.

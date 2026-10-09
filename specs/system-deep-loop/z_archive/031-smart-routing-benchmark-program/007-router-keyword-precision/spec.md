@@ -81,8 +81,8 @@ changes; the benchmark-engine over-activation lane (phase 009) that would let th
 - Independent of other phases; could later be automated by the phase-011 optimizer (intent-gate class).
 <!-- /ANCHOR:risks -->
 
-## 7. OPEN QUESTIONS
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 **DECISION NEEDED — narrow vs keep-and-document, per intent.** Recommendation: narrow the confirmed
 worst offenders in deep-research (STATE, ITERATION) + deep-improvement; drop pure idioms
 (`diminishing returns`); keep-and-document deep-research secondaries (`setup`/`stuck`/`timeout`) and
