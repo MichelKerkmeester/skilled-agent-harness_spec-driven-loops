@@ -287,7 +287,7 @@ All reports follow structured markdown. Key sections per format:
 
 ### Optional Agent I/O Envelope
 
-When requested, append this advisory envelope after the complete review report. It does not replace the required review format, evidence, or rubric.
+When requested, place this advisory envelope after the complete review report and before its closing `Not checked:` and `Review status:` lines, so the status line stays the absolute final line that automation matches. It does not replace the required review format, evidence, or rubric.
 
 ```text
 AGENT_IO_RESULT v1

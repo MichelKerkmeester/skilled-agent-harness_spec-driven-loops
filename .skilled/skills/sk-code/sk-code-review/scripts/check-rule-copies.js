@@ -12,6 +12,7 @@
 // It also pins the items the restraint ladder may never cut, so a reword of the quality standard cannot silently drop one.
 // It also guards WHERE the binding clauses sit in AGENTS.md, because a clause a
 // runtime truncates away is a copy that silently does not exist there.
+// It checks that documented example outputs end on the exact status line, because string presence cannot prove a line is last.
 //
 // It is a canary, not a generator: it asserts the load-bearing substrings still
 // exist; it never rewrites anything. It locks wording, not file paths — pass
@@ -24,6 +25,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { checkReviewOutput } from './check-review-final-line.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. INVARIANTS
@@ -117,6 +119,18 @@ const DELIVERY_PREFIX = {
   ],
 };
 
+// Automation reads only the final line, so string presence cannot prove an example ends on it.
+const EXAMPLE_OUTPUTS = [
+  {
+    file: '.skilled/skills/sk-code/sk-code-review/SKILL.md',
+    after: '**Example output bottom:**',
+  },
+  {
+    file: '.skilled/skills/sk-code/sk-code-review/README.md',
+    after: '**Step 2: Run the primary workflow.**',
+  },
+];
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -208,6 +222,37 @@ for (const relPath of IRON_LAW_FILES) {
   }
 }
 
+for (const example of EXAMPLE_OUTPUTS) {
+  const content = readFileOrNull(example.file);
+  const lines = content === null ? [] : content.split(/\r?\n/);
+  const markerIndex = lines.findIndex((line) => line.includes(example.after));
+  if (markerIndex === -1) {
+    failures.push(`${example.file}: example marker not found: "${example.after}"`);
+    continue;
+  }
+
+  const openingFenceIndex = lines.findIndex(
+    (line, index) => index > markerIndex && line.trim().startsWith('```')
+  );
+  if (openingFenceIndex === -1) {
+    failures.push(`${example.file}: no fenced example after "${example.after}"`);
+    continue;
+  }
+
+  const closingFenceIndex = lines.findIndex(
+    (line, index) => index > openingFenceIndex && line.trim() === '```'
+  );
+  if (closingFenceIndex === -1) {
+    failures.push(`${example.file}: no fenced example after "${example.after}"`);
+    continue;
+  }
+
+  const exampleText = `${lines.slice(openingFenceIndex + 1, closingFenceIndex).join('\n')}\n`;
+  for (const failure of checkReviewOutput(exampleText)) {
+    failures.push(`${example.file}: example after "${example.after}": ${failure}`);
+  }
+}
+
 const prefixReport = [];
 const prefixContent = readFileOrNull(DELIVERY_PREFIX.file);
 if (prefixContent === null) {
@@ -252,7 +297,7 @@ if (failures.length > 0) {
 }
 
 console.log(
-  `OK: all rule invariants present (${EXACT_INVARIANTS.length} exact-string file(s) + ${IRON_LAW_FILES.length} Iron Law file(s) + ${DELIVERY_PREFIX.anchors.length} delivery-prefix anchor(s)).`
+  `OK: all rule invariants present (${EXACT_INVARIANTS.length} exact-string file(s) + ${IRON_LAW_FILES.length} Iron Law file(s) + ${DELIVERY_PREFIX.anchors.length} delivery-prefix anchor(s) + ${EXAMPLE_OUTPUTS.length} example output(s)).`
 );
 console.log(`Delivery prefix (${DELIVERY_PREFIX.file}, end byte <= ${DELIVERY_PREFIX.prefixBytes}):`);
 for (const line of prefixReport) {

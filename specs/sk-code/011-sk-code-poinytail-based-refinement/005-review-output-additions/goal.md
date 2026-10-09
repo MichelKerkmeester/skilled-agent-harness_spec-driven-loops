@@ -79,17 +79,20 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Checker fails on a result block after the status line | Pending | Not started |
-| Harness passes with the new final-line and canary cases | Pending | Not started |
-| Rule-copy canary green on both paths | Pending | Not started |
-| `Not checked:` line named with its position in SKILL.md | Pending | Not started |
-| Every review-agent mirror check passes | Pending | Not started |
-| Result-block wording replaced in all seven agent copies | Pending | Not started |
-| Phase folder validates strict | Pending | Not started |
+| Checker fails on a result block after the status line | Done | FAIL line printed, exit 1 |
+| Harness passes with the new final-line and canary cases | Done | 38 PASS, all 18 named, exit 0 |
+| Rule-copy canary green on both paths | Done | OK line with 2 example outputs, exit 0 on both paths |
+| `Not checked:` line named with its position in SKILL.md | Done | counts 3 and 1 |
+| Every review-agent mirror check passes | Done | six checks exit 0 after the orchestrator ran the Codex sync |
+| Result-block wording replaced in all seven agent copies | Done | old wording gone; new wording once in each of 7 files |
+| Phase folder validates strict | Done | `RESULT: PASSED` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| Codex mirror written by the orchestrator | The executor sandbox refuses writes to `.codex/` (EPERM); the orchestrator ran the sync and reran every mirror check |
+| Stale Hermes hub copy refreshed here | The surface-alignment phase edited `sk-code/SKILL.md` without regenerating `.hermes/skills/sk-code/SKILL.md`; this phase's Hermes run fixed it |
+| Live review found four P2 gaps | All four describe behavior the task specified; recorded as follow-ups in implementation-summary.md |
 | No acceptance-criteria.md | This Level 1 phase has none. The criteria come from REQ-001 to REQ-003, SC-001 and SC-002 in spec.md and the Phase 3 tasks in tasks.md |
 <!-- /ANCHOR:log -->

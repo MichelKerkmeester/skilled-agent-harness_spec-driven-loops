@@ -95,7 +95,8 @@ Each finding should provide:
 | `severity` | One of `P0`, `P1`, `P2` |
 | `title` | Short, risk-oriented summary |
 | `file` | Primary `path:line` location |
-| `evidence` | Plain-language explanation tied to observed code |
+| `evidence` | Plain-language explanation tied to observed code; for a performance finding, name the workload it assumes, such as row count, request rate or payload size |
+| `userImpact` | What users or callers bear if this fix is deferred |
 | `findingClass` | One of `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation` |
 | `scopeProof` | Grep/test/audit evidence that the recommendation covers same-class sites and consumers, or proves the finding is instance-only |
 | `affectedSurfaceHints` | Optional string array of producer/consumer surfaces the fix should address; recommended for actionable findings, required for cross-consumer findings. Use free-form short strings, max about 5 entries. Optional for instance-only findings. |
@@ -108,6 +109,7 @@ Suggested shape:
 ### P1-001 [P1] Missing authorization check
 - File: path/to/file.ts:42
 - Evidence: Request handling reaches the write path before role validation.
+- User impact: Until this is fixed, any caller can write records without a role check.
 - Finding class: cross-consumer
 - Scope proof: `rg -n "permission guard|write path" path/to` shows the write handler is the only unchecked consumer.
 - Affected surface hints: ["request handler", "write path", "permission guard"]

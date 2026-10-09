@@ -78,7 +78,7 @@ The advisor prints the recommended skill route when confidence lands at or above
 ### P0 - Critical
 1. src/auth.ts:42 Missing authorization check
    - Risk: Unauthenticated write path
-   - User impact: Any caller can mutate user records
+   - User impact: Until this is fixed, any caller can mutate user records
    - Finding class: cross-consumer
    - Scope proof: rg -n "writeUser" src/ shows three call sites
    - Recommended fix: Enforce the permission guard before mutation
@@ -96,10 +96,12 @@ The advisor prints the recommended skill route when confidence lands at or above
 1. Fix the auth gap at src/auth.ts:42
 2. Add input validation for the /api/users endpoint
 
+Not checked: the permission guard's behavior for service accounts; no fixture covers them
+
 Review status: REQUESTED_CHANGES
 ```
 
-The final line is always exactly one of the three status values below, with no trailing whitespace. Downstream automation parses it by exact string match.
+The final line is always exactly one of the three status values below, with no trailing whitespace. Downstream automation parses it by exact string match. The line above it, after one blank line, is the `Not checked:` line.
 
 - `Review status: APPROVED`
 - `Review status: REQUESTED_CHANGES`
@@ -111,7 +113,7 @@ The final line is always exactly one of the three status values below, with no t
 node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js
 ```
 
-Exits 0 when the verdict triplet and the Iron Law wording stay in lockstep across the skill docs. Run the playbook scenarios from the manual testing playbook for the full behavior gate.
+Exits 0 when the verdict triplet and the Iron Law wording stay in lockstep across the skill docs and both example outputs end on a `Not checked:` line followed by the exact status line. Run the playbook scenarios from the manual testing playbook for the full behavior gate.
 
 ---
 

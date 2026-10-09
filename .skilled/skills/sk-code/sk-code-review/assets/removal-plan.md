@@ -54,7 +54,7 @@ Use this block when evidence indicates no active consumers.
 | Verification | Commands/tests to confirm no regression |
 
 Minimum checks before recommending immediate removal:
-- [ ] Codebase reference search complete
+- [ ] Codebase reference search complete, covering callers, tests, fixtures, config and string references
 - [ ] Dynamic/reflective usage considered
 - [ ] Consumer ownership verified
 - [ ] Verification commands listed

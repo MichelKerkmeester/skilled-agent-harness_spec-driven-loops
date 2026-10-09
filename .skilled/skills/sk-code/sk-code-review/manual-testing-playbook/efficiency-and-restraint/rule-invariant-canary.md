@@ -1,6 +1,6 @@
 ---
 title: "CR-024 -- Rule-invariant canary"
-description: "This scenario validates the rule-invariant canary for `CR-024`. It focuses on check-rule-copies.js passing when the verdict triplet and cross-doc Iron Law wording agree and failing closed when any copy drifts."
+description: "This scenario validates the rule-invariant canary for `CR-024`. It focuses on check-rule-copies.js passing when the verdict triplet and cross-doc Iron Law wording agree and failing closed when any copy drifts, and that both documented example outputs end on a Not checked line then the exact status line."
 version: 1.5.0.1
 ---
 
@@ -12,11 +12,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates the rule-invariant canary for `CR-024`. It focuses on `check-rule-copies.js` passing when the verdict triplet and cross-doc Iron Law wording agree and failing closed when any copy drifts.
+This scenario validates the rule-invariant canary for `CR-024`. It focuses on `check-rule-copies.js` passing when the verdict triplet and cross-doc Iron Law wording agree and failing closed when any copy drifts, and that both documented example outputs end on a Not checked line then the exact status line.
 
 ### Why This Matters
 
-Some rules have to read identically in more than one place: the `Review status:` verdict triplet that downstream PR-state dedup logic keys on, and the cross-document Iron Law that forbids completion claims without verification. When an editor updates one copy and forgets the others, the docs silently disagree and the guarantee rots. The `scripts/check-rule-copies.js` canary added in v1.4.0.0 asserts the load-bearing substrings still exist across copies, validates the Iron Law lines in `workflow-verify.md` and the root `AGENTS.md`, and fails loudly when any copy drifts. It is a checker, not a generator. CR-024 proves the clean run passes, the self-test passes, and a tampered copy is caught with a non-zero exit.
+Some rules have to read identically in more than one place: the `Review status:` verdict triplet that downstream PR-state dedup logic keys on, and the cross-document Iron Law that forbids completion claims without verification. When an editor updates one copy and forgets the others, the docs silently disagree and the guarantee rots. The `scripts/check-rule-copies.js` canary added in v1.4.0.0 asserts the load-bearing substrings still exist across copies, validates the Iron Law lines in `workflow-verify.md` and the root `AGENTS.md`, and fails loudly when any copy drifts. It is a checker, not a generator. CR-024 proves the clean run passes, the self-test passes, and a tampered copy is caught with a non-zero exit. It also runs `scripts/check-review-final-line.js` over the example outputs in `SKILL.md` and `README.md`, because automation reads only the final line and string presence cannot prove a line is last.
 
 ---
 
@@ -28,7 +28,7 @@ Operators run the exact prompt and command sequence for `CR-024` and confirm the
 - Real user request: `Prove the load-bearing review wording cannot silently drift across its copies.`
 - Prompt: `Run the rule-invariant canary and its self-test, confirm a clean pass, then tamper one Iron Law copy and confirm the canary fails loudly.`
 - Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when the node runtime needed to execute scripts/check-rule-copies.js is unavailable in the current environment.
-- Expected signals: Step 1: canary exits 0 reporting the exact-string and Iron Law file counts; Step 2: the self-test reports all cases pass; Step 3: a tampered copy makes the canary exit 1 and name the drifted phrase, then restore.
+- Expected signals: Step 1: canary exits 0 reporting the exact-string, Iron Law, delivery-prefix and example-output counts; Step 2: the self-test reports all cases pass; Step 3: a tampered copy makes the canary exit 1 and name the drifted phrase, then restore.
 - Desired user-visible outcome: a guard that passes silently when wording agrees and blocks loudly the moment any copy drifts.
 - Pass/fail: PASS if the clean run exits 0, the self-test passes, and a tampered copy exits 1 per scripts/check-rule-copies.js; FAIL if drift is not caught or the clean run errors.
 
@@ -46,7 +46,7 @@ Operators run the exact prompt and command sequence for `CR-024` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-024 | Rule-invariant canary | Confirm the canary exits 0 when copies agree, its self-test passes, and a tampered Iron Law or verdict copy makes it exit non-zero. | `Run the rule-invariant canary and its self-test, confirm a clean pass, then tamper one Iron Law copy and confirm the canary fails loudly.` | bash: node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js -> bash: bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh -> bash: tamper one Iron Law copy then re-run the canary expecting exit 1 then restore | Step 1: canary exits 0 with exact-string and Iron Law file counts; Step 2: self-test reports all cases pass; Step 3: tampered copy exits 1 and names the drifted phrase | Clean-run output, self-test output, tampered-run exit 1 transcript | PASS if the clean run exits 0, the self-test passes, and a tampered copy exits 1 per scripts/check-rule-copies.js; FAIL if drift is not caught or the clean run errors | 1. Confirm all checked copies resolve on disk; 2. Restore the tampered copy; 3. Verify AGENTS.md and every Iron Law line are in the checked set |
+| CR-024 | Rule-invariant canary | Confirm the canary exits 0 when copies agree, its self-test passes, and a tampered Iron Law or verdict copy makes it exit non-zero. | `Run the rule-invariant canary and its self-test, confirm a clean pass, then tamper one Iron Law copy and confirm the canary fails loudly.` | bash: node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js -> bash: bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh -> bash: tamper one Iron Law copy then re-run the canary expecting exit 1 then restore | Step 1: canary exits 0 reporting the exact-string, Iron Law, delivery-prefix and example-output counts; Step 2: self-test reports all cases pass; Step 3: tampered copy exits 1 and names the drifted phrase | Clean-run output, self-test output, tampered-run exit 1 transcript | PASS if the clean run exits 0, the self-test passes, and a tampered copy exits 1 per scripts/check-rule-copies.js; FAIL if drift is not caught or the clean run errors | 1. Confirm all checked copies resolve on disk; 2. Restore the tampered copy; 3. Verify AGENTS.md and every Iron Law line are in the checked set |
 
 ### Optional Supplemental Checks
 
@@ -68,7 +68,8 @@ If the primary run passes, delete or move the canary and confirm `.github/workfl
 | File | Role |
 |---|---|
 | `../../scripts/check-rule-copies.js` | Rule-invariant canary asserting the verdict triplet and cross-doc Iron Law wording |
-| `../../scripts/check-rule-copies.test.sh` | Self-test proving the canary catches a dropped verdict string and a dropped Iron Law concept |
+| `../../scripts/check-review-final-line.js` | Final-line checker the canary runs over the documented example outputs |
+| `../../scripts/check-rule-copies.test.sh` | Self-test proving the canary catches a dropped verdict string, a dropped Iron Law concept, and review outputs whose status line is not last |
 
 ---
 

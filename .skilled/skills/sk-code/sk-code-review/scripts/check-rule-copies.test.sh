@@ -5,6 +5,7 @@ set -euo pipefail
 # are resolved relative to this script, not the caller's CWD.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CHECKER="$SCRIPT_DIR/check-rule-copies.js"
+FINAL_LINE_CHECKER="$SCRIPT_DIR/check-review-final-line.js"
 # scripts -> review -> sk-code -> skills -> .skilled -> repo root
 REPO_ROOT="$(cd "$SCRIPT_DIR/../../../../.." && pwd)"
 TMP_DIR="$(mktemp -d)"
@@ -136,6 +137,63 @@ for pin in "${NEVER_CUT_PINS[@]}"; do
   run_case 1 "never_cut_removed_$pin_index" node "$CHECKER" --root "$CASE_PIN"
   expect_output "missing exact invariant string: \"$pin\"" "never_cut_names_$pin_index" node "$CHECKER" --root "$CASE_PIN"
 done
+
+# These cases guard the final-line contract for full reviews, skips and result blocks.
+FINAL_LINE_CLEAN="$TMP_DIR/final_line_clean.md"
+printf 'Findings\n\nNot checked: nothing material\n\nReview status: APPROVED\n' > "$FINAL_LINE_CLEAN"
+run_case 0 "final_line_clean" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_CLEAN"
+
+FINAL_LINE_RESULT_BEFORE="$TMP_DIR/final_line_result_block_before_status.md"
+printf 'Findings\n\nAGENT_IO_RESULT v1\nschema_version: agent-io/v1\nstatus: pass\n\nNot checked: nothing material\n\nReview status: APPROVED\n' > "$FINAL_LINE_RESULT_BEFORE"
+run_case 0 "final_line_result_block_before_status" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_RESULT_BEFORE"
+
+FINAL_LINE_SKIP_M1="$TMP_DIR/final_line_skip_m1.md"
+printf 'Review status: COMMENTED (no changes since last review at abc1234)\n' > "$FINAL_LINE_SKIP_M1"
+run_case 0 "final_line_skip_m1" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_SKIP_M1"
+
+FINAL_LINE_SKIP_M2="$TMP_DIR/final_line_skip_m2.md"
+printf 'Review status: COMMENTED (skipped: diff below evidence threshold of 50 lines, no sensitive paths touched)\n' > "$FINAL_LINE_SKIP_M2"
+run_case 0 "final_line_skip_m2" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_SKIP_M2"
+
+FINAL_LINE_TEXT_AFTER="$TMP_DIR/final_line_text_after_status.md"
+printf 'Findings\n\nNot checked: nothing material\n\nReview status: APPROVED\nThanks\n' > "$FINAL_LINE_TEXT_AFTER"
+run_case 1 "final_line_text_after_status" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_TEXT_AFTER"
+expect_output 'final line is not an exact status line' "final_line_text_after_status_output" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_TEXT_AFTER"
+
+FINAL_LINE_RESULT_AFTER="$TMP_DIR/final_line_result_block_after_status.md"
+printf 'Findings\n\nNot checked: nothing material\n\nReview status: APPROVED\n\nAGENT_IO_RESULT v1\nschema_version: agent-io/v1\nstatus: pass\n' > "$FINAL_LINE_RESULT_AFTER"
+run_case 1 "final_line_result_block_after_status" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_RESULT_AFTER"
+expect_output 'AGENT_IO_RESULT block follows the status line' "final_line_result_block_after_status_output" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_RESULT_AFTER"
+
+FINAL_LINE_TRAILING_WHITESPACE="$TMP_DIR/final_line_trailing_whitespace.md"
+printf 'Not checked: nothing material\n\nReview status: APPROVED \n' > "$FINAL_LINE_TRAILING_WHITESPACE"
+run_case 1 "final_line_trailing_whitespace" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_TRAILING_WHITESPACE"
+expect_output 'final line is not an exact status line' "final_line_trailing_whitespace_output" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_TRAILING_WHITESPACE"
+
+FINAL_LINE_BLANK_AFTER_STATUS="$TMP_DIR/final_line_blank_after_status.md"
+printf 'Findings\n\nNot checked: nothing material\n\nReview status: APPROVED\n\n' > "$FINAL_LINE_BLANK_AFTER_STATUS"
+run_case 1 "final_line_blank_after_status" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_BLANK_AFTER_STATUS"
+expect_output 'blank line after the status line' "final_line_blank_after_status_output" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_BLANK_AFTER_STATUS"
+
+FINAL_LINE_MISSING_NOT_CHECKED="$TMP_DIR/final_line_missing_not_checked.md"
+printf 'Findings\n\nReview status: APPROVED\n' > "$FINAL_LINE_MISSING_NOT_CHECKED"
+run_case 1 "final_line_missing_not_checked" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_MISSING_NOT_CHECKED"
+expect_output 'no "Not checked:" line above the status line' "final_line_missing_not_checked_output" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_MISSING_NOT_CHECKED"
+
+# Seeded examples ensure the canary rejects content after status and missing context.
+CASE_EXAMPLE_TEXT_AFTER="$TMP_DIR/example_text_after_status"
+seed_tree "$CASE_EXAMPLE_TEXT_AFTER"
+node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.readFileSync(f,"utf8").replace("Review status: REQUESTED_CHANGES\n\x60\x60\x60","Review status: REQUESTED_CHANGES\nThanks\n\x60\x60\x60"));' \
+  "$CASE_EXAMPLE_TEXT_AFTER/.skilled/skills/sk-code/sk-code-review/README.md"
+run_case 1 "canary_example_text_after_status" node "$CHECKER" --root "$CASE_EXAMPLE_TEXT_AFTER"
+expect_output 'example after "**Step 2: Run the primary workflow.**"' "canary_example_text_after_status_output" node "$CHECKER" --root "$CASE_EXAMPLE_TEXT_AFTER"
+
+CASE_EXAMPLE_MISSING_NOT_CHECKED="$TMP_DIR/example_missing_not_checked"
+seed_tree "$CASE_EXAMPLE_MISSING_NOT_CHECKED"
+node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.readFileSync(f,"utf8").replace(/^Not checked: behavior under concurrent writes.*\n/m, ""));' \
+  "$CASE_EXAMPLE_MISSING_NOT_CHECKED/.skilled/skills/sk-code/sk-code-review/SKILL.md"
+run_case 1 "canary_example_missing_not_checked" node "$CHECKER" --root "$CASE_EXAMPLE_MISSING_NOT_CHECKED"
+expect_output 'no "Not checked:" line above the status line' "canary_example_missing_not_checked_output" node "$CHECKER" --root "$CASE_EXAMPLE_MISSING_NOT_CHECKED"
 
 if [[ "$failures" -gt 0 ]]; then
   printf '%s rule-canary test case(s) failed\n' "$failures" >&2

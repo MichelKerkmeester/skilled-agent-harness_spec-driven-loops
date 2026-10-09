@@ -108,7 +108,7 @@ and findings belong here.
 | 002 surface contract alignment | Done | Commit `ee78fc56b9`; all seven child criteria rerun by the orchestrator and passed; strict validation passed |
 | 003 doctrine pass | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed; three dispatches, all stops were task or brief wording |
 | 004 webflow checker fix | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed |
-| 005 review output additions | Pending | Not started |
+| 005 review output additions | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed |
 | 006 guard retirement notes | Pending | Not started |
 
 ### Deviations and findings

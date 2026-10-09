@@ -341,8 +341,8 @@ Required output contract:
 
 ### P0 - Critical
 1. [path:line] Title
-   - Risk
-   - User impact
+   - Risk (for a performance finding, name the workload it assumes, such as row count, request rate or payload size)
+   - User impact: what users or callers bear if this fix is deferred
    - Finding class: [instance-only | class-of-bug | cross-consumer | algorithmic | matrix/evidence | test-isolation]
    - Scope proof: [grep/test evidence proving class coverage or instance-only status]
    - affectedSurfaceHints: [optional string array of short producer/consumer surface names; recommended for actionable findings, required for cross-consumer findings]
@@ -355,6 +355,8 @@ Required output contract:
 ## Removal/Iteration Plan
 
 ## Next Steps
+
+Not checked: [one line naming what mattered but could not be checked, and why, or "nothing material"]
 ```
 
 After reporting findings, request explicit next action before any implementation follow-up.
@@ -375,6 +377,8 @@ Review status: REQUESTED_CHANGES
 Review status: COMMENTED
 ```
 
+Directly above the status line, separated from it by one blank line, every full review carries one `Not checked:` line naming what mattered but could not be checked and why, or `Not checked: nothing material`. An optional `AGENT_IO_RESULT` block, when requested, goes above the `Not checked:` line and never below the status line. The M-1 and M-2 skip outputs (§9) are the status line alone and carry no `Not checked:` line.
+
 **Example output bottom:**
 
 ```
@@ -382,6 +386,8 @@ Review status: COMMENTED
 ## Next Steps
 1. Fix the null-deref at src/foo.ts:42
 2. Add input validation for the `/api/bar` endpoint
+
+Not checked: behavior under concurrent writes to /api/bar; no test database was available
 
 Review status: REQUESTED_CHANGES
 ```
