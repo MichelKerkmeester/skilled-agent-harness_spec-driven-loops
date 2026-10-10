@@ -546,7 +546,7 @@ upgrade-legacy refused to write its manifest:
 
 ### Interrupted run
 
-When the move log shows a run that never reached move-complete, report where it stopped:
+When the newest run in the move log has no run-complete line, report where it stopped:
 
 ```text
 A previous compatibility run stopped after [step]. Done: [steps]. Remaining: [steps].

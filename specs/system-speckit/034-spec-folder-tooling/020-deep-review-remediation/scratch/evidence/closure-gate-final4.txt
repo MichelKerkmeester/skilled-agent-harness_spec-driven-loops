@@ -1,0 +1,247 @@
+# Final gate G4 (Part 3 review, 2026-10-10)
+# Source: scratchpad final-gates4 (G4 run) and rerun/. Steps files are the authority, one '<step> <rc>' per line. The jNN.exit files record only the last command of a job script.
+# Read with grep -a (logs contain binary bytes).
+
+## 1. Step rc (authority: steps-jNN.txt)
+-- steps-j01-cli-suite.txt
+cli-npm-test 0
+-- steps-j02-root-project.txt
+root-vitest-project 1
+-- steps-j03-deep-loop.txt
+deep-loop-npm-test 0
+-- steps-j04-hooks.txt
+hook-tests 0
+-- steps-j05-doctor.txt
+doctor-run-all 0
+-- steps-j06-skdoc-cjs.txt
+skdoc-cjs:.skilled/skills/sk-doc/sk-create-goal/scripts/tests/check-goal.test.cjs 0
+skdoc-cjs:.skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs 0
+skdoc-cjs:.skilled/skills/sk-doc/sk-create-goal/scripts/tests/template-parity.test.cjs 0
+skdoc-cjs:.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs 0
+skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/advisor-index-handoff-contract.test.cjs 0
+skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-leaf-manifest-freshness.test.cjs 0
+skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/compiled-routing-lockstep-parity.test.cjs 0
+skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs 0
+skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs 0
+skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs 0
+skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs 0
+skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs 0
+skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs 0
+skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs 0
+skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/validate-compiled-routing-scenarios.test.cjs 0
+skdoc-cjs:.skilled/skills/sk-doc/sk-create-skill/scripts/tests/validate-playbook-topology.test.cjs 0
+-- steps-j07-skdoc-ci-runner.txt
+skdoc-ci-runner 0
+-- steps-j08-speckit-ci.txt
+speckit-cli-check 0
+speckit-cli-typecheck 0
+speckit-shared-test 0
+speckit-legacy 0
+speckit-validation 0
+mirror-runtime-mirrors 0
+mirror-codex-agents 0
+mirror-codex-prompts 0
+mirror-pi-agents 0
+mirror-pi-prompts 0
+mirror-agent-roster 0
+mirror-command-catalog 0
+mirror-hook-registrations 0
+mirror-gate1-pointers 0
+-- steps-j09-playbook.txt
+playbook-gate-inputs 0
+playbook-fleet-strict 0
+playbook-fleet-json 0
+playbook-roots-discovered 0
+playbook-pkg:system-spec-kit 0
+playbook-pkg:sk-git 0
+playbook-pkg:system-deep-loop 0
+playbook-pkg:mcp-code-mode 0
+-- steps-j10-catalog-links.txt
+catalog-system-spec-kit-text 0
+catalog-system-spec-kit-json 0
+catalog-fleet-text 0
+leaf-check:.skilled/skills/cli-classifier 0
+leaf-check:.skilled/skills/cli-external-orchestration 0
+leaf-check:.skilled/skills/cli-orca 0
+leaf-check:.skilled/skills/mcp-code-mode 0
+leaf-check:.skilled/skills/mcp-tooling 0
+leaf-check:.skilled/skills/sk-code 0
+leaf-check:.skilled/skills/sk-design 0
+leaf-check:.skilled/skills/sk-doc 0
+leaf-check:.skilled/skills/sk-git 0
+leaf-check:.skilled/skills/sk-prompt 0
+leaf-check:.skilled/skills/sk-vision 0
+leaf-check:.skilled/skills/system-deep-loop 0
+leaf-check:.skilled/skills/system-skill-advisor 0
+leaf-check:.skilled/skills/system-spec-kit 0
+leaf-freshness-fleet 0
+hermes-skills-check 0
+hermes-prompts-check 0
+markdown-link-integrity 0
+-- steps-j11-gate-inputs.txt
+gate-inputs-selftest 0
+gate-inputs-check 0
+hook-suite:.skilled/scripts/git-hooks/tests/autostash-orphan-guard.test.sh 0
+hook-suite:.skilled/scripts/git-hooks/tests/commit-msg.test.sh 0
+hook-suite:.skilled/scripts/git-hooks/tests/gate-config.test.sh 0
+hook-suite:.skilled/scripts/git-hooks/tests/mass-deletion-guard.test.sh 0
+hook-suite:.skilled/scripts/git-hooks/tests/pre-commit.test.sh 0
+hook-suite:.skilled/scripts/git-hooks/tests/pre-push-message-contract.test.sh 0
+hook-suite:.skilled/scripts/git-hooks/tests/pre-push.test.sh 0
+hook-suite:.skilled/scripts/git-hooks/tests/prepare-commit-msg.test.sh 0
+hook-suite:.skilled/scripts/git-hooks/tests/source-root-selection.test.sh 0
+hook-suite:.skilled/bin/tests/check-git-hooks.test.sh 0
+-- steps-j12-message-contract.txt
+msg-explain 0
+msg-unit-tests 0
+msg-rev-list-vs-origin-main 0
+msg-branch-informational 0
+-- steps-j13-tree-canary.txt
+command-tree-parity 0
+rule-canary 0
+-- steps-j14-routing-drift.txt
+advisor-drift-parity-vitest 0
+compiled-route-guard 0
+compiled-route-admission-warn-only 0
+parent-skill-check:.skilled/skills/cli-classifier 0
+parent-skill-check:.skilled/skills/cli-external-orchestration 0
+parent-skill-check:.skilled/skills/mcp-tooling 0
+parent-skill-check:.skilled/skills/sk-code 0
+parent-skill-check:.skilled/skills/sk-design 0
+parent-skill-check:.skilled/skills/sk-doc 0
+parent-skill-check:.skilled/skills/system-deep-loop 0
+skill-root-metadata-class 0
+leaf-manifest-freshness 0
+skill-derived-freshness 0
+skill-graph-compiler-validate 0
+-- steps-j15-golden.txt
+golden-prompts-vitest 0
+scorer-ratchet-vitest 0
+corpus-pin-check 0
+corpus-score 0
+-- steps-j16-actionlint-phase.txt
+phase-command-workflows 0
+actionlint-no-args 0
+-- steps-j17-hostile-env.txt
+hostile-cli-vitest 0
+hostile-root-vitest 0
+hostile-doctor-compat 0
+hostile-leaf-scopes 0
+hostile-phase-workflows 0
+-- steps-j18-lint.txt
+eslint-changed-ts 0
+node-check-changed-js 0
+shellcheck-archive 0
+format-tool-probe 0
+
+## 2. Counts (grep -a on the logs)
+-- j01 CLI suite
+ Test Files  176 passed | 3 skipped (179)
+      Tests  1953 passed | 20 skipped (1973)
+Result: passed=51 failed=0
+Result: passed=27 failed=0
+Results: 12 passed, 0 failed
+Results: 2 passed, 0 failed
+Results: 12 passed, 0 failed (of 12)
+-- j02 root project (rc 1, see section 3)
+ Test Files  1 failed | 106 passed | 3 skipped (110)
+      Tests  1 failed | 1306 passed | 13 skipped (1320)
+-- j03 deep loop
+ Test Files  174 passed (174)
+      Tests  2879 passed | 8 skipped (2887)
+-- j04 hooks
+  ℹ pass 186
+  ℹ fail 0
+  ℹ skipped 3
+-- j05 doctor
+[run-all] 7 suite(s) passed, 0 failed
+-- j17 hostile
+ Test Files  13 passed (13)
+      Tests  345 passed | 2 skipped (347)
+ Test Files  3 passed (3)
+      Tests  159 passed (159)
+Result: passed=148 failed=0
+-- j17 environment
+TMPDIR="final-gates4/hostile tmp dïr"
+   LANG=C LC_ALL=C TZ=Pacific/Kiritimati umask 077 AI_SESSION_CHILD=1 (per log)
+-- j18 lint
+21
+   (ESLint file count above; rc in section 1)
+
+## 3. Failing step: j02 root-vitest-project rc 1
+     × T046-26: loadPerFolderDescription completes in <5ms 37ms
+ FAIL  |root| runtime/tests/folder-discovery-integration.vitest.ts > CHK-028: Per-folder description.json read performance > T046-26: loadPerFolderDescription completes in <5ms
+AssertionError: expected 7.1129589999999325 to be less than 5
+Isolated reruns from the G4 run (no exit status recorded in those files, output only):
+-- j02-perf-isolated-1.txt: Tests  43 passed (43)
+-- j02-perf-isolated-2.txt: Tests  43 passed (43)
+-- j02-perf-isolated-3.txt: Tests  43 passed (43)
+Isolated reruns in the closure pass (exit status recorded): closure-gate-final4-j02-isolated.txt
+   run 1 EXIT=0, run 2 EXIT=1 (AssertionError expected 7.30 to be less than 5), run 3 EXIT=0
+
+## 4. Loader unchanged since G3
+folder-discovery.ts sha256 (G4 pre-run snapshot): fa5fa38758fe5f5d
+folder-discovery.ts sha256 (G3 pre-run snapshot): fa5fa38758fe5f5d
+folder-discovery.ts sha256 now: fa5fa38758fe5f5d
+loader lines: folder-discovery.ts line 1177 (loadPerFolderDescription); lane L did not change this file
+
+## 5. Reruns after the preamble edit (rerun/)
+-- rerun/steps-j10-catalog-links.txt (21 of 21 rc 0)
+-- rerun/steps-j14-routing-drift.txt (14 of 14 rc 0)
+
+## 6. CHK-011 warning classes (warn-classes.sh, same method as closure-gate-warnings-scan.txt)
+HEAD legacy plus validation (closure-gate-final3.txt section 5): graphskip=21 fallback=3 ERROR=2 Error=3 console.error=0 console.warn=0 Warning_colon=28 Warning_all=36
+G4 j01: graphskip=21 fallback=3 ERROR=2 Error=3 console.error=0 console.warn=0 Warning_colon=28 Warning_all=36
+G4 j02: graphskip=0 fallback=0 ERROR=0 Error=1 console.error=0 console.warn=0 Warning_colon=0 Warning_all=0
+   The root Error: line is the AssertionError of T046-26 (section 3), not a warning.
+
+## 7. ESLint scope (j18)
+ESLint files in the j18 log: 21
+Changed .ts files vs HEAD (git diff plus untracked): 21
+Changed .ts files missing from the ESLint list: 0 (0 means full coverage)
+format tool: none configured (j18 format-tool-probe rc 0)
+
+## 8. Snapshot
+Root scratch/ absent after G4 (it is task-created output of the ci-rule-set test, removed at final-state cleanup).
+
+## 9. Rerun step files (rerun/), read as written
+-- steps-j10-catalog-links.txt
+catalog-system-spec-kit-text 0
+catalog-system-spec-kit-json 0
+catalog-fleet-text 0
+leaf-check:.skilled/skills/cli-classifier 0
+leaf-check:.skilled/skills/cli-external-orchestration 0
+leaf-check:.skilled/skills/cli-orca 0
+leaf-check:.skilled/skills/mcp-code-mode 0
+leaf-check:.skilled/skills/mcp-tooling 0
+leaf-check:.skilled/skills/sk-code 0
+leaf-check:.skilled/skills/sk-design 0
+leaf-check:.skilled/skills/sk-doc 0
+leaf-check:.skilled/skills/sk-git 0
+leaf-check:.skilled/skills/sk-prompt 0
+leaf-check:.skilled/skills/sk-vision 0
+leaf-check:.skilled/skills/system-deep-loop 0
+leaf-check:.skilled/skills/system-skill-advisor 0
+leaf-check:.skilled/skills/system-spec-kit 0
+leaf-freshness-fleet 0
+hermes-skills-check 0
+hermes-prompts-check 0
+markdown-link-integrity 0
+-- steps-j14-routing-drift.txt
+advisor-drift-parity-vitest 0
+compiled-route-guard 0
+compiled-route-admission-warn-only 0
+parent-skill-check:.skilled/skills/cli-classifier 0
+parent-skill-check:.skilled/skills/cli-external-orchestration 0
+parent-skill-check:.skilled/skills/mcp-tooling 0
+parent-skill-check:.skilled/skills/sk-code 0
+parent-skill-check:.skilled/skills/sk-design 0
+parent-skill-check:.skilled/skills/sk-doc 0
+parent-skill-check:.skilled/skills/system-deep-loop 0
+skill-root-metadata-class 0
+leaf-manifest-freshness 0
+skill-derived-freshness 0
+skill-graph-compiler-validate 0
+
+## 10. Result
+All jobs exit 0 except j02 (root-vitest-project rc 1, section 3). Counts above match the logs read with grep -a.

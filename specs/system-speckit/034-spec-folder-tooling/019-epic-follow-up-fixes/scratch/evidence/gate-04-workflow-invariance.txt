@@ -1,0 +1,16 @@
+CMD: bash -c cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run tests/workflow-invariance.vitest.ts --config ../../vitest.config.ts --project cli
+START: 2026-10-09T19:54:06Z
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  21:54:07
+   Duration  661ms (transform 53ms, setup 40ms, import 38ms, tests 391ms, environment 0ms)
+
+EXIT=0
+ELAPSED_S=1

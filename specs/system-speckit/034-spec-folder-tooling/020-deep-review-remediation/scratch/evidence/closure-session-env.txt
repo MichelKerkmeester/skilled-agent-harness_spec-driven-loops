@@ -1,0 +1,19 @@
+CLOSURE EVIDENCE: session environment (coordinator decision D7)
+Captured by the child worker in its own Bash tool shell during the turn-2 pass. Raw output follows.
+
+$ printenv SYSTEM_SPEC_GATE_ENFORCE
+0
+(printenv exit 0)
+
+$ printenv AI_SESSION_CHILD
+(printenv exit 1)
+
+$ echo "exit=$?" after the AI_SESSION_CHILD line
+exit=1
+
+Supplementary check, to confirm the two lines above:
+$ env | grep -E '^(AI_SESSION_CHILD|SYSTEM_SPEC_GATE_ENFORCE)='
+SYSTEM_SPEC_GATE_ENFORCE=0
+
+Reading. In this shell SYSTEM_SPEC_GATE_ENFORCE is 0 and AI_SESSION_CHILD is unset. The brief describes the worker as AI_SESSION_CHILD=1, and this shell does not show it. The child-dispatch wording therefore records this observation in place of the earlier operator-stated claim.
+The gate jobs set their own values. The hostile runs (closure-gate-hostile-env.txt) export AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 in their command line. The default-environment suite runs inherit the caller environment and do not set either value.

@@ -1,0 +1,40 @@
+[speckit] Existing PHASE DOCUMENTATION MAP found; appending new phase rows and handoffs
+description.json created in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation
+
+───────────────────────────────────────────────────────────────────
+  SpecKit: Phase Spec Created Successfully
+───────────────────────────────────────────────────────────────────
+
+  BRANCH_NAME:  034-spec-folder-tooling
+  FEATURE_NUM:  034
+  DOC_LEVEL:    Level 2 (parent)
+  PHASE_COUNT:  1 (new, 20 total)
+  SPEC_FOLDER:  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling
+  MODE:         Append phases to existing parent
+
+  Created Structure:
+  └── 034-spec-folder-tooling/
+      ├── 
+      ├── 020-deep-review-remediation/
+      │   ├── spec.md
+      │   ├── plan.md
+      │   ├── tasks.md
+      │   ├── implementation-summary.md
+      │   ├── acceptance-criteria.md
+      │   ├── description.json
+      │   └── scratch/
+      │       └── .gitkeep
+      └── scratch/          (working files; NOT git-ignored)
+          └── .gitkeep
+
+  Phase Documentation Map injected into parent spec.md
+  Parent back-references injected into each child spec.md
+
+  Next steps:
+    1. Define phase scopes in parent spec.md Phase Documentation Map
+    2. Fill out each child spec.md with phase-specific requirements
+    3. Use /speckit:plan on each phase folder for detailed planning
+    4. Author the parent goal and bind each phase goal with /create:goal <parent> phase-parent
+
+───────────────────────────────────────────────────────────────────
+create rc=0

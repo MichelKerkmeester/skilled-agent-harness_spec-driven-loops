@@ -1,0 +1,26 @@
+CLOSURE EVIDENCE: FIX-006 hostile environment run, and the heal-target-parity packetsNamed fix
+
+Hostile environment used for jobs j17 and j17b (from the command lines in /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/final-gates/j17-hostile-env.log and /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/final-gates/j17b-hostile-rerun.log):
+  AI_SESSION_CHILD=1, SYSTEM_SPEC_GATE_ENFORCE=0, TMPDIR set to a directory whose name contains spaces and a non-ASCII letter, LANG=C, LC_ALL=C, TZ=Pacific/Kiritimati, umask 077.
+
+First hostile run, job j17 (13:05):
+        Tests  159 passed (159)
+        Tests  2 failed | 290 passed | 2 skipped (294)
+   FAIL  |cli| tests/heal-target-parity.vitest.ts > heal-spec-docs target selection parity > each entrypoint discovers the same packets under --roots
+   FAIL  |cli| tests/heal-target-parity.vitest.ts > heal-spec-docs target selection parity > each entrypoint narrows to the one packet named by --folder, with or without --roots
+  ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+   Test Files  1 failed | 12 passed (13)
+   Test Files  3 passed (3)
+  steps-j17-hostile-env.txt: hostile-cli-vitest 1;hostile-root-vitest 0;hostile-doctor-compat 0;hostile-leaf-scopes 0;hostile-phase-workflows 0;
+
+Rerun after the fix, job j17b (13:33), 13 files:
+   Test Files  13 passed (13)
+        Tests  292 passed | 2 skipped (294)
+  steps-j17b-hostile-rerun.txt: hostile-cli-vitest-rerun 0
+
+Other hostile steps from j17 (all exit 0): hostile-root-vitest (3 files, 159 passed), hostile-doctor-compat, hostile-leaf-scopes, hostile-phase-workflows.
+
+Fix recorded in Files Changed and Post-review fixes. runtime/cli/tests/heal-target-parity.vitest.ts (new file) had a packetsNamed helper that split the command output on whitespace. The TMPDIR path in the hostile run contained a space, so the packet paths were cut at the space. The helper now matches each output line against the entrypoint's own line pattern (packetsNamed takes the pattern as a second argument), and it no longer splits on whitespace.
+  Pre-fix red: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/hp/red-before.log, 2 of 4 failed. The failing lines show the truncated path (é/heal-target-parity-.../specs/alpha/001-one) for the path that held a space.
+  Post-fix green: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/hp/green-default-after.log (4 of 4 passed) and /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/hp/green-hostile-after.log (4 of 4 passed).
+  Fix time: the file was modified at 13:24:01.

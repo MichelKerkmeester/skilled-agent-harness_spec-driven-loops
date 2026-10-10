@@ -1,0 +1,18 @@
+CLOSURE EVIDENCE: T029 and the CLI leg of AC-016, from the first final-gate run (job j01)
+Source: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/final-gates/j01-cli-suite.log and steps-j01-cli-suite.txt (not copied, cited by path).
+Command recorded in the log: SPECKIT_TEST_RUN_TIMEOUT_MS=3600000 npm --prefix .skilled/skills/system-spec-kit/runtime/cli test
+
+Lines read from the log:
+  log  Test Files  176 passed | 3 skipped (179)
+  log       Tests  1900 passed | 20 skipped (1920)
+  log    Start at  12:55:53
+  log    Duration  1052.61s (transform 2.62s, setup 683ms, import 6.06s, tests 1032.15s, environment 7ms)
+  steps-j01-cli-suite.txt: cli-npm-test 0
+  log tail: === JOB-DONE j01-cli-suite
+
+Failed tests: none. A grep for FAIL matches two lines. One is a test title (Sections Present Tests (should FAIL on missing)), and that test passed.
+
+Baseline from the T029 wording (019): 1776 passed, 19 skipped, 0 failed.
+Delta against that baseline: passed +124 (1900 against 1776), skipped +1 (20 against 19), failed 0.
+
+Timing caveat. This run started at 12:55:53 and wrote its exit file at 13:16:22. heal-target-parity.vitest.ts was edited at 13:24:01, which is after this run finished. The file is untracked and new in this phase. The hostile rerun in closure-gate-hostile-env.txt covers the fixed version (13 files, 292 passed). The full-suite rerun from the final state is recorded in closure-gate-rerun-final.txt.

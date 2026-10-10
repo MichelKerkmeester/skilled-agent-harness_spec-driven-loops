@@ -1,0 +1,11 @@
+rg: --hidden: No such file or directory (os error 2)
+rg: -g: No such file or directory (os error 2)
+rg: !**/node_modules/**: No such file or directory (os error 2)
+rg: -g: No such file or directory (os error 2)
+rg: !**/dist/**: No such file or directory (os error 2)
+.skilled/changelog/skilled/v4.0.0.4.md:121:- **Replace two removed flags with upgrade-legacy.** `check-template-staleness.sh --auto-upgrade` and `quality-audit.sh --fix` were removed. Each now exits 2 and names `upgrade-legacy` as the replacement.
+.skilled/changelog/skilled/v4.0.0.4.md:122:- **Stop passing `--mode` and `--json` to lane-mode runs.** `heal-spec-docs --lane-modes` no longer takes either flag, and both are now ignored. A script that still passes `--mode <name> --apply` therefore runs all five modes, so check the command before you rerun it.
+.skilled/skills/system-spec-kit/templates/MIGRATION.md:55:`check-template-staleness.sh --auto-upgrade` and `quality-audit.sh --fix` were removed, and `upgrade-legacy.mjs` is the repair path.
+.skilled/skills/system-spec-kit/changelog/v2.7.1.0.md:115:- **Replace two removed flags with upgrade-legacy.** `check-template-staleness.sh --auto-upgrade` and `quality-audit.sh --fix` were removed. Each now exits 2 and names `upgrade-legacy` as the replacement.
+.skilled/skills/system-spec-kit/changelog/v2.7.1.0.md:116:- **Stop passing `--mode` and `--json` to lane-mode runs.** `heal-spec-docs --lane-modes` no longer takes either flag, and both are now ignored. A script that still passes `--mode <name> --apply` therefore runs all five modes, so check the command before you rerun it.
+rc=2

@@ -1,0 +1,7 @@
+packets swept: 2
+  regression: 1
+  pass: 1
+
+::warning::1 packet(s) regressed against the stored baseline
+  specs/a/001-x
+::error::INJECTED-FROM-FOLDER-NAME: regressed

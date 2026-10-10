@@ -1,0 +1,34 @@
+CLOSURE EVIDENCE: T030 and the doctor and hooks legs of AC-016, from the first final-gate run (jobs j05 and j04)
+
+Doctor, job j05 (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/final-gates/j05-doctor.log):
+  [run-all] ── node:test (15 files)
+  [run-all] PASS: node:test (15 files)
+  [run-all] ── unittest (1 files)
+  [run-all] PASS: unittest (1 files)
+  [run-all] ── check-mcp-mutation-class.test.sh
+  [run-all] PASS: check-mcp-mutation-class.test.sh
+  [run-all] ── mcp-doctor.test.sh
+  [run-all] PASS: mcp-doctor.test.sh
+  [run-all] ── route-validate.test.sh
+  [run-all] PASS: route-validate.test.sh
+  [run-all] ── route-validate.sh --self-test
+  [run-all] PASS: route-validate.sh --self-test
+  [run-all] ── skill-graph freshness panel (vitest)
+  [run-all] PASS: skill-graph freshness panel (vitest)
+  [run-all] 7 suite(s) passed, 0 failed
+  steps-j05-doctor.txt: doctor-run-all 0
+  The suite-level lines read Results: 35 passed, 0 failed; 18 passed, 0 failed; 20 passed, 0 failed (per script).
+
+Hooks, job j04 (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/final-gates/j04-hooks.log), node --test totals:
+  ℹ tests 189
+  ℹ suites 0
+  ℹ pass 186
+  ℹ fail 0
+  ℹ cancelled 0
+  ℹ skipped 3
+  ℹ todo 0
+  ℹ duration_ms 5621.410125
+  steps-j04-hooks.txt: hook-tests 0
+  Command: node --test .skilled/skills/system-spec-kit/runtime/tests/hooks/*.test.mjs
+
+Both legs exit 0 in the first run. Their numbers are repeated in closure-gate-rerun-final.txt from the final-state rerun.

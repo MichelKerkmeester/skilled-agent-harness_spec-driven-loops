@@ -427,3 +427,420 @@ describe('archive.sh round trip with the real tools', () => {
     expect(fs.readFileSync(path.join(specs, 'z_archive', '001-valid', 'graph-metadata.json'), 'utf8')).toBe(corrupt);
   });
 });
+
+describe('archive.sh keeps every write under the specs root', () => {
+  // A z_archive that is a symlink is refused outright. The link can point
+  // anywhere, and archiving copies, renames and deletes through its path, so an
+  // archive that followed it could move the packet out of specs/ or into another
+  // packet's archive.
+  function snapshot(dir: string): Map<string, string> {
+    const entries = new Map<string, string>();
+    const walk = (current: string) => {
+      for (const name of fs.readdirSync(current).sort()) {
+        const full = path.join(current, name);
+        const relative = path.relative(dir, full);
+        if (fs.lstatSync(full).isDirectory()) {
+          entries.set(`${relative}/`, '');
+          walk(full);
+        } else {
+          entries.set(relative, fs.readFileSync(full).toString('base64'));
+        }
+      }
+    };
+    walk(dir);
+    return entries;
+  }
+
+  function outsideDir(): string {
+    return fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'archive-escape-')));
+  }
+
+  it('refuses a root packet whose z_archive links outside specs, and changes neither side', () => {
+    const outside = outsideDir();
+    try {
+      packet('005-root');
+      fs.writeFileSync(path.join(specs, '005-root', 'notes.txt'), 'keep\n');
+      const before = snapshot(path.join(specs, '005-root'));
+      fs.symlinkSync(outside, path.join(specs, 'z_archive'), 'dir');
+
+      const result = archive(['--force', 'specs/005-root']);
+      expect(result.status, result.stdout + result.stderr).toBe(1);
+      expect(result.stderr).toContain('symbolic link, not followed');
+      expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+      expect(fs.readdirSync(outside)).toEqual([]);
+    } finally {
+      fs.rmSync(outside, { recursive: true, force: true });
+    }
+  });
+
+  // The archive argument is resolved to its physical folder before the containment
+  // check, so a link under specs that points outside it is refused and the folder
+  // it points at is left whole.
+  it('refuses to archive a folder reached through a link that points outside specs, and changes neither side', () => {
+    const outside = outsideDir();
+    try {
+      fs.mkdirSync(path.join(outside, '007-outside-packet'));
+      fs.writeFileSync(path.join(outside, '007-outside-packet', 'spec.md'), '# Packet\n');
+      const before = snapshot(outside);
+      fs.symlinkSync(path.join(outside, '007-outside-packet'), path.join(specs, '007-linked'), 'dir');
+
+      const result = archive(['--force', 'specs/007-linked']);
+      expect(result.status, result.stdout + result.stderr).toBe(1);
+      expect(result.stderr).toContain('Refusing to archive outside specs root');
+      expect(snapshot(outside)).toEqual(before);
+      expect(fs.lstatSync(path.join(specs, '007-linked')).isSymbolicLink()).toBe(true);
+      expect(fs.existsSync(path.join(specs, 'z_archive'))).toBe(false);
+    } finally {
+      fs.rmSync(outside, { recursive: true, force: true });
+    }
+  });
+
+  it('refuses a z_archive that links into the packet being archived, and leaves the packet whole', () => {
+    packet('005-root');
+    fs.mkdirSync(path.join(specs, '005-root', 'sub'));
+    fs.writeFileSync(path.join(specs, '005-root', 'sub', 'notes.txt'), 'keep\n');
+    const before = snapshot(path.join(specs, '005-root'));
+    fs.symlinkSync(path.join(specs, '005-root', 'sub'), path.join(specs, 'z_archive'), 'dir');
+
+    const result = archive(['--force', 'specs/005-root']);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('symbolic link, not followed');
+    expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+  });
+
+  it('refuses a z_archive that links to a folder that is not a packet home, and leaves the packet whole', () => {
+    trackRoot('tools', ['tools/001-a']);
+    const notHome = path.join(specs, 'tools', '001-a', 'research', 'z_archive');
+    fs.mkdirSync(notHome, { recursive: true });
+    packet('005-root');
+    const before = snapshot(path.join(specs, '005-root'));
+    fs.symlinkSync(notHome, path.join(specs, 'z_archive'), 'dir');
+
+    const result = archive(['--force', 'specs/005-root']);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('symbolic link, not followed');
+    expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+    expect(fs.readdirSync(notHome)).toEqual([]);
+  });
+
+  it('refuses a z_archive that links into another packet home, and leaves the packet whole', () => {
+    trackRoot('tools', ['tools/001-a']);
+    const otherHome = path.join(specs, 'tools', '001-a', 'z_archive');
+    fs.mkdirSync(otherHome, { recursive: true });
+    packet('005-root');
+    const before = snapshot(path.join(specs, '005-root'));
+    fs.symlinkSync(otherHome, path.join(specs, 'z_archive'), 'dir');
+
+    const result = archive(['--force', 'specs/005-root']);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('symbolic link, not followed');
+    expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+    expect(fs.readdirSync(otherHome)).toEqual([]);
+  });
+
+  it('refuses a track packet whose track z_archive links outside specs, and leaves the track list alone', () => {
+    const outside = outsideDir();
+    try {
+      trackRoot('tools', ['tools/001-a', 'tools/002-b']);
+      const before = snapshot(path.join(specs, 'tools', '002-b'));
+      const trackBefore = readMetadata('tools');
+      fs.symlinkSync(outside, path.join(specs, 'tools', 'z_archive'), 'dir');
+
+      const result = archive(['--force', 'specs/tools/002-b']);
+      expect(result.status, result.stdout + result.stderr).toBe(1);
+      expect(result.stderr).toContain('symbolic link, not followed');
+      expect(snapshot(path.join(specs, 'tools', '002-b'))).toEqual(before);
+      expect(readMetadata('tools')).toBe(trackBefore);
+      expect(fs.readdirSync(outside)).toEqual([]);
+    } finally {
+      fs.rmSync(outside, { recursive: true, force: true });
+    }
+  });
+
+  it('refuses a phase whose parent z_archive links outside specs', () => {
+    const outside = outsideDir();
+    try {
+      trackRoot('tools', ['tools/001-a']);
+      phaseParent('tools/001-a', ['002-p', '003-q']);
+      const before = snapshot(path.join(specs, 'tools', '001-a', '002-p'));
+      fs.symlinkSync(outside, path.join(specs, 'tools', '001-a', 'z_archive'), 'dir');
+
+      const result = archive(['--force', 'specs/tools/001-a/002-p']);
+      expect(result.status, result.stdout + result.stderr).toBe(1);
+      expect(result.stderr).toContain('symbolic link, not followed');
+      expect(snapshot(path.join(specs, 'tools', '001-a', '002-p'))).toEqual(before);
+      expect(fs.readdirSync(outside)).toEqual([]);
+    } finally {
+      fs.rmSync(outside, { recursive: true, force: true });
+    }
+  });
+
+  // A link named as the archive folder is refused before restore resolves the
+  // folder, since resolving would follow the link. This case pins that behavior.
+  it('refuses to restore a folder that is reachable only through a link outside specs', () => {
+    const outside = outsideDir();
+    try {
+      const outsideArchive = path.join(outside, 'z_archive');
+      fs.mkdirSync(path.join(outsideArchive, '001-a'), { recursive: true });
+      fs.writeFileSync(path.join(outsideArchive, '001-a', 'spec.md'), '# Outside\n');
+      fs.symlinkSync(outsideArchive, path.join(specs, 'z_archive'), 'dir');
+
+      const result = archive(['--restore', 'specs/z_archive/001-a']);
+      expect(result.status, result.stdout + result.stderr).toBe(1);
+      expect(result.stderr).toContain('symbolic link, not followed');
+      expect(fs.existsSync(path.join(outside, 'z_archive', '001-a', 'spec.md'))).toBe(true);
+      expect(fs.existsSync(path.join(outside, '001-a'))).toBe(false);
+      expect(fs.existsSync(path.join(specs, '001-a'))).toBe(false);
+    } finally {
+      fs.rmSync(outside, { recursive: true, force: true });
+    }
+  });
+
+  it('refuses to restore through a z_archive that links to a folder that is not a packet home', () => {
+    trackRoot('tools', ['tools/001-a']);
+    const notHome = path.join(specs, 'tools', '001-a', 'research', 'z_archive');
+    fs.mkdirSync(path.join(notHome, '002-x'), { recursive: true });
+    fs.writeFileSync(path.join(notHome, '002-x', 'spec.md'), '# Stranded\n');
+    fs.symlinkSync(notHome, path.join(specs, 'z_archive'), 'dir');
+    const before = snapshot(path.join(notHome, '002-x'));
+
+    const result = archive(['--restore', 'specs/z_archive/002-x']);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('symbolic link, not followed');
+    expect(snapshot(path.join(notHome, '002-x'))).toEqual(before);
+    expect(fs.existsSync(path.join(specs, '002-x'))).toBe(false);
+  });
+
+  it('refuses to restore through a z_archive that links into another packet home', () => {
+    trackRoot('tools', ['tools/001-a']);
+    const otherHome = path.join(specs, 'tools', '001-a', 'z_archive');
+    fs.mkdirSync(path.join(otherHome, '002-x'), { recursive: true });
+    fs.writeFileSync(path.join(otherHome, '002-x', 'spec.md'), '# Archived\n');
+    fs.symlinkSync(otherHome, path.join(specs, 'z_archive'), 'dir');
+    const before = snapshot(path.join(otherHome, '002-x'));
+
+    const result = archive(['--restore', 'specs/z_archive/002-x']);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('symbolic link, not followed');
+    expect(snapshot(path.join(otherHome, '002-x'))).toEqual(before);
+    expect(fs.existsSync(path.join(specs, 'tools', '001-a', '002-x'))).toBe(false);
+  });
+
+  it('refuses to restore onto a link at the target, and moves nothing', () => {
+    const outside = outsideDir();
+    try {
+      packet('005-root');
+      expect(archive(['--force', 'specs/005-root']).status).toBe(0);
+      const archived = snapshot(path.join(specs, 'z_archive', '005-root'));
+      fs.symlinkSync(path.join(outside, 'missing'), path.join(specs, '005-root'));
+
+      const result = archive(['--restore', 'specs/z_archive/005-root']);
+      expect(result.status, result.stdout + result.stderr).toBe(1);
+      expect(result.stderr).toContain('already exists');
+      expect(snapshot(path.join(specs, 'z_archive', '005-root'))).toEqual(archived);
+      expect(fs.readdirSync(outside)).toEqual([]);
+    } finally {
+      fs.rmSync(outside, { recursive: true, force: true });
+    }
+  });
+
+  // A "." or ".." segment can carry a path through a linked z_archive without
+  // the literal parent looking like one, so such arguments are refused before
+  // anything is resolved.
+  it('refuses a restore path with a . segment that reaches a folder through a linked z_archive', () => {
+    trackRoot('tools', ['tools/001-a']);
+    const otherHome = path.join(specs, 'tools', '001-a', 'z_archive');
+    fs.mkdirSync(path.join(otherHome, '002-x'), { recursive: true });
+    fs.writeFileSync(path.join(otherHome, '002-x', 'spec.md'), '# Archived\n');
+    fs.symlinkSync(otherHome, path.join(specs, 'z_archive'), 'dir');
+    const before = snapshot(path.join(otherHome, '002-x'));
+
+    const result = archive(['--restore', 'specs/z_archive/002-x/.']);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('must not contain . or .. segments');
+    expect(snapshot(path.join(otherHome, '002-x'))).toEqual(before);
+    expect(fs.existsSync(path.join(specs, 'tools', '001-a', '002-x'))).toBe(false);
+  });
+
+  it('refuses a restore path with a .. segment, and moves nothing', () => {
+    trackRoot('tools', ['tools/001-a']);
+    const otherHome = path.join(specs, 'tools', '001-a', 'z_archive');
+    fs.mkdirSync(path.join(otherHome, '002-x'), { recursive: true });
+    fs.writeFileSync(path.join(otherHome, '002-x', 'spec.md'), '# Archived\n');
+    fs.symlinkSync(otherHome, path.join(specs, 'z_archive'), 'dir');
+    const before = snapshot(path.join(otherHome, '002-x'));
+
+    const result = archive(['--restore', 'specs/z_archive/002-x/..']);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('must not contain . or .. segments');
+    expect(snapshot(path.join(otherHome, '002-x'))).toEqual(before);
+    expect(fs.existsSync(path.join(specs, 'tools', '001-a', '002-x'))).toBe(false);
+  });
+
+  it('refuses an archive path with a . segment, and moves nothing', () => {
+    packet('005-root');
+    const before = snapshot(path.join(specs, '005-root'));
+
+    const result = archive(['--force', 'specs/005-root/.']);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('must not contain . or .. segments');
+    expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+    expect(fs.existsSync(path.join(specs, 'z_archive', '005-root'))).toBe(false);
+  });
+
+  it('refuses an archive path with a .. segment, and moves nothing', () => {
+    packet('005-root');
+    const before = snapshot(path.join(specs, '005-root'));
+
+    const result = archive(['--force', 'specs/005-root/..']);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('must not contain . or .. segments');
+    expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+    expect(fs.existsSync(path.join(specs, 'z_archive'))).toBe(false);
+  });
+
+  // A z_archive that links to a path that does not exist has nothing to resolve,
+  // so the link itself must be refused before anything is created through it. Each
+  // row is an archive root the script writes through: the specs root, a track and
+  // a phase parent.
+  it.each([
+    {
+      label: 'the specs root',
+      link: 'specs/z_archive',
+      folder: 'specs/005-root',
+      setup: () => packet('005-root'),
+    },
+    {
+      label: 'a track',
+      link: 'specs/tools/z_archive',
+      folder: 'specs/tools/002-b',
+      setup: () => trackRoot('tools', ['tools/001-a', 'tools/002-b']),
+    },
+    {
+      label: 'a phase parent',
+      link: 'specs/tools/001-a/z_archive',
+      folder: 'specs/tools/001-a/002-p',
+      setup: () => {
+        trackRoot('tools', ['tools/001-a']);
+        phaseParent('tools/001-a', ['002-p', '003-q']);
+      },
+    },
+  ])('refuses a dangling z_archive under $label, moves nothing and creates no link target', ({ link, folder, setup }) => {
+    setup();
+    const missing = path.join(repo, 'elsewhere', 'missing-archive');
+    fs.symlinkSync(missing, path.join(repo, link), 'dir');
+    const before = snapshot(path.join(repo, folder));
+
+    const result = archive(['--force', folder]);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('symbolic link, not followed');
+    expect(snapshot(path.join(repo, folder))).toEqual(before);
+    expect(fs.existsSync(missing)).toBe(false);
+  });
+
+  it('refuses a restore through a dangling z_archive, follows nothing and creates no link target', () => {
+    const missing = path.join(repo, 'elsewhere', 'missing-archive');
+    fs.symlinkSync(missing, path.join(specs, 'z_archive'), 'dir');
+
+    const result = archive(['--restore', 'specs/z_archive/005-root']);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('symbolic link, not followed');
+    expect(fs.existsSync(missing)).toBe(false);
+    expect(fs.existsSync(path.join(specs, '005-root'))).toBe(false);
+  });
+
+  // A same-named folder already in the archive is a state the archive must leave
+  // alone: the copy would otherwise be moved into it and the source removed.
+  it('refuses an archive whose target already holds a folder of that name, and changes neither side', () => {
+    packet('005-root');
+    packet('z_archive/005-root');
+    const live = snapshot(path.join(specs, '005-root'));
+    const archived = snapshot(path.join(specs, 'z_archive', '005-root'));
+
+    const result = archive(['--force', 'specs/005-root']);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('Archive target already exists');
+    expect(snapshot(path.join(specs, '005-root'))).toEqual(live);
+    expect(snapshot(path.join(specs, 'z_archive', '005-root'))).toEqual(archived);
+  });
+
+  // A dangling link is a name taken all the same: the move would replace the link,
+  // so the target check counts a link as present even when nothing sits behind it.
+  it('refuses an archive whose target is a dangling link, and changes neither side', () => {
+    packet('005-root');
+    fs.mkdirSync(path.join(specs, 'z_archive'));
+    fs.symlinkSync(path.join(repo, 'elsewhere', 'missing'), path.join(specs, 'z_archive', '005-root'));
+    const live = snapshot(path.join(specs, '005-root'));
+
+    const result = archive(['--force', 'specs/005-root']);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('Archive target already exists');
+    expect(snapshot(path.join(specs, '005-root'))).toEqual(live);
+    expect(fs.lstatSync(path.join(specs, 'z_archive', '005-root')).isSymbolicLink()).toBe(true);
+    expect(fs.existsSync(path.join(repo, 'elsewhere'))).toBe(false);
+  });
+
+  it('refuses a restore whose destination already holds a folder, and changes neither side', () => {
+    packet('005-root');
+    expect(archive(['--force', 'specs/005-root']).status).toBe(0);
+    packet('005-root');
+    fs.writeFileSync(path.join(specs, '005-root', 'spec.md'), '# Live packet\n');
+    const archived = snapshot(path.join(specs, 'z_archive', '005-root'));
+    const live = snapshot(path.join(specs, '005-root'));
+
+    const result = archive(['--restore', 'specs/z_archive/005-root']);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('Restore target already exists');
+    expect(snapshot(path.join(specs, 'z_archive', '005-root'))).toEqual(archived);
+    expect(snapshot(path.join(specs, '005-root'))).toEqual(live);
+  });
+
+  // Below the completeness minimum the script asks before it archives. A decline
+  // is a documented clean cancel: exit 0, a message, and nothing moved.
+  it('a declined archive prompt exits 0, says it was cancelled and moves nothing', () => {
+    packet('005-root');
+    fs.writeFileSync(
+      path.join(path.dirname(archiveScript), 'calculate-completeness.sh'),
+      '#!/usr/bin/env bash\necho \'{"overall_completion": 40}\'\n',
+      { mode: 0o755 },
+    );
+    const before = snapshot(path.join(specs, '005-root'));
+
+    const result = spawnSync('bash', [archiveScript, 'specs/005-root'], { cwd: repo, encoding: 'utf8', input: 'n\n' });
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(result.stdout + result.stderr).toContain('Archive cancelled.');
+    expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+    expect(fs.existsSync(path.join(specs, 'z_archive'))).toBe(false);
+  });
+
+  // When the specs root cannot be resolved the script refuses before it resolves
+  // the folder or creates anything, so a dangling specs link is not written through.
+  it('refuses when the specs root is a dangling link, and creates nothing through it', () => {
+    fs.rmSync(specs, { recursive: true, force: true });
+    const missing = path.join(repo, 'elsewhere', 'missing-specs');
+    fs.symlinkSync(missing, specs, 'dir');
+
+    const result = archive(['--force', 'specs/005-root']);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('Specs directory not found');
+    expect(fs.existsSync(missing)).toBe(false);
+  });
+
+  // Outside a repository the root is derived from the script's own location. A
+  // copy with no specs folder there is refused, and nothing is created in that root.
+  it('refuses in a copy outside any repository whose derived root has no specs folder', () => {
+    const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'archive-fallback-')));
+    try {
+      const copiedSpec = path.join(root, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec');
+      fs.mkdirSync(copiedSpec, { recursive: true });
+      fs.copyFileSync(path.join(CLI_DIR, 'spec', 'archive.sh'), path.join(copiedSpec, 'archive.sh'));
+
+      const result = spawnSync('bash', [path.join(copiedSpec, 'archive.sh'), '--force', 'specs/005-root'], { cwd: root, encoding: 'utf8' });
+      expect(result.status, result.stdout + result.stderr).toBe(1);
+      expect(result.stderr).toContain('Specs directory not found');
+      expect(fs.readdirSync(root)).toEqual(['.skilled']);
+    } finally {
+      fs.rmSync(root, { recursive: true, force: true });
+    }
+  });
+});

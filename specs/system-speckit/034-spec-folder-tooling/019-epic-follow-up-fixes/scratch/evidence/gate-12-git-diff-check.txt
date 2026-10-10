@@ -1,0 +1,4 @@
+CMD: git diff --check (unstaged)
+EXIT=0
+CMD: git diff --cached --check (staged)
+EXIT=0

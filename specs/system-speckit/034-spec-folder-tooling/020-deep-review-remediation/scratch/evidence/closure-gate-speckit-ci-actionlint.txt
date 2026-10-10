@@ -1,0 +1,26 @@
+CLOSURE EVIDENCE: CHK-010 lint and CI checks, from the first final-gate run (jobs j08 and j16)
+
+Job j08 (speckit CI), steps file /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/final-gates/steps-j08-speckit-ci.txt. Every step exits 0:
+  speckit-cli-check 0
+  speckit-cli-typecheck 0
+  speckit-shared-test 0
+  speckit-legacy 0
+  speckit-validation 0
+  mirror-runtime-mirrors 0
+  mirror-codex-agents 0
+  mirror-codex-prompts 0
+  mirror-pi-agents 0
+  mirror-pi-prompts 0
+  mirror-agent-roster 0
+  mirror-command-catalog 0
+  mirror-hook-registrations 0
+  mirror-gate1-pointers 0
+
+Job j16 (actionlint and phase workflows), steps file /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/final-gates/steps-j16-actionlint-phase.txt:
+  phase-command-workflows 0
+  actionlint-no-args 0
+  Result: passed=148 failed=0
+
+What the lint step is. The cli package defines one lint script, and it is typecheck only: the script is tsc --noEmit (runtime/cli/package.json). The j08 lint step is that script.
+Limit. The gate logs contain no ESLint run and no format run. The cli package and the repository root have no ESLint binary or format script in this pass (checked with ls and the package scripts). The only formatter-like check present is actionlint on the workflow files.
+Result. The lint step passed (tsc --noEmit, exit 0). A format check and an ESLint check on the lanes files do not exist in this gate. CHK-010 cannot be ticked on this evidence, and its open reason is recorded in tasks.md.

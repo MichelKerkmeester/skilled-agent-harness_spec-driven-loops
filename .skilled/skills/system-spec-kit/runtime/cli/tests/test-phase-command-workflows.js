@@ -48,6 +48,13 @@ function exists(filePath) {
   return fs.existsSync(filePath);
 }
 
+// The command's option table names the flag with a PATH placeholder. The
+// argument-hint is a short summary and may omit the flag, or spell its value
+// as <path> (resume) or PATH (implement).
+function documentsPhaseFolder(text) {
+  return /`--phase-folder`\s*\|\s*`PATH`/.test(text) || /--phase-folder=(<path>|PATH)/.test(text);
+}
+
 function testPhaseCommandContracts() {
   const planDoc = path.join(COMMAND_ROOT, 'plan.md');
   const completeDoc = path.join(COMMAND_ROOT, 'complete.md');
@@ -61,7 +68,7 @@ function testPhaseCommandContracts() {
 
   const phaseText = `${readFile(planDoc)}\n${readFile(completeDoc)}`;
   assertTrue(
-    phaseText.includes(':with-phases') && phaseText.includes('--phase-folder=<path>'),
+    phaseText.includes(':with-phases') && documentsPhaseFolder(phaseText),
     '/speckit:plan and /speckit:complete document phase flags'
   );
   assertTrue(
@@ -84,8 +91,7 @@ function testPhaseFolderContracts() {
     assertTrue(exists(filePath), `/speckit:${doc.name} doc exists`);
 
     const text = readFile(filePath);
-    const hasPhaseFolderContract =
-      text.includes('--phase-folder=<path>') || text.includes('--phase-folder=<path> provided');
+    const hasPhaseFolderContract = documentsPhaseFolder(text);
 
     assertTrue(
       hasPhaseFolderContract,

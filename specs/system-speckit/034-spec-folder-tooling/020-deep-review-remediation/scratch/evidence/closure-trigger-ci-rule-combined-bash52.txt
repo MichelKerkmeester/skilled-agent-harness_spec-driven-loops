@@ -1,0 +1,16 @@
+CLOSURE EVIDENCE: combined count, trigger-index-rebuild-workflow and ci-rule-set-comparison, bash 5.2.0 through the PATH shim, fresh run on the final tree
+$ PATH=<scratchpad>/r2/bash52:$PATH npx vitest run --config ../../vitest.config.ts --project cli tests/trigger-index-rebuild-workflow.vitest.ts tests/ci-rule-set-comparison.vitest.ts
+bash: GNU bash, version 5.2.0(1)-release (aarch64-apple-darwin24.0.0)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+
+ Test Files  2 passed (2)
+      Tests  74 passed | 1 skipped (75)
+   Start at  16:02:46
+   Duration  32.20s (transform 32ms, setup 15ms, import 59ms, tests 31.98s, environment 0ms)
+
+EXIT=0

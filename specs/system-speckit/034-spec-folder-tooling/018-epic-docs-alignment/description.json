@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/034-spec-folder-tooling/018-epic-docs-alignment",
+  "description": "Phase 18: epic-docs-alignment",
+  "keywords": [
+    "phase",
+    "epic-docs-alignment"
+  ],
+  "lastUpdated": "2026-10-09T15:47:55.542Z",
+  "specId": "018",
+  "folderSlug": "epic-docs-alignment",
+  "parentChain": [
+    "system-speckit",
+    "034-spec-folder-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

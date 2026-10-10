@@ -1,0 +1,89 @@
+# Phase 010 status check, taken at 2026-10-10T05:35Z
+## 010 own record (tasks.md unchecked lines and summary status)
+specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/spec.md:24:| **Status** | In Progress |
+specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/spec.md:46:**Deliverables**:
+specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/tasks.md:22:| `[x]` | Completed |
+specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/tasks.md:24:| `[B]` | Blocked |
+specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/tasks.md:50:- [x] T014 Install the system-spec-kit workspace and build its shared package before the generator runs, and move to Node 22 like the other spec-kit jobs. The first live run on 2026-10-07 failed with `ERR_MODULE_NOT_FOUND` for `@spec-kit/shared`, because a clean runner has no workspace link (`.github/workflows/trigger-index-rebuild.yml`)
+specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/tasks.md:59:- [ ] T009 [B] Run `actionlint` over the workflow (not installed in this environment)
+specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/tasks.md:61:- [ ] T011 [B] Confirm the first live run commits the index and makes `--check` pass (a live run needs a push, which has not happened)
+specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/tasks.md:70:- [ ] No `[B]` blocked tasks remaining
+specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/tasks.md:71:- [ ] Manual verification passed, the first live push leaves the index current
+specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/implementation-summary.md:39:| **Completed** | 2026-10-07, implementation only, the live workflow run is pending |
+specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/implementation-summary.md:64:<!-- ANCHOR:how-delivered -->
+specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/implementation-summary.md:65:## How It Was Delivered
+specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/implementation-summary.md:67:The workflow and the advisory pointer were applied directly in the worktree. Verification is local so far. The new file parses as YAML, `actionlint` is not installed so no schema check ran, and no push has exercised the job. A live run needs a push, which has not happened.
+specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/implementation-summary.md:68:<!-- /ANCHOR:how-delivered -->
+specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/implementation-summary.md:94:| Live workflow run | Not run, a live run needs a push, which has not happened |
+specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/implementation-summary.md:104:1. **The job has not run live.** Until a push reaches it, REQ-001 and SC-001 stay unverified.
+## parent row
+122:| 10 | `010-trigger-index-ci-rebuild/` | Rebuild the trigger index in CI after a push | In Progress |
+## actionlint on PATH
+actionlint rc=1
+## main CI, Trigger Index Rebuild runs
+4669db6522 skipped
+079e9c34d2 success
+dd6f9316a3 success
+gh rc=0
+## bot rebuild commits on main
+4669db6522 2026-10-09 chore(system-spec-kit): rebuild the trigger index
+1206f55238 2026-10-09 chore(system-spec-kit): rebuild the trigger index
+9dbfe3a046 2026-10-09 chore(system-spec-kit): rebuild the trigger index
+d5b79c87d5 2026-10-09 chore(system-spec-kit): rebuild the trigger index
+36102e7f69 2026-10-09 chore(system-spec-kit): rebuild the trigger index
+d933985159 2026-10-09 chore(system-spec-kit): rebuild the trigger index
+4d16754ad3 2026-10-09 chore(system-spec-kit): rebuild the trigger index
+2a1554bc4a 2026-10-09 chore(system-spec-kit): rebuild the trigger index
+27e7a1a232 2026-10-08 chore(system-spec-kit): rebuild the trigger index
+40f29743e6 2026-10-08 chore(system-spec-kit): rebuild the trigger index
+be0f482f19 2026-10-08 chore(system-spec-kit): rebuild the trigger index
+591f859f70 2026-10-08 chore(system-spec-kit): rebuild the trigger index
+a0409d8022 2026-10-08 chore(system-spec-kit): rebuild the trigger index
+08af7d089e 2026-10-08 chore(system-spec-kit): rebuild the trigger index
+4f659bdd4c 2026-10-08 chore(system-spec-kit): rebuild the trigger index
+ac0a3ac2ae 2026-10-08 chore(system-spec-kit): rebuild the trigger index
+1f38923888 2026-10-08 chore(system-spec-kit): rebuild the trigger index without ignored files
+2d2c8fcd55 2026-10-07 chore(system-spec-kit): rebuild the trigger index
+6549014dee 2026-10-08 chore(system-spec-kit): rebuild the trigger index from the repaired corpus
+d727cf94fe 2026-10-07 docs(system-speckit): close phase 012 and rebuild the trigger index
+bbbc1582cf 2026-10-07 chore(system-spec-kit): rebuild the trigger index after the rule consolidation
+c9326183a2 2026-10-07 chore(system-spec-kit): rebuild the trigger index after the thinking-discipline packet
+5d4efec89a 2026-10-06 chore(system-spec-kit): rebuild the trigger index after the series parent rule
+c5a1f147f0 2026-10-06 chore(system-spec-kit): rebuild the trigger index after the packet grouping
+408b40eeed 2026-10-06 chore(system-spec-kit): rebuild the trigger index after the remediation docs
+535c20d688 2026-10-05 chore(system-spec-kit): rebuild the trigger index after rebasing onto main
+a2416d46ff 2026-10-05 chore(system-spec-kit): rebuild the trigger index after the Jev auto-enable merge
+9c2a06443b 2026-10-04 chore(system-spec-kit): rebuild the trigger index after the Pi provider fix merge
+def633052c 2026-10-04 chore(system-spec-kit): rebuild the trigger index after the doctor rebase
+0bd298037e 2026-10-04 chore(system-spec-kit): rebuild the trigger index after the cli-classifier v0.8.0.0 merge
+98e872a114 2026-10-04 chore(system-spec-kit): rebuild the trigger index after merging main with the quality fixes
+df787170a8 2026-10-04 chore(system-spec-kit): rebuild the trigger index for the research packet
+a3c2d0973f 2026-10-04 chore(system-spec-kit): rebuild the trigger index after merging main again
+4caa38414a 2026-10-04 chore(system-spec-kit): rebuild the trigger index after the deletion review
+44eb6ede59 2026-10-04 chore(system-spec-kit): rebuild the trigger index after merging main into the Jev follow-ups
+a5959a12d1 2026-10-04 chore(system-spec-kit): rebuild the trigger index after closing phase 051
+33afd25a33 2026-10-03 chore(system-spec-kit): rebuild the trigger index after closing phase 050
+45a118ecdf 2026-10-03 chore(system-spec-kit): rebuild the trigger index after closing 049
+e4ef889cdb 2026-10-03 chore(system-spec-kit): rebuild the trigger index after closing phase 049's children
+7bfd22b664 2026-10-03 chore(system-spec-kit): rebuild the trigger index after releasing phase 049
+69be899505 2026-10-03 chore(system-spec-kit): rebuild the trigger index after phase 049
+64f55c996f 2026-10-03 chore(system-spec-kit): rebuild the trigger index after phase 048
+a210af3b75 2026-10-02 chore(system-spec-kit): rebuild the trigger index after phase 047 and merging main
+90e0bd678b 2026-10-02 chore(system-spec-kit): rebuild the trigger index after packets 039 and 063
+cae531e78e 2026-10-02 chore(system-spec-kit): rebuild the trigger index after the merge log entry
+da8ee147b5 2026-10-02 chore(system-spec-kit): rebuild the trigger index after merging main
+0561285ae7 2026-10-02 chore(system-spec-kit): rebuild the trigger index after packets 032 and 038
+f851fdecfd 2026-10-02 chore(system-spec-kit): rebuild the trigger index after packets 032 and 039
+af097e1ff2 2026-10-02 chore(system-spec-kit): rebuild the trigger index after the Deem deprecation closure
+ea4313666a 2026-10-02 chore(system-spec-kit): rebuild the trigger index after the Deem removal
+316ed5cbb2 2026-10-02 chore(system-spec-kit): rebuild the trigger index after closing packet 032
+9e6bed5dd6 2026-10-02 chore(system-spec-kit): rebuild the trigger index after the packet 032 follow-up
+356771d6cf 2026-10-02 chore(spec-kit): rebuild the trigger index after the sk-communication removal
+e3b891399c 2026-10-02 chore(system-spec-kit): rebuild the trigger index after closing phase 044
+fd5b3bc397 2026-10-01 chore(system-spec-kit): rebuild the trigger index after closing phase 043
+ca53e4b1ef 2026-10-01 chore(system-spec-kit): rebuild the trigger index after the live verdicts
+c5efc9bb1e 2026-10-01 chore(system-spec-kit): rebuild the trigger index after the 042 close
+0ad8d589af 2026-10-01 chore(spec-kit): rebuild the trigger index after the 041 evidence move
+cf3c1b5bd0 2026-10-01 chore(spec-kit): rebuild the trigger index after merging main
+5387174796 2026-10-01 chore(spec-kit): rebuild the trigger index after the 041 close
+git rc=0

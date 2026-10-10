@@ -1,5 +1,5 @@
 {
-  "manifestHash": "424e07a5922a6bf3b402288d796f429f1c87a64cb1f3dd0551cdb5633cc5c109",
+  "manifestHash": "56d60c1b0cb33161e7bc64025449fce2c6425e5e445a1d3e25280be95d35d662",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10708,6 +10708,9 @@
     "anchor generator": [
       "anchor generator"
     ],
+    "anchor integrity and nesting check": [
+      "Anchor integrity and nesting check"
+    ],
     "anchor integrity checks": [
       "anchor integrity checks"
     ],
@@ -10719,6 +10722,9 @@
     ],
     "anchor miss returnedtokens zero": [
       "anchor-miss returnedTokens zero"
+    ],
+    "anchor opened inside": [
+      "anchor opened inside"
     ],
     "anchor phase removed": [
       "anchor phase removed"
@@ -10755,6 +10761,9 @@
     ],
     "anchors read by retrieval": [
       "anchors read by retrieval"
+    ],
+    "anchors valid": [
+      "ANCHORS_VALID"
     ],
     "anchors valid anchor rules plan": [
       "ANCHORS_VALID anchor rules plan"
@@ -20980,6 +20989,9 @@
     "cli subprocess fanout dispatch": [
       "cli subprocess fanout dispatch"
     ],
+    "cli tests write into specs": [
+      "cli tests write into specs"
+    ],
     "cli tooling ux": [
       "cli tooling ux"
     ],
@@ -21195,6 +21207,18 @@
     ],
     "clickup goals": [
       "clickup goals"
+    ],
+    "clickup hosted route fix": [
+      "clickup hosted route fix"
+    ],
+    "clickup hosted route fix implementation summary": [
+      "clickup hosted route fix implementation summary"
+    ],
+    "clickup hosted route fix plan": [
+      "clickup hosted route fix plan"
+    ],
+    "clickup hosted route fix tasks": [
+      "clickup hosted route fix tasks"
     ],
     "clickup list document page attachments": [
       "clickup_list_document_page_attachments"
@@ -24880,6 +24904,9 @@
     ],
     "compat readme trigger phrase fixed": [
       "compat readme trigger phrase fixed"
+    ],
+    "compat resume dirty check": [
+      "compat resume dirty check"
     ],
     "compat shim advisor": [
       "compat shim advisor"
@@ -34068,9 +34095,15 @@
     "deep review remediation 010 007": [
       "deep review remediation 010/007"
     ],
+    "deep review remediation acceptance criteria": [
+      "deep review remediation acceptance criteria"
+    ],
     "deep review remediation adr": [
       "deep review remediation ADR",
       "deep review remediation adr"
+    ],
+    "deep review remediation implementation summary": [
+      "deep review remediation implementation summary"
     ],
     "deep review remediation phase parent": [
       "deep review remediation phase parent"
@@ -37582,6 +37615,9 @@
     "doctor env command acceptance": [
       "doctor env command acceptance"
     ],
+    "doctor env duplicate variable": [
+      "doctor env duplicate variable"
+    ],
     "doctor env implementation summary": [
       "doctor env implementation summary"
     ],
@@ -38176,6 +38212,9 @@
     ],
     "doctor update command": [
       "doctor update command"
+    ],
+    "doctor update compat docs": [
+      "doctor update compat docs"
     ],
     "doctor update compatibility": [
       "doctor update compatibility"
@@ -38974,6 +39013,9 @@
     ],
     "dup hash collapse tasks": [
       "dup hash collapse tasks"
+    ],
+    "duplicate anchor repair": [
+      "duplicate anchor repair"
     ],
     "duplicate assignment check": [
       "duplicate assignment check"
@@ -40787,6 +40829,36 @@
     ],
     "epic deep review verdict": [
       "epic deep review verdict"
+    ],
+    "epic docs alignment": [
+      "epic docs alignment"
+    ],
+    "epic docs alignment acceptance criteria": [
+      "epic docs alignment acceptance criteria"
+    ],
+    "epic docs alignment implementation summary": [
+      "epic docs alignment implementation summary"
+    ],
+    "epic docs alignment plan": [
+      "epic docs alignment plan"
+    ],
+    "epic docs alignment tasks": [
+      "epic docs alignment tasks"
+    ],
+    "epic follow up fixes": [
+      "epic follow up fixes"
+    ],
+    "epic follow up fixes acceptance criteria": [
+      "epic follow up fixes acceptance criteria"
+    ],
+    "epic follow up fixes implementation summary": [
+      "epic follow up fixes implementation summary"
+    ],
+    "epic follow up fixes plan": [
+      "epic follow up fixes plan"
+    ],
+    "epic follow up fixes tasks": [
+      "epic follow up fixes tasks"
     ],
     "epic status reconcile": [
       "epic status reconcile"
@@ -49408,6 +49480,9 @@
     "grouped bars": [
       "grouped bars"
     ],
+    "grouped detail upgrade legacy": [
+      "grouped detail upgrade-legacy"
+    ],
     "gte cross encoder reranker": [
       "GTE cross-encoder reranker"
     ],
@@ -49919,6 +49994,9 @@
     "head footer panel structure": [
       "head footer panel structure"
     ],
+    "header add template source": [
+      "header-add template source"
+    ],
     "header and stderr alignment": [
       "header and stderr alignment"
     ],
@@ -49984,6 +50062,30 @@
     ],
     "headless stream print capture plan": [
       "headless stream print capture plan"
+    ],
+    "heal cli and compat yaml simplification": [
+      "heal cli and compat yaml simplification"
+    ],
+    "heal cli and compat yaml simplification acceptance criteria": [
+      "heal cli and compat yaml simplification acceptance criteria"
+    ],
+    "heal cli and compat yaml simplification implementation summary": [
+      "heal cli and compat yaml simplification implementation summary"
+    ],
+    "heal cli and compat yaml simplification plan": [
+      "heal cli and compat yaml simplification plan"
+    ],
+    "heal cli and compat yaml simplification tasks": [
+      "heal cli and compat yaml simplification tasks"
+    ],
+    "heal lane modes cli selector": [
+      "heal lane modes cli selector"
+    ],
+    "heal spec docs anchor repair": [
+      "Heal spec docs anchor repair"
+    ],
+    "heal spec docs lane modes": [
+      "Heal spec docs lane modes"
     ],
     "heal spec docs phrase refill policy": [
       "heal-spec-docs phrase refill policy"
@@ -54717,6 +54819,9 @@
     "lane migration legacy retirement": [
       "lane migration legacy retirement"
     ],
+    "lane modes json output branch": [
+      "lane modes json output branch"
+    ],
     "lane registry weight update": [
       "lane-registry weight update"
     ],
@@ -55980,6 +56085,9 @@
     ],
     "level for research": [
       "level for research"
+    ],
+    "level from spec": [
+      "level-from-spec"
     ],
     "level gated templates": [
       "level gated templates"
@@ -62248,6 +62356,9 @@
     "merge skilled v4 resolve conflicts": [
       "merge skilled v4 resolve conflicts"
     ],
+    "merge step failure fields": [
+      "merge step failure fields"
+    ],
     "merge tasks": [
       "merge tasks"
     ],
@@ -64770,6 +64881,15 @@
     ],
     "neighbor boost traversal": [
       "neighbor boost traversal"
+    ],
+    "nested anchor error": [
+      "nested anchor error"
+    ],
+    "nested anchors fail validation": [
+      "nested anchors fail validation"
+    ],
+    "nested anchors now fail validation": [
+      "nested anchors now fail validation"
     ],
     "nested changelog backfill": [
       "nested changelog backfill"
@@ -70994,6 +71114,9 @@
     "phase 20 closure gate": [
       "phase 20 closure gate"
     ],
+    "phase 20 deep review remediation": [
+      "phase 20 deep review remediation"
+    ],
     "phase 20 implementation summary": [
       "phase 20 implementation summary"
     ],
@@ -71712,6 +71835,9 @@
     ],
     "phrase judge seven classes": [
       "phrase judge seven classes"
+    ],
+    "phrase lint env reference": [
+      "phrase lint env reference"
     ],
     "phrase quality criteria": [
       "phrase quality criteria"
@@ -73898,6 +74024,9 @@
     "pre commit mirror gate": [
       "pre-commit mirror gate"
     ],
+    "pre commit phrase check": [
+      "pre-commit phrase check"
+    ],
     "pre commit remint results": [
       "pre-commit remint results"
     ],
@@ -75873,6 +76002,9 @@
     ],
     "questions anchor scope": [
       "questions anchor scope"
+    ],
+    "questions anchor un nesting": [
+      "questions anchor un-nesting"
     ],
     "quick check failure unreachable repair": [
       "quick_check failure unreachable repair"
@@ -79441,6 +79573,12 @@
     "remove isdeeppiowned carve out": [
       "remove isdeeppiowned carve-out"
     ],
+    "remove lane modes json flag": [
+      "remove lane modes json flag"
+    ],
+    "remove lane modes mode flag": [
+      "remove lane modes mode flag"
+    ],
     "remove llama cpp references": [
       "remove llama-cpp references"
     ],
@@ -79928,6 +80066,9 @@
     "repo era detection": [
       "repo era detection"
     ],
+    "repo era mjs": [
+      "repo-era.mjs"
+    ],
     "repo guards plugin": [
       "repo-guards plugin"
     ],
@@ -80166,6 +80307,9 @@
     "repoint frontmatter consumers": [
       "repoint frontmatter consumers"
     ],
+    "repoint the clickup official code mode manual": [
+      "repoint the clickup official code mode manual"
+    ],
     "report gen ts tokens json": [
       "report-gen.ts tokens.json"
     ],
@@ -80189,6 +80333,9 @@
     ],
     "repository database path": [
       "repository database path"
+    ],
+    "repository era report": [
+      "Repository era report"
     ],
     "repository root resolution": [
       "repository root resolution"
@@ -81034,6 +81181,9 @@
     ],
     "research recommendations": [
       "research recommendations"
+    ],
+    "research recommendations overengineering": [
+      "research recommendations overengineering"
     ],
     "research recovery strategies": [
       "research recovery strategies"
@@ -87546,9 +87696,6 @@
     "series parent hardening research tasks": [
       "series parent hardening research tasks"
     ],
-    "series parent packet": [
-      "series parent packet"
-    ],
     "series parent review and hardening research": [
       "series parent review and hardening research"
     ],
@@ -87974,9 +88121,6 @@
     ],
     "settled and reopened decision tests": [
       "settled and reopened decision tests"
-    ],
-    "settled and reopened rule": [
-      "settled and reopened rule"
     ],
     "setup a handover": [
       "Setup A handover"
@@ -89334,6 +89478,9 @@
     ],
     "simple workflow flowchart": [
       "simple workflow flowchart"
+    ],
+    "simplification research recommendations build": [
+      "simplification research recommendations build"
     ],
     "simplified review taxonomy": [
       "simplified review taxonomy"
@@ -95351,6 +95498,9 @@
     "solid architecture review": [
       "solid architecture review"
     ],
+    "sort refusals order test": [
+      "sort refusals order test"
+    ],
     "source balanced fan in": [
       "source-balanced fan-in"
     ],
@@ -96077,8 +96227,26 @@
     "spec folder tooling": [
       "spec folder tooling"
     ],
+    "spec folder tooling deep review findings": [
+      "spec folder tooling deep review findings"
+    ],
+    "spec folder tooling deep review remediation changelog": [
+      "spec folder tooling deep review remediation changelog"
+    ],
+    "spec folder tooling epic docs alignment changelog": [
+      "spec folder tooling epic docs alignment changelog"
+    ],
+    "spec folder tooling epic follow up fixes changelog": [
+      "spec folder tooling epic follow up fixes changelog"
+    ],
+    "spec folder tooling heal cli and compat yaml simplification changelog": [
+      "spec folder tooling heal cli and compat yaml simplification changelog"
+    ],
     "spec folder tooling timeline": [
       "spec folder tooling timeline"
+    ],
+    "spec folder tooling trigger index ci rebuild changelog": [
+      "spec folder tooling trigger index ci rebuild changelog"
     ],
     "spec folder upgrades": [
       "spec folder upgrades"
@@ -96880,6 +97048,9 @@
     "spec kit version migration": [
       "spec kit version migration",
       "spec-kit version migration"
+    ],
+    "spec layout era": [
+      "spec layout era"
     ],
     "spec lifecycle automation": [
       "spec lifecycle automation"
@@ -97764,6 +97935,9 @@
     ],
     "speckit skill advisor model server enabled default": [
       "SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED default"
+    ],
+    "speckit skip phrase lint": [
+      "SPECKIT_SKIP_PHRASE_LINT"
     ],
     "speckit skip prepush naming dead flag": [
       "SPECKIT_SKIP_PREPUSH_NAMING dead flag"
@@ -101878,6 +102052,9 @@
     "template default text in finished packets": [
       "template default text in finished packets"
     ],
+    "template default trigger phrase": [
+      "template default trigger phrase"
+    ],
     "template default trigger phrases": [
       "template default trigger phrases"
     ],
@@ -102087,6 +102264,12 @@
     ],
     "template phrase cleanup verification": [
       "template phrase cleanup verification"
+    ],
+    "template phrase lint commit gate": [
+      "Template phrase lint commit gate"
+    ],
+    "template phrase lint mjs": [
+      "template-phrase-lint.mjs"
     ],
     "template policy enforcement": [
       "template policy enforcement"
@@ -104922,6 +105105,9 @@
     "under preserve an out of scope untracked path": [
       "under preserve an out of scope untracked path"
     ],
+    "undo an upgrade": [
+      "undo an upgrade"
+    ],
     "undo last commit": [
       "undo last commit"
     ],
@@ -105252,14 +105438,35 @@
     "upgrade creates implementation summary": [
       "upgrade creates implementation summary"
     ],
+    "upgrade legacy apply refusal": [
+      "upgrade-legacy apply refusal"
+    ],
     "upgrade legacy command": [
       "upgrade-legacy command"
+    ],
+    "upgrade legacy downgrades": [
+      "upgrade-legacy downgrades"
+    ],
+    "upgrade legacy downgrades and grouped detail": [
+      "Upgrade-legacy Downgrades and grouped detail"
     ],
     "upgrade legacy goal": [
       "upgrade-legacy goal"
     ],
+    "upgrade legacy manifest": [
+      "upgrade-legacy manifest"
+    ],
+    "upgrade legacy manifest json": [
+      "upgrade-legacy.manifest.json"
+    ],
+    "upgrade legacy playbook scenarios": [
+      "upgrade legacy playbook scenarios"
+    ],
     "upgrade legacy results": [
       "upgrade-legacy results"
+    ],
+    "upgrade legacy reversibility manifest and refusals": [
+      "Upgrade-legacy reversibility manifest and refusals"
     ],
     "upgrade legacy reversibility record": [
       "upgrade-legacy reversibility record"
@@ -105356,6 +105563,9 @@
     ],
     "upgrade time finding baseline": [
       "upgrade-time finding baseline"
+    ],
+    "upgrades can be undone": [
+      "upgrades can be undone"
     ],
     "upload a file to notion": [
       "upload a file to notion"
@@ -105737,6 +105947,9 @@
     ],
     "v3 style reference design system handoff": [
       "v3 Style Reference design system handoff"
+    ],
+    "v3 v4 layout detection": [
+      "v3 v4 layout detection"
     ],
     "v4 0 0 0 changelog rewrite": [
       "v4.0.0.0 changelog rewrite"

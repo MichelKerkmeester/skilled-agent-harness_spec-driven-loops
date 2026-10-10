@@ -34,7 +34,11 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "research recommendations overengineering",
+      "heal lane modes cli selector",
+      "simplification research recommendations build",
+      "lane modes json output branch"
     ],
     "key_topics": [
       "research",
@@ -55,6 +59,7 @@
     "key_files": [
       "spec.md",
       "goal.md",
+      "research/research.md",
       "001-spec-template-anchor-nesting/goal.md",
       "002-phase-scaffold-graph-metadata/goal.md",
       "003-archive-path-follow-ups/goal.md",
@@ -70,7 +75,8 @@
       "013-anchor-contract-alignment/goal.md",
       "014-gate-3-menu-parity/goal.md",
       "015-lane-rules-as-heal-modes/goal.md",
-      "016-phrase-cleanup-hardening/goal.md"
+      "016-phrase-cleanup-hardening/goal.md",
+      "tests/ci-rule-set-comparison.vitest.ts"
     ],
     "entities": [
       {
@@ -86,13 +92,19 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "ci-rule-set-comparison.vitest.ts",
+        "kind": "test",
+        "path": "tests/ci-rule-set-comparison.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -122,6 +134,12 @@
         "source": "derived"
       },
       {
+        "name": "Purpose Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Decisions Frozen",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -146,31 +164,69 @@
         "source": "derived"
       },
       {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "Three Gate",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "goal.md",
+        "name": "Research Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommendations Build",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Decision The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Objective",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Boundaries The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Restraint Signals",
+        "kind": "proper_noun",
+        "path": "research/research.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The tools that scaffold, archive, heal and index spec packets kept producing failures that the corpus-wide repair then had to clean up by hand: a template that nests anchors, phase scaffolds that fail their own gate, a healer that writes rejected phrases and version stamps it cannot prove, CI checks that compare the wrong thing, and no supported path for an external repo still on an older version",
     "created_at": "2026-10-08T04:22:32Z",
-    "last_save_at": "2026-10-09T09:29:58.635Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-10T10:00:33.837Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "goal.md"
+      "goal.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:ac775ec7592cf470bb2d2ee617b8b7f3f6a5939989126c4dca73a8a2fa83a7f9",
+    "source_fingerprint": "sha256:7a0455bd0504a47d175649c64dbcb4472d66cdaa47265fd883eb0633a107b650",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "25ef937be9143713da0e1e49e810cfd2c46d0c19607da2351163355a8c79c906"
+      "spec.md": "820cb40fab0cf45f03b1b8ba98db126a9abe2c5fbd1b655a91cf2a22de379a54",
+      "research/research.md": "a3d199a812761f08b20be2b615dc32dc1c44ad6ca1298ab5294639fe17700146"
     },
     "last_active_at": null
   }

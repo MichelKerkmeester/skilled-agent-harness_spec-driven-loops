@@ -1,0 +1,81 @@
+# Lane L dead-code removal, Part 3 evidence (2026-10-10)
+
+## baseline-eslint.txt
+
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts
+  1361:10  error  'frontmatterForContextTemplate' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+   95:7   error  'VALID_LEVELS' is assigned a value but never used. Allowed unused vars must match /^_/u                 @typescript-eslint/no-unused-vars
+  101:7   error  'CHECKLIST_H1_PREFIX' is assigned a value but never used. Allowed unused vars must match /^_/u          @typescript-eslint/no-unused-vars
+  102:7   error  'OPTIONAL_TEMPLATE_HEADER_RE' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  103:7   error  'OPTIONAL_TEMPLATE_ANCHORS' is assigned a value but never used. Allowed unused vars must match /^_/u    @typescript-eslint/no-unused-vars
+  657:10  error  'h2Headers' is defined but never used. Allowed unused vars must match /^_/u                             @typescript-eslint/no-unused-vars
+
+✖ 6 problems (6 errors, 0 warnings)
+
+EXIT=1
+
+## normalizeHeader-refs.txt
+.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:644:function normalizeHeader(raw: string): string {
+
+## post-eslint.txt
+
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+  644:10  error  'normalizeHeader' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (1 error, 0 warnings)
+
+EXIT=1
+
+## final-eslint.txt
+EXIT=0
+
+## final-diff-stat.txt
+ .../runtime/cli/lib/frontmatter-migration.ts       | 32 ++-------------------
+ .../runtime/lib/validation/orchestrator.ts         | 33 +++++++++++-----------
+ 2 files changed, 19 insertions(+), 46 deletions(-)
+
+## final-typecheck-cli.txt
+
+> @spec-kit/cli@1.7.2 typecheck
+> tsc --noEmit --composite false -p tsconfig.json
+
+EXIT=0
+
+## final-typecheck-root.txt
+
+> @spec-kit/runtime@1.8.0 typecheck
+> tsc --noEmit --composite false -p tsconfig.json
+
+EXIT=0
+
+## vitest-cli.txt
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+
+ Test Files  3 passed (3)
+      Tests  9 passed (9)
+   Start at  16:20:25
+   Duration  687ms (transform 101ms, setup 40ms, import 45ms, tests 245ms, environment 0ms)
+
+EXIT=0
+
+## vitest-root.txt
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime
+
+
+ Test Files  6 passed (6)
+      Tests  84 passed (84)
+   Start at  16:20:30
+   Duration  239.80s (transform 194ms, setup 24ms, import 364ms, tests 239.00s, environment 0ms)
+
+EXIT=0

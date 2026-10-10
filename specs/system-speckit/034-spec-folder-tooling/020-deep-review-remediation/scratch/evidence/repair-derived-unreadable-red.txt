@@ -1,0 +1,63 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/repair-derived.vitest.ts (19 tests | 2 failed | 16 skipped) 1542ms
+     × names the validator stderr when validate.sh exits 3, and exits non-zero 38ms
+     × names the exit code and the stderr tail when the validator exits with no report 37ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/repair-derived.vitest.ts > repair-derived > names the validator stderr when validate.sh exits 3, and exits non-zero
+AssertionError: expected 'UNREADABLE specs/staging/002-stub-pro…' to contain 'UNREADABLE specs/staging/002-stub-pro…'
+
+- Expected
++ Received
+
+- UNREADABLE specs/staging/002-stub-probe: validator unavailable (exit 3): ERROR: validate.sh compiled validation orchestrator is stale. | Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
++ UNREADABLE specs/staging/002-stub-probe — validator unavailable (exit 3): ERROR: validate.sh compiled validation orchestrator is stale. | Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
++
++ inspected=1 repairable=0 failed=1
++
+
+ ❯ tests/repair-derived.vitest.ts:412:20
+    410|
+    411|     expect(status).toBe(2);
+    412|     expect(stdout).toContain(
+       |                    ^
+    413|       'UNREADABLE specs/staging/002-stub-probe: validator unavailable …
+    414|       + 'ERROR: validate.sh compiled validation orchestrator is stale.…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |cli| tests/repair-derived.vitest.ts > repair-derived > names the exit code and the stderr tail when the validator exits with no report
+AssertionError: expected 'UNREADABLE specs/staging/002-stub-pro…' to contain 'UNREADABLE specs/staging/002-stub-pro…'
+
+- Expected
++ Received
+
+- UNREADABLE specs/staging/002-stub-probe: no report from validator (exit 1): second line | third line | fourth line
++ UNREADABLE specs/staging/002-stub-probe — no report from validator (exit 1): second line | third line | fourth line
++
++ inspected=1 repairable=0 failed=1
++
+
+ ❯ tests/repair-derived.vitest.ts:432:20
+    430|
+    431|     expect(status).toBe(2);
+    432|     expect(stdout).toContain(
+       |                    ^
+    433|       'UNREADABLE specs/staging/002-stub-probe: no report from validat…
+    434|       + 'second line | third line | fourth line',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed | 16 skipped (19)
+   Start at  09:10:55
+   Duration  1.65s (transform 20ms, setup 15ms, import 15ms, tests 1.54s, environment 0ms)
+
+EXIT=1

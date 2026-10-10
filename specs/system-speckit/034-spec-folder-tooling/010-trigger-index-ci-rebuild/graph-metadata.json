@@ -33,7 +33,7 @@
       "advisory-checks"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,6 +42,9 @@
       ".github/workflows/trigger-index-rebuild.yml",
       "runtime/data/trigger-index.json",
       ".github/workflows/advisory-checks.yml",
+      "scratch/evidence/actionlint-trigger-index-rebuild.txt",
+      "scratch/evidence/ci-bot-commit-proof.txt",
+      "scratch/evidence/validate-010-closure.txt",
       "runtime/cli/retrieval/generate-trigger-index.mjs"
     ],
     "entities": [
@@ -88,6 +91,24 @@
         "source": "derived"
       },
       {
+        "name": "actionlint-trigger-index-rebuild.txt",
+        "kind": "file",
+        "path": "scratch/evidence/actionlint-trigger-index-rebuild.txt",
+        "source": "derived"
+      },
+      {
+        "name": "ci-bot-commit-proof.txt",
+        "kind": "file",
+        "path": "scratch/evidence/ci-bot-commit-proof.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-010-closure.txt",
+        "kind": "file",
+        "path": "scratch/evidence/validate-010-closure.txt",
+        "source": "derived"
+      },
+      {
         "name": "generate-trigger-index.mjs",
         "kind": "file",
         "path": "runtime/cli/retrieval/generate-trigger-index.mjs",
@@ -95,12 +116,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -125,6 +140,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -170,29 +191,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`.github/workflows/advisory-checks.yml` runs `generate-trigger-index.mjs --check` with `continue-on-error`, so a stale index is reported and merged anyway",
     "created_at": "2026-10-07T09:58:45Z",
-    "last_save_at": "2026-10-07T23:47:57.393Z",
+    "last_save_at": "2026-10-10T08:36:03.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b2c894d0deb5662837d2dd85e69a06287bb703f83c0e3e38292b4ae1bf36902",
+    "source_fingerprint": "sha256:fbe004a52e412b17a745b1447ceb8c0345ee40dbe20c22429661fe9f7e2aaed3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "527c5a6245ee5d88e4ed113286935e8ede5a03f5c118c900e8067138f8f011e2",
-      "plan.md": "f036137f57883ce9739d44aeab36ee8af7726fbdc4d8c91d997432309592d2d4",
-      "tasks.md": "637804ccf42417bc1b57a67fc9985c3773a1473a06127c05b88338898e94f52b",
-      "implementation-summary.md": "b35c490d532353adca302804a2c6f0c5a8da6b16de82e3eb9eb46e91993799f1"
+      "spec.md": "018d36a1291b9522593c2a8dcc35b1881ac0b4f15d28df9e143c640567699eb1",
+      "plan.md": "a24f0be040c81bae6af2fbd9dc9a065edc5638b7c534b31363e868abf553b9b2",
+      "tasks.md": "69b7561822ff148610ca078f1ebd26d1cee86f7752741ba58bbbc5d1e34a3b26",
+      "implementation-summary.md": "c438a86cbe6b2c8f73f23092ea0ea2b730c114966762165d19481629dee5fbff"
     },
     "last_active_at": null
   }

@@ -1,0 +1,57 @@
+# Parent handoff rows 017 to 018, 018 to 019 and 019 to 020, checked at 2026-10-10T05:38Z
+## TBD cells left in the parent (expect none, rc 1 from rg means no match)
+rg rc=1
+## The three rows as they read now
+161:| `017-heal-cli-and-compat-yaml-simplification` | `018-epic-docs-alignment` | 017 is Complete. Its acceptance rows AC-001 to AC-007 are all Met, and its strict validate prints RESULT: PASSED. 018 names 017 as its predecessor and brings 
+162:| `018-epic-docs-alignment` | `019-epic-follow-up-fixes` | 018 is Complete. Its acceptance rows AC-001 to AC-005 are all Met, and its strict validates print RESULT: PASSED on the packet and on this parent. 018 reached `main` at `f3f8583
+163:| `019-epic-follow-up-fixes` | `020-deep-review-remediation` | 019 is Complete. Its acceptance rows AC-001 to AC-015 are all Met, SC-002 included, and its strict validate prints RESULT: PASSED on the packet and on this parent. Main CI i
+## Cited child files (test -f rc per file)
+rc=0 specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/acceptance-criteria.md
+rc=0 specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/implementation-summary.md
+rc=0 specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/acceptance-criteria.md
+rc=0 specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/scratch/evidence/validate-packet.txt
+rc=0 specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/scratch/evidence/validate-034.txt
+rc=0 specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/scratch/evidence/push.txt
+rc=0 specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/spec.md
+rc=0 specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/acceptance-criteria.md
+rc=0 specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/scratch/evidence/post-push-ci.txt
+rc=0 specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation/scratch/evidence/validate-019-closeout.txt
+rc=0 specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation/scratch/evidence/validate-034-closeout.txt
+## 017 acceptance rows, status column
+AC-ID Status
+AC-001 Met
+AC-002 Met
+AC-003 Met
+AC-004 Met
+AC-005 Met
+AC-006 Met
+AC-007 Met
+## 018 acceptance rows, status column
+AC-ID Status
+AC-001 Met
+AC-002 Met
+AC-003 Met
+AC-004 Met
+AC-005 Met
+## 019 acceptance rows, status column
+AC-ID Status
+AC-001 Met
+AC-002 Met
+AC-003 Met
+AC-004 Met
+AC-005 Met
+AC-006 Met
+AC-007 Met
+AC-008 Met
+AC-009 Met
+AC-010 Met
+AC-011 Met
+AC-012 Met
+AC-013 Met
+AC-014 Met
+AC-015 Met
+## Parent metadata status (T026)
+52:| **Status** | In Progress |
+## Parent phase rows 10 and 20
+122:| 10 | `010-trigger-index-ci-rebuild/` | Rebuild the trigger index in CI after a push | In Progress |
+132:| 20 | `020-deep-review-remediation/` | Remediate the eleven deep review findings against phases 016 to 019, the ope

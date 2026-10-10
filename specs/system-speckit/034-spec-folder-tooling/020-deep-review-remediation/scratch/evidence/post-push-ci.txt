@@ -1,0 +1,137 @@
+# Post-push CI receipts for phase 020 (2026-10-10)
+# Part 1 is the coordinator's receipt (scratchpad post-push-ci.txt). Part 2 is the worker's own gh verification, run in this pass.
+
+Push: 4669db6522..bb2006123f (13 commits), then bot commit b5436f97a6
+
+== CI on bb2006123f
+success | Advisory Checks | 38062364569
+success | Changed Packet Validation | 38062364593
+success | Command Tree Parity | 38062364560
+success | Deep-Loop Runtime Tests | 38062364606
+success | Dispatch Enforcement Guard | 38062364572
+success | Gate Inputs | 38062364471
+success | Markdown Link Integrity | 38062364472
+success | Message Contract | 38062364494
+success | Playbook Operator Contract | 38062364571
+success | Routing Registry Drift Guard | 38062364812
+success | Rule Canary Sync | 38062364655
+success | sk-doc Script Tests | 38062364586
+success | Skill Doc Frontmatter | 38062364625
+success | Spec-Kit Check | 38062364599
+success | Trigger Index Rebuild | 38062364636
+== newer commits on main:
+b5436f97a6 chore(system-spec-kit): rebuild the trigger index
+
+[exited with code 0]
+
+== Trigger Index Rebuild run 38062364636 (bb2006123f)
+run: success
+job Rebuild the trigger index: success
+   Set up job: success
+   Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1: success
+   Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020: success
+   Install the workspace and build its shared package: success
+   Regenerate the trigger index: success
+   Verify and commit the trigger index if it changed: success
+   Upload the rebuild bundle: success
+   Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020: success
+   Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1: success
+   Complete job: success
+job Push the trigger index rebuild: success
+   Set up job: success
+   Check out the base commit: success
+   Download the rebuild bundle: success
+   Verify the rebuild bundle: success
+   Push the trigger index rebuild: success
+   Post Check out the base commit: success
+   Complete job: success
+
+[exited with code 0]
+
+== CI on b5436f97a6
+skipped | Trigger Index Rebuild | 38062483067
+success | Advisory Checks | 38062483082
+success | Changed Packet Validation | 38062483176
+success | Command Tree Parity | 38062483290
+success | Dispatch Enforcement Guard | 38062483140
+success | Gate Inputs | 38062483072
+success | Markdown Link Integrity | 38062483112
+success | Message Contract | 38062483134
+success | Playbook Operator Contract | 38062483165
+success | Rule Canary Sync | 38062483231
+success | sk-doc Script Tests | 38062483117
+success | Spec-Kit Check | 38062483118
+== rebuild run on bot commit: 38062483067
+job Rebuild the trigger index: skipped
+job Push the trigger index rebuild: skipped
+== newer commits:
+
+[exited with code 0]
+
+== bot commit
+b5436f97a621cab2e183ca3b269ac3b8e618eb76
+github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+chore(system-spec-kit): rebuild the trigger index
+
+The pushed corpus changed the committed trigger index, so this job rebuilt it.
+
+Trigger-Index-Rebuild: ci
+
+
+ .../cli/retrieval/fixtures/corpus-manifest.json    |   47 +-
+ .../retrieval/fixtures/generation-diagnostics.json |  162 ++-
+ .../cli/retrieval/fixtures/phrase-variants.json    |   26 +-
+ .../runtime/data/trigger-index.json                | 1506 ++++++++++----------
+ 4 files changed, 997 insertions(+), 744 deletions(-)
+
+## Part 2. Worker verification with gh and git
+$ git rev-parse HEAD
+b5436f97a621cab2e183ca3b269ac3b8e618eb76
+$ git ls-remote origin main
+b5436f97a621cab2e183ca3b269ac3b8e618eb76	refs/heads/main
+$ git log --oneline 4669db6522..bb2006123f | wc -l
+      13
+$ git merge-base --is-ancestor bb2006123f HEAD
+ancestor: yes
+$ git log -1 --format='%H %P' b5436f97a6
+b5436f97a621cab2e183ca3b269ac3b8e618eb76 bb2006123f4bdfafbae8c52fdd3b0436441271c9
+$ git show --stat --format= b5436f97a6
+ .../cli/retrieval/fixtures/corpus-manifest.json    |   47 +-
+ .../retrieval/fixtures/generation-diagnostics.json |  162 ++-
+ .../cli/retrieval/fixtures/phrase-variants.json    |   26 +-
+ .../runtime/data/trigger-index.json                | 1506 ++++++++++----------
+ 4 files changed, 997 insertions(+), 744 deletions(-)
+$ gh run list --limit 100 (filtered to headSha bb2006123f and b5436f97a6)
+bb2006123f: 15 runs, 15 distinct workflows
+  success  Advisory Checks 38062364569
+  success  Changed Packet Validation 38062364593
+  success  Command Tree Parity 38062364560
+  success  Deep-Loop Runtime Tests 38062364606
+  success  Dispatch Enforcement Guard 38062364572
+  success  Gate Inputs 38062364471
+  success  Markdown Link Integrity 38062364472
+  success  Message Contract 38062364494
+  success  Playbook Operator Contract 38062364571
+  success  Routing Registry Drift Guard 38062364812
+  success  Rule Canary Sync 38062364655
+  success  Skill Doc Frontmatter 38062364625
+  success  Spec-Kit Check 38062364599
+  success  Trigger Index Rebuild 38062364636
+  success  sk-doc Script Tests 38062364586
+b5436f97a6: 12 runs, 12 distinct workflows
+  success  Advisory Checks 38062483082
+  success  Changed Packet Validation 38062483176
+  success  Command Tree Parity 38062483290
+  success  Dispatch Enforcement Guard 38062483140
+  success  Gate Inputs 38062483072
+  success  Markdown Link Integrity 38062483112
+  success  Message Contract 38062483134
+  success  Playbook Operator Contract 38062483165
+  success  Rule Canary Sync 38062483231
+  success  Spec-Kit Check 38062483118
+  skipped  Trigger Index Rebuild 38062483067
+  success  sk-doc Script Tests 38062483117
+$ gh run view 38062364636 --json status,conclusion,headSha,jobs
+{"conclusion":"success","headSha":"bb2006123f4bdfafbae8c52fdd3b0436441271c9","jobs":[{"conclusion":"success","name":"Rebuild the trigger index"},{"conclusion":"success","name":"Push the trigger index rebuild"}],"status":"completed"}
+$ gh run view 38062483067 --json status,conclusion,headSha,jobs
+{"conclusion":"skipped","headSha":"b5436f97a621cab2e183ca3b269ac3b8e618eb76","jobs":[{"conclusion":"skipped","name":"Rebuild the trigger index"},{"conclusion":"skipped","name":"Push the trigger index rebuild"}],"status":"completed"}

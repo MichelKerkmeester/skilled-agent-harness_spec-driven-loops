@@ -1,0 +1,24 @@
+T009 receipt: actionlint and shell-block checks for .github/workflows/trigger-index-rebuild.yml
+Recorded on the 091-consolidate-small-packets worktree, HEAD 4669db6522.
+
+1. Working tree copy (includes uncommitted edits, not yet pushed)
+command: actionlint .github/workflows/trigger-index-rebuild.yml
+output: (none)
+exit: 0
+
+2. HEAD copy (committed workflow, blob last changed in)
+  f0ea65aeef 2026-10-08 fix(ci): harden the trigger index rebuild job
+command: git show HEAD:.github/workflows/trigger-index-rebuild.yml > <scratch>/tir-head.yml && actionlint <scratch>/tir-head.yml
+git show exit: 0
+output: (none)
+exit: 0
+
+3. Shell run blocks, bash -n (REQ-003)
+working tree copy:
+  exit=0 lines=4 step='Install the workspace and build its shared package'
+  exit=0 lines=3 step='Regenerate the trigger index'
+  exit=0 lines=170 step='Commit and push if the index changed'
+HEAD copy:
+  exit=0 lines=4 step='Install the workspace and build its shared package'
+  exit=0 lines=1 step='Regenerate the trigger index'
+  exit=0 lines=114 step='Commit and push if the index changed'

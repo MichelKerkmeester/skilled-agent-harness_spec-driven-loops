@@ -1,0 +1,318 @@
+===== FILE: .skilled/changelog/skilled/v4.0.0.4.md
+
+✅ VALID: .skilled/changelog/skilled/v4.0.0.4.md
+Document type: changelog
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/commands/doctor/scripts/tests/README.md
+
+❌ INVALID: .skilled/commands/doctor/scripts/tests/README.md
+Document type: command
+Total issues: 2
+
+🚫 Blocking errors (2):
+  - [missing_required_section] Missing required section: purpose
+    Fix: Add section with name containing "purpose"
+  - [missing_required_section] Missing required section: instructions
+    Fix: Add section with name containing "instructions"
+rc=1
+
+===== FILE: .skilled/scripts/git-hooks/README.md
+
+✅ VALID: .skilled/scripts/git-hooks/README.md
+Document type: readme
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-hooks-list.md
+
+✅ VALID: .skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-hooks-list.md
+Document type: playbook_feature
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/README.md
+
+✅ VALID: .skilled/skills/system-spec-kit/README.md
+Document type: readme
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/SKILL.md
+
+✅ VALID: .skilled/skills/system-spec-kit/SKILL.md
+Document type: skill
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md
+Document type: feature_catalog
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+Document type: readme
+Total issues: 1
+
+⚠️ Warnings (1):
+  - [document_type_fallback] No document type rule matched .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md, so README rules were applied. Pass --type to choose the rule set.
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md
+Document type: feature_catalog
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md
+
+❌ INVALID: .skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md
+Document type: playbook_feature
+Total issues: 3
+
+🚫 Blocking errors (3):
+  - [missing_required_section] Missing required section: scenario_contract
+    Fix: Add section with name containing "scenario_contract"
+  - [missing_required_section] Missing required section: test_execution
+    Fix: Add section with name containing "test_execution"
+  - [missing_required_section] Missing required section: source_metadata
+    Fix: Add section with name containing "source_metadata"
+rc=1
+
+===== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-check.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-check.md
+Document type: playbook_feature
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md
+Document type: readme
+Total issues: 1
+
+⚠️ Warnings (1):
+  - [document_type_fallback] No document type rule matched .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md, so README rules were applied. Pass --type to choose the rule set.
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/phase-folder-creation.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/phase-folder-creation.md
+Document type: playbook_feature
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/references/memory/trigger-config.md
+
+✅ VALID: .skilled/skills/system-spec-kit/references/memory/trigger-config.md
+Document type: reference
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md
+
+✅ VALID: .skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md
+Document type: reference
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/references/workflows/worked-examples.md
+
+✅ VALID: .skilled/skills/system-spec-kit/references/workflows/worked-examples.md
+Document type: reference
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+
+✅ VALID: .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+Document type: readme
+Total issues: 2
+
+⚠️ Warnings (2):
+  - [non_sequential_numbering] Non-sequential section number: expected 8, found 9
+  - [document_type_fallback] No document type rule matched .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md, so README rules were applied. Pass --type to choose the rule set.
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/README.md
+
+✅ VALID: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/README.md
+Document type: readme
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/runtime/cli/spec/README.md
+
+✅ VALID: .skilled/skills/system-spec-kit/runtime/cli/spec/README.md
+Document type: readme
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/runtime/cli/sweep/README.md
+
+✅ VALID: .skilled/skills/system-spec-kit/runtime/cli/sweep/README.md
+Document type: readme
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/README.md
+
+⏭️  SKIPPED: .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/README.md
+Reason: Fixture tree: holds the shapes it exercises
+Use --no-exclude to validate anyway
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/runtime/tests/hooks/README.md
+
+✅ VALID: .skilled/skills/system-spec-kit/runtime/tests/hooks/README.md
+Document type: readme
+Total issues: 0
+rc=0
+
+===== FILE: README.md
+
+✅ VALID: README.md
+Document type: readme
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/changelog/v2.7.1.0.md
+
+✅ VALID: .skilled/skills/system-spec-kit/changelog/v2.7.1.0.md
+Document type: changelog
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/anchor-integrity-and-nesting-check.md
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/anchor-integrity-and-nesting-check.md
+Document type: feature_catalog
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md
+Document type: feature_catalog
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md
+Document type: feature_catalog
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/repo-era-report.md
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/repo-era-report.md
+Document type: feature_catalog
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-phrase-lint-commit-gate.md
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-phrase-lint-commit-gate.md
+Document type: feature_catalog
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/upgrade-legacy-downgrades-report.md
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/upgrade-legacy-downgrades-report.md
+Document type: feature_catalog
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/upgrade-legacy-reversibility-manifest.md
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/upgrade-legacy-reversibility-manifest.md
+Document type: feature_catalog
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-compat.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-compat.md
+Document type: playbook_feature
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/anchors-valid-nested-anchor.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/anchors-valid-nested-anchor.md
+Document type: playbook_feature
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-anchor-repair-apply.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-anchor-repair-apply.md
+Document type: playbook_feature
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-anchor-repair-dry-run.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-anchor-repair-dry-run.md
+Document type: playbook_feature
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-lane-modes.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-lane-modes.md
+Document type: playbook_feature
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/repo-era-report.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/repo-era-report.md
+Document type: playbook_feature
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-phrase-lint-blocked-commit.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-phrase-lint-blocked-commit.md
+Document type: playbook_feature
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-phrase-lint-bypass.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-phrase-lint-bypass.md
+Document type: playbook_feature
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/upgrade-legacy-apply-manifest.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/upgrade-legacy-apply-manifest.md
+Document type: playbook_feature
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/upgrade-legacy-dry-run.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/upgrade-legacy-dry-run.md
+Document type: playbook_feature
+Total issues: 0
+rc=0
+
+===== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/upgrade-legacy-refusal-without-git.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/upgrade-legacy-refusal-without-git.md
+Document type: playbook_feature
+Total issues: 0
+rc=0
+

@@ -15,6 +15,8 @@
 // there, because a nested opener is an error and moving it keeps every word while the
 // anchors stay valid. Its derived fields, the recorded paths and the generated metadata,
 // are repaired so they name where it lives now. Dry by default; --apply writes.
+// A packet holding a link that resolves outside itself is refused: nothing in it is
+// written, and it stays in the failing count.
 //
 // Usage:
 //   node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [--roots <dir>]... [--include-archive] [--apply]
@@ -173,6 +175,84 @@ function resolveRepoPath(relative) {
   return target;
 }
 
+function realPathOrNull(target) {
+  try {
+    return fs.realpathSync(target);
+  } catch {
+    return null;
+  }
+}
+
+function linkAt(target) {
+  try {
+    return fs.lstatSync(target).isSymbolicLink();
+  } catch {
+    return false;
+  }
+}
+
+// The kernel follows a link in any directory component of a path, so a before-image
+// read through one would copy a file that lies outside the packet.
+function reachedThroughLink(target, folder) {
+  let current = folder;
+  for (const part of path.relative(folder, path.dirname(target)).split(path.sep).filter(Boolean)) {
+    current = path.join(current, part);
+    let stat;
+    try {
+      stat = fs.lstatSync(current);
+    } catch {
+      return false;
+    }
+    if (stat.isSymbolicLink()) return true;
+  }
+  return false;
+}
+
+// The repair steps write a packet's top-level documents by name and follow a link found
+// there, so each top-level link must resolve inside the packet. A dangling link is refused
+// because a write through it creates whatever it names.
+function packetLinkProblem(folder, dirtyPaths) {
+  const realFolder = realPathOrNull(folder);
+  if (realFolder === null) return 'the packet folder does not resolve';
+  let names;
+  try {
+    names = fs.readdirSync(folder);
+  } catch {
+    return 'the packet folder cannot be listed';
+  }
+  for (const name of names) {
+    const entry = path.join(folder, name);
+    if (!linkAt(entry)) continue;
+    const real = realPathOrNull(entry);
+    if (real === null || !contained(real, realFolder)) {
+      return `${name} is a symbolic link, not followed, and does not resolve inside the packet`;
+    }
+  }
+  for (const relative of dirtyPaths) {
+    const target = resolveRepoPath(relative);
+    if (contained(target, folder) && reachedThroughLink(target, folder)) {
+      return `${relative} is reached through a symbolic link, not followed`;
+    }
+  }
+  return null;
+}
+
+// The baseline is read only when it is a regular file: a link's target can sit outside
+// the packet, and reading it would publish that file's findings.
+function baselineIsLink(folder) {
+  return linkAt(path.join(folder, BASELINE_FILE));
+}
+
+// Keyed by packet folder, so a caller skips every refused packet by one lookup.
+function refuseLinkedPackets(packets, dirtyPaths) {
+  const refused = new Map();
+  for (const packet of packets) {
+    const problem = packetLinkProblem(packet.folder, dirtyPaths);
+    if (problem !== null) refused.set(packet.folder, problem);
+  }
+  return refused;
+}
+
 function parseDirtyPaths(stdout) {
   const fields = stdout.split('\0');
   const paths = [];
@@ -272,6 +352,12 @@ function baselineMapFor(packets, manifest = null) {
         && !Array.isArray(candidate)
         && Object.prototype.hasOwnProperty.call(candidate, relative),
     );
+    // Checked before a saved map is used, so a saved copy cannot bring back findings
+    // from a file the packet no longer holds.
+    if (baselineIsLink(packet.folder)) {
+      map[relative] = null;
+      continue;
+    }
     if (savedMap) {
       map[relative] = Array.isArray(savedMap[relative]) ? savedMap[relative] : null;
       continue;
@@ -506,11 +592,16 @@ function printDowngrades(packets, findingsByFolder) {
     count += 1;
   };
 
+  let notes = 0;
   for (const packet of packets) {
     const relative = repoRelative(packet.folder);
+    if (baselineIsLink(packet.folder)) {
+      process.stdout.write(`  refused ${relative}: ${BASELINE_FILE} is a symbolic link, not followed, so its findings are not read\n`);
+      notes += 1;
+    }
     for (const finding of findingsByFolder.get(packet.folder) || []) print(relative, finding);
   }
-  if (count === 0) process.stdout.write('  none\n');
+  if (count === 0 && notes === 0) process.stdout.write('  none\n');
 }
 
 // The per-packet failing lines name each blocking rule but not how many details
@@ -930,6 +1021,12 @@ async function repairArchived(targets, context = LIVE_RUN_CONTEXT) {
     const relative = repoRelative(target);
     try {
       const spec = path.join(target, 'spec.md');
+      // Checked before the read: reading through a link and writing back would
+      // replace the link with a copy of whatever it points at.
+      if (linkAt(spec)) {
+        if (!silent) process.stdout.write(`left unchanged ${repoRelative(spec)}: symbolic link, not followed\n`);
+        continue;
+      }
       if (!fs.existsSync(spec)) continue;
       const result = healerFor(context).unnestQuestionsAnchors(fs.readFileSync(spec, 'utf8'));
       if (result.changed) {
@@ -966,11 +1063,11 @@ async function repairArchived(targets, context = LIVE_RUN_CONTEXT) {
 // predicted against the live documents. An archived packet predicts only the
 // questions-anchor un-nesting, the one document edit it would receive. It reads
 // only; --apply is what writes.
-function previewAnchorRepairs(packets, reports) {
+function previewAnchorRepairs(packets, reports, linked = new Map()) {
   const { repairAnchors, unnestQuestionsAnchors } = healerFor(LIVE_RUN_CONTEXT);
   for (const packet of packets) {
     const report = reports.get(packet.folder);
-    if (!report || report.passed === true) continue;
+    if (!report || report.passed === true || linked.has(packet.folder)) continue;
     const spec = path.join(packet.folder, 'spec.md');
     if (!fs.existsSync(spec)) continue;
     const repair = packet.archived ? unnestQuestionsAnchors : repairAnchors;
@@ -1073,7 +1170,7 @@ async function createPreviewWorkspace(packets) {
   }
 }
 
-async function predictDowngradeFindings(packets, reports, manifestIssue, manifest) {
+async function predictDowngradeFindings(packets, reports, manifestIssue, manifest, linked = new Map()) {
   const findingsByFolder = new Map();
   const baselines = baselineMapFor(packets, manifest);
   for (const packet of packets) {
@@ -1086,7 +1183,7 @@ async function predictDowngradeFindings(packets, reports, manifestIssue, manifes
     || manifest !== null
     || packets.some((packet) => reports.get(packet.folder) === null)
   ) return findingsByFolder;
-  const failing = packets.filter((packet) => reports.get(packet.folder)?.passed !== true);
+  const failing = packets.filter((packet) => reports.get(packet.folder)?.passed !== true && !linked.has(packet.folder));
   if (failing.length === 0) return findingsByFolder;
 
   const preview = await createPreviewWorkspace(failing);
@@ -1150,31 +1247,41 @@ function sortRefusals(refusals) {
 // The validator reads the baseline from beside the packet's documents. A file
 // whose real parent resolves outside the roots would write into some other
 // tree, so that is refused loudly instead of recorded.
-function recordFindings(folder, findings, roots, refusals = []) {
+export function recordFindings(folder, findings, roots, refusals = []) {
   const file = path.join(folder, BASELINE_FILE);
   const parent = fs.realpathSync(path.dirname(file));
   if (!roots.some((root) => contained(parent, root))) {
     throw new Error(`${SCRIPT}: refusing to record outside the roots: ${file}`);
   }
   const sortedRefusals = refusals.length > 0 ? sortRefusals(refusals) : [];
-  try {
-    const existing = JSON.parse(fs.readFileSync(file, 'utf8'));
-    const storedRefusals = Array.isArray(existing.refusals) ? existing.refusals : [];
-    if (
-      JSON.stringify(existing.findings) === JSON.stringify(findings)
-      && JSON.stringify(storedRefusals) === JSON.stringify(sortedRefusals)
-    ) return 'unchanged';
-  } catch {
-    // A missing or malformed baseline simply gets rewritten below.
+  // A link is replaced by the rename below and never compared, so its target is not read.
+  if (!baselineIsLink(folder)) {
+    try {
+      const existing = JSON.parse(fs.readFileSync(file, 'utf8'));
+      const storedRefusals = Array.isArray(existing.refusals) ? existing.refusals : [];
+      if (
+        JSON.stringify(existing.findings) === JSON.stringify(findings)
+        && JSON.stringify(storedRefusals) === JSON.stringify(sortedRefusals)
+      ) return 'unchanged';
+    } catch {
+      // A missing or malformed baseline simply gets rewritten below.
+    }
   }
   // A refusal records a repair that was not attempted, so it is written beside
   // the findings and never inside them: the validator relaxes every findings
   // entry, and a repair nobody attempted is not a finding to relax.
   const body = { schema: 1, recordedBy: 'upgrade-legacy', recordedAt: new Date().toISOString(), findings };
   if (sortedRefusals.length > 0) body.refusals = sortedRefusals;
-  const tmp = `${file}.${process.pid}.tmp`;
-  fs.writeFileSync(tmp, `${JSON.stringify(body, null, 2)}\n`);
-  fs.renameSync(tmp, file);
+  // The temporary name is random and created exclusively, so a link planted at a
+  // guessable name cannot take the write.
+  const tmp = `${file}.${process.pid}.${crypto.randomBytes(6).toString('hex')}.tmp`;
+  fs.writeFileSync(tmp, `${JSON.stringify(body, null, 2)}\n`, { encoding: 'utf8', flag: 'wx' });
+  try {
+    fs.renameSync(tmp, file);
+  } catch (err) {
+    try { fs.unlinkSync(tmp); } catch { /* The rename failure is the useful one. */ }
+    throw err;
+  }
   return 'written';
 }
 
@@ -1309,6 +1416,19 @@ function layoutRootCollision(legacy, current) {
   return { from: LEGACY_SPECS, to: CURRENT_SPECS, reason: symlinked ? 'unexpected-symlink' : 'type-mismatch' };
 }
 
+// Every step a move emits names a path under `.opencode`, so a link there would send
+// each step outside the repository. The plan reports it as a collision and emits none.
+function linkedLegacyParentRefusal(repoRoot) {
+  if (!linkAt(path.join(repoRoot, '.opencode'))) return null;
+  return {
+    state: 'partial',
+    moves: [],
+    alreadyMoved: [],
+    collisions: [{ from: LEGACY_SPECS, to: CURRENT_SPECS, reason: 'unexpected-symlink' }],
+    steps: [],
+  };
+}
+
 /**
  * Plan how the legacy layout should move within the repository.
  *
@@ -1335,6 +1455,8 @@ export function planLayoutMove(repoRoot) {
     return { state: 'v4', ...nothing };
   }
   if (legacy.kind === 'directory' && (current.kind === 'absent' || isAliasOf(current, fs.realpathSync(legacyPath)))) {
+    const refused = linkedLegacyParentRefusal(repoRoot);
+    if (refused !== null) return refused;
     const steps = [];
     if (current.kind === 'symlink') steps.push({ id: 'remove-specs-link', argv: ['rm', '-f', CURRENT_SPECS] });
     steps.push({ id: 'move-tree', argv: ['git', 'mv', LEGACY_SPECS, CURRENT_SPECS] });
@@ -1342,6 +1464,8 @@ export function planLayoutMove(repoRoot) {
     return { state: 'v3', moves: [{ from: LEGACY_SPECS, to: CURRENT_SPECS }], alreadyMoved: [], collisions: [], steps };
   }
   if (legacy.kind === 'directory' && current.kind === 'directory') {
+    const refused = linkedLegacyParentRefusal(repoRoot);
+    if (refused !== null) return refused;
     return partialLayoutMove(legacyPath, currentPath);
   }
   return { state: 'partial', ...nothing, collisions: [layoutRootCollision(legacy, current)] };
@@ -1419,12 +1543,15 @@ async function main() {
 
   if (apply) {
     const failing = packets.filter((packet) => before.get(packet.folder)?.passed !== true);
-    process.stdout.write(`plan changes=${failing.length}\n`);
+    const linked = refuseLinkedPackets(failing, gitState.dirtyPaths);
+    for (const [folder, problem] of linked) process.stdout.write(`refused ${path.relative(REPO, folder)}: ${problem}\n`);
+    const writable = failing.filter((packet) => !linked.has(packet.folder));
+    process.stdout.write(`plan changes=${writable.length}\n`);
     let manifestContext = null;
-    if (gitState.dirtyPaths.length > 0 && failing.length > 0) {
+    if (gitState.dirtyPaths.length > 0 && writable.length > 0) {
       const file = manifestPathFor(gitState);
       try {
-        manifestContext = prepareManifest(gitState, packets, failing, file);
+        manifestContext = prepareManifest(gitState, packets, writable, file);
       } catch (err) {
         process.stderr.write(`${SCRIPT}: could not write reversibility manifest at ${file}: ${(err && err.message) || err}; no packet changes were made\n`);
         process.exitCode = 2;
@@ -1436,11 +1563,11 @@ async function main() {
     // packet's baseline beside the findings that survive the repair.
     const laneRefusalsByFolder = new Map();
     const failures = await repairPackets(
-      failing.filter((packet) => !packet.archived).map((packet) => packet.folder),
+      writable.filter((packet) => !packet.archived).map((packet) => packet.folder),
       LIVE_RUN_CONTEXT,
       laneRefusalsByFolder,
     );
-    failures.push(...await repairArchived(failing.filter((packet) => packet.archived).map((packet) => packet.folder)));
+    failures.push(...await repairArchived(writable.filter((packet) => packet.archived).map((packet) => packet.folder)));
 
     const mid = await validateAll(packets);
     const recorded = [];
@@ -1448,7 +1575,7 @@ async function main() {
       // A packet that passed at the start was never repaired, so a failure now
       // is damage from a step rather than an inherited finding. Recording it
       // would hide the damage; it stays an error and is reported below.
-      if (before.get(packet.folder).passed === true) continue;
+      if (before.get(packet.folder).passed === true || linked.has(packet.folder)) continue;
       const report = mid.get(packet.folder);
       if (report === null) continue;
       // A report that passes mid-run may still owe its pass to findings the
@@ -1517,6 +1644,8 @@ async function main() {
 
     const byRule = new Map();
     for (const packet of packets) {
+      // The same link rule as baselineMapFor: a linked baseline's target may lie outside the packet.
+      if (baselineIsLink(packet.folder)) continue;
       let body;
       try {
         body = JSON.parse(fs.readFileSync(path.join(packet.folder, BASELINE_FILE), 'utf8'));
@@ -1553,13 +1682,18 @@ async function main() {
     process.stdout.write(`failing ${shown}: ${failingRules(report).join(', ')}\n`);
   }
 
-  previewAnchorRepairs(packets, before);
+  const linked = refuseLinkedPackets(
+    packets.filter((packet) => before.get(packet.folder)?.passed !== true),
+    gitState?.dirtyPaths ?? [],
+  );
+  for (const [folder, problem] of linked) process.stdout.write(`would refuse ${path.relative(REPO, folder)}: ${problem}\n`);
+  previewAnchorRepairs(packets, before, linked);
 
   printGroupedDetail(packets, before);
 
   let findingsByFolder;
   try {
-    findingsByFolder = await predictDowngradeFindings(packets, before, manifestIssue, manifest);
+    findingsByFolder = await predictDowngradeFindings(packets, before, manifestIssue, manifest, linked);
   } catch (err) {
     process.stderr.write(`${SCRIPT}: could not predict Downgrades: ${(err && err.message) || err}\n`);
     process.exitCode = 2;

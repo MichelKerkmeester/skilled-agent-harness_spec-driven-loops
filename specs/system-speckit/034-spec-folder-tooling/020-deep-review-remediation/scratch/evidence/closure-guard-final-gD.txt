@@ -1,0 +1,69 @@
+CLOSURE EVIDENCE: guard coverage for repair-derived.cjs, lane gD
+
+Question: does each guard named by rows D-03, D-04 (D7), D-11 and D-12 have a test case that fails when that guard is broken?
+
+Files changed by this lane: .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts only.
+The production file .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs was not edited. Its git diff --stat was taken before the first mutant and again after the last one, and both outputs are identical (S/gD/prod-diffstat-before.txt and S/gD/prod-diffstat-after.txt, where S is the session scratchpad). The unmodified diff is 107 lines, 90 insertions and 17 deletions, from changes already present in the phase before this lane started.
+
+Method.
+1. Each mutant is one exact-match replacement in a scratch mirror built by S/gs/mkmirror.mjs. Mirror names carry the gD- prefix. No mutant touches the repository.
+2. The lane run script is S/gD/run-lane.sh. It runs three steps after mkmirror, because validator-backed cases fail in a bare mirror. (a) Each copied regular file gets the mtime of its repository file, since the validator dist freshness check compares mtimes and copies carry copy-time mtimes. (b) The repository freshness record is copied to the name the mirror dist path derives, since that name is a hash of the absolute path. (c) The hook flag helper, which sits outside the skill tree, is copied in, since the switch check reads it. Links are skipped in step (a), so no touch reaches the repository.
+3. Control: the unmutated mirror passes every case (S/gD/logs/gD-control.log, 29 of 29). A mutant counts as killed only when at least one case fails in it while the control passes.
+4. Before the new cases were added, each mutant was also run against the original 24 cases with a name filter. Those logs are S/gD/logs/gD-pre-*.log.
+5. The repository run is S/gD/logs/repo-green-final2.txt, 29 of 29, using the lane's test command.
+
+Mutant definitions. Each mutant is listed by its id, then what it removes or changes, then the production line it touches.
+- gD-D03-read: removes the link refusal from readIfPresent (repair-derived.cjs line 250).
+- gD-D04-write: removes the link refusal from writeAtomic (repair-derived.cjs line 272).
+- gD-D11-anc: resolves only the parent of the target, so a link as the last path component is not followed (repair-derived.cjs line 593).
+- gD-D12-leaf: resolves the real path only when the last path component is a link, so a link above the packet is not followed (repair-derived.cjs line 593).
+- gD-lex: uses the lexical target in place of the real path, which removes the real path check (repair-derived.cjs line 593).
+
+Test file line numbers below refer to .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts after this lane's edits.
+
+ROW D-03: link inside the packet, on apply.
+Guards: repair-derived.cjs line 250 (readIfPresent refuses a link) and line 272 (writeAtomic refuses a link).
+Cases:
+- Existing: "treats a live plan.md link as absent: its outside level reaches no plan, output or written file" (line 619). It kills gD-D03-read on its own, through an outside target.
+- New: "leaves a rewrite target that links to a file inside the packet unread and unchanged" (line 458). It runs a dry run and an apply against an in-packet link. It kills gD-D03-read.
+- New: "refuses to replace a rewrite target that became a link after planning, when the link points inside the packet" (line 515). It kills gD-D04-write, which covers the line 272 guard.
+Mutant: gD-D03-read for line 250, and gD-D04-write for line 272.
+Red logs: S/gD/logs/gD-D03-read.log, 2 failed of 29. The two failing cases are the new in-packet case and the existing plan.md case. The line 272 kill is S/gD/logs/gD-D04-write.log, 2 failed of 29, and one of its failures is the inside race case.
+Pre-change red log: S/gD/logs/gD-pre-D03-read.log, 1 failed of 24 (the plan.md case only).
+Green: repository 29 of 29 (S/gD/logs/repo-green-final2.txt). Control 29 of 29 (S/gD/logs/gD-control.log).
+Status: closed.
+
+ROW D-04 (D7): link outside, as a rewrite target, through the write guard.
+Guard: repair-derived.cjs line 272 (writeAtomic refuses a link).
+Cases:
+- Existing: "refuses a rewrite target that is a symbolic link and leaves its target untouched" (line 434). It does not kill gD-D04-write. The planning step already refuses the link, so the write guard is reached only when the link appears between planning and writing. Pre-change red log: S/gD/logs/gD-pre-D04-write.log, 0 failed of 24.
+- New: "refuses to replace a rewrite target that became a link after planning, when the link points outside the packet" (line 511). It kills gD-D04-write.
+Mutant: gD-D04-write, which removes the refusal at repair-derived.cjs line 272.
+Red log: S/gD/logs/gD-D04-write.log, 2 failed of 29. Both race cases fail on the link check after the write, with "expected false to be true". The outside case is the D-04 kill.
+Green: repository 29 of 29 and control 29 of 29, as above.
+How the race case works: a preload module replaces the description with a link on the third read of it. That read is the level repair's read at write time, after both planning reads. The case asserts the refusal message, so a change in read order makes it fail rather than pass without reaching the guard.
+Status: closed.
+
+ROW D-11: linked folder argument.
+Guard: repair-derived.cjs line 593 (the real path of the target inside insideSpecs). The lexical check on line 591 passes for this case, so only the real path can refuse it.
+Case: new, "refuses a packet folder argument that is a link to a packet outside the tree" (line 164).
+Mutant: gD-D11-anc.
+Red log: S/gD/logs/gD-D11-anc.log, 1 failed of 29. Pre-change red log: S/gD/logs/gD-pre-D11-anc.log, 0 failed of 24.
+Green: repository 29 of 29 and control 29 of 29.
+Status: closed.
+
+ROW D-12: linked parent above the packet.
+Guard: repair-derived.cjs line 593.
+Case: new, "refuses a packet folder reached through a linked parent directory outside the tree" (line 181).
+Mutant: gD-D12-leaf.
+Red log: S/gD/logs/gD-D12-leaf.log, 1 failed of 29. Pre-change red log: S/gD/logs/gD-pre-D12-leaf.log, 0 failed of 24.
+Green: repository 29 of 29 and control 29 of 29.
+Status: closed.
+
+Shared guard for D-11 and D-12: gD-lex removes the real path check at repair-derived.cjs line 593. Red log: S/gD/logs/gD-lex.log, 2 failed of 29, one failure in each of the two new cases. Pre-change red log: S/gD/logs/gD-pre-lex.log, 0 failed of 24. The lexical mutant is the only one that kills both rows at once. The two single-side mutants separate them.
+
+Test counts. Before this lane the file held 24 cases in the mirror run. Five cases were added, so the file now holds 29. The mirror and repository runs both pass 29 of 29.
+
+Observation, not changed (production code is outside this lane). The apply closures in repair-derived.cjs read their targets with fs.readFileSync, which follows a link. The reads are at lines 331, 355, 379, 405 and 424. A link that appears after planning is therefore read through before writeAtomic refuses the write. Nothing outside the packet is changed, because the write is refused. The read still happens in that window, which the link refusal is meant to prevent. The race cases exercise exactly this path. A candidate fix is to read those targets through the same link refusal that readIfPresent uses. This is an inference from reading the code, confirmed only in the sense that the race cases pass with the read in place.
+
+Rows not closed: none.

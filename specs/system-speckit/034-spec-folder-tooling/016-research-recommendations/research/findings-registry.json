@@ -1,0 +1,692 @@
+{
+  "sessionId": "2026-10-09T08:44:52Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-which-modes-flags-options-and-branches-in-heal-spec-docs-cjs-and-upgrade-legacy-",
+      "inboxId": null,
+      "text": "Which modes, flags, options and branches in heal-spec-docs.cjs and upgrade-legacy.mjs (anchor repair from 011, folded one-off repairs from 012, lane rules as heal modes from 015) go beyond what those phase specs require?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-where-does-duplicated-machinery-remain-across-heal-spec-docs-cjs-upgrade-legacy-",
+      "inboxId": null,
+      "text": "Where does duplicated machinery remain across heal-spec-docs.cjs, upgrade-legacy.mjs and frontmatter-migration.ts (writers, loaders, parsers, walkers, refusal ordering, exports), and did the eight applied P2 simplifications go far enough?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-parts-of-orchestrator-ts-anchor-validation-013-and-the-doctor-update-compa",
+      "inboxId": null,
+      "text": "Which parts of orchestrator.ts anchor validation (013) and the doctor update compatibility code and assets (009: planLayoutMove and its helpers, doctor-update-compat-action.yaml, the doctor scripts) carry fallbacks, states, configuration or abstraction no requirement asks for?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-tests-for-these-files-mirror-the-implementation-re-assert-the-framework-or",
+      "inboxId": null,
+      "text": "Which tests for these files mirror the implementation, re-assert the framework or add a case per branch above the coverage floor, and which tests pin each candidate simplification?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-is-the-ranked-list-of-concrete-simplifications-each-with-its-expected-line-",
+      "inboxId": null,
+      "text": "What is the ranked list of concrete simplifications, each with its expected line or complexity reduction, its risk, the tests that pin it, and whether a requirement forbids it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-modes-flags-options-and-branches-in-heal-spec-docs-cjs-and-upgrade-legacy-",
+      "inboxId": null,
+      "text": "Which modes, flags, options and branches in heal-spec-docs.cjs and upgrade-legacy.mjs (anchor repair from 011, folded one-off repairs from 012, lane rules as heal modes from 015) go beyond what those phase specs require?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-where-does-duplicated-machinery-remain-across-heal-spec-docs-cjs-upgrade-legacy-",
+      "inboxId": null,
+      "text": "Where does duplicated machinery remain across heal-spec-docs.cjs, upgrade-legacy.mjs and frontmatter-migration.ts (writers, loaders, parsers, walkers, refusal ordering, exports), and did the eight applied P2 simplifications go far enough?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-which-parts-of-orchestrator-ts-anchor-validation-013-and-the-doctor-update-compa",
+      "inboxId": null,
+      "text": "Which parts of orchestrator.ts anchor validation (013) and the doctor update compatibility code and assets (009: planLayoutMove and its helpers, doctor-update-compat-action.yaml, the doctor scripts) carry fallbacks, states, configuration or abstraction no requirement asks for?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-which-tests-for-these-files-mirror-the-implementation-re-assert-the-framework-or",
+      "inboxId": null,
+      "text": "Which tests for these files mirror the implementation, re-assert the framework or add a case per branch above the coverage floor, and which tests pin each candidate simplification?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-what-is-the-ranked-list-of-concrete-simplifications-each-with-its-expected-line-",
+      "inboxId": null,
+      "text": "What is the ranked list of concrete simplifications, each with its expected line or complexity reduction, its risk, the tests that pin it, and whether a requirement forbids it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Which parts of orchestrator.ts anchor validation (013) and the doctor update compatibility code and assets (009: planLayoutMove and its helpers, doctor-update-compat-action.yaml, the doctor scripts) carry fallbacks, states, configuration or abstraction no requirement asks for?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which tests for these files mirror the implementation, re-assert the framework or add a case per branch above the coverage floor, and which tests pin each candidate simplification?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Where does duplicated machinery remain across heal-spec-docs.cjs, upgrade-legacy.mjs and frontmatter-migration.ts (writers, loaders, parsers, walkers, refusal ordering, exports), and did the eight applied P2 simplifications go far enough?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is the ranked list of concrete simplifications, each with its expected line or complexity reduction, its risk, the tests that pin it, and whether a requirement forbids it?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-3-do-not-simplify-away-the-distinct-anchor-and-archive-branches-phase-011-requires",
+      "text": "**Do not simplify away the distinct anchor and archive branches.** Phase 011 requires duplicate-anchor repair, questions-anchor un-nesting, dry-run/apply behavior, integration into `upgrade-legacy`, and marker-only un-nesting of archived packets while other anchor repairs stay off archives. Phase 015 requires all five listed lane modes, their refusal/idempotence behavior and integration. The current active path runs anchor repair, healer, lane modes and derivation in order; the archived path runs only questions-anchor un-nesting and derivation. Those are requirement-backed branches, not speculative flexibility. `[SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:72-80]` `[SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:104-116]` `[SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:73-82]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:825-849]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:874-903]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:923-961]`. Phase 012's additional grouped-detail behavior is explicitly required, and `upgrade-legacy` implements it as a report function rather than a separate mode flag. `[SOURCE: specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:47-50]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:516-548]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/repo-rules/prevent-overengineering.md:114-137`",
+        "`specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:48-116`",
+        "`specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/implementation-summary.md:172-177`",
+        "`specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:47-113`",
+        "`specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:73-113`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1332-1403`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:825-961`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:567-592`"
+      ]
+    },
+    {
+      "id": "finding-1-1-rank-1-simplification-candidate-remove-the-per-mode-selector-from-the-lane-runne",
+      "text": "**Rank 1 simplification candidate: remove the per-mode selector from the lane runner and CLI, unless an actual non-test caller is identified.** `LANE_MODES` already defines the five modes in a fixed order. `runLaneModes` adds a second selective execution path through `options.modes`, and the CLI adds repeated `--mode` parsing, unknown-name handling and filtering. `upgrade-legacy` calls the runner without a mode list, so its production integration always runs the complete sequence. The phase requires the five modes and their ordered integration, but does not explicitly require selecting a subset. `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:153-164]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1332-1358]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1360-1391]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:874-893]` `[SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:73-77]`. Estimate: about 20 production lines for selector parsing/filtering, with test adaptations. Risk: medium, because an untracked external script could depend on the undocumented subset interface. Pin the five individual mode behaviors through their exported functions, keep the mode-order and sequence tests, and keep `upgrade-legacy`'s all-modes integration test. The phrase “exposed through `heal-spec-docs.cjs`” is ambiguous about individual selection; the spec does not say “individually selectable,” so this recommendation treats the required exposure as the five modes being available through the healer and the full runner.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/repo-rules/prevent-overengineering.md:114-137`",
+        "`specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:48-116`",
+        "`specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/implementation-summary.md:172-177`",
+        "`specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:47-113`",
+        "`specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:73-113`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1332-1403`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:825-961`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:567-592`"
+      ]
+    },
+    {
+      "id": "finding-1-2-rank-2-simplification-candidate-remove-the-lane-cli-s-json-output-branch-the-fla",
+      "text": "**Rank 2 simplification candidate: remove the lane CLI's `--json` output branch.** The flag is parsed separately and changes the output shape, but the scoped search found no non-test invocation and phase 015 does not require a machine-readable CLI format. Its focused test is the only observed consumer of that format. `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1360-1363]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1392-1401]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:567-592]` `[SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:73-77]`. Estimate: roughly 5-8 production lines plus the JSON-only assertions. Risk: medium for untracked consumers. Keep the CLI dry-run/no-write assertion and the all-five sequence test. No phase requirement forbids removing this output format.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/repo-rules/prevent-overengineering.md:114-137`",
+        "`specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:48-116`",
+        "`specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/implementation-summary.md:172-177`",
+        "`specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:47-113`",
+        "`specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:73-113`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1332-1403`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:825-961`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:567-592`"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-eight-applied-p2-simplifications-did-not-go-far-enough-for-this-narrow-cli-s",
+      "text": "**The eight applied P2 simplifications did not go far enough for this narrow CLI-surface slice, but this is not a whole-build verdict.** The prior closeout lists changes to section organization, duplicate caches and writers, an unreachable fallback, a constant and exports. The optional selector and JSON branches remain in the current healer. `[SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/implementation-summary.md:172-177]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1332-1403]`. The recommendation changes if a real caller of either optional interface is found.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/repo-rules/prevent-overengineering.md:114-137`",
+        "`specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:48-116`",
+        "`specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/implementation-summary.md:172-177`",
+        "`specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:47-113`",
+        "`specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:73-113`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1332-1403`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:825-961`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:567-592`"
+      ]
+    },
+    {
+      "id": "finding-2-3-refusal-ordering-and-the-remaining-healer-exports-are-integration-contracts-not-",
+      "text": "**Refusal ordering and the remaining healer exports are integration contracts, not proven dead machinery; the eight P2 simplifications were not enough to close the narrow CLI review, but this iteration found no additional justified cross-file consolidation.** `runLaneModes` emits refusals in the fixed mode/document traversal, while `sortRefusals` produces canonical mode/document/reason ordering before the upgrade baseline comparison; the latter appears to support stable persisted output. A direct sorter test did not appear in the bounded test search, so that behavior is a test-coverage candidate if ordering is later simplified, not evidence that the sort is unnecessary. The healer still exports `writeFileAtomic` for the upgrade caller and the functions consumed by it; the frontmatter module's remaining exports are three public constants, not the two private helpers previously removed. The prior iteration independently found the lane selector and `--json` branch remain optional CLI interfaces with no observed in-repository non-test caller; therefore the eight applied changes did not go far enough for that narrow CLI-surface slice. Conversely, this conclusion does not justify deleting the distinct writers, parsers, walkers, refusal behavior, or required integration exports above. `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1332-1357]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1138-1148]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:1284-1294]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1467-1479]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:923-938]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:1563-1567]` `[SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md:15-21]` `[SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/implementation-summary.md:172-177]`",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-config.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-state.jsonl`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md`",
+        "`.skilled/repo-rules/prevent-overengineering.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts`"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-apparent-parser-and-walker-duplication-has-different-responsibilities-so-no-",
+      "text": "**The apparent parser and walker duplication has different responsibilities, so no shared parser/walker abstraction is earned by the evidence.** `frontmatter-migration.ts` owns structured frontmatter detection/section parsing and is used by `fillMissingFrontmatter`; the healer's `frontmatterOf` only extracts the raw block for its own narrow healing checks. Replacing that specialized, minimal reader with the migration parser would couple the healer to migration semantics without evidence of a shared caller requirement. Similarly, the standalone healer walker finds packet directories under one root with its own skip rules, while `upgrade-legacy` delegates folder enumeration and then deduplicates nested roots, classifies archives, filters artifact trees, and sorts results. These walkers overlap in traversal purpose but not in their selection policy. A generic walker would need options for those policies, creating precisely the configuration surface the restraint rule says to earn with real callers. `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:338-345]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:501-547]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:734-777]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:736-752]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:595-627]` `[SOURCE: .skilled/repo-rules/prevent-overengineering.md:114-129]`",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-config.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-state.jsonl`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md`",
+        "`.skilled/repo-rules/prevent-overengineering.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts`"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-targeted-writer-and-healer-loader-consolidation-is-real-but-other-writers-ha",
+      "text": "**The targeted writer and healer-loader consolidation is real, but other writers have different contracts; do not unify them just to reduce repeated filesystem calls.** Anchor and lane repairs share `writeFileAtomic`, which replaces an existing file through a unique exclusive temporary file, restores its mode, syncs, and renames. `upgrade-legacy` routes both active and archived anchor repairs through that shared function, and `healerFor(context)` is now one small loader. Separately, `writeManifestFile` handles exclusive creation versus replacement of a private mode-0600 reversibility manifest, while `recordFindings` writes a different per-packet baseline format and checks for unchanged findings/refusals. These are visibly similar temp/write/rename sequences but not interchangeable contracts; collapsing them would require a broader shared API or could weaken mode, exclusivity, durability, or idempotence semantics. The repeated `healerFor(context)` calls in the archived loop are not evidence of expensive duplicate loading by themselves because `require` uses Node's module cache. `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:597-626]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:802-804]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:923-938]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:329-360]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1153-1178]` `[SOURCE: .skilled/repo-rules/prevent-overengineering.md:114-129]`",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-config.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-state.jsonl`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md`",
+        "`.skilled/repo-rules/prevent-overengineering.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts`"
+      ]
+    },
+    {
+      "id": "finding-3-3-one-anchor-order-diagnostic-exceeds-phase-013-s-explicit-requirements-but-removi",
+      "text": "**One anchor-order diagnostic exceeds phase 013’s explicit requirements, but removing its state could discard pre-existing validation behavior.** The validator’s opensAhead map and openedSoFar set distinguish a closer that appears before a later opener from a never-opened closer; phase 013 specifically requires nesting detection with the ADR-child exception and duplicate-closer detection, but does not name this additional message. This is a low-yield candidate (roughly one small pre-scan plus two tracking structures, around 5-10 lines net depending on replacement), not an approved deletion: older pairing behavior may rely on it, and no focused test was inspected. Keep the phase-013 nesting, ADR exception, fenced-code handling, and duplicate-closer logic. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:729-775] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:784-854] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md:75-85] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md:105-116] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md:163-170]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-config.json",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-state.jsonl",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-002.md",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-compatibility-workflow-approvals-statuses-logging-and-recovery-are-mostly-ma",
+      "text": "**The compatibility workflow approvals, statuses, logging, and recovery are mostly mandated safety controls; only repeated declarative wording remains a small, unverified cleanup candidate.** The YAML requires a read-only preflight, map preview, explicit move approval, a separate upgrade approval, dirty-root refusal, per-step start/done/failure logging, post-move verification, interrupted-run recovery, and rollback reporting. These align with the required approval, preview, partial/complete handling, audit log, and resumability requirements. step_failure and on_step_failure repeat part of the same failure instruction, but may be separate workflow fields consumed independently; without inspecting their runtime consumer, collapsing them is not a justified functional simplification. The in-memory result schema likewise cannot be called dead configuration on this evidence. [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:79-92] [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:94-127] [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:139-163] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md:110-120] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md:146-148]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-config.json",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-state.jsonl",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-002.md",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-layout-map-state-machine-is-requirement-shaped-not-gratuitous-fallback-machi",
+      "text": "**The layout-map state machine is requirement-shaped, not gratuitous fallback machinery.** planLayoutMove distinguishes none, v4, v3, and partial; helpers preserve symlink identity, compare real targets, enumerate case-folded collisions, and return remaining move steps. Phase 009 requires detection of partial and complete moves, a path-map preview, collision checking before execution, and review of already-moved paths; the visible branches support those cases. No whole-state simplification is justified by this scope. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1185-1221] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1232-1305] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1312-1348] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md:110-120] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md:171-182]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-config.json",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-state.jsonl",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-002.md",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md"
+      ]
+    },
+    {
+      "id": "finding-4-1-keep-the-behavior-tests-for-the-five-lane-modes-and-their-order-the-individual-t",
+      "text": "**Keep the behavior tests for the five lane modes and their order.** The individual tests exercise each mode's transformation, refusal, and second-run no-op. The exact-order assertion and the sequence fixture are not interchangeable: the sequence fixture produces only three actions, while the explicit list pins the full five-mode contract. Phase 015 requires all five modes and their order, plus refusal, idempotence, and realistic test coverage. These tests protect requirements rather than mirror implementation branches. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:1284-1324] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md:73-77] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md:103-114]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-config.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-state.jsonl`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md`",
+        "`.skilled/repo-rules/prevent-overengineering.md`",
+        "`AGENTS.md`"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-cli-s-json-output-is-another-optional-branch-with-a-narrower-but-less-certai",
+      "text": "**The CLI's `--json` output is another optional branch, with a narrower but less certain benefit.** The test parses one output line and checks only the packet and refusal shape. The prior bounded caller search recorded no in-repository non-test consumer. Removing the output branch is estimated at 5-8 production lines and the JSON-only assertions. Risk is medium because an external consumer may exist. No phase requirement names a JSON CLI format. Keep the default dry-run and its no-write assertion. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1392-1401] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:567-585] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json:176-178] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md:73-77]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-config.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-state.jsonl`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md`",
+        "`.skilled/repo-rules/prevent-overengineering.md`",
+        "`AGENTS.md`"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-cli-s-mode-subset-selector-is-the-strongest-remaining-reduction-but-remove-o",
+      "text": "**The CLI's `--mode` subset selector is the strongest remaining reduction, but remove only the CLI surface, not the runner's `options.modes` seam.** `upgrade-legacy` calls `runLaneModes` without a mode list, while tests use the runner option to isolate individual transformations. The current CLI test exercises only the invalid-name error path, not valid per-mode CLI selection. Removing CLI parsing and dispatch is estimated at roughly 10-15 production lines, plus the invalid-selector assertions. Risk is medium because external scripts were not searched beyond the repository. Phase 015 requires all five modes to be exposed and integrated, but does not explicitly require selecting a subset from the CLI. Treat the word “exposed” as ambiguous and preserve the all-mode CLI and sequence unless a caller proves it needs subset selection. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1332-1336] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1360-1391] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:879-893] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:459-489] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:567-592] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md:73-77]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-config.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-state.jsonl`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md`",
+        "`.skilled/repo-rules/prevent-overengineering.md`",
+        "`AGENTS.md`"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-eight-applied-p2-changes-were-sufficient-for-the-demonstrated-duplicate-mach",
+      "text": "**The eight applied P2 changes were sufficient for the demonstrated duplicate machinery, but not for the optional CLI branches.** Keep the existing atomic writer and healer loader consolidation. The upgrade-baseline writer, focused healer frontmatter reader, migration parser, and separate packet walkers have different contracts, so merging them would add policy switches or risk exclusive-create, private-file, filtering, or parsing behavior. Refusal sorting also remains tied to stable persisted baselines. The upgrade test checks that a second full run preserves the exact refusal array, but the bounded test search found no direct `sortRefusals` ordering assertion. Do not remove the sort without a focused canonical-order test. [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:183] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json:207-244] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1141-1160] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1267-1283] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:511-547] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:338-341]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-config.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-state.jsonl`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md`",
+        "`.skilled/repo-rules/prevent-overengineering.md`",
+        "`AGENTS.md`"
+      ]
+    },
+    {
+      "id": "finding-5-4-do-not-rank-removal-of-the-validator-s-close-before-open-tracking-as-a-simplific",
+      "text": "**Do not rank removal of the validator's close-before-open tracking as a simplification.** Phase 013 explicitly says that a closer appearing before its own opener is reported. The `opensAhead` and `openedSoFar` tracking implements that case, and the anchor-contract test moves a closer above its opener and asserts the diagnostic. An earlier registry finding described this behavior as an unnamed extra diagnostic. That assessment is contradicted by the phase edge case and test, so this behavior is required rather than optional. [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md:172-178] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:732-763] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/anchor-contract.vitest.ts:185-198] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json:267-283]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-config.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-state.jsonl`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-004.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/README.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/anchor-contract.vitest.ts`",
+        "`.skilled/commands/doctor/assets/doctor-update-compat-action.yaml`",
+        "`.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md`",
+        "`.skilled/repo-rules/prevent-overengineering.md`"
+      ]
+    },
+    {
+      "id": "finding-5-1-rank-1-remove-the-healer-cli-s-mode-subset-selector-but-retain-runlanemodes-opti",
+      "text": "**Rank 1: Remove the healer CLI's `--mode` subset selector, but retain `runLaneModes(options.modes)` for focused tests.** The selector parser, unknown-name branch and CLI forwarding account for about 18 implementation lines before updating the usage comment and README. The production upgrade caller invokes the runner without a subset, while tests use the programmatic option to isolate individual behaviors. The repository-wide production search found no separate CLI caller, but this does not rule out external scripts. Risk is medium. No phase explicitly requires subset selection: phase 015 requires all five modes to be exposed and integrated. Keep the five-mode behavior tests, exact mode-order check, sequence/idempotence tests and upgrade integration; remove only the CLI selector and its invalid-name assertion. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1332-1336] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1360-1391] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:879-893] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:459-489] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:1284-1324] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md:73-77] [INFERENCE: the bounded production search found no additional repository caller; an external caller remains possible.]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-config.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-state.jsonl`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-004.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/README.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/anchor-contract.vitest.ts`",
+        "`.skilled/commands/doctor/assets/doctor-update-compat-action.yaml`",
+        "`.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md`",
+        "`.skilled/repo-rules/prevent-overengineering.md`"
+      ]
+    },
+    {
+      "id": "finding-5-2-rank-2-remove-the-lane-cli-s-json-output-branch-the-production-branch-is-about-f",
+      "text": "**Rank 2: Remove the lane CLI's `--json` output branch.** The production branch is about five lines, plus its usage text and JSON-only assertions. The focused test checks one output line, packet identity and refusal-array shape; the same test already pins the default dry-run and no-write behavior. Risk is medium because a repository search cannot rule out external consumers. No phase requires JSON output. Keep the human-readable dry run and no-write assertion. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1360-1363] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1387-1401] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:567-592] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md:73-77]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-config.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-state.jsonl`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-004.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/README.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/anchor-contract.vitest.ts`",
+        "`.skilled/commands/doctor/assets/doctor-update-compat-action.yaml`",
+        "`.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md`",
+        "`.skilled/repo-rules/prevent-overengineering.md`"
+      ]
+    },
+    {
+      "id": "finding-5-3-rank-3-low-yield-consider-merging-the-doctor-action-s-two-failure-properties-int",
+      "text": "**Rank 3, low yield: Consider merging the doctor action's two failure properties into one complete instruction.** `step_failure` and `on_step_failure` both say to append `step-failed` and stop with `STATUS=FAILED`; the former adds the exit code, while the latter adds no-retry and rollback-block reporting. A single property could preserve the union of those duties and remove a small amount of duplicated YAML and test scaffolding. Phase 009 requires step logging and rollback guidance, not two separate properties. Risk is medium because no in-repository production consumer explains whether the two property names have distinct workflow semantics, and the current test asserts them independently. Before implementing, confirm the action-field contract; if combined, test every retained detail against the one property. [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:123-127] [SOURCE: .skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:820-834] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md:117-120] [INFERENCE: repository-wide production references to these property names occur only in the YAML asset; whether an external workflow interpreter distinguishes them is unknown.]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-config.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-state.jsonl`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-004.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/README.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/anchor-contract.vitest.ts`",
+        "`.skilled/commands/doctor/assets/doctor-update-compat-action.yaml`",
+        "`.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md`",
+        "`.skilled/repo-rules/prevent-overengineering.md`"
+      ]
+    },
+    {
+      "id": "finding-5-5-the-eight-applied-p2-changes-went-far-enough-for-the-proven-shared-machinery-but",
+      "text": "**The eight applied P2 changes went far enough for the proven shared machinery, but not for the optional healer CLI surface.** Keep the writer and healer-loader consolidation and do not merge the manifest writer, focused frontmatter reader, migration parser or active/archive walkers: their file modes, exclusivity, parsing and selection policies differ. The two remaining CLI branches above are not required by the reviewed phases and are the strongest further cuts. This is a narrow-surface judgment, not a verdict that the broader build is overengineered. [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:207-214] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-004.md:17-29] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json:230-263] [SOURCE: .skilled/repo-rules/prevent-overengineering.md:114-137]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-config.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-state.jsonl`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-004.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/README.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/anchor-contract.vitest.ts`",
+        "`.skilled/commands/doctor/assets/doctor-update-compat-action.yaml`",
+        "`.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md`",
+        "`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md`",
+        "`.skilled/repo-rules/prevent-overengineering.md`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-92e705789091",
+      "text": "Merging archived packets into the active repair path: phase 011 explicitly restricts archive edits to questions-anchor un-nesting. `[SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:78-80]` `[SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:114-116]`",
+      "contentHash": "92e705789091",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-712cc56a00fb",
+      "text": "Removing any of the five lane modes, their refusal/idempotence gates or the all-mode sequence: phase 015 requires each. `[SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:73-77]` `[SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:103-113]`",
+      "contentHash": "712cc56a00fb",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-134b736660c5",
+      "text": "Removing grouped-detail reporting: phase 012 requires grouped failures with detail counts. `[SOURCE: specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:47-50]` `[SOURCE: specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:104-113]`",
+      "contentHash": "134b736660c5",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b761f59a7e83",
+      "text": "Removing the anchor-repair mode or its dry-run/apply route: phase 011 explicitly requires the repair mode, correct dry run and upgrade integration. `[SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:48-52]` `[SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:72-80]`",
+      "contentHash": "b761f59a7e83",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-ef2ace628b8f",
+      "text": "Do not merge the reversibility-manifest writer with the healer writer without preserving the manifest's exclusive-create and private-file semantics.",
+      "contentHash": "ef2ace628b8f",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-4b58650ab528",
+      "text": "Do not merge the specialized healer frontmatter reader with the full migration parser without a demonstrated shared contract; their visible responsibilities differ.",
+      "contentHash": "4b58650ab528",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-104e174fb7c3",
+      "text": "Do not remove deterministic refusal sorting without checking the persisted-baseline equality contract and adding a focused ordering assertion.",
+      "contentHash": "104e174fb7c3",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-757597307ec8",
+      "text": "Do not replace both packet discovery paths with a configurable generic walker based only on traversal similarity; active/archive/artifact and skip policies differ.",
+      "contentHash": "757597307ec8",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e423cf0b88ce",
+      "text": "Deleting planLayoutMove layout-state branches or collision and symlink checks: phase 009 preview and partial-move requirements depend on them.",
+      "contentHash": "e423cf0b88ce",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-ad7dddda69f3",
+      "text": "Removing move approval, upgrade approval, step logs, interrupted-run recovery, or rollback reporting: phase 009 requires a separately approved, auditable, resumable path.",
+      "contentHash": "ad7dddda69f3",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-88cc5c346b64",
+      "text": "Removing pre-existing anchor pairing checks or the phase-parent exemption solely because phase 013 focuses on nesting and duplicate closers.",
+      "contentHash": "88cc5c346b64",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-fdf19ca2fcb8",
+      "text": "Do not merge the manifest writer with the healer writer, the focused healer frontmatter reader with the full migration parser, or the active and archive walkers. The existing evidence shows distinct write, parse, and selection contracts. [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json:225-244]",
+      "contentHash": "fdf19ca2fcb8",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-eb4eeca9825d",
+      "text": "Do not remove refusal sorting based on the present evidence. A direct order assertion is missing, but baseline stability is exercised by repeated-run equality. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1141-1160] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1267-1283]",
+      "contentHash": "eb4eeca9825d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-79eb1cc502d1",
+      "text": "Do not remove the lane-mode behaviors, their refusal and idempotence gates, or the ordered all-mode run. Phase 015 requires them. [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md:73-77] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md:103-114]",
+      "contentHash": "79eb1cc502d1",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-0bdae55a7a57",
+      "text": "Merging distinct file writers, parsers or walkers, or removing refusal sorting based on the evidence from the previous iteration. [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/findings-registry.json:230-263] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-004.md:31-35]",
+      "contentHash": "0bdae55a7a57",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-42e377b8cfbb",
+      "text": "Removing the close-before-open diagnostic. Phase 013 explicitly requires it, and a focused test pins it. [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md:172-178] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/anchor-contract.vitest.ts:185-198]",
+      "contentHash": "42e377b8cfbb",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-e049a61a40b4",
+      "text": "Removing the doctor layout-state cases, preview and collision checks, separate approvals, logs, interrupted-run recovery or rollback reporting. Phase 009 requires these safety and recovery behaviors. [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md:110-120] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md:170-182]",
+      "contentHash": "e049a61a40b4",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-2d57555e9e77",
+      "text": "Removing the five lane modes, their derivability/refusal behavior, idempotence gates or ordered upgrade integration. Phase 015 requires these behaviors and tests. [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md:73-77] [SOURCE: specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md:103-114]",
+      "contentHash": "2d57555e9e77",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 4,
+    "keyFindings": 19,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.7,
+    "coverageBySources": {
+      "code": 8,
+      "other": 49
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

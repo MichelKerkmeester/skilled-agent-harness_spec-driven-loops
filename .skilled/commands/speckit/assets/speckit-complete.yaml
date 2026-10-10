@@ -27,18 +27,28 @@ mode_overrides:
     workflow_execution: "interactive"
     approvals: "step_by_step"
     validation: "checkpoint_based"
-    behavior: "ask_user"
-    approach: "Complete lifecycle with user-validated checkpoints"
     mandate: "Plan thoroughly, review with user, implement carefully, verify continuously"
     goal_prompt_choice: "[offer|skip|set] - Optional session-goal behavior. Defaults to offer unless the user chooses skip or set; set requires goal_objective."
     interactive_integration: "Confidence checks are surfaced at user checkpoints"
     behavior: "{ if_context_found: \"Present context summary to user for confirmation\", if_no_context: \"Proceed to Step 1\" }"
-    purpose: "Break plan into executable tasks (Level 1+ requirement)"
-    approach: "incremental_implementation_with_reviews"
-    purpose: "Generate implementation summary"
-    purpose: "Save conversation context"
-    principle: "Execute workflow steps with user approval at each checkpoint"
+    approach: "incremental_implementation_with_reviews, complete lifecycle with user-validated checkpoints"
+    principle: "Execute workflow steps with user approval at each checkpoint outside child dispatch"
     checkpoint_behavior: "Complete step \u2192 Present results \u2192 Present options \u2192 Wait for response \u2192 Proceed or modify"
+    child_dispatch_checkpoints: "When child_dispatch applies, record each checkpoint question with its first option as the default in the lineage directory and continue."
+
+# ─────────────────────────────────────────────────────────────────
+# CHECKPOINT OPTIONS
+# ─────────────────────────────────────────────────────────────────
+checkpoint_options:
+  standard:
+  - label: "Approve"
+    description: "Approve and continue to next step"
+  - label: "Review"
+    description: "Show more details"
+  - label: "Modify"
+    description: "Make changes before proceeding"
+
+child_dispatch: "When AI_SESSION_CHILD=1 marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-resolved to that directory and the worker does not ask. Interactive sessions always ask."
 
 role: Expert Developer using Smart SpecKit autonomously
 purpose: Spec-driven development with mandatory compliance and autonomous execution
@@ -857,6 +867,7 @@ workflow:
     checkpoint:
       applies_to: confirm
       question: "Step 5 Complete: Checklist verified. How would you like to proceed?"
+      child_dispatch: "When child_dispatch applies, default to Proceed only when every P0 checklist item is marked [x] and every P0 row is Met or Waived. When one is open, default to Address Blockers, record the open items in the lineage directory and continue."
       use: present_options_to_user
       options:
       - { label: "Proceed", description: "Continue to planning" }
@@ -1071,6 +1082,7 @@ workflow:
     checkpoint:
       applies_to: confirm
       question: "Step 9 Complete: Ready to implement. Proceed with development?"
+      child_dispatch: "When child_dispatch applies, default to Start Development. When a check above fails, record the failed check and its blocker in the lineage directory before developing, and do not take Hold, since a child records a halt and continues."
       use: present_options_to_user
       options:
       - { label: "Start Development", description: "Begin implementation" }
@@ -1151,6 +1163,7 @@ workflow:
     checkpoint:
       applies_to: confirm
       question: "Step 10 Complete: Development finished. Review implementation?"
+      child_dispatch: "When child_dispatch applies, default to Continue, since the completion_checkpoint above is a hard block that runs before this question. Record the question with Continue as the default in the lineage directory and continue."
       use: present_options_to_user
       options:
       - { label: "Review Code", description: "Show code changes" }
@@ -1198,6 +1211,7 @@ workflow:
     checkpoint:
       applies_to: confirm
       question: "Step 11 Complete: every acceptance-criteria row and every P0/P1 checklist item verified. Proceed to completion?"
+      child_dispatch: "When child_dispatch applies, default to Approve only when every acceptance-criteria row and every P0 item is verified. When one is open, record the open rows and the p0_enforcement halt in the lineage directory, do not claim completion, and continue."
       use: present_options_to_user
       options: checkpoint_options.standard
 
@@ -1340,6 +1354,7 @@ workflow:
     checkpoint:
       applies_to: confirm
       question: "Step 14: Would you like to refresh continuity before ending the workflow?"
+      child_dispatch: "When child_dispatch applies, default to Skip. Step 13 already saved context, so another refresh is not needed. Record the question with Skip as the default in the lineage directory and continue."
       use: present_options_to_user
       options:
       - { label: "Run /speckit:save", description: "Refresh canonical continuity before ending" }

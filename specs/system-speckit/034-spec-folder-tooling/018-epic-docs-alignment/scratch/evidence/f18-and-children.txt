@@ -1,0 +1,31 @@
+## F18 missing-script sentence
+32:- Each gate finds its scripts under the source root the hook selects: whichever of `.skilled` and `.opencode` holds `skills/system-spec-kit/SKILL.md`, with `.skilled` preferred. The six lifecycle hooks (`prepare-commit-msg`, `pre-commit`, `pre-push`, `post-commit`, `post-merge` and `post-rewrite`
+116:| `pre-push` | Reads `<local ref> <local sha> <remote ref> <remote sha>` lines from stdin and runs six gates. The mass-deletion ceiling blocks a destructive range. The remote gate blocks any push to a branch outside the allowlist unless this one is approved: creating a branch needs `SPECKIT_ALLO
+125:| Missing gate scripts | Where the toolchain ships, a blocking gate whose script is missing exits 1 naming the path. The exception is the `pre-commit` template phrase lint, which warns and lets the commit through when its linter or `node` is missing. `prepare-commit-msg`, `post-commit`, `post-me
+## 016 children status (spec.md)
+001-spec-template-anchor-nesting :: Complete
+002-phase-scaffold-graph-metadata :: Complete
+003-archive-path-follow-ups :: Complete
+004-trigger-index-rebuild-hardening :: Complete
+005-healer-phrase-seeding :: Complete
+006-evidence-gated-provenance :: Complete
+007-ci-rule-set-comparison :: Complete
+008-legacy-era-report :: Complete
+009-doctor-update-compatibility :: Complete
+010-upgrade-reversibility :: Complete
+011-anchor-repair-mode :: Complete
+012-fold-one-off-repairs :: Complete
+013-anchor-contract-alignment :: Complete
+014-gate-3-menu-parity :: Complete
+015-lane-rules-as-heal-modes :: Complete
+016-phrase-cleanup-hardening :: Complete
+## 034 children status
+127:| 15 | `015-archive-current-location-and-ignored-files/` | Keep archived packets on their current path through moves
+128:| 16 | `016-research-recommendations/` | Plan each of the 16 research recommendations as its own child phase | Plann
+129:| 17 | `017-heal-cli-and-compat-yaml-simplification/` | Apply the phase 16 overengineering research: pin the refusal
+130:| 18 | 018-epic-docs-alignment/ | [Phase 18 scope] | Pending |
+## 034 spec status line
+52:| **Status** | Complete |
+## 016 spec status line
+24:| **Status** | In Progress |
+rc=0

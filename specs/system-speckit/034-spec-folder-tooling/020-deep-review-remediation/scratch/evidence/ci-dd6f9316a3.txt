@@ -1,0 +1,14 @@
+# Main CI for dd6f9316a3, the commit after 018's push f3f8583579, queried 2026-10-10T05:40Z (read only)
+dd6f9316a3 success Message Contract
+dd6f9316a3 success Playbook Operator Contract
+dd6f9316a3 success Rule Canary Sync
+dd6f9316a3 success sk-doc Script Tests
+dd6f9316a3 success Advisory Checks
+dd6f9316a3 success Markdown Link Integrity
+dd6f9316a3 success Changed Packet Validation
+dd6f9316a3 success Trigger Index Rebuild
+dd6f9316a3 success Gate Inputs
+dd6f9316a3 success Dispatch Enforcement Guard
+dd6f9316a3 success Command Tree Parity
+dd6f9316a3 success Spec-Kit Check
+rc=0

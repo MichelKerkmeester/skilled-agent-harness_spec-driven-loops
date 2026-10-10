@@ -1,0 +1,10 @@
+CLOSURE EVIDENCE: repair-derived preview on phase 020, final text
+$ node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation
+would repair specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation
+    re-derive graph metadata
+
+inspected=1 repairable=1 failed=0
+
+To apply these repairs:
+  node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation --apply
+EXIT=1

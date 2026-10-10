@@ -1,0 +1,11 @@
+CMD: node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package mcp-code-mode
+START: 2026-10-09T19:54:08Z
+contract=operator-scenario routing_gold_contract=routing-gold strict=on
+manifest=.skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json
+warn_packages=
+SKIP package=mcp-code-mode tier=FAIL_CLOSED scenarios=32 categories=9 operator=0 routing_gold_excluded=32 violations=0 warnings=2
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (32 scenarios, 9 categories); derived census is 32 scenarios across 9 categories
+exit=0
+EXIT=0
+ELAPSED_S=0

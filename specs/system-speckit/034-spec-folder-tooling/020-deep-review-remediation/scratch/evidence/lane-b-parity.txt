@@ -1,0 +1,74 @@
+Lane B parity (REQ-003): the three healer entrypoints resolve --folder, --roots and the default root through resolveTargets.
+Before/after selections are the dry-run outputs captured before and after the extraction (scratchpad fb1). diff exit 0 means identical.
+
+== default: before
+
+packets=2205 documents healable=0 packets touched=0 refused=11
+
+Left alone, because the right value cannot be proven from the document:
+      6  no frontmatter block at all, so there is nothing to restore into
+      3  Level review renders no template for this document, so it cannot be named
+      1  no level is recorded in spec.md, so no rendered template can be proven
+      1  does not carry problem, scope, requirements, success-criteria, risks, questions, nfr, edge-cases, complexity, phase-context, so it cannot be called spec-core | v2.2
+== default: after
+
+packets=2205 documents healable=0 packets touched=0 refused=11
+
+Left alone, because the right value cannot be proven from the document:
+      6  no frontmatter block at all, so there is nothing to restore into
+      3  Level review renders no template for this document, so it cannot be named
+      1  no level is recorded in spec.md, so no rendered template can be proven
+      1  does not carry problem, scope, requirements, success-criteria, risks, questions, nfr, edge-cases, complexity, phase-context, so it cannot be called spec-core | v2.2
+diff exit=0
+
+== anchor: before
+anchor repair: documents=2205 repairable=0 findings=0
+== anchor: after
+anchor repair: documents=2205 repairable=0 findings=0
+diff exit=0
+
+== lane: before
+would apply continuity-placeholders specs/agents/010-repo-rule-system-integration/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/agents/010-repo-rule-system-integration/implementation-summary.md: set next_safe_action to "None recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research/implementation-summary.md: set next_safe_action to "None recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/implementation-summary.md: set next_safe_action to "None recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes/implementation-summary.md: set next_safe_action to "None recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/014-extend-dispatch-coverage/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/014-extend-dispatch-coverage/implementation-summary.md: set next_safe_action to "None recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/015-wire-executor-builders/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/015-wire-executor-builders/implementation-summary.md: set next_safe_action to "None recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/016-dispatch-enforcement-ci-guard/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/016-dispatch-enforcement-ci-guard/implementation-summary.md: set next_safe_action to "None recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/072-union-alpha-dual-provider-roster/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/072-union-alpha-dual-provider-roster/implementation-summary.md: set next_safe_action to "None recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/075-cli-runtime-readme-refresh/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/075-cli-runtime-readme-refresh/implementation-summary.md: set next_safe_action to "None recorded"
+refused anchor-wrap specs/cli-jev/002-cli-jev-hub-migration/implementation-summary.md: no ANCHOR marker anywhere, so the anchored template is not proven; left unchanged
+refused continuity-placeholders specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/spec.md: continuity block is half scaffolded, so it is an edit in progress; left unchanged
+== lane: after
+would apply continuity-placeholders specs/agents/010-repo-rule-system-integration/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/agents/010-repo-rule-system-integration/implementation-summary.md: set next_safe_action to "None recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research/implementation-summary.md: set next_safe_action to "None recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/implementation-summary.md: set next_safe_action to "None recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes/implementation-summary.md: set next_safe_action to "None recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/014-extend-dispatch-coverage/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/014-extend-dispatch-coverage/implementation-summary.md: set next_safe_action to "None recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/015-wire-executor-builders/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/015-wire-executor-builders/implementation-summary.md: set next_safe_action to "None recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/016-dispatch-enforcement-ci-guard/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/071-cli-hermes-creation/016-dispatch-enforcement-ci-guard/implementation-summary.md: set next_safe_action to "None recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/072-union-alpha-dual-provider-roster/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/072-union-alpha-dual-provider-roster/implementation-summary.md: set next_safe_action to "None recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/075-cli-runtime-readme-refresh/implementation-summary.md: set recent_action to "No continuity update was recorded"
+would apply continuity-placeholders specs/cli-external-orchestration/075-cli-runtime-readme-refresh/implementation-summary.md: set next_safe_action to "None recorded"
+refused anchor-wrap specs/cli-jev/002-cli-jev-hub-migration/implementation-summary.md: no ANCHOR marker anywhere, so the anchored template is not proven; left unchanged
+refused continuity-placeholders specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/spec.md: continuity block is half scaffolded, so it is an edit in progress; left unchanged
+diff exit=0
+
+== parity unit test (heal-target-parity.vitest.ts): red then green in lane-b-parity-red.txt and lane-b-final-vitest.txt

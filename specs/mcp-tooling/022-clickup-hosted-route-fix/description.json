@@ -1,0 +1,24 @@
+{
+  "specFolder": "mcp-tooling/022-clickup-hosted-route-fix",
+  "description": "Repoint the clickup_official Code Mode manual to the hosted ClickUp MCP and fix stale ClickUp docs",
+  "keywords": [
+    "repoint",
+    "code",
+    "mode",
+    "manual",
+    "hosted",
+    "clickup",
+    "mcp",
+    "stale",
+    "docs"
+  ],
+  "lastUpdated": "2026-10-09T08:51:40.525Z",
+  "specId": "022",
+  "folderSlug": "clickup-hosted-route-fix",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

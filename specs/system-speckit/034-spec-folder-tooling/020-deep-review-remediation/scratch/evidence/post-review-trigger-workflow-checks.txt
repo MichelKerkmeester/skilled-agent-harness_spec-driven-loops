@@ -1,0 +1,9 @@
+Command: actionlint .github/workflows/trigger-index-rebuild.yml
+EXIT=0
+
+Command: sha256sum .github/workflows/trigger-index-rebuild.yml
+091a3f3f0e70a0e9a6860955165642cbb98caa2c114cbc6a4c924590622a9f39  .github/workflows/trigger-index-rebuild.yml
+
+Command: js-yaml strict load of the workflow (duplicate keys rejected)
+parses; jobs: rebuild steps: 6
+EXIT=0

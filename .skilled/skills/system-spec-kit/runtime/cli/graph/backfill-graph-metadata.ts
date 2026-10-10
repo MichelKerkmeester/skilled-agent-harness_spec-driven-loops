@@ -167,12 +167,54 @@ export function pruneReportPath(root: string, fileName = BACKFILL_PRUNE_REPORT_F
   return path.join(path.resolve(root), fileName);
 }
 
-/** Persist a prune report in the stable JSON form operators review. */
+/** True when the path itself is a symbolic link, judged without following it. */
+function isSymbolicLink(file: string): boolean {
+  try {
+    return fs.lstatSync(file).isSymbolicLink();
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Persist a prune report in the stable JSON form operators review.
+ *
+ * The report name is fixed under the specs root, so a link at the destination is
+ * refused rather than followed: a write through it lands wherever the link points.
+ * The bytes go to an exclusively created, randomly named sibling that is renamed
+ * over the destination, so a link planted after the check replaces itself instead
+ * of receiving the write.
+ */
 export function writePruneReportArtifact(
   reportPath: string,
   artifact: PruneReportArtifact,
 ): void {
-  fs.writeFileSync(reportPath, `${JSON.stringify(artifact, null, 2)}\n`, 'utf-8');
+  if (isSymbolicLink(reportPath)) {
+    throw new Error(`prune report destination is a symbolic link, not followed: ${reportPath}`);
+  }
+  const content = `${JSON.stringify(artifact, null, 2)}\n`;
+  const tempPath = path.join(
+    path.dirname(reportPath),
+    `.${path.basename(reportPath)}.${process.pid}.${crypto.randomBytes(6).toString('hex')}.tmp`,
+  );
+  let descriptor: number | null = null;
+  let temporary: string | null = null;
+  try {
+    descriptor = fs.openSync(tempPath, 'wx');
+    temporary = tempPath;
+    fs.writeFileSync(descriptor, content, 'utf-8');
+    fs.closeSync(descriptor);
+    descriptor = null;
+    fs.renameSync(temporary, reportPath);
+    temporary = null;
+  } finally {
+    if (descriptor !== null) {
+      try { fs.closeSync(descriptor); } catch { /* The original write error is more useful. */ }
+    }
+    if (temporary !== null) {
+      try { fs.rmSync(temporary, { force: true }); } catch { /* The original write error is more useful. */ }
+    }
+  }
 }
 
 function isPruneCandidate(value: unknown): value is PruneCandidate {

@@ -1,0 +1,64 @@
+ Test Files  171 passed | 3 skipped (174)
+      Tests  1776 passed | 19 skipped (1795)
+✅ Passed:  266
+❌ Failed:  0
+📝 Total:   271
+  TEST SUMMARY
+  Total:   274
+  Passed:  268
+  Failed:  0
+Result: passed=51 failed=0
+Result: passed=27 failed=0
+  TEST SUMMARY
+  [PASS]  Passed:  101
+  [FAIL]  Failed:  0
+  [SKIP]  Skipped: 1
+  Total:  102
+  Summary
+  ● Positive Tests (should PASS or WARN): 2/2 passed (2.583s)
+  ● Level Declaration Tests (should PASS or WARN): 1/1 passed (1.462s)
+  ● Warning Tests (should WARN): 1/1 passed (1.129s)
+  ● Sections Present Tests (should FAIL on missing): 1/1 passed (1.323s)
+  ● Negative Tests (should FAIL): 11/11 passed (13.166s)
+  ● Anchor Edge Cases: 3/3 passed (4.306s)
+  ● Placeholder Edge Cases: 3/3 passed (3.607s)
+  ● CLI Options Tests: 5/5 passed (7.113s)
+  ● Exact Exit Code Tests: 4/4 passed (2.301s)
+  Passed:  31
+  Failed:  0
+  Total:   31
+RESULT: PASSED
+  Summary
+  ● Individual Rule: FILE_EXISTS (check-files.sh): 8/8 passed (428ms)
+  ● Individual Rule: FOLDER_NAMING (check-folder-naming.sh): 3/3 passed (38ms)
+  ● Individual Rule: PLACEHOLDER_FILLED (check-placeholders.sh): 8/8 passed (506ms)
+  ● Individual Rule: COMMENT_HYGIENE_MARKER (check-comment-hygiene.sh): 2/2 passed (73ms)
+  ● Individual Rule: SCAFFOLD_NEVER_TOUCHED (check-scaffold-never-touched.sh): 2/2 passed (192ms)
+  ● Shared Status Classifier: 1/1 passed (19ms)
+  ● Shared Enforcement Flag Parsing: 1/1 passed (1.543s)
+  ● Metadata Parse Errors: 1/1 passed (166ms)
+  ● Individual Rule: LEVEL_DECLARED (check-level.sh): 5/5 passed (46ms)
+  ● Individual Rule: AI_PROTOCOL (check-ai-protocols.sh): 3/3 passed (124ms)
+  ● Individual Rule: LEVEL_MATCH (check-level-match.sh): 3/3 passed (224ms)
+  ● Individual Rule: COMPLEXITY_MATCH (check-complexity.sh): 3/3 passed (99ms)
+  ● Orchestrator: Valid Fixtures (Exit 0 or 1): 1/1 passed (1.340s)
+  ● Orchestrator: Warning Fixtures (Exit 0): 1/1 passed (1.018s)
+  ● Orchestrator: Error Fixtures (Exit 2): 13/13 passed (14.486s)
+  ● Exit Code Verification: 9/9 passed (8.449s)
+  ● JSON Output Mode: 3/3 passed (3.705s)
+  ● CLI Options: 6/6 passed (8.322s)
+  ● Edge Cases: Anchor Scenarios: 3/3 passed (4.658s)
+  ● Edge Cases: Evidence Patterns: 1/1 passed (1.753s)
+  ● Edge Cases: Placeholder Contexts: 3/3 passed (4.271s)
+  ● Edge Cases: Level Detection: 3/3 passed (4.472s)
+  ● Edge Cases: Special Directories: 1/1 passed (1.650s)
+  Passed:  84
+  Failed:  0
+  Total:   84
+RESULT: PASSED
+  29 passed, 0 failed
+  45 passed, 0 failed
+Results: 12 passed, 0 failed
+Results: 2 passed, 0 failed
+  Results: 12 passed, 0 failed (of 12)
+rc=0

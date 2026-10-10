@@ -1,0 +1,45 @@
+2026-10-09T17:09:29Z
+HEAD: 9dbfe3a046
+--- secret-shaped scan over changed non-spec files (non-zero counts only):
+scan done
+--- untracked non-spec files:
+.skilled/skills/system-spec-kit/changelog/v2.7.1.0.md
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/anchor-integrity-and-nesting-check.md
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/repo-era-report.md
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-phrase-lint-commit-gate.md
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/upgrade-legacy-downgrades-report.md
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/upgrade-legacy-reversibility-manifest.md
+.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-compat.md
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/anchors-valid-nested-anchor.md
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-anchor-repair-apply.md
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-anchor-repair-dry-run.md
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-lane-modes.md
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/repo-era-report.md
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-phrase-lint-blocked-commit.md
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-phrase-lint-bypass.md
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/upgrade-legacy-apply-manifest.md
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/upgrade-legacy-dry-run.md
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/upgrade-legacy-refusal-without-git.md
+--- tracked modified non-spec files:
+      26
+--- evidence files:
+catalog.txt
+close-out-prep.txt
+doctor-compat.txt
+f18-and-children.txt
+findings-check-b.txt
+findings-check-c.txt
+findings-check.txt
+followup-verify-b.txt
+followup-verify.txt
+gate3-parity.txt
+hook-gates.txt
+links.txt
+playbook-sk-git.txt
+playbook-spec-kit.txt
+removed-behavior-corrected.txt
+removed-behavior.txt
+validate-docs.txt
+rc=0

@@ -167,7 +167,7 @@ Eight command files cover the diagnostic surface, one per owner. Backed by `_rou
 | Git | `/doctor:git <hooks\|standards> [--dry-run]` | Switch shipped git hook gates on or off in git config, and change the commit, PR and branch rules in `.sk-git/` |
 | MCP Debug | `/doctor:mcp debug [--fix]` | Diagnose Code Mode build, UTCP configuration, credentials, and runtime registration |
 | MCP Install | `/doctor:mcp install [--runtime <name>]` | Install Code Mode and configure its UTCP file and selected runtime |
-| Update | `/doctor:update [check|align|apply|rollback|record-base]` | Release-aware spec-kit updater with read-only check, decision alignment, gated apply, rollback and base-recording workflows |
+| Update | `/doctor:update [check\|align\|apply\|rollback\|record-base\|compat]` | Release-aware spec-kit updater with read-only check, decision alignment, gated apply, rollback, base-recording and compat workflows, where compat moves a v3 spec layout to v4 behind two approvals |
 | Environment Switches | `/doctor:env [list \| <section> \| <VARIABLE>] [--dry-run]` | Inspect documented environment switches and optionally save a confirmed preference |
 
 ### Deep Commands

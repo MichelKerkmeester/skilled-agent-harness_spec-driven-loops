@@ -1,0 +1,68 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/ci-rule-set-comparison.vitest.ts (15 tests | 2 failed) 4575ms
+       × escapes the percent, colon and comma characters in the annotation file property 459ms
+       × keeps the packet name from starting a line the runner reads as a workflow command 454ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/ci-rule-set-comparison.vitest.ts > changed-packet gate rule-set comparison > hostile packet name > escapes the percent, colon and comma characters in the annotation file property
+AssertionError: expected 'Packets to validate:\n  specs/demo/ev…' to contain '::error file=specs/demo/evil%250A%0A%…'
+
+- Expected
++ Received
+
+- ::error file=specs/demo/evil%250A%0A%3A%3Aadd-mask%3A%3Ax%2Cy%3Az/spec.md::Regression — new failing rule(s): rule-alpha
++ Packets to validate:
++   specs/demo/evil%0A\n::add-mask::x,y:z
++
++ 1 changed packet(s) do not validate; checking which are regressions.
++ ::error file=specs/demo/evil%0A
++ ::add-mask::x,y:z/spec.md::Regression — new failing rule(s): rule-alpha
++ ::stop-commands::6cfa4317-19d4-42b1-98a8-1dd48b81af5c
++
++ ::6cfa4317-19d4-42b1-98a8-1dd48b81af5c::
++
++ BLOCKED: 1 packet(s) regressed in this PR.
++ Run: bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet> --strict
++
+
+ ❯ tests/ci-rule-set-comparison.vitest.ts:499:30
+    497|       const outcome = runHostileGate();
+    498|
+    499|       expect(outcome.output).toContain(
+       |                              ^
+    500|         `::error file=${HOSTILE_ESCAPED_PROPERTY}::Regression — new fa…
+    501|       );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |cli| tests/ci-rule-set-comparison.vitest.ts > changed-packet gate rule-set comparison > hostile packet name > keeps the packet name from starting a line the runner reads as a workflow command
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/ci-rule-set-comparison.vitest.ts:507:90
+    505|       const outcome = runHostileGate();
+    506|
+    507|       expect(outcome.output.split('\n').some((line) => line.startsWith…
+       |                                                                                          ^
+    508|     });
+    509|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 13 passed (15)
+   Start at  11:50:43
+   Duration  4.68s (transform 19ms, setup 12ms, import 30ms, tests 4.58s, environment 0ms)
+

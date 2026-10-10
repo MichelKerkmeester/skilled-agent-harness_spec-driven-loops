@@ -1,0 +1,6 @@
+::stop-commands::2256289f-0ddf-4cbf-95a2-a3ed2250c1e9
+ordinary line
+::error::PWNED
+::stop-commands::fake
+
+::2256289f-0ddf-4cbf-95a2-a3ed2250c1e9::

@@ -1,0 +1,104 @@
+CHK-FIX-006 same-instance template cache case: red and green runs
+Captured: 2026-10-10 09:44 to 09:47 UTC, worktree 091-consolidate-small-packets
+Shell: zsh on darwin. Each section lists the command, the exit status read when it ran, and the output.
+
+=== 1. RED: unmodified lib/frontmatter-migration.ts (module-level cache present), new same-instance case added
+Command: cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/frontmatter-template-literals.vitest.ts
+Exit status: 1
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/frontmatter-template-literals.vitest.ts (2 tests | 1 failed) 119ms
+     × re-reads a template that changed on disk within the same module instance 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/frontmatter-template-literals.vitest.ts > frontmatter template literals > re-reads a template that changed on disk within the same module instance
+AssertionError: expected 'critical' to be 'normal' // Object.is equality
+
+Expected: "normal"
+Received: "critical"
+
+ ❯ tests/frontmatter-template-literals.vitest.ts:70:93
+     68|
+     69|     writeSpecTemplate(templatesRoot, 'normal');
+     70|     expect(mod.buildFrontmatterContent(content, options, filePath).man…
+       |                                                                                             ^
+     71|   });
+     72| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  11:44:06
+   Duration  240ms (transform 85ms, setup 14ms, import 10ms, tests 119ms, environment 0ms)
+
+
+=== 2. FIX: module-level cache removed from readTemplateLiterals (template read on every call)
+Cost measurement that decided between a stat-keyed cache and removal (run on templates/core/spec.md.tmpl, 9764 bytes, 20000 iterations per row):
+Command: node <scratchpad>/bench.cjs .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
+Exit status: 0
+read+parse (no cache): 37.33 us/call (sink 20000)
+statSync only: 0.97 us/call (sink 20000)
+cache hit via stat key: 0.95 us/call (sink 20000)
+plain Map cache hit (current code path): 0.01 us/call (sink 20000)
+
+=== 3. BUILD after the TypeScript edit
+Command: npm --prefix .skilled/skills/system-spec-kit/runtime/cli run build
+Exit status: 0
+
+> @spec-kit/cli@1.7.2 build
+> npm run prepare-build && tsc --build && npm run record-build
+
+
+> @spec-kit/cli@1.7.2 prepare-build
+> node lib/dist-freshness.cjs prepare-build --package system-spec-kit/runtime/cli --entry default && node lib/dist-freshness.cjs prepare-build --package system-spec-kit/runtime/cli --entry is-phase-parent
+
+@spec-kit/cli dist build preparation recorded
+@spec-kit/cli dist build preparation recorded
+
+> @spec-kit/cli@1.7.2 record-build
+> node lib/dist-freshness.cjs record-build --package system-spec-kit/runtime/cli --entry default && node lib/dist-freshness.cjs record-build --package system-spec-kit/runtime/cli --entry is-phase-parent
+
+@spec-kit/cli dist build attestation recorded
+@spec-kit/cli dist build attestation recorded
+Check on the compiled output: grep -c TEMPLATE_LITERAL_CACHE runtime/cli/dist/lib/frontmatter-migration.js printed 0.
+
+=== 4. GREEN: target test file
+Command: cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/frontmatter-template-literals.vitest.ts
+Exit status: 0
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  11:44:40
+   Duration  172ms (transform 61ms, setup 13ms, import 10ms, tests 78ms, environment 0ms)
+
+
+=== 5. DEPENDENT CLI tests (the target file plus the two suites that import frontmatter-migration)
+Command: cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/frontmatter-template-literals.vitest.ts tests/memory-quality-phase2-pr3.vitest.ts tests/memory-quality-phase6-migration.vitest.ts
+Exit status: 0
+ Test Files  3 passed (3)
+      Tests  7 passed (7)
+
+=== 6. JS backfill test that loads the compiled dist/lib/frontmatter-migration.js
+Command: node tests/test-frontmatter-backfill.js (from runtime/cli)
+Exit status: 0
+Summary: pass=15, fail=0
+
+Earlier run of the same benchmark script, before the run above (same template, same iteration count):
+read+parse (no cache): 44.00 us/call
+statSync only: 1.00 us/call
+cache hit via stat key: 0.97 us/call
+plain Map cache hit (current code path): 0.01 us/call
+Across the two runs an uncached read costs 37 to 44 us, and a stat-keyed hit saves 36 to 43 us per repeat call.

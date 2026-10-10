@@ -439,25 +439,35 @@ describe('template phrase census and cleanup', () => {
 
   it('drops a cut-off phrase when the trim empties it or repeats a phrase the list carries', () => {
     const specsRoot = createSpecsRoot();
-    const specFile = writeDocument(specsRoot, 'track-a/001-sample-packet', 'spec.md', [
+    // Each cut-off phrase is the verbatim first eight words of its own description,
+    // which is the provenance the trim requires.
+    const repeatFile = writeDocument(specsRoot, 'track-a/001-sample-packet', 'spec.md', [
       '  - "sample packet"',
-      '  - "a an the and or but nor of"',
       '  - "two of the four rules that fire"',
       '  - "two of the four rules that fire on"',
-    ]);
+    ], {
+      description: 'Two of the four rules that fire on the review gate.',
+    });
+    const emptyFile = writeDocument(specsRoot, 'track-a/002-stop-only-packet', 'spec.md', [
+      '  - "stop only packet"',
+      '  - "a an the and or but nor of"',
+    ], {
+      description: 'A an the and or but nor of the review gate.',
+    });
 
     const applied = runNode(CLEANUP_SCRIPT, ['--root', specsRoot, '--apply']);
     expect(applied.status).toBe(1);
-    expect(readTriggerPhrases(specFile)).toEqual([
+    expect(readTriggerPhrases(repeatFile)).toEqual([
       'sample packet',
       'two of the four rules that fire',
     ]);
+    expect(readTriggerPhrases(emptyFile)).toEqual(['stop only packet']);
 
-    const cleaned = fs.readFileSync(specFile, 'utf8');
+    const cleaned = fs.readFileSync(repeatFile, 'utf8');
     const secondApply = runNode(CLEANUP_SCRIPT, ['--root', specsRoot, '--apply']);
     expect(secondApply.status).toBe(0);
     expect(secondApply.stdout).toContain('nothing to change');
-    expect(fs.readFileSync(specFile, 'utf8')).toBe(cleaned);
+    expect(fs.readFileSync(repeatFile, 'utf8')).toBe(cleaned);
   });
 
   it('leaves cut-off phrases in other document kinds untouched', () => {

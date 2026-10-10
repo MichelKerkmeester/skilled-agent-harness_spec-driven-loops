@@ -1,0 +1,208 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/archive-track.vitest.ts (32 tests | 9 failed) 104558ms
+     × refuses a root packet whose z_archive links outside specs, and changes neither side 358ms
+     × refuses a z_archive that links into the packet being archived, and leaves the packet whole 353ms
+     × refuses a z_archive that links to a folder that is not a packet home, and leaves the packet whole 417ms
+     × refuses a z_archive that links into another packet home, and leaves the packet whole 424ms
+     × refuses a track packet whose track z_archive links outside specs, and leaves the track list alone 593ms
+     × refuses a phase whose parent z_archive links outside specs 400ms
+     × refuses to restore a folder that is reachable only through a link outside specs 312ms
+     × refuses to restore through a z_archive that links to a folder that is not a packet home 397ms
+     × refuses to restore through a z_archive that links into another packet home 674ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a root packet whose z_archive links outside specs, and changes neither side
+AssertionError: expected 'ERROR: Archive directory resolves out…' to contain 'is a symlink'
+
+- Expected
++ Received
+
+- is a symlink
++ ERROR: Archive directory resolves outside the specs root /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-bHSiGw/specs: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-bHSiGw/specs/z_archive -> /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-escape-AsSPyT
++
+
+ ❯ tests/archive-track.vitest.ts:468:29
+    466|       const result = archive(['--force', 'specs/005-root']);
+    467|       expect(result.status, result.stdout + result.stderr).toBe(1);
+    468|       expect(result.stderr).toContain('is a symlink');
+       |                             ^
+    469|       expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+    470|       expect(fs.readdirSync(outside)).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a z_archive that links into the packet being archived, and leaves the packet whole
+AssertionError: expected 'ERROR: Archive directory is inside th…' to contain 'is a symlink'
+
+- Expected
++ Received
+
+- is a symlink
++ ERROR: Archive directory is inside the folder being archived: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-F6dxuD/specs/005-root/sub
++
+
+ ❯ tests/archive-track.vitest.ts:485:27
+    483|     const result = archive(['--force', 'specs/005-root']);
+    484|     expect(result.status, result.stdout + result.stderr).toBe(1);
+    485|     expect(result.stderr).toContain('is a symlink');
+       |                           ^
+    486|     expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+    487|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a z_archive that links to a folder that is not a packet home, and leaves the packet whole
+AssertionError: SUCCESS: Archived: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-RIUMPF/specs/005-root -> /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-RIUMPF/specs/tools/001-a/research/z_archive/005-root
+WARNING: Recorded paths under /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-RIUMPF/specs/tools/001-a/research/z_archive/005-root were not re-derived: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-RIUMPF/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs is missing. Restore it, then run repair-derived.cjs --roots /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-RIUMPF/specs/tools/001-a/research/z_archive/005-root --apply.
+: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/archive-track.vitest.ts:498:58
+    496|
+    497|     const result = archive(['--force', 'specs/005-root']);
+    498|     expect(result.status, result.stdout + result.stderr).toBe(1);
+       |                                                          ^
+    499|     expect(result.stderr).toContain('is a symlink');
+    500|     expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a z_archive that links into another packet home, and leaves the packet whole
+AssertionError: SUCCESS: Archived: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-MmdG9w/specs/005-root -> /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-MmdG9w/specs/tools/001-a/z_archive/005-root
+WARNING: Recorded paths under /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-MmdG9w/specs/tools/001-a/z_archive/005-root were not re-derived: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-MmdG9w/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs is missing. Restore it, then run repair-derived.cjs --roots /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-MmdG9w/specs/tools/001-a/z_archive/005-root --apply.
+: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/archive-track.vitest.ts:513:58
+    511|
+    512|     const result = archive(['--force', 'specs/005-root']);
+    513|     expect(result.status, result.stdout + result.stderr).toBe(1);
+       |                                                          ^
+    514|     expect(result.stderr).toContain('is a symlink');
+    515|     expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a track packet whose track z_archive links outside specs, and leaves the track list alone
+AssertionError: expected 'ERROR: Archive directory resolves out…' to contain 'is a symlink'
+
+- Expected
++ Received
+
+- is a symlink
++ ERROR: Archive directory resolves outside the specs root /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-4PUEem/specs: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-4PUEem/specs/tools/z_archive -> /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-escape-kro6Mx
++
+
+ ❯ tests/archive-track.vitest.ts:529:29
+    527|       const result = archive(['--force', 'specs/tools/002-b']);
+    528|       expect(result.status, result.stdout + result.stderr).toBe(1);
+    529|       expect(result.stderr).toContain('is a symlink');
+       |                             ^
+    530|       expect(snapshot(path.join(specs, 'tools', '002-b'))).toEqual(bef…
+    531|       expect(readMetadata('tools')).toBe(trackBefore);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a phase whose parent z_archive links outside specs
+AssertionError: expected 'ERROR: Archive directory resolves out…' to contain 'is a symlink'
+
+- Expected
++ Received
+
+- is a symlink
++ ERROR: Archive directory resolves outside the specs root /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-vtgS8b/specs: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-vtgS8b/specs/tools/001-a/z_archive -> /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-escape-LpPIJ4
++
+
+ ❯ tests/archive-track.vitest.ts:548:29
+    546|       const result = archive(['--force', 'specs/tools/001-a/002-p']);
+    547|       expect(result.status, result.stdout + result.stderr).toBe(1);
+    548|       expect(result.stderr).toContain('is a symlink');
+       |                             ^
+    549|       expect(snapshot(path.join(specs, 'tools', '001-a', '002-p'))).to…
+    550|       expect(fs.readdirSync(outside)).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses to restore a folder that is reachable only through a link outside specs
+AssertionError: expected 'ERROR: Folder is not in archive direc…' to contain 'is a symlink'
+
+- Expected
++ Received
+
+- is a symlink
++ ERROR: Folder is not in archive directory: specs/z_archive/001-a
++
+
+ ❯ tests/archive-track.vitest.ts:568:29
+    566|       const result = archive(['--restore', 'specs/z_archive/001-a']);
+    567|       expect(result.status, result.stdout + result.stderr).toBe(1);
+    568|       expect(result.stderr).toContain('is a symlink');
+       |                             ^
+    569|       expect(fs.existsSync(path.join(outside, 'z_archive', '001-a', 's…
+    570|       expect(fs.existsSync(path.join(outside, '001-a'))).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses to restore through a z_archive that links to a folder that is not a packet home
+AssertionError: expected 'ERROR: Folder is not in archive direc…' to contain 'is a symlink'
+
+- Expected
++ Received
+
+- is a symlink
++ ERROR: Folder is not in archive directory: specs/z_archive/002-x
++
+
+ ❯ tests/archive-track.vitest.ts:587:27
+    585|     const result = archive(['--restore', 'specs/z_archive/002-x']);
+    586|     expect(result.status, result.stdout + result.stderr).toBe(1);
+    587|     expect(result.stderr).toContain('is a symlink');
+       |                           ^
+    588|     expect(snapshot(path.join(notHome, '002-x'))).toEqual(before);
+    589|     expect(fs.existsSync(path.join(specs, '002-x'))).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses to restore through a z_archive that links into another packet home
+AssertionError: SUCCESS: Restored: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-DgZRl3/specs/tools/001-a/z_archive/002-x -> /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-DgZRl3/specs/tools/001-a/002-x
+WARNING: Recorded paths under /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-DgZRl3/specs/tools/001-a/002-x were not re-derived: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-DgZRl3/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs is missing. Restore it, then run repair-derived.cjs --roots /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-DgZRl3/specs/tools/001-a/002-x --apply.
+: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/archive-track.vitest.ts:601:58
+    599|
+    600|     const result = archive(['--restore', 'specs/z_archive/002-x']);
+    601|     expect(result.status, result.stdout + result.stderr).toBe(1);
+       |                                                          ^
+    602|     expect(result.stderr).toContain('is a symlink');
+    603|     expect(snapshot(path.join(otherHome, '002-x'))).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  9 failed | 23 passed (32)
+   Start at  07:49:24
+   Duration  104.87s (transform 51ms, setup 32ms, import 42ms, tests 104.56s, environment 0ms)
+

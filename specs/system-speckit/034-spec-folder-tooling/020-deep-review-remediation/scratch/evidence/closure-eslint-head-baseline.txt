@@ -1,0 +1,53 @@
+CLOSURE EVIDENCE: ESLint over the changed .ts files, and HEAD 4669db6522 blobs of the two files with errors linted through --stdin, to test whether the six no-unused-vars errors predate this phase
+Repository: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets
+Method: the file list is the same formula as final-gates2/jobs/j18-lint.sh (git diff against 4669db6522 under the runtime folder, plus untracked .ts files, minus dist and node_modules). Commands run from the runtime folder in this pass.
+
+== 1. Working tree, the 21 changed .ts files
+$ cd .skilled/skills/system-spec-kit/runtime && npx eslint --max-warnings=0 <21 files>
+files: cli/graph/backfill-graph-metadata.ts cli/lib/frontmatter-migration.ts cli/tests/archive-track.vitest.ts cli/tests/ci-rule-set-comparison.vitest.ts cli/tests/frontmatter-template-literals.vitest.ts cli/tests/graph-metadata-backfill.vitest.ts cli/tests/heal-lane-modes.vitest.ts cli/tests/heal-symlink-containment.vitest.ts cli/tests/heal-target-parity.vitest.ts cli/tests/migrate-generated-json.vitest.ts cli/tests/repair-derived.vitest.ts cli/tests/template-phrase-cleanup.vitest.ts cli/tests/template-phrase-provenance.vitest.ts cli/tests/trigger-index-rebuild-workflow.vitest.ts cli/tests/upgrade-legacy.vitest.ts lib/graph/graph-metadata-parser.ts lib/search/folder-discovery.ts lib/validation/orchestrator.ts tests/folder-discovery.vitest.ts tests/graph-metadata-schema.vitest.ts tests/upgrade-baseline.vitest.ts 
+
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts
+  1361:10  error  'frontmatterForContextTemplate' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+   95:7   error  'VALID_LEVELS' is assigned a value but never used. Allowed unused vars must match /^_/u                 @typescript-eslint/no-unused-vars
+  101:7   error  'CHECKLIST_H1_PREFIX' is assigned a value but never used. Allowed unused vars must match /^_/u          @typescript-eslint/no-unused-vars
+  102:7   error  'OPTIONAL_TEMPLATE_HEADER_RE' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  103:7   error  'OPTIONAL_TEMPLATE_ANCHORS' is assigned a value but never used. Allowed unused vars must match /^_/u    @typescript-eslint/no-unused-vars
+  657:10  error  'h2Headers' is defined but never used. Allowed unused vars must match /^_/u                             @typescript-eslint/no-unused-vars
+
+✖ 6 problems (6 errors, 0 warnings)
+
+rc=1
+
+== 2. HEAD blob of cli/lib/frontmatter-migration.ts
+$ git show 4669db6522:.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts | npx eslint --max-warnings=0 --stdin --stdin-filename cli/lib/frontmatter-migration.ts
+
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts
+  1367:10  error  'frontmatterForContextTemplate' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (1 error, 0 warnings)
+
+rc=1
+
+== 3. HEAD blob of lib/validation/orchestrator.ts
+$ git show 4669db6522:.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts | npx eslint --max-warnings=0 --stdin --stdin-filename lib/validation/orchestrator.ts
+
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+   95:7   error  'VALID_LEVELS' is assigned a value but never used. Allowed unused vars must match /^_/u                 @typescript-eslint/no-unused-vars
+  101:7   error  'CHECKLIST_H1_PREFIX' is assigned a value but never used. Allowed unused vars must match /^_/u          @typescript-eslint/no-unused-vars
+  102:7   error  'OPTIONAL_TEMPLATE_HEADER_RE' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  103:7   error  'OPTIONAL_TEMPLATE_ANCHORS' is assigned a value but never used. Allowed unused vars must match /^_/u    @typescript-eslint/no-unused-vars
+  657:10  error  'h2Headers' is defined but never used. Allowed unused vars must match /^_/u                             @typescript-eslint/no-unused-vars
+
+✖ 5 problems (5 errors, 0 warnings)
+
+rc=1
+
+== 4. Is the trigger test in HEAD?
+$ git cat-file -e 4669db6522:.skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts
+absent at HEAD, so its no-unused-vars error is phase-only
+
+== 5. Line numbers, working tree against HEAD
+frontmatterForContextTemplate: the same rule and identifier at HEAD line 1367 (section 2) and working-tree line 1361 (section 1). The line moved six lines up, so the error is the same finding at a new line.
+orchestrator.ts: the same five errors on lines 95, 101, 102, 103 and 657 in the working tree (section 1) and at HEAD (section 3).

@@ -11,7 +11,7 @@ import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 
 import { readTriggerPhrases } from '../retrieval/lib/frontmatter.mjs';
 import { judgeTriggerPhrase } from '../retrieval/lib/phrase-judge.mjs';
-import { planLayoutMove } from '../spec/upgrade-legacy.mjs';
+import { planLayoutMove, recordFindings } from '../spec/upgrade-legacy.mjs';
 import { renderInlineGates } from '../templates/inline-gate-renderer';
 
 const skillRoot = path.resolve(__dirname, '../../..');
@@ -1282,6 +1282,53 @@ describe('upgrade-legacy', () => {
     const recheck = validate(folder);
     expect(recheck.stdout, recheck.stdout + recheck.stderr).toContain('RESULT: PASSED');
   }, 180_000);
+
+  // The healer visits one document at a time (spec.md, plan.md, tasks.md) and
+  // runs every mode on it, so it meets these refusals document by document.
+  // The baseline lists them by mode, then document, then reason. The link
+  // refusals pin the last two keys: plan.md sorts before spec.md while its
+  // reason sorts after, and spec.md's own two links are written against reason
+  // order. Reasons are matched by a distinguishing fragment, so a reworded
+  // message does not read as an ordering failure.
+  it('records lane-mode refusals in mode, document and reason order', () => {
+    const folder = 'specs/lane-track/002-refusal-order';
+    const packetFolder = path.join(sandbox, folder);
+    writeLegacyPacket(folder);
+
+    // spec.md carries a section but no ANCHOR marker, and two links nothing can
+    // be matched to, written against reason order. plan.md carries one more
+    // whose reason sorts after both: by document it comes first, by reason
+    // last. None of the three documents declares a level, which refuses
+    // level-from-spec and header-add.
+    fs.appendFileSync(
+      path.join(packetFolder, 'spec.md'),
+      [
+        '',
+        '## 1. OVERVIEW',
+        '',
+        'Read [mike](./mike-absent.md) first, then [alpha](./alpha-absent.md).',
+        '',
+      ].join('\n'),
+    );
+    fs.appendFileSync(path.join(packetFolder, 'plan.md'), '\nSee [zulu](./zulu-absent.md).\n');
+
+    clearUpgradeManifest();
+    const result = runUpgrade(['--apply', '--roots', 'specs/lane-track']);
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+
+    const baseline = JSON.parse(fs.readFileSync(path.join(packetFolder, 'upgrade-baseline.json'), 'utf8'));
+    expect(baseline.refusals).toEqual([
+      { mode: 'anchor-wrap', document: 'spec.md', reason: expect.stringContaining('no ANCHOR marker') },
+      { mode: 'link-repoint', document: 'plan.md', reason: expect.stringContaining('zulu-absent.md') },
+      { mode: 'link-repoint', document: 'spec.md', reason: expect.stringContaining('alpha-absent.md') },
+      { mode: 'link-repoint', document: 'spec.md', reason: expect.stringContaining('mike-absent.md') },
+      { mode: 'level-from-spec', document: 'plan.md', reason: expect.stringContaining('no SPECKIT_LEVEL marker') },
+      { mode: 'level-from-spec', document: 'tasks.md', reason: expect.stringContaining('no SPECKIT_LEVEL marker') },
+      { mode: 'header-add', document: 'plan.md', reason: expect.stringContaining('no level is recorded') },
+      { mode: 'header-add', document: 'spec.md', reason: expect.stringContaining('no level is recorded') },
+      { mode: 'header-add', document: 'tasks.md', reason: expect.stringContaining('no level is recorded') },
+    ]);
+  }, 180_000);
 });
 
 // ───────────────────────────────────────────────────────────────────
@@ -1567,4 +1614,305 @@ describe('planLayoutMove', () => {
     expect(imported.status, imported.stdout + imported.stderr).toBe(0);
     expect(imported.stdout.trim()).toBe('function');
   }, 180_000);
+});
+
+// A link inside a packet can point anywhere, so a write or a before-image must
+// be confined to the packet folder. Each case plants a link whose target lives in
+// the OS temp directory, outside the repository, and checks that target afterwards.
+describe('upgrade-legacy link containment', () => {
+  afterEach(resetSandbox);
+
+  it('refuses a packet whose document is a link out of the packet and leaves the link target as it was', () => {
+    const folder = 'specs/link-containment/001-packet';
+    writeLegacyPacket(folder);
+    const specFile = path.join(sandbox, folder, 'spec.md');
+    const outsideDir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-outside-')));
+    const outsideFile = path.join(outsideDir, 'target.md');
+    const outsideText = '# Outside target\n\nNo frontmatter here.\n';
+    fs.writeFileSync(outsideFile, outsideText);
+    fs.rmSync(specFile);
+    fs.symlinkSync(outsideFile, specFile);
+
+    try {
+      const result = runUpgrade(['--apply', '--roots', folder]);
+      const output = result.stdout + result.stderr;
+      expect(fs.readFileSync(outsideFile, 'utf8')).toBe(outsideText);
+      expect(fs.lstatSync(specFile).isSymbolicLink()).toBe(true);
+      expect(output).toContain(`refused ${folder}`);
+      expect(output).toContain('symbolic link, not followed');
+      expect(result.status, output).toBe(2);
+    } finally {
+      fs.rmSync(specFile, { force: true });
+      fs.rmSync(outsideDir, { recursive: true, force: true });
+    }
+  }, 180_000);
+
+  it('does not copy a file read through a link into the reversibility manifest', () => {
+    const folder = 'specs/link-containment/002-packet';
+    writeLegacyPacket(folder);
+    const nested = path.join(sandbox, folder, 'nested', 'deeper');
+    fs.mkdirSync(nested, { recursive: true });
+    fs.writeFileSync(path.join(nested, 'notes.md'), '# Inside note\n');
+    commitChanges('committed packet with a nested note', [folder]);
+    const outsideDir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-outside-')));
+    const outsideNote = path.join(outsideDir, 'notes.md');
+    const secret = 'outside note bytes\n';
+    fs.writeFileSync(outsideNote, secret);
+    fs.rmSync(nested, { recursive: true, force: true });
+    fs.symlinkSync(outsideDir, nested);
+
+    try {
+      const result = runUpgrade(['--apply', '--roots', folder]);
+      const manifest = fs.existsSync(upgradeManifestPath()) ? fs.readFileSync(upgradeManifestPath(), 'utf8') : '';
+      expect(manifest).not.toContain(Buffer.from(secret).toString('base64'));
+      expect(fs.readFileSync(outsideNote, 'utf8')).toBe(secret);
+      expect(result.status, result.stdout + result.stderr).toBe(2);
+    } finally {
+      fs.rmSync(nested, { force: true });
+      fs.rmSync(outsideDir, { recursive: true, force: true });
+    }
+  }, 180_000);
+
+  it('writes the baseline under a fresh temporary name so a link planted at a guessable name is not written through', () => {
+    const folder = path.join(sandbox, 'specs/link-containment/003-packet');
+    fs.mkdirSync(folder, { recursive: true });
+    const outsideDir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-outside-')));
+    const outsideFile = path.join(outsideDir, 'target.json');
+    fs.writeFileSync(outsideFile, 'outside bytes\n');
+    // The temporary name the old writer used was predictable from the process id alone.
+    fs.symlinkSync(outsideFile, path.join(folder, `upgrade-baseline.json.${process.pid}.tmp`));
+    const finding = { rule: 'SAMPLE_RULE', detail: 'sample detail' };
+
+    try {
+      recordFindings(folder, [finding], [fs.realpathSync(path.join(sandbox, 'specs'))]);
+      expect(fs.readFileSync(outsideFile, 'utf8')).toBe('outside bytes\n');
+      expect(JSON.parse(fs.readFileSync(path.join(folder, 'upgrade-baseline.json'), 'utf8')).findings).toEqual([finding]);
+    } finally {
+      fs.rmSync(folder, { recursive: true, force: true });
+      fs.rmSync(outsideDir, { recursive: true, force: true });
+    }
+  });
+
+  it('still repairs a link whose target stays inside the packet', () => {
+    const folder = 'specs/link-containment/004-packet';
+    writeLegacyPacket(folder);
+    const packetFolder = path.join(sandbox, folder);
+    const source = path.join(packetFolder, 'sources', 'plan-source.md');
+    fs.mkdirSync(path.dirname(source), { recursive: true });
+    fs.renameSync(path.join(packetFolder, 'plan.md'), source);
+    fs.symlinkSync(path.join('sources', 'plan-source.md'), path.join(packetFolder, 'plan.md'));
+
+    const result = runUpgrade(['--apply', '--roots', folder]);
+    const output = result.stdout + result.stderr;
+    expect(output).not.toContain('refused');
+    expect(fs.readFileSync(source, 'utf8').startsWith('---\n')).toBe(true);
+  }, 180_000);
+
+  it('does not read findings from a baseline that is a link out of the packet', () => {
+    const folder = 'specs/link-containment/005-packet';
+    writeLegacyPacket(folder);
+    const baseline = path.join(sandbox, folder, 'upgrade-baseline.json');
+    const outsideDir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-outside-')));
+    const outsideBaseline = path.join(outsideDir, 'baseline.json');
+    const outsideText = `${JSON.stringify({ schema: 1, recordedBy: 'outside', findings: [{ rule: 'OUTSIDE_FINDING', detail: 'outside detail' }] }, null, 2)}\n`;
+    fs.writeFileSync(outsideBaseline, outsideText);
+    fs.symlinkSync(outsideBaseline, baseline);
+
+    try {
+      const result = runUpgrade(['--roots', folder]);
+      const output = result.stdout + result.stderr;
+      expect(output).not.toContain('OUTSIDE_FINDING');
+      expect(output).toContain(`refused ${folder}: upgrade-baseline.json is a symbolic link, not followed`);
+      expect(fs.readFileSync(outsideBaseline, 'utf8')).toBe(outsideText);
+      expect(result.status, output).toBe(1);
+    } finally {
+      fs.rmSync(baseline, { force: true });
+      fs.rmSync(outsideDir, { recursive: true, force: true });
+    }
+  }, 180_000);
+
+  // The archived un-nesting rewrites spec.md. Reading through a link and writing
+  // back would replace the link with a copy of its target, so the link is skipped
+  // and the file it points at is left as it was.
+  it('leaves an archived spec.md that links to a file in the same packet, and that file, unchanged', () => {
+    clearUpgradeManifest();
+    const folder = 'specs/z_archive/006-linked';
+    writeLegacyPacket(folder);
+    const packetFolder = path.join(sandbox, folder);
+    const targetText = nestedQuestionsSpec();
+    fs.writeFileSync(path.join(packetFolder, 'spec-source.txt'), targetText);
+    fs.rmSync(path.join(packetFolder, 'spec.md'));
+    fs.symlinkSync('spec-source.txt', path.join(packetFolder, 'spec.md'));
+
+    const result = runUpgrade(['--apply', '--include-archive', '--roots', 'specs/z_archive']);
+    const output = result.stdout + result.stderr;
+    expect(output).toContain(`left unchanged ${folder}/spec.md: symbolic link, not followed`);
+    expect(fs.lstatSync(path.join(packetFolder, 'spec.md')).isSymbolicLink()).toBe(true);
+    expect(fs.readlinkSync(path.join(packetFolder, 'spec.md'))).toBe('spec-source.txt');
+    expect(fs.readFileSync(path.join(packetFolder, 'spec-source.txt'), 'utf8')).toBe(targetText);
+  }, 180_000);
+
+  it('leaves findings read through a linked baseline out of the apply census', () => {
+    clearUpgradeManifest();
+    const folder = 'specs/link-containment/007-packet';
+    writeLegacyPacket(folder);
+    const baseline = path.join(sandbox, folder, 'upgrade-baseline.json');
+    const outsideDir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-outside-')));
+    const outsideBaseline = path.join(outsideDir, 'baseline.json');
+    const outsideText = `${JSON.stringify({ schema: 1, recordedBy: 'outside', findings: [{ rule: 'OUTSIDE_CENSUS_RULE', detail: 'outside detail' }] }, null, 2)}\n`;
+    fs.writeFileSync(outsideBaseline, outsideText);
+    fs.symlinkSync(outsideBaseline, baseline);
+
+    try {
+      const result = runUpgrade(['--apply', '--roots', folder]);
+      const output = result.stdout + result.stderr;
+      expect(output).toContain('recorded findings by rule:');
+      expect(output).not.toContain('OUTSIDE_CENSUS_RULE');
+      expect(fs.readFileSync(outsideBaseline, 'utf8')).toBe(outsideText);
+    } finally {
+      fs.rmSync(baseline, { force: true });
+      fs.rmSync(outsideDir, { recursive: true, force: true });
+    }
+  }, 180_000);
+
+  // A link is a write target for the repair steps. A dangling one is refused
+  // rather than followed, since a write through it would create the file it names.
+  it.each([
+    { label: 'inside the packet', outside: false },
+    { label: 'outside the repository', outside: true },
+  ])('refuses a packet whose document is a dangling link to a file $label, and writes nothing', ({ outside }) => {
+    const folder = 'specs/link-containment/008-dangling';
+    writeLegacyPacket(folder);
+    const packetFolder = path.join(sandbox, folder);
+    const outsideDir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-outside-')));
+    const missing = outside
+      ? path.join(outsideDir, 'never-written.md')
+      : path.join(packetFolder, 'sources', 'never-written.md');
+    fs.mkdirSync(path.dirname(missing), { recursive: true });
+    fs.rmSync(path.join(packetFolder, 'plan.md'));
+    fs.symlinkSync(missing, path.join(packetFolder, 'plan.md'));
+    const refusal = `plan.md is a symbolic link, not followed, and does not resolve inside the packet`;
+
+    try {
+      const before = treeFingerprint(packetFolder);
+      const dryRun = runUpgrade(['--roots', folder]);
+      expect(dryRun.stdout + dryRun.stderr).toContain(`would refuse ${folder}: ${refusal}`);
+      expect(dryRun.status, dryRun.stdout + dryRun.stderr).toBe(1);
+
+      const result = runUpgrade(['--apply', '--roots', folder]);
+      const output = result.stdout + result.stderr;
+      expect(output).toContain(`refused ${folder}: ${refusal}`);
+      expect(result.status, output).toBe(2);
+      expect(fs.existsSync(missing), output).toBe(false);
+      expect(treeFingerprint(packetFolder)).toBe(before);
+      expect(fs.existsSync(path.join(packetFolder, 'upgrade-baseline.json'))).toBe(false);
+    } finally {
+      fs.rmSync(packetFolder, { recursive: true, force: true });
+      fs.rmSync(outsideDir, { recursive: true, force: true });
+    }
+  }, 180_000);
+
+  // A document that links into a neighbouring packet reaches a folder outside its
+  // own packet, so it is refused and the neighbour is neither read nor written.
+  it('refuses a document that links to a sibling packet, and leaves the sibling as it was', () => {
+    const folder = 'specs/link-containment/009-linker';
+    const sibling = 'specs/link-containment/010-sibling';
+    writeLegacyPacket(folder);
+    writeLegacyPacket(sibling);
+    const packetFolder = path.join(sandbox, folder);
+    fs.rmSync(path.join(packetFolder, 'plan.md'));
+    fs.symlinkSync(path.join('..', '010-sibling', 'plan.md'), path.join(packetFolder, 'plan.md'));
+    const linkerBefore = treeFingerprint(packetFolder);
+    const siblingBefore = manifest(sibling);
+
+    const result = runUpgrade(['--apply', '--roots', folder]);
+    const output = result.stdout + result.stderr;
+    expect(output).toContain(`refused ${folder}: plan.md is a symbolic link, not followed, and does not resolve inside the packet`);
+    expect(result.status, output).toBe(2);
+    expect(manifest(sibling)).toBe(siblingBefore);
+    expect(treeFingerprint(packetFolder)).toBe(linkerBefore);
+  }, 180_000);
+
+  // A packet that already passes is not repaired, so an in-packet link in it is
+  // neither written through nor reflected in its recorded baseline.
+  it('writes nothing for a passing packet that links inside itself, and keeps its baseline', () => {
+    clearUpgradeManifest();
+    const folder = 'specs/link-containment/011-inside';
+    writeLegacyPacket(folder);
+    const packetFolder = path.join(sandbox, folder);
+    const settled = runUpgrade(['--apply', '--roots', folder]);
+    expect(settled.status, settled.stdout + settled.stderr).toBe(0);
+    const baseline = path.join(packetFolder, 'upgrade-baseline.json');
+    const baselineBefore = fs.readFileSync(baseline);
+    fs.mkdirSync(path.join(packetFolder, 'sources'));
+    fs.renameSync(path.join(packetFolder, 'plan.md'), path.join(packetFolder, 'sources', 'plan.md'));
+    fs.symlinkSync(path.join('sources', 'plan.md'), path.join(packetFolder, 'plan.md'));
+    clearUpgradeManifest();
+    const linkedBefore = treeFingerprint(packetFolder);
+
+    const result = runUpgrade(['--apply', '--roots', folder]);
+    const output = result.stdout + result.stderr;
+    expect(output).toContain('passing before=1/1');
+    expect(output).toContain('plan changes=0');
+    expect(result.status, output).toBe(0);
+    expect(treeFingerprint(packetFolder)).toBe(linkedBefore);
+    expect(fs.readFileSync(baseline)).toEqual(baselineBefore);
+  }, 180_000);
+
+  // With no --roots the run falls back to the default specs roots, so a default root that is
+  // a link out of the repository is refused the same way an explicit one is.
+  it('refuses a default specs root that is a link to a directory outside the repository, with no --roots', () => {
+    const outsideDir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-legacy-outside-')));
+    writeLegacyPacket('specs/default-roots/001-legacy-packet');
+    fs.mkdirSync(path.join(outsideDir, 'specs'), { recursive: true });
+    fs.renameSync(path.join(sandbox, 'specs/default-roots/001-legacy-packet'), path.join(outsideDir, 'specs', '001-legacy-packet'));
+    fs.rmSync(path.join(sandbox, 'specs'), { recursive: true, force: true });
+    fs.symlinkSync(path.join(outsideDir, 'specs'), path.join(sandbox, 'specs'), 'dir');
+    const before = treeFingerprint(outsideDir);
+
+    try {
+      const dryRun = runUpgrade([]);
+      expect(dryRun.stdout + dryRun.stderr).toContain('root outside the repository');
+      expect(dryRun.status, dryRun.stdout + dryRun.stderr).toBe(2);
+
+      const result = runUpgrade(['--apply']);
+      const output = result.stdout + result.stderr;
+      expect(output).toContain('root outside the repository');
+      expect(result.status, output).toBe(2);
+      expect(treeFingerprint(outsideDir)).toBe(before);
+      expect(fs.lstatSync(path.join(sandbox, 'specs')).isSymbolicLink()).toBe(true);
+    } finally {
+      fs.rmSync(path.join(sandbox, 'specs'), { recursive: true, force: true });
+      fs.rmSync(outsideDir, { recursive: true, force: true });
+    }
+  }, 180_000);
+});
+
+describe('upgrade-legacy layout links', () => {
+  it('plans no step through a .opencode link that leaves the repository', () => {
+    const root = makeLayoutRoot();
+    const outside = makeLayoutRoot();
+    try {
+      fs.mkdirSync(path.join(outside, 'opencode/specs/system/001-packet'), { recursive: true });
+      fs.writeFileSync(path.join(outside, 'opencode/specs/system/001-packet/spec.md'), '# Outside packet\n');
+      fs.writeFileSync(path.join(outside, 'opencode/specs/.DS_Store'), 'finder\n');
+      fs.mkdirSync(path.join(root, 'specs/current/001-packet'), { recursive: true });
+      fs.writeFileSync(path.join(root, 'specs/current/001-packet/spec.md'), '# Current packet\n');
+      fs.symlinkSync(path.join(outside, 'opencode'), path.join(root, '.opencode'));
+      const before = treeFingerprint(outside);
+
+      const planned = planLayoutMove(root);
+      for (const step of planned.steps) {
+        spawnSync(step.argv[0], step.argv.slice(1), { cwd: root, encoding: 'utf8' });
+      }
+
+      expect(treeFingerprint(outside)).toBe(before);
+      expect(planned.steps).toEqual([]);
+      expect(planned.collisions).toEqual([{ from: '.opencode/specs', to: 'specs', reason: 'unexpected-symlink' }]);
+    } finally {
+      fs.rmSync(path.join(root, '.opencode'), { force: true });
+      fs.rmSync(root, { recursive: true, force: true });
+      fs.rmSync(outside, { recursive: true, force: true });
+    }
+  });
 });

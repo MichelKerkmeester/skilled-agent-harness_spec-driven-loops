@@ -1,0 +1,50 @@
+
+WARNING: commit 46bd3afd0f "docs(system-spec-kit): align playbooks, catalogs and READMEs with the spec tooling changes" clarity checks found:
+  - [subject.length-target] Subject is 90 characters; target is 80 characters.
+  - [body.line-length] Body line 3 exceeds 100 characters.
+
+WARNING: commit 5343376f91 "docs(changelog): record the spec tooling changes in v4.0.0.4 and spec-kit v2.7.1.0" clarity checks found:
+  - [subject.length-target] Subject is 82 characters; target is 80 characters.
+  - [body.line-length] Body line 3 exceeds 100 characters.
+
+WARNING: commit f3f8583579 "docs(specs): close the epic docs alignment" clarity checks found:
+  - [body.line-length] Body line 3 exceeds 100 characters.
+OK   [H] cli-classifier
+OK   [H] cli-external-orchestration
+OK   [S] cli-orca
+OK   [S] mcp-code-mode
+OK   [H] mcp-tooling
+FAIL [H] sk-code
+       STALE_GENERATED_FILE: sk-code: leaf-manifest.json is stale (committed=319a819c491da7fc9b72c25f157c81ddfecb03ffa6b3cc3b3256e44e35974dca fresh=c1ac627f2c4470e9001a0112a5bb0d53e78f445daf451ff325ae0aa4944288b6)
+OK   [H] sk-design
+OK   [H] sk-doc
+OK   [S] sk-git
+OK   [S] sk-prompt
+OK   [S] sk-vision
+OK   [H] system-deep-loop
+OK   [S] system-skill-advisor
+OK   [S] system-spec-kit
+
+checked=14 passed=13 failed=1 fixed=0
+Re-run with --fix to regenerate missing or stale manifests; authored files must be written by hand.
+
+WARNING [gate:skill-root-metadata]: skill-root metadata is stale for skills being pushed.
+Not blocking: CI enforces this on every push to main and skilled/v*.
+Fix with:  node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix
+
+  cli-classifier              fresh
+  cli-external-orchestration  fresh
+  mcp-tooling                 fresh
+  sk-code                     fresh
+  sk-design                   fresh
+  sk-doc                      fresh
+  system-deep-loop            fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+remote: Bypassed rule violations for refs/heads/main:        
+remote: 
+remote: - Required status check "Commit messages, branch names and PR description follow the templates" is expected.        
+remote: 
+To https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops.git
+   9dbfe3a046..f3f8583579  HEAD -> main
+rc=0

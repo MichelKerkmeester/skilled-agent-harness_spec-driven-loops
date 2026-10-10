@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-07 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
@@ -72,6 +72,8 @@ The committed index catches up with the corpus without anyone running the genera
 - A concurrency group so two pushes never race, and a guard so the bot's own commit does not loop.
 - Keeping the existing report-only step on pull requests.
 
+> **Superseded by** [016/004 trigger-index-rebuild-hardening](../016-research-recommendations/004-trigger-index-rebuild-hardening/spec.md). That phase changed both points this phase set. The job now stages all four generator outputs, not only the index, and its loop guard matches the `Trigger-Index-Rebuild: ci` trailer, not the commit subject. The commit-only bullet above and the subject match in the Risks table describe the original build, and are kept as written.
+
 ### Out of Scope
 - Blocking pull requests on drift - not chosen.
 - Changes to the generator or the index format.
@@ -93,14 +95,14 @@ The committed index catches up with the corpus without anyone running the genera
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | A push that leaves the index stale triggers a rebuild commit | The workflow runs the generator, then commits only when `git diff --quiet` on the index fails |
+| REQ-001 | A push that leaves the index stale triggers a rebuild commit | The workflow runs the generator, then commits only when `git diff --quiet` on the index fails. **Met** in behavior (`scratch/evidence/ci-bot-commit-proof.txt` sections 4 and 5). The commit now covers four generated files, not the index alone, see the Implementation Summary's Known Limitations |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | The job cannot loop or race | It has a concurrency group and skips when the head commit is its own |
-| REQ-003 | The workflow file is valid | `actionlint` or a YAML parse passes, and the job's shell block passes `bash -n` |
+| REQ-002 | The job cannot loop or race | It has a concurrency group and skips when the head commit is its own. **Met**: the concurrency group is in the workflow, 17 of 17 bot commits had their own rebuild run skipped, and a non-fast-forward race recovered (`scratch/evidence/ci-bot-commit-proof.txt` sections 2 and 6). The skip matches a commit trailer, not the subject |
+| REQ-003 | The workflow file is valid | `actionlint` or a YAML parse passes, and the job's shell block passes `bash -n`. **Met**: actionlint exits 0 on the working tree and on HEAD, and the three run blocks pass `bash -n` (`scratch/evidence/actionlint-trigger-index-rebuild.txt`) |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -108,8 +110,8 @@ The committed index catches up with the corpus without anyone running the genera
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: After the first push with this workflow, `--check` on the branch head exits 0.
-- **SC-002**: A push with no corpus change produces no bot commit.
+- **SC-001**: After the first push with this workflow, `--check` on the branch head exits 0. **Met** at the current head 4669db6522 (`scratch/evidence/ci-bot-commit-proof.txt` section 4). The first committing run had no in-job `--check`, see T011.
+- **SC-002**: A push with no corpus change produces no bot commit. **Met**: three successful runs found the index current and produced no bot commit (`scratch/evidence/ci-bot-commit-proof.txt` section 7).
 <!-- /ANCHOR:success-criteria -->
 
 ---

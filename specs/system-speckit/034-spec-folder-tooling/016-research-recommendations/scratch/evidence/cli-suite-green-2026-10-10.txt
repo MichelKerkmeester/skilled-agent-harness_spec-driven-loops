@@ -1,0 +1,2269 @@
+
+> @spec-kit/cli@1.7.2 pretest
+> npm run build
+
+
+> @spec-kit/cli@1.7.2 build
+> npm run prepare-build && tsc --build && npm run record-build
+
+
+> @spec-kit/cli@1.7.2 prepare-build
+> node lib/dist-freshness.cjs prepare-build --package system-spec-kit/runtime/cli --entry default && node lib/dist-freshness.cjs prepare-build --package system-spec-kit/runtime/cli --entry is-phase-parent
+
+@spec-kit/cli dist build preparation recorded
+@spec-kit/cli dist build preparation recorded
+
+> @spec-kit/cli@1.7.2 record-build
+> node lib/dist-freshness.cjs record-build --package system-spec-kit/runtime/cli --entry default && node lib/dist-freshness.cjs record-build --package system-spec-kit/runtime/cli --entry is-phase-parent
+
+@spec-kit/cli dist build attestation recorded
+@spec-kit/cli dist build attestation recorded
+
+> @spec-kit/cli@1.7.2 test
+> vitest run --config ../../vitest.config.ts --project cli && npm run test:legacy && npm run test:validation
+
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+{"timestamp":"2026-10-10T08:46:34.928Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:013-memory-search-bug-fixes","trigger_phrases:2","key_topics:0","captured_file_count:2","filesystem_file_count:2"]}
+{"timestamp":"2026-10-10T08:46:34.931Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:013-memory-search-bug-fixes","trigger_phrases:2","key_topics:0","captured_file_count:2","filesystem_file_count:2"]}
+{"timestamp":"2026-10-10T08:46:34.932Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:013-memory-search-bug-fixes","trigger_phrases:2","key_topics:0","captured_file_count:2","filesystem_file_count:2"]}
+{"timestamp":"2026-10-10T08:46:34.933Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":["body:foreign spec ids dominate rendered content"],"actionsTaken":["failed_rules:V8"],"passedThrough":["current_spec:013-memory-search-bug-fixes","trigger_phrases:2","key_topics:0","captured_file_count:2","filesystem_file_count:2"]}
+{"timestamp":"2026-10-10T08:46:34.934Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":["frontmatter:031-memory-search-state-filter-fix x1"],"actionsTaken":["failed_rules:V8"],"passedThrough":["current_spec:013-memory-search-bug-fixes","trigger_phrases:2","key_topics:0","captured_file_count:2","filesystem_file_count:2"]}
+{"timestamp":"2026-10-10T08:46:34.935Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":["body-scattered:031-memory-search-state-filter-fix x1","body-scattered:041-memory-quality-loop-follow-up x1"],"actionsTaken":["failed_rules:V8"],"passedThrough":["current_spec:013-memory-search-bug-fixes","trigger_phrases:2","key_topics:0","captured_file_count:2","filesystem_file_count:2"]}
+{"timestamp":"2026-10-10T08:46:34.936Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:023-parent-phase","trigger_phrases:2","key_topics:0","captured_file_count:2","filesystem_file_count:2"]}
+{"timestamp":"2026-10-10T08:46:34.938Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":["title:template instructional heading"],"actionsTaken":["failed_rules:V9"],"passedThrough":["current_spec:013-memory-search-bug-fixes","trigger_phrases:2","key_topics:0","captured_file_count:2","filesystem_file_count:2"]}
+{"timestamp":"2026-10-10T08:46:34.940Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":["title:generic stub title"],"actionsTaken":["failed_rules:V9"],"passedThrough":["current_spec:013-memory-search-bug-fixes","trigger_phrases:2","key_topics:0","captured_file_count:2","filesystem_file_count:2"]}
+{"timestamp":"2026-10-10T08:46:34.941Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:013-memory-search-bug-fixes","trigger_phrases:2","key_topics:0","captured_file_count:9","filesystem_file_count:3"]}
+{"timestamp":"2026-10-10T08:46:34.941Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:013-memory-search-bug-fixes","trigger_phrases:2","key_topics:0","captured_file_count:4","filesystem_file_count:3"]}
+{"timestamp":"2026-10-10T08:46:34.942Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:013-memory-search-bug-fixes","trigger_phrases:2","key_topics:0","captured_file_count:8","filesystem_file_count:4"]}
+{"timestamp":"2026-10-10T08:46:34.943Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:013-memory-search-bug-fixes","trigger_phrases:2","key_topics:0","captured_file_count:0","filesystem_file_count:6"]}
+{"timestamp":"2026-10-10T08:46:34.944Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:013-memory-search-bug-fixes","trigger_phrases:2","key_topics:0","captured_file_count:5","filesystem_file_count:0"]}
+{"timestamp":"2026-10-10T08:46:34.945Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:013-memory-search-bug-fixes","trigger_phrases:2","key_topics:0","captured_file_count:2","filesystem_file_count:2"]}
+{"timestamp":"2026-10-10T08:46:34.947Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s","/^custom placeholder$/i"],"matchesFound":["/^custom placeholder$/i x1"],"actionsTaken":["filtered_noise:1","filtered_empty:0","stripped_wrappers:0"],"passedThrough":["input_items:2","kept_items:1"]}
+{"timestamp":"2026-10-10T08:46:36.347Z","level":"info","message":"contamination_audit","stage":"extractor-scrub","patternsChecked":["step-by-step orchestration","analysis preamble","progress narration","step narration","check preamble","start-by preamble","start preamble","read preamble","look-into preamble","begin preamble","proceed preamble","handle preamble","will-now preamble","analysis heading","review heading","transition phrase","close-reading transition","first-step narration","now-step narration","next-step narration","ai self-reference","language-model self-reference","assistant self-reference","generic affirmation","sure filler","absolute filler","tool usage narration","tool usage narration active","tool usage preamble","tool title with path","api error prefix","json error payload","request id leak","hedging i-think","hedging it-seems","hedging perhaps","hedging might-be","hedging could-be","certainly filler","ai should-note meta","ai worth-noting meta","instruction echo please","orphaned markdown header","stray backtick block","safety cannot disclaimer","safety i-cannot disclaimer","safety please-consult disclaimer","certainty important-note marker","certainty worth-mentioning marker","certainty keep-in-mind marker","certainty redundant-assurance marker"],"matchesFound":[],"actionsTaken":["cleaned_fields:0","removed_phrases:0"],"passedThrough":["processed_fields:0"]}
+{"timestamp":"2026-10-10T08:46:37.736Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s"],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:1","stripped_wrappers:0"],"passedThrough":["input_items:1","kept_items:0"]}
+{"timestamp":"2026-10-10T08:46:37.746Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:46:37.805Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"savedFilePath is a directory (phase-parent or unspecified target): /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-workflow-vB8ur6/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion"}
+{"timestamp":"2026-10-10T08:46:39.126Z","level":"info","message":"contamination_audit","stage":"extractor-scrub","patternsChecked":["step-by-step orchestration","analysis preamble","progress narration","step narration","check preamble","start-by preamble","start preamble","read preamble","look-into preamble","begin preamble","proceed preamble","handle preamble","will-now preamble","analysis heading","review heading","transition phrase","close-reading transition","first-step narration","now-step narration","next-step narration","ai self-reference","language-model self-reference","assistant self-reference","generic affirmation","sure filler","absolute filler","tool usage narration","tool usage narration active","tool usage preamble","tool title with path","api error prefix","json error payload","request id leak","hedging i-think","hedging it-seems","hedging perhaps","hedging might-be","hedging could-be","certainly filler","ai should-note meta","ai worth-noting meta","instruction echo please","orphaned markdown header","stray backtick block","safety cannot disclaimer","safety i-cannot disclaimer","safety please-consult disclaimer","certainty important-note marker","certainty worth-mentioning marker","certainty keep-in-mind marker","certainty redundant-assurance marker"],"matchesFound":[],"actionsTaken":["cleaned_fields:0","removed_phrases:0"],"passedThrough":["processed_fields:0"]}
+{"timestamp":"2026-10-10T08:46:40.416Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s"],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:0","stripped_wrappers:0"],"passedThrough":["input_items:1","kept_items:1"]}
+{"timestamp":"2026-10-10T08:46:40.418Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:46:40.421Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"savedFilePath is a directory (phase-parent or unspecified target): /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-workflow-pYK9QK/.opencode/specs/system-spec-kit/011-session-source-validation"}
+{"timestamp":"2026-10-10T08:46:40.425Z","level":"info","message":"contamination_audit","stage":"extractor-scrub","patternsChecked":["step-by-step orchestration","analysis preamble","progress narration","step narration","check preamble","start-by preamble","start preamble","read preamble","look-into preamble","begin preamble","proceed preamble","handle preamble","will-now preamble","analysis heading","review heading","transition phrase","close-reading transition","first-step narration","now-step narration","next-step narration","ai self-reference","language-model self-reference","assistant self-reference","generic affirmation","sure filler","absolute filler","tool usage narration","tool usage narration active","tool usage preamble","tool title with path","api error prefix","json error payload","request id leak","hedging i-think","hedging it-seems","hedging perhaps","hedging might-be","hedging could-be","certainly filler","ai should-note meta","ai worth-noting meta","instruction echo please","orphaned markdown header","stray backtick block","safety cannot disclaimer","safety i-cannot disclaimer","safety please-consult disclaimer","certainty important-note marker","certainty worth-mentioning marker","certainty keep-in-mind marker","certainty redundant-assurance marker"],"matchesFound":[],"actionsTaken":["cleaned_fields:0","removed_phrases:0"],"passedThrough":["processed_fields:2"]}
+{"timestamp":"2026-10-10T08:46:41.775Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s"],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:0","stripped_wrappers:0"],"passedThrough":["input_items:1","kept_items:1"]}
+{"timestamp":"2026-10-10T08:46:41.776Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:46:41.779Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"SaveMode is capture, not json"}
+{"timestamp":"2026-10-10T08:46:41.786Z","level":"info","message":"contamination_audit","stage":"extractor-scrub","patternsChecked":["step-by-step orchestration","analysis preamble","progress narration","step narration","check preamble","start-by preamble","start preamble","read preamble","look-into preamble","begin preamble","proceed preamble","handle preamble","will-now preamble","analysis heading","review heading","transition phrase","close-reading transition","first-step narration","now-step narration","next-step narration","ai self-reference","language-model self-reference","assistant self-reference","generic affirmation","sure filler","absolute filler","tool usage narration","tool usage narration active","tool usage preamble","tool title with path","api error prefix","json error payload","request id leak","hedging i-think","hedging it-seems","hedging perhaps","hedging might-be","hedging could-be","certainly filler","ai should-note meta","ai worth-noting meta","instruction echo please","orphaned markdown header","stray backtick block","safety cannot disclaimer","safety i-cannot disclaimer","safety please-consult disclaimer","certainty important-note marker","certainty worth-mentioning marker","certainty keep-in-mind marker","certainty redundant-assurance marker"],"matchesFound":[],"actionsTaken":["cleaned_fields:0","removed_phrases:0"],"passedThrough":["processed_fields:0"]}
+{"timestamp":"2026-10-10T08:46:43.164Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s"],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:0","stripped_wrappers:0"],"passedThrough":["input_items:1","kept_items:1"]}
+{"timestamp":"2026-10-10T08:46:43.165Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:46:43.168Z","level":"info","message":"contamination_audit","stage":"extractor-scrub","patternsChecked":["step-by-step orchestration","analysis preamble","progress narration","step narration","check preamble","start-by preamble","start preamble","read preamble","look-into preamble","begin preamble","proceed preamble","handle preamble","will-now preamble","analysis heading","review heading","transition phrase","close-reading transition","first-step narration","now-step narration","next-step narration","ai self-reference","language-model self-reference","assistant self-reference","generic affirmation","sure filler","absolute filler","tool usage narration","tool usage narration active","tool usage preamble","tool title with path","api error prefix","json error payload","request id leak","hedging i-think","hedging it-seems","hedging perhaps","hedging might-be","hedging could-be","certainly filler","ai should-note meta","ai worth-noting meta","instruction echo please","orphaned markdown header","stray backtick block","safety cannot disclaimer","safety i-cannot disclaimer","safety please-consult disclaimer","certainty important-note marker","certainty worth-mentioning marker","certainty keep-in-mind marker","certainty redundant-assurance marker"],"matchesFound":[],"actionsTaken":["cleaned_fields:0","removed_phrases:0"],"passedThrough":["processed_fields:2"]}
+{"timestamp":"2026-10-10T08:46:44.777Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s"],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:0","stripped_wrappers:0"],"passedThrough":["input_items:1","kept_items:1"]}
+{"timestamp":"2026-10-10T08:46:44.779Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:46:44.781Z","level":"info","message":"contamination_audit","stage":"extractor-scrub","patternsChecked":["step-by-step orchestration","analysis preamble","progress narration","step narration","check preamble","start-by preamble","start preamble","read preamble","look-into preamble","begin preamble","proceed preamble","handle preamble","will-now preamble","analysis heading","review heading","transition phrase","close-reading transition","first-step narration","now-step narration","next-step narration","ai self-reference","language-model self-reference","assistant self-reference","generic affirmation","sure filler","absolute filler","tool usage narration","tool usage narration active","tool usage preamble","tool title with path","api error prefix","json error payload","request id leak","hedging i-think","hedging it-seems","hedging perhaps","hedging might-be","hedging could-be","certainly filler","ai should-note meta","ai worth-noting meta","instruction echo please","orphaned markdown header","stray backtick block","safety cannot disclaimer","safety i-cannot disclaimer","safety please-consult disclaimer","certainty important-note marker","certainty worth-mentioning marker","certainty keep-in-mind marker","certainty redundant-assurance marker"],"matchesFound":[],"actionsTaken":["cleaned_fields:0","removed_phrases:0"],"passedThrough":["processed_fields:0"]}
+{"timestamp":"2026-10-10T08:46:46.108Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s"],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:1","stripped_wrappers:0"],"passedThrough":["input_items:1","kept_items:0"]}
+{"timestamp":"2026-10-10T08:46:46.109Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:46:46.112Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"savedFilePath is a directory (phase-parent or unspecified target): /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-workflow-xr3jhB/.opencode/specs/system-spec-kit/013-memory-search-bug-fixes"}
+{"timestamp":"2026-10-10T08:46:46.112Z","level":"info","message":"contamination_audit","stage":"extractor-scrub","patternsChecked":["step-by-step orchestration","analysis preamble","progress narration","step narration","check preamble","start-by preamble","start preamble","read preamble","look-into preamble","begin preamble","proceed preamble","handle preamble","will-now preamble","analysis heading","review heading","transition phrase","close-reading transition","first-step narration","now-step narration","next-step narration","ai self-reference","language-model self-reference","assistant self-reference","generic affirmation","sure filler","absolute filler","tool usage narration","tool usage narration active","tool usage preamble","tool title with path","api error prefix","json error payload","request id leak","hedging i-think","hedging it-seems","hedging perhaps","hedging might-be","hedging could-be","certainly filler","ai should-note meta","ai worth-noting meta","instruction echo please","orphaned markdown header","stray backtick block","safety cannot disclaimer","safety i-cannot disclaimer","safety please-consult disclaimer","certainty important-note marker","certainty worth-mentioning marker","certainty keep-in-mind marker","certainty redundant-assurance marker"],"matchesFound":[],"actionsTaken":["cleaned_fields:0","removed_phrases:0"],"passedThrough":["processed_fields:0"]}
+{"timestamp":"2026-10-10T08:46:47.360Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s"],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:1","stripped_wrappers:0"],"passedThrough":["input_items:1","kept_items:0"]}
+{"timestamp":"2026-10-10T08:46:47.361Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:46:47.364Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"SaveMode is capture, not json"}
+{"timestamp":"2026-10-10T08:46:47.366Z","level":"info","message":"contamination_audit","stage":"extractor-scrub","patternsChecked":["step-by-step orchestration","analysis preamble","progress narration","step narration","check preamble","start-by preamble","start preamble","read preamble","look-into preamble","begin preamble","proceed preamble","handle preamble","will-now preamble","analysis heading","review heading","transition phrase","close-reading transition","first-step narration","now-step narration","next-step narration","ai self-reference","language-model self-reference","assistant self-reference","generic affirmation","sure filler","absolute filler","tool usage narration","tool usage narration active","tool usage preamble","tool title with path","api error prefix","json error payload","request id leak","hedging i-think","hedging it-seems","hedging perhaps","hedging might-be","hedging could-be","certainly filler","ai should-note meta","ai worth-noting meta","instruction echo please","orphaned markdown header","stray backtick block","safety cannot disclaimer","safety i-cannot disclaimer","safety please-consult disclaimer","certainty important-note marker","certainty worth-mentioning marker","certainty keep-in-mind marker","certainty redundant-assurance marker"],"matchesFound":[],"actionsTaken":["cleaned_fields:0","removed_phrases:0"],"passedThrough":["processed_fields:0"]}
+{"timestamp":"2026-10-10T08:46:48.658Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s"],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:1","stripped_wrappers:0"],"passedThrough":["input_items:1","kept_items:0"]}
+{"timestamp":"2026-10-10T08:46:48.659Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:46:48.662Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"savedFilePath is a directory (phase-parent or unspecified target): /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-workflow-so1s8r/.opencode/specs/system-spec-kit/013-memory-search-bug-fixes"}
+{"timestamp":"2026-10-10T08:46:48.662Z","level":"info","message":"contamination_audit","stage":"extractor-scrub","patternsChecked":["step-by-step orchestration","analysis preamble","progress narration","step narration","check preamble","start-by preamble","start preamble","read preamble","look-into preamble","begin preamble","proceed preamble","handle preamble","will-now preamble","analysis heading","review heading","transition phrase","close-reading transition","first-step narration","now-step narration","next-step narration","ai self-reference","language-model self-reference","assistant self-reference","generic affirmation","sure filler","absolute filler","tool usage narration","tool usage narration active","tool usage preamble","tool title with path","api error prefix","json error payload","request id leak","hedging i-think","hedging it-seems","hedging perhaps","hedging might-be","hedging could-be","certainly filler","ai should-note meta","ai worth-noting meta","instruction echo please","orphaned markdown header","stray backtick block","safety cannot disclaimer","safety i-cannot disclaimer","safety please-consult disclaimer","certainty important-note marker","certainty worth-mentioning marker","certainty keep-in-mind marker","certainty redundant-assurance marker"],"matchesFound":[],"actionsTaken":["cleaned_fields:0","removed_phrases:0"],"passedThrough":["processed_fields:0"]}
+{"timestamp":"2026-10-10T08:46:49.952Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s"],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:1","stripped_wrappers:0"],"passedThrough":["input_items:1","kept_items:0"]}
+{"timestamp":"2026-10-10T08:46:49.953Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:46:49.956Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"savedFilePath is a directory (phase-parent or unspecified target): /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-workflow-so1s8r/.opencode/specs/system-spec-kit/013-memory-search-bug-fixes"}
+{"timestamp":"2026-10-10T08:46:49.959Z","level":"info","message":"contamination_audit","stage":"extractor-scrub","patternsChecked":["step-by-step orchestration","analysis preamble","progress narration","step narration","check preamble","start-by preamble","start preamble","read preamble","look-into preamble","begin preamble","proceed preamble","handle preamble","will-now preamble","analysis heading","review heading","transition phrase","close-reading transition","first-step narration","now-step narration","next-step narration","ai self-reference","language-model self-reference","assistant self-reference","generic affirmation","sure filler","absolute filler","tool usage narration","tool usage narration active","tool usage preamble","tool title with path","api error prefix","json error payload","request id leak","hedging i-think","hedging it-seems","hedging perhaps","hedging might-be","hedging could-be","certainly filler","ai should-note meta","ai worth-noting meta","instruction echo please","orphaned markdown header","stray backtick block","safety cannot disclaimer","safety i-cannot disclaimer","safety please-consult disclaimer","certainty important-note marker","certainty worth-mentioning marker","certainty keep-in-mind marker","certainty redundant-assurance marker"],"matchesFound":[],"actionsTaken":["cleaned_fields:0","removed_phrases:0"],"passedThrough":["processed_fields:4"]}
+{"timestamp":"2026-10-10T08:46:52.083Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s"],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:0","stripped_wrappers:0"],"passedThrough":["input_items:1","kept_items:1"]}
+{"timestamp":"2026-10-10T08:46:52.118Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":["body:foreign spec ids dominate rendered content"],"actionsTaken":["failed_rules:V8"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:46:52.122Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"SaveMode is capture, not json"}
+{"timestamp":"2026-10-10T08:46:52.124Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:028-auto-deep-research","trigger_phrases:2","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:46:52.125Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:028-auto-deep-research","trigger_phrases:5","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:46:52.126Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:020-mcp-working-memory-hybrid-rag","trigger_phrases:3","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+refusing a target outside the packet tree: .skilled/skills
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: ../elsewhere
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unknown argument: --bogus
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+--folder needs a path
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unexpected argument: specs/sk-git (paths need --folder or --roots)
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: /etc
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+{"timestamp":"2026-10-10T08:47:53.194Z","level":"error","message":"Data file not found","filePath":"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/missing-1791622073187.json","error":"ENOENT: no such file or directory, open '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/missing-1791622073187.json'"}
+{"timestamp":"2026-10-10T08:47:53.199Z","level":"error","message":"Invalid JSON in data file","filePath":"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/invalid-1791622073196.json","error":"Expected property name or '}' in JSON at position 1 (line 1 column 2)","position":"1"}
+{"timestamp":"2026-10-10T08:47:53.203Z","level":"error","message":"Failed to load data file","filePath":"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/invalid-shape-1791622073200.json","error":"Input validation failed: nextSteps must be an array"}
+{"timestamp":"2026-10-10T08:47:53.205Z","level":"error","message":"Permission denied reading data file","filePath":"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/perm-denied-1791622073203.json","error":"EACCES: permission denied, open '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/perm-denied-1791622073203.json'"}
+{"timestamp":"2026-10-10T08:47:53.208Z","level":"info","message":"Loaded and validated conversation data from file","filePath":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/valid-1791622073206.json","source":"file"}
+{"timestamp":"2026-10-10T08:47:53.208Z","level":"info","message":"Loaded data from file","filePath":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/valid-1791622073206.json","source":"file"}
+{"timestamp":"2026-10-10T08:47:53.212Z","level":"info","message":"Loaded and validated conversation data from file","filePath":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/valid-snake-1791622073209.json","source":"file"}
+{"timestamp":"2026-10-10T08:47:53.212Z","level":"info","message":"Loaded data from file","filePath":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/valid-snake-1791622073209.json","source":"file"}
+{"timestamp":"2026-10-10T08:47:53.214Z","level":"warn","message":"Path outside allowed directories","inputPath":"../../etc/passwd","resolved":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/etc/passwd","allowedBases":["/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T","/tmp","/private/tmp","/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli","/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli/specs","/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli/.skilled","/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli/.opencode"]}
+{"timestamp":"2026-10-10T08:47:53.214Z","level":"error","message":"Invalid data file path - security validation failed","filePath":"../../etc/passwd","error":"Path outside allowed directories: ../../etc/passwd"}
+{"timestamp":"2026-10-10T08:47:53.214Z","level":"error","message":"Failed to load data file","filePath":"../../etc/passwd","error":"Security: Invalid data file path: Path outside allowed directories: ../../etc/passwd"}
+SPECKIT_SOURCE_TAG_CUTOFF='soon' is not an ISO date; using 2026-10-04
+{"timestamp":"2026-10-10T08:49:08.940Z","level":"info","message":"memory_metric","metric_name":"memory_save_overview_length_histogram","metric_value":655,"labels":{"input_mode":"structured","save_mode":"json"}}
+{"timestamp":"2026-10-10T08:49:08.940Z","level":"info","message":"memory_metric","metric_name":"memory_save_template_anchor_violations_total","metric_value":1,"labels":{"input_mode":"structured","save_mode":"json"}}
+{"timestamp":"2026-10-10T08:49:08.940Z","level":"info","message":"memory_metric","metric_name":"memory_save_review_violation_total","metric_value":1,"labels":{"input_mode":"structured","save_mode":"json","check_id":"D8","severity":"MEDIUM"}}
+{"timestamp":"2026-10-10T08:49:08.940Z","level":"warn","message":"OVERVIEW anchor mismatch (toc=missing, comment=missing, closing=missing)","check_id":"D8","severity":"MEDIUM","field":"anchors","input_mode":"structured"}
+{"timestamp":"2026-10-10T08:49:08.940Z","level":"warn","message":"memory_save_template_contract_violation","anchor_comment":null,"anchor_closing_comment":null,"anchor_html_id":null,"toc_target":null}
+{"timestamp":"2026-10-10T08:49:23.050Z","level":"info","message":"contamination_audit","stage":"extractor-scrub","patternsChecked":["step-by-step orchestration","analysis preamble","progress narration","step narration","check preamble","start-by preamble","start preamble","read preamble","look-into preamble","begin preamble","proceed preamble","handle preamble","will-now preamble","analysis heading","review heading","transition phrase","close-reading transition","first-step narration","now-step narration","next-step narration","ai self-reference","language-model self-reference","assistant self-reference","generic affirmation","sure filler","absolute filler","tool usage narration","tool usage narration active","tool usage preamble","tool title with path","api error prefix","json error payload","request id leak","hedging i-think","hedging it-seems","hedging perhaps","hedging might-be","hedging could-be","certainly filler","ai should-note meta","ai worth-noting meta","instruction echo please","orphaned markdown header","stray backtick block","safety cannot disclaimer","safety i-cannot disclaimer","safety please-consult disclaimer","certainty important-note marker","certainty worth-mentioning marker","certainty keep-in-mind marker","certainty redundant-assurance marker"],"matchesFound":[],"actionsTaken":["cleaned_fields:0","removed_phrases:0"],"passedThrough":["processed_fields:8"]}
+{"timestamp":"2026-10-10T08:49:25.071Z","level":"info","message":"Session too short for meaningful phase detection","messageCount":1}
+{"timestamp":"2026-10-10T08:49:25.074Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s"],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:0","stripped_wrappers:0"],"passedThrough":["input_items:1","kept_items:1"]}
+{"timestamp":"2026-10-10T08:49:25.084Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:25.113Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"savedFilePath is a directory (phase-parent or unspecified target): /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-trigger-bigrams-mnTiuq/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-quality-issues/009-trigger-bigram-fixture"}
+{"timestamp":"2026-10-10T08:49:25.277Z","level":"warn","message":"Spec relevance filter produced no safe user prompt matches","specFolderHint":"system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing","currentSpecId":"009-perfect-session-capturing","relevanceKeywordsCount":13,"totalUserPrompts":1}
+{"timestamp":"2026-10-10T08:49:25.277Z","level":"warn","message":"Spec relevance filter produced no safe context exchange matches","specFolderHint":"system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing","currentSpecId":"009-perfect-session-capturing","relevanceKeywordsCount":13,"totalExchanges":1}
+{"timestamp":"2026-10-10T08:49:39.550Z","level":"info","message":"Processing manual decisions","manualDecisionCount":4}
+{"timestamp":"2026-10-10T08:49:40.062Z","level":"info","message":"Loaded and validated conversation data from file","filePath":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-phase-013-workflow-U2Gkyq/.tmp-data/phase-013.json","source":"file"}
+{"timestamp":"2026-10-10T08:49:40.062Z","level":"info","message":"Loaded data from file","filePath":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-phase-013-workflow-U2Gkyq/.tmp-data/phase-013.json","source":"file"}
+{"timestamp":"2026-10-10T08:49:40.071Z","level":"info","message":"contamination_audit","stage":"extractor-scrub","patternsChecked":["step-by-step orchestration","analysis preamble","progress narration","step narration","check preamble","start-by preamble","start preamble","read preamble","look-into preamble","begin preamble","proceed preamble","handle preamble","will-now preamble","analysis heading","review heading","transition phrase","close-reading transition","first-step narration","now-step narration","next-step narration","ai self-reference","language-model self-reference","assistant self-reference","generic affirmation","sure filler","absolute filler","tool usage narration","tool usage narration active","tool usage preamble","tool title with path","api error prefix","json error payload","request id leak","hedging i-think","hedging it-seems","hedging perhaps","hedging might-be","hedging could-be","certainly filler","ai should-note meta","ai worth-noting meta","instruction echo please","orphaned markdown header","stray backtick block","safety cannot disclaimer","safety i-cannot disclaimer","safety please-consult disclaimer","certainty important-note marker","certainty worth-mentioning marker","certainty keep-in-mind marker","certainty redundant-assurance marker"],"matchesFound":[],"actionsTaken":["cleaned_fields:0","removed_phrases:0"],"passedThrough":["processed_fields:5"]}
+{"timestamp":"2026-10-10T08:49:40.151Z","level":"info","message":"Session too short for meaningful phase detection","messageCount":2}
+{"timestamp":"2026-10-10T08:49:40.151Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s"],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:0","stripped_wrappers:0"],"passedThrough":["input_items:1","kept_items:1"]}
+{"timestamp":"2026-10-10T08:49:40.164Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:40.203Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"savedFilePath is a directory (phase-parent or unspecified target): /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-phase-013-workflow-U2Gkyq/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/010-perfect-session-capturing/013-auto-detection-fixes"}
+{"timestamp":"2026-10-10T08:49:45.033Z","level":"info","message":"contamination_audit","stage":"extractor-scrub","patternsChecked":["step-by-step orchestration","analysis preamble","progress narration","step narration","check preamble","start-by preamble","start preamble","read preamble","look-into preamble","begin preamble","proceed preamble","handle preamble","will-now preamble","analysis heading","review heading","transition phrase","close-reading transition","first-step narration","now-step narration","next-step narration","ai self-reference","language-model self-reference","assistant self-reference","generic affirmation","sure filler","absolute filler","tool usage narration","tool usage narration active","tool usage preamble","tool title with path","api error prefix","json error payload","request id leak","hedging i-think","hedging it-seems","hedging perhaps","hedging might-be","hedging could-be","certainly filler","ai should-note meta","ai worth-noting meta","instruction echo please","orphaned markdown header","stray backtick block","safety cannot disclaimer","safety i-cannot disclaimer","safety please-consult disclaimer","certainty important-note marker","certainty worth-mentioning marker","certainty keep-in-mind marker","certainty redundant-assurance marker"],"matchesFound":[],"actionsTaken":["cleaned_fields:0","removed_phrases:0"],"passedThrough":["processed_fields:4"]}
+{"timestamp":"2026-10-10T08:49:45.052Z","level":"info","message":"Session too short for meaningful phase detection","messageCount":1}
+{"timestamp":"2026-10-10T08:49:45.053Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s"],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:0","stripped_wrappers:0"],"passedThrough":["input_items:1","kept_items:1"]}
+{"timestamp":"2026-10-10T08:49:45.062Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:45.122Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"savedFilePath is a directory (phase-parent or unspecified target): /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/canonical-save-workflow-plan-only-YR6vvv/.opencode/specs/system-spec-kit/917-canonical-save-metadata-plan-only"}
+{"timestamp":"2026-10-10T08:49:45.131Z","level":"info","message":"contamination_audit","stage":"extractor-scrub","patternsChecked":["step-by-step orchestration","analysis preamble","progress narration","step narration","check preamble","start-by preamble","start preamble","read preamble","look-into preamble","begin preamble","proceed preamble","handle preamble","will-now preamble","analysis heading","review heading","transition phrase","close-reading transition","first-step narration","now-step narration","next-step narration","ai self-reference","language-model self-reference","assistant self-reference","generic affirmation","sure filler","absolute filler","tool usage narration","tool usage narration active","tool usage preamble","tool title with path","api error prefix","json error payload","request id leak","hedging i-think","hedging it-seems","hedging perhaps","hedging might-be","hedging could-be","certainly filler","ai should-note meta","ai worth-noting meta","instruction echo please","orphaned markdown header","stray backtick block","safety cannot disclaimer","safety i-cannot disclaimer","safety please-consult disclaimer","certainty important-note marker","certainty worth-mentioning marker","certainty keep-in-mind marker","certainty redundant-assurance marker"],"matchesFound":[],"actionsTaken":["cleaned_fields:0","removed_phrases:0"],"passedThrough":["processed_fields:4"]}
+{"timestamp":"2026-10-10T08:49:45.148Z","level":"info","message":"Session too short for meaningful phase detection","messageCount":1}
+{"timestamp":"2026-10-10T08:49:45.148Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s"],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:0","stripped_wrappers:0"],"passedThrough":["input_items:1","kept_items:1"]}
+{"timestamp":"2026-10-10T08:49:45.151Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:45.189Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"savedFilePath is a directory (phase-parent or unspecified target): /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/canonical-save-workflow-full-auto-JWgtEh/.opencode/specs/system-spec-kit/917-canonical-save-metadata-full-auto"}
+{"timestamp":"2026-10-10T08:49:51.636Z","level":"info","message":"memory_metric","metric_name":"memory_save_overview_length_histogram","metric_value":0,"labels":{"input_mode":"file","save_mode":"json"}}
+{"timestamp":"2026-10-10T08:49:51.637Z","level":"info","message":"memory_metric","metric_name":"memory_save_review_violation_total","metric_value":1,"labels":{"input_mode":"file","save_mode":"json","check_id":"D4","severity":"HIGH"}}
+{"timestamp":"2026-10-10T08:49:51.637Z","level":"warn","message":"frontmatter is \"important\" but MEMORY METADATA is \"normal\"","check_id":"D4","severity":"HIGH","field":"importance_tier","input_mode":"file"}
+{"timestamp":"2026-10-10T08:49:51.637Z","level":"info","message":"memory_metric","metric_name":"memory_save_frontmatter_tier_drift_total","metric_value":1,"labels":{"input_mode":"file","save_mode":"json"}}
+{"timestamp":"2026-10-10T08:49:51.638Z","level":"info","message":"memory_metric","metric_name":"memory_save_overview_length_histogram","metric_value":0,"labels":{"input_mode":"file","save_mode":"json"}}
+{"timestamp":"2026-10-10T08:49:52.560Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:52.563Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:52.563Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:52.564Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:52.564Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:52.565Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:52.565Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:52.565Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:52.566Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:52.566Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:52.573Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:1","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:52.580Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:1","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:52.586Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:1","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:53.681Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:017-v12-normalization-fixture","trigger_phrases:1","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:53.685Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:017-v12-normalization-fixture","trigger_phrases:1","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:53.688Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:017-v12-normalization-fixture","trigger_phrases:1","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:53.690Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:017-v12-normalization-fixture","trigger_phrases:1","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:53.691Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:017-v12-normalization-fixture","trigger_phrases:1","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:54.022Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:041-v-rule-cross-spec-overreach","trigger_phrases:1","key_topics:1","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:54.025Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:041-v-rule-cross-spec-overreach","trigger_phrases:1","key_topics:1","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:54.025Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:037-token-budget-worker-deep-dive","trigger_phrases:1","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:54.026Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:041-v-rule-cross-spec-overreach","trigger_phrases:1","key_topics:1","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:54.027Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":["body-scattered:901-alpha-packet x1","body-scattered:902-beta-packet x1","body-scattered:903-gamma-packet x1"],"actionsTaken":["failed_rules:V8"],"passedThrough":["current_spec:041-v-rule-cross-spec-overreach","trigger_phrases:1","key_topics:1","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:54.028Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:041-v-rule-cross-spec-overreach","trigger_phrases:1","key_topics:1","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:54.029Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":["body-scattered:901-alpha-packet x1","body-scattered:902-beta-packet x1","body-scattered:903-gamma-packet x1","body-scattered:904-delta-packet x1"],"actionsTaken":["failed_rules:V8"],"passedThrough":["current_spec:041-v-rule-cross-spec-overreach","trigger_phrases:1","key_topics:1","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:54.030Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:042-dominates-current","trigger_phrases:1","key_topics:1","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:54.030Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":["body:foreign spec ids dominate rendered content"],"actionsTaken":["failed_rules:V8"],"passedThrough":["current_spec:042-dominates-current","trigger_phrases:1","key_topics:1","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:54.031Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:014-parent-spec","trigger_phrases:1","key_topics:1","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:54.032Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":["body:foreign spec ids dominate rendered content"],"actionsTaken":["failed_rules:V8"],"passedThrough":["current_spec:014-parent-spec","trigger_phrases:1","key_topics:1","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:54.566Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:901-independent-reader","trigger_phrases:1","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:54.571Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:902-legacy-reader","trigger_phrases:1","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:55.818Z","level":"info","message":"memory_metric","metric_name":"memory_save_overview_length_histogram","metric_value":0,"labels":{"input_mode":"file","save_mode":"json"}}
+{"timestamp":"2026-10-10T08:49:55.821Z","level":"info","message":"memory_metric","metric_name":"memory_save_overview_length_histogram","metric_value":0,"labels":{"input_mode":"file","save_mode":"json"}}
+{"timestamp":"2026-10-10T08:49:55.973Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:026-graph-and-context-optimization","trigger_phrases:1","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:55.975Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":["body:foreign spec ids dominate rendered content"],"actionsTaken":["failed_rules:V8"],"passedThrough":["current_spec:026-graph-and-context-optimization","trigger_phrases:1","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:56.137Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:999-nonexistent-spec","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-10-10T08:49:56.680Z","level":"info","message":"Processing manual decisions","manualDecisionCount":2}
+{"timestamp":"2026-10-10T08:49:56.683Z","level":"info","message":"Processing manual decisions","manualDecisionCount":1}
+{"timestamp":"2026-10-10T08:49:56.684Z","level":"info","message":"Processing manual decisions","manualDecisionCount":1}
+{"timestamp":"2026-10-10T08:49:58.382Z","level":"warn","message":"fact_coercion_drop","component":"test","fieldPath":"facts","droppedCount":2,"dropReasonCounts":{"nullish":2}}
+
+ Test Files  174 passed | 3 skipped (177)
+      Tests  1830 passed | 19 skipped (1849)
+   Start at  10:38:02
+   Duration  717.58s (transform 1.80s, setup 449ms, import 4.55s, tests 701.83s, environment 6ms)
+
+
+> @spec-kit/cli@1.7.2 test:legacy
+> npm run build && node tests/test-scripts-modules.js && node tests/test-extractors-loaders.js && node tests/test-phase-validation.js && node tests/test-phase-system.js
+
+
+> @spec-kit/cli@1.7.2 build
+> npm run prepare-build && tsc --build && npm run record-build
+
+
+> @spec-kit/cli@1.7.2 prepare-build
+> node lib/dist-freshness.cjs prepare-build --package system-spec-kit/runtime/cli --entry default && node lib/dist-freshness.cjs prepare-build --package system-spec-kit/runtime/cli --entry is-phase-parent
+
+@spec-kit/cli dist build preparation recorded
+@spec-kit/cli dist build preparation recorded
+
+> @spec-kit/cli@1.7.2 record-build
+> node lib/dist-freshness.cjs record-build --package system-spec-kit/runtime/cli --entry default && node lib/dist-freshness.cjs record-build --package system-spec-kit/runtime/cli --entry is-phase-parent
+
+@spec-kit/cli dist build attestation recorded
+@spec-kit/cli dist build attestation recorded
+🧪 Scripts Modules Comprehensive Test Suite
+=============================================
+Date: 2026-10-10T08:50:01.042Z
+Scripts Dir: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli/dist
+
+
+🔬 CORE: config.js
+   ✅ T-001a: CONFIG object exists
+      Evidence: Object loaded
+   ✅ T-001b: SKILL_VERSION defined
+      Evidence: 1.7.2
+   ✅ T-001c: PROJECT_ROOT defined
+      Evidence: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets
+   ✅ T-001d: TEMPLATE_DIR defined
+      Evidence: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/templates
+   ✅ T-001e: CONFIG has MAX_RESULT_PREVIEW
+      Evidence: 500
+   ✅ T-001f: CONFIG has MAX_CONVERSATION_MESSAGES
+      Evidence: 100
+   ✅ T-001g: getSpecsDirectories() returns non-empty array
+      Evidence: Length: 2
+   ✅ T-001h: findActiveSpecsDir() returns string or null
+      Evidence: Result: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs
+   ✅ T-001i: getAllExistingSpecsDirs() returns array
+      Evidence: Length: 1
+
+🔬 CORE: workflow.js
+   ✅ T-002a: runWorkflow exported
+      Evidence: Type is function
+   ✅ T-002f: extractKeyTopics exported
+      Evidence: Type is function
+   ✅ T-002k: extractKeyTopics extracts topics
+      Evidence: Found: oauth authentication, implemented oauth, jwt tokens
+
+🔬 UTILS: path-utils.js
+{"timestamp":"2026-10-10T08:50:01.104Z","level":"warn","message":"Path contains null bytes","inputPath":"/valid/path\u0000/injection"}
+   ✅ T-003a: sanitizePath rejects null bytes (CWE-22)
+      Evidence: Threw: Invalid path: contains null bytes: /valid/path /in
+   ✅ T-003b: sanitizePath rejects empty path
+      Evidence: Threw: Invalid path: path must be a non-empty string
+   ✅ T-003c: sanitizePath rejects null
+      Evidence: Threw: Invalid path: path must be a non-empty string
+   ✅ T-003d: sanitizePath accepts valid cwd path
+      Evidence: Function executed without throwing
+{"timestamp":"2026-10-10T08:50:01.104Z","level":"warn","message":"Path outside allowed directories","inputPath":"/etc/passwd","resolved":"/private/etc/passwd","allowedBases":["/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli"]}
+   ✅ T-003e: sanitizePath rejects path outside allowed directories
+      Evidence: Threw: Path outside allowed directories: /etc/passwd
+   ✅ T-003i: sanitizePath default bases accept a path inside a linked .skilled
+      Evidence: Function executed without throwing
+   ✅ T-003j: sanitizePath default bases accept a path inside a linked .opencode
+      Evidence: Function executed without throwing
+{"timestamp":"2026-10-10T08:50:01.106Z","level":"warn","message":"Path outside allowed directories","inputPath":"/etc/passwd","resolved":"/private/etc/passwd","allowedBases":["/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-sanitize-consumer-I7j5oK","/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-sanitize-consumer-I7j5oK/specs","/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-sanitize-consumer-I7j5oK/.skilled","/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-sanitize-consumer-I7j5oK/.opencode"]}
+   ✅ T-003k: sanitizePath default bases reject /etc/passwd
+      Evidence: Threw: Path outside allowed directories: /etc/passwd
+{"timestamp":"2026-10-10T08:50:01.106Z","level":"warn","message":"Path outside allowed directories","inputPath":"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-sanitize-consumer-I7j5oK/.skilled/../../outside","resolved":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/outside","allowedBases":["/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-sanitize-consumer-I7j5oK","/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-sanitize-consumer-I7j5oK/specs","/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-sanitize-consumer-I7j5oK/.skilled","/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-sanitize-consumer-I7j5oK/.opencode"]}
+   ✅ T-003l: sanitizePath default bases reject a .. escape from a linked .skilled
+      Evidence: Threw: Path outside allowed directories: /var/folders/3c/
+   ✅ T-003f: getPathBasename extracts filename
+      Evidence: file.js === file.js
+   ✅ T-003g: getPathBasename handles Windows paths
+      Evidence: file.js === file.js
+   ✅ T-003h: getPathBasename handles empty input
+      Evidence:  === 
+
+🔬 UTILS: input-normalizer.js
+   ✅ T-004a: normalizeInputData passes MCP data through
+      Evidence: user_prompts preserved
+   ✓ Transformed manual format to MCP-compatible structure
+   ✅ T-004b: normalizeInputData transforms manual format
+      Evidence: SPEC_FOLDER and observations created
+   ✅ T-004c: validateInputData throws on null
+      Evidence: Threw: Input validation failed: data must be a non-null o
+   ✅ T-004d: validateInputData accepts valid MCP data
+      Evidence: Function executed without throwing
+   ✅ T-004e: validateInputData throws on invalid triggerPhrases
+      Evidence: Threw: Input validation failed: Missing required field: s
+   ✅ T-004f: transformKeyDecision handles string
+      Evidence: Type: decision
+   ✅ T-004g: transformKeyDecision handles object
+      Evidence: Rationale included
+   ✅ T-004h: buildSessionSummaryObservation creates observation
+      Evidence: Facts include triggers
+   ✅ T-004i: transformOpenCodeCapture transforms capture data
+      Evidence: Source marked correctly
+
+🔬 UTILS: data-validator.js
+   ✅ T-005a: validateDataStructure adds HAS_ flags
+      Evidence: HAS_CODE_BLOCKS = true
+   ✅ T-005b: validateDataStructure sets false for empty arrays
+      Evidence: HAS_CODE_BLOCKS = false
+   ✅ T-005c: ensureArrayOfObjects converts strings
+      Evidence: String wrapped in object
+   ✅ T-005d: ensureArrayOfObjects handles null
+      Evidence: Returns empty array
+   ✅ T-005e: hasArrayContent for non-empty array
+      Evidence: true === true
+   ✅ T-005f: hasArrayContent for empty array
+      Evidence: false === false
+   ✅ T-005g: ARRAY_FLAG_MAPPINGS exists
+      Evidence: 9 mappings
+
+🔬 UTILS: logger.js
+   ✅ T-006a: structuredLog is a function
+      Evidence: Type is function
+{"timestamp":"2026-10-10T08:50:01.109Z","level":"info","message":"Test message","key":"value"}
+   ✅ T-006b: structuredLog handles info level
+      Evidence: Function executed without throwing
+{"timestamp":"2026-10-10T08:50:01.109Z","level":"warn","message":"Test warning"}
+   ✅ T-006c: structuredLog handles warn level
+      Evidence: Function executed without throwing
+{"timestamp":"2026-10-10T08:50:01.109Z","level":"error","message":"Test error"}
+   ✅ T-006d: structuredLog handles error level
+      Evidence: Function executed without throwing
+{"timestamp":"2026-10-10T08:50:01.109Z","level":"info","message":"No data"}
+   ✅ T-006e: structuredLog handles missing data parameter
+      Evidence: Function executed without throwing
+
+🔬 UTILS: message-utils.js
+   ✅ T-007e: truncateToolOutput truncates long output
+      Evidence: Truncation marker found
+   ✅ T-007f: truncateToolOutput preserves short output
+      Evidence: short output === short output
+   ✅ T-007g: summarizeExchange creates complete summary
+      Evidence: All fields present
+   ✅ T-007h: extractKeyArtifacts export removed
+      Evidence: Public surface matches TypeScript source
+
+🔬 UTILS: tool-detection.js
+   ✅ T-008a: detectToolCall finds explicit tool mention
+      Evidence: Tool: Read with high confidence
+   ✅ T-008b: detectToolCall finds function call syntax
+      Evidence: Read() detected
+   ✅ T-008c: detectToolCall returns null for no match
+      Evidence: null returned
+   ✅ T-008d: isProseContext detects prose usage
+      Evidence: Prose detected
+   ✅ T-008e: classifyConversationPhase detects Research
+      Evidence: Research phase
+   ✅ T-008f: classifyConversationPhase detects Implementation
+      Evidence: Implementation phase
+   ✅ T-008g: classifyConversationPhase detects Debugging
+      Evidence: Debugging phase
+
+🔬 LIB: anchor-generator.js
+   ✅ T-009a: generate_anchor_id format
+      Evidence: implementation-oauth-callback-handler-e11459f7
+   ✅ T-009d: categorize_section detects decision
+      Evidence: decision
+   ✅ T-009e: validate_anchor_uniqueness handles collisions
+      Evidence: test-anchor-abc12345-2
+   ✅ T-009g: slugify creates valid slug
+      Evidence: oauth-authentication
+
+🔬 LIB: content-filter.js
+   ✅ T-010a: is_noise_content detects "User message"
+      Evidence: true === true
+   ✅ T-010b: is_noise_content detects "Assistant response"
+      Evidence: true === true
+   ✅ T-010c: is_noise_content allows real content
+      Evidence: false === false
+   ✅ T-010d: create_filter_pipeline returns pipeline
+      Evidence: All methods present
+{"timestamp":"2026-10-10T08:50:01.113Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s"],"matchesFound":["/^User message$/i x1","/^Assistant response$/i x1"],"actionsTaken":["filtered_noise:2","filtered_empty:0","stripped_wrappers:0"],"passedThrough":["input_items:3","kept_items:1"]}
+   ✅ T-010e: Pipeline filters noise prompts
+      Evidence: Filtered to 1
+   ✅ T-010j: NOISE_PATTERNS constant exists
+      Evidence: 27 patterns
+
+🔬 LIB: flowchart-generator.js
+   ✅ T-011a: detect_workflow_pattern returns linear
+      Evidence: linear === linear
+   ✅ T-011b: detect_workflow_pattern returns parallel
+      Evidence: parallel === parallel
+   ✅ T-011c: generate_workflow_flowchart creates ASCII art
+      Evidence: Contains phase name
+   ✅ T-011d: generate_workflow_flowchart returns null for empty
+      Evidence: null returned
+   ✅ T-011e: build_phase_details creates detailed info
+      Evidence: INDEX and PHASE_NAME present
+   ✅ T-011f: extract_flowchart_features returns features
+      Evidence: 3 features
+   ✅ T-011g: get_pattern_use_cases returns array
+      Evidence: 6 use cases
+   ✅ T-011h: classify_diagram_pattern detects patterns
+      Evidence: Linear Sequential, Low
+   ✅ T-011i: PATTERNS constant exists
+      Evidence: {"LINEAR":"linear","PARALLEL":"parallel"}
+   ✅ T-011j: DIAGRAM_PATTERNS constant exists
+      Evidence: 8 patterns
+   ✅ T-011k: COMPLEXITY constant exists
+      Evidence: {"LOW":"Low","MEDIUM":"Medium","HIGH":"High"}
+
+🔬 LIB: semantic-summarizer.js
+   ✅ T-012a: classify_message detects intent
+      Evidence: intent === intent
+   ✅ T-012b: classify_message detects implementation
+      Evidence: implementation === implementation
+   ✅ T-012c: classify_message detects decision
+      Evidence: decision === decision
+   ✅ T-012d: classify_message detects result
+      Evidence: result === result
+   ✅ T-012e: classify_messages organizes by type
+      Evidence: 7 types
+   ✅ T-012f: extract_file_changes extracts file paths
+      Evidence: 1 files
+   ✅ T-012g: generate_implementation_summary creates summary
+      Evidence: Task: Implement OAuth
+   ✅ T-012h: format_summary_as_markdown creates markdown
+      Evidence: Headers present
+   ✅ T-012i: MESSAGE_TYPES constant exists
+      Evidence: INTENT, PLAN, IMPLEMENTATION, RESULT, DECISION, QUESTION, CONTEXT
+
+🔬 LIB: simulation-factory.js
+   ✅ T-013a: create_session_data creates valid structure
+      Evidence: Key fields present
+   ✅ T-013b: create_conversation_data creates messages
+      Evidence: 2 messages
+   ✅ T-013c: create_decision_data creates decisions
+      Evidence: 1 decisions
+   ✅ T-013d: create_diagram_data creates diagrams
+      Evidence: 1 diagrams
+   ✅ T-013f: requires_simulation detects null
+      Evidence: true === true
+   ✅ T-013g: requires_simulation detects simulation flag
+      Evidence: true === true
+   ✅ T-013h: requires_simulation allows real data
+      Evidence: false === false
+
+🔬 SPEC-FOLDER: alignment-validator.js
+   ✅ T-014a: ALIGNMENT_CONFIG exists with threshold
+      Evidence: Threshold: 70
+   ✅ T-014b: extractConversationTopics extracts topics
+      Evidence: implementing, oauth, authentication
+   ✅ T-014c: extractObservationKeywords extracts keywords
+      Evidence: oauth, implementation, added
+   ✅ T-014d: parseSpecFolderTopic parses folder name
+      Evidence: oauth, authentication
+   ✅ T-014e: calculateAlignmentScore computes score
+      Evidence: Score: 100
+   ✅ T-014f: calculateAlignmentScore returns 0 for no match
+      Evidence: Score: 0
+
+🔬 SPEC-FOLDER: index.js (setupContextDirectory compat alias)
+   ✅ T-015a: setupContextDirectory is a function
+      Evidence: Type is function
+{"timestamp":"2026-10-10T08:50:01.118Z","level":"warn","message":"Path outside allowed directories","inputPath":"/nonexistent/path/to/spec/folder","resolved":"/nonexistent/path/to/spec/folder","allowedBases":["/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs","/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.opencode/specs"]}
+{"timestamp":"2026-10-10T08:50:01.118Z","level":"error","message":"Invalid spec folder path","specFolder":"/nonexistent/path/to/spec/folder","error":"Path outside allowed directories: /nonexistent/path/to/spec/folder"}
+   ✅ T-015b: setupContextDirectory rejects nonexistent paths
+      Evidence: Threw appropriate error
+
+🔬 SPEC-FOLDER: folder-detector.js
+   ✅ T-016a: detectSpecFolder is a function
+      Evidence: Type is function
+   ✅ T-016b: filterArchiveFolders removes archive folders
+      Evidence: 2 remaining
+   ✅ T-016c: ALIGNMENT_CONFIG has archive patterns
+      Evidence: z_, archive, old, .archived
+
+🔬 LOADERS: data-loader.js
+   ✅ T-017a: loadCollectedData is a function
+      Evidence: Type is function
+   ⏭️  T-017b: loadCollectedData loads JSON file (skipped: Requires mock data file)
+   ⏭️  T-017c: loadCollectedData handles missing file (skipped: Requires mock environment)
+
+🔬 EXTRACTORS: file-extractor.js
+   ✅ T-019a: detectObservationType detects bugfix
+      Evidence: bugfix
+   ✅ T-019b: detectObservationType detects feature
+      Evidence: feature
+   ✅ T-019c: detectObservationType preserves explicit type
+      Evidence: decision === decision
+   ✅ T-019d: extractFilesFromData extracts from FILES
+      Evidence: src/test/file.js
+   ✅ T-019e: enhanceFilesWithSemanticDescriptions enhances files
+      Evidence: Added OAuth handler
+   ✅ T-019f: buildObservationsWithAnchors adds anchors
+      Evidence: implementation-test-observation-c4061841
+
+🔬 EXTRACTORS: conversation-extractor.js
+   ✅ T-020a: extractConversations is a function
+      Evidence: Type is function
+   ✅ T-020b: extractConversations returns simulation for null
+      Evidence: 0 messages
+   ✅ T-020c: extractConversations processes real data
+      Evidence: Duration: 0m
+
+🔬 EXTRACTORS: decision-extractor.js
+   ✅ T-021a: extractDecisions is a function
+      Evidence: Type is function
+   ✅ T-021b: extractDecisions returns simulation for null
+      Evidence: 0 decisions
+{"timestamp":"2026-10-10T08:50:01.122Z","level":"info","message":"Processing manual decisions","manualDecisionCount":1}
+   ✅ T-021c: extractDecisions processes manual decisions
+      Evidence: Chose Option A for simplicity
+   ✅ T-021d: extractDecisions calculates confidence counts
+      Evidence: High: 0
+
+🔬 EXTRACTORS: session-extractor.js
+   ✅ T-022b: getChannel returns string
+      Evidence: worktrees/091-consolidate-small-packets
+   ✅ T-022c: detectContextType classifies implementation
+      Evidence: implementation
+   ✅ T-022d: detectContextType classifies research
+      Evidence: research
+   ✅ T-022e: detectImportanceTier detects critical
+      Evidence: critical
+   ✅ T-022f: detectProjectPhase classifies phase
+      Evidence: RESEARCH
+   ✅ T-022g: countToolsByType counts tools
+      Evidence: Read: 1, Edit: 1
+   ✅ T-022h: calculateSessionDuration computes duration
+      Evidence: 30m
+   ✅ T-022i: extractKeyTopics extracts topics
+      Evidence: oauth authentication, implemented oauth
+
+🔬 EXTRACTORS: collect-session-data.js
+   ✅ T-023a: shouldAutoSave triggers at threshold
+      Evidence: Threshold: 20
+   ✅ T-023b: shouldAutoSave returns false below threshold
+      Evidence: false returned
+   ✅ T-023c: collectSessionData is a function
+      Evidence: Type is function
+   ⏭️  T-023d: collectSessionData returns full session data (skipped: Requires mock spec folder)
+
+🔬 CORE: workflow.js (Additional Functions)
+   ✅ T-024a-neg: workflow omits retired helpers
+      Evidence: runWorkflow is the only public entry point; writeFilesAtomically + indexMemory stay deleted
+
+🔬 EXTRACTORS: opencode-capture.js (REMOVED — recovery mode deprecated)
+   ⏭️  T-025: OpenCode capture module (skipped: Module removed — recovery mode fully deprecated)
+
+🔬 EXTRACTORS: implementation-guide-extractor.js
+   ✅ T-026a: hasImplementationWork returns false for empty data
+      Evidence: false === false
+   ✅ T-026b: hasImplementationWork returns true for implementation observations
+      Evidence: true === true
+   ✅ T-026c: extractMainTopic extracts from spec folder
+      Evidence: oauth-authentication
+   ✅ T-026d: extractMainTopic extracts from observations
+      Evidence: user-profile-system
+   ✅ T-026e: extractMainTopic returns fallback
+      Evidence: implementation === implementation
+   ✅ T-026f: extractWhatBuilt extracts implementations
+      Evidence: 2 items
+   ✅ T-026g: extractWhatBuilt returns empty for non-impl obs
+      Evidence: 0 === 0
+   ✅ T-026h: extractKeyFilesWithRoles assigns roles
+      Evidence: All 4 have roles
+   ✅ T-026i: extractKeyFilesWithRoles detects test file
+      Evidence: Test file
+   ✅ T-026j: generateExtensionGuide returns guide items
+      Evidence: 2 guides
+   ✅ T-026k: generateExtensionGuide detects API pattern
+      Evidence: API guide present
+   ✅ T-026l: extractCodePatterns returns array
+      Evidence: 0 patterns
+   ⏭️  T-026m: extractCodePatterns detects validation pattern (skipped: Pattern detection varies)
+   ✅ T-026n: buildImplementationGuideData returns complete structure
+      Evidence: All fields present
+   ✅ T-026o: buildImplementationGuideData returns false for no impl
+      Evidence: false === false
+
+🔬 EXTRACTORS: session-extractor.js (Additional Functions)
+   ✅ T-027a: extractActiveFile exported
+      Evidence: Type is function
+   ✅ T-027b: extractNextAction exported
+      Evidence: Type is function
+   ✅ T-027c: extractBlockers exported
+      Evidence: Type is function
+   ✅ T-027d: buildFileProgress exported
+      Evidence: Type is function
+   ✅ T-027e: calculateExpiryEpoch exported
+      Evidence: Type is function
+   ✅ T-027f: detectRelatedDocs exported
+      Evidence: Type is function
+   ✅ T-027g: detectSessionCharacteristics exported
+      Evidence: Type is function
+   ✅ T-027h: buildProjectStateSnapshot exported
+      Evidence: Type is function
+   ✅ T-027i: extractActiveFile finds file from observations
+      Evidence: /src/user.js === /src/user.js
+   ✅ T-027j: extractActiveFile falls back to files array
+      Evidence: /backup.js === /backup.js
+   ✅ T-027k: extractActiveFile returns N/A when no files
+      Evidence: N/A === N/A
+   ✅ T-027l: extractNextAction extracts from facts
+      Evidence: implement validation
+   ✅ T-027m: extractNextAction returns default
+      Evidence: Continue implementation === Continue implementation
+   ✅ T-027n: extractBlockers finds blockers
+      Evidence: Blocked by missing API credentials.
+   ✅ T-027o: extractBlockers returns None when no blockers
+      Evidence: None === None
+   ✅ T-027p: buildFileProgress returns array
+      Evidence: 2 files
+   ✅ T-027q: buildFileProgress returns empty for null
+      Evidence: Empty array
+   ✅ T-027r: calculateExpiryEpoch returns 0 for critical
+      Evidence: 0 === 0
+   ✅ T-027s: calculateExpiryEpoch returns 0 for constitutional
+      Evidence: 0 === 0
+   ✅ T-027t: calculateExpiryEpoch returns 7 days for temporary
+      Evidence: 7 days added
+   ✅ T-027u: calculateExpiryEpoch returns 90 days default
+      Evidence: 90 days added
+   ✅ T-027v: detectRelatedDocs returns array
+      Evidence: 0 docs found
+   ✅ T-027w: detectSessionCharacteristics returns complete object
+      Evidence: implementation
+   ✅ T-027x: buildProjectStateSnapshot returns complete object
+      Evidence: IMPLEMENTATION
+
+🔬 T233: wrap-all-templates shipped path
+   ✅ T233-WR-001: wrapSectionsWithAnchors is exported
+      Evidence: function found
+   ✅ T233-WR-002: wrapSectionsWithAnchors returns content string
+      Evidence: length=128
+   ✅ T233-WR-003: wrapSectionsWithAnchors returns anchorsAdded count
+      Evidence: anchorsAdded=1
+   ✅ T233-WR-004: wrapSectionsWithAnchors returns anchorsPreserved count
+      Evidence: anchorsPreserved=0
+   ✅ T233-WR-005: wrapSectionsWithAnchors is idempotent
+      Evidence: second pass produces identical output
+   ✅ T233-WR-006: Module exports shipped functions
+      Evidence: count=6: categorizeSection, extractSpecNumber, generateAnchorId, slugify, validateAnchorUniqueness
+
+🔬 LIB: simulation-factory.js (additional functions)
+   ✅ T-029a: create_simulation_phases returns array
+      Evidence: 4 phases
+   ✅ T-029b: create_simulation_phases has required structure
+      Evidence: Phase: Research
+   ✅ T-029c: create_simulation_phases includes standard phases
+      Evidence: Research, Planning, Implementation, Verification
+   ✅ T-029d: create_simulation_flowchart returns string
+      Evidence: 133 chars
+   ✅ T-029e: create_simulation_flowchart contains ASCII art
+      Evidence: Box chars found
+   ✅ T-029f: create_simulation_flowchart accepts custom request
+      Evidence: Custom text found
+
+🔬 LIB: anchor-generator.js (additional functions)
+   ✅ T-030a: extract_spec_number extracts 042
+      Evidence: 042 === 042
+   ✅ T-030b: extract_spec_number extracts 123
+      Evidence: 123 === 123
+   ✅ T-030c: extract_spec_number returns 000 for no match
+      Evidence: 000 === 000
+   ✅ T-030d: extract_spec_number returns 000 for short prefix
+      Evidence: 000 === 000
+   ✅ T-030e: extract_spec_number preserves leading zeros
+      Evidence: 001 === 001
+
+🔬 LIB: semantic-summarizer.js (additional function)
+   ✅ T-031a: extract_decisions is a function
+      Evidence: Type is function
+   ✅ T-031b: extract_decisions finds explicit choice
+      Evidence: Found 1 decision(s)
+   ✅ T-031c: extract_decisions captures question context
+      Evidence: Which option do you prefer?
+   ✅ T-031d: extract_decisions handles option letter format
+      Evidence: Choice: A
+   ✅ T-031e: extract_decisions returns empty for no decisions
+      Evidence: Empty array
+   ✅ T-031f: extract_decisions handles empty input
+      Evidence: Empty array
+   ✅ T-031g: extract_decisions handles "chose" pattern
+      Evidence: Found decision
+   ✅ T-031h: extract_decisions handles "user chose" pattern
+      Evidence: Found decision
+
+🔬 UTILS: prompt-utils.js
+   ✅ T-033b: promptUser is a function
+      Evidence: Type is function
+   ✅ T-033c: promptUserChoice is a function
+      Evidence: Type is function
+[generate-context] Non-interactive mode: using default value
+   ✅ T-033d: promptUser returns a Promise
+      Evidence: Promise returned
+[generate-context] Non-interactive mode: using default value
+   ✅ T-033e: promptUser returns default in non-interactive mode
+      Evidence: Got: defaultValue
+[generate-context] Non-interactive mode: using default choice 1
+   ✅ T-033f: promptUserChoice returns 1 in non-interactive mode
+      Evidence: Got: 1
+
+🔬 UTILS: file-helpers.js
+   ✅ T-034a: toRelativePath converts absolute to relative
+      Evidence: src/file.js
+   ✅ T-034b: toRelativePath handles empty input
+      Evidence:  === 
+   ✅ T-034c: toRelativePath handles null
+      Evidence:  === 
+   ✅ T-034d: toRelativePath handles long paths
+      Evidence: /root/very/long/path/with/many/segments/to/file.js
+   ✅ T-034e: isDescriptionValid rejects short descriptions
+      Evidence: false === false
+   ✅ T-034f: isDescriptionValid rejects garbage patterns
+      Evidence: false === false
+   ✅ T-034g: isDescriptionValid rejects heading patterns
+      Evidence: false === false
+   ✅ T-034h: isDescriptionValid rejects placeholder
+      Evidence: false === false
+   ✅ T-034i: isDescriptionValid accepts valid descriptions
+      Evidence: true === true
+   ✅ T-034i2: validateDescription rejects generic recent-commit stub
+      Evidence: placeholder === placeholder
+   ✅ T-034i3: validateDescription classifies low-context activity descriptions
+      Evidence: activity-only === activity-only
+   ✅ T-034i4: validateDescription accepts semantic descriptions
+      Evidence: semantic === semantic
+   ✅ T-034j: cleanDescription removes markdown
+      Evidence: Heading with bold and code
+   ✅ T-034k: cleanDescription truncates long descriptions
+      Evidence: Length: 56
+   ✅ T-034l: cleanDescription capitalizes first letter
+      Evidence: L
+
+🔬 UTILS: phase-classifier.ts
+   ✅ T-008h: phase-classifier compatibility wrapper prefers Debugging for grep+error
+      Evidence: Debugging
+   ✅ T-008i: phase-classifier preserves non-contiguous phase returns
+      Evidence: Research -> Implementation -> Research
+   ✅ T-008j: phase-classifier derives Iterative Loop flow pattern
+      Evidence: Iterative Loop
+
+🔬 LIB: ascii-boxes.js
+   ✅ T-036a: BOX constant exists with box characters
+      Evidence: 19 characters
+   ✅ T-036b: pad_text pads text to width
+      Evidence: "test      "
+   ✅ T-036c: pad_text truncates long text
+      Evidence: "very "
+   ✅ T-036d: pad_text centers text
+      Evidence: "    Hi    "
+   ✅ T-036e: format_decision_header creates header
+      Evidence: Has box characters and DECISION
+   ✅ T-036f: format_option_box creates option box
+      Evidence: Has box and label
+   ✅ T-036g: format_chosen_box creates chosen box
+      Evidence: Has CHOSEN and selection
+   ✅ T-036h: format_caveats_box creates caveats box
+      Evidence: Has Caveats content
+   ✅ T-036i: format_caveats_box returns empty for null
+      Evidence: Empty string returned
+   ✅ T-036j: format_follow_up_box creates follow-up box
+      Evidence: Has Follow-up content
+   ✅ T-036k: format_follow_up_box returns empty for empty array
+      Evidence: Empty string returned
+
+🔬 LIB: trigger-extractor.js (re-export verification)
+   ✅ T-037a: extractTriggerPhrases is exported
+      Evidence: Type is function
+   ✅ T-037b: extract_trigger_phrases is exported
+      Evidence: Type is function
+   ✅ T-037c: extractTriggerPhrases extracts phrases
+      Evidence: Found: authentication bug, implemented oauth, oauth authentication
+   ✅ T-037d: extractTriggerPhrases returns empty for null
+      Evidence: Empty array returned
+   ✅ T-037e: extractTriggerPhrases returns empty for short text
+      Evidence: Empty array returned
+   ✅ T-037f: CONFIG is exported
+      Evidence: {"MIN_PHRASE_COUNT":8,"MAX_PHRASE_COUNT":25,"MIN_W
+   ✅ T-037g: STOP_WORDS_ENGLISH is exported
+      Evidence: 119 words
+
+🔬 SPEC-FOLDER: alignment-validator.js (extended)
+   ✅ T-039a: validateContentAlignment is a function
+      Evidence: Type is function
+   ✅ T-039b: validateFolderAlignment is a function
+      Evidence: Type is function
+   ✅ T-039c: extractConversationTopics extracts OAuth topics
+      Evidence: implementing, oauth, authentication, handler, created
+   ✅ T-039d: extractObservationKeywords extracts keywords
+      Evidence: authentication, implementation, added, jwt, token
+   ✅ T-039e: calculateAlignmentScore returns high score for match
+      Evidence: Score: 100
+   ✅ T-039f: calculateAlignmentScore returns low score for non-match
+      Evidence: Score: 0
+   ✅ T-039g: parseSpecFolderTopic parses nested names
+      Evidence: memory, and, spec, kit
+   ✅ T-039h: ALIGNMENT_CONFIG has STOPWORDS
+      Evidence: 11 words
+
+🔬 EXTRACTORS: diagram-extractor.js
+   ✅ T-040a: extractPhasesFromData is a function
+      Evidence: Type is function
+   ✅ T-040b: extractPhasesFromData returns array for null
+      Evidence: Length: 4
+{"timestamp":"2026-10-10T08:50:01.153Z","level":"info","message":"Session too short for meaningful phase detection","messageCount":2}
+   ✅ T-040c: extractPhasesFromData returns empty for short sessions
+      Evidence: Empty array
+   ✅ T-040d: extractPhasesFromData extracts phases
+      Evidence: Found 2 phases
+   ✅ T-040e: extractDiagrams is a function
+      Evidence: Type is function
+   ✅ T-040f: extractDiagrams returns simulation for null
+      Evidence: Count: 0
+{"timestamp":"2026-10-10T08:50:01.153Z","level":"info","message":"Session too short for meaningful phase detection","messageCount":1}
+   ✅ T-040g: extractDiagrams processes real data
+      Evidence: Diagrams: 0
+   ✅ T-040h: extractDiagrams includes AUTO_CONVERSATION_FLOWCHART
+      Evidence: Field present
+
+🔬 LIB: decision-tree-generator.js
+   ✅ T-041a: generateDecisionTree is a function
+      Evidence: Type is function
+   ✅ T-041b: generateDecisionTree handles legacy format
+      Evidence: Has title and box chars
+   ✅ T-041c: generateDecisionTree handles object format
+      Evidence: Has title and DECISION
+   ✅ T-041d: generateDecisionTree handles empty options
+      Evidence: Shows no options message
+   ✅ T-041e: generateDecisionTree includes caveats
+      Evidence: Caveats present
+   ✅ T-041f: generateDecisionTree includes follow-up
+      Evidence: Follow-up present
+
+🔬 MEMORY: generate-context.js
+   ✅ T-042a: parseArguments is a function
+      Evidence: Type is function
+   ✅ T-042b: validateArguments is a function
+      Evidence: Type is function
+   ✅ T-042c: isValidSpecFolder is a function
+      Evidence: Type is function
+   ✅ T-042d: SPEC_FOLDER_PATTERN is a RegExp
+      Evidence: /^\d{3}-[a-z][a-z0-9-]*$/
+   ✅ T-042e: SPEC_FOLDER_PATTERN matches valid folder names
+      Evidence: 001-feature, 042-oauth-auth, 999-test
+   ✅ T-042f: SPEC_FOLDER_PATTERN rejects invalid folder names
+      Evidence: 1-short, 0001-too-long, 001_underscore, 001-UPPERCASE
+   ✅ T-042g: isValidSpecFolder accepts valid folder
+      Evidence: valid: true
+   ✅ T-042h: isValidSpecFolder rejects invalid folder
+      Evidence: Invalid spec folder format. Expected: NNN-feature-name
+   ✅ T-042i: isValidSpecFolder rejects non-specs path
+      Evidence: Spec folder must be under specs/ or .opencode/specs/: /tmp/042-feature
+   ✅ T-042j: SPEC_FOLDER_BASIC_PATTERN exists
+      Evidence: /^\d{3}-[a-zA-Z]/
+
+=============================================
+📊 TEST SUMMARY
+=============================================
+✅ Passed:  266
+❌ Failed:  0
+⏭️  Skipped: 5
+📝 Total:   271
+
+🎉 ALL TESTS PASSED!
+
+============================================================
+  EXTRACTORS AND LOADERS TEST SUITE
+============================================================
+
+
+=== COLLECT-SESSION-DATA.JS (P0) ===
+   [PASS] EXT-CSData-001: collectSessionData exported
+      Evidence: Type is function
+   [PASS] EXT-CSData-002: shouldAutoSave exported
+      Evidence: Type is function
+   [PASS] EXT-CSData-003: extractPreflightPostflightData exported
+      Evidence: Type is function
+   [PASS] EXT-CSData-004: calculateLearningIndex exported
+      Evidence: Type is function
+   [PASS] EXT-CSData-005: getScoreAssessment exported
+      Evidence: Type is function
+   [PASS] EXT-CSData-006: getTrendIndicator exported
+      Evidence: Type is function
+   [PASS] EXT-CSData-007: generateLearningSummary exported
+      Evidence: Type is function
+   [PASS] EXT-CSData-008: null score returns empty assessment
+      Evidence:  === 
+   [PASS] EXT-CSData-009: undefined score returns empty assessment
+      Evidence:  === 
+   [PASS] EXT-CSData-010: High score (90) is Strong
+      Evidence: Strong === Strong
+   [PASS] EXT-CSData-011: Score 70 is Good
+      Evidence: Good === Good
+   [PASS] EXT-CSData-012: Score 50 is Moderate
+      Evidence: Moderate === Moderate
+   [PASS] EXT-CSData-013: Score 25 is Limited
+      Evidence: Limited === Limited
+   [PASS] EXT-CSData-014: Score 10 is Minimal
+      Evidence: Minimal === Minimal
+   [PASS] EXT-CSData-015: Low uncertainty score
+      Evidence: Very low uncertainty === Very low uncertainty
+   [PASS] EXT-CSData-016: Medium-low uncertainty
+      Evidence: Low uncertainty === Low uncertainty
+   [PASS] EXT-CSData-017: Moderate uncertainty
+      Evidence: Moderate uncertainty === Moderate uncertainty
+   [PASS] EXT-CSData-018: High uncertainty
+      Evidence: High uncertainty === High uncertainty
+   [PASS] EXT-CSData-019: Very high uncertainty
+      Evidence: Very high uncertainty === Very high uncertainty
+   [PASS] EXT-CSData-020: Positive delta shows up arrow
+      Evidence: ↑ === ↑
+   [PASS] EXT-CSData-021: Negative delta shows down arrow
+      Evidence: ↓ === ↓
+   [PASS] EXT-CSData-022: Zero delta shows right arrow
+      Evidence: → === →
+   [PASS] EXT-CSData-023: Null delta shows right arrow
+      Evidence: → === →
+   [PASS] EXT-CSData-024: Positive reduction shows down (good)
+      Evidence: ↓ === ↓
+   [PASS] EXT-CSData-025: Negative reduction shows up (bad)
+      Evidence: ↑ === ↑
+   [PASS] EXT-CSData-026: Learning index calculation
+      Evidence: 42 in range [40, 42]
+   [PASS] EXT-CSData-027: Zero deltas = zero index
+      Evidence: 0 === 0
+   [PASS] EXT-CSData-028: Null deltas handled as zero
+      Evidence: 0 === 0
+   [PASS] EXT-CSData-029: Index capped at 100
+      Evidence: 100 === 100
+   [PASS] EXT-CSData-030: Preflight knowledge score extracted
+   [PASS] EXT-CSData-031: Preflight knowledge score correct
+      Evidence: 40 === 40
+   [PASS] EXT-CSData-032: Postflight knowledge score correct
+      Evidence: 75 === 75
+   [PASS] EXT-CSData-033: Delta has correct format
+      Evidence: Matches pattern
+   [PASS] EXT-CSData-034: Learning index calculated
+   [PASS] EXT-CSData-035: Gaps closed is array
+      Evidence: Array with 2 items
+   [PASS] EXT-CSData-036: New gaps is array
+      Evidence: Array with 1 items
+   [PASS] EXT-CSData-037: Missing data returns null
+      Evidence: null === null
+   [PASS] EXT-CSData-038: Learning summary provided even with no data
+      Evidence: true === true
+   [PASS] EXT-CSData-039: Learning summary contains relevant keywords
+      Evidence: Significant knowledge gain (+25 points). Major unc
+   [PASS] EXT-CSData-040: Low learning index generates message
+      Evidence: Slight knowledge increase (+2 points).
+   [PASS] EXT-CSData-041: Zero messages no auto-save
+      Evidence: false === false
+   [PASS] EXT-CSData-042: Object facts contribute to pending task extraction
+      Evidence: Pending task preserved from object fact
+   [PASS] EXT-CSData-043: Observation truncation logs counts without content
+      Evidence: 200 -> 15
+
+=== SESSION-EXTRACTOR.JS (P1) ===
+   [PASS] EXT-Session-001: generateSessionId exported
+      Evidence: Type is function
+   [PASS] EXT-Session-002: getChannel exported
+      Evidence: Type is function
+   [PASS] EXT-Session-003: detectContextType exported
+      Evidence: Type is function
+   [PASS] EXT-Session-004: detectImportanceTier exported
+      Evidence: Type is function
+   [PASS] EXT-Session-005: detectProjectPhase exported
+      Evidence: Type is function
+   [PASS] EXT-Session-006: extractActiveFile exported
+      Evidence: Type is function
+   [PASS] EXT-Session-007: extractNextAction exported
+      Evidence: Type is function
+   [PASS] EXT-Session-008: extractBlockers exported
+      Evidence: Type is function
+   [PASS] EXT-Session-009: buildFileProgress exported
+      Evidence: Type is function
+   [PASS] EXT-Session-010: countToolsByType exported
+      Evidence: Type is function
+   [PASS] EXT-Session-011: calculateSessionDuration exported
+      Evidence: Type is function
+   [PASS] EXT-Session-012: calculateExpiryEpoch exported
+      Evidence: Type is function
+   [PASS] EXT-Session-013: extractKeyTopics exported
+      Evidence: Type is function
+   [PASS] EXT-Session-014: detectSessionCharacteristics exported
+      Evidence: Type is function
+   [PASS] EXT-Session-015: buildProjectStateSnapshot exported
+      Evidence: Type is function
+   [PASS] EXT-Session-016: Session ID format correct
+      Evidence: Matches pattern
+   [PASS] EXT-Session-017: Session IDs are unique
+      Evidence: session-1791622204125-550724472a8a !== session-1791622204125-3dd13bf1d651
+   [PASS] EXT-Session-018: getChannel returns string
+      Evidence: Type is string
+   [PASS] EXT-Session-019: Channel is non-empty
+      Evidence: worktrees/091-consolidate-small-packets
+   [PASS] EXT-Session-020: Empty tools = general
+      Evidence: general === general
+   [PASS] EXT-Session-021: Read-heavy = research
+      Evidence: research === research
+   [PASS] EXT-Session-022: Write-heavy = implementation
+      Evidence: implementation === implementation
+   [PASS] EXT-Session-023: With decisions = planning
+      Evidence: planning === planning
+   [PASS] EXT-Session-024: Web-heavy = research
+      Evidence: research === research
+   [PASS] EXT-Session-025: Core path = critical
+      Evidence: critical === critical
+   [PASS] EXT-Session-026: Security path = critical
+      Evidence: critical === critical
+   [PASS] EXT-Session-027: Planning context = important
+      Evidence: important === important
+   [PASS] EXT-Session-028: Normal path/context = normal
+      Evidence: normal === normal
+   [PASS] EXT-Session-029: Empty + few messages = RESEARCH
+      Evidence: RESEARCH === RESEARCH
+   [PASS] EXT-Session-030: Write-heavy = IMPLEMENTATION
+      Evidence: IMPLEMENTATION === IMPLEMENTATION
+   [PASS] EXT-Session-031: Decisions + read-heavy = PLANNING
+      Evidence: PLANNING === PLANNING
+   [PASS] EXT-Session-032: extractActiveFile returns string
+      Evidence: src/components/EventList.jsx
+   [PASS] EXT-Session-033: extractNextAction returns string
+      Evidence: Type is string
+   [PASS] EXT-Session-034: extractBlockers detects blocker keywords
+      Evidence: We are blocked by the API rate limit issue.
+   [PASS] EXT-Session-035: No blockers returns None
+      Evidence: None === None
+   [PASS] EXT-Session-036: buildFileProgress returns array
+      Evidence: Array with 2 items
+   [PASS] EXT-Session-037: File status is EXISTS
+      Evidence: EXISTS === EXISTS
+   [PASS] EXT-Session-038: countToolsByType returns object
+      Evidence: Type is object
+   [PASS] EXT-Session-039: Read count exists
+   [PASS] EXT-Session-040: Edit count exists
+   [PASS] EXT-Session-041: Duration format correct
+      Evidence: 1m
+   [PASS] EXT-Session-042: Empty prompts = N/A
+      Evidence: N/A === N/A
+   [PASS] EXT-Session-043: Constitutional never expires
+      Evidence: 0 === 0
+   [PASS] EXT-Session-044: Critical never expires
+      Evidence: 0 === 0
+   [PASS] EXT-Session-045: Temporary expires in 7 days
+      Evidence: 1792227004 === 1792227004
+   [PASS] EXT-Session-046: Normal expires in 90 days
+      Evidence: 1799398204 === 1799398204
+   [PASS] EXT-Session-047: extractKeyTopics returns array
+      Evidence: Array with 3 items
+   [PASS] EXT-Session-048: Relevant topics extracted
+      Evidence: oauth authentication, implemented oauth, jwt tokens
+   [PASS] EXT-Session-049: Stopwords filtered
+      Evidence: 'the' filtered, remaining: quick fox, fox jumps, lazy dog
+   [PASS] EXT-Session-050: contextType exists
+   [PASS] EXT-Session-051: importanceTier exists
+   [PASS] EXT-Session-052: decisionCount is number
+      Evidence: Type is number
+   [PASS] EXT-Session-053: toolCounts is object
+      Evidence: Type is object
+   [PASS] EXT-Session-054: Snapshot has projectPhase
+   [PASS] EXT-Session-055: Snapshot has activeFile
+   [PASS] EXT-Session-056: Snapshot has lastAction
+   [PASS] EXT-Session-057: Snapshot has nextAction
+   [PASS] EXT-Session-058: Snapshot has blockers
+   [PASS] EXT-Session-059: Snapshot has fileProgress array
+      Evidence: Array with 0 items
+
+=== DECISION-EXTRACTOR.JS (P1) ===
+   [PASS] EXT-Decision-001: extractDecisions exported
+      Evidence: Type is function
+   [PASS] EXT-Decision-002: Simulation returns DECISIONS
+   [PASS] EXT-Decision-003: DECISION_COUNT is number
+      Evidence: Type is number
+   [PASS] EXT-Decision-004: DECISIONS is array
+      Evidence: Array with 1 items
+   [PASS] EXT-Decision-005: Correct decision count
+      Evidence: 1 === 1
+   [PASS] EXT-Decision-006: Decision has TITLE
+   [PASS] EXT-Decision-007: Decision has CONTEXT
+   [PASS] EXT-Decision-008: Decision has OPTIONS array
+      Evidence: Array with 2 items
+   [PASS] EXT-Decision-009: Decision has CHOSEN
+   [PASS] EXT-Decision-010: Decision has RATIONALE
+   [PASS] EXT-Decision-010a: CHOICE_CONFIDENCE is number
+      Evidence: Type is number
+   [PASS] EXT-Decision-010b: RATIONALE_CONFIDENCE is number
+      Evidence: Type is number
+   [PASS] EXT-Decision-011: CONFIDENCE is number
+      Evidence: Type is number
+   [PASS] EXT-Decision-012: Decision has ANCHOR_ID
+   [PASS] EXT-Decision-013: Decision has IMPORTANCE
+   [PASS] EXT-Decision-013a: CHOICE_CONFIDENCE normalized
+      Evidence: 0.85 in range [0, 1]
+   [PASS] EXT-Decision-013b: RATIONALE_CONFIDENCE normalized
+      Evidence: 0.85 in range [0, 1]
+   [PASS] EXT-Decision-014: HAS_PROS is boolean
+      Evidence: Type is boolean
+   [PASS] EXT-Decision-015: HAS_CONS is boolean
+      Evidence: Type is boolean
+   [PASS] EXT-Decision-016: PROS is array
+      Evidence: Array with 1 items
+   [PASS] EXT-Decision-017: CONS is array
+      Evidence: Array with 1 items
+   [PASS] EXT-Decision-018: HIGH_CONFIDENCE_COUNT is number
+      Evidence: Type is number
+   [PASS] EXT-Decision-019: MEDIUM_CONFIDENCE_COUNT is number
+      Evidence: Type is number
+   [PASS] EXT-Decision-020: LOW_CONFIDENCE_COUNT is number
+      Evidence: Type is number
+   [PASS] EXT-Decision-021: FOLLOWUP_COUNT is number
+      Evidence: Type is number
+{"timestamp":"2026-10-10T08:50:04.150Z","level":"info","message":"Processing manual decisions","manualDecisionCount":3}
+   [PASS] EXT-Decision-022: Manual decisions count correct
+      Evidence: 3 === 3
+   [PASS] EXT-Decision-023: Manual decision has TITLE
+   [PASS] EXT-Decision-024: Manual decision has ANCHOR_ID
+   [PASS] EXT-Decision-025: Importance is valid tier
+      Evidence: medium
+   [PASS] EXT-Decision-026: Empty observations = 0 decisions
+      Evidence: 0 === 0
+   [PASS] EXT-Decision-027: _manualDecision enriches chosen approach and confidence
+      Evidence: Batched repair path @ 0.82
+   [PASS] EXT-Decision-028: split confidence derives legacy confidence conservatively
+      Evidence: 0.95/0.7
+{"timestamp":"2026-10-10T08:50:04.150Z","level":"info","message":"Processing manual decisions","manualDecisionCount":1}
+   [PASS] EXT-Decision-029: _manualDecision observation is suppressed when authoritative manual decision exists
+      Evidence: 1 === 1
+
+=== FILE-EXTRACTOR.JS (P1) ===
+   [PASS] EXT-File-001: detectObservationType exported
+      Evidence: Type is function
+   [PASS] EXT-File-002: extractFilesFromData exported
+      Evidence: Type is function
+   [PASS] EXT-File-003: enhanceFilesWithSemanticDescriptions exported
+      Evidence: Type is function
+   [PASS] EXT-File-004: buildObservationsWithAnchors exported
+      Evidence: Type is function
+   [PASS] EXT-File-005: Explicit type preserved
+      Evidence: feature === feature
+   [PASS] EXT-File-006: Bug keywords = bugfix
+      Evidence: bugfix === bugfix
+   [PASS] EXT-File-007: Implement keywords = feature
+      Evidence: feature === feature
+   [PASS] EXT-File-008: Refactor keywords = refactor
+      Evidence: refactor === refactor
+   [PASS] EXT-File-009: Decision keywords = decision
+      Evidence: decision === decision
+   [PASS] EXT-File-010: Research keywords = research
+      Evidence: research === research
+   [PASS] EXT-File-011: Discovery keywords = discovery
+      Evidence: discovery === discovery
+   [PASS] EXT-File-012: Test keywords = test
+      Evidence: test === test
+   [PASS] EXT-File-012b: Documentation keywords = documentation
+      Evidence: documentation === documentation
+   [PASS] EXT-File-012c: Performance keywords = performance
+      Evidence: performance === performance
+   [PASS] EXT-File-012d: No keywords = observation
+      Evidence: observation === observation
+   [PASS] EXT-File-013: extractFilesFromData returns array
+      Evidence: Array with 5 items
+   [PASS] EXT-File-014: File has FILE_PATH
+   [PASS] EXT-File-015: File has DESCRIPTION
+   [PASS] EXT-File-016: Duplicate files deduplicated
+      Evidence: 1 === 1
+   [PASS] EXT-File-016b: Normalized path-equivalent files deduplicated
+      Evidence: 1 === 1
+   [PASS] EXT-File-016c: Normalized path-equivalent files preserve canonical FILE_PATH
+      Evidence: scripts/utils/input-normalizer.ts === scripts/utils/input-normalizer.ts
+   [PASS] EXT-File-017: Legacy format supported
+      Evidence: src/legacy.js
+   [PASS] EXT-File-018: buildObservationsWithAnchors returns array
+      Evidence: Array with 4 items
+   [PASS] EXT-File-019: Observation has TYPE
+   [PASS] EXT-File-020: Observation has TITLE
+   [PASS] EXT-File-021: Observation has NARRATIVE
+   [PASS] EXT-File-022: Observation has ANCHOR_ID
+   [PASS] EXT-File-023: HAS_FILES is boolean
+      Evidence: Type is boolean
+   [PASS] EXT-File-024: HAS_FACTS is boolean
+      Evidence: Type is boolean
+   [PASS] EXT-File-025: All anchor IDs unique
+      Evidence: 1 === 1
+   [PASS] EXT-File-026: Caller-side null filtering preserves valid observations
+      Evidence: 2 === 2
+   [PASS] EXT-File-027: Semantic description applied
+      Evidence: Authentication module
+   [PASS] EXT-File-028: Object facts are rendered instead of dropped
+      Evidence: Tool: Read File: src/object-facts.ts Result: Preserved object facts | [object] {"files":["src/object-facts.ts"],"detail":"Object-shaped fact without a text field"}
+
+=== CONVERSATION-EXTRACTOR.JS (P1) ===
+   [PASS] EXT-Conv-001: extractConversations exported
+      Evidence: Type is function
+   [PASS] EXT-Conv-002: Simulation returns MESSAGES
+   [PASS] EXT-Conv-003: MESSAGE_COUNT is number
+      Evidence: Type is number
+   [PASS] EXT-Conv-004: MESSAGES is array
+      Evidence: Array with 5 items
+   [PASS] EXT-Conv-005: MESSAGE_COUNT is number
+      Evidence: Type is number
+   [PASS] EXT-Conv-006: DURATION exists
+   [PASS] EXT-Conv-007: FLOW_PATTERN exists
+   [PASS] EXT-Conv-008: PHASE_COUNT is number
+      Evidence: Type is number
+   [PASS] EXT-Conv-009: PHASES is array
+      Evidence: Array with 4 items
+   [PASS] EXT-Conv-010: TOOL_COUNT is number
+      Evidence: Type is number
+   [PASS] EXT-Conv-011: Message has TIMESTAMP
+   [PASS] EXT-Conv-012: Message has ROLE
+   [PASS] EXT-Conv-013: Message has CONTENT
+   [PASS] EXT-Conv-014: Message has TOOL_CALLS array
+      Evidence: Array with 0 items
+   [PASS] EXT-Conv-015: Valid FLOW_PATTERN
+      Evidence: Branching Investigation
+   [PASS] EXT-Conv-016: AUTO_GENERATED_FLOW exists
+   Warning: No conversation data found
+   Warning: Generated output may be minimal or empty
+   Warning: No user prompts found (empty conversation)
+   Warning: No observations found (no events documented)
+   [PASS] EXT-Conv-017: Empty data returns MESSAGES array
+      Evidence: Array with 0 items
+   [PASS] EXT-Conv-018: Empty data MESSAGE_COUNT is 0
+      Evidence: 0 === 0
+   [PASS] EXT-Conv-019: DATE in ISO format
+      Evidence: Matches pattern
+   [PASS] EXT-Conv-020: Object facts still drive conversation tool-call detection
+      Evidence: Read
+   [PASS] EXT-Conv-021: UNIQUE_PHASE_COUNT is number
+      Evidence: Type is number
+   [PASS] EXT-Conv-022: TOPIC_CLUSTERS is array
+      Evidence: Array with 4 items
+   [PASS] EXT-Conv-023: Non-contiguous phases remain separate segments
+      Evidence: Research -> Implementation -> Research
+
+=== IMPLEMENTATION-GUIDE-EXTRACTOR.JS (P1) ===
+   [PASS] EXT-Impl-001: hasImplementationWork exported
+      Evidence: Type is function
+   [PASS] EXT-Impl-002: extractMainTopic exported
+      Evidence: Type is function
+   [PASS] EXT-Impl-003: extractWhatBuilt exported
+      Evidence: Type is function
+   [PASS] EXT-Impl-004: extractKeyFilesWithRoles exported
+      Evidence: Type is function
+   [PASS] EXT-Impl-005: generateExtensionGuide exported
+      Evidence: Type is function
+   [PASS] EXT-Impl-006: extractCodePatterns exported
+      Evidence: Type is function
+   [PASS] EXT-Impl-007: buildImplementationGuideData exported
+      Evidence: Type is function
+   [PASS] EXT-Impl-008: Detects implementation work
+      Evidence: true === true
+   [PASS] EXT-Impl-009: No work with empty data
+      Evidence: false === false
+   [PASS] EXT-Impl-010: Research-only not implementation
+      Evidence: false === false
+   [PASS] EXT-Impl-011: Topic from folder name
+      Evidence: oauth-auth
+   [PASS] EXT-Impl-012: Topic from observations is string
+      Evidence: Type is string
+   [PASS] EXT-Impl-013: extractWhatBuilt returns array
+      Evidence: Array with 2 items
+   [PASS] EXT-Impl-014: Feature has FEATURE_NAME
+   [PASS] EXT-Impl-015: Feature has DESCRIPTION
+   [PASS] EXT-Impl-016: Duplicate features deduplicated
+      Evidence: 1 === 1
+   [PASS] EXT-Impl-017: extractKeyFilesWithRoles returns array
+      Evidence: Array with 3 items
+   [PASS] EXT-Impl-018: Key file has FILE_PATH
+   [PASS] EXT-Impl-019: Key file has ROLE
+   [PASS] EXT-Impl-020: Test file role detected
+      Evidence: Test file
+   [PASS] EXT-Impl-021: Config file role detected
+      Evidence: Configuration
+   [PASS] EXT-Impl-022: generateExtensionGuide returns array
+      Evidence: Array with 1 items
+   [PASS] EXT-Impl-023: Guide has GUIDE_TEXT
+   [PASS] EXT-Impl-024: extractCodePatterns returns array
+      Evidence: Array with 0 items
+   [PASS] EXT-Impl-027: Guide detected
+      Evidence: true === true
+   [PASS] EXT-Impl-028: Guide has TOPIC
+   [PASS] EXT-Impl-029: Guide has IMPLEMENTATIONS
+      Evidence: Array with 2 items
+   [PASS] EXT-Impl-030: Guide has IMPL_KEY_FILES
+      Evidence: Array with 3 items
+   [PASS] EXT-Impl-031: Guide has EXTENSION_GUIDES
+      Evidence: Array with 1 items
+   [PASS] EXT-Impl-032: Guide has PATTERNS
+      Evidence: Array with 0 items
+   [PASS] EXT-Impl-033: No guide when no impl work
+      Evidence: false === false
+
+=== DIAGRAM-EXTRACTOR.JS (P1) ===
+   [PASS] EXT-Diag-001: extractPhasesFromData exported
+      Evidence: Type is function
+   [PASS] EXT-Diag-002: extractDiagrams exported
+      Evidence: Type is function
+   [PASS] EXT-Diag-003: extractPhasesFromData returns array
+      Evidence: Array with 2 items
+   [PASS] EXT-Diag-004: Phase has PHASE_NAME
+   [PASS] EXT-Diag-005: Phase has DURATION
+   [PASS] EXT-Diag-006: Phase has ACTIVITIES array
+      Evidence: Array with 2 items
+   [PASS] EXT-Diag-007: Null data returns simulation phases
+      Evidence: Array with 4 items
+{"timestamp":"2026-10-10T08:50:04.164Z","level":"info","message":"Session too short for meaningful phase detection","messageCount":1}
+   [PASS] EXT-Diag-008: Short session returns array
+      Evidence: Array with 0 items
+   [PASS] EXT-Diag-009: extractDiagrams returns DIAGRAMS array
+      Evidence: Array with 0 items
+   [PASS] EXT-Diag-010: DIAGRAM_COUNT is number
+      Evidence: Type is number
+   [PASS] EXT-Diag-011: HAS_AUTO_GENERATED is true
+      Evidence: true === true
+   [PASS] EXT-Diag-012: FLOW_TYPE exists
+   [PASS] EXT-Diag-013: AUTO_CONVERSATION_FLOWCHART exists
+   [PASS] EXT-Diag-014: AUTO_DECISION_TREES is array
+      Evidence: Array with 0 items
+   [PASS] EXT-Diag-015: DIAGRAM_TYPES is array
+      Evidence: Array with 0 items
+   [PASS] EXT-Diag-016: PATTERN_SUMMARY is array
+      Evidence: Array with 0 items
+{"timestamp":"2026-10-10T08:50:04.165Z","level":"info","message":"Session too short for meaningful phase detection","messageCount":1}
+   [PASS] EXT-Diag-017: ASCII art processing works
+      Evidence: Type is number
+   [PASS] EXT-Diag-018: Simulation returns DIAGRAMS
+
+=== OPENCODE-CAPTURE.JS (REMOVED — recovery mode deprecated) ===
+   [SKIP] EXT-OC: Module removed (skipped: Recovery mode fully deprecated)
+
+=== ADDITIONAL CLI CAPTURES (REMOVED — recovery mode deprecated) ===
+   [SKIP] EXT-CLI: Modules removed (skipped: Recovery mode fully deprecated — opencode/copilot captures deleted)
+
+=== DATA-LOADER.JS (P0) ===
+   [PASS] LOAD-001: loadCollectedData exported
+      Evidence: Type is function
+   [SKIP] LOAD-002: Data loading (skipped: Expected in test env: NO_DATA_FILE: Structured JSON input is required vi)
+{"timestamp":"2026-10-10T08:50:04.167Z","level":"info","message":"Loaded and validated conversation data from file","filePath":"/private/var/tmp/speckit-loader-skilled-2reMUl/linked-session.json","source":"file"}
+{"timestamp":"2026-10-10T08:50:04.167Z","level":"info","message":"Loaded data from file","filePath":"/private/var/tmp/speckit-loader-skilled-2reMUl/linked-session.json","source":"file"}
+   [PASS] LOAD-003: loadCollectedData reads a data file inside a linked .skilled
+      Evidence: file === file
+
+=== EXTRACTORS/INDEX.JS ===
+   [PASS] EXT-IDX-001: extractFilesFromData re-exported
+      Evidence: Type is function
+   [PASS] EXT-IDX-002: extractDiagrams re-exported
+      Evidence: Type is function
+   [PASS] EXT-IDX-003: extractConversations re-exported
+      Evidence: Type is function
+   [PASS] EXT-IDX-004: extractDecisions re-exported
+      Evidence: Type is function
+   [PASS] EXT-IDX-005: collectSessionData re-exported
+      Evidence: Type is function
+   [PASS] EXT-IDX-006: detectObservationType re-exported
+      Evidence: Type is function
+   [PASS] EXT-IDX-007: buildObservationsWithAnchors re-exported
+      Evidence: Type is function
+   [PASS] EXT-IDX-008: generateSessionId re-exported
+      Evidence: Type is function
+   [PASS] EXT-IDX-009: getChannel re-exported
+      Evidence: Type is function
+   [PASS] EXT-IDX-010: buildImplementationGuideData re-exported
+      Evidence: Type is function
+   [SKIP] EXT-IDX-011: captureOpenCodeConversation (skipped: Recovery mode deprecated)
+   [SKIP] EXT-IDX-012: captureCopilotConversation (skipped: Recovery mode deprecated)
+   [SKIP] EXT-IDX-012b: copilot/opencode captures removed (skipped: Recovery mode deprecated)
+
+=== ERROR HANDLING ===
+   [PASS] ERR-001: Empty object returns observation
+      Evidence: observation === observation
+   [PASS] ERR-002: Null/undefined properties handled
+      Evidence: observation === observation
+   [PASS] ERR-003: Null FILES handled
+      Evidence: Array with 0 items
+   [PASS] ERR-004: Invalid file objects handled
+      Evidence: Array with 0 items
+   [PASS] ERR-005: Empty arrays return object
+      Evidence: Type is object
+   [PASS] ERR-006: Null properties handled
+      Evidence: Type is object
+   [PASS] ERR-007: Null facts handled
+   [PASS] ERR-008: Empty narrative handled
+   [PASS] ERR-009: Empty string returns array
+      Evidence: Array with 0 items
+   [PASS] ERR-010: Null summary returns array
+      Evidence: Array with 0 items
+   [PASS] ERR-011: Invalid date handled
+      Evidence: 0m
+
+=== INTEGRATION TESTS ===
+   [PASS] INT-001: Files and observations extracted together
+      Evidence: 5 files, 4 observations
+   [PASS] INT-002: Decisions and diagrams extracted together
+      Evidence: 1 decisions
+   [PASS] INT-003: Conversations with phases extracted
+      Evidence: 5 messages
+   [PASS] INT-004: Session characteristics detected
+      Evidence: Type: planning, Tier: important
+   [PASS] INT-005: Implementation guide built
+      Evidence: 2 implementations
+
+============================================================
+  TEST SUMMARY
+============================================================
+
+  Total:   274
+  Passed:  268
+  Failed:  0
+  Skipped: 6
+  Duration: 2976ms
+
+  Exit code: 0
+============================================================
+PASS: phase-detection/below-threshold: recommended_phases
+PASS: phase-detection/below-threshold: phase_score
+PASS: phase-detection/below-threshold: suggested_phase_count
+PASS: phase-detection/boundary: recommended_phases
+PASS: phase-detection/boundary: phase_score
+PASS: phase-detection/boundary: suggested_phase_count
+PASS: phase-detection/above-threshold: recommended_phases
+PASS: phase-detection/above-threshold: phase_score
+PASS: phase-detection/above-threshold: suggested_phase_count
+PASS: phase-detection/extreme-scale: recommended_phases
+PASS: phase-detection/extreme-scale: phase_score
+PASS: phase-detection/extreme-scale: suggested_phase_count
+PASS: phase-detection/no-risk-factors: recommended_phases
+PASS: phase-detection/no-risk-factors: phase_score
+PASS: phase-detection/no-risk-factors: suggested_phase_count
+PASS: recommend-level default-on: recommended_phases field present without --recommend-phases
+PASS: recommend-level default-on: phase_score field present without --recommend-phases
+PASS: recommend-level default-on: suggested_phase_count field present without --recommend-phases
+description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-phase-validation-A3zmhD/specs/210-phase-2-single-phase-cQmxB5/001-foundation
+  Warning: graph metadata derivation skipped for 210-phase-2-single-phase-cQmxB5
+  Warning: graph metadata derivation skipped for 001-foundation
+PASS: phase-2/single-phase: PHASE_MODE true
+PASS: phase-2/single-phase: PHASE_COUNT
+PASS: phase-2/single-phase: creates 001-foundation/spec.md
+description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-phase-validation-A3zmhD/specs/210-phase-2-multi-phase-O79hPT/001-foundation
+description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-phase-validation-A3zmhD/specs/210-phase-2-multi-phase-O79hPT/002-implementation
+description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-phase-validation-A3zmhD/specs/210-phase-2-multi-phase-O79hPT/003-stabilization
+  Warning: graph metadata derivation skipped for 210-phase-2-multi-phase-O79hPT
+  Warning: graph metadata derivation skipped for 001-foundation
+  Warning: graph metadata derivation skipped for 002-implementation
+  Warning: graph metadata derivation skipped for 003-stabilization
+PASS: phase-2/multi-phase: PHASE_MODE true
+PASS: phase-2/multi-phase: PHASE_COUNT
+PASS: phase-2/multi-phase: creates 001-foundation/spec.md
+PASS: phase-2/multi-phase: creates 002-implementation/spec.md
+PASS: phase-2/multi-phase: creates 003-stabilization/spec.md
+description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-phase-validation-A3zmhD/specs/210-phase-2-named-phases-hDd2x0/001-planning
+description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-phase-validation-A3zmhD/specs/210-phase-2-named-phases-hDd2x0/002-delivery
+  Warning: graph metadata derivation skipped for 210-phase-2-named-phases-hDd2x0
+  Warning: graph metadata derivation skipped for 001-planning
+  Warning: graph metadata derivation skipped for 002-delivery
+PASS: phase-2/named-phases: PHASE_MODE true
+PASS: phase-2/named-phases: PHASE_COUNT
+PASS: phase-2/named-phases: creates 001-planning/spec.md
+PASS: phase-2/named-phases: creates 002-delivery/spec.md
+Error: --subfolder requires a base folder path
+PASS: phase-2/error-cases: invalid args return non-zero exit
+PASS: phase-validation/flat-spec: validates the parent alone
+PASS: phase-validation/one-phase: validates every phase child
+PASS: phase-validation/one-phase: validate.sh auto-enables recursive mode when phase children exist
+PASS: phase-validation/three-phase: validates every phase child
+PASS: phase-validation/three-phase: validate.sh auto-enables recursive mode when phase children exist
+PASS: phase-validation/mixed-levels: validates every phase child
+PASS: phase-validation/mixed-levels: validate.sh auto-enables recursive mode when phase children exist
+PASS: phase-validation/empty-child: validates every phase child
+PASS: phase-validation/empty-child: empty child produces validation errors
+PASS: phase-validation/empty-child: validate.sh auto-enables recursive mode when phase children exist
+PASS: phase-validation/broken-links: validates every phase child
+PASS: phase-validation/broken-links: validate.sh auto-enables recursive mode when phase children exist
+Error: Base folder must be under specs/ or .opencode/specs/
+Resolved path: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-outside-subfolder-PvQZg7
+PASS: path-safety: create.sh rejects outside --subfolder path
+PASS: path-safety: create.sh reports allowed root containment error
+Error: Base folder must be under specs/ or .opencode/specs/
+Resolved path: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-outside-symlink-target-0rWR5f
+PASS: path-safety: create.sh rejects symlink escape path
+PASS: path-safety: create.sh enforces canonical containment for symlink path
+ERROR: Refusing to archive outside specs root: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/123-archive-outside-ztdHir
+PASS: path-safety: archive.sh rejects paths outside specs root
+PASS: path-safety: archive.sh reports outside-specs-root rejection
+ERROR: Folder is not in archive directory: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/124-restore-outside-ZOS60q
+PASS: path-safety: archive.sh rejects restore from non-archive path
+PASS: path-safety: archive.sh reports restore containment error
+
+Result: passed=51 failed=0
+PASS: recommend-level below-threshold-no-phase: recommended_phases
+PASS: recommend-level below-threshold-no-phase: phase_score
+PASS: recommend-level below-threshold-no-phase: suggested_phase_count
+PASS: recommend-level threshold-hit-level-gate-blocks: recommended_phases
+PASS: recommend-level threshold-hit-level-gate-blocks: phase_score
+PASS: recommend-level threshold-hit-level-gate-blocks: suggested_phase_count
+PASS: recommend-level above-threshold-two-phase: recommended_phases
+PASS: recommend-level above-threshold-two-phase: phase_score
+PASS: recommend-level above-threshold-two-phase: suggested_phase_count
+PASS: recommend-level extreme-scale-four-phase: recommended_phases
+PASS: recommend-level extreme-scale-four-phase: phase_score
+PASS: recommend-level extreme-scale-four-phase: suggested_phase_count
+PASS: recommend-level no-risk-factors-level-gate: recommended_phases
+PASS: recommend-level no-risk-factors-level-gate: phase_score
+PASS: recommend-level no-risk-factors-level-gate: suggested_phase_count
+description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-phase-system-XoVVqe/specs/200-parent-phase-test-sQu9RW/001-foundation
+description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-phase-system-XoVVqe/specs/200-parent-phase-test-sQu9RW/002-implementation
+  Warning: graph metadata derivation skipped for 200-parent-phase-test-sQu9RW
+  Warning: graph metadata derivation skipped for 001-foundation
+  Warning: graph metadata derivation skipped for 002-implementation
+PASS: create.sh parent mode: PHASE_MODE true
+PASS: create.sh parent mode: first append phase count
+PASS: create.sh parent mode: 001-foundation created
+PASS: create.sh parent mode: 002-implementation created
+[speckit] Existing PHASE DOCUMENTATION MAP found; appending new phase rows and handoffs
+description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-phase-system-XoVVqe/specs/200-parent-phase-test-sQu9RW/003-stabilization
+  Warning: graph metadata derivation skipped for 200-parent-phase-test-sQu9RW
+  Warning: graph metadata derivation skipped for 003-stabilization
+PASS: create.sh parent mode: second append phase count
+PASS: create.sh parent mode: 003-stabilization created
+PASS: create.sh parent mode: phase-map section not duplicated
+PASS: create.sh parent mode: appended phase row continues the phase-map table
+PASS: create.sh parent mode: append updates handoff rows for new phase transition
+PASS: create.sh parent mode: append removes single-phase placeholder handoff row
+PASS: create.sh parent mode: absolute phase numbering in child header
+PASS: create.sh parent mode: predecessor links to prior phase
+
+Result: passed=27 failed=0
+
+> @spec-kit/cli@1.7.2 test:validation
+> node tests/test-validation-system.cjs && bash tests/test-validation.sh && bash tests/test-validation-extended.sh && bash tests/check-ac-closure.sh && bash tests/check-ac-coverage.sh && bash tests/check-graph-metadata-child-drift.sh && bash tests/check-graph-metadata-shape-last-active-child.sh && bash tests/test-phase-system.sh
+
+
+============================================================
+  VALIDATION SYSTEM COMPREHENSIVE TESTS
+  System Spec Kit - JavaScript Test Suite
+============================================================
+  Date: 2026-10-10T08:50:48.221Z
+  Node: v26.8.2
+  Platform: darwin
+============================================================
+
+[Setup] Creating test workspace...
+   Workspace: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli/tests/.validation-test-workspace
+
+--- Level Detection Logic ---
+   [PASS] Level detection: Bold level in table
+      Evidence: Found level 1
+   [PASS] Level detection: Bold level 2
+      Evidence: Found level 2
+   [PASS] Level detection: Bold level 3
+      Evidence: Found level 3
+   [PASS] Level detection: Non-bold level
+      Evidence: Found level 2
+   [PASS] Level detection: YAML frontmatter style
+      Evidence: Found level 2
+   [PASS] Level detection: Inline Level: N
+      Evidence: Found level 1
+   [PASS] Level detection: Inline Level N
+      Evidence: Found level 2
+   [PASS] Level inference: L1 from file absence
+      Evidence: No L2/L3 files present
+   [PASS] Level inference: L2 from merged verification
+      Evidence: Tasks present, no decision-record
+   [PASS] Level inference: L3 from decision-record.md
+      Evidence: Decision record present
+   Duration: 1ms
+
+--- Rule: FILE_EXISTS ---
+   [PASS] L1 required files present
+      Evidence: spec.md, plan.md, tasks.md
+   [PASS] L2 scaffolds no standalone checklist
+      Evidence: Retired document absent
+   [PASS] L3 adds decision-record.md
+      Evidence: File present
+   [PASS] Missing spec.md detected
+      Evidence: spec.md correctly absent
+   [PASS] Impl-summary required after completion
+      Evidence: Completed items detected, impl-summary missing
+   Duration: 2ms
+
+--- Rule: PLACEHOLDER_FILLED ---
+   [PASS] Placeholder pattern: YOUR_VALUE_HERE
+      Evidence: Detected: [YOUR_VALUE_HERE: description]
+   [PASS] Placeholder pattern: NEEDS CLARIFICATION
+      Evidence: Detected: [NEEDS CLARIFICATION: details]
+   [PASS] Placeholder pattern: Mustache placeholder
+      Evidence: Detected: {{placeholder_name}}
+   [PASS] Placeholder in code block ignored
+      Evidence: Code block content filtered
+   [PASS] Placeholder in inline code detected
+      Evidence: Inline code pattern recognized
+   [PASS] Valid content has no placeholders
+      Evidence: Content is clean
+   [PASS] Fixture 005 has placeholders
+      Evidence: YOUR_VALUE_HERE found
+   Duration: 1ms
+
+--- Rule: ANCHORS_VALID ---
+   [PASS] Valid anchor pairs
+      Evidence: Found 2 pairs
+   [PASS] Unclosed anchor detection
+      Evidence: Found unclosed: summary
+   [PASS] Orphaned closing anchor detection
+      Evidence: Found orphan: orphan
+   [PASS] Nested anchors valid
+      Evidence: Both outer and inner anchors closed
+   [PASS] Duplicate anchor IDs rejected
+      Evidence: 2 balanced duplicates detected
+   Duration: 0ms
+
+--- Rule: SECTIONS_PRESENT ---
+   [PASS] spec.md required sections present
+      Evidence: Problem Statement, Requirements, Scope
+   [PASS] Missing section detection
+      Evidence: Missing: Problem Statement, Requirements
+   [PASS] Case-insensitive section matching
+      Evidence: All variations matched
+   [PASS] Checklist P0/P1 sections
+      Evidence: Both sections present
+   [PASS] Decision-record ADR sections
+      Evidence: Context, Decision, Consequences
+   Duration: 0ms
+
+--- Exit Code Behavior ---
+   [PASS] Exit code 0 = PASS
+      Evidence: No errors or warnings
+   [PASS] Exit code 1 = WARN
+      Evidence: Warnings but no errors
+   [PASS] Exit code 2 = ERROR
+      Evidence: Validation failures
+   [PASS] Compliant fixture: exit 0
+      Evidence: Exit code: 0
+   [PASS] Empty folder: exit 2 (ERROR)
+      Evidence: Missing files detected
+   [PASS] Placeholder fixture: exit 2 (ERROR)
+      Evidence: Placeholders detected
+   [PASS] --strict mode: warnings become errors
+      Evidence: Normal: 2, Strict: 2
+   [PASS] SPECKIT_STRICT=true env var
+      Evidence: Warnings treated as errors
+   Duration: 6188ms
+
+--- JSON Output Mode ---
+   [PASS] --json produces valid JSON
+      Evidence: Successfully parsed
+   [PASS] JSON has required fields
+      Evidence: folder, level, passed, entries, summary
+   [PASS] JSON passed is boolean
+      Evidence: true
+   [PASS] JSON entries is array
+      Evidence: 41 entries
+   [PASS] JSON summary has error/warning counts
+      Evidence: Errors: 0, Warnings: 1
+   [SKIP] JSON level info (level/levelMethod fields missing)
+   Duration: 1352ms
+
+--- Cross-Reference Validation ---
+   [PASS] Level mismatch detection
+      Evidence: spec: 2, plan: 1
+   [PASS] File presence hint detection
+      Evidence: L1 declared but decision-record.md present (suggests L3)
+   [PASS] L2 missing checklist.md detection
+      Evidence: Declared L2 but checklist.md absent
+   Duration: 1ms
+
+--- Rule Scripts Existence ---
+   [PASS] All 33 rule scripts exist
+      Evidence: 33/33 found
+   [PASS] check-files.sh has run_check()
+      Evidence: Function found
+   [PASS] check-placeholders.sh has run_check()
+      Evidence: Function found
+   [PASS] check-comment-hygiene.sh has run_check()
+      Evidence: Function found
+   [PASS] check-scaffold-never-touched.sh has run_check()
+      Evidence: Function found
+   [PASS] check-status-cross-doc-consistency.sh has run_check()
+      Evidence: Function found
+   [PASS] check-level.sh has run_check()
+      Evidence: Function found
+   [PASS] check-ac-coverage.sh has run_check()
+      Evidence: Function found
+   [PASS] check-ac-closure.sh has run_check()
+      Evidence: Function found
+   [PASS] check-toc-policy.sh has run_check()
+      Evidence: Function found
+   [PASS] check-ai-protocols.sh has run_check()
+      Evidence: Function found
+   [PASS] check-complexity.sh has run_check()
+      Evidence: Function found
+   [PASS] check-folder-naming.sh has run_check()
+      Evidence: Function found
+   [PASS] check-frontmatter.sh has run_check()
+      Evidence: Function found
+   [PASS] check-frontmatter-values.sh has run_check()
+      Evidence: Function found
+   [PASS] check-source-tags.sh has run_check()
+      Evidence: Function found
+   [PASS] check-grep-convention.sh has run_check()
+      Evidence: Function found
+   [PASS] check-level-match.sh has run_check()
+      Evidence: Function found
+   [PASS] check-graph-metadata.sh has run_check()
+      Evidence: Function found
+   [PASS] check-graph-metadata-child-drift.sh has run_check()
+      Evidence: Function found
+   [PASS] check-graph-metadata-child-identity.sh has run_check()
+      Evidence: Function found
+   [PASS] check-graph-metadata-shape.sh has run_check()
+      Evidence: Function found
+   [PASS] check-metadata-disk-consistency.sh has run_check()
+      Evidence: Function found
+   [PASS] check-description-shape.sh has run_check()
+      Evidence: Function found
+   [PASS] check-normalizer-lint.sh has run_check()
+      Evidence: Function found
+   [PASS] check-spec-doc-integrity.sh has run_check()
+      Evidence: Function found
+   [PASS] check-template-source.sh has run_check()
+      Evidence: Function found
+   [PASS] check-canonical-save-root-spec.sh has run_check()
+      Evidence: Function found
+   [PASS] check-canonical-save-source-docs.sh has run_check()
+      Evidence: Function found
+   [PASS] check-canonical-save-lineage.sh has run_check()
+      Evidence: Function found
+   [PASS] check-canonical-save-packet-identity.sh has run_check()
+      Evidence: Function found
+   [PASS] check-canonical-save-description-graph-freshness.sh has run_check()
+      Evidence: Function found
+   [PASS] check-improvement-artifacts.sh has run_check()
+      Evidence: Function found
+   [PASS] check-links.sh has run_check()
+      Evidence: Function found
+   [PASS] validate.sh orchestrator exists
+      Evidence: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh
+   Duration: 6ms
+
+--- Test Fixture Coverage ---
+   [PASS] Sufficient fixture count
+      Evidence: 74 fixtures found
+   [PASS] Fixtures for valid
+      Evidence: 11 fixtures
+   [PASS] Fixtures for invalid
+      Evidence: 15 fixtures
+   [PASS] Fixtures for anchors
+      Evidence: 10 fixtures
+   [PASS] Fixtures for evidence
+      Evidence: 11 fixtures
+   [PASS] Fixtures for priority
+      Evidence: 7 fixtures
+   [PASS] Fixtures for level
+      Evidence: 12 fixtures
+   [PASS] Fixtures for placeholder
+      Evidence: 6 fixtures
+   [PASS] Fixture exists: 001-empty-folder
+      Evidence: Found
+   [PASS] Fixture exists: 002-valid-level1
+      Evidence: Found
+   [PASS] Fixture exists: 003-valid-level2
+      Evidence: Found
+   [PASS] Fixture exists: 004-valid-level3
+      Evidence: Found
+   [PASS] Fixture exists: 005-unfilled-placeholders
+      Evidence: Found
+   [PASS] Fixture exists: 006-missing-required-files
+      Evidence: Found
+   [PASS] Fixture exists: 007-valid-anchors
+      Evidence: Found
+   [PASS] Fixture exists: 008-invalid-anchors
+      Evidence: Found
+   Duration: 1ms
+
+--- Quiet Mode Output ---
+   [PASS] Quiet mode minimal output
+      Evidence: 1 lines
+   [PASS] Quiet mode reduces output
+      Evidence: Quiet: 1, Normal: 56
+   Duration: 2616ms
+
+[Cleanup] Removing test workspace...
+   Done.
+
+
+============================================================
+  TEST SUMMARY
+============================================================
+  [PASS]  Passed:  101
+  [FAIL]  Failed:  0
+  [SKIP]  Skipped: 1
+  Total:  102
+  Duration: 10177ms
+
+  Suite Breakdown:
+    - Level Detection Logic: 1ms
+    - Rule: FILE_EXISTS: 2ms
+    - Rule: PLACEHOLDER_FILLED: 1ms
+    - Rule: ANCHORS_VALID: 0ms
+    - Rule: SECTIONS_PRESENT: 0ms
+    - Exit Code Behavior: 6188ms
+    - JSON Output Mode: 1352ms
+    - Cross-Reference Validation: 1ms
+    - Rule Scripts Existence: 6ms
+    - Test Fixture Coverage: 1ms
+    - Quiet Mode Output: 2616ms
+============================================================
+
+[SUCCESS] ALL VALIDATION SYSTEM TESTS PASSED!
+
+
+───────────────────────────────────────────────────────────────
+
+  validate-spec.sh Test Suite v2.0
+───────────────────────────────────────────────────────────────
+
+
+Positive Tests (should PASS or WARN):
+─────────────────────────────────────────────────────────────────
+✓ Compliant Level 2 template fixture [1.281s]
+✓ Extra-header fixture warns without failing [974ms]
+
+Level Declaration Tests (should PASS or WARN):
+─────────────────────────────────────────────────────────────────
+✓ Explicit level declaration on compliant fixture [1.354s]
+
+Warning Tests (should WARN):
+─────────────────────────────────────────────────────────────────
+✓ Template extra-header fixture warns [972ms]
+
+Sections Present Tests (should FAIL on missing):
+─────────────────────────────────────────────────────────────────
+✓ Missing required spec header now fails [1.177s]
+
+Negative Tests (should FAIL):
+─────────────────────────────────────────────────────────────────
+✓ Missing required files (no spec.md) [782ms]
+✓ Unfilled placeholders [971ms]
+✓ Invalid anchors (unclosed, mismatched, orphaned) [937ms]
+✓ Empty folder (all L1 files missing) [744ms]
+✓ Missing plan.md (L1) [991ms]
+✓ Missing tasks.md (L1) [1.052s]
+✓ Level 3 missing decision-record.md [1.062s]
+✓ Missing required header fails [1.215s]
+✓ Reordered required header fails [1.135s]
+✓ Missing required anchor fails [1.389s]
+✓ Reordered required anchor fails [1.269s]
+
+Anchor Edge Cases:
+─────────────────────────────────────────────────────────────────
+✓ Compliant anchor order passes [1.278s]
+✓ Missing required anchor fails [1.140s]
+✓ Reordered required anchor fails [1.215s]
+
+Placeholder Edge Cases:
+─────────────────────────────────────────────────────────────────
+✓ Compliant fixture stays placeholder-free [1.364s]
+✓ Multiple placeholders across files (all detected) [877ms]
+✓ Placeholder case variations (detected) [901ms]
+
+CLI Options Tests:
+─────────────────────────────────────────────────────────────────
+✓ --json produces valid JSON with required fields [1.316s]
+✓ --strict mode: warnings stay advisory [1.164s]
+✓ --quiet mode: minimal output [1.485s]
+✓ Env var: SPECKIT_STRICT=true [1.143s]
+✓ Compliant fixture remains stable across default rule order [1.195s]
+
+Exact Exit Code Tests:
+─────────────────────────────────────────────────────────────────
+✓ Exact exit 0: compliant fixture [1.223s]
+✓ Exact exit 1: unknown option [20ms]
+✓ Exact exit 2: validation error [799ms]
+✓ Exact exit 3: missing folder [19ms]
+
+───────────────────────────────────────────────────────────────
+
+  Summary
+───────────────────────────────────────────────────────────────
+
+
+By Category:
+─────────────────────────────────────────────────────────────────
+  ● Positive Tests (should PASS or WARN): 2/2 passed (2.255s)
+  ● Level Declaration Tests (should PASS or WARN): 1/1 passed (1.354s)
+  ● Warning Tests (should WARN): 1/1 passed (972ms)
+  ● Sections Present Tests (should FAIL on missing): 1/1 passed (1.177s)
+  ● Negative Tests (should FAIL): 11/11 passed (11.547s)
+  ● Anchor Edge Cases: 3/3 passed (3.633s)
+  ● Placeholder Edge Cases: 3/3 passed (3.142s)
+  ● CLI Options Tests: 5/5 passed (6.303s)
+  ● Exact Exit Code Tests: 4/4 passed (2.061s)
+
+Totals:
+─────────────────────────────────────────────────────────────────
+  Passed:  31
+  Failed:  0
+  Skipped: 0
+  ─────────────
+  Total:   31
+  Time:    32.444s
+
+RESULT: PASSED
+
+
+═══════════════════════════════════════════════════════════════
+  SpecKit Extended Validation Test Suite v1.0
+═══════════════════════════════════════════════════════════════
+
+Individual Rule: FILE_EXISTS (check-files.sh):
+─────────────────────────────────────────────────────────────────
+✓ L1: All files present [45ms]
+✓ L2: All files present (includes checklist) [44ms]
+✓ L3: All files present (includes decision-record) [46ms]
+✓ L1: Missing spec.md [45ms]
+✓ L1: Missing plan.md [73ms]
+✓ L1: Missing tasks.md [43ms]
+✓ L3: Missing decision-record.md [71ms]
+✓ Empty folder (all missing) [42ms]
+
+Individual Rule: FOLDER_NAMING (check-folder-naming.sh):
+─────────────────────────────────────────────────────────────────
+✓ Outside spec roots: 002-valid-level1 [12ms]
+✓ Outside spec roots: 003-valid-level2 [11ms]
+✓ Outside spec roots: 045-valid-sections [12ms]
+
+Individual Rule: PLACEHOLDER_FILLED (check-placeholders.sh):
+─────────────────────────────────────────────────────────────────
+✓ No placeholders [55ms]
+✓ [YOUR_VALUE_HERE:] detected [57ms]
+✓ Template provenance token in a title detected [57ms]
+✓ Multiple placeholders [60ms]
+✓ Case variations ignored by canonical shell markers [56ms]
+✓ In code block (ignored) [59ms]
+✓ In inline code (ignored) [57ms]
+✓ In memory/ (skipped) [54ms]
+
+Individual Rule: COMMENT_HYGIENE_MARKER (check-comment-hygiene.sh):
+─────────────────────────────────────────────────────────────────
+✓ No markers [30ms]
+✓ Marker detected [30ms]
+
+Individual Rule: SCAFFOLD_NEVER_TOUCHED (check-scaffold-never-touched.sh):
+─────────────────────────────────────────────────────────────────
+✓ Scaffold marker with Complete status detected [70ms]
+✓ Genuinely complete docs pass [70ms]
+
+Shared Status Classifier:
+─────────────────────────────────────────────────────────────────
+✓ Not Started classifies as planned [17ms]
+
+Shared Enforcement Flag Parsing:
+─────────────────────────────────────────────────────────────────
+✓ Enforce flag matrix applies to both rules [1.428s]
+
+Metadata Parse Errors:
+─────────────────────────────────────────────────────────────────
+✓ Malformed generated metadata emits a warning [155ms]
+
+Individual Rule: LEVEL_DECLARED (check-level.sh):
+─────────────────────────────────────────────────────────────────
+✓ Level detection (isolated=inferred) [8ms]
+✓ Inferred level (info) [8ms]
+✓ Level 0 (fallback) [8ms]
+✓ Level 5 out of range [8ms]
+✓ Level without bold [8ms]
+
+Individual Rule: AI_PROTOCOL (check-ai-protocols.sh):
+─────────────────────────────────────────────────────────────────
+✓ L3 (missing protocol=warn) [55ms]
+✓ L1 (skipped) [24ms]
+✓ L2 (skipped) [24ms]
+
+Individual Rule: LEVEL_MATCH (check-level-match.sh):
+─────────────────────────────────────────────────────────────────
+✓ L1 (level declared) [66ms]
+✓ L2 (level consistency) [69ms]
+✓ L3 (level consistency) [71ms]
+
+Individual Rule: COMPLEXITY_MATCH (check-complexity.sh):
+─────────────────────────────────────────────────────────────────
+✓ L1 complexity check [31ms]
+✓ L2 complexity check [31ms]
+✓ L3 complexity check [29ms]
+
+Orchestrator: Valid Fixtures (Exit 0 or 1):
+─────────────────────────────────────────────────────────────────
+✓ 053-template-compliant-level2 passes cleanly [1.364s]
+
+Orchestrator: Warning Fixtures (Exit 0):
+─────────────────────────────────────────────────────────────────
+✓ 054-template-extra-header warns [943ms]
+
+Orchestrator: Error Fixtures (Exit 2):
+─────────────────────────────────────────────────────────────────
+✓ 001-empty-folder fails [675ms]
+✓ 005-unfilled-placeholders fails [877ms]
+✓ 006-missing-required-files fails [776ms]
+✓ 008-invalid-anchors fails [898ms]
+✓ 028-level3-missing-decision fails [1.079s]
+✓ 032-missing-plan fails [881ms]
+✓ 035-missing-tasks fails [846ms]
+✓ 036-multiple-placeholders fails [914ms]
+✓ 055-template-missing-header fails [1.384s]
+✓ 056-template-reordered-header fails [1.214s]
+✓ 057-template-missing-anchor fails [1.276s]
+✓ 058-template-reordered-anchor fails [1.148s]
+✓ 072 scaffold marker fails through default registry bridge [947ms]
+
+Exit Code Verification:
+─────────────────────────────────────────────────────────────────
+✓ Exit 0: Compact compliant fixture returns pass [1.220s]
+✓ Exit 0: Warning fixture returns warn [970ms]
+✓ Exit 2: Errors return fail [697ms]
+✓ Exit 2: Missing files return fail [789ms]
+✓ Exit 2: Missing required header returns fail [1.136s]
+✓ Exact exit 0: compliant fixture [1.229s]
+✓ Exact exit 1: unknown option [17ms]
+✓ Exact exit 2: validation error [824ms]
+✓ Exact exit 3: missing folder [19ms]
+
+JSON Output Mode:
+─────────────────────────────────────────────────────────────────
+✓ --json compact compliant fixture produces valid JSON [1.223s]
+✓ --json warning fixture produces valid JSON [963ms]
+✓ --json error fixture produces valid JSON [1.129s]
+
+CLI Options:
+─────────────────────────────────────────────────────────────────
+✓ --strict: warnings stay advisory [1.257s]
+✓ --verbose: detailed compact output [1.236s]
+✓ --quiet: minimal output (compact pass) [1.427s]
+✓ --quiet: minimal output (warn) [1.110s]
+✓ --quiet: minimal output (error) [1.152s]
+✓ SPECKIT_STRICT=true env var [1.230s]
+
+Edge Cases: Anchor Scenarios:
+─────────────────────────────────────────────────────────────────
+✓ Compliant anchor order passes cleanly [1.336s]
+✓ Missing required anchor fails [1.438s]
+✓ Reordered required anchor fails [1.149s]
+
+Edge Cases: Evidence Patterns:
+─────────────────────────────────────────────────────────────────
+✓ Compliant evidence citations pass cleanly [1.507s]
+
+Edge Cases: Placeholder Contexts:
+─────────────────────────────────────────────────────────────────
+✓ Compliant fixture stays placeholder-free cleanly [1.386s]
+✓ Multiple across files detected [893ms]
+✓ Case variations detected [912ms]
+
+Edge Cases: Level Detection:
+─────────────────────────────────────────────────────────────────
+✓ Explicit level on compliant fixture passes cleanly [1.236s]
+✓ Level 0 invalid (error from mismatch) [1.213s]
+✓ Level 5 out of range (error from mismatch) [1.246s]
+
+Edge Cases: Special Directories:
+─────────────────────────────────────────────────────────────────
+✓ Compliant fixture stays stable without special directories [1.470s]
+
+═══════════════════════════════════════════════════════════════
+  Summary
+═══════════════════════════════════════════════════════════════
+
+By Category:
+─────────────────────────────────────────────────────────────────
+  ● Individual Rule: FILE_EXISTS (check-files.sh): 8/8 passed (409ms)
+  ● Individual Rule: FOLDER_NAMING (check-folder-naming.sh): 3/3 passed (35ms)
+  ● Individual Rule: PLACEHOLDER_FILLED (check-placeholders.sh): 8/8 passed (455ms)
+  ● Individual Rule: COMMENT_HYGIENE_MARKER (check-comment-hygiene.sh): 2/2 passed (60ms)
+  ● Individual Rule: SCAFFOLD_NEVER_TOUCHED (check-scaffold-never-touched.sh): 2/2 passed (140ms)
+  ● Shared Status Classifier: 1/1 passed (17ms)
+  ● Shared Enforcement Flag Parsing: 1/1 passed (1.428s)
+  ● Metadata Parse Errors: 1/1 passed (155ms)
+  ● Individual Rule: LEVEL_DECLARED (check-level.sh): 5/5 passed (40ms)
+  ● Individual Rule: AI_PROTOCOL (check-ai-protocols.sh): 3/3 passed (103ms)
+  ● Individual Rule: LEVEL_MATCH (check-level-match.sh): 3/3 passed (206ms)
+  ● Individual Rule: COMPLEXITY_MATCH (check-complexity.sh): 3/3 passed (91ms)
+  ● Orchestrator: Valid Fixtures (Exit 0 or 1): 1/1 passed (1.364s)
+  ● Orchestrator: Warning Fixtures (Exit 0): 1/1 passed (943ms)
+  ● Orchestrator: Error Fixtures (Exit 2): 13/13 passed (12.915s)
+  ● Exit Code Verification: 9/9 passed (6.901s)
+  ● JSON Output Mode: 3/3 passed (3.315s)
+  ● CLI Options: 6/6 passed (7.412s)
+  ● Edge Cases: Anchor Scenarios: 3/3 passed (3.923s)
+  ● Edge Cases: Evidence Patterns: 1/1 passed (1.507s)
+  ● Edge Cases: Placeholder Contexts: 3/3 passed (3.191s)
+  ● Edge Cases: Level Detection: 3/3 passed (3.695s)
+  ● Edge Cases: Special Directories: 1/1 passed (1.470s)
+
+Totals:
+─────────────────────────────────────────────────────────────────
+  Passed:  84
+  Failed:  0
+  Skipped: 0
+  ─────────────
+  Total:   84
+  Time:    49.775s
+
+RESULT: PASSED
+
+  ok    cutoff day itself is grandfathered                       info
+  ok    after cutoff, missing document blocks                    fail
+  ok    before cutoff, missing document advisory                 info
+  ok    pre-cutoff completion claim stays advisory               info
+  ok    pre-cutoff dangling waiver stays advisory                info
+  ok    completion claim with unmet criterion                    fail
+  ok    unmet criterion mid-flight does not block                info
+  ok    all met is closeable                                     pass
+  ok    bold id still counts                                     fail
+  ok    backticked id still counts                               fail
+  ok    lowercase id still counts                                fail
+  ok    unparseable id is reported                               fail
+  ok    unbalanced fence is reported                             fail
+  ok    duplicate ids are reported                               fail
+  ok    status 'Not Complete' is not a completion claim          info
+  ok    status 'Incomplete' is not a completion claim            info
+  ok    status 'Abandoned' is not a completion claim             info
+  ok    status 'Blocked - nothing done yet' is not a completion claim info
+  ok    extra column does not shift Status                       pass
+  ok    escaped pipe does not shift Status                       pass
+  ok    fenced ADR does not satisfy a waiver                     fail
+  ok    bold list ADR satisfies a waiver                         pass
+  ok    table-row ADR satisfies a waiver                         pass
+  ok    ADR-1 and ADR-001 are the same record                    pass
+  ok    waiver citing a missing ADR fails                        fail
+  ok    waiver naming no ADR fails                               fail
+  ok    every cited ADR must exist                               fail
+  ok    non-boolean flag keeps the gate on                       fail
+  ok    malformed cutoff falls back, not grandfather-all         fail
+
+  29 passed, 0 failed
+CASE                                                   RESULT
+------------------------------------------------------ ------
+  ok    prose verification counts as no evidence               0/2
+  ok    file:line in the Verification cell is evidence         2/2
+  ok    a waived criterion needs no citation                   2/2
+  ok    a superseded criterion needs no citation               1/1
+  ok    cited and retired count, prose and blank do not        3/5
+  ok    an extra column does not shift Verification            1/1
+  ok    a column before AC-ID does not zero the count          2/2
+  ok    an Incomplete packet does not activate the gate        inactive
+  ok    a fenced example is not a criterion                    1/1
+  ok    canonical doc alone activates the gate                 1/1
+  ok    a criteria table with no rows is a no-op               noop
+  ok    no criteria and no source is inactive                  inactive
+  ok    the gate stays off below Level 2                       inactive
+  ok    the merged tasks document is the traceability source   tasks.md
+  ok    a stray pre-merge copy is not a source                 none
+  ok    tasks.md without the protocol anchor is not a source   none
+  ok    enforce fails a post-cutoff packet under the floor     fail
+  ok    enforce stays advisory on or before the cutoff         pass
+  ok    enforce stays advisory with no creation date           pass
+  ok    a later cutoff grandfathers the packet                 pass
+  ok    a malformed cutoff falls back to the default           fail
+  ok    without the switch a post-cutoff packet is advisory    pass
+  ok    a Complete criteria document activates the gate alone  1/1
+  ok    a Draft criteria document with no summary stays inactive inactive
+  ok    a Manual-infeasible row with a rationale counts, a bare one does not 1/2
+  ok    the parser lists every citation of a counted row       2|1|1|AC-002|AC-001 (a.sh:1), AC-001 (gone.sh:2)
+  ok    empty id and citation lists are written as -           1|1|0|-|-
+  ok    a citation inside the file resolves                    none
+  ok    a missing file and line 0 or past the end do not       AC-001 (nope.sh:1), AC-002 (sub/a.sh:0), AC-003 (sub/a.sh:4)
+  ok    a directory and an ellipsis path do not resolve        AC-001 (./sub:1), AC-002 (.../a.sh:1)
+  ok    the root is tried after the packet folder              none
+  ok    an empty list reports nothing                          none
+  ok    unresolved citations are named with their AC id        Unresolved evidence citation(s): AC-002 (missing-cite.sh:4), AC-003 (a.sh:9)
+  ok    an unresolved citation still counts as coverage        3/3
+  ok    resolving citations add no detail                      none
+  ok    the ratio before the cited file exists                 1/2
+  ok    the ratio after the cited file exists is the same      1/2
+  ok    a path from the repository root resolves               Unresolved evidence citation(s): AC-002 (tools/r.sh:3)
+  ok    the legacy table names an unresolved citation          Unresolved evidence citation(s): AC-002 (missing-cite.sh:3)
+  ok    the legacy ratio is unchanged                          2/2
+  ok    a resolving legacy citation adds no detail             none
+  ok    citations joined by a comma or semicolon split cleanly Unresolved evidence citation(s): AC-002 (missing.sh:1)
+  ok    a line number too long to be real does not resolve     AC-001 (a.sh:18446744073709551617)
+  ok    a citation that climbs out of the folder resolves only to a real file AC-002 (../missing-outside.sh:1)
+  ok    a legacy row naming two ids reports only real misses   Unresolved evidence citation(s): AC-003 (gone.sh:4)
+
+  45 passed, 0 failed
+
+Running: child-drift — RED advisory (missing child, flag off)
+  PASS: missing child → advisory (status=pass, ADVISORY message, names 001-foo)
+
+Running: child-drift — RED enforce (missing child, flag on)
+  PASS: missing child + enforce → status=warn naming 001-foo (--strict escalates)
+
+Running: child-drift — GREEN (child listed, both modes clean)
+  PASS: listed child → clean pass in advisory and enforce (no drift)
+
+Running: child-drift — foreign same-basename entry does not mask drift
+  PASS: foreign other-parent/001-foo does not satisfy local 001-foo
+
+Running: child-drift — cross-track same-basename entry does not mask drift
+  PASS: cross-track track-b/900-shared-name/001-foo does not satisfy local track-a/900-shared-name/001-foo
+  PASS: own-track track-a/900-shared-name/001-foo correctly satisfies local child
+
+Running: child-drift — writer-parity (underscore folder counts)
+  PASS: underscore folder 010_experiment flagged (writer pattern, not strict slug)
+
+Running: child-drift — extra listed entry is not drift
+  PASS: extra listed entry 999-gone (not on disk) → still pass under enforce
+
+Running: child-drift — leaf (no numbered children) not flagged
+  PASS: leaf with no numbered children → pass under enforce (no false positive)
+
+Running: child-drift — fail-closed when scanner unavailable
+  PASS: scanner unavailable → enforce warns (fail-closed), advisory stays clean
+
+Running: child-drift — DEFAULT orchestrator path fires the rule
+  PASS: default path: flag OFF → orchestrator pass (advisory), flag ON → orchestrator warn
+
+Running: child-drift — DEFAULT path no false positive (reconciled)
+  PASS: reconciled parent → orchestrator pass under enforce (no false positive)
+
+Results: 12 passed, 0 failed
+
+Running: GRAPH_METADATA_SHAPE — full packet_id with existing child
+  PASS: Full packet_id whose basename resolves → status=pass (no spurious warn)
+
+Running: GRAPH_METADATA_SHAPE — genuinely stale last_active_child_id
+  PASS: Stale pointer (neither full path nor basename exists) → status=warn
+
+Results: 2 passed, 0 failed
+
+---------------------------------------------------------------
+  test-phase-system.sh
+---------------------------------------------------------------
+
+-- Default phase count --
+[speckit] Skipping branch creation (--skip-branch)
+[speckit] Warning: Falling back to generic phase name 'phase-1-PROVIDE-DESCRIPTIVE-SLUG'. Provide --phase-names with literal slugs describing the concrete work.
+[speckit] Warning: Falling back to generic phase name 'phase-2-PROVIDE-DESCRIPTIVE-SLUG'. Provide --phase-names with literal slugs describing the concrete work.
+[speckit] Warning: Falling back to generic phase name 'phase-3-PROVIDE-DESCRIPTIVE-SLUG'. Provide --phase-names with literal slugs describing the concrete work.
+  Warning: graph metadata derivation skipped: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/test-phase-system-wcXhqE/repo-GUAysp/.skilled/skills/system-spec-kit/runtime/cli/spec/../graph/backfill-graph-metadata.ts is missing. Restore it from the repository.
+  PASS: create.sh --phase defaults to 3 phases
+  PASS: Default phase run created 3 child folders
+  PASS: New phase parent's map lists all 3 phases and keeps no row marker
+
+-- Parent append mode --
+[speckit] Skipping branch creation (--skip-branch)
+  Warning: graph metadata derivation skipped: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/test-phase-system-wcXhqE/repo-r41e43/.skilled/skills/system-spec-kit/runtime/cli/spec/../graph/backfill-graph-metadata.ts is missing. Restore it from the repository.
+[speckit] Existing PHASE DOCUMENTATION MAP found; appending new phase rows and handoffs
+  Warning: graph metadata derivation skipped: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/test-phase-system-wcXhqE/repo-r41e43/.skilled/skills/system-spec-kit/runtime/cli/spec/../graph/backfill-graph-metadata.ts is missing. Restore it from the repository.
+  PASS: Append mode reports 2 newly created phases
+  PASS: Append mode created sequential child folders under parent
+  PASS: Appended phase child headers link predecessor and successor correctly
+  PASS: Appended phase rows continue the parent's phase-map table
+
+-- Parent description.json regeneration guard --
+[speckit] Skipping branch creation (--skip-branch)
+  Warning: graph metadata derivation skipped: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/test-phase-system-wcXhqE/repo-oLzZ90/.skilled/skills/system-spec-kit/runtime/cli/spec/../graph/backfill-graph-metadata.ts is missing. Restore it from the repository.
+  PASS: New-parent creation still invokes the description generator for the parent
+[speckit] Existing PHASE DOCUMENTATION MAP found; appending new phase rows and handoffs
+  Warning: graph metadata derivation skipped: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/test-phase-system-wcXhqE/repo-oLzZ90/.skilled/skills/system-spec-kit/runtime/cli/spec/../graph/backfill-graph-metadata.ts is missing. Restore it from the repository.
+  PASS: Append mode never invokes the description generator against the existing parent's path
+  PASS: Append mode still generates description.json for the newly created child phase
+
+-- Appended phase labels --
+[speckit] Skipping branch creation (--skip-branch)
+  Warning: graph metadata derivation skipped: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/test-phase-system-wcXhqE/repo-J2fLps/.skilled/skills/system-spec-kit/runtime/cli/spec/../graph/backfill-graph-metadata.ts is missing. Restore it from the repository.
+  PASS: A new parent's first child is labeled Phase 1
+[speckit] Existing PHASE DOCUMENTATION MAP found; appending new phase rows and handoffs
+  Warning: graph metadata derivation skipped: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/test-phase-system-wcXhqE/repo-J2fLps/.skilled/skills/system-spec-kit/runtime/cli/spec/../graph/backfill-graph-metadata.ts is missing. Restore it from the repository.
+  PASS: Appended children carry Phase 2 and Phase 3 in description, graph metadata and spec title
+
+---------------------------------------------------------------
+  Results: 12 passed, 0 failed (of 12)
+---------------------------------------------------------------
+
+EXIT=0

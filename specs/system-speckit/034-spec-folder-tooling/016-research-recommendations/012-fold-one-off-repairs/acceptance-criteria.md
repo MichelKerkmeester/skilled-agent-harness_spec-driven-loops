@@ -8,9 +8,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs"
-    last_updated_at: "2026-10-09T06:50:00Z"
+    last_updated_at: "2026-10-10T09:47:20Z"
     last_updated_by: "closeout"
-    recent_action: "Third closeout pass: shuffled-run evidence added, gate rows on tree5"
+    recent_action: "CHK-FIX-006 closed: template cache removed and a same-instance case added (uncommitted)"
     next_safe_action: "Operator decisions in implementation-summary Open Items"
     blockers: []
     key_files: []
@@ -77,5 +77,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-AC-001 to AC-004 carry the packet, each Met with the evidence in the table above. Still open, and outside these criteria: the manual `--apply` on the real corpus (T011 and CHK-021, an operator item), the process-wide cache variant (CHK-FIX-006), the ship commit (CHK-FIX-007), and the changelog refresh under the parent, which needs an operator decision. The four value-source cases that the first pass left open are now pinned (CHK-FIX-002).
+AC-001 to AC-004 carry the packet, each Met with the evidence in the table above. Still open, and outside these criteria: the manual `--apply` on the real corpus (T011 and CHK-021, an operator item. The read-only dry run plans 8 changes), and the changelog refresh under the parent, which needs an operator decision. The stale path inside one module instance of the template cache is closed (CHK-FIX-006): the cache is removed from `lib/frontmatter-migration.ts`, and a same-instance case pins the re-read. That change is uncommitted, so the ship commit pin does not cover it. The ship commit is pinned to `124e11c883` (CHK-FIX-007). The four value-source cases that the first pass left open are now pinned (CHK-FIX-002).
 <!-- /ANCHOR:closure -->

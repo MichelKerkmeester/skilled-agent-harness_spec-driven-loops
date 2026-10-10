@@ -1,0 +1,86 @@
+# vitest --project cli (log lines 188-189)
+ Test Files  171 passed | 3 skipped (174)
+      Tests  1775 passed | 19 skipped (1794)
+# test:legacy: tests/test-scripts-modules.js (log lines 853-860)
+📊 TEST SUMMARY
+✅ Passed:  266
+❌ Failed:  0
+⏭️  Skipped: 5
+📝 Total:   271
+🎉 ALL TESTS PASSED!
+# test:legacy: tests/test-extractors-loaders.js (log lines 1400-1409)
+  TEST SUMMARY
+  Total:   274
+  Passed:  268
+  Failed:  0
+  Skipped: 6
+  Duration: 2341ms
+  Exit code: 0
+# test:legacy: tests/test-phase-validation.js (log line 1485)
+Result: passed=51 failed=0
+# test:legacy: tests/test-phase-system.js (log line 1523)
+Result: passed=27 failed=0
+# test:validation: tests/test-validation-system.cjs (log lines 1782-1787)
+  TEST SUMMARY
+  [PASS]  Passed:  101
+  [FAIL]  Failed:  0
+  [SKIP]  Skipped: 1
+  Total:  102
+# test:validation: tests/test-validation.sh (log lines 1879-1898)
+  ● Positive Tests (should PASS or WARN): 2/2 passed (2.355s)
+  ● Level Declaration Tests (should PASS or WARN): 1/1 passed (1.308s)
+  ● Warning Tests (should WARN): 1/1 passed (1.031s)
+  ● Sections Present Tests (should FAIL on missing): 1/1 passed (1.262s)
+  ● Negative Tests (should FAIL): 11/11 passed (11.553s)
+  ● Anchor Edge Cases: 3/3 passed (3.578s)
+  ● Placeholder Edge Cases: 3/3 passed (3.347s)
+  ● CLI Options Tests: 5/5 passed (6.874s)
+  ● Exact Exit Code Tests: 4/4 passed (2.534s)
+Totals:
+  Passed:  31
+  Failed:  0
+  Skipped: 0
+  Total:   31
+  Time:    33.842s
+RESULT: PASSED
+# test:validation: tests/test-validation-extended.sh (log lines 2064-2097)
+  ● Individual Rule: FILE_EXISTS (check-files.sh): 8/8 passed (430ms)
+  ● Individual Rule: FOLDER_NAMING (check-folder-naming.sh): 3/3 passed (36ms)
+  ● Individual Rule: PLACEHOLDER_FILLED (check-placeholders.sh): 8/8 passed (497ms)
+  ● Individual Rule: COMMENT_HYGIENE_MARKER (check-comment-hygiene.sh): 2/2 passed (68ms)
+  ● Individual Rule: SCAFFOLD_NEVER_TOUCHED (check-scaffold-never-touched.sh): 2/2 passed (156ms)
+  ● Shared Status Classifier: 1/1 passed (18ms)
+  ● Shared Enforcement Flag Parsing: 1/1 passed (1.670s)
+  ● Metadata Parse Errors: 1/1 passed (165ms)
+  ● Individual Rule: LEVEL_DECLARED (check-level.sh): 5/5 passed (48ms)
+  ● Individual Rule: AI_PROTOCOL (check-ai-protocols.sh): 3/3 passed (116ms)
+  ● Individual Rule: LEVEL_MATCH (check-level-match.sh): 3/3 passed (221ms)
+  ● Individual Rule: COMPLEXITY_MATCH (check-complexity.sh): 3/3 passed (98ms)
+  ● Orchestrator: Valid Fixtures (Exit 0 or 1): 1/1 passed (1.324s)
+  ● Orchestrator: Warning Fixtures (Exit 0): 1/1 passed (1.012s)
+  ● Orchestrator: Error Fixtures (Exit 2): 13/13 passed (13.653s)
+  ● Exit Code Verification: 9/9 passed (8.308s)
+  ● JSON Output Mode: 3/3 passed (4.103s)
+  ● CLI Options: 6/6 passed (8.357s)
+  ● Edge Cases: Anchor Scenarios: 3/3 passed (4.143s)
+  ● Edge Cases: Evidence Patterns: 1/1 passed (1.328s)
+  ● Edge Cases: Placeholder Contexts: 3/3 passed (3.523s)
+  ● Edge Cases: Level Detection: 3/3 passed (3.547s)
+  ● Edge Cases: Special Directories: 1/1 passed (1.338s)
+Totals:
+  Passed:  84
+  Failed:  0
+  Skipped: 0
+  Total:   84
+  Time:    54.159s
+RESULT: PASSED
+# test:validation: tests/check-ac-closure.sh (log line 2129)
+  29 passed, 0 failed
+# test:validation: tests/check-ac-coverage.sh (log line 2178)
+  45 passed, 0 failed
+# test:validation: tests/check-graph-metadata-child-drift.sh (log line 2214)
+Results: 12 passed, 0 failed
+# test:validation: tests/check-graph-metadata-shape-last-active-child.sh (log line 2222)
+Results: 2 passed, 0 failed
+# test:validation: tests/test-phase-system.sh (log line 2266)
+  Results: 12 passed, 0 failed (of 12)

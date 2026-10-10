@@ -14,7 +14,7 @@ importance_tier: "important"
 
 ---
 
-## 1. OVERVIEW
+## 1. OVERVIEW AND PURPOSE
 
 `.skilled/commands/doctor/scripts/` contains shell, JavaScript and Python tools that support doctor routes.
 
@@ -136,7 +136,7 @@ Do not invoke a mutating path from a route classified as read-only.
 
 ---
 
-## 7. VALIDATION
+## 7. VALIDATION AND INSTRUCTIONS
 
 Run every doctor test from the repository root. CI runs the same command in the `doctor-scripts` job of `.github/workflows/spec-kit-check.yml`:
 

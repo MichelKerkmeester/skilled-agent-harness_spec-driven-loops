@@ -1,0 +1,35 @@
+CLOSURE EVIDENCE: red-map entries after the guard sweep, and the unclaimed remainder (coordinator decision D2)
+
+Sources. closure-guard-red-map.txt and closure-fallback-map.txt are existing evidence and are not edited. closure-guard-sweep.txt is written by the sweep lane and is read only here. The mutant logs are in the session scratchpad under gs/mut/. Each sweep number was checked against its log in this pass: A-arch-L, A-rest-L, A-arch-e and A-rest-e each 5 failed of 46. K-a, K-b1 and K-b2 each 1 failed of 12 (1 skipped). O-1 to O-4 each 1 failed of 11. H-doc 2 failed of 107. H-lane-a 2 failed of 107. H-lane-b 3 failed of 107.
+
+Part 1. Entries that become RED-PROVEN after the sweep.
+- K1, backfill prune report writer (backfill-graph-metadata.ts, the report link refusal and the exclusive temporary name). Before the sweep: NOT CLAIMED, no mutant. Now RED-PROVEN for three guards. K-a removes the link refusal at the report name, and the existing case "refuses a destination that is a symbolic link" fails. K-b1 removes the exclusive temporary name, and the new case "refuses a temporary name that already exists and leaves that file untouched" fails. K-b2 replaces the rename with a copy, and the new case "replaces a link planted after the check instead of writing through it" fails.
+- F4, orchestrator baselineIsLink (UPGRADE_BASELINE_LINK). Before: NOT CLAIMED. Now RED-PROVEN by O-1 to O-4. O-1 removes the guard and O-2 changes lstat to stat. Both fail "refuses a baseline that is a link to a file outside the packet". O-3 drops the UPGRADE_BASELINE_LINK entry and fails the entries[1] check in the same case. O-4 turns the catch branch to true and fails "leaves entries deeply unchanged when no baseline file exists".
+- A3, archive destination, the -L branch (archive.sh, the check for a link at the destination name). Before: NOT CLAIMED. Now RED-PROVEN by A-arch-L, which fails the new case "refuses an archive whose target is a dangling link, and changes neither side". The -e branch stays RED-PROVEN from mutant C.
+- A4, restore destination, the -L branch (archive.sh, the check for a link at the destination). Before: NOT CLAIMED. Now RED-PROVEN by A-rest-L, which fails the existing case "refuses to restore onto a link at the target, and moves nothing". The -e branch stays RED-PROVEN from mutant D.
+- B5, the document link guard at heal-spec-docs.cjs line 651. Before: NOT CLAIMED, and the red map labeled it as the default --apply document path. Correction: line 651 sits inside repairAnchorFile (line 650), which is the anchor-repair path. Now RED-PROVEN for that path by H-doc, which fails "--anchor-repair --apply leaves a symlinked spec.md and its outside target untouched" and "--anchor-repair --apply refuses a dangling spec.md and does not create its target". The guard also refuses a link that points inside specs, which spec.md line 193 contradicts. The operator's Code prevails decision of 2026-10-10 governs that point, and this entry does not decide it.
+- H-lane-a, the lane-mode containment guard (heal-spec-docs.cjs line 1597). Not in the red map before. Now RED-PROVEN by two lane-mode cases, "--lane-modes --apply leaves a symlinked spec.md and its outside target untouched" and "--lane-modes --apply refuses a dangling spec.md".
+- H-lane-b, the default-loop link guard (heal-spec-docs.cjs line 1656). Not in the red map before. Now RED-PROVEN by three default-healer cases. This is the default --apply document path that B5 was meant to describe.
+
+Part 2. Entries that keep their earlier status.
+RED-PROVEN before and after: A1, A2, A5, A6, A3 for the -e branch, A4 for the -e branch, B1 for the dangling folder, B2, B3, B4, C1 (C-08), D1, D2, D3, D4 and D6. D5 (mutant R3, 23 of 23 passed) is NOT RED and is not counted.
+
+Part 3. Still NOT CLAIMED after the sweep.
+- A7, archive.sh source resolution and containment, lines 273 to 282. No mutant and no case.
+- B1 linked-folder case (B-12). The only evidence is the c1 log, with no recorded mutation.
+- B6: B-09 (dot segment in folderRefusal), B-10 (linked folder component) and B-11 (linked parent outside the default roots, the operator-accepted partial H5). B-10 is named in c1/red-heal-folder.txt with no recorded mutation, and B-09 and B-11 have no mutant.
+- C2, linked manifest write (C-07). The c1 log has no recorded mutation.
+- C3, start-scope confinement before readdirSync (generate-leaf-manifest.cjs lines 93 to 106, rows C-04, C-05 and C-13). No mutant.
+- C4, the --check comparison. The failing exit is recorded, and the failing case is not named.
+- C5, linked manifest on the read path (C-15). No mutant. L1 covers the write path only.
+- D7, rewrite-target write guard (D-04). The c1 runs fail on D-07, not D-04.
+- F5, U-16 (linked --roots argument) and U-17 (dot segment in --roots). Matrix rows MISSING, no mutant.
+- F6, U-18 (linked manifest write, upgrade-legacy.mjs 417 to 446). Matrix row MISSING, no mutant.
+
+The sweep scope does not cover A7, B6, C2, C3, C5, D7, F5 or F6. So "every changed guard now has a red mutant" is not supported, and D2 is not fully claimed.
+
+Part 4. Corrections and name clashes.
+- Red-map B5 label. Lines 651 to 653 are in repairAnchorFile, not the default path, and the default path guard is H-lane-b at line 1656. This file records the correction, and the red map is not edited.
+- Name clash. The red map's K1 (prune report writer) is not the same entry as the same-class inventory's K1 (backfill --root unconfined, accepted PARTIAL in closure-same-class-write-inventory.txt). This file uses K1 only for the writer.
+- Mirror caveat. Four round-trip cases in archive-track.vitest.ts (describe "archive.sh round trip with the real tools") fail in the scratch mirrors with the unmutated skill and pass in the repository. The sweep does not diagnose that failure. Each archive mutant counts as killed only when a failing case outside those four appears, per control-cli-2.
+- Baseline figure. The coordinator's figure that the no-roots mutant killed 0 before the fix is not in any saved log, as closure-healer-fix-check.txt records.

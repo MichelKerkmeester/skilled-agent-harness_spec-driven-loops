@@ -1,0 +1,14 @@
+CLOSURE EVIDENCE copy: green run, lane C leaf walker scope test (node --test)
+Source: scratchpad k2b/final-leaf.txt (copied verbatim, not edited). Log records pass 1, fail 0 for the scopes file. No EXIT line in the log.
+
+leaf-manifest.json written (543a4ef189cdaa2adf3346014fdb63af82453d78b0c1a72cdc03fffd4e6d4e73)
+[sk-doc] leaf-manifest scope contract coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs (236.1905ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 239.826208

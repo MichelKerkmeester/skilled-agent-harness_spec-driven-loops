@@ -1,0 +1,114 @@
+Evidence: read-only upgrade-legacy dry run over the real specs corpus
+Command: node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --roots specs
+No --apply was passed. The same command with --apply was not run on the real corpus.
+Repository: worktree 091-consolidate-small-packets, HEAD 4669db6522
+Run window: 2026-10-10T11:10:41+0200 to 2026-10-10T11:18:17+0200
+Exit status: 1 (the dry run exits 1 when packets fail)
+stderr: 0 bytes
+
+Write check
+- git status --porcelain (all files, untracked included): 380 lines before the run and 380 after. Two lines differ. The new CLI test file frontmatter-template-literals.vitest.ts appears, because this phase added it. An untracked changelog file under 034-spec-folder-tooling/changelog/ is no longer listed. It was already missing when the before hash listing ran, which finished before this run started, so this run did not remove it. That folder belongs to another lane.
+- Every file under specs/ hashed with sha256 before and after: 80153 files each, and the two path lists are identical. Two file hashes differ, both in the 016 root, which another lane is editing: 016-research-recommendations/goal.md (last written 11:11:04) and 016-research-recommendations/graph-metadata.json (its last write is 11:18:53, after this run's end). By code reading, the dry run writes only to a preview workspace under os.tmpdir(), which it removes in a finally block, so it is not the writer of these files (inferred from the code). Attribution to the other lane is by path and time, not by a process trace.
+- upgrade-baseline.json files under specs/: 0 before, 0 after.
+- upgrade-legacy.manifest.json in the worktree git directory: absent before and after.
+
+Output (verbatim stdout, 99 lines):
+failing specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits: SPEC_DOC_INTEGRITY
+failing specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass: SPEC_DOC_INTEGRITY
+failing specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings: SPEC_DOC_INTEGRITY
+failing specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups: FRONTMATTER_VALID, TEMPLATE_SOURCE
+failing specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack: TEMPLATE_SOURCE
+failing specs/system-speckit/034-spec-folder-tooling/016-research-recommendations: GENERATED_METADATA_INTEGRITY
+failing specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes: GENERATED_METADATA_DRIFT, GENERATED_METADATA_INTEGRITY
+failing specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation: GENERATED_METADATA_DRIFT, GENERATED_METADATA_INTEGRITY
+grouped detail:
+### specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits / x SPEC_DOC_INTEGRITY (19)
+    - spec.md references missing markdown file: 001-workflow-correctness-audit/checklist.md
+    - spec.md references missing markdown file: 002-memory-data-integrity-audit/checklist.md
+    - spec.md references missing markdown file: 003-code-graph-readiness-audit/spec.md
+    - spec.md references missing markdown file: 003-code-graph-readiness-audit/plan.md
+    - spec.md references missing markdown file: 003-code-graph-readiness-audit/tasks.md
+    - spec.md references missing markdown file: 003-code-graph-readiness-audit/checklist.md
+    - spec.md references missing markdown file: 003-code-graph-readiness-audit/implementation-summary.md
+    - spec.md references missing markdown file: 003-code-graph-readiness-audit/review-report.md
+    - spec.md references missing markdown file: 004-cross-runtime-hook-parity-audit/checklist.md
+    - spec.md references missing markdown file: 005-mcp-tool-schema-governance-audit/checklist.md
+    - spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/spec.md
+    - spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/plan.md
+    - spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/tasks.md
+    - spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/checklist.md
+    - spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/implementation-summary.md
+    - spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/review-report.md
+    - spec.md references missing markdown file: 007-validator-spec-document-integrity-audit/checklist.md
+    - spec.md references missing markdown file: 008-documentation-truth-audit/checklist.md
+    - spec.md references missing markdown file: 009-upgrade-safety-operability-audit/checklist.md
+### specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass / x SPEC_DOC_INTEGRITY (6)
+    - spec.md references missing markdown file: 001-sk-code-opencode-standards-audit/checklist.md
+    - spec.md references missing markdown file: 002-feature-catalog-trio-alignment/checklist.md
+    - spec.md references missing markdown file: 003-testing-playbook-trio-alignment/checklist.md
+    - spec.md references missing markdown file: 004-sk-doc-template-alignment/checklist.md
+    - spec.md references missing markdown file: 005-stress-test-folder-migration/checklist.md
+    - spec.md references missing markdown file: 006-readme-cascade-refresh/checklist.md
+### specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings / x SPEC_DOC_INTEGRITY (2)
+    - HANDOVER-deferred.md references missing markdown file: ./001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md
+    - HANDOVER-deferred.md references missing markdown file: ./005-code-graph-fail-fast-routing/implementation-summary.md
+### specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups / x FRONTMATTER_VALID (1)
+    - spec.md: Empty required frontmatter field: contextType
+### specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups / x TEMPLATE_SOURCE (2)
+    - spec.md
+    - handover.md
+### specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack / x TEMPLATE_SOURCE (1)
+    - decision-record.md
+### specs/system-speckit/034-spec-folder-tooling/016-research-recommendations / x GENERATED_METADATA_INTEGRITY (1)
+    - graph-metadata.json: SOURCE_FINGERPRINT_MISMATCH: source_fingerprint does not match a re-derive of the current source docs, the stored derived fields may be stale
+### specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes / x GENERATED_METADATA_DRIFT (1)
+    - description: stored 'Phase 19: epic-follow-up-fixes' drifted from fresh 'The epic's builds and reviews left eleven loose ends'
+### specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes / x GENERATED_METADATA_INTEGRITY (2)
+    - graph-metadata.json: SOURCE_FINGERPRINT_MISMATCH: source_fingerprint does not match a re-derive of the current source docs, the stored derived fields may be stale
+    - graph-metadata.json: STATUS_COMPLETE_EVIDENCE_MISMATCH: derived.status is 'complete' but completion_pct is 90, below 100
+### specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation / x GENERATED_METADATA_DRIFT (1)
+    - description: stored 'Phase 20: deep-review-remediation' drifted from fresh 'The deep review of phases 016 to 019 found three default paths that check a name, then follow a symlink at the step that writes, reads or moves a'
+### specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation / x GENERATED_METADATA_INTEGRITY (1)
+    - graph-metadata.json: SOURCE_FINGERPRINT_MISMATCH: source_fingerprint does not match a re-derive of the current source docs, the stored derived fields may be stale
+step heal-spec-docs: ok (8 packets)
+
+Downgrades:
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/implementation-summary.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/plan.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/review-report.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/spec.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: ../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/tasks.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 001-workflow-correctness-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 002-memory-data-integrity-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/implementation-summary.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/plan.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/review-report.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/spec.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-code-graph-readiness-audit/tasks.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 004-cross-runtime-hook-parity-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 005-mcp-tool-schema-governance-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 007-validator-spec-document-integrity-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 008-documentation-truth-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 009-upgrade-safety-operability-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 001-sk-code-opencode-standards-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 002-feature-catalog-trio-alignment/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-testing-playbook-trio-alignment/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 004-sk-doc-template-alignment/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 005-stress-test-folder-migration/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 006-readme-cascade-refresh/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings | SPEC_DOC_INTEGRITY | error -> warning | HANDOVER-deferred.md references missing markdown file: ./001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings | SPEC_DOC_INTEGRITY | error -> warning | HANDOVER-deferred.md references missing markdown file: ./005-code-graph-fail-fast-routing/implementation-summary.md
+  specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups | TEMPLATE_SOURCE | error -> warning | handover.md
+  specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups | TEMPLATE_SOURCE | error -> warning | spec.md
+  specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack | TEMPLATE_SOURCE | error -> warning | decision-record.md
+
+inspected=2202 active=2202 archived=0
+passing=2194/2202
+repo era report:
+  layout provenance: source=none; description.json residue count=0
+  layout: v4 (v3=false, v4=true)
+  frontmatter: present=18486 missing=99
+
+--apply would run: fill-frontmatter, anchor-repair, heal-spec-docs, lane-modes, repair-derived, migrate-generated-json (archived packets: questions-anchor un-nesting and repair-derived only), then record the remaining findings in upgrade-baseline.json

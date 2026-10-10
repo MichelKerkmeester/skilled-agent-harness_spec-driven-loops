@@ -1,0 +1,3 @@
+leaf-manifest.json written (543a4ef189cdaa2adf3346014fdb63af82453d78b0c1a72cdc03fffd4e6d4e73)
+[sk-doc] leaf-manifest scope contract coverage passed
+EXIT=0

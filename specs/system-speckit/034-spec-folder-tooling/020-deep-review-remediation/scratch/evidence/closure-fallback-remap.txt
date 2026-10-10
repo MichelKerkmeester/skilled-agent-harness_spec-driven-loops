@@ -1,0 +1,28 @@
+CLOSURE EVIDENCE: fallback cases for CHK-FIX-004, rechecked by name under the definition in closure-fallback-map.txt
+
+Definition, unchanged from closure-fallback-map.txt. A fallback is a path the code takes when its primary resolution is absent or fails. A fallback case is adversarial when a link or a dangling target sits on that fallback path and the test asserts that nothing is written through it. A parity case with no link is not adversarial.
+
+Result. Lanes A, B and C meet the definition. Lane F does not. CHK-FIX-004 stays open for lane F alone.
+
+Why this file exists. closure-fallback-map.txt was written before the healer identity fix, which added the no-roots alias cases in heal-symlink-containment.vitest.ts. Its finding for lane B, that no case puts a link on the default root, predates those cases. This file rechecks lane B against the current tests and does not edit that map.
+
+Lane A. Fallback: the specs root falls back to "$PROJECT_ROOT/specs" when resolve_existing_dir fails. Cases in archive-track.vitest.ts: "refuses when the specs root is a dangling link, and creates nothing through it", and "refuses in a copy outside any repository whose derived root has no specs folder". Mutant F removes the fallback, and both fail (S/k2a/red-F.txt, 2 of 45). MEETS.
+
+Lane B. Fallback: with no --roots, the healer resolves the default roots, which are the working directory's specs and the enclosing repository's specs.
+- heal-symlink-containment.vitest.ts, the describe "heal-spec-docs folder containment". The cases "refuses a --folder spelled through an alias of the specs root when no --roots is given" (line 398, three modes), "refuses a relative ../specs --folder run from a subdirectory when no --roots is given" (line 422, three modes) and "default run --apply refuses a case-variant SPECS --folder when no --roots is given" (line 450). Their spawn calls pass no --roots (checked in this pass).
+- The describe "heal-spec-docs entry through a non-root directory" at about line 540, with cases at lines 476, 505, 547 and 574. Their spawn calls pass no --roots (checked in this pass). Each puts a link on the folder path, from a cwd outside every repository.
+- Titles state the refusal. The bodies were not all read in this pass, so the "nothing written" half rests on the titles and on mutant6.
+- Mutant6 removes the identity check for the no-roots path, and 13 of 32 fail (r1/mutant6.log). Those are the cases above, so the fallback is red-proven.
+- heal-target-parity.vitest.ts line 121, "each entrypoint defaults the specs root to the working directory", is a parity case with no link. It does not count on its own.
+MEETS, through the no-roots containment cases. The earlier map's DOES NOT MEET for lane B predates them.
+
+Lane C. Fallback: the default root (references) applies when no declared scope exists. Case: testLinkedDefaultRootOutsideSkillFails in generate-leaf-manifest-scopes.test.cjs, which refuses a link on the default root that points outside the skill. MEETS, as closure-fallback-map.txt records. Not rechecked in this pass.
+
+Lane F. Fallback candidates in upgrade-legacy.vitest.ts, checked by name in this pass.
+- "reports none without roots and v4 with a current root" (line 1395). It plans a layout with a link at .opencode/specs and asserts an empty plan. It is a plan with no apply, and it asserts no move, not a refusal of a write through the link.
+- "plans the v3 move with and without the specs symlink, and the steps leave v4" (line 1423). The linked case removes the specs link as a planned step and expects the migration to complete. That is a positive migration, not a refusal, so the link is not an adversarial case.
+- "still repairs a link whose target stays inside the packet" (line 1696, U-03). The link stays inside the packet and is not on a default root or a default --roots. It is an inside-root case, not a fallback case.
+- "fills from the class defaults when a template cannot be read" (line 504). The fallback is a template read, with no link on the path.
+No case puts a link or a dangling target on a default root or a default --roots path with a refusal assertion. DOES NOT MEET.
+
+What the operator decides. For lane F, a named case with a link or dangling target on a default --roots or default packet discovery, with an assertion that nothing is written through it. Under a widened reading that counted U-03 as a fallback, lane F would meet, but U-03 is not on any fallback path, so this file does not adopt that reading.

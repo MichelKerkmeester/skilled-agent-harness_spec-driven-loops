@@ -14,7 +14,15 @@ Category 15 of the `deep-review` manual testing playbook, six `CP-0xx` scenarios
 
 ---
 
-## 2. CONTENTS
+## 2. SCOPE
+
+Six scenarios, CP-052 to CP-057, plus the sandbox setup script. All six enter through `/deep:review`. They check command-owned behavior: setup binding, resource-map coverage, the three-artifact iteration contract, synthesis and save boundaries, nested-dispatch refusal and the write boundary around reducer-owned files.
+
+---
+
+## 3. SCENARIO CONTRACT
+
+Each scenario is one Markdown file named for its topic. Its sections follow the per-feature order: OVERVIEW, SCENARIO CONTRACT, TEST EXECUTION, SOURCE FILES and SOURCE METADATA. The table lists each file with its CP ID and the claim it proves.
 
 | File | Scenario |
 |------|----------|
@@ -28,6 +36,21 @@ Category 15 of the `deep-review` manual testing playbook, six `CP-0xx` scenarios
 
 ---
 
-## 3. RELATED
+## 4. TEST ENVIRONMENTS
 
-- [`../manual-testing-playbook.md`](../manual-testing-playbook.md)
+Scenarios run under `/tmp/cp-0xx-sandbox/` and `/tmp/cp-0xx-spec/`, against a synthetic spec folder. Provision the shared fixture tree with `setup-cp-sandbox.sh` before the first run, as the root playbook index describes. The script builds `/tmp/cp-deep-review-sandbox` by default and takes `--sandbox-dir PATH` to build it elsewhere.
+
+---
+
+## 5. TEST EXECUTION
+
+Run each scenario's exact command sequence, which sits under TEST EXECUTION in its file. Record a `PASS`, `FAIL` or `SKIP` verdict with the evidence another operator needs to reproduce it. A `SKIP` must name a documented sandbox blocker. The execution and evidence policy is in [`../manual-testing-playbook.md`](../manual-testing-playbook.md).
+
+---
+
+## 6. SOURCE METADATA
+
+### See Also
+
+- Root playbook index: [`../manual-testing-playbook.md`](../manual-testing-playbook.md)
+- Command router: `.skilled/commands/deep/review.md`

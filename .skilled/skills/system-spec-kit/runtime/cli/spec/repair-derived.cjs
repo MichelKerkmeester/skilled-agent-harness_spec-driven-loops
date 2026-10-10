@@ -25,6 +25,7 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 const { execFile } = require('node:child_process');
+const crypto = require('node:crypto');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -140,19 +141,48 @@ function parseReport(stdout) {
   }
 }
 
+// Exit 3 is the validator declining to run at all: a stale or missing runtime
+// build, or a folder it cannot find. It writes no report on that path, so its
+// stderr is the only account of why the packet could not be read.
+const VALIDATOR_UNAVAILABLE = 3;
+
+/** The last lines of a child's stderr, joined for one report line. */
+function stderrTail(text, count = 3) {
+  return String(text || '').split('\n').map((line) => line.trim()).filter(Boolean).slice(-count).join(' | ');
+}
+
+/** Why the validator declined to run, from the last lines of its stderr. */
+function validatorUnavailable(err) {
+  const label = `validator unavailable (exit ${VALIDATOR_UNAVAILABLE})`;
+  const tail = stderrTail(err.stderr);
+  return tail ? `${label}: ${tail}` : label;
+}
+
+/** Why a validator that exited on its own left no parseable report, with the tail of its stderr. */
+function noReport(code, stderr) {
+  const label = `no report from validator (exit ${code})`;
+  const tail = stderrTail(stderr);
+  return tail ? `${label}: ${tail}` : label;
+}
+
 async function validate(folder) {
+  let child;
   try {
-    const { stdout } = await run('bash', [VALIDATE, folder, '--strict', '--json', '--no-recursive'], CHILD);
-    return parseReport(stdout);
+    child = await run('bash', [VALIDATE, folder, '--strict', '--json', '--no-recursive'], CHILD);
   } catch (err) {
     // A non-zero exit is the normal path for a failing packet; the report still
     // arrives on stdout. A child that was *killed* — by the timeout, by a
     // signal, by output past maxBuffer — never finished writing that report,
     // and its truncated stdout must not be mistaken for one. Only a child that
     // chose its own exit status has a report worth reading.
-    if (err.killed || err.signal || typeof err.code !== 'number') return null;
-    return parseReport(err.stdout);
+    if (err.killed || err.signal) return { report: null, reason: `validator killed (${err.signal || 'timed out'})` };
+    if (typeof err.code !== 'number') return { report: null, reason: `validator did not start (${err.code || err.message})` };
+    if (err.code === VALIDATOR_UNAVAILABLE) return { report: null, reason: validatorUnavailable(err) };
+    const report = parseReport(err.stdout);
+    return report ? { report } : { report: null, reason: noReport(err.code, err.stderr) };
   }
+  const report = parseReport(child.stdout);
+  return report ? { report } : { report: null, reason: noReport(0, child.stderr) };
 }
 
 /** Why a child process did not succeed, in one line fit for the report. */
@@ -197,8 +227,27 @@ function frontmatterEnd(text) {
   return close ? open[0].length + close.index + close[0].length : 0;
 }
 
+// A link is refused rather than followed. Reading through it takes content from
+// wherever it points, and a rename over it replaces the link itself, so the anchor
+// healer refuses the same case with the same message.
+const SYMLINK_REFUSAL = 'symbolic link, not followed';
+
+/** True when the path itself is a symbolic link, judged without following it. */
+function isSymbolicLink(file) {
+  try { return fs.lstatSync(file).isSymbolicLink(); } catch { return false; }
+}
+
+// Files a repair may rewrite inside a packet. A link among them is reported as refused.
+const REWRITE_TARGETS = ['description.json', 'graph-metadata.json', ...DOCS];
+
+/** The rewrite targets in a packet that are links, which the tool will not touch. */
+function linkedRewriteTargets(folder) {
+  return REWRITE_TARGETS.map((name) => path.join(folder, name)).filter(isSymbolicLink);
+}
+
 /** Read a file that may not be there, without racing a separate existence check. */
 function readIfPresent(file) {
+  if (isSymbolicLink(file)) return null;
   try {
     return fs.readFileSync(file, 'utf8');
   } catch (err) {
@@ -216,21 +265,34 @@ function readIfPresent(file) {
 // document empty — an outcome worse than the failure being repaired. Writing a
 // sibling and renaming over the original makes the swap atomic: a reader sees
 // either the old bytes or the new ones, never neither.
-let tempWriteSeq = 0;
-
+// The sibling's name carries random bytes and is created exclusively. A predictable
+// name let a link planted there receive the write, which then landed wherever the
+// link pointed, outside the packet.
 function writeAtomic(file, text) {
-  const temp = path.join(path.dirname(file), `.${path.basename(file)}.repair-${process.pid}-${(tempWriteSeq += 1)}.tmp`);
+  if (isSymbolicLink(file)) throw new Error(SYMLINK_REFUSAL);
+  const temp = path.join(path.dirname(file), `.${path.basename(file)}.repair-${process.pid}-${crypto.randomBytes(6).toString('hex')}.tmp`);
+  let descriptor = null;
+  let temporary = null;
   try {
-    fs.writeFileSync(temp, text);
+    descriptor = fs.openSync(temp, 'wx');
+    temporary = temp;
+    fs.writeFileSync(descriptor, text, 'utf8');
+    fs.closeSync(descriptor);
+    descriptor = null;
     try {
       fs.chmodSync(temp, fs.statSync(file).mode & 0o777);
     } catch {
       // No original to match: the default mode is right for a new file.
     }
     fs.renameSync(temp, file);
-  } catch (err) {
-    fs.rmSync(temp, { force: true });
-    throw err;
+    temporary = null;
+  } finally {
+    if (descriptor !== null) {
+      try { fs.closeSync(descriptor); } catch { /* The original write error is more useful. */ }
+    }
+    if (temporary !== null) {
+      try { fs.rmSync(temporary, { force: true }); } catch { /* The original write error is more useful. */ }
+    }
   }
 }
 
@@ -381,8 +443,8 @@ async function rederive(folder) {
 }
 
 async function repairFolder(folder, apply) {
-  const report = await validate(folder);
-  if (!report) return { folder, unreadable: true };
+  const { report, reason } = await validate(folder);
+  if (!report) return { folder, unreadable: true, reason };
 
   const rules = new Set(findings(report).map((f) => f.rule).filter(Boolean));
   const authored = [...rules].filter((rule) => !DERIVABLE.has(rule));
@@ -398,7 +460,13 @@ async function repairFolder(folder, apply) {
   // one error for another. It also settles the metadata rules on its own, which
   // is the second reason to plan one.
   const staleMetadata = [...rules].some((rule) => REDERIVABLE.has(rule));
-  const planned = edits.length > 0 || staleMetadata ? [...edits, REDERIVE_STEP] : [];
+  // The backfill writer renames its output over the final path component, so a
+  // re-derive into a packet whose graph file is a link would replace the link with a
+  // regular file. A linked graph file is therefore never re-derived, and the dry run
+  // leaves the step out of its plan so both runs report the same work.
+  const graphIsLink = isSymbolicLink(path.join(folder, 'graph-metadata.json'));
+  const rederiveNeeded = !graphIsLink && (edits.length > 0 || staleMetadata);
+  const planned = rederiveNeeded ? [...edits, REDERIVE_STEP] : [...edits];
 
   // A rule can be on the allow-list and still have nothing this tool can do
   // about this particular packet — a reference to a file that is simply gone,
@@ -421,8 +489,9 @@ async function repairFolder(folder, apply) {
   }
   // Re-derive after a partial failure too: the edits that did land have already
   // invalidated the stored fingerprint, and leaving it stale is the error this
-  // step exists to prevent.
-  if (wrote > 0 || staleMetadata) {
+  // step exists to prevent. A linked graph file is the one case where it cannot
+  // run, so that packet keeps the stale fingerprint and its link is reported.
+  if (!graphIsLink && (wrote > 0 || staleMetadata)) {
     const reason = await rederive(folder);
     if (reason && !failure) failure = `re-derive: ${reason}`;
   }
@@ -583,10 +652,14 @@ async function main() {
       // A whole-tree walk is long enough that silence reads as a hang, so the
       // count goes to stderr where it cannot contaminate piped output.
       if (progress) process.stderr.write(`\r  ${done}/${targets.length} packets`);
+      // A link the tool would have rewritten is named, not skipped silently, as the anchor healer does.
+      for (const file of linkedRewriteTargets(folder)) {
+        lines.push(`left unchanged ${path.relative(REPO, file)}: ${SYMLINK_REFUSAL}`);
+      }
 
       if (result.unreadable) {
         failed += 1;
-        lines.push(`UNREADABLE ${folder}`);
+        lines.push(`UNREADABLE ${folder}: ${result.reason}`);
         continue;
       }
       for (const rule of result.authored) blocked.set(rule, (blocked.get(rule) || 0) + 1);

@@ -1,0 +1,1292 @@
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling
+  Level:  phase
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level phase
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Phase parent lean document set accepted
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: Spec status is 'In Progress', not Complete; scaffold markers are allowed
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; spec.md or implementation-summary.md is absent
++ AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
++ AC_CLOSURE: Acceptance closure gate not active below Level 2
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ FOLDER_NAMING: Folder name '034-spec-folder-tooling' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: [SOURCE:] check skipped: created 2026-09-23, on or before the cutoff 2026-10-04
++ GREP_CONVENTION: Grep convention: 2 document(s) conform
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Live packet root exposes a canonical spec.md surface
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Live packet root graph metadata has non-empty derived.source_docs
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/001-create-canonical-specs-root
+  Level:  1
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 4 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Implemented classified=complete
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
++ AC_CLOSURE: Acceptance closure gate not active below Level 2
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 1
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 1; phases=3, tasks=12, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '001-create-canonical-specs-root' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: [SOURCE:] check skipped: created 2026-09-23, on or before the cutoff 2026-10-04
++ GREP_CONVENTION: Grep convention: 4 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 1)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/001-create-canonical-specs-root
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/002-root-numbering-without-track
+  Level:  1
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 4 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Implemented classified=complete
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
++ AC_CLOSURE: Acceptance closure gate not active below Level 2
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 1
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 1; phases=3, tasks=11, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '002-root-numbering-without-track' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: [SOURCE:] check skipped: created 2026-09-24, on or before the cutoff 2026-10-04
++ GREP_CONVENTION: Grep convention: 4 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 1)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/002-root-numbering-without-track
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/003-track-root-children
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 5 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Implemented classified=complete
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/8 ACs have evidence; floor 8/8. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007, AC-008
++ AC_CLOSURE: AC_CLOSURE: 8/8 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=47, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '003-track-root-children' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: [SOURCE:] check skipped: created 2026-09-24, on or before the cutoff 2026-10-04
++ GREP_CONVENTION: Grep convention: 5 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/003-track-root-children
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/004-track-aware-archive
+  Level:  1
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 4 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Complete classified=complete
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
++ AC_CLOSURE: Acceptance closure gate not active below Level 2
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 1
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 1; phases=3, tasks=14, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '004-track-aware-archive' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: [SOURCE:] check skipped: created 2026-09-24, on or before the cutoff 2026-10-04
++ GREP_CONVENTION: Grep convention: 4 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 1)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/004-track-aware-archive
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/005-phase-aware-archive
+  Level:  1
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 4 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Complete classified=complete
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
++ AC_CLOSURE: Acceptance closure gate not active below Level 2
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 1
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 1; phases=3, tasks=15, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '005-phase-aware-archive' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: [SOURCE:] check skipped: created 2026-09-24, on or before the cutoff 2026-10-04
++ GREP_CONVENTION: Grep convention: 4 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 1)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/005-phase-aware-archive
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 5 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Complete classified=complete
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/7 ACs have evidence; floor 7/7. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007
++ AC_CLOSURE: AC_CLOSURE: 7/7 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=41, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '006-series-parent-rule-and-sibling-listing' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 5 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research
+  Level:  1
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 4 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Complete classified=complete
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
++ AC_CLOSURE: Acceptance closure gate not active below Level 2
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 1
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 1; phases=3, tasks=14, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '007-series-parent-review-and-hardening-research' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
+! SOURCE_TAGS: 28 of 1092 [SOURCE:] citation(s) do not resolve to an existing path and line
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:16 [SOURCE: .opencode/commands/speckit/plan.md:50] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:16 [SOURCE: .opencode/commands/speckit/plan.md:56] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:16 [SOURCE: .opencode/commands/speckit/plan.md:91] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:16 [SOURCE: .opencode/commands/speckit/plan.md:23] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:26 [SOURCE: .opencode/commands/speckit/plan.md:9] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:26 [SOURCE: .opencode/commands/speckit/plan.md:23] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:26 [SOURCE: .opencode/commands/speckit/plan.md:91] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:26 [SOURCE: .opencode/commands/speckit/plan.md:46] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:26 [SOURCE: .opencode/commands/speckit/plan.md:50] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:26 [SOURCE: .opencode/commands/speckit/plan.md:56] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:26 [SOURCE: .opencode/commands/speckit/plan.md:58] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:36 [SOURCE: .opencode/commands/speckit/plan.md:50] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:36 [SOURCE: .opencode/commands/speckit/plan.md:58] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:36 [SOURCE: .opencode/commands/speckit/plan.md:91] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:16 [SOURCE: .opencode/commands/speckit/plan.md:50] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:16 [SOURCE: .opencode/commands/speckit/plan.md:56] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:16 [SOURCE: .opencode/commands/speckit/plan.md:91] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:16 [SOURCE: .opencode/commands/speckit/plan.md:23] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:26 [SOURCE: .opencode/commands/speckit/plan.md:9] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:26 [SOURCE: .opencode/commands/speckit/plan.md:23] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:26 [SOURCE: .opencode/commands/speckit/plan.md:91] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:26 [SOURCE: .opencode/commands/speckit/plan.md:46] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:26 [SOURCE: .opencode/commands/speckit/plan.md:50] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:26 [SOURCE: .opencode/commands/speckit/plan.md:56] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:26 [SOURCE: .opencode/commands/speckit/plan.md:58] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:36 [SOURCE: .opencode/commands/speckit/plan.md:50] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:36 [SOURCE: .opencode/commands/speckit/plan.md:58] moved: now at .skilled/commands/speckit/plan.md
+    - specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/containment/quarantine/2/content/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/iterations/iteration-003.md:36 [SOURCE: .opencode/commands/speckit/plan.md:91] moved: now at .skilled/commands/speckit/plan.md
++ GREP_CONVENTION: Grep convention: 4 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 1)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 1
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/008-series-parent-review-fixes
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 5 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Complete classified=complete
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/8 ACs have evidence; floor 8/8. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007, AC-008
++ AC_CLOSURE: AC_CLOSURE: 8/8 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=47, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '008-series-parent-review-fixes' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 5 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/008-series-parent-review-fixes
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/009-gate-3-menu-series-parent
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 5 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
+! FRONTMATTER_MEMORY_BLOCK: 1 frontmatter_memory_block issue(s) found
+    - SPECDOC_FRONTMATTER_004: implementation-summary.md: recent_action reads long or narrative; keep it compact
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Complete classified=complete
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/5 ACs have evidence; floor 5/5. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005
++ AC_CLOSURE: AC_CLOSURE: 5/5 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=45, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '009-gate-3-menu-series-parent' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 5 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/009-gate-3-menu-series-parent
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 1
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild
+  Level:  1
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 4 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'Complete' and implementation-summary.md Status 'Complete' both classify as complete
++ AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
++ AC_CLOSURE: Acceptance closure gate not active below Level 2
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 1
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 1; phases=3, tasks=17, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '010-trigger-index-ci-rebuild' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 4 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 1)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/011-template-phrase-census-and-cleanup
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 5 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
+! FRONTMATTER_MEMORY_BLOCK: 1 frontmatter_memory_block issue(s) found
+    - SPECDOC_FRONTMATTER_004: implementation-summary.md: recent_action reads long or narrative; keep it compact
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Complete classified=complete
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/6 ACs have evidence; floor 6/6. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005, AC-006
++ AC_CLOSURE: AC_CLOSURE: 6/6 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=45, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '011-template-phrase-census-and-cleanup' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 5 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/011-template-phrase-census-and-cleanup
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 1
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 5 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Complete classified=complete
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 5/7 ACs have evidence; floor 7/7. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-006, AC-007
++ AC_CLOSURE: AC_CLOSURE: 7/7 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=45, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '012-template-phrase-cleanup-round-two' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 5 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 5 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Complete classified=complete
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/6 ACs have evidence; floor 6/6. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005, AC-006
++ AC_CLOSURE: AC_CLOSURE: 6/6 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=43, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '013-corpus-wide-validation-repair' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 5 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 5 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Complete classified=complete
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: AC_COVERAGE advisory: 6/6 ACs have evidence; floor 6/6
++ AC_CLOSURE: AC_CLOSURE: 6/6 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=40, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '014-spec-auto-healing-research' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
+! SOURCE_TAGS: 56 of 1165 [SOURCE:] citation(s) do not resolve to an existing path and line
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/iterations/iteration-014.md:13 [SOURCE: .opencode/scripts/git-hooks/README.md:110] moved: now at .skilled/scripts/git-hooks/README.md
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/iterations/iteration-014.md:21 [SOURCE: .opencode/scripts/git-hooks/README.md:110] moved: now at .skilled/scripts/git-hooks/README.md
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/iterations/iteration-014.md:48 [SOURCE: .opencode/scripts/git-hooks/README.md:110] moved: now at .skilled/scripts/git-hooks/README.md
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-003.md:21 [SOURCE: create.sh:1704-1769] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-003.md:22 [SOURCE: archive.sh:296-301] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-004.md:18 [SOURCE: README-repair-derived.md:135-137] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/README-repair-derived.md shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-004.md:18 [SOURCE: repair-derived.cjs:389] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-004.md:19 [SOURCE: heal-spec-docs.cjs:4-17] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-004.md:20 [SOURCE: upgrade-legacy.mjs:8-16] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-004.md:21 [SOURCE: upgrade-legacy.mjs:151-162] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-004.md:22 [SOURCE: upgrade-legacy.mjs:78-97] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-004.md:23 [SOURCE: upgrade-legacy.mjs:230] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-005.md:19 [SOURCE: check-template-staleness.sh:171-186] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-005.md:19 [SOURCE: MIGRATION.md:27] guessed: no file at that path; only .skilled/skills/system-spec-kit/templates/MIGRATION.md shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-005.md:24 [SOURCE: MIGRATION.md:31-38] guessed: no file at that path; only .skilled/skills/system-spec-kit/templates/MIGRATION.md shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-006.md:17 [SOURCE: scratchpad/add-fm-fields.mjs:1-14] gone: no tracked file at that path and no recorded rename
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-006.md:17 [SOURCE: upgrade-legacy.mjs:313-360] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-006.md:18 [SOURCE: scratchpad/fix-specfolder.mjs:1-22] gone: no tracked file at that path and no recorded rename
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-006.md:18 [SOURCE: repair-derived.cjs:279-322] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-006.md:19 [SOURCE: repair-derived.cjs:386-389] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-006.md:20 [SOURCE: scratchpad/citecheck.mjs:1-34] gone: no tracked file at that path and no recorded rename
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-006.md:21 [SOURCE: scratchpad/dup-survey.mjs:1-21] gone: no tracked file at that path and no recorded rename
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-006.md:21 [SOURCE: census.mjs:1-38] gone: no tracked file at that path and no recorded rename
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-006.md:22 [SOURCE: upgrade-legacy.mjs:257-269] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-006.md:23 [SOURCE: repair-derived.cjs:69-74] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-007.md:18 [SOURCE: heal-spec-docs.cjs:36-56] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-007.md:19 [SOURCE: upgrade-legacy.mjs:378-415] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-008.md:18 [SOURCE: upgrade-legacy.mjs:491-565] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-008.md:19 [SOURCE: upgrade-legacy.mjs:481-489] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-008.md:20 [SOURCE: upgrade-legacy.mjs:491-494] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-008.md:20 [SOURCE: repair-derived.cjs:386-389] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-008.md:20 [SOURCE: README-repair-derived.md:135-137] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/README-repair-derived.md shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-008.md:21 [SOURCE: upgrade-legacy.mjs:498-502] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-008.md:22 [SOURCE: doctor/update.md:70] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-008.md:23 [SOURCE: update.md:72] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-009.md:17 [SOURCE: upgrade-legacy.mjs:151-162] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-009.md:19 [SOURCE: retrieval/rg-wrapper.mjs:72-85] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-009.md:22 [SOURCE: spec-folder-authoring-checklist.md:26] guessed: no file at that path; only .skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-009.md:22 [SOURCE: auto-mode-contract.md:31] guessed: no file at that path; only .skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-009.md:22 [SOURCE: upgrade-legacy.mjs:156-163] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-011.md:18 [SOURCE: phrase-judge.mjs:8-13] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-011.md:20 [SOURCE: template-phrase-cleanup.mjs:32-38] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-011.md:20 [SOURCE: template-phrase-census.mjs:28-49] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-011.md:21 [SOURCE: template-phrase-cleanup.mjs:419-422] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-011.md:21 [SOURCE: repair-derived.cjs:214-235] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-011.md:24 [SOURCE: template-phrase-cleanup.mjs:419-427] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-012.md:22 [SOURCE: upgrade-legacy.mjs:67] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-013.md:19 [SOURCE: phrase-judge.mjs:8-13] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-013.md:19 [SOURCE: validator-registry.json:239] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-013.md:20 [SOURCE: strict-pass-freshness.ts:20-32] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/sweep/strict-pass-freshness.ts shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-013.md:21 [SOURCE: upgrade-legacy.mjs:421-458] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-014.md:18 [SOURCE: spec-doc-structure.ts:634-635] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-014.md:19 [SOURCE: upgrade-legacy.mjs:491-565] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-014.md:19 [SOURCE: repair-derived.cjs:214-235] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-015.md:16 [SOURCE: generate-trigger-index.mjs:371-381] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs shares its name
+    - specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/devin-swe-2-max/iterations/iteration-015.md:16 [SOURCE: spec-doc-structure.ts:634-635] guessed: no file at that path; only .skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts shares its name
++ GREP_CONVENTION: Grep convention: 5 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 1
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/015-archive-current-location-and-ignored-files
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 5 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Complete classified=complete
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/6 ACs have evidence; floor 6/6. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005, AC-006
++ AC_CLOSURE: AC_CLOSURE: 6/6 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=42, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '015-archive-current-location-and-ignored-files' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 5 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/015-archive-current-location-and-ignored-files
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/016-research-recommendations
+  Level:  phase
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level phase
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Phase parent lean document set accepted
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+x GENERATED_METADATA_INTEGRITY: Generated metadata integrity found 1 violation(s) (enforced)
+    - graph-metadata.json: SOURCE_FINGERPRINT_MISMATCH: source_fingerprint does not match a re-derive of the current source docs, the stored derived fields may be stale
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: Spec status is 'In Progress', not Complete; scaffold markers are allowed
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; spec.md or implementation-summary.md is absent
++ AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
++ AC_CLOSURE: Acceptance closure gate not active below Level 2
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ FOLDER_NAMING: Folder name '016-research-recommendations' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
+! SOURCE_TAGS: 56 of 289 [SOURCE:] citation(s) do not resolve to an existing path and line
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md:76 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:78-80] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md:76 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:114-116] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md:77 [SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:73-77] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md:77 [SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:103-113] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md:78 [SOURCE: specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:47-50] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md:78 [SOURCE: specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:104-113] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md:79 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:48-52] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-dashboard.md:79 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:72-80] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:118 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:78-80] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:118 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:114-116] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:119 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:78-80] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:119 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:114-116] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:121 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:78-80] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:121 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:114-116] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:128 [SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:73-77] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:128 [SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:103-113] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:129 [SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:73-77] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:129 [SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:103-113] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:131 [SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:73-77] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:131 [SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:103-113] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:133 [SOURCE: specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:47-50] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:133 [SOURCE: specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:104-113] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:134 [SOURCE: specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:47-50] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:134 [SOURCE: specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:104-113] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:136 [SOURCE: specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:47-50] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:136 [SOURCE: specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:104-113] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:148 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:48-52] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:148 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:72-80] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:149 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:48-52] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:149 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:72-80] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:151 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:48-52] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:151 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:72-80] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:174 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:78-80] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:174 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:114-116] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:175 [SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:73-77] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:175 [SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:103-113] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:176 [SOURCE: specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:47-50] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:176 [SOURCE: specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:104-113] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:177 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:48-52] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/deep-research-strategy.md:177 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:72-80] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md:15 [SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:73-77] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md:17 [SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:73-77] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md:19 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:72-80] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md:19 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:104-116] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md:19 [SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:73-82] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md:19 [SOURCE: specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:47-50] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md:21 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/implementation-summary.md:172-177] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md:25 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:48-52] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md:25 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:72-80] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md:26 [SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:73-77] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md:26 [SOURCE: specs/system-speckit/034-spec-folder-tooling/015-lane-rules-as-heal-modes/spec.md:103-113] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md:27 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:78-80] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md:27 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/spec.md:114-116] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md:28 [SOURCE: specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:47-50] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-001.md:28 [SOURCE: specs/system-speckit/034-spec-folder-tooling/012-fold-one-off-repairs/spec.md:104-113] guessed: no file at that path; several tracked files share its name
+    - specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/research/iterations/iteration-002.md:19 [SOURCE: specs/system-speckit/034-spec-folder-tooling/011-anchor-repair-mode/implementation-summary.md:172-177] guessed: no file at that path; several tracked files share its name
++ GREP_CONVENTION: Grep convention: 2 document(s) conform
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/016-research-recommendations
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Live packet root exposes a canonical spec.md surface
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Live packet root graph metadata has non-empty derived.source_docs
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 1  Warnings: 1
+
+RESULT: FAILED
+
+Some of these are recomputable from the repository:
+  preview  node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/system-speckit/034-spec-folder-tooling/016-research-recommendations
+  apply    add --apply
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 5 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'Complete' and implementation-summary.md Status 'Complete' both classify as complete
++ AC_COVERAGE: AC_COVERAGE advisory: 7/7 ACs have evidence; floor 7/7
++ AC_CLOSURE: AC_CLOSURE: 7/7 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=41, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '017-heal-cli-and-compat-yaml-simplification' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 5 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 5 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Complete classified=complete
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/5 ACs have evidence; floor 5/5. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005
++ AC_CLOSURE: AC_CLOSURE: 5/5 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=73, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '018-epic-docs-alignment' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 5 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/018-epic-docs-alignment
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 5 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'Complete' and implementation-summary.md Status 'Complete' both classify as complete
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 1/15 ACs have evidence; floor 14/15. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-003, AC-004, AC-005, AC-006, AC-007, AC-008, AC-009, AC-010, AC-011, AC-012, AC-013, AC-014, AC-015
++ AC_CLOSURE: AC_CLOSURE: 15/15 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=49, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '019-epic-follow-up-fixes' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 5 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 5 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: Spec status is 'In Progress', not Complete; scaffold markers are allowed
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'In Progress' and implementation-summary.md Status 'In Progress' both classify as in-progress
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/16 ACs have evidence; floor 15/16. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007, AC-008, AC-009, AC-010, AC-011, AC-012, AC-013, AC-014, AC-015, AC-016
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=56, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '020-deep-review-remediation' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 5 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/034-spec-folder-tooling/020-deep-review-remediation
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ IMPROVEMENT_ARTIFACTS: No improvement/ folder in this packet
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+EXIT=2

@@ -14,7 +14,15 @@ Category 08 of the `deep-improvement` manual testing playbook. Each `CP-0xx` sce
 
 ---
 
-## 2. CONTENTS
+## 2. SCOPE
+
+Six scenarios, CP-032 to CP-037, plus the sandbox setup script. Each scenario sends the same task to a generic implementer (Call A) and to the disciplined `@deep-improvement` path (Call B). It then checks a discipline boundary that only Call B holds.
+
+---
+
+## 3. SCENARIO CONTRACT
+
+Each scenario is one Markdown file named for its topic. Its sections follow the per-feature order: OVERVIEW, SCENARIO CONTRACT, TEST EXECUTION, SOURCE FILES and SOURCE METADATA. The table lists each file with its CP ID and the boundary it proves.
 
 | File | Scenario |
 |------|----------|
@@ -28,6 +36,21 @@ Category 08 of the `deep-improvement` manual testing playbook. Each `CP-0xx` sce
 
 ---
 
-## 3. RELATED
+## 4. TEST ENVIRONMENTS
 
-- [`../manual-testing-playbook.md`](../manual-testing-playbook.md)
+Scenarios run under `/tmp/cp-0xx-sandbox/` and never touch canonical targets. The fixture tree that `setup-cp-sandbox.sh` builds is the one these scenarios run against. It builds `/tmp/cp-improve-sandbox` by default and takes `--sandbox-dir PATH` to build it elsewhere.
+
+---
+
+## 5. TEST EXECUTION
+
+Run each scenario's exact command sequence, which sits under TEST EXECUTION in its file. Each run sends the task to Call A and Call B, and the verdict turns on whether Call B holds the named boundary. Record a `PASS`, `FAIL` or `SKIP` verdict with its evidence. The execution policy and result persistence rules are in [`../manual-testing-playbook.md`](../manual-testing-playbook.md).
+
+---
+
+## 6. SOURCE METADATA
+
+### See Also
+
+- Root playbook index: [`../manual-testing-playbook.md`](../manual-testing-playbook.md)
+- Agent source: `.skilled/agents/deep-improvement.md`

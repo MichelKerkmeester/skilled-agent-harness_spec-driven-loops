@@ -1,0 +1,33 @@
+CLOSURE EVIDENCE: lane gE, upgrade-legacy.mjs link guards, rows U-16, U-17 and U-18, and the lane F fallback
+
+Scope. Production file, unchanged in this lane: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs. Test file, one case added: .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts. Logs are in the lane scratchpad under gE/.
+
+Production state before and after. Diff stat against HEAD is 186 lines (160 insertions, 26 deletions) before the mutant runs and the same after them. The md5 of upgrade-legacy.mjs is 7668464b72405b7fc86140a7031c6dff in both checks.
+
+Premise mismatch. The rationale file says the argument handling changed in this phase, at hunks 1546 to 1578. Those lines in the current file are refuseLinkedPackets and the plan-changes block inside main(). They are not argument parsing. parseArgs (line 136) and resolveRoots (line 646) are text-identical to 4669db6522, checked by extracting each function from both versions and diffing them.
+
+Row U-16, linked --roots argument. Guard: realpath at upgrade-legacy.mjs:660 and containment refusal at :674, both inside resolveRoots. Unchanged from 4669db6522. Status: unchanged link handling, no case added. Incidental kill: mutant A (line 660 realpath replaced by path.resolve) fails the new fallback case and the existing case "asks for the v4 layout, and the move it prints works on a v3 checkout". Red log: red-gE-A-upgrade-legacy.log, 2 failed of 53.
+
+Row U-17, dot segment in --roots. Guard: candidate normalisation at :648 (path.resolve), containment at :674, and the dot-segment test in contained() at :162. All unchanged from 4669db6522. Status: unchanged link handling, no case added. The existing case "refuses a root outside the repository" kills mutant B.
+
+Row U-18, linked manifest on apply. Writer and helpers: manifestPathFor at :410, writeManifestFile at :415 to :447, readManifestIfExists at :450, prepareManifest at :548, completeManifest at :571. Each is text-identical to 4669db6522, where the writer sits at lines 329 to 361. Status: unchanged, no case added.
+
+Lane F fallback case. Fallback path: with no --roots, resolveRoots uses the default candidates at :649 (REPO/specs and REPO/.opencode/specs, filtered by existsSync). The guard it relies on is the realpath at :660 and the containment refusal at :674.
+Case: "refuses a default specs root that is a link to a directory outside the repository, with no --roots" in describe "upgrade-legacy link containment", test file line 1864.
+Setup: the sandbox specs folder is replaced by a link to an outside directory that holds one legacy packet. No --roots is passed.
+Assertions: the dry run and the apply both exit 2 with "root outside the repository", the outside tree fingerprint is unchanged, and the specs entry is still a link.
+Layout note. A v3 specs link to .opencode/specs is refused by the v3 check, and the v4 alias .opencode/specs to specs stays inside the repository. An outside link is refused by containment. The link therefore stays on the default root, and no packet-level link was needed.
+Mutant B (line 674 changed to if (false) {): red-gE-B-upgrade-legacy.log, 2 failed of 53. The failures are the new fallback case and the existing outside-root case. The fallback fails at the dry-run assertion, where the outside packet is listed as failing.
+Mutant A (line 660 changed to path.resolve(candidate)): red-gE-A-upgrade-legacy.log, 2 failed of 53. The failures are the new fallback case and the existing v4 layout case. The dry run lists specs/001-legacy-packet, reached through the link.
+Control (both mirrors unmutated): control2-gE-upgrade-legacy.log, 53 passed of 53, exit 0.
+Green in the repository: green-repo-upgrade-legacy.log, 53 passed of 53, exit 0. The pre-edit baseline was baseline-upgrade-legacy.log, 52 passed of 52, exit 0.
+
+Mirror note. The first control, control-gE-upgrade-legacy.log, failed 25 of 53. The cause was the mirror tooling. mkmirror.mjs copies only system-spec-kit, and shared/context-types.ts walks up the tree to find sk-doc/sk-create-frontmatter/assets/frontmatter-values.json. The file was copied into each gE mirror from the repository at the same relative path, and the control was then rerun green. The mirrors are scratch copies, and the repository was not touched.
+
+Observation, pre-existing and not probed. resolveRoots normalises a --roots argument lexically (path.resolve at :648) before realpath. An argument such as linkOut/../specs therefore names REPO/specs, not the directory the shell would reach through the link. Nothing is written outside, because the walk stays inside the repository. resolveRoots is unchanged from 4669db6522.
+
+Second observation, from reading the code and not probed. readManifestIfExists reads the manifest through a link (fs.existsSync at :452, fs.readFileSync at :456), so a linked manifest on the read path is followed. This is outside rows U-16 to U-18 and predates this phase.
+
+Rows not closed by a new case. U-16, U-17 and U-18 are closed as unchanged link handling, with no new case, per the unchanged-behaviour rule. Not added: a dangling default root, because existsSync filters it out and the run skips it with nothing written, and a link on a default root combined with a dot segment.
+
+Final counts. upgrade-legacy.vitest.ts alone: 53 passed of 53. The archive-track file was not run in this lane.

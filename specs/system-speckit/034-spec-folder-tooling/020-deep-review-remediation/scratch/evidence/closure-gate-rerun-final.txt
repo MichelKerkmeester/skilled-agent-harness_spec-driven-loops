@@ -1,0 +1,51 @@
+CLOSURE EVIDENCE: final-state rerun of the CLI, doctor and hooks suites (T029, T030, AC-016)
+Purpose. The first gate run (closure-gate-cli-suite.txt) predates the last edit to heal-target-parity.vitest.ts. This rerun starts after every source edit and runs the same three commands again, with the same command text as the first run.
+
+Timeline (local time, 2026-10-10), from /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/final-gates-rerun/rerun-timeline.txt:
+  START r01 13:38:49
+  END r01 13:55:34
+  START r05 13:55:34
+  END r05 13:58:23
+  START r04 13:58:23
+  END r04 13:58:25
+
+Exit status, from the .exit files:
+  cli-npm-test: 0
+  doctor-run-all: 0
+  hook-tests: 0
+
+CLI suite, /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/final-gates-rerun/r01-cli-suite.log. Command: SPECKIT_TEST_RUN_TIMEOUT_MS=3600000 npm --prefix .skilled/skills/system-spec-kit/runtime/cli test
+   Test Files  176 passed | 3 skipped (179)
+        Tests  1909 passed | 20 skipped (1929)
+     Start at  13:38:50
+     Duration  828.38s (transform 2.03s, setup 554ms, import 5.00s, tests 810.43s, environment 7ms)
+  FAIL lines in the log: 0 (the only match type is a test title, see the first run's file)
+
+Doctor, /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/final-gates-rerun/r05-doctor.log. Command: bash .skilled/commands/doctor/scripts/tests/run-all.sh
+  [run-all] 7 suite(s) passed, 0 failed
+
+Hooks, /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/final-gates-rerun/r04-hooks.log. Command: node --test .skilled/skills/system-spec-kit/runtime/tests/hooks/*.test.mjs
+  ℹ tests 189
+  ℹ pass 186
+  ℹ fail 0
+  ℹ skipped 3
+
+Comparison with the 019 baseline in T029 (1776 passed, 19 skipped, 0 failed):
+  passed 1909 against 1776, delta +133
+  skipped 20 against 19, delta +1
+  failed 0 against 0
+
+Comparison with the first gate run (closure-gate-cli-suite.txt, 1900 passed, 20 skipped): passed is 9 higher and skipped is the same. The first run predates the last test-file edit, and this pass did not diff the per-file counts to attribute the 9 extra passes.
+
+Final-state check. Files under the worktree modified after the rerun started at 13:38:49, excluding generated runtime state, the deep-loop projections and the spec folder: 8
+  .github/workflows/README.md
+  .github/workflows/trigger-index-rebuild.yml
+  .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md
+  .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs
+  .skilled/skills/system-spec-kit/runtime/cli/tests/frontmatter-template-literals.vitest.ts
+  .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+  .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+  .skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts
+  The list is empty when no source, test or config file changed after the rerun began.
+
+Deep-loop suite and the other gate jobs are recorded in closure-gate-deep-loop.txt and the first-run files. They are not part of T029, T030 or AC-016.

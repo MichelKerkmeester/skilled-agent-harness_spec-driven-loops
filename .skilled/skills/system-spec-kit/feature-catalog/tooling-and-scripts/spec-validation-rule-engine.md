@@ -50,6 +50,8 @@ The engine therefore behaves as one validator with a thin front-end: a single pl
 
 The implementation extended the strict path beyond the original shell-rule inventory. `validate.sh --strict` now runs the continuity-freshness check (`32a180bba`), the evidence-marker lint wrapper built on the new bracket-depth audit parser (`7d85861a0`, `e40dff0bb`), and the scope-normalizer duplication guard (`ded5ece07`). That means the rule engine now enforces stale continuity timestamps, malformed `[EVIDENCE:...]` markers, and new duplicate `normalizeScope*` helpers in the same operator-facing strict run instead of relying on ad hoc sweep scripts alone.
 
+A linked `upgrade-baseline.json` is not applied: its findings are not read, and the validator reports `UPGRADE_BASELINE_LINK` as a warning.
+
 ---
 
 ## 3. SOURCE FILES

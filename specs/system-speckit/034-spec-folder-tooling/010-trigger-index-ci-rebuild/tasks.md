@@ -56,9 +56,9 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T008 Parse the new workflow as YAML (passed)
-- [ ] T009 [B] Run `actionlint` over the workflow (not installed in this environment)
-- [x] T010 Check the commit step's shell block with `bash -n` (exit 0 on the 16-line block extracted from the parsed YAML)
-- [ ] T011 [B] Confirm the first live run commits the index and makes `--check` pass (a live run needs a push, which has not happened)
+- [x] T009 Run `actionlint` over the workflow. Exit 0 with no output on the working tree and on HEAD (`scratch/evidence/actionlint-trigger-index-rebuild.txt`, sections 1 and 2) (`.github/workflows/trigger-index-rebuild.yml`)
+- [x] T010 Check the commit step's shell block with `bash -n` (exit 0 on the 16-line block extracted from the parsed YAML at the time. The HEAD block is now 114 lines and also passes, `scratch/evidence/actionlint-trigger-index-rebuild.txt` section 3)
+- [x] T011 Confirm the first live run commits the index and makes `--check` pass. Run 37704306595 pushed the first rebuild commit 2d2c8fcd55, but that workflow version had no in-job `--check`. The `--check` result is in run 37986342243, which pushed the current head 4669db6522 after printing "trigger index matches the corpus" with 0 stale documents (`scratch/evidence/ci-bot-commit-proof.txt` sections 4 and 5)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -66,9 +66,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed, the first live push leaves the index current
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed, the first live push leaves the index current (`scratch/evidence/ci-bot-commit-proof.txt` sections 4 and 5)
 <!-- /ANCHOR:completion -->
 
 ---

@@ -1,0 +1,66 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/upgrade-legacy.vitest.ts (47 tests | 1 failed | 46 skipped) 10288ms
+     × leaves an archived spec.md that links to a file in the same packet, and that file, unchanged 5025ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/upgrade-legacy.vitest.ts > upgrade-legacy link containment > leaves an archived spec.md that links to a file in the same packet, and that file, unchanged
+AssertionError: expected 'plan changes=1\nstep heal-spec-docs: …' to contain 'left unchanged specs/z_archive/006-li…'
+
+- Expected
++ Received
+
+- left unchanged specs/z_archive/006-linked/spec.md: symbolic link, not followed
++ plan changes=1
++ step heal-spec-docs: ok (0 packets)
++ step lane-modes: ok (0 packets, 0 refusals)
++ repaired specs/z_archive/006-linked/spec.md: moved questions opener from line 9 to directly above OPEN QUESTIONS
++ step anchor-unnest (archived): ok (1 packets, 1 changed)
++ step repair-derived (archived): ok
++ recorded specs/z_archive/006-linked (10 findings)
++
++ Downgrades:
++   specs/z_archive/006-linked | ANCHORS_VALID | error -> warning | plan.md: no anchors found
++   specs/z_archive/006-linked | ANCHORS_VALID | error -> warning | tasks.md: no anchors found
++   specs/z_archive/006-linked | FRONTMATTER_VALID | error -> warning | spec.md: Empty required frontmatter field: contextType
++   specs/z_archive/006-linked | FRONTMATTER_VALID | error -> warning | spec.md: Empty required frontmatter field: importance_tier
++   specs/z_archive/006-linked | FRONTMATTER_VALID | error -> warning | spec.md: Empty required frontmatter field: trigger_phrases
++   specs/z_archive/006-linked | GREP_CONVENTION | error -> warning | path=plan.md line=0 category=missing severity=error rawKey=- reason=Document has no frontmatter block, so it carries no retrievable trigger phrases
++   specs/z_archive/006-linked | GREP_CONVENTION | error -> warning | path=tasks.md line=0 category=missing severity=error rawKey=- reason=Document has no frontmatter block, so it carries no retrievable trigger phrases
++   specs/z_archive/006-linked | TEMPLATE_SOURCE | error -> warning | plan.md
++   specs/z_archive/006-linked | TEMPLATE_SOURCE | error -> warning | spec.md
++   specs/z_archive/006-linked | TEMPLATE_SOURCE | error -> warning | tasks.md
++
++ inspected=1 active=0 archived=1
++ passing before=0/1 after=1/1
++ recorded findings by rule:
++   ANCHORS_VALID: 2
++   FRONTMATTER_VALID: 3
++   GREP_CONVENTION: 2
++   TEMPLATE_SOURCE: 3
++ grouped detail:
++   none
++
+
+ ❯ tests/upgrade-legacy.vitest.ts:1748:20
+    1746|     const result = runUpgrade(['--apply', '--include-archive', '--root…
+    1747|     const output = result.stdout + result.stderr;
+    1748|     expect(output).toContain(`left unchanged ${folder}/spec.md: symbol…
+       |                    ^
+    1749|     expect(fs.lstatSync(path.join(packetFolder, 'spec.md')).isSymbolic…
+    1750|     expect(fs.readlinkSync(path.join(packetFolder, 'spec.md'))).toBe('…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 46 skipped (47)
+   Start at  09:10:02
+   Duration  10.48s (transform 77ms, setup 13ms, import 100ms, tests 10.29s, environment 0ms)
+
+EXIT=1

@@ -21,7 +21,7 @@ contextType: "planning"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-08 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | `../spec.md` |
@@ -91,22 +91,22 @@ Each child keeps its own file list. This table maps children to recommendations.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | `001-spec-template-anchor-nesting/` | Un-nest the spec template's `questions` anchor (SH-01) | Planned |
-| 2 | `002-phase-scaffold-graph-metadata/` | Derive graph metadata before `create.sh --phase` exits (SH-02) | Planned |
-| 3 | `003-archive-path-follow-ups/` | What remains after phase 15's archive fix (SH-03) | Planned |
-| 4 | `004-trigger-index-rebuild-hardening/` | Harden the CI rebuild job (SH-04) | Planned |
-| 5 | `005-healer-phrase-seeding/` | Stop the healer writing rejected phrases (SH-05) | Planned |
-| 6 | `006-evidence-gated-provenance/` | Stamp template versions only on exact evidence (SH-06) | Planned |
-| 7 | `007-ci-rule-set-comparison/` | Compare failing rule sets, pass the weekly baseline (SH-07) | Planned |
-| 8 | `008-legacy-era-report/` | One read-only report of old-format generations (SH-09) | Planned |
-| 9 | `009-doctor-update-compatibility/` | The external-repo path through `/doctor:update` (SH-08) | Planned |
-| 10 | `010-upgrade-reversibility/` | A reversibility record for `upgrade-legacy --apply` (SH-10) | Planned |
-| 11 | `011-anchor-repair-mode/` | An anchor-repair mode, including un-nesting (SH-11) | Planned |
-| 12 | `012-fold-one-off-repairs/` | Fold the remaining one-off scripts into tools (SH-12) | Planned |
-| 13 | `013-anchor-contract-alignment/` | Make the anchor check, registry and docs agree (SH-13) | Planned |
-| 14 | `014-gate-3-menu-parity/` | Render every Gate 3 menu from shared constants (SH-14) | Planned |
-| 15 | `015-lane-rules-as-heal-modes/` | Automate the deterministic lane rules (SH-15) | Planned |
-| 16 | `016-phrase-cleanup-hardening/` | Harden the phrase cleanup tools (SH-16) | Planned |
+| 1 | `001-spec-template-anchor-nesting/` | Un-nest the spec template's `questions` anchor (SH-01) | Complete |
+| 2 | `002-phase-scaffold-graph-metadata/` | Derive graph metadata before `create.sh --phase` exits (SH-02) | Complete |
+| 3 | `003-archive-path-follow-ups/` | What remains after phase 15's archive fix (SH-03) | Complete |
+| 4 | `004-trigger-index-rebuild-hardening/` | Harden the CI rebuild job (SH-04) | Complete |
+| 5 | `005-healer-phrase-seeding/` | Stop the healer writing rejected phrases (SH-05) | Complete |
+| 6 | `006-evidence-gated-provenance/` | Stamp template versions only on exact evidence (SH-06) | Complete |
+| 7 | `007-ci-rule-set-comparison/` | Compare failing rule sets, pass the weekly baseline (SH-07) | Complete |
+| 8 | `008-legacy-era-report/` | One read-only report of old-format generations (SH-09) | Complete |
+| 9 | `009-doctor-update-compatibility/` | The external-repo path through `/doctor:update` (SH-08) | Complete |
+| 10 | `010-upgrade-reversibility/` | A reversibility record for `upgrade-legacy --apply` (SH-10) | Complete |
+| 11 | `011-anchor-repair-mode/` | An anchor-repair mode, including un-nesting (SH-11) | Complete |
+| 12 | `012-fold-one-off-repairs/` | Fold the remaining one-off scripts into tools (SH-12) | Complete |
+| 13 | `013-anchor-contract-alignment/` | Make the anchor check, registry and docs agree (SH-13) | Complete |
+| 14 | `014-gate-3-menu-parity/` | Render every Gate 3 menu from shared constants (SH-14) | Complete |
+| 15 | `015-lane-rules-as-heal-modes/` | Automate the deterministic lane rules (SH-15) | Complete |
+| 16 | `016-phrase-cleanup-hardening/` | Harden the phrase cleanup tools (SH-16) | Complete |
 
 ### Phase Transition Rules
 
@@ -137,7 +137,17 @@ Each child keeps its own file list. This table maps children to recommendations.
 - None. The operator decided the open choices on 2026-10-08, and each child records its own decision.
 - Overengineering and simplification in the research-recommendations build: where do the healer, upgrade-legacy, the anchor validator, the frontmatter migration and the doctor update compatibility code carry more than phases 003, 009, 011, 012, 013 and 015 require?
 
-**Research Context:** deep-research is active for this question (started 2026-10-09). `research/research.md` is the canonical synthesis.
+**Research Context:** deep-research ran five iterations on this question on 2026-10-09. `research/research.md` is the canonical synthesis.
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+Findings, abridged from `research/research.md`:
+
+- The build carries little beyond its phase specs. Three small simplifications survive the evidence, roughly 25 to 35 production lines in all.
+- Rank 1: drop the `--mode` subset selector from `heal-spec-docs.cjs --lane-modes` and keep the `runLaneModes(options.modes)` seam the tests use.
+- Rank 2: drop the lane CLI's `--json` branch only after phase 015's AC-019 evidence procedure stops depending on it.
+- Rank 3: merge the doctor compat action's `step_failure` and `on_step_failure` into one property. Low yield.
+- The writers, parsers, walkers, layout-map states, compat approvals and the close-before-open anchor diagnostic are requirement-backed. The eight applied P2 fixes went far enough for the duplication they targeted.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---

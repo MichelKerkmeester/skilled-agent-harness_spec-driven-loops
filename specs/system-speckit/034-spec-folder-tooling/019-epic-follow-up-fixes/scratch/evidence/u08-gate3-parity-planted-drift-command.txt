@@ -1,0 +1,46 @@
+✔ option C menu in .skilled/commands/create/assets/create-agent-presentation.txt matches GATE_3_CHOICE_RELATED (1.348875ms)
+✖ option C menu in .skilled/commands/create/assets/create-command-presentation.txt matches GATE_3_CHOICE_RELATED (1.018875ms)
+✔ option C menu in .skilled/commands/create/assets/create-feature-catalog-presentation.txt matches GATE_3_CHOICE_RELATED (0.159708ms)
+✔ option C menu in .skilled/commands/create/assets/create-manual-testing-playbook-presentation.txt matches GATE_3_CHOICE_RELATED (0.131ms)
+✔ option C menu in .skilled/commands/create/assets/create-skill-parent-presentation.txt matches GATE_3_CHOICE_RELATED (0.128708ms)
+✔ option C menu in .skilled/commands/create/assets/create-skill-presentation.txt matches GATE_3_CHOICE_RELATED (0.127041ms)
+✔ option C menu in .skilled/commands/deep/assets/deep-ai-council-presentation.txt matches GATE_3_CHOICE_RELATED (0.169416ms)
+✔ option C menu in .skilled/commands/deep/assets/deep-research-presentation.txt matches GATE_3_CHOICE_RELATED (0.126041ms)
+✔ option C menu in .skilled/commands/deep/assets/deep-review-presentation.txt matches GATE_3_CHOICE_RELATED (0.149625ms)
+✔ option C menu in .skilled/commands/deep/assets/compiled/deep-ai-council.contract.md matches GATE_3_CHOICE_RELATED (0.162042ms)
+✔ option C menu in .skilled/commands/deep/assets/compiled/deep-research.contract.md matches GATE_3_CHOICE_RELATED (0.15475ms)
+✔ option C menu in .skilled/commands/deep/assets/compiled/deep-review.contract.md matches GATE_3_CHOICE_RELATED (0.157375ms)
+✔ option C menu in .skilled/commands/speckit/assets/speckit-complete-presentation.txt matches GATE_3_CHOICE_RELATED (0.112917ms)
+✔ option C menu in .skilled/commands/speckit/assets/speckit-implement.yaml matches GATE_3_CHOICE_RELATED (0.135583ms)
+✔ option C menu in .skilled/commands/speckit/assets/speckit-plan-presentation.txt matches GATE_3_CHOICE_RELATED (0.088334ms)
+✔ option C menu in .skilled/skills/system-spec-kit/references/memory/trigger-config.md matches GATE_3_CHOICE_RELATED (0.104583ms)
+✔ option C menu in .skilled/skills/system-spec-kit/references/workflows/worked-examples.md matches GATE_3_CHOICE_RELATED (0.262292ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 16
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48.171291
+
+✖ failing tests:
+
+test at .skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs:47:3
+✖ option C menu in .skilled/commands/create/assets/create-command-presentation.txt matches GATE_3_CHOICE_RELATED (1.018875ms)
+  AssertionError [ERR_ASSERTION]: .skilled/commands/create/assets/create-command-presentation.txt has drifted from the canonical Gate 3 option C wording (line 100): C) Related spec: [if partial match found] or a series parent when the work is a different change to the same artifact as an existing packet in the same track
+  Expected to contain: Use a related folder, phase child, or a series parent for a different change to the same artifact as an existing packet in the same track
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs:50:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

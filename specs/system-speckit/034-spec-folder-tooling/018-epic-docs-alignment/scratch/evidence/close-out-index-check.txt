@@ -1,0 +1,27 @@
+## catalog index entries
+anchor-integrity-and-nesting-check: 1
+heal-spec-docs-anchor-repair: 1
+heal-spec-docs-lane-modes: 1
+repo-era-report: 1
+template-phrase-lint-commit-gate: 1
+upgrade-legacy-downgrades-report: 1
+upgrade-legacy-reversibility-manifest: 1
+## playbook index rows for 466-475 and 381:
+11
+## spec README section headings
+15:## 1. OVERVIEW
+27:## 2. ARCHITECTURE
+55:## 3. PACKAGE TOPOLOGY
+100:## 4. KEY FILES
+254:## 5. BOUNDARIES AND FLOW
+285:## 6. ENTRYPOINTS
+304:## 7. VALIDATION
+317:## 8. RELATED
+### Repo Era line:
+234:### Repo Era Report
+## retrieval lib .mjs count
+9
+artifact.mjs corpus.mjs freshness.mjs frontmatter.mjs grep-convention.mjs normalize.mjs phrase-judge.d.mts phrase-judge.mjs rg-lane.mjs 
+## feature catalog README index of tooling dir?
+      44
+rc=0

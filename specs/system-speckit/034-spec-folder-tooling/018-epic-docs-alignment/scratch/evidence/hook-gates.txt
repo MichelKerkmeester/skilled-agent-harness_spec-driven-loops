@@ -1,0 +1,19 @@
+Gate settings for /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets
+
+| Key | Hook | Local | Global | Effective | Bypass variable | What it does |
+|-----|------|-------|--------|-----------|-----------------|--------------|
+| commentHygiene | pre-commit | - | - | on (default) | SPECKIT_SKIP_COMMENT_HYGIENE | Blocks ephemeral ids such as spec paths and task numbers in staged code comments |
+| templatePhraseLint | pre-commit | - | - | on (default) | SPECKIT_SKIP_PHRASE_LINT | Blocks staged phrases that use a template default or editor fallback |
+| mirrorParity | pre-commit | - | - | on (default) | SPECKIT_SKIP_MIRROR_PARITY | Blocks a commit whose runtime command, agent or prompt mirrors drift from .skilled |
+| cardSync | pre-commit | - | - | on (default) | SPECKIT_SKIP_CARD_SYNC | Blocks a staged CLI skill or prompt card that leaves the prompt-quality cards out of sync |
+| mcpMutationClass | pre-commit | - | - | on (default) | SPECKIT_SKIP_MCP_MUTATION_CLASS | Blocks a staged MCP doctor or install script that breaks its read-only or mutating label |
+| routeRemint | pre-commit | - | - | on (default) | SPECKIT_SKIP_ROUTE_REMINT | Re-mints and stages compiled routing manifests when a hub's sources change |
+| specRemint | pre-commit | - | - | on (default) | SPECKIT_SKIP_SPEC_REMINT | Re-mints and stages a spec folder's derived metadata when its docs change |
+| prepareCommitMsg | prepare-commit-msg | - | - | on (default) | SPECKIT_SKIP_PREPARE_COMMIT_MSG | Stamps the Commit-Id trailer and strips runtime attribution lines; commit-msg rules may require the trailer |
+| prepushSkillGate | pre-push | - | - | on (default) | SPECKIT_SKIP_PREPUSH_SKILL_GATE | Warns, never blocks, when a push carries stale skill-root metadata |
+| prepushRouteGate | pre-push | - | - | on (default) | SPECKIT_SKIP_PREPUSH_ROUTE_GATE | Blocks a push whose compiled routing manifests are stale |
+| prepushTrackGate | pre-push | - | - | on (default) | SPECKIT_SKIP_PREPUSH_TRACK_GATE | Blocks a push whose spec track roots are inconsistent |
+| remotePush | pre-push | - | - | per push only | SPECKIT_ALLOW_REMOTE_PUSH | Approval for one push to a branch outside the remote allowlist |
+| massDeletion | pre-push | - | - | per push only | SPECKIT_ALLOW_MASS_DELETION | Approval for one push that deletes more files than the mass-deletion threshold |
+STATUS=OK GATES=13 OFF=0
+rc=0

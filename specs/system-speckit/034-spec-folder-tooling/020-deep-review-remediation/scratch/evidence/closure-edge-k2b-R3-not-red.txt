@@ -1,0 +1,47 @@
+CLOSURE EVIDENCE copy: R3 mutant run that did NOT go red (recorded as a non-red result, not as a red run)
+Source: scratchpad k2b/out/R3-clean-packet-always-edits.txt, unedited. The log shows 23 passed of 23 and no failing case. The log does not name the mutation applied, so this run does not show that the guard it targeted is covered. Open for the operator.
+
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/repair/.skilled/skills/system-spec-kit/runtime/cli
+
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a target outside the packet tree 56ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses an unknown argument and a flag with no value 53ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a bare path rather than treating it as an unscoped run 27ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > accepts a repeated --folder and inspects each packet once 969ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > counts a folder given twice as one target 1087ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > still refuses a bad --roots when a --folder is present 29ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > rewrites a stale recorded location from the packet path on disk 1063ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > walks into an archive and rewrites an archived packet's recorded paths 1396ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > leaves a packet alone when nothing derived is wrong 1053ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports repairable=0 and writes nothing for a clean packet in a dry run 1423ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports without writing unless application is requested 1163ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the re-derive in the plan whenever it edits a document 888ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > leaves a packet pointer outside the frontmatter alone 927ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports a repair it could not make and exits 2 873ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > changes nothing on a second run over the same packet 2281ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > passes a packet it would otherwise repair when validation is switched off 72ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > does not write through a link planted at the predictable repair temp name 1746ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a rewrite target that is a symbolic link and leaves its target untouched 1584ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > does not re-derive over a linked graph-metadata.json, in the dry run or with --apply 3039ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a dangling graph-metadata.json link in the dry run and with --apply, and creates nothing at its target 2123ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > treats a dangling description.json link as absent and creates nothing at its target 1083ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the validator stderr when validate.sh exits 3, and exits non-zero 36ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the exit code and the stderr tail when the validator exits with no report 35ms
+
+ Test Files  1 passed (1)
+      Tests  23 passed (23)
+   Start at  12:41:39
+   Duration  23.13s (transform 23ms, setup 15ms, import 21ms, tests 23.01s, environment 0ms)
+
+refusing a target outside the packet tree: .skilled/skills
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: ../elsewhere
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unknown argument: --bogus
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+--folder needs a path
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unexpected argument: specs/sk-git (paths need --folder or --roots)
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: /etc
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]

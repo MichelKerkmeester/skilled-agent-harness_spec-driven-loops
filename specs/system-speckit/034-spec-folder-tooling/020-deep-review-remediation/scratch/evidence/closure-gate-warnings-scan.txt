@@ -1,0 +1,18 @@
+CLOSURE EVIDENCE: CHK-011 console and warning scan of the first final-gate CLI run (job j01)
+Method. The full log /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/final-gates/j01-cli-suite.log was searched for console.error, console.warn, Warning, Error and ERROR lines. Each class was traced to its emitter in the repository.
+
+Counts in the log:
+  console.error calls: 0
+  console.warn calls: 0
+  Warning: graph metadata derivation skipped (any line): 21
+  Warning: Falling back to generic phase name: 3
+  ERROR: lines: 2
+  Error: lines: 3
+  All Warning: lines: 28
+
+Traced classes:
+  1. graph metadata derivation skipped, printed by create.sh:1010 through report_missing_generator. It fires in the phase workflow fixture when the copied repository lacks runtime/cli/graph/backfill-graph-metadata.ts. create.sh is not in the 020 diff. The phase test diff (test-phase-command-workflows.js, 9 insertions and 3 deletions) has no copy-list or fixture line. This is an inference from the diff. A baseline run at 4669db65226d82625f6105073fc8891229bcc22b would confirm it, and that run has not been done.
+  2. Falling back to generic phase name, printed by create.sh when no --phase-names is given. Same fixture path, same inference.
+  3. ERROR: and Error: lines are the messages the CLI prints on the refusal paths that the tests assert (for example, Refusing to archive outside specs root, and --subfolder requires a base folder path). Those tests check the refusal text, so the messages are expected output of the code under test. Whether any of them reaches a console call inside a test was not traced line by line.
+
+Result. The rule in the coordinator message is tick only if no such lines exist. Lines exist, so CHK-011 stays open. The warnings are traced, but the baseline that would show they predate this phase has not been run.

@@ -15,6 +15,7 @@ import {
   GRAPH_METADATA_SCHEMA_VERSION,
   loadGraphMetadata,
   mergeGraphMetadata,
+  refreshGraphMetadataForSpecFolder,
   serializeGraphMetadata,
   type GraphMetadata,
   validateGraphMetadataContent,
@@ -940,5 +941,53 @@ describe('graph metadata key files under either source-root name', () => {
       'system-spec-kit/902-skilled-alias',
       '.skilled/skills/system-spec-kit/SKILL.md',
     )).toBeNull();
+  });
+});
+
+describe('graph metadata symbolic link is not followed', () => {
+  const OUTSIDE_MARKER = 'LINKED-OUTSIDE-RELATIONSHIP';
+
+  // Links the packet's graph-metadata.json to an outside file that carries a
+  // manual relationship the packet does not own.
+  function linkOutsideGraphMetadata(specFolder: string): string {
+    const outsideDir = fs.mkdtempSync(path.join(os.tmpdir(), 'graph-metadata-link-outside-'));
+    createdRoots.add(outsideDir);
+    const base = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+    const outside = path.join(outsideDir, 'graph-metadata.json');
+    fs.writeFileSync(outside, JSON.stringify({
+      ...base,
+      manual: {
+        depends_on: [],
+        supersedes: [],
+        related_to: [{ packet_id: OUTSIDE_MARKER, reason: 'outside probe', source: 'manual' }],
+      },
+    }, null, 2), 'utf-8');
+    fs.symlinkSync(outside, path.join(specFolder, 'graph-metadata.json'));
+    return outside;
+  }
+
+  it('loads a linked graph-metadata.json as absent', () => {
+    const specFolder = createSpecFolder();
+    linkOutsideGraphMetadata(specFolder);
+
+    expect(loadGraphMetadata(path.join(specFolder, 'graph-metadata.json'))).toBeNull();
+  });
+
+  it('refreshes over a linked graph-metadata.json without copying its relationships in', () => {
+    const specFolder = createSpecFolder();
+    const outside = linkOutsideGraphMetadata(specFolder);
+    // Changed source docs make the re-derive differ, so the refresh has to write.
+    fs.writeFileSync(
+      path.join(specFolder, 'spec.md'),
+      '# Graph Metadata Packet Renamed\n\nRenamed body for the refresh.\n',
+      'utf-8',
+    );
+
+    refreshGraphMetadataForSpecFolder(specFolder, { now: '2026-04-13T12:00:00.000Z' });
+
+    const graphPath = path.join(specFolder, 'graph-metadata.json');
+    expect(fs.lstatSync(graphPath).isSymbolicLink()).toBe(false);
+    expect(fs.readFileSync(graphPath, 'utf-8')).not.toContain(OUTSIDE_MARKER);
+    expect(fs.readFileSync(outside, 'utf-8')).toContain(OUTSIDE_MARKER);
   });
 });

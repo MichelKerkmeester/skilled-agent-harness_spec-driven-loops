@@ -6,7 +6,8 @@
   "children_ids": [
     "mcp-tooling/019-official-obsidian-cli",
     "mcp-tooling/020-obsidian-plugin-reduction",
-    "mcp-tooling/021-code-mode-fresh-clone-build"
+    "mcp-tooling/021-code-mode-fresh-clone-build",
+    "mcp-tooling/022-clickup-hosted-route-fix"
   ],
   "manual": {
     "depends_on": [],

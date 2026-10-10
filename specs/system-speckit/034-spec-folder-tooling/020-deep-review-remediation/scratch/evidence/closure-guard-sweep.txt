@@ -1,0 +1,103 @@
+CLOSURE GUARD SWEEP: mutation check of the changed guards named in closure-guard-red-map.txt
+
+Scope. Guards with no recorded failing mutant in the red map: backfill prune report
+writer (K-a, K-b1, K-b2), the upgrade baseline link guard (O-1 to O-4), the archive
+destination and restore checks (A-arch-L, A-rest-L, A-arch-e, A-rest-e), and the
+heal-spec-docs link guards (H-doc, H-lane-a, H-lane-b, report only).
+
+Method. Each mutant is one exact-match replacement in a scratch copy of the skill tree
+(scratch/gs/mirrors/<name>), built by scratch/gs/mkmirror.mjs. The copy holds real
+files, so relative imports from the copied test files resolve to the mutant. Nothing
+under the repository was mutated. Each mutant is run with the EXISTING test files of
+that guard; a test file copied into a mirror is the repository's current copy at build
+time. A red run is a run whose failing set includes a test that passes on the
+repository code. Mutant specs are scratch/gs/mut/*.mjs; logs are scratch/gs/mut/<name>.log.
+
+Mirror caveat. In every scratch mirror, four cases in archive-track.vitest.ts (describe
+"archive.sh round trip with the real tools") fail with the unmutated skill too. They pass
+in the repository. Each archive mutant was therefore judged by its failing set against
+the unmutated mirror (scratch/gs/mut/control-cli-2.txt): a mutant counts as killed only
+when a failing case outside those four appears.
+
+== Commands and exit codes
+
+C0  cd runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/graph-metadata-backfill.vitest.ts tests/archive-track.vitest.ts
+    before any edit: EXIT=0, 54 passed | 1 skipped (55)
+C0r cd runtime && npx vitest run --config ../vitest.config.ts --project root tests/upgrade-baseline.vitest.ts
+    before any edit: EXIT=0, 11 passed (11)
+CM  control mirror, unmutated, same cli command: EXIT=1, 4 failed | 53 passed | 1 skipped (58)
+    (the four round-trip cases above; no other case fails)
+CM  control mirror, unmutated, same root command: EXIT=0, 11 passed (11)
+CF  final repository, cli command: EXIT=0, 57 passed | 1 skipped (58)
+CF  final repository, root command: EXIT=0, 11 passed (11)
+CT  scratch tsconfig extending runtime/tsconfig.tests.json, include = the two edited cli test
+    files, tsc -p: EXIT=0, no diagnostics (first draft gave TS2345 on one spy; fixed)
+
+== Results
+
+Guard                                   Mutant (removed or inverted)                         Killed by                                                       New test
+--------------------------------------  ---------------------------------------------------  --------------------------------------------------------------  --------
+1a backfill writePruneReportArtifact    K-a: `if (isSymbolicLink(reportPath))` -> `if (false)` refuses a destination that is a symbolic link (existing)   no
+   link refusal                         EXIT=1, 1 failed | 10 passed                         graph-metadata-backfill: "refuses a destination that is a symbolic link..."
+1b backfill exclusive temp              K-b1: `fs.openSync(tempPath, 'wx')` -> `'w'`         "refuses a temporary name that already exists and leaves that      YES
+                                        EXIT=1, 1 failed | 10 passed                         file untouched" (red: "expected [Function] to throw")
+1b backfill temp plus rename            K-b2: `fs.renameSync(temporary, reportPath)` ->      "replaces a link planted after the check instead of writing       YES
+                                        `fs.copyFileSync(temporary, reportPath)`             through it" (red: victim overwritten through the link)
+                                        EXIT=1, 1 failed | 10 passed
+2  orchestrator baselineIsLink          O-1: `if (baselineIsLink(folder))` -> `if (false)`   "refuses a baseline that is a link to a file outside the packet"        no
+   guard (UPGRADE_BASELINE_LINK)        EXIT=1, 1 failed | 10 passed                         (existing; root project)
+2  baselineIsLink, lstat -> stat        O-2: `fs.lstatSync` -> `fs.statSync`                 same test (existing)                                            no
+                                        EXIT=1, 1 failed | 10 passed
+2  UPGRADE_BASELINE_LINK entry         O-3: `entries.push(entry('UPGRADE_BASELINE_LINK'`    same test (existing; entries[1] check)                          no
+                                        -> `[].concat(entry(...` (entry dropped)             EXIT=1, 1 failed | 10 passed
+2  baselineIsLink catch branch         O-4: `catch { return false; }` -> `return true`      "leaves entries deeply unchanged when no baseline file exists"  no
+                                        EXIT=1, 1 failed | 10 passed                         (existing)
+4a archive target, link branch          A-arch-L: `-e "$archive_root/$basename" || -L ...`  "refuses an archive whose target is a dangling link, and changes     YES
+   (archive.sh ~326)                    -> `-e` only                                         neither side" (red: stderr is the mv failure, not
+                                        EXIT=1, 5 failed (4 mirror cases + 1 new)            "Archive target already exists")
+4b restore destination, link branch     A-rest-L: `-e "$destination" || -L ...` -> `-e`      "refuses to restore onto a link at the target, and moves nothing" no
+   (archive.sh ~480)                    EXIT=1, 5 failed (4 mirror cases + 1 existing)       (existing)
+4c archive target, exists branch        A-arch-e: `-e` branch dropped, `-L` kept             "refuses an archive whose target already holds a folder of       no
+   (re-check of the red map)            EXIT=1, 5 failed (4 mirror cases + 1 existing)       that name, and changes neither side" (existing)
+4d restore destination, exists branch   A-rest-e: `-e` branch dropped, `-L` kept             "refuses a restore whose destination already holds a folder,     no
+   (re-check of the red map)            EXIT=1, 5 failed (4 mirror cases + 1 existing)       and changes neither side" (existing)
+3a heal repairAnchorFile document link  H-doc: heal-spec-docs.cjs `if (isSymbolicLink(file))`   "--anchor-repair --apply leaves a symlinked spec.md and its          n/a (report only)
+   guard (~651-653)                     -> `if (false)` in repairAnchorFile                  outside target untouched" and "--anchor-repair --apply refuses a
+                                        EXIT=1, 2 failed | 105 passed (107)                  dangling spec.md..." (heal-symlink-containment, other lane's file)
+3b heal lane-mode containment           H-lane-a: heal-spec-docs.cjs ~1597 lane containment  "--lane-modes --apply leaves a symlinked spec.md..." and "--lane-modes
+   guard                                check -> `if (false)`                                --apply refuses a dangling spec.md..." (heal-symlink-containment)
+                                        EXIT=1, 2 failed | 105 passed (107)                  n/a (report only)
+3c heal default-healer link guard       H-lane-b: heal-spec-docs.cjs ~1656 default loop      three "default healer --apply ..." cases (heal-symlink-containment)
+   (not lane mode; label corrected)     check -> `if (false)`                                n/a (report only)
+                                        EXIT=1, 3 failed | 104 passed (107)
+
+Survivors. None of the mutants listed above survived. Report-only items in 3 have no
+surviving mutant, so no test is named as missing. The red map entry B5 (document guard
+at ~651-653) had no mutant; H-doc now shows it is covered on the anchor-repair path.
+
+== Tests added (test files only; no production file edited)
+
+- graph-metadata-backfill.vitest.ts, describe "prune report destination": two cases (K-b1, K-b2).
+  Imports added: node:crypto (default) and vi from vitest.
+- archive-track.vitest.ts, describe "archive.sh keeps every write under the specs root":
+  one case (A-arch-L), placed after the existing same-named-folder archive case.
+- upgrade-baseline.vitest.ts: no change. Every O mutant was already killed.
+
+== Repository state
+
+- A scratch mirror run first wrote through a node_modules link into the repository's
+  tracked fixture runtime/cli/test-fixtures/002-valid-level1/graph-metadata.json, which
+  was truncated to two bytes (mtime 14:10). Restored to the committed content with
+  `git checkout --` for that one path (1376 bytes, git diff clean). The mirror builder now
+  remaps workspace links into the mirror, and the final repository runs left the fixture
+  clean.
+- Heal test files are owned by another lane. They were run from scratch copies only and not edited.
+- Nothing was committed, staged, stashed or pushed. Nothing was built.
+
+== Open items
+
+- Four round-trip cases in archive-track.vitest.ts fail in scratch mirrors with the
+  unmutated skill (they pass in the repository). Their mirror failure is not diagnosed here.
+- The round-trip cases reach the real tools through the skill tree. The earlier mirror build
+  that linked node_modules into the repository is the only run observed to write the tracked
+  fixture. Final repository runs left it clean (git diff empty after CF).

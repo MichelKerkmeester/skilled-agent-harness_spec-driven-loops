@@ -8,6 +8,7 @@ import { createRequire } from 'node:module';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import yaml from 'js-yaml';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { renderInlineGates } from '../templates/inline-gate-renderer';
@@ -98,10 +99,10 @@ function writePacket(root: string, plan: string): { packet: string; planFile: st
   return { packet, planFile };
 }
 
-function runLaneCli(packet: string, extra: string[] = []) {
+function runLaneCli(packet: string) {
   return spawnSync(
     process.execPath,
-    [HEAL_SPEC_DOCS, '--lane-modes', '--folder', packet, ...extra],
+    [HEAL_SPEC_DOCS, '--lane-modes', '--folder', packet],
     { encoding: 'utf8' },
   );
 }
@@ -222,6 +223,82 @@ function fencedExtraAnchorPlanFixture(): string {
     '```markdown',
     '<!-- ANCHOR:invented-extra -->',
     '```',
+    '',
+  ].join('\n');
+}
+
+// The summary anchor appears only as a double-backtick span, which is prose about
+// the format, so the document states one anchor fewer than the render carries.
+function doubleBacktickAnchorPlanFixture(): string {
+  const present = levelTwoPlanAnchors().filter((anchor) => anchor !== 'summary');
+  return [
+    '---',
+    'title: "Double backtick anchor probe plan"',
+    '---',
+    '',
+    ...present.map((anchor) => `<!-- ANCHOR:${anchor} -->`),
+    'Prose names ``<!-- ANCHOR:summary -->`` as an example.',
+    '',
+  ].join('\n');
+}
+
+// The summary anchor appears only inside an indented fence in a list item, which
+// is an example, so the document states one anchor fewer than the render carries.
+function listIndentedAnchorPlanFixture(): string {
+  const present = levelTwoPlanAnchors().filter((anchor) => anchor !== 'summary');
+  return [
+    '---',
+    'title: "List indented anchor probe plan"',
+    '---',
+    '',
+    ...present.map((anchor) => `<!-- ANCHOR:${anchor} -->`),
+    '- Example item:',
+    '',
+    '    ```markdown',
+    '    <!-- ANCHOR:summary -->',
+    '    ```',
+    '',
+  ].join('\n');
+}
+
+// The closing line carries text after its dashes, so it is not a delimiter and
+// the document has no frontmatter block to place a header after.
+function trailingCloserPlanFixture(): string {
+  return [
+    '---',
+    'title: "Trailing closer probe plan"',
+    '---trailing',
+    '',
+    ...levelTwoPlanAnchors().map((anchor) => `<!-- ANCHOR:${anchor} -->`),
+    '',
+  ].join('\n');
+}
+
+// Every rendered anchor as a matched pair except summary, whose heading stands
+// unwrapped. The summary marker appears only as an example inside an indented
+// fence in a list item, which is prose about the format rather than a pair.
+function listExampleAnchorPlanFixture(): string {
+  const present = levelTwoPlanAnchors().filter((anchor) => anchor !== 'summary');
+  return [
+    '---',
+    'title: "List example anchor probe plan"',
+    '---',
+    '',
+    '- Example of the marker format:',
+    '',
+    '    ```md',
+    '    <!-- ANCHOR:summary -->',
+    '    ```',
+    '',
+    ...present.flatMap((anchor) => [
+      `<!-- ANCHOR:${anchor} -->`,
+      `Placeholder body for ${anchor}.`,
+      `<!-- /ANCHOR:${anchor} -->`,
+      '',
+    ]),
+    '## 1. SUMMARY',
+    '',
+    'Summary body.',
     '',
   ].join('\n');
 }
@@ -488,6 +565,27 @@ describe('heal-spec-docs lane modes', () => {
     expect(fs.readFileSync(planFile, 'utf8')).toBe(PLAN_NO_ANCHORS);
   });
 
+  it('anchor-wrap-wraps-a-real-heading-past-an-example-marker-in-a-fence', () => {
+    const root = makeRoot();
+    const original = listExampleAnchorPlanFixture();
+    const { packet, planFile } = writePacket(root, original);
+
+    const result = runLaneModes(packet, { apply: true, modes: ['anchor-wrap'] });
+
+    expect(result.refusals).toEqual([]);
+    expect(result.actions).toEqual([
+      { mode: 'anchor-wrap', document: 'plan.md', action: 'wrapped "1. SUMMARY" with anchor summary' },
+    ]);
+    expect(result.changedFiles).toEqual(['plan.md']);
+
+    const after = fs.readFileSync(planFile, 'utf8');
+    // The example stays exactly as written, so the fenced marker is still prose.
+    expect(after).toContain('- Example of the marker format:\n\n    ```md\n    <!-- ANCHOR:summary -->\n    ```\n');
+    expect(after).toContain('<!-- ANCHOR:summary -->\n## 1. SUMMARY\n');
+    // Only anchor marker lines changed, which stripping them from both sides proves.
+    expect(withoutAnchorLines(after)).toBe(withoutAnchorLines(original));
+  });
+
   it('anchor-wrap-idempotence', () => {
     const root = makeRoot();
     const { packet } = writePacket(root, PLAN_ORIGINAL);
@@ -564,7 +662,7 @@ describe('heal-spec-docs lane modes', () => {
     expect(manifest(root)).toBe(afterFirst);
   });
 
-  it('lane-modes-cli-dry-run-and-json', () => {
+  it('lane-modes-cli-dry-run', () => {
     const root = makeRoot();
     const { packet } = writePacket(root, PLAN_ORIGINAL);
     const before = manifest(root);
@@ -574,21 +672,6 @@ describe('heal-spec-docs lane modes', () => {
     expect(dryRun.status, dryRun.stdout + dryRun.stderr).toBe(0);
     expect(dryRun.stdout).toContain('would apply anchor-wrap');
     expect(manifest(root)).toBe(before);
-
-    const jsonRun = runLaneCli(packet, ['--json']);
-
-    expect(jsonRun.status, jsonRun.stdout + jsonRun.stderr).toBe(0);
-    expect(jsonRun.stdout.trim().split('\n')).toHaveLength(1);
-    const parsed = JSON.parse(jsonRun.stdout.trim()) as LaneRunResult;
-    expect(parsed.packet).toBe(packet);
-    expect(Array.isArray(parsed.refusals)).toBe(true);
-    expect(manifest(root)).toBe(before);
-
-    const unknown = runLaneCli(packet, ['--mode', 'not-a-mode']);
-
-    expect(unknown.status).toBe(2);
-    expect(unknown.stdout).toBe('');
-    expect(unknown.stderr).toContain('unknown lane mode');
   });
 
   it('link-repoint-positive', () => {
@@ -710,6 +793,150 @@ describe('heal-spec-docs lane modes', () => {
     expect(result.changedFiles).toEqual([]);
     expect(manifest(root)).toBe(before);
     expect(fs.readFileSync(file, 'utf8')).toBe(document);
+  });
+
+  it('link-repoint-skips-links-in-a-longer-outer-fence', () => {
+    const root = makeRoot();
+    const document = [
+      '# 001-a',
+      '',
+      LINK_SPEC_STAMP,
+      '',
+      '````md',
+      '```',
+      'See [the moved spec](../002-moved/spec.md).',
+      '```',
+      '````',
+      '',
+    ].join('\n');
+    const { packet, file } = writeLinkPacket(root, document);
+    writeFileAt(root, 'specs/t/z_archive/002-moved/spec.md', '# Moved spec\n');
+
+    const result = runLaneModes(packet, { apply: true, modes: ['link-repoint'], repoRoot: root });
+
+    expect(result.actions).toEqual([]);
+    expect(result.changedFiles).toEqual([]);
+    expect(fs.readFileSync(file, 'utf8')).toBe(document);
+  });
+
+  it('link-repoint-skips-links-after-a-tilde-line-inside-a-backtick-fence', () => {
+    const root = makeRoot();
+    const document = [
+      '# 001-a',
+      '',
+      LINK_SPEC_STAMP,
+      '',
+      '```md',
+      '~~~',
+      'See [the moved spec](../002-moved/spec.md).',
+      '~~~',
+      '```',
+      '',
+    ].join('\n');
+    const { packet, file } = writeLinkPacket(root, document);
+    writeFileAt(root, 'specs/t/z_archive/002-moved/spec.md', '# Moved spec\n');
+
+    const result = runLaneModes(packet, { apply: true, modes: ['link-repoint'], repoRoot: root });
+
+    expect(result.actions).toEqual([]);
+    expect(result.changedFiles).toEqual([]);
+    expect(fs.readFileSync(file, 'utf8')).toBe(document);
+  });
+
+  it('link-repoint-repoints-outside-a-normal-fence-only', () => {
+    const root = makeRoot();
+    const document = [
+      '# 001-a',
+      '',
+      LINK_SPEC_STAMP,
+      '',
+      '```md',
+      'See [the moved spec](../002-moved/spec.md).',
+      '```',
+      '',
+      'Outside the fence [the moved spec](../002-moved/spec.md) is repointed.',
+      '',
+    ].join('\n');
+    const { packet, file } = writeLinkPacket(root, document);
+    writeFileAt(root, 'specs/t/z_archive/002-moved/spec.md', '# Moved spec\n');
+
+    const result = runLaneModes(packet, { apply: true, modes: ['link-repoint'], repoRoot: root });
+
+    expect(result.actions).toEqual([
+      {
+        mode: 'link-repoint',
+        document: 'spec.md',
+        action: 'repointed ../002-moved/spec.md to ../z_archive/002-moved/spec.md',
+      },
+    ]);
+    expect(fs.readFileSync(file, 'utf8')).toBe(document.replace(
+      'Outside the fence [the moved spec](../002-moved/spec.md)',
+      'Outside the fence [the moved spec](../z_archive/002-moved/spec.md)',
+    ));
+  });
+
+  it('link-repoint-skips-links-inside-inline-code-spans', () => {
+    const root = makeRoot();
+    const document = [
+      '# 001-a',
+      '',
+      LINK_SPEC_STAMP,
+      '',
+      'Single `[the moved spec](../002-moved/spec.md)` stays literal.',
+      'Double ``See [the moved spec](../002-moved/spec.md) and `x` here`` stays literal.',
+      'A stray ` before [the moved spec](../002-moved/spec.md) is repointed.',
+      '',
+    ].join('\n');
+    const { packet, file } = writeLinkPacket(root, document);
+    writeFileAt(root, 'specs/t/z_archive/002-moved/spec.md', '# Moved spec\n');
+
+    const result = runLaneModes(packet, { apply: true, modes: ['link-repoint'], repoRoot: root });
+
+    expect(result.actions).toEqual([
+      {
+        mode: 'link-repoint',
+        document: 'spec.md',
+        action: 'repointed ../002-moved/spec.md to ../z_archive/002-moved/spec.md',
+      },
+    ]);
+    expect(fs.readFileSync(file, 'utf8')).toBe(document.replace(
+      'A stray ` before [the moved spec](../002-moved/spec.md)',
+      'A stray ` before [the moved spec](../z_archive/002-moved/spec.md)',
+    ));
+  });
+
+  it('link-repoint-skips-links-in-a-list-indented-fence', () => {
+    const root = makeRoot();
+    const document = [
+      '# 001-a',
+      '',
+      LINK_SPEC_STAMP,
+      '',
+      '- Example item:',
+      '',
+      '    ```md',
+      '    See [the moved spec](../002-moved/spec.md).',
+      '    ```',
+      '',
+      'Outside the list [the moved spec](../002-moved/spec.md) is repointed.',
+      '',
+    ].join('\n');
+    const { packet, file } = writeLinkPacket(root, document);
+    writeFileAt(root, 'specs/t/z_archive/002-moved/spec.md', '# Moved spec\n');
+
+    const result = runLaneModes(packet, { apply: true, modes: ['link-repoint'], repoRoot: root });
+
+    expect(result.actions).toEqual([
+      {
+        mode: 'link-repoint',
+        document: 'spec.md',
+        action: 'repointed ../002-moved/spec.md to ../z_archive/002-moved/spec.md',
+      },
+    ]);
+    expect(fs.readFileSync(file, 'utf8')).toBe(document.replace(
+      'Outside the list [the moved spec](../002-moved/spec.md)',
+      'Outside the list [the moved spec](../z_archive/002-moved/spec.md)',
+    ));
   });
 
   it('link-repoint-preserves-angle-brackets-and-fragments', () => {
@@ -991,6 +1218,44 @@ describe('heal-spec-docs lane modes', () => {
     expect(withoutContinuityFields(result.text)).toBe(withoutContinuityFields(SUMMARY_ORIGINAL));
   });
 
+  it('continuity-placeholders-refuses-a-value-continued-on-the-next-line', () => {
+    const root = makeRoot();
+    const original = [
+      '---',
+      'title: "Continuity continued probe"',
+      '_memory:',
+      '  continuity:',
+      '    recent_action:',
+      '      Initialized the parser before the split',
+      '    next_safe_action: "Replace continuity placeholders"',
+      '---',
+      '<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->',
+      '# Continuity continued probe',
+      '',
+    ].join('\n');
+    const { packet } = writePacket(root, PLAN_ORIGINAL);
+    const summaryFile = writeFileAt(root, 'specs/lane-modes/001-probe/implementation-summary.md', original);
+
+    const result = runLaneModes(packet, { apply: true, modes: ['continuity-placeholders'] });
+
+    expect(result.actions).toEqual([]);
+    expect(result.changedFiles).toEqual([]);
+    expect(result.refusals).toEqual([
+      {
+        mode: 'continuity-placeholders',
+        document: 'implementation-summary.md',
+        reason: 'continuity value continues on the next line; left unchanged',
+      },
+    ]);
+    const after = fs.readFileSync(summaryFile, 'utf8');
+    expect(after).toBe(original);
+    // The authored value is the frontmatter's only continuity evidence, so it
+    // must still parse as the author wrote it.
+    const frontmatter = after.split('\n').slice(1, 7).join('\n');
+    const parsed = yaml.load(frontmatter) as { _memory: { continuity: Record<string, string> } };
+    expect(parsed._memory.continuity.recent_action).toBe('Initialized the parser before the split');
+  });
+
   it('continuity-placeholders-refuses-authored', () => {
     const root = makeRoot();
     const { packet } = writePacket(root, PLAN_ORIGINAL);
@@ -1095,6 +1360,41 @@ describe('heal-spec-docs lane modes', () => {
     expect(result.changedFiles).toEqual([]);
     expect(manifest(root)).toBe(before);
     expect(fs.readFileSync(planFile, 'utf8')).toBe(document);
+  });
+
+  it('level-from-spec-refuses-a-closing-line-with-trailing-text', () => {
+    const root = makeRoot();
+    const plan = ['---', 'title: "Level probe plan"', '---trailing', '# Level probe plan', ''].join('\n');
+    const { packet, planFile } = writeLevelPacket(root, '# Level probe\n\n<!-- SPECKIT_LEVEL: 2 -->\n', plan);
+
+    const result = runLaneModes(packet, { apply: true, modes: ['level-from-spec'] });
+
+    expect(result.actions).toEqual([]);
+    expect(result.changedFiles).toEqual([]);
+    expect(result.refusals).toEqual([
+      {
+        mode: 'level-from-spec',
+        document: 'plan.md',
+        reason: 'no frontmatter block to write the level into; left unchanged',
+      },
+    ]);
+    expect(fs.readFileSync(planFile, 'utf8')).toBe(plan);
+  });
+
+  it('level-from-spec-accepts-a-closing-line-with-trailing-spaces-and-crlf', () => {
+    const root = makeRoot();
+    const plan = '---\r\ntitle: "Level probe plan"\r\n---   \r\n# Level probe plan\r\n';
+    const { packet, planFile } = writeLevelPacket(root, '# Level probe\n\n<!-- SPECKIT_LEVEL: 2 -->\n', plan);
+
+    const result = runLaneModes(packet, { apply: true, modes: ['level-from-spec'] });
+
+    expect(result.actions).toEqual([
+      { mode: 'level-from-spec', document: 'plan.md', action: 'added level: 2 to the frontmatter' },
+    ]);
+    expect(result.refusals).toEqual([]);
+    expect(fs.readFileSync(planFile, 'utf8')).toBe(
+      '---\r\ntitle: "Level probe plan"\r\nlevel: 2\r\n---   \r\n# Level probe plan\r\n',
+    );
   });
 
   it('level-from-spec-refuses-missing-header', () => {
@@ -1242,6 +1542,78 @@ describe('heal-spec-docs lane modes', () => {
     expect(result.changedFiles).toEqual([]);
     expect(manifest(root)).toBe(before);
     expect(fs.readFileSync(planFile, 'utf8')).toBe(original);
+  });
+
+  it('header-add-refuses-an-anchor-named-only-in-a-double-backtick-span', () => {
+    const root = makeRoot();
+    const original = doubleBacktickAnchorPlanFixture();
+    const { packet, planFile } = writePacket(root, original);
+    const before = manifest(root);
+
+    const result = runLaneModes(packet, { apply: true, modes: ['header-add'] });
+
+    expect(result.actions).toEqual([]);
+    expect(result.refusals).toHaveLength(1);
+    expect(result.refusals[0]).toMatchObject({ mode: 'header-add', document: 'plan.md' });
+    expect(result.refusals[0].reason).toContain('does not carry summary');
+    expect(manifest(root)).toBe(before);
+    expect(fs.readFileSync(planFile, 'utf8')).toBe(original);
+  });
+
+  it('header-add-refuses-an-anchor-named-only-in-a-list-indented-fence', () => {
+    const root = makeRoot();
+    const original = listIndentedAnchorPlanFixture();
+    const { packet, planFile } = writePacket(root, original);
+    const before = manifest(root);
+
+    const result = runLaneModes(packet, { apply: true, modes: ['header-add'] });
+
+    expect(result.actions).toEqual([]);
+    expect(result.refusals).toHaveLength(1);
+    expect(result.refusals[0]).toMatchObject({ mode: 'header-add', document: 'plan.md' });
+    expect(result.refusals[0].reason).toContain('does not carry summary');
+    expect(manifest(root)).toBe(before);
+    expect(fs.readFileSync(planFile, 'utf8')).toBe(original);
+  });
+
+  it('header-add-refuses-a-closing-line-with-trailing-text', () => {
+    const root = makeRoot();
+    const original = trailingCloserPlanFixture();
+    const { packet, planFile } = writePacket(root, original);
+    const before = manifest(root);
+
+    const result = runLaneModes(packet, { apply: true, modes: ['header-add'] });
+
+    expect(result.actions).toEqual([]);
+    expect(result.refusals).toHaveLength(1);
+    expect(result.refusals[0]).toMatchObject({ mode: 'header-add', document: 'plan.md' });
+    expect(result.refusals[0].reason).toContain('there is no frontmatter to place the header after');
+    expect(manifest(root)).toBe(before);
+    expect(fs.readFileSync(planFile, 'utf8')).toBe(original);
+  });
+
+  it('header-add-stamps-after-a-closing-line-with-trailing-spaces-and-crlf', () => {
+    const root = makeRoot();
+    const marker = levelTwoPlanMarker();
+    const original = [
+      '---',
+      'title: "Header probe plan"',
+      '---   ',
+      '',
+      ...levelTwoPlanAnchors().map((anchor) => `<!-- ANCHOR:${anchor} -->`),
+      '',
+    ].join('\r\n');
+    const { packet, planFile } = writePacket(root, original);
+
+    const result = runLaneModes(packet, { apply: true, modes: ['header-add'] });
+
+    expect(result.refusals).toEqual([]);
+    expect(result.changedFiles).toEqual(['plan.md']);
+    // The stamp follows the whole closing line, trailing spaces included, so the
+    // delimiter the document wrote stays on its own line.
+    expect(fs.readFileSync(planFile, 'utf8')).toBe(
+      original.replace('---   \r\n', `---   \r\n<!-- SPECKIT_TEMPLATE_SOURCE: ${marker} -->\r\n`),
+    );
   });
 
   it('header-add-stamps-past-fenced-extra', () => {

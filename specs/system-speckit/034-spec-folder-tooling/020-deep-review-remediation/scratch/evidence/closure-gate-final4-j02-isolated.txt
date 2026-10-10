@@ -1,0 +1,19 @@
+# j02 isolated reruns of folder-discovery-integration.vitest.ts, Part 3 G4 review (2026-10-10)
+# Command: cd runtime && npx vitest run tests/folder-discovery-integration.vitest.ts, three runs, exit status captured with $? after each
+
+## run 1
+ Test Files  1 passed (1)
+      Tests  43 passed (43)
+EXIT=0
+
+## run 2
+ FAIL  runtime/tests/folder-discovery-integration.vitest.ts > CHK-028: Per-folder description.json read performance > T046-26: loadPerFolderDescription completes in <5ms
+AssertionError: expected 7.300166999999988 to be less than 5
+ Test Files  1 failed (1)
+      Tests  1 failed | 42 passed (43)
+EXIT=1
+
+## run 3
+ Test Files  1 passed (1)
+      Tests  43 passed (43)
+EXIT=0

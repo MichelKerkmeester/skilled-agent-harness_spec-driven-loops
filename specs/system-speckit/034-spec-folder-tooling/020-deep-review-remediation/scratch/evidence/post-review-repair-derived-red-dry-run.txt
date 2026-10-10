@@ -1,0 +1,55 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/repair-derived.vitest.ts (20 tests | 1 failed | 19 skipped) 1314ms
+     × does not re-derive over a linked graph-metadata.json, in the dry run or with --apply 1312ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/repair-derived.vitest.ts > repair-derived > does not re-derive over a linked graph-metadata.json, in the dry run or with --apply
+AssertionError: expected 'left unchanged specs/.repair-fixture-…' not to contain 're-derive graph metadata'
+
+- Expected
++ Received
+
+- re-derive graph metadata
++ left unchanged specs/.repair-fixture-linked/001-linked-graph/graph-metadata.json: symbolic link, not followed
++ would repair specs/.repair-fixture-linked/001-linked-graph
++     spec folder -> 001-linked-graph
++     packet pointer -> .repair-fixture-linked/001-linked-graph
++     re-derive graph metadata
++
++ inspected=1 repairable=1 failed=0
++
++ Not repairable here — these record work someone did, and only they can write them:
++       1  ANCHORS_VALID
++       1  COMPLEXITY_MATCH
++       1  FILE_EXISTS
++       1  FRONTMATTER_MEMORY_BLOCK
++       1  FRONTMATTER_VALID
++       1  LEVEL_MATCH
++       1  TEMPLATE_SOURCE
++
++ To apply these repairs:
++   node ../../../../../../../Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/.repair-fixture-linked/001-linked-graph --apply
++
+
+ ❯ tests/repair-derived.vitest.ts:409:31
+    407|     const dryRun = runIn(workspace, ['--folder', dir]);
+    408|     expect(dryRun.stdout).toContain(`left unchanged ${path.join(dir, '…
+    409|     expect(dryRun.stdout).not.toContain('re-derive graph metadata');
+       |                               ^
+    410|
+    411|     const applied = runIn(workspace, ['--folder', dir, '--apply']);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 19 skipped (20)
+   Start at  11:54:21
+   Duration  1.42s (transform 20ms, setup 14ms, import 16ms, tests 1.31s, environment 0ms)
+

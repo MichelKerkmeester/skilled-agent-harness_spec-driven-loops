@@ -1,0 +1,21 @@
+CLOSURE EVIDENCE: CHK-013 reviews, transcribed by the orchestrator from the two fresh Opus 5.5 reviewers
+
+Provenance. Two fresh Opus 5.5 reviewers ran read-only on this packet. They could not write their reports to disk, so the orchestrator transcribed what each returned. This file is that transcription, not a file the reviewers wrote. This worker did not re-run either review.
+
+== Reviewer 1: code review (high effort)
+
+"All 11 findings are fixed. Every code fix I could mutate fails its new test when the fix is removed. I found no new P0 or P1."
+
+Verdicts: R2-P1-001, R2-P1-002, R2-P1-003, R2-P1-004, R3-P1-001, R3-P1-002, R5-P1-001, R7-P1-001, R8-P1-001, R4-P2-001 and R7-P2-001 are all CLOSED.
+
+9 new P2s: a healer --folder link, a repair-derived apply on a linked graph file, a leaf-manifest write through a link, the push token in the generator's process tree, two SKILL.md lines without the child exception, the plan and complete YAMLs not defining child_dispatch, scope deviations to record, no committed workflow tests, and inconsistent refusal wording. All 9 were then fixed or recorded (see the Post-review fixes section).
+
+Checked clean: annotation injection, upgrade-legacy, the library readers, phrase cleanup, 73 command YAMLs, the doctor compat rule, the relaxed phase-command test, and comment hygiene (no spec paths or ids in code comments, git diff --check clean).
+
+Commands: actionlint exit 0, vitest cli 222 passed, root 159 passed, phase workflows 148/0, doctor compat 30 passed.
+
+== Reviewer 2: docs and state review (high effort)
+
+3 P1 and 9 P2, all fixed by the 019 and 020 docs lanes. All 45 cited SHAs exist, and 43 are on origin/main. The timeline counts match git log. The release note claims match the code.
+
+Validation passed: parent recursive 21 of 21, 016 recursive 17 of 17, and 012, 019, 020 and 010 strict.

@@ -62,29 +62,79 @@ jobs:
           #
           # A changed research log or lineage output under a packet is evidence,
           # not a graded document, so it does not pull the packet in.
-          packets=$(
-            git diff --name-only --diff-filter=ACMR "$BASE" "$HEAD" -- specs \
-            | while IFS= read -r file; do
-                case "$(basename "$file")" in
+          # A name is shown with its line breaks written out. A raw break would put
+          # the rest of the name at column 0, where the runner reads it as a command.
+          display_name() {
+            local value=$1
+            value=${value//$'\r'/'\r'}
+            value=${value//$'\n'/'\n'}
+            printf '%s' "$value"
+          }
+
+          # NUL-delimited, because a name may hold a line break. Git quotes such a
+          # name unless -z is given, and a quoted name matches no file, so the
+          # packet was dropped without a word.
+          packet_list=$(mktemp)
+          git diff -z --name-only --diff-filter=ACMR "$BASE" "$HEAD" -- specs \
+            | while IFS= read -r -d '' file; do
+                # Parameter expansion, not basename or dirname: command substitution
+                # would strip a line break from the end of a folder name.
+                case "${file##*/}" in
                   (spec.md|plan.md|tasks.md|implementation-summary.md|decision-record.md|acceptance-criteria.md|handover.md|description.json|graph-metadata.json)
-                    dir=$(dirname "$file")
+                    dir=${file%/*}
                     # Only the packet that owns the document, never an ancestor:
                     # a doc orphaned by a deleted spec.md must not silently
                     # attribute to the parent packet and escape validation.
-                    if [ -f "$dir/spec.md" ]; then echo "$dir"; fi
+                    if [ -f "$dir/spec.md" ]; then printf '%s\0' "$dir"; fi
                     ;;
                 esac
-              done | sort -u
-          )
+              done | sort -z -u > "$packet_list"
 
-          if [ -z "$packets" ]; then
+          if [ ! -s "$packet_list" ]; then
+            rm -f "$packet_list"
             echo "No spec packets changed by this PR."
             exit 0
           fi
 
           echo "Packets to validate:"
-          echo "$packets" | sed 's/^/  /'
+          while IFS= read -r -d '' packet; do
+            printf '  %s\n' "$(display_name "$packet")"
+          done < "$packet_list"
           echo ""
+
+          # A packet name is text a pull request controls, and the runner reads a
+          # line that starts with "::" as a workflow command. Escaping happens
+          # before the text reaches an annotation: % first, so the escapes added
+          # for the other characters are not escaped again, then the characters
+          # the runner treats as delimiters.
+          annotation_data() {
+            local value=$1
+            value=${value//'%'/%25}
+            value=${value//$'\r'/%0D}
+            value=${value//$'\n'/%0A}
+            printf '%s' "$value"
+          }
+          annotation_property() {
+            local value
+            value=$(annotation_data "$1")
+            value=${value//:/%3A}
+            value=${value//,/%2C}
+            printf '%s' "$value"
+          }
+          annotate_packet_error() {
+            printf '::error file=%s::%s\n' \
+              "$(annotation_property "$1/spec.md")" "$(annotation_data "$2")"
+          }
+          # Raw validator output is replayed between a stop-commands marker and a
+          # random token. The workflow file is public, so a fixed token could be
+          # typed into a packet name; a token drawn fresh each run cannot.
+          replay_raw() {
+            local token
+            token=$(node -e 'process.stdout.write(require("node:crypto").randomUUID())')
+            printf '::stop-commands::%s\n' "$token"
+            cat "$1"
+            printf '\n::%s::\n' "$token"
+          }
 
           # Block on regressions, not on the corpus's existing state. A packet
           # that already failed at the merge base is not this PR's doing, and
@@ -114,12 +164,17 @@ jobs:
           }
           declare -a broken=()
           declare -A head_failing=()
-          while IFS= read -r packet; do
+          while IFS= read -r -d '' packet; do
             [ -n "$packet" ] || continue
             # --no-recursive keeps a phase parent from dragging in children this
             # PR never touched; each changed child is already in the list itself.
+            # The validator's stderr is not parsed, but it reaches the log as is,
+            # so it is captured and replayed like the other raw output.
+            head_err=$(mktemp)
             head_out=$(bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh \
-                         "$packet" --strict --no-recursive --json) || true
+                         "$packet" --strict --no-recursive --json 2>"$head_err") || true
+            if [ -s "$head_err" ]; then replay_raw "$head_err"; fi
+            rm -f "$head_err"
             # A stale or unbuilt orchestrator makes validate.sh refuse to run
             # and emit no report at all. Anything that does not parse as a
             # report keeps the packet in play so the comparison below fails
@@ -132,7 +187,8 @@ jobs:
               broken+=("$packet")
               head_failing["$packet"]="$rules"
             fi
-          done <<<"$packets"
+          done < "$packet_list"
+          rm -f "$packet_list"
 
           if [ ${#broken[@]} -eq 0 ]; then
             echo "All changed packets validate clean."
@@ -149,14 +205,14 @@ jobs:
           regressions=0
           for packet in "${broken[@]}"; do
             if [ ! -d "$base_tree/$packet" ]; then
-              echo "::error file=$packet/spec.md::New packet does not validate"
+              annotate_packet_error "$packet" "New packet does not validate"
               regressions=$((regressions + 1))
               continue
             fi
             # A head run that produced no report has no failing set to compare,
             # so it fails closed here instead of borrowing the base's verdict.
-            if [ -z "${head_failing[$packet]+set}" ]; then
-              echo "::error file=$packet/spec.md::Validator produced no verdict for the head copy; failing closed"
+            if [ -z "${head_failing["$packet"]+set}" ]; then
+              annotate_packet_error "$packet" "Validator produced no verdict for the head copy; failing closed"
               regressions=$((regressions + 1))
               continue
             fi
@@ -164,26 +220,33 @@ jobs:
             # worktree has no built dist of its own, and building one there
             # would make every packet read as failing at the base — which would
             # silently disable the gate rather than fail it.
+            base_err=$(mktemp)
             base_out=$(bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh \
-                         "$base_tree/$packet" --strict --no-recursive --json) || true
+                         "$base_tree/$packet" --strict --no-recursive --json 2>"$base_err") || true
+            if [ -s "$base_err" ]; then replay_raw "$base_err"; fi
+            rm -f "$base_err"
             if ! base_rules=$(printf '%s\n' "$base_out" | failing_rules); then
-              echo "::error file=$packet/spec.md::Validator produced no verdict for the base copy; failing closed"
+              annotate_packet_error "$packet" "Validator produced no verdict for the base copy; failing closed"
               regressions=$((regressions + 1))
               continue
             fi
             # Only head rules absent from the base's failing set are new. Both
             # sides are sorted and unique, as failing_rules prints them.
             new_rules=$(comm -23 \
-              <(printf '%s\n' "${head_failing[$packet]}") \
+              <(printf '%s\n' "${head_failing["$packet"]}") \
               <(printf '%s\n' "$base_rules"))
             if [ -n "$new_rules" ]; then
-              echo "::error file=$packet/spec.md::Regression — new failing rule(s): $(paste -s -d , <<<"$new_rules")"
+              annotate_packet_error "$packet" "Regression — new failing rule(s): $(paste -s -d , <<<"$new_rules")"
+              # The detail lines are validator text, and they name the packet.
+              detail_file=$(mktemp)
               bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh "$packet" --strict --no-recursive 2>&1 \
-                | grep -E '^\s*[x!]|^Summary:' | sed 's/^/    /' || true
+                | grep -E '^\s*[x!]|^Summary:' | sed 's/^/    /' > "$detail_file" || true
+              replay_raw "$detail_file"
+              rm -f "$detail_file"
               regressions=$((regressions + 1))
             else
-              echo "  pre-existing (also fails at the merge base): $packet"
-              echo "    failing rule(s): $(paste -s -d , <<<"${head_failing[$packet]}")"
+              echo "  pre-existing (also fails at the merge base): $(display_name "$packet")"
+              echo "    failing rule(s): $(paste -s -d , <<<"${head_failing["$packet"]}")"
             fi
           done
 

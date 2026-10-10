@@ -1,0 +1,87 @@
+CLOSURE EVIDENCE copy: unmutated control runs for the lane B, lane C and repair-derived suites (the same tests with no guard removed)
+
+===== source: k2b/out/control-healer.txt =====
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli
+
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply leaves a symlinked spec.md and its outside target untouched 86ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply leaves a symlinked tasks.md with an empty trigger list untouched 86ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --anchor-repair --apply leaves a symlinked spec.md and its outside target untouched 58ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --lane-modes --apply leaves a symlinked spec.md and its outside target untouched 74ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply replaces a spec.md that becomes a link after it is read, and leaves the outside target untouched 58ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply reports a dangling spec.md link as refused and does not create its target 52ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply changes no bytes on a plain packet with nothing left to heal 92ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --anchor-repair --apply refuses a dangling spec.md and does not create its target 52ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --lane-modes --apply refuses a dangling spec.md and does not create its target 72ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > default run --apply refuses a linked --folder and leaves the packet behind the link untouched 44ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --anchor-repair --apply refuses a linked --folder and leaves the packet behind the link untouched 44ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --lane-modes --apply refuses a linked --folder and leaves the packet behind the link untouched 44ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > default run --apply refuses a dangling --folder and creates nothing at its target 36ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --anchor-repair --apply refuses a dangling --folder and creates nothing at its target 43ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --lane-modes --apply refuses a dangling --folder and creates nothing at its target 43ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > refuses a --folder reached through a linked component inside the specs root 96ms
+
+ Test Files  1 passed (1)
+      Tests  16 passed (16)
+   Start at  12:37:39
+   Duration  1.15s (transform 43ms, setup 26ms, import 35ms, tests 980ms, environment 0ms)
+
+
+===== source: k2b/out/control-leaf.txt =====
+leaf-manifest.json written (543a4ef189cdaa2adf3346014fdb63af82453d78b0c1a72cdc03fffd4e6d4e73)
+[sk-doc] leaf-manifest scope contract coverage passed
+✔ sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs (309.2615ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 312.999458
+
+===== source: k2b/out/control-repair.txt =====
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/repair/.skilled/skills/system-spec-kit/runtime/cli
+
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a target outside the packet tree 57ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses an unknown argument and a flag with no value 57ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a bare path rather than treating it as an unscoped run 31ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > accepts a repeated --folder and inspects each packet once 2080ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > counts a folder given twice as one target 939ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > still refuses a bad --roots when a --folder is present 32ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > rewrites a stale recorded location from the packet path on disk 1610ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > walks into an archive and rewrites an archived packet's recorded paths 2094ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > leaves a packet alone when nothing derived is wrong 2241ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports repairable=0 and writes nothing for a clean packet in a dry run 1957ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports without writing unless application is requested 1364ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the re-derive in the plan whenever it edits a document 1017ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > leaves a packet pointer outside the frontmatter alone 925ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports a repair it could not make and exits 2 1084ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > changes nothing on a second run over the same packet 3352ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > passes a packet it would otherwise repair when validation is switched off 82ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > does not write through a link planted at the predictable repair temp name 1465ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a rewrite target that is a symbolic link and leaves its target untouched 1929ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > does not re-derive over a linked graph-metadata.json, in the dry run or with --apply 3664ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a dangling graph-metadata.json link in the dry run and with --apply, and creates nothing at its target 3537ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > treats a dangling description.json link as absent and creates nothing at its target 3066ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the validator stderr when validate.sh exits 3, and exits non-zero 52ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the exit code and the stderr tail when the validator exits with no report 41ms
+
+ Test Files  1 passed (1)
+      Tests  23 passed (23)
+   Start at  12:37:40
+   Duration  32.79s (transform 31ms, setup 21ms, import 22ms, tests 32.68s, environment 0ms)
+
+refusing a target outside the packet tree: .skilled/skills
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: ../elsewhere
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unknown argument: --bogus
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+--folder needs a path
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unexpected argument: specs/sk-git (paths need --folder or --roots)
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: /etc
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]

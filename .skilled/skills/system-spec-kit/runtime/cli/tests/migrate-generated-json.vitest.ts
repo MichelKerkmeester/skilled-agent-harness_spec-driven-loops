@@ -362,4 +362,25 @@ describe('migrate-generated-json real run', () => {
     })).toThrow('prune report is stale because the candidates changed');
     expect(hashFile(parentGraphPath)).toBe(before);
   });
+
+  // The report lands at a fixed name under the specs root, so a link planted there
+  // would otherwise redirect the write to whatever it points at.
+  it('refuses a prune report destination that is a symbolic link and leaves its target untouched', () => {
+    const tree = createSpecTree();
+    migrateAllJson({ specsRoot: tree.specsRoot, dryRun: false });
+
+    const outsideDir = fs.mkdtempSync(path.join(os.tmpdir(), 'migrate-prune-outside-'));
+    createdRoots.add(outsideDir);
+    const outside = path.join(outsideDir, 'victim.json');
+    const original = '{"outside":true}\n';
+    fs.writeFileSync(outside, original, 'utf-8');
+    fs.symlinkSync(outside, path.join(tree.specsRoot, '.migrate-generated-json-prune-report.json'));
+
+    expect(() => migrateAllJson({
+      specsRoot: tree.specsRoot,
+      dryRun: false,
+      pruneReport: true,
+    })).toThrow('symbolic link, not followed');
+    expect(fs.readFileSync(outside, 'utf-8')).toBe(original);
+  });
 });

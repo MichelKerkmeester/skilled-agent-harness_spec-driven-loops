@@ -1,0 +1,38 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/heal-target-parity.vitest.ts (4 tests | 1 failed) 863ms
+     × each entrypoint narrows to the one packet named by --folder, with or without --roots 197ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/heal-target-parity.vitest.ts > heal-spec-docs target selection parity > each entrypoint narrows to the one packet named by --folder, with or without --roots
+AssertionError: lane-modes alone: expected [] to deeply equal [ Array(1) ]
+
+- Expected
++ Received
+
+- [
+-   "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/heal-target-parity-4iCmmC/specs/alpha/001-one",
+- ]
++ []
+
+ ❯ tests/heal-target-parity.vitest.ts:122:65
+    120|       const alone = runEntrypoint(entry, ['--folder', packetA]);
+    121|       expect(alone.status, `${entry.name} alone: ${alone.stdout}${alon…
+    122|       expect(packetsNamed(alone.stdout), `${entry.name} alone`).toEqua…
+       |                                                                 ^
+    123|
+    124|       const withRoots = runEntrypoint(entry, ['--folder', packetA, '--…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  07:37:18
+   Duration  1.01s (transform 15ms, setup 13ms, import 9ms, tests 863ms, environment 0ms)
+

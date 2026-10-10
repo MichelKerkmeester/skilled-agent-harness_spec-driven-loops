@@ -1,0 +1,66 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/upgrade-legacy.vitest.ts (48 tests | 1 failed | 47 skipped) 7790ms
+     × leaves findings read through a linked baseline out of the apply census 2851ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/upgrade-legacy.vitest.ts > upgrade-legacy link containment > leaves findings read through a linked baseline out of the apply census
+AssertionError: expected 'refused specs/link-containment/007-pa…' not to contain 'OUTSIDE_CENSUS_RULE'
+
+- Expected
++ Received
+
+- OUTSIDE_CENSUS_RULE
++ refused specs/link-containment/007-packet: upgrade-baseline.json is a link that does not resolve inside the packet
++ plan changes=0
++ step heal-spec-docs: ok (0 packets)
++ step lane-modes: ok (0 packets, 0 refusals)
++
++ Downgrades:
++   refused specs/link-containment/007-packet: upgrade-baseline.json is a link, so its findings are not read
++ still failing specs/link-containment/007-packet: ANCHORS_VALID, FRONTMATTER_VALID, GREP_CONVENTION, TEMPLATE_SOURCE
++
++ inspected=1 active=1 archived=0
++ passing before=0/1 after=0/1
++ recorded findings by rule:
++   OUTSIDE_CENSUS_RULE: 1
++ grouped detail:
++ ### specs/link-containment/007-packet / x ANCHORS_VALID (3)
++     - spec.md: no anchors found
++     - plan.md: no anchors found
++     - tasks.md: no anchors found
++ ### specs/link-containment/007-packet / x FRONTMATTER_VALID (3)
++     - spec.md: Empty required frontmatter field: importance_tier
++     - spec.md: Empty required frontmatter field: contextType
++     - spec.md: Empty required frontmatter field: trigger_phrases
++ ### specs/link-containment/007-packet / x GREP_CONVENTION (2)
++     - path=plan.md line=0 category=missing severity=error rawKey=- reason=Document has no frontmatter block, so it carries no retrievable trigger phrases
++     - path=tasks.md line=0 category=missing severity=error rawKey=- reason=Document has no frontmatter block, so it carries no retrievable trigger phrases
++ ### specs/link-containment/007-packet / x TEMPLATE_SOURCE (3)
++     - spec.md
++     - plan.md
++     - tasks.md
++
+
+ ❯ tests/upgrade-legacy.vitest.ts:1769:26
+    1767|       const output = result.stdout + result.stderr;
+    1768|       expect(output).toContain('recorded findings by rule:');
+    1769|       expect(output).not.toContain('OUTSIDE_CENSUS_RULE');
+       |                          ^
+    1770|       expect(fs.readFileSync(outsideBaseline, 'utf8')).toBe(outsideTex…
+    1771|     } finally {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 47 skipped (48)
+   Start at  09:17:43
+   Duration  8.00s (transform 82ms, setup 14ms, import 110ms, tests 7.79s, environment 0ms)
+
+EXIT=1

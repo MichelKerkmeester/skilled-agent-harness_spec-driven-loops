@@ -1,0 +1,69 @@
+## F18 git-hooks README exception
+4:trigger_phrases:
+24:- `pre-commit` runs eight blocking sub-gates: comment hygiene, agent-mirror sync, mirror parity, prompt-card sync, MCP mutation-class, template phrase lint, compiled-routing re-mint and spec derive
+92:pre-commit → $SOURCE_ROOT comment-hygiene checker, agent-mirror checker, mirror sync scripts, skill-advisor card-sync guard, doctor mutation-class guard, template-phrase-lint.mjs, $SOURCE_ROOT/bin/
+110:| `pre-commit` | Runs eight blocking sub-gates when their staged-path trigger matches: comment hygiene (on the staged content, in one checker run), agent-mirror sync, mirror parity, prompt-quality
+## F19 .env.example
+406:# SPECKIT_SKIP_PHRASE_LINT=             # Skip the pre-commit template phrase lint gate (set 1)
+## F20 README pre-commit
+46:- A phrase nobody wrote is a clean no-hit, never a nearest guess
+193:- **pre-commit** blocks code comments that cite spec packets or task ids, blocks a staged phrase that carries a template default or editor fallback, and keeps generated mirrors and metadata in ste
+533:- Gate 1 matches a prompt against author-declared trigger phrases through the committed trigger index at `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`
+536:- Retrieval is lexical only: semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are unsupported. A miss is a clean no-hit rather than a degraded guess
+## F21 sweep README first-run / new-failure
+12:`runtime/cli/sweep/` holds the strict-pass freshness sweep, a CI gate that walks every spec folder under `specs` (and legacy `.opencode/specs`), runs `runtime/cli/spec/validate.sh --strict` on each and classifies the 
+20:| `strict-pass-freshness.ts` | CLI entrypoint. `--roots <path[,path...]>` scopes the sweep, `--baseline <report.json>` supplies the prior-pass set, `--format json\|text` controls output. Classifies each folder as `pas
+30:  The workflow passes the previous run's report as `--baseline` when it finds one. Without one, the run records a baseline, so every folder that fails in that run reads as `first-run`.
+## F22 retrieval lib README
+21:- All eight modules are `.mjs` ESM with no build step. Callers import them by relative path: `./lib/<name>.mjs` from the sibling `retrieval/` scripts, and `../retrieval/lib/<name>.mjs` from elsewhe
+37:| `phrase-judge.mjs` | Trigger-phrase admissibility. `judgeTriggerPhrase` returns the negative class and reason for a phrase the convention rejects, or `null` for an admissible phrase. It also hold
+49:| `normalize.mjs` | `generate-trigger-index.mjs`, `lookup-trigger-index.mjs`, `rg-wrapper.mjs`, `sweep-memory-residue.mjs`, `../../ops/retrofit-convention.mjs`, `../../spec/repo-era.mjs`, `../../sp
+51:| `corpus.mjs` | `generate-trigger-index.mjs`, `sweep-memory-residue.mjs`, `../../ops/retrofit-convention.mjs`, `../../spec/repo-era.mjs` and `../../core/workflow.ts` (dynamic import). |
+55:| `phrase-judge.mjs` | `generate-trigger-index.mjs`, `../../spec/template-phrase-lint.mjs`, `./grep-convention.mjs` and `../../lib/frontmatter-migration.ts`, which reaches it through the `@spec-kit
+## F23 test-fixtures tree and ANCHORS_VALID
+47:As of this revision, the tree contains 74 fixture directories numbered 001 through 080.
+48:Numbers 027, 029, 049, 052, 059, 060 and 067 have no directory, and 073 has two.
+49:The highest-numbered fixture is `080-anchors-duplicate-closer`.
+115:+-- 070-comment-hygiene-marker/
+116:+-- 071-comment-hygiene-marker-violation/
+117:+-- 072-scaffold-never-touched-violation/
+118:+-- 073-scaffold-never-touched-clean/
+119:+-- 073-template-provenance-title/
+60:| `specs/**/`                                    | Level-appropriate validation (recursive through nested packet families) |
+61:| `<active-spec-folder>/**/`                          | Level-appropriate validation (recursive through nested packet families) |
+82:| `ANCHORS_VALID`      | ERROR    | Validate `<!-- ANCHOR:id -->` pairs and nesting in spec docs (spec.md, plan.md, tasks.md, acceptance-criteria.md, decision-record.md, implementation-summary.md) 
+## F24 hooks README gate-3
+61:| `gate-3-menu-parity.test.mjs` | Drift guard for the Gate 3 spec-folder menu. It checks that each of the twelve presentation and compiled contract files under `.skilled/commands/` carries the cano
+## F25 same-track wording
+.skilled/commands/speckit/assets/speckit-implement.yaml:52:  standard_question: "Spec Folder (required): A) Existing | B) New (new or unrelated work only) | C) Related (Use a related folder, phase child, or a series pare
+.skilled/skills/system-spec-kit/references/workflows/worked-examples.md:60:AI: Spec folder? A) Existing B) New (new or unrelated work only) C) Related (Use a related folder, phase child, or a series parent for a differen
+.skilled/skills/system-spec-kit/references/memory/trigger-config.md:134:# AI then asks: "Spec Folder (required): A) Existing | B) New (new or unrelated work only) | C) Related (Use a related folder, phase child, or a ser
+## F26 changelogs
+3:description: "Spec-folder repairs now write only what their evidence proves, and an apply on uncommitted files can be undone. Nested ancho
+4:trigger_phrases:
+8:  - "nested anchors now fail validation"
+16:The spec-folder tools change most in this release. Repairs now write only what their evidence proves. An apply on uncommitted files keeps
+22:Spec-folder repairs used to guess. A template header could be stamped on a document that did not match its level. A fill could write a tr
+24:The checks had gaps too. Nested anchors passed validation, and the pull request gate could not tell a new failure from one that was alrea
+31:- **New packets show their neighbors and can be found.** `create.sh` lists the packets made in the same track in the last 14 days before 
+39:- **The doctor shows your spec layout before anything moves.** `/doctor:update check` reports the layout and the pre-v4 signals, and the 
+40:- **Nested anchors now fail validation.** `ANCHORS_VALID` treats nested anchors and extra closers as errors, and `heal-spec-docs --anchor
+41:- **Checks catch problems before they merge.** The pre-commit check blocks template-default and editor-fallback trigger phrases, and the 
+49:`heal-spec-docs --lane-modes` runs five repairs: anchor wrapping, link repointing, continuity placeholders, filling the level from `spec.
+51:A template header is stamped only when a document's anchors match its level's template exactly, with nothing extra and nothing missing.
+--- spec-kit changelog v2.7.1.0 headings
+15:# v2.7.1.0, Repairs Prove Their Work, Upgrades Can Be Undone
+23:## Why This Release
+31:## What's New at a Glance
+43:## Spec Upgrades
+45:#### Upgrades Change Only What Evidence Proves
+51:#### Fills Come From Each Document's Template
+55:#### Upgrades Can Be Undone
+59:#### Failures Print Grouped by Rule
+63:#### Layout Is Checked Before Anything Moves
+67:#### A Dry Run Reports Legacy Signals
+71:#### Upgrades Write Only Admitted Phrases
+77:## Spec Validation
+--- v2.7.0.0 exists:
+.skilled/skills/system-spec-kit/changelog/v2.7.0.0.md
+rc=0

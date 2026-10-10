@@ -64,6 +64,7 @@ move_log:
     - upgrade-failed
     - run-complete
   rule: "Append one JSON line per event, step-started before each step runs and step-done after it. The git directory keeps the log out of git status and out of .skilled/."
+  close_rule: "Every terminal status reached after run-started appends run-complete, so recovery reads that run as finished. The exception is a failed step, meaning a step-failed line in phase_4_move: its run stays open, so recovery still lists the failed step as owed."
 
 state_log_schema:
   # In-memory only; compat writes no state-log file.
@@ -102,9 +103,9 @@ workflow:
       v4: "The move is complete or was never needed. Skip phase_3_move_approval and phase_4_move, and go straight to phase_5_upgrade_preview, only when no recovery step is owed. When phase_1_preflight.recovery found an interrupted run that still owes link-legacy-path, that step runs first, after phase_3_move_approval."
       none: "Report that no spec folders were found, and end with STATUS=COMPATIBLE without writing."
     steps_rule: "steps is empty when collisions exist or when no move is needed; each argv runs from the repository root."
-    exit_policy: "Exit 0 means no collisions. Exit 1 means collisions were listed: stop with STATUS=BLOCKED and write nothing. Exit 2 means the map could not be produced: show the stderr tail and stop with STATUS=FAILED."
+    exit_policy: "The map's stdout must parse as JSON whatever the exit code. Without parseable JSON on stdout, show the stderr tail and stop with STATUS=FAILED, because exit 1 also comes from a script that fails to load. Exit 0 means no collisions. Exit 1 means collisions were listed: stop with STATUS=BLOCKED and write nothing. Exit 2 means the map could not be produced: show the stderr tail and stop with STATUS=FAILED."
     dirty_check_command: "git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs"
-    dirty_refusal: "When a move is planned and that output is non-empty, stop with STATUS=BLOCKED before any write: name the paths in the presentation's dirty-roots refusal and give its reason, that the move keeps no before-image."
+    dirty_refusal: "When a move is planned and that output is non-empty, stop with STATUS=BLOCKED before any write: name the paths in the presentation's dirty-roots refusal and give its reason, that the move keeps no before-image. An owed recovery step is not a planned move for this check, so a resume runs it without this refusal. This covers only the link-legacy-path step that phase_1_preflight.recovery adds when the recomputed map reads v4 with no steps. Every step the recomputed map lists is a planned move. When the open run has a step-done for remove-specs-link, drop only the porcelain line that equals ` D specs` (unstaged) or `D  specs` (staged), and count every other line as dirty."
     on_no_move: "When no move is needed, continue to the upgrade preview."
     dry_run_rule: "When --dry-run is bound and a move is needed, stop here with STATUS=DRY_RUN and write no log line. When no move is needed, the dry run also shows the upgrade preview."
 
@@ -118,12 +119,11 @@ workflow:
     skip_when: "layout state is v4 or none and no recovery step is owed. When phase_1_preflight.recovery found an interrupted run with a step left, do not skip: run the owed steps after the phase_3_move_approval."
     approval: "Requires the move approval. No further approval is requested for the displayed steps."
     dirty_check_command: "git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs"
-    dirty_refusal: "When a move is planned and that output is non-empty, stop with STATUS=BLOCKED before any write: name the paths in the presentation's dirty-roots refusal and give its reason, that the move keeps no before-image."
+    dirty_refusal: "When a move is planned and that output is non-empty, stop with STATUS=BLOCKED before any write: name the paths in the presentation's dirty-roots refusal and give its reason, that the move keeps no before-image. An owed recovery step is not a planned move for this check, so a resume runs it without this refusal. This covers only the link-legacy-path step that phase_1_preflight.recovery adds when the recomputed map reads v4 with no steps. Every step the recomputed map lists is a planned move. When the open run has a step-done for remove-specs-link, drop only the porcelain line that equals ` D specs` (unstaged) or `D  specs` (staged), and count every other line as dirty."
     command: "Run each step's argv from the layout map in order, from the repository root."
-    post_check: "After the last step, rerun commands.layout_map. The state must now be v4 with no steps. Any other result stops with STATUS=FAILED and shows the presentation's Compatibility rollback block."
+    post_check: "After the last step, rerun commands.layout_map. The state must now be v4 with no steps. Any other result appends run-complete, then stops with STATUS=FAILED and shows the presentation's Compatibility rollback block."
     logging: "Append run-started, then step-started before each step runs and step-done after it, then move-complete. Every line carries run, event, step, argv and at. Run the dirty check before run-started: a dirty-roots refusal appends no line, so recovery cannot mistake a refused run for an interrupted one."
-    step_failure: "A failed step appends step-failed and stops with STATUS=FAILED; show the step id, its argv and the exit code."
-    on_step_failure: "On a failed step, append step-failed with the step id and argv, then stop with STATUS=FAILED and run no further step. Show every step-done step so far in the presentation's Compatibility rollback block, newest first. Never retry a step automatically."
+    on_step_failure: "On a failed step, append step-failed with the step id and argv, then stop with STATUS=FAILED and run no further step. Show the step id, its argv and the exit code, then every step-done step so far in the presentation's Compatibility rollback block, newest first. Never retry a step automatically."
     postcondition: "Confirm the layout map state moved from before to after and show what moved."
 
   phase_5_upgrade_preview:
@@ -133,33 +133,33 @@ workflow:
     commands:
       upgrade_dry_run: "node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
     show: "Every failing <path>: <rules> line and the Downgrades: section."
-    exit_policy: "Exit 0 means every packet passes and there is nothing to upgrade: skip the upgrade approval and apply and continue to the summary, which ends with STATUS=UPGRADED when a move ran or STATUS=COMPATIBLE when nothing moved. Exit 1 means failing packets are listed and the upgrade may repair them. Exit 2 means the preview could not run: show the stderr tail and stop with STATUS=FAILED."
+    exit_policy: "Exit 0 means every packet passes and there is nothing to upgrade: skip the upgrade approval and apply and continue to the summary, which ends with STATUS=UPGRADED when a move ran or STATUS=COMPATIBLE when nothing moved. Exit 1 means failing packets are listed and the upgrade may repair them. Exit 2 means the preview could not run: show the stderr tail and stop with STATUS=FAILED. When this run has appended a line, append run-complete before stopping. A run that has appended none writes no line."
     dry_run_rule: "When --dry-run is bound and no move was needed, stop here with STATUS=DRY_RUN and write no log line."
 
   phase_6_upgrade_approval:
     approval: "Ask once for an explicit yes to run upgrade-legacy --apply on the previewed packets. Do not continue until the operator answers yes."
-    no_approval: "On no, stop with STATUS=DECLINED and leave the moved tree in place."
+    no_approval: "On no, stop with STATUS=DECLINED and leave the moved tree in place. When this run has appended a line, append run-complete before stopping. A run that has appended none writes no line."
     dirty_tree_note: "After a move the tree is dirty, so upgrade-legacy writes its before-image manifest at [git-dir]/upgrade-legacy.manifest.json before the first change. Reviewing and committing the move first keeps that record small."
-    cancel_or_interrupt: "Stop with STATUS=CANCELLED ACTION=cancelled."
+    cancel_or_interrupt: "Stop with STATUS=CANCELLED ACTION=cancelled. When this run has appended a line, append run-complete before stopping. A run that has appended none writes no line."
 
   phase_7_upgrade:
     approval: "Requires the upgrade approval."
     commands:
       upgrade_apply: "node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --apply"
-    logging: "Append upgrade-started, then upgrade-done on exit 0 or upgrade-failed otherwise. The upgrade manifest and baseline writes belong to upgrade-legacy itself."
-    exit_policy: "Exit 0 means every packet passes: STATUS=UPGRADED. A non-zero exit reports the still-failing packets and finishes with STATUS=PARTIAL when repairs were written, or STATUS=FAILED when nothing was written."
+    logging: "When this run has appended no line yet, append run-started first. Then append upgrade-started, then upgrade-done on exit 0 or upgrade-failed otherwise. The upgrade manifest and baseline writes belong to upgrade-legacy itself."
+    exit_policy: "Exit 0 means every packet passes: STATUS=UPGRADED. A non-zero exit reports the still-failing packets. It finishes with STATUS=PARTIAL when repairs were written, meaning the apply printed plan changes=N with N of at least 1 and then still fails. It finishes with STATUS=FAILED when nothing was written: the stderr 'could not be validated, so nothing was written' refusal, a manifest refusal, or plan changes=0. Every non-zero exit appends run-complete after its upgrade-failed line."
     result_parsing:
       prefixes: ["still failing ", "unreadable ", "passing before="]
     on_failure:
-      still_failing: "On exit 2 with still-failing or unreadable lines: append upgrade-failed, end with STATUS=PARTIAL, show each packet with the presentation's Failed packets template, and name the rerun, the --include-archive route for archived packets and manual review."
-      manifest_refusal: "On exit 2 with a 'could not write reversibility manifest' or '--apply refuses' line on stderr: show the presentation's manifest refusal with the stderr verbatim, end with STATUS=FAILED, and say that no packet changed."
+      still_failing: "On exit 2 with still-failing or unreadable lines: append upgrade-failed, then run-complete, end with the status exit_policy names for this run (STATUS=PARTIAL when repairs were written, STATUS=FAILED when nothing was written), show each packet with the presentation's Failed packets template, and name the rerun, the --include-archive route for archived packets and manual review."
+      manifest_refusal: "On exit 2 with a 'could not write reversibility manifest' or '--apply refuses' line on stderr: show the presentation's manifest refusal with the stderr verbatim, append run-complete, end with STATUS=FAILED, and say that no packet changed."
       exit_0: "On exit 0: append upgrade-done."
 
   phase_8_summary:
     approval: none
     show: "What moved, the upgrade counts, the move log path and the presentation's rollback block."
     rollback: "Name both undo routes from the presentation's Compatibility rollback block: reverse the move-log steps from the newest step-done to the oldest, and restore the beforeImages recorded in [git-dir]/upgrade-legacy.manifest.json."
-    logging: "Append run-complete to <git-dir>/doctor-update-compat.log.jsonl."
+    logging: "When this run has appended a line, append run-complete to <git-dir>/doctor-update-compat.log.jsonl. A run that has appended none writes no line."
     terminal_rule: "Keep the state in memory only; compat writes no state-log file."
 
 terminal_statuses:

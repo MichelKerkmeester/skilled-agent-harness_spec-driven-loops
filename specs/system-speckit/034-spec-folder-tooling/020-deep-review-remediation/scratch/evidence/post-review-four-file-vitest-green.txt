@@ -1,0 +1,26 @@
+Command: cd runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/archive-track.vitest.ts tests/heal-symlink-containment.vitest.ts tests/upgrade-legacy.vitest.ts tests/repair-derived.vitest.ts
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+refusing a target outside the packet tree: .skilled/skills
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: ../elsewhere
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unknown argument: --bogus
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+--folder needs a path
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unexpected argument: specs/sk-git (paths need --folder or --roots)
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: /etc
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+
+ Test Files  4 passed (4)
+      Tests  114 passed (114)
+   Start at  12:14:34
+   Duration  470.92s (transform 134ms, setup 24ms, import 192ms, tests 470.22s, environment 0ms)
+
+EXIT=0

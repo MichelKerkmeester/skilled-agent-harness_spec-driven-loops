@@ -8,20 +8,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs"
-    last_updated_at: "2026-10-09T06:50:00Z"
+    last_updated_at: "2026-10-10T09:47:20Z"
     last_updated_by: "closeout"
-    recent_action: "Third closeout pass: Opus fix recorded, citations re-checked, gate rows on tree5"
-    next_safe_action: "Operator decisions on the open items, then land 012-T2 and rerun the upgrade-legacy file"
+    recent_action: "CHK-FIX-006 closed: cache removed, same-instance case added (uncommitted)"
+    next_safe_action: "Operator decides T011 (real-corpus --apply)"
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
       - ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts"
       - ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts"
+      - ".skilled/skills/system-spec-kit/runtime/cli/tests/frontmatter-template-literals.vitest.ts"
     completion_pct: 100
     open_questions:
-      - "Run the manual --apply on the real corpus (T011)?"
+      - "Run the manual --apply on the real corpus (T011), which plans 8 packet changes?"
     answered_questions:
       - "Pin the four classes that now take template values (CHK-FIX-002)? Pinned by 012-T1 in the value-source case at upgrade-legacy.vitest.ts:365."
+      - "Fix the same-instance template cache in lib/frontmatter-migration.ts (CHK-FIX-006)? Yes. The cache is removed, so each call reads the template, and the same-instance case in frontmatter-template-literals.vitest.ts pins the re-read. Receipts in scratch/evidence/frontmatter-template-cache-same-instance-red-green.txt. The change is uncommitted."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -69,10 +71,11 @@ Before this phase the order was 1, 3, 4. Every fill-eligible class has a templat
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs` | Modify | Fill step sets the template option, grouped-detail section |
-| `.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts` | Modify | Template map, `readTemplateLiterals`, opt-in option and precedence |
+| `.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts` | Modify | Template map, `readTemplateLiterals` (reads the template on every call, no cache), opt-in option and precedence |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts` | Modify | Value-source case at `:365`, grouped-detail case at `:541`, template-missing fallback case at `:504` (line numbers as of 08:41 CEST, see the note under the test matrix) |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/frontmatter-template-literals.vitest.ts` | Create (fourth pass) | Fresh-run isolation case for the template literal cache (CHK-FIX-006), and a same-instance case added later for the same item |
 
-These three files also carry changes from phases 003, 009, 011 and 015, and they ship in one combined commit under parent decision D6.
+These three modified files also carry changes from phases 003, 009, 011 and 015. They ship in commit `124e11c883d4f955fe097f8af6c308f9c33a841c` under parent decision D6, which is an ancestor of `origin/main`. The new test file is not in that commit. The same-instance change, the cache removal in `lib/frontmatter-migration.ts` and the same-instance case, is uncommitted and not in that commit either.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -105,6 +108,7 @@ A later test round added the four missing pins and the fallback case. Builder 01
 | The template literal comes before the runtime tables, for fills only | The spec and the research ruled the template first, and the tables predate the current templates. The option is opt-in, so other callers keep their output |
 | The grouped-detail section prints on every dry run and apply, with no flag | It reads the validator report that both paths already compute, and it costs no extra validation pass |
 | The grouped-detail heading carries the count in parentheses after the rule | The spec asked for counts, and the parentheses keep the `### folder / x RULE` form the spec gives |
+| Remove the template cache rather than key it by mtime and size | A template read costs 37 to 44 microseconds, and the cache saved 36 to 43 of them per repeat call, which does not show in a migration run. A stat key still reads stale after a same-size edit inside one timestamp tick |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -123,6 +127,12 @@ A later test round added the four missing pins and the fallback case. Builder 01
 | Test validation | Tree4: `RESULT: PASSED`, 31 of 31 |
 | Root test | Tree4: `npm --prefix .skilled/skills/system-spec-kit test` exit 124, stopped at the 600000 ms harness bound while the runtime workspace suite was still running. The log has 237 passing markers and no failure marker, and no total. This is not a pass. The script is not the one AC-004 names, so it is recorded here and not re-run |
 | Goal verification command | The command as the goal first wrote it printed nothing, because the default reporter does not list test names. The goal now adds `--reporter verbose` |
+| Fresh-run template cache case (fourth pass) | From `runtime/cli`, `npx vitest run --config ../../vitest.config.ts --project cli tests/frontmatter-template-literals.vitest.ts --reporter verbose`: repo file exit 0, `Tests 1 passed (1)`. Scratch copy with the cache held on `globalThis`: exit 1, `expected 'critical' to be 'normal'`. Receipts in `scratch/evidence/frontmatter-template-cache-red-green.txt` |
+| Same-instance template case (CHK-FIX-006) | From `runtime/cli`, `npx vitest run --config ../../vitest.config.ts --project cli tests/frontmatter-template-literals.vitest.ts`: on the unmodified code exit 1, `expected 'critical' to be 'normal'`, 1 of 2 passed. After the cache removal exit 0, 2 of 2 passed. Receipts in `scratch/evidence/frontmatter-template-cache-same-instance-red-green.txt` |
+| CLI build after the fix | `npm --prefix .skilled/skills/system-spec-kit/runtime/cli run build`: exit 0. The compiled `dist/lib/frontmatter-migration.js` has no cache reference |
+| Dependent CLI tests after the fix | The target file and the two `memory-quality` suites that import the module: `Test Files 3 passed (3)`, `Tests 7 passed (7)`, exit 0. `tests/test-frontmatter-backfill.js` run with node: `Summary: pass=15, fail=0`, exit 0 |
+| Lint and typecheck of the new test file (fourth pass) | `npx eslint` on the file: 0 errors, with the runtime config applied. `npx tsc -p tsconfig.tests.json --noEmit` in `runtime/`: exit 2 with 95 `error TS` lines, the same count as before, none in the new file or in `upgrade-legacy.vitest.ts` |
+| Real-corpus dry run (fourth pass) | `upgrade-legacy.mjs --roots specs`, no `--apply`: exit 1, inspected 2202 active, passing 2194, failing 8. No upgrade-baseline.json and no reversibility manifest were written. Receipts in `scratch/evidence/upgrade-legacy-dry-run-real-corpus.txt` |
 
 The gate outputs are in the closeout's build scratchpad, and the raw logs back every row above. The tree4 logs are under `gates/tree4/`.
 
@@ -176,6 +186,7 @@ The line numbers in this table and in the first-pass rows above it are from the 
 9. **Route.** The goal's D3 names the LLM Gateway route, and D4 names Luna. The build ran on the opencode-go route with DeepSeek, and the review on the other route, under parent D1 and D7. The test round ran on route DSL and the fix brief 012-T2 on route DSC. The decisions are frozen, so the text stays and the goal log records the difference.
 10. **Retired one-offs.** `add-fm-fields.mjs` is not in the repo, so nothing was deleted for it. `fix-specfolder.mjs` and `fix-dup-anchors.mjs` are outside this phase, as the spec says.
 11. **Module-private exports (closeout 3).** The fresh Opus alignment review found two exports with no consumer. `TemplateLiteralDefaults` and `readTemplateLiterals` are module-private now (OC-O6). `TEMPLATE_DOC_FILES` stays exported.
+12. **Cache case in its own file (fourth pass).** The cache lives in `lib/frontmatter-migration.ts`, not in the upgrade tool, so the isolation case sits in `tests/frontmatter-template-literals.vitest.ts` rather than in `upgrade-legacy.vitest.ts`. It is the one test file this pass added.
 <!-- /ANCHOR:deviations -->
 
 ---
@@ -183,11 +194,11 @@ The line numbers in this table and in the first-pass rows above it are from the 
 <!-- ANCHOR:open-items -->
 ## Open Items
 
-- **T011 and CHK-021, real-corpus `--apply`.** Not run. A manual `--apply` would write to sibling packets that other closeout workers are still changing. The evidence log records a full-corpus `--apply` in a throwaway clone as skipped, with the operator not objecting, and lists it as a follow-up. The dry run on real packets and the sandbox apply case cover the format. Needs an operator decision.
+- **T011 and CHK-021, real-corpus `--apply`.** Not run. The fourth pass ran the read-only dry run over the real corpus, and it plans 8 changes: 2202 active packets were inspected, 2194 pass and 8 fail. Three failing packets sit in folders another lane is editing (016-research-recommendations, 019-epic-follow-up-fixes and 020-deep-review-remediation), and five sit under 026-graph-and-context-optimization. The evidence log records a full-corpus `--apply` in a throwaway clone as skipped, with the operator not objecting, and lists it as a follow-up. Needs an operator decision. Receipts: `scratch/evidence/upgrade-legacy-dry-run-real-corpus.txt`.
 - **Test isolation, RLUNA F2 (brief 012-T2).** The value-source case leaves its fm-track packet in the shared sandbox. The file now has an `afterEach(resetSandbox)` hook, which the verbose run at 08:44 CEST passed with. Closed in closeout 3. The evidence log records 012-T2 killed at the watchdog with no RESULT line, and its edit landed at 08:41. Shuffled runs (seeds 101 and 202, 39 of 39 each) and a normal run pass on the file as it stands.
-- **CHK-FIX-006, process-wide cache.** `readTemplateLiterals` caches by template path in a module-level Map. The second-pass unreadable-template case runs the tool in a child process, which starts with an empty cache, so no in-process variant with a warm cache was run.
-- **CHK-FIX-007, evidence pin.** The phase is not committed yet. Pin the evidence to the combined commit SHA under D6.
+- **CHK-FIX-006, process-wide cache.** Closed. The module-level cache is removed from `lib/frontmatter-migration.ts`, so each call reads the template. The same-instance case in `tests/frontmatter-template-literals.vitest.ts` exits 1 on the unmodified code (`expected 'critical' to be 'normal'`) and exits 0 after the fix. The change is uncommitted in the working tree. Receipts: `scratch/evidence/frontmatter-template-cache-same-instance-red-green.txt`.
+- **CHK-FIX-007, evidence pin.** Closed in the fourth pass. The evidence is pinned to `124e11c883`, the combined commit under D6, which is an ancestor of `origin/main`.
 - **Root test.** The root `npm test` in the system-spec-kit folder did not finish in tree4 (exit 124). The CLI test named by AC-004 passed. The root script is outside this phase.
-- **README (CHK-042, P2).** `spec/README.md` does not describe the grouped section. Deferred.
+- **README (CHK-042, P2).** Closed in the fourth pass. `spec/README.md` line 118 describes the grouped section, and commit `46bd3afd0f` added it.
 - **Changelog refresh.** The spec asks for a file under `../changelog/`, and no changelog folder exists under the parent. This is outside the closeout write set.
 <!-- /ANCHOR:open-items -->

@@ -496,9 +496,9 @@ The packet `goal.md` is the source of goal state. A session binds to it (`openco
 1. **Determine level (1/2/3/3+) before ANY file changes** - Count LOC, assess complexity/risk
 2. **Scaffold from contract-backed templates** - Use `create.sh` or `inline-gate-renderer`, NEVER create from scratch
 3. **Fill ALL placeholders** - Remove placeholder markers and sample content
-4. **Ask A/B/C/D when file modification detected** - Present options, wait for selection
+4. **Ask A/B/C/D when file modification detected** - Present options, wait for selection. **Child dispatch:** when `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-resolved to that directory and the worker does not ask. Interactive sessions always ask.
 5. **Prefer coordinated related packets before new top-level folders** - Check active and related specs, their scope, status, and Phase Documentation Map. When related work qualifies for phase decomposition, recommend one phased packet rather than separate single-spec folders.
-6. **Get explicit user approval before changes** - Show level, path, templates, approach
+6. **Get explicit user approval before changes** - Show level, path, templates, approach. **Child dispatch:** when `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory, record the approval request in that directory and continue. Interactive sessions always ask.
 7. **Use consistent folder naming** - `specs/###-short-name/` format
 8. **Clear both completion gates (Level 2+)** - The `tasks.md` verification checklist AND the `acceptance-criteria.md` closure verdict. Load both before claiming done; see §3 Two Completion Gates
 9. **Mark items `[x]` with evidence** - Include links, test outputs, screenshots
@@ -519,11 +519,11 @@ The packet `goal.md` is the source of goal state. A session binds to it (`openco
 
 1. **Create documentation from scratch** - Use templates only
 2. **Skip spec folder creation** - Unless user explicitly selects D
-3. **Make changes before spec + approval** - Spec folder is prerequisite
+3. **Make changes before spec + approval** - Spec folder is prerequisite. **Child dispatch:** when `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory, record the approval request in that directory and continue. Interactive sessions always ask.
 4. **Leave placeholders in final docs** - All must be replaced
-5. **Decide autonomously update vs create** - Always ask user
+5. **Decide autonomously update vs create** - Always ask user. When `AI_SESSION_CHILD=1` marks a non-interactive child, record the update-or-create question with its default in the lineage directory and continue.
 6. **Claim done without clearing both completion gates** - Level 2+ requires the `tasks.md` verification checklist verified with evidence AND every `acceptance-criteria.md` criterion `Met`, `Waived` or `Superseded`
-7. **Proceed without spec folder confirmation** - Wait for A/B/C/D
+7. **Proceed without spec folder confirmation** - Wait for A/B/C/D. **Child dispatch:** when `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-resolved to that directory and the worker does not ask. Interactive sessions always ask.
 8. **Skip validation before completion** - Completion Verification hard block
 9. **Add ToC sections to standard spec artifacts** - `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`, `debug-delegation.md`, and `resource-map.md` must not contain ToC headings
 
@@ -535,9 +535,9 @@ The packet `goal.md` is the source of goal state. A session binds to it (`openco
    - For sections without sufficient source context, write "N/A - insufficient source context" instead of fabricating content
    - Run `check-placeholders.sh <spec-folder>` to verify zero placeholders remain (see level specifications reference for the full procedure)
    - Document the level change in changelog
-2. **Uncertainty about level <80%** - Present level options to user, default to higher
+2. **Uncertainty about level <80%** - Present level options to user, default to higher. When `AI_SESSION_CHILD=1` marks a non-interactive child, record the level question with the higher level as its default in the lineage directory and continue.
 3. **Template doesn't fit requirements** - Adapt closest template, document modifications
-4. **User requests skip (Option D)** - Warn about tech debt, explain debugging challenges, confirm consent
+4. **User requests skip (Option D)** - Warn about tech debt, explain debugging challenges, confirm consent. When `AI_SESSION_CHILD=1` marks a non-interactive child, record the skip request in the lineage directory with documentation kept as the default and continue.
 5. **Validation fails with errors** - Report specific failures, provide fix guidance, re-run after fixes
 
 ---

@@ -1,0 +1,150 @@
+PASS: /speckit:plan doc exists
+PASS: /speckit:complete doc exists
+PASS: /speckit:plan auto workflow asset exists
+PASS: /speckit:complete auto workflow asset exists
+PASS: /speckit:plan and /speckit:complete document phase flags
+PASS: phase workflow assets route to create.sh --phase
+PASS: /speckit:plan doc exists
+PASS: /speckit:plan documents --phase-folder contract
+PASS: /speckit:plan includes Option E/phase-child behavior
+PASS: /speckit:implement doc exists
+PASS: /speckit:implement documents --phase-folder contract
+PASS: /speckit:implement includes Option E/phase-child behavior
+PASS: /speckit:complete doc exists
+PASS: /speckit:complete documents --phase-folder contract
+PASS: /speckit:complete includes Option E/phase-child behavior
+PASS: /speckit:resume doc exists
+PASS: /speckit:resume documents --phase-folder contract
+PASS: /speckit:resume includes Option E/phase-child behavior
+PASS: speckit-plan.yaml exists
+PASS: speckit-plan.yaml includes phase-folder/phase-child contract
+PASS: speckit-implement.yaml exists
+PASS: speckit-implement.yaml includes phase-folder/phase-child contract
+PASS: speckit-complete.yaml exists
+PASS: speckit-complete.yaml includes phase-folder/phase-child contract
+PASS: speckit-resume-auto.yaml exists
+PASS: speckit-resume-auto.yaml includes phase-folder/phase-child contract
+PASS: speckit-resume-confirm.yaml exists
+PASS: speckit-resume-confirm.yaml includes phase-folder/phase-child contract
+PASS: speckit-plan.yaml exists for template compliance checks
+PASS: speckit-plan.yaml embeds inline template scaffold guidance
+PASS: speckit-plan.yaml requires strict validation after spec-doc writes
+PASS: speckit-plan.yaml ties authoring steps back to the inline scaffold contract
+PASS: speckit-implement.yaml exists for template compliance checks
+PASS: speckit-implement.yaml embeds inline template scaffold guidance
+PASS: speckit-implement.yaml requires strict validation after spec-doc writes
+PASS: speckit-implement.yaml ties authoring steps back to the inline scaffold contract
+PASS: speckit-complete.yaml exists for template compliance checks
+PASS: speckit-complete.yaml embeds inline template scaffold guidance
+PASS: speckit-complete.yaml requires strict validation after spec-doc writes
+PASS: speckit-complete.yaml ties authoring steps back to the inline scaffold contract
+PASS: T242-SS1: speckit-plan.yaml defines numbered workflow steps
+PASS: T242-SS2: speckit-plan.yaml validate.sh call uses --strict flag
+PASS: T242-SS3: speckit-plan.yaml template_compliance includes scaffolds + validation
+PASS: T242-SS1: speckit-implement.yaml defines numbered workflow steps
+PASS: T242-SS2: speckit-implement.yaml validate.sh call uses --strict flag
+PASS: T242-SS3: speckit-implement.yaml template_compliance includes scaffolds + validation
+PASS: T242-SS1: speckit-complete.yaml defines numbered workflow steps
+PASS: T242-SS2: speckit-complete.yaml validate.sh call uses --strict flag
+PASS: T242-SS3: speckit-complete.yaml template_compliance includes scaffolds + validation
+PASS: T242-IS1: speckit-implement.yaml references plan.md as prerequisite
+PASS: T242-IS2: speckit-implement.yaml references tasks.md for progress tracking
+PASS: T242-IS3: speckit-implement.yaml references verification/checklist step
+PASS: T242-CS1: speckit-complete.yaml references implementation-summary.md
+PASS: T242-CS2: speckit-complete.yaml references completion state
+PASS: speckit-plan.yaml exists as the single lifecycle asset
+PASS: T-EM1: speckit-plan.yaml declares execution_mode with auto, confirm and autopilot
+PASS: T-EM2: speckit-plan.yaml lists its checkpoint steps
+PASS: T-EM2: speckit-plan.yaml has at least one checkpoint step
+PASS: T-EM3: speckit-plan.yaml checkpoint step_1_request_analysis names a real step
+PASS: T-EM4: speckit-plan.yaml checkpoint step_1_request_analysis carries a confirm-only block or flag
+PASS: T-EM3: speckit-plan.yaml checkpoint step_2_pre_work_review names a real step
+PASS: T-EM4: speckit-plan.yaml checkpoint step_2_pre_work_review carries a confirm-only block or flag
+PASS: T-EM3: speckit-plan.yaml checkpoint step_3_specification names a real step
+PASS: T-EM4: speckit-plan.yaml checkpoint step_3_specification carries a confirm-only block or flag
+PASS: T-EM3: speckit-plan.yaml checkpoint step_4_clarification names a real step
+PASS: T-EM4: speckit-plan.yaml checkpoint step_4_clarification carries a confirm-only block or flag
+PASS: T-EM3: speckit-plan.yaml checkpoint step_5_planning names a real step
+PASS: T-EM4: speckit-plan.yaml checkpoint step_5_planning carries a confirm-only block or flag
+PASS: T-EM3: speckit-plan.yaml checkpoint step_6_save_context names a real step
+PASS: T-EM4: speckit-plan.yaml checkpoint step_6_save_context carries a confirm-only block or flag
+PASS: T-EM3: speckit-plan.yaml checkpoint step_7_handover_check names a real step
+PASS: T-EM4: speckit-plan.yaml checkpoint step_7_handover_check carries a confirm-only block or flag
+PASS: T-EM5: speckit-plan.yaml carries confirm wording overrides
+PASS: T-EM6: speckit-plan.yaml routes save_context through the shared tail
+PASS: speckit-implement.yaml exists as the single lifecycle asset
+PASS: T-EM1: speckit-implement.yaml declares execution_mode with auto, confirm and autopilot
+PASS: T-EM2: speckit-implement.yaml lists its checkpoint steps
+PASS: T-EM2: speckit-implement.yaml has at least one checkpoint step
+PASS: T-EM3: speckit-implement.yaml checkpoint step_1_review_plan_and_spec names a real step
+PASS: T-EM4: speckit-implement.yaml checkpoint step_1_review_plan_and_spec carries a confirm-only block or flag
+PASS: T-EM3: speckit-implement.yaml checkpoint step_2_task_breakdown names a real step
+PASS: T-EM4: speckit-implement.yaml checkpoint step_2_task_breakdown carries a confirm-only block or flag
+PASS: T-EM3: speckit-implement.yaml checkpoint step_3_analysis names a real step
+PASS: T-EM4: speckit-implement.yaml checkpoint step_3_analysis carries a confirm-only block or flag
+PASS: T-EM3: speckit-implement.yaml checkpoint step_4_acceptance_criteria names a real step
+PASS: T-EM4: speckit-implement.yaml checkpoint step_4_acceptance_criteria carries a confirm-only block or flag
+PASS: T-EM3: speckit-implement.yaml checkpoint step_5_implementation_check names a real step
+PASS: T-EM4: speckit-implement.yaml checkpoint step_5_implementation_check carries a confirm-only block or flag
+PASS: T-EM3: speckit-implement.yaml checkpoint step_5_5_preflight names a real step
+PASS: T-EM4: speckit-implement.yaml checkpoint step_5_5_preflight carries a confirm-only block or flag
+PASS: T-EM3: speckit-implement.yaml checkpoint step_6_development names a real step
+PASS: T-EM4: speckit-implement.yaml checkpoint step_6_development carries a confirm-only block or flag
+PASS: T-EM3: speckit-implement.yaml checkpoint step_7_completion names a real step
+PASS: T-EM4: speckit-implement.yaml checkpoint step_7_completion carries a confirm-only block or flag
+PASS: T-EM3: speckit-implement.yaml checkpoint step_7_5_postflight names a real step
+PASS: T-EM4: speckit-implement.yaml checkpoint step_7_5_postflight carries a confirm-only block or flag
+PASS: T-EM3: speckit-implement.yaml checkpoint step_8_save_context names a real step
+PASS: T-EM4: speckit-implement.yaml checkpoint step_8_save_context carries a confirm-only block or flag
+PASS: T-EM3: speckit-implement.yaml checkpoint step_9_session_handover_check names a real step
+PASS: T-EM4: speckit-implement.yaml checkpoint step_9_session_handover_check carries a confirm-only block or flag
+PASS: T-EM3: speckit-implement.yaml checkpoint step_6_5_checkpoint_development names a real step
+PASS: T-EM4: speckit-implement.yaml checkpoint step_6_5_checkpoint_development carries a confirm-only block or flag
+PASS: T-EM5: speckit-implement.yaml carries confirm wording overrides
+PASS: T-EM6: speckit-implement.yaml routes save_context through the shared tail
+PASS: speckit-complete.yaml exists as the single lifecycle asset
+PASS: T-EM1: speckit-complete.yaml declares execution_mode with auto, confirm and autopilot
+PASS: T-EM2: speckit-complete.yaml lists its checkpoint steps
+PASS: T-EM2: speckit-complete.yaml has at least one checkpoint step
+PASS: T-EM3: speckit-complete.yaml checkpoint step_1_request_analysis names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_1_request_analysis carries a confirm-only block or flag
+PASS: T-EM3: speckit-complete.yaml checkpoint step_2_pre_work_review names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_2_pre_work_review carries a confirm-only block or flag
+PASS: T-EM3: speckit-complete.yaml checkpoint step_3_specification names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_3_specification carries a confirm-only block or flag
+PASS: T-EM3: speckit-complete.yaml checkpoint step_4_clarification names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_4_clarification carries a confirm-only block or flag
+PASS: T-EM3: speckit-complete.yaml checkpoint step_5_acceptance_criteria names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_5_acceptance_criteria carries a confirm-only block or flag
+PASS: T-EM3: speckit-complete.yaml checkpoint step_6_planning names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_6_planning carries a confirm-only block or flag
+PASS: T-EM3: speckit-complete.yaml checkpoint step_7_task_breakdown names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_7_task_breakdown carries a confirm-only block or flag
+PASS: T-EM3: speckit-complete.yaml checkpoint step_8_analysis names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_8_analysis carries a confirm-only block or flag
+PASS: T-EM3: speckit-complete.yaml checkpoint step_9_implementation_check names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_9_implementation_check carries a confirm-only block or flag
+PASS: T-EM3: speckit-complete.yaml checkpoint step_10_development names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_10_development carries a confirm-only block or flag
+PASS: T-EM3: speckit-complete.yaml checkpoint step_11_acceptance_verify names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_11_acceptance_verify carries a confirm-only block or flag
+PASS: T-EM3: speckit-complete.yaml checkpoint step_12_completion names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_12_completion carries a confirm-only block or flag
+PASS: T-EM3: speckit-complete.yaml checkpoint step_13_save_context names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_13_save_context carries a confirm-only block or flag
+PASS: T-EM3: speckit-complete.yaml checkpoint step_14_handover_check names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_14_handover_check carries a confirm-only block or flag
+PASS: T-EM3: speckit-complete.yaml checkpoint step_6_5_checkpoint_planning names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_6_5_checkpoint_planning carries a confirm-only block or flag
+PASS: T-EM3: speckit-complete.yaml checkpoint step_9_5_preflight names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_9_5_preflight carries a confirm-only block or flag
+PASS: T-EM3: speckit-complete.yaml checkpoint step_10_5_checkpoint_development names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_10_5_checkpoint_development carries a confirm-only block or flag
+PASS: T-EM3: speckit-complete.yaml checkpoint step_11_5_postflight names a real step
+PASS: T-EM4: speckit-complete.yaml checkpoint step_11_5_postflight carries a confirm-only block or flag
+PASS: T-EM5: speckit-complete.yaml carries confirm wording overrides
+PASS: T-EM6: speckit-complete.yaml routes save_context through the shared tail
+PASS: shared save-context tail exists
+PASS: T-EM7: shared save-context tail carries the writer, post-save rule and anchor requirements
+
+Result: passed=148 failed=0

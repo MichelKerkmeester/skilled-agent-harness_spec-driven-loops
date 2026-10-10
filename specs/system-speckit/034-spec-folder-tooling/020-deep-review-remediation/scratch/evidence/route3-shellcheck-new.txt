@@ -1,0 +1,7 @@
+
+In out/hostile-new.block.sh line 2:
+if [ "pull_request" = "pull_request" ]; then
+                    ^-- SC2050 (warning): This expression is constant. Did you forget the $ on a variable?
+
+For more information:
+  https://www.shellcheck.net/wiki/SC2050 -- This expression is constant. Did ...

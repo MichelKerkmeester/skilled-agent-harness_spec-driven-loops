@@ -1,0 +1,24 @@
+## completedAt in upgrade-legacy code
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:494:  context.manifest.completedAt = new Date().toISOString();
+## parity test coverage of the three F25 files
+20:const GATE_3_MENU_FILES = [
+41:for (const file of GATE_3_MENU_FILES) {
+## parity test targets
+21:.skilled/commands/create/assets/create-feature-catalog-presentation.txt
+22:.skilled/commands/create/assets/create-manual-testing-playbook-presentation.txt
+23:.skilled/commands/create/assets/create-skill-parent-presentation.txt
+24:.skilled/commands/create/assets/create-skill-presentation.txt
+25:.skilled/commands/deep/assets/deep-ai-council-presentation.txt
+26:.skilled/commands/deep/assets/deep-research-presentation.txt
+27:.skilled/commands/deep/assets/deep-review-presentation.txt
+28:.skilled/commands/deep/assets/compiled/deep-ai-council.contract.md
+29:.skilled/commands/deep/assets/compiled/deep-research.contract.md
+30:.skilled/commands/deep/assets/compiled/deep-review.contract.md
+31:.skilled/commands/speckit/assets/speckit-complete-presentation.txt
+32:.skilled/commands/speckit/assets/speckit-plan-presentation.txt
+## lib README link line
+- `grep-convention.mjs` is the largest module: it is the pure, testable half of the document retrofit in `../retrofit-convention.mjs`, covering variant classification, the anchor grammar, the trigger allowlist and the diff classifier.
+## retrofit target exists:
+.skilled/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs
+ls: .skilled/skills/system-spec-kit/runtime/cli/retrieval/retrofit-convention.mjs: No such file or directory
+rc=1

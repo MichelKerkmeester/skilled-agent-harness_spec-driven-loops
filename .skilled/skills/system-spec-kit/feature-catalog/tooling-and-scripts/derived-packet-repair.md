@@ -32,6 +32,8 @@ The tool repairs the first and refuses the second. The refusal is the
 feature: filling in authored records would turn a red gate green by making
 packets assert things nobody established.
 
+---
+
 ## 2. HOW IT WORKS
 
 For each packet it asks the validator what is wrong, intersects the reported
@@ -52,6 +54,12 @@ was kept to preserve.
 In CI it runs without `--apply`. A gate that silently rewrote packets would
 erase the drift it exists to surface.
 
+### Symbolic Links
+
+A link at a rewrite target is refused, not followed. When `description.json`, `graph-metadata.json`, `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` or `handover.md` is a symbolic link, the report prints `left unchanged <file>: symbolic link, not followed` and no write goes through it. A linked `graph-metadata.json` is also never re-derived: the re-derive writer renames over the file, so it would replace the link with a regular file. The dry run leaves the re-derive step out of the plan for that packet and `--apply` skips it, so both runs report the same work, and the link and its target stay in place. A `--folder` or `--roots` argument whose real path leaves the specs roots is refused before any packet is read. Every `UNREADABLE` line names its reason.
+
+---
+
 ## 3. SOURCE FILES
 
 | File | Role |
@@ -62,6 +70,8 @@ erase the drift it exists to surface.
 | `runtime/cli/spec/validate.sh` | Supplies the diagnosis and the detected level |
 | `runtime/cli/graph/backfill-graph-metadata.ts` | The re-derivation entry point |
 | `.github/workflows/strict-pass-freshness-report.yml` | Runs it in reporting mode |
+
+---
 
 ## 4. SOURCE METADATA
 

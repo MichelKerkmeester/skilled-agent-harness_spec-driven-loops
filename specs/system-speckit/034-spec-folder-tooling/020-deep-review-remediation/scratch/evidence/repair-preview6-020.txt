@@ -1,0 +1,2 @@
+
+inspected=1 repairable=0 failed=0

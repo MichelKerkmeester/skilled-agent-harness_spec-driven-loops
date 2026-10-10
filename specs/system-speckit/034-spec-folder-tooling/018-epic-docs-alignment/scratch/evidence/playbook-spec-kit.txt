@@ -1,0 +1,7 @@
+contract=operator-scenario routing_gold_contract=routing-gold strict=on
+manifest=.skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json
+warn_packages=
+PASS package=system-spec-kit tier=FAIL_CLOSED scenarios=99 categories=10 operator=85 routing_gold_excluded=14 violations=0 warnings=1
+  WARN PROMPT_UNSYNCED ux-hooks/comment-hygiene-checker-baseline.md:52 ux-hooks/comment-hygiene-checker-baseline.md:32 scenario contract prompt differs from the execution table's Exact Prompt
+exit=0
+rc=0

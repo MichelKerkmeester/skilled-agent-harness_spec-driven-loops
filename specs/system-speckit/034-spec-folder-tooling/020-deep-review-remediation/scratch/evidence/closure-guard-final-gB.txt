@@ -1,0 +1,89 @@
+LANE gB FINAL EVIDENCE: heal-spec-docs.cjs folder and link guards
+Rows: B-03, B-09, B-10, B-11, B-12
+
+SCOPE AND METHOD
+
+Production file, not edited by this lane: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs
+git diff --stat for that file before the first mutant and after the last mutant is identical:
+ .../runtime/cli/spec/heal-spec-docs.cjs | 322 ++++++++++++++++++---  (1 file changed, 289 insertions(+), 33 deletions(-))
+Copies: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gB/diffstat-before.txt and diffstat-after-mutants.txt
+
+Test file changed: .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+This file is untracked in git, so git diff shows nothing for it. It grew from 649 to 722 lines and from 32 to 35 cases. Three cases were added. No other file was changed.
+
+Mirrors: built with mkmirror.mjs under the gs scratch tree, all named with the gB- prefix. The control mirror is gB-control. Mutant mirrors are gB-dot1, gB-dot2, gB-walk0, gB-walk1, gB-b11, gB-b12, gB-b12x, gB-b03, gB-reach, gB-phys and gB-realp. The control mirror passed 35 of 35 with the new cases before any mutant ran.
+Mutant specs: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gB/mut/
+Logs: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gB/
+
+GUARD LOCATIONS IN THE CURRENT PRODUCTION FILE
+
+folderRefusal starts at line 902. Its folder-itself link check is line 904. Its no-anchor branch is line 914. Its anchor link check is line 918. Its per-component lstat walk is lines 919 and 920. Its --roots realpath check is lines 923 to 925.
+reachesRoot is lines 847 to 855, with the ancestor identity check at line 850. physicalLocations is lines 838 and 839.
+The default run document link refusal is lines 1656 and 1657.
+
+ROW RESULTS
+
+Row B-03, link inside the packet, apply.
+Guard: heal-spec-docs.cjs 1656 to 1657 (default run refuses a linked document).
+Case: NEW. "default healer --apply refuses a symlinked spec.md whose target sits inside the same packet".
+Mutant gB-b03: the check at line 1656 becomes if (false).
+Red: S/gB/red-b03.log, 4 failed of 35. The new case fails at its link assertion (test file line 295).
+Green: control S/gB/control-symlink.log 35 of 35. Repository S/gB/repo-symlink-green1.log 35 of 35.
+Note: the case asserts refusal, following the operator ruling that every linked document is refused. spec.md line 193 says a link that points inside specs is allowed. That spec and code mismatch is recorded in closure-test-matrix-rationale.txt and is not decided here.
+
+Row B-09, dot segment in a --folder argument.
+Guard: heal-spec-docs.cjs 903 (the target is path.resolve of the folder argument), with the lexical walk at 904 to 920.
+Case: NEW. "default run --apply refuses a --folder whose mid-path dot segment reaches a packet through a link".
+Mutant gB-dot1: drop every "/.." token before resolving, so the guard judges a path the writer does not write to.
+Red: S/gB/red-dot1.log, 1 failed of 35. The failing assertion is the outside digest (test file line 494).
+Existing case: "%s --apply refuses a relative ../specs --folder run from a subdirectory when no --roots is given", three modes. This case has a leading dot segment.
+Mutant gB-dot2: drop every ".." token before resolving.
+Red: S/gB/red-dot2.log, 4 failed of 35. These are the three existing modes plus the new case.
+Green: as for B-03.
+Correction to the matrix: section 4 says no --folder argument in the heal suites contains "..". That search missed the relative ../specs argument, because it required the flag and the dot segment on one line.
+
+Row B-10, linked parent directory inside the roots.
+Guard: heal-spec-docs.cjs 919 and 920 (per-component lstat walk below the anchor).
+Case: EXISTING. "refuses a --folder reached through a linked component inside the specs root".
+Mutant gB-walk0: the loop runs over prefixes.slice(prefixes.length), so no component below the anchor is judged.
+Red: S/gB/red-walk0.log, 7 failed of 35. This includes the B-10 case.
+Mutant gB-walk1: the loop starts one component late, skipping the first component below the anchor.
+Red: S/gB/red-walk1.log, 2 failed of 35. This includes the B-10 case.
+
+Row B-11, linked parent directory outside the default roots.
+Guard: heal-spec-docs.cjs 914 (no anchor under the --roots value is a refusal).
+Case: NEW, with --roots. "--roots run refuses a --folder whose linked parent resolves outside the given roots, and leaves that packet untouched".
+Mutant gB-b11: line 914 returns null, so the folder is allowed.
+Red: S/gB/red-b11.log, 1 failed of 35. The failing assertion is the outside digest (test file line 517).
+Green: as for B-03.
+No-roots variant, recorded as a fixture and not a test: the link parent is outside every default root, the working directory is outside every repository, and no --roots is given. The current code heals through the link. The dry run reports "would heal" and exit 0. The apply run reports "healed", exit 0, and the outside spec.md digest changes. Logs: S/gB/b11a-dry.out and S/gB/b11a-apply.out. The accepted partial stands. Its status changes from INFERRED to OBSERVED. No test was added, because a test would fix the hole in place.
+
+Row B-12, linked folder argument.
+Guard: heal-spec-docs.cjs 904 (the folder itself is a link). The walk at 919 and 920 and the realpath check at 923 to 925 also refuse a linked folder.
+Case: EXISTING. "%s --apply refuses a dangling --folder and creates nothing at its target", three modes. These cases assert the reason "the folder itself is a link".
+Mutant gB-b12: line 904 becomes if (false).
+Red: S/gB/red-b12.log, 3 failed of 35. The walk still refuses the link, so the failure is the reason text.
+Mutant gB-b12x: line 904 becomes if (false), and the walk at 919 is disabled.
+Red: S/gB/red-b12x.log, 10 failed of 35. The three dangling cases now fail on status.
+The linked, non-dangling case, "%s --apply refuses a linked --folder and leaves the packet behind the link untouched", still passes under gB-b12x, because the realpath check at 923 refuses it. See the rows not closed.
+
+HELPER MUTANTS (not row-specific, run to show what the suite can see)
+gB-reach: reachesRoot checks only the real location, not its ancestors (line 850). Red: S/gB/red-reach.log, 3 failed of 35.
+gB-phys: physicalLocations returns an empty list (line 839). Red: S/gB/red-phys.log, 5 failed of 35.
+gB-realp: the --roots realpath check at 923 is disabled. Red: S/gB/red-realp.log, 0 failed of 35. This guard is not killed. See the rows not closed.
+
+TOTALS
+Seven healer files, control before the new cases: 132 passed of 132 (S/gB/control-seven.log).
+Seven healer files, repository after the new cases: 135 passed of 135 (S/gB/repo-seven-final.log).
+The seven files are heal-symlink-containment, heal-lane-modes, heal-target-parity, heal-anchor-repair, heal-provenance, anchor-repair-sample and create-root-numbering.
+
+ROWS NOT CLOSED
+
+1. B-11, no-roots variant. The healer writes through a link whose parent is outside every default root. This is the accepted partial, now observed. It needs an operator decision: accept it, or add a guard. No test asserts it.
+2. The --roots realpath check at lines 923 to 925 is not killed by any case (gB-realp, 0 failed). For any path the component walk accepts, the realpath equals the root's realpath plus plain components, so the check only matters when two paths share dev:ino and differ in realpath, such as a bind mount. A macOS fixture cannot build a bind mount. The check is defense in depth. The operator should either accept it as unkilled or name a fixture that can reach it.
+3. The B-03 spec and code mismatch remains open in the rationale file. This lane follows the operator ruling and asserts refusal.
+
+CORRECTIONS TO THE MATRIX AND RED MAP
+- Section 4, B-09: the claim that no heal --folder argument contains ".." is wrong. The relative ../specs case exists.
+- Section 4, B-11: the claim that every --folder call passes --roots is wrong. The default run folder cases pass no --roots.
+- Red map, B6 and B1: B-10 and B-12 now have recorded mutants (gB-walk0, gB-walk1, gB-b12).

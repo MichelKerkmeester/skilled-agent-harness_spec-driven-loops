@@ -908,13 +908,13 @@ function normalizeContextType(rawValue: string | null | undefined): string | nul
   return null;
 }
 
-const TEMPLATE_LITERAL_CACHE = new Map<string, TemplateLiteralDefaults>();
-
 /**
  * Read the importance tier and context type a document class's template
  * declares. A missing value is filled from the template in preference to the
  * runtime tables, so a repaired document matches a scaffolded one; an unreadable
  * or unmapped template yields no literals and leaves the caller's fallback in charge.
+ * The template is read on every call: it is small, and a value kept across calls
+ * would go stale when the template is edited within the same process.
  */
 function readTemplateLiterals(templatesRoot: string, basename: string): TemplateLiteralDefaults {
   const relativePath = TEMPLATE_DOC_FILES.get(lower(basename));
@@ -923,11 +923,6 @@ function readTemplateLiterals(templatesRoot: string, basename: string): Template
   }
 
   const templatePath = path.resolve(templatesRoot, relativePath);
-  const cached = TEMPLATE_LITERAL_CACHE.get(templatePath);
-  if (cached) {
-    return { ...cached };
-  }
-
   let raw: string;
   try {
     raw = fs.readFileSync(templatePath, 'utf8');
@@ -964,8 +959,7 @@ function readTemplateLiterals(templatesRoot: string, basename: string): Template
     }
   }
 
-  TEMPLATE_LITERAL_CACHE.set(templatePath, literals);
-  return { ...literals };
+  return literals;
 }
 
 function normalizeTriggerPhrases(value: FrontmatterValue | undefined): string[] {
@@ -1362,26 +1356,6 @@ function inferContextType(
   }
 
   return DOC_DEFAULT_CONTEXT[classification.documentType] || 'general';
-}
-
-function frontmatterForContextTemplate(
-  _classification: ClassifiedDocument,
-  existingDescription: string | null,
-  existingTriggers: string[],
-  _existingTier: string | null,
-  existingContext: string | null
-): ManagedFrontmatter {
-  const trigger_phrases = existingTriggers.length > 0
-    ? existingTriggers
-    : ['memory dashboard', 'session summary', 'context template'];
-
-  return {
-    title: '{{MEMORY_DASHBOARD_TITLE}}',
-    description: existingDescription || 'Session context memory template for Spec Kit indexing.',
-    trigger_phrases,
-    importance_tier: '{{IMPORTANCE_TIER}}',
-    contextType: existingContext || 'general',
-  };
 }
 
 /** Build managed frontmatter. */

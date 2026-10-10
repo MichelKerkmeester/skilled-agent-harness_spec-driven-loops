@@ -1,0 +1,3 @@
+CMD: python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <seeded scratch file>
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/closeout-019/hyg-positive-control.ts:1: // Handles the REQ-001 finding from the review
+EXIT=1

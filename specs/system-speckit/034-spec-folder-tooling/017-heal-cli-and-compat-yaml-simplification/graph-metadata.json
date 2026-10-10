@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification",
+  "spec_folder": "system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification",
+  "parent_id": "system-speckit/034-spec-folder-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "heal cli and compat yaml simplification",
+      "remove lane modes mode flag",
+      "remove lane modes json flag",
+      "merge step failure fields",
+      "sort refusals order test",
+      "heal cli and compat yaml simplification plan",
+      "heal cli and compat yaml simplification tasks",
+      "heal cli and compat yaml simplification acceptance criteria",
+      "heal cli and compat yaml simplification implementation summary"
+    ],
+    "key_topics": [
+      "heal",
+      "cli",
+      "compat",
+      "yaml",
+      "simplification",
+      "remove",
+      "lane",
+      "modes",
+      "mode",
+      "flag",
+      "json",
+      "merge"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts",
+      ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
+      ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs",
+      "specs/system-speckit/034-spec-folder-tooling/spec.md",
+      "scratch/baseline-summary.txt",
+      "scratch/cli-summary.txt",
+      "scratch/vitest-two-summary.txt",
+      "scratch/doctor-summary.txt",
+      "scratch/mutation-results.txt",
+      "scratch/corpus-summary.txt",
+      "scratch/search.txt",
+      "scratch/recheck.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "heal-spec-docs.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "heal-lane-modes.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-compat-action.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-compat.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-summary.txt",
+        "kind": "file",
+        "path": "scratch/baseline-summary.txt",
+        "source": "derived"
+      },
+      {
+        "name": "cli-summary.txt",
+        "kind": "file",
+        "path": "scratch/cli-summary.txt",
+        "source": "derived"
+      },
+      {
+        "name": "vitest-two-summary.txt",
+        "kind": "file",
+        "path": "scratch/vitest-two-summary.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-summary.txt",
+        "kind": "file",
+        "path": "scratch/doctor-summary.txt",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-results.txt",
+        "kind": "file",
+        "path": "scratch/mutation-results.txt",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-summary.txt",
+        "kind": "file",
+        "path": "scratch/corpus-summary.txt",
+        "source": "derived"
+      },
+      {
+        "name": "search.txt",
+        "kind": "file",
+        "path": "scratch/search.txt",
+        "source": "derived"
+      },
+      {
+        "name": "recheck.txt",
+        "kind": "file",
+        "path": "scratch/recheck.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The phase 16 build carries three optional surfaces that no requirement asks for",
+    "created_at": "2026-10-09T10:43:48Z",
+    "last_save_at": "2026-10-09T14:37:58.230Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f4781d580a20a31152a41a75783cadb831c6165b68b8912f100f0199a318128b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "523f3252e94c5137ea0d19b0843e497772593dc53d1a18e4575cb335d7c4d2e6",
+      "plan.md": "f5448f90b62a3f0e1a42422c2e7e82abc339757884db4c14b06aa65caeb6f05b",
+      "tasks.md": "0a90b62653b842316830186c31fafce18d2bdbf580c0bf0423bd2cb10e0a8a72",
+      "implementation-summary.md": "4d63ad89e497067700d590e6f7228879ad479c080e68026be4ec1a62dd94f711"
+    },
+    "last_active_at": null
+  }
+}

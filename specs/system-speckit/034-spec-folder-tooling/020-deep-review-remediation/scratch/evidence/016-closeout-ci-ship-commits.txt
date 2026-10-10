@@ -1,0 +1,30 @@
+== commit 231201b32a (231201b32a docs(specs): record the research-recommendations ship)
+Rebuild the trigger index	success	completed
+Manual-testing-playbook operator-scenario contract	success	completed
+Every declared dispatch rule is reachable and discriminates	success	completed
+Commit messages, branch names and PR description follow the templates	success	completed
+sk-doc script tests	success	completed
+Every gate input resolves under both source roots	success	completed
+Advisory — test suites and doc-model references	success	completed
+Hermes skill and prompt copies match their sources	success	completed
+Spec packets touched by this PR validate clean	success	completed
+OpenCode and Claude command trees stay identical	success	completed
+Load-bearing rule wording stays in sync across copies	success	completed
+check_runs_total=11
+== commit d933985159 (d933985159 chore(system-spec-kit): rebuild the trigger index)
+Rebuild the trigger index	skipped	completed
+Typecheck, import policy and test suites for the spec-kit packages	success	completed
+Runtime mirrors agree with their sources	success	completed
+Doctor script test suites	success	completed
+Spec packets touched by this PR validate clean	success	completed
+Hermes skill and prompt copies match their sources	success	completed
+sk-doc script tests	success	completed
+Advisory — test suites and doc-model references	success	completed
+OpenCode and Claude command trees stay identical	success	completed
+No broken markdown links in skills/commands/agents	success	completed
+Every declared dispatch rule is reachable and discriminates	success	completed
+Commit messages, branch names and PR description follow the templates	success	completed
+Every gate input resolves under both source roots	success	completed
+Manual-testing-playbook operator-scenario contract	success	completed
+Load-bearing rule wording stays in sync across copies	success	completed
+check_runs_total=15

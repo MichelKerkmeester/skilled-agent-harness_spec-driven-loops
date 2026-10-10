@@ -23,7 +23,7 @@ contextType: "general"
 | **Language/Stack** | GitHub Actions YAML, Node 20 (the generator is a Node ESM script) |
 | **Framework** | GitHub Actions |
 | **Storage** | The committed JSON artifact at `runtime/data/trigger-index.json` |
-| **Testing** | YAML parse. `actionlint` is not installed, and the live run is pending a push |
+| **Testing** | YAML parse, `actionlint` (exit 0), `bash -n` on the run blocks, and live runs on `main` (`scratch/evidence/`) |
 
 ### Overview
 
@@ -44,8 +44,8 @@ The committed trigger index drifts because the pull request check only reports i
 - [x] The rebuild workflow exists with the guards and the single-path commit.
 - [x] The advisory drift message points at the rebuild workflow.
 - [x] The new workflow parses as YAML.
-- [ ] The first live push exercises the job and leaves the index current, which verifies REQ-001 and SC-001.
-- [ ] The commit step's shell block passes `bash -n`.
+- [x] The first live push exercises the job and leaves the index current, which verifies REQ-001 and SC-001 (`scratch/evidence/ci-bot-commit-proof.txt` sections 4 and 5).
+- [x] The commit step's shell block passes `bash -n` (`scratch/evidence/actionlint-trigger-index-rebuild.txt` section 3).
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -83,7 +83,7 @@ The work follows `tasks.md`. Setup recorded the scope, implementation created th
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-There is no unit test for a workflow file. The local check is a YAML parse of the new file, which passed. `actionlint` is not installed, so no schema check ran. A live run needs a push, which has not happened. `bash -n` over the commit step's shell block exits 0.
+There is no unit test for a workflow file. The local checks are a YAML parse, `actionlint` (exit 0 on the working tree and on HEAD) and `bash -n` over each run block (exit 0), recorded in `scratch/evidence/actionlint-trigger-index-rebuild.txt`. The live behavior comes from the run history on `main`, recorded in `scratch/evidence/ci-bot-commit-proof.txt`.
 <!-- /ANCHOR:testing -->
 
 ---

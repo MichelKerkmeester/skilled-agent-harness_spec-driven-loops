@@ -1,0 +1,34 @@
+✔ takes a fixture v3 repository through check, preview, move, upgrade and validation (12378.496958ms)
+✔ a layout map that cannot load its script exits 1 with empty stdout (26.570541ms)
+✔ the check runs both compatibility commands read-only (0.638625ms)
+✔ a v3 checkout reports layout v3 and its era signal counts (255.110875ms)
+✔ a v4 repository reports layout v4 and no move (63.376792ms)
+✔ a partial move reports both roots (69.734208ms)
+✔ every layout state has a check route and a presentation value (0.15525ms)
+✔ the compatibility commands write nothing (536.487541ms)
+✔ the compat action previews before it asks and asks before it writes (0.297959ms)
+✔ the compat action runs the layout map and the upgrade commands (0.060208ms)
+✔ the compat move log lives in the git directory (0.04925ms)
+✔ every terminal stop after run-started closes its move log run (0.070292ms)
+✔ the router documents the compat path with declared flags only (0.131833ms)
+✔ the planned steps move a classic v3 checkout to v4 (98.931583ms)
+✔ the planned steps finish a partial move (79.176917ms)
+✔ a dirty spec root blocks the move before any step runs (90.621709ms)
+✔ a tree dirtied after the move approval is refused before the move runs (107.316708ms)
+✔ an owed recovery step runs without the dirty-roots refusal (0.099125ms)
+✔ an interrupted classic move resumes from the recomputed map (80.734917ms)
+✔ an interrupted move that stopped before the legacy link is not treated as finished (89.929667ms)
+✔ an interrupted partial move names the track already moved (68.447042ms)
+✔ collisions stop the move and list both paths with their reasons (70.413ms)
+✔ a layout map without parseable JSON on stdout fails whatever its exit code (0.079125ms)
+✔ a move step that cannot complete stops the run and reports the failed step (69.121959ms)
+✔ failed packets are parsed from the lines upgrade-legacy prints (0.262375ms)
+✔ units that still need their release update block the action (0.096875ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17518.263792

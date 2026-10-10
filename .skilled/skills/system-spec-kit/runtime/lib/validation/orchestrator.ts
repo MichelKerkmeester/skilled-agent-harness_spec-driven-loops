@@ -92,15 +92,11 @@ const VALIDATOR_REGISTRY_PATH = path.join(SKILL_ROOT, 'runtime', 'cli', 'lib', '
 const VALIDATOR_RULES_ROOT = path.join(SKILL_ROOT, 'runtime', 'cli', 'rules');
 const VALIDATOR_DIST_VALIDATION_ROOT = path.join(SKILL_ROOT, 'runtime', 'cli', 'dist', 'validation');
 const VALIDATE_SCRIPT_DIR = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec');
-const VALID_LEVELS = new Set<SpecKitLevel>(['1', '2', '3', '3+', 'phase', 'review', 'research']);
 const REQUIRED_FRONTMATTER_KEYS = ['packet_pointer', 'last_updated_at', 'last_updated_by', 'recent_action', 'next_safe_action'];
 const REQUIRED_SCALAR_FRONTMATTER_FIELDS = ['title', 'description', 'importance_tier', 'contextType'];
 const SCALAR_FRONTMATTER_DOCS = ['spec.md', 'plan.md', 'tasks.md', 'decision-record.md', 'implementation-summary.md'];
 // Named in the report so a verdict can be attributed to what produced it.
 const ENGINE_NAME = 'orchestrator';
-const CHECKLIST_H1_PREFIX = '# Verification Checklist:';
-const OPTIONAL_TEMPLATE_HEADER_RE = /^(?:L(?:2|3\+?)|FIX ADDENDUM)\s*:/iu;
-const OPTIONAL_TEMPLATE_ANCHORS = new Set(['affected-surfaces', 'nfr', 'edge-cases', 'complexity', 'phase-deps', 'effort', 'enhanced-rollback']);
 
 // ───────────────────────────────────────────────────────────────────
 // 4. TYPE DEFINITIONS
@@ -645,19 +641,6 @@ function authoredDocsForLevel(level: SpecKitLevel, folder: string): string[] {
     .filter((docName) => fs.existsSync(templatePathForName(templateNameForDoc(level, docName))));
 }
 
-function normalizeHeader(raw: string): string {
-  return raw
-    .replace(/\[[^\]]+\]/gu, '')
-    .replace(/^\d+\.\s*/u, '')
-    .replace(/\s+/gu, ' ')
-    .trim()
-    .toUpperCase();
-}
-
-function h2Headers(content: string): string[] {
-  return [...stripFences(content).matchAll(/^##\s+(.+)$/gmu)].map((match) => normalizeHeader(match[1]));
-}
-
 function anchors(content: string): string[] {
   return [...stripFences(content).matchAll(/<!--\s*ANCHOR:([A-Za-z0-9][A-Za-z0-9_-]*)\s*-->/gu)].map((match) => match[1]);
 }
@@ -1100,11 +1083,27 @@ function isArchivedPacket(folder: string): boolean {
   return segments.slice(segments.lastIndexOf('specs') + 1).some((segment) => segment === 'z_archive' || segment === 'z_future');
 }
 
+// The baseline is read only when it is a regular file: a link's target can sit
+// outside the packet, and applying that file's findings would relax errors on
+// the strength of a file the packet does not hold. The refusal is reported so a
+// packet cannot look recorded when it is not.
+function baselineIsLink(folder: string): boolean {
+  try {
+    return fs.lstatSync(path.join(folder, UPGRADE_BASELINE_FILE)).isSymbolicLink();
+  } catch {
+    return false;
+  }
+}
+
 // A listed finding is old news and must not block work; anything unlisted is a
 // new mistake and must still fail the run, so every detail of an entry has to
 // be listed before the entry relaxes, and each copy of a repeated detail must
 // be listed too.
 function applyRecordedFindings(folder: string, entries: ValidationEntry[]): void {
+  if (baselineIsLink(folder)) {
+    entries.push(entry('UPGRADE_BASELINE_LINK', 'warn', `${UPGRADE_BASELINE_FILE} is a link, so its findings are not read`));
+    return;
+  }
   const recorded = loadRecordedFindings(folder);
   if (recorded === null) return;
   for (let index = 0; index < entries.length; index += 1) {

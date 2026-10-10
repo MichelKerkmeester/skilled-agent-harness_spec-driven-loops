@@ -397,12 +397,28 @@ function cacheEntryEqualIgnoringVolatile(a: FolderDescription, b: FolderDescript
   );
 }
 
+/** Refusal note recorded when a packet document is a symbolic link. */
+const SYMLINK_NOT_FOLLOWED = 'symbolic link, not followed';
+
+/** True when the path itself is a symbolic link, judged without following it. */
+function isSymbolicLink(filePath: string): boolean {
+  try {
+    return fs.lstatSync(filePath).isSymbolicLink();
+  } catch (_error: unknown) {
+    return false;
+  }
+}
+
 /**
  * Read and parse a per-folder description.json into a raw record for comparison.
- * Returns null when the file is missing or unparseable, in which case the caller
- * falls back to an unconditional write.
+ * Returns null when the file is missing, a symbolic link, or unparseable, in which
+ * case the caller falls back to an unconditional write.
  */
 function readRawPerFolderDescription(descPath: string): Record<string, unknown> | null {
+  // A link is absent rather than followed: the save merges what it reads into the packet's own file.
+  if (isSymbolicLink(descPath)) {
+    return null;
+  }
   try {
     const raw = fs.readFileSync(descPath, 'utf-8');
     const parsed = JSON.parse(raw);
@@ -1115,6 +1131,8 @@ export function generatePerFolderDescription(
 /**
  * Load a PerFolderDescription from `description.json` in the given folder.
  * Returns null if missing, corrupt, or structurally invalid (graceful degradation).
+ * A symbolic link is reported as a missing file, not followed, because the save
+ * merges what it reads into the packet's own description.json.
  *
  * @param folderPath - Absolute path to the spec folder.
  * @returns The parsed PerFolderDescription, or null.
@@ -1123,6 +1141,9 @@ export function loadExistingDescription(folderPath: string): LoadResult {
   const descPath = path.join(folderPath, 'description.json');
   if (!fs.existsSync(descPath)) {
     return { ok: false, reason: 'file_missing' };
+  }
+  if (isSymbolicLink(descPath)) {
+    return { ok: false, reason: 'file_missing', detail: SYMLINK_NOT_FOLLOWED };
   }
 
   try {
@@ -1245,13 +1266,15 @@ export function isPerFolderDescriptionStale(folderPath: string): boolean {
 
 /**
  * Load a DescriptionCache from a JSON file on disk.
+ * A symbolic link is treated as absent rather than followed, because the upsert
+ * and the rebuild carry the rows they read into the cache they write.
  *
  * @param cachePath - Absolute path to the descriptions.json file.
  * @returns The parsed DescriptionCache, or null if the file does not
- *          exist or cannot be parsed.
+ *          exist, is a symbolic link, or cannot be parsed.
  */
 export function loadDescriptionCache(cachePath: string): DescriptionCache | null {
-  if (!fs.existsSync(cachePath)) {
+  if (!fs.existsSync(cachePath) || isSymbolicLink(cachePath)) {
     return null;
   }
 

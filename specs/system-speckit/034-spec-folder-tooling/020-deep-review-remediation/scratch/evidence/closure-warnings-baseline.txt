@@ -1,0 +1,36 @@
+CLOSURE EVIDENCE: warning and error class baseline at HEAD 4669db6522, compared with the final CLI and root runs (CHK-011, not ticked in this record)
+
+Result. The six counted classes, and the normalized text of every matched line, are the same at HEAD as in the final CLI run. No class rises, so no new line needs a phase test to account for it. The root project has no matched class in either run. The root project net gain of 6 tests is the phase test additions, with 13 skipped in both.
+
+1. Baseline construction. HEAD is 4669db6522 (git cat-file and rev-parse in this pass). The tree was exported with git archive into /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/baseline-head. Ignored inputs the suites need were copied from the worktree, all of them pre-phase or dependency trees: node_modules under system-spec-kit, runtime/cli, runtime, the repository root, .skilled, .opencode, .pi/npm, system-deep-loop and sk-doc, and the skill-advisor runtime/dist dated 2026-10-06. The cli project was built with npm run build (exit 0). The archive has no .git, so a scratch repository was created with one commit. Its tree was checked against 4669db6522 (tree match yes, 98423 files). 79 files tracked at HEAD match .gitignore rules, so they were added with git add -f.
+
+2. Attempt 1 (logs under /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/baseline/attempt1). CLI vitest had 5 failed and root had 5 failed. The cause was the environment: no .git (repo-root and git-membership tests fail), and missing ignored node_modules (the opencode plugin package). The orphan-sweep tests failed inside session-cleanup.sh for a cause that the attempt-1 log does not show, and they passed in attempt 2 after the fix. These logs are not used for the comparison.
+
+3. Attempt 2 (after the environment fix). Logs under /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/baseline. The final CLI chain is npm test, which is vitest run && test:legacy && test:validation, so a failing vitest step skips the other two. The baseline vitest step had 1 failure, runtime-memory-inputs.vitest.ts "rejects a dataFile path that attempts directory traversal". The source and test are not in the phase diff (git diff and git ls-files show nothing). The failure is inferred to come from the scratch location, and this is not proven. test:legacy and test:validation were then run on their own (exit 0 and exit 0), so their log classes can be compared.
+
+4. Totals.
+   Root project, HEAD: exit 0, Tests 1301 passed, 13 skipped (1314). Final (j02): exit 0, Tests 1307 passed, 13 skipped (1320). The phase added 6 root tests.
+   CLI vitest, HEAD: 1 failed, 1775 passed, 19 skipped (1795), 174 files. Final (j01): 0 failed, 1941 passed, 20 skipped (1961), 179 files.
+
+5. Class counts. Same method as closure-gate-warnings-scan.txt, grep -a -c with literal patterns (script in /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/warn-classes.sh).
+
+| Run | graph skip | fallback name | ERROR: | Error: | console.error | console.warn | Warning: | Warning (all) |
+|---|---|---|---|---|---|---|---|---|
+| Final j01, full chain | 21 | 3 | 2 | 3 | 0 | 0 | 28 | 36 |
+| HEAD legacy plus validation | 21 | 3 | 2 | 3 | 0 | 0 | 28 | 36 |
+| HEAD vitest step only | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
+| Final j02, root | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| HEAD root | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+The HEAD vitest Error: count of 1 is the AssertionError line of the failing test (log line 191), not a warning. The vitest step prints no warning class in either run.
+
+6. Matched text. The 41 matched lines of the final j01 log and the HEAD legacy plus validation log are identical after normalizing random temp names, temp paths and timing values. The diff command used is in this pass.
+
+7. Attribution of the classes, from the code. These are the lines that the baseline reproduces, so no phase test is needed to explain a rise.
+   graph metadata derivation skipped: create.sh line 1017, after report_missing_generator at line 1010 when backfill-graph-metadata.ts is missing from the copied repository. The legacy script test-phase-system.js exercises it. No test asserts this text. create-without-build.vitest.ts line 69 asserts a different graph-skip message, about a missing tsx loader.
+   Falling back to generic phase name: create.sh line 1632. No test asserts this text.
+   ERROR: and Error: refusal lines: archive.sh refusals. test-phase-validation.js line 450 asserts "Refusing to archive outside specs root". The other refusal messages were not traced individually.
+
+8. Caveats. The scratch location and build outputs differ from the worktree (shared dist 137 files against 138, runtime dist 225 against 227, cli dist 447 against 447). Load and timing differ between the two runs. The baseline vitest failure is inferred, not proven, as stated in item 3.
+
+9. Not done here. CHK-011 is not ticked. The lint steps (node --check and shellcheck) were not rerun in this pass. The ESLint proof is in closure-eslint-head-baseline.txt.

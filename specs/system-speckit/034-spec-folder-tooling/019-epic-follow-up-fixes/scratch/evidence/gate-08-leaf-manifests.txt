@@ -1,0 +1,33 @@
+CMD: bash -c rc=0; for d in cli-classifier cli-external-orchestration cli-orca mcp-code-mode mcp-tooling sk-code sk-design sk-doc sk-git sk-prompt sk-vision system-deep-loop system-skill-advisor system-spec-kit; do node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check ".skilled/skills/$d"; r=$?; echo "DIR=$d EXIT=$r"; [ $r -ne 0 ] && rc=1; done; echo "LEAF_MANIFEST_LOOP_EXIT=$rc"; exit $rc
+START: 2026-10-09T19:54:14Z
+leaf-manifest.json OK (a24927396214ab841312a00a75e03ae22c74b0002f3b1edbd2925288a5002197)
+DIR=cli-classifier EXIT=0
+leaf-manifest.json OK (6b0e8212d0bdcb9d086bf917d4b033bb69f4ba40bff1d2af065d0803572b61e7)
+DIR=cli-external-orchestration EXIT=0
+leaf-manifest.json OK (9193b5032798148726de1eaabf59627d5834ecbadb9592eec7f24247818d7600)
+DIR=cli-orca EXIT=0
+leaf-manifest.json OK (e8614e5a111ea5e51370589f56929693242c8a71496af4f9d6914526dfc79b11)
+DIR=mcp-code-mode EXIT=0
+leaf-manifest.json OK (a79578496e244358f7fc87a9ed74cbebc468231dec3d4e80b888abbc7dab2fd7)
+DIR=mcp-tooling EXIT=0
+leaf-manifest.json OK (319a819c491da7fc9b72c25f157c81ddfecb03ffa6b3cc3b3256e44e35974dca)
+DIR=sk-code EXIT=0
+leaf-manifest.json OK (1cdca644379a5ebd716621fd8abb38a6ecdd0af0ae15df1a9bce6da62f78c723)
+DIR=sk-design EXIT=0
+leaf-manifest.json OK (f9eab003c2a7c73fdf1a2d9fa360442527ec619f2132e158ae4e207c71d85660)
+DIR=sk-doc EXIT=0
+leaf-manifest.json OK (aea95ef320e781e9ebe4f7db0218bb2fc3daab23e6b2d3ef5f89897b21ae3c58)
+DIR=sk-git EXIT=0
+leaf-manifest.json OK (922a3899ce9d8ff96ed63d41689318e6b802471452a0647c8ab261c0d84bdb71)
+DIR=sk-prompt EXIT=0
+leaf-manifest.json OK (c2a9f38562b29504ec620677341da9d12a9a10e9014de337f2d8e9c71bcecaee)
+DIR=sk-vision EXIT=0
+leaf-manifest.json OK (9b306e5c1f55fec413db0ea486885144c692e9523e5b37c714f5d826bc73841f)
+DIR=system-deep-loop EXIT=0
+leaf-manifest.json OK (76b74582d9652c79fcd4f983f7e30f6a6945eaaf5ac04b8d7bc8f3b4ef6dc39a)
+DIR=system-skill-advisor EXIT=0
+leaf-manifest.json OK (067a33b375ca0654cd781020a7fe8ed050441f6edff092af5a79910d270ea754)
+DIR=system-spec-kit EXIT=0
+LEAF_MANIFEST_LOOP_EXIT=0
+EXIT=0
+ELAPSED_S=0
