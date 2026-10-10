@@ -1,0 +1,18 @@
+✅ VALID: .skilled/agents/code.md
+Total issues: 1
+kebab exit=0
+✅ VALID: .skilled/agents/debug.md
+Total issues: 1
+kebab exit=0
+✅ VALID: .skilled/agents/orchestrate.md
+Total issues: 1
+kebab exit=0
+✅ VALID: .claude/agents/code.md
+Total issues: 1
+kebab exit=0
+✅ VALID: .claude/agents/debug.md
+Total issues: 1
+kebab exit=0
+✅ VALID: .claude/agents/orchestrate.md
+Total issues: 1
+kebab exit=0

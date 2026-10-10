@@ -176,6 +176,7 @@ TASK #N: [Descriptive Title]
 ├─ Complexity: [low | medium | high]
 ├─ Objective: [WHY this task exists]
 ├─ Scope: [Explicit inclusions AND exclusions]
+├─ Reach: [The callers, tests, fixtures, config and exports the task must reach, or "none" when nothing outside Scope is reached]
 ├─ Boundary: [What this agent MUST NOT do]
 ├─ Agent: @code | @context | @markdown | @deep-research | @deep-review | @ai-council | @review | @debug
 ├─ Deep Route: [for deep routes only: mode=<workflowMode>; target_agent=@<agent>; execution=<single_iteration|loop|session>; source_of_truth=.skilled/skills/system-deep-loop/mode-registry.json | none]

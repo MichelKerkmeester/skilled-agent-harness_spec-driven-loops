@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/003-agent-disclosure",
+  "description": "Phase 3: agent-disclosure",
+  "keywords": [
+    "phase",
+    "agent-disclosure"
+  ],
+  "lastUpdated": "2026-10-10T06:56:31.137Z",
+  "specId": "003",
+  "folderSlug": "agent-disclosure",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "008-round-two-recommendations"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

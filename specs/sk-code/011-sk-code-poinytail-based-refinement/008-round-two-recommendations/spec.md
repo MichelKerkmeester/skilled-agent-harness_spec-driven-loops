@@ -108,7 +108,7 @@ Build every recommendation that still holds, one child phase per group, each bui
 |-------|--------|-------|--------|
 | 1 | 001-restraint-routing/ | Restraint requests reach the quality mode, with a canary case and a parity check | Complete |
 | 2 | 002-review-contract/ | Reproducing case, connected-code read, numbering, report order, case checker | Complete |
-| 3 | 003-agent-disclosure/ | Reach list and disclosure lines in the code, debug and orchestrate agents | Planned |
+| 3 | 003-agent-disclosure/ | Reach list and disclosure lines in the code, debug and orchestrate agents | Complete |
 | 4 | 004-debt-report-and-hermes-gate/ | Ceiling-marker report and Hermes checks in the pre-commit mirror gate | Planned |
 | 5 | 005-rule-amendments/ | Six amendments to two repo rule files | Planned |
 

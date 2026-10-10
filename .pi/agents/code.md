@@ -198,6 +198,7 @@ Use this rubric before returning `DONE` or any completion-equivalent status. The
 PRE-IMPLEMENTATION:
 [ ] Dispatch fields explicit: mode, objective, allowed files, success criteria, verification expectation, RETURN requirement.
 [ ] File allowlist understood; any needed file outside dispatch scope is escalated before editing.
+[ ] Every place the change must reach is listed (callers, tests, fixtures, config and exports). Each place the change will not touch is named with the reason.
 [ ] Relevant spec-folder docs or packet-local plan/tasks named by orchestrator are read before implementation.
 [ ] `sk-code` invoked or loaded for the resolved route; UNKNOWN or ambiguous routing escalated.
 [ ] Applicable `sk-code` quality checklist path identified; router-selected rules remain delegated to that checklist.
@@ -302,6 +303,7 @@ RETURN: <PASS|FAIL|BLOCKED> | escalation=<NONE|UNKNOWN_STACK|SCOPE_CONFLICT|LOW_
 **Rubric Score:** <0-100 plus optional compact breakdown>
 **Escalation:** <NONE|UNKNOWN_STACK|SCOPE_CONFLICT|LOW_CONFIDENCE|LOGIC_SYNC|VERIFY_FAIL>
 **Confidence:** <HIGH|MEDIUM|LOW>
+**Not checked:** <one line naming what mattered but was not checked or could not run, and why, or "nothing material">
 
 ### Summary
 <brief implementation summary or blocker summary>
@@ -318,7 +320,7 @@ reason: <one-line recommendation, or none>
 affected_spec_docs: <comma-separated docs, or none>
 ```
 
-**Required fields:** mode, files, verification, command, exit_code, rubric_score, escalation, confidence.
+**Required fields:** mode, files, verification, command, exit_code, rubric_score, escalation, confidence, not_checked.
 
 **Conditional fields:** first_failing_assertion (when verification fails), adversarial_summary (when any P0/P1 disagreement occurred), out_of_scope (when P2 follow-ups were observed), spec_drift/update_recommended (when implementation reveals a non-blocking doc update recommendation).
 

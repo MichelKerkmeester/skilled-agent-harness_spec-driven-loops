@@ -101,7 +101,7 @@ and findings belong here.
 |------|-------|----------|
 | 001 restraint routing | Done | Six criteria rerun by the orchestrator; canary 11 cases 0 failures; parity check 5k passes on sk-code and warns only on drift other hubs already had |
 | 002 review contract | Done | Six criteria rerun by the orchestrator after one run of each mirror generator; harness 54 PASS; five mirror checks exit 0 |
-| 003 agent disclosure | Pending | Not started |
+| 003 agent disclosure | Done | Six criteria rerun by the orchestrator after the generators and the review-contract commit; all mirror checks exit 0 |
 | 004 debt report and Hermes gate | Pending | Not started |
 | 005 rule amendments | Pending | Not started |
 

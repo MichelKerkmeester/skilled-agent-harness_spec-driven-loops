@@ -197,11 +197,12 @@ The phases are ordered and must not blur.
 **Goal:** Use code search tools to understand context around the error.
 
 **Actions:**
-1. Trace call paths to error location
-2. Understand data flow through affected code
-3. Identify related patterns in codebase
-4. Check for recent changes (if git available)
-5. Compare prior attempts against actual code evidence only after the current path is understood
+1. Read the test harness and build config that cover the failing path (the test runner config, the test files that exercise it and the build config) before any reproduction.
+2. Trace call paths to error location
+3. Understand data flow through affected code
+4. Identify related patterns in codebase
+5. Check for recent changes (if git available)
+6. Compare prior attempts against actual code evidence only after the current path is understood
 
 **Tools:** `Grep`, `Glob`, `Read`, `Bash` (for git commands)
 
@@ -260,6 +261,8 @@ Error location known?
 - Simplicity (simpler explanations first)
 - Reversibility (easily undone fixes first)
 - Freshness (not merely repeating a failed prior attempt unless new evidence justifies it)
+
+If more candidate hypotheses existed than the ones kept, the response states how many were left out.
 
 ---
 
@@ -395,6 +398,8 @@ What do you need?
 
 ### Prevention
 [Optional: How to prevent this class of error in future]
+
+**Not checked:** [one line naming what mattered but was not checked or could not run, and why, or "nothing material"]
 ```
 
 ### Blocked Response (Cannot Resolve)
@@ -420,6 +425,8 @@ What do you need?
 
 ### Partial Findings
 [What was discovered before blocking - this is valuable context]
+
+**Not checked:** [one line naming what mattered but was not checked or could not run, and why, or "nothing material"]
 ```
 
 ### Escalation Response (Complexity Exceeded)
@@ -443,6 +450,8 @@ What do you need?
 
 ### Context for Human Debugger
 [Everything learned that would help a human continue]
+
+**Not checked:** [one line naming what mattered but was not checked or could not run, and why, or "nothing material"]
 ```
 
 ### Optional Agent I/O Envelope
