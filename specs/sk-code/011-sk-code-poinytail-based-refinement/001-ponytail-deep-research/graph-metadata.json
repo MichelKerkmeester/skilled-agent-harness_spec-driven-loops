@@ -51,6 +51,7 @@
       "research/resource-map.md",
       "research/fanout-attribution.md",
       "research/lineages/r2-dsflash-llmgw/research.md",
+      "research/lineages/r3-dsflash-llmgw/research.md",
       "research/deep-research-config.json",
       ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
       ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md",
@@ -59,8 +60,7 @@
       ".github/workflows/routing-registry-drift.yml",
       "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/resource-map.md",
       "research/lineages/luna-max-fast/research.md",
-      "research/lineages/deepseek-flash-cline/research.md",
-      "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md"
+      "research/lineages/deepseek-flash-cline/research.md"
     ],
     "entities": [
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The earlier refinement studied an older Ponytail and adopted a design restraint ladder, a `ceiling:` comment convention, an anti-stall rule, review checklist rows and a rule-copy canary",
     "created_at": "2026-10-09T13:20:17Z",
-    "last_save_at": "2026-10-10T06:22:05.315Z",
+    "last_save_at": "2026-10-10T08:56:09.732Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:65bde1d6123e3e331d8ff80f73800891921a6217611eb4d616dca595d9e3c3d9",
+    "source_fingerprint": "sha256:4ca1584ca8aede8e8b60bcd8694ab474c5441ef7c563b14a35d3767719142b44",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8ef4770dea15d4361b337366d38cca7968a17fbcfe7e50143773cefdb39a78f5",
+      "spec.md": "ea9bc16b41fefcd1bc59ce3157b424467d8b6bcec7835af2c02b56d422ffd041",
       "plan.md": "a5549259c91bcb00ca92168904ed8291cb5e7af20c9493dc7afb6e16b408983b",
       "tasks.md": "99df52ffaf4987c0ab1fad56133463933a19ad7fd9646ccf59caf846fc76a665",
       "implementation-summary.md": "37823b9c9036f2ffb3568286799e303c6097060d795ada2186493217900ae906",
-      "research/research.md": "252ebc6d43d1331d441c17c5d1f52dbe6890e92a9691b126adcd1d1844429bd4"
+      "research/research.md": "6cd23249e6715eac9adf5982e02c3ea5c438772bad99285d68baa8cb660f70d5"
     },
     "last_active_at": null
   }

@@ -1,0 +1,42 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "run": 2,
+  "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.87,
+  "status": "complete",
+  "focus": "Shared reference consistency and stale path families",
+  "findingsCount": 4,
+  "noveltyJustification": "Three findings are fully new (systemic legacy-path family across 8 shared files, phase-detection's two-surface and single-script staleness, inconsistent intra-shared link forms) and one is an ALREADY-ADOPTED verification of precedence, AGENTS.md pointer and ceiling-report resolution.",
+  "keyQuestions": [
+    "Where is the shared layer internally inconsistent, stale or weak when each claim is checked against its callers and against how it loads?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Treat the stale paths as a routing bug - the router entries are correct; only prose inside referenced docs is stale",
+    "Report version skew among the shared files - the hub version authority deliberately stops at the hub root"
+  ],
+  "toolsUsed": ["read", "bash", "rg", "test"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+    ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
+    ".skilled/skills/sk-code/shared/references/universal/error-recovery.md",
+    ".skilled/skills/sk-code/shared/references/universal/multi-agent-research.md",
+    ".skilled/skills/sk-code/shared/references/universal-verification-checklist.md",
+    ".skilled/skills/sk-code/shared/references/phase-detection.md",
+    ".skilled/skills/sk-code/shared/references/stack-detection.md",
+    ".skilled/skills/sk-code/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md",
+    ".skilled/skills/sk-code/sk-code-webflow/references/animation/quick-start.md",
+    "AGENTS.md"
+  ],
+  "timestamp": "2026-10-10T08:26:11Z",
+  "durationMs": 84000
+}

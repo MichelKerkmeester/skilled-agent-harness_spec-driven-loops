@@ -1,0 +1,35 @@
+{
+  "type": "iteration",
+  "iteration": 15,
+  "run": 15,
+  "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.7,
+  "status": "complete",
+  "focus": "sk-code-obsidian fresh pass",
+  "findingsCount": 3,
+  "noveltyJustification": "One finding is fully new (three phantom on-demand assets in the Obsidian SKILL, known to the playbook but not to the SKILL) and two are ALREADY-ADOPTED checks (exact playbook ID parity and version/checklist parity).",
+  "keyQuestions": [
+    "What defects, drift and improvements exist in `sk-code-quality`, `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` beyond rounds one and two?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "File references/obsidian-api-boundary.md as a fourth phantom - the playbook paragraph is an explicit mismatch note",
+    "Verify the SKILL migration counts - claims about the plugin repository, outside readable scope",
+    "Run scripts/run-source-gates.sh - it requires the plugin repo root and tools scanners"
+  ],
+  "toolsUsed": ["read", "rg", "bash", "python3"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-code/sk-code-obsidian/scripts/run-source-gates.sh",
+    ".skilled/skills/sk-code/leaf-manifest.json"
+  ],
+  "timestamp": "2026-10-10T08:41:49Z",
+  "durationMs": 82000
+}

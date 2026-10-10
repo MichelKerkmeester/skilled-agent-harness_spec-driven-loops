@@ -1,0 +1,41 @@
+{
+  "type": "iteration",
+  "iteration": 5,
+  "run": 5,
+  "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.83,
+  "status": "complete",
+  "focus": "Override inventory close and cross-surface rule divergence",
+  "findingsCount": 4,
+  "noveltyJustification": "Two findings are fully new (the 5-versus-3 cross-surface comment cap divergence and the label-drift pattern now at four instances), one is an ALREADY-ADOPTED check that folder/test rules and P0 restatements stay single-sourced, and one is the Part 1 closing statement.",
+  "keyQuestions": [
+    "How do the hub `SKILL.md`, `ROUTER.md`, `hub-router.json` and `mode-registry.json` load the `sk-code/shared/` layer, and which shared files are loaded by nothing, loaded twice, or unreachable from any route?",
+    "How does stack detection behave for mixed stacks, monorepos and two-surface matches, and where do the surface packets' overrides of shared standards silently diverge?"
+  ],
+  "answeredQuestions": [
+    "How do the hub `SKILL.md`, `ROUTER.md`, `hub-router.json` and `mode-registry.json` load the `sk-code/shared/` layer, and which shared files are loaded by nothing, loaded twice, or unreachable from any route?",
+    "How does stack detection behave for mixed stacks, monorepos and two-surface matches, and where do the surface packets' overrides of shared standards silently diverge?"
+  ],
+  "ruledOut": [
+    "File the surface security/validation restatements as duplication - they carry language examples and agree with the universal P0 list",
+    "Re-open the OpenCode 3-per-10 row as its own finding - already filed in iteration 4; this iteration files only the cross-surface divergence"
+  ],
+  "toolsUsed": ["read", "rg", "bash"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md",
+    ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md",
+    ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
+    ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/organization-security-and-examples.md",
+    ".skilled/skills/sk-code/sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md",
+    ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
+    ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md"
+  ],
+  "timestamp": "2026-10-10T08:29:59Z",
+  "durationMs": 78000
+}

@@ -1,0 +1,13 @@
+{
+  "stem": "deep_research.synthesis_complete",
+  "scope": {
+    "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+    "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6"
+  },
+  "data": {
+    "totalIterations": 20,
+    "answeredCount": 5,
+    "totalQuestions": 10,
+    "stopReason": "maxIterationsReached"
+  }
+}

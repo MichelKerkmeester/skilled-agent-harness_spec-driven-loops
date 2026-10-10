@@ -1,0 +1,10 @@
+{
+  "type": "config",
+  "topic": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "maxIterations": 20,
+  "generation": 1,
+  "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "timestamp": "2026-10-10T08:22:33Z"
+}

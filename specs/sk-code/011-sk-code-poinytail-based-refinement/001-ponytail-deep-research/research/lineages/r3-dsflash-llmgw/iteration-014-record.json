@@ -1,0 +1,37 @@
+{
+  "type": "iteration",
+  "iteration": 14,
+  "run": 14,
+  "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.75,
+  "status": "complete",
+  "focus": "sk-code-opencode fresh pass",
+  "findingsCount": 4,
+  "noveltyJustification": "Two findings are fully new (the SKILL crediting leg 1a with leg 1b's orphan coverage, and two more rename-miss rows), one verifies the guard and hook paths with observed output, and one records phase 009 in-flight scope.",
+  "keyQuestions": [
+    "What defects, drift and improvements exist in `sk-code-quality`, `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` beyond rounds one and two?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "File the guard's narrower 1a behaviour as a defect - the behaviour matches its owners",
+    "File hooks.md for not mentioning the stdin deadline or Hermes gate - it documents installation tables",
+    "File the system-spec-kit pointer as missing - it resolves at its owning skill"
+  ],
+  "toolsUsed": ["read", "rg", "bash", "node", "python3"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+    ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+    ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
+    ".skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md",
+    ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md"
+  ],
+  "timestamp": "2026-10-10T08:40:35Z",
+  "durationMs": 108000
+}

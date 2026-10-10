@@ -1,0 +1,94 @@
+{
+  "topic": "Round three of the sk-code Ponytail refinement research. Rounds one and two are settled (research/research.md sections 1-17 and its Round 2 section; r2 lineage report). Phase 009 is in-flight and out of scope. Three parts: (1) the sk-code shared layer .skilled/skills/sk-code/shared/ (universal standards, workflow references, stack detection, assets) and how the hub SKILL.md, ROUTER.md, hub-router.json and mode-registry.json load it, how the modes and surface packets use or override or duplicate it, where its logic is weak, inconsistent, stale, unreachable or duplicated, and how it relates to .skilled/repo-rules/*.md, REPO RULES.md and AGENTS.md; (2) sk-code-review as a codebase-agnostic review mode and the review agent .skilled/agents/review.md that loads it - repository assumptions, internal agreement, scripts, playbook, and what would make its logic stronger; (3) a fresh pass over sk-code-quality, sk-code-webflow, sk-code-opencode, sk-code-obsidian, the hub files, benchmark/ and manual-testing-playbook/ for bugs, alignment issues and improvements. Every claim cites path:line; every finding is classified NEW, ALREADY-COVERED, ALREADY-ADOPTED or IN-FLIGHT with P0/P1/P2 and a reproducing case for defects.",
+  "maxIterations": 20,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {},
+    "note": "The cap governs: convergence ratios are telemetry only, and every iteration widens to a focus no earlier iteration covered instead of synthesizing early."
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research",
+  "artifact_dir": "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r3-dsflash-llmgw",
+  "fanout_lineage_artifact_dir": "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r3-dsflash-llmgw",
+  "loop_type": "research",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-10-10T08:22:33Z",
+  "status": "completed",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+    "parentSessionId": null,
+    "lineageId": "r3-dsflash-llmgw",
+    "lineageMode": "detached",
+    "generation": 1,
+    "continuedFromRun": null,
+    "fanoutRole": "detached-parallel-lineage"
+  },
+  "scopeBoundary": {
+    "writeRoot": "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r3-dsflash-llmgw",
+    "forbiddenWrites": [
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/spec.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/plan.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/tasks.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/deep-research-config.json",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/deep-research-state.jsonl",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/deep-research-strategy.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/findings-registry.json",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/deep-research-dashboard.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/context/**",
+      ".skilled/**",
+      "AGENTS.md",
+      "CLAUDE.md",
+      "REPO RULES.md"
+    ],
+    "writeback": "skipped by detached lineage boundary"
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "pauseSentinelPath": ".deep-research-pause",
+  "fileProtection": {
+    "deep-research-config.json": "immutable-except-terminal-status",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "iter-*.jsonl": "write-once",
+    "research.md": "mutable"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "type": "iteration",
+  "iteration": 12,
+  "run": 12,
+  "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.85,
+  "status": "complete",
+  "focus": "sk-code-quality fresh pass",
+  "findingsCount": 4,
+  "noveltyJustification": "Two findings are fully new (the legacy-hook naming contradiction the quality mode owns, and the mode-wide rename miss at 39 rows), one records phase 009 in-flight scope, and one verifies all resource paths resolve.",
+  "keyQuestions": [
+    "What defects, drift and improvements exist in `sk-code-quality`, `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` beyond rounds one and two?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "File the ceiling-report absence - phase 009 child 002 scope",
+    "Treat legacy hook files' existence as evidence they are live - existence proves only that compatibility helpers were kept",
+    "Re-run the comment-hygiene checker - the finding is about which gate the docs name"
+  ],
+  "toolsUsed": ["read", "rg", "bash", "git"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
+    ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+    ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
+    ".skilled/skills/sk-code/mode-registry.json"
+  ],
+  "timestamp": "2026-10-10T08:37:26Z",
+  "durationMs": 88000
+}

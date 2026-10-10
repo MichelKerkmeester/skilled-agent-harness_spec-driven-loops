@@ -1,0 +1,36 @@
+{
+  "type": "iteration",
+  "iteration": 20,
+  "run": 20,
+  "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.7,
+  "status": "complete",
+  "focus": "Consolidation pass",
+  "findingsCount": 3,
+  "noveltyJustification": "One finding is fully new (the quality README's spec-folder routing misdirection) and two are consolidation findings: the 70-finding aggregate roll-up with its tallies and trend, and the cross-cutting pointer-drift root cause with its checker proposal.",
+  "keyQuestions": [
+    "Which original ideas does round three produce, which should be rejected with reasons, and what ranked findings table and implementation phases close the round?"
+  ],
+  "answeredQuestions": [
+    "Which original ideas does round three produce, which should be rejected with reasons, and what ranked findings table and implementation phases close the round?"
+  ],
+  "ruledOut": [
+    "Re-read the remaining packet READMEs for symmetry - the README set is closed",
+    "Claim convergence - the ratio never fell below 0.70; the stop is the cap",
+    "Fold the newInfoRatio trend into a finding row per iteration - the roll-up carries it"
+  ],
+  "toolsUsed": ["read", "rg", "bash", "python3"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/sk-code-quality/README.md",
+    ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-opencode/assets/checklists"
+  ],
+  "timestamp": "2026-10-10T08:46:52Z",
+  "durationMs": 64000
+}

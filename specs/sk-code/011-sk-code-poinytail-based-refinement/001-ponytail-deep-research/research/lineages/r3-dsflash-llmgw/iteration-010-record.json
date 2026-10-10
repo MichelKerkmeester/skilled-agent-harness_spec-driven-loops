@@ -1,0 +1,36 @@
+{
+  "type": "iteration",
+  "iteration": 10,
+  "run": 10,
+  "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.9,
+  "status": "complete",
+  "focus": "Review scripts on crafted inputs",
+  "findingsCount": 3,
+  "noveltyJustification": "Two findings come from executed inputs and are fully new (the checker's blindness to the review-core finding shape and the double-space false negative) and one is an ALREADY-ADOPTED verification of the final-line checker against its README.",
+  "keyQuestions": [
+    "What do the review scripts do on foreign-repository inputs, and what would make the review logic stronger?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "File the ### 2 example numbering as a checker bug - the start-at-1 rule is correct for the template shape",
+    "File the quoted Not checked count as a new defect - phase 007 recorded it as a known limitation",
+    "Exercise check-rule-copies.js against a foreign tree - it checks this repository's files by design"
+  ],
+  "toolsUsed": ["read", "bash", "node"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js",
+    ".skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js",
+    ".skilled/skills/sk-code/sk-code-review/scripts/README.md",
+    ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+    ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+  ],
+  "timestamp": "2026-10-10T08:35:38Z",
+  "durationMs": 88000
+}

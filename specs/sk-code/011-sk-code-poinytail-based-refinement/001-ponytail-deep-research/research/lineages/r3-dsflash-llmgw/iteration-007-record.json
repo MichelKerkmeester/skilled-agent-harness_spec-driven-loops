@@ -1,0 +1,38 @@
+{
+  "type": "iteration",
+  "iteration": 7,
+  "run": 7,
+  "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.88,
+  "status": "complete",
+  "focus": "Review mode internal agreement",
+  "findingsCount": 4,
+  "noveltyJustification": "Three findings are fully new (the brand-directory cache path, dual taxonomy ownership with the deep-review contract, and the two status vocabularies with an observed checker rejection) and one is an ALREADY-ADOPTED agreement matrix across the four references and the SKILL.",
+  "keyQuestions": [
+    "Do the review mode's contract, checklists, scripts and playbook agree with one another and with `.skilled/agents/review.md`, and where do the canonical, Claude and generated copies drift?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "File the changelog's old cache path as a contradiction - changelogs record history and are excluded from live-contract searches",
+    "File review-core's ordering section as missing the numbering rule - ordering and numbering are compatible",
+    "Compare review-core's case field against the deep-review contract now - that gap is the phase 009 amendment target"
+  ],
+  "toolsUsed": ["read", "rg", "bash"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-review/README.md",
+    ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+    ".skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md",
+    ".skilled/skills/sk-code/sk-code-review/references/quick-reference.md",
+    ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md",
+    ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml"
+  ],
+  "timestamp": "2026-10-10T08:32:24Z",
+  "durationMs": 92000
+}

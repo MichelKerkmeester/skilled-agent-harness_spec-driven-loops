@@ -383,3 +383,85 @@ The lineage's claims are hypotheses until checked. These were re-checked against
 - Round-two iterations: `research/lineages/r2-dsflash-llmgw/iterations/iteration-001.md` to `iteration-010.md`
 - Merge attribution: `research/fanout-attribution.md`
 - Round-one config: `research/round-1-deep-research-config.json`
+
+## Round 3 (2026-10-10): the shared layer, the review mode and the remaining hub surfaces
+
+Rounds one and two above are unchanged. This section was appended after a third `/deep:research:auto` run in this folder, with its own lineage, `r3-dsflash-llmgw`, and its own targets: the sk-code shared layer and how the hub, modes and surfaces load it; sk-code-review as a codebase-agnostic mode together with `.skilled/agents/review.md`; and a fresh pass over the other modes and hub files. Phase 009's scope was in flight during the run and is recorded as IN-FLIGHT only. The full round-three synthesis is the lineage report at `research/lineages/r3-dsflash-llmgw/research.md`. This section summarizes it.
+
+### R3.1 Answer
+
+The machine surfaces of the hub hold. Every guard the lineage executed passed: the router-sync guard's wired legs, the Webflow runtime checker on its fixture pairs, the check-5k legs, version parity across the five hub artifacts, and the playbook ID sets of the hub and the review packet. The defects sit in prose that no guard reads. Every cluster the run found is pointer or claim drift left behind by a rename or restructure that updated the routers, manifests and guards but not the documents citing them. The eight P1 findings:
+
+1. **The shared layer duplicates two Webflow pattern assets, and the copies have drifted.** `shared/assets/patterns/wait-patterns.js` and `validation-patterns.js` differ from their `sk-code-webflow/assets/patterns/` namesakes, and both READMEs are children of the same `IMPLEMENTATION` intent [SOURCE: .skilled/skills/sk-code/ROUTER.md:382] [SOURCE: .skilled/skills/sk-code/ROUTER.md:384].
+2. **Shared references cite directory families that no longer exist.** Seven shared files route readers through `references/webflow/`, `references/opencode/`, `references/motion_dev/`, `assets/webflow/` or `assets/universal/` paths, for example [SOURCE: .skilled/skills/sk-code/shared/references/phase-detection.md:62] and [SOURCE: .skilled/skills/sk-code/shared/references/universal-verification-checklist.md:71].
+3. **`phase-detection.md` describes two surfaces.** "Both supported surfaces follow the same lifecycle" [SOURCE: .skilled/skills/sk-code/shared/references/phase-detection.md:16], in a file loaded on every route, while the hub has three surfaces.
+4. **`workflow-verify.md` contradicts the document that owns the `validate.sh` contract.** It says warnings become a failing outcome under `--strict` [SOURCE: .skilled/skills/sk-code/shared/references/workflow-verify.md:86]; the owner says a warning stays advice in both modes and never changes the exit code [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:44].
+5. **The review mode's private detector misroutes generic repositories to Webflow.** Any `package.json` or `src/` path returns `sk-code:code-webflow` [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:225]; the shared authority keeps generic Node at UNKNOWN [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:142].
+6. **The review mode has no Obsidian surface.** The only `obsidian` match in the review packet is one changelog line, while the hub routes Obsidian work.
+7. **The findings checker passes the finding shape its own doctrine prescribes without checking it.** `review-core.md` writes findings as `### 2 [P1] ...` headings [SOURCE: .skilled/skills/sk-code/sk-code-review/references/review-core.md:110]; the checker matches only numbered list items.
+8. **The quality mode names the comment-hygiene gate by hook paths whose live status depends on the machine.** It cites `.skilled/hooks/git/pre-commit` as the block [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:133], and the shared standard repeats it.
+
+### R3.2 Ranked findings
+
+| # | Finding | Target file | Part | Classification | Priority | Rationale |
+|---|---|---|---|---|---|---|
+| 1 | Shared and Webflow pattern assets duplicated with drifted bytes, both routed | `shared/assets/patterns/`, `sk-code-webflow/assets/patterns/` | Shared | NEW | P1 | Two sources for one shipped pattern set |
+| 2 | Seven shared files cite pre-merge directory families | `shared/references/*.md` | Shared | NEW | P1 | Every route that opens them follows dead pointers |
+| 3 | `phase-detection.md` describes two surfaces and one verifier | `shared/references/phase-detection.md` | Shared | NEW | P1 | Always-loaded file disagrees with the surface set |
+| 4 | `validate.sh` warning claim contradicts its owner | `shared/references/workflow-verify.md` | Shared | NEW | P1 | Wrong exit-contract guidance on every verify route |
+| 5 | Private detector misroutes generic repos to Webflow | `sk-code-review/SKILL.md` | Review | NEW | P1 | Foreign repositories are the normal input of a codebase-agnostic mode |
+| 6 | No Obsidian surface in the review mode | `sk-code-review/` | Review | NEW | P1 | A routed surface is invisible to the mode and its output contract |
+| 7 | Findings checker passes heading-shaped findings vacuously | `sk-code-review/scripts/check-review-findings.js` | Review | NEW | P1 | Half the documented format skips the checker built for it |
+| 8 | Quality mode and shared standard name hook paths as the live gate | `sk-code-quality/SKILL.md`, universal standard | Other modes | NEW | P1 | The gate cited may not be the gate that runs |
+| 9 | Shared workflow floors restate the repo rules with no pointer either way | workflow trio, `.skilled/repo-rules/` | Shared | NEW | P2 | Agree today; the same class diverged once already |
+| 10 | Surface-conditioned subsections inside the surface-agnostic tier | `workflow-implement.md`, `workflow-verify.md` | Shared | NEW | P2 | Hub purity rule and file content disagree |
+| 11 | Three exemption lists disagree on shared hub controls | `ROUTER.md`, `verify_router_sync.cjs` | Shared | NEW | P2 | A validator treating the declaration as exhaustive rejects a correct file |
+| 12 | M-1 cache writes a `.skilled/` directory into any reviewed repo | `sk-code-review/SKILL.md` | Review | NEW | P2 | Side effect on foreign repositories |
+| 13 | Removal plan reuses `P0/P1/P2` for urgency | `sk-code-review/assets/removal-plan.md` | Review | NEW | P2 | One report can carry two meanings of `P0` |
+| 14 | Three spellings of the review status vocabulary | review UX reference, README, SKILL | Review | NEW | P2 | An exact-string contract with three variants |
+| 15 | OpenCode SKILL credits leg 1a with leg 1b's orphan coverage | `sk-code-opencode/SKILL.md` | Other modes | NEW | P2 | An orphan-coverage audit reads as covered when it is not |
+| 16 | `ROUTER.md` universal-tier load claim overstates the machine map | `ROUTER.md` | Other modes | NEW | P2 | Prose tier claims and emitted entries differ |
+| 17 | Two-surface prose across `description.json`, feature catalog and hub README | hub files | Other modes | NEW | P2 | Six instances of one stale sentence |
+| 18 | Rename-miss rows in four packets (39 in quality, 21 in review, others) | packet SKILL and README files | Other modes | NEW | P2 | One sweep fixes the family |
+
+The lineage report §9 carries all 73 findings (NEW 50, ALREADY-ADOPTED 18, IN-FLIGHT 3, observations 2; P1 8, P2 65), grouped by part, with path:line citations and reproducing cases.
+
+### R3.3 Original ideas and rejections
+
+Seven original ideas, ranked by proof value. The first answers the root cause: a documentation path-, name- and claim-checker for skill docs, modeled on the rule-copy canary, which would have caught every drift cluster in this round. The others: one declared shared-controls source read by `ROUTER.md`, the router guard and `SKILL.md`; a review-output shape fixture that feeds both documented finding shapes through both checkers; routing the review detector through the shared detection contract; one canonical surface-list sentence or a lint for the two-surface phrasing; a load-tier claims check against `RESOURCE_MAP`; and version parity extended to the hub README and packet changelogs. Seven ideas are rejected with reasons, among them renaming the removal plan's priority scale, an include system for repeated prose, per-file playbook validation and editing the legacy compatibility hook files (lineage report §8).
+
+### R3.4 Verification by the orchestrating run
+
+The lineage's claims are hypotheses until checked. These were re-checked against the tree after the run:
+
+- Confirmed by command: the heading-shaped review (`### 1 [P1] ...` then `### 3 [P2] ...`, no `Case:` lines) made `check-review-findings.js` print `OK: no numbered findings to check` and exit 0, while the same content as a numbered list failed with three errors and exit 1.
+- Confirmed by command: `diff` of the two `wait-patterns.js` copies shows the six-line banner and `'use strict'` move on one side and the six-line Motion reference on the other; the two `validation-patterns.js` copies also differ.
+- Confirmed by reading: the stale `code-webflow`/`code-opencode` names and the missing Obsidian in `shared/README.md:17`; the two-surface sentence at `phase-detection.md:16`; the dead directory families at `phase-detection.md:62` and `universal-verification-checklist.md:71`; the `workflow-verify.md:86` claim against `validation-rules.md:44`; the detector branch at `sk-code-review/SKILL.md:225` against `stack-detection.md:142`; the single changelog mention of Obsidian in the review packet.
+- Partly settled: finding 8. Both `.skilled/hooks/git/pre-commit` and `.skilled/scripts/git-hooks/pre-commit` exist, and this machine's `core.hooksPath` points outside the repository, so which hook runs depends on the operator's setup. The defect is that the documents name a hook without saying so.
+- Not re-checked here: the P2 rows' line numbers, the rename-miss row counts and the per-iteration finding counts.
+
+### R3.5 Round 3 convergence report
+
+- **Lineage:** `r3-dsflash-llmgw`, executor `cli-pi`, model `deepseek-v4.1-flash` through the llmgateway provider, reasoning effort `max`.
+- **Stop policy and convergence mode:** `max-iterations` with convergence mode `default`. The `divergent` mode was not bound, because it pivots only on a legal `composite_converged` or `all_questions_answered` STOP, and under `max-iterations` the workflow keeps those signals as telemetry, so the pivot could never fire. Widening came from the stop clause ("broaden ... instead of synthesizing early") and from a lead steer file in the lineage directory that told each iteration to take a focus no earlier iteration covered.
+- **Stop reason:** `maxIterationsReached`.
+- **Iterations:** 20 of 20. Every iteration record carries `target_agent: deep-research`, `agent_definition_loaded: true`, `mode: research` and status `complete`.
+- **Findings per iteration:** 4, 4, 4, 5, 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 3, 3, 3, 4, 4, 3 (73 in total).
+- **newInfoRatio:** 0.88, 0.87, 0.88, 0.90, 0.83, 0.88, 0.88, 0.80, 0.85, 0.90, 0.80, 0.85, 0.85, 0.75, 0.70, 0.75, 0.75, 0.80, 0.85, 0.70. The ratio never fell near the 0.05 threshold, so convergence is not claimed.
+- **Merge:** `fanout-merge.cjs` merged all four lineages into `research/findings-registry.json` with 226 key findings (153 before this round). `research/resource-map.md` was regenerated from all 50 lineage delta files.
+- **Earlier rounds' state:** the three earlier lineages are untouched. Round two's root config is preserved at `research/round-2-deep-research-config.json`, because the round-three setup wrote a new root `deep-research-config.json`.
+
+### R3.6 Proposed implementation phases
+
+1. **Documentation consistency sweep.** Fix the stale path families, rename misses, two-surface prose, hook naming, broken section pointers, phantom Obsidian assets and README rows, and add the documentation path-, name- and claim-checker as the regression guard.
+2. **Review contract hardening.** Teach the findings checker the heading shape, add the review-output shape fixture, route the detector through the shared detection contract, add the Obsidian surface, and settle one status vocabulary.
+3. **Shared-layer source-of-truth repairs.** De-duplicate the pattern assets behind a pointer, declare the shared controls once, correct the `validate.sh` paragraph against its owner, refresh `phase-detection.md` for three surfaces, align `ROUTER.md`'s load claims with the machine map, and decide who owns the comment budget.
+4. **Guards and claims alignment.** Correct the OpenCode leg-1a wording, add an OBSIDIAN-versus-WEBFLOW collision case to the canary, extend version parity to the README and packet changelogs, and add the load-tier claims check.
+
+### R3.7 Round 3 references
+
+- Round-three synthesis: `research/lineages/r3-dsflash-llmgw/research.md`
+- Round-three iterations: `research/lineages/r3-dsflash-llmgw/iterations/iteration-001.md` to `iteration-020.md`
+- Lead steer file: `research/lineages/r3-dsflash-llmgw/steer.md`
+- Merge attribution: `research/fanout-attribution.md`
+- Round-two config: `research/round-2-deep-research-config.json`

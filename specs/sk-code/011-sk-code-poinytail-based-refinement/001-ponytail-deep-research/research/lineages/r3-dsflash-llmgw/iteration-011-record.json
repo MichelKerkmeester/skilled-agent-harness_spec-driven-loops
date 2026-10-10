@@ -1,0 +1,41 @@
+{
+  "type": "iteration",
+  "iteration": 11,
+  "run": 11,
+  "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.8,
+  "status": "complete",
+  "focus": "Review integration and strengthening proposals (Part 2 close)",
+  "findingsCount": 3,
+  "noveltyJustification": "Two findings are fully new (the mode-docs zero-reference integration shape with the two-authority consequence, and the five-item strengthening proposal set) and one is an ALREADY-ADOPTED confirmation that self-containment is deliberate and the canary pins shared invariants correctly.",
+  "keyQuestions": [
+    "How agnostic is `sk-code-review` as a mode meant for any codebase, and which repository-specific assumptions leak into its SKILL.md, references, assets, scripts and playbook?",
+    "What do the review scripts do on foreign-repository inputs, and what would make the review logic stronger?"
+  ],
+  "answeredQuestions": [
+    "How agnostic is `sk-code-review` as a mode meant for any codebase, and which repository-specific assumptions leak into its SKILL.md, references, assets, scripts and playbook?",
+    "What do the review scripts do on foreign-repository inputs, and what would make the review logic stronger?"
+  ],
+  "ruledOut": [
+    "File the cross-packet asset load as a defect - it is explicitly allowlisted and typed under the review packet",
+    "Re-file the misrouting as an integration finding - f-iter006-001 holds the behavioural defect",
+    "Require a shared-layer pointer in every mode - the hub keeps mode contracts packet-local"
+  ],
+  "toolsUsed": ["read", "rg", "bash"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+    ".skilled/skills/sk-code/SKILL.md",
+    ".skilled/skills/sk-code/ROUTER.md",
+    ".skilled/skills/sk-code/leaf-manifest.json",
+    ".skilled/skills/sk-code/mode-registry.json"
+  ],
+  "timestamp": "2026-10-10T08:36:27Z",
+  "durationMs": 78000
+}

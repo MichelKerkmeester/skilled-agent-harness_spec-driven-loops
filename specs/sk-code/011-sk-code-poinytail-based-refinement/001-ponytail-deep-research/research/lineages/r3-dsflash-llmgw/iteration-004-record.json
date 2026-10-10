@@ -1,0 +1,41 @@
+{
+  "type": "iteration",
+  "iteration": 4,
+  "run": 4,
+  "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.9,
+  "status": "complete",
+  "focus": "Surface overrides, detection edges, and registry vocabulary",
+  "findingsCount": 5,
+  "noveltyJustification": "All five findings are fully new for this round and none repeat rounds one or two: the unowned comment budget, a live packet-number pointer, the registry description omitting Obsidian, the missing OBSIDIAN-versus-WEBFLOW collision test, and a stale link label in the Webflow enforcement file.",
+  "keyQuestions": [
+    "How does stack detection behave for mixed stacks, monorepos and two-surface matches, and where do the surface packets' overrides of shared standards silently diverge?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Report the 3-per-10 comment cap as a P0 gate defect - no checker gates comments by count",
+    "Report toolSurface entries as conflicting with packet frontmatter - quality and review tool surfaces match their SKILL.md exactly",
+    "Count the stale two-surface phrasing as a wording relic - mode-registry.json is the runtime routing source of truth"
+  ],
+  "toolsUsed": ["read", "rg", "bash", "python3"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/mode-registry.json",
+    ".skilled/skills/sk-code/hub-router.json",
+    ".skilled/skills/sk-code/shared/references/stack-detection.md",
+    ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
+    ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/typescript-checklist.md",
+    ".skilled/skills/sk-code/sk-code-webflow/references/shared/enforcement.md",
+    ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
+    ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json"
+  ],
+  "timestamp": "2026-10-10T08:28:52Z",
+  "durationMs": 104000
+}

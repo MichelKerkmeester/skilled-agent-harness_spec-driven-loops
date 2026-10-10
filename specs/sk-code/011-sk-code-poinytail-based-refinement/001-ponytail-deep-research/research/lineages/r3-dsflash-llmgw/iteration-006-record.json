@@ -1,0 +1,37 @@
+{
+  "type": "iteration",
+  "iteration": 6,
+  "run": 6,
+  "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.88,
+  "status": "complete",
+  "focus": "Review mode detection and surface vocabulary",
+  "findingsCount": 4,
+  "noveltyJustification": "Three findings are fully new (the misrouting detection function reproduced on foreign inputs, zero Obsidian surface support in the mode, and pre-rename packet vocabulary in its contracts) and one is an ALREADY-ADOPTED confirmation of the round-008 review doctrine fields.",
+  "keyQuestions": [
+    "How agnostic is `sk-code-review` as a mode meant for any codebase, and which repository-specific assumptions leak into its SKILL.md, references, assets, scripts and playbook?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Treat the two-surface output contract as deliberate scope - no scope limit is stated and the hub bundles Obsidian into reviews",
+    "Re-verify the connected-code and case-line additions - confirmed once, round-008 scope",
+    "Read the deep-review finding format now - phase 009 in-flight scope"
+  ],
+  "toolsUsed": ["read", "rg", "bash", "python3"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+    ".skilled/skills/sk-code/shared/references/stack-detection.md",
+    ".skilled/skills/sk-code/mode-registry.json",
+    ".skilled/skills/sk-code/benchmark/README.md",
+    ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json"
+  ],
+  "timestamp": "2026-10-10T08:31:17Z",
+  "durationMs": 118000
+}

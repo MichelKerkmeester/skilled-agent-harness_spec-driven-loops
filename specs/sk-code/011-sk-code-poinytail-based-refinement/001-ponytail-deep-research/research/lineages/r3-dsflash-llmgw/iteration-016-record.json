@@ -1,0 +1,38 @@
+{
+  "type": "iteration",
+  "iteration": 16,
+  "run": 16,
+  "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.75,
+  "status": "complete",
+  "focus": "The hub files against each other",
+  "findingsCount": 3,
+  "noveltyJustification": "Two findings are fully new (description.json's prose omitting Obsidian, and the universal-tier load claim overstating the machine map) and one is an ALREADY-ADOPTED verification block for check 5k's legs, version parity and graph coverage.",
+  "keyQuestions": [
+    "What defects, alignment gaps and improvements exist in the hub `SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `benchmark/` and `manual-testing-playbook/`?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Run the doctor's check 5k directly - the legs were recomputed from the same inputs",
+    "File the version parity as drift - all five hub artifacts read 2.2.4.0",
+    "Re-open the shared-controls list disagreement - filed in iteration 1"
+  ],
+  "toolsUsed": ["read", "rg", "bash", "python3"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/SKILL.md",
+    ".skilled/skills/sk-code/ROUTER.md",
+    ".skilled/skills/sk-code/hub-router.json",
+    ".skilled/skills/sk-code/mode-registry.json",
+    ".skilled/skills/sk-code/description.json",
+    ".skilled/skills/sk-code/graph-metadata.json",
+    ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json"
+  ],
+  "timestamp": "2026-10-10T08:42:49Z",
+  "durationMs": 90000
+}

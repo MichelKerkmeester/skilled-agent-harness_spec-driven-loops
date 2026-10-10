@@ -1,0 +1,39 @@
+{
+  "type": "iteration",
+  "iteration": 18,
+  "run": 18,
+  "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.8,
+  "status": "complete",
+  "focus": "Refutation checks, the hub README, and a mid-run file change",
+  "findingsCount": 4,
+  "noveltyJustification": "Two findings are fully new (the hub README's two-surface prose contradicting its own five-packet count, and its three-increment version lag), one records a mid-run file change by the parallel phase, and one re-confirms four earliest premises against the current files.",
+  "keyQuestions": [
+    "What defects, alignment gaps and improvements exist in the hub `SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `benchmark/` and `manual-testing-playbook/`?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "File the mid-run quality update as drift - it is a declared in-flight phase completing",
+    "Re-file the stale-name count as changed - it is still 39",
+    "Re-check every recorded finding for line movement - only the quality packet's mtime moved"
+  ],
+  "toolsUsed": ["read", "rg", "bash", "diff", "stat"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/README.md",
+    ".skilled/skills/sk-code/SKILL.md",
+    ".skilled/skills/sk-code/description.json",
+    ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.1.0.0.md",
+    ".skilled/skills/sk-code/shared/references/workflow-verify.md",
+    ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+    ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+  ],
+  "timestamp": "2026-10-10T08:44:45Z",
+  "durationMs": 86000
+}

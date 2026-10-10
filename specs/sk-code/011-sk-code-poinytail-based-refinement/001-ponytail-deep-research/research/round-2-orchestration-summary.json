@@ -1,0 +1,32 @@
+{
+  "run_id": "1791611745960-v9v3ev",
+  "loop_type": "research",
+  "spec_folder": "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research",
+  "base_artifact_dir": "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [
+    {
+      "label": "r2-dsflash-llmgw",
+      "index": 0,
+      "started_at_iso": "2026-10-10T05:55:00.641Z"
+    }
+  ],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 1,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "needs_input": 0
+  }
+}

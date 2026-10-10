@@ -1,0 +1,40 @@
+{
+  "type": "iteration",
+  "iteration": 9,
+  "run": 9,
+  "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.85,
+  "status": "complete",
+  "focus": "The review playbook against the files it tests",
+  "findingsCount": 3,
+  "noveltyJustification": "Two findings are fully new (the CR-019 gap in the claimed ID range and the playbook validating under README rules) and one is an ALREADY-ADOPTED agreement matrix across the catalog, scenario files and declared resources.",
+  "keyQuestions": [
+    "Do the review mode's contract, checklists, scripts and playbook agree with one another and with `.skilled/agents/review.md`, and where do the canonical, Claude and generated copies drift?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "File the two 'Internal design notes' rows as dead links - they are labelled notes, not paths",
+    "Treat the catalog link prefix as broken - it resolves back into the same folder",
+    "Re-validate every scenario file - per-file validation is a recorded operator decision"
+  ],
+  "toolsUsed": ["read", "rg", "bash", "python3"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/efficiency-and-restraint/rule-invariant-canary.md",
+    ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/efficiency-and-restraint/review-depth-alias.md",
+    ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/security.md",
+    ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/solid.md",
+    ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/removal.md",
+    ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/testing.md",
+    ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+    ".skilled/skills/sk-doc/scripts/validate_document.py"
+  ],
+  "timestamp": "2026-10-10T08:34:33Z",
+  "durationMs": 96000
+}

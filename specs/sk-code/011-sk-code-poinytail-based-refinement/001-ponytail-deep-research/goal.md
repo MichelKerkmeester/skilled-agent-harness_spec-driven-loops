@@ -62,7 +62,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] `grep -o '\[SOURCE: [^]]*\]' specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md | sed -E 's/\[SOURCE: (.*):([0-9]+)\]/\1 \2/' | sort -u | while read f l; do [ -f "$f" ] && [ "$(wc -l < "$f")" -ge "$l" ] || echo "BAD $f:$l"; done`, run from the repository root, prints no BAD line.
 - [ ] `grep -c '"type":"iteration"' specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/luna-max-fast/deep-research-state.jsonl specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/deep-research-state.jsonl`, run from the repository root, prints 10 for both files.
 - [ ] `grep -c 're-checked 54 claims' specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md`, run from the repository root, prints 1 or more, so research.md records an independent re-review of 54 claims.
-- [ ] `grep -cE '"succeeded": 2,|"completed_with_containment_advisory": 0,' specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/orchestration-summary.json`, run from the repository root, prints 2.
+- [ ] `grep -cE '"succeeded": 2,|"completed_with_containment_advisory": 0,' specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/round-1-orchestration-summary.json`, run from the repository root, prints 2.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research --strict`, run from the repository root, prints RESULT: PASSED.
 <!-- /ANCHOR:completion -->
 
@@ -84,7 +84,7 @@ and findings belong here.
 | Every [SOURCE:] tag resolves | Done | The loop printed no BAD line, exit 0, over 65 tags on 2026-10-09 |
 | Both lineages hold 10 iteration records | Done | luna-max-fast/deep-research-state.jsonl:10 and deepseek-flash-cline/deep-research-state.jsonl:10 on 2026-10-09 |
 | Independent re-review applied | Done | The grep printed 2 on 2026-10-09 (research/research.md lines 14 and 66) |
-| Both lineages succeeded with no containment advisory | Done | The grep printed 2 on research/orchestration-summary.json on 2026-10-09 |
+| Both lineages succeeded with no containment advisory | Done | The grep printed 2 on research/orchestration-summary.json on 2026-10-09, and 2 on research/round-1-orchestration-summary.json on 2026-10-10 |
 | Strict validation | Done | validate.sh --strict printed Errors: 0 Warnings: 0 and RESULT: PASSED, exit 0, on 2026-10-09 before goal.md was added. With goal.md present it prints RESULT: FAILED, exit 2, on one error only: GENERATED_METADATA_INTEGRITY SOURCE_FINGERPRINT_MISMATCH in graph-metadata.json, which repair-derived.cjs --apply recomputes |
 
 ### Deviations and findings
@@ -94,5 +94,7 @@ and findings belong here.
 | No acceptance-criteria.md | This Level 1 packet has none. The criteria come from spec.md REQ-001 to REQ-004, SC-002 and the Phase 3 tasks in tasks.md |
 | [SOURCE:] tag count | tasks.md T007 and implementation-summary.md record 36 of 36 tags. research.md now carries 65, all resolving, after the independent re-review amended it |
 | Metadata fingerprint after goal.md | Adding goal.md changed the source fingerprint. repair-derived.cjs was not run by the goal author, so strict validation stays failed on that one error until it is applied |
+| Round summaries kept per round, criterion amended 2026-10-10 | Each fan-out run rewrites research/orchestration-summary.json, so round two's commit replaced round one's and this criterion printed 0. Round one's and round two's summaries are restored from git history to research/round-1-orchestration-summary.json and round-2-orchestration-summary.json, and the criterion now reads round one's |
+| Round three 2026-10-10 | Twenty iterations on DeepSeek V4.1 Flash at max effort through cli-pi and llmgateway, lineage r3-dsflash-llmgw, orchestrated by Opus 5.5 high; a Round 3 section appended to research.md with rounds one and two unchanged (82 lines added, 0 removed). Its summary records one containment advisory: the phase-009 builders edited the same worktree during the run, and the runner preserved every path |
 | SC-001 has no criterion | research.md does not name sk-code-quality or sk-code-obsidian by folder name, so per-mode coverage has no clean count check |
 <!-- /ANCHOR:log -->

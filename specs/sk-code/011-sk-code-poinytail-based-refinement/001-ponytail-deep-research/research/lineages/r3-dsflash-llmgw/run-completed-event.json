@@ -1,0 +1,8 @@
+{
+  "note": "NOT APPENDED. deep_research.run_completed is a reserved event in the deep-research ledger schema (no writer emits it today; closure is reducer inference from flat rows). The append gateway rejected this payload with phase=runtime at 2026-10-10T08:48:53Z. The terminal record for this lineage is deep_research.synthesis_complete (stopReason maxIterationsReached) in deep-research-state.jsonl.",
+  "reserved": true,
+  "draftData": {
+    "terminalStatus": "completed",
+    "counts": { "iterations": 20, "findings": 73 }
+  }
+}

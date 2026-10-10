@@ -1,0 +1,44 @@
+{
+  "type": "iteration",
+  "iteration": 1,
+  "run": 1,
+  "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.88,
+  "status": "complete",
+  "focus": "Shared-layer inventory and reachability",
+  "findingsCount": 4,
+  "noveltyJustification": "Three findings are fully new for this round (divergent duplicate pattern assets, stale shared README consumer list, three-way allowlist disagreement) and one is an ALREADY-ADOPTED verification of symlink and version parity.",
+  "keyQuestions": [
+    "How do the hub `SKILL.md`, `ROUTER.md`, `hub-router.json` and `mode-registry.json` load the `sk-code/shared/` layer, and which shared files are loaded by nothing, loaded twice, or unreachable from any route?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Re-verify the nine orphan docs leg 1b flags - IN-FLIGHT phase 009 scope",
+    "Declare the shared patterns copies a leaf-projection bug - the README is explicitly exempted already",
+    "Report hub-router defaultResource as a second load - contract calls it fallback-only"
+  ],
+  "toolsUsed": ["read", "bash", "rg", "diff"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/SKILL.md",
+    ".skilled/skills/sk-code/ROUTER.md",
+    ".skilled/skills/sk-code/hub-router.json",
+    ".skilled/skills/sk-code/mode-registry.json",
+    ".skilled/skills/sk-code/description.json",
+    ".skilled/skills/sk-code/shared/README.md",
+    ".skilled/skills/sk-code/shared/assets/patterns/README.md",
+    ".skilled/skills/sk-code/sk-code-webflow/assets/patterns/README.md",
+    ".skilled/skills/sk-code/sk-code-webflow/assets/patterns/wait-patterns.js",
+    ".skilled/skills/sk-code/shared/assets/patterns/wait-patterns.js",
+    ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
+    ".skilled/skills/sk-code/leaf-manifest.json",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r3-dsflash-llmgw/steer.md"
+  ],
+  "timestamp": "2026-10-10T08:24:47Z",
+  "durationMs": 96000
+}

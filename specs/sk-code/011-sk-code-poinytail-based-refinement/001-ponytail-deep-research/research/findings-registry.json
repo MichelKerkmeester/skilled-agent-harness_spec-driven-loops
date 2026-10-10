@@ -2,7 +2,8 @@
   "mergedFrom": [
     "deepseek-flash-cline",
     "luna-max-fast",
-    "r2-dsflash-llmgw"
+    "r2-dsflash-llmgw",
+    "r3-dsflash-llmgw"
   ],
   "lineageExecutors": {
     "deepseek-flash-cline": {
@@ -16,6 +17,11 @@
       "reasoningEffort": "max"
     },
     "r2-dsflash-llmgw": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "r3-dsflash-llmgw": {
       "kind": "cli-pi",
       "model": "deepseek-v4.1-flash",
       "reasoningEffort": "max"
@@ -60,6 +66,30 @@
       ],
       "_lineages": [
         "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "q1-shared-loading",
+      "text": "How do the hub `SKILL.md`, `ROUTER.md`, `hub-router.json` and `mode-registry.json` load the `sk-code/shared/` layer, and which shared files are loaded by nothing, loaded twice, or unreachable from any route?",
+      "resolvedAtIteration": 5,
+      "status": "resolved",
+      "evidence": [
+        "lineage:r3-dsflash-llmgw (iterations 1-5)"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "q10-ideas-table",
+      "text": "Which original ideas does round three produce, which should be rejected with reasons, and what ranked findings table and implementation phases close the round?",
+      "resolvedAtIteration": 20,
+      "status": "resolved",
+      "evidence": [
+        "lineage:r3-dsflash-llmgw (iterations 19-20, research.md)"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
       ]
     },
     {
@@ -111,6 +141,18 @@
       ]
     },
     {
+      "id": "q4-detection-overrides",
+      "text": "How does stack detection behave for mixed stacks, monorepos and two-surface matches, and where do the surface packets' overrides of shared standards silently diverge?",
+      "resolvedAtIteration": 5,
+      "status": "resolved",
+      "evidence": [
+        "lineage:r3-dsflash-llmgw (iterations 4-5)"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
       "id": "q4-hub-core",
       "text": "Which Ponytail teachings improve the sk-code hub core (SKILL.md, ROUTER.md, mode-registry.json, hub-router.json) beyond what round one settled?",
       "resolvedAtIteration": 6,
@@ -132,6 +174,18 @@
       ],
       "_lineages": [
         "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "q5-review-agnosticism",
+      "text": "How agnostic is `sk-code-review` as a mode meant for any codebase, and which repository-specific assumptions leak into its SKILL.md, references, assets, scripts and playbook?",
+      "resolvedAtIteration": 11,
+      "status": "resolved",
+      "evidence": [
+        "lineage:r3-dsflash-llmgw (iterations 6-11)"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
       ]
     },
     {
@@ -204,6 +258,18 @@
       ],
       "_lineages": [
         "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "q7-review-scripts",
+      "text": "What do the review scripts do on foreign-repository inputs, and what would make the review logic stronger?",
+      "resolvedAtIteration": 11,
+      "status": "resolved",
+      "evidence": [
+        "lineage:r3-dsflash-llmgw (iterations 10-11)"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
       ]
     },
     {
@@ -313,7 +379,7 @@
   ],
   "keyFindings": [
     {
-      "id": "f-iter001-001",
+      "id": "f-iter001-001--13ee0ea05754",
       "label": "The reach list before editing is missing from @code's pre-implementation gate: Ponytail lists every place a change must reach (callers, tests, fixtures, config, exports) before writing, while @code's checklist checks scope, allowlist and routing but never enumerates the reach set. NEW target, ALREADY-COVERED idea (round one recommended it for workflow-implement.md).",
       "severity": "P1",
       "iteration": 1,
@@ -326,10 +392,56 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter001-001",
+      "_conflict_id": "f-iter001-001--13ee0ea05754",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-001",
+          "peerId": "f-iter001-001--a5d2f4e5b2a7",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter001-002",
+      "id": "f-iter001-001--a5d2f4e5b2a7",
+      "text": "The shared layer duplicates two of the Webflow packet's pattern assets with drifted content, and both copies are reachable from the routed map: shared/assets/patterns/{validation,wait}-patterns.js mirror sk-code-webflow/assets/patterns/ copies, both READMEs sit in the same IMPLEMENTATION row of RESOURCE_MAP, and the wait-patterns copies differ by a six-line cross-stack Motion reference present only in the Webflow copy while the shared copies carry an ASCII banner plus top-of-file 'use strict'. Reproducing case: diff shared/assets/patterns/wait-patterns.js sk-code-webflow/assets/patterns/wait-patterns.js prints the added Motion comment; rg for 'Cross-stack Motion reference' exits 1 in the shared copy and hits line 546 in the Webflow copy. NEW P1.",
+      "severity": "P1",
+      "classification": "NEW",
+      "iteration": 1,
+      "sources": [
+        ".skilled/skills/sk-code/shared/README.md:74",
+        ".skilled/skills/sk-code/shared/README.md:75",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/patterns/README.md:73",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/patterns/README.md:74",
+        ".skilled/skills/sk-code/ROUTER.md:382",
+        ".skilled/skills/sk-code/ROUTER.md:384",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/patterns/wait-patterns.js:546",
+        ".skilled/skills/sk-code/shared/assets/patterns/wait-patterns.js:1"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter001-001",
+      "_conflict_id": "f-iter001-001--a5d2f4e5b2a7",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-001",
+          "peerId": "f-iter001-001--13ee0ea05754",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-002--724cbfa14438",
       "label": "@code's RETURN contract has no gap-disclosure line: Ponytail ends every reply with what was skipped or not checked plus user risk, sk-code-review already adopted the analogous 'Not checked:' line, but @code's RETURN fields never name unchecked work or user-facing risk. NEW target, idea adopted on the review side.",
       "severity": "P1",
       "iteration": 1,
@@ -341,10 +453,23 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter001-002",
+      "_conflict_id": "f-iter001-002--724cbfa14438",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-002",
+          "peerId": "f-iter001-002--cc646bc053c7",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter001-003",
+      "id": "f-iter001-003--b1a2fe122662",
       "label": "@review has no no-case-no-finding evidence bar: Ponytail requires a concrete input or situation per finding before reporting, while @review's Issue Evidence Requirements ask only for file:line plus snippet or pattern reference and its adversarial pass challenges by disposition, not by demanding a case. NEW.",
       "severity": "P1",
       "iteration": 1,
@@ -356,10 +481,23 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter001-003",
+      "_conflict_id": "f-iter001-003--b1a2fe122662",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-003",
+          "peerId": "f-iter001-003--28ea96ff6547",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter001-004",
+      "id": "f-iter001-004--5649425e7279",
       "label": "@review never reads the connected code as a named workflow step: Ponytail reads the diff then callers, called functions, tests and README, and greps every caller on signature or behavior change, while @review's ANALYZE step is tool-oriented and its Read-Budget Discipline discourages wide reads. The rules are compatible as coverage-once versus no-repeats. NEW.",
       "severity": "P1",
       "iteration": 1,
@@ -371,10 +509,58 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter001-004",
+      "_conflict_id": "f-iter001-004--5649425e7279",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-004",
+          "peerId": "f-iter001-004--40367657a3cf",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter002-001",
+      "id": "f-iter002-001--03210392adaa",
+      "text": "Eight of the thirteen shared markdown files route readers through pre-merge directory families (references/webflow, references/opencode, references/motion_dev, assets/webflow, assets/universal) and none of those paths exists: the hub has no references/ dir, the only code-quality-checklist.md lives in sk-code-review/assets/, assets/universal/checklists/ is gone, and references/motion_dev/ is gone. 23 grep lines across 8 files, 22 of them path references in 7 files. Reproducing case: test -f on assets/webflow/checklists/code-quality-checklist.md fails while sk-code-review/assets/code-quality-checklist.md exists. NEW P1.",
+      "severity": "P1",
+      "classification": "NEW",
+      "iteration": 2,
+      "sources": [
+        ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md:24",
+        ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md:39",
+        ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md:221",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:39",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:174",
+        ".skilled/skills/sk-code/shared/references/universal-verification-checklist.md:71",
+        ".skilled/skills/sk-code/shared/references/universal/error-recovery.md:133",
+        ".skilled/skills/sk-code/shared/references/universal/multi-agent-research.md:50",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:103",
+        ".skilled/skills/sk-code/shared/references/phase-detection.md:62"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter002-001",
+      "_conflict_id": "f-iter002-001--03210392adaa",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-001",
+          "peerId": "f-iter002-001--e833646e1faf",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-001--e833646e1faf",
       "label": "The ceiling: convention has no harvest report: Ponytail-debt scans markers into one debt ledger, flags no-trigger rows that silently rot, and closes with counts; sk-code has the producer convention and the reviewer downgrade rule but no reporting surface, so a marked deferral can become permanent unnoticed. NEW mechanism for sk-code-quality.",
       "severity": "P1",
       "iteration": 2,
@@ -389,10 +575,54 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter002-001",
+      "_conflict_id": "f-iter002-001--e833646e1faf",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-001",
+          "peerId": "f-iter002-001--03210392adaa",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter003-001",
+      "id": "f-iter002-002--e3abd409f085",
+      "text": "phase-detection.md is semantically stale beyond its dead paths: it says 'Both supported surfaces follow the same lifecycle' while the hub carries three surfaces, its per-phase tables list only WEBFLOW and OPENCODE, and its OPENCODE verification row names verify_alignment_drift.py alone while the live completion gate is the three-guard umbrella scripts/run-all-drift-guards.sh. Reproducing case: rg -n OBSIDIAN on phase-detection.md exits 1 while stack-detection.md counts several. NEW P1.",
+      "severity": "P1",
+      "classification": "NEW",
+      "iteration": 2,
+      "sources": [
+        ".skilled/skills/sk-code/shared/references/phase-detection.md:16",
+        ".skilled/skills/sk-code/shared/references/phase-detection.md:57",
+        ".skilled/skills/sk-code/shared/references/phase-detection.md:69",
+        ".skilled/skills/sk-code/shared/references/phase-detection.md:77",
+        ".skilled/skills/sk-code/SKILL.md:38",
+        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:173"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter002-002",
+      "_conflict_id": "f-iter002-002--e3abd409f085",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-002",
+          "peerId": "f-iter002-002--37f3fe56784e",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter003-001--285dee35ad16",
       "label": "Round one's D2 (Codex-only changes passing unchecked) is closed in the current tree: the checker regex includes codex, its orphan list looks for .codex mirrors, both pre-commit hooks include codex paths, and the pre-commit mirror gate runs the dedicated Codex sync checks. VERIFIED CLOSURE; the parent should not reopen it as pending.",
       "severity": "P1",
       "iteration": 3,
@@ -406,10 +636,52 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter003-001",
+      "_conflict_id": "f-iter003-001--285dee35ad16",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-001",
+          "peerId": "f-iter003-001--545a4209ffb0",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter003-002",
+      "id": "f-iter003-001--545a4209ffb0",
+      "text": "workflow-verify.md:86 carries a wrong validate.sh contract and contradicts the document that owns it: the shared file says warnings 'only become a failing validation outcome under --strict, which exits 2 unless the folder is grandfathered', while validation-rules.md:44 says 'a warning stays advice in both modes and never changes the exit code. A rule that should block reports an error itself', and :159 says only SPECKIT_COMPLETION_FRESHNESS_ENFORCE escalates a stale-freshness warn to an error that makes --strict exit 2. The authority states it owns this meaning and that copies elsewhere go stale first (validation-rules.md:835). Reproducing case: the two rg commands print claims that cannot both be true. NEW P1.",
+      "severity": "P1",
+      "classification": "NEW",
+      "iteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/shared/references/workflow-verify.md:86",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:44",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:159",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:835"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter003-001",
+      "_conflict_id": "f-iter003-001--545a4209ffb0",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-001",
+          "peerId": "f-iter003-001--285dee35ad16",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter003-002--c9c6ab5c580c",
       "label": "The Hermes agent-persona mirror check runs only in CI: sync-skills-hermes.cjs mirrors .skilled/agents personas into .hermes/skills/agent-* with a --check mode, CI runs both Hermes checks, but pre-commit has zero Hermes references and no .hermes entry in its mirror lists, the doctor runtime-mirror config has zero Hermes entries, and the doctor update route checks only Hermes prompts while the doctor doc claims agent mirrors too. NEW, same failure class as the closed D2.",
       "severity": "P1",
       "iteration": 3,
@@ -427,10 +699,52 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter003-002",
+      "_conflict_id": "f-iter003-002--c9c6ab5c580c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-002",
+          "peerId": "f-iter003-002--fdcf6db0160b",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter006-001",
+      "id": "f-iter006-001--02b8bff928fb",
+      "text": "The review mode's detect_surface_evidence misroutes generic repositories to the Webflow surface and contradicts the shared detection authority: any changed path containing package.json or src/ returns sk-code:code-webflow, while stack-detection.md:83 says generic Node.js without Webflow markers stays UNKNOWN and names the exact marker set (src/2_javascript/, *.webflow.js, Webflow.push, --vw-, vendor globals, wrangler.toml). Executed proof: text 'fix a null deref in the parser' with changed src/api/client.ts returns sk-code:code-webflow; 'review my dependency bump' with changed package.json returns sk-code:code-webflow. A generic-Node review therefore gets Webflow evidence and skips the unknown-disclosure path. NEW P1.",
+      "severity": "P1",
+      "classification": "NEW",
+      "iteration": 6,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:220",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:226",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:227",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:83"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter006-001",
+      "_conflict_id": "f-iter006-001--02b8bff928fb",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter006-001",
+          "peerId": "f-iter006-001--b135c83ec9ce",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter006-001--b135c83ec9ce",
       "label": "Restraint and simplification prompts have no front-door routing vocabulary: Ponytail activates on yagni, simplest solution, over-engineering and bloat, the sk-code hub owns the doctrine, but hub-router quality classes, mode-registry quality aliases, description.json keywords and ROUTER.md carry none of the vocabulary, so a simplify/over-engineered request cannot score the quality mode lexically. NEW.",
       "severity": "P1",
       "iteration": 6,
@@ -444,10 +758,53 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter006-001",
+      "_conflict_id": "f-iter006-001--b135c83ec9ce",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter006-001",
+          "peerId": "f-iter006-001--02b8bff928fb",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter007-001",
+      "id": "f-iter006-002--57cb9abf7453",
+      "text": "The review mode has no Obsidian surface anywhere although the hub bundles Obsidian evidence into reviews: detect_surface_evidence has no OBSIDIAN branch, the output contract's surface-evidence line lists only two surfaces plus unknown, and review-core.md describes the field as code-webflow or code-opencode. A case-insensitive rg over SKILL.md, references/ and assets/ exits 1 outside the changelog. The hub's canary case surface-bundle-obsidian expects sk-code-review + sk-code-obsidian, and the shared precedence puts OBSIDIAN above WEBFLOW. Executed proof: 'code review my obsidian plugin' with changed main.ts returns sk-code:unknown. NEW P1.",
+      "severity": "P1",
+      "classification": "NEW",
+      "iteration": 6,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:220",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:339",
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md:66",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json:79",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:39"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter006-002",
+      "_conflict_id": "f-iter006-002--57cb9abf7453",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter006-002",
+          "peerId": "f-iter006-002--156293173f53",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter007-001--9d2a94611728",
       "label": "Round one's doctrine-pass recommendation is fully implemented: the always-loaded ladder carries the reuse step as rung 2 of seven, its never-cut sentence names accessibility, the implement workflow carries the full reach list verbatim, and its Pre-Write Restraint repeats the ladder. VERIFIED CLOSURE; remaining reach-list gaps are only the outer layers.",
       "severity": "P1",
       "iteration": 7,
@@ -460,10 +817,23 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter007-001",
+      "_conflict_id": "f-iter007-001--9d2a94611728",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter007-001",
+          "peerId": "f-iter007-001--a07ad340e189",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter007-002",
+      "id": "f-iter007-002--d5c066e41781",
       "label": "Round one's review-output recommendation is fully implemented: Not checked with its exact placement, the performance workload inside Risk, the reworded consequence as User impact, and the widened removal search covering callers, tests, fixtures, config and string references. VERIFIED CLOSURE.",
       "severity": "P1",
       "iteration": 7,
@@ -476,10 +846,23 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter007-002",
+      "_conflict_id": "f-iter007-002--d5c066e41781",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter007-002",
+          "peerId": "f-iter007-002--5481f5831ff8",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter007-003",
+      "id": "f-iter007-003--39b41b15576e",
       "label": "The review finding contract still lacks a reproducing case: Ponytail demands a concrete input or situation per finding, while the mode's format requires Risk, User impact, Finding class, Scope proof and Recommended fix, and its NEVER list bans vague findings without demanding reproducibility. NEW for the mode; the same gap was filed for @review in iteration 1.",
       "severity": "P1",
       "iteration": 7,
@@ -491,6 +874,19 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter007-003",
+      "_conflict_id": "f-iter007-003--39b41b15576e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter007-003",
+          "peerId": "f-iter007-003--391bff53c8ab",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -510,7 +906,7 @@
       ]
     },
     {
-      "id": "f-iter008-001",
+      "id": "f-iter008-001--bdbf0ee7ea5b",
       "label": "D1 is fixed: the Webflow checker collects deferred callback errors from setTimeout and requestAnimationFrame through a run_callback wrapper and reports the first source and message, so a script whose deferred code throws now fails. VERIFIED CLOSURE.",
       "severity": "P1",
       "iteration": 8,
@@ -521,10 +917,23 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter008-001",
+      "_conflict_id": "f-iter008-001--bdbf0ee7ea5b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter008-001",
+          "peerId": "f-iter008-001--6d43a5859012",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter008-002",
+      "id": "f-iter008-002--53cbe2045a0a",
       "label": "D3 is fixed: the playbook index row points at the stack-folder validator scenario and the expected language list names all six folders (config, javascript, python, rust, shell, typescript). VERIFIED CLOSURE.",
       "severity": "P1",
       "iteration": 8,
@@ -534,10 +943,23 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter008-002",
+      "_conflict_id": "f-iter008-002--53cbe2045a0a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter008-002",
+          "peerId": "f-iter008-002--fe486e12483c",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter008-003",
+      "id": "f-iter008-003--d4279b6e804b",
       "label": "D4 is fixed: the shared stdin reader has a 3000 ms deadline that settles on stream end or deadline and clears timer and listeners, and both post-edit adapters import it instead of carrying their own copy. VERIFIED CLOSURE.",
       "severity": "P1",
       "iteration": 8,
@@ -551,6 +973,19 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter008-003",
+      "_conflict_id": "f-iter008-003--d4279b6e804b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter008-003",
+          "peerId": "f-iter008-003--03b0747f139d",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -575,7 +1010,7 @@
       ]
     },
     {
-      "id": "f-iter009-003",
+      "id": "f-iter009-003--263bc64c6971",
       "label": "Original idea: one authored agent source per dialect, generated elsewhere. Three byte-identical OpenCode-dialect copies exist with no equality check; declare .skilled/agents the authored source and generate .opencode/agents and .hermes/agents in the existing sync pipeline, as four other hosts already do.",
       "severity": "P1",
       "iteration": 9,
@@ -586,6 +1021,19 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter009-003",
+      "_conflict_id": "f-iter009-003--263bc64c6971",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter009-003",
+          "peerId": "f-iter009-003--ce47dd9cb36f",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -602,7 +1050,36 @@
       ]
     },
     {
-      "id": "f-iter010-002",
+      "id": "f-iter010-001--24a62d993fda",
+      "text": "The findings checker cannot see the finding shape its own doctrine prescribes, so that shape passes vacuously: review-core.md section 7 writes findings as headings with the number inside ('### 2 [P1] Missing authorization check') while check-review-findings.js matches only list items (/^(\\d+)\\. \\S/). Observed: a faithful review-core-shaped review printed 'OK: no numbered findings to check' and exited 0, while the same review in the template list shape is checked line by line. The checker README's claim that it checks each numbered finding under ## Findings is false for one of the two shapes the packet documents. Reproducing case: run the checker on a review-core-shaped review. NEW P1.",
+      "severity": "P1",
+      "classification": "NEW",
+      "iteration": 10,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md:110",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js:19",
+        ".skilled/skills/sk-code/sk-code-review/scripts/README.md:21",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:344"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter010-001",
+      "_conflict_id": "f-iter010-001--24a62d993fda",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter010-001",
+          "peerId": "f-iter010-001--514d50a6d88e",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter010-002--afc24eb02d44",
       "label": "Round-one closure ledger: recommendations 1, 3, 4, 5, 6, 8 and the D4 hook handoff are closed in the current tree; recommendation 2 is half closed (D1 fix landed, known-bad test input missing); recommendation 7 remains open; recommendation 10 stays deferred by design. VERIFIED.",
       "severity": "P1",
       "iteration": 10,
@@ -613,6 +1090,19 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter010-002",
+      "_conflict_id": "f-iter010-002--afc24eb02d44",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter010-002",
+          "peerId": "f-iter010-002--4adee2ac3c54",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -625,6 +1115,116 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter012-001",
+      "text": "The quality mode, which owns the comment-hygiene gate, points operators at the legacy hooks and the shared universal standard repeats the same names: SKILL.md:130-131 names scripts/hooks/claude-posttooluse.sh as the write-time warning and .skilled/hooks/git/pre-commit as the commit block, and code-quality-standards.md:138-139 says the same, while the OpenCode naming file states the installed hook is .skilled/scripts/git-hooks/pre-commit (the core.hooksPath selection) and the live write-time adapter is .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs, with the two older files kept as compatibility helpers for direct tests only. Both files exist, so a reader cannot tell which statement is current without a third document. Reproducing case: rg for both names across the three files prints two claims that cannot both be current. NEW P1.",
+      "severity": "P1",
+      "classification": "NEW",
+      "iteration": 12,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:130",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:131",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:138",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:139",
+        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:243",
+        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:246"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter001-002--cc646bc053c7",
+      "text": "shared/README.md still names the pre-rename packet keys (code-webflow, code-opencode, code-quality, code-review) and omits sk-code-obsidian, which now consumes the shared workflow trio through symlinks; the sentence is the index's only consumer list. Reproducing case: rg -n 'code-webflow|code-opencode|sk-code-obsidian' shared/README.md shows the stale names at line 17 and no obsidian mention. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 1,
+      "sources": [
+        ".skilled/skills/sk-code/shared/README.md:17",
+        ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md:62",
+        ".skilled/skills/sk-code/sk-code-webflow/references/workflow-implement.md"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter001-002",
+      "_conflict_id": "f-iter001-002--cc646bc053c7",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-002",
+          "peerId": "f-iter001-002--724cbfa14438",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-003--28ea96ff6547",
+      "text": "Three overlapping exemption lists disagree about hub-level shared controls: ROUTER.md declares eight SHARED_CONTROL_RESOURCES as the exempt-from-leaf set, the router-sync guard keeps a nine-entry PARENT_TIER_ALLOWLIST that adds sk-code-review/assets/code-quality-checklist.md, and a third NON_ROUTED_ALLOWLIST also exempts references/stack-detection.md and references/phase-detection.md - two files loaded on every route via DEFAULT_RESOURCE, absent from leaf-manifest.json, yet never declared as shared controls. The hub's claim that 'the eight declared SHARED_CONTROL_RESOURCES are contained hub-level inputs' is narrower than the load contract it summarizes. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 1,
+      "sources": [
+        ".skilled/skills/sk-code/ROUTER.md:583",
+        ".skilled/skills/sk-code/ROUTER.md:587",
+        ".skilled/skills/sk-code/ROUTER.md:321",
+        ".skilled/skills/sk-code/ROUTER.md:322",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs:22",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs:25",
+        ".skilled/skills/sk-code/SKILL.md:63",
+        ".skilled/skills/sk-code/leaf-manifest.json"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter001-003",
+      "_conflict_id": "f-iter001-003--28ea96ff6547",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-003",
+          "peerId": "f-iter001-003--b1a2fe122662",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-004--40367657a3cf",
+      "text": "Verified as already adopted: all nine workflow-doctrine copies under sk-code-webflow, sk-code-opencode and sk-code-obsidian are symlinks into shared/references, so the single-source doctrine claim holds, and the hub version is parity-consistent across SKILL.md, mode-registry.json, description.json and hub-router.json at 2.2.4.0. ALREADY-ADOPTED, no action; recorded so later iterations do not re-open it.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 1,
+      "sources": [
+        ".skilled/skills/sk-code/SKILL.md:5",
+        ".skilled/skills/sk-code/mode-registry.json:3",
+        ".skilled/skills/sk-code/description.json:4",
+        ".skilled/skills/sk-code/hub-router.json:3",
+        ".skilled/skills/sk-code/sk-code-webflow/references/workflow-implement.md",
+        ".skilled/skills/sk-code/sk-code-obsidian/references/workflow-verify.md"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter001-004",
+      "_conflict_id": "f-iter001-004--40367657a3cf",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-004",
+          "peerId": "f-iter001-004--5649425e7279",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -685,7 +1285,7 @@
       ]
     },
     {
-      "id": "f-iter002-002",
+      "id": "f-iter002-002--37f3fe56784e",
       "label": "@debug's response contract has no not-checked disclosure: Ponytail's audit ends with one line naming the parts not read or not runnable, while @debug's Success, Blocked and Escalation responses never name what could not be checked or run. NEW target, ALREADY-COVERED idea.",
       "severity": "P2",
       "iteration": 2,
@@ -700,10 +1300,51 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter002-002",
+      "_conflict_id": "f-iter002-002--37f3fe56784e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-002",
+          "peerId": "f-iter002-002--e3abd409f085",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter002-003",
+      "id": "f-iter002-003--3697d5aac48a",
+      "text": "Cross-links inside the shared tier use three different forms for the same directory: stack-detection.md:154 links 'references/phase-detection.md' while its own sibling phase-detection.md links './stack-detection.md' correctly, and code-quality-standards.md:172 links bare 'references/universal/code-style-guide.md'. From stack-detection.md's directory the first link resolves to shared/references/references/phase-detection.md, which does not exist; no checker validates links inside referenced docs. Reproducing case: rg -n 'references/phase-detection.md' on stack-detection.md prints line 154. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 2,
+      "sources": [
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:154",
+        ".skilled/skills/sk-code/shared/references/phase-detection.md:39",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:172"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter002-003",
+      "_conflict_id": "f-iter002-003--3697d5aac48a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-003",
+          "peerId": "f-iter002-003--8a63baff3566",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-003--8a63baff3566",
       "label": "@debug's fresh-observation and counter-evidence discipline is already adopted: Phase 1 demands an observation independent of prior attempts and Phase 4 searches counter-evidence and downgrades hypotheses, matching Ponytail's report-check discipline. ALREADY-ADOPTED, no action.",
       "severity": "P2",
       "iteration": 2,
@@ -715,10 +1356,54 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter002-003",
+      "_conflict_id": "f-iter002-003--8a63baff3566",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-003",
+          "peerId": "f-iter002-003--3697d5aac48a",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter002-004",
+      "id": "f-iter002-004--4b49e00deebb",
+      "text": "Verified as already consistent: the precedence order OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN is identical in stack-detection.md:39, code-quality-standards.md:56 and hub SKILL.md:135; the AGENTS.md section 3 restraint-table pointer resolves (AGENTS.md:198); and the ceiling: harvest endpoint named by the style guide exists at sk-code-quality/scripts/ceiling-report.sh. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 2,
+      "sources": [
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:39",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:56",
+        ".skilled/skills/sk-code/SKILL.md:135",
+        "AGENTS.md:198",
+        ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md:186",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter002-004",
+      "_conflict_id": "f-iter002-004--4b49e00deebb",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-004",
+          "peerId": "f-iter002-004--a0fa36f6ea83",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-004--a0fa36f6ea83",
       "label": "Bounded candidates should disclose the omitted count: Ponytail caps audits at 20 findings and requires saying how many were left out, while @debug caps hypotheses at 2-3 without stating how many candidates were considered and dropped. NEW mechanism for debug.md Phase 3.",
       "severity": "P2",
       "iteration": 2,
@@ -730,6 +1415,19 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter002-004",
+      "_conflict_id": "f-iter002-004--a0fa36f6ea83",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-004",
+          "peerId": "f-iter002-004--4b49e00deebb",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -776,7 +1474,68 @@
       ]
     },
     {
-      "id": "f-iter003-003",
+      "id": "f-iter003-002--fdcf6db0160b",
+      "text": "The shared workflow trio and the repo rules carry the same floors twice with no pointer either way: reproduce/trace/one-cause in workflow-debug.md:50-57 vs root-cause-and-debugging.md:52-61; baseline/current/delta in workflow-verify.md:101-112 vs evidence-and-proof.md section 5; the mutation-check/negative-control ritual in workflow-verify.md:125-127 vs evidence-and-proof.md section 4; the pre-write restraint paragraph in workflow-implement.md:66 vs prevent-overengineering.md and AGENTS.md section 3. Every pair agrees in substance today, but the tiers load under different triggers, so a future edit can diverge unseen exactly as f-iter003-001 already did. Proposed repair: repo rules own the floors, shared files keep only the sk-code mechanism plus a one-line pointer. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/shared/references/workflow-debug.md:50",
+        ".skilled/repo-rules/root-cause-and-debugging.md:52",
+        ".skilled/skills/sk-code/shared/references/workflow-verify.md:103",
+        ".skilled/repo-rules/evidence-and-proof.md:124",
+        ".skilled/skills/sk-code/shared/references/workflow-verify.md:127",
+        ".skilled/repo-rules/evidence-and-proof.md:117",
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:66"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter003-002",
+      "_conflict_id": "f-iter003-002--fdcf6db0160b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-002",
+          "peerId": "f-iter003-002--c9c6ab5c580c",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter003-003--3562101235c2",
+      "text": "The shared doctrine files carry surface-conditioned subsections while the hub's purity rule says shared material must never gain them: workflow-implement.md:78-84 and workflow-verify.md:76-99 embed 'OpenCode Surface Only' contracts (generate-context.js single-writer rule, sk-git boundary, validate.sh/tsc/rebuild-native chain) inside files symlinked into all three surfaces, while SKILL.md:163 says shared backend material 'must never gain per-mode workflow contracts' and sk-code-opencode already owns a shared tier (references/shared/alignment-verification-automation.md) where they can live. Reproducing case: rg -n 'OpenCode Surface Only' on the shared references prints four hits. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:78",
+        ".skilled/skills/sk-code/shared/references/workflow-verify.md:76",
+        ".skilled/skills/sk-code/SKILL.md:163",
+        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:43"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter003-003",
+      "_conflict_id": "f-iter003-003--3562101235c2",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-003",
+          "peerId": "f-iter003-003--e38e0b0cef1c",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter003-003--e38e0b0cef1c",
       "label": "The OpenCode-dialect agent body exists in three byte-identical copies (.skilled/agents, .opencode/agents, .hermes/agents) with no equality check between them: each checker compares a different pair, the doctor roster check treats .skilled as presence-only, and the Hermes and Pi syncs source from .skilled, so an edit that satisfies one pair checker can leave the other copies stale with every local gate green. NEW, latent.",
       "severity": "P2",
       "iteration": 3,
@@ -789,10 +1548,23 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter003-003",
+      "_conflict_id": "f-iter003-003--e38e0b0cef1c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-003",
+          "peerId": "f-iter003-003--3562101235c2",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter003-004",
+      "id": "f-iter003-004--2abdf36c1d3b",
       "label": "Ponytail's adapter-thinness rule is substantively implemented: Cursor agents are symlinks resolving to the Claude canonical, Devin and Codex trees are generated, and the runtime-mirrors policy documents which dialect each host parses. ALREADY-ADOPTED, no action.",
       "severity": "P2",
       "iteration": 3,
@@ -804,10 +1576,52 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter003-004",
+      "_conflict_id": "f-iter003-004--2abdf36c1d3b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-004",
+          "peerId": "f-iter003-004--52249f0bf575",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter004-001",
+      "id": "f-iter003-004--52249f0bf575",
+      "text": "Verified as already consistent: the seven-rung ladder summary in workflow-implement.md:66 matches code-quality-standards.md:46-52 rung for rung including the reuse rung and the never-cut tail, and every repo-rule pair in f-iter003-002 agrees in substance today (reproduce, trace, one cause, whole-gate re-run, baseline, negative control). ALREADY-ADOPTED, no action beyond the pointer proposal.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:66",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:46",
+        ".skilled/repo-rules/root-cause-and-debugging.md:52",
+        ".skilled/repo-rules/evidence-and-proof.md:117"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter003-004",
+      "_conflict_id": "f-iter003-004--52249f0bf575",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-004",
+          "peerId": "f-iter003-004--2abdf36c1d3b",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter004-001--3955e61b5f2c",
       "label": "The reach set is only half-enumerated in the pre-write pass: Ponytail lists callers, tests, fixtures, config and exports, while prevent-overengineering.md Sec2 asks for the owning module, one real caller and the contract (the dangerous half) but not the rest. ALREADY-COVERED idea, NEW target.",
       "severity": "P2",
       "iteration": 4,
@@ -821,10 +1635,80 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter004-001",
+      "_conflict_id": "f-iter004-001--3955e61b5f2c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-001",
+          "peerId": "f-iter004-001--c065b9dde59c",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter004-002",
+      "id": "f-iter004-001--c065b9dde59c",
+      "text": "The OpenCode surface enforces a comment budget the shared universal tier does not have and nothing measures: 'Maximum 3 comments per 10 lines of code' appears in naming-and-commenting.md:170 and in every language style guide and five checklists (14 rows across 13 files), while the shared universal guide defaults to no comments and requires one only for hidden constraints and invariants with no quantity rule, and no checker counts comments. A 10-line security block with four durable WHY comments violates the checklist row and satisfies the universal contract. Reproducing case: rg -n '3 comments per 10|max 3 comments per 10' .skilled/skills/sk-code --glob '!benchmark/**' prints 14 rows across 13 files; rg over sk-code-quality/scripts finds no count-enforcing script. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 4,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:170",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/typescript-checklist.md:113",
+        ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md:109",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:122"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter004-001",
+      "_conflict_id": "f-iter004-001--c065b9dde59c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-001",
+          "peerId": "f-iter004-001--3955e61b5f2c",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter004-002--33faf47e704b",
+      "text": "A live OpenCode reference carries a packet-number pointer in its own prose: naming-and-commenting.md:283 reads 'Carry-over from 139: keep rule constants centralized...' while the same file's section 4 declares ephemeral-artifact pointers forbidden and calls the rule a HARD BLOCK. The pointer sits in documentation, not a code comment, so no hook scans it, but it is the dangling-reference class the rule exists to stop. Reproducing case: rg -n 'Carry-over from' .skilled/skills/sk-code --glob '!benchmark/**' prints this one row and no other. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 4,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:283",
+        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:235",
+        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:239"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter004-002",
+      "_conflict_id": "f-iter004-002--33faf47e704b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-002",
+          "peerId": "f-iter004-002--b859bc012935",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter004-002--b859bc012935",
       "label": "The decodability floor for minimal diffs is absent: Ponytail says a one-liner that needs decoding is not short, while the repo settles size purely by reversal cost with no counterweight against unreadable golf. NEW for prevent-overengineering.md Sec1.",
       "severity": "P2",
       "iteration": 4,
@@ -834,10 +1718,51 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter004-002",
+      "_conflict_id": "f-iter004-002--b859bc012935",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-002",
+          "peerId": "f-iter004-002--33faf47e704b",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter004-003",
+      "id": "f-iter004-003--055987ac5825",
+      "text": "The mode registry's own description omits the third surface it registers: mode-registry.json:5 describes the surface axis as '(sk-code-webflow/sk-code-opencode)' while extensions.surface-axis.surfaces:19 lists sk-code-obsidian and the modes array carries its full entry at 98-110. The same stale two-surface phrasing recurs in shared/README.md:17. Reproducing case: rg -n 'sk-code-webflow/sk-code-opencode' mode-registry.json prints line 5. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 4,
+      "sources": [
+        ".skilled/skills/sk-code/mode-registry.json:5",
+        ".skilled/skills/sk-code/mode-registry.json:19",
+        ".skilled/skills/sk-code/mode-registry.json:98"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter004-003",
+      "_conflict_id": "f-iter004-003--055987ac5825",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-003",
+          "peerId": "f-iter004-003--adef0cb6da6b",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter004-003--adef0cb6da6b",
       "label": "Moved or merged code is not required to keep its error handling and validation: Ponytail states the rule, while the rules only forbid deliberately cutting error handling and treat rename/move as mechanical in-scope changes. NEW for scope-discipline.md Sec2 or prevent-overengineering.md Sec5.",
       "severity": "P2",
       "iteration": 4,
@@ -848,10 +1773,51 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter004-003",
+      "_conflict_id": "f-iter004-003--adef0cb6da6b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-003",
+          "peerId": "f-iter004-003--055987ac5825",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter004-004",
+      "id": "f-iter004-004--26c09c6853b1",
+      "text": "No test covers an OBSIDIAN-versus-WEBFLOW collision, the one precedence decision that needs it: stack-detection.md section 4 has Webflow, Obsidian, and mixed-.skilled/ rows but none where a target set satisfies both Obsidian repo-root markers and a Webflow marker, and the canary corpus's eleven cases include no collision case. A wrong order would silently route Obsidian plugin work through Webflow standards or the reverse. Reproducing case: the fixture's cases[].id list has surface-bundle-reference, surface-bundle-obsidian, single-webflow, single-obsidian and no collision case; stack-detection.md's section 4 table carries no combined row. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 4,
+      "sources": [
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:131",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:77",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json:58"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter004-004",
+      "_conflict_id": "f-iter004-004--26c09c6853b1",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-004",
+          "peerId": "f-iter004-004--527664d7e7b7",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter004-004--527664d7e7b7",
       "label": "No tiebreaker for equal-cost options on edge-case correctness: Ponytail takes the option correct on edge cases when sizes tie, while the reversal-cost order breaks ties by cost only. NEW for prevent-overengineering.md Sec1.",
       "severity": "P2",
       "iteration": 4,
@@ -862,10 +1828,23 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter004-004",
+      "_conflict_id": "f-iter004-004--527664d7e7b7",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-004",
+          "peerId": "f-iter004-004--26c09c6853b1",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter004-005",
+      "id": "f-iter004-005--5e2744a64c79",
       "label": "Accessibility is absent from the rules never-cut set: Ponytail names it, the rules carry the request, error-handling and dependency floors, and the word appears in none of the 14 rule files. ALREADY-COVERED idea (round one), NEW target for the rules.",
       "severity": "P2",
       "iteration": 4,
@@ -878,6 +1857,46 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter004-005",
+      "_conflict_id": "f-iter004-005--5e2744a64c79",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-005",
+          "peerId": "f-iter004-005--86c16c3d8e7e",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter004-005--86c16c3d8e7e",
+      "text": "A Webflow enforcement file keeps a stale link label while pointing at the right target: enforcement.md:310 renders a link whose label text is '../../../assets/webflow/checklists/code-quality-checklist.md' and whose target is '../../../sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md'. The target resolves, but a reader who copies the label lands on a missing file. Reproducing case: test -f .skilled/skills/sk-code/assets/webflow/checklists/code-quality-checklist.md returns no while the link target exists. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 4,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-webflow/references/shared/enforcement.md:310",
+        ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter004-005",
+      "_conflict_id": "f-iter004-005--86c16c3d8e7e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-005",
+          "peerId": "f-iter004-005--5e2744a64c79",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -910,7 +1929,7 @@
       ]
     },
     {
-      "id": "f-iter005-001",
+      "id": "f-iter005-001--13a0214b7072",
       "label": "The close-out contract never discloses a residual risk: Ponytail closes with what was skipped or not checked plus any risk the user must know, while the repo close-out lists what ran, what is inferred, what only the operator can verify and what is not done, and the word risk never appears in evidence-and-proof.md or communication-handoff.md. NEW for AGENTS.md Sec10 and evidence-and-proof.md Sec10.",
       "severity": "P2",
       "iteration": 5,
@@ -922,10 +1941,80 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter005-001",
+      "_conflict_id": "f-iter005-001--13a0214b7072",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-001",
+          "peerId": "f-iter005-001--9bfdc6a19796",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter005-002",
+      "id": "f-iter005-001--9bfdc6a19796",
+      "text": "The two surfaces cap comment quantity at different numbers and the universal contract has none: Webflow says 'Maximum 5 comments per 10 lines of code' (cross-language-rules.md:47, repeated in javascript/quick-reference.md:68) while OpenCode says three (naming-and-commenting.md:170 plus twelve more files), and the universal guide defines comment policy by purpose with no count. Both thresholds are surface rules over the same shared contract and neither cites a surface reason, so the same file shape is judged differently depending on route. Reproducing case: rg -n 'comments per 10' .skilled/skills/sk-code prints the Webflow rows at 5 and the OpenCode rows at 3 in one output. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 5,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md:47",
+        ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md:68",
+        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:170",
+        ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md:109"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter005-001",
+      "_conflict_id": "f-iter005-001--9bfdc6a19796",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-001",
+          "peerId": "f-iter005-001--13a0214b7072",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter005-002--4b4094bed3d5",
+      "text": "The relative link labels in surface shared-tier files are stale pre-move paths even where targets resolve: cross-language-rules.md:173 labels a link '../../universal/code-style-guide.md' over target '../../../shared/references/universal/code-style-guide.md', and the OpenCode naming file does the same over a four-level target at line 235. With enforcement.md:310 (iteration 4) the label-drift class now has four instances across three files, enough for one sweep rather than four fixes. Reproducing case: rg -n '\\[../../universal/code-style-guide' .skilled/skills/sk-code prints both labels; neither label path exists from the containing file's directory. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 5,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md:173",
+        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:235",
+        ".skilled/skills/sk-code/sk-code-webflow/references/shared/enforcement.md:310"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter005-002",
+      "_conflict_id": "f-iter005-002--4b4094bed3d5",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-002",
+          "peerId": "f-iter005-002--a528f7768e76",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter005-002--a528f7768e76",
       "label": "Accessibility is absent from the root framework and the never-cut floor is split: Ponytail keeps one never-cut list including accessibility, while the root docs carry no list at all and the word accessibility appears in neither AGENTS.md nor REPO RULES.md. ALREADY-COVERED idea (round one), NEW target.",
       "severity": "P2",
       "iteration": 5,
@@ -938,10 +2027,51 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter005-002",
+      "_conflict_id": "f-iter005-002--a528f7768e76",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-002",
+          "peerId": "f-iter005-002--4b4094bed3d5",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter005-003",
+      "id": "f-iter005-003--26ad8cee7e8e",
+      "text": "Verified single-sourced and non-contradicting: the two structure rules (no double-underscore folder names, tests under a tests/ tree) appear only in the universal guide and have no surface copies to drift; the OpenCode surface's P0 restatements (boundary validation, secrets) add language examples while agreeing with the universal P0 list. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 5,
+      "sources": [
+        ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md:100",
+        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/organization-security-and-examples.md:122",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:79"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter005-003",
+      "_conflict_id": "f-iter005-003--26ad8cee7e8e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-003",
+          "peerId": "f-iter005-003--f3d55268fa5f",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter005-003--f3d55268fa5f",
       "label": "Ponytail's self-application clause is already implied by universal binding: the Four Laws and gates bind agent behavior without scoping to human users, and REPO RULES.md makes the router mandatory before the first write of the session. ALREADY-ADOPTED, no action.",
       "severity": "P2",
       "iteration": 5,
@@ -953,10 +2083,23 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter005-003",
+      "_conflict_id": "f-iter005-003--f3d55268fa5f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-003",
+          "peerId": "f-iter005-003--26ad8cee7e8e",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter005-004",
+      "id": "f-iter005-004--1c293e97aee2",
       "label": "The adapter-alignment rule is carried by the precedence clause: Ponytail keeps copied rule text aligned with its always-on file, while the repo avoids root copies and bounds every rule file so AGENTS.md wins on disagreement. ALREADY-ADOPTED, no action.",
       "severity": "P2",
       "iteration": 5,
@@ -969,6 +2112,46 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter005-004",
+      "_conflict_id": "f-iter005-004--1c293e97aee2",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-004",
+          "peerId": "f-iter005-004--bf9b250c79c2",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter005-004--bf9b250c79c2",
+      "text": "Part 1 override inventory closes with exactly two rule-level divergences: the comment-quantity thresholds (5 vs 3, no universal owner) and the unowned-budget orientation filed in iteration 4. Every other scanned surface shared-tier rule either defers to the universal tier by explicit pointer (cross-language-rules.md:31) or adds surface-specific rules the universal tier never reaches. Closing statement; no further Part 1 iteration planned unless a later iteration reopens it. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 5,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md:31",
+        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:170"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter005-004",
+      "_conflict_id": "f-iter005-004--bf9b250c79c2",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-004",
+          "peerId": "f-iter005-004--1c293e97aee2",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -986,7 +2169,7 @@
       ]
     },
     {
-      "id": "f-iter006-002",
+      "id": "f-iter006-002--156293173f53",
       "label": "The compiled-routing canary corpus has no restraint or simplification case: the fixture covers single, bundle, ambiguous, zero-signal and certificate cases, but nothing carrying restraint vocabulary and no assertion that the quality mode wins it. NEW; fixing the vocabulary without a case leaves it unverified.",
       "severity": "P2",
       "iteration": 6,
@@ -996,10 +2179,56 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter006-002",
+      "_conflict_id": "f-iter006-002--156293173f53",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter006-002",
+          "peerId": "f-iter006-002--57cb9abf7453",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter006-003",
+      "id": "f-iter006-003--1a65c75a2050",
+      "text": "The review mode still uses pre-rename packet vocabulary in its contracts and guidance: 'use the surface skill (code-webflow / code-opencode)' and 'use code-quality', the report template's 'Baseline used: [sk-code (code-review)]', the sk-code:code-webflow/sk-code:code-opencode keys, and the integration note. The canonical keys are sk-code-webflow, sk-code-opencode, sk-code-quality and sk-code-review. Reproducing case: rg -n 'code-webflow|code-opencode|code-quality' on SKILL.md and review-core.md prints nine rows; none of those keys exists in mode-registry.json. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 6,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:39",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:42",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:225",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:338",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:463",
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md:66",
+        ".skilled/skills/sk-code/mode-registry.json:24",
+        ".skilled/skills/sk-code/mode-registry.json:42"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter006-003",
+      "_conflict_id": "f-iter006-003--1a65c75a2050",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter006-003",
+          "peerId": "f-iter006-003--a40f13a5b93a",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter006-003--a40f13a5b93a",
       "label": "Ponytail's agreement-needs-an-outside-reference lesson is already implemented, better than Ponytail states it: parent-skill-check 13a compares all routing artifacts against SKILL.md as release authority and 13b compares that authority against the newest changelog entry, the outside reference. ALREADY-ADOPTED, no action.",
       "severity": "P2",
       "iteration": 6,
@@ -1012,10 +2241,23 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter006-003",
+      "_conflict_id": "f-iter006-003--a40f13a5b93a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter006-003",
+          "peerId": "f-iter006-003--1a65c75a2050",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter006-004",
+      "id": "f-iter006-004--1b75010d698a",
       "label": "The hub's activation and disambiguation practices already exceed Ponytail's: inline mode hint, one advisor identity through a registry, named disambiguation checklist, and a when-not-to-use list that routes neighboring work away. ALREADY-ADOPTED, no action.",
       "severity": "P2",
       "iteration": 6,
@@ -1027,10 +2269,169 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter006-004",
+      "_conflict_id": "f-iter006-004--1b75010d698a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter006-004",
+          "peerId": "f-iter006-004--fe7a1cfc0933",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter007-004",
+      "id": "f-iter006-004--fe7a1cfc0933",
+      "text": "Verified as already adopted: the round-008 review doctrine fields are present and coherent - Phase 1 reads the connected code and routes unread material to Not checked:, Phase 3 requires a Case: line and cross-group numbering, and the final-line contract states the exact strings with one blank line above the status line. ALREADY-ADOPTED, no action; recorded so later iterations do not re-check doctrine.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 6,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:295",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:311",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:345",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:383"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter006-004",
+      "_conflict_id": "f-iter006-004--fe7a1cfc0933",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter006-004",
+          "peerId": "f-iter006-004--1b75010d698a",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter007-001--a07ad340e189",
+      "text": "The M-1 cache writes into .skilled/, a repository-specific brand directory, in a mode meant for any codebase: the documented path is .skilled/.code-review-cache/<repo-ref>.jsonl (SKILL.md:491, pr-state-dedup.md:41, README.md:137), so reviewing a foreign repository creates a .skilled/ directory at that repository's root as the cache's host. The rationale section explains the hidden cache but not the brand directory. Reproducing case: run any full review with M-1 enabled against a repo without .skilled/; the documented write path creates one. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 7,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:491",
+        ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md:41",
+        ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md:76",
+        ".skilled/skills/sk-code/sk-code-review/README.md:137"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter007-001",
+      "_conflict_id": "f-iter007-001--a07ad340e189",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter007-001",
+          "peerId": "f-iter007-001--9d2a94611728",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter007-002--5481f5831ff8",
+      "text": "Two documents each claim to be the source of truth for the deep-review taxonomy and neither points at the other's authority: review-core.md calls itself 'shared doctrine consumed by both @review and @deep-review' while quick-reference.md sends readers to system-deep-loop/deep-review/assets/review-mode-contract.yaml as the canonical review-mode contract manifest. The contract is a real 488-line manifest with its own severity math and evidence rule (contract yaml line 121), and no reconciliation rule exists for disagreements such as the finding fields. Reproducing case: rg -n 'source of truth|canonical' over the review references prints the quick-reference row while review-core.md carries the other claim. NEW P2. The contract's file:line-only evidence rule versus the review case field is phase 009 in-flight scope and was not evaluated.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 7,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md:18",
+        ".skilled/skills/sk-code/sk-code-review/references/quick-reference.md:61",
+        ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml:121"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter007-002",
+      "_conflict_id": "f-iter007-002--5481f5831ff8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter007-002",
+          "peerId": "f-iter007-002--d5c066e41781",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter007-003--391bff53c8ab",
+      "text": "The mode uses two near-identical status vocabularies and only one is machine-parsed: review-ux-single-pass.md:64 tells the reviewer to include APPROVE, REQUEST_CHANGES or COMMENT after the findings (the summary block tokens at SKILL.md:337), while the mandatory final line uses APPROVED, REQUESTED_CHANGES and COMMENTED (SKILL.md:369) and downstream automation exact-matches it (SKILL.md:398). Observed reproduction: a scratch review ending 'Review status: APPROVE' produced 'FAIL: final line is not an exact status line' with exit 1 from check-review-final-line.js. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 7,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md:64",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:337",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:369",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:398"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter007-003",
+      "_conflict_id": "f-iter007-003--391bff53c8ab",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter007-003",
+          "peerId": "f-iter007-003--39b41b15576e",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter007-004--66ec1961ec0e",
+      "text": "Verified agreement across the review references and the SKILL contract: case field (review-core.md:97 vs SKILL.md:345), cross-group id (94 vs 311), workload note (99), precedence rules (71 vs 107), and the M-1 signature and skip text (pr-state-dedup.md:22 vs SKILL.md:485) all match. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 7,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md:97",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:345",
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md:94",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:311",
+        ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md:22",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:485"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter007-004",
+      "_conflict_id": "f-iter007-004--66ec1961ec0e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter007-004",
+          "peerId": "f-iter007-004--b47e011ec10f",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter007-004--b47e011ec10f",
       "label": "Findings are not numbered across severity groups: Ponytail numbers across groups so a user can say fix 2 and 5, while the mode numbers inside each severity section only and its Next Steps example addresses fixes by description. NEW.",
       "severity": "P2",
       "iteration": 7,
@@ -1042,6 +2443,19 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter007-004",
+      "_conflict_id": "f-iter007-004--b47e011ec10f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter007-004",
+          "peerId": "f-iter007-004--66ec1961ec0e",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -1055,6 +2469,99 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter008-001--6d43a5859012",
+      "text": "The removal plan redefines P0/P1/P2 for removal urgency under the same tokens the severity contract uses for findings, with no cross-reference: removal-plan.md:36-38 says P0 immediate removal, P1 remove this sprint, P2 defer with migration plan, while review-core.md:32-34 says P0 blocker (exploitable security, auth bypass, data loss; block merge), P1 required correctness, P2 suggestion. A review using both can say P0 about a safe-to-delete candidate or rank a P2 finding's removal as P0. Reproducing case: rg -n 'P0' on the two files prints two incompatible definitions of the same token. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 8,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:36",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:37",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:38",
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md:32"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter008-001",
+      "_conflict_id": "f-iter008-001--6d43a5859012",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter008-001",
+          "peerId": "f-iter008-001--bdbf0ee7ea5b",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter008-002--fe486e12483c",
+      "text": "Verified agreement: all six finding classes and required proofs match across fix-completeness-checklist.md:37, SKILL.md:312 and the output template SKILL.md:348, and the security and test-quality checklists assign severities in the same direction as review-core.md (authz at least P1 often P0 at security-checklist.md:62; assertion-free tests P0 at test-quality-checklist.md:52). ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 8,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:37",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:312",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:348",
+        ".skilled/skills/sk-code/sk-code-review/assets/security-checklist.md:62",
+        ".skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md:52"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter008-002",
+      "_conflict_id": "f-iter008-002--fe486e12483c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter008-002",
+          "peerId": "f-iter008-002--53cbe2045a0a",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter008-003--03b0747f139d",
+      "text": "Verified agreement: the review agent requires a reproducing case at every severity (review.md:366-370), its report-order paragraph matches the mode's final-line contract (276), its connected-code note mirrors Phase 1 (74); the .claude fork differs only in runtime dialect and path constants; the case-rule text is present in the Codex, Pi, Hermes and OpenCode mirrors and the Cursor copy symlinks to the Claude fork. ALREADY-ADOPTED, no action; closes the agent-vs-mode leg of the key question.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 8,
+      "sources": [
+        ".skilled/agents/review.md:366",
+        ".skilled/agents/review.md:370",
+        ".skilled/agents/review.md:276",
+        ".skilled/agents/review.md:74",
+        ".claude/agents/review.md",
+        ".codex/agents/review.toml",
+        ".pi/agents/review.md",
+        ".hermes/skills/agent-review/SKILL.md",
+        ".opencode/agents/review.md"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter008-003",
+      "_conflict_id": "f-iter008-003--03b0747f139d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter008-003",
+          "peerId": "f-iter008-003--d4279b6e804b",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -1084,7 +2591,7 @@
       ]
     },
     {
-      "id": "f-iter009-001",
+      "id": "f-iter009-001--6a695f481062",
       "label": "Original idea: a no-signal tag for ceiling: markers whose upgrade trigger names no measurable quantity, extending Ponytail's no-trigger tag (which checks a trigger exists) to check whether the trigger can ever fire in this repo. Target: the proposed debt report in sk-code-quality.",
       "severity": "P2",
       "iteration": 9,
@@ -1094,10 +2601,50 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter009-001",
+      "_conflict_id": "f-iter009-001--6a695f481062",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter009-001",
+          "peerId": "f-iter009-001--eaaa2af3e979",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter009-002",
+      "id": "f-iter009-001--eaaa2af3e979",
+      "text": "The review playbook's ID space claims a scenario that does not exist: the evidence-ledger rule says Scenario ID must be one of CR-001..CR-024 or CR-R01..CR-R07 (playbook index line 152), the wave plan leaps from CR-018 to CR-020 page 203, and rg -n 'CR-019' across the playbook exits 1 while the headings cover 23 CR IDs plus seven CR-R IDs = 30 scenarios for a claimed 31-ID space. An operator writing a ledger row believes CR-019 is available; an auditor cannot tell whether it was deleted or never existed. Reproducing case: the rg exits 1 and the heading count prints 30. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 9,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md:152",
+        ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md:203"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter009-001",
+      "_conflict_id": "f-iter009-001--eaaa2af3e979",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter009-001",
+          "peerId": "f-iter009-001--6a695f481062",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter009-002--246646cb71d7",
       "label": "Original idea: extend citation resolution to agent and rule docs. validate.sh resolves SOURCE tags only inside spec folders, while .skilled/agents and .skilled/repo-rules cite file:line throughout; a bounded doctor-side lint would warn on stale citations across the whole instruction surface.",
       "severity": "P2",
       "iteration": 9,
@@ -1107,6 +2654,77 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter009-002",
+      "_conflict_id": "f-iter009-002--246646cb71d7",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter009-002",
+          "peerId": "f-iter009-002--74d8f75d0d12",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter009-002--74d8f75d0d12",
+      "text": "The playbook's documented validation runs under the wrong rule set: SKILL.md:473 tells operators to run validate_document.py manual-testing-playbook/manual-testing-playbook.md, and the run answers VALID with one warning - 'No document type rule matched ..., so README rules were applied. Pass --type to choose the rule set.' So the structural check never applies a playbook rule set and defects README rules do not model pass silently. Reproducing case: the documented command prints the document_type_fallback warning on the shipped playbook. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 9,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:473",
+        ".skilled/skills/sk-doc/scripts/validate_document.py"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter009-002",
+      "_conflict_id": "f-iter009-002--74d8f75d0d12",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter009-002",
+          "peerId": "f-iter009-002--246646cb71d7",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter009-003--ce47dd9cb36f",
+      "text": "Verified agreement: the catalog lists 30 rows linking to 30 existing files; CR-023 and CR-024 describe the live depth alias and the live final-line checker pair; and all seven intra-routing-recall scenarios declare DEFAULT_RESOURCES plus exactly the intent's checklist (SOLID adds solid-checklist, REMOVAL adds removal-plan, TESTING adds test-quality), matching SKILL.md DEFAULT_RESOURCES and RESOURCE_MAP. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 9,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/efficiency-and-restraint/rule-invariant-canary.md:71",
+        ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/solid.md:8",
+        ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/testing.md:8",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:131",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:153"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter009-003",
+      "_conflict_id": "f-iter009-003--ce47dd9cb36f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter009-003",
+          "peerId": "f-iter009-003--263bc64c6971",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -1123,7 +2741,7 @@
       ]
     },
     {
-      "id": "f-iter010-001",
+      "id": "f-iter010-001--514d50a6d88e",
       "label": "All nine produced iteration artifacts reconcile: every delta holds one iteration row plus one finding row per enumerated finding, every declared findingsCount matches its row count (8,7,4,7,5,4,6,6,5), every narrative has a contiguous Findings section, the state projection parses with one config and nine iteration records, and every gateway append returned exit 0 at write time. VERIFIED.",
       "severity": "P2",
       "iteration": 10,
@@ -1134,10 +2752,77 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter010-001",
+      "_conflict_id": "f-iter010-001--514d50a6d88e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter010-001",
+          "peerId": "f-iter010-001--24a62d993fda",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "id": "f-iter010-003",
+      "id": "f-iter010-002--4adee2ac3c54",
+      "text": "A double space after 'Not checked:' is rejected with a message claiming the line is absent: the checker requires ^Not checked: \\S, so 'Not checked:  two spaces after colon' failed with 'FAIL: no \"Not checked:\" line above the status line' and exit 1, while the README describes the requirement only as 'must start with Not checked: followed by text'. The rejection is defensible under the exact-string contract; the message and the README wording are not. Reproducing case: the two-space sample under the lineage scratch folder. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 10,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js:81",
+        ".skilled/skills/sk-code/sk-code-review/scripts/README.md:20"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter010-002",
+      "_conflict_id": "f-iter010-002--4adee2ac3c54",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter010-002",
+          "peerId": "f-iter010-002--afc24eb02d44",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter010-003--512d69369f42",
+      "text": "Verified: the final-line checker's documented behaviour reproduces exactly - trailing space on the status line failed with 'final line is not an exact status line' and exit 1, the blank-line and Not checked placement rules held, and a skip status must be the whole output, matching the README row. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 10,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/scripts/README.md:20",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js:33"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter010-003",
+      "_conflict_id": "f-iter010-003--512d69369f42",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter010-003",
+          "peerId": "f-iter010-003--fc82d1389893",
+          "peerLineages": [
+            "r2-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter010-003--fc82d1389893",
       "label": "Round-two roll-up: 52 findings total; NEW 33 (nine closure verifications, five original proposals, the rest new gaps), ALREADY-COVERED idea with a new target 8, ALREADY-ADOPTED reconfirmation 11. VERIFIED DERIVATION from the finding rows.",
       "severity": "P2",
       "iteration": 10,
@@ -1147,6 +2832,540 @@
       ],
       "_lineages": [
         "r2-dsflash-llmgw"
+      ],
+      "_conflictOf": "f-iter010-003",
+      "_conflict_id": "f-iter010-003--fc82d1389893",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter010-003",
+          "peerId": "f-iter010-003--512d69369f42",
+          "peerLineages": [
+            "r3-dsflash-llmgw"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter011-001",
+      "text": "The review mode's documents never reference the shared layer while its scripts pin two shared files, so the route carries two authorities for surface identity with no declared fork: rg over sk-code-review (excluding benchmark and changelog) hits only check-rule-copies.js:64,82 and its test, while SKILL.md, references/ and assets/ contain none; the hub claims detection lives once in shared/ (SKILL.md:135) and the review mode implements detect_surface_evidence itself. Either the mode consumes the shared detection contract or the packet declares the fork. Reproducing case: rg -n 'shared/references' over the mode's SKILL.md, references and assets exits 1. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 11,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:64",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:82",
+        ".skilled/skills/sk-code/SKILL.md:135",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:220"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter011-002",
+      "text": "Strengthening proposals for the review logic, ranked by proof value: (a) give check-review-findings.js a second pattern for the heading shape so both documented shapes are graded; (b) route the review mode's surface detection through the shared contract or derive its marker list from stack-detection.md section 2; (c) add the Obsidian token to the output contract and detection once (b) lands; (d) build a review-output contract fixture that feeds both checkers the documented good and bad shapes; (e) extend the canary's exact-string set with the AGENTS.md-level review floors it does not pin. NEW P2 proposal set; each item is cheap and independently testable.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 11,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter011-003",
+      "text": "Verified as deliberate: the hub keeps mode contracts packet-local (SKILL.md:137) and the review canary pins load-bearing wording in the shared standard and workflow-verify rather than copying it (check-rule-copies.js:64,82), which is the right shape of coupling. ALREADY-ADOPTED, no action; recorded so the zero-reference sweep in f-iter011-001 is not mistaken for a missing contract.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 11,
+      "sources": [
+        ".skilled/skills/sk-code/SKILL.md:137",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:64",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:82"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter012-002",
+      "text": "The quality mode carries the pre-rename packet vocabulary at higher volume than the review mode: code-webflow/code-opencode as surface skill names and code-review as the findings mode appear in 39 rows of sk-code-quality/SKILL.md (lines 15, 36, 39, 47, 50 among others), while the canonical keys are sk-code-webflow, sk-code-opencode and sk-code-review in mode-registry.json (lines 61, 79, 42). Reproducing case: rg -c 'code-webflow|code-opencode|code-review' on the SKILL prints 39 and none of those keys exists in the registry. NEW P2; same class as f-iter006-003, now confirmed mode-wide.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 12,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:15",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:39",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:50",
+        ".skilled/skills/sk-code/mode-registry.json:42",
+        ".skilled/skills/sk-code/mode-registry.json:61",
+        ".skilled/skills/sk-code/mode-registry.json:79"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter012-003",
+      "text": "IN-FLIGHT: the ceiling report is absent from sk-code-quality/SKILL.md (rg -i ceiling exits 1) while it ships in scripts/; phase 009 child 002 lists it in the SKILL with a version bump. Recorded in one line, no further budget.",
+      "severity": "P2",
+      "classification": "IN-FLIGHT",
+      "iteration": 12,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/README.md:23"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter012-004",
+      "text": "Verified: every path in the quality mode's resource-level table and target-path map resolves on disk, including the system-spec-kit spec-folder checklist and all nine OpenCode authoring checklists (SKILL.md:103-108). ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 12,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:103",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:100"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter013-001",
+      "text": "The Webflow template assets still carry the legacy references/webflow path family in their instructional comments: nine rows across five files (component-template.css:8, component-template.js:7, embed-template.html:6,80, form-scaffold-template.html:7,202,203,204, head-footer-code-template.html:8). The hub has no references/webflow/ tree; the live guides are sk-code-webflow/references/{javascript,css,html}/. These files ship to be copied into projects, so the dead pointers travel with the scaffold. Reproducing case: rg -n 'references/(webflow|css|javascript|html)' over the templates prints nine rows and test -d .skilled/skills/sk-code/references/webflow returns no. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 13,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-webflow/assets/templates/component-template.js:7",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html:202",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/templates/embed-template.html:80",
+        ".skilled/skills/sk-code/ROUTER.md:504"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter013-002",
+      "text": "The HTML style guide points at a section that lives in another file: line 78 says Action Routing Pattern is in javascript/quality-standards/init-dom-error-and-async.md section 13, but that file's headings stop at section 5 and the Action Routing Pattern heading lives in shared-listener-and-weakmap.md line 91; the shipped template carries the same claim as references/webflow/javascript/quality-standards.md section 13. Reproducing case: rg -n 'Action Routing Pattern' prints the pointer at html/style-guide.md:78 and the heading at shared-listener-and-weakmap.md:91; rg -n '^## 13' on init-dom-error-and-async.md exits 1. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 13,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md:78",
+        ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/shared-listener-and-weakmap.md:91",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/templates/embed-template.html:80"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter013-003",
+      "text": "The HTML style guide misnumbers the JavaScript quick reference's form-validation section: html/style-guide.md:103 cites 'javascript/quick-reference.md section 10 Form Validation Classes' while the section is section 5 (line 268). The template's own section 5 label is correct, so the guide and the template disagree about the same target. Reproducing case: rg -n 'Form Validation Classes' on the JS quick reference prints section 5 and the guide's section 10 resolves to no heading. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 13,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md:103",
+        ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md:268",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html:203"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter013-004",
+      "text": "Verified: the D1 fix and its fixture pairs run to their documented verdicts - from runtime-fixture/known-bad the checker reports Failed 4/4 and exits 1; from known-good all pass and it exits 0; with no src/2_javascript/z_minified under the working directory it prints 'No minified files found' and exits 1. The checker reads no argv, matching the README's run-from-known-bad instruction. ALREADY-ADOPTED, no action; closes round one's D1 residual with an observed receipt.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 13,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/README.md:72",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/runtime-fixture/known-bad",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/runtime-fixture/known-good"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter014-001",
+      "text": "The OpenCode SKILL credits the wired leg 1a with orphan coverage that belongs to the unwired leg 1b: SKILL.md:173 describes leg 1a as 'router paths exist on disk, every routable doc is routed, and every full path the prose maps name is routed', while the guard's own 1a line says only 'machine-router paths exist and the prose maps are routed' (observed) and scripts/README.md:12 states leg 1b, the orphan-doc part of (1), is not run because nine docs have no router naming them. An operator auditing orphan coverage would read the SKILL and conclude it is covered. Reproducing case: run verify_router_sync.cjs and quote the README row. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 14,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:173",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md:12",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter014-002",
+      "text": "Two pre-rename names remain in the OpenCode SKILL: line 24 hands formal findings to code-review and author-side gates to code-quality, and line 54 names the sibling code-webflow map. The canonical keys are sk-code-review, sk-code-quality and sk-code-webflow. Reproducing case: rg -n 'code-webflow|code-review|code-quality' on the SKILL prints the two rows; the same sweep now has hits in all three packets. NEW P2; third packet in the rename-miss family.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 14,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:24",
+        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:54",
+        ".skilled/skills/sk-code/mode-registry.json:42"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter014-003",
+      "text": "Verified: the router-sync guard passes 4/4 with exit 0 (observed); every hook path named in references/shared/hooks.md exists on disk; scripts/README.md's 'Code files 6' matches the six scripts present; and the packet SKILL version equals its newest changelog entry (1.1.0.0; the same version-vs-changelog pairing checked clean for quality, review, webflow and obsidian). ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 14,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:5",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+        ".skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter014-004",
+      "text": "IN-FLIGHT: the packet carries the three symlinked references/workflow-*.md leaves while no RESOURCE_MAP row emits the trio and the SKILL says the phases use 'the split shared, language, hook, and alignment resources above'; steer ruling 2 places that routing in phase 009 child 001. Recorded, no further budget.",
+      "severity": "P2",
+      "classification": "IN-FLIGHT",
+      "iteration": 14,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:45",
+        ".skilled/skills/sk-code/sk-code-opencode/leaf-manifest.json"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter015-001",
+      "text": "The Obsidian SKILL lists three on-demand assets that do not exist and the packet's own playbook already knows they do not match the shipped files: SKILL.md section 4 offers assets/renderer-implementation-checklist.md, assets/comment-grammar-checklist.md and assets/debug-checklist.md, the shipped folder holds comment-banner-checklist.md and neither other name, and leaf-manifest.json carries none of the three. The playbook index records the same names as not matching the shipped files; the SKILL's machine-readable array names the shipped comment-banner-checklist.md, so one SKILL file disagrees with itself. Reproducing case: rg the three names in SKILL.md prints the section 4 rows; ls assets/ lists no such files. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 15,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md:232",
+        ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md:233",
+        ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md:235",
+        ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md:109",
+        ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md:170",
+        ".skilled/skills/sk-code/leaf-manifest.json"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter015-002",
+      "text": "Verified: the Obsidian playbook's ID space is internally exact - the index declares 27 scenario IDs (OB-001..OB-021 plus OB-H01..OB-H06) and the 27 scenario files reference exactly those IDs, with the set difference empty in both directions; no CR-019-style gap. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 15,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter015-003",
+      "text": "Verified: the packet's SKILL version 0.1.1.0 equals its newest changelog entry v0.1.1.0, and the checklists the resource-loading scenarios name (comment-banner-checklist.md, folder-docs-checklist.md) exist on disk. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 15,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md:5",
+        ".skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.1.0.md",
+        ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/mixed-load-isolation.md:12"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter016-001",
+      "text": "description.json's description text omits the Obsidian surface while its keywords include it: the description prose covers Webflow frontend and OpenCode system code and stops, while the same file's keywords carry sk-code-obsidian and obsidian plugin. This is the third instance of the two-surface prose (shared/README.md:17, mode-registry.json:5) and the one an operator reads in advisor output. Reproducing case: rg -c -i obsidian on description.json finds the keywords while the description string has none. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 16,
+      "sources": [
+        ".skilled/skills/sk-code/description.json:3",
+        ".skilled/skills/sk-code/description.json:1"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter016-002",
+      "text": "ROUTER.md claims the universal tier loads per route, but the machine map emits it file by file: section 11 says a route loads 'the surface-agnostic shared/references/universal/* tier' (line 604) and the load-level table marks 'Universal code quality + error recovery' ALWAYS on every invocation (line 111), while the map emits code-quality-standards in DEFAULT_RESOURCE and CODE_QUALITY (323, 389), code-style-guide only under CODE_QUALITY (390), error-recovery only under DEBUGGING (406), and multi-agent-research only under IMPLEMENTATION (353). A performance-only route receives one universal file, not four. Reproducing case: rg -n 'shared/references/universal/' on ROUTER.md prints the gated entries while both prose passages say the tier always loads. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 16,
+      "sources": [
+        ".skilled/skills/sk-code/ROUTER.md:604",
+        ".skilled/skills/sk-code/ROUTER.md:111",
+        ".skilled/skills/sk-code/ROUTER.md:323",
+        ".skilled/skills/sk-code/ROUTER.md:389",
+        ".skilled/skills/sk-code/ROUTER.md:390",
+        ".skilled/skills/sk-code/ROUTER.md:406",
+        ".skilled/skills/sk-code/ROUTER.md:353",
+        ".skilled/skills/sk-code/ROUTER.md:614"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter016-003",
+      "text": "Verified: recomputing check 5k's legs by hand, every alias in every modes[] entry is a keyword of the classes its routerSignals lists, every packetSkillName is a description.json keyword, and each of the five modes is the expected route of a canary case; all five hub artifacts read 2.2.4.0; and graph-metadata.json carries the Obsidian domain, intent signals and the packet SKILL as a key file. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 16,
+      "sources": [
+        ".skilled/skills/sk-code/ROUTER.md:11",
+        ".skilled/skills/sk-code/description.json:4",
+        ".skilled/skills/sk-code/graph-metadata.json:254",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json:58"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter017-001",
+      "text": "The feature catalog still describes a two-surface hub with pre-rename mode names: feature-catalog.md:15 and :35 say the hub resolves a WORKFLOW mode (quality, code-review) and bundles SURFACE packets (code-webflow, code-opencode), and the two-axis entry repeats the names and the bundle example [code-review, code-webflow] at line 28, while mode-registry.json carries five modes including sk-code-obsidian (line 98); the catalog's last_updated is 2026-07-21, before the Obsidian packet's 0.x line. Reproducing case: rg the four old names over feature-catalog/ prints three rows and the registry contains none of those spellings. NEW P2; fourth and fifth instances of the two-surface prose.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 17,
+      "sources": [
+        ".skilled/skills/sk-code/feature-catalog/feature-catalog.md:15",
+        ".skilled/skills/sk-code/feature-catalog/feature-catalog.md:35",
+        ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md:28",
+        ".skilled/skills/sk-code/mode-registry.json:98",
+        ".skilled/skills/sk-code/feature-catalog/feature-catalog.md:9"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter017-002",
+      "text": "The hub SKILL.md layout tree omits six artifacts that exist at the hub root: it lists SKILL.md, ROUTER.md, mode-registry.json, hub-router.json, description.json, graph-metadata.json, the five packets and shared/, while the root also holds README.md, leaf-manifest.json, changelog/, benchmark/, feature-catalog/ and manual-testing-playbook/. The tree is the section a new reader uses to orient, and leaf-manifest.json is load-bearing for the router guard. Reproducing case: ls -d .skilled/skills/sk-code/*/ plus the two files shows six artifacts absent from the tree. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 17,
+      "sources": [
+        ".skilled/skills/sk-code/SKILL.md:144"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter017-003",
+      "text": "Verified: the root playbook declares 31 scenario IDs across nine families and its 33 scenario files reference exactly those 31 IDs with an empty set difference in both directions; the benchmark README's named successor .github/workflows/routing-registry-drift.yml exists and its retired-lane and four-restored-checks rows match the guard executed in iteration 14. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "classification": "ALREADY-ADOPTED",
+      "iteration": 17,
+      "sources": [
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/benchmark/README.md:14",
+        ".skilled/skills/sk-code/benchmark/README.md:16",
+        ".github/workflows/routing-registry-drift.yml"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter018-001",
+      "text": "The hub README is a sixth instance of the two-surface prose and contradicts its own packet count: 'Works on' names only WEBFLOW and OPENCODE context (line 23), the surface table lists sk-code-webflow and sk-code-opencode and stops (55-56), and When To Use repeats 'for WEBFLOW and OPENCODE work' (89), while the FAQ two sections later says 'the hub contains five packets' (105), the count that includes Obsidian; the Related Documents table lists four packet SKILLs and omits sk-code-obsidian/SKILL.md (135). Reproducing case: rg -i obsidian on the README exits 1 while rg 'five packets' matches line 105. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 18,
+      "sources": [
+        ".skilled/skills/sk-code/README.md:23",
+        ".skilled/skills/sk-code/README.md:55",
+        ".skilled/skills/sk-code/README.md:89",
+        ".skilled/skills/sk-code/README.md:105",
+        ".skilled/skills/sk-code/README.md:135"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter018-002",
+      "text": "The hub README's version lags the hub release by three increments with no note: README reads 2.2.1.0 while SKILL.md, ROUTER.md, hub-router.json, mode-registry.json and description.json all read 2.2.4.0, and the version-authority statement names the SKILL plus the four artifacts without saying whether the README is exempt. Reproducing case: rg -n version on the README and SKILL prints 2.2.1.0 against 2.2.4.0. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 18,
+      "sources": [
+        ".skilled/skills/sk-code/README.md:8",
+        ".skilled/skills/sk-code/SKILL.md:5",
+        ".skilled/skills/sk-code/SKILL.md:17",
+        ".skilled/skills/sk-code/description.json:4"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter018-003",
+      "text": "Mid-run file change (steer ruling 3): sk-code-quality/SKILL.md now reads 1.1.0.0 with a matching changelog/v1.1.0.0.md and lists scripts/ceiling-report.sh at lines 93-94, 111 and 320, so the ceiling-report absence recorded IN-FLIGHT in iteration 12 has landed. The hook-naming rows (now 132-133) and the 39 stale-name rows are unchanged, so f-iter012-001 and f-iter012-002 hold with shifted line numbers. Recorded, no action.",
+      "severity": "P2",
+      "classification": "OBSERVATION",
+      "iteration": 18,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:5",
+        ".skilled/skills/sk-code/sk-code-quality/changelog/v1.1.0.0.md",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:93",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:132"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter018-004",
+      "text": "Refutation pass: four earliest premises re-read at their exact lines and confirmed - workflow-verify.md:86 still claims warnings fail under --strict against validation-rules.md:44; sk-code-review/SKILL.md's detector still returns sk-code:code-webflow for package.json/src inputs; the shared and Webflow wait-patterns.js copies still differ; the quality SKILL's hook rows still name the legacy hook. No refutation; findings stand.",
+      "severity": "P2",
+      "classification": "OBSERVATION",
+      "iteration": 18,
+      "sources": [
+        ".skilled/skills/sk-code/shared/references/workflow-verify.md:86",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:44",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:226",
+        ".skilled/skills/sk-code/shared/assets/patterns/wait-patterns.js",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:132"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter019-001",
+      "text": "The review README documents a playbook folder convention the mode explicitly forbids and the tree does not use: README.md:203 says to run scenarios under manual-testing-playbook/<NN>--<topic>/, while SKILL.md:473 says the folders and files use bare descriptive slugs with no numeric prefix, and the folders on disk are baseline-review-flow/, security-and-correctness-minimums/ and peers. Reproducing case: rg -n '<NN>' on the README prints the row; ls the playbook folder shows bare slugs. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 19,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/README.md:203",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:473"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter019-002",
+      "text": "The review README's own example uses a third assessment-token variant: it writes 'Overall assessment: REQUESTED_CHANGES' (README.md:72) while the output contract's assessment set is [APPROVE / REQUEST_CHANGES / COMMENT] (SKILL.md:337) and the final-line set is APPROVED/REQUESTED_CHANGES/COMMENTED; the example's token matches neither assessment column, borrowing the final-line spelling for the summary slot. Neither checker catches it because the final-line checker reads only the last line. Reproducing case: compare the README example's assessment line against the SKILL template. NEW P2; extends f-iter007-003 with the canonical example itself.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 19,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/README.md:72",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:337"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter019-003",
+      "text": "The review README carries 21 pre-rename name rows (code-webflow|code-opencode|code-quality|code-review), including the related-skill table and the FAQ; this is the fourth packet-level count in the rename-miss family and the largest per file after the quality SKILL's 39. Evidence for a single sweep; no separate fix. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 19,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/README.md:153"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter019-004",
+      "text": "Original ideas and rejections inventory for synthesis: ideas - (a) a documentation path-and-link checker for skill docs catching all six stale-family clusters in one pass; (b) one declared shared-controls source consumed by ROUTER.md, the router guard and the SKILL sentence; (c) a review-output shape fixture feeding both documented finding shapes through both checkers; (d) routing the review detector through the shared detection contract; (e) extending hub version parity to the README and packet changelogs; (f) one canonical surface-list sentence or a lint flagging the two-surface phrasing; (g) a load-tier claims check comparing prose against RESOURCE_MAP. Rejections with reasons - renaming the removal plan's P-scale (breaks shared triage vocabulary); an include system for repeated prose (heavier than the lint); per-file playbook validation (operator decision recorded); reviving the retired benchmark lane (round one's rejection stands); editing legacy compatibility hooks (documented helpers, not live gates). NEW P2 proposal inventory.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 19,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/README.md",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/sk-code/ROUTER.md"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter020-001",
+      "text": "The fresh quality README routes spec folders to a checklist family that does not contain one: its router row groups 'Spec folders and MCP servers' as routing to the spec-folder and MCP-server-authoring checklists (README.md:50) and section 4 repeats that spec folders have their own checklist under OpenCode authoring targets (87), while the SKILL routes .opencode/specs/ to system-spec-kit's spec-folder-authoring-checklist.md (SKILL.md:107) and sk-code-opencode/assets/checklists/ holds no spec-folder checklist. Reproducing case: the related-documents row links the opencode checklists folder as the target-path set (129) and the spec-folder checklist is not there. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 20,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/README.md:50",
+        ".skilled/skills/sk-code/sk-code-quality/README.md:87",
+        ".skilled/skills/sk-code/sk-code-quality/README.md:129",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:107"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter020-002",
+      "text": "Aggregate roll-up across nineteen iterations: findings per iteration 4,4,4,5,4,4,4,3,3,3,3,4,4,4,3,3,3,4,4 = 70; classification NEW 48, ALREADY-ADOPTED 18, IN-FLIGHT 3, mid-run observation 1; severity P1 8, P2 62; newInfoRatio trend 0.70-0.90, mean 0.83, never near the 0.05 threshold so convergence was never claimed. The eight P1 rows head the ranked table: f-iter001-001, f-iter002-001, f-iter002-002, f-iter003-001, f-iter006-001, f-iter006-002, f-iter010-001, f-iter012-001. NEW P2 consolidation evidence.",
+      "severity": "P2",
+      "classification": "IN-FLIGHT",
+      "iteration": 20,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r3-dsflash-llmgw/deltas"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter020-003",
+      "text": "Cross-cutting root cause: every cluster found is pointer or claim drift after a rename or restructure, and no checker reads the prose that carries it. Clusters: legacy path families (six instances), pre-rename packet names (four packets, 21-39 rows each), two-surface surface prose (six instances), legacy hook names in the gate-owning mode, the universal-tier load claim against the machine map, the review mode's private detection fork, Webflow section-pointer renumbering, phantom Obsidian assets, and current-versus-generated inventory splits. The machine surfaces were all observed passing while every cluster lives in prose no guard reads. Proposal: a documentation path-, name- and claim-checker for skill docs, distinct from the router path checks, that catches the class. NEW P2.",
+      "severity": "P2",
+      "classification": "NEW",
+      "iteration": 20,
+      "sources": [
+        ".skilled/skills/sk-code/ROUTER.md",
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
+        ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md"
+      ],
+      "_lineages": [
+        "r3-dsflash-llmgw"
       ]
     },
     {
@@ -2508,11 +4727,11 @@
   ],
   "ruledOutDirections": [],
   "metrics": {
-    "iterationsCompleted": 30,
+    "iterationsCompleted": 50,
     "openQuestions": 1,
-    "resolvedQuestions": 22,
-    "keyFindings": 153,
-    "sourceFindings": 153,
+    "resolvedQuestions": 27,
+    "keyFindings": 226,
+    "sourceFindings": 226,
     "reconstructionGaps": 0,
     "convergenceScore": 0,
     "coverageBySources": {}

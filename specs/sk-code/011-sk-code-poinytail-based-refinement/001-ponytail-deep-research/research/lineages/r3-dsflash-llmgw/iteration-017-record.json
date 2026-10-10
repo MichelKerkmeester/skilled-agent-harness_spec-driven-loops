@@ -1,0 +1,37 @@
+{
+  "type": "iteration",
+  "iteration": 17,
+  "run": 17,
+  "runId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "sessionId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "lineageId": "fanout-r3-dsflash-llmgw-1791620340322-xkjyb6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.75,
+  "status": "complete",
+  "focus": "benchmark, feature-catalog and the root playbook",
+  "findingsCount": 3,
+  "noveltyJustification": "Two findings are fully new (feature-catalog's two-surface stale prose and the layout tree's six omissions) and one is an ALREADY-ADOPTED verification block covering playbook ID parity, the successor workflow and the benchmark README rows.",
+  "keyQuestions": [
+    "What defects, alignment gaps and improvements exist in the hub `SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `benchmark/` and `manual-testing-playbook/`?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "File the catalog version against its entries - they version independently",
+    "File the benchmark reports' dates - the tree is a frozen index by declaration",
+    "Re-run router-sync leg 4 - observed passing in iteration 14"
+  ],
+  "toolsUsed": ["read", "rg", "bash", "python3"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
+    ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-code/benchmark/README.md",
+    ".github/workflows/routing-registry-drift.yml",
+    ".skilled/skills/sk-code/SKILL.md"
+  ],
+  "timestamp": "2026-10-10T08:43:49Z",
+  "durationMs": 82000
+}
