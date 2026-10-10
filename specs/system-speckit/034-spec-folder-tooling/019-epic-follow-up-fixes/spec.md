@@ -26,9 +26,9 @@ contextType: "general"
 | **Created** | 2026-10-09 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 19 of 19 |
+| **Phase** | 19 of 20 |
 | **Predecessor** | 018-epic-docs-alignment |
-| **Successor** | None |
+| **Successor** | 020-deep-review-remediation |
 | **Handoff Criteria** | Every acceptance row Met, and `validate.sh --strict` passes on this folder |
 <!-- /ANCHOR:metadata -->
 
@@ -49,7 +49,7 @@ This is **Phase 19** of the spec-folder tooling packet. It closes the follow-ups
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-- Status at closeout: not refreshed. The 034 parent has no `changelog/` folder, and the writer would create one outside this packet's edit list. See implementation-summary.md, Known Limitations.
+- Status at closeout: not refreshed. The 034 parent had no `changelog/` folder when this phase closed, and the writer would have created one outside this packet's edit list. The operator later asked for one, and it now holds the generated entries for 010, 017, 018 and 019 at `specs/system-speckit/034-spec-folder-tooling/changelog/`. See implementation-summary.md, Known Limitations item 2.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -117,7 +117,7 @@ Each loose end is closed with evidence, so the epic leaves nothing behind it.
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: All eleven items closed with evidence.
-- **SC-002**: CI on main is green after the push. Not checked at closeout, because the push belongs to the orchestrator.
+- **SC-002**: CI on main is green after the push. Met. Every check on `079e9c34d2` succeeded (14 of 14). The CI bot commit `4669db6522` had 11 checks succeed, and its Trigger Index Rebuild was skipped by its job guard, because the commit message ends with the trailer that guard matches. The receipt is `scratch/evidence/post-push-ci.txt`.
 <!-- /ANCHOR:success-criteria -->
 
 ---

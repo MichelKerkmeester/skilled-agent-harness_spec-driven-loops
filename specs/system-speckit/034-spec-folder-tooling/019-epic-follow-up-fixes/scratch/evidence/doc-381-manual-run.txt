@@ -1,0 +1,1503 @@
+DOC-381 manual run: Doctor update compat (packet 019, CHK-021)
+==============================================================
+
+VERDICT: FAIL at step 6 as written. Steps 1 to 5 and the decline path (step 7) pass.
+In a copy of this checkout the upgrade preview and the upgrade apply read the legacy packet
+as unreadable, because the copy's dist freshness check falls back to file times and reads the
+copy as stale. The expected failing-packet preview and the STATUS=UPGRADED path are therefore
+not reached as written. CHK-021 stays unticked. The live checkout passes validate.sh --strict
+(see Closure checks at the end of this file).
+
+Run
+- Date 2026-10-10. Transcript times are UTC (07:05 to 07:16). The stat listings in the
+  notes are local time, which is UTC plus 2.
+- Worktree: .worktrees/091-consolidate-small-packets, HEAD 4669db65226d82625f6105073fc8891229bcc22b.
+- Scenario: .skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-compat.md
+- Workflow: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml, phases 2 to 8.
+  Phase 1 (release check) was skipped, as the scenario says.
+- Executor: one agent played the workflow by hand with the scenario's commands, inside
+  fixtures under scratchpad/fd only. The same agent answered both approvals, as the scenario
+  directs. The "new session" is a fresh shell call that reads only the move log and the disk.
+  Move-log lines were appended with a small node helper that follows the YAML field order,
+  because the YAML names no script for log writes.
+- Fixtures: 1 (steps 1 to 6), 2 (step 7, decline), 3 (diagnostic only, see H8), 4 (steps 1 to 6
+  again, at closure). Each was deleted by its exact path after this file was written.
+
+Checks, observed against expected
+Each line names the transcript step that holds the receipt. The labels E, P and F are
+this file's labels for the Expected signals, the Pass lines and the Fail lines of DOC-381.
+
+Expected signals
+- E1  Fresh layout map exits 0 and prints "state": "v3".
+      Observed: exit 0, "state": "v3" (1.11). PASS.
+- E2  One move from .opencode/specs to specs.
+      Observed: one move, from .opencode/specs to specs (1.11). PASS.
+- E3  Three steps: rm -f specs, git mv .opencode/specs specs, ln -s ../specs .opencode/specs.
+      Observed: the three argv arrays match, in order (1.11). PASS.
+- E4  The dry run prints the Spec Folder Compatibility Preview with that move.
+      Observed: the layout JSON carries the move (2.1b). The preview was rendered from that
+      JSON with the presentation template by the agent. PASS (agent-rendered).
+- E5  The dry run stops with STATUS=DRY_RUN and writes no log line.
+      Observed: STATUS=DRY_RUN rendered (2.4 and after). The log file is absent (2.3 and 2.5). PASS.
+- E6  The dirty refusal prints "These spec roots have uncommitted changes:" with the edited path
+      and the keeps-no-before-image reason.
+      Observed: the dirty output names .opencode/specs/legacy-track/001-old-packet/plan.md (3.3).
+      The refusal text was rendered by the agent from the template. PASS (agent-rendered).
+- E7  The dirty refusal stops with its STATUS value, BLOCKED.
+      Observed: STATUS=BLOCKED rendered (3.3). PASS.
+- E8  The refusal comes before the move approval and before any log line.
+      Observed: no approval prompt in step 3. The log file is absent after the refusal (3.4). PASS.
+- E9  Move approval text: "Move the spec tree as listed? Reply yes to run 3 steps, or no to leave
+      the tree unchanged."
+      Observed: the same text (4). It matches the presentation template. PASS.
+- E10 Each step prints "Step [i]/[n] [id]: started", then "done".
+      Observed: printed for every step of runs 1, 2 and the decline run (4.4 to 4.6, 5.4, 7.10 to 7.12).
+      The lines were printed by the agent. PASS.
+- E11 The move log gains run-started, a step-started and step-done pair for each step, and move-complete.
+      Observed: the logs at 4.6, 6.6, 7.15 and R4.17 hold these lines. Run 1 stops before
+      move-complete, as E12 requires. PASS.
+- E12 The interrupted run has no move-complete line.
+      Observed: run 1 at 4.6 has none. PASS.
+- E13 The next run first prints "A previous compatibility run stopped after move-tree. Done:
+      remove-specs-link, move-tree. Remaining: link-legacy-path."
+      Observed: the recovery read (5.1) reports the done steps and move-tree as the last done step.
+      The line was filled by the agent. "Remaining: link-legacy-path" follows from the recomputed
+      v4 layout (5.2) and the rule that move-tree is followed by link-legacy-path. The log records
+      no plan, because run-started carries step null, so that part is INFERRED from the plan shape.
+      PASS, with that inference noted.
+- E14 The next run asks the move approval again, and that approval runs only link-legacy-path,
+      with no dirty-roots refusal.
+      Observed: the approval reads "Reply yes to run 1 steps" (5.3). Only link-legacy-path ran (5.4).
+      The dirty check (5.3) showed four staged lines. No refusal was applied, because the YAML
+      exempts an owed recovery step. PASS.
+- E15 After the resume, .opencode/specs is a symlink to ../specs.
+      Observed: readlink prints ../specs (5.5). PASS.
+- E16 The upgrade preview lists the legacy packet as failing, with its rules and the Downgrades section.
+      Observed in fixtures 1, 2 and 4: the packet is listed as "unreadable", with "exit 3: Run:
+      cd .skilled/skills/system-spec-kit/runtime && npm run build". Downgrades shows "none", and
+      passing=0/1 (6.1, 7.14, R4.14). FAIL.
+      Observed in diagnostic fixture 3, where the validator loads: the packet is listed as failing
+      with ANCHORS_VALID, FRONTMATTER_VALID, GREP_CONVENTION and TEMPLATE_SOURCE, followed by the
+      Downgrades section (D3.13). That matches the expected behavior.
+- E17 Upgrade approval text: "Run upgrade-legacy --apply on these packets? Reply yes or no."
+      Observed: asked after the preview in every run (6.1, 7.14, R4.14, D3.13). PASS.
+- E18 A yes runs upgrade-legacy.mjs --apply, logs upgrade-started and upgrade-done, appends
+      run-complete, and ends with STATUS=UPGRADED.
+      Observed in fixtures 1 and 4: the apply ran only after the yes. It exited 2 with
+      "1 packet(s) could not be validated, so nothing was written" (6.2, R4.15). The log holds
+      upgrade-started, upgrade-failed and run-complete, with no upgrade-done. The status is FAILED
+      under exit_policy (see the YAML note below). FAIL.
+      Observed in diagnostic fixture 3: exit 0, "passing before=0/1 after=1/1". The log holds
+      upgrade-started, upgrade-done and run-complete, and the status is UPGRADED (D3.14, D3.18). PASS
+      for that run only.
+- E19 A no stops with STATUS=DECLINED, leaves the moved tree in place, logs no upgrade-started,
+      and closes the run with run-complete.
+      Observed in fixture 2: upgrade-started count 0, run-complete present, the moved tree in place,
+      .opencode/specs links to ../specs, and no manifest (7.15, 7.16). PASS.
+- E20 Every run writes its log to <git-dir>/doctor-update-compat.log.jsonl, outside the working tree.
+      Observed: each log sits in its fixture's .git folder. git status of each fixture shows no
+      log line (2.4, 3.6 and the fixture 4 checks). PASS.
+
+Pass lines
+- P1  The dry run and the dirty refusal write nothing and add no log line.
+      PASS (2.2 to 2.5, 3.3 to 3.6).
+- P2  The move and the upgrade each run only after their own yes.
+      PASS for the move (4, 7.10 to 7.12). PASS for the upgrade ordering in fixtures 1, 4 and 3
+      (6.2, R4.15, D3.14). The upgrade success path itself FAILS in fixtures 1 and 4 (E18).
+- P3  The interrupted run reports its done and remaining steps and resumes with only the owed step,
+      with no dirty-roots refusal.
+      PASS (5.1 to 5.5).
+- P4  The log lines appear in order for each run.
+      PASS for the move runs (4.6, 5.x, 7.15, R4.17). Runs with an upgrade keep the order the YAML
+      gives: upgrade-started, then upgrade-done or upgrade-failed, then run-complete (D3.18, R4.17).
+- P5  A declined upgrade leaves the moved tree in place with STATUS=DECLINED and closes the run with
+      run-complete.
+      PASS (7.14 to 7.16).
+
+Fail lines (none observed on the move path)
+- F1  A move or upgrade step runs before its approval. Not observed.
+- F2  A dirty spec root does not stop the move. Not observed (3.3).
+- F3  The resume stops at the dirty-roots refusal. Not observed (5.3, 5.4).
+- F4  The interrupted run reruns move-tree or reports the wrong remaining steps. Not observed (5.1).
+- F5  An approval is skipped. Not observed.
+- F6  A log line is missing or out of order. Not observed on the move path. The upgrade path
+      follows the YAML order (see P4).
+- F7  A run that reached a terminal status other than a failed move step has no run-complete line.
+      Not observed. Run 2 of fixture 1 (FAILED) and the decline run (DECLINED) both close with run-complete.
+- F8  A file under .skilled/ changes. Not observed. Fixture 1 has no file newer than its last log
+      write at 6.5, and none since run 1 began (P.3). Fixture 2 has none modified since 09:10:56
+      local, and no tracked change (P.1, P.2). Fixture 4 has none newer than its last log write (R4.16).
+      Fixture 3 has none newer than its last log write (D3.15).
+
+Root cause of the step 6 failure (observed)
+- validate.sh resolves the compiled orchestrator before it reads any spec. A stale build makes it exit 3
+  with "Run: cd .skilled/skills/system-spec-kit/runtime && npm run build" (validate.sh, the
+  resolve_orchestrator block).
+- dist-freshness.cjs --entry validation-orchestrator exits 69, meaning stale, in every fixture (D.4).
+  The entry's watched sources include lib/graph. The only in-scope file newer than
+  dist/lib/validation/orchestrator.js (08:15:16 local) is lib/graph/graph-metadata-parser.ts
+  (D.9, D.10). That file is modified in the live worktree.
+- The live checkout is not stale. Its build records (origin build, under dist/ and dist/lib/validation/)
+  match the current sources, so validate.sh --strict on this packet printed RESULT: PASSED (Closure
+  checks). The mtime listing at R4.18 compares file times only, so it does not show staleness of the
+  live checkout.
+- Why a copy reads as stale: the freshness record is named after the absolute path of the dist entry
+  (cachePathFor). A copy has no record under its own path, so checkPackageFreshness falls back to file
+  times. rsync -a keeps the old dist time, and lib/graph/graph-metadata-parser.ts is newer than it.
+  The integration test refreshes the copied dist times for this reason (refreshCopiedDistMtimes).
+  The scenario recipe does not, and that gap is what fails step 6.
+- validate.sh, dist-freshness.cjs and the compat YAML hash the same in every fixture (table below).
+  The failure therefore does not depend on the script versions, which differ between fixtures.
+
+Which document is wrong
+- Scenario text: incomplete for a copied checkout. Step 1 has no freshness step, although the
+  integration test's copy has one (refreshCopiedDistMtimes). The Failure Triage does not cover an
+  unreadable packet. Step 6 expects a failing-packet preview that the copy cannot produce as written.
+- YAML, behaves as designed: it fails closed and writes nothing. One inconsistency: phase_7
+  exit_policy says STATUS=FAILED when nothing was written, while on_failure.still_failing says
+  STATUS=PARTIAL for exit 2 with unreadable lines. This run took the exit_policy reading.
+- YAML gap: the resume derives the owed link-legacy-path from the v3 plan shape, since run-started
+  records no planned steps. The log does not prove the plan, so the Remaining line is inferred.
+- Scripts: upgrade-legacy.mjs refused the apply with nothing written, as designed. Diagnostic
+  fixture 3 shows the apply path succeeds once the validator loads.
+
+Snapshot notes (read before using the verdict)
+- Another writer edited the live worktree during this run. Local times: upgrade-legacy.mjs 09:10:22,
+  repair-derived.cjs 09:11:01, archive.sh 09:09:16, heal-spec-docs.cjs 09:13:33 and then again
+  before 09:14, runtime/cli/spec/README.md 09:11:51. Fixtures copied at 09:06, 09:10 and 09:11 hold
+  different versions of these scripts. Fixture 4 was copied at 09:14 and matches the worktree at
+  that time (R4.8). Those hashes are in the table below.
+- The worktree git status gained eight " M" lines during the run, in files this run did not write:
+  sk-create-skill/scripts/README.md, four feature-catalog tooling docs, one manual-testing-playbook
+  tooling doc, and runtime/cli/spec/README.md. No command of this run wrote to the worktree
+  (see H4 for the one wrong-path call, which failed on load).
+
+Script hashes (first 12 hex digits of SHA-256)
+  file                   worktree 09:14   fixture 1 (09:06)  fixture 2 (09:10)  fixture 3 (09:11)  fixture 4 (09:14)
+  upgrade-legacy.mjs     01146fa8ceed     d18ac949584c       01146fa8ceed       01146fa8ceed       01146fa8ceed
+  repair-derived.cjs     141f01b01687     8454cb3d887d       8454cb3d887d       141f01b01687       141f01b01687
+  archive.sh             d84218d9b46d     fabd4eb75002       d84218d9b46d       d84218d9b46d       d84218d9b46d
+  heal-spec-docs.cjs     b8407be87856     5e44f1d0a81e       5e44f1d0a81e       5e44f1d0a81e       b8407be87856
+  dist-freshness.cjs     da9a2b48adba     da9a2b48adba       da9a2b48adba       da9a2b48adba       da9a2b48adba
+  validate.sh            a609d407ab6e     a609d407ab6e       a609d407ab6e       a609d407ab6e       a609d407ab6e
+  compat YAML            019cafb6191d     019cafb6191d       019cafb6191d       019cafb6191d       019cafb6191d
+  (The worktree column is the fixture 4 build-time check at R4.8. The heal-spec-docs.cjs hash
+  changed again after an earlier worktree read at 09:13:33, which showed c004d5dd233f.)
+
+Deviations and harness notes
+- H1  Step 2.1 did not run node. Its redirect used $FD, which was not exported to the child shell,
+      so bash failed the redirect first. Nothing was written. The layout map was re-run as 2.1b.
+- H2  Step 3.2 contains a stray probe of mine. It failed with a SyntaxError on empty input and changed
+      nothing. The valid readings are layout-map-exit=0 and state=v3 steps=3.
+- H3  Step 7.9 contains a stray redirect that wrote the layout-map JSON to /tmp/none, outside the fd
+      tree. This session created that file, and it was deleted by its exact path at C.1.
+- H4  Diagnostic D.2 ran a wrong path with the worktree as cwd. Node failed to load a missing file.
+      Nothing was read or written there.
+- H5  Approvals were answered by the executing agent, as the scenario directs. No human answered.
+- H6  The "new session" is a fresh shell call that reads only the move log and the disk. It is not a
+      new Claude session.
+- H7  The presentation text (previews, refusals, the interrupted-run line, the STATUS lines) was filled in
+      by the agent from the templates. Command output is verbatim.
+- H8  Diagnostic fixture 3 used the integration test's dist mtime refresh (D3.7), not a rebuild, so its
+      freshness check passed. It ran the compiled validator from the worktree's last build, with no rebuild. It shows the apply path,
+      not the current source's validator, and it does not count toward the DOC-381 verdict.
+- H9  The upgrade preview writes temporary roots under TMPDIR. TMPDIR was set to scratchpad/fd/tmp for
+      every command, and the script removes its roots. A tsx-501 folder remained there and goes with
+      the harness.
+- H10 Step R4.13 printed the exit status of the pipeline, not of node. The layout map printed state v4,
+      and step 5.6 shows exit 0 for the same command.
+- H11 Rule files loaded before the first worktree write: REPO RULES.md (trigger table),
+      evidence-and-proof.md, communication-prose.md and communication.md.
+
+Transcript (commands, outputs and exit codes, in run order)
+DOC-381 manual run transcript (commands, outputs, exit codes)
+Started (UTC): 2026-10-10T07:06:43Z
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets
+Worktree HEAD: 4669db65226d82625f6105073fc8891229bcc22b
+Scratch root: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd
+EXECUTOR: a single agent played /doctor:update compat phases 2 to 8 by hand, following doctor-update-compat-action.yaml, with each fixture as the repository. Phase 1 (release check) is skipped as the scenario says. The approvals were answered by that agent, as the scenario directs. No command ran against the worktree.
+FIXTURE 1 (v3) = /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm
+
+### 1.1 gitconfig for fixture 1
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd && : > "$FX1.gitconfig" && ls -la "$FX1.gitconfig"
+-rw-r--r--@ 1 michelkerkmeester  wheel  0 Oct 10 09:06 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm.gitconfig
+[exit=0]
+export GIT_CONFIG_GLOBAL=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm.gitconfig
+
+### 1.2 git init
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && git init -q && git rev-parse --absolute-git-dir
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm/.git
+[exit=0]
+GITDIR=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm/.git
+
+### 1.3 copy skill and doctor command
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && mkdir -p .skilled/skills .skilled/commands && rsync -a --exclude node_modules "$CHECKOUT/.skilled/skills/system-spec-kit" .skilled/skills/ && rsync -a "$CHECKOUT/.skilled/commands/doctor" .skilled/commands/ && echo COPY-OK
+COPY-OK
+[exit=0]
+
+### 1.4 link node_modules back, empty runtime/node_modules if absent
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && for rel in node_modules runtime/node_modules runtime/cli/node_modules; do src="$CHECKOUT/.skilled/skills/system-spec-kit/$rel"; if [ -e "$src" ]; then ln -s "$src" ".skilled/skills/system-spec-kit/$rel"; fi; done; mkdir -p .skilled/skills/system-spec-kit/runtime/node_modules; ls -la .skilled/skills/system-spec-kit | grep node_modules; ls -la .skilled/skills/system-spec-kit/runtime | grep node_modules
+lrwxr-xr-x@  1 michelkerkmeester  staff     151 Oct 10 09:06 node_modules -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/node_modules
+lrwxr-xr-x@   1 michelkerkmeester  staff    159 Oct 10 09:06 node_modules -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/node_modules
+[exit=0]
+
+### 1.5 gitignore
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && printf 'dist/\n' > .gitignore && cat .gitignore
+dist/
+[exit=0]
+
+### 1.6 baseline commit
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && git add -A && git -c user.name=Fixture -c user.email=fixture@test.invalid commit -q -m baseline && git log --oneline && echo "tracked-files=$(git ls-files | wc -l | tr -d " ")"
+94a2b02 baseline
+tracked-files=2088
+[exit=0]
+
+### 1.7 dist is ignored and not committed
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && ls -d .skilled/skills/system-spec-kit/runtime/dist && git check-ignore -v .skilled/skills/system-spec-kit/runtime/dist/ | head -1; echo "tracked-dist-entries=$(git ls-files | grep -c "/dist/")"
+.skilled/skills/system-spec-kit/runtime/dist
+.gitignore:1:dist/	.skilled/skills/system-spec-kit/runtime/dist/
+tracked-dist-entries=0
+[exit=0]
+
+### 1.8 write one legacy packet
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && mkdir -p .opencode/specs/legacy-track/001-old-packet && printf '%b' '---\ntitle: "Legacy Packet"\ndescription: "A packet written before v4."\n---\n# Legacy Packet\n\nOld packet written before the v4 contract.\n' > .opencode/specs/legacy-track/001-old-packet/spec.md && printf '%b' '# Plan\n\nOld plan.\n' > .opencode/specs/legacy-track/001-old-packet/plan.md && printf '%b' '# Tasks\n\n- [ ] T001 Old task\n' > .opencode/specs/legacy-track/001-old-packet/tasks.md && cat .opencode/specs/legacy-track/001-old-packet/spec.md
+---
+title: "Legacy Packet"
+description: "A packet written before v4."
+---
+# Legacy Packet
+
+Old packet written before the v4 contract.
+[exit=0]
+
+### 1.9 link specs to .opencode/specs
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && ln -s .opencode/specs specs && ls -la specs
+lrwxr-xr-x@ 1 michelkerkmeester  wheel  15 Oct 10 09:06 specs -> .opencode/specs
+[exit=0]
+
+### 1.10 commit classic v3 fixture
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && git add .opencode/specs specs && git -c user.name=Fixture -c user.email=fixture@test.invalid commit -q -m "classic v3 fixture" && git log --oneline && git ls-files -s specs
+2a95775 classic v3 fixture
+94a2b02 baseline
+120000 b22b603b1b5cef0a472490e6a0e4bc2dc49e9603 0	specs
+[exit=0]
+
+### 1.11 layout map on fresh fixture
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map; echo "layout-map-printed-above"
+{
+  "state": "v3",
+  "moves": [
+    {
+      "from": ".opencode/specs",
+      "to": "specs"
+    }
+  ],
+  "alreadyMoved": [],
+  "collisions": [],
+  "steps": [
+    {
+      "id": "remove-specs-link",
+      "argv": [
+        "rm",
+        "-f",
+        "specs"
+      ]
+    },
+    {
+      "id": "move-tree",
+      "argv": [
+        "git",
+        "mv",
+        ".opencode/specs",
+        "specs"
+      ]
+    },
+    {
+      "id": "link-legacy-path",
+      "argv": [
+        "ln",
+        "-s",
+        "../specs",
+        ".opencode/specs"
+      ]
+    }
+  ]
+}
+layout-map-printed-above
+[exit=0]
+
+### 1.12 git status after build
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && echo "porcelain-lines=$(git status --porcelain | wc -l | tr -d " ")"; git status --porcelain=v1 --untracked-files=all
+porcelain-lines=0
+[exit=0]
+
+=== STEP 2: /doctor:update compat --dry-run from the fixture root (phase 1 skipped, phase 2 layout preview, dry_run_rule) ===
+
+### 2.1 phase 2 layout map (dry run)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map > "$FD/harness/dry-run-layout-map.json"; echo "layout-map-exit=$?"; cat "$FD/harness/dry-run-layout-map.json" | head -5
+bash: /harness/dry-run-layout-map.json: No such file or directory
+layout-map-exit=1
+cat: /harness/dry-run-layout-map.json: No such file or directory
+[exit=0]
+
+### 2.2 phase 2 dirty check (read only)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs; echo "dirty-lines=$(git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs | wc -l | tr -d " ")"
+dirty-lines=0
+[exit=0]
+
+### 2.3 log file must not exist
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && if test ! -e "$(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl"; then echo LOG-ABSENT; else echo LOG-PRESENT; fi
+LOG-ABSENT
+[exit=0]
+RENDERED Spec Folder Compatibility Preview (presentation template, filled from the layout map above):
+Spec Folder Compatibility Preview
+Layout: v3
+
+| From | To |
+|------|----|
+| .opencode/specs | specs |
+
+Already moved: none
+
+Steps (run in order from the repository root):
+  1. remove-specs-link: rm -f specs
+  2. move-tree: git mv .opencode/specs specs
+  3. link-legacy-path: ln -s ../specs .opencode/specs
+
+### 2.4 git status after dry run
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && echo "porcelain-lines=$(git status --porcelain | wc -l | tr -d " ")"
+porcelain-lines=0
+[exit=0]
+STATUS=DRY_RUN (dry_run_rule: stop before any move, upgrade or log line)
+
+### 2.5 log file must still not exist
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && if test ! -e "$(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl"; then echo LOG-ABSENT; else echo LOG-PRESENT; fi
+LOG-ABSENT
+[exit=0]
+
+HARNESS NOTE: step 2.1 above did not run node. The redirect target used $FD, which was not exported to the child shell, so bash failed the redirect before the command started and wrote nothing. The layout map is re-run as 2.1b, and 2.1b is the step counted for the dry run.
+
+### 2.1b phase 2 layout map (dry run, re-run without redirect)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map; echo "layout-map-exit=$?"
+{
+  "state": "v3",
+  "moves": [
+    {
+      "from": ".opencode/specs",
+      "to": "specs"
+    }
+  ],
+  "alreadyMoved": [],
+  "collisions": [],
+  "steps": [
+    {
+      "id": "remove-specs-link",
+      "argv": [
+        "rm",
+        "-f",
+        "specs"
+      ]
+    },
+    {
+      "id": "move-tree",
+      "argv": [
+        "git",
+        "mv",
+        ".opencode/specs",
+        "specs"
+      ]
+    },
+    {
+      "id": "link-legacy-path",
+      "argv": [
+        "ln",
+        "-s",
+        "../specs",
+        ".opencode/specs"
+      ]
+    }
+  ]
+}
+layout-map-exit=0
+[exit=0]
+
+=== STEP 3: dirty refusal. Edit one packet, run /doctor:update compat (no dry run) ===
+
+### 3.1 append one line to the packet plan.md
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && printf 'DOC-381 dirty refusal probe line\n' >> .opencode/specs/legacy-track/001-old-packet/plan.md && tail -2 .opencode/specs/legacy-track/001-old-packet/plan.md
+Old plan.
+DOC-381 dirty refusal probe line
+[exit=0]
+
+### 3.2 phase 2 layout map (v3, move planned)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map > /dev/null; echo "layout-map-exit=$?"; node -e "const m=JSON.parse(require(\"fs\").readFileSync(0,\"utf8\"));" < /dev/null; node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map | node -e "const m=JSON.parse(require(\"fs\").readFileSync(0,\"utf8\")); console.log(\"state=\"+m.state, \"steps=\"+m.steps.length)"
+layout-map-exit=0
+<anonymous_script>:1
+
+
+SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at [eval]:1:14
+    at runScriptInThisContext (node:internal/vm:219:10)
+    at node:internal/process/execution:485:12
+    at [eval]-wrapper:6:24
+    at runScriptInContext (node:internal/process/execution:483:60)
+    at evalFunction (node:internal/process/execution:317:30)
+    at evalTypeScript (node:internal/process/execution:329:3)
+    at node:internal/main/eval_string:71:3
+
+Node.js v26.8.2
+state=v3 steps=3
+[exit=0]
+
+### 3.3 phase 2 dirty check (planned move, non-empty output means refusal)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs; echo "dirty-lines=$(git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs | wc -l | tr -d " ")"
+ M .opencode/specs/legacy-track/001-old-packet/plan.md
+dirty-lines=1
+[exit=0]
+RENDERED REFUSAL (presentation: dirty-roots refusal), STATUS=BLOCKED, no move approval asked, no log line written:
+These spec roots have uncommitted changes:
+ M .opencode/specs/legacy-track/001-old-packet/plan.md
+The move keeps no before-image. Commit or stash these changes, then run /doctor:update compat again.
+STATUS=BLOCKED
+
+### 3.4 log file must not exist after the refusal
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && if test ! -e "$(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl"; then echo LOG-ABSENT; else echo LOG-PRESENT; fi
+LOG-ABSENT
+[exit=0]
+
+### 3.5 revert the packet edit
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && git checkout -- .opencode/specs/legacy-track/001-old-packet/plan.md && echo REVERTED
+REVERTED
+[exit=0]
+
+### 3.6 git status after revert
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && echo "porcelain-lines=$(git status --porcelain | wc -l | tr -d " ")"; git status --porcelain=v1 --untracked-files=all
+porcelain-lines=0
+[exit=0]
+
+=== STEP 4: start the move. Run /doctor:update compat, reply yes to the move approval, stop after move-tree ===
+
+### 4.1 phase 2 layout map
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map; echo "layout-map-exit=$?"
+{
+  "state": "v3",
+  "moves": [
+    {
+      "from": ".opencode/specs",
+      "to": "specs"
+    }
+  ],
+  "alreadyMoved": [],
+  "collisions": [],
+  "steps": [
+    {
+      "id": "remove-specs-link",
+      "argv": [
+        "rm",
+        "-f",
+        "specs"
+      ]
+    },
+    {
+      "id": "move-tree",
+      "argv": [
+        "git",
+        "mv",
+        ".opencode/specs",
+        "specs"
+      ]
+    },
+    {
+      "id": "link-legacy-path",
+      "argv": [
+        "ln",
+        "-s",
+        "../specs",
+        ".opencode/specs"
+      ]
+    }
+  ]
+}
+layout-map-exit=0
+[exit=0]
+
+### 4.2 phase 2 dirty check (must be empty to plan the move)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && echo "dirty-lines=$(git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs | wc -l | tr -d " ")"
+dirty-lines=0
+[exit=0]
+MOVE APPROVAL (presentation): Move the spec tree as listed? Reply yes to run 3 steps, or no to leave the tree unchanged.
+OPERATOR REPLY: yes
+
+### 4.3 phase 4 dirty check before run-started (must be empty)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && echo "dirty-lines=$(git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs | wc -l | tr -d " ")"
+dirty-lines=0
+[exit=0]
+RUN ID (run 1) = doc381-fx1-run1-1791616053
+Move log: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm/.git/doctor-update-compat.log.jsonl
+LOG {"run":"doc381-fx1-run1-1791616053","event":"run-started","step":null,"argv":null,"at":"2026-10-10T07:07:33.381Z"}
+Step 1/3 remove-specs-link: started
+LOG {"run":"doc381-fx1-run1-1791616053","event":"step-started","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:07:33.421Z"}
+
+### 4.4 step remove-specs-link
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && rm -f specs; echo "step-exit=$?"; ls -la | grep -E " specs|opencode" ; git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs
+step-exit=0
+drwxr-xr-x@  3 michelkerkmeester  wheel   96 Oct 10 09:06 .opencode
+ D specs
+[exit=0]
+Step 1/3 remove-specs-link: done
+LOG {"run":"doc381-fx1-run1-1791616053","event":"step-done","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:07:33.557Z"}
+Step 2/3 move-tree: started
+LOG {"run":"doc381-fx1-run1-1791616053","event":"step-started","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:07:33.646Z"}
+
+### 4.5 step move-tree
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && git mv .opencode/specs specs; echo "step-exit=$?"; ls -la specs | head -3; test -e .opencode/specs && echo "legacy-path-present" || echo "legacy-path-absent"
+step-exit=0
+total 0
+drwxr-xr-x@ 3 michelkerkmeester  wheel   96 Oct 10 09:06 .
+drwx------@ 7 michelkerkmeester  wheel  224 Oct 10 09:07 ..
+legacy-path-absent
+[exit=0]
+Step 2/3 move-tree: done
+LOG {"run":"doc381-fx1-run1-1791616053","event":"step-done","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:07:33.758Z"}
+SESSION STOPPED HERE. link-legacy-path has not started. The run has no move-complete line. The session ends now, as the scenario directs.
+
+### 4.6 log after the interrupted run
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && cat "$(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl"
+{"run":"doc381-fx1-run1-1791616053","event":"run-started","step":null,"argv":null,"at":"2026-10-10T07:07:33.381Z"}
+{"run":"doc381-fx1-run1-1791616053","event":"step-started","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:07:33.421Z"}
+{"run":"doc381-fx1-run1-1791616053","event":"step-done","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:07:33.557Z"}
+{"run":"doc381-fx1-run1-1791616053","event":"step-started","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:07:33.646Z"}
+{"run":"doc381-fx1-run1-1791616053","event":"step-done","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:07:33.758Z"}
+[exit=0]
+
+=== STEP 5: resume in a new session. Run /doctor:update compat in the fixture (no state carried over, only the move log and the disk) ===
+NEW SESSION: this call does not reuse the run id of step 4. The recovery reads the move log from the git directory.
+
+### 5.1 phase 1 recovery: read the move log, group by run, find the newest run
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && node "$FD/harness/recover.cjs" "$(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl"
+{
+  "runsInLog": 1,
+  "newestRun": "doc381-fx1-run1-1791616053",
+  "newestRunEvents": [
+    "run-started",
+    "step-started",
+    "step-done",
+    "step-started",
+    "step-done"
+  ],
+  "stepsDone": [
+    "remove-specs-link",
+    "move-tree"
+  ],
+  "stepsStartedWithoutDone": [],
+  "lastStepDone": "move-tree",
+  "newestRunHasRunComplete": false,
+  "interrupted": true
+}
+[exit=0]
+INTERRUPTED RUN LINE (presentation, filled from 5.1 and the recomputed layout map in 5.2): A previous compatibility run stopped after move-tree. Done: remove-specs-link, move-tree. Remaining: link-legacy-path.
+
+### 5.2 phase 2 recomputed layout map (expect v4 with no steps)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map; echo "layout-map-exit=$?"; test -e .opencode/specs && echo "legacy-path-present" || echo "legacy-path-absent"
+{
+  "state": "v4",
+  "moves": [],
+  "alreadyMoved": [],
+  "collisions": [],
+  "steps": []
+}
+layout-map-exit=0
+legacy-path-absent
+[exit=0]
+
+### 5.3 dirty check, recorded for evidence only (owed-step exemption: no refusal is applied)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs; echo "dirty-lines=$(git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs | wc -l | tr -d " ")"
+D  specs
+R  .opencode/specs/legacy-track/001-old-packet/plan.md -> specs/legacy-track/001-old-packet/plan.md
+R  .opencode/specs/legacy-track/001-old-packet/spec.md -> specs/legacy-track/001-old-packet/spec.md
+R  .opencode/specs/legacy-track/001-old-packet/tasks.md -> specs/legacy-track/001-old-packet/tasks.md
+dirty-lines=4
+[exit=0]
+MOVE APPROVAL (presentation, second approval in this fixture): Move the spec tree as listed? Reply yes to run 1 steps, or no to leave the tree unchanged.
+OPERATOR REPLY: yes
+RUN ID (run 2, resume) = doc381-fx1-run2-1791616089
+LOG {"run":"doc381-fx1-run2-1791616089","event":"run-started","step":null,"argv":null,"at":"2026-10-10T07:08:09.445Z"}
+Step 1/1 link-legacy-path: started
+LOG {"run":"doc381-fx1-run2-1791616089","event":"step-started","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-10T07:08:09.480Z"}
+
+### 5.4 step link-legacy-path
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && ln -s ../specs .opencode/specs; echo "step-exit=$?"; ls -la .opencode | grep specs
+step-exit=0
+lrwxr-xr-x@ 1 michelkerkmeester  wheel    8 Oct 10 09:08 specs -> ../specs
+[exit=0]
+Step 1/1 link-legacy-path: done
+LOG {"run":"doc381-fx1-run2-1791616089","event":"step-done","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-10T07:08:09.531Z"}
+LOG {"run":"doc381-fx1-run2-1791616089","event":"move-complete","step":null,"argv":null,"at":"2026-10-10T07:08:09.561Z"}
+
+### 5.5 readlink .opencode/specs (must print ../specs)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && readlink .opencode/specs; echo "readlink-exit=$?"
+../specs
+readlink-exit=0
+[exit=0]
+
+### 5.6 post-check layout map (expect v4 with no steps)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map; echo "layout-map-exit=$?"
+{
+  "state": "v4",
+  "moves": [],
+  "alreadyMoved": [],
+  "collisions": [],
+  "steps": []
+}
+layout-map-exit=0
+[exit=0]
+
+=== STEP 6: upgrade preview, upgrade approval, upgrade apply (same session as step 5, run 2) ===
+
+### 6.1 phase 5 upgrade preview (dry run of upgrade-legacy, no flags)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs; echo "upgrade-preview-exit=$?"
+unreadable specs/legacy-track/001-old-packet: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+grouped detail:
+### specs/legacy-track/001-old-packet / unreadable
+
+Downgrades:
+  none
+
+inspected=1 active=1 archived=0
+passing=0/1
+repo era report:
+  layout provenance: source=none; description.json residue count=0
+  layout: v4 (v3=false, v4=true)
+  frontmatter: present=1 missing=2
+
+--apply would run: fill-frontmatter, anchor-repair, heal-spec-docs, lane-modes, repair-derived, migrate-generated-json (archived packets: questions-anchor un-nesting and repair-derived only), then record the remaining findings in upgrade-baseline.json
+upgrade-preview-exit=1
+[exit=0]
+UPGRADE APPROVAL (presentation): Run upgrade-legacy --apply on these packets? Reply yes or no.
+OPERATOR REPLY: yes
+LOG {"run":"doc381-fx1-run2-1791616089","event":"upgrade-started","step":null,"argv":null,"at":"2026-10-10T07:08:23.955Z"}
+
+### 6.2 phase 7 upgrade apply
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --apply; echo "upgrade-apply-exit=$?"
+unreadable specs/legacy-track/001-old-packet: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+upgrade-legacy: 1 packet(s) could not be validated, so nothing was written
+upgrade-apply-exit=2
+[exit=0]
+
+=== DIAGNOSIS after 6.2 (not part of the scenario steps): why the validator reports unreadable ===
+
+### D.1 dist freshness check in fixture 1 (diagnostic)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && node .skilled/skills/system-spec-kit/runtime/lib/dist-freshness.cjs check --package system-spec-kit/runtime --entry validation-orchestrator; echo "freshness-exit=$?"
+node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm/.skilled/skills/system-spec-kit/runtime/lib/dist-freshness.cjs'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v26.8.2
+freshness-exit=1
+[exit=0]
+
+### D.2 dist freshness check in worktree (read only, diagnostic)
+$ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets && node .skilled/skills/system-spec-kit/runtime/lib/dist-freshness.cjs check --package system-spec-kit/runtime --entry validation-orchestrator; echo "freshness-exit=$?"
+node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/lib/dist-freshness.cjs'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v26.8.2
+freshness-exit=1
+[exit=0]
+NOTE: D.2 ran the same wrong path in the worktree. Node failed to load a missing file, so nothing was read or written there. Disclosed for the record.
+
+### D.3 locate dist-freshness.cjs in fixture 1 (read only)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && find .skilled/skills/system-spec-kit/runtime -name dist-freshness.cjs -not -path "*/node_modules/*"
+.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs
+[exit=0]
+
+### D.4 freshness check in fixture 1 at the path validate.sh uses
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && node .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs check --package system-spec-kit/runtime --entry validation-orchestrator; echo "freshness-exit=$?"
+@spec-kit/runtime dist is stale. Rebuild with: cd .skilled/skills/system-spec-kit/runtime && npm run build
+freshness-exit=69
+[exit=0]
+
+### D.5 read the check's stale rule (first 60 lines)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && sed -n 1,60p .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs
+#!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Dist Freshness Utility
+// ───────────────────────────────────────────────────────────────────
+// Shared source-vs-dist staleness checks for local TypeScript build outputs,
+// without rebuilding or blocking on checker bugs.
+// ───────────────────────────────────────────────────────────────────
+'use strict';
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+const crypto = require('node:crypto');
+const fs = require('node:fs');
+const path = require('node:path');
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+const STALE_EXIT_CODE = 69;
+const SOURCE_EXTENSIONS = new Set(['.ts', '.tsx', '.mts', '.cts', '.json']);
+const MANIFEST_BASENAMES = new Set(['package.json', 'tsconfig.json', 'tsconfig.build.json']);
+const DEFAULT_EXCLUDED_SEGMENTS = new Set(['node_modules', 'dist']);
+const CACHE_VERSION = 2;
+const CACHE_TEMP_MAX_AGE_MS = 24 * 60 * 60 * 1000;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. WORKSPACE ROOT
+// ───────────────────────────────────────────────────────────────────
+const { findRepoRoot } = require('@spec-kit/shared/workspace/repo-root.mjs');
+const WORKSPACE_ROOT = findRepoRoot(__dirname);
+
+// ───────────────────────────────────────────────────────────────────
+// 4. PACKAGE REGISTRY
+// ───────────────────────────────────────────────────────────────────
+const DIST_PACKAGES = Object.freeze([
+  {
+    id: 'system-spec-kit/shared',
+    name: '@spec-kit/shared',
+    root: '.skilled/skills/system-spec-kit/shared',
+    distEntries: { default: 'dist/tsconfig.tsbuildinfo' },
+    rebuildCommand: 'cd .skilled/skills/system-spec-kit/shared && npm run build',
+    sourceCandidates: ['.'],
+  },
+  {
+    id: 'system-spec-kit/runtime/cli',
+    name: '@spec-kit/cli',
+    root: '.skilled/skills/system-spec-kit/runtime/cli',
+    distEntries: {
+      default: 'dist/tsconfig.tsbuildinfo',
+      'is-phase-parent': 'dist/spec/is-phase-parent.js',
+    },
+    rebuildCommand: 'cd .skilled/skills/system-spec-kit/runtime/cli && npm run build',
+    sourceCandidates: ['.'],
+    // is-phase-parent.ts imports only Node builtins (fs, path) -- no local
+    // project dependencies -- so its own freshness check is scoped to just
+    // that one file rather than the whole cli/ tree. This keeps the
+    // child-drift guard immune to unrelated concurrent edits anywhere else
+    // under cli/, which the whole-tree 'default' entry is not.
+    entrySourceCandidates: {
+[exit=0]
+
+### D.6 runtime dist marker in fixture (read only)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && ls -la .skilled/skills/system-spec-kit/runtime/dist/tsconfig.tsbuildinfo 2>&1; stat -f "%Sm %N" -t "%Y-%m-%d %H:%M:%S" .skilled/skills/system-spec-kit/runtime/dist/tsconfig.tsbuildinfo 2>&1
+-rw-r--r--@ 1 michelkerkmeester  staff  69975 Oct 10 08:35 .skilled/skills/system-spec-kit/runtime/dist/tsconfig.tsbuildinfo
+2026-10-10 08:35:40 .skilled/skills/system-spec-kit/runtime/dist/tsconfig.tsbuildinfo
+[exit=0]
+
+### D.7 sources newer than the runtime dist marker in fixture 1 (read only)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && M=.skilled/skills/system-spec-kit/runtime/dist/tsconfig.tsbuildinfo; find .skilled/skills/system-spec-kit/runtime -newer "$M" -type f -not -path "*/node_modules/*" -not -path "*/dist/*" | head -20; echo "newer-count=$(find .skilled/skills/system-spec-kit/runtime -newer "$M" -type f -not -path "*/node_modules/*" -not -path "*/dist/*" | wc -l | tr -d " ")"
+newer-count=0
+[exit=0]
+
+### D.8 same comparison in the worktree (read only find, no build, no write)
+$ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets && M=.skilled/skills/system-spec-kit/runtime/dist/tsconfig.tsbuildinfo; echo "newer-count=$(find .skilled/skills/system-spec-kit/runtime -newer "$M" -type f -not -path "*/node_modules/*" -not -path "*/dist/*" | wc -l | tr -d " ")"; find .skilled/skills/system-spec-kit/runtime -newer "$M" -type f -not -path "*/node_modules/*" -not -path "*/dist/*" | head -8
+newer-count=2
+.skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh
+[exit=0]
+
+### D.9 entry-scope sources newer than dist/lib/validation/orchestrator.js (fixture 1, read only)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && E=.skilled/skills/system-spec-kit/runtime/dist/lib/validation/orchestrator.js; stat -f "entry %Sm" -t "%Y-%m-%d %H:%M:%S" "$E"; cd .skilled/skills/system-spec-kit/runtime && find lib/validation lib/templates lib/spec lib/graph lib/config lib/description package.json tsconfig.json -newer "dist/lib/validation/orchestrator.js" -type f -not -path "*/node_modules/*" -not -path "*/dist/*" -not -path "*/tests/*" -not -path "*/stress-test/*" | head -20; echo "newer-in-scope=$(cd . && find lib/validation lib/templates lib/spec lib/graph lib/config lib/description package.json tsconfig.json -newer dist/lib/validation/orchestrator.js -type f -not -path "*/node_modules/*" -not -path "*/dist/*" -not -path "*/tests/*" -not -path "*/stress-test/*" | wc -l | tr -d " ")"
+entry 2026-10-10 08:15:16
+lib/graph/graph-metadata-parser.ts
+newer-in-scope=1
+[exit=0]
+
+### D.10 same scope in the worktree (read only)
+$ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets && cd .skilled/skills/system-spec-kit/runtime && E=dist/lib/validation/orchestrator.js; stat -f "entry %Sm" -t "%Y-%m-%d %H:%M:%S" "$E"; find lib/validation lib/templates lib/spec lib/graph lib/config lib/description package.json tsconfig.json -newer "$E" -type f -not -path "*/node_modules/*" -not -path "*/dist/*" -not -path "*/tests/*" -not -path "*/stress-test/*" | head -20; echo "newer-in-scope=$(find lib/validation lib/templates lib/spec lib/graph lib/config lib/description package.json tsconfig.json -newer "$E" -type f -not -path "*/node_modules/*" -not -path "*/dist/*" -not -path "*/tests/*" -not -path "*/stress-test/*" | wc -l | tr -d " ")"
+entry 2026-10-10 08:15:16
+lib/graph/graph-metadata-parser.ts
+newer-in-scope=1
+[exit=0]
+
+=== STEP 6 RESULT: FAIL at 6.2. The preview reported the packet unreadable (not failing), and the apply refused with exit 2 and wrote nothing. Checks below confirm nothing was written. ===
+
+### 6.3 manifest must be absent (apply writes it only before its first change)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && M="$(git rev-parse --absolute-git-dir)/upgrade-legacy.manifest.json"; if test -e "$M"; then echo MANIFEST-PRESENT; else echo MANIFEST-ABSENT; fi
+MANIFEST-ABSENT
+[exit=0]
+
+### 6.4 unstaged edits to packet files (must be none)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && echo "unstaged-lines=$(git diff --name-only | wc -l | tr -d " ")"; git diff --name-only
+unstaged-lines=0
+[exit=0]
+
+### 6.5 files under .skilled newer than the last log write (the apply ran after upgrade-started)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && find .skilled -newer "$(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl" -type f | head -20; echo "newer-under-skilled=$(find .skilled -newer "$(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl" -type f | wc -l | tr -d " ")"
+newer-under-skilled=0
+[exit=0]
+LOG {"run":"doc381-fx1-run2-1791616089","event":"upgrade-failed","step":null,"argv":null,"at":"2026-10-10T07:10:32.604Z"}
+LOG {"run":"doc381-fx1-run2-1791616089","event":"run-complete","step":null,"argv":null,"at":"2026-10-10T07:10:32.634Z"}
+STATUS=FAILED (per exit_policy: a non-zero exit with nothing written). The on_failure.still_failing rule in the YAML says PARTIAL for the same exit, so the YAML is inconsistent here. Recorded as observed, not resolved.
+
+### 6.6 move log after run 2 closed
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && cat "$(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl"
+{"run":"doc381-fx1-run1-1791616053","event":"run-started","step":null,"argv":null,"at":"2026-10-10T07:07:33.381Z"}
+{"run":"doc381-fx1-run1-1791616053","event":"step-started","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:07:33.421Z"}
+{"run":"doc381-fx1-run1-1791616053","event":"step-done","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:07:33.557Z"}
+{"run":"doc381-fx1-run1-1791616053","event":"step-started","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:07:33.646Z"}
+{"run":"doc381-fx1-run1-1791616053","event":"step-done","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:07:33.758Z"}
+{"run":"doc381-fx1-run2-1791616089","event":"run-started","step":null,"argv":null,"at":"2026-10-10T07:08:09.445Z"}
+{"run":"doc381-fx1-run2-1791616089","event":"step-started","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-10T07:08:09.480Z"}
+{"run":"doc381-fx1-run2-1791616089","event":"step-done","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-10T07:08:09.531Z"}
+{"run":"doc381-fx1-run2-1791616089","event":"move-complete","step":null,"argv":null,"at":"2026-10-10T07:08:09.561Z"}
+{"run":"doc381-fx1-run2-1791616089","event":"upgrade-started","step":null,"argv":null,"at":"2026-10-10T07:08:23.955Z"}
+{"run":"doc381-fx1-run2-1791616089","event":"upgrade-failed","step":null,"argv":null,"at":"2026-10-10T07:10:32.604Z"}
+{"run":"doc381-fx1-run2-1791616089","event":"run-complete","step":null,"argv":null,"at":"2026-10-10T07:10:32.634Z"}
+[exit=0]
+
+=== STEP 7: decline path on fixture 2 (build as step 1, move yes, upgrade no) ===
+FIXTURE 2 (v3) = /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6
+
+### 7.1 gitconfig for fixture 2
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd && : > "$FX2.gitconfig" && ls -la "$FX2.gitconfig"
+-rw-r--r--@ 1 michelkerkmeester  wheel  0 Oct 10 09:10 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6.gitconfig
+[exit=0]
+export GIT_CONFIG_GLOBAL=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6.gitconfig
+
+### 7.2 git init
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6 && git init -q && git rev-parse --absolute-git-dir
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6/.git
+[exit=0]
+GITDIR=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6/.git
+
+### 7.3 copy skill and doctor command
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6 && mkdir -p .skilled/skills .skilled/commands && rsync -a --exclude node_modules "$CHECKOUT/.skilled/skills/system-spec-kit" .skilled/skills/ && rsync -a "$CHECKOUT/.skilled/commands/doctor" .skilled/commands/ && echo COPY-OK
+COPY-OK
+[exit=0]
+
+### 7.4 link node_modules back, empty runtime/node_modules if absent
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6 && for rel in node_modules runtime/node_modules runtime/cli/node_modules; do src="$CHECKOUT/.skilled/skills/system-spec-kit/$rel"; if [ -e "$src" ]; then ln -s "$src" ".skilled/skills/system-spec-kit/$rel"; fi; done; mkdir -p .skilled/skills/system-spec-kit/runtime/node_modules; echo LINKS-DONE
+LINKS-DONE
+[exit=0]
+
+### 7.5 gitignore and baseline commit
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6 && printf 'dist/\n' > .gitignore && git add -A && git -c user.name=Fixture -c user.email=fixture@test.invalid commit -q -m baseline && echo "tracked-files=$(git ls-files | wc -l | tr -d ' ')"
+tracked-files=2088
+[exit=0]
+
+### 7.6 write legacy packet, link specs, commit classic v3 fixture
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6 && mkdir -p .opencode/specs/legacy-track/001-old-packet && printf '%b' '---\ntitle: "Legacy Packet"\ndescription: "A packet written before v4."\n---\n# Legacy Packet\n\nOld packet written before the v4 contract.\n' > .opencode/specs/legacy-track/001-old-packet/spec.md && printf '%b' '# Plan\n\nOld plan.\n' > .opencode/specs/legacy-track/001-old-packet/plan.md && printf '%b' '# Tasks\n\n- [ ] T001 Old task\n' > .opencode/specs/legacy-track/001-old-packet/tasks.md && ln -s .opencode/specs specs && git add .opencode/specs specs && git -c user.name=Fixture -c user.email=fixture@test.invalid commit -q -m "classic v3 fixture" && git log --oneline
+20c8af9 classic v3 fixture
+16c19d0 baseline
+[exit=0]
+
+### 7.7 layout map on fresh fixture 2 (expect v3)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6 && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map; echo "layout-map-exit=$?"
+{
+  "state": "v3",
+  "moves": [
+    {
+      "from": ".opencode/specs",
+      "to": "specs"
+    }
+  ],
+  "alreadyMoved": [],
+  "collisions": [],
+  "steps": [
+    {
+      "id": "remove-specs-link",
+      "argv": [
+        "rm",
+        "-f",
+        "specs"
+      ]
+    },
+    {
+      "id": "move-tree",
+      "argv": [
+        "git",
+        "mv",
+        ".opencode/specs",
+        "specs"
+      ]
+    },
+    {
+      "id": "link-legacy-path",
+      "argv": [
+        "ln",
+        "-s",
+        "../specs",
+        ".opencode/specs"
+      ]
+    }
+  ]
+}
+layout-map-exit=0
+[exit=0]
+
+### 7.8 git status after build (expect empty)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6 && echo "porcelain-lines=$(git status --porcelain | wc -l | tr -d " ")"
+porcelain-lines=0
+[exit=0]
+
+=== STEP 7 (continued): compat run on fixture 2 ===
+
+### 7.9 phase 2 layout map and dirty check
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6 && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map > /tmp/none 2>/dev/null; node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map | node -e "const m=JSON.parse(require(\"fs\").readFileSync(0,\"utf8\")); console.log(\"state=\"+m.state, \"steps=\"+m.steps.length)"; echo "dirty-lines=$(git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs | wc -l | tr -d " ")"
+state=v3 steps=3
+dirty-lines=0
+[exit=0]
+MOVE APPROVAL (presentation): Move the spec tree as listed? Reply yes to run 3 steps, or no to leave the tree unchanged.
+OPERATOR REPLY: yes
+RUN ID (fixture 2) = doc381-fx2-run1-1791616256
+LOG {"run":"doc381-fx2-run1-1791616256","event":"run-started","step":null,"argv":null,"at":"2026-10-10T07:10:56.209Z"}
+Step 1/3 remove-specs-link: started
+LOG {"run":"doc381-fx2-run1-1791616256","event":"step-started","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:10:56.242Z"}
+
+### 7.10 step remove-specs-link
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6 && rm -f specs; echo "step-exit=$?"
+step-exit=0
+[exit=0]
+Step 1/3 remove-specs-link: done
+LOG {"run":"doc381-fx2-run1-1791616256","event":"step-done","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:10:56.287Z"}
+Step 2/3 move-tree: started
+LOG {"run":"doc381-fx2-run1-1791616256","event":"step-started","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:10:56.318Z"}
+
+### 7.11 step move-tree
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6 && git mv .opencode/specs specs; echo "step-exit=$?"
+step-exit=0
+[exit=0]
+Step 2/3 move-tree: done
+LOG {"run":"doc381-fx2-run1-1791616256","event":"step-done","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:10:56.384Z"}
+Step 3/3 link-legacy-path: started
+LOG {"run":"doc381-fx2-run1-1791616256","event":"step-started","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-10T07:10:56.417Z"}
+
+### 7.12 step link-legacy-path
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6 && ln -s ../specs .opencode/specs; echo "step-exit=$?"
+step-exit=0
+[exit=0]
+Step 3/3 link-legacy-path: done
+LOG {"run":"doc381-fx2-run1-1791616256","event":"step-done","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-10T07:10:56.460Z"}
+LOG {"run":"doc381-fx2-run1-1791616256","event":"move-complete","step":null,"argv":null,"at":"2026-10-10T07:10:56.490Z"}
+
+### 7.13 post-check layout map (expect v4, no steps) and readlink
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6 && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map; echo "layout-map-exit=$?"; readlink .opencode/specs; echo "readlink-exit=$?"
+{
+  "state": "v4",
+  "moves": [],
+  "alreadyMoved": [],
+  "collisions": [],
+  "steps": []
+}
+layout-map-exit=0
+../specs
+readlink-exit=0
+[exit=0]
+
+### 7.14 phase 5 upgrade preview (exit 1 expected when packets fail)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6 && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs; echo "upgrade-preview-exit=$?"
+unreadable specs/legacy-track/001-old-packet: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+grouped detail:
+### specs/legacy-track/001-old-packet / unreadable
+
+Downgrades:
+  none
+
+inspected=1 active=1 archived=0
+passing=0/1
+repo era report:
+  layout provenance: source=none; description.json residue count=0
+  layout: v4 (v3=false, v4=true)
+  frontmatter: present=1 missing=2
+
+--apply would run: fill-frontmatter, anchor-repair, heal-spec-docs, lane-modes, repair-derived, migrate-generated-json (archived packets: questions-anchor un-nesting and repair-derived only), then record the remaining findings in upgrade-baseline.json
+upgrade-preview-exit=1
+[exit=0]
+UPGRADE APPROVAL (presentation): Run upgrade-legacy --apply on these packets? Reply yes or no.
+OPERATOR REPLY: no
+STATUS=DECLINED (phase 6 no_approval: leave the moved tree in place; append run-complete because this run logged lines; no upgrade-started)
+LOG {"run":"doc381-fx2-run1-1791616256","event":"run-complete","step":null,"argv":null,"at":"2026-10-10T07:10:57.042Z"}
+
+### 7.15 fixture 2 move log (must have move-complete then run-complete, and no upgrade-started)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6 && cat "$(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl"; echo; echo "upgrade-started-count=$(grep -c upgrade-started "$(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl")"; echo "manifest: $(test -e "$(git rev-parse --absolute-git-dir)/upgrade-legacy.manifest.json" && echo PRESENT || echo ABSENT)"
+{"run":"doc381-fx2-run1-1791616256","event":"run-started","step":null,"argv":null,"at":"2026-10-10T07:10:56.209Z"}
+{"run":"doc381-fx2-run1-1791616256","event":"step-started","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:10:56.242Z"}
+{"run":"doc381-fx2-run1-1791616256","event":"step-done","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:10:56.287Z"}
+{"run":"doc381-fx2-run1-1791616256","event":"step-started","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:10:56.318Z"}
+{"run":"doc381-fx2-run1-1791616256","event":"step-done","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:10:56.384Z"}
+{"run":"doc381-fx2-run1-1791616256","event":"step-started","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-10T07:10:56.417Z"}
+{"run":"doc381-fx2-run1-1791616256","event":"step-done","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-10T07:10:56.460Z"}
+{"run":"doc381-fx2-run1-1791616256","event":"move-complete","step":null,"argv":null,"at":"2026-10-10T07:10:56.490Z"}
+{"run":"doc381-fx2-run1-1791616256","event":"run-complete","step":null,"argv":null,"at":"2026-10-10T07:10:57.042Z"}
+
+upgrade-started-count=0
+manifest: ABSENT
+[exit=0]
+
+### 7.16 fixture 2 moved tree left in place
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6 && readlink .opencode/specs; ls -d specs/legacy-track/001-old-packet && echo MOVED-TREE-IN-PLACE
+../specs
+specs/legacy-track/001-old-packet
+MOVED-TREE-IN-PLACE
+[exit=0]
+
+CLEANUP NOTE: step 7.9 contained a stray redirect (> /tmp/none) that wrote the layout-map JSON to /tmp/none, outside the fd tree. This session created that file, so it is deleted by its exact path now.
+
+### C.1 delete the stray file created by step 7.9, by exact path
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd && rm -f /tmp/none && test ! -e /tmp/none && echo DELETED-/tmp/none
+DELETED-/tmp/none
+[exit=0]
+
+=== DIAGNOSTIC (does not count toward the DOC-381 verdict): fixture 3 with the integration test's dist mtime refresh, to see whether the apply path runs once the validator can load ===
+FIXTURE 3 (diagnostic, v3) = /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda
+
+### D3.1 gitconfig
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd && : > "$FX3.gitconfig" && ls -la "$FX3.gitconfig"
+-rw-r--r--@ 1 michelkerkmeester  wheel  0 Oct 10 09:11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda.gitconfig
+[exit=0]
+
+### D3.2 git init
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda && git init -q && git rev-parse --absolute-git-dir
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda/.git
+[exit=0]
+
+### D3.3 copy skill and doctor command
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda && mkdir -p .skilled/skills .skilled/commands && rsync -a --exclude node_modules "$CHECKOUT/.skilled/skills/system-spec-kit" .skilled/skills/ && rsync -a "$CHECKOUT/.skilled/commands/doctor" .skilled/commands/ && echo COPY-OK
+COPY-OK
+[exit=0]
+
+### D3.4 link node_modules back, empty runtime/node_modules if absent
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda && for rel in node_modules runtime/node_modules runtime/cli/node_modules; do src="$CHECKOUT/.skilled/skills/system-spec-kit/$rel"; if [ -e "$src" ]; then ln -s "$src" ".skilled/skills/system-spec-kit/$rel"; fi; done; mkdir -p .skilled/skills/system-spec-kit/runtime/node_modules; echo LINKS-DONE
+LINKS-DONE
+[exit=0]
+
+### D3.5 gitignore and baseline commit
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda && printf 'dist/\n' > .gitignore && git add -A && git -c user.name=Fixture -c user.email=fixture@test.invalid commit -q -m baseline && echo "tracked-files=$(git ls-files | wc -l | tr -d ' ')"
+tracked-files=2088
+[exit=0]
+
+### D3.6 write legacy packet, link specs, commit classic v3 fixture
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda && mkdir -p .opencode/specs/legacy-track/001-old-packet && printf '%b' '---\ntitle: "Legacy Packet"\ndescription: "A packet written before v4."\n---\n# Legacy Packet\n\nOld packet written before the v4 contract.\n' > .opencode/specs/legacy-track/001-old-packet/spec.md && printf '%b' '# Plan\n\nOld plan.\n' > .opencode/specs/legacy-track/001-old-packet/plan.md && printf '%b' '# Tasks\n\n- [ ] T001 Old task\n' > .opencode/specs/legacy-track/001-old-packet/tasks.md && ln -s .opencode/specs specs && git add .opencode/specs specs && git -c user.name=Fixture -c user.email=fixture@test.invalid commit -q -m "classic v3 fixture" && git log --oneline
+3a14745 classic v3 fixture
+f26fa24 baseline
+[exit=0]
+
+### D3.7 DISCLOSED SETUP (diagnostic only): refresh mtimes of the copied runtime dist to now, as the integration test does
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda && find .skilled/skills/system-spec-kit/runtime -path "*/dist/*" -type f -not -path "*/node_modules/*" -exec touch {} + ; echo "dist-files-touched=$(find .skilled/skills/system-spec-kit/runtime -path "*/dist/*" -type f -not -path "*/node_modules/*" | wc -l | tr -d " ")"; node .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs check --package system-spec-kit/runtime --entry validation-orchestrator; echo "freshness-exit=$?"
+dist-files-touched=674
+@spec-kit/runtime dist is fresh
+freshness-exit=0
+[exit=0]
+
+### D3.8 layout map (expect v3)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map > "$FD/harness/diag3-layout.json" 2>/dev/null; echo "layout-map-exit=$?"; node -e "const m=JSON.parse(require(\"fs\").readFileSync(process.argv[1],\"utf8\")); console.log(\"state=\"+m.state, \"steps=\"+m.steps.length)" "$FD/harness/diag3-layout.json"
+layout-map-exit=0
+state=v3 steps=3
+[exit=0]
+
+=== DIAGNOSTIC fixture 3: move (yes), then upgrade preview and upgrade apply (yes) ===
+
+### D3.9 phase 2 dirty check (must be empty)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda && echo "dirty-lines=$(git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs | wc -l | tr -d " ")"
+dirty-lines=0
+[exit=0]
+RUN ID (diagnostic fixture 3) = diag-fx3-run1-1791616300
+LOG {"run":"diag-fx3-run1-1791616300","event":"run-started","step":null,"argv":null,"at":"2026-10-10T07:11:40.477Z"}
+Step 1/3 remove-specs-link: started
+LOG {"run":"diag-fx3-run1-1791616300","event":"step-started","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:11:40.530Z"}
+
+### D3.10 step remove-specs-link
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda && rm -f specs; echo "step-exit=$?"
+step-exit=0
+[exit=0]
+Step 1/3 remove-specs-link: done
+LOG {"run":"diag-fx3-run1-1791616300","event":"step-done","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:11:40.621Z"}
+Step 2/3 move-tree: started
+LOG {"run":"diag-fx3-run1-1791616300","event":"step-started","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:11:40.656Z"}
+
+### D3.11 step move-tree
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda && git mv .opencode/specs specs; echo "step-exit=$?"
+step-exit=0
+[exit=0]
+Step 2/3 move-tree: done
+LOG {"run":"diag-fx3-run1-1791616300","event":"step-done","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:11:40.712Z"}
+Step 3/3 link-legacy-path: started
+LOG {"run":"diag-fx3-run1-1791616300","event":"step-started","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-10T07:11:40.745Z"}
+
+### D3.12 step link-legacy-path
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda && ln -s ../specs .opencode/specs; echo "step-exit=$?"
+step-exit=0
+[exit=0]
+Step 3/3 link-legacy-path: done
+LOG {"run":"diag-fx3-run1-1791616300","event":"step-done","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-10T07:11:40.787Z"}
+LOG {"run":"diag-fx3-run1-1791616300","event":"move-complete","step":null,"argv":null,"at":"2026-10-10T07:11:40.817Z"}
+
+### D3.13 phase 5 upgrade preview (should now list the packet with its rules)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs; echo "upgrade-preview-exit=$?"
+failing specs/legacy-track/001-old-packet: ANCHORS_VALID, FRONTMATTER_VALID, GREP_CONVENTION, TEMPLATE_SOURCE
+grouped detail:
+### specs/legacy-track/001-old-packet / x ANCHORS_VALID (3)
+    - spec.md: no anchors found
+    - plan.md: no anchors found
+    - tasks.md: no anchors found
+### specs/legacy-track/001-old-packet / x FRONTMATTER_VALID (3)
+    - spec.md: Empty required frontmatter field: importance_tier
+    - spec.md: Empty required frontmatter field: contextType
+    - spec.md: Empty required frontmatter field: trigger_phrases
+### specs/legacy-track/001-old-packet / x GREP_CONVENTION (2)
+    - path=plan.md line=0 category=missing severity=error rawKey=- reason=Document has no frontmatter block, so it carries no retrievable trigger phrases
+    - path=tasks.md line=0 category=missing severity=error rawKey=- reason=Document has no frontmatter block, so it carries no retrievable trigger phrases
+### specs/legacy-track/001-old-packet / x TEMPLATE_SOURCE (3)
+    - spec.md
+    - plan.md
+    - tasks.md
+step heal-spec-docs: ok (1 packets)
+
+Downgrades:
+  specs/legacy-track/001-old-packet | ANCHORS_VALID | error -> warning | plan.md: no anchors found
+  specs/legacy-track/001-old-packet | ANCHORS_VALID | error -> warning | spec.md: no anchors found
+  specs/legacy-track/001-old-packet | ANCHORS_VALID | error -> warning | tasks.md: no anchors found
+  specs/legacy-track/001-old-packet | FRONTMATTER_VALID | error -> warning | plan.md: Empty required frontmatter field: trigger_phrases
+  specs/legacy-track/001-old-packet | FRONTMATTER_VALID | error -> warning | spec.md: Empty required frontmatter field: trigger_phrases
+  specs/legacy-track/001-old-packet | FRONTMATTER_VALID | error -> warning | tasks.md: Empty required frontmatter field: trigger_phrases
+  specs/legacy-track/001-old-packet | TEMPLATE_SOURCE | error -> warning | plan.md
+  specs/legacy-track/001-old-packet | TEMPLATE_SOURCE | error -> warning | spec.md
+  specs/legacy-track/001-old-packet | TEMPLATE_SOURCE | error -> warning | tasks.md
+
+inspected=1 active=1 archived=0
+passing=0/1
+repo era report:
+  layout provenance: source=none; description.json residue count=0
+  layout: v4 (v3=false, v4=true)
+  frontmatter: present=1 missing=2
+
+--apply would run: fill-frontmatter, anchor-repair, heal-spec-docs, lane-modes, repair-derived, migrate-generated-json (archived packets: questions-anchor un-nesting and repair-derived only), then record the remaining findings in upgrade-baseline.json
+upgrade-preview-exit=1
+[exit=0]
+UPGRADE APPROVAL (presentation): Run upgrade-legacy --apply on these packets? Reply yes or no.
+OPERATOR REPLY: yes
+LOG {"run":"diag-fx3-run1-1791616300","event":"upgrade-started","step":null,"argv":null,"at":"2026-10-10T07:11:47.184Z"}
+
+### D3.14 phase 7 upgrade apply
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --apply; echo "upgrade-apply-exit=$?"
+plan changes=1
+step fill-frontmatter: ok
+step anchor-repair: ok (1 packets, 0 changed)
+step heal-spec-docs: ok (1 packets)
+step lane-modes: ok (1 packets, 5 refusals)
+step repair-derived: ok
+step migrate-generated-json: ok
+recorded specs/legacy-track/001-old-packet (9 findings, 5 refusals)
+
+Downgrades:
+  specs/legacy-track/001-old-packet | ANCHORS_VALID | error -> warning | plan.md: no anchors found
+  specs/legacy-track/001-old-packet | ANCHORS_VALID | error -> warning | spec.md: no anchors found
+  specs/legacy-track/001-old-packet | ANCHORS_VALID | error -> warning | tasks.md: no anchors found
+  specs/legacy-track/001-old-packet | FRONTMATTER_VALID | error -> warning | plan.md: Empty required frontmatter field: trigger_phrases
+  specs/legacy-track/001-old-packet | FRONTMATTER_VALID | error -> warning | spec.md: Empty required frontmatter field: trigger_phrases
+  specs/legacy-track/001-old-packet | FRONTMATTER_VALID | error -> warning | tasks.md: Empty required frontmatter field: trigger_phrases
+  specs/legacy-track/001-old-packet | TEMPLATE_SOURCE | error -> warning | plan.md
+  specs/legacy-track/001-old-packet | TEMPLATE_SOURCE | error -> warning | spec.md
+  specs/legacy-track/001-old-packet | TEMPLATE_SOURCE | error -> warning | tasks.md
+
+inspected=1 active=1 archived=0
+passing before=0/1 after=1/1
+recorded findings by rule:
+  ANCHORS_VALID: 3
+  FRONTMATTER_VALID: 3
+  TEMPLATE_SOURCE: 3
+grouped detail:
+  none
+upgrade-apply-exit=0
+[exit=0]
+
+### D3.15 files under .skilled newer than the last log write (apply ran after upgrade-started)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda && find .skilled -newer "$(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl" -type f | head -20; echo "newer-under-skilled=$(find .skilled -newer "$(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl" -type f | wc -l | tr -d " ")"
+newer-under-skilled=0
+[exit=0]
+
+### D3.16 manifest written by upgrade-legacy in the git dir
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda && M="$(git rev-parse --absolute-git-dir)/upgrade-legacy.manifest.json"; if test -e "$M"; then echo MANIFEST-PRESENT; node -e "const m=require(process.argv[1]); console.log(JSON.stringify({schema:m.schema,status:m.status,completedAt:m.completedAt!==undefined}))" "$M"; else echo MANIFEST-ABSENT; fi
+MANIFEST-PRESENT
+{"schema":1,"status":"complete","completedAt":true}
+[exit=0]
+
+### D3.17 packet changed by the apply (diff against the index, staged renames)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda && git diff --stat; git status --porcelain=v1 --untracked-files=all | head -12
+ specs/legacy-track/001-old-packet/plan.md  | 6 ++++++
+ specs/legacy-track/001-old-packet/spec.md  | 2 ++
+ specs/legacy-track/001-old-packet/tasks.md | 6 ++++++
+ 3 files changed, 14 insertions(+)
+D  specs
+RM .opencode/specs/legacy-track/001-old-packet/plan.md -> specs/legacy-track/001-old-packet/plan.md
+RM .opencode/specs/legacy-track/001-old-packet/spec.md -> specs/legacy-track/001-old-packet/spec.md
+RM .opencode/specs/legacy-track/001-old-packet/tasks.md -> specs/legacy-track/001-old-packet/tasks.md
+?? .opencode/specs
+?? specs/legacy-track/001-old-packet/description.json
+?? specs/legacy-track/001-old-packet/graph-metadata.json
+?? specs/legacy-track/001-old-packet/upgrade-baseline.json
+[exit=0]
+LOG {"run":"diag-fx3-run1-1791616300","event":"upgrade-done","step":null,"argv":null,"at":"2026-10-10T07:12:00.021Z"}
+LOG {"run":"diag-fx3-run1-1791616300","event":"run-complete","step":null,"argv":null,"at":"2026-10-10T07:12:00.049Z"}
+STATUS=UPGRADED (diagnostic run; exit 0 on the apply)
+
+### D3.18 diagnostic fixture 3 move log, full
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx3.hSHvda && cat "$(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl"
+{"run":"diag-fx3-run1-1791616300","event":"run-started","step":null,"argv":null,"at":"2026-10-10T07:11:40.477Z"}
+{"run":"diag-fx3-run1-1791616300","event":"step-started","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:11:40.530Z"}
+{"run":"diag-fx3-run1-1791616300","event":"step-done","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:11:40.621Z"}
+{"run":"diag-fx3-run1-1791616300","event":"step-started","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:11:40.656Z"}
+{"run":"diag-fx3-run1-1791616300","event":"step-done","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:11:40.712Z"}
+{"run":"diag-fx3-run1-1791616300","event":"step-started","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-10T07:11:40.745Z"}
+{"run":"diag-fx3-run1-1791616300","event":"step-done","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-10T07:11:40.787Z"}
+{"run":"diag-fx3-run1-1791616300","event":"move-complete","step":null,"argv":null,"at":"2026-10-10T07:11:40.817Z"}
+{"run":"diag-fx3-run1-1791616300","event":"upgrade-started","step":null,"argv":null,"at":"2026-10-10T07:11:47.184Z"}
+{"run":"diag-fx3-run1-1791616300","event":"upgrade-done","step":null,"argv":null,"at":"2026-10-10T07:12:00.021Z"}
+{"run":"diag-fx3-run1-1791616300","event":"run-complete","step":null,"argv":null,"at":"2026-10-10T07:12:00.049Z"}
+[exit=0]
+
+=== POST-RUN CHECKS (before fixture deletion) ===
+
+### P.1 fixture 2: files under .skilled modified at or after its run start (09:10:56 local)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6 && echo "start-of-run-local=$(date -r $(stat -f %m "$(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl") +%Y-%m-%d)"; find .skilled -type f -newermt "2026-10-10 09:10:56" | head -10; echo "skilled-files-changed-during-run=$(find .skilled -type f -newermt "2026-10-10 09:10:56" | wc -l | tr -d " ")"
+start-of-run-local=2026-10-10
+skilled-files-changed-during-run=0
+[exit=0]
+
+### P.2 fixture 2: tracked .skilled changes (must be empty)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx2.vRm1E6 && echo "tracked-skilled-changes=$(git status --porcelain -- .skilled | wc -l | tr -d " ")"
+tracked-skilled-changes=0
+[exit=0]
+
+### P.3 fixture 1: files under .skilled modified during run 1 onward (diagnostic reads included)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx1.pDqFGm && find .skilled -type f -newermt "2026-10-10 09:07:33" | head -10; echo "skilled-files-since-run1=$(find .skilled -type f -newermt "2026-10-10 09:07:33" | wc -l | tr -d " ")"
+skilled-files-since-run1=0
+[exit=0]
+
+### P.4 leftover upgrade-legacy preview roots in the fd temp dir (script removes its own)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd && ls -la "$FD/tmp" | head -10; echo "preview-leftovers=$(ls "$FD/tmp" | grep -c upgrade-legacy-preview)"
+total 0
+drwxr-xr-x@  3 michelkerkmeester  wheel    96 Oct 10 09:11 .
+drwxr-xr-x@ 10 michelkerkmeester  wheel   320 Oct 10 09:11 ..
+drwxr-xr-x@ 38 michelkerkmeester  wheel  1216 Oct 10 09:11 tsx-501
+preview-leftovers=0
+[exit=0]
+
+=== RE-RUN (current snapshot): fixture 4 built from the worktree as it stands at closure, steps 1 to 6 as written. Its script hashes are taken at build time. ===
+FIXTURE 4 (v3, as written) = /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y
+
+### R4.1 gitconfig
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd && : > "$FX4.gitconfig" && ls -la "$FX4.gitconfig"
+-rw-r--r--@ 1 michelkerkmeester  wheel  0 Oct 10 09:14 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y.gitconfig
+[exit=0]
+
+### R4.2 git init
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y && git init -q && git rev-parse --absolute-git-dir
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y/.git
+[exit=0]
+
+### R4.3 copy skill and doctor command
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y && mkdir -p .skilled/skills .skilled/commands && rsync -a --exclude node_modules "$CHECKOUT/.skilled/skills/system-spec-kit" .skilled/skills/ && rsync -a "$CHECKOUT/.skilled/commands/doctor" .skilled/commands/ && echo COPY-OK
+COPY-OK
+[exit=0]
+
+### R4.4 link node_modules back, empty runtime/node_modules if absent
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y && for rel in node_modules runtime/node_modules runtime/cli/node_modules; do src="$CHECKOUT/.skilled/skills/system-spec-kit/$rel"; if [ -e "$src" ]; then ln -s "$src" ".skilled/skills/system-spec-kit/$rel"; fi; done; mkdir -p .skilled/skills/system-spec-kit/runtime/node_modules; echo LINKS-DONE
+LINKS-DONE
+[exit=0]
+
+### R4.5 gitignore and baseline commit
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y && printf 'dist/\n' > .gitignore && git add -A && git -c user.name=Fixture -c user.email=fixture@test.invalid commit -q -m baseline && echo "tracked-files=$(git ls-files | wc -l | tr -d ' ')"
+tracked-files=2088
+[exit=0]
+
+### R4.6 write legacy packet, link specs, commit classic v3 fixture
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y && mkdir -p .opencode/specs/legacy-track/001-old-packet && printf '%b' '---\ntitle: "Legacy Packet"\ndescription: "A packet written before v4."\n---\n# Legacy Packet\n\nOld packet written before the v4 contract.\n' > .opencode/specs/legacy-track/001-old-packet/spec.md && printf '%b' '# Plan\n\nOld plan.\n' > .opencode/specs/legacy-track/001-old-packet/plan.md && printf '%b' '# Tasks\n\n- [ ] T001 Old task\n' > .opencode/specs/legacy-track/001-old-packet/tasks.md && ln -s .opencode/specs specs && git add .opencode/specs specs && git -c user.name=Fixture -c user.email=fixture@test.invalid commit -q -m "classic v3 fixture" && git log --oneline
+a1f4e9a classic v3 fixture
+fc2301e baseline
+[exit=0]
+
+### R4.7 layout map (expect v3, exit 0)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map > /dev/null; echo "layout-map-exit=$?"; echo "git-status-lines=$(git status --porcelain | wc -l | tr -d " ")"
+layout-map-exit=0
+git-status-lines=0
+[exit=0]
+
+### R4.8 script hashes of this fixture at build time, and the worktree at the same moment
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y && for f in .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh; do echo "fixture $(shasum -a 256 "$f" | cut -c1-12) worktree $(shasum -a 256 "$CHECKOUT/$f" | cut -c1-12) $(basename "$f")"; done
+fixture 01146fa8ceed worktree 01146fa8ceed upgrade-legacy.mjs
+fixture 141f01b01687 worktree 141f01b01687 repair-derived.cjs
+fixture d84218d9b46d worktree d84218d9b46d archive.sh
+fixture b8407be87856 worktree b8407be87856 heal-spec-docs.cjs
+fixture da9a2b48adba worktree da9a2b48adba dist-freshness.cjs
+fixture a609d407ab6e worktree a609d407ab6e validate.sh
+[exit=0]
+
+--- R4 move (yes), full run, then upgrade preview and apply (yes), as written ---
+
+### R4.9 phase 2 dirty check (must be empty)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y && echo "dirty-lines=$(git status --porcelain=v1 --untracked-files=all -- specs .opencode/specs | wc -l | tr -d " ")"
+dirty-lines=0
+[exit=0]
+MOVE APPROVAL: Move the spec tree as listed? Reply yes to run 3 steps, or no to leave the tree unchanged. OPERATOR REPLY: yes
+LOG {"run":"r4-fx4-run1-1791616470","event":"run-started","step":null,"argv":null,"at":"2026-10-10T07:14:30.078Z"}
+Step 1/3 remove-specs-link: started
+LOG {"run":"r4-fx4-run1-1791616470","event":"step-started","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:14:30.112Z"}
+
+### R4.10 step remove-specs-link
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y && rm -f specs; echo "step-exit=$?"
+step-exit=0
+[exit=0]
+Step 1/3 remove-specs-link: done
+LOG {"run":"r4-fx4-run1-1791616470","event":"step-done","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:14:30.159Z"}
+Step 2/3 move-tree: started
+LOG {"run":"r4-fx4-run1-1791616470","event":"step-started","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:14:30.193Z"}
+
+### R4.11 step move-tree
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y && git mv .opencode/specs specs; echo "step-exit=$?"
+step-exit=0
+[exit=0]
+Step 2/3 move-tree: done
+LOG {"run":"r4-fx4-run1-1791616470","event":"step-done","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:14:30.254Z"}
+Step 3/3 link-legacy-path: started
+LOG {"run":"r4-fx4-run1-1791616470","event":"step-started","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-10T07:14:30.291Z"}
+
+### R4.12 step link-legacy-path
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y && ln -s ../specs .opencode/specs; echo "step-exit=$?"
+step-exit=0
+[exit=0]
+Step 3/3 link-legacy-path: done
+LOG {"run":"r4-fx4-run1-1791616470","event":"step-done","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-10T07:14:30.339Z"}
+LOG {"run":"r4-fx4-run1-1791616470","event":"move-complete","step":null,"argv":null,"at":"2026-10-10T07:14:30.371Z"}
+
+### R4.13 post-check layout map (v4, no steps)
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map | tr -d "\n" | tr -s " "; echo; echo "layout-map-exit=$?"
+{ "state": "v4", "moves": [], "alreadyMoved": [], "collisions": [], "steps": []}
+layout-map-exit=0
+[exit=0]
+
+### R4.14 phase 5 upgrade preview
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs; echo "upgrade-preview-exit=$?"
+unreadable specs/legacy-track/001-old-packet: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+grouped detail:
+### specs/legacy-track/001-old-packet / unreadable
+
+Downgrades:
+  none
+
+inspected=1 active=1 archived=0
+passing=0/1
+repo era report:
+  layout provenance: source=none; description.json residue count=0
+  layout: v4 (v3=false, v4=true)
+  frontmatter: present=1 missing=2
+
+--apply would run: fill-frontmatter, anchor-repair, heal-spec-docs, lane-modes, repair-derived, migrate-generated-json (archived packets: questions-anchor un-nesting and repair-derived only), then record the remaining findings in upgrade-baseline.json
+upgrade-preview-exit=1
+[exit=0]
+UPGRADE APPROVAL: Run upgrade-legacy --apply on these packets? Reply yes or no. OPERATOR REPLY: yes
+LOG {"run":"r4-fx4-run1-1791616470","event":"upgrade-started","step":null,"argv":null,"at":"2026-10-10T07:14:30.883Z"}
+
+### R4.15 phase 7 upgrade apply
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y && node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --apply; echo "upgrade-apply-exit=$?"
+unreadable specs/legacy-track/001-old-packet: exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build
+upgrade-legacy: 1 packet(s) could not be validated, so nothing was written
+upgrade-apply-exit=2
+[exit=0]
+
+### R4.16 post-apply checks: manifest, unstaged packet edits, files under .skilled newer than the last log write
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y && M="$(git rev-parse --absolute-git-dir)/upgrade-legacy.manifest.json"; test -e "$M" && echo MANIFEST-PRESENT || echo MANIFEST-ABSENT; echo "unstaged-lines=$(git diff --name-only | wc -l | tr -d " ")"; echo "skilled-newer-than-log=$(find .skilled -newer "$(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl" -type f | wc -l | tr -d " ")"
+MANIFEST-ABSENT
+unstaged-lines=0
+skilled-newer-than-log=0
+[exit=0]
+LOG {"run":"r4-fx4-run1-1791616470","event":"upgrade-failed","step":null,"argv":null,"at":"2026-10-10T07:15:06.979Z"}
+LOG {"run":"r4-fx4-run1-1791616470","event":"run-complete","step":null,"argv":null,"at":"2026-10-10T07:15:07.012Z"}
+R4 STATUS=FAILED (per exit_policy: non-zero exit, nothing written). Same reading as step 6.
+
+### R4.17 fixture 4 move log, full
+$ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fd/doc381-fx4.glJU6Y && cat "$(git rev-parse --absolute-git-dir)/doctor-update-compat.log.jsonl"
+{"run":"r4-fx4-run1-1791616470","event":"run-started","step":null,"argv":null,"at":"2026-10-10T07:14:30.078Z"}
+{"run":"r4-fx4-run1-1791616470","event":"step-started","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:14:30.112Z"}
+{"run":"r4-fx4-run1-1791616470","event":"step-done","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:14:30.159Z"}
+{"run":"r4-fx4-run1-1791616470","event":"step-started","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:14:30.193Z"}
+{"run":"r4-fx4-run1-1791616470","event":"step-done","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:14:30.254Z"}
+{"run":"r4-fx4-run1-1791616470","event":"step-started","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-10T07:14:30.291Z"}
+{"run":"r4-fx4-run1-1791616470","event":"step-done","step":"link-legacy-path","argv":["ln","-s","../specs",".opencode/specs"],"at":"2026-10-10T07:14:30.339Z"}
+{"run":"r4-fx4-run1-1791616470","event":"move-complete","step":null,"argv":null,"at":"2026-10-10T07:14:30.371Z"}
+{"run":"r4-fx4-run1-1791616470","event":"upgrade-started","step":null,"argv":null,"at":"2026-10-10T07:14:30.883Z"}
+{"run":"r4-fx4-run1-1791616470","event":"upgrade-failed","step":null,"argv":null,"at":"2026-10-10T07:15:06.979Z"}
+{"run":"r4-fx4-run1-1791616470","event":"run-complete","step":null,"argv":null,"at":"2026-10-10T07:15:07.012Z"}
+[exit=0]
+
+Snapshot check at closure: the worktree hashes of the scripts recorded at fixture 4 build time were matched in R4.8. Worktree dist staleness is re-checked in the closure section below.
+
+### R4.18 worktree dist staleness, read only, at closure
+$ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets && cd .skilled/skills/system-spec-kit/runtime && echo "entry-dist $(stat -f %Sm -t %H:%M:%S dist/lib/validation/orchestrator.js)"; find lib/validation lib/templates lib/spec lib/graph lib/config lib/description package.json tsconfig.json -newer dist/lib/validation/orchestrator.js -type f -not -path "*/node_modules/*" -not -path "*/dist/*" -not -path "*/tests/*" -not -path "*/stress-test/*"; echo "newer-in-scope=$(find lib/validation lib/templates lib/spec lib/graph lib/config lib/description package.json tsconfig.json -newer dist/lib/validation/orchestrator.js -type f -not -path "*/node_modules/*" -not -path "*/dist/*" -not -path "*/tests/*" -not -path "*/stress-test/*" | wc -l | tr -d " ")"
+entry-dist 08:15:16
+lib/graph/graph-metadata-parser.ts
+newer-in-scope=1
+[exit=0]
+
+Closure checks (run after the transcript, outside the rec helper)
+- C-1 validate.sh --strict on packet 019, before the packet doc edits: exit 0, and the output ends with
+  RESULT: PASSED. The engine was orchestrator, and the only advisory was AC_COVERAGE (1 of 15 criteria
+  with a file:line citation). That run's output was kept in the harness and is not part of the packet.
+- C-2 The live checkout dist holds two freshness records, both version 2 with origin build:
+  dist/lib/validation/.dist-freshness-system-spec-kit-runtime-1f95eb7cad7a.json and
+  dist/.dist-freshness-system-spec-kit-runtime-10110ab510ff.json. Records newer than the run's start
+  marker: 0. So the live checkout passes on its build records, and this run did not write any.
+- C-3 The freshness code, runtime/cli/lib/dist-freshness.cjs: cachePathFor (line 295) names a record
+  from a SHA-1 of the package id, the entry name and the absolute dist path. checkPackageFreshness
+  (lines 715 to 790) reads that record first. With no record for its own path, it compares the newest
+  watched source file time with the dist time (lines 778 to 790). Both copies in this run had no
+  record under their own path, so they took the time comparison.
+- C-4 Consequence for the verdict: R4.18 compared file times only, so its stale reading describes
+  times, not the live checkout's content check. The step 6 failures (E16, E18, R4.14, R4.15) come from
+  the copy fallback in C-3, and the root cause section above is corrected to say so.
+- C-5 Packet edits after the run: tasks.md (the CHK-021 line, the manual verification line in
+  Completion Criteria, and the P0 row of the summary table, with CHK-021 left unticked) and
+  implementation-summary.md (the continuity frontmatter, a DOC-381 row in Verification, and Known
+  Limitations item 3). acceptance-criteria.md has no row for this run, so it was not edited.
+- C-6 validate.sh --strict after those edits, first pass: RESULT: FAILED, exit 2. The output is kept
+  at scratch/evidence/validate-019-strict-doc381-run.txt. Its failures were caused by the edits:
+  FRONTMATTER_MEMORY_BLOCK (last_updated_by was not an actor slug, and recent_action and
+  next_safe_action were too long or read as narrative), GENERATED_METADATA_INTEGRITY (source
+  fingerprint mismatch) and GENERATED_METADATA_DRIFT (the stored description had drifted). The three
+  frontmatter fields were shortened to valid values: last_updated_by "doc-381-manual-run", and short
+  recent_action and next_safe_action lines.
+- C-7 repair-derived.cjs --folder on packet 019. The preview (exit 1) listed one repair, "re-derive graph
+  metadata". The apply (exit 0) printed "repaired=1 failed=0". Only this packet folder was passed.
+- C-8 validate.sh --strict after the repair: exit 0, "Summary: Errors: 0 Warnings: 0", and
+  RESULT: PASSED. The output is kept at scratch/evidence/validate-019-strict-doc381-after-repair.txt.
+- C-9 Files this session wrote in the worktree: the three new evidence files named above, tasks.md,
+  implementation-summary.md, and graph-metadata.json in packet 019 (it already had uncommitted changes
+  before the session, and the repair re-derived it again). No file under .skilled/ and no file of the
+  034 parent was written by this session. The other writer's changes are listed in the snapshot notes.
+- C-10 Cleanup: the four fixture directories and their four gitconfig files were deleted by exact path
+  (scenario step 8). The stray /tmp/none file was deleted by exact path (C.1). The baseline snapshot in
+  the scratchpad root was deleted by exact path. The harness folder, which held the lib, the recovery
+  script, the state file and the copies of the validator output, was deleted after this file was
+  saved, by exact path.

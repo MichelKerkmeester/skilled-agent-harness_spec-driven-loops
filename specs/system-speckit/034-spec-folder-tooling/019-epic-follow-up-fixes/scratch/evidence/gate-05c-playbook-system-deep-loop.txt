@@ -1,0 +1,9 @@
+CMD: node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-deep-loop
+START: 2026-10-09T19:54:08Z
+contract=operator-scenario routing_gold_contract=routing-gold strict=on
+manifest=.skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json
+warn_packages=
+PASS package=system-deep-loop tier=FAIL_CLOSED scenarios=24 categories=8 operator=18 routing_gold_excluded=6 violations=0 warnings=0
+exit=0
+EXIT=0
+ELAPSED_S=0

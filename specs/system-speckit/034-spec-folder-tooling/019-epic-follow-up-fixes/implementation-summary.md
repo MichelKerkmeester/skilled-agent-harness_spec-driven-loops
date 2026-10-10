@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes"
-    last_updated_at: "2026-10-09T20:00:53Z"
-    last_updated_by: "closeout"
-    recent_action: "Closed follow-ups U01 to U11 with gate evidence, U11 committed in 9bd0eecc44"
-    next_safe_action: "Run DOC-381 (CHK-021) on a v3 fixture repository when one exists"
-    blockers: ["CHK-021 DOC-381 manual run is not done: it needs a v3 fixture repository, and the contract tests pin the same rules"]
+    last_updated_at: "2026-10-10T07:52:00Z"
+    last_updated_by: "doc-381-rerun"
+    recent_action: "DOC-381 rerun on fresh fixtures passed, CHK-021 ticked"
+    next_safe_action: "No DOC-381 step is owed, the operator decides the commit"
+    blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "closeout-019-epic-follow-up-fixes"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -88,6 +88,8 @@ What the operator gains: a resume that works after an interrupted move, a move l
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs` | Modified | U10: a dot-named cache does not change a manifest |
 | `specs/system-speckit/034-spec-folder-tooling/spec.md` | Modified (019 row only) | Phase table row 19 names the phase and sets Complete |
 | `specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/` | Modified and added | Spec, plan, tasks, acceptance criteria, this summary and `scratch/evidence/` |
+
+Phase 020 (`020-deep-review-remediation`) edited three of the files above while it closed CHK-021. Those edits are not in `079e9c34d2`, and they ship with phase 020, not with this phase. They are the phase 7 wording in `exit_policy` and `on_failure.still_failing` in `doctor-update-compat-action.yaml`, the phase 7 test pin in `doctor-update-compat.test.cjs`, and four DOC-381 changes in `doctor-update-compat.md`: the step 1 `npm run build` bullet, the step 8 `.marker` cleanup, the build line in Evidence and the stale-build row in Failure Triage.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -99,25 +101,25 @@ The work ran in lanes that edited disjoint files, and the closeout then re-ran t
 
 | Gate | Command (short form) | Exit | Key result | Evidence |
 |------|----------------------|------|------------|----------|
-| 1 | `npm --prefix .skilled/skills/system-spec-kit/runtime/cli test` with the 3600000 ms timeout | 0 | 1776 passed, 19 skipped, 0 failed (baseline 1776 / 19 / 0). 171 files passed, 3 skipped | `gate-01-cli-suite.log`, `gate-01-cli-suite.exit` |
-| 2 | `bash .skilled/commands/doctor/scripts/tests/run-all.sh` | 0 | 7 suites passed, 0 failed | `gate-02-doctor-run-all.log` |
-| 3 | `node --test .skilled/skills/system-spec-kit/runtime/tests/hooks/*.test.mjs` | 0 | 186 pass, 0 fail, 3 skipped | `gate-03-hooks-node-test.log` |
-| 4 | vitest on `tests/workflow-invariance.vitest.ts` (vocabulary test) | 0 | 2 of 2 tests passed | `gate-04-workflow-invariance.log` |
-| 5a | playbook validator, `system-spec-kit` | 0 | 99 scenarios, 0 violations, 1 warning | `gate-05a-playbook-system-spec-kit.log` |
-| 5b | playbook validator, `sk-git` | 0 | 45 scenarios, 0 violations | `gate-05b-playbook-sk-git.log` |
-| 5c | playbook validator, `system-deep-loop` | 0 | 24 scenarios, 0 violations | `gate-05c-playbook-system-deep-loop.log` |
-| 5d | playbook validator, `mcp-code-mode` | 0 | 32 scenarios, 0 violations, 2 warnings (SKIP tier for this package) | `gate-05d-playbook-mcp-code-mode.log` |
-| 6 | `validate_catalog_package.py --package system-spec-kit` | 0 | 85 warnings, 0 failures, baseline 85 | `gate-06-feature-catalog.log` |
-| 7 | `check-markdown-links.cjs` | 0 | 7945 files, 14105 links, 0 broken | `gate-07-markdown-links.log` |
-| 8 | `generate-leaf-manifest.cjs --check` on 14 hub directories | 0 | 14 of 14 OK, sk-code included | `gate-08-leaf-manifests.log` |
-| 9 | `generate-leaf-manifest-scopes.test.cjs` | 0 | scope contract coverage passed | `gate-09-leaf-manifest-scopes-test.log` |
-| 10 | `sync-skills-hermes.cjs --check` | 0 | 70 Hermes skill copies in sync | `gate-10-hermes-sync-check.log` |
-| 11 | `check-comment-hygiene.sh` (python3) on the 8 modified code files | 0 | no violations. A seeded violation exits 1 | `gate-11-comment-hygiene.log`, `gate-11-positive-control.txt` |
-| 12 | `git diff --check` and `git diff --cached --check` | 0 and 0 | no whitespace errors | `gate-12-git-diff-check.log` |
+| 1 | `npm --prefix .skilled/skills/system-spec-kit/runtime/cli test` with the 3600000 ms timeout | 0 | 1776 passed, 19 skipped, 0 failed (baseline 1776 / 19 / 0). 171 files passed, 3 skipped | `gate-01-cli-suite.txt`, `gate-01-cli-suite.exit` |
+| 2 | `bash .skilled/commands/doctor/scripts/tests/run-all.sh` | 0 | 7 suites passed, 0 failed | `gate-02-doctor-run-all.txt` |
+| 3 | `node --test .skilled/skills/system-spec-kit/runtime/tests/hooks/*.test.mjs` | 0 | 186 pass, 0 fail, 3 skipped | `gate-03-hooks-node-test.txt` |
+| 4 | vitest on `tests/workflow-invariance.vitest.ts` (vocabulary test) | 0 | 2 of 2 tests passed | `gate-04-workflow-invariance.txt` |
+| 5a | playbook validator, `system-spec-kit` | 0 | 99 scenarios, 0 violations, 1 warning | `gate-05a-playbook-system-spec-kit.txt` |
+| 5b | playbook validator, `sk-git` | 0 | 45 scenarios, 0 violations | `gate-05b-playbook-sk-git.txt` |
+| 5c | playbook validator, `system-deep-loop` | 0 | 24 scenarios, 0 violations | `gate-05c-playbook-system-deep-loop.txt` |
+| 5d | playbook validator, `mcp-code-mode` | 0 | 32 scenarios, 0 violations, 2 warnings (SKIP tier for this package) | `gate-05d-playbook-mcp-code-mode.txt` |
+| 6 | `validate_catalog_package.py --package system-spec-kit` | 0 | 85 warnings, 0 failures, baseline 85 | `gate-06-feature-catalog.txt` |
+| 7 | `check-markdown-links.cjs` | 0 | 7945 files, 14105 links, 0 broken | `gate-07-markdown-links.txt` |
+| 8 | `generate-leaf-manifest.cjs --check` on 14 hub directories | 0 | 14 of 14 OK, sk-code included | `gate-08-leaf-manifests.txt` |
+| 9 | `generate-leaf-manifest-scopes.test.cjs` | 0 | scope contract coverage passed | `gate-09-leaf-manifest-scopes-test.txt` |
+| 10 | `sync-skills-hermes.cjs --check` | 0 | 70 Hermes skill copies in sync | `gate-10-hermes-sync-check.txt` |
+| 11 | `check-comment-hygiene.sh` (python3) on the 8 modified code files | 0 | no violations. A seeded violation exits 1 | `gate-11-comment-hygiene.txt`, `gate-11-positive-control.txt` |
+| 12 | `git diff --check` and `git diff --cached --check` | 0 and 0 | no whitespace errors | `gate-12-git-diff-check.txt` |
 
 Two more checks ran at closeout. The U01 probe was rerun against the live ENV-REFERENCE.md (`u01-env-probe-rerun.txt`, status OK, exit 0). The document validator was rerun on the six READMEs in U04 (`u04-validate-document-readmes-rerun.txt`, all VALID).
 
-The 018 push receipt (U11) is committed in `9bd0eecc44`, so it is not in the list above. The code changes in the Files Changed table are committed as listed in Metadata. The packet folder itself is not committed yet.
+The 018 push receipt (U11) is committed in `9bd0eecc44`, so it is not in the list above. The code changes in the Files Changed table are committed as listed in Metadata. The packet docs are committed in `079e9c34d2` (`docs(specs): close the epic follow-up fixes`). Later doc edits, and the `scratch/evidence/` files that commit does not hold, are not committed yet.
 
 Two gate-plan items differed from the plan as written. Gate 11 names `python3` on a file with a `.sh` name, and that file has a python3 shebang, so the run used `python3`. Gate 4 ran through `npx vitest` from the CLI directory, because the package's own config path is relative to it.
 <!-- /ANCHOR:how-delivered -->
@@ -140,7 +142,7 @@ Two gate-plan items differed from the plan as written. Gate 11 names `python3` o
 | U01: the two rows agree on default and type, and each keeps its own description | The probe found one conflicting duplicate. Making the rows agree was the smallest change that clears the parse rule. |
 | Added: the doctor scripts README and three sibling playbook READMEs | They fail the same document validator as the two index READMEs, and they were fixed in the same change. |
 | Not done: the phase_5 exit-code ambiguity | The same script loads in phase 2, and `main()` maps a crash to exit 2, so the ambiguity has low impact. Changing it would widen the change without a failing case. |
-| Not done: the nested changelog entry named in spec.md | The 034 parent has no `changelog/` folder, and the writer would create one there. That folder is outside this packet's edit list, so the step is left for the operator. 018 did not write one either. |
+| Not done at closeout: the nested changelog entry named in spec.md | The 034 parent had no `changelog/` folder when this phase closed, and the writer would have created one there. That folder was outside this packet's edit list, so the step was left for the operator. 018 had not written one either. The operator later asked for the folder, and it now holds generated entries for 010, 017, 018 and 019 (see Known Limitations item 2). |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -160,6 +162,8 @@ Two gate-plan items differed from the plan as written. Gate 11 names `python3` o
 | Planted drift in the two added presentation files | PASS. Each fails the parity test with `ERR_ASSERTION` on its own file |
 | `validate.sh --strict` on this folder | PASSED. `scratch/evidence/validate-019-strict-final.txt` ends with `RESULT: PASSED`. The earlier run that failed on AC_CLOSURE is `validate-019-strict.txt`. See Known Limitations item 1 |
 | `validate.sh --strict` on the 034 parent | PASSED. `scratch/evidence/validate-034-strict-final.txt` ends with `RESULT: PASSED` |
+| DOC-381 manual run (CHK-021) | PASS on fresh fixtures. Steps 1 to 7 pass after the playbook's step 1 was amended to build the fixture runtime. The first run failed at step 6 on an unbuilt fixture and is kept as history in `scratch/evidence/doc-381-manual-run.txt`. Receipts and verdict in `scratch/evidence/doc-381-manual-run-rerun.txt` |
+| Post-push CI on main, SC-002 | PASS. Every check on `079e9c34d2` succeeded (14 of 14). The CI bot commit `4669db6522` had 11 checks succeed, and its Trigger Index Rebuild was skipped by its job guard (`scratch/evidence/post-push-ci.txt`) |
 | Pinned evidence | Base `dd6f9316a3`, `.skilled` diff SHA-256 `e945b0d1` (see Metadata), taken before the commits listed in Metadata |
 <!-- /ANCHOR:verification -->
 
@@ -168,12 +172,12 @@ Two gate-plan items differed from the plan as written. Gate 11 names `python3` o
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **U11 is closed.** The 018 push receipt is committed in `9bd0eecc44`, so AC-011 is Met. The first strict run after that flip failed on AC_CLOSURE for AC-014 only, which is the validation result itself. AC-014 was marked Met after that run, and both folders printed `RESULT: PASSED` once the derived graph metadata was re-derived. The packet folder itself is still untracked.
-2. **The nested changelog step is not done.** Spec.md asks for a refresh of a file in `../changelog/`. The 034 parent has no `changelog/` folder, and the writer would create one in the parent, outside this packet's edit list. The operator decides where it goes.
-3. **The DOC-381 manual scenario was not run by hand.** It needs an operator-driven fixture. The automated contract tests pin the same resume rule.
+1. **U11 is closed.** The 018 push receipt is committed in `9bd0eecc44`, so AC-011 is Met. The first strict run after that flip failed on AC_CLOSURE for AC-014 only, which is the validation result itself. AC-014 was marked Met after that run, and both folders printed `RESULT: PASSED` once the derived graph metadata was re-derived. The packet docs are committed in `079e9c34d2`. Later edits and some `scratch/evidence/` files are not committed yet, as How It Was Delivered says.
+2. **The nested changelog step was not done at closeout, and it is now resolved.** Spec.md asks for a refresh of a file in `../changelog/`. The 034 parent had no `changelog/` folder when this phase closed, and the writer would have created one in the parent, outside this packet's edit list. The operator later asked for one. The folder now exists at `specs/system-speckit/034-spec-folder-tooling/changelog/`, and this phase's entry is in it, generated from these docs.
+3. **The DOC-381 manual scenario was run by hand on 2026-10-10 on fresh fixtures, and steps 1 to 7 pass.** The first run failed at step 6 because its fixture runtime was not built, so the copy's dist freshness check read the packet as unreadable. Step 1 now builds the fixture runtime. The compat phases were played by hand, not run as the slash command, so the status lines are rendered from the phase text. Two checkout `runtime/cli` freshness records were also rewritten at 09:45:24 local during the run. No scenario command reproduced that write, and its writer is unknown (evidence file, section 7). The receipts are in `scratch/evidence/doc-381-manual-run-rerun.txt`, and the failed run stays in `scratch/evidence/doc-381-manual-run.txt`. The automated contract tests pin the same resume rule.
 4. **The hooks diagram label is a bare file name.** `spec-gate-core.mjs` names the file but is not a path from `runtime/tests/hooks/`. The full relative path is `../../hooks/lib/spec-gate/spec-gate-core.mjs`. The link checker does not read diagram labels, so the change is accepted as a label. A later edit can use the full path.
-5. **Three stress-test category READMEs still fail the document validator.** They are `command-flow-stress-tests` under deep-review and deep-research, and `agent-discipline-stress-tests` under deep-improvement. Each has 3 missing sections. This is outside the packet's scope (`u04-stress-test-readme-validate-context.txt`).
-6. **The 034 parent handoff row for 018 to 019 has placeholder text.** The row reads `[Criteria TBD]`. It was not edited, because only the 019 phase row was in scope.
+5. **Resolved by phase 020: the three stress-test category READMEs now pass the document validator.** They are `command-flow-stress-tests` under deep-review and deep-research, and `agent-discipline-stress-tests` under deep-improvement. Each had 3 missing sections before (`u04-stress-test-readme-validate-context.txt`). Phase 020 added the missing sections in its working-tree edits, which are not committed yet and ship with phase 020. On 2026-10-10, `validate_document.py` on each file printed `Total issues: 0` and exited 0.
+6. **The 034 parent handoff row for 018 to 019 had placeholder text at closeout, and it is now filled in.** The row read `[Criteria TBD]` when this phase closed. It was not edited then, because only the 019 phase row was in scope. The row now names 018's acceptance rows and evidence, see the Phase Handoff Criteria table in `specs/system-speckit/034-spec-folder-tooling/spec.md`.
 7. **Plain-text paths in READMEs are checked by reading, not by a tool.** The link checker covers Markdown links only. The U03 reference fixes were checked by resolving each path from its file.
 8. **The sk-code leaf manifest premise is not reproduced in the live tree.** No `.pytest_cache` exists under sk-code now, so the dot-directory skip is pinned by the scope test, not by a live regeneration.
 9. **The pinned evidence predates the commits.** The `.skilled` diff hash was taken at HEAD `dd6f9316a3`, before the commits listed in Metadata, so read it against that base HEAD.

@@ -77,11 +77,11 @@ This packet is a fix packet, so the affected surfaces are listed.
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `runtime/ENV-REFERENCE.md` and `doctor-env.yaml` | The env table and the rules that parse it | Updated: one `SYSTEM_SPEC_GATE_DISABLED` row now agrees with its twin on default and type, and the parse rules accept the legacy label rows | `u01-doctor-env-probe-after.json` and `u01-env-probe-rerun.txt` show status OK, 0 malformed, 0 conflicts |
-| `doctor-update-compat-action.yaml` | The compat workflow contract | Updated: owed-step exemption, run-complete on terminal stops, layout map JSON rule | `u05-u07-doctor-tests.txt`, `gate-02-doctor-run-all.log` |
+| `doctor-update-compat-action.yaml` | The compat workflow contract | Updated: owed-step exemption, run-complete on terminal stops, layout map JSON rule | `u05-u07-doctor-tests.txt`, `gate-02-doctor-run-all.txt` |
 | DOC-381 playbook scenario and `doctor-update-presentation.txt` | Manual scenario and the operator text | Updated to match the YAML | Read against the YAML diff |
 | Gate 3 parity test and the five added files | The list of menu copies to compare | Updated: 17 files | `u08-gate3-parity-final.txt`, planted-drift runs |
 | Three CLI tests under `runtime/cli/tests/` | Fixtures that wrote into `specs/` | Updated: OS temp sandboxes with guarded teardown | `u09-cli-sandbox-vitest.txt`, `u09-specs-root-before.txt` and `u09-specs-root-after.txt` |
-| `generate-leaf-manifest.cjs` | Leaf walk for hub manifests | Updated: dot-named directories are skipped | `u10-leaf-manifest-scope-test.txt`, `gate-08-leaf-manifests.log` |
+| `generate-leaf-manifest.cjs` | Leaf walk for hub manifests | Updated: dot-named directories are skipped | `u10-leaf-manifest-scope-test.txt`, `gate-08-leaf-manifests.txt` |
 | Doctor, sibling playbook and spec-kit READMEs | Index and category READMEs | Updated to the validator's required sections, and reference fixes | `u04-*` validator outputs and `u04-validate-document-readmes-rerun.txt` |
 
 Required inventories:
@@ -113,7 +113,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Unit and contract | Compat YAML rules, the leaf manifest generator, the parity list | `node --test` (doctor scripts and sk-doc tests), vitest |
 | Integration | Hook tests, the three CLI tests, the full CLI suite | `node --test`, vitest with `SPECKIT_TEST_RUN_TIMEOUT_MS=3600000` |
 | Validators | Playbook packages, feature catalog, README documents, links, Hermes copies | `validate-playbook-package.cjs`, `validate_catalog_package.py`, `validate_document.py`, `check-markdown-links.cjs`, `sync-skills-hermes.cjs --check` |
-| Manual | DOC-381 compat scenario | Not run in this closeout. It needs an operator-driven fixture run. The automated contract tests pin the same rule. |
+| Manual | DOC-381 compat scenario | Run by hand on 2026-10-10 on fresh fixtures. Steps 1 to 7 pass after the playbook's step 1 was amended to build the fixture runtime (`scratch/evidence/doc-381-manual-run-rerun.txt`). The automated contract tests pin the same rule. |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -125,7 +125,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 |------------|------|--------|-------------------|
 | Phase 17 (heal CLI and compat YAML simplification) | Internal | Committed on this branch (HEAD `dd6f9316a3` at closeout). Whether it is on `main` was not re-checked here | The compat YAML baseline this phase edits would differ |
 | Phase 18 (epic docs alignment) | Internal | Committed on this branch. Its push receipt is committed in `9bd0eecc44` (U11) | None. U11 is closed |
-| The orchestrator's commit | Process | Done: the 019 code changes are committed in `242e896c11`, `ce3d7d0b29`, `c5afce1a98`, `7ba9345bd8` and `269f87a3a2`, and the 018 receipt in `9bd0eecc44`. The packet folder itself is not committed yet | None for the code. AC-011 is Met |
+| The orchestrator's commit | Process | Done: the 019 code changes are committed in `242e896c11`, `ce3d7d0b29`, `c5afce1a98`, `7ba9345bd8` and `269f87a3a2`, and the 018 receipt in `9bd0eecc44`. The packet docs are committed in `079e9c34d2`. Later doc edits, and the `scratch/evidence/` files that commit does not hold, are not committed yet | None for the code. AC-011 is Met |
 <!-- /ANCHOR:dependencies -->
 
 ---
