@@ -188,13 +188,12 @@ if [[ "${#STAGED_AGENTS[@]}" -gt 0 ]]; then
   fi
 fi
 
-# --- Mirror parity gate (blocking): runs what CI's mirror and hermes-mirror jobs run ---
-# Eight checks run here. Of these, 6 feed the mirror CI job, and until now one of those 6
-# had a local gate. The other five failed CI the same way the prompt mirror did and were
-# masked behind it, because the job stops at its first failure. Two compare the Hermes
-# copies in CI's own hermes-mirror job in .github/workflows/command-tree-parity.yml. All
-# eight checks together cost about half a second on a warm checkout, so they run on every
-# commit rather than behind a trigger list that a new mirror would silently miss.
+# --- Mirror parity gate (blocking): runs exactly what CI's mirror job runs ---
+# Six generated mirrors feed one CI job, and until now one of them had a local gate.
+# The other five failed CI the same way the prompt mirror did and were masked behind
+# it, because the job stops at its first failure. All six checks together cost under
+# a quarter of a second, so they run on every commit rather than behind a trigger
+# list that a seventh mirror would silently miss.
 # Two halves, because they fail independently. Every check must pass on the working
 # tree, which proves each mirror was regenerated. And no mirror output may carry an
 # unstaged change, which proves what was regenerated is what gets committed. The
@@ -207,14 +206,13 @@ if [[ "${SPECKIT_SKIP_MIRROR_PARITY:-0}" != "1" ]] && _in_toolchain_repo && comm
   # One command file fans out to three mirrors: the codex prompt, and the .claude and
   # .cursor command copies those runtimes discover by convention. Missing a tree here
   # lets its regenerated copy sit unstaged and pass, which is the failure this gate
-  # exists to stop, so every generated tree the eight checks cover is listed.
+  # exists to stop, so every generated tree the six checks write is listed.
   MIRROR_OUTPUTS=(
     .codex/prompts .codex/agents .codex/hooks .codex/hooks.json
     .claude/agents .claude/commands .claude/hooks .claude/settings.json
     .cursor/agents .cursor/commands .cursor/hooks .cursor/hooks.json
     .devin/agents .devin/hooks .devin/hooks.v1.json
     .pi/agents .pi/extensions
-    .hermes/skills .hermes/prompts
     .opencode/commands/README.txt .skilled/commands/README.txt
   )
   # The trees a mirror is generated FROM. A commit that stages none of these, and no
@@ -263,8 +261,6 @@ if [[ "${SPECKIT_SKIP_MIRROR_PARITY:-0}" != "1" ]] && _in_toolchain_repo && comm
     "$SOURCE_ROOT/commands/doctor/scripts/agent-roster-mirror-check.cjs|"
     "$SOURCE_ROOT/commands/doctor/scripts/command-catalog-mirror-check.cjs|"
     "$SOURCE_ROOT/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs|--check"
-    "$SOURCE_ROOT/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs|--check"
-    "$SOURCE_ROOT/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs|--check"
   )
   for MIRROR_ENTRY in "${MIRROR_CHECKS[@]}"; do
     MIRROR_SCRIPT="${MIRROR_ENTRY%%|*}"

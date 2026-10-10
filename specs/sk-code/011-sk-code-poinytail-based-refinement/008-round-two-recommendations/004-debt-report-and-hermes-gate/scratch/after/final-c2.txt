@@ -1,0 +1,1 @@
+markers=0 no-trigger=0 no-signal=0

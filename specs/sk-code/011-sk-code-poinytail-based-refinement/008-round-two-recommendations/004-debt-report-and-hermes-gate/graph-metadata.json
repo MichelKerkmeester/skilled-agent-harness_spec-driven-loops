@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "debt report and hermes gate",
+      "phase 4 debt report and hermes gate",
+      "ceiling report",
+      "hermes mirror gate",
+      "debt report and hermes gate plan",
+      "debt report and hermes gate tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "debt report and hermes gate implementation summary"
+    ],
+    "key_topics": [
+      "debt",
+      "report",
+      "hermes",
+      "gate",
+      "phase",
+      "ceiling",
+      "mirror",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
+      ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
+      ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+      ".skilled/commands/doctor/runtime-mirrors.md",
+      ".skilled/skills/sk-code/leaf-manifest.json",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/implementation-summary.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/goal.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/description.json",
+      "scratch/before/status.txt",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-doc/SKILL.md",
+      "scripts/README.md",
+      ".github/workflows/command-tree-parity.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ceiling-report.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+        "source": "derived"
+      },
+      {
+        "name": "ceiling-report.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-style-guide.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-mirrors.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/runtime-mirrors.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "status.txt",
+        "kind": "file",
+        "path": "scratch/before/status.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-tree-parity.yml",
+        "kind": "config",
+        "path": ".github/workflows/command-tree-parity.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Hermes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code style guide asks authors to mark a deliberate shortcut with a `ceiling:` comment that names the ceiling and the upgrade trigger, and the review checklist downgrades a finding on the strength of such a comment",
+    "created_at": "2026-10-10T06:56:31Z",
+    "last_save_at": "2026-10-10T07:35:41.049Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c85b0a3f73ec7911333cfc57c3403fb99b435f9317a5a96a023a256b5162b933",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7edc9b0bbce059538c98fbe4884f53563f356d2e0726d1012c571f43d528bae5",
+      "plan.md": "3af84f05f936297ec0d5dc61af44c7d8ef6104f8333ca73922e5da6f8b81cb70",
+      "tasks.md": "e5f6d760852829598c00435dbf53f57bfb893223952a1aba4491d06f38c45dd4",
+      "implementation-summary.md": "fea5ff36ae6044f48e294fedb95bff5f7502c709ccf6254df9dbebc6335d93a6"
+    },
+    "last_active_at": null
+  }
+}

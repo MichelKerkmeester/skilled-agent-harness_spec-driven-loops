@@ -183,8 +183,6 @@ This is durable WHY (the constraint plus the decision), so it is allowed by the 
 - Use a neutral prefix (`ceiling:` or `intentional-limit:`), never a tool or brand name — a brand prefix reads as a perishable, cargo-cult label.
 - Do NOT add `ceiling:` to the comment-hygiene checker's allowed-pattern list. It already passes (it contains no forbidden id), and allow-listing it would let a forbidden id on the same line slip through, because allowed patterns short-circuit violation detection.
 
-To list every marker in the tracked code and flag the ones whose trigger can never fire, run `.skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh`.
-
 ### Surface-specific commenting notes
 
 Some surfaces have additional commenting conventions (WEBFLOW JS uses three-line file headers with box-drawing characters; OPENCODE TypeScript uses `MODULE:` headers where required). See the surface style guide.

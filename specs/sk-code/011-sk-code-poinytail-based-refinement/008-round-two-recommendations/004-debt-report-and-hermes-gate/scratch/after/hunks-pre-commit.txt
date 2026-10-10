@@ -1,0 +1,22 @@
+192,196c192,197
+< # Six generated mirrors feed one CI job, and until now one of them had a local gate.
+< # The other five failed CI the same way the prompt mirror did and were masked behind
+< # it, because the job stops at its first failure. All six checks together cost under
+< # a quarter of a second, so they run on every commit rather than behind a trigger
+< # list that a seventh mirror would silently miss.
+---
+> # Eight checks run here. Of these, 6 feed the mirror CI job, and until now one of those 6
+> # had a local gate. The other five failed CI the same way the prompt mirror did and were
+> # masked behind it, because the job stops at its first failure. Two compare the Hermes
+> # copies in CI's own hermes-mirror job in .github/workflows/command-tree-parity.yml. All
+> # eight checks together cost about half a second on a warm checkout, so they run on every
+> # commit rather than behind a trigger list that a seventh mirror would silently miss.
+209c210
+<   # exists to stop, so every generated tree the six checks write is listed.
+---
+>   # exists to stop, so every generated tree the eight checks cover is listed.
+215a217
+>     .hermes/skills .hermes/prompts
+263a266,267
+>     "$SOURCE_ROOT/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs|--check"
+>     "$SOURCE_ROOT/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs|--check"

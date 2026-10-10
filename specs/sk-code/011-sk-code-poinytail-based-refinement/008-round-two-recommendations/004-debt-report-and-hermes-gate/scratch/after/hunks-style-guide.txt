@@ -1,0 +1,3 @@
+185a186,187
+> To list every marker in the tracked code and flag the ones whose trigger can never fire, run `.skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh`.
+> 

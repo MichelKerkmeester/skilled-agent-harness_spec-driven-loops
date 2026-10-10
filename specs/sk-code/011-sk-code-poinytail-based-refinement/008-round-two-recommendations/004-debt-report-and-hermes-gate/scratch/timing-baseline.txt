@@ -1,0 +1,9 @@
+ 0.037s exit=0 sync-runtime-mirrors.cjs
+ 0.037s exit=0 sync-agents.cjs
+ 0.034s exit=0 sync-prompts.cjs
+ 0.030s exit=0 agent-roster-mirror-check.cjs
+ 0.042s exit=0 command-catalog-mirror-check.cjs
+ 0.029s exit=0 sync-hook-registrations.cjs
+ 0.237s exit=0 sync-skills-hermes.cjs
+ 0.033s exit=0 sync-prompts-hermes.cjs
+total 0.480s

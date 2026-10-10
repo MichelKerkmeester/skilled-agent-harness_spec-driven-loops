@@ -1,0 +1,7 @@
+pass 1: sum eight = 0.466 s, exit codes [0, 0, 0, 0, 0, 0, 0, 0]
+pass 2: sum eight = 0.456 s, exit codes [0, 0, 0, 0, 0, 0, 0, 0]
+pass 3: sum eight = 0.447 s, exit codes [0, 0, 0, 0, 0, 0, 0, 0]
+pass 4: sum eight = 0.512 s, exit codes [0, 0, 0, 0, 0, 0, 0, 0]
+pass 5: sum eight = 0.439 s, exit codes [0, 0, 0, 0, 0, 0, 0, 0]
+median of 5 passes = 0.456 s
+min = 0.439 s, max = 0.512 s

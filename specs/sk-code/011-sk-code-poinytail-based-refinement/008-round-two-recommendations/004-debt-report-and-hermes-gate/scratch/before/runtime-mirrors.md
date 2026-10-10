@@ -56,4 +56,4 @@ The argument failure wording, the per-checker result table, result templates and
 
 ## 6. WORKFLOW SUMMARY
 
-The workflow runs every mirror checker in its check-only form (runtime command and agent links, the Codex and Pi prompt and agent mirrors, the agent roster, the command catalog, and the Codex hook install) and reports each surface as in sync, drifting with its repair command, or unable to run. It writes nothing.
+The workflow runs every mirror checker in its check-only form (runtime command and agent links, the Codex, Pi and Hermes prompt and agent mirrors, the agent roster, the command catalog, and the Codex hook install) and reports each surface as in sync, drifting with its repair command, or unable to run. It writes nothing.

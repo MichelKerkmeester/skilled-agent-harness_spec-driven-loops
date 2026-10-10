@@ -1,0 +1,7 @@
+192:# Six generated mirrors feed one CI job, and until now one of them had a local gate.
+194:# it, because the job stops at its first failure. All six checks together cost under
+195:# a quarter of a second, so they run on every commit rather than behind a trigger
+209:  # exists to stop, so every generated tree the six checks write is listed.
+exit=0
+59:The workflow runs every mirror checker in its check-only form (runtime command and agent links, the Codex, Pi and Hermes prompt and agent mirrors, the agent roster, the command catalog, and the Codex hook install) and reports each surface as in sync, drifting with its repair command, or unable to run. It writes nothing.
+exit=0

@@ -1,0 +1,2 @@
+ceiling-report: unknown option --bogus
+Usage: ceiling-report.sh [<file>...]

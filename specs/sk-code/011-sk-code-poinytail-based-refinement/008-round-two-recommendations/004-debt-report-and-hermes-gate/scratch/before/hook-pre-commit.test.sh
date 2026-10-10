@@ -703,21 +703,6 @@ else
   echo "FAIL  the authored manifest at the moved path was not staged"; FAIL=$((FAIL + 1))
 fi
 
-# ── 49. the Hermes copy checks run in the mirror gate ──
-setup_gate_fixture toolchain
-HERMES_STUBS="$TMP/.opencode/skills/system-spec-kit/runtime/cli/hermes"
-mkdir -p "$HERMES_STUBS"
-printf '%s\n' 'console.log("DRIFT demo-skill"); process.exit(1);' > "$HERMES_STUBS/sync-skills-hermes.cjs"
-printf '%s\n' 'require("fs").appendFileSync("hermes-prompt-calls.log", process.argv.slice(2).join(" ") + "\n");' > "$HERMES_STUBS/sync-prompts-hermes.cjs"
-stage_new "notes.md" "note"
-SPECKIT_SKIP_MIRROR_PARITY=0 run_hook; RC=$?
-check "a drifted Hermes skill copy blocks the mirror gate" 1 "$RC" "sync-skills-hermes.cjs failed"
-if grep -qx -- '--check' "$TMP/hermes-prompt-calls.log" 2>/dev/null; then
-  echo "PASS  the Hermes prompt copy check receives --check"; PASS=$((PASS + 1))
-else
-  echo "FAIL  the Hermes prompt copy check did not receive --check"; FAIL=$((FAIL + 1))
-fi
-
 echo ""
 echo "pre-commit gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]

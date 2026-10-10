@@ -1,0 +1,20 @@
+.skilled/commands/design/assets/chart-auto.yaml:273:    S1_colour_ceiling:
+.skilled/commands/design/assets/chart-auto.yaml:276:    S2_data_ceiling:
+.skilled/commands/design/assets/chart-auto.yaml:338:  past_a_colour_ceiling:
+.skilled/commands/design/assets/chart-confirm.yaml:293:    S1_colour_ceiling:
+.skilled/commands/design/assets/chart-confirm.yaml:296:    S2_data_ceiling:
+.skilled/commands/design/assets/chart-confirm.yaml:355:  past_a_colour_ceiling:
+.skilled/commands/doctor/assets/doctor-skill-budget.yaml:51:  project_ceiling: "[PROJECT_CEILING] int"
+.skilled/commands/doctor/assets/doctor-skill-budget.yaml:71:    project_ceiling: "append --project-ceiling=[project_ceiling]"
+.skilled/commands/doctor/scripts/audit_descriptions.py:326:    project_ceiling: int,
+.skilled/commands/doctor/scripts/audit_descriptions.py:343:    lines.append(f"Project soft-ceiling: {project_ceiling:>5} chars")
+.skilled/commands/doctor/scripts/audit_descriptions.py:371:        if total > project_ceiling:
+.skilled/commands/doctor/scripts/audit_descriptions.py:380:    project_ceiling: int,
+.skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:95:// No screened piece exceeds the scoring band's ceiling: a longer section is
+.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh:70:    echo "🛑 BLOCKED [gate:mass-deletion] ($mode): removes $deleted tracked files (ceiling: $threshold). $detail"
+.skilled/skills/cli-external-orchestration/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json:55:        "stderr": "2026-07-21T07:46:51.294988Z ERROR codex_mode
+.skilled/skills/cli-external-orchestration/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json:29:        "stderr": "OpenAI Codex v0.144.4\n--------\nworkdir: 
+.skilled/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--acceptance--luna-high/skill-benchmark-report.json:29:        "stderr": "OpenAI Codex v0.144.4\n--------\nworkdir: /Users/michelke
+.skilled/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--acceptance--luna-high/skill-benchmark-report.json:54:        "stderr": "OpenAI Codex v0.144.4\n--------\nworkdir: /Users/michelke
+.skilled/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/report.json:670:      "notes": "Same class as DR-001/002: the pass criterion is a generated `ceiling:` co
+.skilled/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json:29:        "stderr": "OpenAI Codex v0.144.4\n--------\nworkdir: /Users/michelkerkmees

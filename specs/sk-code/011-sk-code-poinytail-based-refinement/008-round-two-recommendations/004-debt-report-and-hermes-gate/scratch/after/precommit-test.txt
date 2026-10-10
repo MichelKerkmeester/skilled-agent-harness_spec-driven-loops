@@ -1,0 +1,73 @@
+PASS  no routing input is a silent no-op
+PASS  staged SKILL.md re-mints the hub
+PASS  both manifests reached the index
+PASS  partly staged input is refused
+PASS  missing authored manifest blocks
+PASS  mint failure blocks with its output
+PASS  pathspec-narrowed commit is refused
+PASS  staged deletion is not a mint trigger
+PASS  no spec doc is a silent no-op
+PASS  staged spec doc re-derives its packet
+PASS  both derived files reached the index
+PASS  partly staged packet is refused
+PASS  repair failure blocks with its output
+PASS  a no-op repair is silent
+PASS  a phase child resolves to itself
+PASS  a scratch file does not trigger the gate
+PASS  pathspec-narrowed spec commit is refused
+PASS  a metadata-only directory resolves to its packet parent
+PASS  two packets re-derive together
+PASS  the second packet was re-derived too
+PASS  two packets cost one node invocation
+PASS  all four derived files reached the index
+PASS  route block names its bypass
+PASS  spec block names its bypass
+PASS  a packet dirty only in derived files re-derives
+PASS  a .skilled agent passes the mirror gate
+PASS  the mirror checker was handed the .skilled agent
+PASS  a dirty .skilled mirror blocks its source
+PASS  a dirty mirror block names its bypass
+PASS  a missing kill switch warns and leaves gates on
+PASS  a missing comment checker blocks
+PASS  a missing agent mirror checker blocks
+PASS  a missing agent mirror checker names the chain's off switch
+PASS  a missing mirror parity script blocks
+PASS  a .skilled prompt surface passes the card-sync gate
+PASS  the card-sync guard ran for the .skilled surface
+PASS  a missing card-sync guard blocks
+PASS  a .skilled doctor script passes the mutation-class gate
+PASS  the mutation-class guard ran for the .skilled script
+PASS  a staged mutation-class manifest passes the mutation-class gate
+PASS  the mutation-class guard ran for the staged manifest
+PASS  a missing mutation-class guard blocks
+PASS  a .skilled hub re-mints through the link
+PASS  both manifests reached the index under the real root
+PASS  a partly staged .skilled input is refused
+PASS  a missing route module blocks where the toolchain ships
+PASS  a missing re-derive tool blocks
+PASS  a repository without the toolchain stays committable
+PASS  the helper passes a .skilled agent
+PASS  the helper handed the .skilled agent to its checker
+PASS  the helper blocks on a missing comment checker
+PASS  the helper blocks on a missing agent checker
+PASS  the helper leaves a repository without the toolchain committable
+PASS  the helper blocks a violation fixed only in the working tree
+PASS  a comment hygiene finding names its bypass
+PASS  a comment checker failure names its bypass
+PASS  an agent mirror desync names the chain's off switch
+PASS  the chain's off switch lets that commit through
+PASS  a partial stage of .claude files passes outside the toolchain
+PASS  the mirror-parity gate stays silent outside the toolchain
+PASS  a violation fixed only in the working tree still blocks
+PASS  a staged name with non-ASCII bytes is checked
+PASS  three staged files pass a clean checker
+PASS  the checker ran once for three files
+PASS  a staged .claude agent passes outside the toolchain
+PASS  the agent mirror warning stays silent outside the toolchain
+PASS  the helper blocks a crashed comment checker
+PASS  a moved program packet re-mints without a hook edit
+PASS  the authored manifest at the moved path reached the index
+PASS  a drifted Hermes skill copy blocks the mirror gate
+PASS  the Hermes prompt copy check receives --check
+
+pre-commit gates: 71 passed, 0 failed

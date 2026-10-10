@@ -1,0 +1,4 @@
+repaired specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate
+    re-derive graph metadata
+
+inspected=1 repaired=1 failed=0

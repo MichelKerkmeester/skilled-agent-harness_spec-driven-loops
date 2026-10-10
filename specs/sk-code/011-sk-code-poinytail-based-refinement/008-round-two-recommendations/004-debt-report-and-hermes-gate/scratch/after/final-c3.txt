@@ -1,0 +1,3 @@
+PASS: 70 Hermes skill copies in sync
+[hermes-prompt-sync] PASS: 37 prompts are in sync.
+exit=0
