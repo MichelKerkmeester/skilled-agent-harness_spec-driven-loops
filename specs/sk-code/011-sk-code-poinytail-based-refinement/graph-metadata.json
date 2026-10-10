@@ -163,17 +163,17 @@
     ],
     "causal_summary": "Ponytail is an external coding-agent plugin that teaches restraint: write the least code that meets the requirement, and still ship tests for risky logic",
     "created_at": "2026-10-09T13:20:16Z",
-    "last_save_at": "2026-10-10T16:52:59.453Z",
+    "last_save_at": "2026-10-10T17:14:05.703Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:4f6916b2c72816c89e9385dac1b9fde7ec4a3faef6d3d1a2a1329d04b9d7222a",
+    "source_fingerprint": "sha256:05f1991d81202e08df13130da1b8860d55fc4f08afdd13c8087bb1f04b46b5c2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9e122f6707d4280bd1704b05fcd3f964fbfcb5e0e7f77771f6d93cf0d0dd7242"
+      "spec.md": "91c3dbbc3f8d26900e3a8a071ee0b2d169bb72481ecf10be95bf424adb37561f"
     },
     "last_active_at": null
   }

@@ -2,7 +2,7 @@
 name: sk-code
 description: "Implement, debug and verify code: TypeScript, Python, shell, JSON; quality and review workflow modes with stack surface packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.2.6.0
+version: 2.2.7.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -64,6 +64,8 @@ Routing is **registry-driven**. `mode-registry.json` is the single source of tru
 > node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<task>"
 > ```
 > Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `sk-code`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
+
+**Session surface hint.** Before you call the front door, run the surface detection in [`stack-detection.md`](../../../.skilled/skills/sk-code/shared/references/stack-detection.md) on the session's working directory and the files it is editing, then add its result as `--surface-hint <SURFACE>`, for example `--surface-hint WEBFLOW`. When the prompt's keywords tie between surfaces, the hinted surface leads them. Workflow modes keep first place, and the targets and the bundle kind stay the same. With `UNKNOWN`, no hint or a surface the prompt did not match, the `routerPolicy.tieBreak` order applies.
 
 ### Surface Router — per-intent leaf sets
 

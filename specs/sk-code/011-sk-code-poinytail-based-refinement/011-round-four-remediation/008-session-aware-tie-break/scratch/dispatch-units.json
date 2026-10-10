@@ -1,0 +1,282 @@
+[
+  {
+    "task": "T014",
+    "files": [
+      ".skilled/bin/tests/compiled-route-surface-hint.test.cjs"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/bin/tests/compiled-route-surface-hint.test.cjs with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/scratch/units/compiled-route-surface-hint.test.cjs",
+    "check": "cmp .skilled/bin/tests/compiled-route-surface-hint.test.cjs specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/scratch/units/compiled-route-surface-hint.test.cjs; echo \"cmp=$?\"",
+    "expect": "cmp=0"
+  },
+  {
+    "task": "T015",
+    "files": [
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/scratch/neg-tests.txt"
+    ],
+    "kind": "command",
+    "instruction": "node --test --test-reporter=tap .skilled/bin/tests/compiled-route-surface-hint.test.cjs > specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/scratch/neg-tests.txt 2>&1; echo \"exit=$?\"",
+    "check": "grep -E '^# (pass|fail) ' specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/scratch/neg-tests.txt",
+    "expect": "# fail 3"
+  },
+  {
+    "task": "T016",
+    "files": [
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json, replace the exact text <<<OLD\n      \"expectedModes\": [\"sk-code-obsidian\", \"sk-code-webflow\"],\n      \"gold\": {\n        \"expectedIntents\": [\"sk-code-obsidian\", \"sk-code-webflow\"],\n        \"expectedResources\": []\n      }\n    },\n    {\n      \"id\": \"single-quality\",\nOLD>>> with <<<NEW\n      \"expectedModes\": [\"sk-code-obsidian\", \"sk-code-webflow\"],\n      \"gold\": {\n        \"expectedIntents\": [\"sk-code-obsidian\", \"sk-code-webflow\"],\n        \"expectedResources\": []\n      }\n    },\n    {\n      \"id\": \"surface-hint-absent-webflow-testing\",\n      \"prompt\": \"Add an integration test and unit test coverage plan for a Webflow animation, including vitest checks.\",\n      \"riskSlice\": \"actor:mutating:composite\",\n      \"expectedAction\": \"route\",\n      \"expectedSelectionKind\": \"orderedBundle\",\n      \"expectedModes\": [\"sk-code-opencode\", \"sk-code-webflow\"],\n      \"gold\": {\n        \"expectedIntents\": [\"sk-code-opencode\", \"sk-code-webflow\"],\n        \"expectedResources\": []\n      }\n    },\n    {\n      \"id\": \"surface-hint-webflow-testing\",\n      \"prompt\": \"Add an integration test and unit test coverage plan for a Webflow animation, including vitest checks.\",\n      \"surfaceHint\": \"WEBFLOW\",\n      \"riskSlice\": \"actor:mutating:composite\",\n      \"expectedAction\": \"route\",\n      \"expectedSelectionKind\": \"orderedBundle\",\n      \"expectedModes\": [\"sk-code-webflow\", \"sk-code-opencode\"],\n      \"gold\": {\n        \"expectedIntents\": [\"sk-code-webflow\", \"sk-code-opencode\"],\n        \"expectedResources\": []\n      }\n    },\n    {\n      \"id\": \"surface-hint-absent-webflow-language\",\n      \"prompt\": \"Check a Webflow TypeScript .ts helper and CommonJS .cjs bundle wrapper for docstring and language standards before publish.\",\n      \"riskSlice\": \"actor:mutating:composite\",\n      \"expectedAction\": \"route\",\n      \"expectedSelectionKind\": \"orderedBundle\",\n      \"expectedModes\": [\"sk-code-opencode\", \"sk-code-webflow\"],\n      \"gold\": {\n        \"expectedIntents\": [\"sk-code-opencode\", \"sk-code-webflow\"],\n        \"expectedResources\": []\n      }\n    },\n    {\n      \"id\": \"surface-hint-webflow-language\",\n      \"prompt\": \"Check a Webflow TypeScript .ts helper and CommonJS .cjs bundle wrapper for docstring and language standards before publish.\",\n      \"surfaceHint\": \"WEBFLOW\",\n      \"riskSlice\": \"actor:mutating:composite\",\n      \"expectedAction\": \"route\",\n      \"expectedSelectionKind\": \"orderedBundle\",\n      \"expectedModes\": [\"sk-code-webflow\", \"sk-code-opencode\"],\n      \"gold\": {\n        \"expectedIntents\": [\"sk-code-webflow\", \"sk-code-opencode\"],\n        \"expectedResources\": []\n      }\n    },\n    {\n      \"id\": \"surface-hint-webflow-over-obsidian\",\n      \"prompt\": \"obsidian plugin webflow implementation\",\n      \"surfaceHint\": \"WEBFLOW\",\n      \"riskSlice\": \"actor:mutating:composite\",\n      \"expectedAction\": \"route\",\n      \"expectedSelectionKind\": \"orderedBundle\",\n      \"expectedModes\": [\"sk-code-webflow\", \"sk-code-obsidian\"],\n      \"gold\": {\n        \"expectedIntents\": [\"sk-code-webflow\", \"sk-code-obsidian\"],\n        \"expectedResources\": []\n      }\n    },\n    {\n      \"id\": \"single-quality\",\nNEW>>>",
+    "check": "grep -c -F -- '\"id\": \"surface-hint-' .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+    "expect": "5"
+  },
+  {
+    "task": "T017",
+    "files": [
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/scratch/neg-canary.txt"
+    ],
+    "kind": "command",
+    "instruction": "node specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/scratch/canary-assert.cjs > specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/scratch/neg-canary.txt 2>&1; echo \"exit=$?\"",
+    "check": "tail -1 specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/scratch/neg-canary.txt; grep -c '^FAIL surface-hint-webflow-' specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/scratch/neg-canary.txt",
+    "expect": "cases 18 failures 3"
+  },
+  {
+    "task": "T018",
+    "files": [
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs, replace the exact text <<<OLD\n  return scores.filter((entry) => top - entry.score <= ambiguityDelta).map((entry) => entry.mode);\n}\n\nfunction evaluateCanary(snapshot, input) {\nOLD>>> with <<<NEW\n  return scores.filter((entry) => top - entry.score <= ambiguityDelta).map((entry) => entry.mode);\n}\n\n// The caller may name the surface its session is working in, as a detection\n// label such as WEBFLOW or as a workflowMode. Only a declared surface packet\n// counts, so UNKNOWN, a workflow mode or an unknown name resolves to null.\nfunction hintedSurface(snapshot, surfaceHint) {\n  if (typeof surfaceHint !== 'string' || !surfaceHint.trim()) return null;\n  const hint = normalize(surfaceHint);\n  const match = snapshot.policy.destinations.find((destination) => (\n    destination.id.packetKind === 'surface'\n    && (destination.id.workflowMode === hint\n      || destination.id.workflowMode === `${destination.id.skillId}-${hint}`)\n  ));\n  return match ? match.id.workflowMode : null;\n}\n\n// Serve-time reorder of a validated route's targets. The compiled composition\n// rules fix one order per surface set, so the hint is applied after validation\n// and never inside evaluateCanary. The hinted surface takes the first surface\n// slot, workflow modes keep their slots and no target is added or dropped, so a\n// hint the prompt did not match returns the targets unchanged.\nfunction applySurfaceHint(snapshot, targets, surfaceHint) {\n  const lead = hintedSurface(snapshot, surfaceHint);\n  const isSurface = (target) => target.destinationId.packetKind === 'surface';\n  if (!lead || !targets.some((target) => isSurface(target) && target.destinationId.workflowMode === lead)) {\n    return targets;\n  }\n  const surfaces = targets.filter(isSurface);\n  const reordered = [\n    ...surfaces.filter((target) => target.destinationId.workflowMode === lead),\n    ...surfaces.filter((target) => target.destinationId.workflowMode !== lead),\n  ];\n  let next = 0;\n  return targets.map((target) => {\n    if (!isSurface(target)) return target;\n    next += 1;\n    return reordered[next - 1];\n  });\n}\n\nfunction evaluateCanary(snapshot, input) {\nNEW>>>",
+    "check": "grep -c -F -- 'function applySurfaceHint(snapshot, targets, surfaceHint) {' specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T019",
+    "files": [
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs, replace the exact text <<<OLD\nmodule.exports = {\n  advisorDisposition,\nOLD>>> with <<<NEW\nmodule.exports = {\n  advisorDisposition,\n  applySurfaceHint,\nNEW>>>",
+    "check": "grep -c -F -- '  applySurfaceHint,' specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T020",
+    "files": [
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs"
+    ],
+    "kind": "command",
+    "instruction": "cp specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs",
+    "check": "cmp specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs; echo \"cmp=$?\"",
+    "expect": "cmp=0"
+  },
+  {
+    "task": "T021",
+    "files": [
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs, replace the exact text <<<OLD\nconst { evaluateCanary } = require('../lib/canary-router.cjs');\nOLD>>> with <<<NEW\nconst { applySurfaceHint, evaluateCanary } = require('../lib/canary-router.cjs');\nNEW>>>",
+    "check": "grep -c -F -- 'const { applySurfaceHint, evaluateCanary } = require('\\''../lib/canary-router.cjs'\\'');' specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T022",
+    "files": [
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs, replace the exact text <<<OLD\n      targetQualifiedIds: evaluated.decision.action === 'route'\n        ? evaluated.decision.route.targets.map((target) => (\nOLD>>> with <<<NEW\n      targetQualifiedIds: evaluated.decision.action === 'route'\n        ? applySurfaceHint(snapshot, evaluated.decision.route.targets, entry.surfaceHint).map((target) => (\nNEW>>>",
+    "check": "grep -c -F -- 'applySurfaceHint(snapshot, evaluated.decision.route.targets, entry.surfaceHint)' specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T023",
+    "files": [
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs"
+    ],
+    "kind": "command",
+    "instruction": "cp specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs",
+    "check": "cmp specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs; echo \"cmp=$?\"",
+    "expect": "cmp=0"
+  },
+  {
+    "task": "T024",
+    "files": [
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/compiled-route.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/compiled-route.cjs, replace the exact text <<<OLD\n  const { snapshot } = loadSnapshot();\n  const engine = Object.freeze({ snapshot, evaluate });\nOLD>>> with <<<NEW\n  const { snapshot } = loadSnapshot();\n  // Only a router that knows its hub's surface packets exports applySurfaceHint,\n  // so a hub without one serves the compiled order whatever hint arrives.\n  const applySurfaceHint = typeof routerMod.applySurfaceHint === 'function' ? routerMod.applySurfaceHint : null;\n  const engine = Object.freeze({ snapshot, evaluate, applySurfaceHint });\nNEW>>>",
+    "check": "grep -c -F -- 'const engine = Object.freeze({ snapshot, evaluate, applySurfaceHint });' specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/compiled-route.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T025",
+    "files": [
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/compiled-route.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/compiled-route.cjs, replace the exact text <<<OLD\n// serializable decision; `action` is one of route/clarify/defer/reject.\nfunction compiledRoute(hubId, taskText) {\n  const { snapshot, evaluate } = loadHubEngine(hubId);\n  const evaluated = evaluate(snapshot, { prompt: taskText });\n  const route = evaluated.decision.route || null;\nOLD>>> with <<<NEW\n// serializable decision; `action` is one of route/clarify/defer/reject.\n// `options.surfaceHint` names the surface the caller's session works in. It is\n// applied after the decision is validated and only reorders surfaces the prompt\n// matched, so a call without it serves exactly the compiled order.\nfunction compiledRoute(hubId, taskText, options = {}) {\n  const { snapshot, evaluate, applySurfaceHint } = loadHubEngine(hubId);\n  const evaluated = evaluate(snapshot, { prompt: taskText });\n  let route = evaluated.decision.route || null;\n  if (route && applySurfaceHint && typeof options.surfaceHint === 'string') {\n    route = { ...route, targets: applySurfaceHint(snapshot, route.targets, options.surfaceHint) };\n  }\nNEW>>>",
+    "check": "grep -c -F -- 'function compiledRoute(hubId, taskText, options = {}) {' specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/compiled-route.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T026",
+    "files": [
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs"
+    ],
+    "kind": "command",
+    "instruction": "cp specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/compiled-route.cjs .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+    "check": "cmp specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/compiled-route.cjs .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs; echo \"cmp=$?\"",
+    "expect": "cmp=0"
+  },
+  {
+    "task": "T027",
+    "files": [
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs, replace the exact text <<<OLD\n// a routing hot path.\nfunction resolveRoute(hubId, taskText) {\n  if (!flagPermitsCompiled(hubId)) return null;\n  const manifest = readManifest(hubId);\n  if (!manifest || manifest.servingAuthority !== 'compiled') return null;\n  try {\n    const route = compiledRoute(hubId, taskText);\nOLD>>> with <<<NEW\n// a routing hot path. `options.surfaceHint` passes through to the engine, which\n// uses it only to reorder surfaces the prompt already matched.\nfunction resolveRoute(hubId, taskText, options = {}) {\n  if (!flagPermitsCompiled(hubId)) return null;\n  const manifest = readManifest(hubId);\n  if (!manifest || manifest.servingAuthority !== 'compiled') return null;\n  try {\n    const route = compiledRoute(hubId, taskText, options);\nNEW>>>",
+    "check": "grep -c -F -- 'function resolveRoute(hubId, taskText, options = {}) {' specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T028",
+    "files": [
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs"
+    ],
+    "kind": "command",
+    "instruction": "cp specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
+    "check": "cmp specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs; echo \"cmp=$?\"",
+    "expect": "cmp=0"
+  },
+  {
+    "task": "T029",
+    "files": [
+      ".skilled/bin/compiled-route.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/bin/compiled-route.cjs, replace the exact text <<<OLD\n  const prompt = promptIdx >= 0 ? args[promptIdx + 1] : '';\n  if (!hub) {\nOLD>>> with <<<NEW\n  const prompt = promptIdx >= 0 ? args[promptIdx + 1] : '';\n  // The surface the caller's session works in. It only reorders surfaces the\n  // prompt already matched, and a value that names no surface is ignored.\n  const hintIdx = args.indexOf('--surface-hint');\n  const surfaceHint = hintIdx >= 0 ? args[hintIdx + 1] : undefined;\n  if (!hub) {\nNEW>>>",
+    "check": "grep -c -F -- 'const hintIdx = args.indexOf('\\''--surface-hint'\\'');' .skilled/bin/compiled-route.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T030",
+    "files": [
+      ".skilled/bin/compiled-route.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/bin/compiled-route.cjs, replace the exact text <<<OLD\n    process.stderr.write('usage: compiled-route.cjs --hub <hubId> (--prompt <text> | --prompt-stdin)\\n');\nOLD>>> with <<<NEW\n    process.stderr.write('usage: compiled-route.cjs --hub <hubId> (--prompt <text> | --prompt-stdin) [--surface-hint <SURFACE>]\\n');\nNEW>>>",
+    "check": "grep -c -F -- '[--surface-hint <SURFACE>]' .skilled/bin/compiled-route.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T031",
+    "files": [
+      ".skilled/bin/compiled-route.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/bin/compiled-route.cjs, replace the exact text <<<OLD\n    route = resolveRoute(hub, promptFromStdin ? fs.readFileSync(0, 'utf8') : prompt);\nOLD>>> with <<<NEW\n    route = resolveRoute(hub, promptFromStdin ? fs.readFileSync(0, 'utf8') : prompt, { surfaceHint });\nNEW>>>",
+    "check": "grep -c -F -- 'prompt, { surfaceHint });' .skilled/bin/compiled-route.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T032",
+    "files": [
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json"
+    ],
+    "kind": "command",
+    "instruction": "cp .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+    "check": "cmp .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json; echo \"cmp=$?\"",
+    "expect": "cmp=0"
+  },
+  {
+    "task": "T033",
+    "files": [
+      ".skilled/skills/sk-code/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/SKILL.md, replace the exact text <<<OLD\nversion: 2.2.6.0\nOLD>>> with <<<NEW\nversion: 2.2.7.0\nNEW>>>",
+    "check": "grep -c -F -- 'version: 2.2.7.0' .skilled/skills/sk-code/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T034",
+    "files": [
+      ".skilled/skills/sk-code/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/SKILL.md, replace the exact text <<<OLD\nthe explicit kill-switch.\n\n### Surface Router\nOLD>>> with <<<NEW\nthe explicit kill-switch.\n\n**Session surface hint.** Before you call the front door, run the surface detection in [`stack-detection.md`](shared/references/stack-detection.md) on the session's working directory and the files it is editing, then add its result as `--surface-hint <SURFACE>`, for example `--surface-hint WEBFLOW`. When the prompt's keywords tie between surfaces, the hinted surface leads them. Workflow modes keep first place, and the targets and the bundle kind stay the same. With `UNKNOWN`, no hint or a surface the prompt did not match, the `routerPolicy.tieBreak` order applies.\n\n### Surface Router\nNEW>>>",
+    "check": "grep -c -F -- '**Session surface hint.**' .skilled/skills/sk-code/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T035",
+    "files": [
+      ".skilled/skills/sk-code/ROUTER.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/ROUTER.md, replace the exact text <<<OLD\nversion: 2.2.6.0\nOLD>>> with <<<NEW\nversion: 2.2.7.0\nNEW>>>",
+    "check": "grep -c -F -- 'version: 2.2.7.0' .skilled/skills/sk-code/ROUTER.md",
+    "expect": "1"
+  },
+  {
+    "task": "T036",
+    "files": [
+      ".skilled/skills/sk-code/ROUTER.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/ROUTER.md, replace the exact text <<<OLD\nloaded after the surface decision, not a surface.\n\n### Bundled Evidence Surfaces\nOLD>>> with <<<NEW\nloaded after the surface decision, not a surface. The detected surface also goes to the compiled front door as `--surface-hint`, so when a prompt ties between surfaces the session's surface leads the bundle (`SKILL.md` §2).\n\n### Bundled Evidence Surfaces\nNEW>>>",
+    "check": "grep -c -F -- 'goes to the compiled front door as `--surface-hint`' .skilled/skills/sk-code/ROUTER.md",
+    "expect": "1"
+  },
+  {
+    "task": "T037",
+    "files": [
+      ".skilled/skills/sk-code/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/README.md, replace the exact text <<<OLD\nversion: 2.2.6.0\nOLD>>> with <<<NEW\nversion: 2.2.7.0\nNEW>>>",
+    "check": "grep -c -F -- 'version: 2.2.7.0' .skilled/skills/sk-code/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T038",
+    "files": [
+      ".skilled/skills/sk-code/description.json"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/description.json, replace the exact text <<<OLD\n  \"version\": \"2.2.6.0\",\nOLD>>> with <<<NEW\n  \"version\": \"2.2.7.0\",\nNEW>>>",
+    "check": "grep -c -F -- '\"version\": \"2.2.7.0\",' .skilled/skills/sk-code/description.json",
+    "expect": "1"
+  },
+  {
+    "task": "T039",
+    "files": [
+      ".skilled/skills/sk-code/hub-router.json"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/hub-router.json, replace the exact text <<<OLD\n  \"version\": \"2.2.6.0\",\nOLD>>> with <<<NEW\n  \"version\": \"2.2.7.0\",\nNEW>>>",
+    "check": "grep -c -F -- '\"version\": \"2.2.7.0\",' .skilled/skills/sk-code/hub-router.json",
+    "expect": "1"
+  },
+  {
+    "task": "T040",
+    "files": [
+      ".skilled/skills/sk-code/mode-registry.json"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/mode-registry.json, replace the exact text <<<OLD\n  \"version\": \"2.2.6.0\",\nOLD>>> with <<<NEW\n  \"version\": \"2.2.7.0\",\nNEW>>>",
+    "check": "grep -c -F -- '\"version\": \"2.2.7.0\",' .skilled/skills/sk-code/mode-registry.json",
+    "expect": "1"
+  },
+  {
+    "task": "T041",
+    "files": [
+      ".skilled/skills/sk-code/changelog/v2.2.7.0.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/sk-code/changelog/v2.2.7.0.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/scratch/units/v2.2.7.0.md",
+    "check": "cmp .skilled/skills/sk-code/changelog/v2.2.7.0.md specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/scratch/units/v2.2.7.0.md; echo \"cmp=$?\"",
+    "expect": "cmp=0"
+  }
+]

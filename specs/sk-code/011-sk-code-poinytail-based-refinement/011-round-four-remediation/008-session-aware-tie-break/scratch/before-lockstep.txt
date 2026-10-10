@@ -1,0 +1,4 @@
+[sk-doc] compiled-routing-lockstep-parity fixture coverage passed
+[sk-doc] live report: 7/15 surfaces carry the directive block
+[sk-doc] live report: 1 surface(s) diverge from the majority wording (informational, not asserted):
+  - hub-skill.mcp-tooling: compiled-routing directive wording differs from the other 6 in-sync lockstep surface(s)

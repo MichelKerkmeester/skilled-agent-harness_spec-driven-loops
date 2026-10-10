@@ -1,0 +1,481 @@
+TAP version 13
+# Subtest: canonical compiled-route manifest
+    # Subtest: rejects unsafe identities and reports a missing safe manifest
+    ok 1 - rejects unsafe identities and reports a missing safe manifest
+      ---
+      duration_ms: 1.025917
+      type: 'test'
+      ...
+    # Subtest: fails closed on root, registry, source-link, and compiler errors
+    ok 2 - fails closed on root, registry, source-link, and compiler errors
+      ---
+      duration_ms: 35.057875
+      type: 'test'
+      ...
+    # Subtest: mints one inert generation-one manifest through the CLI
+    ok 3 - mints one inert generation-one manifest through the CLI
+      ---
+      duration_ms: 39.87675
+      type: 'test'
+      ...
+    # Subtest: keeps routing byte-identical across mint and rejects duplicate mint
+    ok 4 - keeps routing byte-identical across mint and rejects duplicate mint
+      ---
+      duration_ms: 56.093042
+      type: 'test'
+      ...
+    # Subtest: returns fresh in compact and pretty form, then detects all input drift axes
+    ok 5 - returns fresh in compact and pretty form, then detects all input drift axes
+      ---
+      duration_ms: 225.016542
+      type: 'test'
+      ...
+    # Subtest: reports malformed manifests without compiling or rewriting them
+    ok 6 - reports malformed manifests without compiling or rewriting them
+      ---
+      duration_ms: 2.183416
+      type: 'test'
+      ...
+    # Subtest: keeps serving cause separate from manifest freshness in status
+    ok 7 - keeps serving cause separate from manifest freshness in status
+      ---
+      duration_ms: 6.435334
+      type: 'test'
+      ...
+    # Subtest: preserves the external manifest across the sync capture/restore round trip
+    not ok 8 - preserves the external manifest across the sync capture/restore round trip
+      ---
+      duration_ms: 189.985875
+      type: 'test'
+      location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:433:3'
+      failureType: 'testCodeFailure'
+      error: |-
+        SYNC FAILED: authored closure failed to resolve hubs: cli-classifier
+        
+        
+        1 !== 0
+        
+      code: 'ERR_ASSERTION'
+      name: 'AssertionError'
+      expected: 0
+      actual: 1
+      operator: 'strictEqual'
+      stack: |-
+        TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:459:12)
+        Test.runInAsyncScope (node:async_hooks:226:14)
+        Test.run (node:internal/test_runner/test:1402:25)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+      ...
+    # Subtest: publishes the current authored topology atomically into an isolated runtime
+    not ok 9 - publishes the current authored topology atomically into an isolated runtime
+      ---
+      duration_ms: 98.995416
+      type: 'test'
+      location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:479:3'
+      failureType: 'testCodeFailure'
+      error: 'authored closure failed to resolve hubs: cli-classifier'
+      code: 'ERR_TEST_FAILURE'
+      stack: |-
+        Object.build (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/compiled-route-sync.cjs:775:11)
+        buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:158:22)
+        TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:483:5)
+        Test.runInAsyncScope (node:async_hooks:226:14)
+        Test.run (node:internal/test_runner/test:1402:25)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+      ...
+    # Subtest: leaves an existing runtime untouched when the authored source is unavailable
+    ok 10 - leaves an existing runtime untouched when the authored source is unavailable
+      ---
+      duration_ms: 1.2165
+      type: 'test'
+      ...
+    # Subtest: refuses to replace an existing root that is not a verified closure
+    not ok 11 - refuses to replace an existing root that is not a verified closure
+      ---
+      duration_ms: 69.20625
+      type: 'test'
+      location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:535:3'
+      failureType: 'testCodeFailure'
+      error: |-
+        The input did not match the regular expression /promoted resolver missing at no coherent layout/. Input:
+        
+        'Error: authored closure failed to resolve hubs: cli-classifier'
+        
+      code: 'ERR_ASSERTION'
+      name: 'AssertionError'
+      expected:
+      actual:
+      error: 'authored closure failed to resolve hubs: cli-classifier'
+      stack: |-
+        Object.build (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/compiled-route-sync.cjs:775:11)
+        /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:543:20
+        getActual (node:assert:580:5)
+        strict.throws (node:assert:728:24)
+        TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:542:14)
+        Test.runInAsyncScope (node:async_hooks:226:14)
+        Test.run (node:internal/test_runner/test:1402:25)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+      operator: 'throws'
+      stack: |-
+        TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:542:14)
+        Test.runInAsyncScope (node:async_hooks:226:14)
+        Test.run (node:internal/test_runner/test:1402:25)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+      ...
+    # Subtest: aborts at staging-verify failure without touching the serving root
+    not ok 12 - aborts at staging-verify failure without touching the serving root
+      ---
+      duration_ms: 66.403833
+      type: 'test'
+      location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:553:3'
+      failureType: 'testCodeFailure'
+      error: 'authored closure failed to resolve hubs: cli-classifier'
+      code: 'ERR_TEST_FAILURE'
+      stack: |-
+        Object.build (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/compiled-route-sync.cjs:775:11)
+        buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:158:22)
+        TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:557:5)
+        Test.runInAsyncScope (node:async_hooks:226:14)
+        Test.run (node:internal/test_runner/test:1402:25)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+      ...
+    # Subtest: restores the exact prior closure when post-publish verification fails
+    not ok 13 - restores the exact prior closure when post-publish verification fails
+      ---
+      duration_ms: 70.367625
+      type: 'test'
+      location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:573:3'
+      failureType: 'testCodeFailure'
+      error: 'authored closure failed to resolve hubs: cli-classifier'
+      code: 'ERR_TEST_FAILURE'
+      stack: |-
+        Object.build (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/compiled-route-sync.cjs:775:11)
+        buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:158:22)
+        TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:578:5)
+        Test.runInAsyncScope (node:async_hooks:226:14)
+        Test.run (node:internal/test_runner/test:1402:25)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+      ...
+    # Subtest: a concurrent external manifest created during publication survives finalize
+    not ok 14 - a concurrent external manifest created during publication survives finalize
+      ---
+      duration_ms: 57.692958
+      type: 'test'
+      location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:596:3'
+      failureType: 'testCodeFailure'
+      error: 'authored closure failed to resolve hubs: cli-classifier'
+      code: 'ERR_TEST_FAILURE'
+      stack: |-
+        Object.build (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/compiled-route-sync.cjs:775:11)
+        buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:158:22)
+        TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:599:5)
+        Test.runInAsyncScope (node:async_hooks:226:14)
+        Test.run (node:internal/test_runner/test:1402:25)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+      ...
+    # Subtest: revert swaps the retained rollback back into the serving root
+    not ok 15 - revert swaps the retained rollback back into the serving root
+      ---
+      duration_ms: 59.837834
+      type: 'test'
+      location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:627:3'
+      failureType: 'testCodeFailure'
+      error: 'authored closure failed to resolve hubs: cli-classifier'
+      code: 'ERR_TEST_FAILURE'
+      stack: |-
+        Object.build (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/compiled-route-sync.cjs:775:11)
+        TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:633:26)
+        Test.runInAsyncScope (node:async_hooks:226:14)
+        Test.run (node:internal/test_runner/test:1402:25)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+      ...
+    # Subtest: rejects arbitrary, symlinked, and stale rollback paths without mutation
+    not ok 16 - rejects arbitrary, symlinked, and stale rollback paths without mutation
+      ---
+      duration_ms: 64.643
+      type: 'test'
+      location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:658:3'
+      failureType: 'testCodeFailure'
+      error: 'authored closure failed to resolve hubs: cli-classifier'
+      code: 'ERR_TEST_FAILURE'
+      stack: |-
+        Object.build (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/compiled-route-sync.cjs:775:11)
+        buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:158:22)
+        buildRetainedPublication (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:167:3)
+        TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:662:32)
+        Test.runInAsyncScope (node:async_hooks:226:14)
+        Test.run (node:internal/test_runner/test:1402:25)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+      ...
+    # Subtest: three-way reconciliation preserves a serving-only external update
+    not ok 17 - three-way reconciliation preserves a serving-only external update
+      ---
+      duration_ms: 61.093
+      type: 'test'
+      location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:691:3'
+      failureType: 'testCodeFailure'
+      error: 'authored closure failed to resolve hubs: cli-classifier'
+      code: 'ERR_TEST_FAILURE'
+      stack: |-
+        Object.build (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/compiled-route-sync.cjs:775:11)
+        buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:158:22)
+        TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:696:7)
+        Test.runInAsyncScope (node:async_hooks:226:14)
+        Test.run (node:internal/test_runner/test:1402:25)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+      ...
+    # Subtest: failed finalize and revert verification retain both recoverable roots
+    not ok 18 - failed finalize and revert verification retain both recoverable roots
+      ---
+      duration_ms: 65.472583
+      type: 'test'
+      location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:712:3'
+      failureType: 'testCodeFailure'
+      error: 'authored closure failed to resolve hubs: cli-classifier'
+      code: 'ERR_TEST_FAILURE'
+      stack: |-
+        Object.build (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/compiled-route-sync.cjs:775:11)
+        buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:158:22)
+        buildRetainedPublication (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:167:3)
+        TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:716:25)
+        Test.runInAsyncScope (node:async_hooks:226:14)
+        Test.run (node:internal/test_runner/test:1402:25)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+      ...
+    # Subtest: closure fingerprints reject code-byte drift in the retained rollback
+    not ok 19 - closure fingerprints reject code-byte drift in the retained rollback
+      ---
+      duration_ms: 65.15525
+      type: 'test'
+      location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:738:3'
+      failureType: 'testCodeFailure'
+      error: 'authored closure failed to resolve hubs: cli-classifier'
+      code: 'ERR_TEST_FAILURE'
+      stack: |-
+        Object.build (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/compiled-route-sync.cjs:775:11)
+        buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:158:22)
+        buildRetainedPublication (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:167:3)
+        TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:742:27)
+        Test.runInAsyncScope (node:async_hooks:226:14)
+        Test.run (node:internal/test_runner/test:1402:25)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+      ...
+    # Subtest: finalize and revert cleanup resume after individual removal failures
+    not ok 20 - finalize and revert cleanup resume after individual removal failures
+      ---
+      duration_ms: 122.40225
+      type: 'test'
+      location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:757:3'
+      failureType: 'testCodeFailure'
+      error: 'authored closure failed to resolve hubs: cli-classifier'
+      code: 'ERR_TEST_FAILURE'
+      stack: |-
+        Object.build (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/compiled-route-sync.cjs:775:11)
+        buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:158:22)
+        buildRetainedPublication (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:167:3)
+        TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:762:25)
+        Test.runInAsyncScope (node:async_hooks:226:14)
+        Test.run (node:internal/test_runner/test:1402:25)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+      ...
+    # Subtest: terminal cleanup resumes lock failure without deleting newer publication state
+    not ok 21 - terminal cleanup resumes lock failure without deleting newer publication state
+      ---
+      duration_ms: 54.521625
+      type: 'test'
+      location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:813:3'
+      failureType: 'testCodeFailure'
+      error: 'authored closure failed to resolve hubs: cli-classifier'
+      code: 'ERR_TEST_FAILURE'
+      stack: |-
+        Object.build (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/compiled-route-sync.cjs:775:11)
+        buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:158:22)
+        buildRetainedPublication (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:167:3)
+        TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:820:25)
+        Test.runInAsyncScope (node:async_hooks:226:14)
+        Test.run (node:internal/test_runner/test:1402:25)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+      ...
+    # Subtest: rename failures retain a serving root and recoverable publication state
+    not ok 22 - rename failures retain a serving root and recoverable publication state
+      ---
+      duration_ms: 54.43475
+      type: 'test'
+      location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:865:3'
+      failureType: 'testCodeFailure'
+      error: 'authored closure failed to resolve hubs: cli-classifier'
+      code: 'ERR_TEST_FAILURE'
+      stack: |-
+        Object.build (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/compiled-route-sync.cjs:775:11)
+        buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:158:22)
+        TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:872:7)
+        Test.runInAsyncScope (node:async_hooks:226:14)
+        Test.run (node:internal/test_runner/test:1402:25)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+      ...
+    # Subtest: long-lived status rebinding follows an atomic generation replacement
+    not ok 23 - long-lived status rebinding follows an atomic generation replacement
+      ---
+      duration_ms: 115.328833
+      type: 'test'
+      location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:916:3'
+      failureType: 'testCodeFailure'
+      error: 'authored closure failed to resolve hubs: cli-classifier'
+      code: 'ERR_TEST_FAILURE'
+      stack: |-
+        Object.build (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/compiled-route-sync.cjs:775:11)
+        TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:928:32)
+        Test.runInAsyncScope (node:async_hooks:226:14)
+        Test.run (node:internal/test_runner/test:1402:25)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+      ...
+    # Subtest: canonical manifest writers refuse mutation while publication is locked
+    ok 24 - canonical manifest writers refuse mutation while publication is locked
+      ---
+      duration_ms: 2.089375
+      type: 'test'
+      ...
+    # Subtest: canonical manifest writers hold the shared lock through their atomic write
+    ok 25 - canonical manifest writers hold the shared lock through their atomic write
+      ---
+      duration_ms: 7.809125
+      type: 'test'
+      ...
+    # Subtest: fails sync capture and restore closed on invalid or conflicting entries
+    ok 26 - fails sync capture and restore closed on invalid or conflicting entries
+      ---
+      duration_ms: 3.552041
+      type: 'test'
+      ...
+    # Subtest: uses atomic create-if-absent under concurrent writers
+    ok 27 - uses atomic create-if-absent under concurrent writers
+      ---
+      duration_ms: 79.760792
+      type: 'test'
+      ...
+    # Subtest: refuses an existing committed manifest before reading source inputs
+    ok 28 - refuses an existing committed manifest before reading source inputs
+      ---
+      duration_ms: 1.562584
+      type: 'test'
+      ...
+    # Subtest: keeps fixed routing maps unchanged and reports only authorized pre-publication drift
+    not ok 29 - keeps fixed routing maps unchanged and reports only authorized pre-publication drift
+      ---
+      duration_ms: 0.270291
+      type: 'test'
+      location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:1125:3'
+      failureType: 'testCodeFailure'
+      error: |-
+        Expected values to be strictly equal:
+        
+        7 !== 6
+        
+      code: 'ERR_ASSERTION'
+      name: 'AssertionError'
+      expected: 6
+      actual: 7
+      operator: 'strictEqual'
+      stack: |-
+        TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:1127:12)
+        Test.runInAsyncScope (node:async_hooks:226:14)
+        Test.run (node:internal/test_runner/test:1402:25)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+      ...
+    # Subtest: refreshes a stale manifest to fresh through the CLI, bumping generation and preserving defaults
+    ok 30 - refreshes a stale manifest to fresh through the CLI, bumping generation and preserving defaults
+      ---
+      duration_ms: 62.869625
+      type: 'test'
+      ...
+    # Subtest: a concurrent serving-authority flip during refresh is preserved, not reverted
+    ok 31 - a concurrent serving-authority flip during refresh is preserved, not reverted
+      ---
+      duration_ms: 14.807334
+      type: 'test'
+      ...
+    # Subtest: refuses to refresh unsafe hub identities and a missing manifest without writing anything
+    ok 32 - refuses to refresh unsafe hub identities and a missing manifest without writing anything
+      ---
+      duration_ms: 94.483042
+      type: 'test'
+      ...
+    # Subtest: preserves a non-default shadowOnly value through refresh rather than hardcoding it
+    ok 33 - preserves a non-default shadowOnly value through refresh rather than hardcoding it
+      ---
+      duration_ms: 9.162083
+      type: 'test'
+      ...
+    # Subtest: keeps the CLI thin, machine-readable, and usage-safe
+    ok 34 - keeps the CLI thin, machine-readable, and usage-safe
+      ---
+      duration_ms: 91.940208
+      type: 'test'
+      ...
+    # Subtest: binds an explicit runtime root before the library loads
+    ok 35 - binds an explicit runtime root before the library loads
+      ---
+      duration_ms: 353.576291
+      type: 'test'
+      ...
+    # Subtest: rejects malformed --runtime-root syntax with usage exit 2
+    ok 36 - rejects malformed --runtime-root syntax with usage exit 2
+      ---
+      duration_ms: 87.775958
+      type: 'test'
+      ...
+    # Subtest: fails closed when the override root lacks a coherent compiled-routing layout
+    ok 37 - fails closed when the override root lacks a coherent compiled-routing layout
+      ---
+      duration_ms: 264.056209
+      type: 'test'
+      ...
+    # Subtest: sequential same-process explicit-root calls each bind their own runtime root
+    ok 38 - sequential same-process explicit-root calls each bind their own runtime root
+      ---
+      duration_ms: 201.234292
+      type: 'test'
+      ...
+    # Subtest: a preloaded private binding cannot capture an explicit or a default operation
+    ok 39 - a preloaded private binding cannot capture an explicit or a default operation
+      ---
+      duration_ms: 202.852959
+      type: 'test'
+      ...
+    # Subtest: a default operation after an explicit-root operation targets the promoted root
+    ok 40 - a default operation after an explicit-root operation targets the promoted root
+      ---
+      duration_ms: 162.961292
+      type: 'test'
+      ...
+    # Subtest: symlink aliases of one runtime root share one lock and one closure
+    ok 41 - symlink aliases of one runtime root share one lock and one closure
+      ---
+      duration_ms: 441.827166
+      type: 'test'
+      ...
+    # Subtest: keeps parse and coherence failures closed through the isolated path
+    ok 42 - keeps parse and coherence failures closed through the isolated path
+      ---
+      duration_ms: 33.652042
+      type: 'test'
+      ...
+    1..42
+not ok 1 - canonical compiled-route manifest
+  ---
+  duration_ms: 3761.692375
+  type: 'suite'
+  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-manifest.test.cjs:177:1'
+  failureType: 'subtestsFailed'
+  error: '16 subtests failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+1..1
+# tests 42
+# suites 1
+# pass 26
+# fail 16
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3815.088292

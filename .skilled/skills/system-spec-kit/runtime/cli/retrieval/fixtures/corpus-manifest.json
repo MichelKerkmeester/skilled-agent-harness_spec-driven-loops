@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5b825b51e7d0a64b22478edfd75ebfab2c1dc79669a24cb0557c5a53d892d59b",
+  "corpusHash": "e0ecf1787abce74d072ddbada0dd9f5864ab2b6edfb02b09ca464096f6839f3a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24201,
+  "includedPathCount": 24202,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2627,6 +2627,7 @@
     ".skilled/skills/sk-code/changelog/v2.2.4.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.5.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.6.0.md",
+    ".skilled/skills/sk-code/changelog/v2.2.7.0.md",
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
@@ -24232,7 +24233,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1b4f083b326b001729076aeb62f6dea6479663cdd2b2a33ba33b24775cd5b15a",
+  "manifestHash": "424e07a5922a6bf3b402288d796f429f1c87a64cb1f3dd0551cdb5633cc5c109",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

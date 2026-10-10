@@ -79,7 +79,10 @@ function loadHubEngine(hubId) {
     throw new Error(`no evaluate function exported by ${routerPath} for hub ${hubId}`);
   }
   const { snapshot } = loadSnapshot();
-  const engine = Object.freeze({ snapshot, evaluate });
+  // Only a router that knows its hub's surface packets exports applySurfaceHint,
+  // so a hub without one serves the compiled order whatever hint arrives.
+  const applySurfaceHint = typeof routerMod.applySurfaceHint === 'function' ? routerMod.applySurfaceHint : null;
+  const engine = Object.freeze({ snapshot, evaluate, applySurfaceHint });
   engineCache.set(cacheKey, engine);
   return engine;
 }
@@ -93,10 +96,16 @@ function normalizeTargets(route) {
 
 // Route `taskText` through hub `hubId`'s compiled contract. Returns a normalized,
 // serializable decision; `action` is one of route/clarify/defer/reject.
-function compiledRoute(hubId, taskText) {
-  const { snapshot, evaluate } = loadHubEngine(hubId);
+// `options.surfaceHint` names the surface the caller's session works in. It is
+// applied after the decision is validated and only reorders surfaces the prompt
+// matched, so a call without it serves exactly the compiled order.
+function compiledRoute(hubId, taskText, options = {}) {
+  const { snapshot, evaluate, applySurfaceHint } = loadHubEngine(hubId);
   const evaluated = evaluate(snapshot, { prompt: taskText });
-  const route = evaluated.decision.route || null;
+  let route = evaluated.decision.route || null;
+  if (route && applySurfaceHint && typeof options.surfaceHint === 'string') {
+    route = { ...route, targets: applySurfaceHint(snapshot, route.targets, options.surfaceHint) };
+  }
   return {
     hubId,
     action: evaluated.decision.action,

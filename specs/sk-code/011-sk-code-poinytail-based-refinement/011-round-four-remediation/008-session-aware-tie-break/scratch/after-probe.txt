@@ -1,0 +1,4 @@
+"Add an integration test and unit test coverage plan for a Webflow animation, including vitest checks." route orderedBundle sk-code-opencode,sk-code-webflow
+"Check a Webflow TypeScript .ts helper and CommonJS .cjs bundle wrapper for docstring and language standards before publish." route orderedBundle sk-code-opencode,sk-code-webflow
+"obsidian plugin webflow implementation" route orderedBundle sk-code-obsidian,sk-code-webflow
+"pr review webflow implementation opencode typescript" route surfaceBundle sk-code-review,sk-code-opencode,sk-code-webflow

@@ -124,7 +124,7 @@ These bind every build phase, 002 to 006.
 | 8 | 008-round-two-recommendations/ | The round-two research recommendations that still hold, one child per group | Complete |
 | 9 | 009-round-two-follow-ups/ | Five follow-ups the round-two build left open, one child each | Complete |
 | 10 | 010-round-three-remediation/ | Every round-three finding and the five 009 follow-ups, one child per file area | Complete |
-| 11 | 011-round-four-remediation/ | The eleven items round three left open, one child per file area | Planned |
+| 11 | 011-round-four-remediation/ | The eleven items round three left open, one child per file area | Complete |
 
 ### Phase Transition Rules
 

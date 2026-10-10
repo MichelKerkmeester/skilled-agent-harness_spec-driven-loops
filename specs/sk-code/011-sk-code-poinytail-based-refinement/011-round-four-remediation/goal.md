@@ -103,14 +103,14 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| 001-review-canary-pins | Verified | The orchestrator reran every goal criterion on 2026-10-10 and strict validation passed. One commit, in folder order |
-| 002-webflow-labels-and-playbook | Verified | The orchestrator reran every goal criterion on 2026-10-10 and strict validation passed. One commit, in folder order |
-| 003-hub-surface-precedence | Verified | The orchestrator reran every goal criterion on 2026-10-10 and strict validation passed. One commit, in folder order |
-| 004-quality-obsidian-coverage | Verified | The orchestrator reran every goal criterion on 2026-10-10 and strict validation passed. One commit, in folder order |
-| 005-doc-claims-hardening | Verified | The orchestrator reran every goal criterion on 2026-10-10 and strict validation passed. One commit, in folder order |
-| 006-deep-loop-findings-parser | Verified | The orchestrator reran every goal criterion on 2026-10-10 and strict validation passed. One commit, in folder order |
-| 007-hook-deadline-margins | Verified | The orchestrator reran every goal criterion on 2026-10-10 and strict validation passed. One commit, in folder order |
-| 008-session-aware-tie-break | Planned | Plan written and both validators pass. Builds after 001 to 007 are committed |
+| 001-review-canary-pins | Committed | The orchestrator reran every goal criterion on 2026-10-10 and strict validation passed. Commit `da9ded3b36` |
+| 002-webflow-labels-and-playbook | Committed | The orchestrator reran every goal criterion on 2026-10-10 and strict validation passed. Commit `16641fcf05` |
+| 003-hub-surface-precedence | Committed | The orchestrator reran every goal criterion on 2026-10-10 and strict validation passed. Commit `83ff844329` |
+| 004-quality-obsidian-coverage | Committed | The orchestrator reran every goal criterion on 2026-10-10 and strict validation passed. Commit `bcf0dfa653` |
+| 005-doc-claims-hardening | Committed | The orchestrator reran every goal criterion on 2026-10-10 and strict validation passed. Commit `d2701afc3b` |
+| 006-deep-loop-findings-parser | Committed | The orchestrator reran every goal criterion on 2026-10-10 and strict validation passed. Commit `0221336dd4` |
+| 007-hook-deadline-margins | Committed | The orchestrator reran every goal criterion on 2026-10-10 and strict validation passed. Commit `3163ee231e` |
+| 008-session-aware-tie-break | Committed | The orchestrator reran every goal criterion on 2026-10-10 after the re-mint, Hermes and trigger-index steps, and strict validation passed. The eighth round-four commit |
 
 ### Deviations and findings
 

@@ -1,0 +1,9 @@
+001-sk-code cases 18 failures 0
+002-system-deep-loop cases 9 failures 0
+003-mcp-tooling cases 14 failures 0
+  FAIL 004-cli-external-orchestration jev-transport-single defer - 
+004-cli-external-orchestration cases 15 failures 1
+007-sk-doc cases 22 failures 0
+008-cli-classifier cases 8 failures 0
+009-sk-design cases 8 failures 0
+all hubs failures 1

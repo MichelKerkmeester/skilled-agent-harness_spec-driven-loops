@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1b4f083b326b001729076aeb62f6dea6479663cdd2b2a33ba33b24775cd5b15a",
+  "manifestHash": "424e07a5922a6bf3b402288d796f429f1c87a64cb1f3dd0551cdb5633cc5c109",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -87861,6 +87861,9 @@
     "session stop autosave canonical": [
       "session-stop autosave canonical"
     ],
+    "session surface hint": [
+      "session surface hint"
+    ],
     "session teardown sweep": [
       "session teardown sweep"
     ],
@@ -89602,6 +89605,9 @@
     "sk code 2 2 6 0": [
       "sk-code 2.2.6.0"
     ],
+    "sk code 2 2 7 0": [
+      "sk-code 2.2.7.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -90573,6 +90579,9 @@
     ],
     "sk code v2 2 6 0": [
       "sk-code v2.2.6.0"
+    ],
+    "sk code v2 2 7 0": [
+      "sk-code v2.2.7.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"

@@ -25,7 +25,7 @@ const {
   compileRegistry,
   sha256,
 } = require('../lib/registry-compiler.cjs');
-const { evaluateCanary } = require('../lib/canary-router.cjs');
+const { applySurfaceHint, evaluateCanary } = require('../lib/canary-router.cjs');
 const { generatePolicyCard } = require('../lib/policy-card.cjs');
 
 const PHASE_ROOT = path.resolve(__dirname, '..');
@@ -120,7 +120,7 @@ function typedGold(snapshot, fixture) {
       scenarioId: entry.id,
       schemaVersion: 'V1',
       targetQualifiedIds: evaluated.decision.action === 'route'
-        ? evaluated.decision.route.targets.map((target) => (
+        ? applySurfaceHint(snapshot, evaluated.decision.route.targets, entry.surfaceHint).map((target) => (
           qualifiedDestinationId(target.destinationId)
         ))
         : [],

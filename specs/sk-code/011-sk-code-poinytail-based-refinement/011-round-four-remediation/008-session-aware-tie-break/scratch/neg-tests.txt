@@ -1,0 +1,136 @@
+TAP version 13
+# Subtest: without a hint the tie-break order decides the lead surface
+ok 1 - without a hint the tie-break order decides the lead surface
+  ---
+  duration_ms: 2.266333
+  type: 'test'
+  ...
+# Subtest: a hinted surface the prompt matched leads the bundle
+not ok 2 - a hinted surface the prompt matched leads the bundle
+  ---
+  duration_ms: 1.5545
+  type: 'test'
+  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-surface-hint.test.cjs:68:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+    +   'sk-code-opencode',
+        'sk-code-webflow',
+    -   'sk-code-opencode'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 'sk-code-webflow'
+    1: 'sk-code-opencode'
+  actual:
+    0: 'sk-code-opencode'
+    1: 'sk-code-webflow'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-surface-hint.test.cjs:72:12)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: a hint the prompt did not match, UNKNOWN or an unknown name changes nothing
+ok 3 - a hint the prompt did not match, UNKNOWN or an unknown name changes nothing
+  ---
+  duration_ms: 4.95975
+  type: 'test'
+  ...
+# Subtest: a workflow mode keeps first place and only the surfaces reorder
+not ok 4 - a workflow mode keeps first place and only the surfaces reorder
+  ---
+  duration_ms: 0.977292
+  type: 'test'
+  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-surface-hint.test.cjs:86:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        'sk-code-review',
+    +   'sk-code-opencode',
+        'sk-code-webflow',
+    -   'sk-code-opencode'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 'sk-code-review'
+    1: 'sk-code-webflow'
+    2: 'sk-code-opencode'
+  actual:
+    0: 'sk-code-review'
+    1: 'sk-code-opencode'
+    2: 'sk-code-webflow'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-surface-hint.test.cjs:89:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: a hub without surface packets ignores the hint
+ok 5 - a hub without surface packets ignores the hint
+  ---
+  duration_ms: 88.076917
+  type: 'test'
+  ...
+# Subtest: the front door passes --surface-hint through and keeps stdout to one route line
+not ok 6 - the front door passes --surface-hint through and keeps stdout to one route line
+  ---
+  duration_ms: 146.96075
+  type: 'test'
+  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-surface-hint.test.cjs:104:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+    +   'sk-code-opencode',
+        'sk-code-webflow',
+    -   'sk-code-opencode'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 'sk-code-webflow'
+    1: 'sk-code-opencode'
+  actual:
+    0: 'sk-code-opencode'
+    1: 'sk-code-webflow'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/bin/tests/compiled-route-surface-hint.test.cjs:112:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 3
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 326.55725

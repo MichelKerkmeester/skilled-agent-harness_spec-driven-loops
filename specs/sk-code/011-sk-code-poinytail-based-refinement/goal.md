@@ -119,6 +119,7 @@ and findings belong here.
 | 008 round-two recommendations | Done | Five children planned and built by haiku xhigh agents, each rerun by the orchestrator and committed |
 | 009 round-two follow-ups | Done | Five children planned and built by Sonnet 5.5 xhigh agents, each rerun by the orchestrator and committed |
 | 010 round-three remediation | Done | Seven children planned by Opus 5.5 medium, built by DeepSeek V4.1 Flash max, verified by Sonnet 5.5 high; doc-claims 4/4 and all four drift guards pass; one commit per child |
+| 011 round-four remediation | Done | Eight children planned by Opus 5.5 medium, built by DeepSeek V4.1 Flash max, verified and reviewed by Sonnet 5.5 high. Reviewer findings in five children were fixed through the same chain. One commit per child |
 | 001 research round three | Done | Twenty DeepSeek V4.1 Flash iterations, orchestrated by Opus 5.5 high; rounds one and two unchanged; commit 00b905bda0 |
 
 ### Deviations and findings
@@ -132,5 +133,6 @@ and findings belong here.
 | 007 added 2026-10-10 | The operator chose to fix the follow-ups as child 007 with haiku xhigh agents; criteria 1 to 3 counts, D1, D4 and D6 amended to cover it |
 | 009 and round three added 2026-10-10 | The operator chose child 009 for the five round-two follow-ups, built by Sonnet 5.5, and a third 001 research round run beside it; criteria 1 to 3 counts, the objective, D1 and D4 amended |
 | 010 added 2026-10-10 | The operator chose child 010 to fix every round-three finding and the five 009 follow-ups; criteria 1 to 3 counts, the objective, D1 and D4 amended |
+| 011 added 2026-10-10 | The operator chose round four for the eleven items round three left open, then added child 008 for a session-aware tie-break; criteria 2 and 3 counts, the objective, D1, D3 and D4 amended |
 | Handed off, not built here | D2 Codex mirror gap (deep-improvement and git hooks) and D4 stdin deadline (hooks); recorded in the parent spec |
 <!-- /ANCHOR:log -->

@@ -31,15 +31,19 @@ function main() {
   // stdin, which keeps it out of argv where any local user can read it.
   const promptFromStdin = args.includes('--prompt-stdin');
   const prompt = promptIdx >= 0 ? args[promptIdx + 1] : '';
+  // The surface the caller's session works in. It only reorders surfaces the
+  // prompt already matched, and a value that names no surface is ignored.
+  const hintIdx = args.indexOf('--surface-hint');
+  const surfaceHint = hintIdx >= 0 ? args[hintIdx + 1] : undefined;
   if (!hub) {
-    process.stderr.write('usage: compiled-route.cjs --hub <hubId> (--prompt <text> | --prompt-stdin)\n');
+    process.stderr.write('usage: compiled-route.cjs --hub <hubId> (--prompt <text> | --prompt-stdin) [--surface-hint <SURFACE>]\n');
     process.exit(2);
   }
   let route = null;
   try {
     if (!RESOLVER) throw new Error('no coherent compiled-routing layout');
     const { resolveRoute } = require(RESOLVER);
-    route = resolveRoute(hub, promptFromStdin ? fs.readFileSync(0, 'utf8') : prompt);
+    route = resolveRoute(hub, promptFromStdin ? fs.readFileSync(0, 'utf8') : prompt, { surfaceHint });
   } catch (err) {
     // Emit-only, stderr, debug-gated: never reaches stdout (the routing channel)
     // or the TUI, and never changes the fallback outcome (still legacy sentinel).

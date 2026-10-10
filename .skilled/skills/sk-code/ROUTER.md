@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.2.6.0
+version: 2.2.7.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -34,7 +34,7 @@ The smart router maps a detected surface (OPENCODE / OBSIDIAN / WEBFLOW / UNKNOW
 
 ### Core Principle
 
-Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family (OpenCode vs Obsidian vs Webflow vs UNKNOWN); intent narrows the specific files within that family. Motion.dev resources are a **peer category** loaded after the surface decision, not a surface.
+Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family (OpenCode vs Obsidian vs Webflow vs UNKNOWN); intent narrows the specific files within that family. Motion.dev resources are a **peer category** loaded after the surface decision, not a surface. The detected surface also goes to the compiled front door as `--surface-hint`, so when a prompt ties between surfaces the session's surface leads the bundle (`SKILL.md` §2).
 
 ### Bundled Evidence Surfaces
 

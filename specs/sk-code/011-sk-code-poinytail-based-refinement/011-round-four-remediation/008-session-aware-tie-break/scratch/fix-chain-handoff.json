@@ -1,0 +1,12 @@
+[
+  {
+    "task": "T060",
+    "files": [
+      ".skilled/bin/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/bin/README.md, replace the exact text <<<OLD\nwhich keeps a user's prompt out of the process table. |\nOLD>>> with <<<NEW\nwhich keeps a user's prompt out of the process table. `--surface-hint <SURFACE>` passes the surface the caller's session works in, which leads a keyword tie between surfaces the prompt matched. |\nNEW>>>",
+    "check": "grep -c -F -- '--surface-hint <SURFACE>' .skilled/bin/README.md",
+    "expect": "1"
+  }
+]

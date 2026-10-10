@@ -102,13 +102,14 @@ function servingAuthority(hubId) {
 // Returns a normalized compiled decision when this hub is served by the compiled
 // contract and the flag is on; otherwise null (use legacy routing). Fails safe:
 // any error resolving the compiled route returns null rather than throwing into
-// a routing hot path.
-function resolveRoute(hubId, taskText) {
+// a routing hot path. `options.surfaceHint` passes through to the engine, which
+// uses it only to reorder surfaces the prompt already matched.
+function resolveRoute(hubId, taskText, options = {}) {
   if (!flagPermitsCompiled(hubId)) return null;
   const manifest = readManifest(hubId);
   if (!manifest || manifest.servingAuthority !== 'compiled') return null;
   try {
-    const route = compiledRoute(hubId, taskText);
+    const route = compiledRoute(hubId, taskText, options);
     // Serve-time identity binding: the snapshot we routed through MUST be the
     // exact generation the manifest selected. If a rollout artifact drifted after
     // the flip, the identities diverge — fail safe to legacy rather than serve an

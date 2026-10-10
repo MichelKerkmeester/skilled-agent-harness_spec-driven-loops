@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-10 |
 | **Branch** | `worktrees/092-sk-code-ponytail-refinement` |
 | **Parent Spec** | `../spec.md` |
@@ -107,7 +107,7 @@ Fix all eleven in seven children that own disjoint files, plus an eighth that th
 | 5 | 005-doc-claims-hardening/ | Claim checker gaps and the guardrails semicolons | Complete |
 | 6 | 006-deep-loop-findings-parser/ | Indented numbered lines and narrative findings in the parser | Complete |
 | 7 | 007-hook-deadline-margins/ | The sixteenth stdin reader and deadlines under the host timeout | Complete |
-| 8 | 008-session-aware-tie-break/ | The session's current work decides the lead surface on a keyword tie | Planned |
+| 8 | 008-session-aware-tie-break/ | The session's current work decides the lead surface on a keyword tie | Complete |
 
 ### Phase Transition Rules
 

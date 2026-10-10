@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: without a hint the tie-break order decides the lead surface
+ok 1 - without a hint the tie-break order decides the lead surface
+  ---
+  duration_ms: 1.844084
+  type: 'test'
+  ...
+# Subtest: a hinted surface the prompt matched leads the bundle
+ok 2 - a hinted surface the prompt matched leads the bundle
+  ---
+  duration_ms: 2.371834
+  type: 'test'
+  ...
+# Subtest: a hint the prompt did not match, UNKNOWN or an unknown name changes nothing
+ok 3 - a hint the prompt did not match, UNKNOWN or an unknown name changes nothing
+  ---
+  duration_ms: 3.440208
+  type: 'test'
+  ...
+# Subtest: a workflow mode keeps first place and only the surfaces reorder
+ok 4 - a workflow mode keeps first place and only the surfaces reorder
+  ---
+  duration_ms: 0.760333
+  type: 'test'
+  ...
+# Subtest: a hub without surface packets ignores the hint
+ok 5 - a hub without surface packets ignores the hint
+  ---
+  duration_ms: 39.075584
+  type: 'test'
+  ...
+# Subtest: the front door passes --surface-hint through and keeps stdout to one route line
+ok 6 - the front door passes --surface-hint through and keeps stdout to one route line
+  ---
+  duration_ms: 121.525041
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 223.837542
