@@ -25,7 +25,7 @@ Two things matter when reading it. The layout kind decides which migration appli
 
 ### Layout Detection
 
-The layout comes from two roots, the `specs` folder under the repository and the legacy spec root under the `.opencode` folder. When both exist and resolve to the same folder, the tree is a v4 layout and the legacy root is not counted. A legacy root that does not resolve to the same folder as `specs` is counted. With no `specs` folder the kind reads v3, and with both real folders it reads both. When a `specs` root exists and description.json files record a legacy `.opencode` spec path in their `specFolder` field, the report sets the v3 flag as well and names `description-residue` as the source, so the kind reads both.
+The layout comes from two roots, the `specs` folder under the repository and the legacy spec root under the `.opencode` folder. When both exist and resolve to the same folder, the tree is a v4 layout and the legacy root is not counted. A legacy root that does not resolve to the same folder as `specs` is counted. With no `specs` folder the kind reads v3 when the legacy root exists and unknown when neither root exists, and with both real folders it reads both. When a `specs` root exists and description.json files record a legacy `.opencode` spec path in their `specFolder` field, the report sets the v3 flag as well and names `description-residue` as the source, so the kind reads both.
 
 ### Counting
 

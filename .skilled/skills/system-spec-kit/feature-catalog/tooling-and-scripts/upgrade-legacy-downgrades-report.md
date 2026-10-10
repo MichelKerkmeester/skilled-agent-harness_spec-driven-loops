@@ -39,6 +39,10 @@ Lane-mode refusals are the defects that a repair mode named and could not derive
 
 The dry run prints the repository era block near its end, and the line that names the steps `--apply` would run follows it. The apply run prints no era block and ends with the grouped detail. Read the dry run's block before approving an apply, because a checkout whose `specs` path is an alias of the legacy `.opencode` spec root reads as v4 there.
 
+### Linked Packets and Baselines
+
+A packet whose top-level link resolves outside the packet is refused before its repairs. The dry run prints `would refuse <packet>: <name> is a symbolic link, not followed, and does not resolve inside the packet`, apply prints `refused <packet>` with the same reason, and the packet is left out of the repairs. A linked `upgrade-baseline.json` is left out of the Downgrades section, which prints `refused <packet>: upgrade-baseline.json is a symbolic link, not followed, so its findings are not read`. The validator warns `UPGRADE_BASELINE_LINK` and keeps that packet's findings as errors.
+
 ---
 
 ## 3. SOURCE FILES

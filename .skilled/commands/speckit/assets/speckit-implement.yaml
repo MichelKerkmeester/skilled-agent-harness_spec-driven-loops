@@ -14,14 +14,33 @@ mode_overrides:
     action: "Execute from task breakdown to completion with user checkpoints"
     approvals: "step_by_step"
     validation: "checkpoint_based"
-    approach: "Systematic execution with user validation at checkpoints"
     mandate: "Build incrementally, review with user, deliver confidently"
     goal_prompt_choice: "[offer|skip|set] - Optional session-goal behavior. Defaults to offer unless the user chooses skip or set; set requires goal_objective."
     interactive_integration: "Confidence checks surfaced at user checkpoints"
-    step_completion_rule: "Execute ALL activities \u2192 Verify ALL outputs \u2192 Present checkpoint for approval \u2192 Mark step complete after approval \u2192 THEN proceed. NEVER skip steps, NEVER proceed without user approval, NEVER jump to coding before Step 5."
-    approach: "incremental_implementation_with_reviews"
-    principle: "Execute with user approval at each checkpoint"
+    step_completion_rule: "Execute ALL activities \u2192 Verify ALL outputs \u2192 Present checkpoint for approval \u2192 Mark step complete after approval \u2192 THEN proceed. NEVER skip steps, NEVER proceed without user approval outside child dispatch, NEVER jump to coding before Step 5."
+    approach: "incremental_implementation_with_reviews, systematic execution with user validation at checkpoints"
+    principle: "Execute with user approval at each checkpoint outside child dispatch"
     checkpoint_behavior: "[Complete activities, Present results summary, Present options for approval, Wait for response, Process feedback, Proceed or modify]"
+    child_dispatch_checkpoints: "When child_dispatch applies, record each checkpoint question with its first option as the default in the lineage directory and continue."
+
+# ─────────────────────────────────────────────────────────────────
+# CHECKPOINT OPTIONS
+# ─────────────────────────────────────────────────────────────────
+checkpoint_options:
+  standard:
+  - label: "Approve"
+    description: "Approve and continue to next step"
+  - label: "Review"
+    description: "Show more details"
+  - label: "Modify"
+    description: "Make changes before proceeding"
+  code_review:
+  - label: "Approve Code"
+    description: "Implementation reviewed, continue to Step 7 completion"
+  - label: "Review Code"
+    description: "Show code changes for review"
+  - label: "Modify Code"
+    description: "Request code changes before completion"
 
 role: Expert Developer using Smart SpecKit for fully autonomous implementation
 purpose: Spec-driven implementation with complete autonomous execution
@@ -50,13 +69,14 @@ gate_3_compliance:
   mechanism: "Phase 1-3 blocking gates in implement.md"
   machine_contract: ".skilled/skills/system-spec-kit/shared/gate-3-classifier.ts (classifyPrompt)"
   standard_question: "Spec Folder (required): A) Existing | B) New (new or unrelated work only) | C) Related (Use a related folder, phase child, or a series parent for a different change to the same artifact as an existing packet in the same track) | D) Skip"
-  first_message_protocol: "If FIRST message requests implementation, ask spec folder FIRST"
+  first_message_protocol: "If FIRST message requests implementation, ask spec folder FIRST, unless child_dispatch applies"
+  child_dispatch: "When AI_SESSION_CHILD=1 marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-resolved to that directory and the worker does not ask. Interactive sessions always ask."
   failure_pattern_19:
     triggers: ["comprehensive", "fix all", "15 agents", "implement everything"]
-    action: "STOP → Ask spec folder question → Wait for A/B/C/D"
+    action: "STOP → Ask spec folder question → Wait for A/B/C/D, unless child_dispatch applies"
   self_verification: |
     □ File modification detected? Did I ask spec folder question?
-    □ Did I wait for user's A/B/C/D response before using project tools?
+    □ Did I wait for user's A/B/C/D response before using project tools? Not required when child_dispatch applies.
 
 implementation_philosophy:
   principle: "Correctness first, elegance second"
@@ -347,7 +367,7 @@ agent_availability:
     agent_file: "[runtime_agent_path]/debug.md"
     fallback: "general-purpose"
     prompt_threshold: { counter: "task_failure_count", reset_on: "new_task", threshold: 3, mode: "operator-judgment", note: "Counter is documentation-only; the workflow operator surfaces the prompt based on observed repeated failures, never auto-routes." }
-    on_threshold: "Surface a single direct prompt: 'Dispatch @debug for fresh-perspective root-cause? (y / continue manually / skip)'. On y, generate debug-delegation.md scaffold and instruct user to dispatch @debug via Task tool. The workflow itself NEVER calls Task tool → @debug."
+    on_threshold: "Surface a single direct prompt: 'Dispatch @debug for fresh-perspective root-cause? (y / continue manually / skip)'. On y, generate debug-delegation.md scaffold and instruct user to dispatch @debug via Task tool. The workflow itself NEVER calls Task tool → @debug. When child_dispatch applies, take the continue manually branch of debug_delegation instead of surfacing the prompt."
     not_for: "proactive debugging, pre-step investigation, reviewing this workflow, or any autonomous routing"
 
 # ─────────────────────────────────────────────────────────────────
@@ -392,7 +412,7 @@ confidence_framework:
   thresholds:
     high: { range: "80-100%", action: "Proceed with cited evidence" }
     medium: { range: "40-79%", action: "Proceed with caution, document assumptions" }
-    low: { range: "0-39%", action: "STOP - Ask A/B/C clarification" }
+    low: { range: "0-39%", action: "STOP - Ask A/B/C clarification, unless child_dispatch applies, in which case record the question with its default in the lineage directory and continue" }
   scoring_weights: { pattern_alignment: 0.30, side_effect_awareness: 0.25, implementation_clarity: 0.25, test_coverage: 0.20 }
   reply_format: ["Confidence: NN%", "Top factors: 2-3 bullets", "Next action"]
   escalation: { timebox_minutes: 10, failed_threshold: 2 }
@@ -461,6 +481,7 @@ workflow:
     checkpoint:
       applies_to: confirm
       question: "Step 1 Complete: Plan and spec reviewed. How would you like to proceed?"
+      child_dispatch: "When child_dispatch applies, record this question with the default Proceed in the lineage directory and continue instead of asking."
       options:
         - { label: "Proceed", description: "Plan is clear, proceed to task breakdown" }
         - { label: "Review Plan", description: "Show plan.md for detailed review" }
@@ -501,6 +522,7 @@ workflow:
     checkpoint:
       applies_to: confirm
       question: "Step 3 Complete: Consistency verified. How would you like to proceed?"
+      child_dispatch: "When child_dispatch applies, record the question with Approve, the first option of checkpoint_options.standard, as the default in the lineage directory and continue."
       options: checkpoint_options.standard
 
   step_4_acceptance_criteria:
@@ -517,6 +539,7 @@ workflow:
     checkpoint:
       applies_to: confirm
       question: "Step 4 Complete: Checklists verified. Ready to implement?"
+      child_dispatch: "When child_dispatch applies, default to Start Implementation only when every P0 row is Met or Waived. When a P0 row is open, default to Address Blockers, record the open rows in the lineage directory and continue."
       options:
         - { label: "Start Implementation", description: "Begin development phase" }
         - { label: "Review Verification", description: "Show acceptance-criteria and checklist verification details" }
@@ -530,6 +553,7 @@ workflow:
     checkpoint:
       applies_to: confirm
       question: "Step 5 Complete: Environment ready. Proceed with development?"
+      child_dispatch: "When child_dispatch applies, default to Start Coding. When a check above fails, record the failed check and its blocker in the lineage directory before coding, and do not take Hold, since a child records a halt and continues."
       options:
         - { label: "Start Coding", description: "Begin implementation" }
         - { label: "Check Environment", description: "Show environment status" }
@@ -572,6 +596,7 @@ workflow:
       phase_domains: [code, testing]
       complexity_boost: 15
       decision_logic: "Check override phrases → session preference → sequential deps → calculate complexity → <20% direct, >=20%+2 domains → ask user"
+      child_dispatch: "When child_dispatch applies, do not ask. Take direct, the fallback below, and record the decision in the lineage directory."
       on_parallel_dispatch:
         agents:
           - { name: "implementation_agent", focus: "Core implementation tasks from tasks.md" }
@@ -600,6 +625,7 @@ workflow:
           3. The workflow itself NEVER invokes Task tool → @debug. The user dispatches.
         On "continue manually": log "user declined debug at threshold N", proceed with existing manual flow, do NOT reset the failure counter.
         On "skip": apply existing skip semantics (failure counter resets per reset_on: new_task).
+      child_dispatch: "When child_dispatch applies, do not surface the prompt. Take the continue manually branch below, log it in the lineage directory and proceed without resetting the failure counter."
       no_autonomous_routing: true
       reference: "debug delegation safety contract"
     approach: autonomous_implementation_with_checkpoints
@@ -614,12 +640,13 @@ workflow:
         thresholds:
           high_80_plus: "Implement task, mark [x]"
           medium_40_79: "Implement with extra validation, add comments"
-          low_below_40: "STOP — A) Research B) Simplify C) Skip"
+          low_below_40: "STOP: A) Research B) Simplify C) Skip. When child_dispatch applies, record the question with A) Research as the default in the lineage directory and continue."
       citation_requirement: "Reference task ID in commits, cite pattern sources, use [DEVIATION: reason]"
     validation: development_complete
     checkpoint:
       applies_to: confirm
       question: "Step 6 Complete: Development finished. Review implementation?"
+      child_dispatch: "When child_dispatch applies, record the question with Approve Code, the first option of checkpoint_options.code_review, as the default in the lineage directory and continue. Approve Code reaches Step 7, which validates the spec folder and checks that tests pass before completion."
       options: checkpoint_options.code_review
 
   step_6_5_checkpoint_development:
@@ -742,6 +769,7 @@ workflow:
     checkpoint:
       applies_to: confirm
       question: "Would you like to refresh continuity before ending the implementation workflow?"
+      child_dispatch: "When child_dispatch applies, default to Skip. Step 8 already wrote continuity, so another refresh is not needed. Record the question with Skip as the default in the lineage directory and continue."
       options:
         - { label: "Run /speckit:save", description: "Refresh canonical continuity before ending" }
         - { label: "Skip", description: "Complete workflow without another continuity refresh" }

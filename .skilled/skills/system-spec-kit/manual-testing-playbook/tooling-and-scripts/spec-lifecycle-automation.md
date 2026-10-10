@@ -215,6 +215,9 @@ NOTES:
       specs root, specs/<track>/z_archive/ in a track, <parent>/z_archive/
       for a phase
     - Restore returns a spec to the folder its z_archive/ belongs to
+    - A z_archive/ that is a symlink is refused on archive and on restore
+    - An archive or restore path with a . or .. segment is refused, since a
+      segment can reach a linked z_archive/ that the literal path does not show
     - A track's graph-metadata.json list is refreshed after both moves
     - A phase parent's graph-metadata.json is left as it is: its writer drops
       a child only through a reviewed prune

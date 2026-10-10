@@ -31,10 +31,25 @@ mode_overrides:
     mandate: "Define requirements, validate with user, plan incrementally"
     goal_prompt_choice: "[offer|skip|set] - Optional session-goal behavior. Defaults to offer unless the user chooses skip or set; set requires goal_objective."
     interactive_integration: "Confidence checks surfaced at user checkpoints"
-    step_completion_rule: "Execute ALL activities -> Verify ALL outputs -> Present checkpoint for approval -> Mark step complete after approval -> ONLY THEN proceed. NEVER skip steps. NEVER proceed without user approval. NEVER implement without /speckit:implement."
+    step_completion_rule: "Execute ALL activities -> Verify ALL outputs -> Present checkpoint for approval -> Mark step complete after approval -> ONLY THEN proceed. NEVER skip steps. NEVER proceed without user approval outside child dispatch. NEVER implement without /speckit:implement."
     user_response_handling: "{ accept: \"Run /speckit:save\", decline: \"Proceed to termination\", default: \"Wait for user response\" }"
-    principle: "Execute planning workflow with user approval at each checkpoint"
+    principle: "Execute planning workflow with user approval at each checkpoint outside child dispatch"
     checkpoint_behavior: "[Complete step activities, Present results summary, Present options for approval, Wait for user response, Process feedback, Proceed or modify as directed]"
+    child_dispatch_checkpoints: "When child_dispatch applies, record each checkpoint question with its first option as the default in the lineage directory and continue."
+
+# ─────────────────────────────────────────────────────────────────
+# CHECKPOINT OPTIONS
+# ─────────────────────────────────────────────────────────────────
+checkpoint_options:
+  standard:
+  - label: "Approve"
+    description: "Approve and continue to next step"
+  - label: "Review"
+    description: "Show more details"
+  - label: "Modify"
+    description: "Make changes before proceeding"
+
+child_dispatch: "When AI_SESSION_CHILD=1 marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-resolved to that directory and the worker does not ask. Interactive sessions always ask."
 
 role: Expert Developer using Smart SpecKit for autonomous planning
 purpose: Spec-driven planning with autonomous execution through step 7
@@ -806,6 +821,7 @@ workflow:
     checkpoint:
       applies_to: confirm
       question: "Step 7: Would you like to refresh continuity before ending the planning workflow?"
+      child_dispatch: "When child_dispatch applies, default to Skip. Step 6 already saved context, so another refresh is not needed. Record the question with Skip as the default in the lineage directory and continue."
       use: present_options_to_user
       options:
         - { label: "Run /speckit:save", description: "Refresh canonical continuity before ending" }
@@ -825,6 +841,7 @@ termination:
     2. Re-evaluate Gate 3 (spec folder confirmation for implementation phase)
     3. NEVER skip gates because they were passed during the plan phase
     Plan and implementation are SEPARATE gate-checked workflows.
+  child_dispatch: "When child_dispatch applies, Gate 3 is pre-resolved to the bound lineage directory, so the child records the free-text implement request there and stops planning without asking."
 
 # ─────────────────────────────────────────────────────────────────
 # AUTONOMOUS EXECUTION GUIDANCE

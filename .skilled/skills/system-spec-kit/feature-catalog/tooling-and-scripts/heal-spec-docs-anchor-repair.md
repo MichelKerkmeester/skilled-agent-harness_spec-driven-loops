@@ -33,7 +33,7 @@ A questions pair that holds exactly one OPEN QUESTIONS heading is moved so that 
 
 ### Dry Run and Apply
 
-The dry run prints a `would repair` line for each change and a summary line, and it writes nothing. Apply writes the document through a temporary file and a rename, so a reader never sees a partial file, and it keeps the file mode. A second apply finds nothing to change. Discovery skips archived folders, but an explicit `--folder` names one packet directly.
+The dry run prints a `would repair` line for each change and a summary line, and it writes nothing. Apply writes the document through a temporary file and a rename, so a reader never sees a partial file, and it keeps the file mode. A second apply finds nothing to change. Discovery skips archived folders, but an explicit `--folder` names one packet directly. A symlinked `spec.md` is refused before it is read. The dry run and apply both print `left unchanged <file>: symbolic link, not followed` and write nothing through the link.
 
 ---
 
