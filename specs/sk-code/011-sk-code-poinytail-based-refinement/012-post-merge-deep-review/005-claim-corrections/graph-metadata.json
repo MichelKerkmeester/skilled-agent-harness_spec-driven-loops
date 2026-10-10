@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/005-claim-corrections",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/005-claim-corrections",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "claim corrections",
+      "phase 5 claim corrections",
+      "claim corrections plan",
+      "claim corrections tasks",
+      "claim corrections goal",
+      "claim corrections implementation summary"
+    ],
+    "key_topics": [
+      "claim",
+      "corrections",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "debt-report",
+      "says",
+      "ceiling-report",
+      "prints"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/implementation-summary.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/implementation-summary.md",
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs",
+      ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.19.2.0.md",
+      ".hermes/skills/deep-improvement/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-mirror-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.19.2.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.19.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "ceiling-report.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Correct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Hermes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The debt-report summary says `ceiling-report.sh` prints `markers=0 no-trigger=0 no-signal=0`, but once that packet committed its fixture `scratch/after/probe.py` the report prints `markers=3 no-trigger=1 no-signal=1`",
+    "created_at": "2026-10-10T20:17:53Z",
+    "last_save_at": "2026-10-10T20:50:20.352Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bbb46cafdc867d70b104d1114ec52a7c22ffa634353c8d10f9f4d8fe0cf0079a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9db7fa96e3aad1073dbfa165b0a64c67a872fd308c16b82d9804661617fa85d2",
+      "plan.md": "29c90ae763284631dae0c54897e634f0118a3aa9fe2921f4d1e6a0ffb4c1f40f",
+      "tasks.md": "fdce8e028afbb73e3641bd2a1bca5e66910604c2ebcff06a394226280b3b1196",
+      "implementation-summary.md": "f49dfcf2a50e3821dd78cadef5a820fce4441ec8bb70df9b3c95e7e20a7dc163"
+    },
+    "last_active_at": null
+  }
+}

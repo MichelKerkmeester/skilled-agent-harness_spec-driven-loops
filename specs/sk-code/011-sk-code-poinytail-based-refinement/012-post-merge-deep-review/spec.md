@@ -144,11 +144,11 @@ Confirm that the epic's work survived the merge intact, and record every error a
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-hook-stdin-deadlines/ | P2 1: a 3000 ms stdin deadline in the sk-git and sk-vision hooks that hosts register directly | Pending |
-| 2 | 002-webflow-runtime-and-references/ | P2 3 and P2 10: report the callback depth cap, drop two dead evidence pointers | Pending |
-| 3 | 003-drift-guard-warning-count/ | P2 5: the drift-guard summary names how many warnings it passed over | Pending |
-| 4 | 004-hub-doc-pointers/ | P2 2 and P2 9: playbooks name the live hook, stack detection names a real file | Pending |
-| 5 | 005-claim-corrections/ | P2 6, 7 and 8: two summary claims and the mirror checker banner | Pending |
+| 1 | 001-hook-stdin-deadlines/ | P2 1: a 3000 ms stdin deadline in the sk-git and sk-vision hooks that hosts register directly | Complete |
+| 2 | 002-webflow-runtime-and-references/ | P2 3 and P2 10: report the callback depth cap, drop two dead evidence pointers | Complete |
+| 3 | 003-drift-guard-warning-count/ | P2 5: the drift-guard summary names how many warnings it passed over | Complete |
+| 4 | 004-hub-doc-pointers/ | P2 2 and P2 9: playbooks name the live hook, stack detection names a real file | Complete |
+| 5 | 005-claim-corrections/ | P2 6, 7 and 8: two summary claims and the mirror checker banner | Complete |
 
 ### Phase Transition Rules
 
@@ -165,6 +165,7 @@ Confirm that the epic's work survived the merge intact, and record every error a
 | 002-webflow-runtime-and-references | 003-drift-guard-warning-count | Previous phase committed | Orchestrator rerun of the phase goal criteria |
 | 003-drift-guard-warning-count | 004-hub-doc-pointers | Previous phase committed | Orchestrator rerun of the phase goal criteria |
 | 004-hub-doc-pointers | 005-claim-corrections | Previous phase committed | Orchestrator rerun of the phase goal criteria |
+
 ### Findings Not Built
 
 | Finding | Decision |

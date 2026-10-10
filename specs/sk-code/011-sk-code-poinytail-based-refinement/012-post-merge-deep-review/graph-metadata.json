@@ -43,7 +43,7 @@
       "durable"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The 092 epic shipped 37 commits, then a merge brought in 45 upstream commits and resolved eight conflicts by hand",
     "created_at": "2026-10-10T18:38:32Z",
-    "last_save_at": "2026-10-10T20:43:57.954Z",
+    "last_save_at": "2026-10-10T20:51:36.401Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4b62d4a0fb94784a111dc051eb35b512e3fe6050a91d182accd4fc7609950522",
+    "source_fingerprint": "sha256:f0d2661987f758ef6dddf1d902f82a34c8deec56241fa2d7de819cafef0e5eb7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "509900f5bbdb5704ef662dabb190f3172c755b5383a1e975bd58db25378de3e7",
+      "spec.md": "68d166483266daf1ec4cc5ab7750d5ef0f04cbcdea35361695bf12f9705ac6e2",
       "plan.md": "5fe6822c4268e57bb51994379b07540ed57fe5f3707431a49a9093a26ef472cd",
       "tasks.md": "cbfc607a4026f7ecf29527a81521a87be944f70c5ddf466786babe51872bc539",
       "implementation-summary.md": "bc1c009c1d4a1ae334b8884d72c0616d808bc2d1d08a1ecb6696001be661bc44"

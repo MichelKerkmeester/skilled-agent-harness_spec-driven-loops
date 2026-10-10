@@ -90,7 +90,7 @@ string, not these files.
 ## 3. COMPLETION CRITERIA
 
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 13 times and `RESULT: FAILED` 0 times
-- [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 36
+- [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 41
 - [ ] `git rev-list --count main..HEAD` prints 37, `git log --format='%(trailers:key=Spec,valueonly)' main..HEAD` prints 37 `Spec:` values, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
 - [ ] `node .skilled/bin/compiled-route-guard.cjs` exits 0 listing sk-code `fresh`, and `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints `"action":"route"` and no `servingAuthority` key
 - [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` and `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` both exit 0, and `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exits 0
@@ -136,5 +136,6 @@ and findings belong here.
 | 010 added 2026-10-10 | The operator chose child 010 to fix every round-three finding and the five 009 follow-ups; criteria 1 to 3 counts, the objective, D1 and D4 amended |
 | 011 added 2026-10-10 | The operator chose round four for the eleven items round three left open, then added child 008 for a session-aware tie-break; criteria 2 and 3 counts, the objective, D1, D3 and D4 amended |
 | 012 added 2026-10-10 | The operator chose child 012, a ten-iteration post-merge deep review on DeepSeek V4.1 Flash; criteria 1 and 2 counts amended, and decisions D2, D3, D5, D6 and D7 shortened to keep the durable slice under 4,000 characters. Criterion 3 counts `main..HEAD` on the epic branch and no longer applies once the epic is on main |
+| 012 fix phases added 2026-10-10 | The operator chose to fix 012's confirmed P2s 1 to 10 in five 012 children; criterion 2 count amended from 36 to 41. Criterion 1 stays 13, because the recursive run counts direct children. Criterion 3 is left for the master orchestrator |
 | Handed off, not built here | D2 Codex mirror gap (deep-improvement and git hooks) and D4 stdin deadline (hooks); recorded in the parent spec |
 <!-- /ANCHOR:log -->

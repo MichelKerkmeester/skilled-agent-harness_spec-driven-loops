@@ -104,6 +104,7 @@ and findings belong here.
 | Packet scaffolded | Done | `create.sh --phase --parent` added row 12 to the parent phase map |
 | Ten review iterations | Done | 10 iteration records, 10 cli-pi completion receipts, all on the DevPass route |
 | Review report | Done | `review/review-report.md`: 0 P0, 0 P1, 12 confirmed epic P2s, known items rerun |
+| Fix phases 001 to 005 | Done | P2s 1 to 10 except P2 4 built by DeepSeek V4.1 Flash at max through cli-pi; phases 001 to 004 committed as `1d078f3356`, `e0b32e5e11`, `75289472d0`, `019b94a403`, and 005 closes the set |
 
 ### Deviations and findings
 
