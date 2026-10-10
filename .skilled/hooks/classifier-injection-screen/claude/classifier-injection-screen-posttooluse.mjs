@@ -21,6 +21,7 @@
 
 import process from 'node:process';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
+import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 import { fetchedText, screenAdvisory } from '../lib/classifier-injection-advisory.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -30,12 +31,6 @@ import { fetchedText, screenAdvisory } from '../lib/classifier-injection-advisor
 function done() {
   // No output + exit 0 -> the fetch result reaches the model unchanged.
   process.exit(0);
-}
-
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

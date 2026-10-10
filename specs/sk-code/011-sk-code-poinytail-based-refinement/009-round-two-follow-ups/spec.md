@@ -14,15 +14,15 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups"
     last_updated_at: "2026-10-10T11:30:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Scaffolded the follow-up phase parent and its five children"
-    next_safe_action: "Plan each child with a Sonnet agent, then build"
+    recent_action: "Built, verified and committed all five children"
+    next_safe_action: "Operator reviews the worktree branch before it merges"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "round-two-follow-ups-parent"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-10 |
 | **Branch** | `worktrees/092-sk-code-ponytail-refinement` |
 | **Parent Spec** | `../spec.md` |
@@ -100,11 +100,11 @@ Close each follow-up in its own child phase, planned and built by Sonnet agents 
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-router-orphan-docs/ | Route the nine orphan docs and make check 1b a default leg | Planned |
-| 2 | 002-quality-report-listing/ | Ceiling report in the quality SKILL.md, version and changelog | Planned |
-| 3 | 003-deep-review-case-rule/ | Reproducing case in the deep-review finding format | Planned |
-| 4 | 004-agents-md-pointers/ | AGENTS.md points to repo rules instead of restating them | Planned |
-| 5 | 005-hook-stdin-deadlines/ | A deadline for the fourteen unbounded hook stdin readers | Planned |
+| 1 | 001-router-orphan-docs/ | Route six orphan docs, allowlist three, and make check 1b a default leg | Complete |
+| 2 | 002-quality-report-listing/ | Ceiling report in the quality SKILL.md, version and changelog | Complete |
+| 3 | 003-deep-review-case-rule/ | Reproducing case in the deep-review finding format | Complete |
+| 4 | 004-agents-md-pointers/ | AGENTS.md points to repo rules instead of restating them | Complete |
+| 5 | 005-hook-stdin-deadlines/ | A deadline for the fourteen unbounded hook stdin readers | Complete |
 
 ### Phase Transition Rules
 

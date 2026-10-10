@@ -1,0 +1,14 @@
+.skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs:60:  for await (const chunk of process.stdin) chunks.push(chunk);
+.skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs:37:  for await (const chunk of process.stdin) chunks.push(chunk);
+.skilled/hooks/task-dispatch/claude/fable-subagent-guard.mjs:24:    return fs.readFileSync(0, 'utf8');
+.skilled/hooks/classifier-injection-screen/devin/classifier-injection-screen-posttooluse.mjs:38:  for await (const chunk of process.stdin) chunks.push(chunk);
+.skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs:59:  for await (const chunk of process.stdin) chunks.push(chunk);
+.skilled/hooks/goal/cursor/goal-inject.mjs:49:  for await (const chunk of process.stdin) chunks.push(chunk);
+.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs:46:  for await (const chunk of process.stdin) chunks.push(chunk);
+.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs:40:  for await (const chunk of process.stdin) chunks.push(chunk);
+.skilled/hooks/goal/devin/goal-inject.mjs:38:  for await (const chunk of process.stdin) chunks.push(chunk);
+.skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs:42:  for await (const chunk of process.stdin) chunks.push(chunk);
+.skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs:36:  for await (const chunk of process.stdin) chunks.push(chunk);
+.skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs:45:  for await (const chunk of process.stdin) chunks.push(chunk);
+.skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs:36:  for await (const chunk of process.stdin) chunks.push(chunk);
+.skilled/hooks/dispatch/cursor/dispatch-preflight-lint.mjs:44:  for await (const chunk of process.stdin) chunks.push(chunk);

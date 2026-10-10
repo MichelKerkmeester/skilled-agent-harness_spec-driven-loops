@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines",
+  "description": "Phase 5: hook-stdin-deadlines",
+  "keywords": [
+    "phase",
+    "hook-stdin-deadlines"
+  ],
+  "lastUpdated": "2026-10-10T08:16:23.372Z",
+  "specId": "005",
+  "folderSlug": "hook-stdin-deadlines",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "009-round-two-follow-ups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

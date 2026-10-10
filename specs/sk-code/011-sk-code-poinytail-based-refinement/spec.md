@@ -122,7 +122,7 @@ These bind every build phase, 002 to 006.
 | 6 | 006-guard-retirement-notes/ | Owner and partial-successor notes for retired guards | Complete |
 | 7 | 007-follow-up-fixes/ | Five follow-up fixes found while building 002 to 006, one child each | Complete |
 | 8 | 008-round-two-recommendations/ | The round-two research recommendations that still hold, one child per group | Complete |
-| 9 | 009-round-two-follow-ups/ | Five follow-ups the round-two build left open, one child each | In Progress |
+| 9 | 009-round-two-follow-ups/ | Five follow-ups the round-two build left open, one child each | Complete |
 
 ### Phase Transition Rules
 

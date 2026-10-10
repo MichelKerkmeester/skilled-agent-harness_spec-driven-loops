@@ -31,6 +31,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { createRequire } from 'node:module';
+import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 
 const require = createRequire(import.meta.url);
 const { readGoalRecord, renderGoalBrief, renderResendReminder, recordTurn, isPluginDisabled } = require('../lib/goal-core.cjs');
@@ -42,12 +43,6 @@ const { readGoalRecord, renderGoalBrief, renderResendReminder, recordTurn, isPlu
 function allow(extra) {
   process.stdout.write(JSON.stringify({ permission: 'allow', ...(extra || {}) }));
   process.exit(0);
-}
-
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

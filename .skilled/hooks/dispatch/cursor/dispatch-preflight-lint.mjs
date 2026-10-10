@@ -18,6 +18,7 @@
 import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
+import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -37,12 +38,6 @@ function approve(agentMessage) {
     ...(agentMessage ? { agent_message: agentMessage } : {}),
   }));
   process.exit(0);
-}
-
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
 }
 
 // Cursor delivers a shell call as tool_name "Shell"; the shared engine reads Claude's

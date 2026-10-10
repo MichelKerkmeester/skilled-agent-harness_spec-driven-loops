@@ -115,8 +115,8 @@ and findings belong here.
 | 007 follow-up fixes | Done | Five children planned and built by haiku xhigh agents, each rerun by the orchestrator and committed |
 | 006 guard retirement notes | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed |
 | 008 round-two recommendations | Done | Five children planned and built by haiku xhigh agents, each rerun by the orchestrator and committed |
-| 009 round-two follow-ups | In progress | Five children, planned and built by Sonnet 5.5 xhigh agents |
-| 001 research round three | In progress | Twenty DeepSeek V4.1 Flash iterations, orchestrated by Opus 5.5 high |
+| 009 round-two follow-ups | Done | Five children planned and built by Sonnet 5.5 xhigh agents, each rerun by the orchestrator and committed |
+| 001 research round three | Done | Twenty DeepSeek V4.1 Flash iterations, orchestrated by Opus 5.5 high; rounds one and two unchanged; commit 00b905bda0 |
 
 ### Deviations and findings
 

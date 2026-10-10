@@ -99,11 +99,11 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| 001 router orphan docs | Pending | Not started |
-| 002 quality report listing | Pending | Not started |
-| 003 deep-review case rule | Pending | Not started |
-| 004 AGENTS.md pointers | Pending | Not started |
-| 005 hook stdin deadlines | Pending | Not started |
+| 001 router orphan docs | Done | Six criteria rerun by the orchestrator after one Hermes generator run; guard 5/5 with check 1b, umbrella 3 guards PASSED, new test 3 of 3; commit 0da902346a |
+| 002 quality report listing | Done | Six criteria rerun by the orchestrator; report test 8 PASS, both documents VALID, sk-code fresh; commit 644cabc980 |
+| 003 deep-review case rule | Done | Six criteria rerun by the orchestrator after one Hermes generator run; 133 tests pass, all mirror checks in sync; commit 77df558665 |
+| 004 AGENTS.md pointers | Done | Six criteria rerun by the orchestrator; AGENTS.md changed on line 296 only, canary 21 anchors with an unchanged prefix report, repo-rule check 11/11; commit 8fdb66cc1b |
+| 005 hook stdin deadlines | Done | Six criteria rerun by the orchestrator; no unbounded reader left, deadline test 18 of 18, odd-input comparison diffs=0, existing suites 78 and 5 pass |
 
 ### Deviations and findings
 

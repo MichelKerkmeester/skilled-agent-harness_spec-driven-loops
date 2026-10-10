@@ -1,0 +1,19 @@
+0a1,18
+>  M .skilled/hooks/README.md
+>  M .skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs
+>  M .skilled/hooks/classifier-injection-screen/devin/classifier-injection-screen-posttooluse.mjs
+>  M .skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs
+>  M .skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs
+>  M .skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs
+>  M .skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs
+>  M .skilled/hooks/dispatch/cursor/dispatch-preflight-lint.mjs
+>  M .skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs
+>  M .skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs
+>  M .skilled/hooks/goal/cursor/goal-inject.mjs
+>  M .skilled/hooks/goal/devin/goal-inject.mjs
+>  M .skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs
+>  M .skilled/hooks/shared/README.md
+>  M .skilled/hooks/shared/hook-adapter-shared.cjs
+>  M .skilled/hooks/task-dispatch/claude/fable-subagent-guard.mjs
+>  M .skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs
+> ?? .skilled/hooks/shared/hook-stdin-deadline.test.mjs

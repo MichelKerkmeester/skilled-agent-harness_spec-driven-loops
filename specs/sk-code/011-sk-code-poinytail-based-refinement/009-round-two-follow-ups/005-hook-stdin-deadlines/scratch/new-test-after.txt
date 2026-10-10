@@ -1,0 +1,27 @@
+▶ every ESM hook exits 0 at the stdin deadline when its host never closes stdin
+  ✔ classifier-injection-screen/claude (0.341625ms)
+  ✔ classifier-injection-screen/devin (0.042584ms)
+  ✔ dispatch/claude preflight (0.037625ms)
+  ✔ dispatch/codex preflight (0.044542ms)
+  ✔ dispatch/cursor preflight (0.043541ms)
+  ✔ dispatch/devin preflight (0.057792ms)
+  ✔ dispatch/claude audit (0.038291ms)
+  ✔ dispatch/codex audit (0.037584ms)
+  ✔ dispatch/devin audit (0.041375ms)
+  ✔ goal/cursor (0.047541ms)
+  ✔ goal/devin (0.026292ms)
+  ✔ mcp-route-guard/cursor (0.019667ms)
+  ✔ task-dispatch/cursor (0.027875ms)
+  ✔ task-dispatch/claude fable (0.015958ms)
+✔ every ESM hook exits 0 at the stdin deadline when its host never closes stdin (3045.1435ms)
+✔ the Claude and Devin preflight lints still flag a dispatch sent on a normal payload (61.093ms)
+✔ the Claude and Devin dispatch audits still record a dispatch sent on a normal payload (68.110584ms)
+✔ the Cursor preflight, MCP route and Task guards still answer a normal payload (227.759042ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3437.968125

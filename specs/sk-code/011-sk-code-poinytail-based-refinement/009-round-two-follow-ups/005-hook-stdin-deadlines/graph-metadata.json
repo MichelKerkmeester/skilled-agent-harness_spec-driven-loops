@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook stdin deadlines",
+      "phase 5 hook stdin deadlines",
+      "hook stdin deadlines plan",
+      "hook stdin deadlines tasks",
+      "hook stdin deadlines goal",
+      "hook stdin deadlines implementation summary"
+    ],
+    "key_topics": [
+      "hook",
+      "stdin",
+      "deadlines",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "thirteen",
+      "scripts",
+      "skilled"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs",
+      ".skilled/hooks/classifier-injection-screen/devin/classifier-injection-screen-posttooluse.mjs",
+      ".skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs",
+      ".skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs",
+      ".skilled/hooks/dispatch/cursor/dispatch-preflight-lint.mjs",
+      ".skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs",
+      ".skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs",
+      ".skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs",
+      ".skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs",
+      ".skilled/hooks/goal/cursor/goal-inject.mjs",
+      ".skilled/hooks/goal/devin/goal-inject.mjs",
+      ".skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs",
+      ".skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs",
+      ".skilled/hooks/task-dispatch/claude/fable-subagent-guard.mjs",
+      ".skilled/hooks/shared/hook-adapter-shared.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "classifier-injection-screen-posttooluse.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit-posttooluse.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/cursor/goal-inject.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "task-dispatch-guard.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "fable-subagent-guard.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/task-dispatch/claude/fable-subagent-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-adapter-shared.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-adapter-shared.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Thirteen",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Thirteen",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Fable",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Thirteen hook scripts under `.skilled/hooks/` read stdin with `for await (const chunk of process.stdin)` and `task-dispatch/claude/fable-subagent-guard.mjs` reads it with `fs.readFileSync(0, 'utf8')` (line 24)",
+    "created_at": "2026-10-10T08:16:22Z",
+    "last_save_at": "2026-10-10T09:04:32.382Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9437c5bde4040e4466e46cd28994ef5c9846212ce0c7c9b95f4aa9ed4094df98",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c47cc1f86fe73e12c684cff09c996ac759516ebebadaf8f7f3a72bc92a186a7a",
+      "plan.md": "fe14608de5f99294f7b231336034f8df76a1574240e7f0c57c5568deb65ce275",
+      "tasks.md": "38542b761763d7880ef631cbf70f5dabaea6c2e52ebaf3e7393c1aab04d9e01d",
+      "implementation-summary.md": "cd450adb7fc5741c6be41e4f99fbcfed862ff5347e21519578ea7127b45d518e"
+    },
+    "last_active_at": null
+  }
+}

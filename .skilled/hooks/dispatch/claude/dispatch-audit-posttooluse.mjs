@@ -21,6 +21,7 @@
 import { join } from 'node:path';
 import * as dispatchAuditCore from '../lib/dispatch-audit.mjs';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
+import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -29,12 +30,6 @@ import { isHookEnabled } from '../../shared/hook-flags.mjs';
 function done() {
   // No output + exit 0 -> pure observation, nothing for Claude to act on.
   process.exit(0);
-}
-
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

@@ -21,6 +21,7 @@ import { readHardRules, evaluate } from '../lib/dispatch-rule-checks.mjs';
 import { resolveDispatchPacket } from '../lib/dispatch-audit.mjs';
 import path from 'node:path';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
+import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 
 // Dispatch-shape registry: command pattern → the skill whose sidecar declares its hard rules.
 // `skill` is the short display name (used in advisory/block messages); `packetPath` is the
@@ -38,12 +39,6 @@ import { isHookEnabled } from '../../shared/hook-flags.mjs';
 function approve() {
   // No output + exit 0 → defer to the normal permission flow.
   process.exit(0);
-}
-
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

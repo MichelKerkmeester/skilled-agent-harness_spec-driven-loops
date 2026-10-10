@@ -1,0 +1,337 @@
+▶ every ESM hook exits 0 at the stdin deadline when its host never closes stdin
+  ✖ classifier-injection-screen/claude (0.59825ms)
+  ✖ classifier-injection-screen/devin (0.128541ms)
+  ✖ dispatch/claude preflight (0.062125ms)
+  ✖ dispatch/codex preflight (0.041459ms)
+  ✖ dispatch/cursor preflight (0.045958ms)
+  ✖ dispatch/devin preflight (0.045875ms)
+  ✖ dispatch/claude audit (0.04425ms)
+  ✖ dispatch/codex audit (0.041542ms)
+  ✖ dispatch/devin audit (0.063709ms)
+  ✖ goal/cursor (0.069792ms)
+  ✖ goal/devin (0.056042ms)
+  ✖ mcp-route-guard/cursor (0.03775ms)
+  ✖ task-dispatch/cursor (0.027584ms)
+  ✖ task-dispatch/claude fable (0.024583ms)
+✖ every ESM hook exits 0 at the stdin deadline when its host never closes stdin (12009.913125ms)
+✔ the Claude and Devin preflight lints still flag a dispatch sent on a normal payload (59.49175ms)
+✔ the Claude and Devin dispatch audits still record a dispatch sent on a normal payload (62.729208ms)
+✔ the Cursor preflight, MCP route and Task guards still answer a normal payload (166.745667ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 3
+ℹ fail 15
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12336.844708
+
+✖ failing tests:
+
+test at specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13
+✖ classifier-injection-screen/claude (0.59825ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:88:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13
+✖ classifier-injection-screen/devin (0.128541ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:88:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13
+✖ dispatch/claude preflight (0.062125ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:88:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13
+✖ dispatch/codex preflight (0.041459ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:88:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13
+✖ dispatch/cursor preflight (0.045958ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:88:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13
+✖ dispatch/devin preflight (0.045875ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:88:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13
+✖ dispatch/claude audit (0.04425ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:88:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13
+✖ dispatch/codex audit (0.041542ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:88:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13
+✖ dispatch/devin audit (0.063709ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:88:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13
+✖ goal/cursor (0.069792ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:88:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13
+✖ goal/devin (0.056042ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:88:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13
+✖ mcp-route-guard/cursor (0.03775ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:88:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13
+✖ task-dispatch/cursor (0.027584ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:88:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13
+✖ task-dispatch/claude fable (0.024583ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:88:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines/scratch/probe-before-tmp/.skilled/hooks/shared/hook-stdin-deadline.test.mjs:86:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

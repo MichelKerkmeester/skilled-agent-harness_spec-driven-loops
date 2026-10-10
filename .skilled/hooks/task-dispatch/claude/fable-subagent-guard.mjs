@@ -15,17 +15,10 @@
 
 import fs from 'node:fs';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
+import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 
 const ALLOWED = /^(opus|sonnet)$|^claude-(opus|sonnet)\b/;
 const TRANSCRIPT_TAIL_BYTES = 2 * 1024 * 1024;
-
-function readStdin() {
-  try {
-    return fs.readFileSync(0, 'utf8');
-  } catch {
-    return '';
-  }
-}
 
 // Last main-loop model wins: the transcript appends chronologically, so the final
 // occurrence reflects the model currently driving the session.
@@ -74,11 +67,11 @@ function deny(reason) {
   }));
 }
 
-function main() {
+async function main() {
   if (!isHookEnabled('task-dispatch')) return; // kill-switch: full no-op
   let payload;
   try {
-    payload = JSON.parse(readStdin());
+    payload = JSON.parse(await readStdin());
   } catch {
     return; // malformed stdin: fail open
   }

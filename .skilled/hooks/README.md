@@ -106,7 +106,7 @@ hooks/
 |   +-- install-hooks.sh
 |   `-- pre-commit                   # chain-called by .skilled/scripts/git-hooks/pre-commit
 +-- shared/
-|   `-- hook-adapter-shared.cjs      # stdin collection + fail-open JSON parse, used by 5 adapters below
+|   `-- hook-adapter-shared.cjs      # stdin collection + fail-open JSON parse, used by the CommonJS and ESM adapters below
 +-- dispatch/                        # cli-opencode dispatch-shape hard-rule + audit hooks
 |   +-- lib/
 |   |   +-- dispatch-rule-checks.mjs
@@ -174,7 +174,7 @@ Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch
 
 `sk-git-preflight-advisory.js` and `cli-dispatch-audit.js` (OpenCode plugins owned by `sk-git`/`cli-opencode` respectively) both also import `dispatch/lib/dispatch-rule-checks.mjs` and `dispatch/lib/dispatch-audit.mjs` from here.
 
-`shared/hook-adapter-shared.cjs` is imported by the 5 adapters that parse raw stdin JSON: `mcp-route-guard/{claude,codex,devin}/mcp-route-guard.cjs` and `task-dispatch/{claude,devin}/task-dispatch-guard.cjs`.
+`shared/hook-adapter-shared.cjs` is the stdin reader for the adapters that parse a raw JSON payload. The CommonJS adapters `require` it: `mcp-route-guard/{claude,codex,devin}/mcp-route-guard.cjs`, `task-dispatch/{claude,devin}/task-dispatch-guard.cjs` and `post-edit-quality/{claude,codex,devin}`. The ESM adapters import `readStdin` from it by name: `classifier-injection-screen/{claude,devin}`, `dispatch/{claude,codex,cursor,devin}` (preflight), `dispatch/{claude,codex,devin}` (audit), `goal/{cursor,devin}`, `mcp-route-guard/cursor` and `task-dispatch/{cursor,claude}`. Every one gives up at a 3000 ms deadline when its host never closes stdin.
 
 ---
 
@@ -194,6 +194,9 @@ Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch
 ```bash
 # node:test suites
 node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs .skilled/hooks/shared/hook-flags.test.cjs
+
+# stdin deadline: every ESM adapter exits at the reader's deadline when stdin never closes
+node --test .skilled/hooks/shared/hook-adapter-shared.test.cjs .skilled/hooks/shared/hook-stdin-deadline.test.mjs
 
 # dispatch-audit is a vitest suite and cannot run under node --test
 npx vitest run --root .skilled/hooks/dispatch/lib dispatch-audit.test.mjs

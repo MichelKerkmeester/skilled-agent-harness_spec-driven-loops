@@ -19,6 +19,7 @@
 
 import { join } from 'node:path';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
+import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 import {
   DISPATCH_SHAPES,
   DEFAULT_LOG_RELATIVE_PATH,
@@ -35,12 +36,6 @@ import {
 function done() {
   // No output + exit 0 -> pure observation, nothing for Devin to act on.
   process.exit(0);
-}
-
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
