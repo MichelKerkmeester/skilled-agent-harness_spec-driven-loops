@@ -75,6 +75,7 @@ phase and binds as if written here.
 | 009-round-two-follow-ups | `009-round-two-follow-ups/goal.md` |
 | 010-round-three-remediation | `010-round-three-remediation/goal.md` |
 | 011-round-four-remediation | `011-round-four-remediation/goal.md` |
+| 014-skill-authoring-ux-research | `014-skill-authoring-ux-research/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
