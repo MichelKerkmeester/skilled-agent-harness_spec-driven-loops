@@ -1,0 +1,55 @@
+{
+  "type": "iteration",
+  "iteration": 5,
+  "run": 5,
+  "runId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "sessionId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "lineageId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.4,
+  "status": "complete",
+  "focus": "Root framework: REPO RULES.md trigger router and AGENTS.md against Ponytail's always-on model",
+  "findingsCount": 5,
+  "noveltyJustification": "One finding is fully new (the close-out contract never discloses a residual risk), two are partially new (accessibility at root scope, trigger-table coverage verification), and two reconfirm self-application and adapter alignment as adopted.",
+  "keyQuestions": [
+    "Which Ponytail teachings improve the root REPO RULES.md and AGENTS.md framework, including the trigger-table load model?"
+  ],
+  "answeredQuestions": [
+    "Which Ponytail teachings improve the root REPO RULES.md and AGENTS.md framework, including the trigger-table load model?"
+  ],
+  "ruledOut": [
+    {
+      "approach": "Add a compact never-cut list as a second root file",
+      "reason": "The floors are deliberately distributed at their points of use; a consolidated copy would drift, which the precedence clause exists to avoid. The accessibility extension is one line in existing homes.",
+      "evidence": "REPO RULES.md:74"
+    },
+    {
+      "approach": "Import Ponytail's persona framing at the root",
+      "reason": "Rejected for the agent definitions in iteration 1; the root framework's enforcement tone makes the same argument.",
+      "evidence": "specs/sk-code/011-sk-code-poinytail-based-refinement/context/AGENTS.md:3"
+    },
+    {
+      "approach": "Replace the trigger router with an always-on compact file",
+      "reason": "The router's known failure (a missed trigger) is already countered by Gate 5, load-before-action and the precedence ladder; a compact file would duplicate or drop detail.",
+      "evidence": "REPO RULES.md:12"
+    }
+  ],
+  "toolsUsed": ["read", "bash", "python3"],
+  "sourcesQueried": [
+    "REPO RULES.md",
+    "AGENTS.md",
+    ".skilled/repo-rules/evidence-and-proof.md",
+    ".skilled/repo-rules/communication-handoff.md",
+    ".skilled/repo-rules/prevent-overengineering.md",
+    ".skilled/repo-rules/scope-discipline.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/AGENTS.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md"
+  ],
+  "timestamp": "2026-10-10T06:06:00Z",
+  "durationMs": 78000
+}

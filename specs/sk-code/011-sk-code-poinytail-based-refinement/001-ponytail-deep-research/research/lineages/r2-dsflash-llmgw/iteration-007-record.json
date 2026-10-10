@@ -1,0 +1,53 @@
+{
+  "type": "iteration",
+  "iteration": 7,
+  "run": 7,
+  "runId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "sessionId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "lineageId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.83,
+  "status": "complete",
+  "focus": "Shared layer and workflow modes: closure checks plus review-contract gaps",
+  "findingsCount": 6,
+  "noveltyJustification": "Round one's doctrine-pass and review-output recommendations are verified implemented in the current files, the review contract still lacks a reproducing case, cross-group numbering and a connected-code read step, and the test-effectiveness check is partially present.",
+  "keyQuestions": [
+    "Which Ponytail teachings improve the sk-code shared layer and the quality and review modes beyond round one's adopted set and defects?"
+  ],
+  "answeredQuestions": [
+    "Which Ponytail teachings improve the sk-code shared layer and the quality and review modes beyond round one's adopted set and defects?"
+  ],
+  "ruledOut": [
+    {
+      "approach": "Add Ponytail's at-most-20-findings cap to the review mode",
+      "reason": "The mode is findings-first with a removal plan and explicit severities; a cap trades completeness for brevity and the disclosure half is served by Not checked:.",
+      "evidence": "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md:84"
+    },
+    {
+      "approach": "Add a second plain-English output contract to the review mode",
+      "reason": "Repo-wide communication rules own prose; duplicating them in the mode creates the version drift REPO RULES.md exists to prevent.",
+      "evidence": "REPO RULES.md:74"
+    },
+    {
+      "approach": "Re-propose the reach list against the hub's doctrine",
+      "reason": "Closed by the current workflow-implement.md; remaining targets are the agent checklist, the orchestrate Task Format and the rules file.",
+      "evidence": ".skilled/skills/sk-code/shared/references/workflow-implement.md:51"
+    }
+  ],
+  "toolsUsed": ["read", "bash", "python3"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+    ".skilled/skills/sk-code/shared/references/workflow-implement.md",
+    ".skilled/skills/sk-code/shared/references/workflow-verify.md",
+    ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md",
+    ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md"
+  ],
+  "timestamp": "2026-10-10T06:09:06Z",
+  "durationMs": 94000
+}

@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement"
-    last_updated_at: "2026-04-11T00:00:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize phase-parent continuity block"
-    next_safe_action: "Plan or resume a child phase folder"
+    last_updated_at: "2026-10-10T06:36:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Closed phases 001 to 007 and a second research round"
+    next_safe_action: "Operator reviews the worktree branch before it merges"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-09 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -75,7 +75,7 @@ Find the Ponytail 5 teachings, mechanisms and ideas worth adopting across the sk
 ### Out of Scope
 - Editing anything inside `context/`. It is a vendored reference copy.
 - Installing Ponytail or any of its runtime plugins.
-- The defects handed off to other owners (Handoffs Outside sk-code, below), the sk-code advisor-accuracy failure the probe battery already shows, and any change to `agent-io-contract.md`.
+- The sk-code advisor-accuracy failure the probe battery already shows, and any change to `agent-io-contract.md`.
 
 ### Cross-Phase Execution Rules
 
@@ -101,6 +101,7 @@ These bind every build phase, 002 to 006.
 | Webflow and OpenCode checker scripts | Modify | webflow-checker-fix | See `004-webflow-checker-fix/spec.md` |
 | sk-code-review contract and review agent mirrors | Modify | review-output-additions | See `005-review-output-additions/spec.md` |
 | Drift-guard script and retired-guard docs | Modify | guard-retirement-notes | See `006-guard-retirement-notes/spec.md` |
+| Review checker, leaf generator, mirror gate, hook stdin reader, router-sync guard | Modify | follow-up-fixes | See `007-follow-up-fixes/spec.md` |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -118,7 +119,7 @@ These bind every build phase, 002 to 006.
 | 4 | 004-webflow-checker-fix/ | Callback error capture in the Webflow pre-deploy checker; known-bad inputs for two checkers | Complete |
 | 5 | 005-review-output-additions/ | "Not checked:" line, workload note, User impact rewording, removal search line, final-line check | Complete |
 | 6 | 006-guard-retirement-notes/ | Owner and partial-successor notes for retired guards | Complete |
-| 7 | 007-follow-up-fixes/ | Five follow-up fixes found while building 002 to 006, one child each | In Progress |
+| 7 | 007-follow-up-fixes/ | Five follow-up fixes found while building 002 to 006, one child each | Complete |
 
 ### Phase Transition Rules
 
@@ -140,7 +141,7 @@ These bind every build phase, 002 to 006.
 
 ### Handoffs Outside sk-code
 
-These defects came out of the research but belong to other owners, so no phase here builds them.
+These defects came out of the research and belong to other owners, so phases 002 to 006 left them alone. At the operator's direction, phase 007 built both: D2 in `007-follow-up-fixes/003-codex-mirror-gate/`, D4 in `007-follow-up-fixes/004-hook-stdin-deadline/`.
 
 | Defect | Owner | Change needed |
 |--------|-------|---------------|
@@ -153,8 +154,8 @@ These defects came out of the research but belong to other owners, so no phase h
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Which implementation phases follow the research? Phase 1 synthesis proposes them.
-- Did any earlier Ponytail adoption get lost when sk-code became a two-axis hub?
+- Answered 2026-10-10: the research synthesis proposed phases 002 to 006, and phase 007 closed the gaps found while building them.
+- Answered 2026-10-10: yes. The surface precedence order and the Obsidian coverage around it were lost (`001-ponytail-deep-research/research/research.md` section 8); phase 002 restored both.
 <!-- /ANCHOR:questions -->
 
 ---

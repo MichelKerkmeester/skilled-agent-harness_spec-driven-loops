@@ -1,0 +1,48 @@
+{
+  "type": "iteration",
+  "iteration": 9,
+  "run": 9,
+  "runId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "sessionId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "lineageId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 1.0,
+  "status": "complete",
+  "focus": "Original ideas beyond Ponytail plus the rejection ledger",
+  "findingsCount": 5,
+  "noveltyJustification": "Five original proposals, each derived from a round-two gap, checked against round one's original-idea set and against existing repo mechanisms; none duplicates prior proposals or implements an existing system.",
+  "keyQuestions": [
+    "Which original ideas does Ponytail inspire for the agent definitions, repository rules and root docs, and which candidate transfers should be rejected with a reason?"
+  ],
+  "answeredQuestions": [
+    "Which original ideas does Ponytail inspire for the agent definitions, repository rules and root docs, and which candidate transfers should be rejected with a reason?"
+  ],
+  "ruledOut": [
+    {"approach": "Session-global lite/full/ultra intensity", "reason": "Flattens the two routing axes; rejected twice by round one.", "evidence": "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:168"},
+    {"approach": "Persona sentence for agent definitions", "reason": "Adds no enforceable behavior to contract-style definitions.", "evidence": ".skilled/agents/code.md:23"},
+    {"approach": "Rename ceiling: to Ponytail's shortcut:", "reason": "Churn; the token is deliberately brand-neutral and the harvest report is the transferable part.", "evidence": ".skilled/skills/sk-code/changelog/v1.4.0.0.md:22"},
+    {"approach": "Port Ponytail's numbered ladder into repo rules", "reason": "The rules deliberately use reversal cost and delegate rungs to the code skill.", "evidence": ".skilled/repo-rules/prevent-overengineering.md:68"},
+    {"approach": "Ponytail's one-small-test reflex", "reason": "Weaker than the P1 coverage floor.", "evidence": "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:148"},
+    {"approach": "Build-nothing as a default answer", "reason": "Would narrow the ask; scope discipline blocks it.", "evidence": ".skilled/repo-rules/scope-discipline.md:57"},
+    {"approach": "At-most-20-findings cap for review", "reason": "Trades completeness; disclosure half is served by Not checked:.", "evidence": ".skilled/skills/sk-code/sk-code-review/SKILL.md:359"},
+    {"approach": "Second plain-English contract in the review mode", "reason": "Repo-wide communication rules own prose; duplication drifts.", "evidence": "REPO RULES.md:74"},
+    {"approach": "Per-host verified-version records", "reason": "Deferred by round one; doctor and CI prove freshness structurally.", "evidence": ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml:1"},
+    {"approach": "Separate Obsidian probe battery", "reason": "Graph, canary and playbook now carry Obsidian.", "evidence": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json:1"},
+    {"approach": "A separate restraint-routing harness", "reason": "The canary corpus is the harness; add a case, not a system.", "evidence": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json:1"},
+    {"approach": "Reviving Ponytail's session-state hook", "reason": "No consumer; the repo's hooks are event-scoped.", "evidence": "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:230"}
+  ],
+  "toolsUsed": ["read", "bash"],
+  "sourcesQueried": [
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-debt/SKILL.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/check-versions.js",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/iterations/iteration-001.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/iterations/iteration-008.md"
+  ],
+  "timestamp": "2026-10-10T06:13:33Z",
+  "durationMs": 60000
+}

@@ -1,0 +1,36 @@
+{
+  "stem": "deep_research.convergence_evaluated",
+  "scope": {
+    "runId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+    "lineageId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+    "iteration": 10
+  },
+  "data": {
+    "decision": "incomplete",
+    "rawSignals": {
+      "newInfoRatio": 0.88,
+      "contradictionRisk": 0,
+      "citationDrift": 0,
+      "observationDigest": "de0db31345cae4909212c62148405ced275bc903799e51a22cebc35e71997e10"
+    },
+    "trustedSignals": {
+      "evidenceYield": 1,
+      "independentSourceRatio": 1,
+      "supportedClaimRatio": 1,
+      "assessmentDigest": "7eb8b622feca5f3964f41d340b380234178c34a35a047e6e1aff27947d5c5347"
+    },
+    "qualityGateResults": {
+      "sourceDiversity": "unknown",
+      "contradictionResolution": "unknown",
+      "citationIntegrity": "unknown",
+      "policyVersion": "r2-lineage@1",
+      "resultDigest": "24b56af9da7ed7244129e8420c51c1ff139dd6fd3896f85d60d85f98e9ebd6b8"
+    },
+    "blockerIds": [],
+    "policyFingerprint": "b012f2742a475af71eda3717b579091dc0cc8118c373005da190a69af31cb14c",
+    "evaluatorFingerprint": "d414f33600095767517f308cde5ca222d77cf049c7b1d345f4e34e955ea4df96",
+    "evidenceTailHash": "df87421273af2f54e3899d1cdef18d4146421c15ba15557fbfdd9aebd361256b",
+    "incompleteReason": "max-iterations cap reached (10/10); convergence threshold 0.05 not met",
+    "recoveryReason": null
+  }
+}

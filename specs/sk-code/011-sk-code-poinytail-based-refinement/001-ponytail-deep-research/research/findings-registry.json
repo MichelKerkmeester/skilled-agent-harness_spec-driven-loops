@@ -1,7 +1,8 @@
 {
   "mergedFrom": [
     "deepseek-flash-cline",
-    "luna-max-fast"
+    "luna-max-fast",
+    "r2-dsflash-llmgw"
   ],
   "lineageExecutors": {
     "deepseek-flash-cline": {
@@ -12,6 +13,11 @@
     "luna-max-fast": {
       "kind": "cli-codex",
       "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    },
+    "r2-dsflash-llmgw": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
       "reasoningEffort": "max"
     }
   },
@@ -32,6 +38,18 @@
     }
   ],
   "resolvedQuestions": [
+    {
+      "id": "q1-agent-definitions",
+      "text": "Which Ponytail teachings improve the four code-working agent definitions (.skilled/agents/code.md, review.md, debug.md, orchestrate.md) and their runtime mirrors, and which are already adopted there?",
+      "resolvedAtIteration": 3,
+      "status": "resolved",
+      "evidence": [
+        "lineage:r2-dsflash-llmgw (iteration 3)"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
     {
       "id": "q1-doctrine",
       "text": "What is Ponytail 5.1.0 core doctrine, cost model, and smallest-complete-change ladder, and which parts are absent from the sk-code parent hub and its modes?",
@@ -57,6 +75,18 @@
       ]
     },
     {
+      "id": "q2-repo-rules",
+      "text": "Which Ponytail teachings improve the repository rules (.skilled/repo-rules/*.md) without weakening scope, evidence, verification or communication floors?",
+      "resolvedAtIteration": 4,
+      "status": "resolved",
+      "evidence": [
+        "lineage:r2-dsflash-llmgw (iteration 4)"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
       "id": "q3-commands",
       "text": "How do Ponytail commands and bundled skills delegate work, and how does that compare with sk-code mode-registry and hub-router routing?",
       "resolvedAtIteration": 3,
@@ -69,6 +99,30 @@
       ]
     },
     {
+      "id": "q3-root-framework",
+      "text": "Which Ponytail teachings improve the root REPO RULES.md and AGENTS.md framework, including the trigger-table load model?",
+      "resolvedAtIteration": 5,
+      "status": "resolved",
+      "evidence": [
+        "lineage:r2-dsflash-llmgw (iteration 5)"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "q4-hub-core",
+      "text": "Which Ponytail teachings improve the sk-code hub core (SKILL.md, ROUTER.md, mode-registry.json, hub-router.json) beyond what round one settled?",
+      "resolvedAtIteration": 6,
+      "status": "resolved",
+      "evidence": [
+        "lineage:r2-dsflash-llmgw (iteration 6)"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
       "id": "q4-portability",
       "text": "How does Ponytail stay portable across agent runtimes and rule-file copies, and which mechanisms could strengthen sk-code runtime surfaces and rule-copy checks?",
       "resolvedAtIteration": 4,
@@ -78,6 +132,18 @@
       ],
       "_lineages": [
         "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "q5-shared-modes",
+      "text": "Which Ponytail teachings improve the sk-code shared layer and the quality and review modes beyond round one's adopted set and defects?",
+      "resolvedAtIteration": 7,
+      "status": "resolved",
+      "evidence": [
+        "lineage:r2-dsflash-llmgw (iteration 7)"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
       ]
     },
     {
@@ -105,6 +171,30 @@
       ]
     },
     {
+      "id": "q6-surfaces",
+      "text": "Which Ponytail teachings improve the per-surface packets (sk-code-webflow, sk-code-opencode, sk-code-obsidian, sk-code-quality) beyond round one's cited defects?",
+      "resolvedAtIteration": 8,
+      "status": "resolved",
+      "evidence": [
+        "lineage:r2-dsflash-llmgw (iteration 8)"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "q7-mirrors",
+      "text": "How do Ponytail's cross-runtime mirror and portability mechanics compare with the repo's generated mirrors and agent drift checks, and what should change?",
+      "resolvedAtIteration": 3,
+      "status": "resolved",
+      "evidence": [
+        "lineage:r2-dsflash-llmgw (iteration 3)"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
       "id": "q7-reconciliation",
       "text": "Which ideas from the earlier 015 refinement are still adopted, which are missing after the two-axis hub rebuild, and which are LOST?",
       "resolvedAtIteration": 7,
@@ -117,6 +207,18 @@
       ]
     },
     {
+      "id": "q8-original",
+      "text": "Which original ideas does Ponytail inspire for the agent definitions, repository rules and root docs, and which candidate transfers should be rejected with a reason?",
+      "resolvedAtIteration": 9,
+      "status": "resolved",
+      "evidence": [
+        "lineage:r2-dsflash-llmgw (iteration 9)"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
       "id": "q8-rejections",
       "text": "Which Ponytail ideas should be rejected for sk-code and why, and what original ideas does Ponytail inspire that it does not contain?",
       "resolvedAtIteration": 9,
@@ -126,6 +228,18 @@
       ],
       "_lineages": [
         "deepseek-flash-cline"
+      ]
+    },
+    {
+      "id": "q9-classification",
+      "text": "Which round-two findings are NEW, ALREADY-COVERED or ALREADY-ADOPTED, and what priority does each carry for the ranked findings table?",
+      "resolvedAtIteration": 10,
+      "status": "resolved",
+      "evidence": [
+        "lineage:r2-dsflash-llmgw (iteration 10)"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
       ]
     },
     {
@@ -198,6 +312,843 @@
     }
   ],
   "keyFindings": [
+    {
+      "id": "f-iter001-001",
+      "label": "The reach list before editing is missing from @code's pre-implementation gate: Ponytail lists every place a change must reach (callers, tests, fixtures, config, exports) before writing, while @code's checklist checks scope, allowlist and routing but never enumerates the reach set. NEW target, ALREADY-COVERED idea (round one recommended it for workflow-implement.md).",
+      "severity": "P1",
+      "iteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/AGENTS.md:14",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:21",
+        ".skilled/agents/code.md:205",
+        ".skilled/agents/code.md:211",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:146"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter001-002",
+      "label": "@code's RETURN contract has no gap-disclosure line: Ponytail ends every reply with what was skipped or not checked plus user risk, sk-code-review already adopted the analogous 'Not checked:' line, but @code's RETURN fields never name unchecked work or user-facing risk. NEW target, idea adopted on the review side.",
+      "severity": "P1",
+      "iteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:15",
+        ".skilled/agents/code.md:297",
+        ".skilled/agents/code.md:331",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:380"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter001-003",
+      "label": "@review has no no-case-no-finding evidence bar: Ponytail requires a concrete input or situation per finding before reporting, while @review's Issue Evidence Requirements ask only for file:line plus snippet or pattern reference and its adversarial pass challenges by disposition, not by demanding a case. NEW.",
+      "severity": "P1",
+      "iteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:59",
+        ".skilled/agents/review.md:358",
+        ".skilled/agents/review.md:364",
+        ".skilled/agents/review.md:394"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter001-004",
+      "label": "@review never reads the connected code as a named workflow step: Ponytail reads the diff then callers, called functions, tests and README, and greps every caller on signature or behavior change, while @review's ANALYZE step is tool-oriented and its Read-Budget Discipline discourages wide reads. The rules are compatible as coverage-once versus no-repeats. NEW.",
+      "severity": "P1",
+      "iteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:21",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:24",
+        ".skilled/agents/review.md:48",
+        ".skilled/agents/review.md:72"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter002-001",
+      "label": "The ceiling: convention has no harvest report: Ponytail-debt scans markers into one debt ledger, flags no-trigger rows that silently rot, and closes with counts; sk-code has the producer convention and the reviewer downgrade rule but no reporting surface, so a marked deferral can become permanent unnoticed. NEW mechanism for sk-code-quality.",
+      "severity": "P1",
+      "iteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-debt/SKILL.md:9",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-debt/SKILL.md:36",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-debt/SKILL.md:39",
+        ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md:175",
+        ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md:183",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:153",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/README.md:1"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter003-001",
+      "label": "Round one's D2 (Codex-only changes passing unchecked) is closed in the current tree: the checker regex includes codex, its orphan list looks for .codex mirrors, both pre-commit hooks include codex paths, and the pre-commit mirror gate runs the dedicated Codex sync checks. VERIFIED CLOSURE; the parent should not reopen it as pending.",
+      "severity": "P1",
+      "iteration": 3,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:32",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:88",
+        ".skilled/hooks/git/pre-commit:87",
+        ".skilled/scripts/git-hooks/pre-commit:170",
+        ".skilled/scripts/git-hooks/pre-commit:259",
+        ".skilled/scripts/git-hooks/pre-commit:260"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter003-002",
+      "label": "The Hermes agent-persona mirror check runs only in CI: sync-skills-hermes.cjs mirrors .skilled/agents personas into .hermes/skills/agent-* with a --check mode, CI runs both Hermes checks, but pre-commit has zero Hermes references and no .hermes entry in its mirror lists, the doctor runtime-mirror config has zero Hermes entries, and the doctor update route checks only Hermes prompts while the doctor doc claims agent mirrors too. NEW, same failure class as the closed D2.",
+      "severity": "P1",
+      "iteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs:20",
+        ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs:27",
+        ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs:48",
+        ".github/workflows/command-tree-parity.yml:62",
+        ".github/workflows/command-tree-parity.yml:65",
+        ".github/workflows/command-tree-parity.yml:66",
+        ".skilled/scripts/git-hooks/pre-commit:210",
+        ".skilled/scripts/git-hooks/pre-commit:223",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml:186",
+        ".skilled/commands/doctor/runtime-mirrors.md:59"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter006-001",
+      "label": "Restraint and simplification prompts have no front-door routing vocabulary: Ponytail activates on yagni, simplest solution, over-engineering and bloat, the sk-code hub owns the doctrine, but hub-router quality classes, mode-registry quality aliases, description.json keywords and ROUTER.md carry none of the vocabulary, so a simplify/over-engineered request cannot score the quality mode lexically. NEW.",
+      "severity": "P1",
+      "iteration": 6,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:7",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:8",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:287",
+        ".skilled/skills/sk-code/hub-router.json:52",
+        ".skilled/skills/sk-code/hub-router.json:56",
+        ".skilled/skills/sk-code/mode-registry.json:36"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter007-001",
+      "label": "Round one's doctrine-pass recommendation is fully implemented: the always-loaded ladder carries the reuse step as rung 2 of seven, its never-cut sentence names accessibility, the implement workflow carries the full reach list verbatim, and its Pre-Write Restraint repeats the ladder. VERIFIED CLOSURE; remaining reach-list gaps are only the outer layers.",
+      "severity": "P1",
+      "iteration": 7,
+      "sources": [
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:47",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:52",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:54",
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:51",
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:66"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter007-002",
+      "label": "Round one's review-output recommendation is fully implemented: Not checked with its exact placement, the performance workload inside Risk, the reworded consequence as User impact, and the widened removal search covering callers, tests, fixtures, config and string references. VERIFIED CLOSURE.",
+      "severity": "P1",
+      "iteration": 7,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:359",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:380",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:344",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:345",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:57"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter007-003",
+      "label": "The review finding contract still lacks a reproducing case: Ponytail demands a concrete input or situation per finding, while the mode's format requires Risk, User impact, Finding class, Scope proof and Recommended fix, and its NEVER list bans vague findings without demanding reproducibility. NEW for the mode; the same gap was filed for @review in iteration 1.",
+      "severity": "P1",
+      "iteration": 7,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:59",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:344",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:350",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:413"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter007-005",
+      "label": "The review mode's Phase 1 never enumerates the connected code: Ponytail reads callers of every changed function, the functions it calls, the tests and the README, while Phase 1 inspects the review target and loads standards and Phase 3 analyzes without a named read of callers or tests. NEW for the mode, ALREADY-COVERED idea at the agent layer.",
+      "severity": "P1",
+      "iteration": 7,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:21",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:24",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:290",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:294",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:304"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter008-001",
+      "label": "D1 is fixed: the Webflow checker collects deferred callback errors from setTimeout and requestAnimationFrame through a run_callback wrapper and reports the first source and message, so a script whose deferred code throws now fails. VERIFIED CLOSURE.",
+      "severity": "P1",
+      "iteration": 8,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:37",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:138",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:358"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter008-002",
+      "label": "D3 is fixed: the playbook index row points at the stack-folder validator scenario and the expected language list names all six folders (config, javascript, python, rust, shell, typescript). VERIFIED CLOSURE.",
+      "severity": "P1",
+      "iteration": 8,
+      "sources": [
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:383",
+        ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/stack-folders-validator.md:33"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter008-003",
+      "label": "D4 is fixed: the shared stdin reader has a 3000 ms deadline that settles on stream end or deadline and clears timer and listeners, and both post-edit adapters import it instead of carrying their own copy. VERIFIED CLOSURE.",
+      "severity": "P1",
+      "iteration": 8,
+      "sources": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:14",
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:44",
+        ".skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs:34",
+        ".skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs:98",
+        ".skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs:23",
+        ".skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs:105"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter008-004",
+      "label": "The precedence and Obsidian recommendation is closed across the surfaces: OBSIDIAN row and OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN in stack-detection, hub surface table and order, ROUTER.md vocabulary, playbook SD-004 with a dedicated scenario, both canary cases, and the advisor graph. VERIFIED CLOSURE.",
+      "severity": "P1",
+      "iteration": 8,
+      "sources": [
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:30",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:33",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:39",
+        ".skilled/skills/sk-code/SKILL.md:38",
+        ".skilled/skills/sk-code/SKILL.md:135",
+        ".skilled/skills/sk-code/ROUTER.md:26",
+        ".skilled/skills/sk-code/ROUTER.md:271",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:358",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json:1",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json:1"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter009-003",
+      "label": "Original idea: one authored agent source per dialect, generated elsewhere. Three byte-identical OpenCode-dialect copies exist with no equality check; declare .skilled/agents the authored source and generate .opencode/agents and .hermes/agents in the existing sync pipeline, as four other hosts already do.",
+      "severity": "P1",
+      "iteration": 9,
+      "sources": [
+        ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:51",
+        ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs:27",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:45"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter009-005",
+      "label": "Original idea: a vocabulary-parity check across the four routing surfaces (hub-router classes, mode-registry aliases, description keywords, canary corpus), modeled on the doctor's version parity: every alias asserted by the canary must resolve in the registries and every registry alias must be classifiable, failing with the missing surface named. Target: parent-skill-check or the compiled-routing gate.",
+      "severity": "P1",
+      "iteration": 9,
+      "sources": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1694",
+        ".skilled/skills/sk-code/hub-router.json:52"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter010-002",
+      "label": "Round-one closure ledger: recommendations 1, 3, 4, 5, 6, 8 and the D4 hook handoff are closed in the current tree; recommendation 2 is half closed (D1 fix landed, known-bad test input missing); recommendation 7 remains open; recommendation 10 stays deferred by design. VERIFIED.",
+      "severity": "P1",
+      "iteration": 10,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:210",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:299",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/iterations/iteration-008.md"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter010-004",
+      "label": "Scope containment held for the whole run: every artifact written sits inside the lineage directory (ten narratives, nine deltas, nine record files, init event, config, strategy, gateway ledger and projection writes), no file outside was created or modified, and the only non-read commands were the append-gateway invocations whose writes land in the run directory. VERIFIED.",
+      "severity": "P1",
+      "iteration": 10,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/deep-research-config.json:53"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter001-005",
+      "label": "@review findings carry no assumed-load statement: Ponytail tells the reviewer to find the expected load and say which load was assumed, while @review's Performance dimension judges inefficiencies without naming the load. NEW target, ALREADY-COVERED idea (round one lodged the workload note for sk-code-review).",
+      "severity": "P2",
+      "iteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:26",
+        ".skilled/agents/review.md:132",
+        ".skilled/agents/review.md:197",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:139"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter001-006",
+      "label": "@review reports are not numbered across severity groups: Ponytail numbers findings across all groups so a user can say 'fix 2 and 5', while @review's report formats list P0, P1 and P2 sections with no shared numbering. NEW.",
+      "severity": "P2",
+      "iteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:82",
+        ".skilled/agents/review.md:277",
+        ".skilled/agents/review.md:286"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter001-007",
+      "label": "@review has no stated order of importance for report ordering: Ponytail fixes the order correct, safe, holds under load, tested, fast, lean, while @review carries rubric weights but no instruction to order the final report by them. NEW.",
+      "severity": "P2",
+      "iteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:12",
+        ".skilled/agents/review.md:126",
+        ".skilled/agents/review.md:132"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter001-008",
+      "label": "@code's bug-fix root-cause doctrine is already carried by the Critic pass: Ponytail's grep-every-caller and fix-root-cause-once rule is substantively adopted at code.md's wrong-abstraction Critic questions and SCOPE_CONFLICT escalation. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "iteration": 1,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:38",
+        ".skilled/agents/code.md:475",
+        ".skilled/agents/code.md:516"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter002-002",
+      "label": "@debug's response contract has no not-checked disclosure: Ponytail's audit ends with one line naming the parts not read or not runnable, while @debug's Success, Blocked and Escalation responses never name what could not be checked or run. NEW target, ALREADY-COVERED idea.",
+      "severity": "P2",
+      "iteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md:98",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md:27",
+        ".skilled/agents/debug.md:380",
+        ".skilled/agents/debug.md:410",
+        ".skilled/agents/debug.md:414",
+        ".skilled/agents/debug.md:458",
+        ".skilled/agents/debug.md:203"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter002-003",
+      "label": "@debug's fresh-observation and counter-evidence discipline is already adopted: Phase 1 demands an observation independent of prior attempts and Phase 4 searches counter-evidence and downgrades hypotheses, matching Ponytail's report-check discipline. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "iteration": 2,
+      "sources": [
+        ".skilled/agents/debug.md:177",
+        ".skilled/agents/debug.md:288",
+        ".skilled/agents/debug.md:291",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md:57"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter002-004",
+      "label": "Bounded candidates should disclose the omitted count: Ponytail caps audits at 20 findings and requires saying how many were left out, while @debug caps hypotheses at 2-3 without stating how many candidates were considered and dropped. NEW mechanism for debug.md Phase 3.",
+      "severity": "P2",
+      "iteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md:83",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md:84",
+        ".skilled/agents/debug.md:248",
+        ".skilled/agents/orchestrate.md:194"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter002-005",
+      "label": "@orchestrate's sub-agent verification already covers Ponytail's report-check discipline: the mandatory review checklist verifies scope, file existence, evidence and hallucinated paths with named verification actions. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "iteration": 2,
+      "sources": [
+        ".skilled/agents/orchestrate.md:510",
+        ".skilled/agents/orchestrate.md:533",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:57"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter002-006",
+      "label": "The reach set is not a dispatch field in @orchestrate's Task Format: Ponytail's brief names callers, tests, fixtures, config and exports, while the Task Format carries Scope and Boundary but no reach-set field, though the orchestrator is who owns the reach set before the leaf starts. NEW target, ALREADY-COVERED idea.",
+      "severity": "P2",
+      "iteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/AGENTS.md:14",
+        ".skilled/agents/orchestrate.md:186",
+        ".skilled/agents/orchestrate.md:187"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter002-007",
+      "label": "@debug does not read the tests and build config covering the failing path: Ponytail's audit maps a repo by reading the README, deploy and build config, dependency list, entry points and tests first, while @debug Phase 2 traces call paths and checks recent changes but never reads the test harness or build config that exercise the failure. NEW for debug.md Phase 2.",
+      "severity": "P2",
+      "iteration": 2,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md:20",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md:21",
+        ".skilled/agents/debug.md:213",
+        ".skilled/agents/debug.md:220"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter003-003",
+      "label": "The OpenCode-dialect agent body exists in three byte-identical copies (.skilled/agents, .opencode/agents, .hermes/agents) with no equality check between them: each checker compares a different pair, the doctor roster check treats .skilled as presence-only, and the Hermes and Pi syncs source from .skilled, so an edit that satisfies one pair checker can leave the other copies stale with every local gate green. NEW, latent.",
+      "severity": "P2",
+      "iteration": 3,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:29",
+        ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:41",
+        ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:62",
+        ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs:27",
+        ".skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs:21"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter003-004",
+      "label": "Ponytail's adapter-thinness rule is substantively implemented: Cursor agents are symlinks resolving to the Claude canonical, Devin and Codex trees are generated, and the runtime-mirrors policy documents which dialect each host parses. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "iteration": 3,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:45",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:47",
+        ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:51",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:36"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter004-001",
+      "label": "The reach set is only half-enumerated in the pre-write pass: Ponytail lists callers, tests, fixtures, config and exports, while prevent-overengineering.md Sec2 asks for the owning module, one real caller and the contract (the dangerous half) but not the rest. ALREADY-COVERED idea, NEW target.",
+      "severity": "P2",
+      "iteration": 4,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/AGENTS.md:14",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:21",
+        ".skilled/repo-rules/prevent-overengineering.md:94",
+        ".skilled/repo-rules/prevent-overengineering.md:97",
+        ".skilled/repo-rules/scope-discipline.md:67",
+        ".skilled/repo-rules/scope-discipline.md:70"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter004-002",
+      "label": "The decodability floor for minimal diffs is absent: Ponytail says a one-liner that needs decoding is not short, while the repo settles size purely by reversal cost with no counterweight against unreadable golf. NEW for prevent-overengineering.md Sec1.",
+      "severity": "P2",
+      "iteration": 4,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:36",
+        ".skilled/repo-rules/prevent-overengineering.md:55"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter004-003",
+      "label": "Moved or merged code is not required to keep its error handling and validation: Ponytail states the rule, while the rules only forbid deliberately cutting error handling and treat rename/move as mechanical in-scope changes. NEW for scope-discipline.md Sec2 or prevent-overengineering.md Sec5.",
+      "severity": "P2",
+      "iteration": 4,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:39",
+        ".skilled/repo-rules/prevent-overengineering.md:150",
+        ".skilled/repo-rules/scope-discipline.md:70"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter004-004",
+      "label": "No tiebreaker for equal-cost options on edge-case correctness: Ponytail takes the option correct on edge cases when sizes tie, while the reversal-cost order breaks ties by cost only. NEW for prevent-overengineering.md Sec1.",
+      "severity": "P2",
+      "iteration": 4,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:40",
+        ".skilled/repo-rules/prevent-overengineering.md:58",
+        ".skilled/repo-rules/prevent-overengineering.md:66"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter004-005",
+      "label": "Accessibility is absent from the rules never-cut set: Ponytail names it, the rules carry the request, error-handling and dependency floors, and the word appears in none of the 14 rule files. ALREADY-COVERED idea (round one), NEW target for the rules.",
+      "severity": "P2",
+      "iteration": 4,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:44",
+        ".skilled/repo-rules/prevent-overengineering.md:148",
+        ".skilled/repo-rules/prevent-overengineering.md:150",
+        ".skilled/repo-rules/scope-discipline.md:44",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:144"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter004-006",
+      "label": "The root-cause doctrine already beats Ponytail's version: reproduce the exact symptom, locate the producer, trace its other consumers, fix at the source and re-run the failing check plus the whole gate. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "iteration": 4,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:38",
+        ".skilled/repo-rules/root-cause-and-debugging.md:52",
+        ".skilled/repo-rules/root-cause-and-debugging.md:60",
+        ".skilled/repo-rules/root-cause-and-debugging.md:61"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter004-007",
+      "label": "Ponytail's closing gap-disclosure line is already required in stronger form: evidence-and-proof.md Sec10 requires a four-part close-out plus an explicit what-is-not-done statement, which sharpens the @code RETURN gap finding. ALREADY-ADOPTED at the rules layer.",
+      "severity": "P2",
+      "iteration": 4,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:15",
+        ".skilled/repo-rules/evidence-and-proof.md:187",
+        ".skilled/repo-rules/evidence-and-proof.md:194"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter005-001",
+      "label": "The close-out contract never discloses a residual risk: Ponytail closes with what was skipped or not checked plus any risk the user must know, while the repo close-out lists what ran, what is inferred, what only the operator can verify and what is not done, and the word risk never appears in evidence-and-proof.md or communication-handoff.md. NEW for AGENTS.md Sec10 and evidence-and-proof.md Sec10.",
+      "severity": "P2",
+      "iteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:15",
+        ".skilled/repo-rules/evidence-and-proof.md:187",
+        ".skilled/repo-rules/evidence-and-proof.md:194",
+        "AGENTS.md:296"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter005-002",
+      "label": "Accessibility is absent from the root framework and the never-cut floor is split: Ponytail keeps one never-cut list including accessibility, while the root docs carry no list at all and the word accessibility appears in neither AGENTS.md nor REPO RULES.md. ALREADY-COVERED idea (round one), NEW target.",
+      "severity": "P2",
+      "iteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:44",
+        ".skilled/repo-rules/prevent-overengineering.md:148",
+        ".skilled/repo-rules/scope-discipline.md:44",
+        "AGENTS.md:11",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:144"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter005-003",
+      "label": "Ponytail's self-application clause is already implied by universal binding: the Four Laws and gates bind agent behavior without scoping to human users, and REPO RULES.md makes the router mandatory before the first write of the session. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "iteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/AGENTS.md:32",
+        "AGENTS.md:11",
+        "AGENTS.md:49",
+        "REPO RULES.md:3"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter005-004",
+      "label": "The adapter-alignment rule is carried by the precedence clause: Ponytail keeps copied rule text aligned with its always-on file, while the repo avoids root copies and bounds every rule file so AGENTS.md wins on disagreement. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "iteration": 5,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:47",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:49",
+        ".skilled/repo-rules/prevent-overengineering.md:33",
+        "REPO RULES.md:74",
+        "REPO RULES.md:29"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter005-005",
+      "label": "The trigger table mechanically covers every rule file: all 13 files under .skilled/repo-rules appear in the Load column, each rule's fires-when maps to a row, and the no-trigger fallback is explicit. VERIFIED, no gap.",
+      "severity": "P2",
+      "iteration": 5,
+      "sources": [
+        "REPO RULES.md:38",
+        "REPO RULES.md:52",
+        "REPO RULES.md:18"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter006-002",
+      "label": "The compiled-routing canary corpus has no restraint or simplification case: the fixture covers single, bundle, ambiguous, zero-signal and certificate cases, but nothing carrying restraint vocabulary and no assertion that the quality mode wins it. NEW; fixing the vocabulary without a case leaves it unverified.",
+      "severity": "P2",
+      "iteration": 6,
+      "sources": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json:1",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:185"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter006-003",
+      "label": "Ponytail's agreement-needs-an-outside-reference lesson is already implemented, better than Ponytail states it: parent-skill-check 13a compares all routing artifacts against SKILL.md as release authority and 13b compares that authority against the newest changelog entry, the outside reference. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "iteration": 6,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/check-versions.js:5",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:176",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1694",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1671",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1685"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter006-004",
+      "label": "The hub's activation and disambiguation practices already exceed Ponytail's: inline mode hint, one advisor identity through a registry, named disambiguation checklist, and a when-not-to-use list that routes neighboring work away. ALREADY-ADOPTED, no action.",
+      "severity": "P2",
+      "iteration": 6,
+      "sources": [
+        ".skilled/skills/sk-code/SKILL.md:23",
+        ".skilled/skills/sk-code/SKILL.md:77",
+        ".skilled/skills/sk-code/SKILL.md:133",
+        ".skilled/skills/sk-code/SKILL.md:42"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter007-004",
+      "label": "Findings are not numbered across severity groups: Ponytail numbers across groups so a user can say fix 2 and 5, while the mode numbers inside each severity section only and its Next Steps example addresses fixes by description. NEW.",
+      "severity": "P2",
+      "iteration": 7,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:82",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:342",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:352",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:387"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter007-006",
+      "label": "The test-effectiveness check is partially present: round one's idea to confirm tests can fail for the right reason now exists as a verify-workflow requirement, though no fault-injection harness exists (deferred by round one). VERIFIED PARTIAL.",
+      "severity": "P2",
+      "iteration": 7,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:193",
+        ".skilled/skills/sk-code/shared/references/workflow-verify.md:127"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter008-005",
+      "label": "The D1 fix still lacks its known-bad test input: the checker carries the deferred-error handling, but no companion test or fixture feeds a throwing deferred callback, so round one's recommendation 2 is half closed. NEW residual.",
+      "severity": "P2",
+      "iteration": 8,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:14",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:210"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter008-006",
+      "label": "The retirement-note recommendation is not closed: the successor exists as .github/workflows/routing-registry-drift.yml, but no in-repo retirement note was located and the only references to the retired router-sync guard live in old spec records. OPEN.",
+      "severity": "P2",
+      "iteration": 8,
+      "sources": [
+        ".github/workflows/routing-registry-drift.yml:1",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:215"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter009-001",
+      "label": "Original idea: a no-signal tag for ceiling: markers whose upgrade trigger names no measurable quantity, extending Ponytail's no-trigger tag (which checks a trigger exists) to check whether the trigger can ever fire in this repo. Target: the proposed debt report in sk-code-quality.",
+      "severity": "P2",
+      "iteration": 9,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-debt/SKILL.md:36",
+        ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md:175"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter009-002",
+      "label": "Original idea: extend citation resolution to agent and rule docs. validate.sh resolves SOURCE tags only inside spec folders, while .skilled/agents and .skilled/repo-rules cite file:line throughout; a bounded doctor-side lint would warn on stale citations across the whole instruction surface.",
+      "severity": "P2",
+      "iteration": 9,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:88",
+        ".skilled/agents/code.md:25"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter009-004",
+      "label": "Original idea: a review-output contract fixture for the reproducing-case field once the finding format gains it; a parser check fails when a sample finding row omits its case, grading the contract deterministically the way the canary corpus grades routing. Target: sk-code-review tests.",
+      "severity": "P2",
+      "iteration": 9,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:59",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json:1"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter010-001",
+      "label": "All nine produced iteration artifacts reconcile: every delta holds one iteration row plus one finding row per enumerated finding, every declared findingsCount matches its row count (8,7,4,7,5,4,6,6,5), every narrative has a contiguous Findings section, the state projection parses with one config and nine iteration records, and every gateway append returned exit 0 at write time. VERIFIED.",
+      "severity": "P2",
+      "iteration": 10,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/deltas/iter-001.jsonl:1",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/deltas/iter-009.jsonl:1",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/deep-research-state.jsonl:1"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
+    {
+      "id": "f-iter010-003",
+      "label": "Round-two roll-up: 52 findings total; NEW 33 (nine closure verifications, five original proposals, the rest new gaps), ALREADY-COVERED idea with a new target 8, ALREADY-ADOPTED reconfirmation 11. VERIFIED DERIVATION from the finding rows.",
+      "severity": "P2",
+      "iteration": 10,
+      "sources": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/deltas/iter-001.jsonl:1",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/deltas/iter-009.jsonl:1"
+      ],
+      "_lineages": [
+        "r2-dsflash-llmgw"
+      ]
+    },
     {
       "id": "finding-1-1-already-adopted-ponytail-s-six-rung-smallest-complete-change-ladder-is-already-i",
       "text": "**ALREADY-ADOPTED** — Ponytail's six-rung smallest-complete-change ladder is already in the shared sk-code standards, and implementation enters it after surface and intent routing. Do not add another hub-level ladder. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:25-33] [SOURCE: .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:42-53] [SOURCE: .skilled/skills/sk-code/shared/references/phase-detection.md:97] [SOURCE: specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:45-54]",
@@ -1557,11 +2508,11 @@
   ],
   "ruledOutDirections": [],
   "metrics": {
-    "iterationsCompleted": 20,
+    "iterationsCompleted": 30,
     "openQuestions": 1,
-    "resolvedQuestions": 13,
-    "keyFindings": 97,
-    "sourceFindings": 97,
+    "resolvedQuestions": 22,
+    "keyFindings": 153,
+    "sourceFindings": 153,
     "reconstructionGaps": 0,
     "convergenceScore": 0,
     "coverageBySources": {}

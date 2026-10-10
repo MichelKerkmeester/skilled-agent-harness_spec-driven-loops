@@ -73,6 +73,7 @@ Two ten-iteration lineages, GPT-6 Luna on cli-codex and DeepSeek V4.1 Flash on c
 - **Defects found:** the Webflow minified-runtime checker passes scripts whose deferred code throws (reproduced); Codex-only agent changes pass the mirror check in CI and at commit (reproduced); the stack-folder scenario index is stale; the shared hook stdin reader has no deadline; the research reducer wrote outside fan-out lineages (fixed in `system-deep-loop/038/006`).
 - **Lost:** two always-loaded files state different surface precedence orders, and Obsidian is missing from several hub surfaces.
 - **Next phases:** surface contract alignment, doctrine pass, Webflow checker fix, review output additions, guard retirement notes. The mirror and stdin fixes go to their owners.
+- **Round two:** ten more iterations on DeepSeek V4.1 Flash (cli-pi, max effort) widened the targets to the agent definitions and repository rules. Most of round one's recommendations are already in the tree. New gaps: sk-code's routing has no restraint vocabulary, review findings need no reproducing case and no read of callers and tests, @code's checklist lacks the reach list and its RETURN has no not-checked line, nothing reports `ceiling:` markers, the Hermes agent mirror is checked only in CI, and accessibility is missing from the repository rules. Synthesis: the Round 2 section of `research/research.md` and `research/lineages/r2-dsflash-llmgw/research.md`.
 <!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:problem -->
 

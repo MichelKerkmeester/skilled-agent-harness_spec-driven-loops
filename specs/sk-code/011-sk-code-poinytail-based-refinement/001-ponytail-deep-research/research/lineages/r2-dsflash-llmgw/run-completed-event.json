@@ -1,0 +1,22 @@
+{
+  "stem": "deep_research.run_completed",
+  "scope": {
+    "runId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+    "lineageId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev"
+  },
+  "data": {
+    "terminalStatus": "completed",
+    "convergenceEventId": "event-9f8efafb-b2a0-4729-8fd4-09e6bf41292e",
+    "synthesisEventId": "event-b329bfce-1dbd-414b-bfe4-1962bd076f86",
+    "memorySaveEventId": "memory-save:not-run",
+    "finalLedgerTailHash": "3dc50af1ca7fe61f3572bd6fa50864c6ba6e1f8382915413bf0f81a82ec1f027",
+    "counts": {
+      "iterations": 10,
+      "sources": 184,
+      "admittedEvidence": 56,
+      "claims": 56
+    },
+    "completionReason": "Synthesis written inside the lineage; parent-packet writeback deferred by the detached lineage boundary.",
+    "incompleteReason": "max-iterations cap reached (10/10); convergence threshold 0.05 not met."
+  }
+}

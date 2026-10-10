@@ -319,3 +319,67 @@ Phase numbers continue the parent packet. Each phase is a child of `specs/sk-cod
 - Earlier refinement: `specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md`
 - Reducer fix: `specs/system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path/`
 - Ponytail source: `specs/sk-code/011-sk-code-poinytail-based-refinement/context/`
+
+---
+
+## Round 2 (2026-10-10): agents, repository rules and hub vocabulary
+
+Round one's sections above are unchanged. This section was appended after a second `/deep:research:auto` run over the same Ponytail 5.1.0 source. Round two had its own lineage, `r2-dsflash-llmgw`, and its own targets: the code-working agent definitions and their runtime mirrors, the repository rules and root framework, and the parts of the sk-code hub that round one did not reach. The full round-two synthesis is the lineage report at `research/lineages/r2-dsflash-llmgw/research.md`. This section summarizes it.
+
+### R2.1 Answer
+
+Most of round one's recommendations are already in the tree. The lineage re-read each target and found recs 1, 3, 4, 5, 6 and 8 and the D4 hand-off closed. Rec 2 is half closed: the Webflow checker fix landed, but its known-bad test input did not. Rec 7, the retirement note, is open. Rec 10 is deferred by design. The new ground sits in places round one did not target. Four of them matter most:
+
+1. **Restraint has no front door in the hub.** Ponytail activates on "simplest solution", "yagni", over-engineering and bloat [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:7]. None of those words appears in `hub-router.json`, `mode-registry.json` or `description.json` (zero case-insensitive matches in each file). A "simplify this" request cannot score the mode built for it.
+2. **The review contract never asks for a reproducing case.** Ponytail: "Every finding needs a concrete case" [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:59]. @review's evidence table asks only for file:line plus a snippet, pattern or suggestion [SOURCE: .skilled/agents/review.md:358].
+3. **The reviewer never reads the connected code as a step.** Ponytail reads callers, called functions, tests and the README [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md:21]. The review agent and the review mode's Phase 1 do not [SOURCE: .skilled/agents/review.md:72] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:290].
+4. **The agent definitions lag their own hub.** @code's pre-implementation checklist has no reach list [SOURCE: .skilled/agents/code.md:205], although the implement workflow now states it [SOURCE: .skilled/skills/sk-code/shared/references/workflow-implement.md:51] and Ponytail opens with it [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/AGENTS.md:7]. @code's RETURN has no line for what was skipped or not checked [SOURCE: .skilled/agents/code.md:297], which Ponytail ends every reply with [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:15].
+
+### R2.2 Ranked findings (P1)
+
+| # | Finding | Target file | Classification | Rationale |
+|---|---|---|---|---|
+| 1 | Restraint and simplification vocabulary absent from the hub's lexical surfaces | `.skilled/skills/sk-code/hub-router.json`, `mode-registry.json`, `description.json` | NEW | The mode exists, but the words that would route to it do not |
+| 2 | Review finding contract lacks a reproducing case | `.skilled/skills/sk-code/sk-code-review/SKILL.md`, `.skilled/agents/review.md` | NEW | Cheapest upgrade to the review evidence floor |
+| 3 | Review never reads callers, callees and tests as a named step | `.skilled/skills/sk-code/sk-code-review/SKILL.md`, `.skilled/agents/review.md` | NEW | Diff-only reviews miss breakage in code the diff does not touch |
+| 4 | @code pre-implementation gate lacks the reach list | `.skilled/agents/code.md` | NEW target, ALREADY-COVERED idea | The shared workflow carries it; the agent that executes does not |
+| 5 | @code RETURN has no gap-disclosure line | `.skilled/agents/code.md` | NEW target | Repo close-out already requires the disclosure [SOURCE: .skilled/repo-rules/evidence-and-proof.md:194] |
+| 6 | The `ceiling:` convention has no harvest report | `.skilled/skills/sk-code/sk-code-quality/scripts/` | NEW | Ponytail's debt skill lists markers and tags the ones with no trigger [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-debt/SKILL.md:36]; the quality scripts cover only comment hygiene and dist staleness |
+| 7 | Hermes agent-persona mirror is checked only in CI | `.skilled/scripts/git-hooks/pre-commit`, doctor runtime-mirror config | NEW | Same local-gate failure class as round one's D2; the pre-commit gate has no Hermes reference |
+| 8 | One authored agent source per dialect (original) | runtime-mirror sync scripts | NEW | Three byte-identical OpenCode-dialect copies with no mutual equality check |
+| 9 | Vocabulary-parity check across router, registry, description and canary (original) | `.skilled/commands/doctor/scripts/parent-skill-check.cjs` | NEW | Four surfaces share one vocabulary and nothing checks that they agree |
+
+The P2 rows (20 of them) are in section 7 of the lineage report. In brief: @debug disclosure and harness-reading gaps, an @orchestrate reach-set field, @review assumed load, cross-group numbering and report order, a residual-risk half for the close-out contract, accessibility absent from every repo rule and root doc (zero matches), the reach set half-listed in `prevent-overengineering.md` §2, a decodability floor and an equal-cost edge-case tiebreak, move-or-merge behavior preservation, a restraint canary case, and the two residual round-one items.
+
+### R2.3 Original ideas and rejections
+
+The lineage proposes five original ideas. Three of them are P1 rows 8 and 9 and a `no-signal` tag for `ceiling:` markers whose trigger can never be measured. The other two are citation resolution for agent and rule docs, and a review-output contract fixture. It rejects twelve transfers with reasons. Among them are the session-wide intensity levels, a persona sentence for the agent definitions, renaming `ceiling:`, porting the numbered ladder into the repo rules, a 20-finding review cap, and a second plain-English contract in the review mode (lineage report §6).
+
+### R2.4 Verification by the orchestrating run
+
+The lineage's claims are hypotheses until checked. These were re-checked against the tree after the run:
+
+- Confirmed: zero matches for yagni, simplif, over-engineer and bloat in the three hub lexical files. Ponytail's trigger words are at `context/skills/ponytail/SKILL.md:7`.
+- Confirmed: @review's evidence table has no case field (`.skilled/agents/review.md:358`), and @code's checklist has no reach list (`.skilled/agents/code.md:205`).
+- Confirmed: no `hermes` reference in `.skilled/scripts/git-hooks/pre-commit`, and no accessibility mention in `.skilled/repo-rules/*.md`, `AGENTS.md` or `REPO RULES.md`.
+- Confirmed: `sk-code-quality/scripts/` holds only the comment-hygiene and dist-staleness checks.
+- Corrected: the lineage cites the reach list at `context/AGENTS.md:14`. That line is the reuse rung. The reach list is at `context/AGENTS.md:7` and `context/skills/ponytail/SKILL.md:21`.
+- Not re-checked here: the closure ledger rows, the three-way mirror hash equality, and the line numbers of the P2 rows.
+
+### R2.5 Round 2 convergence report
+
+- **Lineage:** `r2-dsflash-llmgw`, executor `cli-pi`, model `deepseek-v4.1-flash` through the llmgateway provider, reasoning effort `max`.
+- **Stop reason:** `maxIterationsReached`, under stop policy `max-iterations`.
+- **Iterations:** 10 of 10. Every iteration record carries `target_agent: deep-research`, `agent_definition_loaded: true` and status `complete`.
+- **Findings per iteration:** 8, 7, 4, 7, 5, 4, 6, 6, 5, 4 (56 in total).
+- **newInfoRatio:** 0.69, 0.57, 0.75, 0.57, 0.40, 0.62, 0.83, 0.92, 1.00, 0.88. The ratio never fell under the 0.05 threshold, so convergence is not claimed.
+- **Questions answered:** 9 of 9 in the lineage strategy.
+- **Merge:** `fanout-merge.cjs` merged all three lineages into `research/findings-registry.json` with 153 key findings. `research/resource-map.md` was regenerated from all 30 lineage delta files.
+- **Round one's state:** its two lineages are untouched. Its root config is preserved at `research/round-1-deep-research-config.json`, because the round-two setup wrote a new root `deep-research-config.json`.
+
+### R2.6 Round 2 references
+
+- Round-two synthesis: `research/lineages/r2-dsflash-llmgw/research.md`
+- Round-two iterations: `research/lineages/r2-dsflash-llmgw/iterations/iteration-001.md` to `iteration-010.md`
+- Merge attribution: `research/fanout-attribution.md`
+- Round-one config: `research/round-1-deep-research-config.json`

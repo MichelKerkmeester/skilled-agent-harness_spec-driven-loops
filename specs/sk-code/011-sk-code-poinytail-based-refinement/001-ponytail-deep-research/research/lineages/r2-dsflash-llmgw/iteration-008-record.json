@@ -1,0 +1,59 @@
+{
+  "type": "iteration",
+  "iteration": 8,
+  "run": 8,
+  "runId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "sessionId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "lineageId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.92,
+  "status": "complete",
+  "focus": "Per-surface packets and closure state of round one defects D1, D3, D4, precedence and retirement notes",
+  "findingsCount": 6,
+  "noveltyJustification": "Four round-one defects are verified closed in the current tree (D1 deferred-callback errors, D3 scenario row and language count, D4 shared stdin deadline, precedence and Obsidian coverage), the D1 known-bad input is still missing, and the retirement note is not closed.",
+  "keyQuestions": [
+    "Which Ponytail teachings improve the per-surface packets (sk-code-webflow, sk-code-opencode, sk-code-obsidian, sk-code-quality) beyond round one's cited defects?"
+  ],
+  "answeredQuestions": [
+    "Which Ponytail teachings improve the per-surface packets (sk-code-webflow, sk-code-opencode, sk-code-obsidian, sk-code-quality) beyond round one's cited defects?"
+  ],
+  "ruledOut": [
+    {
+      "approach": "Re-propose the D1, D3, D4 and precedence recommendations",
+      "reason": "All four verified closed in the current tree; repeating them would misreport the parent's remaining work.",
+      "evidence": ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:358"
+    },
+    {
+      "approach": "Extend the stack-folder validator to scan Webflow assets",
+      "reason": "Round one settled the validator is right and the scenario was stale; nothing in Ponytail's material changes that.",
+      "evidence": "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:237"
+    },
+    {
+      "approach": "Add a second Obsidian probe battery by hand",
+      "reason": "The advisor graph, canary corpus and playbook scenario now carry Obsidian; a separate battery duplicates coverage.",
+      "evidence": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json:1"
+    }
+  ],
+  "toolsUsed": ["read", "bash", "python3"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs",
+    ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/stack-folders-validator.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/obsidian-detection.md",
+    ".skilled/skills/sk-code/shared/references/stack-detection.md",
+    ".skilled/skills/sk-code/SKILL.md",
+    ".skilled/skills/sk-code/ROUTER.md",
+    ".skilled/hooks/shared/hook-adapter-shared.cjs",
+    ".skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs",
+    ".skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs",
+    ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+    ".github/workflows/routing-registry-drift.yml",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md"
+  ],
+  "timestamp": "2026-10-10T06:12:48Z",
+  "durationMs": 222000
+}

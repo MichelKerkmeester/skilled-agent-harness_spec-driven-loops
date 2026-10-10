@@ -1,0 +1,9 @@
+{
+  "type": "spec_mutation",
+  "event": "spec_synthesis_deferred",
+  "reason": "Detached fan-out lineage: all writes are confined to the lineage artifact directory, so parent-packet spec synthesis is deferred to the orchestrator.",
+  "generatedFence": "lineage-r2-dsflash-llmgw",
+  "runId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "sessionId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "lineageId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev"
+}

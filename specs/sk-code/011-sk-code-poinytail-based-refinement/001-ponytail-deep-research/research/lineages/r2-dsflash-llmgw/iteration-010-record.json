@@ -1,0 +1,46 @@
+{
+  "type": "iteration",
+  "iteration": 10,
+  "run": 10,
+  "runId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "sessionId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "lineageId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.88,
+  "status": "complete",
+  "focus": "Final verification of lineage artifacts, closure ledger, classification roll-up and containment",
+  "findingsCount": 4,
+  "noveltyJustification": "Three verifications are fully new (artifact reconciliation, the explicit round-one closure ledger, scope containment), and the classification roll-up is a derived total over the 52 finding rows.",
+  "keyQuestions": [
+    "Which round-two findings are NEW, ALREADY-COVERED or ALREADY-ADOPTED, and what priority does each carry for the ranked findings table?"
+  ],
+  "answeredQuestions": [
+    "Which round-two findings are NEW, ALREADY-COVERED or ALREADY-ADOPTED, and what priority does each carry for the ranked findings table?"
+  ],
+  "ruledOut": [
+    {
+      "approach": "Add a tenth research iteration",
+      "reason": "The cap is 10 and this iteration is the verification pass the dispatch defines; further discovery would exceed the cap rather than improve the synthesis.",
+      "evidence": "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/deep-research-config.json:4"
+    },
+    {
+      "approach": "Re-run the doctor or reducer tooling as verification",
+      "reason": "Both write outside the lineage; the allowed proof is on-disk reconciliation.",
+      "evidence": "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/deep-research-config.json:53"
+    }
+  ],
+  "toolsUsed": ["read", "bash", "python3"],
+  "sourcesQueried": [
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/iterations/iteration-001.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/iterations/iteration-010.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/deltas/iter-001.jsonl",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/deltas/iter-009.jsonl",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/deep-research-state.jsonl",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md"
+  ],
+  "timestamp": "2026-10-10T06:14:20Z",
+  "durationMs": 49000
+}

@@ -1,0 +1,55 @@
+{
+  "type": "iteration",
+  "iteration": 1,
+  "run": 1,
+  "runId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "sessionId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "lineageId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.69,
+  "status": "complete",
+  "focus": "Agent definitions: @code and @review against Ponytail's core and review doctrine",
+  "findingsCount": 8,
+  "noveltyJustification": "Four findings are fully new for these targets (no-case-no-finding evidence bar, connected-code read step, cross-group numbering, report ordering), three apply round-one ideas to untreated agent targets (reach list, gap-disclosure RETURN line, assumed load), and one reconfirms an already-adopted Critic behavior.",
+  "keyQuestions": [
+    "Which Ponytail teachings improve the four code-working agent definitions (.skilled/agents/code.md, review.md, debug.md, orchestrate.md) and their runtime mirrors, and which are already adopted there?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    {
+      "approach": "Import Ponytail's lazy-senior-developer persona sentence into @code",
+      "reason": "The repo's agent definitions are contract-style; a persona adds no enforceable behavior, duplicates restraint already carried by the standards and P0 tier, and trades contract precision for tone.",
+      "evidence": "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md:15"
+    },
+    {
+      "approach": "Re-propose round one's reuse-step finding against the always-loaded restraint ladder",
+      "reason": "Round one settled it and named the fix targets; repeating it would add no new ground.",
+      "evidence": "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:212"
+    },
+    {
+      "approach": "Move Ponytail's session-wide lite/full/ultra levels into @code or @review",
+      "reason": "Round one rejected the session-global intensity state machine twice; the agents already take an explicit per-task dispatch mode.",
+      "evidence": "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:168"
+    }
+  ],
+  "toolsUsed": ["read", "bash", "rg"],
+  "sourcesQueried": [
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/AGENTS.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-review/SKILL.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.agents/rules/ponytail.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md",
+    ".skilled/agents/code.md",
+    ".skilled/agents/review.md",
+    ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md",
+    ".skilled/repo-rules/communication.md",
+    ".skilled/repo-rules/communication-prose.md"
+  ],
+  "timestamp": "2026-10-10T05:58:46Z",
+  "durationMs": 79000
+}

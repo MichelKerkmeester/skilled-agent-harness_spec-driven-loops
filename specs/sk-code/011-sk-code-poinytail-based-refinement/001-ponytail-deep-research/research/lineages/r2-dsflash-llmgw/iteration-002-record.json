@@ -1,0 +1,52 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "run": 2,
+  "runId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "sessionId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "lineageId": "fanout-r2-dsflash-llmgw-1791611745960-v9v3ev",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.57,
+  "status": "complete",
+  "focus": "Agent definitions: @debug and @orchestrate against Ponytail's audit and debt skills",
+  "findingsCount": 7,
+  "noveltyJustification": "Three findings are fully new mechanisms (ceiling-debt harvest report, omitted-count candidate disclosure, test-harness read in debug Phase 2), two apply round-one or iteration-one ideas to new targets, and two reconfirm already-adopted verification discipline.",
+  "keyQuestions": [
+    "Which Ponytail teachings improve the four code-working agent definitions (.skilled/agents/code.md, review.md, debug.md, orchestrate.md) and their runtime mirrors, and which are already adopted there?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    {
+      "approach": "Replace the repo's neutral ceiling: token with Ponytail's shortcut: spelling",
+      "reason": "The convention is adopted, documented, scenario-validated and deliberately brand-neutral; the harvest report is the transferable part, not the token.",
+      "evidence": ".skilled/skills/sk-code/changelog/v1.4.0.0.md:22"
+    },
+    {
+      "approach": "Adopt Ponytail-debt's persist-on-request boundary as new @debug or @review behavior",
+      "reason": "Both agents already carry write boundaries by design; the nuance only matters for the new report surface and is folded into the harvest finding.",
+      "evidence": "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-debt/SKILL.md:43"
+    },
+    {
+      "approach": "Re-propose sub-agent rule injection for @orchestrate's own dispatches",
+      "reason": "The dispatch prompt already includes the agent definition and skills, achieving what Ponytail's subagent hook approximates.",
+      "evidence": ".skilled/agents/orchestrate.md:191"
+    }
+  ],
+  "toolsUsed": ["read", "bash", "rg"],
+  "sourcesQueried": [
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-audit/SKILL.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail-debt/SKILL.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/context/.agents/rules/ponytail.md",
+    ".skilled/agents/debug.md",
+    ".skilled/agents/orchestrate.md",
+    ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
+    ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
+    ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md",
+    ".skilled/skills/sk-code/changelog/v1.4.0.0.md"
+  ],
+  "timestamp": "2026-10-10T06:00:02Z",
+  "durationMs": 76000
+}

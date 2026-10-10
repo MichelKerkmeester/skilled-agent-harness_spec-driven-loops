@@ -52,6 +52,8 @@
       "004-webflow-checker-fix/spec.md",
       "005-review-output-additions/spec.md",
       "006-guard-retirement-notes/spec.md",
+      "007-follow-up-fixes/spec.md",
+      "001-ponytail-deep-research/research/research.md",
       "001-ponytail-deep-research/goal.md",
       "002-surface-contract-alignment/goal.md",
       "003-doctrine-pass/goal.md",
@@ -86,12 +88,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -111,6 +107,12 @@
       },
       {
         "name": "Problem Statement Ponytail",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Find",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -154,17 +156,17 @@
     ],
     "causal_summary": "Ponytail is an external coding-agent plugin that teaches restraint: write the least code that meets the requirement, and still ship tests for risky logic",
     "created_at": "2026-10-09T13:20:16Z",
-    "last_save_at": "2026-10-10T05:31:09.331Z",
+    "last_save_at": "2026-10-10T06:35:55.435Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:762a354e6387109ce9d02f1858d041d8757ce11a6140df17934bde816203639c",
+    "source_fingerprint": "sha256:efb002153b09f6039cf071d6efe4f7782212e9ddff733f9caae73a58dee2d6fe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5ad031ced2528764be246a124bd2688d5089afe70dbfdbc9d6ab3ad733aa826c"
+      "spec.md": "678d6e47b30494e51b1c6df238d8f2d2ceaeb0ad623878ece41c016b5f1ed8d2"
     },
     "last_active_at": null
   }

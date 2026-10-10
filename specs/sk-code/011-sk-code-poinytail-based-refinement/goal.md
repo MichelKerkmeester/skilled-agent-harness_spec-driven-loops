@@ -84,9 +84,9 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] In the worktree, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 13 times and `RESULT: FAILED` 0 times
+- [ ] In the worktree, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 8 times and `RESULT: FAILED` 0 times
 - [ ] In the worktree, `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 10
-- [ ] In the worktree, `git rev-list --count main..HEAD` prints 10, `git log --format='%(trailers:key=Spec,valueonly)' main..HEAD` prints 10 `Spec:` values, one per phase 002 to 006 and per 007 child, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
+- [ ] In the worktree, `git rev-list --count main..HEAD` prints 11, `git log --format='%(trailers:key=Spec,valueonly)' main..HEAD` prints 11 `Spec:` values, one per phase 001 to 006 and per 007 child, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
 - [ ] In the worktree, `node .skilled/bin/compiled-route-guard.cjs` exits 0 listing sk-code `fresh`, and `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints JSON with `"action":"route"` and no `servingAuthority` key
 - [ ] In the worktree, `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` and `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` both exit 0, and `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` prints `PASS: stack-folders`
 - [ ] In the worktree, `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` both exit 0
@@ -110,7 +110,7 @@ and findings belong here.
 | 003 doctrine pass | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed; three dispatches, all stops were task or brief wording |
 | 004 webflow checker fix | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed |
 | 005 review output additions | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed |
-| 007 follow-up fixes | Pending | Five children planned and built by haiku xhigh agents |
+| 007 follow-up fixes | Done | Five children planned and built by haiku xhigh agents, each rerun by the orchestrator and committed |
 | 006 guard retirement notes | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed |
 
 ### Deviations and findings
@@ -119,6 +119,8 @@ and findings belong here.
 |------|------|
 | No acceptance-criteria.md in any child | Every child is Level 1; each child goal takes its criteria from its spec's REQ and SC rows and its tasks' verification commands |
 | Criterion 3 amended 2026-10-09 | sk-git's commit contract bars phase identifiers in subjects, so the phase is checked through each commit's `Spec:` trailer instead of its subject |
+| Criterion 1 count corrected to 8 | `--recursive` validates one level: the parent and its seven direct children. 007's own goal covers its five children (6 PASSED) |
+| Research round two 2026-10-10 | Ten more 001 iterations on DeepSeek V4.1 Flash (cli-pi, max), orchestrated by Opus 5.5 high; committed as one more 001 commit, so criterion 3 counts 11 |
 | 007 added 2026-10-10 | The operator chose to fix the follow-ups as child 007 with haiku xhigh agents; criteria 1 to 3 counts, D1, D4 and D6 amended to cover it |
 | Handed off, not built here | D2 Codex mirror gap (deep-improvement and git hooks) and D4 stdin deadline (hooks); recorded in the parent spec |
 <!-- /ANCHOR:log -->
