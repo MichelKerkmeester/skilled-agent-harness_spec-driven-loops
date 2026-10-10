@@ -28,8 +28,8 @@ const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
 const AGENTS_DIR = path.join(REPO_ROOT, '.opencode', 'agents');
 
 // A changed path counts as an agent definition only when it sits directly inside
-// the authored agent directory, under either source root, or a Claude or Codex mirror.
-const AGENT_PATH_RE = /(?:^|\/)\.(?:opencode|skilled|claude|codex)\/agents\/[^/]+$/;
+// the authored agent directory, under either source root, or the Claude mirror.
+const AGENT_PATH_RE = /(?:^|\/)\.(?:opencode|skilled|claude)\/agents\/[^/]+$/;
 
 // Agents that exist only because Claude Code resolves a subagent by exact name and
 // lets a user or project file replace its built-in. No other runtime has that
@@ -80,12 +80,11 @@ function main() {
     const canonicalPath = path.join(AGENTS_DIR, `${name}.md`);
     if (!fs.existsSync(canonicalPath)) {
       // A missing .opencode canonical is only "not ours" when NO runtime mirror
-      // exists either. If a Claude or Codex mirror is still present, the canonical
+      // exists either. If the .claude mirror is still present, the canonical
       // was deleted (or never created) while the mirror lingers — an orphan, which
       // is the kind of desync this gate must catch, not treat as in sync.
       const orphanMirrors = [
         path.join(REPO_ROOT, '.claude', 'agents', `${name}.md`),
-        path.join(REPO_ROOT, '.codex', 'agents', `${name}.toml`),
       ].filter((p) => fs.existsSync(p));
       if (orphanMirrors.length > 0) {
         drifted.push(name);

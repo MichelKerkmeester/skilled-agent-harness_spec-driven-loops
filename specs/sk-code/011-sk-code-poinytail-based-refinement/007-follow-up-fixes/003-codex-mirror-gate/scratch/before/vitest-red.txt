@@ -1,0 +1,74 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-deep-loop/deep-improvement/scripts
+
+ ❯ shared/tests/check-agent-mirror-sync.vitest.ts (6 tests | 3 failed) 219ms
+     × checks a Codex mirror changed on its own 37ms
+     × blocks a drifted Codex mirror 34ms
+     × blocks a Codex mirror whose canonical is missing 32ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  shared/tests/check-agent-mirror-sync.vitest.ts > check-agent-mirror-sync > checks a Codex mirror changed on its own
+AssertionError: expected 'agent-mirror-sync: no agent files to …' to contain '1 agent(s) checked'
+
+- Expected
++ Received
+
+- 1 agent(s) checked
++ agent-mirror-sync: no agent files to check — nothing verified
++
+
+ ❯ shared/tests/check-agent-mirror-sync.vitest.ts:111:27
+    109|
+    110|     expect(result.status).toBe(0);
+    111|     expect(result.stdout).toContain('1 agent(s) checked');
+       |                           ^
+    112|   });
+    113|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  shared/tests/check-agent-mirror-sync.vitest.ts > check-agent-mirror-sync > blocks a drifted Codex mirror
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ shared/tests/check-agent-mirror-sync.vitest.ts:130:27
+    128|     const result = runChecker(`.codex/agents/${AGENT_NAME}.toml`);
+    129|
+    130|     expect(result.status).toBe(1);
+       |                           ^
+    131|     expect(result.stdout).toContain(`DRIFT  ${AGENT_NAME} [codex]`);
+    132|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  shared/tests/check-agent-mirror-sync.vitest.ts > check-agent-mirror-sync > blocks a Codex mirror whose canonical is missing
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ shared/tests/check-agent-mirror-sync.vitest.ts:150:27
+    148|     const result = runChecker(`.codex/agents/${orphanName}.toml`);
+    149|
+    150|     expect(result.status).toBe(1);
+       |                           ^
+    151|     expect(result.stdout).toContain(`canonical .opencode/agents/${orph…
+    152|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 3 passed (6)
+   Start at  07:43:46
+   Duration  332ms (transform 10ms, setup 0ms, import 16ms, tests 219ms, environment 0ms)
+

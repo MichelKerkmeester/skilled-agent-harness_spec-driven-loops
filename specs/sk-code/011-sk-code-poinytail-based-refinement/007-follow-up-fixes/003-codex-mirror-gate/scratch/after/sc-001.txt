@@ -1,0 +1,9 @@
+SC-001: a Codex path reaches the checker from both hooks.
+Same run as T013 and T016 (2026-10-10 build):
+$ node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs .codex/agents/code.toml; echo "exit=$?"
+agent-mirror-sync: 1 agent(s) checked — all mirrors in sync — OK
+exit=0
+$ grep -n 'claude|codex)/agents' .skilled/hooks/git/pre-commit .skilled/scripts/git-hooks/pre-commit; echo "exit=$?"
+.skilled/hooks/git/pre-commit:87:done < <(git diff --cached --name-only --diff-filter=ACMD | grep -E '^\.(opencode|skilled|claude|codex)/agents/' || true)
+.skilled/scripts/git-hooks/pre-commit:170:done < <(git diff --cached --name-only --diff-filter=ACMD | grep -E '^\.(opencode|skilled|claude|codex)/agents/' || true)
+exit=0

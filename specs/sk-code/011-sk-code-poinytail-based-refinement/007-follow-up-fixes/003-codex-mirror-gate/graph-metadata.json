@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/003-codex-mirror-gate",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/003-codex-mirror-gate",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "codex mirror gate",
+      "phase 3 codex mirror gate",
+      "codex mirror gate plan",
+      "codex mirror gate tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "codex mirror gate implementation summary"
+    ],
+    "key_topics": [
+      "codex",
+      "mirror",
+      "gate",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs",
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/check-agent-mirror-sync.vitest.ts",
+      "scratch/before/vitest-red.txt",
+      "scratch/after/vitest-after.txt",
+      ".codex/agents/code.toml",
+      "scratch/after/sc-001.txt",
+      "scratch/before/codex-path.txt",
+      "scratch/after/vitest-t014.txt",
+      "scratch/after/validate-final.txt",
+      "scratch/before/mirror-sync-verify.cjs",
+      ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+      ".claude/agents/README.txt",
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs",
+      ".pi/agents/code.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-mirror-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-mirror-sync.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/check-agent-mirror-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest-red.txt",
+        "kind": "file",
+        "path": "scratch/before/vitest-red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "vitest-after.txt",
+        "kind": "file",
+        "path": "scratch/after/vitest-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "code.toml",
+        "kind": "file",
+        "path": ".codex/agents/code.toml",
+        "source": "derived"
+      },
+      {
+        "name": "sc-001.txt",
+        "kind": "file",
+        "path": "scratch/after/sc-001.txt",
+        "source": "derived"
+      },
+      {
+        "name": "codex-path.txt",
+        "kind": "file",
+        "path": "scratch/before/codex-path.txt",
+        "source": "derived"
+      },
+      {
+        "name": "vitest-t014.txt",
+        "kind": "file",
+        "path": "scratch/after/vitest-t014.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-final.txt",
+        "kind": "file",
+        "path": "scratch/after/validate-final.txt",
+        "source": "derived"
+      },
+      {
+        "name": "mirror-sync-verify.cjs",
+        "kind": "file",
+        "path": "scratch/before/mirror-sync-verify.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".claude/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".pi/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Three Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The agent-mirror gate recognizes three roots: `.opencode/agents/`, `.skilled/agents/` and `.claude/agents/`",
+    "created_at": "2026-10-10T05:26:27Z",
+    "last_save_at": "2026-10-10T05:58:41.969Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5afd4e240c8fb7c3342fc2acc9701cf750f5cff631a74dcdcb67f906e8c85e17",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b4308f8c4850e4eff8ced38bc727ce3aa79559ddb20c4af9a7fb295a53a7d40f",
+      "plan.md": "2e611ce3cf44e45b45d5606cc309975916752880c47f2b21b5e7057f2a547f24",
+      "tasks.md": "b16dfed977ba5aa538c1ab306f7da488358fa0274610bce3430ad00f3b8b8505",
+      "implementation-summary.md": "70c94ddac502201b3656f326131cc9f0fa09a1f4fb5a3ba2373568f2740b77d7"
+    },
+    "last_active_at": null
+  }
+}
