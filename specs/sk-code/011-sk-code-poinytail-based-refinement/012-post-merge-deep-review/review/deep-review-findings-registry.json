@@ -1,0 +1,2205 @@
+{
+  "sessionId": "rvw-012-post-merge-20261010T184241Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R10-TRA-001",
+      "severity": "P2",
+      "title": "Phase 004 records markers=0 as the final-state repo run; the committed tree prints markers=3",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/implementation-summary.md",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R10-TRA-002",
+      "severity": "P2",
+      "title": "Checker banner still describes a Claude-only mirror after the Codex leg landed",
+      "file": ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-COR-001",
+      "severity": "P2",
+      "title": "Registered hook entrypoints still read stdin with no deadline",
+      "file": ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+      "line": 364,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-COR-002",
+      "severity": "P2",
+      "title": "No test covers a write arriving after the stdin deadline",
+      "file": ".skilled/hooks/shared/hook-stdin-deadline.test.mjs",
+      "line": 104,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-COR-001",
+      "severity": "P2",
+      "title": "Admission test red at HEAD: LIVE_CORPUS_SIZE pins 80 against 86 live gold scenarios",
+      "file": ".skilled/bin/tests/compiled-route-admission.test.cjs",
+      "line": 241,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-COR-002",
+      "severity": "P2",
+      "title": "advisor_recommend's compiled-route probe cannot carry the session surface hint",
+      "file": ".skilled/skills/system-skill-advisor/runtime/dist/runtime/handlers/advisor-recommend.js",
+      "line": 292,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-COR-001",
+      "severity": "P2",
+      "title": "Numbered narrative-only findings are still dropped by the reducer yield rule",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      "line": 1002,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-SEC-001",
+      "severity": "P2",
+      "title": "Shared CJS stdin reader buffers without a byte cap; the deadline bounds time, not memory",
+      "file": ".skilled/hooks/shared/hook-adapter-shared.cjs",
+      "line": 26,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-SEC-002",
+      "severity": "P2",
+      "title": "Alias diskPath containment check misses backslash traversal and drive-letter forms the sibling scope validator rejects",
+      "file": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      "line": 77,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-SEC-003",
+      "severity": "P2",
+      "title": "Webflow runtime check silently drops callbacks past depth 20: a deferred crash beyond the cap still reports PASS",
+      "file": ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs",
+      "line": 42,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R6-COR-001",
+      "severity": "P2",
+      "title": "004 hub canary jev-transport-single stays red on main: the router defers while the fixture expects a cli-jev single route",
+      "file": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/004-cli-external-orchestration/fixtures/canary-cases.v1.json",
+      "line": 201,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R6-COR-002",
+      "severity": "P2",
+      "title": "Never-cut pin set covers four of the eight P0 labels in section 3",
+      "file": ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+      "line": 83,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-MNT-001",
+      "severity": "P2",
+      "title": "The single drift-guard entrypoint reports PASS while the alignment-drift leg emits 272 PYEXIT=0 non-blocking warnings because it never passes --fail-on-warn",
+      "file": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+      "line": 48,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-TRA-001",
+      "severity": "P2",
+      "title": "Parent goal completion criteria do not hold at the reviewed state (3 of 3 fail as printed)",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
+      "line": 92,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-TRA-002",
+      "severity": "P2",
+      "title": "011-005 summary claims 10 tests; the live suite declares 12",
+      "file": ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R9-MNT-001",
+      "severity": "P2",
+      "title": "Playbook scenarios name the unregistered .sh as the live Claude PostToolUse hook",
+      "file": ".skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md",
+      "line": 11,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R9-MNT-002",
+      "severity": "P2",
+      "title": "stack-detection.md cites preview-server.js, absent from the tree",
+      "file": ".skilled/skills/sk-code/shared/references/stack-detection.md",
+      "line": 145,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R9-MNT-003",
+      "severity": "P2",
+      "title": "Webflow debugging evidence list cites two spec memories that do not resolve",
+      "file": ".skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md",
+      "line": 375,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 18
+  },
+  "openFindingsCount": 18,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.889,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "checker_false_negative",
+      "checker_false_pass",
+      "claim_drift",
+      "deadline_margin",
+      "dropped_doc_notes",
+      "gate_clarity",
+      "known_limitation_left_open",
+      "late_write_handling",
+      "merge_resolution_loss",
+      "missing_boundary_test",
+      "narrative_double_count",
+      "narrative_only_loss",
+      "partial_input_handling",
+      "path_traversal",
+      "shell_injection",
+      "spec_code_claim_drift",
+      "spec_code_drift",
+      "stale_canary_expectation",
+      "stale_fixture_pin",
+      "stale_generated_artifact",
+      "stale_name",
+      "stale_test_pin",
+      "surface_hint_omission",
+      "symlink_containment",
+      "timer_leak",
+      "unbounded_stdin_read",
+      "version_content_mismatch",
+      "wrong_path"
+    ],
+    "ruledOut": [
+      "checklist_evidence_gap",
+      "claim_drift",
+      "contract_gap",
+      "count_regression",
+      "cross_reference_breakage",
+      "dead_anchor",
+      "dead_link",
+      "deadline_margin",
+      "doc_claim_mismatch",
+      "dropped_doc_notes",
+      "duplicated_constant",
+      "gate_coverage_gap",
+      "hint_reorder_correctness",
+      "information_disclosure",
+      "known_limitation_left_open",
+      "late_write_handling",
+      "merge_resolution_loss",
+      "mirror_body_drift",
+      "mirror_parity_drift",
+      "narrative_double_count",
+      "partial_input_handling",
+      "routing_lockstep_drift",
+      "shell_injection",
+      "spec_code_drift",
+      "stale_generated_artifact",
+      "symlink_containment",
+      "timer_leak",
+      "version_content_mismatch"
+    ],
+    "deferred": [
+      "residual_release_reference",
+      "route_drift_attribution",
+      "stale_scratch_evidence"
+    ],
+    "blocked": [
+      "byte_level_fixture_hash"
+    ],
+    "byBugClass": {
+      "merge_resolution_loss": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "version_content_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "stale_generated_artifact": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "dropped_doc_notes": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "residual_release_reference": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "byte_level_fixture_hash": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          1
+        ]
+      },
+      "unbounded_stdin_read": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          5
+        ]
+      },
+      "missing_boundary_test": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "deadline_margin": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "timer_leak": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "partial_input_handling": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          5
+        ]
+      },
+      "late_write_handling": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "stale_fixture_pin": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "surface_hint_omission": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "hint_reorder_correctness": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "routing_lockstep_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "route_drift_attribution": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "narrative_double_count": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "narrative_only_loss": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "count_regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "stale_scratch_evidence": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "path_traversal": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "symlink_containment": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "shell_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "checker_false_pass": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "information_disclosure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "checker_false_negative": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "stale_canary_expectation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "stale_test_pin": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "contract_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "doc_claim_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "duplicated_constant": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "gate_clarity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "spec_code_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "known_limitation_left_open": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "checklist_evidence_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "mirror_parity_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "stale_name": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "wrong_path": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "claim_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "dead_link": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "dead_anchor": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "spec_code_claim_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "mirror_body_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "cross_reference_breakage": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "gate_coverage_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json"
+      ],
+      "bugClass": "byte_level_fixture_hash",
+      "disposition": "blocked",
+      "rationale": "recorded as not-proven rather than a finding",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/scope-files.txt:1"
+      ],
+      "reason": "no read-only clean-tree path: generating into a scratch tree would create files outside the allowed write list and the dirty worktree cannot be reverted"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/007-spec-kit-hook-deadlines/spec.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/007-spec-kit-hook-deadlines/plan.md",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/007-spec-kit-hook-deadlines/implementation-summary.md"
+      ],
+      "bugClass": "residual_release_reference",
+      "disposition": "deferred",
+      "rationale": "deferred, not a finding, to avoid double-reporting across dimensions",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/007-spec-kit-hook-deadlines/implementation-summary.md:57"
+      ],
+      "reason": "the orchestrator plan assigns phase-010/011 spec-versus-code traceability to iteration 8; sampled here only to bound the merge's documentation fallout"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-105",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/doctor-commands/doctor-deep-loop-lazy-init.md"
+      ],
+      "bugClass": "route_drift_attribution",
+      "disposition": "deferred",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/doctor-commands/doctor-deep-loop-lazy-init.md:6",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/doctor-commands/doctor-deep-loop-lazy-init.md:6"
+      ],
+      "reason": "Cannot be attributed to the range from a read-only pass; baseline triage owns warn-only admission drift."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/reducer-yield-after.txt"
+      ],
+      "bugClass": "stale_scratch_evidence",
+      "disposition": "deferred",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/reducer-yield-after-review.txt:2"
+      ],
+      "reason": "Untracked scratch hygiene, not code behavior; noted as edge case 1"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs"
+      ],
+      "bugClass": "merge_resolution_loss",
+      "disposition": "ruled_out",
+      "rationale": "no merge loss in the one file both sides rewrote",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:123",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:172",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:522",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:478",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-ignores.test.cjs:1"
+      ],
+      "reason": "both sides' features present at HEAD and both sides' test suites pass on the merged file"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/SKILL.md",
+        ".hermes/skills/system-spec-kit/SKILL.md"
+      ],
+      "bugClass": "version_content_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "version and content match the focus expectation",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/SKILL.md:5",
+        ".skilled/skills/system-spec-kit/SKILL.md:496",
+        ".hermes/skills/system-spec-kit/SKILL.md:5"
+      ],
+      "reason": "merge result is upstream content plus the required 2.7.2.0 version bump, and the Hermes mirror check passes"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md"
+      ],
+      "bugClass": "dropped_doc_notes",
+      "disposition": "ruled_out",
+      "rationale": "the fold described in the focus is present",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md:1",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md:18",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md:26",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md:27",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md:1"
+      ],
+      "reason": "both carried-over notes verified inside merged v2.7.2.0; v2.7.1.0 intentionally upstream's"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json"
+      ],
+      "bugClass": "stale_generated_artifact",
+      "disposition": "ruled_out",
+      "rationale": "rebuild is consistent with the merged tracked sources",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json:1",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json:1"
+      ],
+      "reason": "phrase-level and path-level freshness hold for every document present at HEAD; the reported staleness is the review packet's own untracked files"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        "AGENTS.md"
+      ],
+      "bugClass": "merge_resolution_loss",
+      "disposition": "ruled_out",
+      "rationale": "no lost intent in AGENTS.md",
+      "evidenceRefs": [
+        "AGENTS.md:86",
+        "AGENTS.md:86",
+        "AGENTS.md:86"
+      ],
+      "reason": "upstream's single-marker change is intentional and present; the epic's parallel line also present"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-R2-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts"
+      ],
+      "bugClass": "deadline_margin",
+      "disposition": "ruled_out",
+      "rationale": "500 ms read + budgeted work fits the 3 s host timeout",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts:23",
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:38"
+      ],
+      "reason": "margin exists and is asserted; no defect proven"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-R2-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs",
+        ".skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts"
+      ],
+      "bugClass": "timer_leak",
+      "disposition": "ruled_out",
+      "rationale": "no leak",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:39",
+        ".skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts:53"
+      ],
+      "reason": "timer cleanup present on every path"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-R2-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs"
+      ],
+      "bugClass": "partial_input_handling",
+      "disposition": "ruled_out",
+      "rationale": "fail-open contract preserved",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:31",
+        ".skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts:79"
+      ],
+      "reason": "partial input handled and tested"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-R2-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs"
+      ],
+      "bugClass": "late_write_handling",
+      "disposition": "ruled_out",
+      "rationale": "benign by design; missing coverage recorded as R2-COR-002",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:47"
+      ],
+      "reason": "post-settle writes are discarded with no crash"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-103",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
+        ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs"
+      ],
+      "bugClass": "hint_reorder_correctness",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/tests/compiled-route-surface-hint.test.cjs:1",
+        ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:106"
+      ],
+      "reason": "Hint suite green and engine code constrains the hint to target reordering after validation."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-104",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "routing_lockstep_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:1"
+      ],
+      "reason": "Guard run at HEAD reports every hub fresh."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+      ],
+      "bugClass": "narrative_double_count",
+      "disposition": "ruled_out",
+      "rationale": "Same-id match resolves the restatement duplication",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1002",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/reducer-yield-after-review.txt:2"
+      ],
+      "reason": "verified by code read and per-folder probe sums"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/reducer-yield-after-review.txt"
+      ],
+      "bugClass": "count_regression",
+      "disposition": "ruled_out",
+      "rationale": "No folder increased",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/reducer-yield-after-review.txt:148"
+      ],
+      "reason": "per-folder probe arithmetic"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs"
+      ],
+      "bugClass": "partial_input_handling",
+      "disposition": "ruled_out",
+      "rationale": "re-confirmed by probe, not re-reported",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:54",
+        ".skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs:41"
+      ],
+      "reason": "fail-open on partial input is the adapter's stated contract and was already ruled out in iteration 2; no blocking gate depends on the truncated-bytes case for an enforcement boundary"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs"
+      ],
+      "bugClass": "symlink_containment",
+      "disposition": "ruled_out",
+      "rationale": "no escape path demonstrated",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:188"
+      ],
+      "reason": "walker and writer contain or refuse every symlink case found by direct read"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-505",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs"
+      ],
+      "bugClass": "shell_injection",
+      "disposition": "ruled_out",
+      "rationale": "the named risk is not present",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:123",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/minify-webflow.mjs:105",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:49"
+      ],
+      "reason": "no shell interpolation of paths exists at any call site; python and node guards resolve roots from their own file location"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-507",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs"
+      ],
+      "bugClass": "information_disclosure",
+      "disposition": "ruled_out",
+      "rationale": "recorded as edge case 2 rather than a finding",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:115"
+      ],
+      "reason": "the manifest carries path names only, the fallback is deliberate and documented, and git-backed repos are covered by check-ignore"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-602",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js"
+      ],
+      "bugClass": "contract_gap",
+      "disposition": "ruled_out",
+      "rationale": "green run plus source read",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js:1",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh:1"
+      ],
+      "reason": "no hole inside the documented contract; every tested shape matches the README contract"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-702",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs"
+      ],
+      "bugClass": "doc_claim_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs:34"
+      ],
+      "reason": "claim did not reproduce: all six suites green and no fixed-routing count assertion exists in scope"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-703",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs:16"
+      ],
+      "bugClass": "duplicated_constant",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs:16"
+      ],
+      "reason": "single literal; recorded as a watch item, not a finding"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-803",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/002-webflow-labels-and-playbook/implementation-summary.md"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "versions, tieBreak order, hook constants, parser presence and deletion claims all match the summaries",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-webflow/SKILL.md:1",
+        ".skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts:23",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:1"
+      ],
+      "reason": "the remaining spot checks hold; only the two registered mismatches stand"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-804",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md:97"
+      ],
+      "bugClass": "mirror_parity_drift",
+      "disposition": "ruled_out",
+      "rationale": "criterion 6 holds at the reviewed state",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs"
+      ],
+      "reason": "both mirrored trees pass their checks live"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-805",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/tasks.md:163"
+      ],
+      "bugClass": "known_limitation_left_open",
+      "disposition": "ruled_out",
+      "rationale": "T121 closed by the orchestrator with live evidence; the REQ row itself was amended after the build",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/tasks.md:163",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/spec.md:141"
+      ],
+      "reason": "the only unclosed limitation (REQ-004/T125) is a documented, amended deviation rather than a silent gap"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-806",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards/implementation-summary.md"
+      ],
+      "bugClass": "known_limitation_left_open",
+      "disposition": "ruled_out",
+      "rationale": "validated via the live suite and the source read",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs:81",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/iterations/iteration-007.md"
+      ],
+      "reason": "the four round-three checker limits were implemented or narrowed by 011-005; the remaining one (rare heading forms) is documented by design"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/**/*.md"
+      ],
+      "bugClass": "dead_anchor",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "MISSING_ANCHORS=0"
+      ],
+      "reason": "no dead anchors found"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/**/*.md"
+      ],
+      "bugClass": "dead_link",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "MISSING_FILE_LINKS=10"
+      ],
+      "reason": "all raw hits resolve"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-006",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/SKILL.md"
+      ],
+      "bugClass": "claim_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "hvr_scan.py output line"
+      ],
+      "reason": "count matches the recorded baseline; siblings held or fell"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-007",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "advisor-probe-battery.md:60"
+      ],
+      "bugClass": "claim_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "advisor-probe-battery.md:60"
+      ],
+      "reason": "numbers reproduce; the accuracy gap is a documented known limitation under a no-worse bar"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-10-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/agents/deep-review.md",
+        ".claude/agents/deep-review.md",
+        ".pi/agents/deep-review.md",
+        ".hermes/skills/agent-deep-review/SKILL.md",
+        ".codex/agents/deep-review.toml"
+      ],
+      "bugClass": "mirror_body_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/agents/deep-review.md:214",
+        ".claude/agents/deep-review.md:201",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:143"
+      ],
+      "reason": "live gate plus dialect greps show no body drift"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-10-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/repo-rules",
+        "REPO RULES.md",
+        "AGENTS.md"
+      ],
+      "bugClass": "cross_reference_breakage",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "REPO RULES.md:36",
+        "AGENTS.md:296"
+      ],
+      "reason": "every markdown link resolves"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-10-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".github/workflows/spec-kit-check.yml",
+        ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs"
+      ],
+      "bugClass": "gate_coverage_gap",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:259",
+        ".github/workflows/spec-kit-check.yml:157",
+        ".skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs"
+      ],
+      "reason": "CI fires pre-merge with .pi paths; no live drift; recorded as observation"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs"
+      ],
+      "bugClass": "merge_resolution_loss",
+      "disposition": "ruled_out",
+      "rationale": "no merge loss in the one file both sides rewrote",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:123",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:172",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:522",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:478",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-ignores.test.cjs:1"
+      ],
+      "proof": "both sides' features present at HEAD and both sides' test suites pass on the merged file"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/SKILL.md",
+        ".hermes/skills/system-spec-kit/SKILL.md"
+      ],
+      "bugClass": "version_content_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "version and content match the focus expectation",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/SKILL.md:5",
+        ".skilled/skills/system-spec-kit/SKILL.md:496",
+        ".hermes/skills/system-spec-kit/SKILL.md:5"
+      ],
+      "proof": "merge result is upstream content plus the required 2.7.2.0 version bump, and the Hermes mirror check passes"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md"
+      ],
+      "bugClass": "dropped_doc_notes",
+      "disposition": "ruled_out",
+      "rationale": "the fold described in the focus is present",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md:1",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md:18",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md:26",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md:27",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md:1"
+      ],
+      "proof": "both carried-over notes verified inside merged v2.7.2.0; v2.7.1.0 intentionally upstream's"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json"
+      ],
+      "bugClass": "stale_generated_artifact",
+      "disposition": "ruled_out",
+      "rationale": "rebuild is consistent with the merged tracked sources",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json:1",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json:1"
+      ],
+      "proof": "phrase-level and path-level freshness hold for every document present at HEAD; the reported staleness is the review packet's own untracked files"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        "AGENTS.md"
+      ],
+      "bugClass": "merge_resolution_loss",
+      "disposition": "ruled_out",
+      "rationale": "no lost intent in AGENTS.md",
+      "evidenceRefs": [
+        "AGENTS.md:86",
+        "AGENTS.md:86",
+        "AGENTS.md:86"
+      ],
+      "proof": "upstream's single-marker change is intentional and present; the epic's parallel line also present"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-R2-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts"
+      ],
+      "bugClass": "deadline_margin",
+      "disposition": "ruled_out",
+      "rationale": "500 ms read + budgeted work fits the 3 s host timeout",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts:23",
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:38"
+      ],
+      "proof": "margin exists and is asserted; no defect proven"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-R2-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs",
+        ".skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts"
+      ],
+      "bugClass": "timer_leak",
+      "disposition": "ruled_out",
+      "rationale": "no leak",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:39",
+        ".skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts:53"
+      ],
+      "proof": "timer cleanup present on every path"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-R2-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs"
+      ],
+      "bugClass": "partial_input_handling",
+      "disposition": "ruled_out",
+      "rationale": "fail-open contract preserved",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:31",
+        ".skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts:79"
+      ],
+      "proof": "partial input handled and tested"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-R2-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs"
+      ],
+      "bugClass": "late_write_handling",
+      "disposition": "ruled_out",
+      "rationale": "benign by design; missing coverage recorded as R2-COR-002",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:47"
+      ],
+      "proof": "post-settle writes are discarded with no crash"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-103",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
+        ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs"
+      ],
+      "bugClass": "hint_reorder_correctness",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/tests/compiled-route-surface-hint.test.cjs:1",
+        ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:106"
+      ],
+      "proof": "Hint suite green and engine code constrains the hint to target reordering after validation."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-104",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-guard.cjs"
+      ],
+      "bugClass": "routing_lockstep_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-guard.cjs:1"
+      ],
+      "proof": "Guard run at HEAD reports every hub fresh."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+      ],
+      "bugClass": "narrative_double_count",
+      "disposition": "ruled_out",
+      "rationale": "Same-id match resolves the restatement duplication",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1002",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/reducer-yield-after-review.txt:2"
+      ],
+      "proof": "verified by code read and per-folder probe sums"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/reducer-yield-after-review.txt"
+      ],
+      "bugClass": "count_regression",
+      "disposition": "ruled_out",
+      "rationale": "No folder increased",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/reducer-yield-after-review.txt:148"
+      ],
+      "proof": "per-folder probe arithmetic"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs"
+      ],
+      "bugClass": "partial_input_handling",
+      "disposition": "ruled_out",
+      "rationale": "re-confirmed by probe, not re-reported",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:54",
+        ".skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs:41"
+      ],
+      "proof": "fail-open on partial input is the adapter's stated contract and was already ruled out in iteration 2; no blocking gate depends on the truncated-bytes case for an enforcement boundary"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs"
+      ],
+      "bugClass": "symlink_containment",
+      "disposition": "ruled_out",
+      "rationale": "no escape path demonstrated",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:188"
+      ],
+      "proof": "walker and writer contain or refuse every symlink case found by direct read"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-505",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs"
+      ],
+      "bugClass": "shell_injection",
+      "disposition": "ruled_out",
+      "rationale": "the named risk is not present",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:123",
+        ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/minify-webflow.mjs:105",
+        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:49"
+      ],
+      "proof": "no shell interpolation of paths exists at any call site; python and node guards resolve roots from their own file location"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-507",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs"
+      ],
+      "bugClass": "information_disclosure",
+      "disposition": "ruled_out",
+      "rationale": "recorded as edge case 2 rather than a finding",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:115"
+      ],
+      "proof": "the manifest carries path names only, the fallback is deliberate and documented, and git-backed repos are covered by check-ignore"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-602",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js"
+      ],
+      "bugClass": "contract_gap",
+      "disposition": "ruled_out",
+      "rationale": "green run plus source read",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js:1",
+        ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh:1"
+      ],
+      "proof": "no hole inside the documented contract; every tested shape matches the README contract"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-604",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/tests/compiled-route-admission.test.cjs"
+      ],
+      "bugClass": "stale_test_pin",
+      "disposition": "not_applicable",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/tests/compiled-route-admission.test.cjs:241"
+      ],
+      "proof": "already registered as R3-COR-001; this run re-confirms it at HEAD and adds no new claim"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-702",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs"
+      ],
+      "bugClass": "doc_claim_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs:34"
+      ],
+      "proof": "claim did not reproduce: all six suites green and no fixed-routing count assertion exists in scope"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-703",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs:16"
+      ],
+      "bugClass": "duplicated_constant",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs:16"
+      ],
+      "proof": "single literal; recorded as a watch item, not a finding"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-803",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/002-webflow-labels-and-playbook/implementation-summary.md"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "versions, tieBreak order, hook constants, parser presence and deletion claims all match the summaries",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-webflow/SKILL.md:1",
+        ".skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts:23",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:1"
+      ],
+      "proof": "the remaining spot checks hold; only the two registered mismatches stand"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-804",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md:97"
+      ],
+      "bugClass": "mirror_parity_drift",
+      "disposition": "ruled_out",
+      "rationale": "criterion 6 holds at the reviewed state",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs"
+      ],
+      "proof": "both mirrored trees pass their checks live"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-805",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/tasks.md:163"
+      ],
+      "bugClass": "known_limitation_left_open",
+      "disposition": "ruled_out",
+      "rationale": "T121 closed by the orchestrator with live evidence; the REQ row itself was amended after the build",
+      "evidenceRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/tasks.md:163",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/spec.md:141"
+      ],
+      "proof": "the only unclosed limitation (REQ-004/T125) is a documented, amended deviation rather than a silent gap"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-806",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards/implementation-summary.md"
+      ],
+      "bugClass": "known_limitation_left_open",
+      "disposition": "ruled_out",
+      "rationale": "validated via the live suite and the source read",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs:81",
+        "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/iterations/iteration-007.md"
+      ],
+      "proof": "the four round-three checker limits were implemented or narrowed by 011-005; the remaining one (rare heading forms) is documented by design"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/**/*.md"
+      ],
+      "bugClass": "dead_anchor",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "MISSING_ANCHORS=0"
+      ],
+      "proof": "no dead anchors found"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/**/*.md"
+      ],
+      "bugClass": "dead_link",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "MISSING_FILE_LINKS=10"
+      ],
+      "proof": "all raw hits resolve"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-006",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/SKILL.md"
+      ],
+      "bugClass": "claim_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "hvr_scan.py output line"
+      ],
+      "proof": "count matches the recorded baseline; siblings held or fell"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-007",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "advisor-probe-battery.md:60"
+      ],
+      "bugClass": "claim_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "advisor-probe-battery.md:60"
+      ],
+      "proof": "numbers reproduce; the accuracy gap is a documented known limitation under a no-worse bar"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-10-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/agents/deep-review.md",
+        ".claude/agents/deep-review.md",
+        ".pi/agents/deep-review.md",
+        ".hermes/skills/agent-deep-review/SKILL.md",
+        ".codex/agents/deep-review.toml"
+      ],
+      "bugClass": "mirror_body_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/agents/deep-review.md:214",
+        ".claude/agents/deep-review.md:201",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs:143"
+      ],
+      "proof": "live gate plus dialect greps show no body drift"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-10-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/repo-rules",
+        "REPO RULES.md",
+        "AGENTS.md"
+      ],
+      "bugClass": "cross_reference_breakage",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "REPO RULES.md:36",
+        "AGENTS.md:296"
+      ],
+      "proof": "every markdown link resolves"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-10-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".github/workflows/spec-kit-check.yml",
+        ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs"
+      ],
+      "bugClass": "gate_coverage_gap",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:259",
+        ".github/workflows/spec-kit-check.yml:157",
+        ".skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs"
+      ],
+      "proof": "CI fires pre-merge with .pi paths; no live drift; recorded as observation"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "mirror_body_drift",
+      "cross_reference_breakage",
+      "spec_code_claim_drift",
+      "gate_coverage_gap"
+    ],
+    "covered": [
+      "spec_code_claim_drift"
+    ],
+    "ruledOut": [
+      "mirror_body_drift",
+      "cross_reference_breakage",
+      "gate_coverage_gap"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

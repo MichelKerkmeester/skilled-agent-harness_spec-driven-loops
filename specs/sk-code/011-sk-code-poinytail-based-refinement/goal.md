@@ -45,12 +45,12 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | Builders: cli-codex 002-006, haiku 007-008, Sonnet 5.5 009; 010-011: Opus 5.5 medium plans, DeepSeek V4.1 Flash max builds, Sonnet 5.5 high verifies |
-| D2 | An executor's report is a claim; the orchestrator reruns each goal's criteria |
-| D3 | Work and check in one sk-git worktree, never raw git; edit only its packet copy |
+| D2 | An executor's report is a claim; the orchestrator reruns the criteria |
+| D3 | Work in one sk-git worktree, never raw git; edit only its packet copy |
 | D4 | Commit in folder order: 002 to 006, then the children of 007 to 011 |
-| D5 | Done means its goal criteria pass, its summary is filled and strict validation passes |
-| D6 | One conventional commit per phase, child or research round; never push |
-| D7 | Three failed repairs on a phase stop the run; report command and output |
+| D5 | Done: goal criteria pass, summary filled, strict validation passes |
+| D6 | One conventional commit per phase, child or round; never push |
+| D7 | Three failed repairs stop the run; report command and output |
 
 <!-- /ANCHOR:directive -->
 
@@ -75,6 +75,7 @@ phase and binds as if written here.
 | 009-round-two-follow-ups | `009-round-two-follow-ups/goal.md` |
 | 010-round-three-remediation | `010-round-three-remediation/goal.md` |
 | 011-round-four-remediation | `011-round-four-remediation/goal.md` |
+| 012-post-merge-deep-review | `012-post-merge-deep-review/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -88,8 +89,8 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 12 times and `RESULT: FAILED` 0 times
-- [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 35
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 13 times and `RESULT: FAILED` 0 times
+- [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 36
 - [ ] `git rev-list --count main..HEAD` prints 37, `git log --format='%(trailers:key=Spec,valueonly)' main..HEAD` prints 37 `Spec:` values, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
 - [ ] `node .skilled/bin/compiled-route-guard.cjs` exits 0 listing sk-code `fresh`, and `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints `"action":"route"` and no `servingAuthority` key
 - [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` and `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` both exit 0, and `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exits 0
@@ -134,5 +135,6 @@ and findings belong here.
 | 009 and round three added 2026-10-10 | The operator chose child 009 for the five round-two follow-ups, built by Sonnet 5.5, and a third 001 research round run beside it; criteria 1 to 3 counts, the objective, D1 and D4 amended |
 | 010 added 2026-10-10 | The operator chose child 010 to fix every round-three finding and the five 009 follow-ups; criteria 1 to 3 counts, the objective, D1 and D4 amended |
 | 011 added 2026-10-10 | The operator chose round four for the eleven items round three left open, then added child 008 for a session-aware tie-break; criteria 2 and 3 counts, the objective, D1, D3 and D4 amended |
+| 012 added 2026-10-10 | The operator chose child 012, a ten-iteration post-merge deep review on DeepSeek V4.1 Flash; criteria 1 and 2 counts amended, and decisions D2, D3, D5, D6 and D7 shortened to keep the durable slice under 4,000 characters. Criterion 3 counts `main..HEAD` on the epic branch and no longer applies once the epic is on main |
 | Handed off, not built here | D2 Codex mirror gap (deep-improvement and git hooks) and D4 stdin deadline (hooks); recorded in the parent spec |
 <!-- /ANCHOR:log -->
