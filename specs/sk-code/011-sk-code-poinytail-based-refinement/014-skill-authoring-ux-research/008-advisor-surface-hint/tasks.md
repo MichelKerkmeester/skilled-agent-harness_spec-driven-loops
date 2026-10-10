@@ -31,7 +31,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Dispatch the handler test first and confirm it fails
+- [x] T001 Dispatch the handler test first and confirm it fails
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -39,8 +39,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Dispatch the schema and handler change
-- [ ] T003 Rebuild, restart the daemon, rerun the test, the CLI call and the suite
+- [x] T002 Dispatch the schema and handler change
+- [x] T003 Rebuild, restart the daemon, rerun the test, the CLI call and the suite
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -48,7 +48,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T004 Bump the advisor version with a changelog entry, regenerate mirrors, validate and commit
+- [x] T004 Bump the advisor version with a changelog entry, regenerate mirrors, validate and commit
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -56,9 +56,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every goal.md criterion passes on the orchestrator's rerun
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every goal.md criterion passes on the orchestrator's rerun
 <!-- /ANCHOR:completion -->
 
 ---

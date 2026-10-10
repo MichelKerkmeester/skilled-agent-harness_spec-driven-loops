@@ -246,6 +246,9 @@ export const AdvisorRecommendInputSchema = z.object({
     confidenceThreshold: z.number().min(0).max(1).optional(),
     uncertaintyThreshold: z.number().min(0).max(1).optional(),
     includeCompiledRoute: z.boolean().optional(),
+    // Forwarded to the compiled-route front door as --surface-hint; a value
+    // that names no known surface is ignored there.
+    surfaceHint: z.string().min(1).max(64).optional(),
   }).strict().optional(),
 }).strict();
 

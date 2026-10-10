@@ -36,15 +36,18 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "runtime/package.json",
+      ".hermes/skills/system-skill-advisor/SKILL.md",
       ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
       ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/advisor-surface-hint.vitest.ts",
       ".skilled/skills/system-skill-advisor/SKILL.md"
     ],
     "entities": [
@@ -79,6 +82,18 @@
         "source": "derived"
       },
       {
+        "name": "package.json",
+        "kind": "config",
+        "path": "runtime/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "advisor-tool-schemas.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
@@ -91,9 +106,9 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
+        "name": "advisor-surface-hint.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/advisor-surface-hint.vitest.ts",
         "source": "derived"
       },
       {
@@ -179,23 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The compiled-route front door accepts --surface-hint and the sk-code hub tells its caller to pass it, but advisorrecommend, the only automated caller, has no option for it and never passes the flag",
     "created_at": "2026-10-10T19:22:20Z",
-    "last_save_at": "2026-10-10T19:30:18.600Z",
+    "last_save_at": "2026-10-10T21:17:43.869Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8997206c97e9f605a495bfbb7595faf771001e2ed6e4eb92fb010c99bddfcbfb",
+    "source_fingerprint": "sha256:546faf9bce456da6df4b3250ad3611eb581bb9f315a95aac4dcb9b11c224ab0a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "25e720adb1cc3bbeb6e46633d59dfc0055f00232768a8af2f151d0e89df31cf7",
-      "plan.md": "05d551426e0b75fd435fa052f1c73c9fc6beb8d1a574c5f57e1d8194835a7e47",
-      "tasks.md": "6090c648949fe5bf96a152be21853e452d83d386c6a47c318ea333939679463d",
-      "implementation-summary.md": "f14976483d09fe8903d87201801fe662d2d116bc30d9c883dfb4aee1b4228764"
+      "spec.md": "5216def584f57f873b99bc0e7706aaf7f801dcacc4127559f559a40994fb9312",
+      "plan.md": "3b041924c428f98bf9e3bec012b8bc889d6fb164bccbae79dad4fd92c3b80464",
+      "tasks.md": "93fd976b9f9709bf6daae227f13106842a07e33481c99aa068a47b3c10eeff61",
+      "implementation-summary.md": "c1597d85337befa0651098a99af01811d90830607ba0023a8fbf15d8a2697ea0"
     },
     "last_active_at": null
   }
