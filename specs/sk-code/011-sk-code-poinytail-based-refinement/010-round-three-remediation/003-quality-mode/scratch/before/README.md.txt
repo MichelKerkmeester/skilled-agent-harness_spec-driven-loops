@@ -1,5 +1,5 @@
 ---
-title: sk-code-quality
+title: code-quality
 description: The post-implementation quality gate for the sk-code family. It applies P0/P1/P2 author checks, runs comment hygiene per modified file, loads the right surface checklist and hands only clean evidence to verification.
 trigger_phrases:
   - "quality gate"
@@ -8,10 +8,10 @@ trigger_phrases:
   - "authoring checklist"
 importance_tier: important
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.0.0
 ---
 
-# sk-code-quality
+# code-quality
 
 > Implementation can be behaviorally close and still not shippable. This mode runs the author-side quality gate after files change and before verification, so gate failures are fixed in place and only clean evidence reaches the surface verification workflow.
 
@@ -47,8 +47,7 @@ The mode's headline strength is routing by target path: every surface family lan
 | **Webflow frontend files** | applies the code quality checklist and the shared universal standards |
 | **OpenCode skills** | loads the skill-authoring checklist by target path |
 | **OpenCode agents and commands** | routes to the agent-authoring and command-authoring checklists |
-| **Spec folders** | routes to the spec-folder authoring checklist that `system-spec-kit` owns |
-| **MCP servers** | routes to the MCP-server-authoring checklist |
+| **Spec folders and MCP servers** | routes to the spec-folder and MCP-server-authoring checklists |
 | **Language files and config** | applies the language-specific and config checklists |
 
 ---
@@ -62,7 +61,7 @@ The mode's headline strength is routing by target path: every surface family lan
 **Step 3: Run comment hygiene per modified file.**
 
 ```bash
-.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>
+bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>
 ```
 
 The script reports zero violations and exits 0 when every comment keeps durable WHY and drops ephemeral artifact labels.
@@ -85,7 +84,7 @@ The mode sits between implementation and verification. It reads the changed file
 
 ### Target-Path Routing
 
-OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-opencode`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards.
+OpenCode authoring targets route to specific checklists: skills, agents, commands, spec folders, MCP servers, language files and config each have their own checklist. Webflow frontend work uses the code quality checklist and the shared universal standards.
 
 ### The Mutation Boundary
 
@@ -113,8 +112,8 @@ Use it when a change is already written and needs standards enforcement before f
 
 | Check | How to run it |
 |---|---|
-| Comment hygiene | `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>` reports zero violations and exits 0. Run it directly, not through `bash`, because it is a Python program |
-| Distribution drift | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh --all` prints a banner when a watched package is stale or cannot be checked and nothing when every one is current. It always exits 0 because it warns and does not gate. Run it directly, not through `bash`, because it is a Python program |
+| Comment hygiene | `bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>` reports zero violations and exits 0 |
+| Distribution drift | `bash .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` exits 0 when generated artifacts are current |
 | Ceiling markers | `.skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh` prints one line per `ceiling:` or `intentional-limit:` marker and a closing `markers=N no-trigger=N no-signal=N` line, and exits 0 because it reports and does not gate |
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-quality/README.md --type readme` reports zero issues |
 | Final claim | Hand to the surface verification workflow (`workflow-verify.md`). This mode does not make done or works claims |
@@ -127,8 +126,7 @@ Use it when a change is already written and needs standards enforcement before f
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime contract for the quality mode |
 | [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md) | Required quality checklist before implementation completion claims |
-| [`assets/checklists/`](../sk-code-opencode/assets/checklists/) | Target-path OpenCode authoring checklists for skills, agents, commands, MCP servers, language files and config |
-| [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |
+| [`assets/checklists/`](../sk-code-opencode/assets/checklists/) | Target-path OpenCode authoring checklists |
 | [`scripts/check-comment-hygiene.sh`](./scripts/check-comment-hygiene.sh) | Per-file comment-hygiene checker |
 | [`scripts/check-dist-staleness.sh`](./scripts/check-dist-staleness.sh) | Generated artifact drift checker |
 | [`scripts/ceiling-report.sh`](./scripts/ceiling-report.sh) | Ceiling-marker report for debt passes and release checks |

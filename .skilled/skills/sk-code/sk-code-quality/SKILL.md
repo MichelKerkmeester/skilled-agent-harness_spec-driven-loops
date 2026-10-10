@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.1.0.0
+version: 1.1.1.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -12,7 +12,7 @@ metadata:
 
 # Code Quality (quality)
 
-`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`code-webflow` / `code-opencode`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `code-review`.
+`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-webflow` / `sk-code-opencode`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.
 
 ---
 
@@ -33,10 +33,10 @@ Keyword triggers: `quality gate`, `code quality`, `comment hygiene`, `surface ch
 ### When NOT to Use
 
 Skip this mode when:
-- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`code-webflow` / `code-opencode`) and its implementation workflow.
+- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode`) and its implementation workflow.
 - A failure needs symptom-to-root-cause investigation or a single-cause bug fix. Use the surface's debugging workflow (`workflow-debug.md`).
 - The task is to collect final non-mutating verification evidence. Use the surface's verification workflow (`workflow-verify.md`).
-- The user asks for findings-first review output, severity-ranked findings, or PR review. Use `code-review`.
+- The user asks for findings-first review output, severity-ranked findings, or PR review. Use `sk-code-review`.
 - The task is documentation-only prose with no code-work contract. Use `sk-doc`.
 
 ### Family Boundary
@@ -44,10 +44,10 @@ Skip this mode when:
 This is an independently invokable member of the `sk-code` family. It owns the quality gate, not implementation planning, debugging, verification evidence, or formal review reporting. It may edit files that the surface skill already changed to satisfy gate failures, but it does not create new files and does not dispatch subagents.
 
 Pairs well with:
-- The surface skill (`code-webflow` / `code-opencode`) immediately before this gate, because implementation writes the files this mode checks.
+- The surface skill (`sk-code-webflow` / `sk-code-opencode`) immediately before this gate, because implementation writes the files this mode checks.
 - The surface's debugging workflow (`workflow-debug.md`) when a quality failure reveals a functional bug or failing command.
 - The surface's verification workflow (`workflow-verify.md`) after P0 quality issues are clear, because verification gates the final claim.
-- `code-review` when the user wants findings-only output rather than author-side correction.
+- `sk-code-review` when the user wants findings-only output rather than author-side correction.
 
 ---
 
@@ -91,7 +91,7 @@ Phase 1 Implementation writes or changes files
 - `scripts/check-comment-hygiene.sh` is the per-file comment-hygiene gate.
 - `scripts/check-dist-staleness.sh` checks generated/distribution artifact drift when that is part of the target.
 - `scripts/ceiling-report.sh [<file>...]` lists the `ceiling:` and `intentional-limit:` comment markers and tags the ones with no trigger or no measurable signal. Run it for a debt pass, before a release or when a reviewer asks what limits the code knowingly accepts. It reads every tracked code file, or only the files named, prints one `path:line  text  [tags]` line per marker and a closing `markers=N no-trigger=N no-signal=N` line, and exits 0 because it reports and does not gate.
-- `scripts/hooks/claude-posttooluse.sh` is the write-time warning hook for comment hygiene.
+- `scripts/hooks/claude-posttooluse.sh` is the legacy write-time hook, kept for direct tests and registered in no runtime. The live write-time warning is `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`.
 - `../shared/references/universal/code-quality-standards.md` and `../shared/references/universal/code-style-guide.md` define shared standards consumed by this packet.
 
 ### Resource Loading Levels
@@ -109,7 +109,7 @@ Phase 1 Implementation writes or changes files
 | CONDITIONAL | OpenCode JavaScript, TypeScript, Python, Shell, Rust, JSON, or JSONC files | `../sk-code-opencode/assets/checklists/javascript-checklist.md`, `../sk-code-opencode/assets/checklists/typescript-checklist.md`, `../sk-code-opencode/assets/checklists/python-checklist.md`, `../sk-code-opencode/assets/checklists/shell-checklist.md`, `../sk-code-opencode/assets/checklists/rust-checklist/overview-and-p0-parity.md`, `../sk-code-opencode/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`, `../sk-code-opencode/assets/checklists/rust-checklist/p1-required.md`, `../sk-code-opencode/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`, `../sk-code-opencode/assets/checklists/config-checklist.md` as applicable |
 | CONDITIONAL | Generated distribution artifacts or mirrored outputs changed | `scripts/check-dist-staleness.sh` |
 | ON_DEMAND | Debt pass, before a release or a reviewer asks what limits the code knowingly accepts | `scripts/ceiling-report.sh` |
-| ON_DEMAND | Need hook behavior details | `scripts/hooks/claude-posttooluse.sh` |
+| ON_DEMAND | Need the legacy write-time hook's behavior, which no runtime registers | `scripts/hooks/claude-posttooluse.sh` |
 
 ### Target-Path Checklist Map
 
@@ -129,20 +129,20 @@ This mode owns the author-side check and knows the three independent enforcement
 
 | Gate | Where | Effect |
 | --- | --- | --- |
-| Write-time warning | `scripts/hooks/claude-posttooluse.sh` | Warns during authoring when a comment carries ephemeral artifact labels. |
-| Pre-commit block | `.skilled/hooks/git/pre-commit` | Blocks commits with forbidden comment patterns across runtimes. |
+| Write-time warning | `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`, wired as the Claude `PostToolUse` hook for `Write` and `Edit` in `.claude/settings.json` | Warns during authoring when a comment carries ephemeral artifact labels. |
+| Pre-commit block | `.skilled/scripts/git-hooks/pre-commit`, installed through `core.hooksPath` by `.skilled/scripts/install-git-hooks.sh` | Blocks commits with forbidden comment patterns across runtimes. |
 | CI block | `.github/workflows/comment-hygiene.yml` | Blocks pull requests with forbidden comment patterns. |
 
-Note that the `.skilled/hooks/git/pre-commit` hook additionally enforces a staged agent-mirror-sync drift gate, independent of comment hygiene, documented in `.skilled/hooks/git/README.md`.
+The live `.skilled/scripts/git-hooks/pre-commit` also runs the agent-mirror-sync gate and other repository gates, independent of comment hygiene, documented in `.skilled/scripts/git-hooks/README.md`. The older `.skilled/hooks/git/pre-commit` and `scripts/hooks/claude-posttooluse.sh` are compatibility helpers kept for direct tests. Neither is an installed hook.
 
 Run `scripts/check-comment-hygiene.sh <file>` on each modified file that can contain comments. Zero violations are required before a quality pass.
 
 ### 2b. Machine-Readable Router (thin, Type-1 benchmark)
 
-code-quality routes primarily by TARGET PATH (the surface + checklist map above), verified by a unit test — not by prompt keywords. Its parent-to-child discoverability is the hub `quality` signal. This thin prompt-intent projection was written so the deterministic skill-benchmark router-replay, since retired, could score code-quality's one routable checklist in Mode-A; it deliberately does not model the path-keyed dispatch.
+sk-code-quality routes primarily by TARGET PATH (the surface + checklist map above), verified by a unit test — not by prompt keywords. Its parent-to-child discoverability is the hub `quality` signal. This thin prompt-intent projection was written so the deterministic skill-benchmark router-replay, since retired, could score sk-code-quality's one routable checklist in Mode-A; it deliberately does not model the path-keyed dispatch.
 
 ```python
-# Thin prompt-intent router: code-quality owns a single routable checklist. Its
+# Thin prompt-intent router: sk-code-quality owns a single routable checklist. Its
 # real routing is target-path-keyed (the checklist map above, covered by a unit
 # test) and its parent discoverability is the hub quality signal — this block only
 # made the one asset scoreable by the retired deterministic router-replay.
@@ -179,13 +179,13 @@ The target-path checklist map remains authoritative; the prompt-intent projectio
 
 ### Quality Gate Workflow
 
-1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`code-webflow` / `code-opencode`) unless the user explicitly asked for a standalone quality audit.
+1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode`) unless the user explicitly asked for a standalone quality audit.
 2. Collect the changed-file set from the task context or targeted paths. Read each target before editing.
 3. Load `assets/code-quality-checklist/overview-header-and-comments.md` before any completion claim, then load the target-path checklist from `../sk-code-opencode/assets/checklists/` when the target is OpenCode-owned.
 4. Run `scripts/check-comment-hygiene.sh <file>` for every modified comment-capable file.
 5. Apply the P0/P1/P2 model: P0 blocks completion, P1 should be fixed before handoff unless explicitly accepted, P2 can be documented when there is a clear reason.
 6. Fix gate failures in place with `Edit` when the correction is limited to already-authored files.
-7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`code-webflow` / `code-opencode`).
+7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-webflow` / `sk-code-opencode`).
 8. If a gate failure is caused by an unclear runtime failure, hand to the surface's debugging workflow (`workflow-debug.md`) with the observed command, output, and failing target.
 9. When P0 items are clear, hand to the surface's verification workflow (`workflow-verify.md`) for non-mutating evidence before any done-claim.
 
@@ -199,7 +199,7 @@ The target-path checklist map remains authoritative; the prompt-intent projectio
 
 ### Author-Side, Not Review-Side
 
-Quality mode is allowed to edit because it is part of the implementation lifecycle. It should leave the workspace better than it found it, but only inside the current scope. If the requested output is a review report, use `code-review`; if the requested output is evidence that commands pass, use the surface's verification workflow (`workflow-verify.md`).
+Quality mode is allowed to edit because it is part of the implementation lifecycle. It should leave the workspace better than it found it, but only inside the current scope. If the requested output is a review report, use `sk-code-review`; if the requested output is evidence that commands pass, use the surface's verification workflow (`workflow-verify.md`).
 
 ### Comment Hygiene
 
@@ -245,7 +245,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 1. Never create new files; this mode has no `Write` authority.
 2. Never dispatch subagents; this mode has no `Task` authority.
 3. Never make completion, done, works, or passing claims; hand to the surface's verification workflow (`workflow-verify.md`) for evidence.
-4. Never replace a formal findings-first review; route that to `code-review`.
+4. Never replace a formal findings-first review; route that to `sk-code-review`.
 5. Never paste or fork shared surface-detection, quality, or style references into this packet.
 6. Never broaden scope into cleanup or refactor work unrelated to the gate failure.
 7. Never allow ephemeral artifact labels in code comments; preserve durable WHY only.
@@ -277,8 +277,8 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 ## 6. INTEGRATION POINTS
 
 - `sk-code` routes quality prompts here through `mode-registry.json` and keeps the hub routing-only.
-- `code-webflow` / `code-opencode` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.
-- `code-review` owns findings-first review output and PR-style severity reporting.
+- `sk-code-webflow` / `sk-code-opencode` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.
+- `sk-code-review` owns findings-first review output and PR-style severity reporting.
 - `system-spec-kit` owns spec-folder documentation, validation, and memory workflows when the broader task requires them.
 
 ---
@@ -319,7 +319,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 - [`scripts/check-dist-staleness.sh`](scripts/check-dist-staleness.sh) - Distribution drift checker.
 - [`scripts/ceiling-report.sh`](scripts/ceiling-report.sh) - Ceiling-marker report. Run it for a debt pass, before a release or when a reviewer asks what limits the code knowingly accepts.
 - [`scripts/ceiling-report.test.sh`](scripts/ceiling-report.test.sh) - Ceiling-marker report tests.
-- [`scripts/hooks/claude-posttooluse.sh`](scripts/hooks/claude-posttooluse.sh) - Write-time comment-hygiene warning hook.
+- [`scripts/hooks/claude-posttooluse.sh`](scripts/hooks/claude-posttooluse.sh) - Legacy write-time comment-hygiene hook, kept for direct tests and registered in no runtime.
 
 ### Universal Standards
 

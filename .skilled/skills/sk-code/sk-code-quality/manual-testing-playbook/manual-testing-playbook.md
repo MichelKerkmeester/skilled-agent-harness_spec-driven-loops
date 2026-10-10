@@ -24,7 +24,7 @@ route and its single routable checklist.
 | --- | --- | --- | --- |
 | 1 | CQ-001 | QUALITY | [quality-checklist.md](quality-gate/quality-checklist.md) |
 
-Every scenario assumes the hub has already routed the request to `code-quality`; the scenario then
+Every scenario assumes the hub has already routed the request to `sk-code-quality`; the scenario then
 exercises whether the thin `QUALITY` prompt-intent projection resolves the declared `expected_resources`
 set. A scenario's verdict is `PASS` when every path in `expected_resources` resolves under the skill root
 and the frontmatter `expected_intent` agrees with the table above, `FAIL` when either check fails, and

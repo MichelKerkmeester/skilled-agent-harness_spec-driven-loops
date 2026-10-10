@@ -1,0 +1,342 @@
+[
+  {
+    "task": "T012",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\nversion: 1.1.0.0\nOLD>>> with <<<NEW\nversion: 1.1.1.0\nNEW>>>",
+    "check": "sed -n 5p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "version: 1.1.1.0",
+    "_pos": 5
+  },
+  {
+    "task": "T013",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`code-webflow` / `code-opencode`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `code-review`.\nOLD>>> with <<<NEW\n`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-webflow` / `sk-code-opencode`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.\nNEW>>>",
+    "check": "sed -n 15p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-webflow` / `sk-code-opencode`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.",
+    "_pos": 15
+  },
+  {
+    "task": "T014",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`code-webflow` / `code-opencode`) and its implementation workflow.\nOLD>>> with <<<NEW\n- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode`) and its implementation workflow.\nNEW>>>",
+    "check": "sed -n 36p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode`) and its implementation workflow.",
+    "_pos": 36
+  },
+  {
+    "task": "T015",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- The user asks for findings-first review output, severity-ranked findings, or PR review. Use `code-review`.\nOLD>>> with <<<NEW\n- The user asks for findings-first review output, severity-ranked findings, or PR review. Use `sk-code-review`.\nNEW>>>",
+    "check": "sed -n 39p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "- The user asks for findings-first review output, severity-ranked findings, or PR review. Use `sk-code-review`.",
+    "_pos": 39
+  },
+  {
+    "task": "T016",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- The surface skill (`code-webflow` / `code-opencode`) immediately before this gate, because implementation writes the files this mode checks.\nOLD>>> with <<<NEW\n- The surface skill (`sk-code-webflow` / `sk-code-opencode`) immediately before this gate, because implementation writes the files this mode checks.\nNEW>>>",
+    "check": "sed -n 47p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "- The surface skill (`sk-code-webflow` / `sk-code-opencode`) immediately before this gate, because implementation writes the files this mode checks.",
+    "_pos": 47
+  },
+  {
+    "task": "T017",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- `code-review` when the user wants findings-only output rather than author-side correction.\nOLD>>> with <<<NEW\n- `sk-code-review` when the user wants findings-only output rather than author-side correction.\nNEW>>>",
+    "check": "sed -n 50p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "- `sk-code-review` when the user wants findings-only output rather than author-side correction.",
+    "_pos": 50
+  },
+  {
+    "task": "T018",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- `scripts/hooks/claude-posttooluse.sh` is the write-time warning hook for comment hygiene.\nOLD>>> with <<<NEW\n- `scripts/hooks/claude-posttooluse.sh` is the legacy write-time hook, kept for direct tests and registered in no runtime. The live write-time warning is `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`.\nNEW>>>",
+    "check": "sed -n 94p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "- `scripts/hooks/claude-posttooluse.sh` is the legacy write-time hook, kept for direct tests and registered in no runtime. The live write-time warning is `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`.",
+    "_pos": 94
+  },
+  {
+    "task": "T019",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n| ON_DEMAND | Need hook behavior details | `scripts/hooks/claude-posttooluse.sh` |\nOLD>>> with <<<NEW\n| ON_DEMAND | Need the legacy write-time hook's behavior, which no runtime registers | `scripts/hooks/claude-posttooluse.sh` |\nNEW>>>",
+    "check": "sed -n 112p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "| ON_DEMAND | Need the legacy write-time hook's behavior, which no runtime registers | `scripts/hooks/claude-posttooluse.sh` |",
+    "_pos": 112
+  },
+  {
+    "task": "T020",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n| Write-time warning | `scripts/hooks/claude-posttooluse.sh` | Warns during authoring when a comment carries ephemeral artifact labels. |\nOLD>>> with <<<NEW\n| Write-time warning | `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`, wired as the Claude `PostToolUse` hook for `Write` and `Edit` in `.claude/settings.json` | Warns during authoring when a comment carries ephemeral artifact labels. |\nNEW>>>",
+    "check": "sed -n 132p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "| Write-time warning | `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`, wired as the Claude `PostToolUse` hook for `Write` and `Edit` in `.claude/settings.json` | Warns during authoring when a comment carries ephemeral artifact labels. |",
+    "_pos": 132
+  },
+  {
+    "task": "T021",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n| Pre-commit block | `.skilled/hooks/git/pre-commit` | Blocks commits with forbidden comment patterns across runtimes. |\nOLD>>> with <<<NEW\n| Pre-commit block | `.skilled/scripts/git-hooks/pre-commit`, installed through `core.hooksPath` by `.skilled/scripts/install-git-hooks.sh` | Blocks commits with forbidden comment patterns across runtimes. |\nNEW>>>",
+    "check": "sed -n 133p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "| Pre-commit block | `.skilled/scripts/git-hooks/pre-commit`, installed through `core.hooksPath` by `.skilled/scripts/install-git-hooks.sh` | Blocks commits with forbidden comment patterns across runtimes. |",
+    "_pos": 133
+  },
+  {
+    "task": "T022",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\nNote that the `.skilled/hooks/git/pre-commit` hook additionally enforces a staged agent-mirror-sync drift gate, independent of comment hygiene, documented in `.skilled/hooks/git/README.md`.\nOLD>>> with <<<NEW\nThe live `.skilled/scripts/git-hooks/pre-commit` also runs the agent-mirror-sync gate and other repository gates, independent of comment hygiene, documented in `.skilled/scripts/git-hooks/README.md`. The older `.skilled/hooks/git/pre-commit` and `scripts/hooks/claude-posttooluse.sh` are compatibility helpers kept for direct tests. Neither is an installed hook.\nNEW>>>",
+    "check": "sed -n 136p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "The live `.skilled/scripts/git-hooks/pre-commit` also runs the agent-mirror-sync gate and other repository gates, independent of comment hygiene, documented in `.skilled/scripts/git-hooks/README.md`. The older `.skilled/hooks/git/pre-commit` and `scripts/hooks/claude-posttooluse.sh` are compatibility helpers kept for direct tests. Neither is an installed hook.",
+    "_pos": 136
+  },
+  {
+    "task": "T023",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\ncode-quality routes primarily by TARGET PATH\nOLD>>> with <<<NEW\nsk-code-quality routes primarily by TARGET PATH\nNEW>>>",
+    "check": "sed -n 142p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "sk-code-quality routes primarily by TARGET PATH",
+    "_pos": 142
+  },
+  {
+    "task": "T024",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\ncould score code-quality's one routable checklist\nOLD>>> with <<<NEW\ncould score sk-code-quality's one routable checklist\nNEW>>>",
+    "check": "sed -n 142p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "could score sk-code-quality's one routable checklist",
+    "_pos": 142
+  },
+  {
+    "task": "T025",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n# Thin prompt-intent router: code-quality owns a single routable checklist. Its\nOLD>>> with <<<NEW\n# Thin prompt-intent router: sk-code-quality owns a single routable checklist. Its\nNEW>>>",
+    "check": "sed -n 145p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "# Thin prompt-intent router: sk-code-quality owns a single routable checklist. Its",
+    "_pos": 145
+  },
+  {
+    "task": "T026",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`code-webflow` / `code-opencode`) unless the user explicitly asked for a standalone quality audit.\nOLD>>> with <<<NEW\n1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode`) unless the user explicitly asked for a standalone quality audit.\nNEW>>>",
+    "check": "sed -n 182p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode`) unless the user explicitly asked for a standalone quality audit.",
+    "_pos": 182
+  },
+  {
+    "task": "T027",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`code-webflow` / `code-opencode`).\nOLD>>> with <<<NEW\n7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-webflow` / `sk-code-opencode`).\nNEW>>>",
+    "check": "sed -n 188p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-webflow` / `sk-code-opencode`).",
+    "_pos": 188
+  },
+  {
+    "task": "T028",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\nQuality mode is allowed to edit because it is part of the implementation lifecycle. It should leave the workspace better than it found it, but only inside the current scope. If the requested output is a review report, use `code-review`; if the requested output is evidence that commands pass, use the surface's verification workflow (`workflow-verify.md`).\nOLD>>> with <<<NEW\nQuality mode is allowed to edit because it is part of the implementation lifecycle. It should leave the workspace better than it found it, but only inside the current scope. If the requested output is a review report, use `sk-code-review`; if the requested output is evidence that commands pass, use the surface's verification workflow (`workflow-verify.md`).\nNEW>>>",
+    "check": "sed -n 202p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "Quality mode is allowed to edit because it is part of the implementation lifecycle. It should leave the workspace better than it found it, but only inside the current scope. If the requested output is a review report, use `sk-code-review`; if the requested output is evidence that commands pass, use the surface's verification workflow (`workflow-verify.md`).",
+    "_pos": 202
+  },
+  {
+    "task": "T029",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n4. Never replace a formal findings-first review; route that to `code-review`.\nOLD>>> with <<<NEW\n4. Never replace a formal findings-first review; route that to `sk-code-review`.\nNEW>>>",
+    "check": "sed -n 248p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "4. Never replace a formal findings-first review; route that to `sk-code-review`.",
+    "_pos": 248
+  },
+  {
+    "task": "T030",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- `code-webflow` / `code-opencode` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.\nOLD>>> with <<<NEW\n- `sk-code-webflow` / `sk-code-opencode` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.\nNEW>>>",
+    "check": "sed -n 280p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "- `sk-code-webflow` / `sk-code-opencode` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.",
+    "_pos": 280
+  },
+  {
+    "task": "T031",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- `code-review` owns findings-first review output and PR-style severity reporting.\nOLD>>> with <<<NEW\n- `sk-code-review` owns findings-first review output and PR-style severity reporting.\nNEW>>>",
+    "check": "sed -n 281p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "- `sk-code-review` owns findings-first review output and PR-style severity reporting.",
+    "_pos": 281
+  },
+  {
+    "task": "T032",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- [`scripts/hooks/claude-posttooluse.sh`](scripts/hooks/claude-posttooluse.sh) - Write-time comment-hygiene warning hook.\nOLD>>> with <<<NEW\n- [`scripts/hooks/claude-posttooluse.sh`](scripts/hooks/claude-posttooluse.sh) - Legacy write-time comment-hygiene hook, kept for direct tests and registered in no runtime.\nNEW>>>",
+    "check": "sed -n 322p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "- [`scripts/hooks/claude-posttooluse.sh`](scripts/hooks/claude-posttooluse.sh) - Legacy write-time comment-hygiene hook, kept for direct tests and registered in no runtime.",
+    "_pos": 322
+  },
+  {
+    "task": "T033",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/changelog/v1.1.1.0.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/sk-code/sk-code-quality/changelog/v1.1.1.0.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/003-quality-mode/scratch/units/v1.1.1.0.md.txt",
+    "check": "cmp specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/003-quality-mode/scratch/units/v1.1.1.0.md.txt .skilled/skills/sk-code/sk-code-quality/changelog/v1.1.1.0.md",
+    "expect": "exit 0"
+  },
+  {
+    "task": "T034",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\nversion: 1.1.0.0\nOLD>>> with <<<NEW\nversion: 1.1.1.0\nNEW>>>",
+    "check": "sed -n 11p .skilled/skills/sk-code/sk-code-quality/README.md",
+    "expect": "version: 1.1.1.0",
+    "_pos": 11
+  },
+  {
+    "task": "T035",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\n| **Spec folders and MCP servers** | routes to the spec-folder and MCP-server-authoring checklists |\nOLD>>> with <<<NEW\n| **Spec folders** | routes to the spec-folder authoring checklist that `system-spec-kit` owns |\n| **MCP servers** | routes to the MCP-server-authoring checklist |\nNEW>>>",
+    "check": "sed -n 50p .skilled/skills/sk-code/sk-code-quality/README.md",
+    "expect": "| **Spec folders** | routes to the spec-folder authoring checklist that `system-spec-kit` owns |",
+    "_pos": 50
+  },
+  {
+    "task": "T036",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\n```bash\nbash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>\n```\nOLD>>> with <<<NEW\n```bash\n.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>\n```\nNEW>>>",
+    "check": "sed -n 65p .skilled/skills/sk-code/sk-code-quality/README.md",
+    "expect": ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>",
+    "_pos": 65
+  },
+  {
+    "task": "T037",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\nOpenCode authoring targets route to specific checklists: skills, agents, commands, spec folders, MCP servers, language files and config each have their own checklist. Webflow frontend work uses the code quality checklist and the shared universal standards.\nOLD>>> with <<<NEW\nOpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-opencode`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards.\nNEW>>>",
+    "check": "sed -n 88p .skilled/skills/sk-code/sk-code-quality/README.md",
+    "expect": "OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-opencode`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards.",
+    "_pos": 88
+  },
+  {
+    "task": "T038",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\n| Comment hygiene | `bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>` reports zero violations and exits 0 |\nOLD>>> with <<<NEW\n| Comment hygiene | `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>` reports zero violations and exits 0. Run it directly, not through `bash`, because it is a Python program |\nNEW>>>",
+    "check": "sed -n 116p .skilled/skills/sk-code/sk-code-quality/README.md",
+    "expect": "| Comment hygiene | `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>` reports zero violations and exits 0. Run it directly, not through `bash`, because it is a Python program |",
+    "_pos": 116
+  },
+  {
+    "task": "T039",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\n| Distribution drift | `bash .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` exits 0 when generated artifacts are current |\nOLD>>> with <<<NEW\n| Distribution drift | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh --all` prints a banner when a watched package is stale or cannot be checked and nothing when every one is current. It always exits 0 because it warns and does not gate. Run it directly, not through `bash`, because it is a Python program |\nNEW>>>",
+    "check": "sed -n 117p .skilled/skills/sk-code/sk-code-quality/README.md",
+    "expect": "| Distribution drift | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh --all` prints a banner when a watched package is stale or cannot be checked and nothing when every one is current. It always exits 0 because it warns and does not gate. Run it directly, not through `bash`, because it is a Python program |",
+    "_pos": 117
+  },
+  {
+    "task": "T040",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\n| [`assets/checklists/`](../sk-code-opencode/assets/checklists/) | Target-path OpenCode authoring checklists |\nOLD>>> with <<<NEW\n| [`assets/checklists/`](../sk-code-opencode/assets/checklists/) | Target-path OpenCode authoring checklists for skills, agents, commands, MCP servers, language files and config |\n| [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |\nNEW>>>",
+    "check": "sed -n 131p .skilled/skills/sk-code/sk-code-quality/README.md",
+    "expect": "| [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |",
+    "_pos": 131
+  },
+  {
+    "task": "T042",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\ntitle: code-quality\nOLD>>> with <<<NEW\ntitle: sk-code-quality\nNEW>>>",
+    "check": "sed -n 2p .skilled/skills/sk-code/sk-code-quality/README.md",
+    "expect": "title: sk-code-quality",
+    "_pos": 2
+  },
+  {
+    "task": "T043",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\n# code-quality\nOLD>>> with <<<NEW\n# sk-code-quality\nNEW>>>",
+    "check": "sed -n 14p .skilled/skills/sk-code/sk-code-quality/README.md",
+    "expect": "# sk-code-quality",
+    "_pos": 14
+  }
+]

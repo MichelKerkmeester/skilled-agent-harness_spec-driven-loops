@@ -19,7 +19,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates `QUALITY` routing for `CQ-001`. `code-quality` is a thin, deliberately narrow
+This scenario validates `QUALITY` routing for `CQ-001`. `sk-code-quality` is a thin, deliberately narrow
 Type-1 prompt-intent router: its real routing precision is target-path-keyed (the checklist map in
 `SKILL.md` §2) and covered by a dedicated unit test, and its parent-to-child discoverability is the hub's
 `quality` signal. This scenario exercises the one prompt-intent route the deterministic router-replay can
@@ -29,7 +29,7 @@ Webflow-only standard.
 
 ### Why This Matters
 
-`code-quality` sits between implementation and verification for every surface. If a quality-gate prompt
+`sk-code-quality` sits between implementation and verification for every surface. If a quality-gate prompt
 is mis-routed away from its own checklist, an author-side pass could claim a gate ran without ever
 loading the P0/P1/P2 criteria that actually block completion, per `SKILL.md` §2b's thin-router note.
 
@@ -49,7 +49,7 @@ resource set without contradictory evidence.
 Run the comment hygiene quality gate and check P0/P1/P2 standards before marking this done.
 ```
 
-- Expected execution process: the hub routes the request to `code-quality`, the thin `QUALITY`
+- Expected execution process: the hub routes the request to `sk-code-quality`, the thin `QUALITY`
   `INTENT_SIGNALS` keywords (`quality gate`, `p0 p1 p2`, ...) match the prompt, and every path this
   scenario lists under `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-quality/`, and each one

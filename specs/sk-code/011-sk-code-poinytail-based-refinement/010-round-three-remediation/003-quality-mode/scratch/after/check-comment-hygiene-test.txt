@@ -1,0 +1,23 @@
+PASS rc_ref
+PASS dr_single
+PASS phase_hyphen
+PASS council_seat
+PASS adr_ref
+PASS inline_req
+PASS feature_catalog
+PASS phase_path_short
+PASS generic_phase_zero
+PASS generic_spec_zero_padded
+PASS cwe_allowed
+PASS rfc_allowed
+PASS posix_allowed
+PASS schema_allowed
+PASS rc_words_only
+PASS normal_comment
+PASS hygiene_ok_inline
+PASS feature_catalog_without_pointer
+PASS durable_phase_label
+PASS string_literal
+PASS url_literal
+PASS multi_file
+All comment hygiene test cases passed

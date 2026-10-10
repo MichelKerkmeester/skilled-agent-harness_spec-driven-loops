@@ -1,0 +1,132 @@
+[
+  {
+    "task": "T066",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md, replace the exact text <<<OLD\n`lib/` holds the one module that both hook adapters in `../hooks/` call. It centralizes the path-dispatch table so the Claude PostToolUse hook and the Codex PostToolUse hook cannot drift on which checker runs for a given edited file.\nOLD>>> with <<<NEW\n`lib/` is a pointer only. The shared post-edit dispatch module moved to `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs`, where the Claude, Codex and Devin adapters call it. It centralizes the path-dispatch table so those adapters cannot drift on which checker runs for a given edited file.\nNEW>>>",
+    "check": "rg -c 'is a pointer only' .skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T067",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md, replace the exact text <<<OLD\n| `post-edit-router.cjs` | Exports\nOLD>>> with <<<NEW\n| `post-edit-router.cjs`, now at `.skilled/hooks/post-edit-quality/lib/` and absent from this folder | Exports\nNEW>>>",
+    "check": "rg -c 'now at .\\.skilled/hooks/post-edit-quality/lib/. and absent from this folder' .skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T068",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md, replace the exact text <<<OLD\n- `../hooks/claude-posttooluse.cjs`\n- `../hooks/codex/post-edit-quality.cjs`\nOLD>>> with <<<NEW\n- `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`\n- `.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs`\nNEW>>>",
+    "check": "rg -c 'hooks/post-edit-quality/(claude/claude-posttooluse|codex/post-edit-quality).cjs' .skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md",
+    "expect": "2"
+  },
+  {
+    "task": "T069",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md, replace the exact text <<<OLD\n- [`code-quality SKILL.md`](../../SKILL.md)\nOLD>>> with <<<NEW\n- [`sk-code-quality SKILL.md`](../../SKILL.md)\nNEW>>>",
+    "check": "rg -c 'sk-code-quality SKILL.md' .skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T070",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/scripts/README.md, replace the exact text <<<OLD\ndescription: \"The code-quality skill's standalone checkers, including the ceiling-marker report, plus the hook adapters and shared dispatch table that wire them into editor tool calls.\"\nOLD>>> with <<<NEW\ndescription: \"The sk-code-quality skill's standalone checkers, including the ceiling-marker report, and pointers to the hook adapters and shared dispatch table that wire them into editor tool calls.\"\nNEW>>>",
+    "check": "rg -c 'The sk-code-quality skill' .skilled/skills/sk-code/sk-code-quality/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T071",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/scripts/README.md, replace the exact text <<<OLD\n`scripts/` owns the `code-quality` skill's three standalone checkers (comment hygiene, dist staleness and the ceiling-marker report) and the two subfolders that turn them into per-edit warnings: `hooks/` (the Claude Code and Codex CLI PostToolUse adapters) and `lib/` (the shared runtime-neutral dispatch table both adapters call).\nOLD>>> with <<<NEW\n`scripts/` owns the `sk-code-quality` skill's three standalone checkers (comment hygiene, dist staleness and the ceiling-marker report). The per-edit PostToolUse adapters and their shared dispatch table moved to `.skilled/hooks/post-edit-quality/`, and the `hooks/` and `lib/` subfolders here keep only the legacy `claude-posttooluse.sh` and a pointer README.\nNEW>>>",
+    "check": "rg -c 'owns the .sk-code-quality. skill' .skilled/skills/sk-code/sk-code-quality/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T072",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/scripts/README.md, replace the exact text <<<OLD\n| `hooks/` | Claude Code and Codex CLI PostToolUse adapters, see `hooks/README.md` |\n| `lib/` | Shared runtime-neutral dispatch table consumed by both hook adapters, see `lib/README.md` |\nOLD>>> with <<<NEW\n| `hooks/` | Legacy `claude-posttooluse.sh` and its test, registered in no runtime; the live adapters are in `.skilled/hooks/post-edit-quality/`, see `hooks/README.md` |\n| `lib/` | Pointer only; the shared dispatch table moved to `.skilled/hooks/post-edit-quality/lib/`, see `lib/README.md` |\nNEW>>>",
+    "check": "rg -c 'Legacy .claude-posttooluse.sh. and its test|Pointer only; the shared dispatch table' .skilled/skills/sk-code/sk-code-quality/scripts/README.md",
+    "expect": "2"
+  },
+  {
+    "task": "T073",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/scripts/README.md, replace the exact text <<<OLD\n- [`code-quality SKILL.md`](../SKILL.md)\n- [`code-quality README.md`](../README.md)\nOLD>>> with <<<NEW\n- [`sk-code-quality SKILL.md`](../SKILL.md)\n- [`sk-code-quality README.md`](../README.md)\nNEW>>>",
+    "check": "rg -c 'sk-code-quality (SKILL|README).md' .skilled/skills/sk-code/sk-code-quality/scripts/README.md",
+    "expect": "2"
+  },
+  {
+    "task": "T074",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md, replace the exact text <<<OLD\nhas already routed the request to `code-quality`; the scenario then\nOLD>>> with <<<NEW\nhas already routed the request to `sk-code-quality`; the scenario then\nNEW>>>",
+    "check": "rg -c 'routed the request to .sk-code-quality.; the scenario' .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
+    "expect": "1"
+  },
+  {
+    "task": "T075",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md, replace the exact text <<<OLD\n`code-quality` is a thin, deliberately narrow\nOLD>>> with <<<NEW\n`sk-code-quality` is a thin, deliberately narrow\nNEW>>>",
+    "check": "rg -c '.sk-code-quality. is a thin, deliberately narrow' .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md",
+    "expect": "1"
+  },
+  {
+    "task": "T076",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md, replace the exact text <<<OLD\n`code-quality` sits between implementation and verification\nOLD>>> with <<<NEW\n`sk-code-quality` sits between implementation and verification\nNEW>>>",
+    "check": "rg -c '.sk-code-quality. sits between implementation' .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md",
+    "expect": "1"
+  },
+  {
+    "task": "T077",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md, replace the exact text <<<OLD\nthe hub routes the request to `code-quality`, the thin `QUALITY`\nOLD>>> with <<<NEW\nthe hub routes the request to `sk-code-quality`, the thin `QUALITY`\nNEW>>>",
+    "check": "rg -c 'routes the request to .sk-code-quality., the thin' .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md",
+    "expect": "1"
+  },
+  {
+    "task": "T078",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/scripts/README.md, replace the exact text <<<OLD\n| `hooks/` | Legacy `claude-posttooluse.sh` and its test, registered in no runtime; the live adapters are in `.skilled/hooks/post-edit-quality/`, see `hooks/README.md` |\n| `lib/` | Pointer only; the shared dispatch table moved to `.skilled/hooks/post-edit-quality/lib/`, see `lib/README.md` |\nOLD>>> with <<<NEW\n| `hooks/` | Legacy `claude-posttooluse.sh` and its test, registered in no runtime. The live adapters are in `.skilled/hooks/post-edit-quality/`, see `hooks/README.md` |\n| `lib/` | Pointer only. The shared dispatch table moved to `.skilled/hooks/post-edit-quality/lib/`, see `lib/README.md` |\nNEW>>>",
+    "check": "python3 -I .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .skilled/skills/sk-code/sk-code-quality/scripts/README.md | grep -c \"hard   punctuation\"",
+    "expect": "0"
+  }
+]

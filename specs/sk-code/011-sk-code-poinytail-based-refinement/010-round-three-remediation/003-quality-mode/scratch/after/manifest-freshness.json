@@ -1,0 +1,13 @@
+{
+  "hubId": "sk-code",
+  "manifestPath": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+  "manifestValid": true,
+  "fresh": true,
+  "causeCode": "fresh",
+  "selectedPolicy": {
+    "effectivePolicyHash": "a59ec9ff7f6a450ca96f1d81b4b3174930058e7fcb94babd4a077b8b058299e2",
+    "generation": 2
+  },
+  "currentPolicyHash": "a59ec9ff7f6a450ca96f1d81b4b3174930058e7fcb94babd4a077b8b058299e2",
+  "manifestFingerprint": "9a927ffdf8fdd25b0bb9be85af7b97b53bdb96d15051bda8501da2d1b5a34374"
+}

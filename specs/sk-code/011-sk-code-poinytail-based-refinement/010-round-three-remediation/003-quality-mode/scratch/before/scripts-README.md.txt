@@ -1,6 +1,6 @@
 ---
 title: "Scripts: comment-hygiene, dist-staleness and ceiling-report checkers"
-description: "The sk-code-quality skill's standalone checkers, including the ceiling-marker report, and pointers to the hook adapters and shared dispatch table that wire them into editor tool calls."
+description: "The code-quality skill's standalone checkers, including the ceiling-marker report, plus the hook adapters and shared dispatch table that wire them into editor tool calls."
 ---
 
 # Scripts
@@ -9,7 +9,7 @@ description: "The sk-code-quality skill's standalone checkers, including the cei
 
 ## 1. OVERVIEW
 
-`scripts/` owns the `sk-code-quality` skill's three standalone checkers (comment hygiene, dist staleness and the ceiling-marker report). The per-edit PostToolUse adapters and their shared dispatch table moved to `.skilled/hooks/post-edit-quality/`, and the `hooks/` and `lib/` subfolders here keep only the legacy `claude-posttooluse.sh` and a pointer README.
+`scripts/` owns the `code-quality` skill's three standalone checkers (comment hygiene, dist staleness and the ceiling-marker report) and the two subfolders that turn them into per-edit warnings: `hooks/` (the Claude Code and Codex CLI PostToolUse adapters) and `lib/` (the shared runtime-neutral dispatch table both adapters call).
 
 ---
 
@@ -22,8 +22,8 @@ description: "The sk-code-quality skill's standalone checkers, including the cei
 | `check-dist-staleness.sh` | Python script (kept as a `.sh` entrypoint) that checks whether a watched TypeScript package's compiled dist is stale, scoped to one edited file by default or every watched package with `--all` |
 | `ceiling-report.sh` | Python report behind a `.sh` entrypoint that lists the `ceiling:` and `intentional-limit:` comment markers, tags the ones with no trigger or no measurable trigger, and exits 0 when it runs |
 | `ceiling-report.test.sh` | Bash test harness with fixture cases for the ceiling report |
-| `hooks/` | Legacy `claude-posttooluse.sh` and its test, registered in no runtime. The live adapters are in `.skilled/hooks/post-edit-quality/`, see `hooks/README.md` |
-| `lib/` | Pointer only. The shared dispatch table moved to `.skilled/hooks/post-edit-quality/lib/`, see `lib/README.md` |
+| `hooks/` | Claude Code and Codex CLI PostToolUse adapters, see `hooks/README.md` |
+| `lib/` | Shared runtime-neutral dispatch table consumed by both hook adapters, see `lib/README.md` |
 
 ---
 
@@ -42,5 +42,5 @@ Expected: `All comment hygiene test cases passed` and `All ceiling report test c
 
 ## 4. RELATED
 
-- [`sk-code-quality SKILL.md`](../SKILL.md)
-- [`sk-code-quality README.md`](../README.md)
+- [`code-quality SKILL.md`](../SKILL.md)
+- [`code-quality README.md`](../README.md)
