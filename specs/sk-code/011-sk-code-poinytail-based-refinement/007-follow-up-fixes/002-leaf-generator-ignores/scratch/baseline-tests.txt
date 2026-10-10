@@ -1,0 +1,12 @@
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/advisor-index-handoff-contract.test.cjs exit=0
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-leaf-manifest-freshness.test.cjs exit=0
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/compiled-routing-lockstep-parity.test.cjs exit=0
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs exit=0
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs exit=0
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs exit=0
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs exit=0
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs exit=0
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs exit=0
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs exit=0
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/validate-compiled-routing-scenarios.test.cjs exit=0
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/validate-playbook-topology.test.cjs exit=0

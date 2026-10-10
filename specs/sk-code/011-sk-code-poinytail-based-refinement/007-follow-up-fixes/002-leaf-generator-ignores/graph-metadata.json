@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/002-leaf-generator-ignores",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/002-leaf-generator-ignores",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "leaf generator ignores",
+      "phase 2 leaf generator ignores",
+      "leaf generator ignores plan",
+      "leaf generator ignores tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "leaf generator ignores implementation summary"
+    ],
+    "key_topics": [
+      "leaf",
+      "generator",
+      "ignores",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-ignores.test.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/README.md",
+      "tests/README.md",
+      ".skilled/repo-rules/prevent-overengineering.md",
+      ".skilled/repo-rules/scope-discipline.md",
+      ".skilled/repo-rules/evidence-and-proof.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs",
+      "scratch/repro-before.txt",
+      "scratch/repro-after.txt",
+      "scratch/after-tests.txt",
+      "scratch/baseline-tests.txt",
+      "scratch/generate-leaf-manifest.before.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest-ignores.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-ignores.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "prevent-overengineering.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope-discipline.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/scope-discipline.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-and-proof.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/evidence-and-proof.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci-leaf-manifest-freshness.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "repro-before.txt",
+        "kind": "file",
+        "path": "scratch/repro-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "repro-after.txt",
+        "kind": "file",
+        "path": "scratch/repro-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-tests.txt",
+        "kind": "file",
+        "path": "scratch/after-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-tests.txt",
+        "kind": "file",
+        "path": "scratch/baseline-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest.before.cjs",
+        "kind": "file",
+        "path": "scratch/generate-leaf-manifest.before.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`walkLeafFiles` in `.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` (lines 96 to 130) lists every regular file under a packet's `references/` and `assets/` roots, including files git ignores",
+    "created_at": "2026-10-10T05:26:26Z",
+    "last_save_at": "2026-10-10T05:58:40.472Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c32577ad775ce9ea59a837a4e238879c246078ec0116fa62c462627036affe80",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d88afac2a0e19a6f1a26f638fad9b57a3e2e04aaa4a043bd11491280af7d5899",
+      "plan.md": "a18f27e5e0e215a3c50110ae88553fe19925ab8a63ad205cf058430161ea5150",
+      "tasks.md": "f4bc4a3445847f017f56d8d280a32d9c783ce4f4ebb295a670abce6e58ab5739",
+      "implementation-summary.md": "38c856db9b922790886c9bf0e95d2faa564fec517f9269883065ccb731bb5ff8"
+    },
+    "last_active_at": null
+  }
+}

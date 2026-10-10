@@ -29,7 +29,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const { spawnSync } = require('child_process');
 const contract = require('./lib/leaf-resource-contract.cjs');
 // Shared S-class config defaults, also read by init_skill.py, so the scaffold's
 // written config and this fallback can never drift apart.
@@ -85,48 +84,6 @@ function symlinkTarget(linkPath) {
   }
 }
 
-// Generated noise that a name rule can recognize. Consulted only when git cannot
-// say what it ignores, so a walk outside a work tree never drops a source file.
-const FALLBACK_IGNORED_SEGMENTS = new Set(['__pycache__', 'node_modules', '.DS_Store']);
-
-function fallbackIgnored(rel) {
-  if (rel.endsWith('.pyc')) return true;
-  return rel.split('/').some((segment) => FALLBACK_IGNORED_SEGMENTS.has(segment));
-}
-
-// The repository root that holds packetRoot, or null when git cannot name one.
-function gitToplevel(cwd) {
-  const res = spawnSync('git', ['rev-parse', '--show-toplevel'], { cwd, encoding: 'utf8' });
-  if (res.error || res.status !== 0) return null;
-  return fs.realpathSync(res.stdout.trim());
-}
-
-// Git owns the ignore rules, which live in .gitignore files this walker does not
-// parse. Name rules only cover a walk that git cannot answer.
-function dropGitIgnoredLeaves(packetRoot, rels) {
-  if (rels.length === 0) return rels;
-  const top = gitToplevel(packetRoot);
-  if (top === null) return rels.filter((rel) => !fallbackIgnored(rel));
-  // git refuses any path that passes through a symbolic link, so only the directory is
-  // resolved. A leaf symlink keeps its own name because the manifest lists that path.
-  const repoRels = rels.map((rel) => {
-    const abs = path.join(packetRoot, rel);
-    const real = path.join(fs.realpathSync(path.dirname(abs)), path.basename(abs));
-    return path.relative(top, real).split(path.sep).join('/');
-  });
-  const res = spawnSync('git', ['check-ignore', '-z', '--stdin'], {
-    cwd: top,
-    input: `${repoRels.join('\0')}\0`,
-    encoding: 'utf8',
-  });
-  // Exit status 1 means nothing matched. Any other failure leaves git's answer unknown.
-  if (res.error || (res.status !== 0 && res.status !== 1)) {
-    return rels.filter((rel) => !fallbackIgnored(rel));
-  }
-  const ignored = new Set(res.status === 0 ? res.stdout.split('\0').filter(Boolean) : []);
-  return rels.filter((rel, i) => !ignored.has(repoRels[i]));
-}
-
 // Recursively collect packet-root-relative file paths under <packetRoot>/<rootName>.
 //
 // A symlinked entry is emitted under the link's own packet-relative path, exactly
@@ -169,7 +126,7 @@ function walkLeafFiles(skillDir, packetRoot, rootName) {
       out.push(path.relative(packetRoot, full).split(path.sep).join('/'));
     }
   }
-  return dropGitIgnoredLeaves(packetRoot, out);
+  return out;
 }
 
 // The package-index docs that name their own root directory. A standalone
