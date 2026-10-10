@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-013-root-cause-and-ux-research"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -108,6 +108,12 @@ and findings belong here.
 | SOURCE tags | Done | criterion 4 printed no BAD line on 2026-10-10 |
 | Strict validation | Done | validate.sh --strict printed Errors: 0 Warnings: 1 and RESULT: PASSED, exit 0, on 2026-10-10 |
 | Product files unchanged | Done | criterion 5, as amended, printed nothing after commit bd2d084c85 |
+| Phase 001 | Done | fde8a56d87; sync --check exit 1 to 0; manifest suite 26 to 42 of 42; guard exit 0 |
+| Phase 002 | Done | 48c4d4284f; admission suite 28 to 29 of 29 |
+| Phase 003 | Done | 6df2b9c3b5; all hub canaries 1 failure to 0 |
+| Phase 004 | Done | 7cd3e8e5db; Pi lint suite 35, then 1 failed with the new test, then 36 of 36 |
+| Phase 005 | Done | 54f9d041fd and 4a8a4065b6; README Node.js 20.19+ |
+| Phase 006 | Done | 54b4547bff; hook stdin suite 39 to 40 of 40; system-spec-kit 2.7.2.1 |
 
 ### Deviations and findings
 
@@ -119,4 +125,7 @@ and findings belong here.
 | Close-out event not appended | synthesis-closeout.cjs produced a synthesis_complete event scoped to the lineage run, which the lineage already recorded; the fan-out root has no run of its own |
 | Criterion 5 amended 2026-10-10 | The commit's spec-remint gate re-derived the parent graph-metadata.json to list this child, which is derived metadata of the phase-map row, not a product file. The criterion now excludes that one file as well. Sibling tracks adding 012 and 014 will touch the same children list, so the merge needs a re-derive |
 | Scope widened 2026-10-10 | The operator added fixes 1, 2, 3, 6, 7, 8 and 9 as phase children. The product-file criterion is replaced by the fixes' own outcome checks and a recursive strict validation. Fixes 4 and 5 went to the skill-authoring track |
+| Handoff: advisor runtime engines | `.skilled/skills/system-skill-advisor/runtime/package.json` declares no engines, so npm never warns below 20.19 at its install. Owned by the skill-authoring track |
+| Handoff: version collision | Phase 006 minted system-spec-kit 2.7.2.1 from the local folder. If another track mints the same number, the merge renumbers |
+| Fixes 4 and 5 | The pre-commit trust hint and the changelog mint check moved to the skill-authoring track by operator direction |
 <!-- /ANCHOR:log -->

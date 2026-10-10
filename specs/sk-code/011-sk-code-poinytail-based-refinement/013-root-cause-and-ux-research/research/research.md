@@ -101,6 +101,7 @@ The epic's own decision made part of this drift structural: builders may not run
 | The 16 manifest failures trace to seven `all 6 hubs` pins; fix by de-pinning | Wrong as the main cause. 15 of the 16 failures are the stale `cli-deem` line in the authored cli-classifier harness. De-pinning alone leaves the suite red |
 | Passing `--surface-hint` is a one-line change | The handler has no session-surface value to pass. The change needs a source for the surface first, so it is not one line |
 | The version mint has no check in `nested-changelog.ts` | The mint is owned by the changelog skill's step 3, which checks uniqueness locally only. The fix belongs there |
+| The Node floor disagrees three ways, fix the spec-kit package engines | Rechecked in the fix phases: the spec-kit lockfile needs only 20.9, and the 20.19 floor comes from the advisor runtime the README's install step builds. Only the README line changed |
 | The reducer citation `reduce-state.cjs:1002-1004` | Correct file is the runtime reducer, `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`; the lines hold the yield rule |
 
 ---
@@ -146,7 +147,7 @@ Deferred, not rejected: the 36-blocker HVR sweep of sk-code `SKILL.md` (internal
 
 ## 10. Open Questions
 
-- Whether phase 1 alone turns the manifest suite fully green is [INFERRED]. In a scratch copy the closure error cleared, but the move-simulation then failed for every hub, which may be an artifact of the copy's location. Running the test after phase 1 settles it.
+- Settled by the fix phases: phase 1 alone took the manifest suite from 26 to 28 of 42, because the closure error had masked the 6-hub pin; with the pin derived from the hub list it reads 42 of 42 [VERIFIED]. The move-simulation passes in the real worktree; the scratch failure came from the copy's location.
 - Should the authored compiled-routing source stay under `specs/sk-doc/z_archive/`? An adopter reads `z_archive` as history, yet the rebuild depends on it.
 - Which validator produced the link-shaped task text incident (process error b) is UNKNOWN.
 

@@ -125,7 +125,7 @@ These bind every build phase, 002 to 006.
 | 9 | 009-round-two-follow-ups/ | Five follow-ups the round-two build left open, one child each | Complete |
 | 10 | 010-round-three-remediation/ | Every round-three finding and the five 009 follow-ups, one child per file area | Complete |
 | 11 | 011-round-four-remediation/ | The eleven items round three left open, one child per file area | Complete |
-| 13 | 013-root-cause-and-ux-research/ | Ten-iteration deep research into the root causes of the epic's issues and the external-user experience | Complete |
+| 13 | 013-root-cause-and-ux-research/ | Ten-iteration deep research into the root causes of the epic's issues and the external-user experience, plus six fix phases | Complete |
 
 ### Phase Transition Rules
 

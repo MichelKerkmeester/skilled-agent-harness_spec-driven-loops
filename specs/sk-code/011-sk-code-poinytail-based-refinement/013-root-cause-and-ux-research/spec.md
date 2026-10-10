@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-10 |
 | **Branch** | `worktrees/094-root-cause-ux-research` |
 | **Parent Spec** | ../spec.md |
@@ -154,12 +154,12 @@ One ten-iteration lineage on DeepSeek V4.1 Flash (cli-pi, llmgateway, max effort
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-compiled-route-manifest-suite/ | Delete the stale cli-deem entry from the authored classifier harness; make the manifest test's hub count follow HUBS | Pending |
-| 2 | 002-admission-corpus-pin/ | Re-pin the admission test's live corpus size to the live count | Pending |
-| 3 | 003-stale-jev-canary/ | Remove the stale jev-transport-single canary case from the live fixture and its archive copy | Pending |
-| 4 | 004-pi-ambiguous-denial/ | Name what the Pi guard accepts in its ambiguous-command denial | Pending |
-| 5 | 005-readme-node-floor/ | State the Node floor the documented install actually needs in the README | Pending |
-| 6 | 006-hook-late-write-test/ | Pin a short-deadline hook's late-written payload with one test | Pending |
+| 1 | 001-compiled-route-manifest-suite/ | Delete the stale cli-deem entry from the authored classifier harness; make the manifest test's hub count follow HUBS | Complete |
+| 2 | 002-admission-corpus-pin/ | Re-pin the admission test's live corpus size to the live count | Complete |
+| 3 | 003-stale-jev-canary/ | Remove the stale jev-transport-single canary case from the live fixture and its archive copy | Complete |
+| 4 | 004-pi-ambiguous-denial/ | Name what the Pi guard accepts in its ambiguous-command denial | Complete |
+| 5 | 005-readme-node-floor/ | State the Node floor the documented install actually needs in the README | Complete |
+| 6 | 006-hook-late-write-test/ | Pin a short-deadline hook's late-written payload with one test | Complete |
 
 ### Phase Transition Rules
 

@@ -52,6 +52,8 @@ You now have a checked list of why the epic kept breaking and what to fix first 
 
 The research found one failure nobody had recorded. The default compiled-route rebuild fails on main, because the authored cli-classifier harness under `specs/sk-doc/z_archive/` still names a removed mode. The epic's check read only the served copy, so it passed. The same line causes 15 of the 16 manifest test failures. The synthesis ranks nine single-file fixes by what an external user would hit first.
 
+The operator then widened the packet to build six of the ranked fixes as phase children 001 to 006. Each is committed on its own, with its own goal and summary: the rebuild and manifest suite, the admission pin, the stale canary, the Pi denial text, the README Node floor and the late hook payload test.
+
 ### Files Changed
 
 | File | Action | Purpose |
