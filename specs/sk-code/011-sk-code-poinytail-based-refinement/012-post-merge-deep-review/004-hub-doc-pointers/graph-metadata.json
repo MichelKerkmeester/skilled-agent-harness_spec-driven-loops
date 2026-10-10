@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/004-hub-doc-pointers",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/004-hub-doc-pointers",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hub doc pointers",
+      "phase 4 hub doc pointers",
+      "hub doc pointers plan",
+      "hub doc pointers tasks",
+      "hub doc pointers goal",
+      "hub doc pointers implementation summary"
+    ],
+    "key_topics": [
+      "hub",
+      "doc",
+      "pointers",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "comment-hygiene-hook",
+      "check-dist-staleness-hook",
+      "call"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md",
+      ".skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/check-dist-staleness-hook.md",
+      ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-code/shared/references/stack-detection.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/README.md",
+      ".skilled/skills/sk-code/ROUTER.md",
+      ".skilled/skills/sk-code/description.json",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/skills/sk-code/mode-registry.json",
+      ".skilled/skills/sk-code/changelog/v2.2.8.0.md",
+      ".hermes/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      ".claude/settings.json",
+      ".skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "comment-hygiene-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-dist-staleness-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/check-dist-staleness-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "stack-detection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/stack-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "v2.2.8.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/changelog/v2.2.8.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "claude-posttooluse.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`comment-hygiene-hook.md:11` and `check-dist-staleness-hook.md:11` call `sk-code-quality/scripts/hooks/claude-posttooluse.sh` \"the shared Claude Code PostToolUse hook that fires on every Write/Edit\", and the playbook root repeats it",
+    "created_at": "2026-10-10T20:17:50Z",
+    "last_save_at": "2026-10-10T20:48:14.312Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:573dc774ee51e784c2f2be91355bc5052a7a51f00cb3388db00ea10b209fdbb3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d487582a8171758e939f5a207a952c9fdfbbf9a1e78931765847e2ca95e3bd23",
+      "plan.md": "239a68b8198f81fa13cdbc19b9c64434b969b3d09e86039a0ee39ada228651e6",
+      "tasks.md": "144b2b3bfee97c9961ca790fe3d7c492ec4fab954564b002a8b0c1eddd1d7a4a",
+      "implementation-summary.md": "81542cf1403b0b8594ed0b72c6125d2b3e5bdf7fc77bf84f909ac43ad533fad2"
+    },
+    "last_active_at": null
+  }
+}
