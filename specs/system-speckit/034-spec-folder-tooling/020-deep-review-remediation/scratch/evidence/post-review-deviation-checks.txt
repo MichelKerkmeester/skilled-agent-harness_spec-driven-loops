@@ -1,0 +1,35 @@
+Post-review item 6 checks, fresh runs. Each block lists the command, then its output and exit status.
+
+## actionlint on the playbook operator contract workflow
+Command: actionlint .github/workflows/playbook-operator-contract.yml
+EXIT=0
+
+## deep-model-benchmark-confirm.yaml at HEAD (before the fix) and in the working tree
+Command: js-yaml strict load of the git show HEAD version, then of the working file
+HEAD: fails: bad indentation of a mapping entry (255:275)
+working: parses
+EXIT=0
+
+## validate_document.py on the three deep-loop stress-test READMEs
+Command: python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/README.md
+✅ VALID: .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/README.md
+Total issues: 0
+EXIT=0
+Command: python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/README.md
+✅ VALID: .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/README.md
+Total issues: 0
+EXIT=0
+Command: python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/README.md
+✅ VALID: .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/README.md
+Total issues: 0
+EXIT=0
+
+## documentsPhaseFolder recount: old predicate against the unchanged command docs
+Command: node <scratch> reading .skilled/commands/speckit/{plan,implement,complete,resume}.md
+plan.md: old=false new=true
+implement.md: old=false new=true
+complete.md: old=false new=true
+resume.md: old=true new=true
+plan+complete phase text: old=false new=true
+old predicate failures: 4
+EXIT=0

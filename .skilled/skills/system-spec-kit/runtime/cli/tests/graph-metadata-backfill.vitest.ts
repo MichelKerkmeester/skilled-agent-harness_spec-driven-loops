@@ -2,18 +2,25 @@
 // MODULE: Graph Metadata Backfill
 // ───────────────────────────────────────────────────────────────────
 
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
   loadGraphMetadata,
   refreshGraphMetadataForSpecFolder,
 } from '../../lib/graph/graph-metadata-parser.js';
-import { collectSpecFolders, runBackfill } from '../graph/backfill-graph-metadata.js';
+import {
+  collectSpecFolders,
+  createPruneReportArtifact,
+  pruneReportPath,
+  runBackfill,
+  writePruneReportArtifact,
+} from '../graph/backfill-graph-metadata.js';
 
 const createdRoots = new Set<string>();
 
@@ -282,5 +289,99 @@ describe('graph metadata backfill exit status', () => {
     expect(result.status, result.stderr).toBe(1);
     const failed = JSON.parse(result.stdout).failed as Array<{ specFolder: string }>;
     expect(failed.some((item) => item.specFolder.endsWith(path.basename(broken)))).toBe(true);
+  });
+});
+
+describe('prune report destination', () => {
+  // The report is written to a fixed name under the specs root. A link planted there
+  // would otherwise redirect the write to whatever it points at.
+  it('refuses a destination that is a symbolic link and leaves the link target untouched', () => {
+    const reportRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'prune-report-root-'));
+    createdRoots.add(reportRoot);
+    const outsideDir = fs.mkdtempSync(path.join(os.tmpdir(), 'prune-report-outside-'));
+    createdRoots.add(outsideDir);
+    const outside = path.join(outsideDir, 'victim.json');
+    const original = '{"outside":true}\n';
+    fs.writeFileSync(outside, original, 'utf-8');
+    const report = path.join(reportRoot, '.backfill-graph-metadata-prune-report.json');
+    fs.symlinkSync(outside, report);
+
+    expect(() => writePruneReportArtifact(report, createPruneReportArtifact('specs', []))).toThrow('symbolic link, not followed');
+    expect(fs.readFileSync(outside, 'utf-8')).toBe(original);
+  });
+
+  // The temporary name carries random bytes, so a collision is forced by fixing them.
+  // The temporary file is created exclusively: a file already under that name is
+  // refused and keeps its bytes, instead of being overwritten and renamed into place.
+  it('refuses a temporary name that already exists and leaves that file untouched', () => {
+    const reportRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'prune-report-root-'));
+    createdRoots.add(reportRoot);
+    const report = path.join(reportRoot, '.backfill-graph-metadata-prune-report.json');
+    const randomBytes = Buffer.alloc(6, 0xab);
+    const taken = path.join(reportRoot, `.${path.basename(report)}.${process.pid}.${randomBytes.toString('hex')}.tmp`);
+    fs.writeFileSync(taken, 'taken\n', 'utf-8');
+    const spy = vi.spyOn(crypto, 'randomBytes').mockImplementationOnce(() => randomBytes);
+    try {
+      expect(() => writePruneReportArtifact(report, createPruneReportArtifact('specs', []))).toThrow('EEXIST');
+    } finally {
+      spy.mockRestore();
+    }
+    expect(fs.readFileSync(taken, 'utf-8')).toBe('taken\n');
+    expect(fs.existsSync(report)).toBe(false);
+  });
+
+  // A link planted between the check and the write must be replaced by the rename.
+  // A write that followed it would land in whatever the link points at.
+  it('replaces a link planted after the check instead of writing through it', () => {
+    const reportRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'prune-report-root-'));
+    createdRoots.add(reportRoot);
+    const outsideDir = fs.mkdtempSync(path.join(os.tmpdir(), 'prune-report-outside-'));
+    createdRoots.add(outsideDir);
+    const outside = path.join(outsideDir, 'victim.json');
+    const original = '{"outside":true}\n';
+    fs.writeFileSync(outside, original, 'utf-8');
+    const report = path.join(reportRoot, '.backfill-graph-metadata-prune-report.json');
+    const realLstat = fs.lstatSync;
+    const spy = vi.spyOn(fs, 'lstatSync').mockImplementationOnce(((file: fs.PathLike, options?: fs.StatOptions) => {
+      try {
+        return realLstat(file, options);
+      } finally {
+        fs.symlinkSync(outside, report);
+      }
+    }) as typeof fs.lstatSync);
+    try {
+      writePruneReportArtifact(report, createPruneReportArtifact('specs', []));
+    } finally {
+      spy.mockRestore();
+    }
+    expect(fs.readFileSync(outside, 'utf-8')).toBe(original);
+    expect(fs.lstatSync(report).isSymbolicLink()).toBe(false);
+  });
+
+  // A dangling link is refused like a live one. Without the refusal the rename would
+  // replace the link with the report, so the link itself is the thing to keep.
+  it('refuses a dangling link at the report name and keeps the link in place', () => {
+    const reportRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'prune-report-root-'));
+    createdRoots.add(reportRoot);
+    const missing = path.join(reportRoot, 'missing.json');
+    const report = path.join(reportRoot, '.backfill-graph-metadata-prune-report.json');
+    fs.symlinkSync(missing, report);
+
+    expect(() => writePruneReportArtifact(report, createPruneReportArtifact('specs', []))).toThrow('symbolic link, not followed');
+    expect(fs.lstatSync(report).isSymbolicLink()).toBe(true);
+    expect(fs.existsSync(missing)).toBe(false);
+  });
+
+  // The apply path writes the report at its fixed name under the root, with the hash
+  // the summary returns, and leaves no temporary file beside it.
+  it('writes the prune report on apply at its fixed name, with the hash the summary returns', () => {
+    const specsRoot = createSpecTree();
+
+    const summary = runBackfill({ dryRun: false, root: specsRoot, pruneReport: true });
+    const reportPath = pruneReportPath(specsRoot);
+    expect(summary.pruneReportArtifact?.path).toBe(reportPath);
+    const written = JSON.parse(fs.readFileSync(reportPath, 'utf-8'));
+    expect(written.contentHash).toBe(summary.pruneReportArtifact?.contentHash);
+    expect(fs.readdirSync(specsRoot).filter((name) => name.endsWith('.tmp'))).toEqual([]);
   });
 });

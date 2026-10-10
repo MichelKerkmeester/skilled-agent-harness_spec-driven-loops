@@ -39,6 +39,22 @@ Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session 
 
 ## 2. TOOLING AND SCRIPTS
 
+### Anchor integrity and nesting check
+
+#### Description
+
+Fails a spec document whose anchors nest, close before they open or close more times than they open, and ignores anchor markers quoted in inline code.
+
+#### Current Reality
+
+The rule runs inside the native validation orchestrator with the other anchor checks. Nesting findings are errors, and an adr-NNN anchor may hold adr-NNN-* anchors.
+
+#### Source Files
+
+See [`tooling-and-scripts/anchor-integrity-and-nesting-check.md`](tooling-and-scripts/anchor-integrity-and-nesting-check.md) for full implementation and test file listings.
+
+---
+
 ### Architecture boundary enforcement
 
 #### Description
@@ -199,6 +215,38 @@ See [`tooling-and-scripts/dist-freshness-enforcement.md`](tooling-and-scripts/di
 
 ---
 
+### Heal spec docs anchor repair
+
+#### Description
+
+Repairs duplicate anchor pairs and moves a nested questions anchor back above its heading in spec.md, and reports each change it would make and each change it refuses.
+
+#### Current Reality
+
+Only spec.md is edited. A dry run writes nothing, and a second apply finds nothing left to change.
+
+#### Source Files
+
+See [`tooling-and-scripts/heal-spec-docs-anchor-repair.md`](tooling-and-scripts/heal-spec-docs-anchor-repair.md) for full implementation and test file listings.
+
+---
+
+### Heal spec docs lane modes
+
+#### Description
+
+Runs five document repairs over each packet in order: anchor-wrap, link-repoint, continuity-placeholders, level-from-spec and header-add. The flags are --folder, --roots and --apply.
+
+#### Current Reality
+
+Each mode reads the text the mode before it returned. A mode records a refusal only for a defect it cannot derive, and header-add stamps the template-source header only when the anchors match the level's render exactly.
+
+#### Source Files
+
+See [`tooling-and-scripts/heal-spec-docs-lane-modes.md`](tooling-and-scripts/heal-spec-docs-lane-modes.md) for full implementation and test file listings.
+
+---
+
 ### JSON mode structured summary hardening
 
 #### Description
@@ -324,6 +372,22 @@ A 4-level pipeline — detect, auto-fix, suggest, report — layered on top of `
 #### Source Files
 
 See [`tooling-and-scripts/progressive-validation-for-spec-documents.md`](tooling-and-scripts/progressive-validation-for-spec-documents.md) for full implementation and test file listings.
+
+---
+
+### Repository era report
+
+#### Description
+
+Classifies a repository as a v3 or v4 spec layout and counts its packets, documents, frontmatter, template markers, generated metadata and level declarations, without changing any file.
+
+#### Current Reality
+
+The report reads the tree and writes nothing. Packets count only under a track folder, and a v3 checkout whose specs path is a symlink reads as v4.
+
+#### Source Files
+
+See [`tooling-and-scripts/repo-era-report.md`](tooling-and-scripts/repo-era-report.md) for full implementation and test file listings.
 
 ---
 
@@ -599,6 +663,22 @@ See [`tooling-and-scripts/template-composition-system.md`](tooling-and-scripts/t
 
 ---
 
+### Template phrase lint commit gate
+
+#### Description
+
+Blocks a commit that stages a trigger phrase copied from a template default or a frontmatter editor fallback, and names the bypass in the refusal.
+
+#### Current Reality
+
+The pre-commit hook runs the lint only in a toolchain repository and judges only the phrases a commit adds. SPECKIT_SKIP_PHRASE_LINT=1, or a speckit.hooks.templatePhraseLint off setting in git config, skips it.
+
+#### Source Files
+
+See [`tooling-and-scripts/template-phrase-lint-commit-gate.md`](tooling-and-scripts/template-phrase-lint-commit-gate.md) for full implementation and test file listings.
+
+---
+
 ### Track-root children lists
 
 #### Description
@@ -628,6 +708,38 @@ Reduces token counts before spec-folder consolidation by classifying files and m
 #### Source Files
 
 See [`tooling-and-scripts/tree-thinning-for-spec-folder-consolidation.md`](tooling-and-scripts/tree-thinning-for-spec-folder-consolidation.md) for full implementation and test file listings.
+
+---
+
+### Upgrade-legacy reversibility manifest and refusals
+
+#### Description
+
+Records a reversibility manifest before a dirty tree is repaired, and refuses an apply that has no git repository, an unfinished manifest or a manifest that no longer matches the repository.
+
+#### Current Reality
+
+The manifest sits in the git directory and holds the before images of uncommitted packet files. An apply without git, with an unfinished manifest, with a manifest whose HEAD or packet hashes no longer match the repository, or with packets still under the legacy .opencode spec root is refused.
+
+#### Source Files
+
+See [`tooling-and-scripts/upgrade-legacy-reversibility-manifest.md`](tooling-and-scripts/upgrade-legacy-reversibility-manifest.md) for full implementation and test file listings.
+
+---
+
+### Upgrade-legacy Downgrades and grouped detail
+
+#### Description
+
+Prints the findings a repaired packet keeps as warnings, the failing rules grouped by packet and the lane-mode refusals each run records in the packet baseline.
+
+#### Current Reality
+
+The dry run predicts the Downgrades in a preview copy that is removed afterward, and the apply run prints the findings it recorded.
+
+#### Source Files
+
+See [`tooling-and-scripts/upgrade-legacy-downgrades-report.md`](tooling-and-scripts/upgrade-legacy-downgrades-report.md) for full implementation and test file listings.
 
 ---
 

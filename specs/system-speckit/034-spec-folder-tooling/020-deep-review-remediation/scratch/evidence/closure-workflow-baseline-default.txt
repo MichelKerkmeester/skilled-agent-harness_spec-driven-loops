@@ -1,0 +1,15 @@
+CLOSURE EVIDENCE copy: earlier run of the same workflow test file, recorded by the lane as the baseline
+Source: scratchpad k2c/baseline-default.txt, unedited. Result: 23 passed of 23.
+
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+
+ Test Files  1 passed (1)
+      Tests  23 passed (23)
+   Start at  12:30:55
+   Duration  4.65s (transform 24ms, setup 18ms, import 23ms, tests 4.49s, environment 0ms)
+

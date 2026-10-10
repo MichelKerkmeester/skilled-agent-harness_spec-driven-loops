@@ -23,7 +23,7 @@ dispatch ends having written nothing.
 ## 1. WHY SETTING THE ENVIRONMENT VARIABLE IS NOT ENOUGH
 
 `AGENTS.md` waives that gate for a dispatched child, and conditions the waiver on
-`AI_SESSION_CHILD=1` or `SYSTEM_SPEC_GATE_ENFORCE=0` being set in the environment.
+`AI_SESSION_CHILD=1` being set in the environment.
 
 Setting the variable makes the waiver **true**. It does not make it **observable**. The reader
 being waived is a language model, and a model cannot see an environment variable. It sees the

@@ -1,0 +1,764 @@
+CLOSURE EVIDENCE: 020 CHK-FIX-003, consumer inventory
+=====================================================
+Scope: (a) callers of the healer's resolveTargets and folder-refusal helpers, of repair-derived's readIfPresent and
+its link check, and of upgrade-legacy's exported recordFindings; (b) every Gate 3 child-dispatch surface and every
+reader of AI_SESSION_CHILD or SYSTEM_SPEC_GATE_ENFORCE. Searched across .skilled and .github (rg).
+Each block: the command ($ line), its output, then [exit=N]. Nothing was edited.
+
+== 0. Snapshot
+
+$ date -u +%Y-%m-%dT%H:%M:%SZ; git rev-parse --short HEAD; git diff --stat 4669db6522 -- .skilled/skills/system-spec-kit/SKILL.md .hermes/skills/system-spec-kit/SKILL.md .skilled/commands/speckit/assets/speckit-plan.yaml .skilled/commands/speckit/assets/speckit-implement.yaml .skilled/commands/speckit/assets/speckit-complete.yaml | tail -1
+2026-10-10T10:43:03Z
+4669db6522
+ 5 files changed, 93 insertions(+), 33 deletions(-)
+[exit=0]
+
+$ shasum -a 256 .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs | cut -c1-20,65-
+816085d5e4f1093962b6  .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs
+3bf81869ab72b0097b44  .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs
+706b83ddb65bbaf6b29a  .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs
+[exit=0]
+
+== A. Helper callers
+-- A1. heal-spec-docs resolveTargets, folderRefusal, refuseFolderArgument, isWithinPath, DEFAULT_SPEC_ROOTS (all references)
+
+$ rg -n 'resolveTargets|folderRefusal|refuseFolderArgument|isWithinPath|DEFAULT_SPEC_ROOTS' .skilled .github -g '*.{cjs,mjs,js,ts,sh,yml,yaml,md}' --glob '!**/node_modules/**' --glob '!**/dist/**'
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:663:  const targets = resolveTargets(argv);
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:776:function resolveTargets(argv) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:786:const DEFAULT_SPEC_ROOTS = ['specs', path.join('.opencode', 'specs')];
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:788:function isWithinPath(candidate, base) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:808:function folderRefusal(folder, rootArg) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:814:    : DEFAULT_SPEC_ROOTS.map((root) => path.resolve(root));
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:815:  const root = roots.find((candidate) => isWithinPath(target, candidate));
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:828:    if (!isWithinPath(real, fs.realpathSync(root))) return `it resolves to ${real}, outside the specs root`;
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:836:function refuseFolderArgument(argv) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:841:  const reason = folderRefusal(folder, rootsAt !== -1 ? argv[rootsAt + 1] : undefined);
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1496:  const targets = resolveTargets(argv);
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1511:  if (refuseFolderArgument(argv)) return;
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1522:  const targets = resolveTargets(argv);
+.skilled/skills/system-spec-kit/runtime/cli/core/spec-root-migration.ts:48:function isWithinPath(parentPath: string, candidatePath: string): boolean {
+.skilled/skills/system-spec-kit/runtime/cli/core/spec-root-migration.ts:74:    if (!isWithinPath(realWorkspace, realRoot)) {
+.skilled/skills/system-spec-kit/runtime/cli/core/spec-root-migration.ts:202:    isWithinPath(canonicalRoot, resolvedQuarantine)
+.skilled/skills/system-spec-kit/runtime/cli/core/spec-root-migration.ts:203:    || isWithinPath(legacyRoot, resolvedQuarantine)
+[exit=0]
+-- A2. Is resolveTargets or the folder-refusal helpers exported? (module.exports block)
+
+$ awk 'NR>=1573 && NR<=1585 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs
+1573: module.exports = {
+1574:   LANE_MODES,
+1575:   anchorWrap,
+1576:   continuityPlaceholders,
+1577:   headerAdd,
+1578:   levelFromSpec,
+1579:   linkRepoint,
+1580:   repairAnchors,
+1581:   repairAnchorFile,
+1582:   runLaneModes,
+1583:   unnestQuestionsAnchors,
+1584:   writeFileAtomic,
+1585: };
+[exit=0]
+
+$ rg -n 'resolveTargets|folderRefusal|refuseFolderArgument' .skilled/skills/system-spec-kit/runtime/cli/tests .skilled/skills/system-spec-kit/runtime/tests .skilled/commands 2>/dev/null; echo '(no test or command file names them)'
+(no test or command file names them)
+[exit=0]
+-- A3. heal exports used outside the file (writeFileAtomic, repairAnchorFile, runLaneModes, LANE_MODES, unnestQuestionsAnchors)
+
+$ rg -n 'writeFileAtomic|repairAnchorFile|runLaneModes|unnestQuestionsAnchors|LANE_MODES' .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs .skilled/skills/system-spec-kit/runtime/cli/tests .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs | cut -c1-170 | rg -v 'heal-spec-docs.cjs:[0-9]+:(function|  )' | head -40
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:60:// (unnestQuestionsAnchors), applied by upgrade-legacy's repairArchived under
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:157:const LANE_MODES = [
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:926:      const result = healerFor(context).repairAnchorFile(spec, { apply: true });
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:972:      const result = healerFor(context).runLaneModes(target, { apply: true, repoRoot: context.repo
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1031:      const result = healerFor(context).unnestQuestionsAnchors(fs.readFileSync(spec, 'utf8'));
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1033:        healerFor(context).writeFileAtomic(spec, result.text);
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1067:  const { repairAnchors, unnestQuestionsAnchors } = healerFor(LIVE_RUN_CONTEXT);
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1073:    const repair = packet.archived ? unnestQuestionsAnchors : repairAnchors;
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1239:  const order = new Map(healerFor(LIVE_RUN_CONTEXT).LANE_MODES.map((mode, index) => [mode.name, i
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts:15:  repairAnchorFile,
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts:17:  unnestQuestionsAnchors,
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts:19:  repairAnchorFile: (
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts:24:  unnestQuestionsAnchors: (text: string) => AnchorRepairResult;
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts:330:    run: unnestQuestionsAnchors,
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts:598:    const result = unnestQuestionsAnchors(original);
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts:623:    const unnest = unnestQuestionsAnchors(text);
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts:677:      const unnest = unnestQuestionsAnchors(shape.document);
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts:718:    const applied = repairAnchorFile(file, { apply: true });
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts:744:    expect(() => repairAnchorFile(file, { apply: true })).toThrow('simulated rename fai
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts:775:    const fileResult = repairAnchorFile(file, { apply: true });
+.skilled/skills/system-spec-kit/runtime/cli/tests/anchor-repair-sample.vitest.ts:23:const { repairAnchors, unnestQuestionsAnchors } = require('../spec/heal-spec-docs.cjs'
+.skilled/skills/system-spec-kit/runtime/cli/tests/anchor-repair-sample.vitest.ts:25:  unnestQuestionsAnchors: (text: string) => AnchorRepairResult;
+.skilled/skills/system-spec-kit/runtime/cli/tests/anchor-repair-sample.vitest.ts:288:      expect(unnestQuestionsAnchors(after).changed, `${context}: un-nesting is comple
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:18:const { LANE_MODES, anchorWrap, continuityPlaceholders, headerAdd, runLaneModes } = require
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:19:  LANE_MODES: Array<{ name: string }>;
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:23:  runLaneModes: (
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:536:    const result = runLaneModes(packet, { apply: true, modes: ['anchor-wrap'] });
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:558:    const result = runLaneModes(packet, { modes: ['anchor-wrap'] });
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:573:    const result = runLaneModes(packet, { apply: true, modes: ['anchor-wrap'] });
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:593:    const first = runLaneModes(packet, { apply: true });
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:597:    const second = runLaneModes(packet, { apply: true });
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:612:    const result = runLaneModes(packet, { apply: true, modes: ['anchor-wrap'] });
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:636:    const result = runLaneModes(packet, { apply: true, modes: ['anchor-wrap'] });
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:659:    const second = runLaneModes(packet, { apply: true, modes: ['anchor-wrap'] });
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:692:    const result = runLaneModes(packet, { apply: true, repoRoot: root });
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:723:    const result = runLaneModes(packet, { apply: true, repoRoot: root });
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:738:    const result = runLaneModes(packet, { apply: true, repoRoot: root });
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:760:    const first = runLaneModes(packet, { apply: true, repoRoot: root });
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:764:    const second = runLaneModes(packet, { apply: true, repoRoot: root });
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:789:    const result = runLaneModes(packet, { apply: true, repoRoot: root });
+[exit=0]
+-- A4. repair-derived readIfPresent and its link check (isSymbolicLink, linkedRewriteTargets, writeAtomic)
+
+$ rg -n 'readIfPresent|isSymbolicLink|linkedRewriteTargets|writeAtomic\(' .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs
+214:    const text = readIfPresent(path.join(folder, doc));
+236:function isSymbolicLink(file) {
+237:  try { return fs.lstatSync(file).isSymbolicLink(); } catch { return false; }
+244:function linkedRewriteTargets(folder) {
+245:  return REWRITE_TARGETS.map((name) => path.join(folder, name)).filter(isSymbolicLink);
+249:function readIfPresent(file) {
+250:  if (isSymbolicLink(file)) return null;
+271:function writeAtomic(file, text) {
+272:  if (isSymbolicLink(file)) throw new Error(SYMLINK_REFUSAL);
+301:  const text = readIfPresent(file);
+336:      writeAtomic(file, `${JSON.stringify(current, null, 2)}\n`);
+347:  const summaryText = readIfPresent(summary);
+358:          writeAtomic(summary, current.slice(0, hit.index) + hit[1] + basename + hit[3] + current.slice(hit.index + hit[0].length));
+365:  const descriptionText = readIfPresent(description);
+381:          writeAtomic(description, `${JSON.stringify(current, null, 2)}\n`);
+392:  const graphText = path.basename(path.dirname(path.resolve(REPO, folder))) === 'z_archive' ? readIfPresent(graph) : null;
+408:          writeAtomic(graph, `${JSON.stringify(current, null, 2)}\n`);
+416:    const text = readIfPresent(file);
+429:        writeAtomic(file, `${current.slice(0, found.index)}${found[1]}"${pointer}"${current.slice(found.index + found[0].length)}`);
+467:  const graphIsLink = isSymbolicLink(path.join(folder, 'graph-metadata.json'));
+656:      for (const file of linkedRewriteTargets(folder)) {
+[exit=0]
+
+$ rg -n '^(async )?function ' .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs | awk -F: '$1>=212 && $1<=514'
+212:function declaredLevel(folder) {
+222:function frontmatterEnd(text) {
+236:function isSymbolicLink(file) {
+244:function linkedRewriteTargets(folder) {
+249:function readIfPresent(file) {
+271:function writeAtomic(file, text) {
+299:function fixDescriptionLevel(folder, report) {
+341:function fixRecordedLocation(folder) {
+436:async function rederive(folder) {
+445:async function repairFolder(folder, apply) {
+514:function discover(root) {
+[exit=0]
+
+$ rg -n 'module\.exports|exports\.' .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs; echo '(repair-derived exports nothing: it is a CLI only)'
+(repair-derived exports nothing: it is a CLI only)
+[exit=0]
+
+$ rg -n 'readIfPresent|isSymbolicLink' .skilled .github -g '*.{cjs,mjs,js,ts,sh,yml,yaml}' --glob '!**/node_modules/**' --glob '!**/dist/**' | rg -v 'spec/repair-derived.cjs:'; echo '(no file outside repair-derived.cjs calls readIfPresent or its link check)'
+.skilled/hooks/goal/lib/goal-core.test.cjs:474:  assert.equal(lstatSync(claudeCommands).isSymbolicLink(), false);
+.skilled/hooks/goal/lib/goal-core.test.cjs:477:  assert.equal(lstatSync(join(claudeCommands, 'agent-router.md')).isSymbolicLink(), true);
+.skilled/bin/compiled-route-sync.cjs:188:  if (stats.isSymbolicLink() || !stats.isFile()) {
+.skilled/bin/compiled-route-sync.cjs:225:    if (stats.isSymbolicLink() || !stats.isFile()) {
+.skilled/bin/compiled-route-sync.cjs:241:  if (stats.isSymbolicLink() || !stats.isDirectory()) {
+.skilled/bin/compiled-route-sync.cjs:402:  if (rootStats.isSymbolicLink() || !rootStats.isDirectory()) {
+.skilled/bin/compiled-route-sync.cjs:412:    if (directoryStats.isSymbolicLink() || !directoryStats.isDirectory()) {
+.skilled/bin/compiled-route-sync.cjs:429:  if (manifestStats.isSymbolicLink() || !manifestStats.isFile()) syncConflict(hubId);
+.skilled/bin/compiled-route-sync.cjs:461:    if (entry.isSymbolicLink()) syncConflict(entry.name);
+.skilled/bin/tests/opencode-compat-layout.test.cjs:72:        assert.equal(stat.isSymbolicLink(), true, `${row.name} is not a link`);
+.skilled/bin/tests/opencode-compat-layout.test.cjs:86:    assert.equal(fs.lstatSync(link).isSymbolicLink(), true);
+.skilled/bin/lib/model-server-supervision.cjs:535:    if (dirStat.isSymbolicLink()) {
+.skilled/bin/lib/model-server-supervision.cjs:546:    if (socketStat.isSymbolicLink()) {
+.skilled/bin/compiled-route-status.cjs:121:  if (directoryStats.isSymbolicLink() || !directoryStats.isDirectory()) {
+.skilled/bin/compiled-route-status.cjs:130:  if (manifestStats.isSymbolicLink() || !manifestStats.isFile()) {
+.skilled/bin/lib/compiled-route-manifest.cjs:167:  if (stats.isSymbolicLink() || !stats.isFile()) {
+.skilled/bin/lib/compiled-route-manifest.cjs:276:  if (activationStats.isSymbolicLink() || !activationStats.isDirectory()) {
+.skilled/bin/lib/compiled-route-manifest.cjs:288:  if (directoryStats.isSymbolicLink() || !directoryStats.isDirectory()) {
+.skilled/bin/lib/compiled-route-manifest.cjs:301:  if (manifestStats.isSymbolicLink() || !manifestStats.isFile()) {
+.skilled/bin/lib/compiled-route-manifest.cjs:366:  if (rootStats.isSymbolicLink()) throw contractError('unsafe-path');
+.skilled/bin/lib/compiled-route-manifest.cjs:383:  if (stats.isSymbolicLink() || !stats.isFile()) throw contractError('unsafe-path');
+.skilled/bin/lib/compiled-route-manifest.cjs:393:  if (activationStats.isSymbolicLink() || !activationStats.isDirectory()) {
+.skilled/bin/lib/compiled-route-manifest.cjs:399:    if (directoryStats.isSymbolicLink() || !directoryStats.isDirectory()) {
+.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs:548:  if (fs.existsSync(packetRoot) && fs.lstatSync(packetRoot).isSymbolicLink()) {
+.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs:1002:  if (fs.existsSync(resolved) && fs.lstatSync(resolved).isSymbolicLink()) {
+.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs:1006:  if (fs.existsSync(parentDir) && fs.lstatSync(parentDir).isSymbolicLink()) {
+.skilled/skills/system-spec-kit/shared/review-research-paths.cjs:287:  if (stat.isSymbolicLink() || !stat.isDirectory()) {
+.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promotion-receipts.cjs:186:  if (fs.existsSync(filePath) && fs.lstatSync(filePath).isSymbolicLink()) {
+.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promotion-receipts.cjs:190:  if (fs.existsSync(parent) && fs.lstatSync(parent).isSymbolicLink()) {
+.skilled/skills/system-spec-kit/shared/ipc/socket-server.ts:462:      if (linkStat.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/shared/ipc/socket-server.ts:576:    if (boundStat.isSymbolicLink() || !boundStat.isSocket()) {
+.skilled/skills/sk-design/sk-design-md-generator/styles/lib/engine/manifest.mjs:560:    if (!linkInfo.isFile() && !linkInfo.isSymbolicLink()) continue;
+.skilled/skills/sk-design/sk-design-md-generator/styles/lib/engine/manifest.mjs:661:      if (!linkInfo.isFile() && !linkInfo.isSymbolicLink()) continue;
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:59:function isSymbolicLink(file) {
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:60:  try { return fs.lstatSync(file).isSymbolicLink(); } catch { return false; }
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:136:      if (!entry.isSymbolicLink()) continue;
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:475:  if (isSymbolicLink(manifestPath)) {
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs:332:  assert.equal(fs.lstatSync(manifest).isSymbolicLink(), true);
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs:359:  assert.equal(fs.lstatSync(manifest).isSymbolicLink(), true);
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs:402:  assert.equal(fs.lstatSync(manifest).isSymbolicLink(), false);
+.skilled/skills/sk-design/sk-design-md-generator/styles/lib/database/indexer.mjs:284:    .filter((entry) => entry.isFile() || entry.isSymbolicLink())
+.skilled/skills/sk-design/sk-design-md-generator/styles/lib/database/indexer.mjs:296:    if (!linkInfo.isFile() && !linkInfo.isSymbolicLink()) continue;
+.skilled/skills/sk-design/sk-design-md-generator/styles/lib/database/indexer.mjs:333:    .filter((entry) => entry.isFile() || entry.isSymbolicLink())
+.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:1109:    return fs.lstatSync(path.join(folder, UPGRADE_BASELINE_FILE)).isSymbolicLink();
+.skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts:404:function isSymbolicLink(filePath: string): boolean {
+.skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts:406:    return fs.lstatSync(filePath).isSymbolicLink();
+.skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts:419:  if (isSymbolicLink(descPath)) {
+.skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts:1145:  if (isSymbolicLink(descPath)) {
+.skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts:1277:  if (!fs.existsSync(cachePath) || isSymbolicLink(cachePath)) {
+.skilled/skills/sk-doc/scripts/tests/install-guide-contract.test.cjs:78:    return fs.lstatSync(file).isSymbolicLink();
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts:470:function isSymbolicLink(filePath: string): boolean {
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts:472:    return fs.lstatSync(filePath).isSymbolicLink();
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts:491:  if (!fs.existsSync(resolvedPath) || isSymbolicLink(resolvedPath)) {
+.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs:193:    .filter((entry) => entry.isDirectory() || entry.isSymbolicLink())
+.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs:242:      if (fs.lstatSync(entryPath).isSymbolicLink()) current = null;
+.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs:264:      if (fs.lstatSync(entryPath).isSymbolicLink()) fs.unlinkSync(entryPath);
+.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs:174:    if (stat && stat.isSymbolicLink()) {
+.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1509:  if (stat.isSymbolicLink() || !stat.isDirectory()) {
+.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1523:  if (stat.isSymbolicLink() || !stat.isFile()) {
+.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1550:      if (entry.isSymbolicLink() || !entry.isFile()) {
+.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1605:      if (entry.isSymbolicLink() || !entry.isFile()) {
+.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1649:      if (entry.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/optimizer/promote.cjs:86:  if (fs.existsSync(candidatePath) && fs.lstatSync(candidatePath).isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs:215:      if (entry.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/optimizer/replay-corpus.cjs:89:  if (stats.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:256:        if (fs.lstatSync(child).isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/core/workflow-path-utils.ts:73:      if (entry.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/core/subfolder-utils.ts:84:      if (dirent.isSymbolicLink()) continue;
+.skilled/skills/system-spec-kit/runtime/cli/core/subfolder-utils.ts:181:      if (dirent.isSymbolicLink()) continue;
+.skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:65:        symlinked: fs.lstatSync(trackPath).isSymbolicLink(),
+.skilled/skills/system-spec-kit/runtime/cli/core/spec-root-collision-classifier.ts:103:    } else if (dirent.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/core/spec-root-migration.ts:101:      dirent.name === 'spec.md' && (dirent.isFile() || dirent.isSymbolicLink())
+.skilled/skills/system-spec-kit/runtime/cli/core/spec-root-migration.ts:127:  if (leftStats.isSymbolicLink() && rightStats.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/core/spec-root-migration.ts:331:  if (!legacyStats.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/evals/check-no-mcp-lib-imports-ast.ts:300:        if (entry.isSymbolicLink()) continue; // Skip symlinked directories to prevent out-of-scope traversal
+.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/immutable-frame-store.ts:117:  if (!metadata.isDirectory() || metadata.isSymbolicLink()) {
+.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/immutable-frame-store.ts:130:  if (!metadata.isFile() || metadata.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/core/spec-root-migration-manifest.ts:140:    } else if (entry.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/core/spec-root-migration-manifest.ts:185:      PACKET_MARKERS.has(entry.name) && (entry.isFile() || entry.isSymbolicLink())
+.skilled/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/sealed-artifact-store.ts:425:    if (existsSync(cursor) && lstatSync(cursor).isSymbolicLink()) {
+.skilled/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/sealed-artifact-store.ts:433:  if (existsSync(target) && lstatSync(target).isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs:181:      symlink = stat?.isSymbolicLink() === true;
+.skilled/skills/system-deep-loop/runtime/lib/deep-loop/permissions-gate.ts:208:    if (!stat.isSymbolicLink()) return realpathSync.native(current);
+.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:734:      if (lstatSync(current).isSymbolicLink()) return `destination passes through a symlink: ${current}`;
+.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:780:    if (created.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/tests/hook-adapter-path-parity.vitest.ts:122:    if (!lstatSync(entryPath).isSymbolicLink()) continue;
+.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:128:      && !lstatSync(filePath).isSymbolicLink()
+.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:165:  if (lstatSync(lineagesDir).isSymbolicLink() || !lstatSync(lineagesDir).isDirectory()) {
+.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:171:      if (entry.isSymbolicLink()) {
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:131:  if (stat.isSymbolicLink() || !stat.isDirectory()) {
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:144:  if (stat.isSymbolicLink() || !stat.isFile()) {
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:158:  if (stat.isSymbolicLink() || !stat.isFile()) {
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:201:    if (entry.isSymbolicLink() || !entry.isFile()) {
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:230:    if (entry.isSymbolicLink() || !entry.isFile()) {
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1289:  if (artifactStat.isSymbolicLink() || !artifactStat.isDirectory()) {
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1302:  const linkedLineage = lineageEntries.find((entry) => entry.isSymbolicLink());
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2518:      neutralStat.isSymbolicLink()
+.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/shadow-projection-store.ts:264:    if (lstatSync(proposedRoot).isSymbolicLink()) {
+.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/shadow-projection-store.ts:427:      if (lstatSync(cursor).isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/tests/embedders/model-server-perimeter.vitest.ts:80:          isSymbolicLink: () => false,
+.skilled/skills/system-spec-kit/runtime/tests/folder-discovery.vitest.ts:1345:    expect(fs.lstatSync(descPath).isSymbolicLink()).toBe(false);
+.skilled/skills/system-spec-kit/runtime/tests/folder-discovery.vitest.ts:1391:    expect(fs.lstatSync(cachePath).isSymbolicLink()).toBe(false);
+.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts:989:    expect(fs.lstatSync(graphPath).isSymbolicLink()).toBe(false);
+.skilled/skills/system-spec-kit/runtime/tests/directive-lifecycle-adapter-parity.vitest.ts:131:      expect(lstatSync(mirror).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:637:function isSymbolicLink(file) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:638:  try { return fs.lstatSync(file).isSymbolicLink(); } catch { return false; }
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:651:  if (isSymbolicLink(file)) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:670:    if (!fs.existsSync(file) && !isSymbolicLink(file)) continue;
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:810:  if (isSymbolicLink(target)) return 'the folder itself is a link';
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:823:    if (isSymbolicLink(current)) return `${path.relative(root, current)} is a link on the path to the folder`;
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1473:    if (!fs.existsSync(file) && !isSymbolicLink(file)) continue;
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1474:    if (isSymbolicLink(file)) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1531:      if (!fs.existsSync(file) && !isSymbolicLink(file)) continue;
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1532:      if (isSymbolicLink(file)) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:188:    return fs.lstatSync(target).isSymbolicLink();
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:206:    if (stat.isSymbolicLink()) return true;
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:320:    if (stat.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:393:    if (stat.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1088:      if (!entry.isFile() && !entry.isSymbolicLink()) continue;
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1106:    if (entry.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1317:  if (stat.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1333:  if (stat.isSymbolicLink()) return 'symlink';
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:2449:    expect(lstatSync(violatedPath).isSymbolicLink()).toBe(true);
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:2484:    expect(lstatSync(violatedPath).isSymbolicLink()).toBe(false);
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:280:    if (entry.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs:177:    if (stat && stat.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts:105:    expect(fs.lstatSync(path.join(packet, 'spec.md')).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts:128:    expect(fs.lstatSync(path.join(packet, 'tasks.md')).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts:164:    expect(fs.lstatSync(path.join(packet, 'spec.md')).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts:182:    expect(fs.lstatSync(path.join(packet, 'spec.md')).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts:227:    expect(fs.lstatSync(spec).isSymbolicLink()).toBe(false);
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts:246:    expect(fs.lstatSync(path.join(packet, 'spec.md')).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts:286:    expect(fs.lstatSync(path.join(packet, 'spec.md')).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts:340:    expect(fs.lstatSync(linked).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts:360:    expect(fs.lstatSync(linked).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs:237:    if (stat && stat.isSymbolicLink()) {
+.skilled/commands/doctor/scripts/release-update.cjs:247:      if (stats.isSymbolicLink() || !stats.isDirectory()) {
+.skilled/commands/doctor/scripts/release-update.cjs:379:  if (stats.isSymbolicLink()) {
+.skilled/commands/doctor/scripts/release-update.cjs:1418:    if (stats.isSymbolicLink() || !stats.isDirectory()) {
+.skilled/commands/doctor/scripts/release-update.cjs:1437:  if (existing && (existing.isSymbolicLink() || !existing.isFile())) {
+.skilled/commands/doctor/scripts/release-update.cjs:1450:  if (existing && (existing.isSymbolicLink() || !existing.isFile())) {
+.skilled/commands/doctor/scripts/release-update.cjs:1465:  if (stats.isSymbolicLink() || !stats.isFile()) {
+.skilled/commands/doctor/scripts/release-update.cjs:1504:  if (stats.isSymbolicLink() || !stats.isDirectory()) {
+.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:175:  if (!stat.isSymbolicLink()) return { state: 'STALE', why: 'not a symlink (silent fork risk)' };
+.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:219:    if (fs.lstatSync(absoluteParent).isSymbolicLink()) continue;
+.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:246:    if (!rootStat.isDirectory() || rootStat.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:276:    if (rootStat.isSymbolicLink()) {
+.skilled/commands/doctor/scripts/parent-skill-check.cjs:231:    return fs.lstatSync(p).isSymbolicLink();
+.skilled/commands/doctor/scripts/parent-skill-check.cjs:275:      if (entry.isSymbolicLink()) {
+.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:122:  if (!st.isSymbolicLink()) return { ok: false, why: 'not a symlink (silent fork risk)' };
+.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:136:  if (!st.isSymbolicLink()) return st.isDirectory() ? 'agent' : 'other';
+.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs:217:    if (!stat.isSymbolicLink()) { problems.push(`${registry.runtimes.pi.extensionsDir}/${extension}: not a symlink`); continue; }
+.skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts:389:    expect(fs.lstatSync(link).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts:426:    expect(fs.lstatSync(link).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts:456:    expect(fs.lstatSync(link).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts:462:    expect(fs.lstatSync(link).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts:485:    expect(fs.lstatSync(link).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-validation-matrix.vitest.ts:151:        expect(fs.lstatSync(legacyRoot).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs:173:    if (stat && stat.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-migration.vitest.ts:161:    expect(fs.lstatSync(fixture.legacyRoot).isSymbolicLink()).toBe(false);
+.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-migration.vitest.ts:167:    expect(fs.lstatSync(fixture.canonicalRoot).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-migration.vitest.ts:193:    expect(fs.lstatSync(fixture.legacyRoot).isSymbolicLink()).toBe(false);
+.skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:171:function isSymbolicLink(file: string): boolean {
+.skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:173:    return fs.lstatSync(file).isSymbolicLink();
+.skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:192:  if (isSymbolicLink(reportPath)) {
+.skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs:286:    if (stat && stat.isSymbolicLink()) {
+.skilled/commands/doctor/scripts/tests/release-update.test.cjs:1263:  assert.equal(fs.lstatSync(path.join(fixture.operator, SYMLINK_FILE)).isSymbolicLink(), true);
+.skilled/commands/doctor/scripts/tests/release-update.test.cjs:1269:  assert.equal(fs.lstatSync(path.join(fixture.operator, SYMLINK_FILE)).isSymbolicLink(), true);
+.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:185:      if (entry.isSymbolicLink()) {
+.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:500:  assert.ok(fs.lstatSync(legacyLink).isSymbolicLink(), '.opencode/specs must be a symlink');
+.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:632:    fs.lstatSync(path.join(f.root, 'specs')).isSymbolicLink(),
+.skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts:176:function readIfPresent(filePath: string): string {
+.skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts:386:  return readIfPresent(fixture.hookLog).split('\n').filter(Boolean);
+.skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts:390:  return readIfPresent(fixture.generatorLog)
+.skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts:397:  const values = readIfPresent(fixture.outputFile)
+.skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts:428:  return readIfPresent(controlLog).trim();
+.skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts:617:      const config = readIfPresent(path.join(fixture.work, '.git', 'config'));
+.skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts:622:        readIfPresent(fixture.outputFile),
+.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1380:      if (stat.isSymbolicLink()) {
+.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1640:      expect(fs.lstatSync(specFile).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1750:    expect(fs.lstatSync(path.join(packetFolder, 'spec.md')).isSymbolicLink()).toBe(true);
+.skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-hermes.test.mjs:86:    assert.ok(!lstatSync(join(env.output, 'plain')).isSymbolicLink());
+(no file outside repair-derived.cjs calls readIfPresent or its link check)
+[exit=0]
+-- A5. repair-derived invocations (CLI consumers, every surface that names it)
+
+$ rg -n 'repair-derived' .skilled .github -g '*.{cjs,mjs,js,ts,sh,yml,yaml}' --glob '!**/node_modules/**' --glob '!**/dist/**' | rg -v '(tests?/|\.test\.|vitest)' | cut -c1-200
+.github/workflows/strict-pass-freshness-report.yml:172:          node .opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --roots specs > "$report" 2>&1 || true
+.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:1332:    `  preview  node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder ${target}\n`,
+.skilled/skills/system-spec-kit/runtime/cli/rules/check-description-shape.sh:98:        RULE_REMEDIATION="Run repair-derived.cjs --apply to align the generated level with the declared one."
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:51:// repair-derived.cjs. A fourth copy is a cost; disagreeing with the writer
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:57:// packet's current location is a derived field, repaired by repair-derived
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:55:// The TypeScript tools run from source through the tsx loader, as repair-derived does,
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:71:const REPAIR = path.join(SKILL_ROOT, 'runtime/cli/spec/repair-derived.cjs');
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:95:    repair: path.join(skillRoot, 'runtime/cli/spec/repair-derived.cjs'),
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:988:      'repair-derived',
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1052:      'repair-derived (archived)',
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1725:  process.stdout.write('\n--apply would run: fill-frontmatter, anchor-repair, heal-spec-docs, lane-modes, repair-derived, migra
+.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:995:readonly INSTALL_REMEDY="Run npm install at the skill root, then repair-derived.cjs --folder <packet> --apply."
+.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:118:const USAGE = 'Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]';
+.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:561:      // turn a dropped flag name — `repair-derived.cjs specs/one --apply` —
+.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:734:  else process.stderr.write(`repair-derived failed: ${(err && err.stack) || err}\n`);
+.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:198:    local repair_script="$SCRIPT_DIR/repair-derived.cjs"
+.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:200:        log_warning "Recorded paths under $destination were not re-derived: $repair_script is missing. Restore it, then run repair-deriv
+.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:204:        log_warning "Recorded paths under $destination may still name the old folder. Rerun repair-derived.cjs --roots $destination --ap
+.skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:810:  // Callers such as repair-derived judge the run by its exit status alone, so a
+[exit=0]
+-- A6. upgrade-legacy recordFindings (exported at :1250): every reference
+
+$ rg -n 'recordFindings' .skilled .github --glob '!**/node_modules/**' --glob '!**/dist/**'
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1250:export function recordFindings(folder, findings, roots, refusals = []) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1591:        outcome = recordFindings(packet.folder, findings, roots, refusals);
+.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:14:import { planLayoutMove, recordFindings } from '../spec/upgrade-legacy.mjs';
+.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1687:      recordFindings(folder, [finding], [fs.realpathSync(path.join(sandbox, 'specs'))]);
+[exit=0]
+
+$ awk 'NR==1250 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs; awk 'NR==1591 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs
+1250: export function recordFindings(folder, findings, roots, refusals = []) {
+1591:         outcome = recordFindings(packet.folder, findings, roots, refusals);
+[exit=0]
+
+$ awk 'NR==14 || NR==1687 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+14: import { planLayoutMove, recordFindings } from '../spec/upgrade-legacy.mjs';
+1687:       recordFindings(folder, [finding], [fs.realpathSync(path.join(sandbox, 'specs'))]);
+[exit=0]
+-- A7. upgrade-legacy exports and consumers of its module (planLayoutMove, recordFindings)
+
+$ rg -n 'upgrade-legacy\.mjs' .skilled .github -g '*.{cjs,mjs,js,ts,sh,yml,yaml}' --glob '!**/node_modules/**' --glob '!**/dist/**' | rg -v 'spec/upgrade-legacy.mjs:' | cut -c1-200
+.skilled/commands/doctor/assets/doctor-update-check.yaml:30:  layout_map: ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
+.skilled/commands/doctor/assets/doctor-update-check.yaml:134:      layout_map: "node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map"
+.skilled/commands/doctor/assets/doctor-update-compat-action.yaml:24:  upgrade_legacy: ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
+.skilled/commands/doctor/assets/doctor-update-compat-action.yaml:37:    layout_map: "node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map"
+.skilled/commands/doctor/assets/doctor-update-compat-action.yaml:38:    upgrade_dry_run: "node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
+.skilled/commands/doctor/assets/doctor-update-compat-action.yaml:39:    upgrade_apply: "node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --apply"
+.skilled/commands/doctor/assets/doctor-update-compat-action.yaml:98:      layout_map: "node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map"
+.skilled/commands/doctor/assets/doctor-update-compat-action.yaml:134:      upgrade_dry_run: "node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
+.skilled/commands/doctor/assets/doctor-update-compat-action.yaml:148:      upgrade_apply: "node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --apply"
+.skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs:229:  const absentPath = scriptPath.replace('upgrade-legacy.mjs', 'upgrade-legacy-absent.mjs');
+.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:43:const LAYOUT_MAP_PATH = fs.realpathSync(path.join(SPEC_CLI_DIR, 'upgrade-legacy.mjs'));
+.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:163:    'upgrade-legacy.mjs must export planLayoutMove',
+.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:233:    layout_map: 'node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map',
+.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:348:    'node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map',
+.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:352:    'node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs',
+.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:356:    'node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --apply',
+.skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh:15:# --auto-upgrade was removed; use upgrade-legacy.mjs for version-comment rewrites.
+.skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh:58:--auto-upgrade was removed; use upgrade-legacy.mjs for version-comment rewrites.
+.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs:35:  'upgrade-legacy.mjs',
+.skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup-hardening.vitest.ts:94:    expect(report.routed[0].fixerPath).toContain('upgrade-legacy.mjs');
+.skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup-hardening.vitest.ts:97:    expect(report.routed[0].command).toContain('upgrade-legacy.mjs');
+.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:14:import { planLayoutMove, recordFindings } from '../spec/upgrade-legacy.mjs';
+.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:29:  return spawnSync(process.execPath, [path.join(copy, 'runtime/cli/spec/upgrade-legacy.mjs'), ...args], {
+.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1601:    fs.symlinkSync(path.join(copy, 'runtime/cli/spec/upgrade-legacy.mjs'), link);
+.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1611:    const script = path.join(copy, 'runtime/cli/spec/upgrade-legacy.mjs');
+[exit=0]
+
+== B. Gate 3 child-dispatch surfaces
+-- B1. Canonical SKILL.md: every line changed by this packet (diff reports 7 changed lines)
+
+$ git diff 4669db6522 -- .skilled/skills/system-spec-kit/SKILL.md | grep '^[-+][^-+]' | cut -c1-120; echo '(7 added, 7 removed; the added lines are the ones quoted below)'
+-4. **Ask A/B/C/D when file modification detected** - Present options, wait for selection
++4. **Ask A/B/C/D when file modification detected** - Present options, wait for selection. **Child dispatch:** when `SYS
+-6. **Get explicit user approval before changes** - Show level, path, templates, approach
++6. **Get explicit user approval before changes** - Show level, path, templates, approach. **Child dispatch:** when `SYS
+-3. **Make changes before spec + approval** - Spec folder is prerequisite
++3. **Make changes before spec + approval** - Spec folder is prerequisite. **Child dispatch:** when `SYSTEM_SPEC_GATE_EN
+-5. **Decide autonomously update vs create** - Always ask user
++5. **Decide autonomously update vs create** - Always ask user. When `SYSTEM_SPEC_GATE_ENFORCE=0` or `AI_SESSION_CHILD=1
+-7. **Proceed without spec folder confirmation** - Wait for A/B/C/D
++7. **Proceed without spec folder confirmation** - Wait for A/B/C/D. **Child dispatch:** when `SYSTEM_SPEC_GATE_ENFORCE=
+-2. **Uncertainty about level <80%** - Present level options to user, default to higher
++2. **Uncertainty about level <80%** - Present level options to user, default to higher. When `SYSTEM_SPEC_GATE_ENFORCE=
+-4. **User requests skip (Option D)** - Warn about tech debt, explain debugging challenges, confirm consent
++4. **User requests skip (Option D)** - Warn about tech debt, explain debugging challenges, confirm consent. When `SYSTE
+(7 added, 7 removed; the added lines are the ones quoted below)
+[exit=0]
+
+$ sed -n '499p;501p;522p;524p;526p;538p;540p' .skilled/skills/system-spec-kit/SKILL.md | cut -c1-420
+4. **Ask A/B/C/D when file modification detected** - Present options, wait for selection. **Child dispatch:** when `SYSTEM_SPEC_GATE_ENFORCE=0` or `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-resolved to that directory and the worker does not ask. Interactive sessions always ask.
+6. **Get explicit user approval before changes** - Show level, path, templates, approach. **Child dispatch:** when `SYSTEM_SPEC_GATE_ENFORCE=0` or `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory, record the approval request in that directory and continue. Interactive sessions always ask.
+3. **Make changes before spec + approval** - Spec folder is prerequisite. **Child dispatch:** when `SYSTEM_SPEC_GATE_ENFORCE=0` or `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory, record the approval request in that directory and continue. Interactive sessions always ask.
+5. **Decide autonomously update vs create** - Always ask user. When `SYSTEM_SPEC_GATE_ENFORCE=0` or `AI_SESSION_CHILD=1` marks a non-interactive child, record the update-or-create question with its default in the lineage directory and continue.
+7. **Proceed without spec folder confirmation** - Wait for A/B/C/D. **Child dispatch:** when `SYSTEM_SPEC_GATE_ENFORCE=0` or `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-resolved to that directory and the worker does not ask. Interactive sessions always ask.
+2. **Uncertainty about level <80%** - Present level options to user, default to higher. When `SYSTEM_SPEC_GATE_ENFORCE=0` or `AI_SESSION_CHILD=1` marks a non-interactive child, record the level question with the higher level as its default in the lineage directory and continue.
+4. **User requests skip (Option D)** - Warn about tech debt, explain debugging challenges, confirm consent. When `SYSTEM_SPEC_GATE_ENFORCE=0` or `AI_SESSION_CHILD=1` marks a non-interactive child, record the skip request in the lineage directory with documentation kept as the default and continue.
+[exit=0]
+-- B2. Hermes copy: same seven lines at +5 offset; compare with canonical
+
+$ diff <(sed -n '499p;501p;522p;524p;526p;538p;540p' .skilled/skills/system-spec-kit/SKILL.md) <(sed -n '504p;506p;527p;529p;531p;543p;545p' .hermes/skills/system-spec-kit/SKILL.md); echo "diff_of_seven_lines_above_is_empty_when_identical"
+diff_of_seven_lines_above_is_empty_when_identical
+[exit=0]
+
+$ rg -n 'child_dispatch|Child dispatch|AI_SESSION_CHILD|SYSTEM_SPEC_GATE_ENFORCE' .hermes/skills/system-spec-kit/SKILL.md | cut -c1-90
+504:4. **Ask A/B/C/D when file modification detected** - Present options, wait for selecti
+506:6. **Get explicit user approval before changes** - Show level, path, templates, approa
+527:3. **Make changes before spec + approval** - Spec folder is prerequisite. **Child disp
+529:5. **Decide autonomously update vs create** - Always ask user. When `SYSTEM_SPEC_GATE_
+531:7. **Proceed without spec folder confirmation** - Wait for A/B/C/D. **Child dispatch:*
+543:2. **Uncertainty about level <80%** - Present level options to user, default to higher
+545:4. **User requests skip (Option D)** - Warn about tech debt, explain debugging challen
+[exit=0]
+-- B3. Speckit plan, implement and complete YAML: the child_dispatch definition and its uses
+
+$ rg -n 'child_dispatch' .skilled/commands/speckit/assets/speckit-plan.yaml | cut -c1-150
+38:    child_dispatch_checkpoints: "When child_dispatch applies, record each checkpoint question with its first option as the default in the lineage d
+52:child_dispatch: "When SYSTEM_SPEC_GATE_ENFORCE=0 or AI_SESSION_CHILD=1 marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-r
+824:      child_dispatch: "When child_dispatch applies, default to Skip. Step 6 already saved context, so another refresh is not needed. Record the qu
+844:  child_dispatch: "When child_dispatch applies, Gate 3 is pre-resolved to the bound lineage directory, so the child records the free-text implemen
+[exit=0]
+
+$ rg -n 'child_dispatch' .skilled/commands/speckit/assets/speckit-implement.yaml | cut -c1-150
+24:    child_dispatch_checkpoints: "When child_dispatch applies, record each checkpoint question with its first option as the default in the lineage d
+72:  first_message_protocol: "If FIRST message requests implementation, ask spec folder FIRST, unless child_dispatch applies"
+73:  child_dispatch: "When SYSTEM_SPEC_GATE_ENFORCE=0 or AI_SESSION_CHILD=1 marks a non-interactive worker bound to a lineage directory, Gate 3 is pre
+76:    action: "STOP → Ask spec folder question → Wait for A/B/C/D, unless child_dispatch applies"
+79:    □ Did I wait for user's A/B/C/D response before using project tools? Not required when child_dispatch applies.
+370:    on_threshold: "Surface a single direct prompt: 'Dispatch @debug for fresh-perspective root-cause? (y / continue manually / skip)'. On y, gener
+415:    low: { range: "0-39%", action: "STOP - Ask A/B/C clarification, unless child_dispatch applies, in which case record the question with its defa
+484:      child_dispatch: "When child_dispatch applies, record this question with the default Proceed in the lineage directory and continue instead of
+525:      child_dispatch: "When child_dispatch applies, record the question with Approve, the first option of checkpoint_options.standard, as the defa
+542:      child_dispatch: "When child_dispatch applies, default to Start Implementation only when every P0 row is Met or Waived. When a P0 row is open
+556:      child_dispatch: "When child_dispatch applies, default to Start Coding. When a check above fails, record the failed check and its blocker in 
+599:      child_dispatch: "When child_dispatch applies, do not ask. Take direct, the fallback below, and record the decision in the lineage directory.
+628:      child_dispatch: "When child_dispatch applies, do not surface the prompt. Take the continue manually branch below, log it in the lineage dire
+643:          low_below_40: "STOP: A) Research B) Simplify C) Skip. When child_dispatch applies, record the question with A) Research as the default i
+649:      child_dispatch: "When child_dispatch applies, record the question with Approve Code, the first option of checkpoint_options.code_review, as 
+772:      child_dispatch: "When child_dispatch applies, default to Skip. Step 8 already wrote continuity, so another refresh is not needed. Record the
+[exit=0]
+
+$ rg -n 'child_dispatch' .skilled/commands/speckit/assets/speckit-complete.yaml | cut -c1-150
+37:    child_dispatch_checkpoints: "When child_dispatch applies, record each checkpoint question with its first option as the default in the lineage d
+51:child_dispatch: "When SYSTEM_SPEC_GATE_ENFORCE=0 or AI_SESSION_CHILD=1 marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-r
+870:      child_dispatch: "When child_dispatch applies, default to Proceed only when every P0 checklist item is marked [x] and every P0 row is Met or 
+1085:      child_dispatch: "When child_dispatch applies, default to Start Development. When a check above fails, record the failed check and its block
+1166:      child_dispatch: "When child_dispatch applies, default to Continue, since the completion_checkpoint above is a hard block that runs before t
+1214:      child_dispatch: "When child_dispatch applies, default to Approve only when every acceptance-criteria row and every P0 item is verified. Whe
+1357:      child_dispatch: "When child_dispatch applies, default to Skip. Step 13 already saved context, so another refresh is not needed. Record the 
+[exit=0]
+-- B4. The three definitions carry the same text (hash of the quoted value)
+
+$ for f in .skilled/commands/speckit/assets/speckit-plan.yaml:52 .skilled/commands/speckit/assets/speckit-implement.yaml:73 .skilled/commands/speckit/assets/speckit-complete.yaml:51; do p=${f%%:*}; n=${f##*:}; printf '%s line %s sha256=' "$p" "$n"; sed -n "${n}p" "$p" | sed 's/^child_dispatch: "//' | sed 's/"$//' | shasum -a 256 | cut -c1-16; done
+.skilled/commands/speckit/assets/speckit-plan.yaml line 52 sha256=c018efb17ab4c6f7
+.skilled/commands/speckit/assets/speckit-implement.yaml line 73 sha256=1aeb0e4ec46d0d92
+.skilled/commands/speckit/assets/speckit-complete.yaml line 51 sha256=c018efb17ab4c6f7
+[exit=0]
+
+$ rg -n 'checkpoint_options|child_dispatch_checkpoints' .skilled/commands/speckit/assets/speckit-plan.yaml .skilled/commands/speckit/assets/speckit-implement.yaml .skilled/commands/speckit/assets/speckit-complete.yaml | cut -c1-140
+.skilled/commands/speckit/assets/speckit-implement.yaml:24:    child_dispatch_checkpoints: "When child_dispatch applies, record each checkpo
+.skilled/commands/speckit/assets/speckit-implement.yaml:29:checkpoint_options:
+.skilled/commands/speckit/assets/speckit-implement.yaml:525:      child_dispatch: "When child_dispatch applies, record the question with App
+.skilled/commands/speckit/assets/speckit-implement.yaml:526:      options: checkpoint_options.standard
+.skilled/commands/speckit/assets/speckit-implement.yaml:649:      child_dispatch: "When child_dispatch applies, record the question with App
+.skilled/commands/speckit/assets/speckit-implement.yaml:650:      options: checkpoint_options.code_review
+.skilled/commands/speckit/assets/speckit-complete.yaml:37:    child_dispatch_checkpoints: "When child_dispatch applies, record each checkpoi
+.skilled/commands/speckit/assets/speckit-complete.yaml:42:checkpoint_options:
+.skilled/commands/speckit/assets/speckit-complete.yaml:727:      options: checkpoint_options.standard
+.skilled/commands/speckit/assets/speckit-complete.yaml:746:      options: checkpoint_options.standard
+.skilled/commands/speckit/assets/speckit-complete.yaml:815:      options: checkpoint_options.standard
+.skilled/commands/speckit/assets/speckit-complete.yaml:834:      options: checkpoint_options.standard
+.skilled/commands/speckit/assets/speckit-complete.yaml:979:      options: checkpoint_options.standard
+.skilled/commands/speckit/assets/speckit-complete.yaml:1041:      options: checkpoint_options.standard
+.skilled/commands/speckit/assets/speckit-complete.yaml:1068:      options: checkpoint_options.standard
+.skilled/commands/speckit/assets/speckit-complete.yaml:1216:      options: checkpoint_options.standard
+.skilled/commands/speckit/assets/speckit-complete.yaml:1279:      options: checkpoint_options.standard
+.skilled/commands/speckit/assets/speckit-plan.yaml:38:    child_dispatch_checkpoints: "When child_dispatch applies, record each checkpoint q
+.skilled/commands/speckit/assets/speckit-plan.yaml:43:checkpoint_options:
+.skilled/commands/speckit/assets/speckit-plan.yaml:592:      options: checkpoint_options.standard
+.skilled/commands/speckit/assets/speckit-plan.yaml:604:      options: checkpoint_options.standard
+.skilled/commands/speckit/assets/speckit-plan.yaml:661:      options: checkpoint_options.standard
+[exit=0]
+-- B5. Root contract text (the reference the surfaces are compared with)
+
+$ sed -n '86p' AGENTS.md
+- **Autonomous child-dispatch exemption.** `SYSTEM_SPEC_GATE_ENFORCE=0` or `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory. Gate 3 is PRE-RESOLVED; in that directory Law 4, Halt Conditions, Logic-Sync, Escalation and stop-for-yes are record-and-continue; acting outside it is barred. Interactive sessions always ask.
+[exit=0]
+-- B6. Every reader of AI_SESSION_CHILD or SYSTEM_SPEC_GATE_ENFORCE in source (tests excluded)
+
+$ rg -n 'AI_SESSION_CHILD|SYSTEM_SPEC_GATE_ENFORCE' .skilled .opencode .claude .github .hermes .codex .cursor .pi .devin AGENTS.md -g '*.{cjs,mjs,js,ts,sh,py,yml,yaml}' --glob '!**/node_modules/**' --glob '!**/dist/**' --glob '!**/*.test.*' --glob '!**/tests/**' --glob '!**/z_archive/**' | cut -c1-200
+AGENTS.md:86:- **Autonomous child-dispatch exemption.** `SYSTEM_SPEC_GATE_ENFORCE=0` or `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory. Gate 3 is PRE-RESOLVED; in tha
+.opencode/plugins/system-spec-gate.js:157: *   fires for Write/Edit while SYSTEM_SPEC_GATE_ENFORCE=1 is set, and its reason
+.skilled/commands/speckit/assets/speckit-plan.yaml:52:child_dispatch: "When SYSTEM_SPEC_GATE_ENFORCE=0 or AI_SESSION_CHILD=1 marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-
+.skilled/commands/speckit/assets/speckit-implement.yaml:73:  child_dispatch: "When SYSTEM_SPEC_GATE_ENFORCE=0 or AI_SESSION_CHILD=1 marks a non-interactive worker bound to a lineage directory, Gate 3 
+.skilled/commands/speckit/assets/speckit-complete.yaml:51:child_dispatch: "When SYSTEM_SPEC_GATE_ENFORCE=0 or AI_SESSION_CHILD=1 marks a non-interactive worker bound to a lineage directory, Gate 3 is 
+.hermes/plugins/repo-guards/__init__.py:80:ORCHESTRATED_LEAF_ENVS = ("SYSTEM_SPEC_GATE_DISABLED", "AI_SESSION_CHILD")
+.hermes/plugins/repo-guards/__init__.py:674:    return os.environ.get("SYSTEM_SPEC_GATE_ENFORCE", "").strip() == "1"
+.skilled/bin/worktree-guard.sh:35:[ "${AI_SESSION_CHILD:-}" = "1" ] && exit 0
+.skilled/bin/worktree-session.sh:19:#   1. AI_SESSION_CHILD=1 in the environment (set at dispatch sites for orchestrated children).
+.skilled/bin/worktree-session.sh:163:  # non-child sessions via AI_SESSION_CHILD.
+.skilled/bin/worktree-session.sh:164:  export SYSTEM_SPEC_GATE_ENFORCE=0
+.skilled/bin/worktree-session.sh:166:    echo "DRY_RUN: would exec in place: $RUNTIME_EXEC $* (SYSTEM_SPEC_GATE_ENFORCE=0)"
+.skilled/bin/worktree-session.sh:177:if [ "${AI_SESSION_CHILD:-}" = "1" ]; then
+.skilled/bin/worktree-session.sh:178:  exec_in_place "AI_SESSION_CHILD=1" "$@"
+.skilled/bin/worktree-session.sh:458:export AI_SESSION_CHILD=1
+.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:145:  // orchestrator neutralize the gate (SYSTEM_SPEC_GATE_ENFORCE=0) and mark the worker
+.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:147:  'SYSTEM_SPEC_GATE_ENFORCE',
+.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:148:  'AI_SESSION_CHILD',
+.skilled/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs:129:    env: { ...process.env, AI_SESSION_CHILD: '1' },
+.skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment.py:151:    env = dict(os.environ, AI_SESSION_CHILD="1", SYSTEM_SPEC_GATE_ENFORCE="0")
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1598:    `You are a non-interactive dispatched worker: AI_SESSION_CHILD=1 is set, which AGENTS.md defines as the autonomous child-dispat
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3484:        // AI_SESSION_CHILD lets the session wrapper exec in place.
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3488:        AI_SESSION_CHILD: '1',
+.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:80:export const ENFORCE_ENV = 'SYSTEM_SPEC_GATE_ENFORCE';
+.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:100:export const CHILD_SESSION_ENV = 'AI_SESSION_CHILD';
+.skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs:15:// 2. No valid declaration, but the operator opted into SYSTEM_SPEC_GATE_ENFORCE=1:
+[exit=0]
+-- B7. Readers of the exact values (the code that decides child and enforce)
+
+$ awk 'NR>=78 && NR<=106 && (NR==80||NR==100||NR==102||NR==103||NR==104||NR==105) {printf "%d: %s\n", NR, $0}' .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs
+80: export const ENFORCE_ENV = 'SYSTEM_SPEC_GATE_ENFORCE';
+100: export const CHILD_SESSION_ENV = 'AI_SESSION_CHILD';
+102: /** True only when CHILD_SESSION_ENV is exactly '1'; every other value is interactive. */
+103: export function isChildSession(env) {
+104:   const environment = env && typeof env === 'object' ? env : {};
+105:   return environment[CHILD_SESSION_ENV] === '1';
+[exit=0]
+
+$ awk 'NR==1763||NR==1785||NR==1792 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs | cut -c1-200
+1763:     if (isChildSession(environment)) return { decision: 'allow', detail: null, wouldDeny: false, gateOpenUndelivered: false };
+1785:     const enforceOn = environment[ENFORCE_ENV] === '1';
+1792:     if (denyCapable && enforceOn) {
+[exit=0]
+
+$ awk 'NR==56||NR==92 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs | cut -c1-200
+56:   if (guardCore.isChildSession(env)) return allow();
+92:   if (env[guardCore.ENFORCE_ENV] === '1') {
+[exit=0]
+
+$ awk 'NR==80||NR==571||NR==573||NR==674||NR==696||NR==705||NR==739 {printf "%d: %s\n", NR, $0}' .hermes/plugins/repo-guards/__init__.py | cut -c1-200
+80: ORCHESTRATED_LEAF_ENVS = ("SYSTEM_SPEC_GATE_DISABLED", "AI_SESSION_CHILD")
+571: def _orchestrated_leaf() -> bool:
+573:     return all(os.environ.get(name, "").strip() == "1" for name in ORCHESTRATED_LEAF_ENVS)
+674:     return os.environ.get("SYSTEM_SPEC_GATE_ENFORCE", "").strip() == "1"
+696:     if not session_id or _spec_gate_enforced() or _orchestrated_leaf():
+705:     if not session_id or _orchestrated_leaf():
+739:         if not _orchestrated_leaf():
+[exit=0]
+
+$ awk 'NR==157||NR==193 {printf "%d: %s\n", NR, $0}' .opencode/plugins/system-spec-gate.js | cut -c1-200; rg -n 'guardCore\.' .opencode/plugins/system-spec-gate.js | wc -l | sed 's/^/guardCore call sites in the OpenCode plugin: /'
+157:  *   fires for Write/Edit while SYSTEM_SPEC_GATE_ENFORCE=1 is set, and its reason
+193:           guardCore.rearmGate3NoticeDelivery({ sessionID: resumedSession, projectDir, env: process.env });
+guardCore call sites in the OpenCode plugin:       16
+[exit=0]
+
+$ awk 'NR==35 {printf "%d: %s\n", NR, $0}' .skilled/bin/worktree-guard.sh
+35: [ "${AI_SESSION_CHILD:-}" = "1" ] && exit 0
+[exit=0]
+
+$ awk 'NR==19||NR==163||NR==164||NR==166||NR==177||NR==178||NR==458||NR==483||NR==484||NR==485 {printf "%d: %s\n", NR, $0}' .skilled/bin/worktree-session.sh | cut -c1-200
+19: #   1. AI_SESSION_CHILD=1 in the environment (set at dispatch sites for orchestrated children).
+163:   # non-child sessions via AI_SESSION_CHILD.
+164:   export SYSTEM_SPEC_GATE_ENFORCE=0
+166:     echo "DRY_RUN: would exec in place: $RUNTIME_EXEC $* (SYSTEM_SPEC_GATE_ENFORCE=0)"
+177: if [ "${AI_SESSION_CHILD:-}" = "1" ]; then
+178:   exec_in_place "AI_SESSION_CHILD=1" "$@"
+458: export AI_SESSION_CHILD=1
+483: log "entering $WT_REL with isolated DBs; launching $RUNTIME_EXEC"
+484: cd "$WT_ABS"
+485: exec "$RUNTIME_EXEC" "$@"
+[exit=0]
+
+$ awk 'NR==129 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs; awk 'NR==3488||NR==3484 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs; awk 'NR==1598 {printf "%d: %s\n", NR, substr($0,1,220)}' .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+129:     env: { ...process.env, AI_SESSION_CHILD: '1' },
+3484:         // AI_SESSION_CHILD lets the session wrapper exec in place.
+3488:         AI_SESSION_CHILD: '1',
+1598:     `You are a non-interactive dispatched worker: AI_SESSION_CHILD=1 is set, which AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt, so no answer can reach you.`,
+[exit=0]
+
+$ awk 'NR==147||NR==148 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts; awk 'NR==151 {printf "%d: %s\n", NR, $0}' .skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment.py
+147:   'SYSTEM_SPEC_GATE_ENFORCE',
+148:   'AI_SESSION_CHILD',
+151:     env = dict(os.environ, AI_SESSION_CHILD="1", SYSTEM_SPEC_GATE_ENFORCE="0")
+[exit=0]
+-- B8. Tests that pin the child rule (what the suites assert, read by line)
+
+$ awk 'NR==547 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs; awk 'NR>=2290 && NR<=2303 {printf "%d: %s\n", NR, substr($0,1,200)}' .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs
+547:       env: { [core.ENFORCE_ENV]: '1', [core.CHILD_SESSION_ENV]: '0' },
+2290: test('WS4 child matrix: AI_SESSION_CHILD value variants -- only exact "1" becomes a no-op', () => {
+2291:   const { root } = makeWorkspace();
+2292:   try {
+2293:     for (const value of ['', '0', 'true', 'yes', '2']) {
+2294:       const sessionID = nextSessionID();
+2295:       core.classifyIntent({ prompt: 'fix the login bug', sessionID, projectDir: root });
+2296:       const result = core.evaluateMutation({
+2297:         tool: 'write',
+2298:         filePath: 'src/login.ts',
+2299:         sessionID,
+2300:         projectDir: root,
+2301:         env: { [core.ENFORCE_ENV]: '1', [core.CHILD_SESSION_ENV]: value },
+2302:       });
+2303:       assert.equal(result.decision, 'deny', `AI_SESSION_CHILD=${JSON.stringify(value)} must NOT suppress deny (only exact '1' does)`);
+[exit=0]
+
+$ rg -n "SYSTEM_SPEC_GATE_ENFORCE.*'0'|ENFORCE_ENV\]: '0'|ENFORCE=0" .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs .opencode/plugins/tests/system-spec-gate.test.cjs .skilled/bin/tests/worktree-session.test.sh; echo '(no test treats SYSTEM_SPEC_GATE_ENFORCE=0 as a child marker)'
+(no test treats SYSTEM_SPEC_GATE_ENFORCE=0 as a child marker)
+[exit=0]
+
+$ rg -n 'AI_SESSION_CHILD' .skilled/bin/tests/worktree-session.test.sh | cut -c1-140
+79:  env -u AI_SESSION_CHILD \
+101:    AI_SESSION_CHILD=1 \
+110:expect_not "child reason is absent from the exec argv" grep -F "would exec in place: myrt AI_SESSION_CHILD=1" "$F2_STDOUT"
+120:  env -u AI_SESSION_CHILD \
+137:  env -u AI_SESSION_CHILD \
+157:  env -u AI_SESSION_CHILD \
+192:  env -u AI_SESSION_CHILD \
+240:    env -u AI_SESSION_CHILD -u SPECKIT_WORKTREE_SHARED_PATHS \
+[exit=0]
+
+$ awk 'NR>=1614 && NR<=1618 {printf "%d: %s\n", NR, substr($0,1,200)}' .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs
+1614: // HIGHEST BLAST proof: SYSTEM_SPEC_GATE_ENFORCE unset never denies, across the
+1615: // full tool/target/gate-state matrix; every known error path fails OPEN.
+1616: // ─────────────────────────────────────────────────────────────────�
+1617: 
+1618: test('HIGHEST BLAST proof: with SYSTEM_SPEC_GATE_ENFORCE unset, no tool/target/gate-state combination ever denies', () => {
+[exit=0]
+-- B9. The wrapper's top-level launch path: the marker is exported, then the runtime is exec'd
+
+$ awk 'NR>=446 && NR<=486 && (NR==458||NR==483||NR==485||NR==446||NR==448) {printf "%d: %s\n", NR, $0}' .skilled/bin/worktree-session.sh
+446: # 7. SESSION LAUNCH
+448: 
+458: export AI_SESSION_CHILD=1
+483: log "entering $WT_REL with isolated DBs; launching $RUNTIME_EXEC"
+485: exec "$RUNTIME_EXEC" "$@"
+[exit=0]
+
+$ git diff --stat 4669db6522 -- .skilled/bin/worktree-session.sh .skilled/bin/worktree-guard.sh .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs .hermes/plugins/repo-guards/__init__.py .opencode/plugins/system-spec-gate.js .skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs .skilled/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs; echo '(empty output: none of these readers is changed by this packet, so the findings below are pre-existing at HEAD)'
+(empty output: none of these readers is changed by this packet, so the findings below are pre-existing at HEAD)
+[exit=0]
+-- B10. Docs that describe the signal (agree or not)
+
+$ rg -n 'AI_SESSION_CHILD' .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md .skilled/skills/cli-external-orchestration/cli-cursor/SKILL.md | cut -c1-200
+.skilled/skills/cli-external-orchestration/cli-cursor/SKILL.md:304:16. **Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt.** The variable makes the waiver t
+.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:237:17. **Set `AI_SESSION_CHILD=1` in the dispatched session's env AND state the exemption in the prompt.** The variable makes the waiv
+[exit=0]
+
+$ awk 'NR==162||NR==174 {printf "%d: %s\n", NR, substr($0,1,260)}' .skilled/changelog/skilled/v4.0.0.4.md
+162: When a session is a child worker, `AI_SESSION_CHILD=1` or `SYSTEM_SPEC_GATE_ENFORCE=0`, Gate 3 is pre-resolved before the worker starts. Inside its lineage directory the worker records a halt and continues rather than stopping. The system-spec-kit skill and it
+174: The `speckit:plan`, `speckit:implement` and `speckit:complete` commands each define the child dispatch rule under a `child_dispatch` key, so a child worker reads the same Gate 3 pre-resolution in each. The system-spec-kit skill states the rule at its approval 
+[exit=0]
+
+==========================================================================
+C. VERDICTS (each consumer against the changed contract)
+==========================================================================
+The changed contract is the Gate 3 child-dispatch text added by this packet: "when SYSTEM_SPEC_GATE_ENFORCE=0 or
+AI_SESSION_CHILD=1 marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-resolved to that
+directory ... Interactive sessions always ask." The same contract is stated at AGENTS.md:86.
+
+C1. Canonical SKILL.md lines 499, 501, 522, 524, 526, 538, 540 (changed by this packet, 7 lines)
+    Verdict: AGREES on the pre-resolution and on "Interactive sessions always ask" (stated on 499, 501, 522, 526).
+    Caveat: 501 (approval request), 524 (update-or-create question), 538 (level question) and 540 (Option D skip)
+    extend the child rule to questions that AGENTS.md:86 does not list. AGENTS.md lists Law 4, Halt Conditions,
+    Logic-Sync, Escalation and stop-for-yes. The four extensions are a reading, and they are the orchestrator's to accept.
+C2. Hermes copy (.hermes/skills/system-spec-kit/SKILL.md, same 7 lines at +5). Verdict: AGREES, identical lines (B2 diff).
+C3. speckit-plan.yaml:52, speckit-implement.yaml:73, speckit-complete.yaml:51 (definitions) and their uses
+    (plan 38, 824, 844; implement 24, 76, 79, 415, 484, 525, 542, 556, 599, 628, 643, 649, 772; complete 37,
+    870, 1085, 1166, 1214, 1357). Verdict: AGREES. The three definitions carry one sentence (see the B4-correction block; the first B4 run mismatched only on indentation). Every use is a branch conditioned on child_dispatch applying. All 4 plan and all 7 complete hits, and 10 of 16 implement hits, open with "When child_dispatch applies". The other implement hits say "unless child_dispatch applies" or name the key child_dispatch_checkpoints. Each keeps the interactive ask. Uses are consistent with the definition.
+C4. spec-gate-core.mjs (the shared core; OpenCode and Hermes call into it through the same adapter; Cursor imports it).
+    child = AI_SESSION_CHILD exactly '1' (:100-105). Deny only when SYSTEM_SPEC_GATE_ENFORCE is exactly '1' (:1785).
+    Verdict: DISAGREES on the SYSTEM_SPEC_GATE_ENFORCE=0 clause. A worker with ENFORCE=0 and no AI_SESSION_CHILD=1 is not a
+    child here, so it still gets the Gate 3 classification and advice (the non-child path, :1763 is the child no-op).
+    Agrees on AI_SESSION_CHILD=1 and on "only exact 1" (the tests pin it: spec-gate-core.test.mjs:2290-2303).
+    Practical reach: the shipped dispatchers set AI_SESSION_CHILD=1 (C8), so the gap bites only an ENFORCE=0-only worker.
+C5. cursor/spec-gate-prebind.mjs: isChildSession at :56, deny only on ENFORCE '1' at :92. Verdict: same as C4.
+C6. OpenCode .opencode/plugins/system-spec-gate.js: its comment (:157) says it fires while ENFORCE=1, and it delegates to
+    guardCore. Verdict: same as C4.
+C7. Hermes .hermes/plugins/repo-guards/__init__.py: _orchestrated_leaf() (:571-573) requires BOTH SYSTEM_SPEC_GATE_DISABLED=1
+    and AI_SESSION_CHILD=1. Deny check at :674 is ENFORCE == '1' (agrees with C4). DISAGREES with the contract in two ways:
+    AI_SESSION_CHILD=1 alone does not make a Hermes worker a child, and SYSTEM_SPEC_GATE_ENFORCE=0 is not read at all. So a
+    dispatched Hermes child with AI_SESSION_CHILD=1 but no DISABLED still receives the unenforced notice (:696) and gate
+    open (:739). Pre-existing: this file is not in the 5-file diff.
+C8. Dispatchers that set the marker: codex-dispatch.cjs:129 and fanout-run.cjs:3488 set AI_SESSION_CHILD=1; fanout-run.cjs:1598
+    tells the worker the exemption rests on AI_SESSION_CHILD=1. Verdict: AGREE. executor-audit.ts:147-148 forwards both names
+    and rule-experiment.py:151 sets both. Verdict: AGREE (forwarding and dispatch only).
+C9. worktree-session.sh, child branch: :177-179 exec in place when AI_SESSION_CHILD=1; :164 exports SYSTEM_SPEC_GATE_ENFORCE=0
+    there. Verdict: AGREE for a real child.
+C10. worktree-session.sh:458 (top-level launch): "export AI_SESSION_CHILD=1 ... Mark descendants of THIS session as
+    children", and the runtime is exec'd at :485 in the same process. The exported value is in the environment of the
+    runtime the operator launched, so that session's hooks read isChildSession() as true (C4). DISAGREES with "Interactive
+    sessions always ask". OBSERVED in code at :458 and :485. The live effect is INFERRED: no run of a wrapper launch was
+    made here. Pre-existing at HEAD (not in the diff). No test in worktree-session.test.sh reads the environment the
+    top-level runtime receives: its AI_SESSION_CHILD lines (79-240) are env -u for isolation, and the one set to 1 (:101)
+    is the child branch.
+C11. worktree-guard.sh:35 exits silently when AI_SESSION_CHILD=1 (worktree warning bypass). Verdict: AGREES for a child.
+    It inherits C10: a top-level wrapper session also silences this warning. DISAGREES in that case. Pre-existing.
+C12. Tests: spec-gate-core.test.mjs:547 (AI_SESSION_CHILD='0' is interactive) and :2290-2303 (only exact '1') AGREE with C4.
+    No test makes SYSTEM_SPEC_GATE_ENFORCE=0 a child marker, so the suites pin the core, not the ENFORCE=0 clause.
+    opencode system-spec-gate.test.cjs:378-426 (child no-op) AGREES with C4.
+C13. Docs: cli-opencode/SKILL.md:237 and cli-cursor/SKILL.md:304 name AI_SESSION_CHILD=1 only. AGREE with C4/C8.
+    v4.0.0.4.md:162 and :174 name both variables. AGREE with the contract text; the ENFORCE=0 gap is the same as C4.
+
+D. HELPER CONSUMERS (CHK-FIX-003 part a)
+  - heal resolveTargets (:776): callers :663 (runAnchorRepair), :1496 (runLaneModesCli), :1522 (main). No external caller.
+    Not exported (:1573-1585). Verdict: no outside consumer to disagree.
+  - heal folderRefusal (:808), refuseFolderArgument (:836), isWithinPath (:788), DEFAULT_SPEC_ROOTS (:786): called only inside
+    heal-spec-docs.cjs (:841, :1511, :815, :814). Not exported. No test or command names them.
+  - heal exports used outside: writeFileAtomic (:1584), repairAnchorFile (:1581), runLaneModes (:1582) are consumed by
+    upgrade-legacy.mjs (:926, :972, :1033) and by heal-*.vitest.ts tests. Their behaviour is the link refusal lanes B and F rely on.
+  - repair-derived readIfPresent (:249): callers :214 (declaredLevel), :301 (fixDescriptionLevel), :347, :365, :392, :416
+    (fixRecordedLocation). isSymbolicLink callers: :245, :250, :272, :467. All inside the file. repair-derived exports
+    nothing. External consumers invoke it only as a CLI (A5), and none reads its internal helpers.
+  - upgrade-legacy recordFindings (:1250): the only non-test caller is main (:1591). Tests import it at
+    upgrade-legacy.vitest.ts:14 and call it at :1687. No other consumer under .skilled or .github.
+wrote /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation/scratch/evidence/closure-consumer-inventory.txt
+
+== B4-correction. Re-run of the definition comparison with leading indentation removed
+
+$ for p in .skilled/commands/speckit/assets/speckit-plan.yaml:52 .skilled/commands/speckit/assets/speckit-implement.yaml:73 .skilled/commands/speckit/assets/speckit-complete.yaml:51; do f=${p%%:*}; n=${p##*:}; printf "%s line %s sha256=" "$f" "$n"; sed -n "${n}p" "$f" | sed -E "s/^[[:space:]]*child_dispatch: \"//; s/\"[[:space:]]*$//" | shasum -a 256 | cut -c1-16; done
+.skilled/commands/speckit/assets/speckit-plan.yaml line 52 sha256=c018efb17ab4c6f7
+.skilled/commands/speckit/assets/speckit-implement.yaml line 73 sha256=c018efb17ab4c6f7
+.skilled/commands/speckit/assets/speckit-complete.yaml line 51 sha256=c018efb17ab4c6f7
+[exit=0]
+
+Reading: the three definitions carry the same sentence. The mismatch in the first B4 run came from the two leading spaces on the implement line, which the first sed did not strip. The text itself matches.

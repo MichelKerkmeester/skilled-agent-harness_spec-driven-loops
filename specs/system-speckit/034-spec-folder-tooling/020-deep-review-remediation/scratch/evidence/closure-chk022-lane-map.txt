@@ -1,0 +1,30 @@
+CLOSURE EVIDENCE: CHK-022 edge cases per path lane (outside-root, inside-root, dangling, plain-packet)
+
+Source rows: closure-test-matrix.txt. Every case name below was checked in this pass with rg -F against the test file named.
+
+Lane A, archive.sh.
+  Plain packet: A-01 archives a track packet into its own track and drops it from the list (archive-track.vitest.ts).
+  Outside root: A-04 refuses a root packet whose z_archive links outside specs, and changes neither side.
+  Inside root: A-11 refuses a z_archive that links to a folder that is not a packet home, and leaves the packet whole. The link target is specs/tools/001-a/research/z_archive, which is inside specs (archive-track.vitest.ts lines 489 to 502).
+  Dangling: A-07 refuses a dangling z_archive under $label, moves nothing and creates no link target.
+
+Lane B, heal-spec-docs.cjs.
+  Plain packet: B-01 default healer --apply changes no bytes on a plain packet with nothing left to heal (heal-symlink-containment.vitest.ts).
+  Outside root: B-05 default healer --apply leaves a symlinked spec.md and its outside target untouched.
+  Inside root: B-10 refuses a --folder reached through a linked component inside the specs root (heal-symlink-containment.vitest.ts). This case refuses the link. Under the operator decision of 2026-10-10 (Code prevails, see the spec.md line 193 amendment), refusal is the code's behaviour.
+  Not claimed here: matrix row B-03, a healer document link whose target stays inside specs, is MISSING. Only the folder-component case is counted for lane B.
+  Dangling: B-07 default healer --apply reports a dangling spec.md link as refused and does not create its target.
+
+Lane C, generate-leaf-manifest.cjs.
+  Plain packet: C-01 testDistinctPacketsGenerateWithoutScopes (generate-leaf-manifest-scopes.test.cjs).
+  Outside root: C-04 testLinkedDefaultRootOutsideSkillFails.
+  Inside root: C-03 testLinkedRootInsideSkillStillWalks. The link target packet-a/shared-real is inside the skill, and the walk still reads it.
+  Dangling: C-08 testDanglingManifestWriteIsRefused.
+
+Lane F, upgrade-legacy.mjs.
+  Plain packet: U-01 reports a failing legacy packet on a dry run and writes nothing (upgrade-legacy.vitest.ts).
+  Outside root: U-05 refuses a packet whose document is a link out of the packet and leaves the link target as it was.
+  Inside root: U-03 still repairs a link whose target stays inside the packet.
+  Dangling: U-08 refuses a packet whose document is a dangling link to a file $label (it.each: inside and outside the packet).
+
+Result. Each of the four lanes has an outside-root, an inside-root, a dangling and a plain-packet case, so CHK-022 meets its wording. The lane B inside-root case is a folder component. The document-level case for an in-specs link is not counted, and the matrix still shows it MISSING.

@@ -1,0 +1,143 @@
+--- P run.log
+[main 9fc9719] chore(system-spec-kit): rebuild the trigger index
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+::stop-commands::8170a783-1495-4c3c-bf4e-3f0d5069dc29
+trigger index matches the corpus
+
+::8170a783-1495-4c3c-bf4e-3f0d5069dc29::
+To /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/l4/harness/P/origin.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/l4/harness/P/origin.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+::warning::Push rejected as non-fast-forward; fetching the new tip, resetting to it, regenerating the index and retrying once.
+From /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/l4/harness/P/origin
+ * branch            main       -> FETCH_HEAD
+   d7472df..ab3983b  main       -> origin/main
+HEAD is now at ab3983b race: corpus moved
+trigger index published (stub)
+::stop-commands::35d458ad-87db-452a-8a04-c25e036d86b5
+trigger index matches the corpus
+
+::35d458ad-87db-452a-8a04-c25e036d86b5::
+[main ab149a6] chore(system-spec-kit): rebuild the trigger index
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+To /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/l4/harness/P/origin.git
+   ab3983b..ab149a6  main -> main
+PASS P block exit 0
+PASS P retry path exercised
+PASS P origin now carries the rebuild commit
+PASS P rebuild commit keeps the Trigger-Index-Rebuild trailer
+PASS P pushed index reflects corpus v3
+PASS P pushed corpus-manifest.json reflects corpus v3
+PASS P pushed generation-diagnostics.json reflects corpus v3
+PASS P pushed phrase-variants.json reflects corpus v3
+PASS P token absent from step log
+PASS P token absent from repository git config
+PASS P generator child processes never see the credential (PUSH_TOKEN=unset GIT_CONFIG_VALUE_0=unset )
+--- R1 run.log
+[main 836f814] chore(system-spec-kit): rebuild the trigger index
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+::stop-commands::d3006790-4716-4053-8077-86b5bbe745ba
+trigger index matches the corpus
+
+::d3006790-4716-4053-8077-86b5bbe745ba::
+To /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/l4/harness/R1/origin.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/l4/harness/R1/origin.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+::warning::Push rejected as non-fast-forward; fetching the new tip, resetting to it, regenerating the index and retrying once.
+From /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/l4/harness/R1/origin
+ * branch            main       -> FETCH_HEAD
+   809ba7a..e6c25f2  main       -> origin/main
+HEAD is now at e6c25f2 race: corpus moved
+stub generator: refusing to publish (malformed corpus)
+::error::The trigger index generator failed on the new tip of main; not retrying the push.
+PASS R1 block fails when the retry generator exits 1 (rc=1)
+PASS R1 reports the generator failure
+PASS R1 nothing pushed by the bot
+--- R2 run.log
+[main 4bada09] chore(system-spec-kit): rebuild the trigger index
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+::stop-commands::f06a9580-44eb-47d2-b29d-61289b331902
+trigger index matches the corpus
+
+::f06a9580-44eb-47d2-b29d-61289b331902::
+To /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/l4/harness/R2/origin.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/l4/harness/R2/origin.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+::warning::Push rejected as non-fast-forward; fetching the new tip, resetting to it, regenerating the index and retrying once.
+From /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/l4/harness/R2/origin
+ * branch            main       -> FETCH_HEAD
+   b2a90b7..8cc1da0  main       -> origin/main
+HEAD is now at 8cc1da0 race: corpus moved
+stub generator: refusing to publish (malformed corpus)
+::error::The trigger index generator failed on the new tip of main; not retrying the push.
+PASS R2 block fails when the retry generator exits 1 (rc=1)
+PASS R2 reports the generator failure
+PASS R2 nothing pushed by the bot
+--- S run.log
+[main 1a1b17c] chore(system-spec-kit): rebuild the trigger index
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+::stop-commands::636898f5-7d41-474f-ba73-cf578ad046aa
+trigger index matches the corpus
+
+::636898f5-7d41-474f-ba73-cf578ad046aa::
+To /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/l4/harness/S/origin.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/l4/harness/S/origin.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+::warning::Push rejected as non-fast-forward; fetching the new tip, resetting to it, regenerating the index and retrying once.
+From /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/l4/harness/S/origin
+ * branch            main       -> FETCH_HEAD
+   fc25fa3..d842f8f  main       -> origin/main
+HEAD is now at d842f8f race: corpus moved
+trigger index published (stub)
+::stop-commands::63e72bbd-282b-4006-a027-0c08fc3d1f28
+trigger index matches the corpus
+
+::63e72bbd-282b-4006-a027-0c08fc3d1f28::
+::error::.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json does not match a fresh generation; not committing a stale or partial rebuild.
+PASS S block fails on a stale sidecar (rc=1)
+PASS S names the stale sidecar
+PASS S nothing pushed by the bot
+--- F run.log
+::error::.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json does not match a fresh generation; not committing a stale or partial rebuild.
+PASS F block fails on a first-run stale sidecar (rc=1)
+PASS F names the stale sidecar
+PASS F nothing pushed
+--- N run.log
+Trigger index is current; nothing to commit.
+PASS N no-op exit 0
+PASS N reports nothing to commit
+PASS N origin unchanged
+--- C run.log
+[main c967155] chore(system-spec-kit): rebuild the trigger index
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+::stop-commands::809c2f2e-95ad-403b-9d40-6329f610b8b6
+trigger index is STALE or the corpus is untrusted
+    stale     specs/a
+::error::forged-annotation.md (added: x; removed: none)
+
+::809c2f2e-95ad-403b-9d40-6329f610b8b6::
+::error::The committed trigger index fails its own --check; not pushing the rebuild.
+PASS C block fails on the failing check (rc=1)
+PASS C nothing pushed
+PASS C replayed check output sits inside the stop-commands block (lines 3 < 6 < 8)
+=== harness: 29 passed, 0 failed

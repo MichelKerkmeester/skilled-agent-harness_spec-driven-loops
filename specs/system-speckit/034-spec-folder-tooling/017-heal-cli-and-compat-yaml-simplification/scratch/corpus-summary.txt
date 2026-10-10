@@ -1,0 +1,7 @@
+copy_md_files=42403
+pass1_rc=0 pass2_rc=0
+pass1_applied=264 pass1_refused=132
+pass2_applied=0 pass2_refused=132
+pass1_changed_files=132
+refused_sets_equal=yes
+pass2_hash_diff_rc=0 real_tree_diff_rc=1

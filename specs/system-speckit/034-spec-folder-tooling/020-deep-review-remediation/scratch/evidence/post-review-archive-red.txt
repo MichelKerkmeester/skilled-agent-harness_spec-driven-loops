@@ -1,0 +1,205 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/archive-track.vitest.ts (36 tests | 9 failed) 31871ms
+     × refuses a root packet whose z_archive links outside specs, and changes neither side 82ms
+     × refuses a z_archive that links into the packet being archived, and leaves the packet whole 82ms
+     × refuses a z_archive that links to a folder that is not a packet home, and leaves the packet whole 80ms
+     × refuses a z_archive that links into another packet home, and leaves the packet whole 78ms
+     × refuses a track packet whose track z_archive links outside specs, and leaves the track list alone 81ms
+     × refuses a phase whose parent z_archive links outside specs 80ms
+     × refuses to restore a folder that is reachable only through a link outside specs 67ms
+     × refuses to restore through a z_archive that links to a folder that is not a packet home 71ms
+     × refuses to restore through a z_archive that links into another packet home 68ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a root packet whose z_archive links outside specs, and changes neither side
+AssertionError: expected 'ERROR: Archive directory is a symlink…' to contain 'symbolic link, not followed'
+
+- Expected
++ Received
+
+- symbolic link, not followed
++ ERROR: Archive directory is a symlink and is refused: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-b8M3Bw/specs/z_archive
++
+
+ ❯ tests/archive-track.vitest.ts:468:29
+    466|       const result = archive(['--force', 'specs/005-root']);
+    467|       expect(result.status, result.stdout + result.stderr).toBe(1);
+    468|       expect(result.stderr).toContain('symbolic link, not followed');
+       |                             ^
+    469|       expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+    470|       expect(fs.readdirSync(outside)).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a z_archive that links into the packet being archived, and leaves the packet whole
+AssertionError: expected 'ERROR: Archive directory is a symlink…' to contain 'symbolic link, not followed'
+
+- Expected
++ Received
+
+- symbolic link, not followed
++ ERROR: Archive directory is a symlink and is refused: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-uvvcKy/specs/z_archive
++
+
+ ❯ tests/archive-track.vitest.ts:485:27
+    483|     const result = archive(['--force', 'specs/005-root']);
+    484|     expect(result.status, result.stdout + result.stderr).toBe(1);
+    485|     expect(result.stderr).toContain('symbolic link, not followed');
+       |                           ^
+    486|     expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+    487|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a z_archive that links to a folder that is not a packet home, and leaves the packet whole
+AssertionError: expected 'ERROR: Archive directory is a symlink…' to contain 'symbolic link, not followed'
+
+- Expected
++ Received
+
+- symbolic link, not followed
++ ERROR: Archive directory is a symlink and is refused: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-coVeSm/specs/z_archive
++
+
+ ❯ tests/archive-track.vitest.ts:499:27
+    497|     const result = archive(['--force', 'specs/005-root']);
+    498|     expect(result.status, result.stdout + result.stderr).toBe(1);
+    499|     expect(result.stderr).toContain('symbolic link, not followed');
+       |                           ^
+    500|     expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+    501|     expect(fs.readdirSync(notHome)).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a z_archive that links into another packet home, and leaves the packet whole
+AssertionError: expected 'ERROR: Archive directory is a symlink…' to contain 'symbolic link, not followed'
+
+- Expected
++ Received
+
+- symbolic link, not followed
++ ERROR: Archive directory is a symlink and is refused: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-BYmCRK/specs/z_archive
++
+
+ ❯ tests/archive-track.vitest.ts:514:27
+    512|     const result = archive(['--force', 'specs/005-root']);
+    513|     expect(result.status, result.stdout + result.stderr).toBe(1);
+    514|     expect(result.stderr).toContain('symbolic link, not followed');
+       |                           ^
+    515|     expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+    516|     expect(fs.readdirSync(otherHome)).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a track packet whose track z_archive links outside specs, and leaves the track list alone
+AssertionError: expected 'ERROR: Archive directory is a symlink…' to contain 'symbolic link, not followed'
+
+- Expected
++ Received
+
+- symbolic link, not followed
++ ERROR: Archive directory is a symlink and is refused: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-9krOye/specs/tools/z_archive
++
+
+ ❯ tests/archive-track.vitest.ts:529:29
+    527|       const result = archive(['--force', 'specs/tools/002-b']);
+    528|       expect(result.status, result.stdout + result.stderr).toBe(1);
+    529|       expect(result.stderr).toContain('symbolic link, not followed');
+       |                             ^
+    530|       expect(snapshot(path.join(specs, 'tools', '002-b'))).toEqual(bef…
+    531|       expect(readMetadata('tools')).toBe(trackBefore);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a phase whose parent z_archive links outside specs
+AssertionError: expected 'ERROR: Archive directory is a symlink…' to contain 'symbolic link, not followed'
+
+- Expected
++ Received
+
+- symbolic link, not followed
++ ERROR: Archive directory is a symlink and is refused: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-sIhzC4/specs/tools/001-a/z_archive
++
+
+ ❯ tests/archive-track.vitest.ts:548:29
+    546|       const result = archive(['--force', 'specs/tools/001-a/002-p']);
+    547|       expect(result.status, result.stdout + result.stderr).toBe(1);
+    548|       expect(result.stderr).toContain('symbolic link, not followed');
+       |                             ^
+    549|       expect(snapshot(path.join(specs, 'tools', '001-a', '002-p'))).to…
+    550|       expect(fs.readdirSync(outside)).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses to restore a folder that is reachable only through a link outside specs
+AssertionError: expected 'ERROR: Archive directory is a symlink…' to contain 'symbolic link, not followed'
+
+- Expected
++ Received
+
+- symbolic link, not followed
++ ERROR: Archive directory is a symlink and is refused: specs/z_archive
++
+
+ ❯ tests/archive-track.vitest.ts:568:29
+    566|       const result = archive(['--restore', 'specs/z_archive/001-a']);
+    567|       expect(result.status, result.stdout + result.stderr).toBe(1);
+    568|       expect(result.stderr).toContain('symbolic link, not followed');
+       |                             ^
+    569|       expect(fs.existsSync(path.join(outside, 'z_archive', '001-a', 's…
+    570|       expect(fs.existsSync(path.join(outside, '001-a'))).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses to restore through a z_archive that links to a folder that is not a packet home
+AssertionError: expected 'ERROR: Archive directory is a symlink…' to contain 'symbolic link, not followed'
+
+- Expected
++ Received
+
+- symbolic link, not followed
++ ERROR: Archive directory is a symlink and is refused: specs/z_archive
++
+
+ ❯ tests/archive-track.vitest.ts:587:27
+    585|     const result = archive(['--restore', 'specs/z_archive/002-x']);
+    586|     expect(result.status, result.stdout + result.stderr).toBe(1);
+    587|     expect(result.stderr).toContain('symbolic link, not followed');
+       |                           ^
+    588|     expect(snapshot(path.join(notHome, '002-x'))).toEqual(before);
+    589|     expect(fs.existsSync(path.join(specs, '002-x'))).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses to restore through a z_archive that links into another packet home
+AssertionError: expected 'ERROR: Archive directory is a symlink…' to contain 'symbolic link, not followed'
+
+- Expected
++ Received
+
+- symbolic link, not followed
++ ERROR: Archive directory is a symlink and is refused: specs/z_archive
++
+
+ ❯ tests/archive-track.vitest.ts:602:27
+    600|     const result = archive(['--restore', 'specs/z_archive/002-x']);
+    601|     expect(result.status, result.stdout + result.stderr).toBe(1);
+    602|     expect(result.stderr).toContain('symbolic link, not followed');
+       |                           ^
+    603|     expect(snapshot(path.join(otherHome, '002-x'))).toEqual(before);
+    604|     expect(fs.existsSync(path.join(specs, 'tools', '001-a', '002-x')))…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  9 failed | 27 passed (36)
+   Start at  11:55:12
+   Duration  31.97s (transform 24ms, setup 12ms, import 22ms, tests 31.87s, environment 0ms)
+

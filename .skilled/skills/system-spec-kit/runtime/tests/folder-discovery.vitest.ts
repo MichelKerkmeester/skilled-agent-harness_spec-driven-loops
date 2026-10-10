@@ -16,7 +16,9 @@ import {
   generateFolderDescriptions,
   loadDescriptionCache,
   saveDescriptionCache,
+  upsertDescriptionCacheEntry,
   generatePerFolderDescription,
+  loadExistingDescription,
   loadPerFolderDescription,
   savePerFolderDescription,
   wouldWritePerFolderDescription,
@@ -1293,5 +1295,101 @@ describe('T009 isPerFolderDescriptionStale', () => {
     // Description.json was written after spec.md, so descMtime >= specMtime
     expect(descMtime >= specMtime).toBe(true);
     expect(isPerFolderDescriptionStale(tmpDir4)).toBe(false);
+  });
+});
+
+describe('description.json symbolic link is not followed', () => {
+  const OUTSIDE_MARKER = 'LINKED-OUTSIDE-AUTHORED-KEY';
+  let tmpRoot: string;
+
+  beforeEach(() => {
+    tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-symlink-'));
+  });
+
+  afterEach(() => {
+    fs.rmSync(tmpRoot, { recursive: true, force: true });
+  });
+
+  // Builds a packet whose description.json links to an outside file that carries
+  // an authored key the packet does not own.
+  function linkedPacket(): { specDir: string; outside: string; desc: PerFolderDescription } {
+    const specDir = path.join(tmpRoot, 'specs', '010-linked');
+    fs.mkdirSync(specDir, { recursive: true });
+    fs.writeFileSync(path.join(specDir, 'spec.md'), '# Linked Packet\n\nBody text for the packet.\n');
+    const desc = generatePerFolderDescription(specDir, tmpRoot);
+    expect(desc).not.toBeNull();
+    const outside = path.join(tmpRoot, 'outside', 'description.json');
+    fs.mkdirSync(path.dirname(outside), { recursive: true });
+    fs.writeFileSync(outside, JSON.stringify({ ...desc, outsideMarker: OUTSIDE_MARKER }, null, 2));
+    fs.symlinkSync(outside, path.join(specDir, 'description.json'));
+    return { specDir, outside, desc: desc! };
+  }
+
+  it('loads a linked description.json as missing and records why', () => {
+    const { specDir } = linkedPacket();
+
+    expect(loadExistingDescription(specDir)).toEqual({
+      ok: false,
+      reason: 'file_missing',
+      detail: 'symbolic link, not followed',
+    });
+    expect(loadPerFolderDescription(specDir)).toBeNull();
+  });
+
+  it('saves over a linked description.json without copying the outside content in', () => {
+    const { specDir, outside, desc } = linkedPacket();
+
+    savePerFolderDescription(desc, specDir);
+
+    const descPath = path.join(specDir, 'description.json');
+    expect(fs.lstatSync(descPath).isSymbolicLink()).toBe(false);
+    expect(fs.readFileSync(descPath, 'utf-8')).not.toContain(OUTSIDE_MARKER);
+    expect(fs.readFileSync(outside, 'utf-8')).toContain(OUTSIDE_MARKER);
+  });
+});
+
+describe('aggregate descriptions.json symbolic link is not followed', () => {
+  const OUTSIDE_MARKER = 'LINKED-OUTSIDE-AGGREGATE-ROW';
+  let tmpRoot: string;
+
+  beforeEach(() => {
+    tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-aggregate-symlink-'));
+  });
+
+  afterEach(() => {
+    fs.rmSync(tmpRoot, { recursive: true, force: true });
+  });
+
+  it('upserts over a linked descriptions.json without carrying the outside rows in', () => {
+    const specsRoot = path.join(tmpRoot, 'specs');
+    fs.mkdirSync(specsRoot, { recursive: true });
+    const outside = path.join(tmpRoot, 'outside', 'descriptions.json');
+    fs.mkdirSync(path.dirname(outside), { recursive: true });
+    fs.writeFileSync(outside, JSON.stringify({
+      version: 1,
+      generated: '2026-01-01T00:00:00.000Z',
+      folders: [{
+        specFolder: 'outside-packet',
+        description: OUTSIDE_MARKER,
+        keywords: ['outside'],
+        lastUpdated: '2026-01-01T00:00:00.000Z',
+      }],
+    }, null, 2));
+    const cachePath = path.join(specsRoot, 'descriptions.json');
+    fs.symlinkSync(outside, cachePath);
+
+    expect(loadDescriptionCache(cachePath)).toBeNull();
+
+    const result = upsertDescriptionCacheEntry(cachePath, {
+      specFolder: '001-probe',
+      description: 'Probe packet',
+      keywords: ['probe'],
+      lastUpdated: '2026-02-01T00:00:00.000Z',
+    }, { now: '2026-02-01T00:00:00.000Z' });
+
+    expect(result).toEqual({ written: true, reason: 'created' });
+    expect(fs.lstatSync(cachePath).isSymbolicLink()).toBe(false);
+    expect(fs.readFileSync(cachePath, 'utf-8')).not.toContain(OUTSIDE_MARKER);
+    expect(fs.readFileSync(outside, 'utf-8')).toContain(OUTSIDE_MARKER);
   });
 });

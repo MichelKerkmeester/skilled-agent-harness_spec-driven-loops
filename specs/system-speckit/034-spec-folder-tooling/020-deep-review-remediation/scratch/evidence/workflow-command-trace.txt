@@ -1,0 +1,24 @@
+Workflow command trace for SL-006-010 and REQ-007 (packet-controlled text reaching Actions workflow-command parsing).
+
+Question: can a line that starts with text from a packet name or path begin a workflow command in a GitHub Actions log?
+
+Method: grep every annotation and echo in .github/workflows that prints a packet folder, a path or the report body, then read the wrapping at each route. Commands run at the final working tree, plus a red and green replay of route 1.
+
+Route 1: strict-pass-freshness-report.yml, the sweep step (lines 143 to 157).
+  Printed value: x.folder, a folder name read from the tree, then x.message.
+  Before the fix (red, committed HEAD block replayed with a folder name holding a newline and "::error::"): the injected text starts a line outside any stop-commands block, so the runner reads it as a workflow command.
+  After the fix (green, working tree): the same text sits between "::stop-commands::<random token>" and "::<token>::", so command parsing is off for it.
+  Evidence: lane-d-freshness-stop-commands-red.txt, lane-d-freshness-stop-commands-green.txt.
+  Verdict: closed by stop-commands. The token is a random UUID per run, so a folder name cannot close the block.
+
+Route 2: strict-pass-freshness-report.yml, the repair step (lines 166 to 177).
+  Printed value: the whole output of repair-derived.cjs --roots specs, which names packet folders and UNREADABLE reasons.
+  The repair writes the output to a temp file, then replays it between "::stop-commands::<token>" and "::<token>::".
+  Verdict: the same wrapper as route 1. No separate red run exists for this route, so the claim rests on the shared mechanism shown in route 1.
+
+Route 3: changed-packet-validation.yml, the per-packet annotations (lines 156 to 184).
+  Printed value: "::error file=$packet/spec.md::" lines, where $packet is a directory from git diff --name-only (line 66).
+  git quotes a path that holds a control character, so a raw newline cannot split a packet name, and each annotation line starts with the fixed text "::error". A packet name therefore cannot begin a new workflow command.
+  Not tested: a percent-encoded sequence such as %0A in a folder name, which the runner decodes inside an annotation value. This phase did not run that case, so it stays UNKNOWN. This workflow was not changed by the 020 lanes beyond the working-tree diff.
+
+Result: routes 1 and 2 are closed by stop-commands. Route 3 has no raw-newline path. The percent-decoding case in route 3 is untested and is listed as open.

@@ -1,0 +1,30 @@
+Apply and move audit for upgrade-legacy.mjs (REQ-009, SL-SEC-008), at the final working tree.
+
+Every write, rename, copy or remove that can reach a packet, the manifest, the baseline, or an archived spec, with the guard that runs before it:
+
+1. Packet documents, fillMissingFrontmatter (function at line 825, write at line 868, run through FILL_SCRIPT at line 881).
+   Guard: repairPackets receives only writable folders (call at line 1566). A packet with a top-level link that leaves the packet is refused first by packetLinkProblem (line 214) and reported as "refused <packet>". A link that resolves inside the packet is allowed, and its write lands inside the packet.
+   Test: upgrade-legacy.vitest.ts link containment cases (lane-f-red.txt, lane-f-green.txt).
+
+2. Archived spec document (repairArchived, linkAt check at line 1026).
+   Guard: a linked spec.md is skipped before it is read, and the report prints "left unchanged <path>: symbolic link, not followed".
+   Test: lane-f-archived-red.txt, lane-f-archived-green.txt.
+
+3. Live spec documents through repairArchived preview copies (copyPreviewAncestorFiles, line 1080; materializeSymlinks, line 1102).
+   Writes land in a temporary preview root that is removed afterwards (rmSync at lines 1168 and 1208), never in the real tree.
+   Residual: the preview copy follows a link and reads its target into the temporary root. Nothing is written outside the repository, and no test pins this read. Listed as open.
+
+4. Baseline record (recordFindings, line 1250; write at line 1278).
+   Guard: a linked baseline is not read and not compared (baselineIsLink, line 242), and the write is exclusive (flag wx) under a random temporary name, then renamed over the file, which replaces a link instead of writing through it.
+   Test: lane-f-census-red.txt, lane-f-census-green.txt (the linked baseline stays out of the apply census).
+
+5. Manifest (writeFileSync at line 441, rename at line 442).
+   Guard: exclusive create (flag wx, mode 0600) of a temporary name, then rename.
+
+6. Move path (git mv at line 1462).
+   Guard: linkedLegacyParentRefusal (line 1421) returns a partial plan with an unexpected-symlink collision and no steps when .opencode is a link.
+   Test: upgrade-legacy.vitest.ts layout-link case (lane-f-red.txt names "plans no step through a .opencode link that leaves the repository").
+
+Accepted limits (the review's documented limits, not claimed fixed):
+- A link planted in the packet while the run is in progress is checked at the start of each step, so a window remains.
+- A writer that renames over a linked metadata file replaces the link, and nothing is written outside.

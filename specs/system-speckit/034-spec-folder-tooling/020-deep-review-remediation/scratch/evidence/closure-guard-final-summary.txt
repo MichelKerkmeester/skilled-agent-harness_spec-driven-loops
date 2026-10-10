@@ -1,0 +1,181 @@
+CLOSURE EVIDENCE: final guard summary for the Part 3 rows (class 4, class 5 and the still-not-claimed list)
+
+Purpose. Each class 4 row and class 5 row of closure-test-matrix-rationale.txt, and each entry in Part 3 of closure-guard-red-map-update.txt, gets one verdict.
+(a) RED-PROVEN: a case fails when the guard is removed, with the case name and the mutant log.
+(b) Unchanged link handling (class 3): the guard lies outside every phase hunk, with a diff proof.
+(c) Not killed: the reason is stated.
+
+Paths. S is the session scratchpad, /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad. Test files are under .skilled/skills/system-spec-kit/runtime/cli/tests/ unless a path is given. Line numbers are positions in the current files, checked in this pass against the lane files.
+
+1. CHECKS RUN IN THIS PASS
+
+1.1 Lane logs against lane evidence. Failing case names and totals were read from each red log and compared with closure-guard-final-gA.txt to closure-guard-final-gE.txt. All of them match. Controls: gA 60 passed, 1 skipped (61) (S/gA/repo-final.log, S/gA/control-cli.log). gB 35 of 35 (S/gB/control-symlink.log) and 135 of 135 across seven files (S/gB/repo-seven-final.log). gC 21 of 21 (gC harness control). gD 29 of 29 (S/gD/logs/gD-control.log and S/gD/logs/repo-green-final2.txt). gE 53 of 53 (S/gE/control2-gE-upgrade-legacy.log and S/gE/green-repo-upgrade-legacy.log).
+
+1.2 Line references. Checked against the current files: archive.sh 273, 278, 284, 314, 326 and 327. heal-spec-docs.cjs 838 to 839, 847 to 850, 902, 903, 904, 914, 918 to 920, 923 to 925, 1656 and 1657. backfill-graph-metadata.ts 188, 192, 205, 208 and 217. upgrade-legacy.mjs 136, 160, 452, 456, 648, 660 and 674. repair-derived.cjs 250, 272 and 331. generate-leaf-manifest.cjs 98, 116, 473, 490 and the lines the rows name. Test lines: repair-derived.vitest.ts 164, 181, 434, 458, 511, 515 and 619. generate-leaf-manifest-scopes.test.cjs 252, 280, 305, 344, 359, 372, 387 and 400. archive-track.vitest.ts 479, 629, 754, 769 and 783. graph-metadata-backfill.vitest.ts 298, 363 and 377. heal-symlink-containment.vitest.ts 295, 494 and 517. upgrade-legacy.vitest.ts 1864.
+
+1.3 Diff proofs for the unchanged ranges. Each function was extracted from 4669db6522 and from the worktree and the two texts were compared with diff. Identical (empty diff): upgrade-legacy.mjs parseArgs, resolveRoots, contained, manifestPathFor, writeManifestFile, readManifestIfExists, prepareManifest and completeManifest. generate-leaf-manifest.cjs runCheck. Phase hunks against 4669db6522 (git diff -U0), new line ranges. upgrade-legacy.mjs: 18 to 19, 178 to 255, 355 to 360, 595 to 604 and 1024 to 1696. No hunk falls in parseArgs (136 to 158), contained (160 to about 165, before the first hunk at 178), manifestPathFor (410), writeManifestFile (415 to 447), readManifestIfExists (450 to 526), prepareManifest (548 to 568), resolveRoots (646 to 681) or completeManifest (571 to 582). generate-leaf-manifest.cjs: 30, 58 to 62, 93 to 106, 119, 303, 425 to 462, 465 to 468, 471, 474 to 477 and 479. No hunk reaches runCheck (490 to 509).
+
+1.4 Archive source. archive.sh lines 273 to 282 are text-identical to 4669db6522 lines 230 to 239. The phase hunks at new lines 233 to 260 and 319 to 326 surround the block and do not touch it.
+
+1.5 Changed-guard status of the healer --roots check. The new hunk 768 to 970 of heal-spec-docs.cjs covers lines 923 to 925. The --roots realpath check is therefore a changed guard.
+
+1.6 Probes rerun in this pass, with exit status read.
+- Archive alias. Fixture final-verify/alias under S, with git init, specs/001-real and specs/002-alias -> 001-real. Command: bash archive.sh --force specs/002-alias run from the fixture. Exit 0. The real folder moved to specs/z_archive/001-real. 002-alias remains and now dangles. Output in S/final-verify/alias/out.txt and err.txt.
+- B-11 without roots. Fixture final-verify/b11a under S, pre-heal spec.md copied from S/gB/fx-b11b (digest fa9056db, still pre-heal). Link holder/linkparent points at elsewhere/tracks, outside every default root. Run from a working directory outside any repository. Dry run: exit 0, "would heal", digest unchanged. Apply: exit 0, "healed", outside spec.md digest changed from fa9056db to 6d518348. Note: the copy from S/gB/fx-b11a was already healed (its digest 6d518348 matches the healed value in S/gB/red-b11.log), so that copy cannot test the case.
+- C-15 linked manifest. Fixture final-verify/c5 under S. node generate-leaf-manifest.cjs --check on a leaf-manifest.json link to outside fresh bytes: exit 0, "leaf-manifest.json OK". The same link to stale bytes: exit 1, "is stale". --write with the link present: exit 2, "symbolic link, not followed", and the outside file digest is unchanged.
+- K1 backfill --root. NOT rerun. The backfill source imports lib/esm-entry.js, which exists in neither the worktree nor the gA mirror as a built file, and the mirror has no compiled backfill entry. The saved output was read: S/gA/probe/unconfined/apply.stdout and S/gA/probe/anchored/apply2.stdout. Exit statuses are in no saved log, so the exit codes stated in closure-guard-final-gA.txt are not confirmed here.
+
+1.7 Repository state. git status --porcelain -- specs lists 54 entries now, matching the count in closure-guard-final-gA.txt. The probes wrote only under S.
+
+2. ROW VERDICTS
+
+Class 4 rows (10).
+
+A-14, linked output file for archive, archive destination (archive.sh 326 to 327). Verdict (a), both branches.
+- -e branch: existing case 754, "refuses an archive whose target already holds a folder of that name, and changes neither side". Mutant gA-arch-e drops the -e test: S/gA/gA-arch-e.log, 1 failed of 61.
+- -L branch: existing case 769, "refuses an archive whose target is a dangling link, and changes neither side". Mutant gA-arch-L drops the -L test: S/gA/gA-arch-L.log, 1 failed of 61. The failure is the mv error in place of the refusal message, so the state assertions in this case were not reached.
+- Both cases existed before the gA edits and had no recorded mutant in the red map. Matrix row A-14 still reads MISSING and needs the change in the Part 2 draft.
+
+B-03, link inside the packet, apply. Guard: default-run document refusal, heal-spec-docs.cjs 1656 to 1657. Verdict (a).
+- New case "default healer --apply refuses a symlinked spec.md whose target sits inside the same packet", assertion at test line 295. Mutant gB-b03 (1656 becomes if (false)): S/gB/red-b03.log, 4 failed of 35. The new case is one of the four. The other three are existing symlinked-document cases that also assert refusal.
+- Caveat: the case asserts refusal, following the Code-prevails amendment at spec.md line 194. Spec.md line 193 (the original text) still says an in-specs link is allowed. The mismatch is recorded in closure-test-matrix-rationale.txt and is not resolved here.
+
+B-09, dot segment in a --folder argument. Guard: folder target resolution at heal-spec-docs.cjs 903 and the lexical walk at 904 to 920. Verdict (a).
+- New case "default run --apply refuses a --folder whose mid-path dot segment reaches a packet through a link", assertion at test line 494. Mutant gB-dot1 (drops every "/.." before resolving): S/gB/red-dot1.log, 1 failed of 35.
+- Mutant gB-dot2 (drops every ".." token): S/gB/red-dot2.log, 4 failed of 35. These are the three existing "refuses a relative ../specs --folder" cases and the new case.
+
+C-13, linked packet folder for generate or check. Guard: assertStartInsideSkill (generate-leaf-manifest.cjs 98 to 105), called from walkLeafFiles at 119. Verdict (a).
+- New case testLinkedPacketFolderOutsideSkillFails (scopes test line 305). Mutant M-C3a (the call at 119 removed): S/gC/post-M-C3a-no-start-containment-in-walk-harness.txt, 3 failed of 21: C-04 (252), C-05 (280) and C-13 (305).
+- Mutant M-C3b (the call runs only when the start is a link): S/gC/post-M-C3b-start-containment-only-when-start-is-link-harness.txt, 1 failed of 21. Before the new case the same mutant gave 0 of 19 (S/gC/pre-M-C3b-start-containment-only-when-start-is-link-harness.txt), so the new case is what kills it.
+
+C-15, linked manifest on the read path (--check). Verdict (b), following the reconciliation directed for this pass.
+- The row cites lines 474 to 477 as a read-path guard. Those lines are the write path (runWrite, 473 onward, with the refusal at 475 to 476). runCheck (490 to 509) has no link check and is identical to 4669db6522 (section 1.3). No phase hunk reaches 490 to 509.
+- Observation, not a changed guard: --check follows a linked leaf-manifest.json. Section 1.6 shows exit 0 with fresh bytes behind the link. The write path refuses the same link. Operator decision: whether --check should refuse a linked manifest. Until then the rationale and the red map should stop citing 474 to 477 as a read-path guard.
+
+D-03, link inside the packet, apply. Guards: readIfPresent link refusal at repair-derived.cjs 250 and writeAtomic link refusal at 272 (both in phase hunks). Verdict (a).
+- New case "leaves a rewrite target that links to a file inside the packet unread and unchanged" (test line 458). Mutant gD-D03-read (removes the refusal at 250): S/gD/logs/gD-D03-read.log, 2 failed of 29: the new case and the existing plan.md case (line 619). Pre-change log S/gD/logs/gD-pre-D03-read.log, 1 failed of 24.
+- New race case "refuses to replace a rewrite target that became a link after planning, when the link points inside the packet" (test line 515). Mutant gD-D04-write (removes the refusal at 272): S/gD/logs/gD-D04-write.log, 2 failed of 29, the inside case (515) and the outside case (511).
+
+K-01, plain report write on apply. Guard: backfill-graph-metadata.ts 205 (content write into the exclusive temporary file) and 208 (rename into the report name). Verdict (a).
+- New case "writes the prune report on apply at its fixed name, with the hash the summary returns" (graph-metadata-backfill.vitest.ts 377). Mutant gA-k01 (writes an empty string at 205): S/gA/gA-k01.log, 1 failed of 61, a JSON parse error on the empty report.
+- Correction: the operator's example named this tool as unchanged. The phase changed it, per the diff check in closure-test-matrix-rationale.txt. The link refusal at 192 and the exclusive temporary name are new.
+
+K-04, dangling report name. Guard: the lstat refusal at backfill-graph-metadata.ts 192. Verdict (a).
+- New case "refuses a dangling link at the report name and keeps the link in place" (graph-metadata-backfill.vitest.ts 363). Mutant gA-k04-exists (returns false for a dangling link, checking existence before lstat): S/gA/gA-k04-exists.log, 1 failed of 61, the new case only.
+- Mutant gA-k04-a (192 replaced by false): S/gA/gA-k04-a.log, 2 failed of 61: the existing K-02 case (298) and the new case. The new case stays because K-02 cannot see a regression that treats a dangling link as absent.
+
+U-16, linked --roots argument. Guards: realpath at upgrade-legacy.mjs 660 and containment at 674, inside resolveRoots (646). Verdict (b).
+- Diff proof: resolveRoots and parseArgs (136) are identical to 4669db6522 (section 1.3). No phase hunk reaches 136 to 158 or 646 to 681.
+- Incidental kill, not the basis of the verdict: mutant gE-A (660 replaced by path.resolve) fails 2 of 53 (S/gE/red-gE-A-upgrade-legacy.log): the new fallback case at line 1864 and the existing v4-layout case.
+
+U-17, dot segment in --roots. Guards: candidate normalization at 648 (path.resolve), containment at 674, and the dot-segment test in contained() (160). Verdict (b).
+- Diff proof: resolveRoots and contained are identical to 4669db6522 (section 1.3).
+- Incidental kill: mutant gE-B (674 replaced by if (false)) fails the existing case "refuses a root outside the repository" and the new fallback case (S/gE/red-gE-B-upgrade-legacy.log, 2 of 53).
+
+Class 5 rows (4).
+
+A-03 and A-05, linked archived folder or packet. Guards: source resolution at archive.sh 273 to 276 and containment at 278 to 282. Both are unchanged from HEAD (section 1.4). Verdict (a).
+- New case "refuses to archive a folder reached through a link that points outside specs, and changes neither side" (archive-track.vitest.ts 479). It checks the refusal message, that the outside folder is unchanged, that the link survives and that no z_archive is created.
+- Mutant gA-a7-contain (containment refusal at 278 removed): S/gA/gA-a7-contain.log, 1 failed of 61, on the message only. archive.sh 314 (is_packet_home) refuses the same input with a different message, so the containment check is the second of two refusals and its removal shows only in the message.
+- Mutant gA-a7-resolve (physical resolution at 273 replaced by a logical path): S/gA/gA-a7-resolve.log, 1 failed of 61. The archive succeeds and moves the link itself into z_archive.
+
+D-11, linked folder argument. Guard: the real-path check on the target inside insideSpecs (repair-derived.cjs 593, outside the phase hunks, as the rationale records). Verdict (a).
+- New case "refuses a packet folder argument that is a link to a packet outside the tree" (repair-derived.vitest.ts 164). Mutant gD-D11-anc (only the parent is resolved): S/gD/logs/gD-D11-anc.log, 1 failed of 29. Pre-change S/gD/logs/gD-pre-D11-anc.log, 0 of 24.
+- Shared mutant gD-lex (lexical target used in place of the real path): S/gD/logs/gD-lex.log, 2 failed of 29, one for each of D-11 and D-12.
+
+D-12, linked parent above the packet. Guard as D-11. Verdict (a).
+- New case "refuses a packet folder reached through a linked parent directory outside the tree" (repair-derived.vitest.ts 181). Mutant gD-D12-leaf: S/gD/logs/gD-D12-leaf.log, 1 failed of 29. Pre-change S/gD/logs/gD-pre-D12-leaf.log, 0 of 24. Also failed by gD-lex.
+
+Part 3 of closure-guard-red-map-update.txt (still NOT CLAIMED after the sweep).
+
+A7, archive source resolution and containment. Same as A-03 and A-05. Verdict (a).
+
+B1 and B-12, linked folder. Guards: line 904 (the folder itself is a link) and the walk at 919 to 920. Verdict (a) for the dangling-folder cases and their reason text.
+- Mutant gB-b12 (904 disabled): S/gB/red-b12.log, 3 failed of 35: the three dangling-folder cases, failing on the reason text because the walk still refuses.
+- Mutant gB-b12x (904 and the walk at 919 disabled): S/gB/red-b12x.log, 10 failed of 35, among them the three dangling cases, now failing on status.
+- The linked, non-dangling case still passes under gB-b12x, because the realpath check at 923 refuses it. This shows the realpath check is a working backstop. Section 8 covers why it is not separately killed.
+
+B6, B-09 (above), B-10 and B-11.
+- B-10, linked component inside the specs root: existing case "refuses a --folder reached through a linked component inside the specs root". Mutant gB-walk0 (no component below the anchor is judged): S/gB/red-walk0.log, 7 failed of 35, including this case. Mutant gB-walk1 (the loop starts one component late): S/gB/red-walk1.log, 2 failed of 35, including this case and a case-variant SPECS case. Verdict (a).
+- B-11 with --roots: new case at line 517, "--roots run refuses a --folder whose linked parent resolves outside the given roots, and leaves that packet untouched". Mutant gB-b11 (line 914 returns null): S/gB/red-b11.log, 1 failed of 35 (the outside digest at 517). Verdict (a) for the --roots form.
+- B-11 without --roots: the accepted partial, now OBSERVED. See section 4.
+
+C2, linked manifest write (C-07). Existing cases testLinkedManifestWriteIsRefused (344) and testLinkedManifestWriteExitsNonZero (359). Mutant M-C2-no-manifest-link-guard (guard at generate-leaf-manifest.cjs 475 disabled): S/gC/post-M-C2-no-manifest-link-guard-harness.txt, 3 failed of 21 (3 of 19 before the lane). The dangling case testDanglingManifestWriteIsRefused (372) also fails under this mutant and covers C-08. Verdict (a).
+
+C3, start-scope confinement (C-04, C-05, C-13). Verdict (a): see C-13 above. M-C3a kills C-04 (252), C-05 (280) and C-13 (305).
+
+C4, --check comparison (generate-leaf-manifest.cjs 498). Verdict (a).
+- Mutant M-C4a (comparison inverted): S/gC/post-M-C4a-check-comparison-inverted-harness.txt, 2 failed of 21, naming testCheckOnUnchangedSkillIsNoOp (387) and testCheckOnStaleManifestFails (400). The red map entry did not name the failing case, and it is now named.
+- Mutant M-C4b (check always reports fresh): S/gC/post-M-C4b-check-always-fresh-harness.txt, 1 failed of 21, the new case 400. Before the new case the same mutant gave 0 of 19 (S/gC/pre-M-C4b-check-always-fresh-harness.txt).
+
+C5, linked manifest on the read path. Verdict (b), see C-15 above.
+
+D7, D-04, rewrite-target write guard (repair-derived.cjs 272). Verdict (a).
+- New case "refuses to replace a rewrite target that became a link after planning, when the link points outside the packet" (repair-derived.vitest.ts 511). Mutant gD-D04-write: S/gD/logs/gD-D04-write.log, 2 failed of 29 (511 and 515).
+- The existing case at 434 does not kill it. That case fails at planning, which refuses the link before the write guard is reached (S/gD/logs/gD-pre-D04-write.log, 0 failed of 24).
+
+F5, U-16 and U-17. Verdict (b), see above.
+
+F6, U-18, linked manifest on apply. Verdict (b). The writer chain manifestPathFor (410), writeManifestFile (415 to 447), readManifestIfExists (450 to 526), prepareManifest (548 to 568) and completeManifest (571 to 582) is identical to 4669db6522 (section 1.3). No phase hunk reaches 410 to 582.
+
+3. MATRIX LABEL CORRECTIONS
+
+- D-04: the existing case at test line 434 is not a write-guard case. Planning refuses the link before the write guard runs. D-04 is covered only by the new case at 511. The matrix COVERED label for D-04 is wrong.
+- B-09: the claim that no heal --folder argument contains ".." is wrong. The three relative ../specs cases exist. The new case covers a mid-path dot segment instead.
+- Line 651 to 653: this is repairAnchorFile (line 650), the anchor-repair path. The default-run document guard is 1656 to 1657. Class 4 B-03 in the rationale should cite 1656 to 1657 for the default run, and the red map's B5 label "default --apply document path" should read "anchor-repair path" for 651.
+- A-14: the rationale's class 4 entry cites archive.sh "about 480". The archive destination check is 326 to 327. Line 480 is the restore destination (A4 in the red map).
+- B-09 folderRefusal: the rationale's "about 808 to 831" is stale. folderRefusal starts at 902, and the dot-segment target resolution is at 903.
+- B-11, section 4 of the matrix: the claim that every --folder call passes --roots is wrong. The default-run folder cases pass no --roots (closure-guard-final-gB.txt).
+- U-16 and U-17: the rationale says the argument handling changed at hunks 1546 to 1578. Those lines are refuseLinkedPackets and the plan-changes block in main(). parseArgs (136) and resolveRoots (646) are unchanged.
+- C-15: the rationale and the red map cite 474 to 477 as a read-path guard. Those lines are the write path. runCheck has no link check.
+- K-01 and K-04: the operator's example named the backfill prune report as unchanged. The phase changed it, as the rationale's class 4 entry already records.
+- K1 name clash: the red map's K1 (prune report writer) is a different entry from the same-class inventory's K1 (backfill --root). Keep the two apart.
+
+4. ACCEPTED PARTIALS, NOW OBSERVED
+
+- B-11 / H5, linked parent outside every default root, no --roots, no repository. OBSERVED in this pass (section 1.6). The healer heals through the linked parent: dry run exit 0 "would heal", apply exit 0 "healed", and the outside spec.md changed. The accepted partial stands. No test asserts it.
+- K1, backfill --root, graph writer. OBSERVED from saved output. An unanchored root (no .opencode anchor) is refused: the packet is recorded as failed with "Refusing to write graph metadata outside a configured specs root", and nothing is written (S/gA/probe/unconfined/apply.stdout). A root anchored by .opencode outside the repository is written: created 1, failed empty (S/gA/probe/anchored/apply2.stdout). The exit statuses are not in saved logs (section 1.6), so they are not claimed.
+- K1, prune report writer. No configured-root check, read from code (backfill-graph-metadata.ts 188 to 217). NOT run. It stays INFERRED.
+
+5. SWEEP-KILL CHECK
+
+The sweep logs S/gs/mut/A-arch-L.log, A-arch-e.log, A-rest-L.log and A-rest-e.log each show four round-trip failures from the mirror problem in section 6, plus exactly one named case outside that set. Each kill stands on its named case.
+- A-arch-e and A-arch-L: the named case is reproduced in the clean gA mirrors, 1 of 61 each (section 2).
+- A-rest-L: named failure "refuses to restore onto a link at the target, and moves nothing" (archive-track.vitest.ts 629). The failure is the mv error in place of the refusal message, so the kill is on the message only.
+- A-rest-e: named failure "refuses a restore whose destination already holds a folder, and changes neither side" (783). The count assertion fails (0 instead of 1), because the restore went through, so this kill is on state.
+- A-rest-L and A-rest-e were not rerun in a clean mirror. Their kills rest on the sweep logs. The case names match closure-guard-red-map-update.txt.
+
+6. HARNESS NOTE
+
+The scratch mirror (S/gs/mkmirror.mjs) gives false reds in three ways.
+(1) The validator's dist freshness record is keyed by the absolute dist path (cachePathFor in runtime/cli/lib/dist-freshness.cjs), so a copied record is not found. The checker then compares mtimes.
+(2) Copies carry copy-time mtimes, so the sources look newer than dist and the runtime reads as stale.
+(3) Two inputs sit outside the copied tree: hook-flags.sh, read by the switch check, and sk-doc frontmatter-values.json, read by shared/context-types.ts.
+Effect: the four round-trip cases in archive-track.vitest.ts (describe "archive.sh round trip with the real tools") fail in the mirror with the unmutated skill and pass in the repository.
+Each lane fixed its own copy. gA fixed the record and the mtimes in S/gA/mkmirror.mjs. gD fixed all three in S/gD/run-lane.sh. gE copied the sk-doc file in its own copy step. gs/mkmirror.mjs was not edited.
+gB's control and mutant runs were not affected. The control passes 35 of 35 on the unfixed mirror, and every named failure is the intended case.
+
+7. OBSERVATIONS FOR IMPLEMENTATION-SUMMARY KNOWN LIMITATIONS (four)
+
+(1) archive.sh given a link inside specs as the argument. With 002-alias -> 001-real, both under specs, archive-spec.sh --force specs/002-alias archives the physical folder into z_archive and leaves 002-alias as a dangling link. Exit 0, rerun in this pass (section 1.6). The containment check at archive.sh 278 to 282 allows it, because the target is inside specs. The source lines are text-identical to HEAD (section 1.4). Operator decision: refuse a link given as the argument, or move the link with its target.
+
+(2) repair-derived apply closures read through a link. The apply closures read their targets with fs.readFileSync (repair-derived.cjs 331, 355, 379, 405 and 424), which follows a link planted after planning. writeAtomic refuses the write (272), so nothing outside is written. For description.json the read is JSON.parse at 331. A parse error reaches the FAILED line through err.message (apply catch at 485 to 486, printed at 668). Node's JSON.parse message quotes a fragment of its input (checked with Node 26.8.2), so an outside file that is not valid JSON can have a fragment echoed. The live race was not run in this pass. The chain is confirmed from the code and from the message text.
+
+(3) generate-leaf-manifest --check reads through a linked manifest. runCheck (490 to 509, identical to HEAD) follows a linked leaf-manifest.json and reports its content. Fresh bytes behind the link give OK and exit 0 (section 1.6). --write refuses the same link (runWrite, 475 to 476). The README documents the refusal for --write only. Operator decision: refuse a linked manifest on --check too.
+
+(4) upgrade-legacy path handling, both unchanged from HEAD. resolveRoots normalizes a --roots argument lexically (path.resolve at upgrade-legacy.mjs 648) before the realpath at 660. An argument such as linkOut/../specs therefore names REPO/specs, not the directory the shell reaches through the link. The walk stays inside the repository, so nothing outside is written. readManifestIfExists reads through a linked manifest (existsSync at 452, readFileSync at 456). Both were read from code and were not probed.
+
+8. THE ONE UNKILLED CHANGED GUARD
+
+heal-spec-docs.cjs 923 to 925, the --roots realpath check in folderRefusal, inside the phase hunk 768 to 970. Mutant gB-realp (the check disabled): S/gB/red-realp.log, 35 of 35 passed.
+Why no case kills it: the component walk (919 to 920) refuses the same linked inputs the fixtures can build. When the walk is disabled, the realpath check does refuse the linked non-dangling case (S/gB/red-b12x.log), so it is a real backstop.
+The lane's reading is that the realpath check and the walk differ only when two paths share dev and inode but differ in realpath, for example through a bind mount. That reading comes from the code and was not tested. A macOS fixture cannot build a bind mount.
+Operator choice: accept this as an unkilled defense-in-depth check, or name a fixture that reaches it.
+
+9. JUDGMENT CALLS
+
+- C-15 is placed in (b), following the reconciliation directed for this pass. If the coordinator prefers (c), the reason is the same read-through observation (C-15 above).
+- B-03: the new case asserts refusal, following the Code-prevails amendment at spec.md line 194. Spec.md line 193 still states the original rule. The Part 2 draft adds a dated bullet after line 194 and does not edit the existing text.
+- The two restore kills rest on the sweep logs and were not rerun in a clean mirror (section 5).
+- The backfill --root exit statuses are unverified (section 1.6).
+- The alias exit status that closure-guard-final-gA.txt stated is confirmed by the rerun in section 1.6.

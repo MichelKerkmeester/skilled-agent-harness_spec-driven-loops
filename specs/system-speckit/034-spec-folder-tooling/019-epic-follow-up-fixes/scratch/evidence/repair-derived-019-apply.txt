@@ -1,0 +1,4 @@
+repaired /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes
+    re-derive graph metadata
+
+inspected=1 repaired=1 failed=0

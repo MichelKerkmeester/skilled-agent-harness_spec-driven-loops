@@ -1,0 +1,5 @@
+CMD: node .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+START: 2026-10-09T19:54:14Z
+[sk-doc] leaf-manifest scope contract coverage passed
+EXIT=0
+ELAPSED_S=0

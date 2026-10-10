@@ -1,0 +1,103 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/archive-track.vitest.ts (36 tests | 4 failed | 32 skipped) 350ms
+     × refuses a restore path with a . segment that reaches a folder through a linked z_archive 113ms
+     × refuses a restore path with a .. segment, and moves nothing 80ms
+     × refuses an archive path with a . segment, and moves nothing 90ms
+     × refuses an archive path with a .. segment, and moves nothing 66ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a restore path with a . segment that reaches a folder through a linked z_archive
+AssertionError: SUCCESS: Restored: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-32vfFM/specs/tools/001-a/z_archive/002-x -> /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-32vfFM/specs/tools/001-a/002-x
+WARNING: Recorded paths under /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-32vfFM/specs/tools/001-a/002-x were not re-derived: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-32vfFM/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs is missing. Restore it, then run repair-derived.cjs --roots /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-32vfFM/specs/tools/001-a/002-x --apply.
+: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/archive-track.vitest.ts:637:58
+    635|
+    636|     const result = archive(['--restore', 'specs/z_archive/002-x/.']);
+    637|     expect(result.status, result.stdout + result.stderr).toBe(1);
+       |                                                          ^
+    638|     expect(result.stderr).toContain('must not contain . or .. segments…
+    639|     expect(snapshot(path.join(otherHome, '002-x'))).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a restore path with a .. segment, and moves nothing
+AssertionError: expected 'ERROR: Folder is not in archive direc…' to contain 'must not contain . or .. segments'
+
+- Expected
++ Received
+
+- must not contain . or .. segments
++ ERROR: Folder is not in archive directory: specs/z_archive/002-x/..
++
+
+ ❯ tests/archive-track.vitest.ts:653:27
+    651|     const result = archive(['--restore', 'specs/z_archive/002-x/..']);
+    652|     expect(result.status, result.stdout + result.stderr).toBe(1);
+    653|     expect(result.stderr).toContain('must not contain . or .. segments…
+       |                           ^
+    654|     expect(snapshot(path.join(otherHome, '002-x'))).toEqual(before);
+    655|     expect(fs.existsSync(path.join(specs, 'tools', '001-a', '002-x')))…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses an archive path with a . segment, and moves nothing
+AssertionError: SUCCESS: Archived: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-gtGNYo/specs/005-root -> /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-gtGNYo/specs/z_archive/005-root
+WARNING: Recorded paths under /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-gtGNYo/specs/z_archive/005-root were not re-derived: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-gtGNYo/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs is missing. Restore it, then run repair-derived.cjs --roots /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-gtGNYo/specs/z_archive/005-root --apply.
+: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/archive-track.vitest.ts:663:58
+    661|
+    662|     const result = archive(['--force', 'specs/005-root/.']);
+    663|     expect(result.status, result.stdout + result.stderr).toBe(1);
+       |                                                          ^
+    664|     expect(result.stderr).toContain('must not contain . or .. segments…
+    665|     expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses an archive path with a .. segment, and moves nothing
+AssertionError: expected 'ERROR: Spec folder name must match NN…' to contain 'must not contain . or .. segments'
+
+- Expected
++ Received
+
+- must not contain . or .. segments
++ ERROR: Spec folder name must match NNN-name pattern: specs
++
+
+ ❯ tests/archive-track.vitest.ts:675:27
+    673|     const result = archive(['--force', 'specs/005-root/..']);
+    674|     expect(result.status, result.stdout + result.stderr).toBe(1);
+    675|     expect(result.stderr).toContain('must not contain . or .. segments…
+       |                           ^
+    676|     expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+    677|     expect(fs.existsSync(path.join(specs, 'z_archive'))).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 32 skipped (36)
+   Start at  09:09:05
+   Duration  453ms (transform 25ms, setup 14ms, import 21ms, tests 350ms, environment 0ms)
+
+EXIT=1

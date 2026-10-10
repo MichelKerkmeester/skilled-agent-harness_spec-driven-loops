@@ -1,0 +1,21 @@
+install exit=0
+PASS P install exits 0
+PASS P root postinstall did not run (no marker)
+regen exit=0
+PASS P regenerate exits 0
+commit exit=0
+PASS P commit step exits 0 after retry
+PASS P first push was rejected and the retry ran
+PASS P origin top commit is the rebuild
+PASS P race commit sits under the rebuild
+PASS P rebuild rests on the stale base after the race commit
+PASS P rebuild commit keeps the loop-guard trailer as its last line
+PASS P origin's four generated files equal a normal generation
+PASS P token and header absent from every step log
+PASS P token and header absent from repository git config
+PASS P no generator call saw the token or the header (calls logged: 3)
+PASS P no hook ran with the header during a network command
+PASS P no hook saw PUSH_TOKEN in its environment
+PASS P pre-push hook never ran
+PASS P planted pre-commit hook ran on the commit with no header and no token (control: hooks are live)
+SUMMARY P pass=17 fail=0

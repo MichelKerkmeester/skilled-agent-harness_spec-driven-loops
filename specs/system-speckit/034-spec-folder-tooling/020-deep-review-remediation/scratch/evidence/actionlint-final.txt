@@ -1,0 +1,18 @@
+actionlint over every workflow in .github/workflows, run at the final working tree.
+command: actionlint .github/workflows/*.yml
+exit=0  (no output is the tool's silent success; the negative control below shows it reports failures)
+
+--- negative control: a job with an unknown runs-onn key
+name: neg
+on: push
+jobs:
+  j:
+    runs-onn: ubuntu-latest
+    steps:
+      - run: echo hi
+.github/workflows/bad.yml:4:3: "runs-on" section is missing in job "j" [syntax-check]
+  |
+4 |   j:
+negative control exit=1 (confirmed)
+
+--- phase 010 T009 record: scratch/evidence in 010 folder lists actionlint exit 0 on HEAD and worktree

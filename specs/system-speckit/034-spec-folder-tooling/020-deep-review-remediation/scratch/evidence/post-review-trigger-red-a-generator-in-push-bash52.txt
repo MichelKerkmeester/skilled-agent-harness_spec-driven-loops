@@ -1,0 +1,63 @@
+Command: PATH=<bash 5.2 shim dir>:$PATH TRIGGER_INDEX_REBUILD_WORKFLOW_PATH=<scratch>/mutant-a-generator-in-push.yml npx vitest run --config ../../vitest.config.ts --project cli tests/trigger-index-rebuild-workflow.vitest.ts
+bash: GNU bash, version 5.2.0(1)-release (aarch64-apple-darwin24.0.0)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/trigger-index-rebuild-workflow.vitest.ts (23 tests | 3 failed) 5635ms
+     × runs no node, npm or generator command in the push step 3ms
+       × keeps the token out of the generator's parent process 2ms
+       × keeps the token out of the generator's parent process 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > runs no node, npm or generator command in the push step
+AssertionError: expected 'node .skilled/skills/system-spec-kit/…' not to match /\b(node|npm|npx)\b|generate-trigger-i…/
+
+- Expected:
+/\b(node|npm|npx)\b|generate-trigger-index/
+
++ Received:
+"node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check >/dev/null 2>&1 || true"
+
+ ❯ tests/trigger-index-rebuild-workflow.vitest.ts:437:24
+    435|
+    436|     for (const line of commands) {
+    437|       expect(line).not.toMatch(/\b(node|npm|npx)\b|generate-trigger-in…
+       |                        ^
+    438|     }
+    439|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin moves before the push > keeps the token out of the generator's parent process
+ FAIL  |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin does not move > keeps the token out of the generator's parent process
+AssertionError: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "generator args=[--check] secret-env=none parent-secret=yes",
++ ]
+
+ ❯ tests/trigger-index-rebuild-workflow.vitest.ts:534:118
+    532|
+    533|       expect(calls.length).toBeGreaterThan(0);
+    534|       expect(calls.filter((line) => !CLEAN_PARENT_STATES.some((state) …
+       |                                                                                                                      ^
+    535|     });
+    536|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 20 passed (23)
+   Start at  12:31:53
+   Duration  5.82s (transform 58ms, setup 23ms, import 64ms, tests 5.63s, environment 0ms)
+
+EXIT=1

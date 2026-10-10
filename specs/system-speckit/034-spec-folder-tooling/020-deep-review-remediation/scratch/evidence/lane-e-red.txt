@@ -1,0 +1,37 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/template-phrase-provenance.vitest.ts (2 tests | 1 failed) 93ms
+     × trims only the seeded phrase and leaves an authored eight-word phrase with the same shape 46ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/template-phrase-provenance.vitest.ts > template phrase provenance > trims only the seeded phrase and leaves an authored eight-word phrase with the same shape
+AssertionError: expected '  - "two of the four rules that fire …' not to contain 'two of the four rules that fire on'
+
+- Expected
++ Received
+
+- two of the four rules that fire on
++   - "two of the four rules that fire on"
++   - "this packet demonstrates a custom description seed with"
+
+ ❯ tests/template-phrase-provenance.vitest.ts:86:56
+     84|     const report = JSON.parse(dryRun.stdout) as { changes: Array<{ old…
+     85|     expect(report.changes).toHaveLength(1);
+     86|     expect(report.changes[0].oldBlocks.join('\n')).not.toContain(AUTHO…
+       |                                                        ^
+     87|
+     88|     const applied = runCleanup(specsRoot, ['--apply']);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 28 passed (29)
+   Start at  07:29:06
+   Duration  5.54s (transform 52ms, setup 23ms, import 94ms, tests 5.11s, environment 0ms)
+

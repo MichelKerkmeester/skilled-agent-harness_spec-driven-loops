@@ -142,10 +142,19 @@ function isAllowedHit(hit: SurfaceHit, filePath: string, isExtra: boolean): bool
   if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/embedder-set-dry-run-and-validation.md')) return true;
   if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/review-packet-type-marker-gated-validation.md')) return true;
   if (rel.endsWith('.skilled/skills/system-spec-kit/templates/examples/README.md')) return true;
+  // The upgrade-legacy reversibility manifest is a real file (`upgrade-legacy.manifest.json`) that the
+  // apply writes into the git directory, so "manifest" in these upgrade-legacy docs names that file.
+  if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/upgrade-legacy-reversibility-manifest.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/upgrade-legacy-downgrades-report.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/upgrade-legacy-apply-manifest.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/upgrade-legacy-refusal-without-git.md')) return true;
   // Docs that use "kind" as a JSON/YAML schema-enum field (verified values: document / code /
   // structured_data / startup / unresolved), a CLI grouping label, or incidental plain English.
   if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/context-preservation/session-resume.md')) return true;
   if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md')) return true;
+  // The era report's `layout.kind` JSON field (values v3, v4 or both) is the real name these docs describe.
+  if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/repo-era-report.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/repo-era-report.md')) return true;
   return false;
 }
 

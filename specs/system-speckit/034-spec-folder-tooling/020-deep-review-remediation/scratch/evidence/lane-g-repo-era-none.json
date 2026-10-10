@@ -1,0 +1,44 @@
+{
+  "root": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/l7/era-none",
+  "packetCount": 0,
+  "nonPacketCount": 0,
+  "excludedCount": 0,
+  "signals": {
+    "layout": {
+      "v3": false,
+      "v4": false,
+      "kind": "unknown",
+      "provenance": {
+        "source": null,
+        "residueCount": 0
+      }
+    },
+    "frontmatter": {
+      "present": 0,
+      "missing": 0
+    },
+    "templateMarkers": {
+      "new": 0,
+      "legacy": 0,
+      "none": 0
+    },
+    "generatedMetadata": {
+      "present": 0,
+      "stub": 0,
+      "missing": 0
+    },
+    "levelDocuments": {
+      "match": 0,
+      "mismatch": 0,
+      "unknown": 0
+    }
+  },
+  "totals": {
+    "packets": 0,
+    "documents": 0,
+    "frontmatter": 0,
+    "templateMarkers": 0,
+    "generatedMetadata": 0,
+    "levelDocuments": 0
+  }
+}

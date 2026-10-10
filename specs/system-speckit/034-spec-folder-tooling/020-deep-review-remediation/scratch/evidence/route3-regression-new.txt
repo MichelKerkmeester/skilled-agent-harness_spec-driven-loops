@@ -1,0 +1,21 @@
+Packets to validate:
+  specs/hostile/r%0A::error::PWNED
+
+1 changed packet(s) do not validate; checking which are regressions.
+::error file=specs/hostile/r%250A%3A%3Aerror%3A%3APWNED/spec.md::Regression — new failing rule(s): SPEC_DOC_SUFFICIENCY
+::stop-commands::b47bc011-f734-4531-856c-4073a0ba61b0
+    x FILE_EXISTS: Missing 2 required file(s) for Level 1
+    x TEMPLATE_SOURCE: Template source header missing
+    x ANCHORS_VALID: 1 anchor integrity issue(s) found
+    x SPEC_DOC_SUFFICIENCY: 1 spec_doc_sufficiency issue(s) found
+    ! GRAPH_METADATA_PRESENT: Graph metadata checked
+    x FOLDER_NAMING: Folder name 'r%0A::error::PWNED' does not follow naming convention
+    x GREP_CONVENTION: Grep convention: 1 error(s) and 1 warning(s) across 1 document(s)
+    x LEVEL_MATCH: Level consistency errors
+    Summary: Errors: 7  Warnings: 1
+
+::b47bc011-f734-4531-856c-4073a0ba61b0::
+
+BLOCKED: 1 packet(s) regressed in this PR.
+Run: bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet> --strict
+exit=1

@@ -1,0 +1,7 @@
+repaired specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation
+    re-derive graph metadata
+
+inspected=1 repaired=1 failed=0
+
+Not repairable here — these record work someone did, and only they can write them:
+      1  STATUS_CROSS_DOC_CONSISTENCY

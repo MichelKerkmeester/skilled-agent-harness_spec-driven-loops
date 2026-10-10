@@ -1,0 +1,13 @@
+CLOSURE EVIDENCE: healer fix claims, checked against the code and the logs in the fix wave's scratch directory (r1)
+
+Code. The healer is .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs, last modified 14:07:51. Its test file, heal-symlink-containment.vitest.ts, was last modified 14:08:23. Both are earlier than the final five-file run at 14:08:50.
+
+1. Identity. Line 799 returns the identity string from stat dev and ino. Read in this pass.
+2. Folder refusal. folderRefusal starts at line 902. Line 904 refuses a folder that is itself a link. Line 918 refuses a link anchor, and line 920 refuses a link below the anchor. The comment at line 895 says that with --roots the anchor is the root's own prefix.
+3. Usage errors. Line 949 prints "<flag> requires a value" with usage and exits 2. Replayed in this pass with no value, saved in the session scratchpad at r1/replay-usage/. folder-no-value.out and roots-no-value.out each end with exit=2. Named tests: heal-symlink-containment.vitest.ts lines 606 to 621 (--folder, two spellings) and 629 to 642 (--roots).
+4. Containment suite. r1/final5.log (14:08:50): Test Files 7 passed (7), Tests 132 passed (132), and no skipped count. The cwd-outside cases sit inside describe.skipIf(repositoryAbove(os.tmpdir())) at about line 540. The run reports no skip, so those cases ran.
+5. Earlier runs. r1/red.log (13:49:13): 9 failed of 25. r1/green5.log (14:07:57): 7 failed of 32, before the final fix. r1/baseline.log (13:47:38): 7 files and 116 passed.
+6. No-roots mutant. r1/mutant6.log: 13 failed of 32. The seven failing cases named "when no --roots is given" are the alias cases for default, anchor-repair and lane-modes, the relative ../specs cases for three modes, and the case-variant SPECS case. The other six are the cwd-outside cases and the nothing-linked-below case. The coordinator's figure that the same mutant killed 0 before the fix is not in any saved log, so it is not confirmed here.
+7. Repros. r1/adv1-replay.out and r1/e1-replay.out both read in this pass: "refused alias: symbolic link, not followed (the folder itself is a link)". The exit status is not in those files, so it is not stated here.
+8. Link as --roots. Line 918 refuses a link anchor under --roots. The --roots call sites in heal-symlink-containment.vitest.ts (lines 138 to 636) pass path.join(root, 'specs') or a specs variable, and none passes a link. This is an inference from the call sites, not a run. A linked root with no folder argument was not exercised.
+9. Catalog page. feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md was last modified at 14:07:51. Its sentence on a linked --roots value was not checked in this pass.

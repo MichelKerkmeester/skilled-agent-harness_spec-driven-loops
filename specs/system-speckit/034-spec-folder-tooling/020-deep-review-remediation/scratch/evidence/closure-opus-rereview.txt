@@ -1,0 +1,18 @@
+CLOSURE EVIDENCE: second Opus re-review of the post-review delta, with the checks made against it in this pass
+
+Provenance. The verdict, nits and findings are the orchestrator's transcription of the coordinator's message for this pass. The reviewer's own report text is not on disk. The Checks column records what this pass read in the files and logs. It confirms or does not confirm each claim, and it does not repeat the reviewer's judgment.
+
+Verdict. CHK-013 (pattern and test-style review) is ticked on the reviewer's verdict that the new tests reuse each file's helpers and patterns.
+
+| Item | Claim | Check made in this pass | Result |
+|------|-------|-------------------------|--------|
+| Verdict | New tests reuse each file's helpers and patterns | heal-symlink-containment.vitest.ts defines afterEach (line 20), makeRoot (line 24), digest (line 30) and levelTwoSpecAnchors (line 36) in the file itself. The neighbor comparison across the other suites was not repeated | The helpers exist as the verdict describes. The style comparison rests on the reviewer |
+| Nit 1 | Misplaced comment and duplicate array in heal-symlink-containment.vitest.ts fixed | No pre-fix copy is kept, so the fix cannot be diffed | Not confirmed by content |
+| Nit 2 | runIn folded into run in repair-derived.vitest.ts | grep for runIn in that file returns 0 matches | Confirmed |
+| P1-1 | The healer judged --folder containment by path text, so aliases, case variants and relative spellings passed with no --roots. Fixed | heal-spec-docs.cjs line 799 returns the identity string from stat dev and ino. folderRefusal (line 902) judges the folder by identity. Named tests at heal-symlink-containment.vitest.ts lines 398, 422, 450, 476, 505, 547 and 574 pass no --roots. r1/red.log (13:49:13) shows 9 failed of 25. r1/final5.log (14:08:50) shows 132 passed of 132 across 7 files, with no skipped count | Confirmed. See closure-healer-fix-check.txt |
+| P1-2 | Steps in one job share .git/config, GITHUB_ENV and processes, so the push token was reachable from earlier steps. Fixed by a separate push job | trigger-index-rebuild.yml has two jobs: rebuild (line 26, contents read at line 39) and push (line 178, needs rebuild at line 185, contents write at line 192). The sharing mechanism belongs to GitHub Actions and no run in this pass exercised it | The job structure is confirmed. The mechanism is not tested here. See closure-push-job-check.txt |
+| P2 | Race classification was unanchored | The anchored pattern is at line 317. Tests at lines 847, 935, 941 and 947 cover the classification order and the non-race rejections. Mutant m5 (race pattern unanchored) fails 2 of 60 (r2/mut-m5-race-pattern-unanchored.log) | Confirmed |
+| P2 | --folder or --roots with no value crashed | Replayed in this pass. Both print "requires a value" with usage and exit 2 (r1/replay-usage/folder-no-value.out and roots-no-value.out). Named tests at heal-symlink-containment.vitest.ts lines 606 to 642 | Confirmed |
+| P2 | Frontmatter test comment stale | frontmatter-template-literals.vitest.ts has mtime 13:46:24. No pre-fix copy is kept, so the comment text was not diffed | Not confirmed by content |
+
+Scope of this record. Rows marked not confirmed rest on the fix wave's own record. This record does not change CHK-013 beyond the reviewer's verdict.

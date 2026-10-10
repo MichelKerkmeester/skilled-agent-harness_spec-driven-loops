@@ -1,0 +1,30 @@
+CLOSURE EVIDENCE: fallback cases for CHK-FIX-004 (coordinator decision D5)
+
+Definition used in this map. A fallback is a path the code takes when its primary resolution is absent or fails, such as a default root, a default specs root or a default input. A fallback case is adversarial when a link or a dangling target sits on that fallback path and the test asserts that nothing is written through it. A parity case that only checks that the default root resolves the same packets is not adversarial.
+
+Lane A, archive.sh. Fallback: the specs root falls back to "$PROJECT_ROOT/specs" when resolve_existing_dir fails (archive.sh, mutant F).
+  Cases (archive-track.vitest.ts, both names checked with rg -F):
+    refuses when the specs root is a dangling link, and creates nothing through it
+    refuses in a copy outside any repository whose derived root has no specs folder
+  Mutant F removes the fallback and both cases fail (S/k2a/red-F.txt, 2 of 45).
+  Verdict: MEETS.
+
+Lane B, heal-spec-docs.cjs. Fallback: with no --roots, the specs root falls back to the default specs root.
+  Case (heal-target-parity.vitest.ts): each entrypoint defaults the specs root to the working directory.
+  This case has no link and no dangling target. It checks that the default root resolves the same packets. It is not adversarial.
+  No case puts a link or a dangling target on the default root. Matrix row B-11 (linked parent outside the default roots) is MISSING.
+  Verdict: DOES NOT MEET.
+
+Lane C, generate-leaf-manifest.cjs. Fallback: the default root (references) applies when no declared scope exists.
+  Case (generate-leaf-manifest-scopes.test.cjs): testLinkedDefaultRootOutsideSkillFails. A link on the default root that points outside the skill is refused (matrix C-04).
+  Verdict: MEETS.
+  Note. The D5 candidate testLinkedRootInsideSkillStillWalks (C-03) is an inside-root case that walks the link. It is not a fallback case, so it is not the one used here.
+
+Lane F, upgrade-legacy.mjs. Fallback candidates were checked.
+  Case: "fills from the class defaults when a template cannot be read" (upgrade-legacy.vitest.ts). The fallback is for a template read, and no link or path is involved, so it is not a path-containment fallback.
+  The D5 candidate U-03 ("still repairs a link whose target stays inside the packet") is an inside-root case, not a fallback.
+  No case puts a link or a dangling target on a default root or a default --roots.
+  Verdict: DOES NOT MEET.
+
+Result. Lanes A and C have an adversarial fallback case. Lanes B and F do not. The coordinator's rule was to tick CHK-FIX-004 only when all four lanes have one, so CHK-FIX-004 stays open.
+What the operator needs to decide. A fallback path for lane B (for example, a link or dangling target on the default specs root with no --roots) and for lane F (for example, a link on the default --roots or the default packet discovery), with a case for each, or a decision that the parity case counts as the fallback for lane B.

@@ -1,0 +1,10 @@
+Child-dispatch pre-resolution (REQ-010) grep, HEAD against the working tree.
+Count of AI_SESSION_CHILD per file: HEAD versus now
+.skilled/skills/system-spec-kit/SKILL.md HEAD=0 now=5
+.hermes/skills/system-spec-kit/SKILL.md HEAD=0 now=5
+.skilled/commands/speckit/assets/speckit-implement.yaml HEAD=0 now=1
+
+child_dispatch and checkpoint_options counts in the speckit yamls (now):
+.skilled/commands/speckit/assets/speckit-plan.yaml child_dispatch=3 checkpoint_options=1 child_dispatch_checkpoints=1
+.skilled/commands/speckit/assets/speckit-implement.yaml child_dispatch=16 checkpoint_options=1 child_dispatch_checkpoints=1
+.skilled/commands/speckit/assets/speckit-complete.yaml child_dispatch=6 checkpoint_options=1 child_dispatch_checkpoints=1

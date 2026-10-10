@@ -1,0 +1,30 @@
+✔ the check runs both compatibility commands read-only (0.990167ms)
+✔ a v3 checkout reports layout v3 and its era signal counts (281.3755ms)
+✔ a v4 repository reports layout v4 and no move (70.060334ms)
+✔ a partial move reports both roots (74.931167ms)
+✔ every layout state has a check route and a presentation value (0.173583ms)
+✔ the compatibility commands write nothing (694.100375ms)
+✔ the compat action previews before it asks and asks before it writes (0.339625ms)
+✔ the compat action runs the layout map and the upgrade commands (0.064625ms)
+✔ the compat move log lives in the git directory (0.063416ms)
+✔ the router documents the compat path with declared flags only (0.219208ms)
+✔ the planned steps move a classic v3 checkout to v4 (124.596833ms)
+✔ the planned steps finish a partial move (104.025042ms)
+✔ a dirty spec root blocks the move before any step runs (120.088333ms)
+✔ a tree dirtied after the move approval is refused before the move runs (122.626958ms)
+✔ an interrupted classic move resumes from the recomputed map (92.4635ms)
+✔ an interrupted move that stopped before the legacy link is not treated as finished (117.748167ms)
+✔ an interrupted partial move names the track already moved (87.014ms)
+✔ collisions stop the move and list both paths with their reasons (89.468916ms)
+✔ a move step that cannot complete stops the run and reports the failed step (90.702333ms)
+✔ failed packets are parsed from the lines upgrade-legacy prints (0.509083ms)
+✔ units that still need their release update block the action (0.167459ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2212.061792
+rc=0

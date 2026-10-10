@@ -1,0 +1,137 @@
+DOC-381 MANUAL RUN, RERUN ON FRESH FIXTURES (CHK-021)
+=====================================================
+
+Date: 2026-10-10. Log times are UTC. Times in the checkout's file listings are local time (UTC plus 2 hours).
+
+VERDICT: PASS. Steps 1 to 7 pass on fresh fixtures with the amended playbook text.
+CHK-021 is ticked in tasks.md. The failed first run stays as history in
+doc-381-manual-run.txt. This file is the rerun.
+
+1. WHAT WAS RUN
+---------------
+Playbook: .skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-compat.md
+Amendments in effect for this run:
+- Step 1 builds the fixture runtime with `npm run build` before the baseline commit. A dist time refresh stays as a fallback that needs a stated reason.
+- Evidence lists the build exit code and the checkout guard output.
+- Step 8 also deletes the `.marker` files.
+- Failure Triage has a row for a packet listed as `unreadable` with `exit 3: Run: cd .skilled/skills/system-spec-kit/runtime && npm run build`.
+
+Method: phases 2 to 8 of doctor-update-compat-action.yaml were played by hand by one agent, with each fixture as the repository. Phase 1 was skipped as the scenario says. The approvals were answered by that agent as the scenario directs. The /doctor:update slash command was not run.
+
+Status lines: STATUS=DRY_RUN, STATUS=BLOCKED, STATUS=DECLINED and the preview wording are the phase text rendered by hand. All other output below is the output of git, node or upgrade-legacy.mjs, or a line written to the move log.
+
+Checkout: worktree HEAD 4669db65226d82625f6105073fc8891229bcc22b. The checkout's git status had 70 lines at preflight. No commit, stage, stash or push was run.
+
+Fixtures lived under scratchpad/fd and were deleted by exact path at closure (section 8).
+
+2. SOURCE HASHES AND BUILD (AMENDED STEP 1)
+-------------------------------------------
+Five files were hashed with sha256: runtime/cli/spec/upgrade-legacy.mjs, runtime/cli/spec/validate.sh, runtime/cli/lib/dist-freshness.cjs, runtime/scripts/finalize-dist.mjs and runtime/package.json.
+
+- Checkout, before any fixture existed: scratchpad/doc381-r2-source-hashes-preflight.txt
+- Fixture 1 copy: 5 of 5 identical to the preflight (scratchpad/doc381-r2-fx1-copy-hashes.txt)
+- Fixture 2 copy: 5 of 5 identical to the preflight (scratchpad/doc381-r2-fx2-copy-hashes.txt)
+
+Builds, both with `npm run build` in the fixture's runtime folder:
+- Fixture 1: build exit 0. Freshness check `dist-freshness.cjs check --package system-spec-kit/runtime --entry validation-orchestrator`: "@spec-kit/runtime dist is fresh", exit 0. Build log: scratchpad/doc381-r2-fx1-build.txt
+- Fixture 2: build exit 0. Freshness check exit 0. Build log: scratchpad/doc381-r2-fx2-build.txt
+
+Feasibility: the build ran in the fixture with the copy's linked node_modules and exited 0. A probe in a scratch folder confirmed that `npm run` puts ancestor `node_modules/.bin` folders on PATH. The hoisted `tsc` sits in such an ancestor folder, so it is found ahead of any global `tsc`. The build log does not name the binary it used, so that last step is inferred from PATH order. The dist time refresh was not used, because the build was feasible.
+
+Checkout guard: `find` over the checkout's runtime/dist and shared/dist, for files newer than the fixture's marker, run after each build. Result: 0 files for fixture 1, 0 for fixture 2, and 0 for the diagnostic build in section 7.
+
+3. STEP RESULTS
+---------------
+| Step | What ran | Exit and key output | Result |
+|------|----------|---------------------|--------|
+| 1 | copy, link, npm run build, guard, baseline commit, legacy packet, specs link, classic commit, --layout-map | build exit 0. guard 0 files. fresh, exit 0. state v3 with steps remove-specs-link, move-tree, link-legacy-path. git status 0 lines | PASS |
+| 2 | dry run: --layout-map, dirty check, log check | layout-map exit 0. dirty lines 0. log absent. git status 0 lines. STATUS=DRY_RUN | PASS |
+| 3 | append one line to the packet plan.md, dirty check, log check, revert | dirty lines 1 (` M .opencode/specs/legacy-track/001-old-packet/plan.md`). STATUS=BLOCKED. log absent. revert ok. git status 0 lines | PASS |
+| 4 | move approved with yes. remove-specs-link and move-tree run, then stop | rm exit 0. git mv exit 0. legacy path absent. specs is a directory. run 1 has 5 log lines, all valid JSON, no move-complete | PASS |
+| 5 | resume in a new shell: read the log, recompute the layout, run the owed step | recovered run done = remove-specs-link, move-tree. layout state v4 with 0 steps. ln exit 0. readlink .opencode/specs = ../specs. post-check layout v4 with 0 steps | PASS |
+| 6 | upgrade preview, upgrade approved with yes, upgrade-legacy --apply | preview exit 1, packet failing (not unreadable). apply exit 0. passing before=0/1 after=1/1. upgrade-done, run-complete. STATUS=UPGRADED. log has two runs, the first without run-complete and the second ending with run-complete | PASS |
+| 7 | decline path on fixture 2: build, move approved with yes, upgrade declined with no | layout state v3 with 3 steps. move steps exit 0. readlink ../specs. preview exit 1, packet failing. STATUS=DECLINED. log move-complete then run-complete. upgrade-started count 0. manifest absent. moved tree in place | PASS |
+
+4. KEY RECEIPTS
+---------------
+4.1 Step 1 layout map, fixture 1 (scratchpad/doc381-r2-fx1-layout-map.json)
+    state v3. moves .opencode/specs to specs. steps remove-specs-link (rm -f specs), move-tree (git mv .opencode/specs specs), link-legacy-path (ln -s ../specs .opencode/specs).
+
+4.2 Step 4 move log, run 1 (fixture 1)
+    {"run":"doc381-r2-fx1-run1-1791618338","event":"run-started","step":null,"argv":null,"at":"2026-10-10T07:45:39.001Z"}
+    {"run":"doc381-r2-fx1-run1-1791618338","event":"step-started","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:45:39.037Z"}
+    {"run":"doc381-r2-fx1-run1-1791618338","event":"step-done","step":"remove-specs-link","argv":["rm","-f","specs"],"at":"2026-10-10T07:45:39.078Z"}
+    {"run":"doc381-r2-fx1-run1-1791618338","event":"step-started","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:45:39.114Z"}
+    {"run":"doc381-r2-fx1-run1-1791618338","event":"step-done","step":"move-tree","argv":["git","mv",".opencode/specs","specs"],"at":"2026-10-10T07:45:39.200Z"}
+
+4.3 Step 5 recovery
+    newest run doc381-r2-fx1-run1-1791618338: done = remove-specs-link, move-tree. complete = false.
+    Remaining owed step: link-legacy-path.
+
+4.4 Step 6 upgrade preview (fixture 1, no flags, exit 1)
+    failing specs/legacy-track/001-old-packet: ANCHORS_VALID, FRONTMATTER_VALID, GREP_CONVENTION, TEMPLATE_SOURCE
+    passing=0/1
+
+4.5 Step 6 apply (fixture 1, --apply, exit 0)
+    plan changes=1
+    step fill-frontmatter: ok
+    step anchor-repair: ok (1 packets, 0 changed)
+    step heal-spec-docs: ok (1 packets)
+    step lane-modes: ok (1 packets, 5 refusals)
+    step repair-derived: ok
+    step migrate-generated-json: ok
+    recorded specs/legacy-track/001-old-packet (9 findings, 5 refusals)
+    passing before=0/1 after=1/1
+    stderr: empty
+
+4.6 Step 6 move log, fixture 1 (run 2 closes the log)
+    {"run":"doc381-r2-fx1-run2-1791618358","event":"run-started", ...}
+    {"run":"doc381-r2-fx1-run2-1791618358","event":"step-started","step":"link-legacy-path", ...}
+    {"run":"doc381-r2-fx1-run2-1791618358","event":"step-done","step":"link-legacy-path", ...}
+    {"run":"doc381-r2-fx1-run2-1791618358","event":"move-complete", ...}
+    {"run":"doc381-r2-fx1-run2-1791618358","event":"upgrade-started", ...}
+    {"run":"doc381-r2-fx1-run2-1791618358","event":"upgrade-done", ...}
+    {"run":"doc381-r2-fx1-run2-1791618358","event":"run-complete", ...}
+    Structure check: runs = 2. Run 1 has no run-complete. Run 2 ends with run-complete.
+
+4.7 Step 7 move log, fixture 2 (decline path)
+    run-started, step-started and step-done for remove-specs-link, move-tree and link-legacy-path, then move-complete, then run-complete.
+    upgrade-started count: 0. Manifest: absent.
+    Run id doc381-r2-fx2-run1-1791618464.
+
+4.8 Step 3 refusal check, fixture 1
+    dirty-check output: ` M .opencode/specs/legacy-track/001-old-packet/plan.md`
+    log after refusal: absent
+
+5. UNSTAGED FILES AFTER THE SUCCESSFUL APPLY (STEP 6)
+-----------------------------------------------------
+The failed run had a check that unstaged packet edits must be none. That check belongs to a failed apply. On this successful apply, `git diff --name-only` in fixture 1 lists three packet files, which are the repairs the apply wrote: specs/legacy-track/001-old-packet/plan.md, spec.md and tasks.md. The scenario's Pass criteria do not require zero unstaged edits.
+
+6. DEVIATIONS AND HARNESS EVENTS (ALL DISCLOSED)
+-----------------------------------------------
+D1. Fixture 1, attempt 1 (doc381-r2-fx1.BH9k2M). The log helper wrote four step names without JSON quotes, so those log lines were not valid JSON. The fixture was deleted by exact path, with its gitconfig, before any result from it was used. Steps 1 to 7 ran again on attempt 2 (doc381-r2-fx1.IEQBw5). Attempt 1 had also run its build and steps 1 to 3 with the same results, and those results are not counted.
+D2. Fixture 2, attempt 1 (doc381-r2-fx2.RjIAWk). The gitignore was written before the build, which is not the amended order. Deleted by exact path. Attempt 2 (doc381-r2-fx2.6VZH0D) followed the amended order.
+D3. A multi-line inline zsh command in step 5 failed to parse, so no command in it ran. The state was checked before the rerun: 5 log lines, legacy path absent.
+D4. A bash script used an unset variable on its first line, so no command in it ran. It was fixed and rerun. The state was checked first.
+D5. Outside the fixtures, in this turn's test runs, two temporary files were written under /tmp and $TMPDIR (a stray stdout redirect and a TAP log). Both were deleted by exact path.
+D6. macOS has no `timeout` command. The first run-all attempt exited 127 before any suite ran. It was rerun without the wrapper: exit 0, 7 suites passed, 0 failed.
+D7. The first comparison of copy hashes against the preflight differed only in the path prefix of each line. The hash values were identical, and the comparison was redone on the hash column alone.
+D8. The status lines are hand-rendered (section 1).
+D9. A diagnostic fixture (doc381-diag-fx3.BGiOsF) was used in section 7. It is not a scenario fixture and is not counted.
+
+7. CHECKOUT ISOLATION
+---------------------
+Result: no scenario command wrote into the checkout that this run can attribute. One checkout write is unexplained and is recorded here without a resolution.
+
+- Checkout dist guard: 0 files for both scenario builds and for the diagnostic build.
+- Unexplained write: two files in the checkout's runtime/cli/dist, .dist-freshness-system-spec-kit-runtime-cli-c447a6234be1.json and spec/.dist-freshness-system-spec-kit-runtime-cli-263200a98306.json, have mtime 09:45:24 local. That is after fixture 1's build finished (09:45:19) and before its baseline commit (09:45:31). No dist JavaScript in the checkout changed after the preflight, so no tsc output was written there.
+- Replays that did not reproduce it: the layout map and the freshness check on fixture 2 (no change). a full copy, link, build and freshness check on the diagnostic fixture 3 (no change, guard 0 files). fixture 2's own build at 09:47:28 (no change).
+- Writer: UNKNOWN. The records carry origin "build", which matches a record-build run of the checkout's runtime/cli package. None of the scenario commands runs that package's build. This is not proven.
+- Context: other writers were active in the checkout during this run. A background agent (020 fix B1) was still running at the start of the run. Other checkout files changed after the preflight, 16 of them besides the two records above: changelog files, feature-catalog tooling docs, and advisor database and state files. Those paths sit outside this run's commands. That is inferred from the paths, not from a per-file diff.
+- Symlink exposure: each fixture's node_modules is a symlink into the checkout's node_modules, and that folder's @spec-kit/cli, @spec-kit/runtime and @spec-kit/shared entries are relative symlinks into the checkout's packages. Code loaded through @spec-kit from inside a fixture would run checkout code, and a freshness write from that code would land in the checkout. The replays above did not show this, and no scenario step loads @spec-kit code, but this was not tested exhaustively. The guard covered runtime/dist and shared/dist only, not runtime/cli/dist, which is why the two records above were not caught by it.
+
+8. CLOSURE
+----------
+Deleted by exact path, with the .gitconfig and .marker files of each: doc381-r2-fx1.IEQBw5, doc381-r2-fx2.6VZH0D, doc381-diag-fx3.BGiOsF. Earlier attempts doc381-r2-fx1.BH9k2M and doc381-r2-fx2.RjIAWk were deleted earlier, as D1 and D2 state. Afterwards scratchpad/fd held 0 entries, and GIT_CONFIG_GLOBAL was unset.
+
+Receipt files kept in the session scratchpad: doc381-r2-*.txt and doc381-r2-*.json, plus the preflight and copy hash files. The helper scripts used to drive the run were deleted by exact path.

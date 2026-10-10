@@ -1,0 +1,15 @@
+CLOSURE EVIDENCE copy: green run of trigger-index-rebuild-workflow.vitest.ts, default bash on PATH (GNU bash 3.2.57 on this machine)
+Source: scratchpad k2c/green-default.txt, unedited. Result: 37 passed, 1 skipped, of 38. The log does not print the bash binary. closure-workflow-bash32-recheck.txt re-runs the file under 3.2.57 with the version printed.
+
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+
+ Test Files  1 passed (1)
+      Tests  37 passed | 1 skipped (38)
+   Start at  12:32:44
+   Duration  11.74s (transform 35ms, setup 27ms, import 29ms, tests 11.57s, environment 0ms)
+

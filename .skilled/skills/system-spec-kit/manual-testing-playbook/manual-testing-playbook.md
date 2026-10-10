@@ -192,6 +192,7 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 | Playbook ID | Scenario | Scenario File | Catalog Entry |
 |---|---|---|---|
 | M-013 | AC_COVERAGE single-source ratio | [M-013](tooling-and-scripts/ac-coverage-single-source-ratio.md) | — |
+| 475 | ANCHORS_VALID nested anchor | [475](tooling-and-scripts/anchors-valid-nested-anchor.md) | [anchor-integrity-and-nesting-check](../feature-catalog/tooling-and-scripts/anchor-integrity-and-nesting-check.md) |
 | 206 | Architecture boundary enforcement | [206](tooling-and-scripts/architecture-boundary-enforcement.md) | [architecture-boundary-enforcement](../feature-catalog/tooling-and-scripts/architecture-boundary-enforcement.md) |
 | 456 | Canonical-first spec-root resolution | [456](tooling-and-scripts/canonical-first-spec-root-resolution.md) | [canonical-first-spec-root-resolution](../feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md) |
 | 449 | CLI compact list-tools and completion generation | [449](tooling-and-scripts/cli-compact-and-completion.md) | [skill-advisor-cli-daemon-backed-surface](../feature-catalog/tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md) |
@@ -202,6 +203,9 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 | 233 | Completion verification workflow | [233](tooling-and-scripts/completion-verification-workflow.md) | [completion-verification-workflow](../feature-catalog/tooling-and-scripts/completion-verification-workflow.md) |
 | 240 | Core workflow infrastructure | [240](tooling-and-scripts/core-workflow-infrastructure.md) | [core-workflow-infrastructure](../feature-catalog/tooling-and-scripts/core-workflow-infrastructure.md) |
 | DBG-SCAF-001 | Debug-delegation scaffold generator | [DBG-SCAF-001](tooling-and-scripts/debug-delegation-scaffold-generator.md) | [debug-delegation-scaffold-generator](../feature-catalog/tooling-and-scripts/debug-delegation-scaffold-generator.md) |
+| 469 | Heal spec-docs anchor repair dry run | [469](tooling-and-scripts/heal-spec-docs-anchor-repair-dry-run.md) | [heal-spec-docs-anchor-repair](../feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md) |
+| 470 | Heal spec-docs anchor repair apply | [470](tooling-and-scripts/heal-spec-docs-anchor-repair-apply.md) | [heal-spec-docs-anchor-repair](../feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md) |
+| 471 | Heal spec-docs lane modes | [471](tooling-and-scripts/heal-spec-docs-lane-modes.md) | [heal-spec-docs-lane-modes](../feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md) |
 | 153 | JSON mode structured summary hardening | [153](tooling-and-scripts/json-mode-hybrid-enrichment.md) | [json-mode-hybrid-enrichment](../feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md) |
 | 154 | JSON-primary deprecation posture | [154](tooling-and-scripts/json-primary-deprecation-posture.md) | [json-primary-deprecation-posture](../feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md) |
 | M-004 | Main-agent review and verdict handoff | [M-004](tooling-and-scripts/main-agent-review-and-verdict-handoff.md) | — |
@@ -217,6 +221,7 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 | 236 | Phase-system knowledge node | [236](tooling-and-scripts/phase-system-knowledge-node.md) | [phase-system-knowledge-node](../feature-catalog/tooling-and-scripts/phase-system-knowledge-node.md) |
 | 062 | Progressive validation for spec documents | [062](tooling-and-scripts/progressive-validation-for-spec-documents-pi-b2.md) | [progressive-validation-for-spec-documents](../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md) |
 | PHASE-003 | Recursive phase validation | [PHASE-003](tooling-and-scripts/recursive-phase-validation.md) | [spec-validation-rule-engine](../feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md) |
+| 472 | Repository era report | [472](tooling-and-scripts/repo-era-report.md) | [repo-era-report](../feature-catalog/tooling-and-scripts/repo-era-report.md) |
 | 271 | Research metadata backfill | [271](tooling-and-scripts/research-metadata-backfill.md) | [research-metadata-backfill](../feature-catalog/tooling-and-scripts/research-metadata-backfill.md) |
 | M-011 | Review packet type marker-gated validation | [M-011](tooling-and-scripts/review-packet-type-marker-gated-validation.md) | [spec-validation-rule-engine](../feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md) |
 | M-009 | Runtime family count census | [M-009](tooling-and-scripts/runtime-family-count-census.md) | — |
@@ -239,7 +244,12 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 | 208 | Template compliance contract blocks non-compliant | [208](tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md) | [template-compliance-contract-enforcement](../feature-catalog/tooling-and-scripts/template-compliance-contract-enforcement.md) |
 | 181 | Template compliance contract produces compliant | [181](tooling-and-scripts/template-compliance-contract-enforcement-produces-compliant.md) | [template-compliance-contract-enforcement](../feature-catalog/tooling-and-scripts/template-compliance-contract-enforcement.md) |
 | 244 | Template composition system | [244](tooling-and-scripts/template-composition-system.md) | [template-composition-system](../feature-catalog/tooling-and-scripts/template-composition-system.md) |
+| 473 | Template phrase lint blocked commit | [473](tooling-and-scripts/template-phrase-lint-blocked-commit.md) | [template-phrase-lint-commit-gate](../feature-catalog/tooling-and-scripts/template-phrase-lint-commit-gate.md) |
+| 474 | Template phrase lint bypass | [474](tooling-and-scripts/template-phrase-lint-bypass.md) | [template-phrase-lint-commit-gate](../feature-catalog/tooling-and-scripts/template-phrase-lint-commit-gate.md) |
 | 061 | Tree thinning for spec folder consolidation | [061](tooling-and-scripts/tree-thinning-for-spec-folder-consolidation-pi-b1.md) | [tree-thinning-for-spec-folder-consolidation](../feature-catalog/tooling-and-scripts/tree-thinning-for-spec-folder-consolidation.md) |
+| 467 | Upgrade-legacy apply with manifest | [467](tooling-and-scripts/upgrade-legacy-apply-manifest.md) | [upgrade-legacy-reversibility-manifest](../feature-catalog/tooling-and-scripts/upgrade-legacy-reversibility-manifest.md) |
+| 466 | Upgrade-legacy dry run | [466](tooling-and-scripts/upgrade-legacy-dry-run.md) | [upgrade-legacy-downgrades-report](../feature-catalog/tooling-and-scripts/upgrade-legacy-downgrades-report.md) |
+| 468 | Upgrade-legacy refusal without git | [468](tooling-and-scripts/upgrade-legacy-refusal-without-git.md) | [upgrade-legacy-reversibility-manifest](../feature-catalog/tooling-and-scripts/upgrade-legacy-reversibility-manifest.md) |
 | 455 | validate.sh dist-freshness backstop | [455](tooling-and-scripts/validate-sh-dist-freshness-backstop.md) | [dist-freshness-enforcement](../feature-catalog/tooling-and-scripts/dist-freshness-enforcement.md) |
 
 ### 7.2 Doctor Commands
@@ -262,6 +272,7 @@ Category notes and the retired ID ranges: [`doctor-commands/README.md`](doctor-c
 | DOC-360 | Doctor update rollback | [DOC-360](doctor-commands/doctor-update-rollback.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
 | DOC-361 | Doctor update record-base | [DOC-361](doctor-commands/doctor-update-record-base.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
 | DOC-379 | Doctor update test environment | [DOC-379](doctor-commands/doctor-update-test-environment.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-381 | Doctor update compat | [DOC-381](doctor-commands/doctor-update-compat.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
 
 ### 7.3 Spec-Doc Quality and Metadata
 

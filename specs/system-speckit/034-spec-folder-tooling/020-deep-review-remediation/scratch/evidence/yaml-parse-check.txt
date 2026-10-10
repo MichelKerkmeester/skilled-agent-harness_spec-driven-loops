@@ -1,0 +1,13 @@
+YAML parse check for the changed YAML files (duplicate keys and quoting), with js-yaml at the final working tree.
+Negative control: a duplicate key must be reported.
+  negative control reported -> duplicated mapping key (2:1)
+Changed files:
+  OK   .github/workflows/changed-packet-validation.yml
+  OK   .github/workflows/playbook-operator-contract.yml
+  OK   .github/workflows/strict-pass-freshness-report.yml
+  OK   .github/workflows/trigger-index-rebuild.yml
+  OK   .skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml
+  OK   .skilled/commands/doctor/assets/doctor-update-compat-action.yaml
+  OK   .skilled/commands/speckit/assets/speckit-complete.yaml
+  OK   .skilled/commands/speckit/assets/speckit-implement.yaml
+  OK   .skilled/commands/speckit/assets/speckit-plan.yaml

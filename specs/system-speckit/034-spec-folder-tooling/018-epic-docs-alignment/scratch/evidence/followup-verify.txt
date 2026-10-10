@@ -1,0 +1,19 @@
+## lib/README retrofit links
+.skilled/skills/system-spec-kit/runtime/lib/README.md
+.skilled/skills/system-spec-kit/runtime/hooks/lib/README.md
+.skilled/skills/system-spec-kit/runtime/hooks/pi/lib/README.md
+.skilled/skills/system-spec-kit/runtime/cli/lib/README.md
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/README.md
+ugrep: warning: .skilled/skills/system-spec-kit/runtime/lib/README.md
+.skilled/skills/system-spec-kit/runtime/hooks/lib/README.md
+.skilled/skills/system-spec-kit/runtime/hooks/pi/lib/README.md
+.skilled/skills/system-spec-kit/runtime/cli/lib/README.md
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/README.md: No such file or directory
+## ENV-REFERENCE SYSTEM_SPEC_GATE_DISABLED
+76:| `SYSTEM_SPEC_GATE_DISABLED` | unset (enabled) | truthy disable flag | Disables Gate-3 delivery and enforcement. Alias: `SPECKIT_SPEC_GATE_DISABLED`. | `hooks/lib/spec-gate/spec-gate-core.mjs`, `.skilled/plugins/system-spec-gate.js` |
+209:| `SYSTEM_SPEC_GATE_DISABLED` | (unset) | flag | When set, the gate is a complete fail-open no-op: no question, no denial, no state writes. | `hooks/lib/spec-gate/spec-gate-core.mjs` |
+## spec README completedAt
+0
+## check-markdown-links scope note
+17:// on NEW breakage — it deliberately does NOT skip whole template directories.
+rc=0

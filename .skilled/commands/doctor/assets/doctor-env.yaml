@@ -36,9 +36,10 @@ inventory_source:
     modern: "| Variable | Default | Type | Description | Source |"
     legacy: "| flag name | default state (ON/OFF) | governing env var | which automation it gates | runtime read site |"
   extraction: |
-    Read the complete reference at invocation time. Walk the document in order and retain the current Markdown heading path for each table row. Parse only tables whose header matches one of the two supported shapes, case-insensitively after trimming cell whitespace. Skip separator rows and rows with the wrong number of cells.
-    For a modern row, map the five cells directly to variable name(s), default, type, description, and documented source. For a legacy row, map flag name to variable name(s), default state to default, type to boolean, which automation it gates to description, and combine governing env var plus runtime read site as documented source.
+    Read the complete reference at invocation time. Walk the document in order and retain the current Markdown heading path for each table row. Parse only tables whose header matches one of the two supported shapes, case-insensitively after trimming cell whitespace. Skip separator rows. A data row with the wrong number of cells is malformed.
+    For a modern row, map the five cells directly to variable name(s), default, type, description, and documented source. For a legacy row, the flag name cell is a label: map governing env var to variable name(s), default state (ON/OFF) to default, which automation it gates to description and runtime read site to documented source. Its type is boolean when the default starts with ON or OFF, and string otherwise.
     Extract every shell-style variable identifier from the variable-name cell. A cell may name multiple switches separated by a slash or comma. Preserve the row's heading path and metadata for each extracted name. Deduplicate by exact variable name while retaining all documented occurrences. Report the count of unique variables after expansion and deduplication.
+    Before comparing duplicates, read a boolean default by its leading word: ON, true and 1 are one value, OFF, false and 0 are one value, and a trailing parenthetical is ignored.
     If a supported header or nonempty data row is malformed, or duplicate occurrences give one variable conflicting type/default metadata, stop with the presentation contract's safe parse error. Never guess missing metadata or silently omit a malformed switch row. A clean reference with no supported data rows is also a parse error.
   output_fields:
     - heading path

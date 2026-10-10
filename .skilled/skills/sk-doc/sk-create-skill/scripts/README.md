@@ -24,7 +24,7 @@ trigger_phrases:
 | `ci-leaf-manifest-freshness.cjs` | Checks committed leaf manifests for byte drift. |
 | `ci-skill-derived-freshness.cjs` | Checks generated skill-derived files for freshness. |
 | `ci-skill-root-metadata.cjs` | Enforces skill-root metadata class rules. |
-| `generate-leaf-manifest.cjs` | Generates or checks a hub leaf manifest. |
+| `generate-leaf-manifest.cjs` | Generates or checks a hub leaf manifest. A starting root or declared scope that resolves outside the skill fails with `LEAF_SYMLINK_OUT_OF_ROOT`, and so does a leaf link that escapes the skill. A link that stays inside the skill is listed under its own path. `--write` refuses a `leaf-manifest.json` that is a link, with `symbolic link, not followed` in the error and a non-zero exit, and otherwise writes the manifest through a temporary sibling renamed over it. |
 | `init_skill.py` | Scaffolds a skill directory. |
 | `package_skill.py` | Validates and packages a skill directory. |
 | `regenerate-skill-derived.cjs` | Regenerates derived skill data. |

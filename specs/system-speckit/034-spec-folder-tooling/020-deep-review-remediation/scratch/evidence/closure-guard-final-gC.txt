@@ -1,0 +1,53 @@
+CLOSURE EVIDENCE: lane gC, guard coverage for generate-leaf-manifest.cjs (rows C2, C3, C4, C5)
+
+Production file: .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs
+Test file: .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+Scratch logs and copies: every gC/ path below is under /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gC/ (outside the repository).
+
+Method
+1. Each guard was read in the current production file. Line numbers in closure-guard-red-map.txt and closure-test-matrix-rationale.txt were used only as hints.
+2. The control and every mutant ran in scratch copies of the whole sk-create-skill scripts folder, because the test loads the generator and its fixtures relative to its own folder. The repository was never mutated. Each mutant was applied by a script that refuses unless the target text occurs exactly once.
+3. Each copy was run two ways. (a) The test file as written, run with node. It stops at the first failing case and names it in the stack. (b) A per-case harness generated from the same test file. It calls each case inside a wrapper, so every case reports PASS or FAIL. The case bodies are unchanged. The harness gives the failed/total counts.
+4. Generator check. git diff --stat on generate-leaf-manifest.cjs before the first mutant and after the last mutant gave the same output: 1 file changed, 70 insertions(+), 1 deletion(-). SHA-256 before and after: 340a8ccddff0e52a40114bc018073891731fc8bf112e7be1e4a2facbe322aa4f.
+
+Test file change
+Two cases were added to the repository test file, and both are in its run block: testLinkedPacketFolderOutsideSkillFails (line 305) and testCheckOnStaleManifestFails (line 400). The test file already had uncommitted changes from earlier work, and they were kept. The production generator was not edited. SHA-256 of the test file after this lane: f71b58a5da57be59c3b7952b2cc2a28c2b60f13f212e262fc704824dab802800.
+
+Green counts
+- Control, unmodified generator, test file as written: exit 0, and the harness reports 21 of 21 passed (gC/post-ctl-scopes.txt, gC/post-ctl-harness.txt).
+- Repository run of the test file: exit 0 (gC/post-repo-scopes.txt, gC/post-repo-scopes-2.txt). The file has 21 cases. It had 19 before this lane.
+- Repository run of ci-leaf-manifest-freshness.test.cjs: exit 0 (gC/post-repo-ci-freshness.txt). Before the edits it was also exit 0 (gC/base-repo-ci-freshness.txt).
+- Repository run of leaf-resource-contract.test.cjs: exit 0 (gC/post-repo-leaf-contract.txt). Before the edits it was also exit 0 (gC/base-repo-leaf-contract.txt).
+
+ROW C2 / C-07, linked manifest write
+- Guard: generate-leaf-manifest.cjs line 475, the isSymbolicLink(manifestPath) refusal in runWrite. The throw is at line 476.
+- Cases: existing. testLinkedManifestWriteIsRefused (line 344) and testLinkedManifestWriteExitsNonZero (line 359). testDanglingManifestWriteIsRefused (line 372) also fails under the mutant, and it covers C-08.
+- Mutant M-C2-no-manifest-link-guard: line 475 becomes a condition that starts with false and so never refuses.
+- Red logs: gC/post-M-C2-no-manifest-link-guard-scopes.txt (the unmodified run stops at testLinkedManifestWriteIsRefused) and gC/post-M-C2-no-manifest-link-guard-harness.txt, which reports 3 failed of 21. Before this lane, the same mutant gave 3 failed of 19 (gC/pre-M-C2-no-manifest-link-guard-harness.txt).
+- Status: CLOSED.
+
+ROW C3 / C-13, linked packet folder (generate or check), with C-04 and C-05 on the same guard
+- Guard: generate-leaf-manifest.cjs lines 98 to 105, the helper assertStartInsideSkill. It is called at line 119 in walkLeafFiles, before readdirSync at line 125.
+- Cases: new testLinkedPacketFolderOutsideSkillFails (line 305) covers C-13. The packet folder is a link to an outside directory. The generate path (buildManifestBytes) must throw LEAF_SYMLINK_OUT_OF_ROOT, and the check path (the command line with --check) must exit 2 with the escape message. Existing testLinkedDefaultRootOutsideSkillFails (line 252) covers C-04. Existing testLinkedDeclaredScopeOutsideSkillFails (line 280) covers C-05.
+- Mutant M-C3a-no-start-containment-in-walk: the call at line 119 is replaced by a no-op. Red logs: gC/post-M-C3a-no-start-containment-in-walk-scopes.txt (the unmodified run stops at testLinkedDefaultRootOutsideSkillFails) and gC/post-M-C3a-no-start-containment-in-walk-harness.txt, which reports 3 failed of 21 (C-04, C-05 and C-13).
+- Mutant M-C3b-start-containment-only-when-start-is-link: the call at line 119 runs only when the start itself is a link, judged by lstat. Red logs: gC/post-M-C3b-start-containment-only-when-start-is-link-scopes.txt (stops at testLinkedPacketFolderOutsideSkillFails) and gC/post-M-C3b-start-containment-only-when-start-is-link-harness.txt, which reports 1 failed of 21. Before the new case, this mutant gave 0 failed of 19 (gC/pre-M-C3b-start-containment-only-when-start-is-link-harness.txt), so the new case is what kills it.
+- Status: CLOSED for C-04, C-05 and C-13.
+
+ROW C4, --check comparison
+- Guard: generate-leaf-manifest.cjs line 498, the Buffer.compare equality branch in runCheck. The OK branch returns 0 at line 500, and the stale branch returns 1 at line 508.
+- Cases: existing testCheckOnUnchangedSkillIsNoOp (line 387) covers the OK branch. New testCheckOnStaleManifestFails (line 400) covers the stale branch. It requires exit 1, the words "is stale" on stderr, and unchanged committed bytes.
+- Mutant M-C4a-check-comparison-inverted: line 498 compares with !== 0. Red logs: gC/post-M-C4a-check-comparison-inverted-scopes.txt (the unmodified run names testCheckOnUnchangedSkillIsNoOp as the first failure) and gC/post-M-C4a-check-comparison-inverted-harness.txt, which reports 2 failed of 21 (testCheckOnUnchangedSkillIsNoOp and testCheckOnStaleManifestFails). This names the failing case, which the earlier log did not.
+- Mutant M-C4b-check-always-fresh: line 498 begins with true, so the check always reports fresh. Red logs: gC/post-M-C4b-check-always-fresh-scopes.txt (stops at testCheckOnStaleManifestFails) and gC/post-M-C4b-check-always-fresh-harness.txt, which reports 1 failed of 21. Before the new case, this mutant gave 0 failed of 19 (gC/pre-M-C4b-check-always-fresh-harness.txt), so the new case is what kills it.
+- Status: CLOSED.
+
+ROW C5 / C-15, linked manifest on the read path (--check)
+- NOT CLOSED. The row cites a read-path guard at lines 474 to 477. Those lines are the write-path refusal in runWrite (line 475). runCheck (lines 490 to 509) has no link check at all. Under the brief, a row whose guard does not behave as the row says is a stop and a report. No case was added, because any case would have to pin either a refusal that the code does not have or a read-through that the row does not describe.
+- Repro, against the unmodified repository generator in scratch folder gC/c5. A leaf-manifest.json symlink points to an outside file whose bytes equal the fresh manifest. --check prints "leaf-manifest.json OK" and exits 0, so it reads the outside file through the link. The same symlink to an outside file with other bytes exits 1 with the stale message. The same symlink under --write exits 2 with "symbolic link, not followed", and the outside file keeps its bytes.
+- Decision needed from the operator: should --check refuse a linked manifest the way --write does? The scripts README (line 27) documents the refusal for --write only. Until that is decided, C-15 stays open, and the red map and the rationale file should stop citing lines 474 to 477 as a read-path guard.
+
+Real defect or evidence error found in this lane
+1. C5: --check follows a linked leaf-manifest.json and reports its content, as described above. This is a production behavior question for the operator.
+2. Evidence error: closure-guard-red-map.txt (C5 entry) and closure-test-matrix-rationale.txt (C-15 entry) cite lines 474 to 477 as a read-path guard. Those lines are the write-path guard. These files were not edited, per the brief.
+
+Rows not closed
+- C5 / C-15, linked manifest on the read path (--check). Reason: no read-path guard exists in the production code, and whether --check should refuse a link is an operator decision. See the ROW C5 section above.

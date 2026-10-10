@@ -201,4 +201,22 @@ describe('applyRecordedFindings', () => {
     expect(entries[0].status).toBe('error');
     expect(entries[0].recorded).toBeUndefined();
   });
+
+  it('refuses a baseline that is a link to a file outside the packet, and says so', () => {
+    const folder = makePacket(false);
+    const outside = fs.mkdtempSync(path.join(os.tmpdir(), 'upgrade-baseline-outside-'));
+    createdRoots.add(outside);
+    const target = path.join(outside, 'recorded.json');
+    fs.writeFileSync(target, baselineJson([{ rule: 'FILE_EXISTS', detail: 'plan.md' }]), 'utf8');
+    fs.symlinkSync(target, path.join(folder, 'upgrade-baseline.json'));
+    const entries = [errorEntry('FILE_EXISTS', ['plan.md'])];
+    applyRecordedFindings(folder, entries);
+    expect(entries[0].status).toBe('error');
+    expect(entries[0].recorded).toBeUndefined();
+    expect(entries[1]).toMatchObject({
+      rule: 'UPGRADE_BASELINE_LINK',
+      status: 'warn',
+      message: 'upgrade-baseline.json is a link, so its findings are not read',
+    });
+  });
 });

@@ -48,9 +48,16 @@
       ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/frontmatter-template-literals.vitest.ts",
+      "lib/frontmatter-migration.ts",
+      "scratch/evidence/frontmatter-template-cache-red-green.txt",
+      "scratch/evidence/frontmatter-template-cache-same-instance-red-green.txt",
+      "dist/lib/frontmatter-migration.js",
+      "tests/test-frontmatter-backfill.js",
+      "scratch/evidence/upgrade-legacy-dry-run-real-corpus.txt",
+      "tests/frontmatter-template-literals.vitest.ts",
       "spec/README.md",
       "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/research.md",
-      "lib/frontmatter-migration.ts",
       "spec/upgrade-legacy.mjs"
     ],
     "entities": [
@@ -109,6 +116,42 @@
         "source": "derived"
       },
       {
+        "name": "frontmatter-template-literals.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/frontmatter-template-literals.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-template-cache-red-green.txt",
+        "kind": "file",
+        "path": "scratch/evidence/frontmatter-template-cache-red-green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-template-cache-same-instance-red-green.txt",
+        "kind": "file",
+        "path": "scratch/evidence/frontmatter-template-cache-same-instance-red-green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-migration.js",
+        "kind": "code",
+        "path": "dist/lib/frontmatter-migration.js",
+        "source": "derived"
+      },
+      {
+        "name": "test-frontmatter-backfill.js",
+        "kind": "code",
+        "path": "tests/test-frontmatter-backfill.js",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy-dry-run-real-corpus.txt",
+        "kind": "file",
+        "path": "scratch/evidence/upgrade-legacy-dry-run-real-corpus.txt",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": "spec/README.md",
@@ -161,47 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Fold",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Consolidation",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 13 used one-off scripts for repairs",
     "created_at": "2026-10-08T04:22:47Z",
-    "last_save_at": "2026-10-09T09:18:59.028Z",
+    "last_save_at": "2026-10-10T09:49:52.275Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e83af37711720853fcd8e326b58bad1f9b659ae847af1803444218c9b813011a",
+    "source_fingerprint": "sha256:8ed53f2037ca1a0298d4071f5409df042101a672283e6fc3f54f3ad08c1212c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f7ba6e86e25727ae5ff7eb9285d8cbde788561f24b9b059a8074649a62cb3f43",
       "plan.md": "43f83efcbb3fff46a231c9a63bf53c9b5fa5c86f82c7d3b924280f8c5bb47535",
-      "tasks.md": "8908c81e6cb86212cbc00a905102be784c9982ce8e3304340e24c2a0165dd60d",
-      "implementation-summary.md": "fba8b27fc7bbe65a723538aa7398da5127af8124928801fab77fe918aa0be68a"
+      "tasks.md": "5b5e782d3f5b5c6cbf84d47234e2921ff05973bb31742e118d68f90f5ff5ae0e",
+      "implementation-summary.md": "a43caccc7e74c538a5886eeaadc141345c1b83d054b6493d36b465c60f72fcf4"
     },
     "last_active_at": null
   }

@@ -1,0 +1,403 @@
+CMD: bash .skilled/commands/doctor/scripts/tests/run-all.sh
+START: 2026-10-09T19:51:35Z
+
+[run-all] ── node:test (15 files)
+✔ a root whose surfaces all mirror the roster passes (133.089083ms)
+✔ a Claude-only agent needs no mirror and is not counted in the roster (36.543125ms)
+✔ an authored surface missing an agent is drift (36.075ms)
+✔ a real file where a symlink belongs is drift (37.105458ms)
+✔ a missing canonical directory is a checker error, exit 2 (35.402709ms)
+✔ an unknown argument is a checker error with usage (27.756ms)
+✔ a broken symlink directly under the devin tree is reported, not a crash (35.290958ms)
+✔ a README beside the authored agents is not an orphan (34.969334ms)
+✔ an unexpected throw is a checker error with exit 2 and a STATUS line (36.063959ms)
+✔ a tree whose catalog and metadata cover every command passes (138.008667ms)
+✔ a row that names its command only by backing file still counts as listed (43.675041ms)
+✔ a missing commands directory is a checker error, exit 2 (30.253208ms)
+✔ deleting a command row is drift even when a longer id contains its text (38.550708ms)
+✔ deleting command rows is drift even when group-table prose mentions them (37.496167ms)
+✔ a namespace with commands but no group row is drift (38.375125ms)
+✔ root commands with no root group row are drift (38.157666ms)
+✔ a new namespace listed in the command table but missing from the group table is drift (41.296542ms)
+✔ a non-object metadata entry is reported as drift, not a crash (46.635625ms)
+✔ an unexpected throw is a checker error with exit 2 and a STATUS line (63.531959ms)
+✔ a flag neither sub-action accepts has an unknown-flag error naming the valid flags (0.663917ms)
+✔ a flag owned by the other sub-action keeps the cross-sub-action error (0.103417ms)
+✔ phrase quality is reported as an advisory, never as a staleness signal (0.665708ms)
+✔ a fresh index with phrase-quality advisories can still report OK (0.125833ms)
+✔ every workflow status is one the presentation can render (0.87625ms)
+✔ takes a fixture v3 repository through check, preview, move, upgrade and validation (16399.987333ms)
+✔ a layout map that cannot load its script exits 1 with empty stdout (33.7395ms)
+✔ the check runs both compatibility commands read-only (0.872916ms)
+✔ a v3 checkout reports layout v3 and its era signal counts (406.971834ms)
+✔ a v4 repository reports layout v4 and no move (94.388625ms)
+✔ a partial move reports both roots (100.900042ms)
+✔ every layout state has a check route and a presentation value (0.146834ms)
+✔ the compatibility commands write nothing (1085.982541ms)
+✔ the compat action previews before it asks and asks before it writes (0.359166ms)
+✔ the compat action runs the layout map and the upgrade commands (0.0645ms)
+✔ the compat move log lives in the git directory (0.046917ms)
+✔ every terminal stop after run-started closes its move log run (0.071583ms)
+✔ the compat upgrade opens its run when the move logged no line (0.049334ms)
+✔ every terminal stop after the upgrade closes an open run and the rest write nothing (0.066584ms)
+✔ a failed post-check closes its open run before it stops (0.026583ms)
+✔ the router documents the compat path with declared flags only (0.171208ms)
+✔ the planned steps move a classic v3 checkout to v4 (136.933583ms)
+✔ the planned steps finish a partial move (116.967708ms)
+✔ a dirty spec root blocks the move before any step runs (132.675708ms)
+✔ a tree dirtied after the move approval is refused before the move runs (156.621458ms)
+✔ an owed recovery step runs without the dirty-roots refusal (0.08875ms)
+✔ the owed-step exemption covers only the recovery link step (0.042584ms)
+✔ the interrupted-run template keys on a run without run-complete (0.057041ms)
+✔ an interrupted classic move resumes from the recomputed map (125.481125ms)
+✔ an interrupted move that stopped before the legacy link is not treated as finished (141.933166ms)
+✔ an interrupted partial move names the track already moved (108.338833ms)
+✔ collisions stop the move and list both paths with their reasons (103.282333ms)
+✔ a layout map without parseable JSON on stdout fails whatever its exit code (0.1045ms)
+✔ a move step that cannot complete stops the run and reports the failed step (105.541542ms)
+✔ failed packets are parsed from the lines upgrade-legacy prints (0.277042ms)
+✔ units that still need their release update block the action (0.094875ms)
+✔ every routed flag is a declared input of its action's workflow (2.795083ms)
+✔ workflow and presentation vocabulary matches the engine (0.456917ms)
+✔ every write action records cancellation as CANCELLED (0.232625ms)
+✔ align and apply state the same dry-run rule (0.211625ms)
+✔ the router hint is within budget and matches the command contract (0.139ms)
+✔ the router carries no next-step wording or overclaim (0.08375ms)
+✔ the presentation discloses the release fetch next to --offline (0.130375ms)
+✔ the router grants only Read and Bash (0.14725ms)
+✔ every engine write command has a routed action with an approval gate (0.617041ms)
+✔ every generator the engine names has a post-apply battery step (0.577833ms)
+✔ the apply result tells the operator to commit the release records (0.07475ms)
+✔ the lock template routes stale locks to rollback (0.042709ms)
+✔ list reports every registered gate, all on in a fresh repository (445.085583ms)
+✔ set is a dry run until --apply (115.783ms)
+✔ an applied off is what the hook helper reads (860.612667ms)
+✔ on removes a local off, and writes an explicit local on over a global off (746.679416ms)
+✔ a global on reports that a local off still wins (340.149625ms)
+✔ refuses unknown keys, per-push approvals and bad arguments without writing (322.440667ms)
+✔ a repository with no templates reports no rules (200.436334ms)
+✔ init is a dry run until --apply, copies the shipped templates, and never overwrites (320.08625ms)
+✔ the shipped templates are never edited (175.003458ms)
+✔ set changes only the edited line and the gates enforce the new value (314.585792ms)
+✔ set refuses a value the validator rejects and writes nothing (712.241333ms)
+✔ set null removes a key and reports the rule it switches off (171.073ms)
+✔ disable stops enforcement of one kind and leaves the others (552.856375ms)
+✔ check passes a fresh copy, reports drift, and fails a broken block (409.299292ms)
+✔ the shipped rules blocks round-trip through the layout serializer (1.612875ms)
+✔ a configured contract dir outranks .sk-git and init says so (120.416708ms)
+[parent-skill-check] command-column (6c) coverage passed
+✔ /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/commands/doctor/scripts/tests/parent-skill-check-command-column.test.cjs (607.308583ms)
+✔ clean fixture passes every invariant and exits 0 (76.82625ms)
+✔ missing hub directory exits 2 (32.077458ms)
+✔ STRICT=0 downgrades advisory findings to WARN and exits 0 (59.211375ms)
+✔ STRICT=0 keeps hard failures as FAIL (56.991625ms)
+✔ 1a fails: no graph-metadata.json (61.640375ms)
+✔ 1b fails: skill_id differs from the directory (115.897959ms)
+✔ 1c fails: family outside the allowed set (54.549583ms)
+✔ 2a fails: nested graph-metadata.json in a packet (54.618458ms)
+✔ 2b fails: nested description.json in a packet (52.535291ms)
+✔ 3a fails: mode-registry.json missing (48.703666ms)
+✔ 3a fails: mode-registry.json is not JSON (50.034958ms)
+✔ 3b fails: empty modes array (50.440291ms)
+✔ 3c fails: packet directory missing (51.075958ms)
+✔ 3c fails: packet escapes the hub (50.643459ms)
+✔ 3d fails: missing backendKind (61.029625ms)
+✔ 3d fails: invalid packetKind (61.637292ms)
+✔ 3d fails: malformed toolSurface (163.05625ms)
+✔ 3d-name fails: folder differs from packetSkillName (113.71525ms)
+✔ 3d-name-frontmatter fails: packet frontmatter name differs (61.092917ms)
+✔ 3d-files fails: packet README.md missing (58.988542ms)
+✔ 3d-alias fails: alias duplicated across modes (59.336916ms)
+✔ 3e fails: invalid routingClass (62.729417ms)
+✔ 3f fails: surface-axis declared without a surface (57.282375ms)
+✔ 3g fails: surface packet with a mutating backend (59.62ms)
+✔ 3h fails: transport packet missing from transports[] (58.137042ms)
+✔ 3i fails: Write grant on a non-mutating mode (50.157833ms)
+✔ 3j fails: hub over-grants a tool (51.15175ms)
+✔ 4a fails: lexical mode with no drift guard (229.299792ms)
+✔ 4a fails: declared drift guard missing on disk (121.601084ms)
+✔ 5a fails: hub-router.json missing (49.81125ms)
+✔ 5b fails: stray router signal (50.313709ms)
+✔ 5c fails: undefined vocabulary class (50.772083ms)
+✔ 5d fails: router resource missing on disk (51.225083ms)
+✔ 5e fails: tieBreak misses a mode (53.347334ms)
+✔ 5f fails: bundle rule names an unknown mode (51.025417ms)
+✔ 5g fails: base outcome missing (51.754125ms)
+✔ 5h fails: defaultMode not registered (51.009625ms)
+✔ 5i fails: workflow mode ordered after a surface (58.396666ms)
+✔ 5j fails: stray command-subworkflow signal (50.983291ms)
+✔ 6a fails: unregistered child directory (50.902041ms)
+✔ 6b fails: mode missing from the mode table (52.258375ms)
+✔ 6c fails: mode row hides a registered command (50.573375ms)
+✔ 7a fails: hub changelog missing (49.016333ms)
+✔ 7a fails: symlinked changelog entry (56.990583ms)
+✔ 8a fails: description.json missing (50.392ms)
+✔ 8b fails: description.json duplicates registry modes (50.125ms)
+✔ 9a fails: playbook missing (92.757833ms)
+✔ 9b fails: benchmark missing (65.424584ms)
+✔ 10a-manifest-source fails: leaf-manifest.json is not JSON (94.722375ms)
+✔ 10b-byte-drift fails: leaf added after generation (45.8295ms)
+✔ 10c-target-collision fails: alias claims an on-disk composite (43.776666ms)
+✔ 10d-reachability fails: manifest names an unregistered mode (49.730791ms)
+✔ 11a-class fails: generated leaf-manifest.json missing (46.33525ms)
+✔ 12a-router-contract fails: root ROUTER.md missing (46.450375ms)
+✔ 13a-version fails: description.json version differs (125.348083ms)
+✔ 13a-version fails: SKILL.md has no four-part version (110.026583ms)
+✔ 13b-version fails: newer changelog entry than SKILL.md (43.73975ms)
+✔ 4b passes when the advisor map equals the lexical projection (80.256583ms)
+✔ 4b fails when the advisor map disagrees with the lexical projection (82.244ms)
+✔ 4c warns when a lexical id is absent from the advisor map (86.22925ms)
+✔ 4c passes when every lexical id is wired into the advisor map (83.919ms)
+✔ no stack trace on any characterised failure (42.803542ms)
+✔ 13a fails when a follower carries a version that is not four-part (48.903458ms)
+✔ 1b fails when graph-metadata.json is JSON null (112.109292ms)
+✔ 3a fails when mode-registry.json is JSON null (42.967958ms)
+✔ 5a and 8a fail when hub-router.json and description.json are JSON null (42.218875ms)
+✔ a null entry in modes[] is a 3d FAIL, not a crash (43.967708ms)
+✔ a string toolSurface.allowed on a surface packet is a FAIL, not a crash (48.975458ms)
+✔ a non-string leaf in leaf-manifest.json is a 10a FAIL, not a crash (43.368458ms)
+✔ a changelog that is a regular file fails 7a and does not crash 13b (43.932ms)
+✔ an unexpected throw prints a FAIL line and exits 2 (31.509708ms)
+✔ an unreadable hub directory exits 2 (29.026375ms)
+✔ 3f fails when transports[] lists a mode that is not a registered transport (45.420291ms)
+✔ 3d fails when a mode has no packetSkillName (41.99675ms)
+✔ 3d fails when a mode has no aliases array (42.21975ms)
+✔ 3d-alias warns on an alias that is not lowercase (42.700291ms)
+✔ 3d fails when runtimeLoopType appears on a hub without the runtime-loop extension (43.570541ms)
+✔ 3c fails for a packet of "." and for a nested packet path (87.198583ms)
+✔ 6c checks the row owned by the mode, not the first row that mentions it (43.12325ms)
+✔ 6c does not accept a longer command that merely contains the registered one (44.177ms)
+✔ 6c accepts a mode documented only inside a neighbouring row that shows its command (43.953791ms)
+✔ 3f prints no PASS after its own soft failure (48.432791ms)
+✔ 13b prints no PASS when the changelog directory is missing (44.072416ms)
+✔ 3h and 3i print PASS lines on a clean transport hub (45.56975ms)
+✔ 3k fails when a bracketed command grants tools beyond its mode (45.746375ms)
+✔ 3k fails when a bare-list command grants a tool beyond its mode (44.993209ms)
+✔ 3k passes when a bare-list command adds only TodoWrite (44.172208ms)
+✔ 3k reads a YAML block-sequence tool list (45.528958ms)
+✔ 4b fails when python3 exits non-zero (80.744083ms)
+✔ 4b fails when python3 is not on PATH (42.637417ms)
+✔ colour output on a TTY uses real escape sequences (49.701292ms)
+[parent-skill-check] leaf-manifest guard-chain coverage passed
+✔ /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs (623.236917ms)
+[parent-skill-check] root-router contract fixtures passed
+✔ /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/commands/doctor/scripts/tests/parent-skill-check-root-router.test.cjs (1760.285875ms)
+✔ versions compare by numeric segment and parser excludes no data (1.122458ms)
+✔ latest-tag resolution excludes prereleases by default and orders numerically (0.228541ms)
+✔ unit enumeration separates hubs, child skills, command families, and root files (5.188333ms)
+✔ prerelease identifiers compare numerically when both are numeric (0.179042ms)
+✔ a directory unit and a skill unit with the same name both survive enumeration (0.18625ms)
+✔ check selects the latest stable release and reports unit changes (2525.012459ms)
+✔ locally created and locally edited units report local without release updates (1328.033917ms)
+✔ a unit present in the base and absent from the release reports removed (1092.069708ms)
+✔ mergeable edits get a clean proposal and align writes only under its run directory (2666.377666ms)
+✔ conflicting proposals reject merge and accept use-proposal after marker removal (2868.168958ms)
+✔ locally regenerated artifacts are a generated class that never customizes a unit (2141.729ms)
+✔ a graph-metadata release edit outside the derived block is taken, then regenerated (1641.196125ms)
+✔ a release rename links its old and new paths (3151.915ms)
+✔ a release change to an unregenerated leaf manifest is written (1963.828542ms)
+✔ a copied tree reports a recorded base after record-base (4291.99825ms)
+✔ latest-upstream resolution takes stable tags unless prereleases are opted in (2299.83225ms)
+✔ check survives a release that deletes an unedited changelog and extracts added ones (1039.432959ms)
+✔ a recorded base for an unresolvable release never hides a directory unit (1066.392375ms)
+✔ a directory and a skill hub sharing a name stay separate through apply and rollback (2508.142625ms)
+✔ an ambiguous --scope name is refused and the kind:name form selects one unit (1279.942208ms)
+✔ a name-only base.json record reads as the one unit with that name and is rewritten (3268.370833ms)
+✔ a name-only base.json record two units share is refused until record-base (1996.779917ms)
+✔ a name-only deferral in an older decisions file still defers its unit (1784.886292ms)
+✔ check --scope narrows the report and an unknown unit is a usage error (1604.902667ms)
+✔ check --release compares against the named tag instead of the latest (1316.9575ms)
+✔ check without --json prints a plain-text summary (1434.990208ms)
+✔ align reads uncommitted and untracked local content from the worktree (1885.986833ms)
+✔ align --out writes the run to the named directory and refuses a non-empty one (2004.294542ms)
+✔ apply dry-run writes nothing and apply updates only uncustomized units by default (2098.600667ms)
+✔ apply binds to the dry-run release and refuses a plan that changed (5543.692ms)
+✔ a second apply names the uncommitted release record and the commit remedy (2878.508875ms)
+✔ a bare apply refuses an alignment run that holds operator decisions (1956.598333ms)
+✔ an explicit older release reports downgrade and apply leaves the unit alone (3544.236584ms)
+✔ regenerated trigger-index and route manifests are generated and name their generators (1901.662084ms)
+✔ apply writes a customized unit only after decide records its release files (4147.844167ms)
+✔ apply skips a unit whose changing files are only partly decided and keeps its base (3243.445125ms)
+✔ apply without a run plans update and new units and refuses decisions without a run (2739.303458ms)
+✔ apply refuses a target with staged or unstaged worktree changes (1531.377916ms)
+✔ apply refuses a local blob that drifted after alignment even after it is committed (1855.286459ms)
+✔ rollback restores prior bytes and removes files added by apply (2058.485833ms)
+✔ rollback --dry-run previews restored and skipped paths and writes nothing (1845.201958ms)
+✔ apply and rollback preserve executable mode and symlink targets (2100.115417ms)
+✔ a second apply without decisions plans from the current check, not the applied run (3275.495458ms)
+✔ apply honours decided files and deferred units, and kept-local reaches the ledger (3033.212541ms)
+✔ binary and deleted-in-release conflicts can adopt the release (1909.909834ms)
+✔ a release file below a local symlinked folder is a conflict that never writes through it (1987.7735ms)
+✔ apply refuses a --release mismatch, a held lock and an already applied run (2795.767083ms)
+✔ a signal while the apply lock is held cannot strand the lock (2024.657667ms)
+✔ a signal deferred during apply still ends the process after the lock is released (2535.079833ms)
+✔ a stale apply lock is reported with its recovery and only unlock clears it (3578.781875ms)
+✔ a write failure partway through apply names the rollback command for its run (1805.166791ms)
+✔ rollback refuses to run while an apply lock exists (2004.40825ms)
+✔ apply refuses a plan path outside the unit it is planned under (1950.78125ms)
+✔ rollback reports a path edited after apply as skipped and exits 1 (2033.532667ms)
+✔ a missing run, proposal or rollback record is reported with what to do next (1593.716167ms)
+✔ decide rejects bad flag combinations, unplanned paths and unknown units (1908.147292ms)
+✔ vendored tree infers the release base without shared history (1636.498333ms)
+✔ a copied tree names its framework remote once and later checks use it (3165.275334ms)
+✔ the shipped release ignore rule covers runs and the apply lock but not base records (70.151625ms)
+✔ a copied tree needs no further base recording after record-base and a commit (2162.283209ms)
+✔ record-base refuses a release that is not the nearest to the local tree (2178.531875ms)
+✔ record-base --dry-run names the units it would record and writes nothing (1622.040875ms)
+✔ help names every subcommand with its parser options and exits 0 (52.426541ms)
+✔ an unknown subcommand exits 2 and prints usage once (28.291333ms)
+✔ the parser rejects malformed arguments with exit 2 and a prefixed message (212.96575ms)
+✔ decide rejects --remote as an unknown option (25.878125ms)
+✔ decide rejects --release as an unknown option (26.699459ms)
+✔ decide rejects --scope as an unknown option (25.513917ms)
+✔ decide rejects --offline as an unknown option (27.877208ms)
+✔ rollback rejects --remote as an unknown option (26.272458ms)
+✔ rollback rejects --release as an unknown option (27.313166ms)
+✔ rollback rejects --scope as an unknown option (26.360459ms)
+✔ rollback rejects --offline as an unknown option (26.188125ms)
+✔ every advisor command declared on the skill-advisor route exists in the live registry (subset, not equality) (14.449209ms)
+✔ the registry reader ignores name fields outside the exported tool list (0.669625ms)
+✔ the researched high-value command subset is declared on the skill-advisor route, including skill_graph_validate (3.706167ms)
+✔ each declared invocation keeps the flags its command needs (3.167625ms)
+✔ the doctor command docs and workflow assets reach the advisor through the CLI and name no advisor MCP tool id (19.986709ms)
+✔ the allowed-tools reader finds the first listed tool and the YAML list form (0.276959ms)
+✔ the route does not silently claim full-registry equality — this stays a documented subset (3.072541ms)
+ℹ tests 257
+ℹ suites 0
+ℹ pass 257
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 128633.973708
+[run-all] PASS: node:test (15 files)
+
+[run-all] ── unittest (1 files)
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.333s
+
+OK
+[run-all] PASS: unittest (1 files)
+
+[run-all] ── check-mcp-mutation-class.test.sh
+PASS: clean fixture passes
+PASS: clean doctor reported read-only PASS
+PASS: doctor with unbounded curl fails
+PASS: curl finding names the file and line
+PASS: a probe does not excuse a real curl call on the same line
+PASS: a manifest row whose file is missing fails
+PASS: missing installer is named
+PASS: an unlisted mcp-tooling doctor fails
+PASS: unlisted doctor is named
+PASS: an unlisted mcp-tooling setup.sh fails
+PASS: unlisted setup.sh is named
+PASS: an unlisted top-level mcp-* installer fails
+PASS: unlisted top-level installer is named
+PASS: a script the hook never sends is not required to have a row
+PASS: command -v curl and wget probes pass
+PASS: doctor with 'rm -r -f "$dir"' fails
+PASS: doctor with 'rm -f -r "$dir"' fails
+PASS: doctor with 'rm -Rf "$dir"' fails
+PASS: doctor with 'rm --recursive --force "$dir"' fails
+PASS: doctor with 'rm -v -rf "$dir"' fails
+PASS: forbidden words inside heredoc help text pass
+PASS: a quoted heredoc marker does not hide later code
+PASS: a command substitution inside an unquoted heredoc is still scanned
+PASS: rm without both recursive and force passes
+PASS: install_script: null with class none passes
+PASS: the none sentinel is reported
+PASS: class none on a real script path fails
+PASS: a malformed manifest is a harness error
+PASS: a top-level list manifest is a harness error
+PASS: missing PyYAML is a harness error
+PASS: missing PyYAML is named
+PASS: a missing manifest is a harness error
+PASS: a missing repo root is a harness error
+PASS: an unknown option is a harness error
+PASS: --help exits 0
+Results: 35 passed, 0 failed
+[run-all] PASS: check-mcp-mutation-class.test.sh
+
+[run-all] ── mcp-doctor.test.sh
+PASS: healthy fixture reports zero failures
+PASS: healthy fixture exits 0 with status healthy
+PASS: a missing dist exits 2 with status unhealthy
+PASS: a missing dist is reported as dist_exists FAIL
+PASS: human summary no longer points at --fix
+PASS: a null .utcp_config.json still prints the JSON report
+PASS: a null .utcp_config.json is a FAIL with exit 2
+PASS: a top-level array .utcp_config.json is a FAIL with exit 2
+PASS: an invalid runtime config is a FAIL
+PASS: credential keys are reported present
+PASS: JSON output never contains a credential value
+PASS: human output never contains a credential value
+PASS: --fix is rejected as an unknown option with exit 3
+PASS: an unknown option exits 3, not the warnings code
+PASS: --root without a value exits 3
+PASS: --root at a missing directory exits 3
+PASS: --root at a missing directory never diagnoses another tree
+PASS: --help exits 0 and documents exit 3
+Results: 18 passed, 0 failed
+[run-all] PASS: mcp-doctor.test.sh
+
+[run-all] ── route-validate.test.sh
+PASS: the real manifest validates with exit 0
+PASS: --self-test passes on the shipped validator
+PASS: --help exits 0
+PASS: an unknown argument exits 2
+PASS: REPO_ROOT overrides where script_invocations resolve
+PASS: an empty manifest exits 2 with a message
+PASS: a top-level list manifest exits 2 with a message
+PASS: a missing manifest exits 2
+PASS: a schema_version failure exits 1
+PASS: an A2 failure does not hide the B2 pass
+PASS: a duplicated route is caught as C1 drift
+PASS: --self-test fails when rule B2 is silenced
+PASS: --self-test fails when rule B3 is silenced
+PASS: --self-test fails when rule C1 is silenced
+PASS: --self-test fails when rule D1 is silenced
+PASS: --self-test fails when rule I1 is silenced
+PASS: --self-test fails when rule J1 is silenced
+PASS: --self-test fails when rule K1 is silenced
+PASS: --self-test fails when rule L1 is silenced
+PASS: --self-test fails when the validator crashes
+Results: 20 passed, 0 failed
+[run-all] PASS: route-validate.test.sh
+
+[run-all] ── route-validate.sh --self-test
+INFO: Running self-tests on fixture manifests…
+INFO: Self-test: missing-key (should fail with B2)…
+PASS: Self-test: missing-key rejected by B2
+INFO: Self-test: unknown-command (should fail with B3)…
+PASS: Self-test: unknown-command rejected by B3
+INFO: Self-test: missing-asset (should fail with D1)…
+PASS: Self-test: missing-asset rejected by D1
+INFO: Self-test: duplicate-target (should fail with C1)…
+PASS: Self-test: duplicate-target rejected by C1
+INFO: Self-test: missing-script (should fail with I1)…
+PASS: Self-test: missing-script rejected by I1
+INFO: Self-test: target-set-mismatch (should fail with J1)…
+PASS: Self-test: target-set-mismatch rejected by J1
+INFO: Self-test: read-only-with-write (should fail with K1)…
+PASS: Self-test: read-only-with-write rejected by K1
+INFO: Self-test: activity-missing (should fail with L1)…
+PASS: Self-test: activity-missing rejected by L1
+INFO: All self-tests passed.
+[run-all] PASS: route-validate.sh --self-test
+
+[run-all] ── skill-graph freshness panel (vitest)
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-skill-advisor/runtime
+
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  21:54:03
+   Duration  619ms (transform 23ms, setup 17ms, import 27ms, tests 376ms, environment 0ms)
+
+[run-all] PASS: skill-graph freshness panel (vitest)
+
+[run-all] 7 suite(s) passed, 0 failed
+EXIT=0
+ELAPSED_S=149

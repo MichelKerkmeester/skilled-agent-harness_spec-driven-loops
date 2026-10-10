@@ -1,0 +1,38 @@
+node:internal/assert/utils:146
+  throw error;
+  ^
+
+AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to: 0
+    at testLinkedManifestWriteExitsNonZero (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/c1/leafprobe/scripts/tests/probe-testLinkedManifestWriteExitsNonZero.cjs:342:10)
+    at Object.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/c1/leafprobe/scripts/tests/probe-testLinkedManifestWriteExitsNonZero.cjs:384:3)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10)
+    at Module.load (node:internal/modules/cjs/loader:1656:32)
+    at Module._load (node:internal/modules/cjs/loader:1448:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 0,
+  operator: 'notStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.8.2
+✖ probe-testLinkedManifestWriteExitsNonZero.cjs (60.327459ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 63.157334
+
+✖ failing tests:
+
+test at probe-testLinkedManifestWriteExitsNonZero.cjs:1:1
+✖ probe-testLinkedManifestWriteExitsNonZero.cjs (60.327459ms)
+  'test failed'

@@ -1,0 +1,110 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/upgrade-legacy.vitest.ts (48 tests | 2 failed | 41 skipped) 25614ms
+     × refuses a packet whose document is a link out of the packet and leaves the link target as it was 2460ms
+     × does not read findings from a baseline that is a link out of the packet 1700ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/upgrade-legacy.vitest.ts > upgrade-legacy link containment > refuses a packet whose document is a link out of the packet and leaves the link target as it was
+AssertionError: expected 'refused specs/link-containment/001-pa…' to contain 'symbolic link, not followed'
+
+- Expected
++ Received
+
+- symbolic link, not followed
++ refused specs/link-containment/001-packet: spec.md is a link that does not resolve inside the packet
++ plan changes=0
++ step heal-spec-docs: ok (0 packets)
++ step lane-modes: ok (0 packets, 0 refusals)
++
++ Downgrades:
++   none
++ still failing specs/link-containment/001-packet: ANCHORS_VALID, GREP_CONVENTION, TEMPLATE_SOURCE
++
++ inspected=1 active=1 archived=0
++ passing before=0/1 after=0/1
++ recorded findings by rule:
++ grouped detail:
++ ### specs/link-containment/001-packet / x ANCHORS_VALID (3)
++     - spec.md: no anchors found
++     - plan.md: no anchors found
++     - tasks.md: no anchors found
++ ### specs/link-containment/001-packet / x GREP_CONVENTION (2)
++     - path=plan.md line=0 category=missing severity=error rawKey=- reason=Document has no frontmatter block, so it carries no retrievable trigger phrases
++     - path=tasks.md line=0 category=missing severity=error rawKey=- reason=Document has no frontmatter block, so it carries no retrievable trigger phrases
++ ### specs/link-containment/001-packet / x TEMPLATE_SOURCE (3)
++     - spec.md
++     - plan.md
++     - tasks.md
++
+
+ ❯ tests/upgrade-legacy.vitest.ts:1642:22
+    1640|       expect(fs.lstatSync(specFile).isSymbolicLink()).toBe(true);
+    1641|       expect(output).toContain(`refused ${folder}`);
+    1642|       expect(output).toContain('symbolic link, not followed');
+       |                      ^
+    1643|       expect(result.status, output).toBe(2);
+    1644|     } finally {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |cli| tests/upgrade-legacy.vitest.ts > upgrade-legacy link containment > does not read findings from a baseline that is a link out of the packet
+AssertionError: expected 'failing specs/link-containment/005-pa…' to contain 'refused specs/link-containment/005-pa…'
+
+- Expected
++ Received
+
+- refused specs/link-containment/005-packet: upgrade-baseline.json is a symbolic link, not followed
++ failing specs/link-containment/005-packet: ANCHORS_VALID, FRONTMATTER_VALID, GREP_CONVENTION, TEMPLATE_SOURCE
++ would refuse specs/link-containment/005-packet: upgrade-baseline.json is a link that does not resolve inside the packet
++ grouped detail:
++ ### specs/link-containment/005-packet / x ANCHORS_VALID (3)
++     - spec.md: no anchors found
++     - plan.md: no anchors found
++     - tasks.md: no anchors found
++ ### specs/link-containment/005-packet / x FRONTMATTER_VALID (3)
++     - spec.md: Empty required frontmatter field: importance_tier
++     - spec.md: Empty required frontmatter field: contextType
++     - spec.md: Empty required frontmatter field: trigger_phrases
++ ### specs/link-containment/005-packet / x GREP_CONVENTION (2)
++     - path=plan.md line=0 category=missing severity=error rawKey=- reason=Document has no frontmatter block, so it carries no retrievable trigger phrases
++     - path=tasks.md line=0 category=missing severity=error rawKey=- reason=Document has no frontmatter block, so it carries no retrievable trigger phrases
++ ### specs/link-containment/005-packet / x TEMPLATE_SOURCE (3)
++     - spec.md
++     - plan.md
++     - tasks.md
++
++ Downgrades:
++   refused specs/link-containment/005-packet: upgrade-baseline.json is a link, so its findings are not read
++
++ inspected=1 active=1 archived=0
++ passing=0/1
++ repo era report:
++   layout provenance: source=none; description.json residue count=0
++   layout: v4 (v3=false, v4=true)
++   frontmatter: present=1 missing=2
++
++ --apply would run: fill-frontmatter, anchor-repair, heal-spec-docs, lane-modes, repair-derived, migrate-generated-json (archived packets: questions-anchor un-nesting and repair-derived only), then record the remaining findings in upgrade-baseline.json
++
+
+ ❯ tests/upgrade-legacy.vitest.ts:1725:22
+    1723|       const output = result.stdout + result.stderr;
+    1724|       expect(output).not.toContain('OUTSIDE_FINDING');
+    1725|       expect(output).toContain(`refused ${folder}: upgrade-baseline.js…
+       |                      ^
+    1726|       expect(fs.readFileSync(outsideBaseline, 'utf8')).toBe(outsideTex…
+    1727|       expect(result.status, output).toBe(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 5 passed | 41 skipped (48)
+   Start at  11:55:45
+   Duration  25.82s (transform 79ms, setup 13ms, import 125ms, tests 25.61s, environment 0ms)
+

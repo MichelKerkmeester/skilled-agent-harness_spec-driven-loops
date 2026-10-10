@@ -1,0 +1,2 @@
+CMD: python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <8 modified code files>
+EXIT=0

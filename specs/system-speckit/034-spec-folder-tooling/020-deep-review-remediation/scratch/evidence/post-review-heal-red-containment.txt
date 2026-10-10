@@ -1,0 +1,69 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/heal-symlink-containment.vitest.ts (10 tests | 4 failed | 6 skipped) 248ms
+     × default run --apply refuses a linked --folder and leaves the packet behind the link untouched 80ms
+     × --anchor-repair --apply refuses a linked --folder and leaves the packet behind the link untouched 43ms
+     × --lane-modes --apply refuses a linked --folder and leaves the packet behind the link untouched 81ms
+     × refuses a --folder reached through a linked component inside the specs root 44ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > default run --apply refuses a linked --folder and leaves the packet behind the link untouched
+ FAIL  |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --lane-modes --apply refuses a linked --folder and leaves the packet behind the link untouched
+AssertionError: expected '6d5183488f9f0768548c66cb304830b0a4e37…' to be 'fa9056db4a4a013ef94e0d851e71710f610bb…' // Object.is equality
+
+Expected: "fa9056db4a4a013ef94e0d851e71710f610bb6ecf36a81b37f6766e3adb7d4c6"
+Received: "6d5183488f9f0768548c66cb304830b0a4e379146a48e9147d3abf369d298e21"
+
+ ❯ tests/heal-symlink-containment.vitest.ts:297:33
+    295|     });
+    296|
+    297|     expect(digest(outsideSpec)).toBe(before);
+       |                                 ^
+    298|     expect(result.status, result.stdout + result.stderr).toBe(2);
+    299|     expect(result.stdout).toContain(`refused ${linked}: symbolic link,…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --anchor-repair --apply refuses a linked --folder and leaves the packet behind the link untouched
+AssertionError: expected '3c8f45f3f17a5482e90d72daa71767cef4316…' to be 'c1abb0a77e0329200340b9a848a54a6660598…' // Object.is equality
+
+Expected: "c1abb0a77e0329200340b9a848a54a6660598095359183593578ea7078594e5d"
+Received: "3c8f45f3f17a5482e90d72daa71767cef43163ee5a019af8e4b3d33abb2be177"
+
+ ❯ tests/heal-symlink-containment.vitest.ts:297:33
+    295|     });
+    296|
+    297|     expect(digest(outsideSpec)).toBe(before);
+       |                                 ^
+    298|     expect(result.status, result.stdout + result.stderr).toBe(2);
+    299|     expect(result.stdout).toContain(`refused ${linked}: symbolic link,…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > refuses a --folder reached through a linked component inside the specs root
+AssertionError: expected '6d5183488f9f0768548c66cb304830b0a4e37…' to be 'fa9056db4a4a013ef94e0d851e71710f610bb…' // Object.is equality
+
+Expected: "fa9056db4a4a013ef94e0d851e71710f610bb6ecf36a81b37f6766e3adb7d4c6"
+Received: "6d5183488f9f0768548c66cb304830b0a4e379146a48e9147d3abf369d298e21"
+
+ ❯ tests/heal-symlink-containment.vitest.ts:317:30
+    315|     });
+    316|
+    317|     expect(digest(realSpec)).toBe(before);
+       |                              ^
+    318|     expect(aliased.status, aliased.stdout + aliased.stderr).toBe(2);
+    319|     expect(aliased.stdout).toContain('symbolic link, not followed');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 6 skipped (10)
+   Start at  11:52:34
+   Duration  354ms (transform 22ms, setup 14ms, import 24ms, tests 248ms, environment 0ms)
+

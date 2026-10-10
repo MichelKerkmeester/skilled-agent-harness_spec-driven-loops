@@ -1,0 +1,7 @@
+CLOSURE EVIDENCE: changelog hand fix, Part 4 (2026-10-10)
+Generator output: scratch/evidence/closure-changelog-generate-part4.txt
+Defect 1, 12-row cut: the generator wrote 12 Files Changed rows. The implementation summary has 51 data rows. The table was rebuilt by hand from the implementation summary's Files Changed table (File, Status to Action, Purpose to What changed). Rows now: 52 lines in that section including header and separator.
+Defect 2, HTML comments in text: the only HTML comment is the template source header on line 11, which the template writes. No comment leaked into the text, so no fix was made for this defect.
+Stale wording: the summary sentence 'a fix in the working tree' was changed to 'a fix pushed as bb2006123f' after the push.
+Not changed: the generator puts the checklist line CHK-010 under Fixed. This is a generator artifact, left as written.
+Em dash and semicolon count in the changelog, after the hand fix: dash 0, semicolon 0

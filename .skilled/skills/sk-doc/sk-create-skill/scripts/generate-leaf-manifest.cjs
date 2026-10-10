@@ -27,6 +27,7 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
@@ -53,6 +54,11 @@ function parseArgs(argv) {
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
+
+/** True when the path itself is a symbolic link, judged without following it. */
+function isSymbolicLink(file) {
+  try { return fs.lstatSync(file).isSymbolicLink(); } catch { return false; }
 }
 
 // Authored aliases are optional in this phase: absence means zero aliases,
@@ -127,6 +133,20 @@ function dropGitIgnoredLeaves(packetRoot, rels) {
   return rels.filter((rel, i) => !ignored.has(repoRels[i]));
 }
 
+// A starting root or declared scope is read before any entry inside it is
+// checked, so a link at that position has to be resolved and contained the same
+// way the walker contains a link it finds inside a root. Without this, a root
+// that is itself a link to a directory outside the skill would be enumerated as
+// if it belonged to the skill.
+function assertStartInsideSkill(skillDir, full) {
+  const skillRoot = fs.realpathSync(skillDir);
+  const resolved = fs.realpathSync(full);
+  if (resolved !== skillRoot && !resolved.startsWith(`${skillRoot}${path.sep}`)) {
+    const label = path.relative(skillDir, full).split(path.sep).join('/');
+    throw new contract.ContractError('LEAF_SYMLINK_OUT_OF_ROOT', `leaf root escapes the skill root: ${label} resolves to ${resolved}`);
+  }
+}
+
 // Recursively collect packet-root-relative file paths under <packetRoot>/<rootName>.
 //
 // A symlinked entry is emitted under the link's own packet-relative path, exactly
@@ -139,6 +159,7 @@ function dropGitIgnoredLeaves(packetRoot, rels) {
 function walkLeafFiles(skillDir, packetRoot, rootName) {
   const start = path.join(packetRoot, rootName);
   if (!fs.existsSync(start)) return [];
+  assertStartInsideSkill(skillDir, start);
   const skillRoot = fs.realpathSync(skillDir);
   const out = [];
   const stack = [start];
@@ -146,7 +167,11 @@ function walkLeafFiles(skillDir, packetRoot, rootName) {
     const cur = stack.pop();
     for (const entry of fs.readdirSync(cur, { withFileTypes: true })) {
       const full = path.join(cur, entry.name);
-      if (entry.isDirectory()) { stack.push(full); continue; }
+      if (entry.isDirectory()) {
+        // Local tool caches such as .pytest_cache are ignored by git, so they must not become leaves.
+        if (!entry.name.startsWith('.')) stack.push(full);
+        continue;
+      }
       if (entry.isFile()) {
         out.push(path.relative(packetRoot, full).split(path.sep).join('/'));
         continue;
@@ -318,6 +343,7 @@ function collectScopedLeaves(skillDir, packetRoot, scopes, workflowMode) {
     if (stat.isDirectory()) {
       leaves.push(...walkLeafFiles(skillDir, packetRoot, scope));
     } else if (stat.isFile()) {
+      assertStartInsideSkill(skillDir, full);
       leaves.push(scope);
     } else {
       throw new contract.ContractError('UNSUPPORTED_LEAF_SCOPE', `mode ${workflowMode} leaf scope must be a directory or a file: ${scope}`);
@@ -440,13 +466,60 @@ function buildManifestBytes(skillDir) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
+ * Write `bytes` to `file` through a fresh temporary sibling that is renamed over it.
+ *
+ * The temporary name is random and created exclusively, so a link planted at a
+ * guessable name is never written through. The rename replaces whatever sits at
+ * `file`, including a link, rather than following it.
+ *
+ * @param {string} file Absolute path of the destination file.
+ * @param {Buffer} bytes Content to write.
+ */
+function writeFileAtomic(file, bytes) {
+  const directory = path.dirname(file);
+  const temporary = path.join(
+    directory,
+    `.${path.basename(file)}.${process.pid}.${crypto.randomBytes(6).toString('hex')}.tmp`,
+  );
+  // The entry is read without following it, so a link's target never sets the mode.
+  let existing = null;
+  try { existing = fs.lstatSync(file); } catch { existing = null; }
+  const mode = existing !== null && existing.isFile() ? existing.mode & 0o777 : null;
+  let descriptor = null;
+  try {
+    descriptor = fs.openSync(temporary, 'wx');
+    fs.writeFileSync(descriptor, bytes);
+    if (mode !== null) fs.fchmodSync(descriptor, mode);
+    fs.fsyncSync(descriptor);
+    fs.closeSync(descriptor);
+    descriptor = null;
+    fs.renameSync(temporary, file);
+  } catch (err) {
+    if (descriptor !== null) {
+      try { fs.closeSync(descriptor); } catch { /* The original write error is more useful. */ }
+    }
+    try { fs.rmSync(temporary, { force: true }); } catch { /* The original write error is more useful. */ }
+    throw err;
+  }
+}
+
+/**
  * Regenerate and write `leaf-manifest.json` for a skill root.
+ *
+ * A manifest that is a link is refused rather than followed: the file it names
+ * lies outside the skill, and a write through the link would overwrite it.
+ *
  * @param {string} skillDir Absolute path to the skill root directory.
  * @returns {number} Exit code (0 on success).
+ * @throws {Error} When `leaf-manifest.json` is a symbolic link.
  */
 function runWrite(skillDir) {
+  const manifestPath = path.join(skillDir, 'leaf-manifest.json');
+  if (isSymbolicLink(manifestPath)) {
+    throw new Error(`leaf-manifest.json is a symbolic link, not followed: ${manifestPath}; remove the link and write the manifest again`);
+  }
   const bytes = buildManifestBytes(skillDir);
-  fs.writeFileSync(path.join(skillDir, 'leaf-manifest.json'), bytes);
+  writeFileAtomic(manifestPath, bytes);
   process.stdout.write(`leaf-manifest.json written (${contract.digestManifestBytes(bytes)})\n`);
   return 0;
 }

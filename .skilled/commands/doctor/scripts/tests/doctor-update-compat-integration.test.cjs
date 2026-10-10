@@ -221,3 +221,16 @@ test('takes a fixture v3 repository through check, preview, move, upgrade and va
     }
   }
 });
+
+test('a layout map that cannot load its script exits 1 with empty stdout', () => {
+  // This is the exit code the map uses for listed collisions, so the action has
+  // to read the stdout as JSON to tell the two apart.
+  const scriptPath = COMPAT_COMMANDS.layout_map.split(' ')[1];
+  const absentPath = scriptPath.replace('upgrade-legacy.mjs', 'upgrade-legacy-absent.mjs');
+  assert.equal(fs.existsSync(path.join(sandbox, absentPath)), false, 'the absent script must not exist');
+
+  const failed = runCommand(COMPAT_COMMANDS.layout_map.replace(scriptPath, absentPath));
+  assert.equal(failed.status, 1, failed.stdout + failed.stderr);
+  assert.equal(failed.stdout, '', 'a script that fails to load prints nothing on stdout');
+  assert.ok(failed.stderr.trim().length > 0, 'the load failure must print its reason to stderr');
+});

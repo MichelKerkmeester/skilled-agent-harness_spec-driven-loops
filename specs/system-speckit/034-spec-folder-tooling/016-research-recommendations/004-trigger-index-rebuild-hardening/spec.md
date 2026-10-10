@@ -74,6 +74,8 @@ Make the job commit all four generator outputs, guard its loop exactly, and reco
 - Distinguish non-fast-forward errors from other failures.
 - Document the four files and the retry in the workflow README.
 
+> **Superseded in part by** [020-deep-review-remediation](../../020-deep-review-remediation/spec.md). The in-step retry on a non-fast-forward push was replaced by that phase's token-isolation restructure, which the operator chose on 2026-10-10. The push step is now the only step that holds the write token, and it runs git only. A rejected push exits 0 with a notice, because the run for the newer commit rebuilds the index on its tip. The trailer loop guard and the four-file commit stand. The token decision in Phase Context and Out of Scope is superseded in part by the same restructure, so the retry bullet above and the token wording in those two sections describe the original design.
+
 ### Out of Scope
 - Any change to the token: no `persist-credentials` change, no GitHub environment, no secret move. Decided 2026-10-08 by the operator.
 - The `skilled/**` trigger stays.

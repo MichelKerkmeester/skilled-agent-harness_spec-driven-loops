@@ -1,0 +1,21 @@
+CLOSURE EVIDENCE: deep-loop suite under load, two logs (job j03 and its isolated rerun)
+Note. This suite is not one of the T029, T030 or AC-016 suites. It is recorded because the first gate run showed a failure.
+
+Full run, job j03 (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/final-gates/j03-deep-loop.log), exit 1:
+  ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+   FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — containment mode is an explicit opt-in > lets the --containment-mode flag override the fan-out config value, and rejects an unknown value
+  Error: Test timed out in 30000ms.
+   Test Files  1 failed | 173 passed (174)
+        Tests  1 failed | 2878 passed | 8 skipped (2887)
+     Duration  1500.09s (transform 3.08s, setup 0ms, import 10.41s, tests 1474.49s, environment 7ms)
+  The failing file took 284842 ms (fanout-run.vitest.ts, 167 tests). The timeout is the per-test limit of 30000 ms.
+
+Load evidence. All 17 gate jobs were started together at 12:55 (pids.txt, /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/final-gates/pids.txt). The CLI suite job j01 ran until 13:16 at the same time as j03, so j03 ran alongside it.
+
+Isolated rerun, job j03-rerun-fanout (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/final-gates/j03-rerun-fanout.log), run at 13:22:02:
+   Test Files  1 passed (1)
+        Tests  167 passed (167)
+     Duration  212.04s (transform 99ms, setup 0ms, import 278ms, tests 211.64s, environment 0ms)
+  EXIT=0
+
+Classification. Load-induced. The same file passes 167 of 167 when run alone. The failure was the 30000 ms limit on one case while the suite shared the machine with the other gate jobs.

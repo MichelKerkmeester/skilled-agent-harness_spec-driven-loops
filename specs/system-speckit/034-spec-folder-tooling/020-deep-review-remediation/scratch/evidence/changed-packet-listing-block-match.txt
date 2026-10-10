@@ -1,0 +1,3 @@
+Check: the run block of .github/workflows/changed-packet-validation.yml that lists changed packets with git diff -z, compared with the block the stage-two harness ran (scratchpad annot/block-final.sh, identical to annot/block-stage2.sh).
+Workflow blocks containing 'diff -z': 1
+job=changed-packets step='Validate the packets this PR changed' chars=9323 equal_to_harness_block=True

@@ -1,0 +1,90 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/heal-symlink-containment.vitest.ts (4 tests | 4 failed) 385ms
+     × default healer --apply leaves a symlinked spec.md and its outside target untouched 126ms
+     × default healer --apply leaves a symlinked tasks.md with an empty trigger list untouched 104ms
+     × --anchor-repair --apply leaves a symlinked spec.md and its outside target untouched 54ms
+     × --lane-modes --apply leaves a symlinked spec.md and its outside target untouched 100ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply leaves a symlinked spec.md and its outside target untouched
+AssertionError: expected '6d5183488f9f0768548c66cb304830b0a4e37…' to be 'fa9056db4a4a013ef94e0d851e71710f610bb…' // Object.is equality
+
+Expected: "fa9056db4a4a013ef94e0d851e71710f610bb6ecf36a81b37f6766e3adb7d4c6"
+Received: "6d5183488f9f0768548c66cb304830b0a4e379146a48e9147d3abf369d298e21"
+
+ ❯ tests/heal-symlink-containment.vitest.ts:100:29
+     98|     // the outside file's unchanged digest is the containment result, …
+     99|     expect(result.stdout).toContain(`healed ${path.join(control, 'spec…
+    100|     expect(digest(outside)).toBe(before);
+       |                             ^
+    101|     expect(fs.lstatSync(path.join(packet, 'spec.md')).isSymbolicLink()…
+    102|     expect(result.stdout).toContain(`refused ${path.join(packet, 'spec…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply leaves a symlinked tasks.md with an empty trigger list untouched
+AssertionError: expected 'a68fc5539257c7c9f62bd4e5565daebe5ad0f…' to be '9846a561e84d296293fa2b4ba9fa803780949…' // Object.is equality
+
+Expected: "9846a561e84d296293fa2b4ba9fa803780949cd7fcba5c4d683662999a58284f"
+Received: "a68fc5539257c7c9f62bd4e5565daebe5ad0f3f24508fa74d9e60fde17df59b8"
+
+ ❯ tests/heal-symlink-containment.vitest.ts:123:29
+    121|     // healer does rewrite when it is not behind a link.
+    122|     expect(result.stdout).toContain(`healed ${path.join(control, 'task…
+    123|     expect(digest(outside)).toBe(before);
+       |                             ^
+    124|     expect(fs.lstatSync(path.join(packet, 'tasks.md')).isSymbolicLink(…
+    125|     expect(result.stdout).toContain(`refused ${path.join(packet, 'task…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --anchor-repair --apply leaves a symlinked spec.md and its outside target untouched
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/heal-symlink-containment.vitest.ts:160:73
+    158|     // The rename-based atomic write would replace the link with a reg…
+    159|     // so the link surviving is part of the containment result.
+    160|     expect(fs.lstatSync(path.join(packet, 'spec.md')).isSymbolicLink()…
+       |                                                                         ^
+    161|     expect(result.stdout).toContain(`left unchanged ${path.join(packet…
+    162|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --lane-modes --apply leaves a symlinked spec.md and its outside target untouched
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/heal-symlink-containment.vitest.ts:178:73
+    176|     expect(result.stdout).toContain(`applied header-add ${path.join(co…
+    177|     expect(digest(outside)).toBe(before);
+    178|     expect(fs.lstatSync(path.join(packet, 'spec.md')).isSymbolicLink()…
+       |                                                                         ^
+    179|     expect(result.stdout).toContain(`refused containment ${path.join(p…
+    180|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  07:29:54
+   Duration  512ms (transform 26ms, setup 15ms, import 27ms, tests 385ms, environment 0ms)
+

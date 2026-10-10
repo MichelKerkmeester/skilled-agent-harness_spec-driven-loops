@@ -1,0 +1,9 @@
+packets swept: 2
+  regression: 1
+  pass: 1
+
+::warning::1 packet(s) regressed against the stored baseline
+::stop-commands::d1899145-5ef9-449d-8902-78e91cdcb079
+  specs/a/001-x
+::error::INJECTED-FROM-FOLDER-NAME: regressed
+::d1899145-5ef9-449d-8902-78e91cdcb079::

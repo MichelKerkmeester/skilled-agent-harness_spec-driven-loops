@@ -1,0 +1,176 @@
+CLOSURE EVIDENCE: changed guards mapped to red-proven cases (coordinator decision D2)
+
+Question. For each guard this phase changed, is there a case that fails when that guard is removed, and does a recorded log show the failure?
+
+Method. S is the scratchpad root, outside the repository. Each mutant log was read for its vitest FAIL lines or its node failure, and for its summary line. A red run counts only when the log shows a failing test. A log that shows all tests passing is marked NOT RED. A guard with no mutant log is marked NO MUTANT. The mutation text for the archive, upgrade, healer, leaf and repair mutants is in the scripts that produced the logs (S/k2a/red-archive.sh, S/k2a/red-upgrade.sh, S/k2b/drive.cjs, S/k2b/variant-r2b-writes.cjs, S/k2b/isolate-l1.cjs). The c1 logs have no recorded mutation, so they are not counted as red-proven.
+
+Scope of a changed guard. A guard named in closure-test-matrix-rationale.txt (classes 4 and 5), in closure-same-class-write-inventory.txt, or with a mutant in S.
+
+== 1. Lane A, archive.sh
+
+A1  archive.sh:242, `if [[ -L "$archive_root" ]]` (z_archive link refusal)
+    Mutant A, S/k2a/red-A.txt: 3 failed of 45. Failing cases: refuses a dangling z_archive under 'a phase parent'; under 'a track'; under 'the specs root' (archive-track.vitest.ts).
+    Verdict: RED-PROVEN.
+
+A2  archive.sh:437, `if [[ -L "$archive_named" ]]` (restore through a link)
+    Mutant B, S/k2a/red-B.txt: 1 failed of 45. Failing case: refuses a restore through a dangling z_archive.
+    Verdict: RED-PROVEN.
+
+A3  archive.sh:326, `if [[ -e "$archive_root/$basename" || -L "$archive_root/$basename" ]]` (archive destination)
+    Mutant C, S/k2a/red-C.txt: 1 failed of 45. Failing case: refuses an archive whose target already holds a folder of that name.
+    Verdict: RED-PROVEN for the -e branch. The -L branch (a link at the destination name) has no case: matrix row A-14 is MISSING, and mutant C removes both branches at once, so the log does not separate them. The -L branch is NOT CLAIMED.
+
+A4  archive.sh:480, `if [[ -e "$destination" || -L "$destination" ]]` (restore destination)
+    Mutant D, S/k2a/red-D.txt: 1 failed of 45. Failing case: refuses a restore whose destination already holds a folder.
+    Verdict: RED-PROVEN for the -e branch. The -L branch is NOT CLAIMED, for the same reason as A3.
+    Correction to the rationale. Class 4 of closure-test-matrix-rationale.txt cites archive.sh about line 480 for archive row A-14. Line 480 is the restore destination. The archive destination check is line 326 (A3).
+
+A5  archive.sh prompt, `if [[ "$response" != "y" ]] ...` (declined prompt; not a link guard)
+    Mutant E, S/k2a/red-E.txt: 1 failed of 45. Failing case: a declined archive prompt exits 0, says it was cancelled and moves nothing.
+    Verdict: RED-PROVEN (non-link guard, listed for completeness).
+
+A6  archive.sh specs-root resolution, `|| printf "$PROJECT_ROOT/specs"` (fallback)
+    Mutant F, S/k2a/red-F.txt: 2 failed of 45. Failing cases: refuses in a copy outside any repository whose derived root has no specs folder; refuses when the specs root is a dangling link, and creates nothing through it.
+    Verdict: RED-PROVEN.
+
+A7  archive.sh source resolution and containment, lines 273 to 282 (rationale class 5, rows A-03 and A-05)
+    No mutant. No case.
+    Verdict: NOT CLAIMED.
+
+== 2. Lane F, upgrade-legacy.mjs
+
+F1  upgrade-legacy.mjs, `if (real === null || !contained(real, realFolder))` (dangling link and containment)
+    Mutant G, S/k2a/red-G.txt: 2 failed of 52. Failing cases: refuses a packet whose document is a dangling link to a file 'inside the packet'; 'outside the repository'.
+    Verdict: RED-PROVEN.
+
+F2  the same guard, containment half
+    Mutant H, S/k2a/red-H.txt: 1 failed of 52. Failing case: refuses a document that links to a sibling packet, and leaves the sibling as it was.
+    Verdict: RED-PROVEN.
+
+F3  the failing-packet filter, `const failing = packets.filter(...)` (passing packet that links inside itself; not a link guard)
+    Mutant I, S/k2a/red-I.txt: 1 failed of 52. Failing case: writes nothing for a passing packet that links inside itself, and keeps its baseline.
+    Verdict: RED-PROVEN for the filter.
+
+F4  baselineIsLink (upgrade-legacy.mjs:242, used at 357, 598, 1258 and 1648). The coordinator asked about the orchestrator baseline-link guard. This is the guard I read that as.
+    No k2 mutant removes it. S/c1/red-upgrade.txt (2 failed of 48) fails "does not read findings from a baseline that is a link out of the packet" (U-12). That log does not record which mutation produced it, and no mutated copy is kept in S/c1, so the run cannot be tied to this guard.
+    Verdict: NOT CLAIMED as red-proven.
+
+F5  U-16 linked --roots argument; U-17 dot segment in --roots. Matrix rows are MISSING.
+    Verdict: NOT CLAIMED.
+
+F6  U-18 linked manifest write (upgrade-legacy.mjs 417 to 446, rationale class 3). Matrix row is MISSING.
+    Verdict: NOT CLAIMED.
+
+== 3. Lane B, heal-spec-docs.cjs
+
+B1  heal-spec-docs.cjs, `if (isSymbolicLink(target)) return 'the folder itself is a link'` (folder link check)
+    Mutant H1, S/k2b/out/H1-folder-itself-check-removed.txt: 3 failed of 16. Failing cases: --anchor-repair, --lane-modes and default run, each "--apply refuses a dangling --folder and creates nothing at its target".
+    Verdict: RED-PROVEN for the dangling folder (matrix B-14). The linked-folder case (B-12) is only in S/c1/red-heal-folder.txt (4 failed), with no recorded mutation, so it is NOT CLAIMED.
+
+B2  anchor-repair link refusal (mutant H3)
+    S/k2b/out/H3-anchor-link-refusal-removed.txt: 2 failed of 16. Failing cases: --anchor-repair --apply leaves a symlinked spec.md and its outside target untouched; refuses a dangling spec.md and does not create its target.
+    Verdict: RED-PROVEN.
+
+B3  lane-mode link refusal (mutant H4)
+    S/k2b/out/H4-lane-link-refusal-removed.txt: 2 failed of 16. Failing cases: --lane-modes --apply leaves a symlinked spec.md untouched; refuses a dangling spec.md.
+    Verdict: RED-PROVEN.
+
+B4  `if (!r.changed) continue;` (unchanged-document skip; not a link guard, listed because it sits in the write path)
+    Mutant H2, S/k2b/out/H2-unchanged-doc-not-skipped.txt: 1 failed of 16. Failing case: default healer --apply changes no bytes on a plain packet with nothing left to heal.
+    Verdict: RED-PROVEN (non-link guard).
+
+B5  heal-spec-docs.cjs 651 to 653, `isSymbolicLink(file)` before the read (default --apply document path; matrix row B-03 is MISSING)
+    No mutant removes this guard. Mutants H2, H3 and H4 remove other checks.
+    Verdict: NOT CLAIMED. This guard refuses every linked document, including one that points inside specs, which is the point spec.md line 193 contradicts. The operator decision of 2026-10-10 is Code prevails (see the spec.md line 193 amendment).
+
+B6  folderRefusal linked component (B-10, "refuses a --folder reached through a linked component inside the specs root"); folderRefusal dot segment (B-09); linked parent outside default roots (B-11)
+    B-10 is named in S/c1/red-heal-folder.txt (4 failed), with no recorded mutation. No mutant for B-09 or B-11. B-11 is the operator-accepted partial H5.
+    Verdict: NOT CLAIMED as red-proven.
+
+== 4. Lane C, generate-leaf-manifest.cjs
+
+C1  leaf manifest write link check, `if (isSymbolicLink(manifestPath))` (mutant L1)
+    Isolated pair, the case that the full leaf file cannot reach because its run block stops at the first throw (S/k2b/isolate-l1.cjs). Control: S/k2b/out/isolated-L1-control.txt, 1 of 1 passed. Mutant: S/k2b/out/isolated-L1-mutant.txt, 1 of 1 failed, at testDanglingManifestWriteIsRefused.
+    Verdict: RED-PROVEN for C-08 (dangling manifest write).
+
+C2  linked manifest write, C-07 (testLinkedManifestWriteIsRefused and testLinkedManifestWriteExitsNonZero)
+    S/c1/red-leaf-testLinkedManifestWriteExitsNonZero.txt fails with a thrown 'test failed'. No recorded mutation.
+    Verdict: NOT CLAIMED as red-proven.
+
+C3  start-scope confinement before readdirSync (generate-leaf-manifest.cjs 93 to 106; rows C-04, C-05 and C-13)
+    No recorded mutant removes this check. S/c1/red-leaf-manifest.txt fails with a thrown 'test failed' and no recorded mutation.
+    Verdict: NOT CLAIMED.
+
+C4  --check comparison (mutant L2, `Buffer.compare(committed, fresh) === 0` inverted; not a link guard)
+    S/k2b/out/L2-check-inverted.txt fails with a thrown 'test failed'. The log does not name the failing case.
+    Verdict: failing exit recorded, failing case NOT NAMED. Listed for completeness.
+
+C5  linked manifest on the read path (rows C-15; manifest link guard at 474 to 477)
+    No mutant. Mutant L1 removes the write-path check, not the read-path check.
+    Verdict: NOT CLAIMED.
+
+== 5. Repair-derived (not a lane letter; its guards are changed in this phase)
+
+D1  R1, graph-metadata link re-derive (matrix D-06, D-07)
+    S/k2b/out/R1-graph-link-rederive-allowed.txt: 2 failed of 23. Failing cases: does not re-derive over a linked graph-metadata.json, in the dry run or with --apply; refuses a dangling graph-metadata.json link in the dry run and with --apply.
+    Verdict: RED-PROVEN.
+
+D2  R2, linked rewrite-target report (linkedRewriteTargets loop removed)
+    S/k2b/out/R2-link-report-removed.txt: 4 failed of 23. The failure text is an expected 'left unchanged' message that is absent.
+    Verdict: RED-PROVEN.
+
+D3  R2b, readIfPresent link guard (`if (isSymbolicLink(file)) return null;` removed; rows D-03 and D-05)
+    S/k2b/out/R2b-readIfPresent-link-guard-removed.txt: 1 failed of 24. Failing case: treats a live plan.md link as absent: its outside level reaches no plan, output or written file.
+    Verdict: RED-PROVEN for the readIfPresent guard. The case uses a link whose target is outside the packet, so it does not cover the inside-packet row D-03, which stays MISSING.
+
+D4  R2b variant, which writes
+    S/k2b/out/variant-R2b-writes.txt: 1 failed of 24 (23 skipped in that run). Same failing case as D3.
+    Verdict: RED-PROVEN.
+
+D5  R3, clean packet always edits
+    S/k2b/out/R3-clean-packet-always-edits.txt: 23 of 23 passed. This is NOT a red run.
+    Verdict: NOT RED. Not counted.
+
+D6  R3b, clean packet replans rederive (not a link guard)
+    S/k2b/out/R3b-clean-packet-replans-rederive.txt: 2 failed of 23. Failing cases: passes a packet it would otherwise repair when validation is switched off; reports repairable=0 and writes nothing for a clean packet in a dry run.
+    Verdict: RED-PROVEN (non-link guard).
+
+D7  rewrite-target write guard, lines 272 to 275 (matrix D-04)
+    S/c1/red-repair-derived.txt, red-repair-derived-2.txt and red-repair-derived-apply-2.txt each fail 1 of 20. The failing case in all three is 'does not re-derive over a linked graph-metadata.json' (D-07), not the rewrite-target case (D-04), so the runs do not show that D-04 is covered. S/c1/red-repair-derived-apply.txt passed 1 of 1 (19 skipped), so that first attempt is NOT RED. The mutation applied to the c1 copies is not recorded.
+    Verdict: NOT CLAIMED as red-proven.
+
+== 6. Backfill prune report (requested by the coordinator)
+
+K1  writePruneReportArtifact, backfill-graph-metadata.ts 192 to 217 (refuses a link at the report name, exclusive temporary file). Rows K-01 and K-04 in closure-test-matrix-rationale.txt.
+    No mutant in any S directory removes this guard. grep of S/c1, S/k2a, S/k2b and S/k2c for prune, backfill and writePruneReport found no mutation log. K-02 is COVERED by a test, but no red run shows that the test fails without the guard.
+    Verdict: NOT CLAIMED. No red-proven case exists.
+
+== 7. Lane D workflow (reference only, not a path lane)
+
+The six workflow mutants are in S/k2c and summarized in closure-workflow-red-mutants.txt (existing evidence). They are not part of this map.
+
+== Summary
+
+RED-PROVEN with a recorded failing log:
+  A1, A2, A3 (-e branch), A4 (-e branch), A5 (non-link), A6
+  F1, F2, F3 (filter)
+  B1 (dangling folder), B2, B3, B4 (non-link)
+  C1 (dangling manifest, isolated)
+  D1, D2, D3, D4, D6 (non-link)
+
+NOT CLAIMED, with the reason:
+  K1 backfill prune report: no mutant, no red log
+  F4 baselineIsLink: no k2 mutant; the c1 failing log has no recorded mutation
+  B5 healer document guard (651 to 653): no mutant
+  A3 and A4 -L branches: no case (row A-14 MISSING), mutant covers both branches at once
+  A7 archive source resolution (A-03, A-05): no case
+  B6 folderRefusal linked component and dot segment (B-09, B-10, B-11): no recorded mutant, no case for B-09 or B-11
+  C2 linked manifest write (C-07): no recorded mutation
+  C3 start-scope confinement (C-13): no recorded mutant
+  C5 linked manifest on read path (C-15): no mutant
+  D7 rewrite-target write guard (D-04): c1 mutation not recorded
+  F5 U-16, U-17 and F6 U-18: no case
+
+NOT RED (counted as not red):
+  D5 R3, 23 of 23 passed
+  c1 repair-derived-apply first attempt, 1 of 1 passed (the rerun red-repair-derived-apply-2 is the failing one)

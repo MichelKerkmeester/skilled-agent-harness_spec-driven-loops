@@ -21,8 +21,9 @@ This folder holds the framework's release notes, one entry per Skilled release. 
 |---|---|
 | `v1+/`, `v2+/`, `v3+/` | Older entries, grouped by generation |
 | `v4.0.0.0.md`, `v4.0.0.1.md`, `v4.0.0.2.md`, `v4.0.0.3.md` | Current generation entries at the top level |
+| `v4.0.0.4.md` | Unreleased entry for the next release, with no tag or GitHub release yet |
 
-An entry lives here when a GitHub release carries its version number. The entry whose tag does not exist yet is `v4.0.0.3.md`.
+An entry lives here when a GitHub release carries its version number. The entry whose tag does not exist yet is `v4.0.0.4.md`.
 
 ---
 

@@ -1,0 +1,21 @@
+✔ option C menu in .skilled/commands/create/assets/create-feature-catalog-presentation.txt matches GATE_3_CHOICE_RELATED (1.537709ms)
+✔ option C menu in .skilled/commands/create/assets/create-manual-testing-playbook-presentation.txt matches GATE_3_CHOICE_RELATED (0.901333ms)
+✔ option C menu in .skilled/commands/create/assets/create-skill-parent-presentation.txt matches GATE_3_CHOICE_RELATED (1.154166ms)
+✔ option C menu in .skilled/commands/create/assets/create-skill-presentation.txt matches GATE_3_CHOICE_RELATED (0.926458ms)
+✔ option C menu in .skilled/commands/deep/assets/deep-ai-council-presentation.txt matches GATE_3_CHOICE_RELATED (1.562125ms)
+✔ option C menu in .skilled/commands/deep/assets/deep-research-presentation.txt matches GATE_3_CHOICE_RELATED (1.441625ms)
+✔ option C menu in .skilled/commands/deep/assets/deep-review-presentation.txt matches GATE_3_CHOICE_RELATED (1.709417ms)
+✔ option C menu in .skilled/commands/deep/assets/compiled/deep-ai-council.contract.md matches GATE_3_CHOICE_RELATED (1.4925ms)
+✔ option C menu in .skilled/commands/deep/assets/compiled/deep-research.contract.md matches GATE_3_CHOICE_RELATED (1.866167ms)
+✔ option C menu in .skilled/commands/deep/assets/compiled/deep-review.contract.md matches GATE_3_CHOICE_RELATED (1.44725ms)
+✔ option C menu in .skilled/commands/speckit/assets/speckit-complete-presentation.txt matches GATE_3_CHOICE_RELATED (1.100708ms)
+✔ option C menu in .skilled/commands/speckit/assets/speckit-plan-presentation.txt matches GATE_3_CHOICE_RELATED (0.813958ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 88.559417
+rc=0

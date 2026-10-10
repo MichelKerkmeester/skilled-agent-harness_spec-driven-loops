@@ -14,7 +14,15 @@ Category 07 of the `deep-research` manual testing playbook, six `CP-0xx` scenari
 
 ---
 
-## 2. CONTENTS
+## 2. SCOPE
+
+Six scenarios, CP-046 to CP-051, plus the sandbox setup script. All six enter through `/deep:research` or `/deep:research:auto`. They check command-owned behavior: setup binding, pause handling, spec writeback, resource-map toggling and the leaf output contract. They do not grade research quality.
+
+---
+
+## 3. SCENARIO CONTRACT
+
+Each scenario is one Markdown file named for its topic. Its sections follow the per-feature order: OVERVIEW, SCENARIO CONTRACT, TEST EXECUTION, SOURCE FILES and SOURCE METADATA. The table lists each file with its CP ID and the claim it proves.
 
 | File | Scenario |
 |------|----------|
@@ -28,6 +36,21 @@ Category 07 of the `deep-research` manual testing playbook, six `CP-0xx` scenari
 
 ---
 
-## 3. RELATED
+## 4. TEST ENVIRONMENTS
 
-- [`../manual-testing-playbook.md`](../manual-testing-playbook.md)
+Scenarios run under `/tmp/cp-0xx-sandbox/` and `/tmp/cp-0xx-spec/`. Provision the shared fixture tree with `setup-cp-sandbox.sh` before the first run, as the root playbook index directs. The script builds `/tmp/cp-deep-research-sandbox` by default and takes `--sandbox-dir PATH` to build it elsewhere.
+
+---
+
+## 5. TEST EXECUTION
+
+Run each scenario's exact command sequence, which sits under TEST EXECUTION in its file. Record a `PASS`, `FAIL` or `SKIP` verdict with the evidence another operator needs to reproduce it. A `SKIP` must name a documented sandbox blocker. The execution and evidence policy is in [`../manual-testing-playbook.md`](../manual-testing-playbook.md).
+
+---
+
+## 6. SOURCE METADATA
+
+### See Also
+
+- Root playbook index: [`../manual-testing-playbook.md`](../manual-testing-playbook.md)
+- Command router: `.skilled/commands/deep/research.md`

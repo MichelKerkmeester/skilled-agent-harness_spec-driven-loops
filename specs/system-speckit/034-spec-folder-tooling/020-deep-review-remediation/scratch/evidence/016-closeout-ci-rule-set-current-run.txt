@@ -1,0 +1,96 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/ci-rule-set-comparison.vitest.ts (11 tests | 5 failed) 1909ms
+     × reports a regression when a packet passes at the base and fails at the head 248ms
+     × reports a pre-existing failure when the same rules fail at the base and the head 210ms
+     × names only the head rules that the base was not already failing 230ms
+     × fails closed when the head report does not parse 253ms
+     × fails closed when the base report does not parse 258ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/ci-rule-set-comparison.vitest.ts > changed-packet gate rule-set comparison > reports a regression when a packet passes at the base and fails at the head
+Error: Gate run block changed: expected 1 occurrence(s) of "${head_failing[$packet]+set}", found 0
+ ❯ projectAssociativeArrays tests/ci-rule-set-comparison.vitest.ts:179:13
+    177|     const occurrences = projected.split(from).length - 1;
+    178|     if (occurrences !== count) {
+    179|       throw new Error(
+       |             ^
+    180|         `Gate run block changed: expected ${count} occurrence(s) of "$…
+    181|       );
+ ❯ gateScriptFor tests/ci-rule-set-comparison.vitest.ts:202:56
+ ❯ runGate tests/ci-rule-set-comparison.vitest.ts:250:41
+ ❯ tests/ci-rule-set-comparison.vitest.ts:408:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  |cli| tests/ci-rule-set-comparison.vitest.ts > changed-packet gate rule-set comparison > reports a pre-existing failure when the same rules fail at the base and the head
+Error: Gate run block changed: expected 1 occurrence(s) of "${head_failing[$packet]+set}", found 0
+ ❯ projectAssociativeArrays tests/ci-rule-set-comparison.vitest.ts:179:13
+    177|     const occurrences = projected.split(from).length - 1;
+    178|     if (occurrences !== count) {
+    179|       throw new Error(
+       |             ^
+    180|         `Gate run block changed: expected ${count} occurrence(s) of "$…
+    181|       );
+ ❯ gateScriptFor tests/ci-rule-set-comparison.vitest.ts:202:56
+ ❯ runGate tests/ci-rule-set-comparison.vitest.ts:250:41
+ ❯ tests/ci-rule-set-comparison.vitest.ts:417:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  |cli| tests/ci-rule-set-comparison.vitest.ts > changed-packet gate rule-set comparison > names only the head rules that the base was not already failing
+Error: Gate run block changed: expected 1 occurrence(s) of "${head_failing[$packet]+set}", found 0
+ ❯ projectAssociativeArrays tests/ci-rule-set-comparison.vitest.ts:179:13
+    177|     const occurrences = projected.split(from).length - 1;
+    178|     if (occurrences !== count) {
+    179|       throw new Error(
+       |             ^
+    180|         `Gate run block changed: expected ${count} occurrence(s) of "$…
+    181|       );
+ ❯ gateScriptFor tests/ci-rule-set-comparison.vitest.ts:202:56
+ ❯ runGate tests/ci-rule-set-comparison.vitest.ts:250:41
+ ❯ tests/ci-rule-set-comparison.vitest.ts:426:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  |cli| tests/ci-rule-set-comparison.vitest.ts > changed-packet gate rule-set comparison > fails closed when the head report does not parse
+Error: Gate run block changed: expected 1 occurrence(s) of "${head_failing[$packet]+set}", found 0
+ ❯ projectAssociativeArrays tests/ci-rule-set-comparison.vitest.ts:179:13
+    177|     const occurrences = projected.split(from).length - 1;
+    178|     if (occurrences !== count) {
+    179|       throw new Error(
+       |             ^
+    180|         `Gate run block changed: expected ${count} occurrence(s) of "$…
+    181|       );
+ ❯ gateScriptFor tests/ci-rule-set-comparison.vitest.ts:202:56
+ ❯ runGate tests/ci-rule-set-comparison.vitest.ts:250:41
+ ❯ tests/ci-rule-set-comparison.vitest.ts:437:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  |cli| tests/ci-rule-set-comparison.vitest.ts > changed-packet gate rule-set comparison > fails closed when the base report does not parse
+Error: Gate run block changed: expected 1 occurrence(s) of "${head_failing[$packet]+set}", found 0
+ ❯ projectAssociativeArrays tests/ci-rule-set-comparison.vitest.ts:179:13
+    177|     const occurrences = projected.split(from).length - 1;
+    178|     if (occurrences !== count) {
+    179|       throw new Error(
+       |             ^
+    180|         `Gate run block changed: expected ${count} occurrence(s) of "$…
+    181|       );
+ ❯ gateScriptFor tests/ci-rule-set-comparison.vitest.ts:202:56
+ ❯ runGate tests/ci-rule-set-comparison.vitest.ts:250:41
+ ❯ tests/ci-rule-set-comparison.vitest.ts:447:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 6 passed (11)
+   Start at  10:19:27
+   Duration  2.03s (transform 21ms, setup 15ms, import 30ms, tests 1.91s, environment 0ms)
+
