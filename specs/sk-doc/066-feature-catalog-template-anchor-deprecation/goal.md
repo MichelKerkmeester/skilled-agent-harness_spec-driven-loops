@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Retire the `sk-doc-template: skill_asset_feature_catalog` comment from the feature catalog mode and from every feature catalog in the repository, with each changed skill versioned and every catalog validating as it did before.
+**Objective:** Retire the `sk-doc-template: skill_asset_feature_catalog` comment from the feature catalog mode and from every feature catalog in the repository, then repair the validator findings the sweep surfaced, with each changed skill versioned.
 
 ### Decisions
 
@@ -46,7 +46,9 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | The comment is removed outright in both spellings, with no compatibility path, because no code reads it. |
 | D2 | One deterministic script kept in phase 2's scratch removes the existing copies, run once. |
-| D3 | Other `sk-doc-template:` comments on non-catalog documents stay untouched and are reported. |
+| D3 | The other template-name comments are removed the same way in their own phase. |
+| D4 | Each finding is fixed or dropped with a recorded reason; tooling fixes are handed off. |
+| D5 | Hub version bumps are handed off, because their JSON version fields belong to another owner. |
 
 <!-- /ANCHOR:directive -->
 
@@ -62,6 +64,11 @@ phase and binds as if written here.
 |-------|---------------|
 | 001-source-deprecation | `001-source-deprecation/goal.md` |
 | 002-retroactive-removal | `002-retroactive-removal/goal.md` |
+| 003-feature-catalog-findings | `003-feature-catalog-findings/goal.md` |
+| 004-leftover-template-comments | `004-leftover-template-comments/goal.md` |
+| 005-changelog-version-keys | `005-changelog-version-keys/goal.md` |
+| 006-skill-package-doc-findings | `006-skill-package-doc-findings/goal.md` |
+| 007-sk-code-script-kebab-names | `007-sk-code-script-kebab-names/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -76,10 +83,11 @@ string, not these files.
 ## 3. COMPLETION CRITERIA
 
 - [x] `git grep -E 'sk-doc-template: skill_asset_feature[_-]catalog' -- .skilled .hermes ':!**/changelog/**'` prints no match
-- [x] `validate_catalog_package.py --repo-root .` reports the same 761 violations (42 fail, 719 warn) it reported before the sweep
+- [x] `validate_catalog_package.py --report-only` reports 15 findings, down from 761, each recorded with a reason
 - [x] sk-create-feature-catalog reads version 1.0.2.0, and every other skill or mode whose catalog changed has a bumped `SKILL.md` version and a matching new changelog entry
 - [x] `sync-skills-hermes.cjs --check` and the trigger index check both pass
-- [x] `validate.sh --recursive --strict` on this packet prints RESULT: PASSED for the parent and both children
+- [x] Each child goal's criteria pass
+- [x] `validate.sh --recursive --strict` on this packet prints RESULT: PASSED for the parent and every child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -97,6 +105,8 @@ and findings belong here.
 |------|-------|----------|
 | 001-source-deprecation | Done | Mode grep exits 1, mode at 1.0.2.0 |
 | 002-retroactive-removal | Done | 548 files swept, 27 units bumped |
+| 004 to 007 | Done | 97 comments, 217 version keys, six package fixes, three renames |
+| 003-feature-catalog-findings | Done | 761 findings to 15 |
 
 ### Deviations and findings
 

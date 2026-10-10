@@ -42,12 +42,17 @@
       "packet"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
       "001-source-deprecation/goal.md",
-      "002-retroactive-removal/goal.md"
+      "002-retroactive-removal/goal.md",
+      "003-feature-catalog-findings/goal.md",
+      "004-leftover-template-comments/goal.md",
+      "005-changelog-version-keys/goal.md",
+      "006-skill-package-doc-findings/goal.md",
+      "007-sk-code-script-kebab-names/goal.md"
     ],
     "entities": [
       {
@@ -117,6 +122,12 @@
         "source": "derived"
       },
       {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "1. DURABLE DIRECTIVE",
         "kind": "heading",
         "path": "goal.md",
@@ -127,27 +138,21 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "2. BINDING",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every feature catalog document opens with a template-name HTML comment under its H1, `<!-- sk-doc-template: skillassetfeaturecatalog -->`, and 19 older files carry a hyphenated spelling of it",
     "created_at": "2026-10-10T18:42:45Z",
-    "last_save_at": "2026-10-10T19:23:42.932Z",
+    "last_save_at": "2026-10-10T20:57:54.611Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:78a58f0fab8992f5745c7aee0c9048367ba0d14fe087aaab9430c67cca34294d",
+    "source_fingerprint": "sha256:e35f8634d6e179561b6107fc52e70d411996f5612f84bac67bbd0fa429abb5e6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "75f3a343490f6f12dc1f46f0bf731b89a07776442a51a849815cddd307430139"
+      "spec.md": "7f90f41045acc6de07b76405353021b70a8585a051132bc471165b0191c94f3c"
     },
     "last_active_at": null
   }

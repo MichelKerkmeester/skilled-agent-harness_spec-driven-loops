@@ -93,11 +93,11 @@ Remove the comment at its producer so new catalogs never get it, then remove eve
 |-------|--------|-------|--------|
 | 1 | 001-source-deprecation/ | Stop the mode from emitting the comment | Complete |
 | 2 | 002-retroactive-removal/ | Remove every existing copy and version the owning skills | Complete |
-| 3 | 003-feature-catalog-findings/ | [Phase 3 scope] | Pending |
-| 4 | 004-leftover-template-comments/ | [Phase 4 scope] | Pending |
-| 5 | 005-changelog-version-keys/ | [Phase 5 scope] | Pending |
-| 6 | 006-skill-package-doc-findings/ | [Phase 6 scope] | Pending |
-| 7 | 007-sk-code-script-kebab-names/ | [Phase 7 scope] | Pending |
+| 3 | 003-feature-catalog-findings/ | Repair the catalog validator findings, 761 to 15 | Complete |
+| 4 | 004-leftover-template-comments/ | Remove the 97 other template-name comments | Complete |
+| 5 | 005-changelog-version-keys/ | Add the version key to 217 changelog entries | Complete |
+| 6 | 006-skill-package-doc-findings/ | Fix skill package findings on six units | Complete |
+| 7 | 007-sk-code-script-kebab-names/ | Rename three sk-code scripts to kebab-case | Complete |
 
 ### Phase Transition Rules
 
@@ -111,11 +111,11 @@ Remove the comment at its producer so new catalogs never get it, then remove eve
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-source-deprecation | 002-retroactive-removal | The mode no longer contains the comment | `grep -rn 'sk-doc-template' <mode> --exclude-dir=changelog` prints nothing |
-| 002-retroactive-removal | 003-feature-catalog-findings | [Criteria TBD] | [Verification TBD] |
-| 003-feature-catalog-findings | 004-leftover-template-comments | [Criteria TBD] | [Verification TBD] |
-| 004-leftover-template-comments | 005-changelog-version-keys | [Criteria TBD] | [Verification TBD] |
-| 005-changelog-version-keys | 006-skill-package-doc-findings | [Criteria TBD] | [Verification TBD] |
-| 006-skill-package-doc-findings | 007-sk-code-script-kebab-names | [Criteria TBD] | [Verification TBD] |
+| 002-retroactive-removal | 004-leftover-template-comments | Every catalog copy is gone | The catalog grep prints nothing |
+| 004-leftover-template-comments | 005-changelog-version-keys | No standalone template comment outside specs | The comment grep prints nothing |
+| 005-changelog-version-keys | 006-skill-package-doc-findings | No changelog entry lacks a version key | `package_skill.py --strict` reports 0 missing-version findings |
+| 006-skill-package-doc-findings | 007-sk-code-script-kebab-names | Six units pass the strict package check | `package_skill.py --strict` prints PASS |
+| 007-sk-code-script-kebab-names | 003-feature-catalog-findings | sk-code-opencode passes with its tests green | Package PASS, tests and drift guards pass |
 <!-- /ANCHOR:phase-map -->
 
 ---
