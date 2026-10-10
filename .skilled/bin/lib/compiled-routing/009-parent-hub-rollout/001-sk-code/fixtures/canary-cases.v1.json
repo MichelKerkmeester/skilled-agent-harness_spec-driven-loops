@@ -105,6 +105,22 @@
       }
     },
     {
+      "id": "single-quality-restraint",
+      "prompt": "this module is over-engineered, apply yagni and find the simplest solution",
+      "riskSlice": "actor:mutating:single",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-code-quality"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-code-quality"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
       "id": "single-review",
       "prompt": "code review",
       "riskSlice": "actor:mutating:single",

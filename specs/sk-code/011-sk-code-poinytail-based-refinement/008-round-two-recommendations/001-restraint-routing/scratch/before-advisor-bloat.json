@@ -1,0 +1,21 @@
+[
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.18,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.441417,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-code",
+      "liveScore": 0.441417,
+      "shadowScore": 0.412722,
+      "delta": -0.028695,
+      "dominantShadowLane": "explicit_author"
+    }
+  }
+]

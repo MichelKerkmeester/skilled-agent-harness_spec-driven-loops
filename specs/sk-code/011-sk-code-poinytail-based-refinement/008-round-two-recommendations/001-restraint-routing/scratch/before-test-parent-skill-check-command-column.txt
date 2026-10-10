@@ -1,0 +1,10 @@
+[parent-skill-check] command-column (6c) coverage passed
+✔ .skilled/commands/doctor/scripts/tests/parent-skill-check-command-column.test.cjs (609.627583ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 613.305666

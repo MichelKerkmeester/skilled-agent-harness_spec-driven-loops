@@ -109,7 +109,7 @@ function baseHubRouter() {
       [MODE_A]: { classes: ['demo'], resources: [] },
       [MODE_B]: { classes: ['demo'], resources: [] },
     },
-    vocabularyClasses: { demo: {} },
+    vocabularyClasses: { demo: { keywords: ['alpha thing', 'beta thing'] } },
     routerPolicy: {
       tieBreak: [MODE_A, MODE_B],
       defaultMode: MODE_A,
@@ -149,7 +149,7 @@ function buildCleanFixture(commandCellForModeA) {
   fs.writeFileSync(path.join(hubRoot, 'graph-metadata.json'), JSON.stringify({ skill_id: basename, family: 'sk-hub' }, null, 2));
   writeJson(path.join(hubRoot, 'mode-registry.json'), baseRegistry());
   writeJson(path.join(hubRoot, 'hub-router.json'), baseHubRouter());
-  writeJson(path.join(hubRoot, 'description.json'), { name: basename, description: 'fixture hub', version: '1.0.0.0', keywords: ['fixture'] });
+  writeJson(path.join(hubRoot, 'description.json'), { name: basename, description: 'fixture hub', version: '1.0.0.0', keywords: ['fixture', 'create-skill', 'pkg-two'] });
   writeJson(path.join(hubRoot, 'command-metadata.json'), []);
   fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), hubSkillMd(commandCellForModeA));
   fs.writeFileSync(path.join(hubRoot, 'ROUTER.md'), [

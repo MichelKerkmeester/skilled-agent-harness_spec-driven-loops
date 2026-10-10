@@ -1,0 +1,7 @@
+[check-goal] packet=specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/001-restraint-routing
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)

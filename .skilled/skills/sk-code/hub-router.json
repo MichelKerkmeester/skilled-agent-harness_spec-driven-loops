@@ -20,7 +20,7 @@
   "routerSignals": {
     "sk-code-quality": {
       "weight": 4,
-      "classes": ["quality-aliases", "quality-gates"],
+      "classes": ["quality-aliases", "quality-gates", "quality-restraint"],
       "resources": ["sk-code-quality/SKILL.md"]
     },
     "sk-code-review": {
@@ -54,6 +54,9 @@
     },
     "quality-gates": {
       "keywords": ["comment hygiene", "comment hygiene check", "author checks", "p0 p1 p2 author check", "stable jsonl keys", "add set -euo pipefail", "alignment verifier"]
+    },
+    "quality-restraint": {
+      "keywords": ["yagni", "simplest solution", "simplify", "simplification", "over-engineering", "over-engineered", "overengineering", "overengineered", "over-engineering check", "bloat", "bloated", "unnecessary abstraction"]
     },
     "code-review-aliases": {
       "keywords": ["review", "reviewer", "code review", "findings-first review", "security review", "pr review", "review baseline", "review mode", "code-review"]

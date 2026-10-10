@@ -1,0 +1,17 @@
+ M .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json
+ M .skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json
+ M .skilled/commands/doctor/scripts/parent-skill-check.cjs
+ M .skilled/commands/doctor/scripts/tests/parent-skill-check-command-column.test.cjs
+ M .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs
+ M .skilled/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs
+ M .skilled/commands/doctor/scripts/tests/parent-skill-check-root-router.test.cjs
+ M .skilled/skills/sk-code/ROUTER.md
+ M .skilled/skills/sk-code/description.json
+ M .skilled/skills/sk-code/hub-router.json
+ M .skilled/skills/sk-code/mode-registry.json
+ M .skilled/skills/sk-code/shared/references/universal/code-style-guide.md
+ M .skilled/skills/sk-code/sk-code-quality/scripts/README.md
+ M specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json
+ M specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json
+?? .skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh
+?? .skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh

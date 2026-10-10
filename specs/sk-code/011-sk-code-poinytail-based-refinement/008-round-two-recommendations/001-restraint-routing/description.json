@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/001-restraint-routing",
+  "description": "Phase 1: restraint-routing",
+  "keywords": [
+    "phase",
+    "restraint-routing"
+  ],
+  "lastUpdated": "2026-10-10T06:56:29.358Z",
+  "specId": "001",
+  "folderSlug": "restraint-routing",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "008-round-two-recommendations"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

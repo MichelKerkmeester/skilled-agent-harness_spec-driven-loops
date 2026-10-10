@@ -1,0 +1,7 @@
+repaired specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/001-restraint-routing
+    re-derive graph metadata
+
+inspected=1 repaired=1 failed=0
+
+Not repairable here — these record work someone did, and only they can write them:
+      1  SPEC_DOC_SUFFICIENCY

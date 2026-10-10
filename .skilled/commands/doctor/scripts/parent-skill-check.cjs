@@ -135,6 +135,8 @@ const DEFAULT_TARGET = '.skilled/skills/system-deep-loop';
 const SK_CREATE_SKILL_SCRIPTS = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts');
 const LEAF_GENERATOR_PATH = path.join(SK_CREATE_SKILL_SCRIPTS, 'generate-leaf-manifest.cjs');
 const LEAF_CONTRACT_PATH = path.join(SK_CREATE_SKILL_SCRIPTS, 'lib', 'leaf-resource-contract.cjs');
+// The compiled-routing tree keeps one canary fixture per parent hub, each in a folder named `<number>-<hub>`.
+const CANARY_FIXTURE_ROOT = path.join(REPO_ROOT, '.skilled/bin/lib/compiled-routing/009-parent-hub-rollout');
 const ROOT_METADATA_CONTRACT_PATH = path.join(SK_CREATE_SKILL_SCRIPTS, 'lib', 'skill-root-metadata-contract.cjs');
 const ROOT_ROUTER_CONTRACT_PATH = path.join(SK_CREATE_SKILL_SCRIPTS, 'lib', 'root-router-contract.cjs');
 
@@ -1179,6 +1181,115 @@ function checkSubworkflowSignals(ctx, subworkflowSignals) {
   }
 }
 
+// 5k: the lexical surfaces of a hub must agree with one another. The alias leg
+// checks each registry alias against the keywords of its routerSignal classes.
+// The packet leg checks each mode packet against the description keywords. The
+// canary leg checks that each routerSignals mode is the expected route of a case
+// in the hub's canary fixture.
+function findCanaryFixtureDir(basename) {
+  if (!isDirectory(CANARY_FIXTURE_ROOT)) return null;
+  const pattern = new RegExp(`^\\d+-${escapeRegExp(basename)}$`);
+  const name = fs.readdirSync(CANARY_FIXTURE_ROOT).find((entry) => pattern.test(entry)
+    && isDirectory(path.join(CANARY_FIXTURE_ROOT, entry)));
+  return name ? path.join(CANARY_FIXTURE_ROOT, name) : null;
+}
+
+function aliasDrift(ctx, signals, classes) {
+  const drift = [];
+  for (const mode of ctx.modes) {
+    const signal = signals[mode.workflowMode];
+    if (typeof mode.workflowMode !== 'string' || !isPlainObject(signal) || !Array.isArray(mode.aliases)) continue;
+    const vocabulary = new Set();
+    for (const cls of Array.isArray(signal.classes) ? signal.classes : []) {
+      if (!(cls in classes) || !isPlainObject(classes[cls]) || !Array.isArray(classes[cls].keywords)) continue;
+      for (const keyword of classes[cls].keywords) {
+        if (typeof keyword === 'string') vocabulary.add(keyword.toLowerCase());
+      }
+    }
+    for (const alias of mode.aliases) {
+      if (typeof alias === 'string' && !vocabulary.has(alias.toLowerCase())) {
+        drift.push(`"${mode.workflowMode}": "${alias}" is not a keyword of its routerSignal classes`);
+      }
+    }
+  }
+  return drift;
+}
+
+function packetDrift(ctx) {
+  const keywords = new Set(ctx.description.keywords
+    .filter((keyword) => typeof keyword === 'string')
+    .map((keyword) => keyword.toLowerCase()));
+  const drift = [];
+  for (const mode of ctx.modes) {
+    if (typeof mode.packet !== 'string') continue;
+    if (!keywords.has(mode.packet.toLowerCase())) {
+      drift.push(`"${mode.workflowMode}": packet "${mode.packet}" is not a description keyword`);
+    }
+  }
+  return drift;
+}
+
+function canaryDrift(signals, cases) {
+  const routed = new Set();
+  for (const testCase of cases) {
+    if (testCase.expectedAction !== 'route' || !Array.isArray(testCase.expectedModes)) continue;
+    for (const mode of testCase.expectedModes) routed.add(mode);
+  }
+  return Object.keys(signals)
+    .filter((mode) => !routed.has(mode))
+    .map((mode) => `"${mode}": no canary case routes to it`);
+}
+
+// A listed leg reports its drift as a warning; every other leg fails on it.
+function reportParityLeg(ctx, leg, drift, okMessage) {
+  if (drift.length === 0) {
+    pass(`5k-${leg}: ${okMessage}`);
+    return;
+  }
+  const warnOnly = Object.prototype.hasOwnProperty.call(VOCABULARY_PARITY_WARN_ONLY, ctx.basename)
+    && VOCABULARY_PARITY_WARN_ONLY[ctx.basename].includes(leg);
+  for (const item of drift) {
+    if (warnOnly) warn(`5k-${leg}: ${item}`);
+    else softFail(`5k-${leg}: ${item}`);
+  }
+}
+
+function checkVocabularyParity(ctx) {
+  const router = ctx.hubRouter.value;
+  if (!ctx.hubRouter.exists || !router) return;
+  if (!ctx.registry || !Array.isArray(ctx.registry.modes)) return;
+  const signals = isPlainObject(router.routerSignals) ? router.routerSignals : {};
+  const classes = isPlainObject(router.vocabularyClasses) ? router.vocabularyClasses : {};
+
+  reportParityLeg(ctx, 'alias', aliasDrift(ctx, signals, classes),
+    'every registry alias is a keyword of its routerSignal classes');
+
+  if (ctx.description && Array.isArray(ctx.description.keywords)) {
+    reportParityLeg(ctx, 'packet', packetDrift(ctx), 'every mode packet is a description keyword');
+  }
+
+  const fixtureDir = findCanaryFixtureDir(ctx.basename);
+  if (!fixtureDir) {
+    info(`5k-canary: no compiled-routing canary fixture for hub "${ctx.basename}", leg not applicable`);
+    return;
+  }
+  let cases;
+  try {
+    const parsed = JSON.parse(fs.readFileSync(path.join(fixtureDir, 'fixtures', 'canary-cases.v1.json'), 'utf8'));
+    cases = Array.isArray(parsed.cases) ? parsed.cases.filter(isPlainObject) : [];
+  } catch (e) {
+    softFail(`5k-canary: canary fixture for "${ctx.basename}" cannot be read or parsed: ${e.message.split('\n')[0]}`);
+    return;
+  }
+  reportParityLeg(ctx, 'canary', canaryDrift(signals, cases),
+    'every routerSignals mode is the expected route of a canary case');
+}
+
+// These hubs already carry vocabulary drift on the listed legs. Until that drift
+// is repaired, a listed leg reports it as a warning. Drift on any other hub or
+// leg fails the check.
+const VOCABULARY_PARITY_WARN_ONLY = { 'mcp-tooling': ['alias'], 'sk-design': ['alias', 'packet'], 'sk-doc': ['alias'], 'system-deep-loop': ['alias'] };
+
 function checkHubRouter(ctx) {
   const { exists, value: router, error } = ctx.hubRouter;
   if (!exists) {
@@ -1790,6 +1901,7 @@ function main() {
   checkModeTable(ctx);
   checkChangelog(ctx);
   checkDescription(ctx);
+  checkVocabularyParity(ctx);
   checkPlaybookAndBenchmark(ctx);
   ctx.leafManifest = loadLeafManifest(target);
   ctx.leafAliases = loadLeafAliases(target);

@@ -55,7 +55,7 @@ Intent classification scores task text against weighted keyword signals to pick 
 | Intent | Strong Signals |
 | --- | --- |
 | IMPLEMENTATION | `implement`, `build`, `create`, `feature`, `component`, `script`, `module`, `smooth-scroll`, `IntersectionObserver` |
-| CODE_QUALITY | `lint`, `format`, `quality gate`, `p0`, `p1`, `style`, `naming`, `standards` |
+| CODE_QUALITY | `lint`, `format`, `quality gate`, `p0`, `p1`, `style`, `naming`, `standards`, `restraint`, `yagni`, `simplify`, `simplification`, `over-engineering`, `bloat` |
 | DEBUGGING | `debug`, `fix`, `bug`, `error`, `broken`, `failing`, `stack trace`, `console error` |
 | VERIFICATION | `verify`, `done`, `complete`, `works`, `fixed`, `passing`, `build`, `type-check` |
 | TESTING | `test`, `unit`, `integration`, `coverage`, `vitest`, `pytest`, `shellcheck` |

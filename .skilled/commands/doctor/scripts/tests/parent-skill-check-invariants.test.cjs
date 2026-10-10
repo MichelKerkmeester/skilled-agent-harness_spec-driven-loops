@@ -159,7 +159,7 @@ function buildHub(hubName = 'demo-hub') {
       [MODE_A]: { classes: ['demo'], resources: [] },
       [MODE_B]: { classes: ['demo'], resources: [] },
     },
-    vocabularyClasses: { demo: ['alpha thing', 'beta thing'] },
+    vocabularyClasses: { demo: { keywords: ['alpha thing', 'beta thing'] } },
     routerPolicy: {
       defaultMode: MODE_A,
       defaultResource: [],
@@ -169,7 +169,7 @@ function buildHub(hubName = 'demo-hub') {
     },
   });
   writeJson(path.join(hubRoot, 'description.json'), {
-    name: hubName, description: 'fixture hub', version: VERSION, keywords: ['fixture'],
+    name: hubName, description: 'fixture hub', version: VERSION, keywords: ['fixture', 'pkg-alpha', 'pkg-beta'],
   });
   writeJson(path.join(hubRoot, 'command-metadata.json'), []);
   fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), hubSkillMd());
@@ -196,9 +196,11 @@ function addSurfaceMode(hubRoot) {
   });
   editJson(hubRoot, 'hub-router.json', (r) => {
     r.routerSignals['demo-surface'] = { classes: ['demo'], resources: [] };
+    r.vocabularyClasses.demo.keywords.push('surface thing');
     r.routerPolicy.tieBreak.push('demo-surface');
     r.routerPolicy.outcomes.surfaceBundle = true;
   });
+  editJson(hubRoot, 'description.json', (d) => { d.keywords.push('pkg-surface'); });
   fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), hubSkillMd({
     rows: [
       `| **${MODE_A}** | alpha | \`pkg-alpha/\` | routes via aliases |`,
@@ -221,8 +223,10 @@ function addTransportMode(hubRoot) {
   });
   editJson(hubRoot, 'hub-router.json', (r) => {
     r.routerSignals['demo-transport'] = { classes: ['demo'], resources: [] };
+    r.vocabularyClasses.demo.keywords.push('transport thing');
     r.routerPolicy.tieBreak.push('demo-transport');
   });
+  editJson(hubRoot, 'description.json', (d) => { d.keywords.push('pkg-transport'); });
   fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), hubSkillMd({
     rows: [
       `| **${MODE_A}** | alpha | \`pkg-alpha/\` | routes via aliases |`,
@@ -291,7 +295,7 @@ test('clean fixture passes every invariant and exits 0', () => {
   assert.equal(status, 0, output);
   assert.doesNotMatch(output, /^(FAIL|WARN): /m);
   for (const id of ['1a', '1b', '1c', '2a', '2b', '3a', '3b', '3c', '3d', '3d-canon', '3d-name',
-    '3d-files', '3d-alias', '3e', '3j', '5a', '5b', '5c', '5d', '5e', '5f', '5g', '5h', '5i', '6a', '6b',
+    '3d-files', '3d-alias', '3e', '3j', '5a', '5b', '5c', '5d', '5e', '5f', '5g', '5h', '5i', '5k-alias', '5k-packet', '6a', '6b',
     '6c', '7a', '8a', '8b', '9a', '9b', '10a-manifest-source', '10b-byte-drift', '10c-target-collision',
     '10d-reachability', '11a-class', '12a-router-contract', '13a-version', '13b-version']) {
     assertLine(output, 'PASS', id);
@@ -378,6 +382,8 @@ const FAILING_CASES = [
   ['5j', 'stray command-subworkflow signal', (h) => editJson(h, 'hub-router.json', (r) => {
     r.commandSubworkflowSignals = { ghost: { ownerMode: MODE_A, command: '/demo:ghost' } };
   }), 'ghost'],
+  ['5k-alias', 'registry alias absent from its signal vocabulary', (h) => editJson(h, 'mode-registry.json', (r) => { r.modes[0].aliases.push('yagni'); }), 'yagni'],
+  ['5k-packet', 'packet name absent from description keywords', (h) => editJson(h, 'description.json', (d) => { d.keywords = d.keywords.filter((k) => k !== 'pkg-alpha'); }), 'pkg-alpha'],
   ['6a', 'unregistered child directory', (h) => fs.mkdirSync(path.join(h, 'stray-dir')), 'stray-dir'],
   ['6b', 'mode missing from the mode table', (h) => fs.writeFileSync(path.join(h, 'SKILL.md'), hubSkillMd({
     rows: [`| **${MODE_A}** | alpha | \`pkg-alpha/\` | routes via aliases |`],
@@ -412,6 +418,21 @@ for (const [id, defect, mutate, detail] of FAILING_CASES) {
     assert.equal(status, 1, output);
   });
 }
+
+test('5k-canary fails when a routerSignals mode is never the expected route of a canary case', () => {
+  const hub = buildHub('sk-code');
+  const { status, output } = runChecker(hub);
+  assertLine(output, 'FAIL', '5k-canary', MODE_A);
+  assert.equal(status, 1, output);
+});
+
+test('5k warns, and does not fail, on alias drift that another hub already carries', () => {
+  const hub = buildHub('sk-design');
+  editJson(hub, 'mode-registry.json', (r) => { r.modes[0].aliases.push('yagni'); });
+  const { output } = runChecker(hub);
+  assertLine(output, 'WARN', '5k-alias', 'yagni');
+  assert.doesNotMatch(output, /^FAIL: 5k-alias:/m);
+});
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 7. TESTS: ADVISOR CROSS-CHECK (4b/4c, python3 stubbed on PATH)

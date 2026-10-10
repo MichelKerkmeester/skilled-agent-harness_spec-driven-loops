@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement"
-    last_updated_at: "2026-10-10T06:36:00Z"
+    last_updated_at: "2026-10-10T07:05:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Closed phases 001 to 007 and a second research round"
-    next_safe_action: "Operator reviews the worktree branch before it merges"
+    recent_action: "Added phase 008 for the round-two research recommendations"
+    next_safe_action: "Plan and build the five 008 children"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 88
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-10-09 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -102,6 +102,7 @@ These bind every build phase, 002 to 006.
 | sk-code-review contract and review agent mirrors | Modify | review-output-additions | See `005-review-output-additions/spec.md` |
 | Drift-guard script and retired-guard docs | Modify | guard-retirement-notes | See `006-guard-retirement-notes/spec.md` |
 | Review checker, leaf generator, mirror gate, hook stdin reader, router-sync guard | Modify | follow-up-fixes | See `007-follow-up-fixes/spec.md` |
+| sk-code routing, review contract, code agents, quality scripts, pre-commit mirror gate, two repo rules | Modify | round-two-recommendations | See `008-round-two-recommendations/spec.md` |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -120,6 +121,8 @@ These bind every build phase, 002 to 006.
 | 5 | 005-review-output-additions/ | "Not checked:" line, workload note, User impact rewording, removal search line, final-line check | Complete |
 | 6 | 006-guard-retirement-notes/ | Owner and partial-successor notes for retired guards | Complete |
 | 7 | 007-follow-up-fixes/ | Five follow-up fixes found while building 002 to 006, one child each | Complete |
+| 8 | 008-round-two-recommendations/ | The round-two research recommendations that still hold, one child per group | In Progress |
+| 8 | 008-round-two-recommendations/ | [Phase 8 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -138,6 +141,8 @@ These bind every build phase, 002 to 006.
 | 004-webflow-checker-fix | 005-review-output-additions | None; 005 is independent | n/a |
 | 005-review-output-additions | 006-guard-retirement-notes | None; 006 is independent | n/a |
 | 006-guard-retirement-notes | 007-follow-up-fixes | 006 committed; drift guards and leaf manifests fresh | Orchestrator rerun of the 011 goal criteria |
+| 007-follow-up-fixes | 008-round-two-recommendations | 007 committed; round-two findings rechecked against the tree | Orchestrator rerun of the 011 goal criteria |
+| 007-follow-up-fixes | 008-round-two-recommendations | [Criteria TBD] | [Verification TBD] |
 
 ### Handoffs Outside sk-code
 

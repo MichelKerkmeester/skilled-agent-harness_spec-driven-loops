@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/001-restraint-routing",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/001-restraint-routing",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "restraint routing",
+      "phase 1 restraint routing",
+      "restraint routing plan",
+      "restraint routing tasks",
+      "restraint routing goal",
+      "restraint routing implementation summary"
+    ],
+    "key_topics": [
+      "restraint",
+      "routing",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "stage",
+      "two",
+      "requests",
+      "ask"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/skills/sk-code/mode-registry.json",
+      ".skilled/skills/sk-code/description.json",
+      ".skilled/skills/sk-code/ROUTER.md",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/parent-skill-check-command-column.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/parent-skill-check-root-router.test.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parent-skill-check-fixtures.vitest.ts",
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check-invariants.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check-command-column.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/parent-skill-check-command-column.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check-leaf-manifest.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check-root-router.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/parent-skill-check-root-router.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check-fixtures.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parent-skill-check-fixtures.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-all-drift-guards.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement At",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "At stage two, requests that ask for restraint reach no sk-code mode",
+    "created_at": "2026-10-10T06:56:28Z",
+    "last_save_at": "2026-10-10T07:41:49.682Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:719f9005d0fd3c3e81e65c4b6249510ff43232db1e304e5d059fbb1106eeee64",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "df6a3a6e3108023a2333c7ecb9d9907bee495d0dbe390c3334f1fa89ff0d91cd",
+      "plan.md": "6da9859003290a877746430688261939594737f68cd692878f622f27b2d602bb",
+      "tasks.md": "e96e43c83661688646682bf5439e0595412475e82d693415ce625014ac0f69ad",
+      "implementation-summary.md": "7f7a7392faa835fd12db1cacbebca5173b2f76c1d61aa61fdc8c2e15e2d4c600"
+    },
+    "last_active_at": null
+  }
+}
