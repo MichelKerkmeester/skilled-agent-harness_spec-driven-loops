@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-014-007-advisor-name-mention-scoring"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -75,10 +75,15 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Done | spec.md, plan.md, tasks.md and this goal written by the orchestrator |
+| Guard | Done | p007a |
+| Explicit lane passes | Done | p007b, p007c, p007d |
+| Test | Done | t3-p007e |
+| Parity, metadata, ledger | Done | orchestrator |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | Recorded here as the phase runs |
+| Two scorer rules beyond the plan | The live evidence showed author phrases (spec-kit, two-axis) carried the same false lift after the name point was removed |
+| Edited sk-code graph-metadata.json and the Python scorer | The findings intent signal and the Python boost kept the false lift and the parity ratchet out of step |
 <!-- /ANCHOR:log -->

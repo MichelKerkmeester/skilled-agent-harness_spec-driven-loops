@@ -1798,7 +1798,6 @@ INTENT_BOOSTERS = {
     # SK-CODE code-review mode: Stack-agnostic code review baseline
     # ─────────────────────────────────────────────────────────────────
     "review": ("sk-code", 1.2),
-    "findings": ("sk-code", 1.1),
     "blocker": ("sk-code", 0.9),
     "blockers": ("sk-code", 0.9),
     "vulnerability": ("sk-code", 1.0),
@@ -3607,7 +3606,7 @@ EXECUTOR_DELEGATION_CUES_RE = re.compile(
 # The negative guard forces NON-delegation: "opencode {standards|route|...}" and a
 # bare ".skilled/" path are the code hub's own opencode surface, not a handoff.
 EXECUTOR_NEGATIVE_GUARD_RE = re.compile(
-    r"\bopencode[-\s]?(standards|route|skill|agent|plugin|command|convention)\b|\.opencode/"
+    r"\bopencode[-\s]?(standards|route|skill|agent|plugin|command|convention)\b|\.(?:opencode|skilled)/"
 )
 # Generic single tokens that appear in executor metadata as domain labels rather
 # than delegation cues; never treated as executor aliases.

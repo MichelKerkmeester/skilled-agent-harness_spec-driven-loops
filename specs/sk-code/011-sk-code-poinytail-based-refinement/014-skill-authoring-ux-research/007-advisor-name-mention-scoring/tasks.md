@@ -31,7 +31,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Record the battery (12/17, 2/5) and suite baselines
+- [x] T001 Record the battery (12/17, 2/5) and suite baselines
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -39,9 +39,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Dispatch the focused test first and confirm it fails
-- [ ] T003 Dispatch the guard fix
-- [ ] T004 Dispatch the explicit-lane fixes
+- [x] T002 Dispatch the focused test first and confirm it fails
+- [x] T003 Dispatch the guard fix
+- [x] T004 Dispatch the explicit-lane fixes
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -49,7 +49,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Rebuild, restart the daemon, replay the battery, rerun the suite, validate and commit
+- [x] T005 Rebuild, restart the daemon, replay the battery, rerun the suite, validate and commit
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -57,9 +57,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every goal.md criterion passes on the orchestrator's rerun
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every goal.md criterion passes on the orchestrator's rerun
 <!-- /ANCHOR:completion -->
 
 ---

@@ -36,7 +36,7 @@
       "completion"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,7 +44,11 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts",
-      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      ".skilled/skills/system-skill-advisor/runtime/tests/name-mention-scoring.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
+      ".skilled/skills/sk-code/graph-metadata.json"
     ],
     "entities": [
       {
@@ -87,6 +91,30 @@
         "name": "explicit.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "name-mention-scoring.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/name-mention-scoring.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "local-native-approved-divergences.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -166,35 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-code probe battery reads 12 of 17 positives and 2 of 5 negatives",
     "created_at": "2026-10-10T19:22:18Z",
-    "last_save_at": "2026-10-10T19:30:18.591Z",
+    "last_save_at": "2026-10-10T21:08:10.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:697ded095262a8790a234b3d328448d9c222cba4b387c1970aabac06f07f5c26",
+    "source_fingerprint": "sha256:9397f1af90e074d554bc8a3ad47f9d478da0801467ff633d72cb741642b953f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8d4ecab758c737b89af2d51ba4ccedc2a9f05b045a0f0c3a0ad47b71c7deb6c2",
-      "plan.md": "5888f952dee136d97441559fefb9c37191fa314426ec62cbdba82db271d80bf2",
-      "tasks.md": "0f1d2c977ab7e3b3bdd6e67c418cc42420bc88c7f0f74da71cc5102aa6fd791f",
-      "implementation-summary.md": "aa2cb56a809311cc68eefe9eedbe3e8ec4172bbdecc75fcb8c049c5479ee65ac"
+      "spec.md": "71e1fecf762dd87c566fd12ed4922537be52a9f9fa4c0717efbd183eb4505c1b",
+      "plan.md": "7e762bcb2cdd46e80b21fe8a0c5fa969df908392c0aae1aa81685966cd242671",
+      "tasks.md": "a9499ab19f09f6a76f00834a6820f34656c3e232893e9be54cab47e10ab94d46",
+      "implementation-summary.md": "a32bbd6f3405c47c4730a066ad779f105d5d88221650c0816701703cc896965f"
     },
     "last_active_at": null
   }
