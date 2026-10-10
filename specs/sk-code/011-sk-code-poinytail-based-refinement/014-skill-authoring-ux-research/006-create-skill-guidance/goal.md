@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-014-006-create-skill-guidance"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -75,10 +75,14 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Done | spec.md, plan.md, tasks.md and this goal written by the orchestrator |
+| Guidance sentences | Done | p006a |
+| Stale message and test | Done | p006b |
+| Regenerator JSDoc | Done | p006c |
+| Version, changelog, Hermes copy | Done | orchestrator |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | Recorded here as the phase runs |
+| None | The build matched the plan |
 <!-- /ANCHOR:log -->

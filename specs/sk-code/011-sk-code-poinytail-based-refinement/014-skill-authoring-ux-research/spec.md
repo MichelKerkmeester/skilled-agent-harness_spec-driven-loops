@@ -104,7 +104,7 @@ Fix every finding from phase 001 with the smallest change that stops the error w
 | 3 | 003-unread-version-fields/ | Run the full reader search for the hub JSON version copies and record why removing them is dropped | Complete |
 | 4 | 004-commit-hook-checks/ | Run the leaf-manifest, doctor and intent-signal checks for a staged skill at commit, and say when gates are skipped | Complete |
 | 5 | 005-changelog-single-bump/ | Make the changelog workflow the one bump command: number against upstream and move every version copy | Complete |
-| 6 | 006-create-skill-guidance/ | Correct the routing-field sentence, name every version carrier, and sharpen two generator messages | Planned |
+| 6 | 006-create-skill-guidance/ | Correct the routing-field sentence, name every version carrier, and sharpen two generator messages | Complete |
 | 7 | 007-advisor-name-mention-scoring/ | Stop a named file, path or generic word from pulling the advisor route | Planned |
 | 8 | 008-advisor-surface-hint/ | Let advisor_recommend pass a surface hint to the compiled-route front door | Planned |
 | 9 | 009-advisor-vocabulary-freshness/ | Clear the failing intent-signal carry and the stale compiled graph, and let the freshness panel fail in CI | Planned |

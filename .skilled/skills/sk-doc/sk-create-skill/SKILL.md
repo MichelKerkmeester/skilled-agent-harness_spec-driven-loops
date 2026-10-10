@@ -2,7 +2,7 @@
 name: sk-create-skill
 description: Scaffold OpenCode skills and two-axis sk-doc parent hubs, including standalone, nested workflow, and surface packets.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 <!-- Keywords: create-skill, create-skill-parent, skill scaffolding, parent hub, nested workflow packet, package-skill, init-skill, /create:skill, /create:skill-parent -->
@@ -326,7 +326,7 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
 25. Treat `legacy (no manifest)` as complete only when no canonical manifest was emitted. For `ready`, the initializer calls `compiled-route-manifest.cjs mint` after the final router inputs exist and then calls `freshness` against the same hub root.
 26. Accept `compiled-ready (fresh manifest verified)` only from a valid, fresh canonical result. A missing minter, failed mint, malformed manifest, or stale manifest is a failed generation and retains legacy fallback; never synthesize a digest or author an activation manifest.
 27. Confirm the finished hub conforms to class **H** of the root-metadata contract with `node scripts/ci-skill-root-metadata.cjs --fix`, then rerun `node scripts/ci-skill-root-metadata.cjs` to prove cleanliness. Declaring `mode-registry.json` and `hub-router.json` is what makes a root a hub; declaring only one of them is a half-written declaration the gate rejects. Required, forbidden, and generated-versus-authored rules are in [`references/shared/skill-root-metadata-contract.md`](references/shared/skill-root-metadata-contract.md).
-28. Replace every slug-only routing default: `graph-metadata.json` `domains` and `intent_signals`, `description.json` keywords, and per-mode registry aliases are the fields the advisor's scorers read — fill them with phrases a user would genuinely type.
+28. Replace every slug-only routing default with phrases a user would genuinely type. The advisor's scorers read SKILL.md `keywords`, graph-metadata.json `domains` and `intent_signals`, and per-mode registry aliases; no scorer reads `description.json`, so keywords placed only there do not move a route. For a hub, `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --write --hub <hub>` carries the ROUTER.md intent vocabulary into `intent_signals`.
 29. Confirm advisor discovery. A warm advisor daemon ingests a new hub automatically (its watcher watches the skills root for new top-level directories); with no daemon running, the next start ingests it. Manual refresh: `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted`. Smoke-test with `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<a phrase from your intent signals>"}' --warm-only --format json`.
 
 ### Parent Hub Shape
