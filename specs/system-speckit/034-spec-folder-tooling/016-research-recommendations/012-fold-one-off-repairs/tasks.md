@@ -67,7 +67,7 @@ contextType: "implementation"
 - [x] T010 [P0] Run suite with npm test and verify no regressions
   - Evidence: whole-tree gate (tree4) `npm --prefix .skilled/skills/system-spec-kit/runtime/cli test` exit 0, 171 files and 1775 tests passed, 19 skipped, 0 failed, against a pre-wave-1 baseline of 161 files and 1639 passed. Details in AC-004. Third pass: tree5 cli-test exits 0 with the same counts (gates/tree5/cli-test.rc), after the 012-T2 fix. Tree4 ran before the RLUNA test-isolation fix (012-T2), see implementation-summary.md.
 - [ ] T011 [P1] Manually verify upgrade-legacy --apply output with grouped-detail report
-  - Open: the dry run on the parent folder was run by hand and shows the grouped section (AC-002). A manual `--apply` on the real corpus was not run, because it would write to sibling packets that other closeout workers are still changing. The apply output with the grouped section is covered by the sandbox case at `:398`. Needs an operator decision on whether to run it.
+  - Open: the dry run on the parent folder was run by hand and shows the grouped section (AC-002). The fourth pass ran a read-only dry run over the real corpus (`upgrade-legacy.mjs --roots specs`, no `--apply`). It inspected 2202 active packets, 2194 passing and 8 failing, so `--apply` would change 8 packets. Three of them, 016-research-recommendations, 019-epic-follow-up-fixes and 020-deep-review-remediation, are in folders another lane is editing, and five sit under 026-graph-and-context-optimization. The real-corpus `--apply` was not run. The apply output with the grouped section is covered by the sandbox case at `:398`. Needs an operator decision on whether to run it. Evidence: `scratch/evidence/upgrade-legacy-dry-run-real-corpus.txt`.
 - [x] T012 [P1] Review spec.md, plan.md, tasks.md for consistency
   - Evidence: after the edits in this closeout, spec.md Status Complete matches the four acceptance rows, and the open items here are named in implementation-summary.md.
 <!-- /ANCHOR:phase-3 -->
@@ -79,7 +79,7 @@ contextType: "implementation"
 
 - [ ] All tasks marked `[x]` (open: T011)
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed (open: the real-corpus `--apply`, T011 and CHK-021)
+- [ ] Manual verification passed (open: the real-corpus `--apply`, T011 and CHK-021. The read-only dry run plans 8 changes, see T011)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -132,7 +132,7 @@ contextType: "implementation"
 ## Testing Checklist
 
 - [x] CHK-020 [P0] All acceptance criteria met. Evidence: AC-001 to AC-004 are Met, see acceptance-criteria.md.
-- [ ] CHK-021 [P0] Manual testing complete. Open, operator item: the dry run on the parent folder was done by hand (AC-002). The manual `--apply` on the real corpus is open (T011). The evidence log records the full-corpus `--apply` in a throwaway clone as skipped, with the operator not objecting, and lists it as a follow-up.
+- [ ] CHK-021 [P0] Manual testing complete. Open, operator item: the dry run on the parent folder was done by hand (AC-002). The fourth pass ran the read-only dry run over the real corpus with no `--apply`. It plans 8 changes (2202 active packets, 2194 passing, 8 failing, exit 1, no writes). Evidence: `scratch/evidence/upgrade-legacy-dry-run-real-corpus.txt`. Because the plan is not empty, the real-corpus `--apply` stays open (T011). The evidence log records the full-corpus `--apply` in a throwaway clone as skipped, with the operator not objecting, and lists it as a follow-up.
 - [x] CHK-022 [P1] Edge cases tested. Evidence: the value-source case at `upgrade-legacy.vitest.ts:365` keeps an authored title and tier as written. It fills acceptance-criteria.md from its template, a file with no frontmatter block at all. It fills only the missing `contextType` on resource-map.md and tasks.md, and their authored tier stays. It pins the goal.md fields (`important` and `planning`). Malformed frontmatter is pinned at `:818`. The missing-template fallback is pinned at `:504`, added in the second pass. Not applicable: the plan's edge case for a document with no spec.md, because `fillMissingFrontmatter` (`spec/upgrade-legacy.mjs:734`) fills only the file it reads and never copies from spec.md (implementation-summary.md, Deviations item 2).
 - [x] CHK-023 [P1] Error scenarios validated. Evidence: a missing template falls back to the class defaults. The case at `upgrade-legacy.vitest.ts:504` renames the decision-record.md template for one `--apply` run, exits 0, and writes the table defaults `important` and `planning`. A frontmatter block the detector refuses is left byte-identical with a named reason, pinned at `:818`. Scope: the fallback case makes the read fail as a missing file. A permission-denied read takes the same catch branch in `readTemplateLiterals` (`lib/frontmatter-migration.ts:919`). That follows from reading the code, and no chmod variant was run.
 <!-- /ANCHOR:testing -->
@@ -147,8 +147,8 @@ contextType: "implementation"
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. Evidence: a grep shows `templateLiteralDefaults` is set only by `fillMissingFrontmatter` (`spec/upgrade-legacy.mjs:749`), so the other `buildFrontmatterContent` callers are unchanged. `readTemplateLiterals` and `TEMPLATE_DOC_FILES` have no consumer outside the fill list. Since closeout 3, `readTemplateLiterals` is module-private (OC-O6).
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. Evidence: not a security, path, parser or redaction fix. The template map is fixed in code and no user path reaches it.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Evidence: the axes are document class (10 map entries, 6 pinned) and the template option on and off. Listed in implementation-summary.md. Second pass: all 10 entries are pinned, see CHK-FIX-002.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. Open: `readTemplateLiterals` keeps a module-level cache (`TEMPLATE_LITERAL_CACHE`) keyed by template path. The second-pass unreadable-template case runs the tool in a child process, which starts with an empty cache, as the case's own comment says. No run here puts a warm cache next to a changed template, and no in-process variant was written.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Open: the phase is not committed yet. Pin the evidence to the commit SHA when the combined commit lands under parent D6.
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. Evidence: `readTemplateLiterals` kept a module-level `TEMPLATE_LITERAL_CACHE` (`lib/frontmatter-migration.ts:911` at `124e11c883`), keyed by template path only. The fresh-run case reads in new module instances, so it could not see a value that stayed inside one instance. The same-instance case in `tests/frontmatter-template-literals.vitest.ts` reads a template, rewrites it on disk, and reads it again in the same module. On the unmodified code it exits 1 with `expected 'critical' to be 'normal'` (1 of 2 passed). The fix removes the cache, so every call reads the template. A read costs 37 to 44 microseconds, and the cache saved 36 to 43 of them per repeat call, which does not show in a migration run. The alternative, a key of mtime and size from `fs.statSync`, was rejected because a same-size edit inside one timestamp tick would still read stale. After the fix the file exits 0 with 2 of 2 passed, and the fresh-run case still passes. The earlier receipt argued that the CLI cannot reach the stale path. Removing the path makes that question moot. Receipts: `scratch/evidence/frontmatter-template-cache-same-instance-red-green.txt`. The change is in the working tree and not committed, so it has no commit pin yet. This closes the stale path that earlier passes left open.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Evidence: this phase's code and test changes are in commit `124e11c883d4f955fe097f8af6c308f9c33a841c` (feat(system-spec-kit): fold the anchor repair, lane rules and layout move into the upgrade, 2026-10-09 11:30:58 +0200), the combined commit under parent D6. `git merge-base --is-ancestor 124e11c883d4f955fe097f8af6c308f9c33a841c origin/main` exits 0. The line citations in this packet (`:365`, `:504`, `:541` and `:818` in the upgrade test file, `frontmatter-migration.ts:911` and `:919`, and `upgrade-legacy.mjs:520` and `:749`) match that commit. Later commits changed the upgrade test file, so the pinned lines are the ones at `124e11c883`. The fourth pass's new test file is not in that commit. The CHK-FIX-006 change, the cache removal in `lib/frontmatter-migration.ts` and the same-instance case, is uncommitted and not in that commit either.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -168,7 +168,7 @@ contextType: "implementation"
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized. Evidence: checked in the closeout pass, see T012.
 - [x] CHK-041 [P1] Code comments adequate. Evidence: the order comment sits above the runtime tables in `lib/frontmatter-migration.ts` (lines 142-158), the option has a comment at its declaration (line 79), and `printGroupedDetail` (`spec/upgrade-legacy.mjs:520`) has a comment above it.
-- [ ] CHK-042 [P2] README updated (if applicable). Deferred: `spec/README.md` does not describe the grouped section. Optional at P2, so it is left for a later pass.
+- [x] CHK-042 [P2] README updated (if applicable). Evidence: `spec/README.md` line 118 describes the grouped section, with the `### <packet> / x <RULE> (<count>)` heading printed on the dry run and on `--apply`. Commit `46bd3afd0f` added that line, and the commit is an ancestor of `origin/main`. No README edit was needed in this pass.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -176,8 +176,8 @@ contextType: "implementation"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] Temp files in scratch/ only. Evidence: the phase's scratch/ folder holds only `.gitkeep`. The closeout gate output went to the build scratchpad, as the closeout brief requires.
-- [x] CHK-051 [P1] scratch/ cleaned before completion. Evidence: nothing to remove, scratch/ holds only `.gitkeep`.
+- [x] CHK-050 [P1] Temp files in scratch/ only. Evidence: scratch/ holds `.gitkeep` and `evidence/`, which has the three `.txt` receipts kept for the packet (the dry run, the cache red and green runs, and the same-instance red and green runs). Temp outputs went to the session scratchpad, outside the repo.
+- [x] CHK-051 [P1] scratch/ cleaned before completion. Evidence: scratch/ holds no temp output. Its contents are `.gitkeep` and the two receipts in `evidence/`, which are kept on purpose.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -188,12 +188,12 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 11/12 |
-| P1 Items | 13 | 11/13 |
-| P2 Items | 1 | 0/1 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
-Open P0 items: CHK-021. Open P1 items: CHK-FIX-006 and CHK-FIX-007. Open P2 item: CHK-042, deferred.
+Open P0 item: CHK-021, the real-corpus `--apply` (an operator decision, shared with T011). Open P1 task: T011, the same decision. No P1 checklist item is open. No P2 item is open.
 
-**Verification Date**: 2026-10-09
+**Verification Date**: 2026-10-10
 <!-- /ANCHOR:summary -->
 
 ---

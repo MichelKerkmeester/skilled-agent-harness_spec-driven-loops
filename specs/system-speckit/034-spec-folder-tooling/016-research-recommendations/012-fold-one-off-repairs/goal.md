@@ -87,7 +87,7 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| Deviations and open items | Listed in implementation-summary.md under Deviations and Open Items: the widened fill set, the missing changelog refresh, the manual `--apply` still open (T011), the sandbox reset for the order-dependent packet (an `afterEach` hook that landed at 08:41 CEST, author not confirmed), and the process-wide cache variant. The four classes that had no value-source case are pinned as of the second pass |
+| Deviations and open items | Listed in implementation-summary.md under Deviations and Open Items: the widened fill set, the missing changelog refresh, the manual `--apply` still open (T011), the sandbox reset for the order-dependent packet (an `afterEach` hook that landed at 08:41 CEST, author not confirmed), and the process-wide cache variant, closed by removing the cache (see implementation-summary.md). The four classes that had no value-source case are pinned as of the second pass |
 | Stale route text in D3 and D4 | D3 names the LLM Gateway route and D4 names Luna. The build ran on the opencode-go route with DeepSeek, and the review on the other route, under parent D1 and D7. The decisions are frozen, so the text stays and this row records the difference |
 
 <!-- /ANCHOR:log -->
