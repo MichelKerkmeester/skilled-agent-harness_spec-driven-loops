@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
+// ╔════════════════════════════════════════════════════════════════════════════╗
 // ║ check-review-final-line - validates the final status line in review output ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ╚════════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -61,14 +61,31 @@ function checkReviewOutput(text) {
     return [`final line is not an exact status line: "${finalLine}"`];
   }
 
+  if (COMMENTED_SKIP_STATUS.test(finalLine) && lines.length > 1) {
+    return ['skip status must be the whole output'];
+  }
+
   if (EXACT_STATUS.test(finalLine)) {
+    const failures = [];
+    let blankCount = 0;
     let precedingIndex = lines.length - 2;
     while (precedingIndex >= 0 && lines[precedingIndex].trim() === '') {
+      blankCount += 1;
       precedingIndex -= 1;
     }
-    if (precedingIndex < 0 || !/^Not checked: \S/.test(lines[precedingIndex])) {
-      return ['no "Not checked:" line above the status line'];
+    if (blankCount === 0) {
+      failures.push('no blank line above the status line');
+    } else if (blankCount > 1) {
+      failures.push('more than one blank line above the status line');
     }
+    if (precedingIndex < 0 || !/^Not checked: \S/.test(lines[precedingIndex])) {
+      failures.push('no "Not checked:" line above the status line');
+    }
+    const notCheckedCount = lines.filter((line) => line.startsWith('Not checked:')).length;
+    if (notCheckedCount > 1) {
+      failures.push('more than one "Not checked:" line in the output');
+    }
+    return failures;
   }
 
   return [];
@@ -84,7 +101,8 @@ function runCli() {
 
   try {
     text = inputPath === null ? fs.readFileSync(0, 'utf8') : fs.readFileSync(inputPath, 'utf8');
-  } catch {
+  } catch (error) {
+    console.error(`cannot read ${inputPath === null ? 'stdin' : inputPath}: ${error.message}`);
     console.error('usage: check-review-final-line.js [file]');
     process.exitCode = 2;
     return;

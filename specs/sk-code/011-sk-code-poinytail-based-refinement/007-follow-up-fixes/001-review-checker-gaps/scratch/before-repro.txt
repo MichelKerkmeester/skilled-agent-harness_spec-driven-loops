@@ -1,0 +1,24 @@
+# BEFORE the fix. Checker: .skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js
+== g1-skip-after-body.md
+OK: review output ends on the exact status line
+exit=0
+== g2-no-blank.md
+OK: review output ends on the exact status line
+exit=0
+== g2-two-blank.md
+OK: review output ends on the exact status line
+exit=0
+== g2-two-notchecked.md
+OK: review output ends on the exact status line
+exit=0
+== g2-missing-not-checked.md
+FAIL: no "Not checked:" line above the status line
+exit=1
+== missing file
+usage: check-review-final-line.js [file]
+exit=2
+== stdin from directory
+usage: check-review-final-line.js [file]
+exit=2
+== banner code-point widths (lines 2,3,4)
+[79, 81, 79]

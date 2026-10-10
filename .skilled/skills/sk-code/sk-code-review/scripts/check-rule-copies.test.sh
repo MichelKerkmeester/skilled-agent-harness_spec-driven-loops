@@ -180,6 +180,30 @@ printf 'Findings\n\nReview status: APPROVED\n' > "$FINAL_LINE_MISSING_NOT_CHECKE
 run_case 1 "final_line_missing_not_checked" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_MISSING_NOT_CHECKED"
 expect_output 'no "Not checked:" line above the status line' "final_line_missing_not_checked_output" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_MISSING_NOT_CHECKED"
 
+FINAL_LINE_SKIP_AFTER_BODY="$TMP_DIR/final_line_skip_after_body.md"
+printf 'Findings\n\nNot checked: nothing material\n\nReview status: COMMENTED (skipped: diff below evidence threshold of 50 lines, no sensitive paths touched)\n' > "$FINAL_LINE_SKIP_AFTER_BODY"
+run_case 1 "final_line_skip_after_body" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_SKIP_AFTER_BODY"
+expect_output 'skip status must be the whole output' "final_line_skip_after_body_output" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_SKIP_AFTER_BODY"
+
+FINAL_LINE_NO_BLANK_ABOVE_STATUS="$TMP_DIR/final_line_no_blank_above_status.md"
+printf 'Findings\nNot checked: nothing material\nReview status: APPROVED\n' > "$FINAL_LINE_NO_BLANK_ABOVE_STATUS"
+run_case 1 "final_line_no_blank_above_status" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_NO_BLANK_ABOVE_STATUS"
+expect_output 'no blank line above the status line' "final_line_no_blank_above_status_output" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_NO_BLANK_ABOVE_STATUS"
+
+FINAL_LINE_TWO_BLANK_ABOVE_STATUS="$TMP_DIR/final_line_two_blank_above_status.md"
+printf 'Findings\n\nNot checked: nothing material\n\n\nReview status: APPROVED\n' > "$FINAL_LINE_TWO_BLANK_ABOVE_STATUS"
+run_case 1 "final_line_two_blank_above_status" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_TWO_BLANK_ABOVE_STATUS"
+expect_output 'more than one blank line above the status line' "final_line_two_blank_above_status_output" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_TWO_BLANK_ABOVE_STATUS"
+
+FINAL_LINE_TWO_NOT_CHECKED="$TMP_DIR/final_line_two_not_checked.md"
+printf 'Not checked: a\n\nNot checked: b\n\nReview status: APPROVED\n' > "$FINAL_LINE_TWO_NOT_CHECKED"
+run_case 1 "final_line_two_not_checked" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_TWO_NOT_CHECKED"
+expect_output 'more than one "Not checked:" line in the output' "final_line_two_not_checked_output" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_TWO_NOT_CHECKED"
+
+FINAL_LINE_UNREADABLE="$TMP_DIR/no-such-file.md"
+run_case 2 "final_line_unreadable_file" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_UNREADABLE"
+expect_output "cannot read $FINAL_LINE_UNREADABLE: " "final_line_unreadable_file_output" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_UNREADABLE"
+
 # Seeded examples ensure the canary rejects content after status and missing context.
 CASE_EXAMPLE_TEXT_AFTER="$TMP_DIR/example_text_after_status"
 seed_tree "$CASE_EXAMPLE_TEXT_AFTER"

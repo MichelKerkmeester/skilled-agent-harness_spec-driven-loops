@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-10-09 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -118,6 +118,7 @@ These bind every build phase, 002 to 006.
 | 4 | 004-webflow-checker-fix/ | Callback error capture in the Webflow pre-deploy checker; known-bad inputs for two checkers | Complete |
 | 5 | 005-review-output-additions/ | "Not checked:" line, workload note, User impact rewording, removal search line, final-line check | Complete |
 | 6 | 006-guard-retirement-notes/ | Owner and partial-successor notes for retired guards | Complete |
+| 7 | 007-follow-up-fixes/ | Five follow-up fixes found while building 002 to 006, one child each | In Progress |
 
 ### Phase Transition Rules
 
@@ -135,6 +136,7 @@ These bind every build phase, 002 to 006.
 | 003-doctrine-pass | 004-webflow-checker-fix | None; 004 is independent and may run in parallel | n/a |
 | 004-webflow-checker-fix | 005-review-output-additions | None; 005 is independent | n/a |
 | 005-review-output-additions | 006-guard-retirement-notes | None; 006 is independent | n/a |
+| 006-guard-retirement-notes | 007-follow-up-fixes | 006 committed; drift guards and leaf manifests fresh | Orchestrator rerun of the 011 goal criteria |
 
 ### Handoffs Outside sk-code
 

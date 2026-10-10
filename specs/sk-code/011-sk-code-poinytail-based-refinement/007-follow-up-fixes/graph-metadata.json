@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [
+    "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/001-review-checker-gaps",
+    "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/002-leaf-generator-ignores",
+    "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/003-codex-mirror-gate",
+    "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/004-hook-stdin-deadline",
+    "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/005-router-sync-guard"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ponytail follow-up fixes",
+      "review checker gaps",
+      "router-sync guard",
+      "codex mirror gate",
+      "hook stdin deadline",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "ponytail",
+      "follow-up",
+      "review",
+      "checker",
+      "gaps",
+      "router-sync",
+      "guard",
+      "codex",
+      "mirror",
+      "gate",
+      "hook",
+      "stdin"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-ignores.test.cjs",
+      "tests/README.md",
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs",
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/check-agent-mirror-sync.vitest.ts",
+      ".skilled/hooks/shared/hook-adapter-shared.cjs",
+      ".skilled/hooks/shared/hook-adapter-shared.test.cjs",
+      ".skilled/hooks/shared/README.md",
+      "001-review-checker-gaps/goal.md",
+      "002-leaf-generator-ignores/goal.md",
+      "003-codex-mirror-gate/goal.md",
+      "004-hook-stdin-deadline/goal.md",
+      "005-router-sync-guard/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-review-final-line.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-copies.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest-ignores.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-ignores.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-mirror-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-mirror-sync.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/check-agent-mirror-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-adapter-shared.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-adapter-shared.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-adapter-shared.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-adapter-shared.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Building",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Codex",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "stdin",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Building phases 002 to 006 surfaced five gaps that were out of scope at the time",
+    "created_at": "2026-10-10T05:26:19Z",
+    "last_save_at": "2026-10-10T05:58:45.035Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:f0c1c942988fd09ec967efad31cbdf4acf529625f62d7fb9cf1aa32234d0e072",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b60f99c5fa58d2d7f3346550e93d2b959b17a63eaf27890e5b36fa16785564c2"
+    },
+    "last_active_at": null
+  }
+}

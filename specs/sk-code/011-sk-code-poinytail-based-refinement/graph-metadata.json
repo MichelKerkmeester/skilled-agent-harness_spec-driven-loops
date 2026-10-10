@@ -9,7 +9,8 @@
     "sk-code/011-sk-code-poinytail-based-refinement/003-doctrine-pass",
     "sk-code/011-sk-code-poinytail-based-refinement/004-webflow-checker-fix",
     "sk-code/011-sk-code-poinytail-based-refinement/005-review-output-additions",
-    "sk-code/011-sk-code-poinytail-based-refinement/006-guard-retirement-notes"
+    "sk-code/011-sk-code-poinytail-based-refinement/006-guard-retirement-notes",
+    "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -56,7 +57,8 @@
       "003-doctrine-pass/goal.md",
       "004-webflow-checker-fix/goal.md",
       "005-review-output-additions/goal.md",
-      "006-guard-retirement-notes/goal.md"
+      "006-guard-retirement-notes/goal.md",
+      "007-follow-up-fixes/goal.md"
     ],
     "entities": [
       {
@@ -79,6 +81,12 @@
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -108,14 +116,14 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Find",
+        "name": "Decisions Frozen",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
+        "name": "haiku",
+        "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
@@ -142,27 +150,21 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "4. LOG",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Ponytail is an external coding-agent plugin that teaches restraint: write the least code that meets the requirement, and still ship tests for risky logic",
     "created_at": "2026-10-09T13:20:16Z",
-    "last_save_at": "2026-10-09T20:42:50.186Z",
+    "last_save_at": "2026-10-10T05:31:09.331Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:b0c99a8e6cf45afb29ecdd7c843f94e507a35f881e6ed0e63e413fad9e488850",
+    "source_fingerprint": "sha256:762a354e6387109ce9d02f1858d041d8757ce11a6140df17934bde816203639c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dc2c4a4851dd260b1469a1e02b964d95dd9903cfca85be8bf321968bab4f1b7b"
+      "spec.md": "5ad031ced2528764be246a124bd2688d5089afe70dbfdbc9d6ab3ad733aa826c"
     },
     "last_active_at": null
   }

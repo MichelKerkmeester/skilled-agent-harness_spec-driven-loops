@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes",
+  "description": "Phase 7: follow-up-fixes",
+  "keywords": [
+    "phase",
+    "follow-up-fixes"
+  ],
+  "lastUpdated": "2026-10-10T05:26:20.466Z",
+  "specId": "007",
+  "folderSlug": "follow-up-fixes",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

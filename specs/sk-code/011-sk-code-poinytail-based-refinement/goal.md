@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Build and independently verify phases 002 to 006 so the sk-code hub, its review mode and its checkers carry the Ponytail 5 research's adopted changes.
+**Objective:** Build and independently verify phases 002 to 007 so the sk-code hub, its review mode and its checkers carry the Ponytail 5 research's changes and follow-ups.
 
 ### Decisions
 
@@ -44,12 +44,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | cli-codex builds each phase with `--model gpt-6-luna`, effort `max`, tier `fast`; read `cli-codex/SKILL.md` before the first dispatch |
+| D1 | cli-codex (gpt-6-luna, max, fast) builds 002 to 006; haiku xhigh agents build 007's children |
 | D2 | An executor report is a claim: the orchestrator reruns every criterion in the phase's `goal.md` before calling it done |
 | D3 | Work in one numbered worktree made through sk-git, never raw git; copy this untracked packet into it first and edit only that copy |
-| D4 | Run phases in order 002, 003, 004, 005, 006 |
+| D4 | Commit in folder order: 002 to 006, then 007's children |
 | D5 | Phase done means: all its goal criteria pass, its `implementation-summary.md` is filled, `repair-derived.cjs --apply` ran on it and `validate.sh --strict` prints `RESULT: PASSED` |
-| D6 | One conventional commit per done phase in the worktree; never push |
+| D6 | One conventional commit per phase or 007 child in the worktree; never push |
 | D7 | Three failed repairs on one phase stop the run; report the command and its output |
 
 <!-- /ANCHOR:directive -->
@@ -70,6 +70,7 @@ phase and binds as if written here.
 | 004-webflow-checker-fix | `004-webflow-checker-fix/goal.md` |
 | 005-review-output-additions | `005-review-output-additions/goal.md` |
 | 006-guard-retirement-notes | `006-guard-retirement-notes/goal.md` |
+| 007-follow-up-fixes | `007-follow-up-fixes/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -83,9 +84,9 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] In the worktree, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 7 times and `RESULT: FAILED` 0 times
-- [ ] In the worktree, `grep -l 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement/00[2-6]-*/implementation-summary.md | wc -l` prints 5
-- [ ] In the worktree, `git rev-list --count main..HEAD` prints 5, `git log --format='%(trailers:key=Spec,valueonly)' main..HEAD` prints 5 `Spec:` values naming phases 002 to 006 once each, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
+- [ ] In the worktree, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 13 times and `RESULT: FAILED` 0 times
+- [ ] In the worktree, `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 10
+- [ ] In the worktree, `git rev-list --count main..HEAD` prints 10, `git log --format='%(trailers:key=Spec,valueonly)' main..HEAD` prints 10 `Spec:` values, one per phase 002 to 006 and per 007 child, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
 - [ ] In the worktree, `node .skilled/bin/compiled-route-guard.cjs` exits 0 listing sk-code `fresh`, and `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints JSON with `"action":"route"` and no `servingAuthority` key
 - [ ] In the worktree, `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` and `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` both exit 0, and `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` prints `PASS: stack-folders`
 - [ ] In the worktree, `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` both exit 0
@@ -109,6 +110,7 @@ and findings belong here.
 | 003 doctrine pass | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed; three dispatches, all stops were task or brief wording |
 | 004 webflow checker fix | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed |
 | 005 review output additions | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed |
+| 007 follow-up fixes | Pending | Five children planned and built by haiku xhigh agents |
 | 006 guard retirement notes | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed |
 
 ### Deviations and findings
@@ -117,5 +119,6 @@ and findings belong here.
 |------|------|
 | No acceptance-criteria.md in any child | Every child is Level 1; each child goal takes its criteria from its spec's REQ and SC rows and its tasks' verification commands |
 | Criterion 3 amended 2026-10-09 | sk-git's commit contract bars phase identifiers in subjects, so the phase is checked through each commit's `Spec:` trailer instead of its subject |
+| 007 added 2026-10-10 | The operator chose to fix the follow-ups as child 007 with haiku xhigh agents; criteria 1 to 3 counts, D1, D4 and D6 amended to cover it |
 | Handed off, not built here | D2 Codex mirror gap (deep-improvement and git hooks) and D4 stdin deadline (hooks); recorded in the parent spec |
 <!-- /ANCHOR:log -->
