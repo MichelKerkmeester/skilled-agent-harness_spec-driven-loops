@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The generator writes four tracked files but `.github/workflows/trigger-index-rebuild.yml` diffs and stages only `trigger-index.json` (lines 53-61)",
     "created_at": "2026-10-08T04:22:41Z",
-    "last_save_at": "2026-10-08T10:09:07.099Z",
+    "last_save_at": "2026-10-10T10:38:48.903Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ee8c96f51bb29538dc64aab31ef11fdd720222389b635911714ec42c6ea9df82",
+    "source_fingerprint": "sha256:acb46bafac6252af0618d7a7ee45f7436a0e043766518ce4eab764f07fddcb05",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9062f0926ecba2e765ae3e067da68e1ecb4a8da1b951be38e9176972f86e362f",
+      "spec.md": "844e2d58955f1d386441e998d0bafce2b88f756b1539766810c840fbc110b4d7",
       "plan.md": "2f62f5c214803e8d060472272676f6dd76f620364d5f50e9451a8a400b4159e7",
       "tasks.md": "a7001f951623eb85c1f53913cb758f0a68e6c445f84d397a116aa6c939d1d90a",
       "implementation-summary.md": "2308b43304455befe9c266c0236859168402646fc8defe40de294606099118a6"
