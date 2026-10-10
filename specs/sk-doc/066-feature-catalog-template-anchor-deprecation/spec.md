@@ -98,6 +98,7 @@ Remove the comment at its producer so new catalogs never get it, then remove eve
 | 5 | 005-changelog-version-keys/ | Add the version key to 217 changelog entries | Complete |
 | 6 | 006-skill-package-doc-findings/ | Fix skill package findings on six units | Complete |
 | 7 | 007-sk-code-script-kebab-names/ | Rename three sk-code scripts to kebab-case | Complete |
+| 8 | 008-remediation-deep-review/ | Deep review of phases 1 to 7, PASS with five P2 | Complete |
 
 ### Phase Transition Rules
 
@@ -116,6 +117,7 @@ Remove the comment at its producer so new catalogs never get it, then remove eve
 | 005-changelog-version-keys | 006-skill-package-doc-findings | No changelog entry lacks a version key | `package_skill.py --strict` reports 0 missing-version findings |
 | 006-skill-package-doc-findings | 007-sk-code-script-kebab-names | Six units pass the strict package check | `package_skill.py --strict` prints PASS |
 | 007-sk-code-script-kebab-names | 003-feature-catalog-findings | sk-code-opencode passes with its tests green | Package PASS, tests and drift guards pass |
+| 003-feature-catalog-findings | 008-remediation-deep-review | Phases 1 to 7 committed | `git log main..HEAD` lists their eight commits |
 <!-- /ANCHOR:phase-map -->
 
 ---

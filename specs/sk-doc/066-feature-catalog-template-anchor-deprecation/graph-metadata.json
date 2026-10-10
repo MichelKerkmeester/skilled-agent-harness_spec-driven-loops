@@ -10,7 +10,8 @@
     "sk-doc/066-feature-catalog-template-anchor-deprecation/004-leftover-template-comments",
     "sk-doc/066-feature-catalog-template-anchor-deprecation/005-changelog-version-keys",
     "sk-doc/066-feature-catalog-template-anchor-deprecation/006-skill-package-doc-findings",
-    "sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names"
+    "sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names",
+    "sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review"
   ],
   "manual": {
     "depends_on": [],
@@ -52,7 +53,8 @@
       "004-leftover-template-comments/goal.md",
       "005-changelog-version-keys/goal.md",
       "006-skill-package-doc-findings/goal.md",
-      "007-sk-code-script-kebab-names/goal.md"
+      "007-sk-code-script-kebab-names/goal.md",
+      "008-remediation-deep-review/goal.md"
     ],
     "entities": [
       {
@@ -142,17 +144,17 @@
     ],
     "causal_summary": "Every feature catalog document opens with a template-name HTML comment under its H1, `<!-- sk-doc-template: skillassetfeaturecatalog -->`, and 19 older files carry a hyphenated spelling of it",
     "created_at": "2026-10-10T18:42:45Z",
-    "last_save_at": "2026-10-10T20:57:54.611Z",
+    "last_save_at": "2026-10-10T21:57:21.952Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:e35f8634d6e179561b6107fc52e70d411996f5612f84bac67bbd0fa429abb5e6",
+    "source_fingerprint": "sha256:5d66f442535f6d2eb509fa196a24ccf8b13569a1ddebcbb49f48d0d61c47430a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7f90f41045acc6de07b76405353021b70a8585a051132bc471165b0191c94f3c"
+      "spec.md": "0213684d9a01e6aed5ea064b03a19e2211f2ce1e69e99e58515207baa3d722d2"
     },
     "last_active_at": null
   }

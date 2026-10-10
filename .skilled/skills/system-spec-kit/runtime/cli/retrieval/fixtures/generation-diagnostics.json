@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 56,
-    "missing-frontmatter": 6847,
-    "ok": 13990,
+    "missing-frontmatter": 6860,
+    "ok": 13997,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 24402,
+  "documentsScanned": 24422,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a05abbc04a4d911e7c03be724bf54f1786e336f830a9ce609401e77fb72548f4",
+  "manifestHash": "67a97ac73dbf1964f570af26c625c74904cb5398dfa83dde02d8fec1a253f5f4",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36409,
+      "ok": 36417,
       "prose-sentence": 19,
       "single-token": 164,
       "stop-word-only": 1,
@@ -38649,6 +38649,84 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/deep-review-strategy.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/sk-git/028-crawlable-commit-history/001-research/research/dispatch-prompt.md",
       "reason": "no opening frontmatter delimiter"
@@ -68770,6 +68848,10 @@
     },
     {
       "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/scratch",
       "reason": "excluded directory"
     },
     {

@@ -69,6 +69,7 @@ phase and binds as if written here.
 | 005-changelog-version-keys | `005-changelog-version-keys/goal.md` |
 | 006-skill-package-doc-findings | `006-skill-package-doc-findings/goal.md` |
 | 007-sk-code-script-kebab-names | `007-sk-code-script-kebab-names/goal.md` |
+| 008-remediation-deep-review | `008-remediation-deep-review/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.

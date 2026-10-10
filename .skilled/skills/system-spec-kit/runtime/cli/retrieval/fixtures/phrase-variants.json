@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a05abbc04a4d911e7c03be724bf54f1786e336f830a9ce609401e77fb72548f4",
+  "manifestHash": "67a97ac73dbf1964f570af26c625c74904cb5398dfa83dde02d8fec1a253f5f4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -43475,6 +43475,9 @@
     "feature catalog accuracy fixes": [
       "feature catalog accuracy fixes"
     ],
+    "feature catalog anchor deprecation review report": [
+      "feature catalog anchor deprecation review report"
+    ],
     "feature catalog capabilities": [
       "feature catalog capabilities"
     ],
@@ -71651,6 +71654,9 @@
     "phase 8 legacy era report": [
       "phase 8 legacy era report"
     ],
+    "phase 8 remediation deep review": [
+      "phase 8 remediation deep review"
+    ],
     "phase 8 series parent review fixes": [
       "phase 8 series parent review fixes"
     ],
@@ -79731,6 +79737,24 @@
     ],
     "remediation cluster task list": [
       "remediation cluster task list"
+    ],
+    "remediation deep review": [
+      "remediation deep review"
+    ],
+    "remediation deep review acceptance criteria": [
+      "remediation deep review acceptance criteria"
+    ],
+    "remediation deep review goal": [
+      "remediation deep review goal"
+    ],
+    "remediation deep review implementation summary": [
+      "remediation deep review implementation summary"
+    ],
+    "remediation deep review plan": [
+      "remediation deep review plan"
+    ],
+    "remediation deep review tasks": [
+      "remediation deep review tasks"
     ],
     "remediation execution plan": [
       "remediation execution plan"

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "80dc742a21db9ce0cde5a8f29df314c82c0ac640e2aadf2f9c651b7c6728bf2b",
+  "corpusHash": "58168c567ef35d5aa156407bc002e8e4636f188a8e6c84cd2f20b715025a4c83",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24402,
+  "includedPathCount": 24422,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12070,6 +12070,26 @@
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names/plan.md",
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names/spec.md",
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names/tasks.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/acceptance-criteria.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/goal.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/implementation-summary.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/plan.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/deep-review-dashboard.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/deep-review-strategy.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-001.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-002.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-003.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-004.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-005.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-1.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-2.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-3.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-4.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-5.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/resource-map.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/review-report.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/spec.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/tasks.md",
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/goal.md",
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/spec.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
@@ -24433,7 +24453,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a05abbc04a4d911e7c03be724bf54f1786e336f830a9ce609401e77fb72548f4",
+  "manifestHash": "67a97ac73dbf1964f570af26c625c74904cb5398dfa83dde02d8fec1a253f5f4",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27121,6 +27141,10 @@
     },
     {
       "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/scratch",
       "reason": "excluded directory"
     },
     {
