@@ -9,8 +9,9 @@
 // empty payload. The payload tests pin the parse path of entries that no other
 // suite spawns with a real payload, the byte cap of the compiled reader, and
 // the payload a short-deadline entry still receives when its host writes it but
-// never closes stdin. The compiled entries run from dist, so build the runtime
-// before running this file.
+// never closes stdin. It also pins that a short-deadline entry drops a payload
+// written after its deadline. The compiled entries run from dist, so build the
+// runtime before running this file.
 // ───────────────────────────────────────────────────────────────────
 
 import assert from 'node:assert/strict';
@@ -101,7 +102,7 @@ function hookEnv(extra = {}) {
 // Spawns one entry. With no input the stdin pipe stays open: nothing is
 // written and nothing is ended. With holdOpen the input is written and the
 // pipe still stays open.
-function runHook(file, { args = [], input, env, holdOpen = false } = {}) {
+function runHook(file, { args = [], input, env, holdOpen = false, writeDelayMs = 0 } = {}) {
   return new Promise((resolve) => {
     const started = Date.now();
     const child = spawn(process.execPath, [path.join(RUNTIME_ROOT, file), ...args], {
@@ -115,8 +116,10 @@ function runHook(file, { args = [], input, env, holdOpen = false } = {}) {
     child.stderr.on('data', (chunk) => { stderr += chunk; });
     // A hook that stops reading early closes the pipe under the writer.
     child.stdin.on('error', () => {});
-    if (input !== undefined && holdOpen) child.stdin.write(input);
-    else if (input !== undefined) child.stdin.end(input);
+    if (input !== undefined && holdOpen) {
+      if (writeDelayMs > 0) setTimeout(() => child.stdin.write(input), writeDelayMs);
+      else child.stdin.write(input);
+    } else if (input !== undefined) child.stdin.end(input);
     const killer = setTimeout(() => child.kill('SIGKILL'), KILL_AFTER_MS);
     child.on('close', (code, signal) => {
       clearTimeout(killer);
@@ -258,4 +261,23 @@ test('the short-deadline entries still act on a payload their host writes but ne
   assert.match(prime.stdout, /## Session Context/);
   assert.match(compact.stderr, /PreCompact triggered for session/);
   assert.equal(JSON.parse(codex.stdout).hookSpecificOutput.hookEventName, 'SessionStart');
+});
+
+test('a short-deadline entry drops a payload its host writes after the deadline', async (t) => {
+  const workspace = tempDir(t, 'short-host-late-');
+  const target = path.join(workspace, 'advisor-stub.cjs');
+  fs.writeFileSync(
+    target,
+    "let text = ''; process.stdin.on('data', (chunk) => { text += chunk; }).on('end', () => { process.stdout.write(JSON.stringify({ received: JSON.parse(text) })); });\n",
+  );
+  const result = await runHook('dist/hooks/claude/user-prompt-submit.js', {
+    input: JSON.stringify({ prompt: 'late prompt' }),
+    holdOpen: true,
+    writeDelayMs: 800,
+    env: { SPECKIT_USER_PROMPT_TARGET: target },
+  });
+  assert.equal(result.signal, null, 'the hook must exit on its own, not be killed');
+  assert.equal(result.code, 0, result.stderr);
+  assert.ok(result.elapsedMs < SHORT_HOST_LATEST_EXIT_MS, `exited after ${result.elapsedMs} ms`);
+  assert.equal(result.stdout, '{}', 'a payload written after the 500 ms deadline is dropped and the shim answers {}');
 });

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e7dfc215851aec59098bd69d0e7522cfe1b3dc43ebae9b433acb1f638a057c6c",
+  "corpusHash": "26c1a2ba4699e2a59c9fa0aadbeec5b73041b750c713a69f06a76072c9a83d6c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24287,
+  "includedPathCount": 24327,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8061,6 +8061,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.7.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.7.2.1.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
@@ -10557,6 +10558,45 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/001-compiled-route-manifest-suite/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/001-compiled-route-manifest-suite/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/001-compiled-route-manifest-suite/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/001-compiled-route-manifest-suite/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/001-compiled-route-manifest-suite/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/002-admission-corpus-pin/evidence/admission-report.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/002-admission-corpus-pin/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/002-admission-corpus-pin/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/002-admission-corpus-pin/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/002-admission-corpus-pin/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/002-admission-corpus-pin/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/003-stale-jev-canary/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/003-stale-jev-canary/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/003-stale-jev-canary/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/003-stale-jev-canary/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/003-stale-jev-canary/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/004-pi-ambiguous-denial/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/004-pi-ambiguous-denial/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/004-pi-ambiguous-denial/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/004-pi-ambiguous-denial/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/004-pi-ambiguous-denial/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/005-readme-node-floor/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/005-readme-node-floor/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/005-readme-node-floor/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/005-readme-node-floor/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/005-readme-node-floor/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/research/fanout-attribution.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/research/research.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/research/resource-map.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md",
     "specs/sk-communication/001-sk-communication-creation/001-research-strategy/implementation-summary.md",
@@ -24318,7 +24358,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "2c221fb6808d48a4906ae219c06a182cfec669352a1a7153815ba39d86ae8485",
+  "manifestHash": "d70a3187d6fd31e3080ab8ea29014012a0240a3d8f806d2dabaafb0025fdcc8b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26190,6 +26230,38 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/001-compiled-route-manifest-suite/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/002-admission-corpus-pin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/003-stale-jev-canary/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/004-pi-ambiguous-denial/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/005-readme-node-floor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/scratch",
       "reason": "excluded directory"
     },
     {

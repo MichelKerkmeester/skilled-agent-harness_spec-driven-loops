@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2c221fb6808d48a4906ae219c06a182cfec669352a1a7153815ba39d86ae8485",
+  "manifestHash": "d70a3187d6fd31e3080ab8ea29014012a0240a3d8f806d2dabaafb0025fdcc8b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8200,6 +8200,18 @@
     ],
     "admission ci blocking": [
       "admission ci blocking"
+    ],
+    "admission corpus pin": [
+      "admission corpus pin"
+    ],
+    "admission corpus pin implementation summary": [
+      "admission corpus pin implementation summary"
+    ],
+    "admission corpus pin plan": [
+      "admission corpus pin plan"
+    ],
+    "admission corpus pin tasks": [
+      "admission corpus pin tasks"
     ],
     "admission research fan out": [
       "admission research fan-out"
@@ -24991,6 +25003,18 @@
     ],
     "compiled route manifest refresh": [
       "compiled route manifest refresh"
+    ],
+    "compiled route manifest suite": [
+      "compiled route manifest suite"
+    ],
+    "compiled route manifest suite implementation summary": [
+      "compiled route manifest suite implementation summary"
+    ],
+    "compiled route manifest suite plan": [
+      "compiled route manifest suite plan"
+    ],
+    "compiled route manifest suite tasks": [
+      "compiled route manifest suite tasks"
     ],
     "compiled route obsidian proof": [
       "compiled-route obsidian proof"
@@ -41926,6 +41950,12 @@
     "external user docs": [
       "external user docs"
     ],
+    "external user experience framework": [
+      "external user experience framework"
+    ],
+    "external user experience research": [
+      "external user experience research"
+    ],
     "external vs mcp search comparison": [
       "external vs MCP search comparison"
     ],
@@ -51117,6 +51147,18 @@
     "hook kill switch phase status": [
       "hook kill-switch phase status"
     ],
+    "hook late write test": [
+      "hook late write test"
+    ],
+    "hook late write test implementation summary": [
+      "hook late write test implementation summary"
+    ],
+    "hook late write test plan": [
+      "hook late write test plan"
+    ],
+    "hook late write test tasks": [
+      "hook late write test tasks"
+    ],
     "hook latency baseline": [
       "hook latency baseline"
     ],
@@ -54941,6 +54983,9 @@
     ],
     "last dedup checked at dedup marker": [
       "last_dedup_checked_at dedup marker"
+    ],
+    "late hook payload test": [
+      "late hook payload test"
     ],
     "late question injection": [
       "late question injection"
@@ -70898,6 +70943,9 @@
     "phase 1 acceptance criteria": [
       "phase 1 acceptance criteria"
     ],
+    "phase 1 compiled route manifest suite": [
+      "phase 1 compiled route manifest suite"
+    ],
     "phase 1 made the preflight enforce but two": [
       "phase 1 made the preflight enforce but two"
     ],
@@ -70978,6 +71026,9 @@
     ],
     "phase 13 corpus wide validation repair": [
       "phase 13 corpus wide validation repair"
+    ],
+    "phase 13 root cause and ux research": [
+      "phase 13 root cause and ux research"
     ],
     "phase 14 closure gate": [
       "phase 14 closure gate"
@@ -71077,6 +71128,9 @@
     ],
     "phase 2 acceptance criteria": [
       "phase 2 acceptance criteria"
+    ],
+    "phase 2 admission corpus pin": [
+      "phase 2 admission corpus pin"
     ],
     "phase 2 budget check": [
       "phase 2 budget check"
@@ -71198,6 +71252,9 @@
     "phase 3 quality mode": [
       "phase 3 quality mode"
     ],
+    "phase 3 stale jev canary": [
+      "phase 3 stale jev canary"
+    ],
     "phase 4 agents md pointers": [
       "phase 4 agents md pointers"
     ],
@@ -71209,6 +71266,9 @@
     ],
     "phase 4 hook stdin deadline": [
       "phase 4 hook stdin deadline"
+    ],
+    "phase 4 pi ambiguous denial": [
+      "phase 4 pi ambiguous denial"
     ],
     "phase 4 quality obsidian coverage": [
       "phase 4 quality obsidian coverage"
@@ -71243,6 +71303,9 @@
     "phase 5 opencode and guards": [
       "phase 5 opencode and guards"
     ],
+    "phase 5 readme node floor": [
+      "phase 5 readme node floor"
+    ],
     "phase 5 review output additions": [
       "phase 5 review output additions"
     ],
@@ -71275,6 +71338,9 @@
     ],
     "phase 6 guard retirement notes": [
       "phase 6 guard retirement notes"
+    ],
+    "phase 6 hook late write test": [
+      "phase 6 hook late write test"
     ],
     "phase 6 implementation summary": [
       "phase 6 implementation summary"
@@ -71868,6 +71934,18 @@
     ],
     "pi agent delegation": [
       "pi agent delegation"
+    ],
+    "pi ambiguous denial": [
+      "pi ambiguous denial"
+    ],
+    "pi ambiguous denial implementation summary": [
+      "pi ambiguous denial implementation summary"
+    ],
+    "pi ambiguous denial plan": [
+      "pi ambiguous denial plan"
+    ],
+    "pi ambiguous denial tasks": [
+      "pi ambiguous denial tasks"
     ],
     "pi api key": [
       "pi api key"
@@ -73540,6 +73618,9 @@
     ],
     "ponytail deep research tasks": [
       "ponytail deep research tasks"
+    ],
+    "ponytail epic root causes": [
+      "ponytail epic root causes"
     ],
     "ponytail follow up fixes": [
       "ponytail follow-up fixes"
@@ -76761,6 +76842,18 @@
     ],
     "readme model examples": [
       "readme model examples"
+    ],
+    "readme node floor": [
+      "readme node floor"
+    ],
+    "readme node floor implementation summary": [
+      "readme node floor implementation summary"
+    ],
+    "readme node floor plan": [
+      "readme node floor plan"
+    ],
+    "readme node floor tasks": [
+      "readme node floor tasks"
     ],
     "readme off switches section": [
       "readme off switches section"
@@ -83550,6 +83643,21 @@
     ],
     "root catalog scaffold": [
       "root catalog scaffold"
+    ],
+    "root cause and ux research": [
+      "root cause and ux research"
+    ],
+    "root cause and ux research implementation summary": [
+      "root cause and ux research implementation summary"
+    ],
+    "root cause and ux research plan": [
+      "root cause and ux research plan"
+    ],
+    "root cause and ux research synthesis": [
+      "root cause and ux research synthesis"
+    ],
+    "root cause and ux research tasks": [
+      "root cause and ux research tasks"
     ],
     "root cause before fix": [
       "root cause before fix"
@@ -98477,6 +98585,18 @@
     "stale identifier regeneration plan": [
       "stale identifier regeneration plan"
     ],
+    "stale jev canary": [
+      "stale jev canary"
+    ],
+    "stale jev canary implementation summary": [
+      "stale jev canary implementation summary"
+    ],
+    "stale jev canary plan": [
+      "stale jev canary plan"
+    ],
+    "stale jev canary tasks": [
+      "stale jev canary tasks"
+    ],
     "stale lease cas": [
       "stale lease CAS"
     ],
@@ -101171,6 +101291,9 @@
     "system spec kit 2 7 2 0": [
       "system-spec-kit 2.7.2.0"
     ],
+    "system spec kit 2 7 2 1": [
+      "system-spec-kit 2.7.2.1"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -101548,6 +101671,9 @@
     ],
     "system spec kit v2 7 2 0": [
       "system-spec-kit v2.7.2.0"
+    ],
+    "system spec kit v2 7 2 1": [
+      "system-spec-kit v2.7.2.1"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
