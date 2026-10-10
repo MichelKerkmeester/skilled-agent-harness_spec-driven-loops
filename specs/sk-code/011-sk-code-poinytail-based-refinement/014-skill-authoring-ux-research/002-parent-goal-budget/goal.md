@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-014-002-parent-goal-budget"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -74,10 +74,12 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Done | spec.md, plan.md, tasks.md and this goal written by the orchestrator |
+| Budget cut | Done | 3,798 characters, budget ok |
+| Criteria rerun | Done | All four criteria pass on the orchestrator rerun |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | Recorded here as the phase runs |
+| Two builder repairs and one hand correction | The first cut deleted D1 and the second rewrote fixed prose; both were repaired by DeepSeek. The orchestrator fixed D2 and D5 wording itself rather than spend a fourth dispatch on two words |
 <!-- /ANCHOR:log -->

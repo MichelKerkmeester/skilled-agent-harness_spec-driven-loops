@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Build and independently verify phases 002 to 011 and research round three so sk-code, its agents, checkers and rules carry the Ponytail 5 research's changes and follow-ups.
+**Objective:** Build and verify phases 002-011 and round three so sk-code carries the research's changes and follow-ups.
 
 ### Decisions
 
@@ -44,13 +44,13 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Builders: cli-codex 002-006, haiku 007-008, Sonnet 5.5 009; 010-011: Opus 5.5 medium plans, DeepSeek V4.1 Flash max builds, Sonnet 5.5 high verifies |
-| D2 | An executor's report is a claim; the orchestrator reruns each goal's criteria |
-| D3 | Work and check in one sk-git worktree, never raw git; edit only its packet copy |
-| D4 | Commit in folder order: 002 to 006, then the children of 007 to 011 |
-| D5 | Done means its goal criteria pass, its summary is filled and strict validation passes |
-| D6 | One conventional commit per phase, child or research round; never push |
-| D7 | Three failed repairs on a phase stop the run; report command and output |
+| D1 | Build: codex 002-006, haiku 007-008, sonnet 009; 010-011 Opus plan, DeepSeek build, sonnet verify |
+| D2 | A report is a claim; rerun the criteria |
+| D3 | Work and check in one sk-git worktree, never raw git; edit only packet copy |
+| D4 | Commit: 002-006, then 007-011 children |
+| D5 | Done: criteria and strict pass, summary filled |
+| D6 | One conventional commit per phase or round; no push |
+| D7 | Three failed repairs halt; report command and output |
 
 <!-- /ANCHOR:directive -->
 
@@ -127,6 +127,7 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
+| Durable slice cut, 2026-10-10 | The 014 binding row took the slice to 4,064 characters. The objective and decision cells were shortened to 3,798 so the two sibling rows still fit; every decision, binding row and criterion is kept |
 | No acceptance-criteria.md in any child | Every child is Level 1; each child goal takes its criteria from its spec's REQ and SC rows and its tasks' verification commands |
 | Criterion 3 amended 2026-10-09 | sk-git's commit contract bars phase identifiers in subjects, so the phase is checked through each commit's `Spec:` trailer instead of its subject |
 | Criterion 1 count corrected to 8 | `--recursive` validates one level: the parent and its seven direct children. 007's own goal covers its five children (6 PASSED) |

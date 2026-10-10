@@ -100,7 +100,7 @@ Fix every finding from phase 001 with the smallest change that stops the error w
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-authoring-ux-research/ | Ten-iteration research into the 092 authoring errors, verified and ranked | Complete |
-| 2 | 002-parent-goal-budget/ | Cut the 011 parent goal under its 4,000-character budget without dropping a criterion | Planned |
+| 2 | 002-parent-goal-budget/ | Cut the 011 parent goal under its 4,000-character budget without dropping a criterion | Complete |
 | 3 | 003-unread-version-fields/ | Stop storing the hub version in hub-router.json and mode-registry.json, which nothing reads | Planned |
 | 4 | 004-commit-hook-checks/ | Run the leaf-manifest, doctor and intent-signal checks for a staged skill at commit, and say when gates are skipped | Planned |
 | 5 | 005-changelog-single-bump/ | Make the changelog workflow the one bump command: number against upstream and move every version copy | Planned |
