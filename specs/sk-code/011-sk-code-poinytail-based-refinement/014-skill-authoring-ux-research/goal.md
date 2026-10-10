@@ -72,6 +72,7 @@ phase and binds as if written here.
 | 008-advisor-surface-hint | `008-advisor-surface-hint/goal.md` |
 | 009-advisor-vocabulary-freshness | `009-advisor-vocabulary-freshness/goal.md` |
 | 010-validator-false-positives | `010-validator-false-positives/goal.md` |
+| 011-remediation-deep-review | `011-remediation-deep-review/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -85,7 +86,7 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research --strict --recursive`, run from the repository root, prints RESULT: PASSED for the parent and all ten children.
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research --strict --recursive`, run from the repository root, prints RESULT: PASSED for the parent and all eleven children.
 - [ ] `git log --format=%s 5d9c970447..HEAD -- specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research`, run from the repository root, lists at least ten commits.
 - [ ] `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research`, run from the repository root, prints RESULT: PASSED.
 - [ ] `git status --short`, run from the repository root, prints nothing after the last phase commit.
@@ -108,6 +109,7 @@ and findings belong here.
 | Remediation phases 002 to 009 planned | Done | One child per file area, each with its own goal |
 | Phases 002 to 009 built and committed | Done | Each phase closed with its criteria rerun and strict validation |
 | Phase 010 added and built | Done | Validator false positives handed off by the feature-catalog track |
+| Phase 011 review | Done | Five-iteration deep review; 2 P1 and 10 P2 in `011-remediation-deep-review/review/review-report.md` |
 
 ### Deviations and findings
 
@@ -115,5 +117,6 @@ and findings belong here.
 |------|------|
 | Standard packet turned phase parent | The operator asked for the remediation phases as children of this packet. The research moved into 001-authoring-ux-research, and its goal criteria were amended to the new paths |
 | Criteria amended from nine to ten children and commits | Phase 010 joined after the plan, from a handoff by the feature-catalog track |
+| Criteria amended from ten to eleven children | Phase 011 adds the deep review of phases 002 to 010 |
 | Phase 003 dropped the version removal | The reader search showed the changelog and commit-hook phases stop the drift at far lower cost |
 <!-- /ANCHOR:log -->

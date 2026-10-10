@@ -110,6 +110,7 @@ Fix every finding from phase 001 with the smallest change that stops the error w
 | 8 | 008-advisor-surface-hint/ | Let advisor_recommend pass a surface hint to the compiled-route front door | Complete |
 | 9 | 009-advisor-vocabulary-freshness/ | Clear the failing intent-signal carry and the stale compiled graph, and let the freshness panel fail in CI | Complete |
 | 10 | 010-validator-false-positives/ | Stop the catalog and skill package validators from failing on paths and files that are correct | Complete |
+| 11 | 011-remediation-deep-review/ | Review phases 002 to 010 with a five-iteration deep review and keep only confirmed findings | Complete |
 
 ### Phase Transition Rules
 
@@ -131,6 +132,7 @@ Fix every finding from phase 001 with the smallest change that stops the error w
 | 007-advisor-name-mention-scoring | 008-advisor-surface-hint | 007-advisor-name-mention-scoring committed with its goal criteria passing | `validate.sh --strict` on 007-advisor-name-mention-scoring |
 | 008-advisor-surface-hint | 009-advisor-vocabulary-freshness | 008-advisor-surface-hint committed with its goal criteria passing | `validate.sh --strict` on 008-advisor-surface-hint |
 | 009-advisor-vocabulary-freshness | 010-validator-false-positives | 009-advisor-vocabulary-freshness committed with its goal criteria passing | `validate.sh --strict` on 009-advisor-vocabulary-freshness |
+| 010-validator-false-positives | 011-remediation-deep-review | 010-validator-false-positives committed with its goal criteria passing | `validate.sh --strict` on 010-validator-false-positives |
 <!-- /ANCHOR:phase-map -->
 
 ---

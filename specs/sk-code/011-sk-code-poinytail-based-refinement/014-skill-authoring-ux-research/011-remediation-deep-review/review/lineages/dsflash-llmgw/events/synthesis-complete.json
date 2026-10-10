@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"fanout-dsflash-llmgw-1791670467637-7ccw83","sessionId":"fanout-dsflash-llmgw-1791670467637-7ccw83"},"data":{"mode":"review","totalIterations":5,"activeP0":0,"activeP1":1,"activeP2":7,"dimensionCoverage":0.75,"verdict":"CONDITIONAL","releaseReadinessState":"in-progress","stopReason":"maxIterationsReached"}}
