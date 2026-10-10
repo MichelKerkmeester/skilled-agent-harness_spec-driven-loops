@@ -189,6 +189,12 @@ describe("registered Pi extension boundary", () => {
     expect(result?.block).toBe(true);
   });
 
+  it("tells the caller what an ambiguous command must look like", async () => {
+    const { result } = await invokeFactory("dispatch via cli-devin", "$CLI -p task");
+    expect(result?.block).toBe(true);
+    expect(result?.reason).toContain("Call one executor by its literal name");
+  });
+
   // Pi has no in-process delegation of its own, so a named cli-pi dispatch is judged by the
   // same override rule as any sibling executor rather than refused for being Pi.
   it("allows a named cli-pi dispatch and still denies an unnamed one", async () => {
