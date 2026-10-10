@@ -31,7 +31,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Record the harness baseline (71 passed, 0 failed)
+- [x] T001 Record the harness baseline (71 passed, 0 failed)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -39,9 +39,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Dispatch the new harness cases first and confirm they fail against the old hook
-- [ ] T003 Dispatch the skill-authoring gate
-- [ ] T004 Dispatch the mirror fix line and the untrusted hint
+- [x] T002 Dispatch the new harness cases first and confirm they fail against the old hook
+- [x] T003 Dispatch the skill-authoring gate
+- [x] T004 Dispatch the mirror fix line and the untrusted hint
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -49,7 +49,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Rerun the harness and syntax check, validate and commit
+- [x] T005 Rerun the harness and syntax check, validate and commit
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -57,9 +57,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every goal.md criterion passes on the orchestrator's rerun
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every goal.md criterion passes on the orchestrator's rerun
 <!-- /ANCHOR:completion -->
 
 ---

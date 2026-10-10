@@ -36,14 +36,18 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/scripts/git-hooks/tests/pre-commit.test.sh"
+      ".skilled/scripts/git-hooks/lib/gates.tsv",
+      ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+      ".skilled/commands/doctor/scripts/tests/git-hook-gates.test.cjs",
+      ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-hooks-list.md",
+      ".skilled/scripts/git-hooks/README.md"
     ],
     "entities": [
       {
@@ -77,9 +81,33 @@
         "source": "derived"
       },
       {
+        "name": "gates.tsv",
+        "kind": "file",
+        "path": ".skilled/scripts/git-hooks/lib/gates.tsv",
+        "source": "derived"
+      },
+      {
         "name": "pre-commit.test.sh",
         "kind": "script",
         "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-hook-gates.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/git-hook-gates.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-hooks-list.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-hooks-list.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/scripts/git-hooks/README.md",
         "source": "derived"
       },
       {
@@ -165,35 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The leaf manifest, the doctor parity and structure rules and the router intent-signal carry are checked only by CI or by hand, so drift lands and costs an amend",
     "created_at": "2026-10-10T19:22:08Z",
-    "last_save_at": "2026-10-10T19:30:18.599Z",
+    "last_save_at": "2026-10-10T20:35:22.987Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f2711fef3b4ab102282a2f014c0744dc25a729c26ce6685eac763c7d322f952f",
+    "source_fingerprint": "sha256:7d13270e57da2d811a61c246c7c57a30e9b96922e7be526899c84872d3e61253",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5c777f2ecaa74c4a7dbd056626ff389059a3d061346d2cc63f48bedc65a5891e",
-      "plan.md": "3b356d2156080dd2f10c81430e8bf6224e4c464cc0c923fd226142f7e5089ba9",
-      "tasks.md": "da7c80b36374b8bbb3f4b5cb8292dc7087e998adf25a2614f488c0f23dbf30da",
-      "implementation-summary.md": "18df731b40e427b7aa8037293eb54c9d5be33bb6d3ca9cf1b1d828ea6c0a709e"
+      "spec.md": "8e70fd195871922e052771753f5a00b2631ec3bd57e34dfb61fd52426e5f88a4",
+      "plan.md": "1d81795a8271d19bd1363cd242f9dff34b6092208d2ed725f83a8b6e8f77fb23",
+      "tasks.md": "19396ab6f90c1a3b70534cb1d4ff6b6d9bb7389a262533e26a10a7de83417fce",
+      "implementation-summary.md": "2af4828ebc39b3b8d75a48710a775a66ef5dbe472e5e2d1fbfc0033c5a2b9254"
     },
     "last_active_at": null
   }

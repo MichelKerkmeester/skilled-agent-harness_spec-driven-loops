@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-014-004-commit-hook-checks"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -76,10 +76,15 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Done | spec.md, plan.md, tasks.md and this goal written by the orchestrator |
+| Gate and registry row built | Done | p004a |
+| Untrusted notice built | Done | p004b |
+| Mirror repair line built | Done | p004c, split by the orchestrator |
+| Harness cases built | Done | 85 passed; 9 failed before |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | Recorded here as the phase runs |
+| Edited four files beyond the plan's two | The new registry row made a test count, a playbook count and the hooks README row stale; all are hook tooling |
+| The mirror line names no --write | The builder confirmed no mirror sync script accepts --write |
 <!-- /ANCHOR:log -->

@@ -28,7 +28,7 @@ PASS=0; FAIL=0
 export GIT_CONFIG_GLOBAL=/dev/null
 export SPECKIT_SKIP_COMMENT_HYGIENE=1 SPECKIT_SKIP_MIRROR_PARITY=1 \
        SPECKIT_SKIP_CARD_SYNC=1 SPECKIT_SKIP_MCP_MUTATION_CLASS=1 \
-       SPECKIT_SKIP_DOC_MODEL_VALIDATE=1
+       SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 SPECKIT_SKIP_SKILL_AUTHORING=1
 
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
@@ -717,6 +717,107 @@ if grep -qx -- '--check' "$TMP/hermes-prompt-calls.log" 2>/dev/null; then
 else
   echo "FAIL  the Hermes prompt copy check did not receive --check"; FAIL=$((FAIL + 1))
 fi
+
+# ══ skill authoring gate ════════════════════════════════════════════════════
+# The gate regenerates a skill's derived artifacts through three creator tools and
+# blocks when any of them reports drift. Its fixture plants all three as stubs and a
+# demo hub for them to check, so the cases drive the block, pass and scoping paths
+# without the real generators.
+SKILL_STUB_DIR=".opencode/skills/sk-doc/sk-create-skill/scripts"
+
+# A stub records its own call, so a passing case can prove the gate reached it, and
+# exits with the status the case asked for.
+write_skill_stub() { # write_skill_stub <path> <label> <exit-rc>
+  printf 'require("fs").appendFileSync("skill-authoring-calls.log", "%s\\n"); console.log("STUB %s"); process.exit(%s);\n' \
+    "$2" "$2" "$3" > "$TMP/$1"
+}
+
+setup_skill_fixture() { # setup_skill_fixture <leaf-rc> <doctor-rc> <signals-rc>
+  setup_gate_fixture toolchain
+  mkdir -p "$TMP/$SKILL_STUB_DIR" "$TMP/.opencode/commands/doctor/scripts" \
+           "$TMP/.opencode/skills/demo-hub"
+  write_skill_stub "$SKILL_STUB_DIR/generate-leaf-manifest.cjs" leaf "$1"
+  write_skill_stub ".opencode/commands/doctor/scripts/parent-skill-check.cjs" doctor "$2"
+  write_skill_stub "$SKILL_STUB_DIR/generate-router-intent-signals.cjs" signals "$3"
+  printf '%s\n' '{"leaf":true}' > "$TMP/.opencode/skills/demo-hub/leaf-manifest.json"
+  printf '%s\n' '{"modes":[]}' > "$TMP/.opencode/skills/demo-hub/mode-registry.json"
+  printf '%s\n' 'demo hub' > "$TMP/.opencode/skills/demo-hub/SKILL.md"
+  git -C "$TMP" add -A >/dev/null
+  git -C "$TMP" commit -qm "demo hub"
+}
+
+# ── 50. a stale leaf manifest blocks and names its repair and bypass ──
+setup_skill_fixture 1 0 0
+stage_new ".opencode/skills/demo-hub/notes.txt" "demo"
+SPECKIT_SKIP_SKILL_AUTHORING=0 run_hook; RC=$?
+check "a stale leaf manifest blocks the commit" 1 "$RC" "leaf-manifest.json is stale"
+check "the leaf block names --write" 1 "$RC" "generate-leaf-manifest.cjs --write"
+check "the leaf block names its bypass" 1 "$RC" "Bypass: SPECKIT_SKIP_SKILL_AUTHORING=1"
+
+# ── 51. a failing doctor blocks and names the doctor ──
+setup_skill_fixture 0 1 0
+stage_new ".opencode/skills/demo-hub/notes.txt" "demo"
+SPECKIT_SKIP_SKILL_AUTHORING=0 run_hook; RC=$?
+check "a failing doctor blocks the commit" 1 "$RC" "fails the parent-skill doctor"
+
+# ── 52. stale intent signals block and name their repair ──
+setup_skill_fixture 0 0 1
+stage_new ".opencode/skills/demo-hub/notes.txt" "demo"
+SPECKIT_SKIP_SKILL_AUTHORING=0 run_hook; RC=$?
+check "stale intent signals block the commit" 1 "$RC" "router intent signals are stale"
+check "the signals block names --write --hub demo-hub" 1 "$RC" "Fix: node .*--write --hub demo-hub"
+
+# ── 53. a hub whose three artifacts are current passes ──
+setup_skill_fixture 0 0 0
+stage_new ".opencode/skills/demo-hub/notes.txt" "demo"
+SPECKIT_SKIP_SKILL_AUTHORING=0 run_hook; RC=$?
+check "a hub whose artifacts are current passes" 0 "$RC"
+CALLS="$(grep -c . "$TMP/skill-authoring-calls.log" 2>/dev/null || echo 0)"
+if [[ "$CALLS" == "3" ]]; then
+  echo "PASS  the gate ran all three creator tools"; PASS=$((PASS + 1))
+else
+  echo "FAIL  expected 3 creator tool calls, got $CALLS"; FAIL=$((FAIL + 1))
+fi
+
+# ── 54. the skill authoring bypass passes failing stubs ──
+setup_skill_fixture 1 1 1
+stage_new ".opencode/skills/demo-hub/notes.txt" "demo"
+SPECKIT_SKIP_SKILL_AUTHORING=1 run_hook; RC=$?
+check "the skill authoring bypass passes failing stubs" 0 "$RC"
+
+# ── 55. a commit outside the skill roots never runs the creator tools ──
+setup_skill_fixture 1 1 1
+stage_new "notes.md" "note"
+SPECKIT_SKIP_SKILL_AUTHORING=0 run_hook; RC=$?
+check "a commit outside the skill roots passes failing stubs" 0 "$RC"
+
+# ── 56. an untrusted clone says the checks were skipped ──
+setup_gate_fixture toolchain
+git -C "$TMP" config --unset skilled.trustRepoHooks
+stage_new "notes.md" "note"
+run_hook; RC=$?
+check "an untrusted clone is not blocked" 0 "$RC" "git config --local skilled.trustRepoHooks true"
+
+# ── 57. an untrusted repository without the toolchain hears nothing ──
+setup_gate_fixture
+git -C "$TMP" config --unset skilled.trustRepoHooks
+run_hook; RC=$?
+check "an untrusted repository without the toolchain is not blocked" 0 "$RC"
+if grep -qF "gate:hook-trust" "$TMP/out.log"; then
+  echo "FAIL  the hook-trust notice printed without the toolchain"; FAIL=$((FAIL + 1))
+else
+  echo "PASS  the hook-trust notice stays silent without the toolchain"; PASS=$((PASS + 1))
+fi
+
+# ── 58. a failed mirror check names the exact node repair ──
+setup_gate_fixture toolchain
+HERMES_STUBS="$TMP/.opencode/skills/system-spec-kit/runtime/cli/hermes"
+mkdir -p "$HERMES_STUBS"
+printf '%s\n' 'console.log("STUB drift"); process.exit(1);' > "$HERMES_STUBS/sync-skills-hermes.cjs"
+stage_new "notes.md" "note"
+SPECKIT_SKIP_MIRROR_PARITY=0 run_hook; RC=$?
+check "a failed mirror check names its exact repair" 1 "$RC" \
+  "Fix: node .*sync-skills-hermes[.]cjs, then git add its output"
 
 echo ""
 echo "pre-commit gates: $PASS passed, $FAIL failed"
