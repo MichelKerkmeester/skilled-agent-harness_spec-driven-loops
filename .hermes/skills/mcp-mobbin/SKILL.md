@@ -1,9 +1,9 @@
 ---
 name: mcp-mobbin
-description: "Mobbin MCP transport: read-only app/screen/flow design research via Code Mode; pair with sk-design-md-generator for a measured Style Reference (extracted design tokens)."
+description: "Mobbin MCP transport: read-only app/screen/flow research via Code Mode, paired with sk-design-md-generator for a Style Reference."
 compatibility: Requires a paid Mobbin plan for MCP (Pro, Team, or Enterprise; Free has no MCP access), the npx mcp-remote bridge, Node.js >=18, and a browser OAuth round-trip on first use.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.1.1.0
+version: 1.1.2.0
 user-invocable: true
 ---
 

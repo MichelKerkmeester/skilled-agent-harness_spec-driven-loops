@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ebea1fad87e84f858bb61d83baeba7666bf7f48a7e4d86076b357dc43e419491",
+  "manifestHash": "35d93c64e7ece4e5c9924ce4981b0890ce71a9b653af20c947b2ad23fa335bb3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -19845,6 +19845,9 @@
     "cli hermes 1 0 5 0": [
       "cli-hermes 1.0.5.0"
     ],
+    "cli hermes 1 0 6 0": [
+      "cli-hermes 1.0.6.0"
+    ],
     "cli hermes benchmark": [
       "cli-hermes benchmark"
     ],
@@ -19949,6 +19952,9 @@
     ],
     "cli hermes v1 0 5 0": [
       "cli-hermes v1.0.5.0"
+    ],
+    "cli hermes v1 0 6 0": [
+      "cli-hermes v1.0.6.0"
     ],
     "cli hermes validation report": [
       "cli-hermes validation report"
@@ -59280,6 +59286,9 @@
     "mcp magicpath 1 1 1 0": [
       "mcp-magicpath 1.1.1.0"
     ],
+    "mcp magicpath 1 1 2 0": [
+      "mcp-magicpath 1.1.2.0"
+    ],
     "mcp magicpath cli manual": [
       "mcp-magicpath cli manual"
     ],
@@ -59295,6 +59304,9 @@
     "mcp magicpath v1 1 1 0": [
       "mcp-magicpath v1.1.1.0"
     ],
+    "mcp magicpath v1 1 2 0": [
+      "mcp-magicpath v1.1.2.0"
+    ],
     "mcp mobbin 1 0 0 0": [
       "mcp-mobbin 1.0.0.0"
     ],
@@ -59303,6 +59315,9 @@
     ],
     "mcp mobbin 1 1 1 0": [
       "mcp-mobbin 1.1.1.0"
+    ],
+    "mcp mobbin 1 1 2 0": [
+      "mcp-mobbin 1.1.2.0"
     ],
     "mcp mobbin delivered outcome pitch": [
       "mcp-mobbin delivered-outcome pitch"
@@ -59321,6 +59336,9 @@
     ],
     "mcp mobbin v1 1 1 0": [
       "mcp-mobbin v1.1.1.0"
+    ],
+    "mcp mobbin v1 1 2 0": [
+      "mcp-mobbin v1.1.2.0"
     ],
     "mcp mutation regex blind": [
       "mcp mutation regex blind"
@@ -59544,6 +59562,9 @@
     "mcp refero 1 1 1 0": [
       "mcp-refero 1.1.1.0"
     ],
+    "mcp refero 1 1 2 0": [
+      "mcp-refero 1.1.2.0"
+    ],
     "mcp refero design transport": [
       "mcp-refero design transport"
     ],
@@ -59555,6 +59576,9 @@
     ],
     "mcp refero v1 1 1 0": [
       "mcp-refero v1.1.1.0"
+    ],
+    "mcp refero v1 1 2 0": [
+      "mcp-refero v1.1.2.0"
     ],
     "mcp remote mobbin": [
       "mcp-remote mobbin"
@@ -91417,6 +91441,9 @@
     "sk create feature catalog 1 0 2 0": [
       "sk-create-feature-catalog 1.0.2.0"
     ],
+    "sk create feature catalog 1 0 3 0": [
+      "sk-create-feature-catalog 1.0.3.0"
+    ],
     "sk create feature catalog playbook": [
       "sk-create-feature-catalog playbook"
     ],
@@ -91434,6 +91461,9 @@
     ],
     "sk create feature catalog v1 0 2 0": [
       "sk-create-feature-catalog v1.0.2.0"
+    ],
+    "sk create feature catalog v1 0 3 0": [
+      "sk-create-feature-catalog v1.0.3.0"
     ],
     "sk create frontmatter 1 0 0 0": [
       "sk-create-frontmatter 1.0.0.0"
@@ -93028,6 +93058,9 @@
     "sk vision 0 3 2 0": [
       "sk-vision 0.3.2.0"
     ],
+    "sk vision 0 3 3 0": [
+      "sk-vision 0.3.3.0"
+    ],
     "sk vision 006 001 summary": [
       "sk-vision 006-001 summary"
     ],
@@ -93591,6 +93624,9 @@
     ],
     "sk vision v0 3 2 0": [
       "sk-vision v0.3.2.0"
+    ],
+    "sk vision v0 3 3 0": [
+      "sk-vision v0.3.3.0"
     ],
     "sk vision venv cleanup": [
       "sk-vision venv cleanup"
@@ -95002,6 +95038,9 @@
     ],
     "skill package doc findings tasks": [
       "skill package doc findings tasks"
+    ],
+    "skill package fixes": [
+      "skill package fixes"
     ],
     "skill package security audit": [
       "skill package security audit"

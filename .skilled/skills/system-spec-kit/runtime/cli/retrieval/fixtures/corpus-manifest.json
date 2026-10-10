@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5748f2c29d3af57ca1f2b64fd90c6fd03b4010a6c3e3e05bea32bb967b8ec589",
+  "corpusHash": "bd57508ccf5c744cfa5eca51a0d993fccd05d10c66e334a9bdb115d882c36b25",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24374,
+  "includedPathCount": 24380,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1085,6 +1085,7 @@
     ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.4.0.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.5.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.6.0.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/dispatch-guards/dispatch-shape-recognition.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/dispatch-guards/hard-rule-preflight-checks.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/fanout-dispatch/closed-model-roster.md",
@@ -2265,6 +2266,7 @@
     ".skilled/skills/mcp-tooling/mcp-magicpath/changelog/v1.0.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-magicpath/changelog/v1.1.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-magicpath/changelog/v1.1.1.0.md",
+    ".skilled/skills/mcp-tooling/mcp-magicpath/changelog/v1.1.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-magicpath/feature-catalog/components/components.md",
     ".skilled/skills/mcp-tooling/mcp-magicpath/feature-catalog/components/inspect-component.md",
     ".skilled/skills/mcp-tooling/mcp-magicpath/feature-catalog/components/list-components.md",
@@ -2297,6 +2299,7 @@
     ".skilled/skills/mcp-tooling/mcp-mobbin/changelog/v1.0.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.1.0.md",
+    ".skilled/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-mobbin/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-mobbin/examples/element-intent-query.md",
     ".skilled/skills/mcp-tooling/mcp-mobbin/examples/platform-flow-research.md",
@@ -2510,6 +2513,7 @@
     ".skilled/skills/mcp-tooling/mcp-refero/changelog/v1.0.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-refero/changelog/v1.1.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-refero/changelog/v1.1.1.0.md",
+    ".skilled/skills/mcp-tooling/mcp-refero/changelog/v1.1.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-refero/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-refero/examples/funnel-styles-screens-flows.md",
     ".skilled/skills/mcp-tooling/mcp-refero/examples/metadata-first-lookup.md",
@@ -6263,6 +6267,7 @@
     ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.1.1.md",
     ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.1.2.md",
     ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.2.0.md",
+    ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.3.0.md",
     ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/catalog-structure/create-root-catalog-package.md",
     ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/catalog-structure/preserve-root-leaf-bijection.md",
     ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md",
@@ -6733,6 +6738,7 @@
     ".skilled/skills/sk-vision/changelog/v0.3.0.0.md",
     ".skilled/skills/sk-vision/changelog/v0.3.1.0.md",
     ".skilled/skills/sk-vision/changelog/v0.3.2.0.md",
+    ".skilled/skills/sk-vision/changelog/v0.3.3.0.md",
     ".skilled/skills/sk-vision/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-vision/feature-catalog/host-adapters/devin-hook.md",
     ".skilled/skills/sk-vision/feature-catalog/host-adapters/opencode-plugin.md",
@@ -24405,7 +24411,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ebea1fad87e84f858bb61d83baeba7666bf7f48a7e4d86076b357dc43e419491",
+  "manifestHash": "35d93c64e7ece4e5c9924ce4981b0890ce71a9b653af20c947b2ad23fa335bb3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
