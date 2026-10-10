@@ -10,7 +10,9 @@
     "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/004-pi-ambiguous-denial",
     "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/005-readme-node-floor",
     "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test",
-    "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review"
+    "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review",
+    "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/008-authored-classifier-fixture",
+    "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/009-pi-guard-classification"
   ],
   "manual": {
     "depends_on": [],
@@ -47,7 +49,7 @@
       "durable"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -63,12 +65,12 @@
       "005-readme-node-floor/goal.md",
       "006-hook-late-write-test/goal.md",
       "007-remediation-deep-review/goal.md",
+      "008-authored-classifier-fixture/goal.md",
+      "009-pi-guard-classification/goal.md",
       ".skilled/skills/system-skill-advisor/runtime/package.json",
       ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
       ".skilled/repo-rules/prevent-overengineering.md",
-      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs",
-      ".skilled/bin/tests/compiled-route-manifest.test.cjs",
-      ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts"
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs"
     ],
     "entities": [
       {
@@ -138,19 +140,13 @@
         "source": "derived"
       },
       {
-        "name": "compiled-route-manifest.test.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/tests/compiled-route-manifest.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "dispatch-preflight-lint.ts",
-        "kind": "code",
-        "path": ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -175,12 +171,6 @@
       },
       {
         "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -214,11 +204,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow Topic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The epic shipped, but its build hit repeated process errors: a helper's `String.replace` read a dollar-apostrophe sequence as a replacement pattern, the spec validator parsed link-shaped task text, a wildcard `rm` deleted scratch helpers, generated artifacts drifted and needed re-mints, and two branches minted the same changelog version",
     "created_at": "2026-10-10T18:39:09Z",
-    "last_save_at": "2026-10-10T21:46:18.737Z",
+    "last_save_at": "2026-10-10T23:56:53.467Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -229,10 +231,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6e80a6b588da7e34add85573d1ec4f6f673ab6b4e5327ce4551882df9cfb8a17",
+    "source_fingerprint": "sha256:88607d433719b6348c39195c1f7a50927e64602535de1948a59757075d863e7e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7b834883fd5e45a4f4882e503ff9fe620f9be128d0e07537bd9f4039bb98ccf5",
+      "spec.md": "e9799954b01c779e31c41cba327488ba0b48bea27ef5d7c251c34b7d51465094",
       "plan.md": "66c318ed55d572878a28916935f5d1cba03d0125908378def3d22ce053f84c8c",
       "tasks.md": "f6bf715ca407a611a7dec9eebcb7bd9bb48ed8721107b9e43bf8eea3308c0318",
       "implementation-summary.md": "5429da9520bcf590c34a86c9584de29e0f26943f2254f76ec33803cac40204a4",

@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-10-10 |
 | **Branch** | `worktrees/094-root-cause-ux-research` |
 | **Parent Spec** | ../spec.md |
@@ -161,6 +161,8 @@ One ten-iteration lineage on DeepSeek V4.1 Flash (cli-pi, llmgateway, max effort
 | 5 | 005-readme-node-floor/ | State the Node floor the documented install actually needs in the README | Complete |
 | 6 | 006-hook-late-write-test/ | Pin a short-deadline hook's late-written payload with one test | Complete |
 | 7 | 007-remediation-deep-review/ | Review the six fixes and record the confirmed findings | Complete |
+| 8 | 008-authored-classifier-fixture/ | Make the authored cli-classifier canary fixture match the served copy | Pending |
+| 9 | 009-pi-guard-classification/ | Pi guard: shell -c wrappers, benign -p commands, denial text and the wrapper docs | Pending |
 
 ### Phase Transition Rules
 
@@ -179,4 +181,6 @@ One ten-iteration lineage on DeepSeek V4.1 Flash (cli-pi, llmgateway, max effort
 | 004-pi-ambiguous-denial | 005-readme-node-floor | Previous phase committed | Its goal criteria rerun by the orchestrator |
 | 005-readme-node-floor | 006-hook-late-write-test | Previous phase committed | Its goal criteria rerun by the orchestrator |
 | 006-hook-late-write-test | 007-remediation-deep-review | Previous phase committed | Its goal criteria rerun by the orchestrator |
+| 007-remediation-deep-review | 008-authored-classifier-fixture | Previous phase committed | Its goal criteria rerun by the orchestrator |
+| 008-authored-classifier-fixture | 009-pi-guard-classification | Previous phase committed | Its goal criteria rerun by the orchestrator |
 <!-- /ANCHOR:phase-map -->

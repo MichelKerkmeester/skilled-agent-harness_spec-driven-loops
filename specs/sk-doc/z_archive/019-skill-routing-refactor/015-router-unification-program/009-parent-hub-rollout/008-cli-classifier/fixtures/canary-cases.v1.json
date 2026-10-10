@@ -67,22 +67,6 @@
       }
     },
     {
-      "id": "deem-choice-single",
-      "prompt": "use deem choice to pick a queue",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "cli-deem"
-      ],
-      "legacyExact": false,
-      "gold": {
-        "expectedIntents": [
-          "cli-deem"
-        ],
-        "expectedResources": []
-      }
-    },
-    {
       "id": "zero-signal-defer",
       "prompt": "summarize the open questions in this spec packet",
       "expectedAction": "defer",
@@ -104,8 +88,8 @@
       }
     },
     {
-      "id": "deem-verb-narrowness",
-      "prompt": "deem this plan acceptable and ship it",
+      "id": "classifier-verb-narrowness",
+      "prompt": "judge this plan acceptable and ship it",
       "expectedAction": "defer",
       "legacyExact": false,
       "gold": {
