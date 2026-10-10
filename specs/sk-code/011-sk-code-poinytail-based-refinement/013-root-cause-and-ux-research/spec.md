@@ -160,6 +160,7 @@ One ten-iteration lineage on DeepSeek V4.1 Flash (cli-pi, llmgateway, max effort
 | 4 | 004-pi-ambiguous-denial/ | Name what the Pi guard accepts in its ambiguous-command denial | Complete |
 | 5 | 005-readme-node-floor/ | State the Node floor the documented install actually needs in the README | Complete |
 | 6 | 006-hook-late-write-test/ | Pin a short-deadline hook's late-written payload with one test | Complete |
+| 7 | 007-remediation-deep-review/ | Review the six fixes and record the confirmed findings | Complete |
 
 ### Phase Transition Rules
 
@@ -177,4 +178,5 @@ One ten-iteration lineage on DeepSeek V4.1 Flash (cli-pi, llmgateway, max effort
 | 003-stale-jev-canary | 004-pi-ambiguous-denial | Previous phase committed | Its goal criteria rerun by the orchestrator |
 | 004-pi-ambiguous-denial | 005-readme-node-floor | Previous phase committed | Its goal criteria rerun by the orchestrator |
 | 005-readme-node-floor | 006-hook-late-write-test | Previous phase committed | Its goal criteria rerun by the orchestrator |
+| 006-hook-late-write-test | 007-remediation-deep-review | Previous phase committed | Its goal criteria rerun by the orchestrator |
 <!-- /ANCHOR:phase-map -->

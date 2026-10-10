@@ -1,5 +1,5 @@
 {
-  "corpusHash": "67e5a961d618965133a5a58d049ca2decdad297de7cb1df90862f8c57a7985ef",
+  "corpusHash": "3e7bedceb9fe9d66e876d0118a61ce01a9f2ce46ec1c677cf6e61a3dccd62745",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24327,
+  "includedPathCount": 24334,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10589,6 +10589,13 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test/plan.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test/spec.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test/tasks.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/goal.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/implementation-summary.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/plan.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/review/fanout-attribution.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/review/review-report.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/spec.md",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/tasks.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/goal.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/implementation-summary.md",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/plan.md",
@@ -24358,7 +24365,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4b53cf9bb84e1902da1a3d53f46a6f2e80dc3493a92d4761cde3a66c58ca71ef",
+  "manifestHash": "9418b267408bb9d7ab6eeb7a15e645c4e48bab799a6c054c449339b7b2bfcffc",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26254,6 +26261,14 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/scratch",
       "reason": "excluded directory"
     },
     {

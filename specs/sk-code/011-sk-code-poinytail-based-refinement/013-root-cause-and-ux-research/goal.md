@@ -67,6 +67,7 @@ phase and binds as if written here.
 | 004-pi-ambiguous-denial | `004-pi-ambiguous-denial/goal.md` |
 | 005-readme-node-floor | `005-readme-node-floor/goal.md` |
 | 006-hook-late-write-test | `006-hook-late-write-test/goal.md` |
+| 007-remediation-deep-review | `007-remediation-deep-review/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.

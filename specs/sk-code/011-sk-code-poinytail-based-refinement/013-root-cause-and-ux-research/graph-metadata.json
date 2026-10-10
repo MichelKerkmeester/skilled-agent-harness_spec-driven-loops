@@ -9,7 +9,8 @@
     "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/003-stale-jev-canary",
     "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/004-pi-ambiguous-denial",
     "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/005-readme-node-floor",
-    "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test"
+    "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test",
+    "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review"
   ],
   "manual": {
     "depends_on": [],
@@ -61,13 +62,13 @@
       "004-pi-ambiguous-denial/goal.md",
       "005-readme-node-floor/goal.md",
       "006-hook-late-write-test/goal.md",
+      "007-remediation-deep-review/goal.md",
       ".skilled/skills/system-skill-advisor/runtime/package.json",
       ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
       ".skilled/repo-rules/prevent-overengineering.md",
       "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs",
       ".skilled/bin/tests/compiled-route-manifest.test.cjs",
-      ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
-      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md"
+      ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts"
     ],
     "entities": [
       {
@@ -149,12 +150,6 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -213,11 +208,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The epic shipped, but its build hit repeated process errors: a helper's `String.replace` read a dollar-apostrophe sequence as a replacement pattern, the spec validator parsed link-shaped task text, a wildcard `rm` deleted scratch helpers, generated artifacts drifted and needed re-mints, and two branches minted the same changelog version",
     "created_at": "2026-10-10T18:39:09Z",
-    "last_save_at": "2026-10-10T19:49:43.665Z",
+    "last_save_at": "2026-10-10T21:46:18.737Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -228,10 +229,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a51e196a5fd091460143ea7718f3185125916cfa9d08c49d26e71920287f9c58",
+    "source_fingerprint": "sha256:6e80a6b588da7e34add85573d1ec4f6f673ab6b4e5327ce4551882df9cfb8a17",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3f88d974d42c0638dcd1cb0ae48e7bbdca65924baf78828371c8c25610d5b222",
+      "spec.md": "7b834883fd5e45a4f4882e503ff9fe620f9be128d0e07537bd9f4039bb98ccf5",
       "plan.md": "66c318ed55d572878a28916935f5d1cba03d0125908378def3d22ce053f84c8c",
       "tasks.md": "f6bf715ca407a611a7dec9eebcb7bd9bb48ed8721107b9e43bf8eea3308c0318",
       "implementation-summary.md": "5429da9520bcf590c34a86c9584de29e0f26943f2254f76ec33803cac40204a4",

@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 56,
-    "missing-frontmatter": 6850,
-    "ok": 13912,
+    "missing-frontmatter": 6851,
+    "ok": 13918,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 24327,
+  "documentsScanned": 24334,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "4b53cf9bb84e1902da1a3d53f46a6f2e80dc3493a92d4761cde3a66c58ca71ef",
+  "manifestHash": "9418b267408bb9d7ab6eeb7a15e645c4e48bab799a6c054c449339b7b2bfcffc",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36247,
+      "ok": 36254,
       "prose-sentence": 19,
       "single-token": 164,
       "stop-word-only": 1,
@@ -37327,6 +37327,12 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/research/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -67996,6 +68002,14 @@
     },
     {
       "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/007-remediation-deep-review/scratch",
       "reason": "excluded directory"
     },
     {

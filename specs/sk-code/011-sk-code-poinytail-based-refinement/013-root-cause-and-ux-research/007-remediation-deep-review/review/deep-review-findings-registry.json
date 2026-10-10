@@ -1,0 +1,154 @@
+{
+  "mergedFrom": [
+    "dsflash-llmgw"
+  ],
+  "lineageExecutors": {
+    "dsflash-llmgw": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    }
+  },
+  "mergedVerdict": "CONDITIONAL",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Authored cli-classifier fixture still expects the removed cli-deem mode, so the next documented rebuild reinstalls a fixture that fails its own gold",
+      "file": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json",
+      "line": 70,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "dsflash-llmgw"
+      ]
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Capability and playbook docs describe wrapper commands as ambiguous, but shell -c wrappers classify none and bypass the guard",
+      "file": ".skilled/skills/cli-external-orchestration/feature-catalog/cli-dispatch-authorization/cli-dispatch-authorization.md",
+      "line": 21,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "dsflash-llmgw"
+      ]
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Pi dispatch authorization is bypassable by wrapper-delivered dispatches (bash -c, sh -c, zsh -c) that the rule engine's own resolver classifies as an executor",
+      "file": ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+      "line": 235,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "dsflash-llmgw"
+      ]
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "Pi guard denies benign commands when a variable expansion and a -p/--print token coexist, and the new deny text misdiagnoses them as failed dispatches",
+      "file": ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+      "line": 249,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "dsflash-llmgw"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 3,
+  "activeP2": 1
+}

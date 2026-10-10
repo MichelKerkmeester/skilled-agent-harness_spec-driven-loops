@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4b53cf9bb84e1902da1a3d53f46a6f2e80dc3493a92d4761cde3a66c58ca71ef",
+  "manifestHash": "9418b267408bb9d7ab6eeb7a15e645c4e48bab799a6c054c449339b7b2bfcffc",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -71357,6 +71357,9 @@
     "phase 7 hook deadline margins": [
       "phase 7 hook deadline margins"
     ],
+    "phase 7 remediation deep review": [
+      "phase 7 remediation deep review"
+    ],
     "phase 7 series parent review and hardening research": [
       "phase 7 series parent review and hardening research"
     ],
@@ -79473,6 +79476,24 @@
     ],
     "remediation cluster task list": [
       "remediation cluster task list"
+    ],
+    "remediation deep review": [
+      "remediation deep review"
+    ],
+    "remediation deep review goal": [
+      "remediation deep review goal"
+    ],
+    "remediation deep review implementation summary": [
+      "remediation deep review implementation summary"
+    ],
+    "remediation deep review plan": [
+      "remediation deep review plan"
+    ],
+    "remediation deep review report": [
+      "remediation deep review report"
+    ],
+    "remediation deep review tasks": [
+      "remediation deep review tasks"
     ],
     "remediation execution plan": [
       "remediation execution plan"
