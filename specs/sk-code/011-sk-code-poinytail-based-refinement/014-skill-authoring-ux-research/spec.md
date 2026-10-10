@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research"
     last_updated_at: "2026-10-10T20:00:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Made the research packet a phase parent and planned the remediation phases"
-    next_safe_action: "Build phase 002, then each later phase in order"
+    recent_action: "Built and committed remediation phases 002 to 010"
+    next_safe_action: "Merge review by the master orchestrator"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "t3-014-phase-parent"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-10 |
 | **Branch** | `worktrees/095-skill-authoring-ux-research` |
 | **Parent Spec** | `../spec.md` |
@@ -88,6 +88,7 @@ Fix every finding from phase 001 with the smallest change that stops the error w
 | Advisor `explicit.ts`, `executor-delegation.ts` and tests | Modify | 007-advisor-name-mention-scoring | Stop a named file or path from pulling the route |
 | Advisor schema, recommend handler, test, `SKILL.md`, changelog | Modify | 008-advisor-surface-hint | Pass the surface hint to the compiled-route front door |
 | cli-classifier graph metadata, compiled skill graph, freshness panel, routing CI job | Modify | 009-advisor-vocabulary-freshness | Clear the two live drifts and make the panel able to fail |
+| `validate_catalog_package.py`, `package_skill.py` and their tests | Modify | 010-validator-false-positives | Clear validator false positives handed off by the feature-catalog track |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -108,6 +109,7 @@ Fix every finding from phase 001 with the smallest change that stops the error w
 | 7 | 007-advisor-name-mention-scoring/ | Stop a named file, path or generic word from pulling the advisor route | Complete |
 | 8 | 008-advisor-surface-hint/ | Let advisor_recommend pass a surface hint to the compiled-route front door | Complete |
 | 9 | 009-advisor-vocabulary-freshness/ | Clear the failing intent-signal carry and the stale compiled graph, and let the freshness panel fail in CI | Complete |
+| 10 | 010-validator-false-positives/ | Stop the catalog and skill package validators from failing on paths and files that are correct | Complete |
 
 ### Phase Transition Rules
 
@@ -128,6 +130,7 @@ Fix every finding from phase 001 with the smallest change that stops the error w
 | 006-create-skill-guidance | 007-advisor-name-mention-scoring | 006-create-skill-guidance committed with its goal criteria passing | `validate.sh --strict` on 006-create-skill-guidance |
 | 007-advisor-name-mention-scoring | 008-advisor-surface-hint | 007-advisor-name-mention-scoring committed with its goal criteria passing | `validate.sh --strict` on 007-advisor-name-mention-scoring |
 | 008-advisor-surface-hint | 009-advisor-vocabulary-freshness | 008-advisor-surface-hint committed with its goal criteria passing | `validate.sh --strict` on 008-advisor-surface-hint |
+| 009-advisor-vocabulary-freshness | 010-validator-false-positives | 009-advisor-vocabulary-freshness committed with its goal criteria passing | `validate.sh --strict` on 009-advisor-vocabulary-freshness |
 <!-- /ANCHOR:phase-map -->
 
 ---

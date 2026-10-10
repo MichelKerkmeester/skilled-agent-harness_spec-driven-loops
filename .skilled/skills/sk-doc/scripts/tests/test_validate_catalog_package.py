@@ -16,7 +16,9 @@ proves:
 
 Run: python3 test_validate_catalog_package.py
 """
+import os
 import shutil
+import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -172,6 +174,58 @@ def run() -> int:
     check('seeded missing root catalog is caught exactly once', len(missing_root) == 1)
     check('seeded missing root catalog names the advisor-central package',
           bool(missing_root) and missing_root[0]['package'] == 'system-skill-advisor')
+
+    # ---- Negative-adjacent: a dangling symlink is present on disk, not a missing path. ----
+    dangling_link = '.skilled/skills/fake-hub-alpha/lib/linked-build-output.ts'
+
+    def _dangling_symlink(tmp: Path):
+        skills = tmp / '.skilled' / 'skills'
+        os.symlink('build-output-not-in-checkout.ts', tmp / dangling_link)
+        leaf = skills / 'fake-hub-alpha' / 'feature-catalog' / 'widget-category' / 'widget-a.md'
+        text = leaf.read_text(encoding='utf-8')
+        text = text.replace(
+            f'| `{REAL_IMPL_PATH}` | Library | Source reference |',
+            f'| `{REAL_IMPL_PATH}` | Library | Source reference |\n'
+            f'| `{dangling_link}` | Library | Committed symlink |',
+        )
+        text += f'\nThe plugin entry point is `{dangling_link}`.\n'
+        leaf.write_text(text, encoding='utf-8')
+        return run_all_checks(skills, tmp, rules)
+
+    violations = _in_temp_fixture(_dangling_symlink)
+    dangling_findings = [v for v in violations
+                         if v['type'] in {'missing_prose_path', 'missing_source_path'}
+                         and v.get('path') == dangling_link]
+    check('dangling symlink cited by prose and SOURCE FILES is not reported missing', dangling_findings == [])
+
+    # ---- Negative-adjacent: a gitignored path is deliberately uncommittable, not missing. ----
+    ignored_path = '.skilled/skills/fake-hub-alpha/lib/ignored-runtime.env'
+    unignored_path = '.skilled/skills/fake-hub-alpha/lib/still-missing.ts'
+
+    def _gitignored_path(tmp: Path):
+        skills = tmp / '.skilled' / 'skills'
+        subprocess.run(
+            ['git', 'init', '-q', str(tmp)],
+            check=True,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+        (tmp / '.gitignore').write_text(f'{ignored_path}\n', encoding='utf-8')
+        leaf = skills / 'fake-hub-alpha' / 'feature-catalog' / 'widget-category' / 'widget-a.md'
+        text = leaf.read_text(encoding='utf-8')
+        text += f'\nRuntime flags live in `{ignored_path}`.\n'
+        text += f'\nThe retired helper lived at `{unignored_path}`.\n'
+        leaf.write_text(text, encoding='utf-8')
+        return run_all_checks(skills, tmp, rules)
+
+    violations = _in_temp_fixture(_gitignored_path)
+    ignored_findings = [v for v in violations
+                        if v['type'] in {'missing_prose_path', 'missing_source_path'}
+                        and v.get('path') == ignored_path]
+    check('gitignored path mentioned by a leaf is not reported missing', ignored_findings == [])
+    unignored_findings = [v for v in violations
+                          if v['type'] == 'missing_prose_path' and v.get('path') == unignored_path]
+    check('non-ignored missing path in the same leaf is still reported', len(unignored_findings) == 1)
 
     print(f"\n{'ALL PASS' if not fails else f'{len(fails)} FAILED'}")
     return 1 if fails else 0

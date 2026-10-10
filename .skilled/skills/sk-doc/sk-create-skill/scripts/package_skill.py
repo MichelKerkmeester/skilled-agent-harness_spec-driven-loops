@@ -86,8 +86,13 @@ RECOMMENDED_SECTIONS = [
     'RELATED RESOURCES',
 ]
 
-# Valid file extensions for each resource type
-VALID_SCRIPT_EXTENSIONS = ['.py', '.sh', '.bash', '.js', '.cjs', '.mjs']
+# Valid file extensions for each resource type.
+# TypeScript scripts run through tsx or a build step, so they ship beside the
+# other script sources.
+VALID_SCRIPT_EXTENSIONS = ['.py', '.sh', '.bash', '.js', '.cjs', '.mjs', '.ts']
+# Data files a script reads in place: hook path lists are resolved by path from
+# the scripts that own them, so moving them under assets/ breaks their readers.
+VALID_SCRIPT_DATA_EXTENSIONS = ['.txt']
 VALID_REFERENCE_EXTENSIONS = ['.md']
 VALID_ASSET_EXTENSIONS = ['.md', '.yaml', '.yml', '.json', '.txt', '.html', '.css', '.js']
 
@@ -363,11 +368,13 @@ def get_packet_kind(content: str) -> str:
     return kind_match.group(1).strip().lower() if kind_match else ''
 
 
-def validate_sections(content: str) -> Tuple[bool, str, List[str]]:
+def validate_sections(content: str, is_hub: bool = False) -> Tuple[bool, str, List[str]]:
     """Validate SKILL.md has required sections per skill_md_template.md.
 
     Args:
         content: Raw SKILL.md file content.
+        is_hub: Whether the skill is a hub whose modes carry the recommended
+            sections, so only the required section contract applies.
 
     Returns:
         Tuple of (is_valid, error_message, warnings).
@@ -392,10 +399,13 @@ def validate_sections(content: str) -> Tuple[bool, str, List[str]]:
     if missing_required:
         return False, f"Missing required sections: {', '.join(missing_required)}", warnings
 
-    for section in RECOMMENDED_SECTIONS:
-        found = any(section in h for h in headings_upper)
-        if not found:
-            warnings.append(f"Missing recommended section: {section}")
+    # A hub routes through ROUTER.md and its modes carry the standalone layout,
+    # so the recommended sections are not a hub requirement.
+    if not is_hub:
+        for section in RECOMMENDED_SECTIONS:
+            found = any(section in h for h in headings_upper)
+            if not found:
+                warnings.append(f"Missing recommended section: {section}")
 
     return True, "Sections valid", warnings
 
@@ -471,9 +481,13 @@ def validate_resources(skill_path: Path) -> Tuple[bool, str, List[str]]:
     assets_dir = skill_path / 'assets'
 
     if scripts_dir.exists():
+        accepted_suffixes = VALID_SCRIPT_EXTENSIONS + VALID_SCRIPT_DATA_EXTENSIONS
         for file in scripts_dir.iterdir():
-            if file.is_file() and file.name != 'README.md' and file.suffix not in VALID_SCRIPT_EXTENSIONS:
-                warnings.append(f"Unexpected file type in scripts/: {file.name} (expected: {', '.join(VALID_SCRIPT_EXTENSIONS)}, README.md)")
+            if file.is_file() and file.name != 'README.md' and file.suffix not in accepted_suffixes:
+                warnings.append(
+                    f"Unexpected file type in scripts/: {file.name} "
+                    f"(expected: {', '.join(accepted_suffixes)}, README.md)"
+                )
 
     # References: recurse into domain subfolders (legacy code scanned top level
     # only). Generated path naming is checked separately across the whole tree.
@@ -510,8 +524,10 @@ def _is_exempt_package_path(path: Path, relative_path: Path) -> bool:
     if any(part.startswith('__') and part.endswith('__') for part in relative_path.parts):
         return True
     # Fixture trees hold the shapes they exercise, so their leaf names mirror
-    # the inputs under test rather than naming a place in the package.
-    if any(part.endswith('fixtures') for part in relative_path.parts):
+    # the inputs under test rather than naming a place in the package. The
+    # directory name varies (fixture, fixtures, runtime-fixture), and a mirrored
+    # project layout carries names no slug rule can reshape.
+    if any(part.endswith(('fixture', 'fixtures')) for part in relative_path.parts):
         return True
     # A leading underscore marks a module as internal to its directory; the
     # marker is the meaning, so stripping it to satisfy a slug rule changes it.
@@ -802,7 +818,7 @@ def validate_skill(skill_path: Path, strict: bool = False) -> Tuple[bool, str, L
     # Surface packets bundle a hub sub-surface and use a surface-shaped section
     # layout, not the standalone create-skill section / RULES contract.
     if not is_surface:
-        valid, message, warnings = validate_sections(content)
+        valid, message, warnings = validate_sections(content, is_hub=is_hub)
         all_warnings.extend(warnings)
         if not valid:
             return False, message, all_warnings

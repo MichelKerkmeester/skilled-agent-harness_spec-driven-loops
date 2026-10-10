@@ -35,8 +35,10 @@ Usage:
 
 import argparse
 import json
+import os
 import posixpath
 import re
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any, Dict, Iterator, List, Optional, Sequence, Tuple
@@ -430,6 +432,33 @@ def check_phantom_rows(package_name: str, root_catalog_path: Path) -> List[Dict[
     return violations
 
 
+# A cited path can be absent from a checkout and still be correct: a committed symlink
+# whose target is a build output, or a gitignored runtime file that can never be
+# committed. Both are tolerated rather than reported as missing files.
+def _present_or_ignored(repo_root: Path, candidate: Path) -> bool:
+    """True when candidate exists as a file or link, or is a gitignored path.
+
+    The existence test is os.path.lexists on the unresolved candidate, so a dangling
+    symlink counts as present. Git is consulted only for a path that is otherwise
+    absent, and any git failure (binary missing, not a repository) means not ignored,
+    which keeps behavior outside a git checkout unchanged.
+    """
+    if os.path.lexists(candidate):
+        return True
+    relative = os.path.relpath(candidate, repo_root)
+    if relative == os.pardir or relative.startswith(os.pardir + os.sep):
+        return False
+    try:
+        completed = subprocess.run(
+            ['git', '-C', str(repo_root), 'check-ignore', '-q', '--', relative],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+    except OSError:
+        return False
+    return completed.returncode == 0
+
+
 def check_prose_paths(
     package_name: str,
     catalog_dir: Path,
@@ -458,7 +487,7 @@ def check_prose_paths(
                         'path': path,
                         'message': f'{package_name}/{document.name}:{line_number}: prose path escapes the repository: {path}',
                     })
-                elif not resolved.exists():
+                elif not _present_or_ignored(repo_root, repo_root / path):
                     violations.append({
                         'type': 'missing_prose_path',
                         'package': package_name,
@@ -534,8 +563,7 @@ def check_source_file_paths(package_name: str, catalog_dir: Path, repo_root: Pat
             kind, raw_path = checkable
             check_path = LINE_RANGE_SUFFIX_RE.sub('', raw_path)
             base = repo_root if kind == 'repo-relative' else leaf.parent
-            resolved = (base / check_path).resolve()
-            if not resolved.exists():
+            if not _present_or_ignored(repo_root, base / check_path):
                 leaf_resolved = leaf.resolve()
                 violations.append({
                     'type': 'missing_source_path',

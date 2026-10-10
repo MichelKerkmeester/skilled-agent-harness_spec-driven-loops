@@ -12,7 +12,8 @@
     "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/006-create-skill-guidance",
     "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/007-advisor-name-mention-scoring",
     "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/008-advisor-surface-hint",
-    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/009-advisor-vocabulary-freshness"
+    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/009-advisor-vocabulary-freshness",
+    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/010-validator-false-positives"
   ],
   "manual": {
     "depends_on": [],
@@ -57,7 +58,8 @@
       "006-create-skill-guidance/goal.md",
       "007-advisor-name-mention-scoring/goal.md",
       "008-advisor-surface-hint/goal.md",
-      "009-advisor-vocabulary-freshness/goal.md"
+      "009-advisor-vocabulary-freshness/goal.md",
+      "010-validator-false-positives/goal.md"
     ],
     "entities": [
       {
@@ -74,12 +76,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -104,6 +100,12 @@
       },
       {
         "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -147,17 +149,17 @@
     ],
     "causal_summary": "The sk-code refinement epic kept hitting the same skill-authoring errors: generated artifacts drifting from their sources, a hub version carried in six files with a changelog number that collided at merge, advisor routes pulled off course by named files and generic words, a surface hint the advisor never passes, and doctor checks that fire only after a change lands",
     "created_at": "2026-10-10T18:39:32Z",
-    "last_save_at": "2026-10-10T21:25:28.499Z",
+    "last_save_at": "2026-10-10T22:03:38.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:9dac8c156531b4ed3cac6a99b135bf67fc460a6f5763c6e7d6fd5c5587566a46",
+    "source_fingerprint": "sha256:b27b747284484fc1c547a142f3c14cbeb14463340193b1742011abe84fbb6599",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f68fa9d95507d71afedae3bbb159fe9072c72054343b040554b55eaf4bae3be7"
+      "spec.md": "679ec229cab1da3255c64564e5ee81fbcb77b186c6fbef0e99bf786ef60897e7"
     },
     "last_active_at": null
   }
