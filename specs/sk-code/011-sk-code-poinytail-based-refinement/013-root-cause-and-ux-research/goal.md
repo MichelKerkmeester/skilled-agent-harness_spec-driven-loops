@@ -61,7 +61,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] `grep -cE '^## [0-9]+\. (Proposed Implementation Phases|Rejected Ideas)$' specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/research/research.md`, run from the repository root, prints 2.
 - [ ] `grep -cE '\[(VERIFIED|INFERRED)\]' specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/research/research.md`, run from the repository root, prints 10 or more.
 - [ ] `grep -o '\[SOURCE: [^]]*\]' specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/research/research.md | sed -E 's/\[SOURCE: (.*):([0-9]+)\]/\1 \2/' | sort -u | while read f l; do [ -f "$f" ] && [ "$(wc -l < "$f")" -ge "$l" ] || echo "BAD $f:$l"; done`, run from the repository root, prints no BAD line.
-- [ ] `git diff --name-only 5d9c970447 HEAD -- . ':!specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research' ':!specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md'`, run from the repository root, prints nothing.
+- [ ] `git diff --name-only 5d9c970447 HEAD -- . ':!specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research' ':!specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md' ':!specs/sk-code/011-sk-code-poinytail-based-refinement/graph-metadata.json'`, run from the repository root, prints nothing.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research --strict`, run from the repository root, prints RESULT: PASSED.
 <!-- /ANCHOR:completion -->
 
@@ -84,7 +84,7 @@ and findings belong here.
 | Verification marks | Done | criterion 3 printed 22 on 2026-10-10 |
 | SOURCE tags | Done | criterion 4 printed no BAD line on 2026-10-10 |
 | Strict validation | Done | validate.sh --strict printed Errors: 0 Warnings: 1 and RESULT: PASSED, exit 0, on 2026-10-10 |
-| Product files unchanged | Pending commit | criterion 5 is rerun after the commit |
+| Product files unchanged | Done | criterion 5, as amended, printed nothing after commit bd2d084c85 |
 
 ### Deviations and findings
 
@@ -94,4 +94,5 @@ and findings belong here.
 | No route switch | The llmgateway route never hit its usage limit, so the cline-pass fallback and the reset wait the operator allowed were not needed |
 | Strict warning left in place | SOURCE_TAGS warns on one tag in the lineage's write-once iteration-001.md: heal-spec-docs.cjs sits under runtime/cli/spec/, not runtime/cli/. The orchestrator synthesis does not repeat the bad path |
 | Close-out event not appended | synthesis-closeout.cjs produced a synthesis_complete event scoped to the lineage run, which the lineage already recorded; the fan-out root has no run of its own |
+| Criterion 5 amended 2026-10-10 | The commit's spec-remint gate re-derived the parent graph-metadata.json to list this child, which is derived metadata of the phase-map row, not a product file. The criterion now excludes that one file as well. Sibling tracks adding 012 and 014 will touch the same children list, so the merge needs a re-derive |
 <!-- /ANCHOR:log -->

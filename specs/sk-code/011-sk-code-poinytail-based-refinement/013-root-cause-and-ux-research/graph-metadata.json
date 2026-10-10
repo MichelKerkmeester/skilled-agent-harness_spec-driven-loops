@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The epic shipped, but its build hit repeated process errors: a helper's `String.replace` read a dollar-apostrophe sequence as a replacement pattern, the spec validator parsed link-shaped task text, a wildcard `rm` deleted scratch helpers, generated artifacts drifted and needed re-mints, and two branches minted the same changelog version",
     "created_at": "2026-10-10T18:39:09Z",
-    "last_save_at": "2026-10-10T19:17:32.530Z",
+    "last_save_at": "2026-10-10T19:19:54.541Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,7 +218,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2f83ac63cf448c2af51ed058b08bdd7ce9a84c122af43a709599f9866384eedc",
+    "source_fingerprint": "sha256:df4c822f1caf99e63d86a2aff7f9d092ed6d669535c863fcf6c07658163680ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "15774f8864688419e982406ac0c574958267951f6f9fe14dd375b92f322bdeee",
