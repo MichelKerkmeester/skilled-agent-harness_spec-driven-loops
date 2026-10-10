@@ -174,7 +174,7 @@ The divider line should be 67 characters (same as header width).
 
 Use inline comments to explain non-obvious values:
 
-1. **Quantity limit:** Maximum 3 comments per 10 lines in JSONC blocks
+1. **Quantity limit (OpenCode surface setting):** Maximum 3 comments per 10 lines in JSONC blocks, this surface's budget for the shared comment-density rule (see [naming and commenting](../shared/universal-patterns/naming-and-commenting.md))
 2. **Purposeful semantics only:** Explain WHY, not WHAT
 3. **No narrative/mechanical comments** such as "set value" or "loop through"
 

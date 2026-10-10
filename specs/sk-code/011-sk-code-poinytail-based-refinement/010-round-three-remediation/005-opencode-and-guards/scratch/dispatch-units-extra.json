@@ -1,0 +1,60 @@
+[
+  {
+    "task": "T114",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards/scratch/units/workflow-guardrails.md",
+    "check": "python3 -I .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md | grep -E 'VALID|Total issues'",
+    "expect": "Total issues: 0"
+  },
+  {
+    "task": "T115",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/SKILL.md, replace the exact text <<<OLD\n    \"references/shared/code-organization/directory-and-test-conventions.md\",\n]\n\nINTENT_SIGNALS = {\nOLD>>> with <<<NEW\n    \"references/shared/code-organization/directory-and-test-conventions.md\",\n    \"references/shared/workflow-guardrails.md\",\n]\n\nINTENT_SIGNALS = {\nNEW>>>",
+    "check": "grep -c -F -- '    \"references/shared/workflow-guardrails.md\",' .skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T116",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/SKILL.md, replace the exact text <<<OLD\n- `alignment-verification-automation.md` \u2014 the alignment-drift verifier\n\nOLD>>> with <<<NEW\n- `alignment-verification-automation.md` \u2014 the alignment-drift verifier\n- `workflow-guardrails.md`: OpenCode-only implementation guardrails, the verification command chain and runtime build traps, applied on top of the shared implement and verify workflow\n\nNEW>>>",
+    "check": "grep -c -F -- '- `workflow-guardrails.md`: OpenCode-only implementation guardrails' .skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T117",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md, replace the exact text <<<OLD\n\n## Upgrade\n\nOLD>>> with <<<NEW\n- **OpenCode workflow rules live in the OpenCode tier.** `references/shared/workflow-guardrails.md` now holds the implementation guardrails, the verification command chain and the runtime build traps that the shared workflow files carried for this surface only.\n\n## Upgrade\n\nNEW>>>",
+    "check": "grep -c -F -- '- **OpenCode workflow rules live in the OpenCode tier.**' .skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md",
+    "expect": "1"
+  },
+  {
+    "task": "T118",
+    "files": [
+      ".skilled/skills/sk-code/leaf-manifest.json"
+    ],
+    "kind": "command",
+    "instruction": "node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .skilled/skills/sk-code",
+    "check": "node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check .skilled/skills/sk-code; echo \"exit=$?\"",
+    "expect": "exit=0"
+  },
+  {
+    "task": "T119",
+    "files": [],
+    "kind": "command",
+    "instruction": "node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
+    "check": "node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs | tail -1; node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs | grep -c 'workflow-guardrails'",
+    "expect": "router-sync: 5/5 checks passed"
+  }
+]

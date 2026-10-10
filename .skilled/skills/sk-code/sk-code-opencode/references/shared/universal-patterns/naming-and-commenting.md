@@ -167,7 +167,7 @@ for (const entry of entry) { ... }  // very confusing
 
 ### Core Principles
 
-1. **Quantity limit:** Maximum 3 comments per 10 lines of code
+1. **Quantity limit (OpenCode surface setting):** Maximum 3 comments per 10 lines of code. This number is the OpenCode surface's budget. The comment-density rule it applies, and the rule that each surface sets its own budget, live in the shared [code style guide](../../../../shared/references/universal/code-style-guide.md).
 2. **Focus on purposeful semantics:** Explain WHY something is done, not WHAT it does
 3. **No commented-out code:** Delete unused code (git preserves history)
 4. **Function purpose comments:** Single line above function describing intent
@@ -232,7 +232,7 @@ const score = calculateDecay(baseScore, age); // weighted decay
 
 ## 4. REFERENCE COMMENT PATTERNS
 
-> **Governed by the canonical rule.** Comments must never embed an ephemeral-artifact pointer — a spec folder/number, a packet/phase/task/checklist/requirement id, a feature-catalog entry, an ADR id, or a ticket id. See [`../../universal/code-style-guide.md`](../../../../shared/references/universal/code-style-guide.md) §4 "No ephemeral-artifact pointers" for the allowed-vs-forbidden contract. Only a **durable** external standard may be cited in a comment.
+> **Governed by the canonical rule.** Comments must never embed an ephemeral-artifact pointer — a spec folder/number, a packet/phase/task/checklist/requirement id, a feature-catalog entry, an ADR id, or a ticket id. See [`../../../../shared/references/universal/code-style-guide.md`](../../../../shared/references/universal/code-style-guide.md) §4 "No ephemeral-artifact pointers" for the allowed-vs-forbidden contract. Only a **durable** external standard may be cited in a comment.
 
 ### Hard-Block Comment-Hygiene Gate
 
@@ -280,6 +280,6 @@ Apply this gate before finalizing implementation:
 2. **DRY**: centralize repeated literals/rules into a single source.
 3. **SOLID**: flag SRP/OCP/LSP/ISP/DIP violations and simplify before merge.
 
-Carry-over from 139: keep rule constants centralized and test imports referencing those constants (avoid duplicate local literals).
+Keep rule constants centralized and make tests import those constants rather than repeat local literals.
 
 ---

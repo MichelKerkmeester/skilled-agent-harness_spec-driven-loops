@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards",
+  "description": "Phase 5: opencode-and-guards",
+  "keywords": [
+    "phase",
+    "opencode-and-guards"
+  ],
+  "lastUpdated": "2026-10-10T10:07:21.926Z",
+  "specId": "005",
+  "folderSlug": "opencode-and-guards",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "010-round-three-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

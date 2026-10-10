@@ -79,3 +79,40 @@ test('a run without --checks includes leg 1b', (t) => {
   const { out } = runGuard(guard, []);
   assert.match(out, /check 1b:/);
 });
+
+// Leg 2 reads the hub-level shared controls from the ROUTER.md list and preamble, so this hub gets
+// a parent map, the two surface children and a manifest that names one workflow mode leaf.
+function buildLegTwoHub(t, controls, defaults = []) {
+  const { hub, guard } = buildHub(t);
+  const parentMap = [
+    '"DEMO": ["sk-code-webflow/references/w.md", "sk-code-opencode/references/o.md",',
+    '"shared/references/control.md", "shared/references/undeclared.md", "sk-code-review/assets/leaf.md"],',
+  ].join(' ');
+  const block = controls.map((c) => `    "${c}",`).join('\n');
+  const preamble = defaults.map((c) => `    "${c}",`).join('\n');
+  const router = `DEFAULT_RESOURCE = [\n${preamble}\n]\nRESOURCE_MAP = {\n  ${parentMap}\n}\n`;
+  write(path.join(hub, 'ROUTER.md'), `${router}SHARED_CONTROL_RESOURCES = [\n${block}\n]\n`);
+  for (const [surface, doc] of [['sk-code-webflow', 'w.md'], ['sk-code-opencode', 'o.md']]) {
+    write(path.join(hub, surface, 'SKILL.md'), `RESOURCE_MAP = {\n  "DEMO": ["references/${doc}"],\n}\n`);
+    write(path.join(hub, surface, 'references', doc), `# ${doc}\n`);
+  }
+  const manifest = { modes: [{ workflowMode: 'sk-code-review', packet: 'sk-code-review', leaves: ['assets/leaf.md'] }] };
+  write(path.join(hub, 'leaf-manifest.json'), JSON.stringify(manifest));
+  return guard;
+}
+
+test('leg 2 accepts paths the ROUTER.md list or preamble declares and a workflow mode leaf', (t) => {
+  const guard = buildLegTwoHub(t, ['shared/references/control.md'], ['shared/references/undeclared.md']);
+  const { status, out } = runGuard(guard, ['--checks', '2']);
+  assert.equal(status, 0, out);
+  assert.match(out, /PASS check 2/);
+});
+
+test('leg 2 reports a shared parent-map path ROUTER.md does not declare', (t) => {
+  const guard = buildLegTwoHub(t, ['shared/references/control.md']);
+  const { status, out } = runGuard(guard, ['--checks', '2']);
+  assert.equal(status, 1, out);
+  assert.match(out, /parent map DEMO cites shared\/references\/undeclared\.md, outside the parent tier/);
+  assert.doesNotMatch(out, /control\.md/);
+  assert.doesNotMatch(out, /sk-code-review\/assets\/leaf\.md/);
+});

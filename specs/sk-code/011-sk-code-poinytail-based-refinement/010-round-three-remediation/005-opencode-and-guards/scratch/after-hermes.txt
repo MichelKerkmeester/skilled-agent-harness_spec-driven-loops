@@ -1,0 +1,10 @@
+DRIFT cli-pi
+DRIFT sk-code
+DRIFT sk-code-obsidian
+DRIFT sk-code-opencode
+DRIFT sk-code-quality
+DRIFT sk-code-review
+DRIFT sk-code-webflow
+DRIFT deep-review
+DRIFT system-spec-kit
+FAIL: 9 drifted, 0 stale; run without --check to regenerate

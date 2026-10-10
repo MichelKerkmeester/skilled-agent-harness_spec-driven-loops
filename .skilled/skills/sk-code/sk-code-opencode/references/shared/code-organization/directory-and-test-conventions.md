@@ -64,7 +64,7 @@ Define predictable directory layouts and test-file conventions for OpenCode syst
 
 ### Rust Module and Test Layout
 
-Rust code under `code-opencode` follows Cargo conventions; only the general
+Rust code under `sk-code-opencode` follows Cargo conventions; only the general
 placement is shared here — Cargo, napi-rs, and wasm-bindgen mechanics live in
 `../rust/`.
 

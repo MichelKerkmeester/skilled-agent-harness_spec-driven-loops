@@ -285,7 +285,7 @@ const message = "Hello world";  // Double quotes
 
 ### Principles
 
-1. **Quantity limit:** Maximum 3 comments per 10 lines of code
+1. **Quantity limit (OpenCode surface setting):** Maximum 3 comments per 10 lines of code, this surface's budget for the shared comment-density rule (see [naming and commenting](../shared/universal-patterns/naming-and-commenting.md))
 2. **Focus on purposeful semantics:** Explain WHY something is done, not WHAT it does
 3. **Focus on WHY, not WHAT:** Explain intent, constraints, reasoning
 4. **No commented-out code:** Delete unused code (git preserves history)
@@ -319,7 +319,7 @@ Use a bracketed module prefix for inline comments:
 // [module-name] Description of what this does
 ```
 
-Cite only durable references — never a spec-folder-internal id. Comments must not embed a spec folder/number, task/checklist/requirement id (`T###`, `CHK-###`, `REQ-###`), feature-catalog entry, ADR id, or ticket id; see [`../shared/universal-patterns/naming-and-commenting.md`](../shared/universal-patterns/naming-and-commenting.md) §4 and [`../../universal/code-style-guide.md`](../../../shared/references/universal/code-style-guide.md) §4 "No ephemeral-artifact pointers".
+Cite only durable references — never a spec-folder-internal id. Comments must not embed a spec folder/number, task/checklist/requirement id (`T###`, `CHK-###`, `REQ-###`), feature-catalog entry, ADR id, or ticket id; see [`../shared/universal-patterns/naming-and-commenting.md`](../shared/universal-patterns/naming-and-commenting.md) §4 and [`../../../shared/references/universal/code-style-guide.md`](../../../shared/references/universal/code-style-guide.md) §4 "No ephemeral-artifact pointers".
 
 ```javascript
 // GOOD — durable WHY, no ephemeral id

@@ -25,7 +25,7 @@ resource set, per `SKILL.md` §2b's machine-readable router.
 
 ### Why This Matters
 
-Per `SKILL.md` §3, alignment drift is a verification gate: two drift guards (`verify_alignment_drift.py` and `verify_stack_folders.py`) run through `scripts/run-all-drift-guards.sh` before any completion claim. A verification prompt mis-routed away from `references/shared/alignment-verification-automation.md` could let a completion claim skip that gate entirely.
+Per `SKILL.md` §3, alignment drift is a verification gate: four drift guards (`verify_alignment_drift.py`, `verify_stack_folders.py`, `verify_router_sync.cjs` and `verify_doc_claims.cjs`) run through `scripts/run-all-drift-guards.sh` before any completion claim. A verification prompt mis-routed away from `references/shared/alignment-verification-automation.md` could let a completion claim skip that gate entirely.
 
 ---
 
@@ -115,7 +115,7 @@ excerpt.
 
 ## 5. SOURCE METADATA
 
-- Group: code-opencode routing
+- Group: sk-code-opencode routing
 - Playbook ID: OC-008
 - Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Feature file path: `authoring-verification/verification-alignment.md`

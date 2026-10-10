@@ -1,0 +1,158 @@
+FAIL check paths: path references in the hub docs resolve on disk (50 problem(s))
+  - manual-testing-playbook/cross-stack-routing/non-webflow-plus-motion-dev.md:45: path does not resolve: sk-code-webflow/assets/checklists/code-quality-checklist.md
+  - manual-testing-playbook/cross-stack-routing/opencode-plus-motion-dev.md:48: path does not resolve: sk-code-webflow/assets/checklists/verification_checklist.md
+  - manual-testing-playbook/cross-stack-routing/webflow-plus-motion-dev.md:46: path does not resolve: sk-code-webflow/assets/checklists/code-quality-checklist.md
+  - manual-testing-playbook/cross-stack-routing/webflow-plus-motion-dev.md:47: path does not resolve: sk-code-webflow/assets/checklists/verification_checklist.md
+  - ROUTER.md:300: link label is a path that does not resolve: ./stack-detection.md
+  - ROUTER.md:301: link label is a path that does not resolve: ./phase-detection.md
+  - shared/references/stack-detection.md:104: path does not resolve: references/motion_dev/quick-start.md
+  - shared/references/stack-detection.md:104: path does not resolve: references/motion_dev/scroll-and-gestures.md
+  - shared/references/universal-verification-checklist.md:71: path does not resolve: references/webflow/verification/verification_workflows.md
+  - shared/references/universal-verification-checklist.md:71: path does not resolve: references/webflow/performance/cwv-remediation.md
+  - shared/references/universal-verification-checklist.md:119: path does not resolve: assets/universal/checklists/debugging_checklist.md
+  - shared/references/universal-verification-checklist.md:120: path does not resolve: references/webflow/verification/verification_workflows.md
+  - shared/references/universal-verification-checklist.md:121: path does not resolve: references/opencode/shared/alignment-verification-automation.md
+  - shared/references/universal/code-quality-standards.md:39: path does not resolve: assets/webflow/checklists/code-quality-checklist.md
+  - shared/references/universal/code-quality-standards.md:118: path does not resolve: assets/webflow/checklists/code-quality-checklist.md
+  - shared/references/universal/code-quality-standards.md:174: path does not resolve: assets/universal/checklists/debugging_checklist.md
+  - shared/references/universal/code-quality-standards.md:175: path does not resolve: assets/universal/checklists/verification_checklist.md
+  - shared/references/universal/code-style-guide.md:39: path does not resolve: references/webflow/javascript/style-guide.md
+  - shared/references/universal/code-style-guide.md:221: path does not resolve: references/webflow/javascript/style-guide.md
+  - shared/references/universal/multi-agent-research.md:216: path does not resolve: references/webflow/performance/cwv-remediation.md
+  - shared/references/universal/multi-agent-research.md:216: path does not resolve: references/webflow/performance/resource-loading.md
+  - sk-code-obsidian/manual-testing-playbook/intent-detection/debugging-routing.md:106: path does not resolve: assets/debug-checklist.md
+  - sk-code-obsidian/manual-testing-playbook/intent-detection/renderer-feature-routing.md:108: path does not resolve: references/single-stylesheet-ownership.md
+  - sk-code-obsidian/manual-testing-playbook/intent-detection/renderer-feature-routing.md:109: path does not resolve: assets/renderer-implementation-checklist.md
+  - sk-code-obsidian/manual-testing-playbook/intent-detection/stack-standards-routing.md:107: path does not resolve: references/obsidian-api-boundary.md
+  - sk-code-obsidian/manual-testing-playbook/intent-detection/stack-standards-routing.md:108: path does not resolve: references/screenshot-fixture-harness.md
+  - sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md:169: path does not resolve: references/single-stylesheet-ownership.md
+  - sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md:169: path does not resolve: references/screenshot-fixture-harness.md
+  - sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md:170: path does not resolve: references/obsidian-api-boundary.md
+  - sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md:170: path does not resolve: assets/renderer-implementation-checklist.md
+  - sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md:171: path does not resolve: assets/comment-grammar-checklist.md
+  - sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md:171: path does not resolve: assets/debug-checklist.md
+  - sk-code-obsidian/manual-testing-playbook/unknown-fallback/zero-keyword-prompt.md:83: path does not resolve: references/obsidian-api-boundary.md
+  - sk-code-obsidian/README.md:75: path does not resolve: references/obsidian-api-boundary.md
+  - sk-code-obsidian/README.md:134: path does not resolve: references/screenshot-fixture-harness.md
+  - sk-code-obsidian/references/release/release-verification.md:109: path does not resolve: ../../setup/setup.md
+  - sk-code-obsidian/SKILL.md:238: path does not resolve: assets/renderer-implementation-checklist.md
+  - sk-code-obsidian/SKILL.md:239: path does not resolve: assets/comment-grammar-checklist.md
+  - sk-code-obsidian/SKILL.md:241: path does not resolve: assets/debug-checklist.md
+  - sk-code-quality/scripts/lib/README.md:26: path does not resolve: ../hooks/claude-posttooluse.cjs
+  - sk-code-quality/scripts/lib/README.md:27: path does not resolve: ../hooks/codex/post-edit-quality.cjs
+  - sk-code-webflow/references/css/quality-standards/focus-has-print-and-quick-reference.md:61: path does not resolve: references/webflow/css/quick-reference.md
+  - sk-code-webflow/references/implementation/async-patterns/timing-compat-and-webflow.md:216: link label is a path that does not resolve: ../performance/third-party.md
+  - sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md:38: link label is a path that does not resolve: ./style-guide.md
+  - sk-code-webflow/references/javascript/quick-reference.md:55: path does not resolve: ../../universal/code-style-guide.md
+  - sk-code-webflow/references/javascript/quick-reference.md:295: link label is a path that does not resolve: ../../../assets/webflow/templates/component-template.js
+  - sk-code-webflow/references/performance/interaction-gated-loading.md:87: path does not resolve: ../../../assets/webflow/patterns/interaction-gate-patterns.js
+  - sk-code-webflow/references/performance/interaction-gated-loading.md:123: link label is a path that does not resolve: ../../assets/checklists/performance-loading-checklist.md
+  - sk-code-webflow/references/shared/cross-language-rules.md:173: link label is a path that does not resolve: ../../universal/code-style-guide.md
+  - sk-code-webflow/references/shared/enforcement.md:310: link label is a path that does not resolve: ../../../assets/webflow/checklists/code-quality-checklist.md
+FAIL check names: no retired packet names remain (96 problem(s))
+  - feature-catalog/feature-catalog.md:15: retired packet name code-webflow, the packet names carry the sk- prefix
+  - feature-catalog/feature-catalog.md:15: retired packet name code-opencode, the packet names carry the sk- prefix
+  - feature-catalog/feature-catalog.md:15: retired packet name `code-review`, the packet names carry the sk- prefix
+  - feature-catalog/feature-catalog.md:35: retired packet name code-webflow, the packet names carry the sk- prefix
+  - feature-catalog/feature-catalog.md:35: retired packet name code-opencode, the packet names carry the sk- prefix
+  - feature-catalog/feature-catalog.md:35: retired packet name `code-review`, the packet names carry the sk- prefix
+  - feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md:28: retired packet name code-webflow, the packet names carry the sk- prefix
+  - feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md:28: retired packet name code-opencode, the packet names carry the sk- prefix
+  - feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md:28: retired packet name code-webflow, the packet names carry the sk- prefix
+  - feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md:28: retired packet name `code-review`, the packet names carry the sk- prefix
+  - graph-metadata.json:282: retired packet name code-webflow, the packet names carry the sk- prefix
+  - graph-metadata.json:282: retired packet name code-opencode, the packet names carry the sk- prefix
+  - graph-metadata.json:282: retired packet name code-webflow, the packet names carry the sk- prefix
+  - manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md:33: retired packet name code-webflow, the packet names carry the sk- prefix
+  - manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md:33: retired packet name code-opencode, the packet names carry the sk- prefix
+  - manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md:33: retired packet name `code-review`, the packet names carry the sk- prefix
+  - manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md:45: retired packet name code-webflow, the packet names carry the sk- prefix
+  - manual-testing-playbook/design-restraint/stack-folders-validator.md:3: retired packet name code-opencode, the packet names carry the sk- prefix
+  - manual-testing-playbook/design-restraint/stack-folders-validator.md:11: retired packet name code-opencode, the packet names carry the sk- prefix
+  - manual-testing-playbook/design-restraint/stack-folders-validator.md:21: retired packet name code-opencode, the packet names carry the sk- prefix
+  - manual-testing-playbook/design-restraint/stack-folders-validator.md:96: retired packet name code-opencode, the packet names carry the sk- prefix
+  - manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md:151: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md:153: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md:153: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md:157: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md:157: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md:157: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - shared/README.md:17: retired packet name code-webflow, the packet names carry the sk- prefix
+  - shared/README.md:17: retired packet name code-opencode, the packet names carry the sk- prefix
+  - shared/README.md:17: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - shared/README.md:17: retired packet name `code-review`, the packet names carry the sk- prefix
+  - shared/README.md:17: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - sk-code-quality/manual-testing-playbook/manual-testing-playbook.md:27: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md:22: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md:32: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md:52: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - sk-code-quality/scripts/README.md:12: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - sk-code-quality/SKILL.md:182: retired packet name code-webflow, the packet names carry the sk- prefix
+  - sk-code-quality/SKILL.md:182: retired packet name code-opencode, the packet names carry the sk- prefix
+  - sk-code-quality/SKILL.md:188: retired packet name code-webflow, the packet names carry the sk- prefix
+  - sk-code-quality/SKILL.md:188: retired packet name code-opencode, the packet names carry the sk- prefix
+  - sk-code-quality/SKILL.md:202: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-quality/SKILL.md:248: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-quality/SKILL.md:280: retired packet name code-webflow, the packet names carry the sk- prefix
+  - sk-code-quality/SKILL.md:280: retired packet name code-opencode, the packet names carry the sk- prefix
+  - sk-code-quality/SKILL.md:281: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-review/README.md:37: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-review/README.md:41: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-review/README.md:74: retired packet name code-opencode, the packet names carry the sk- prefix
+  - sk-code-review/README.md:129: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-review/README.md:147: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-review/README.md:153: retired packet name code-webflow, the packet names carry the sk- prefix
+  - sk-code-review/README.md:153: retired packet name code-opencode, the packet names carry the sk- prefix
+  - sk-code-review/README.md:154: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - sk-code-review/README.md:184: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-review/README.md:188: retired packet name code-webflow, the packet names carry the sk- prefix
+  - sk-code-review/README.md:188: retired packet name code-opencode, the packet names carry the sk- prefix
+  - sk-code-review/README.md:188: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - sk-code-review/README.md:188: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-review/references/review-core.md:66: retired packet name code-webflow, the packet names carry the sk- prefix
+  - sk-code-review/references/review-core.md:66: retired packet name code-opencode, the packet names carry the sk- prefix
+  - sk-code-review/scripts/README.md:12: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:21: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:39: retired packet name code-webflow, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:39: retired packet name code-opencode, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:42: retired packet name code-webflow, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:42: retired packet name code-opencode, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:43: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:56: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:65: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:107: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:225: retired packet name code-opencode, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:229: retired packet name code-webflow, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:293: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:338: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:339: retired packet name code-webflow, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:339: retired packet name code-opencode, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:453: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:463: retired packet name code-webflow, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:463: retired packet name code-opencode, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:463: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - sk-code-review/SKILL.md:473: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-webflow/manual-testing-playbook/manual-testing-playbook.md:1: retired packet name code-webflow, the packet names carry the sk- prefix
+  - sk-code-webflow/manual-testing-playbook/manual-testing-playbook.md:3: retired packet name code-webflow, the packet names carry the sk- prefix
+  - sk-code-webflow/README.md:36: retired packet name code-opencode, the packet names carry the sk- prefix
+  - sk-code-webflow/README.md:87: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-webflow/README.md:87: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - sk-code-webflow/README.md:94: retired packet name code-opencode, the packet names carry the sk- prefix
+  - sk-code-webflow/README.md:95: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-webflow/README.md:96: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - sk-code-webflow/README.md:108: retired packet name code-opencode, the packet names carry the sk- prefix
+  - sk-code-webflow/SKILL.md:22: retired packet name `code-review`, the packet names carry the sk- prefix
+  - sk-code-webflow/SKILL.md:22: retired packet name `code-quality`, the packet names carry the sk- prefix
+  - sk-code-webflow/SKILL.md:59: retired packet name code-webflow, the packet names carry the sk- prefix
+  - sk-code-webflow/SKILL.md:62: retired packet name code-webflow, the packet names carry the sk- prefix
+  - sk-code-webflow/SKILL.md:64: retired packet name code-opencode, the packet names carry the sk- prefix
+FAIL check surfaces: no two-surface wording remains (1 problem(s))
+  - shared/references/phase-detection.md:16: two-surface wording "Both supported surfaces", the hub has three surfaces
+FAIL check tiers: ROUTER.md load-tier claims match DEFAULT_RESOURCE (6 problem(s))
+  - ROUTER.md:111: claims shared/references/universal/code-style-guide.md loads on every route, but DEFAULT_RESOURCE does not list it
+  - ROUTER.md:111: claims shared/references/universal/error-recovery.md loads on every route, but DEFAULT_RESOURCE does not list it
+  - ROUTER.md:111: claims shared/references/universal/multi-agent-research.md loads on every route, but DEFAULT_RESOURCE does not list it
+  - ROUTER.md:604: claims shared/references/universal/code-style-guide.md loads on every route, but DEFAULT_RESOURCE does not list it
+  - ROUTER.md:604: claims shared/references/universal/error-recovery.md loads on every route, but DEFAULT_RESOURCE does not list it
+  - ROUTER.md:604: claims shared/references/universal/multi-agent-research.md loads on every route, but DEFAULT_RESOURCE does not list it
+doc-claims: 0/4 checks passed

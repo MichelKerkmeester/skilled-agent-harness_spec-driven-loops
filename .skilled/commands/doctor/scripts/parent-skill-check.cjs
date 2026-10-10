@@ -1754,7 +1754,7 @@ function checkRootRouter(ctx) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 13. VERSION PARITY CHECKS (13a-13b)
+// 13. VERSION PARITY CHECKS (13a-13d)
 // ─────────────────────────────────────────────────────────────────────────────
 
 // The first `version:` line of a markdown file, or absent.
@@ -1799,6 +1799,63 @@ function checkChangelogVersion(ctx, authority) {
   }
 }
 
+// These hub front pages already lag their release, so their README drift warns until it is
+// repaired. README drift on any other hub fails.
+const README_VERSION_WARN_ONLY = new Set(['cli-classifier', 'cli-external-orchestration', 'sk-doc', 'system-deep-loop']);
+
+// 13c: a hub README that declares a version is the front page of that release, so it carries
+// the SKILL.md version.
+function checkReadmeVersion(ctx, authority) {
+  const readme = markdownVersion(ctx.target, 'README.md');
+  if (!readme.present) {
+    info('13c-readme-version: README.md declares no version, nothing to compare');
+    return;
+  }
+  if (readme.value === authority) {
+    pass(`13c-readme-version: README.md carries the SKILL.md version ${authority}`);
+    return;
+  }
+  const report = README_VERSION_WARN_ONLY.has(ctx.basename) ? warn : softFail;
+  report(`13c-readme-version: README.md carries ${readme.value} but SKILL.md, the release authority, carries ${authority}`);
+}
+
+// 13d: each mode packet's SKILL.md version names its newest changelog entry, and that entry's
+// own version line agrees with its file name.
+function checkPacketChangelogVersions(ctx) {
+  const modes = ctx.registry && Array.isArray(ctx.registry.modes) ? ctx.registry.modes : [];
+  const packets = [...new Set(modes
+    .map((m) => (isPlainObject(m) && typeof m.packet === 'string' ? m.packet : null))
+    .filter(Boolean))].sort();
+  let checked = 0;
+  let parity = true;
+  for (const packet of packets) {
+    const skill = markdownVersion(path.join(ctx.target, packet), 'SKILL.md');
+    const logDir = path.join(ctx.target, packet, 'changelog');
+    if (!skill.present || !FOUR_PART_VERSION.test(skill.value) || !isDirectory(logDir)) continue;
+    const entries = fs.readdirSync(logDir)
+      .map((name) => (name.match(/^v([0-9]+(?:\.[0-9]+){3})\.md$/) || [])[1])
+      .filter(Boolean)
+      .sort(compareVersions);
+    const newest = entries[entries.length - 1];
+    if (!newest) continue;
+    checked += 1;
+    if (newest !== skill.value) {
+      softFail(`13d-packet-version: ${packet}/SKILL.md claims ${skill.value} but its newest changelog entry is v${newest}`);
+      parity = false;
+    }
+    const entry = markdownVersion(logDir, `v${newest}.md`);
+    if (entry.present && entry.value !== newest) {
+      softFail(`13d-packet-version: ${packet}/changelog/v${newest}.md declares version ${entry.value}, not ${newest}`);
+      parity = false;
+    }
+  }
+  if (checked === 0) {
+    info('13d-packet-version: no mode packet pairs a four-part SKILL.md version with a versioned changelog entry');
+  } else if (parity) {
+    pass(`13d-packet-version: ${checked} mode packet(s) match their newest changelog entry`);
+  }
+}
+
 // 13a: SKILL.md is the release authority; every routing artifact that declares
 // a version must carry exactly that four-part version. A declared version that
 // does not parse is a mismatch, never a pass.
@@ -1828,6 +1885,7 @@ function checkVersionParity(ctx) {
   }
   if (parity) pass(`13a-version: all routing artifacts carry the SKILL.md version ${authority}`);
   checkChangelogVersion(ctx, authority);
+  checkReadmeVersion(ctx, authority);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1909,6 +1967,7 @@ function main() {
   checkRootMetadataClass(ctx);
   checkRootRouter(ctx);
   checkVersionParity(ctx);
+  checkPacketChangelogVersions(ctx);
 
   console.log('');
   console.log('─────────────────────────────────────────────────────────────────');

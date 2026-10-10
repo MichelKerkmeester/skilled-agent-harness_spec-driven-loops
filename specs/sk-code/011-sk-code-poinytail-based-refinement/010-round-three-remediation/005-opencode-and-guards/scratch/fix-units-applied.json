@@ -1,0 +1,62 @@
+[
+ {
+  "task": "FX1",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n  else claims.push({ no: alwaysIdx + 1, text: lines[alwaysIdx] });\nOLD>>> with <<<NEW\n  else claims.push({ no: alwaysIdx + 1, text: lines[alwaysIdx], always: true });\nNEW>>> and change nothing else.",
+  "check": "grep -c 'always: true' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+  "expect": "1"
+ },
+ {
+  "task": "FX2",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n      if (!ref.startsWith('shared/') || /[<>{}$]/.test(ref)) continue;\n      const files = ref.endsWith('/') || ref.endsWith('/*')\nOLD>>> with <<<NEW\n      if (!ref.startsWith('shared/') || /[<>{}$]/.test(ref)) continue;\n      // Outside the ALWAYS row a bare folder names a scope (\"never the whole folder\"), so only a\n      // file or a `/*` glob there claims a load.\n      if (ref.endsWith('/') && !claim.always) continue;\n      const files = ref.endsWith('/') || ref.endsWith('/*')\nNEW>>> and change nothing else.",
+  "check": "node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs --checks tiers | grep -c 'ROUTER.md:605'",
+  "expect": "0"
+ },
+ {
+  "task": "FX3",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n  for (const claim of claims) {\n    for (const m of claim.text.matchAll(/`([^`]+)`/g)) {\nOLD>>> with <<<NEW\n  for (const claim of claims) {\n    if (isAllowed('tiers', 'ROUTER.md', claim.text)) continue;\n    for (const m of claim.text.matchAll(/`([^`]+)`/g)) {\nNEW>>> and change nothing else.",
+  "check": "grep -c \"isAllowed('tiers'\" .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+  "expect": "1"
+ },
+ {
+  "task": "FX4",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs, replace the exact text <<<OLD\n  '- the surface-agnostic `shared/references/universal/*` tier, plus',\n  '',\n].join('\\n');\nOLD>>> with <<<NEW\n  '- the surface-agnostic `shared/references/universal/*` tier, plus',\n  '- never the whole `shared/references/universal/` folder, plus',\n  '',\n].join('\\n');\nNEW>>> and change nothing else.",
+  "check": "grep -c 'never the whole' .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs",
+  "expect": "1"
+ },
+ {
+  "task": "FX5",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs, replace the exact text <<<OLD\n  assert.match(out, /ROUTER\\.md:13: claims shared\\/references\\/universal\\/beta\\.md loads on every route/);\n\nOLD>>> with <<<NEW\n  assert.match(out, /ROUTER\\.md:13: claims shared\\/references\\/universal\\/beta\\.md loads on every route/);\n  assert.doesNotMatch(out, /ROUTER\\.md:14:/);\n\nNEW>>> and change nothing else.",
+  "check": "grep -cF 'ROUTER\\.md:14:' .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs",
+  "expect": "1"
+ },
+ {
+  "task": "FX6",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md, replace the exact text <<<OLD\nruns this verifier, `verify_stack_folders.py` and `verify_router_sync.cjs` (every leg: 1a, 1b, 2, 3 and 4) together as one gate.\nOLD>>> with <<<NEW\nruns this verifier, `verify_stack_folders.py`, `verify_router_sync.cjs` (every leg: 1a, 1b, 2, 3 and 4) and `verify_doc_claims.cjs` together as one gate.\nNEW>>> and change nothing else.",
+  "check": "sed -n 142p .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md | grep -c 'verify_doc_claims.cjs'",
+  "expect": "1"
+ }
+]

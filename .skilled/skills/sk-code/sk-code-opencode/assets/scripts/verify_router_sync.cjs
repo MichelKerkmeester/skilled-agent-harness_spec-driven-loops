@@ -23,30 +23,48 @@ const ROUTE_GOLD_CANDIDATES = [
 // from the active surface's symlinked copy, so no router names the canonical shared path or
 // the symlink. Exact paths, not a folder, keep any other unrouted doc under shared/ reported.
 const NON_ROUTED_ALLOWLIST = new Set([
-  'ROUTER.md',
-  'references/stack-detection.md',
-  'references/phase-detection.md',
   'shared/references/workflow-implement.md',
   'shared/references/workflow-debug.md',
   'shared/references/workflow-verify.md',
 ]);
 const SURFACES = ['sk-code-webflow', 'sk-code-opencode'];
 const SURFACE_PACKETS = new Set([...SURFACES, 'sk-code-obsidian']);
-const PARENT_TIER_ALLOWLIST = new Set([
-  'shared/references/universal/multi-agent-research.md',
-  'shared/references/universal/code-quality-standards.md',
-  'shared/references/universal/code-style-guide.md',
-  'shared/references/universal/error-recovery.md',
-  'shared/references/universal-debugging-checklist.md',
-  'shared/references/universal-verification-checklist.md',
-  'shared/references/performance-loading-checklist.md',
-  'shared/assets/patterns/README.md',
-  'sk-code-review/assets/code-quality-checklist.md',
-]);
+// The hub-level shared controls are declared once in ROUTER.md: its SHARED_CONTROL_RESOURCES
+// list plus its DEFAULT_RESOURCE preamble, and leg 2 reads both. A parent-map path under a
+// workflow mode packet is that packet's own leaf in leaf-manifest.json, not a shared control.
+const SHARED_CONTROL_BLOCK = /SHARED_CONTROL_RESOURCES\s*=\s*\[([\s\S]*?)\]/;
+const DEFAULT_RESOURCE_BLOCK = /DEFAULT_RESOURCES?\s*=\s*\[([\s\S]*?)\]/;
 const NON_CONTRACT_CATEGORIES = new Set(['holdout', 'unknown_fallback', 'surface_detection', 'token_cost_baseline', 'resource_loading', 'cross_cli_dispatch']);
 
 const norm = (p) => p.replace(/^\.\//, '');
 const readSkillRouter = (dir) => lib.parseRouter(fs.readFileSync(path.join(dir, 'SKILL.md'), 'utf8'), dir);
+
+// Same list grammar the root-router contract uses for these blocks, read here so the guard keeps
+// no copy of the list.
+function sharedControlResources() {
+  const text = fs.readFileSync(path.join(SKCODE, 'ROUTER.md'), 'utf8');
+  const out = new Set();
+  for (const block of [SHARED_CONTROL_BLOCK, DEFAULT_RESOURCE_BLOCK]) {
+    const m = block.exec(text);
+    if (m) for (const x of m[1].matchAll(/["']([^"']+)["']/g)) out.add(x[1]);
+  }
+  return out;
+}
+
+function manifestLeavesByPacket() {
+  const file = path.join(SKCODE, 'leaf-manifest.json');
+  const byPacket = new Map();
+  if (!fs.existsSync(file)) return byPacket;
+  for (const mode of JSON.parse(fs.readFileSync(file, 'utf8')).modes || []) {
+    if (mode && typeof mode.packet === 'string') byPacket.set(mode.packet, new Set(mode.leaves || []));
+  }
+  return byPacket;
+}
+
+function ownedLeaf(packetLeaves, owner, p) {
+  if (!owner || !packetLeaves.has(owner[1])) return false;
+  return packetLeaves.get(owner[1]).has(p.slice(owner[1].length + 1));
+}
 
 // Port of parseFrontmatter(text).raw: the leading fence block including both fences, or null.
 function frontmatterRaw(markdown) {
@@ -158,6 +176,11 @@ function legOrphans() {
 // Leg 2: the parent surface RESOURCE_MAP equals the union of the surface children plus the parent tier.
 function legSurfaceMap() {
   const problems = [];
+  const sharedControls = sharedControlResources();
+  if (sharedControls.size === 0) {
+    problems.push('ROUTER.md declares no SHARED_CONTROL_RESOURCES, so the parent-tier check would be vacuous');
+  }
+  const packetLeaves = manifestLeavesByPacket();
   const parent = lib.loadSurfaceRouter(SKCODE);
   const parentMap = (parent && parent.resourceMap) || {};
   const children = {};
@@ -185,7 +208,7 @@ function legSurfaceMap() {
       if (owner && SURFACE_PACKETS.has(owner[1])) {
         if (!childOwnsIntent && declaredBy(owner[1]).has(p)) continue;
         problems.push(`parent map ${it} cites ${p}, which no surface child owns`);
-      } else if (!PARENT_TIER_ALLOWLIST.has(p)) {
+      } else if (!sharedControls.has(p) && !ownedLeaf(packetLeaves, owner, p)) {
         problems.push(`parent map ${it} cites ${p}, outside the parent tier`);
       }
     }

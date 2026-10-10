@@ -305,7 +305,7 @@ Example:
 
 Follow the universal commenting principles (see `../shared/universal-patterns/naming-and-commenting.md`):
 
-1. **Quantity limit:** Maximum 3 comments per 10 lines of code
+1. **Quantity limit (OpenCode surface setting):** Maximum 3 comments per 10 lines of code, this surface's budget for the shared comment-density rule (see [naming and commenting](../shared/universal-patterns/naming-and-commenting.md))
 2. **Focus on purposeful semantics:** Explain WHY something is done, not WHAT it does
 3. **Focus on WHY, not WHAT:** Explain intent, constraints, reasoning
 4. **No commented-out code:** Delete unused code (git preserves history)

@@ -1,0 +1,11 @@
+FAIL check paths: path references in the hub docs resolve on disk (2 problem(s))
+  - ROUTER.md:300: link label is a path that does not resolve: ./stack-detection.md
+  - ROUTER.md:301: link label is a path that does not resolve: ./phase-detection.md
+PASS check names: no retired packet names remain
+PASS check surfaces: no two-surface wording remains
+FAIL check tiers: ROUTER.md load-tier claims match DEFAULT_RESOURCE (4 problem(s))
+  - ROUTER.md:605: claims shared/README.md loads on every route, but DEFAULT_RESOURCE does not list it
+  - ROUTER.md:605: claims shared/references/universal/code-style-guide.md loads on every route, but DEFAULT_RESOURCE does not list it
+  - ROUTER.md:605: claims shared/references/universal/error-recovery.md loads on every route, but DEFAULT_RESOURCE does not list it
+  - ROUTER.md:605: claims shared/references/universal/multi-agent-research.md loads on every route, but DEFAULT_RESOURCE does not list it
+doc-claims: 2/4 checks passed

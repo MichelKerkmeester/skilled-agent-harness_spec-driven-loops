@@ -118,7 +118,7 @@ excerpt.
 
 ## 5. SOURCE METADATA
 
-- Group: code-opencode routing
+- Group: sk-code-opencode routing
 - Playbook ID: OC-003
 - Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Feature file path: `language-standards/shell-standards.md`

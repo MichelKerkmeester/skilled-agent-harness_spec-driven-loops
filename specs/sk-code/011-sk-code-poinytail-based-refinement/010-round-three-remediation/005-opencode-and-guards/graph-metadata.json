@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode and guards",
+      "phase 5 opencode and guards",
+      "documentation claim checker",
+      "verify doc claims",
+      "opencode and guards plan",
+      "opencode and guards tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "opencode and guards implementation summary"
+    ],
+    "key_topics": [
+      "opencode",
+      "guards",
+      "phase",
+      "documentation",
+      "claim",
+      "checker",
+      "verify",
+      "doc",
+      "claims",
+      "plan",
+      "tasks",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs",
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs",
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-opencode/README.md",
+      "scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md",
+      ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md",
+      ".skilled/skills/sk-code/leaf-manifest.json",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      "scratch/plan-doc-claims.txt",
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify_doc_claims.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify_doc_claims.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify_router_sync.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify_router_sync.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-all-drift-guards.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-guardrails.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.2.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan-doc-claims.txt",
+        "kind": "file",
+        "path": "scratch/plan-doc-claims.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every round-three drift cluster sits in prose that no guard reads: the routers and manifests were updated after each rename and all pass, while the docs that cite them kept dead paths, pre-rename packet names and two-surface wording (f-iter020-003)",
+    "created_at": "2026-10-10T10:07:21Z",
+    "last_save_at": "2026-10-10T11:49:40.971Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:717a7343aaf61926f255aaa109f42edf0fc0628db63ec7aaa38592293eec100c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "243f0f3ce32f836c8ac0ecd791b4975eddd2e8664a34a81b4a63b9d9a4bff3c7",
+      "plan.md": "f8410777e0abbbf0c6d277941f66fcfa075b293419afa7a7db1471eedf807b90",
+      "tasks.md": "f2d6a73ab3b5b2639e840b7bb2b142d9fa968e502e3900d7253f6e756b273e05",
+      "implementation-summary.md": "e839924deee74624bb48ea40f64e6f9a5fcb1ec0620c89f246626f15c2c94a06"
+    },
+    "last_active_at": null
+  }
+}

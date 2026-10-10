@@ -78,7 +78,7 @@ lane. `verify_router_sync.cjs` restores its four checks. The suite checked four 
    is routed.
 2. The parent surface RESOURCE_MAP equals the union of the surface children's
    maps plus the parent tier.
-3. Compiled route-gold destinations, `leaf-manifest.json` and the code-opencode
+3. Compiled route-gold destinations, `leaf-manifest.json` and the sk-code-opencode
    RESOURCE_MAP agree through `qualifiedIdToLeaf`.
 4. Every playbook routing scenario's `expected_resource` is emitted by the
    router.
@@ -139,17 +139,17 @@ Notes:
 - [code_organization.md](code-organization/overview-and-module-organization.md)
 - [universal_patterns.md](universal-patterns/naming-and-commenting.md)
 - [hooks.md](./hooks.md)
-- Drift-guard entry point: `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` — runs this verifier, `verify_stack_folders.py` and `verify_router_sync.cjs` (every leg: 1a, 1b, 2, 3 and 4) together as one gate.
+- Drift-guard entry point: `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` — runs this verifier, `verify_stack_folders.py`, `verify_router_sync.cjs` (every leg: 1a, 1b, 2, 3 and 4) and `verify_doc_claims.cjs` together as one gate.
 
 ---
 
-## 6. ALIGNMENT AUTHORITY INTERFACE (code-opencode)
+## 6. ALIGNMENT AUTHORITY INTERFACE (sk-code-opencode)
 
-code-opencode has exactly one alignment source of truth: the three-part interface
+sk-code-opencode has exactly one alignment source of truth: the three-part interface
 below. Later coverage and activation work must consume this interface rather than
 re-derive a second RESOURCE_MAP parser or a local eligibility map.
 
-1. **Doc pointer.** This file plus the code-opencode `SKILL.md` SMART ROUTING
+1. **Doc pointer.** This file plus the sk-code-opencode `SKILL.md` SMART ROUTING
    block, which record that the `sk-code-router-sync.vitest.ts` suite was
    retired, that `verify_router_sync.cjs` restores its checks, and what covers
    each (section 3, "Router-sync guard"). The markdown-blind
@@ -161,7 +161,7 @@ re-derive a second RESOURCE_MAP parser or a local eligibility map.
    `sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs` tests the
    module, and `.skilled/bin/lib/compiled-route-admission.cjs` uses it.
 3. **Orchestrator.** `scripts/run-all-drift-guards.sh` is the single command that
-   runs all three drift guards and exits non-zero if any fails.
+   runs all four drift guards and exits non-zero if any fails.
 
-Any new check that needs code-opencode RESOURCE_MAP alignment extends this
+Any new check that needs sk-code-opencode RESOURCE_MAP alignment extends this
 interface; it must not stand up a competing parser or eligibility map.

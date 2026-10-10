@@ -1,0 +1,7 @@
+cli-classifier OK: parent-skill-check — all hard invariants passed, 1 warnings
+cli-external-orchestration OK: parent-skill-check — all hard invariants passed, 1 warnings
+mcp-tooling OK: parent-skill-check — all hard invariants passed, 4 warnings
+sk-design OK: parent-skill-check — all hard invariants passed, 16 warnings
+sk-doc OK: parent-skill-check — all hard invariants passed, 20 warnings
+system-deep-loop OK: parent-skill-check — all hard invariants passed, 5 warnings
+sk-code OK: parent-skill-check — all hard invariants passed, 0 warnings

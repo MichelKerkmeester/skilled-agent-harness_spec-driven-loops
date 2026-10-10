@@ -1,0 +1,346 @@
+✔ clean fixture passes every invariant and exits 0 (179.592291ms)
+✔ missing hub directory exits 2 (33.20725ms)
+✔ STRICT=0 downgrades advisory findings to WARN and exits 0 (141.249708ms)
+✔ STRICT=0 keeps hard failures as FAIL (142.174042ms)
+✔ 1a fails: no graph-metadata.json (158.199334ms)
+✔ 1b fails: skill_id differs from the directory (165.416375ms)
+✔ 1c fails: family outside the allowed set (161.008459ms)
+✔ 2a fails: nested graph-metadata.json in a packet (151.709875ms)
+✔ 2b fails: nested description.json in a packet (153.596833ms)
+✔ 3a fails: mode-registry.json missing (101.384167ms)
+✔ 3a fails: mode-registry.json is not JSON (99.52475ms)
+✔ 3b fails: empty modes array (104.889ms)
+✔ 3c fails: packet directory missing (153.214542ms)
+✔ 3c fails: packet escapes the hub (135.913166ms)
+✔ 3d fails: missing backendKind (173.152083ms)
+✔ 3d fails: invalid packetKind (156.180959ms)
+✔ 3d fails: malformed toolSurface (182.06ms)
+✔ 3d-name fails: folder differs from packetSkillName (156.859ms)
+✔ 3d-name-frontmatter fails: packet frontmatter name differs (130.195292ms)
+✔ 3d-files fails: packet README.md missing (158.031167ms)
+✔ 3d-alias fails: alias duplicated across modes (168.257125ms)
+✔ 3e fails: invalid routingClass (182.4895ms)
+✔ 3f fails: surface-axis declared without a surface (173.602542ms)
+✔ 3g fails: surface packet with a mutating backend (269.881208ms)
+✔ 3h fails: transport packet missing from transports[] (241.011167ms)
+✔ 3i fails: Write grant on a non-mutating mode (156.704958ms)
+✔ 3j fails: hub over-grants a tool (152.1505ms)
+✔ 4a fails: lexical mode with no drift guard (289.376791ms)
+✔ 4a fails: declared drift guard missing on disk (261.392375ms)
+✔ 5a fails: hub-router.json missing (151.806375ms)
+✔ 5b fails: stray router signal (133.239667ms)
+✔ 5c fails: undefined vocabulary class (155.121916ms)
+✔ 5d fails: router resource missing on disk (174.740666ms)
+✔ 5e fails: tieBreak misses a mode (153.348084ms)
+✔ 5f fails: bundle rule names an unknown mode (171.22175ms)
+✔ 5g fails: base outcome missing (157.688083ms)
+✔ 5h fails: defaultMode not registered (157.602333ms)
+✔ 5i fails: workflow mode ordered after a surface (258.382166ms)
+✔ 5j fails: stray command-subworkflow signal (158.496ms)
+✔ 5k-alias fails: registry alias absent from its signal vocabulary (145.532625ms)
+✔ 5k-packet fails: packet name absent from description keywords (164.141792ms)
+✔ 6a fails: unregistered child directory (153.044833ms)
+✔ 6b fails: mode missing from the mode table (360.72525ms)
+✔ 6c fails: mode row hides a registered command (181.744375ms)
+✔ 7a fails: hub changelog missing (348.790792ms)
+✔ 7a fails: symlinked changelog entry (362.451416ms)
+✔ 8a fails: description.json missing (164.1235ms)
+✔ 8b fails: description.json duplicates registry modes (161.310084ms)
+✔ 9a fails: playbook missing (168.613125ms)
+✔ 9b fails: benchmark missing (188.199166ms)
+✔ 10a-manifest-source fails: leaf-manifest.json is not JSON (181.882666ms)
+✔ 10b-byte-drift fails: leaf added after generation (222.524792ms)
+✔ 10c-target-collision fails: alias claims an on-disk composite (166.186917ms)
+✔ 10d-reachability fails: manifest names an unregistered mode (138.414083ms)
+✔ 11a-class fails: generated leaf-manifest.json missing (123.1925ms)
+✔ 12a-router-contract fails: root ROUTER.md missing (130.803916ms)
+✔ 13a-version fails: description.json version differs (165.524667ms)
+✔ 13a-version fails: SKILL.md has no four-part version (130.095625ms)
+✔ 13b-version fails: newer changelog entry than SKILL.md (137.296458ms)
+✖ 13c-readme-version fails: README.md version differs from SKILL.md (278.28275ms)
+✖ 13d-packet-version fails: packet SKILL.md ahead of its newest changelog entry (224.624834ms)
+✔ 5k-canary fails when a routerSignals mode is never the expected route of a canary case (171.348042ms)
+✖ 13c warns, and does not fail, on a hub whose README already lags its release (223.947833ms)
+✔ 5k warns, and does not fail, on alias drift that another hub already carries (351.480375ms)
+✔ 4b passes when the advisor map equals the lexical projection (323.358167ms)
+✔ 4b fails when the advisor map disagrees with the lexical projection (340.469417ms)
+✔ 4c warns when a lexical id is absent from the advisor map (369.982834ms)
+✔ 4c passes when every lexical id is wired into the advisor map (308.455875ms)
+✔ no stack trace on any characterised failure (117.585292ms)
+✔ 13a fails when a follower carries a version that is not four-part (147.469334ms)
+✔ 1b fails when graph-metadata.json is JSON null (143.739667ms)
+✔ 3a fails when mode-registry.json is JSON null (155.105ms)
+✔ 5a and 8a fail when hub-router.json and description.json are JSON null (539.913791ms)
+✔ a null entry in modes[] is a 3d FAIL, not a crash (251.755958ms)
+✔ a string toolSurface.allowed on a surface packet is a FAIL, not a crash (451.8375ms)
+✔ a non-string leaf in leaf-manifest.json is a 10a FAIL, not a crash (131.276375ms)
+✔ a changelog that is a regular file fails 7a and does not crash 13b (188.825083ms)
+✔ an unexpected throw prints a FAIL line and exits 2 (106.438583ms)
+✔ an unreadable hub directory exits 2 (100.95025ms)
+✔ 3f fails when transports[] lists a mode that is not a registered transport (289.239542ms)
+✔ 3d fails when a mode has no packetSkillName (203.009ms)
+✔ 3d fails when a mode has no aliases array (173.071084ms)
+✔ 3d-alias warns on an alias that is not lowercase (181.148584ms)
+✔ 3d fails when runtimeLoopType appears on a hub without the runtime-loop extension (170.504875ms)
+✔ 3c fails for a packet of "." and for a nested packet path (264.194084ms)
+✔ 6c checks the row owned by the mode, not the first row that mentions it (217.599209ms)
+✔ 6c does not accept a longer command that merely contains the registered one (155.333709ms)
+✔ 6c accepts a mode documented only inside a neighbouring row that shows its command (173.00025ms)
+✔ 3f prints no PASS after its own soft failure (263.072834ms)
+✔ 13b prints no PASS when the changelog directory is missing (170.433292ms)
+✔ 3h and 3i print PASS lines on a clean transport hub (256.619958ms)
+✔ 3k fails when a bracketed command grants tools beyond its mode (169.450042ms)
+✔ 3k fails when a bare-list command grants a tool beyond its mode (157.782334ms)
+✔ 3k passes when a bare-list command adds only TodoWrite (163.295042ms)
+✔ 3k reads a YAML block-sequence tool list (191.497209ms)
+✔ 4b fails when python3 exits non-zero (204.795292ms)
+✔ 4b fails when python3 is not on PATH (129.028792ms)
+✔ colour output on a TTY uses real escape sequences (182.945292ms)
+ℹ tests 98
+ℹ suites 0
+ℹ pass 95
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21497.970708
+
+✖ failing tests:
+
+test at .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:419:3
+✖ 13c-readme-version fails: README.md version differs from SKILL.md (278.28275ms)
+  AssertionError [ERR_ASSERTION]: expected "FAIL: 13c-readme-version: ...README.md" in:
+  INFO: Parent skill: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/parent-skill-check-invariants-dAiANU/demo-hub
+  INFO: Resolved:     /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/parent-skill-check-invariants-dAiANU/demo-hub
+  INFO: Advisory findings: FAIL. Hard failures always FAIL.
+  
+  PASS: 1a: exactly one graph-metadata.json, located at the hub root
+  PASS: 1b: hub skill_id "demo-hub" matches directory name
+  PASS: 1c: hub family "sk-hub" is in the allowed set
+  PASS: 2a: no nested graph-metadata.json inside any packet or shared/
+  PASS: 2b: no nested description.json inside any packet or shared/
+  PASS: 3a: mode-registry.json exists and parses as JSON
+  PASS: 3b: mode-registry.json declares 2 modes
+  PASS: 3c: every mode packet resolves to an existing sub-directory
+  PASS: 3d: every mode carries the hard discriminator (workflowMode + backendKind)
+  PASS: 3d-canon: every mode carries packetKind + toolSurface + grandfatheredFolderMismatch + packetSkillName + aliases
+  PASS: 3d-name: every mode folder matches packetSkillName (or is grandfathered)
+  PASS: 3d-name-frontmatter: all 2 packet SKILL.md frontmatter name(s) match packetSkillName
+  PASS: 3d-files: every packet carries SKILL.md, README.md, and changelog/
+  PASS: 3d-alias: all 2 aliases are unique across modes
+  PASS: 3e: every mode has an advisorRouting block with a valid routingClass
+  INFO: 3g: hub declares no surface packets
+  INFO: 3h: hub declares no transport packets
+  PASS: 3i: every mode that grants Write declares mutatesWorkspace:true or a writeScopeNote
+  INFO: 3k: no bound command declares an allowed-tools list to compare
+  INFO: 3f: hub declares no extensions (pure 2-tier)
+  PASS: 3j: hub allowed-tools equals the union of mode tool surfaces
+  INFO: 4a: hub declares no lexical/alias-fold modes — no advisor drift-guard required
+  INFO: 4b: registry declares no lexical modes; nothing to cross-check against the advisor
+  PASS: 5a: hub-router.json exists and parses as JSON
+  PASS: 5b: routerSignals keys match the registry workflowMode set (2)
+  PASS: 5c: all 1 referenced vocabulary classes are defined
+  PASS: 5d: every router resource path resolves on disk
+  PASS: 5e: routerPolicy.tieBreak covers every registered mode
+  PASS: 5f: bundleRules reference real modes
+  PASS: 5g: base router outcomes present (single, orderedBundle, defer)
+  PASS: 5h: routerPolicy.defaultMode "demo-alpha" is a registered mode
+  PASS: 5i: tieBreak orders workflow modes before surface/transport modes
+  INFO: 5j: hub declares no command subworkflows
+  PASS: 6a: every hub child directory is a registered packet or an allowlisted support dir
+  PASS: 6b: every registered mode (2) appears in the hub SKILL.md mode table
+  PASS: 6c: every mode-table row whose registry entry declares a command shows that exact command
+  PASS: 7a: all changelog entries are real files (no symlinks)
+  PASS: 8a: description.json present with the required fields
+  PASS: 8b: description.json carries no registry-owned duplicate keys
+  PASS: 5k-alias: every registry alias is a keyword of its routerSignal classes
+  PASS: 5k-packet: every mode packet is a description keyword
+  INFO: 5k-canary: no compiled-routing canary fixture for hub "demo-hub", leg not applicable
+  PASS: 9a: manual-testing-playbook/ present
+  PASS: 9b: benchmark/ baseline present
+  PASS: 10a-manifest-source: resourceContractVersion declared and leaf-manifest.json is present, readable, and well-formed
+  PASS: 10b-byte-drift: committed leaf-manifest.json matches a fresh regeneration byte for byte
+  PASS: 10c-target-collision: no duplicate composite keys; every committed leaf resolves to a disk file or a declared alias
+  PASS: 10d-reachability: all 2 manifest mode(s) reach back to a registered mode and vice versa
+  PASS: 11a-class: root metadata conforms to class H (declares the complete mode-registry + hub-router pair)
+  PASS: 12a-router-contract: root ROUTER.md conforms to the two-state contract (stage1-only)
+  PASS: 13a-version: all routing artifacts carry the SKILL.md version 1.0.0.0
+  PASS: 13b-version: SKILL.md version 1.0.0.0 matches the newest changelog entry
+  
+  ─────────────────────────────────────────────────────────────────
+  OK: parent-skill-check — all hard invariants passed, 0 warnings
+  
+      at assertLine (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:281:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:423:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'INFO: Parent skill: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/parent-skill-check-invariants-dAiANU/demo-hub\nINFO: Resolved:     /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/parent-skill-check-invariants-dAiANU/demo-hub\nINFO: Advisory findings: FAIL. Hard failures always FAIL.\n\nPASS: 1a: exactly one graph-metadata.json, located at the hub root\nPASS: 1b: hub skill_id "demo-hub" matches directory name\nPASS: 1c: hub family "sk-hub" is in the allowed set\nPASS: 2a: no nested graph-metadata.json inside any packet or shared/\nPASS: 2b: no nested description.json inside any packet or shared/\nPASS: 3a: mode-registry.json exists and parses as JSON\n...',
+    expected: /^FAIL: 13c-readme-version:.*README.md/m,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:419:3
+✖ 13d-packet-version fails: packet SKILL.md ahead of its newest changelog entry (224.624834ms)
+  AssertionError [ERR_ASSERTION]: expected "FAIL: 13d-packet-version: ...pkg-alpha" in:
+  INFO: Parent skill: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/parent-skill-check-invariants-TPZoix/demo-hub
+  INFO: Resolved:     /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/parent-skill-check-invariants-TPZoix/demo-hub
+  INFO: Advisory findings: FAIL. Hard failures always FAIL.
+  
+  PASS: 1a: exactly one graph-metadata.json, located at the hub root
+  PASS: 1b: hub skill_id "demo-hub" matches directory name
+  PASS: 1c: hub family "sk-hub" is in the allowed set
+  PASS: 2a: no nested graph-metadata.json inside any packet or shared/
+  PASS: 2b: no nested description.json inside any packet or shared/
+  PASS: 3a: mode-registry.json exists and parses as JSON
+  PASS: 3b: mode-registry.json declares 2 modes
+  PASS: 3c: every mode packet resolves to an existing sub-directory
+  PASS: 3d: every mode carries the hard discriminator (workflowMode + backendKind)
+  PASS: 3d-canon: every mode carries packetKind + toolSurface + grandfatheredFolderMismatch + packetSkillName + aliases
+  PASS: 3d-name: every mode folder matches packetSkillName (or is grandfathered)
+  PASS: 3d-name-frontmatter: all 2 packet SKILL.md frontmatter name(s) match packetSkillName
+  PASS: 3d-files: every packet carries SKILL.md, README.md, and changelog/
+  PASS: 3d-alias: all 2 aliases are unique across modes
+  PASS: 3e: every mode has an advisorRouting block with a valid routingClass
+  INFO: 3g: hub declares no surface packets
+  INFO: 3h: hub declares no transport packets
+  PASS: 3i: every mode that grants Write declares mutatesWorkspace:true or a writeScopeNote
+  INFO: 3k: no bound command declares an allowed-tools list to compare
+  INFO: 3f: hub declares no extensions (pure 2-tier)
+  PASS: 3j: hub allowed-tools equals the union of mode tool surfaces
+  INFO: 4a: hub declares no lexical/alias-fold modes — no advisor drift-guard required
+  INFO: 4b: registry declares no lexical modes; nothing to cross-check against the advisor
+  PASS: 5a: hub-router.json exists and parses as JSON
+  PASS: 5b: routerSignals keys match the registry workflowMode set (2)
+  PASS: 5c: all 1 referenced vocabulary classes are defined
+  PASS: 5d: every router resource path resolves on disk
+  PASS: 5e: routerPolicy.tieBreak covers every registered mode
+  PASS: 5f: bundleRules reference real modes
+  PASS: 5g: base router outcomes present (single, orderedBundle, defer)
+  PASS: 5h: routerPolicy.defaultMode "demo-alpha" is a registered mode
+  PASS: 5i: tieBreak orders workflow modes before surface/transport modes
+  INFO: 5j: hub declares no command subworkflows
+  PASS: 6a: every hub child directory is a registered packet or an allowlisted support dir
+  PASS: 6b: every registered mode (2) appears in the hub SKILL.md mode table
+  PASS: 6c: every mode-table row whose registry entry declares a command shows that exact command
+  PASS: 7a: all changelog entries are real files (no symlinks)
+  PASS: 8a: description.json present with the required fields
+  PASS: 8b: description.json carries no registry-owned duplicate keys
+  PASS: 5k-alias: every registry alias is a keyword of its routerSignal classes
+  PASS: 5k-packet: every mode packet is a description keyword
+  INFO: 5k-canary: no compiled-routing canary fixture for hub "demo-hub", leg not applicable
+  PASS: 9a: manual-testing-playbook/ present
+  PASS: 9b: benchmark/ baseline present
+  PASS: 10a-manifest-source: resourceContractVersion declared and leaf-manifest.json is present, readable, and well-formed
+  PASS: 10b-byte-drift: committed leaf-manifest.json matches a fresh regeneration byte for byte
+  PASS: 10c-target-collision: no duplicate composite keys; every committed leaf resolves to a disk file or a declared alias
+  PASS: 10d-reachability: all 2 manifest mode(s) reach back to a registered mode and vice versa
+  PASS: 11a-class: root metadata conforms to class H (declares the complete mode-registry + hub-router pair)
+  PASS: 12a-router-contract: root ROUTER.md conforms to the two-state contract (stage1-only)
+  PASS: 13a-version: all routing artifacts carry the SKILL.md version 1.0.0.0
+  PASS: 13b-version: SKILL.md version 1.0.0.0 matches the newest changelog entry
+  
+  ─────────────────────────────────────────────────────────────────
+  OK: parent-skill-check — all hard invariants passed, 0 warnings
+  
+      at assertLine (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:281:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:423:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'INFO: Parent skill: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/parent-skill-check-invariants-TPZoix/demo-hub\nINFO: Resolved:     /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/parent-skill-check-invariants-TPZoix/demo-hub\nINFO: Advisory findings: FAIL. Hard failures always FAIL.\n\nPASS: 1a: exactly one graph-metadata.json, located at the hub root\nPASS: 1b: hub skill_id "demo-hub" matches directory name\nPASS: 1c: hub family "sk-hub" is in the allowed set\nPASS: 2a: no nested graph-metadata.json inside any packet or shared/\nPASS: 2b: no nested description.json inside any packet or shared/\nPASS: 3a: mode-registry.json exists and parses as JSON\n...',
+    expected: /^FAIL: 13d-packet-version:.*pkg-alpha/m,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:435:1
+✖ 13c warns, and does not fail, on a hub whose README already lags its release (223.947833ms)
+  AssertionError [ERR_ASSERTION]: expected "WARN: 13c-readme-version: ...README.md" in:
+  INFO: Parent skill: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/parent-skill-check-invariants-MduqYW/sk-doc
+  INFO: Resolved:     /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/parent-skill-check-invariants-MduqYW/sk-doc
+  INFO: Advisory findings: FAIL. Hard failures always FAIL.
+  
+  PASS: 1a: exactly one graph-metadata.json, located at the hub root
+  PASS: 1b: hub skill_id "sk-doc" matches directory name
+  PASS: 1c: hub family "sk-hub" is in the allowed set
+  PASS: 2a: no nested graph-metadata.json inside any packet or shared/
+  PASS: 2b: no nested description.json inside any packet or shared/
+  PASS: 3a: mode-registry.json exists and parses as JSON
+  PASS: 3b: mode-registry.json declares 2 modes
+  PASS: 3c: every mode packet resolves to an existing sub-directory
+  PASS: 3d: every mode carries the hard discriminator (workflowMode + backendKind)
+  PASS: 3d-canon: every mode carries packetKind + toolSurface + grandfatheredFolderMismatch + packetSkillName + aliases
+  PASS: 3d-name: every mode folder matches packetSkillName (or is grandfathered)
+  PASS: 3d-name-frontmatter: all 2 packet SKILL.md frontmatter name(s) match packetSkillName
+  PASS: 3d-files: every packet carries SKILL.md, README.md, and changelog/
+  PASS: 3d-alias: all 2 aliases are unique across modes
+  PASS: 3e: every mode has an advisorRouting block with a valid routingClass
+  INFO: 3g: hub declares no surface packets
+  INFO: 3h: hub declares no transport packets
+  PASS: 3i: every mode that grants Write declares mutatesWorkspace:true or a writeScopeNote
+  INFO: 3k: no bound command declares an allowed-tools list to compare
+  INFO: 3f: hub declares no extensions (pure 2-tier)
+  PASS: 3j: hub allowed-tools equals the union of mode tool surfaces
+  INFO: 4a: hub declares no lexical/alias-fold modes — no advisor drift-guard required
+  INFO: 4b: registry declares no lexical modes; nothing to cross-check against the advisor
+  PASS: 5a: hub-router.json exists and parses as JSON
+  PASS: 5b: routerSignals keys match the registry workflowMode set (2)
+  PASS: 5c: all 1 referenced vocabulary classes are defined
+  PASS: 5d: every router resource path resolves on disk
+  PASS: 5e: routerPolicy.tieBreak covers every registered mode
+  PASS: 5f: bundleRules reference real modes
+  PASS: 5g: base router outcomes present (single, orderedBundle, defer)
+  PASS: 5h: routerPolicy.defaultMode "demo-alpha" is a registered mode
+  PASS: 5i: tieBreak orders workflow modes before surface/transport modes
+  INFO: 5j: hub declares no command subworkflows
+  PASS: 6a: every hub child directory is a registered packet or an allowlisted support dir
+  PASS: 6b: every registered mode (2) appears in the hub SKILL.md mode table
+  PASS: 6c: every mode-table row whose registry entry declares a command shows that exact command
+  PASS: 7a: all changelog entries are real files (no symlinks)
+  PASS: 8a: description.json present with the required fields
+  PASS: 8b: description.json carries no registry-owned duplicate keys
+  PASS: 5k-alias: every registry alias is a keyword of its routerSignal classes
+  PASS: 5k-packet: every mode packet is a description keyword
+  PASS: 9a: manual-testing-playbook/ present
+  PASS: 9b: benchmark/ baseline present
+  PASS: 10a-manifest-source: resourceContractVersion declared and leaf-manifest.json is present, readable, and well-formed
+  PASS: 10b-byte-drift: committed leaf-manifest.json matches a fresh regeneration byte for byte
+  PASS: 10c-target-collision: no duplicate composite keys; every committed leaf resolves to a disk file or a declared alias
+  PASS: 10d-reachability: all 2 manifest mode(s) reach back to a registered mode and vice versa
+  PASS: 11a-class: root metadata conforms to class H (declares the complete mode-registry + hub-router pair)
+  PASS: 12a-router-contract: root ROUTER.md conforms to the two-state contract (stage1-only)
+  PASS: 13a-version: all routing artifacts carry the SKILL.md version 1.0.0.0
+  PASS: 13b-version: SKILL.md version 1.0.0.0 matches the newest changelog entry
+  
+  ─────────────────────────────────────────────────────────────────
+  FAIL: 5k-canary: "demo-alpha": no canary case routes to it
+  FAIL: 5k-canary: "demo-beta": no canary case routes to it
+  FAIL: parent-skill-check — 2 invariant failures, 0 warnings
+  
+      at assertLine (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:281:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:439:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'INFO: Parent skill: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/parent-skill-check-invariants-MduqYW/sk-doc\nINFO: Resolved:     /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/parent-skill-check-invariants-MduqYW/sk-doc\nINFO: Advisory findings: FAIL. Hard failures always FAIL.\n\nPASS: 1a: exactly one graph-metadata.json, located at the hub root\nPASS: 1b: hub skill_id "sk-doc" matches directory name\nPASS: 1c: hub family "sk-hub" is in the allowed set\nPASS: 2a: no nested graph-metadata.json inside any packet or shared/\nPASS: 2b: no nested description.json inside any packet or shared/\nPASS: 3a: mode-registry.json exists and parses as JSON\n...',
+    expected: /^WARN: 13c-readme-version:.*README.md/m,
+    operator: 'match',
+    diff: 'simple'
+  }

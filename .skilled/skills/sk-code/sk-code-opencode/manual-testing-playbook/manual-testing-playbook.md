@@ -1,6 +1,6 @@
-# code-opencode: Manual Testing Playbook
+# sk-code-opencode: Manual Testing Playbook
 
-Routing-recall corpus for the `code-opencode` surface. These scenarios exercise the machine-readable
+Routing-recall corpus for the `sk-code-opencode` surface. These scenarios exercise the machine-readable
 intent signals and resource map in `SKILL.md` §2b, and the surface detection (`OPENCODE`, work under
 `.skilled/`) that causes the hub to bundle this packet. The corpus is derived from the walked tree
 below, split into three category folders by resource domain.

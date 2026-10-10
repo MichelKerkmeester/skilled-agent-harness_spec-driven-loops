@@ -33,7 +33,7 @@ A task that touches `.skilled/` system code, be it a skill, agent, command, plug
 
 ### What It Does
 
-This surface carries the system-code evidence for the sk-code hub: language standards for TypeScript, Python, shell, Rust, config and JavaScript, a language-agnostic shared tier for naming, organization, hooks and alignment verification, plus authoring checklists for skills, agents, commands and MCP servers. The hub detects the `.skilled/` surface first, then slices to the set of languages the task actually touches. Its sibling `code-webflow` carries frontend and browser evidence instead. The hub picks one surface by detection. Only an interop task spanning both languages legitimately loads both. The surface is read-only and advisor-invisible. The paired workflow mode owns all edits, tests and commits.
+This surface carries the system-code evidence for the sk-code hub: language standards for TypeScript, Python, shell, Rust, config and JavaScript, a language-agnostic shared tier for naming, organization, hooks and alignment verification, plus authoring checklists for skills, agents, commands and MCP servers. The hub detects the `.skilled/` surface first, then slices to the set of languages the task actually touches. Its sibling `sk-code-webflow` carries frontend and browser evidence instead. The hub picks one surface by detection. Only an interop task spanning both languages legitimately loads both. The surface is read-only and advisor-invisible. The paired workflow mode owns all edits, tests and commits.
 
 ### The Language Slice
 
@@ -61,7 +61,7 @@ This surface carries the system-code evidence for the sk-code hub: language stan
 bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
 ```
 
-A clean exit means the alignment verifier and the stack-folder verifier both pass. A non-zero exit reports a drift.
+A clean exit means all four guards pass: the alignment verifier, the stack-folder verifier, the router-sync guard and the documentation claim guard. A non-zero exit reports a drift.
 
 ---
 
@@ -88,9 +88,9 @@ Use this surface when a task touches `.skilled/` system code, be it a skill, age
 | Skill | Relationship |
 |---|---|
 | `sk-code` | Parent hub. Bundles this surface beside a workflow mode when the surface is detected |
-| `code-webflow` | Sibling surface. Carries frontend and browser evidence. The hub picks one surface by detection |
-| `code-review` | Receives the formal findings-first review hand-off |
-| `code-quality` | Receives the author-side quality gate hand-off |
+| `sk-code-webflow` | Sibling surface. Carries frontend and browser evidence. The hub picks one surface by detection |
+| `sk-code-review` | Receives the formal findings-first review hand-off |
+| `sk-code-quality` | Receives the author-side quality gate hand-off |
 | `system-spec-kit` | Owns spec-folder authoring, which this surface does not cover |
 
 ---
@@ -101,7 +101,7 @@ Use this surface when a task touches `.skilled/` system code, be it a skill, age
 |---|---|---|
 | The drift guard exits non-zero | A language reference or router map fell out of sync with the filesystem or the machine router | Re-run `scripts/run-all-drift-guards.sh`, fix the drifted route, then re-run until clean |
 | The expected language slice is missing | The touched extension has no entry in the surface reference map | Confirm the extension and its local markers, then check the resource map in `SKILL.md` section 2 |
-| Both this surface and `code-webflow` are loaded | The task touches a frontend file under `.skilled/` or spans an interop boundary | Keep the slice to the touched-language set and load both only for a genuine interop task |
+| Both this surface and `sk-code-webflow` are loaded | The task touches a frontend file under `.skilled/` or spans an interop boundary | Keep the slice to the touched-language set and load both only for a genuine interop task |
 
 ---
 

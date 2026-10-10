@@ -1,0 +1,792 @@
+[
+  {
+    "task": "T016",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs, replace the exact text <<<OLD\ntest('a run without --checks includes leg 1b', (t) => {\n  const { guard } = buildHub(t);\n  const { out } = runGuard(guard, []);\n  assert.match(out, /check 1b:/);\n});\n\nOLD>>> with <<<NEW\ntest('a run without --checks includes leg 1b', (t) => {\n  const { guard } = buildHub(t);\n  const { out } = runGuard(guard, []);\n  assert.match(out, /check 1b:/);\n});\n\n// Leg 2 reads the hub-level shared controls from the ROUTER.md list and preamble, so this hub gets\n// a parent map, the two surface children and a manifest that names one workflow mode leaf.\nfunction buildLegTwoHub(t, controls, defaults = []) {\n  const { hub, guard } = buildHub(t);\n  const parentMap = [\n    '\"DEMO\": [\"sk-code-webflow/references/w.md\", \"sk-code-opencode/references/o.md\",',\n    '\"shared/references/control.md\", \"shared/references/undeclared.md\", \"sk-code-review/assets/leaf.md\"],',\n  ].join(' ');\n  const block = controls.map((c) => `    \"${c}\",`).join('\\n');\n  const preamble = defaults.map((c) => `    \"${c}\",`).join('\\n');\n  const router = `DEFAULT_RESOURCE = [\\n${preamble}\\n]\\nRESOURCE_MAP = {\\n  ${parentMap}\\n}\\n`;\n  write(path.join(hub, 'ROUTER.md'), `${router}SHARED_CONTROL_RESOURCES = [\\n${block}\\n]\\n`);\n  for (const [surface, doc] of [['sk-code-webflow', 'w.md'], ['sk-code-opencode', 'o.md']]) {\n    write(path.join(hub, surface, 'SKILL.md'), `RESOURCE_MAP = {\\n  \"DEMO\": [\"references/${doc}\"],\\n}\\n`);\n    write(path.join(hub, surface, 'references', doc), `# ${doc}\\n`);\n  }\n  const manifest = { modes: [{ workflowMode: 'sk-code-review', packet: 'sk-code-review', leaves: ['assets/leaf.md'] }] };\n  write(path.join(hub, 'leaf-manifest.json'), JSON.stringify(manifest));\n  return guard;\n}\n\ntest('leg 2 accepts paths the ROUTER.md list or preamble declares and a workflow mode leaf', (t) => {\n  const guard = buildLegTwoHub(t, ['shared/references/control.md'], ['shared/references/undeclared.md']);\n  const { status, out } = runGuard(guard, ['--checks', '2']);\n  assert.equal(status, 0, out);\n  assert.match(out, /PASS check 2/);\n});\n\ntest('leg 2 reports a shared parent-map path ROUTER.md does not declare', (t) => {\n  const guard = buildLegTwoHub(t, ['shared/references/control.md']);\n  const { status, out } = runGuard(guard, ['--checks', '2']);\n  assert.equal(status, 1, out);\n  assert.match(out, /parent map DEMO cites shared\\/references\\/undeclared\\.md, outside the parent tier/);\n  assert.doesNotMatch(out, /control\\.md/);\n  assert.doesNotMatch(out, /sk-code-review\\/assets\\/leaf\\.md/);\n});\n\nNEW>>>",
+    "check": "grep -c -F -- 'function buildLegTwoHub(t, controls, defaults = [])' .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T017",
+    "files": [
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards/scratch/neg-guard-test.txt"
+    ],
+    "kind": "command",
+    "instruction": "node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs > specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards/scratch/neg-guard-test.txt 2>&1; echo \"exit=$?\"",
+    "check": "grep -E '^. (pass|fail) ' specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards/scratch/neg-guard-test.txt",
+    "expect": "fail 2"
+  },
+  {
+    "task": "T018",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs, replace the exact text <<<OLD\nconst NON_ROUTED_ALLOWLIST = new Set([\n  'ROUTER.md',\n  'references/stack-detection.md',\n  'references/phase-detection.md',\n  'shared/references/workflow-implement.md',\nOLD>>> with <<<NEW\nconst NON_ROUTED_ALLOWLIST = new Set([\n  'shared/references/workflow-implement.md',\nNEW>>>",
+    "check": "grep -c -F -- ''\\''references/stack-detection.md'\\'',' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
+    "expect": "0"
+  },
+  {
+    "task": "T019",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs, replace the exact text <<<OLD\nconst PARENT_TIER_ALLOWLIST = new Set([\n  'shared/references/universal/multi-agent-research.md',\n  'shared/references/universal/code-quality-standards.md',\n  'shared/references/universal/code-style-guide.md',\n  'shared/references/universal/error-recovery.md',\n  'shared/references/universal-debugging-checklist.md',\n  'shared/references/universal-verification-checklist.md',\n  'shared/references/performance-loading-checklist.md',\n  'shared/assets/patterns/README.md',\n  'sk-code-review/assets/code-quality-checklist.md',\n]);\nOLD>>> with <<<NEW\n// The hub-level shared controls are declared once in ROUTER.md: its SHARED_CONTROL_RESOURCES\n// list plus its DEFAULT_RESOURCE preamble, and leg 2 reads both. A parent-map path under a\n// workflow mode packet is that packet's own leaf in leaf-manifest.json, not a shared control.\nconst SHARED_CONTROL_BLOCK = /SHARED_CONTROL_RESOURCES\\s*=\\s*\\[([\\s\\S]*?)\\]/;\nconst DEFAULT_RESOURCE_BLOCK = /DEFAULT_RESOURCES?\\s*=\\s*\\[([\\s\\S]*?)\\]/;\nNEW>>>",
+    "check": "grep -c -F -- 'const SHARED_CONTROL_BLOCK' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T020",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs, replace the exact text <<<OLD\nconst readSkillRouter = (dir) => lib.parseRouter(fs.readFileSync(path.join(dir, 'SKILL.md'), 'utf8'), dir);\n\nOLD>>> with <<<NEW\nconst readSkillRouter = (dir) => lib.parseRouter(fs.readFileSync(path.join(dir, 'SKILL.md'), 'utf8'), dir);\n\n// Same list grammar the root-router contract uses for these blocks, read here so the guard keeps\n// no copy of the list.\nfunction sharedControlResources() {\n  const text = fs.readFileSync(path.join(SKCODE, 'ROUTER.md'), 'utf8');\n  const out = new Set();\n  for (const block of [SHARED_CONTROL_BLOCK, DEFAULT_RESOURCE_BLOCK]) {\n    const m = block.exec(text);\n    if (m) for (const x of m[1].matchAll(/[\"']([^\"']+)[\"']/g)) out.add(x[1]);\n  }\n  return out;\n}\n\nfunction manifestLeavesByPacket() {\n  const file = path.join(SKCODE, 'leaf-manifest.json');\n  const byPacket = new Map();\n  if (!fs.existsSync(file)) return byPacket;\n  for (const mode of JSON.parse(fs.readFileSync(file, 'utf8')).modes || []) {\n    if (mode && typeof mode.packet === 'string') byPacket.set(mode.packet, new Set(mode.leaves || []));\n  }\n  return byPacket;\n}\n\nfunction ownedLeaf(packetLeaves, owner, p) {\n  if (!owner || !packetLeaves.has(owner[1])) return false;\n  return packetLeaves.get(owner[1]).has(p.slice(owner[1].length + 1));\n}\n\nNEW>>>",
+    "check": "grep -c -F -- 'function sharedControlResources()' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T021",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs, replace the exact text <<<OLD\nfunction legSurfaceMap() {\n  const problems = [];\n\nOLD>>> with <<<NEW\nfunction legSurfaceMap() {\n  const problems = [];\n  const sharedControls = sharedControlResources();\n  if (sharedControls.size === 0) {\n    problems.push('ROUTER.md declares no SHARED_CONTROL_RESOURCES, so the parent-tier check would be vacuous');\n  }\n  const packetLeaves = manifestLeavesByPacket();\n\nNEW>>>",
+    "check": "grep -c -F -- 'const sharedControls = sharedControlResources();' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T022",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs, replace the exact text <<<OLD\n      } else if (!PARENT_TIER_ALLOWLIST.has(p)) {\nOLD>>> with <<<NEW\n      } else if (!sharedControls.has(p) && !ownedLeaf(packetLeaves, owner, p)) {\nNEW>>>",
+    "check": "grep -c -F -- '!ownedLeaf(packetLeaves, owner, p)' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T023",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards/scratch/units/verify_doc_claims.cjs",
+    "check": "node --check .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs; echo \"exit=$?\"",
+    "expect": "exit=0"
+  },
+  {
+    "task": "T024",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards/scratch/units/verify_doc_claims.test.cjs",
+    "check": "node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs 2>&1 | grep -E '^. (pass|fail) '",
+    "expect": "pass 6"
+  },
+  {
+    "task": "T025",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh, replace the exact text <<<OLD\n# sk-code has three drift guards: alignment-drift (language integrity and the\n# dead-route check), stack-folder (language reference folders resolve) and\n# router-sync (the sk-code router's paths, surface map, compiled agreement and\n# playbook routing). Each was runnable only on its own.\nOLD>>> with <<<NEW\n# sk-code has four drift guards: alignment-drift (language integrity and the\n# dead-route check), stack-folder (language reference folders resolve),\n# router-sync (the sk-code router's paths, surface map, compiled agreement and\n# playbook routing) and doc-claims (paths, packet names, surface counts and load\n# tiers in the sk-code prose). Each was runnable only on its own.\nNEW>>>",
+    "check": "grep -c -F -- '# sk-code has four drift guards' .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+    "expect": "1"
+  },
+  {
+    "task": "T026",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh, replace the exact text <<<OLD\nROUTER_SYNC=\"${CODE_OPENCODE_DIR}/assets/scripts/verify_router_sync.cjs\"\n\nOLD>>> with <<<NEW\nROUTER_SYNC=\"${CODE_OPENCODE_DIR}/assets/scripts/verify_router_sync.cjs\"\nDOC_CLAIMS=\"${CODE_OPENCODE_DIR}/assets/scripts/verify_doc_claims.cjs\"\n\nNEW>>>",
+    "check": "grep -c -F -- 'DOC_CLAIMS=\"${CODE_OPENCODE_DIR}/assets/scripts/verify_doc_claims.cjs\"' .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+    "expect": "1"
+  },
+  {
+    "task": "T027",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh, replace the exact text <<<OLD\n# and 4 in warn-only mode.\n\nif [ \"${failures}\" -ne 0 ]; then\nOLD>>> with <<<NEW\n# and 4 in warn-only mode.\n\nrun_guard \"doc-claims       (verify_doc_claims.cjs)\" \\\n  node \"${DOC_CLAIMS}\"\n\nif [ \"${failures}\" -ne 0 ]; then\nNEW>>>",
+    "check": "grep -c -F -- 'run_guard \"doc-claims       (verify_doc_claims.cjs)\"' .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+    "expect": "1"
+  },
+  {
+    "task": "T028",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh, replace the exact text <<<OLD\necho \"run-all-drift-guards: all 3 guards PASSED\"\nOLD>>> with <<<NEW\necho \"run-all-drift-guards: all 4 guards PASSED\"\nNEW>>>",
+    "check": "grep -c -F -- 'all 4 guards PASSED' .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+    "expect": "1"
+  },
+  {
+    "task": "T029",
+    "files": [
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json, replace the exact text <<<OLD\n      \"expectedModes\": [\"sk-code-review\", \"sk-code-obsidian\"],\n      \"gold\": {\n        \"expectedIntents\": [\"sk-code-review\", \"sk-code-obsidian\"],\n        \"expectedResources\": []\n      }\n    },\n\nOLD>>> with <<<NEW\n      \"expectedModes\": [\"sk-code-review\", \"sk-code-obsidian\"],\n      \"gold\": {\n        \"expectedIntents\": [\"sk-code-review\", \"sk-code-obsidian\"],\n        \"expectedResources\": []\n      }\n    },\n    {\n      \"id\": \"surface-collision-obsidian-over-webflow\",\n      \"prompt\": \"code review my obsidian plugin that embeds a webflow site\",\n      \"riskSlice\": \"actor:mutating:composite\",\n      \"certificateFixture\": \"valid-composite\",\n      \"expectedAction\": \"route\",\n      \"expectedSelectionKind\": \"surfaceBundle\",\n      \"expectedModes\": [\"sk-code-review\", \"sk-code-obsidian\"],\n      \"gold\": {\n        \"expectedIntents\": [\"sk-code-review\", \"sk-code-obsidian\"],\n        \"expectedResources\": []\n      }\n    },\n\nNEW>>>",
+    "check": "node -e 'console.log(JSON.parse(require(\"fs\").readFileSync(\".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json\",\"utf8\")).cases.length)'",
+    "expect": "12"
+  },
+  {
+    "task": "T030",
+    "files": [
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json"
+    ],
+    "kind": "command",
+    "instruction": "cp .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+    "check": "cmp .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json; echo \"cmp=$?\"",
+    "expect": "cmp=0"
+  },
+  {
+    "task": "T031",
+    "files": [
+      ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs, replace the exact text <<<OLD\n  ['13b-version', 'newer changelog entry than SKILL.md', (h) => fs.writeFileSync(path.join(h, 'changelog', 'v1.0.0.1.md'), '# x\\n'), 'v1.0.0.1'],\n\nOLD>>> with <<<NEW\n  ['13b-version', 'newer changelog entry than SKILL.md', (h) => fs.writeFileSync(path.join(h, 'changelog', 'v1.0.0.1.md'), '# x\\n'), 'v1.0.0.1'],\n  ['13c-readme-version', 'README.md version differs from SKILL.md', (h) => fs.writeFileSync(path.join(h, 'README.md'),\n    '---\\ntitle: demo\\nversion: 1.0.0.9\\n---\\n# demo\\n'), 'README.md'],\n  ['13d-packet-version', 'packet SKILL.md ahead of its newest changelog entry', (h) => {\n    fs.writeFileSync(path.join(h, 'pkg-alpha', 'SKILL.md'), '---\\nname: pkg-alpha\\nversion: 1.0.0.1\\n---\\n# pkg-alpha\\n');\n    fs.writeFileSync(path.join(h, 'pkg-alpha', 'changelog', 'v1.0.0.0.md'), '# x\\n');\n  }, 'pkg-alpha'],\n\nNEW>>>",
+    "check": "grep -c -F -- ''\\''13d-packet-version'\\'', '\\''packet SKILL.md ahead' .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T032",
+    "files": [
+      ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs, replace the exact text <<<OLD\ntest('5k warns, and does not fail, on alias drift that another hub already carries', () => {\nOLD>>> with <<<NEW\ntest('13c warns, and does not fail, on a hub whose README already lags its release', () => {\n  const hub = buildHub('sk-doc');\n  fs.writeFileSync(path.join(hub, 'README.md'), '---\\ntitle: demo\\nversion: 1.0.0.9\\n---\\n# demo\\n');\n  const { output } = runChecker(hub);\n  assertLine(output, 'WARN', '13c-readme-version', 'README.md');\n  assert.doesNotMatch(output, /^FAIL: 13c-readme-version:/m);\n});\n\ntest('5k warns, and does not fail, on alias drift that another hub already carries', () => {\nNEW>>>",
+    "check": "grep -c -F -- 'test('\\''13c warns, and does not fail' .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T033",
+    "files": [
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards/scratch/neg-doctor-test.txt"
+    ],
+    "kind": "command",
+    "instruction": "node .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs > specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards/scratch/neg-doctor-test.txt 2>&1; echo \"exit=$?\"",
+    "check": "grep -E '^. (pass|fail) ' specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards/scratch/neg-doctor-test.txt",
+    "expect": "fail 3"
+  },
+  {
+    "task": "T034",
+    "files": [
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/commands/doctor/scripts/parent-skill-check.cjs, replace the exact text <<<OLD\n// 13. VERSION PARITY CHECKS (13a-13b)\nOLD>>> with <<<NEW\n// 13. VERSION PARITY CHECKS (13a-13d)\nNEW>>>",
+    "check": "grep -c -F -- '// 13. VERSION PARITY CHECKS (13a-13d)' .skilled/commands/doctor/scripts/parent-skill-check.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T035",
+    "files": [
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/commands/doctor/scripts/parent-skill-check.cjs, replace the exact text <<<OLD\n// 13a: SKILL.md is the release authority; every routing artifact that declares\nOLD>>> with <<<NEW\n// These hub front pages already lag their release, so their README drift warns until it is\n// repaired. README drift on any other hub fails.\nconst README_VERSION_WARN_ONLY = new Set(['cli-classifier', 'cli-external-orchestration', 'sk-doc', 'system-deep-loop']);\n\n// 13c: a hub README that declares a version is the front page of that release, so it carries\n// the SKILL.md version.\nfunction checkReadmeVersion(ctx, authority) {\n  const readme = markdownVersion(ctx.target, 'README.md');\n  if (!readme.present) {\n    info('13c-readme-version: README.md declares no version, nothing to compare');\n    return;\n  }\n  if (readme.value === authority) {\n    pass(`13c-readme-version: README.md carries the SKILL.md version ${authority}`);\n    return;\n  }\n  const report = README_VERSION_WARN_ONLY.has(ctx.basename) ? warn : softFail;\n  report(`13c-readme-version: README.md carries ${readme.value} but SKILL.md, the release authority, carries ${authority}`);\n}\n\n// 13d: each mode packet's SKILL.md version names its newest changelog entry, and that entry's\n// own version line agrees with its file name.\nfunction checkPacketChangelogVersions(ctx) {\n  const modes = ctx.registry && Array.isArray(ctx.registry.modes) ? ctx.registry.modes : [];\n  const packets = [...new Set(modes\n    .map((m) => (isPlainObject(m) && typeof m.packet === 'string' ? m.packet : null))\n    .filter(Boolean))].sort();\n  let checked = 0;\n  let parity = true;\n  for (const packet of packets) {\n    const skill = markdownVersion(path.join(ctx.target, packet), 'SKILL.md');\n    const logDir = path.join(ctx.target, packet, 'changelog');\n    if (!skill.present || !FOUR_PART_VERSION.test(skill.value) || !isDirectory(logDir)) continue;\n    const entries = fs.readdirSync(logDir)\n      .map((name) => (name.match(/^v([0-9]+(?:\\.[0-9]+){3})\\.md$/) || [])[1])\n      .filter(Boolean)\n      .sort(compareVersions);\n    const newest = entries[entries.length - 1];\n    if (!newest) continue;\n    checked += 1;\n    if (newest !== skill.value) {\n      softFail(`13d-packet-version: ${packet}/SKILL.md claims ${skill.value} but its newest changelog entry is v${newest}`);\n      parity = false;\n    }\n    const entry = markdownVersion(logDir, `v${newest}.md`);\n    if (entry.present && entry.value !== newest) {\n      softFail(`13d-packet-version: ${packet}/changelog/v${newest}.md declares version ${entry.value}, not ${newest}`);\n      parity = false;\n    }\n  }\n  if (checked === 0) {\n    info('13d-packet-version: no mode packet pairs a four-part SKILL.md version with a versioned changelog entry');\n  } else if (parity) {\n    pass(`13d-packet-version: ${checked} mode packet(s) match their newest changelog entry`);\n  }\n}\n\n// 13a: SKILL.md is the release authority; every routing artifact that declares\nNEW>>>",
+    "check": "grep -c -F -- 'function checkPacketChangelogVersions(ctx) {' .skilled/commands/doctor/scripts/parent-skill-check.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T036",
+    "files": [
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/commands/doctor/scripts/parent-skill-check.cjs, replace the exact text <<<OLD\n  if (parity) pass(`13a-version: all routing artifacts carry the SKILL.md version ${authority}`);\n  checkChangelogVersion(ctx, authority);\n\nOLD>>> with <<<NEW\n  if (parity) pass(`13a-version: all routing artifacts carry the SKILL.md version ${authority}`);\n  checkChangelogVersion(ctx, authority);\n  checkReadmeVersion(ctx, authority);\n\nNEW>>>",
+    "check": "grep -c -F -- '  checkReadmeVersion(ctx, authority);' .skilled/commands/doctor/scripts/parent-skill-check.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T037",
+    "files": [
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/commands/doctor/scripts/parent-skill-check.cjs, replace the exact text <<<OLD\n  checkVersionParity(ctx);\n\n  console.log('');\nOLD>>> with <<<NEW\n  checkVersionParity(ctx);\n  checkPacketChangelogVersions(ctx);\n\n  console.log('');\nNEW>>>",
+    "check": "grep -c -F -- '  checkPacketChangelogVersions(ctx);' .skilled/commands/doctor/scripts/parent-skill-check.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T038",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/SKILL.md, replace the exact text <<<OLD\nversion: 1.1.1.0\nOLD>>> with <<<NEW\nversion: 1.2.0.0\nNEW>>>",
+    "check": "grep -c -F -- 'version: 1.2.0.0' .skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T039",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/SKILL.md, replace the exact text <<<OLD\nhand off formal findings-first review to `code-review` and author-side quality gates to `code-quality`.\nOLD>>> with <<<NEW\nhand off formal findings-first review to `sk-code-review` and author-side quality gates to `sk-code-quality`.\nNEW>>>",
+    "check": "grep -c -F -- 'to `sk-code-review` and author-side quality gates to `sk-code-quality`.' .skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T040",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/SKILL.md, replace the exact text <<<OLD\nThis block is the deterministic projection of code-opencode's own\nOLD>>> with <<<NEW\nThis block is the deterministic projection of sk-code-opencode's own\nNEW>>>",
+    "check": "grep -c -F -- 'projection of sk-code-opencode'\\''s own' .skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T041",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/SKILL.md, replace the exact text <<<OLD\n# code-opencode owns its intent -> reference/asset routing.\nOLD>>> with <<<NEW\n# sk-code-opencode owns its intent -> reference/asset routing.\nNEW>>>",
+    "check": "grep -c -F -- '# sk-code-opencode owns its intent' .skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T042",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/SKILL.md, replace the exact text <<<OLD\nthe sibling code-webflow map plus the\nOLD>>> with <<<NEW\nthe sibling sk-code-webflow map plus the\nNEW>>>",
+    "check": "grep -c -F -- 'the sibling sk-code-webflow map' .skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T043",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/SKILL.md, replace the exact text <<<OLD\nSystem-code changes re-run the three live sk-code drift guards\nOLD>>> with <<<NEW\nSystem-code changes re-run the four live sk-code drift guards\nNEW>>>",
+    "check": "grep -c -F -- 're-run the four live sk-code drift guards' .skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T044",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/SKILL.md, replace the exact text <<<OLD\ncovers the compiled side of (3) and (4) in CI only, with the admission step warn-only. See `references/shared/alignment-verification-automation.md`.\nOLD>>> with <<<NEW\ncovers the compiled side of (3) and (4) in CI only, with the admission step warn-only. The documentation claim guard (`assets/scripts/verify_doc_claims.cjs`) reads the sk-code prose the other guards skip, from the hub folder on disk: path references resolve, no retired packet name remains, every surface count matches the three-surface hub and every file the `ROUTER.md` load-tier prose says loads on every route is in `DEFAULT_RESOURCE`. Lines that keep a legacy name on purpose sit in its allowlist with a reason. See `references/shared/alignment-verification-automation.md`.\nNEW>>>",
+    "check": "grep -c -F -- 'The documentation claim guard (`assets/scripts/verify_doc_claims.cjs`)' .skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T045",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/SKILL.md, replace the exact text <<<OLD\nthe router-sync guard (`verify_router_sync.cjs`) and its replay library (`router_replay_lib.cjs`), used by this surface. `scripts/run-all-drift-guards.sh` is the single entry point that runs all three as one gate (non-zero if any fails).\nOLD>>> with <<<NEW\nthe router-sync guard (`verify_router_sync.cjs`) with its replay library (`router_replay_lib.cjs`) and the documentation claim guard (`verify_doc_claims.cjs`), used by this surface. `scripts/run-all-drift-guards.sh` is the single entry point that runs all four as one gate (non-zero if any fails).\nNEW>>>",
+    "check": "grep -c -F -- 'runs all four as one gate' .skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T046",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/SKILL.md, replace the exact text <<<OLD\n(`references/workflows/spec-folder-write-recipe.md` + `spec-folder-authoring-checklist.md`)\nOLD>>> with <<<NEW\n(`.skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` + `spec-folder-authoring-checklist.md`)\nNEW>>>",
+    "check": "grep -c -F -- '`.skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md`' .skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T047",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/README.md, replace the exact text <<<OLD\nIts sibling `code-webflow` carries\nOLD>>> with <<<NEW\nIts sibling `sk-code-webflow` carries\nNEW>>>",
+    "check": "grep -c -F -- 'Its sibling `sk-code-webflow` carries' .skilled/skills/sk-code/sk-code-opencode/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T048",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/README.md, replace the exact text <<<OLD\nA clean exit means the alignment verifier and the stack-folder verifier both pass.\nOLD>>> with <<<NEW\nA clean exit means all four guards pass: the alignment verifier, the stack-folder verifier, the router-sync guard and the documentation claim guard.\nNEW>>>",
+    "check": "grep -c -F -- 'A clean exit means all four guards pass' .skilled/skills/sk-code/sk-code-opencode/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T049",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/README.md, replace the exact text <<<OLD\n| `code-webflow` | Sibling surface.\nOLD>>> with <<<NEW\n| `sk-code-webflow` | Sibling surface.\nNEW>>>",
+    "check": "grep -c -F -- '| `sk-code-webflow` | Sibling surface.' .skilled/skills/sk-code/sk-code-opencode/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T050",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/README.md, replace the exact text <<<OLD\n| `code-review` | Receives\nOLD>>> with <<<NEW\n| `sk-code-review` | Receives\nNEW>>>",
+    "check": "grep -c -F -- '| `sk-code-review` | Receives' .skilled/skills/sk-code/sk-code-opencode/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T051",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/README.md, replace the exact text <<<OLD\n| `code-quality` | Receives\nOLD>>> with <<<NEW\n| `sk-code-quality` | Receives\nNEW>>>",
+    "check": "grep -c -F -- '| `sk-code-quality` | Receives' .skilled/skills/sk-code/sk-code-opencode/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T052",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/README.md, replace the exact text <<<OLD\n| Both this surface and `code-webflow` are loaded |\nOLD>>> with <<<NEW\n| Both this surface and `sk-code-webflow` are loaded |\nNEW>>>",
+    "check": "grep -c -F -- '| Both this surface and `sk-code-webflow` are loaded |' .skilled/skills/sk-code/sk-code-opencode/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T053",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/README.md, replace the exact text <<<OLD\n`scripts/` holds the one drift-guard entrypoint for the `code-opencode` mode. It runs three drift guards (alignment-drift, stack-folder, router-sync) in sequence\nOLD>>> with <<<NEW\n`scripts/` holds the one drift-guard entrypoint for the `sk-code-opencode` surface. It runs four drift guards (alignment-drift, stack-folder, router-sync, doc-claims) in sequence\nNEW>>>",
+    "check": "grep -c -F -- 'It runs four drift guards (alignment-drift, stack-folder, router-sync, doc-claims)' .skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T054",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/README.md, replace the exact text <<<OLD\n`leaf-manifest.json` and the code-opencode RESOURCE_MAP agree\nOLD>>> with <<<NEW\n`leaf-manifest.json` and the sk-code-opencode RESOURCE_MAP agree\nNEW>>>",
+    "check": "grep -c -F -- 'and the sk-code-opencode RESOURCE_MAP agree' .skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T055",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/README.md, replace the exact text <<<OLD\ncovers the compiled side of (3) and (4), in CI only, in warn-only mode.\nOLD>>> with <<<NEW\ncovers the compiled side of (3) and (4), in CI only, in warn-only mode. The doc-claims guard (`assets/scripts/verify_doc_claims.cjs`) checks the sk-code prose: path references resolve, no retired packet name remains, every surface count matches the three-surface hub and the `ROUTER.md` load-tier claims match `DEFAULT_RESOURCE`.\nNEW>>>",
+    "check": "grep -c -F -- 'The doc-claims guard (`assets/scripts/verify_doc_claims.cjs`)' .skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T056",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/README.md, replace the exact text <<<OLD\nRuns `verify_alignment_drift.py --check-router`, `verify_stack_folders.py` and `verify_router_sync.cjs --checks 1a,1b,2,3,4` in order,\nOLD>>> with <<<NEW\nRuns `verify_alignment_drift.py --check-router`, `verify_stack_folders.py`, `verify_router_sync.cjs --checks 1a,1b,2,3,4` and `verify_doc_claims.cjs` in order,\nNEW>>>",
+    "check": "grep -c -F -- 'and `verify_doc_claims.cjs` in order,' .skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T057",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/README.md, replace the exact text <<<OLD\nreports an unrouted doc and runs without `--checks`.\nOLD>>> with <<<NEW\nreports an unrouted doc, runs without `--checks` and proves check 2 reads the `ROUTER.md` shared-controls block.\nNEW>>>",
+    "check": "grep -c -F -- 'proves check 2 reads the `ROUTER.md` shared-controls block.' .skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T058",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/README.md, replace the exact text <<<OLD\nRun it with `node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs`. |\nOLD>>> with <<<NEW\nRun it with `node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs`. |\n| `tests/verify_doc_claims.test.cjs` | Builds a throwaway hub and proves each check of `verify_doc_claims.cjs` passes on a clean tree and fails on its own known-bad input, and that an allowlisted line stays quiet. Run it with `node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs`. |\nNEW>>>",
+    "check": "grep -c -F -- '| `tests/verify_doc_claims.test.cjs` |' .skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T059",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/README.md, replace the exact text <<<OLD\nExpected: a `PASS: router-sync` line, `run-all-drift-guards: all 3 guards PASSED` and exit code 0.\nOLD>>> with <<<NEW\nExpected: a `PASS: router-sync` line, a `PASS: doc-claims` line, `run-all-drift-guards: all 4 guards PASSED` and exit code 0.\nNEW>>>",
+    "check": "grep -c -F -- '`run-all-drift-guards: all 4 guards PASSED`' .skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T060",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/README.md, replace the exact text <<<OLD\n- [`code-opencode SKILL.md`](../SKILL.md)\nOLD>>> with <<<NEW\n- [`sk-code-opencode SKILL.md`](../SKILL.md)\nNEW>>>",
+    "check": "grep -c -F -- '- [`sk-code-opencode SKILL.md`](../SKILL.md)' .skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T061",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/README.md, replace the exact text <<<OLD\n- [`code-opencode README.md`](../README.md)\nOLD>>> with <<<NEW\n- [`sk-code-opencode README.md`](../README.md)\nNEW>>>",
+    "check": "grep -c -F -- '- [`sk-code-opencode README.md`](../README.md)' .skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T062",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md, replace the exact text <<<OLD\n| Code files | 6 |\nOLD>>> with <<<NEW\n| Code files | 7 |\nNEW>>>",
+    "check": "grep -c -F -- '| Code files | 7 |' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T063",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md, replace the exact text <<<OLD\n| `verify_router_sync.cjs` |\nOLD>>> with <<<NEW\n| `verify_doc_claims.cjs` | Documentation claim guard: path references in the sk-code docs resolve, no retired packet name remains, every surface count matches the three-surface hub and the `ROUTER.md` load-tier claims match `DEFAULT_RESOURCE`, with an allowlist for deliberate legacy names. Usage: `node verify_doc_claims.cjs [--root <hub dir>] [--checks paths,names,surfaces,tiers]`. |\n| `verify_router_sync.cjs` |\nNEW>>>",
+    "check": "grep -c -F -- '| `verify_doc_claims.cjs` |' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T064",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md, replace the exact text <<<OLD\nVerifies code-opencode language reference folders\nOLD>>> with <<<NEW\nVerifies sk-code-opencode language reference folders\nNEW>>>",
+    "check": "grep -c -F -- 'Verifies sk-code-opencode language reference folders' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T065",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md, replace the exact text <<<OLD\n`leaf-manifest.json` and the code-opencode\nOLD>>> with <<<NEW\n`leaf-manifest.json` and the sk-code-opencode\nNEW>>>",
+    "check": "grep -c -F -- '`leaf-manifest.json` and the sk-code-opencode' .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+    "expect": "1"
+  },
+  {
+    "task": "T066",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md, replace the exact text <<<OLD\n## 6. ALIGNMENT AUTHORITY INTERFACE (code-opencode)\nOLD>>> with <<<NEW\n## 6. ALIGNMENT AUTHORITY INTERFACE (sk-code-opencode)\nNEW>>>",
+    "check": "grep -c -F -- '## 6. ALIGNMENT AUTHORITY INTERFACE (sk-code-opencode)' .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+    "expect": "1"
+  },
+  {
+    "task": "T067",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md, replace the exact text <<<OLD\ncode-opencode has exactly one alignment source of truth\nOLD>>> with <<<NEW\nsk-code-opencode has exactly one alignment source of truth\nNEW>>>",
+    "check": "grep -c -F -- 'sk-code-opencode has exactly one alignment source of truth' .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+    "expect": "1"
+  },
+  {
+    "task": "T068",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md, replace the exact text <<<OLD\nThis file plus the code-opencode `SKILL.md`\nOLD>>> with <<<NEW\nThis file plus the sk-code-opencode `SKILL.md`\nNEW>>>",
+    "check": "grep -c -F -- 'This file plus the sk-code-opencode `SKILL.md`' .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+    "expect": "1"
+  },
+  {
+    "task": "T069",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md, replace the exact text <<<OLD\nruns all three drift guards and exits non-zero if any fails.\nOLD>>> with <<<NEW\nruns all four drift guards and exits non-zero if any fails.\nNEW>>>",
+    "check": "grep -c -F -- 'runs all four drift guards' .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+    "expect": "1"
+  },
+  {
+    "task": "T070",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md, replace the exact text <<<OLD\nAny new check that needs code-opencode RESOURCE_MAP\nOLD>>> with <<<NEW\nAny new check that needs sk-code-opencode RESOURCE_MAP\nNEW>>>",
+    "check": "grep -c -F -- 'needs sk-code-opencode RESOURCE_MAP' .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+    "expect": "1"
+  },
+  {
+    "task": "T071",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md, replace the exact text <<<OLD\nRust code under `code-opencode` follows\nOLD>>> with <<<NEW\nRust code under `sk-code-opencode` follows\nNEW>>>",
+    "check": "grep -c -F -- 'Rust code under `sk-code-opencode` follows' .skilled/skills/sk-code/sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md",
+    "expect": "1"
+  },
+  {
+    "task": "T072",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md, replace the exact text <<<OLD\n1. **Quantity limit:** Maximum 3 comments per 10 lines of code\nOLD>>> with <<<NEW\n1. **Quantity limit (OpenCode surface setting):** Maximum 3 comments per 10 lines of code. This number is the OpenCode surface's budget. The comment-density rule it applies, and the rule that each surface sets its own budget, live in the shared [code style guide](../../../../shared/references/universal/code-style-guide.md).\nNEW>>>",
+    "check": "grep -c -F -- 'Quantity limit (OpenCode surface setting)' .skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
+    "expect": "1"
+  },
+  {
+    "task": "T073",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md, replace the exact text <<<OLD\nSee [`../../universal/code-style-guide.md`](../../../../shared/references/universal/code-style-guide.md)\nOLD>>> with <<<NEW\nSee [`../../../../shared/references/universal/code-style-guide.md`](../../../../shared/references/universal/code-style-guide.md)\nNEW>>>",
+    "check": "grep -c -F -- '[`../../universal/code-style-guide.md`]' .skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
+    "expect": "0"
+  },
+  {
+    "task": "T074",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md, replace the exact text <<<OLD\nCarry-over from 139: keep rule constants centralized and test imports referencing those constants (avoid duplicate local literals).\nOLD>>> with <<<NEW\nKeep rule constants centralized and make tests import those constants rather than repeat local literals.\nNEW>>>",
+    "check": "grep -c -F -- 'Carry-over from' .skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
+    "expect": "0"
+  },
+  {
+    "task": "T075",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/javascript/style-guide.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/javascript/style-guide.md, replace the exact text <<<OLD\n1. **Quantity limit:** Maximum 3 comments per 10 lines of code\nOLD>>> with <<<NEW\n1. **Quantity limit (OpenCode surface setting):** Maximum 3 comments per 10 lines of code, this surface's budget for the shared comment-density rule (see [naming and commenting](../shared/universal-patterns/naming-and-commenting.md))\nNEW>>>",
+    "check": "grep -c -F -- 'Quantity limit (OpenCode surface setting)' .skilled/skills/sk-code/sk-code-opencode/references/javascript/style-guide.md",
+    "expect": "1"
+  },
+  {
+    "task": "T076",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/python/style-guide.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/python/style-guide.md, replace the exact text <<<OLD\n1. **Quantity limit:** Maximum 3 comments per 10 lines of code\nOLD>>> with <<<NEW\n1. **Quantity limit (OpenCode surface setting):** Maximum 3 comments per 10 lines of code, this surface's budget for the shared comment-density rule (see [naming and commenting](../shared/universal-patterns/naming-and-commenting.md))\nNEW>>>",
+    "check": "grep -c -F -- 'Quantity limit (OpenCode surface setting)' .skilled/skills/sk-code/sk-code-opencode/references/python/style-guide.md",
+    "expect": "1"
+  },
+  {
+    "task": "T077",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/shell/style-guide/overview-structure-and-naming.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shell/style-guide/overview-structure-and-naming.md, replace the exact text <<<OLD\n1. **Quantity limit:** Maximum 3 comments per 10 lines of code\nOLD>>> with <<<NEW\n1. **Quantity limit (OpenCode surface setting):** Maximum 3 comments per 10 lines of code, this surface's budget for the shared comment-density rule (see [naming and commenting](../../shared/universal-patterns/naming-and-commenting.md))\nNEW>>>",
+    "check": "grep -c -F -- 'Quantity limit (OpenCode surface setting)' .skilled/skills/sk-code/sk-code-opencode/references/shell/style-guide/overview-structure-and-naming.md",
+    "expect": "1"
+  },
+  {
+    "task": "T078",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md, replace the exact text <<<OLD\n1. **Quantity limit**: Maximum 3 comments per 10 lines of code\nOLD>>> with <<<NEW\n1. **Quantity limit (OpenCode surface setting)**: Maximum 3 comments per 10 lines of code, this surface's budget for the shared comment-density rule (see [naming and commenting](../../shared/universal-patterns/naming-and-commenting.md))\nNEW>>>",
+    "check": "grep -c -F -- 'Quantity limit (OpenCode surface setting)' .skilled/skills/sk-code/sk-code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md",
+    "expect": "1"
+  },
+  {
+    "task": "T079",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/config/style-guide.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/config/style-guide.md, replace the exact text <<<OLD\n1. **Quantity limit:** Maximum 3 comments per 10 lines in JSONC blocks\nOLD>>> with <<<NEW\n1. **Quantity limit (OpenCode surface setting):** Maximum 3 comments per 10 lines in JSONC blocks, this surface's budget for the shared comment-density rule (see [naming and commenting](../shared/universal-patterns/naming-and-commenting.md))\nNEW>>>",
+    "check": "grep -c -F -- 'Quantity limit (OpenCode surface setting)' .skilled/skills/sk-code/sk-code-opencode/references/config/style-guide.md",
+    "expect": "1"
+  },
+  {
+    "task": "T080",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/javascript/style-guide.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/javascript/style-guide.md, replace the exact text <<<OLD\n[`../../universal/code-style-guide.md`](../../../shared/references/universal/code-style-guide.md)\nOLD>>> with <<<NEW\n[`../../../shared/references/universal/code-style-guide.md`](../../../shared/references/universal/code-style-guide.md)\nNEW>>>",
+    "check": "grep -c -F -- '[`../../universal/code-style-guide.md`]' .skilled/skills/sk-code/sk-code-opencode/references/javascript/style-guide.md",
+    "expect": "0"
+  },
+  {
+    "task": "T081",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/manual-testing-playbook.md, replace the exact text <<<OLD\n# code-opencode: Manual Testing Playbook\nOLD>>> with <<<NEW\n# sk-code-opencode: Manual Testing Playbook\nNEW>>>",
+    "check": "grep -c -F -- '# sk-code-opencode: Manual Testing Playbook' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/manual-testing-playbook.md",
+    "expect": "1"
+  },
+  {
+    "task": "T082",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/manual-testing-playbook.md, replace the exact text <<<OLD\nRouting-recall corpus for the `code-opencode` surface.\nOLD>>> with <<<NEW\nRouting-recall corpus for the `sk-code-opencode` surface.\nNEW>>>",
+    "check": "grep -c -F -- 'for the `sk-code-opencode` surface.' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/manual-testing-playbook.md",
+    "expect": "1"
+  },
+  {
+    "task": "T083",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/code-quality-gate.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/code-quality-gate.md, replace the exact text <<<OLD\n- Group: code-opencode routing\nOLD>>> with <<<NEW\n- Group: sk-code-opencode routing\nNEW>>>",
+    "check": "grep -c -F -- '- Group: sk-code-opencode routing' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/code-quality-gate.md",
+    "expect": "1"
+  },
+  {
+    "task": "T084",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/implementation-authoring.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/implementation-authoring.md, replace the exact text <<<OLD\n- Group: code-opencode routing\nOLD>>> with <<<NEW\n- Group: sk-code-opencode routing\nNEW>>>",
+    "check": "grep -c -F -- '- Group: sk-code-opencode routing' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/implementation-authoring.md",
+    "expect": "1"
+  },
+  {
+    "task": "T085",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md, replace the exact text <<<OLD\n- Group: code-opencode routing\nOLD>>> with <<<NEW\n- Group: sk-code-opencode routing\nNEW>>>",
+    "check": "grep -c -F -- '- Group: sk-code-opencode routing' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md",
+    "expect": "1"
+  },
+  {
+    "task": "T086",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/config-hooks/config-schema.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/config-hooks/config-schema.md, replace the exact text <<<OLD\n- Group: code-opencode routing\nOLD>>> with <<<NEW\n- Group: sk-code-opencode routing\nNEW>>>",
+    "check": "grep -c -F -- '- Group: sk-code-opencode routing' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/config-hooks/config-schema.md",
+    "expect": "1"
+  },
+  {
+    "task": "T087",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/config-hooks/hooks-wiring.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/config-hooks/hooks-wiring.md, replace the exact text <<<OLD\n- Group: code-opencode routing\nOLD>>> with <<<NEW\n- Group: sk-code-opencode routing\nNEW>>>",
+    "check": "grep -c -F -- '- Group: sk-code-opencode routing' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/config-hooks/hooks-wiring.md",
+    "expect": "1"
+  },
+  {
+    "task": "T088",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/python-standards.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/python-standards.md, replace the exact text <<<OLD\n- Group: code-opencode routing\nOLD>>> with <<<NEW\n- Group: sk-code-opencode routing\nNEW>>>",
+    "check": "grep -c -F -- '- Group: sk-code-opencode routing' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/python-standards.md",
+    "expect": "1"
+  },
+  {
+    "task": "T089",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/rust-standards.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/rust-standards.md, replace the exact text <<<OLD\n- Group: code-opencode routing\nOLD>>> with <<<NEW\n- Group: sk-code-opencode routing\nNEW>>>",
+    "check": "grep -c -F -- '- Group: sk-code-opencode routing' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/rust-standards.md",
+    "expect": "1"
+  },
+  {
+    "task": "T090",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/shell-standards.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/shell-standards.md, replace the exact text <<<OLD\n- Group: code-opencode routing\nOLD>>> with <<<NEW\n- Group: sk-code-opencode routing\nNEW>>>",
+    "check": "grep -c -F -- '- Group: sk-code-opencode routing' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/shell-standards.md",
+    "expect": "1"
+  },
+  {
+    "task": "T091",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/typescript-standards.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/typescript-standards.md, replace the exact text <<<OLD\n- Group: code-opencode routing\nOLD>>> with <<<NEW\n- Group: sk-code-opencode routing\nNEW>>>",
+    "check": "grep -c -F -- '- Group: sk-code-opencode routing' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/typescript-standards.md",
+    "expect": "1"
+  },
+  {
+    "task": "T092",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md, replace the exact text <<<OLD\ntwo drift guards (`verify_alignment_drift.py` and `verify_stack_folders.py`) run through\nOLD>>> with <<<NEW\nfour drift guards (`verify_alignment_drift.py`, `verify_stack_folders.py`, `verify_router_sync.cjs` and `verify_doc_claims.cjs`) run through\nNEW>>>",
+    "check": "grep -c -F -- 'four drift guards (`verify_alignment_drift.py`' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md",
+    "expect": "1"
+  },
+  {
+    "task": "T093",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards/scratch/units/v1.2.0.0.md",
+    "check": "python3 -I .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md | grep -E 'VALID|Total issues'",
+    "expect": "Total issues: 0"
+  },
+  {
+    "task": "T094",
+    "files": [
+      ".skilled/skills/sk-code/leaf-manifest.json"
+    ],
+    "kind": "command",
+    "instruction": "node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .skilled/skills/sk-code",
+    "check": "node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check .skilled/skills/sk-code; echo \"exit=$?\"",
+    "expect": "exit=0"
+  }
+]

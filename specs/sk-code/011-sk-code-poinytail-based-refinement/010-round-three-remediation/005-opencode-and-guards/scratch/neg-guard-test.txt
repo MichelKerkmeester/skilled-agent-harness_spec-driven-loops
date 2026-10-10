@@ -1,0 +1,66 @@
+✔ a canonical workflow doc reached through a surface symlink is not reported (46.030417ms)
+✔ an unrouted doc is still reported, in the shared tier and in a packet (42.51925ms)
+✔ a run without --checks includes leg 1b (47.039458ms)
+✖ leg 2 accepts paths the ROUTER.md list or preamble declares and a workflow mode leaf (47.142917ms)
+✖ leg 2 reports a shared parent-map path ROUTER.md does not declare (40.9545ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 3
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 317.848125
+
+✖ failing tests:
+
+test at .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs:104:1
+✖ leg 2 accepts paths the ROUTER.md list or preamble declares and a workflow mode leaf (47.142917ms)
+  AssertionError [ERR_ASSERTION]: FAIL check 2: surface RESOURCE_MAP equals the children union plus the parent tier (3 problem(s))
+    - parent map DEMO cites shared/references/control.md, outside the parent tier
+    - parent map DEMO cites shared/references/undeclared.md, outside the parent tier
+    - parent map DEMO cites sk-code-review/assets/leaf.md, outside the parent tier
+  router-sync: 0/1 checks passed
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs:107:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs:111:1
+✖ leg 2 reports a shared parent-map path ROUTER.md does not declare (40.9545ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /control\.md/. Input:
+  
+  'FAIL check 2: surface RESOURCE_MAP equals the children union plus the parent tier (3 problem(s))\n' +
+    '  - parent map DEMO cites shared/references/control.md, outside the parent tier\n' +
+    '  - parent map DEMO cites shared/references/undeclared.md, outside the parent tier\n' +
+    '  - parent map DEMO cites sk-code-review/assets/leaf.md, outside the parent tier\n' +
+    'router-sync: 0/1 checks passed\n'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs:116:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'FAIL check 2: surface RESOURCE_MAP equals the children union plus the parent tier (3 problem(s))\n  - parent map DEMO cites shared/references/control.md, outside the parent tier\n  - parent map DEMO cites shared/references/undeclared.md, outside the parent tier\n  - parent map DEMO cites sk-code-review/assets/leaf.md, outside the parent tier\nrouter-sync: 0/1 checks passed\n',
+    expected: /control\.md/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }

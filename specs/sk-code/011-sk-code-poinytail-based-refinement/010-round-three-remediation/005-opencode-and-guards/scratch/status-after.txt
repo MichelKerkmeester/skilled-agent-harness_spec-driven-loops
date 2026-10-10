@@ -1,0 +1,34 @@
+ M .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json
+ M .skilled/commands/doctor/scripts/parent-skill-check.cjs
+ M .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs
+ M .skilled/skills/sk-code/leaf-manifest.json
+ M .skilled/skills/sk-code/sk-code-opencode/README.md
+ M .skilled/skills/sk-code/sk-code-opencode/SKILL.md
+ M .skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md
+ M .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs
+ M .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/code-quality-gate.md
+ M .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/implementation-authoring.md
+ M .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md
+ M .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/config-hooks/config-schema.md
+ M .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/config-hooks/hooks-wiring.md
+ M .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/python-standards.md
+ M .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/rust-standards.md
+ M .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/shell-standards.md
+ M .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/typescript-standards.md
+ M .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/manual-testing-playbook.md
+ M .skilled/skills/sk-code/sk-code-opencode/references/config/style-guide.md
+ M .skilled/skills/sk-code/sk-code-opencode/references/javascript/style-guide.md
+ M .skilled/skills/sk-code/sk-code-opencode/references/python/style-guide.md
+ M .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md
+ M .skilled/skills/sk-code/sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md
+ M .skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md
+ M .skilled/skills/sk-code/sk-code-opencode/references/shell/style-guide/overview-structure-and-naming.md
+ M .skilled/skills/sk-code/sk-code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md
+ M .skilled/skills/sk-code/sk-code-opencode/scripts/README.md
+ M .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+ M .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs
+ M specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json
+?? .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs
+?? .skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md
+?? .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md
+?? .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs
