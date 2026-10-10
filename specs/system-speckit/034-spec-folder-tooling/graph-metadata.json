@@ -22,7 +22,8 @@
     "system-speckit/034-spec-folder-tooling/016-research-recommendations",
     "system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification",
     "system-speckit/034-spec-folder-tooling/018-epic-docs-alignment",
-    "system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes"
+    "system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes",
+    "system-speckit/034-spec-folder-tooling/020-deep-review-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -70,6 +71,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -92,26 +99,20 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Purpose Make",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The scripts that create, number and archive spec packets disagreed with where packets live",
     "created_at": "2026-09-23T00:00:00Z",
-    "last_save_at": "2026-10-09T20:05:13.390Z",
+    "last_save_at": "2026-10-10T10:00:37.953Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:2b7f4e43402496e93fe847475bcc361a08098850417d5bd038c0997a53671259",
+    "source_fingerprint": "sha256:f3fb678ae728d52be7026b65c1fd7642360c772595640f9c67854288b7e71d08",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "65c051df7d93460c68127ed9f52d3f1c1f8bf0bee7cc38981685332765edb527"
+      "spec.md": "ede914530d653c24f1858dc1cf956c0804f928afb3412d6b688472f245279cb6"
     },
     "last_active_child_id": "system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research",
     "last_active_at": "2026-10-07T07:55:17.883Z"

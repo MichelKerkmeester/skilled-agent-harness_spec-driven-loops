@@ -1,0 +1,54 @@
+CLOSURE EVIDENCE: why each MISSING and PARTIAL row of closure-test-matrix.txt stays open, checked against this phase's diff
+Source rows: closure-test-matrix.txt section 5 (66 COVERED, 1 PARTIAL, 33 MISSING, 100 rows). This file classifies the 34 rows that are not COVERED.
+Method: each row's tool was checked for changed hunks against 4669db6522 with git diff -U0 (new-file line ranges below). A row fits the stated rationale only when its guard lies outside every changed hunk, or when the row is a dry-run variant of an apply case in the same tool.
+
+== Class 1: dry-run variant of an apply case in the same tool (fits the stated rationale)
+B-04 link inside the packet, dry: no dry run in any link case (matrix section 2).
+B-06 link outside, dry: all ten link cases are APPLY-only (matrix section 2).
+B-08 dangling spec.md, dry: the two dangling cases are APPLY-only (matrix section 2).
+B-13 linked folder argument, dry: the it.each rows are APPLY-only (matrix section 2).
+B-15 dangling folder argument, dry: APPLY-only (matrix section 2).
+D-08b dangling description.json, dry: the same case is APPLY-only (matrix section 2).
+U-09b dot segment in a link target, dry: the case runs APPLY-only (matrix section 2).
+D-05 PARTIAL: the dry-run remainder is description.json and spec.md as rewrite targets, and the only description.json link case is APPLY-only (matrix section 2). The plan.md and graph-metadata.json halves are COVERED.
+
+== Class 2: PARTIAL site accepted by the operator (the root or parent gap named in the same-class inventory)
+B-11 linked parent dir outside the default roots: healer H5 in closure-same-class-write-inventory.txt. Accepted.
+C-14 linked skillDir argument: leaf L1 in the same inventory (skillDir parent unchecked, final name guarded). Accepted.
+K-03 linked parent (--root parent), K-06 linked root: backfill K1 (--root unconfined, parent components unchecked). Accepted.
+K-05 dot segment in --root: the same K1 root gap. Accepted.
+P-07 dot segment in --root, P-08 linked parent dir or linked root: phrase cleanup E2 (--root unconfined). Accepted.
+Note: the operator's acceptance covers these sites. The inventory says H5 and K1 stay INFERRED until a fixture run executes them. No such run exists.
+
+== Class 3: link handling not changed by this phase, in a file this phase did change (fits the stated rationale)
+P-04, P-05, P-06 document link rows for template-phrase-cleanup.mjs. The diff hunks (new lines 142 to 174, 325 to 331, 332, 335, 342, 375, 378, 384, 416 to 420) miss writeFileAtomically (about 256 to 292), walkDocuments (about 504) and the --root read (about 589 to 592). The write has no link check of its own, which the same-class inventory records as site E1 (PARTIAL, guarded at enumeration only, not in the operator's accepted list). E1 needs the operator's decision.
+C-10 dangling leaf link inside the walk: the walker's link-target realpath check (generate-leaf-manifest.cjs about 141 to 147) is outside the changed hunks (93 to 106, 119, 303, 425 to 462, 465, 471, 474, 479).
+U-18 linked manifest on apply: the manifest writer (upgrade-legacy.mjs about 417 to 446) is outside the changed hunks.
+
+== Class 4: changed guard with no case and no fitting rationale (open, operator decision)
+A-14 linked output file for archive: the destination check (archive.sh about 480, -e or -L) is inside the changed hunk 471 to 481.
+B-03 link inside the packet, apply: the healer guard (heal-spec-docs.cjs 651 to 653) is inside the changed hunk 651 to 653, and it refuses every linked document. See the mismatch note below.
+B-09 dot segment in a --folder argument: folderRefusal (about 808 to 831) is inside the changed hunk 768 to 847.
+C-13 linked packet folder for generate or check: the start-scope check (93 to 106) changed in this phase.
+C-15 linked manifest on the read path: the manifest link guard (474 to 477) and the write path (425 to 462) changed.
+D-03 link inside the packet, apply: readIfPresent (about 250) and the write guard (272 to 275) changed.
+K-01 plain report write, apply: writePruneReportArtifact (backfill-graph-metadata.ts 192 to 217) changed, so the plain write path has no case.
+K-04 dangling report name: the guard is the same lstat refusal that K-02 covers (COVERED), so the operator may accept it as a variant. It is an apply row, not a dry run.
+U-16 linked --roots argument and U-17 dot segment in --roots: the upgrade-legacy argument handling changed in this phase (hunks at 1546 to 1578).
+
+== Class 5: ambiguous, the guard named in the row is outside this phase's hunks, but no case exists (operator decision)
+A-03 and A-05 (archive, linked archived folder or packet): the source resolution (archive.sh 273) and the containment check (278 to 282) are outside the changed hunks, but the archive path changed nearby (233 to 261, 319 to 326). No case exists.
+D-11 linked folder argument and D-12 linked parent above the packet: the packet containment helper (insideSpecs, about 588 to 605) is outside the changed hunks, but the read and write guards around it changed. No case exists.
+
+== Counts
+Class 1: 7 rows, plus the D-05 PARTIAL remainder.
+Class 2: 7 rows.
+Class 3: 5 rows.
+Class 4: 10 rows.
+Class 5: 4 rows.
+Total MISSING: 7 + 7 + 5 + 10 + 4 = 33. PARTIAL: 1 (D-05). Every MISSING row is in exactly one class.
+
+== Where the operator's stated rationale does not hold
+1. The operator named the backfill prune report as a tool whose link handling this phase did not change. The diff shows the opposite: writePruneReportArtifact (backfill-graph-metadata.ts 192 to 217) gained the link refusal and the exclusive temp name in this phase. K-01 and K-04 are therefore class 4, not class 3.
+2. The rationale "dry-run variants or unchanged tools" leaves 14 rows (classes 4 and 5) on changed guards with no case. Those rows stay open until the operator adds a case or accepts the gap.
+3. B-03 and the spec: spec.md line 193 says a symlink that points inside specs is allowed. heal-spec-docs.cjs refuses any linked document, including one that points inside specs (lines 651 to 653 and 1531 to 1532). upgrade-legacy.mjs still repairs a link whose target stays inside the packet (matrix U-03, COVERED). The healer and upgrade-legacy disagree, and the spec states the upgrade behaviour. This is a spec and code mismatch. It is recorded here, not fixed, and the operator decides which truth prevails.

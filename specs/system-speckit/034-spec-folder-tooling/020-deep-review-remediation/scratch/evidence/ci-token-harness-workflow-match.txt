@@ -1,0 +1,8 @@
+Check: byte comparison of the workflow against the scratch copy after-final.yml
+Command: cmp .github/workflows/trigger-index-rebuild.yml <scratchpad>/fa/after-final.yml
+Exit: 0
+Output: none, the files are byte-identical
+Size workflow:    11862 bytes
+Size scratch copy:    11862 bytes
+SHA-256 workflow: b9e9e69141ef4d32c724a9a71ae841fd697d5b1b0394ba616b057562aaaf4d94
+SHA-256 scratch copy: b9e9e69141ef4d32c724a9a71ae841fd697d5b1b0394ba616b057562aaaf4d94

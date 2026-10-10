@@ -1,0 +1,1081 @@
+CLOSURE EVIDENCE copy: red runs for the lane B healer, lane C leaf walker, and repair-derived link guards (readIfPresent included)
+Each block is one copied log from scratchpad k2b/out, unedited. Each mutant removes one guard, and the FAIL lines name the case that catches it.
+Counts read from the logs: H1 3 failed, H2 1 failed, H3 2 failed, H4 2 failed, L1 1 failed (node test), L2 1 failed (node test), R1 2 failed, R2 4 failed, R2b 1 failed, R3b 2 failed, variant-R2b-writes 1 failed.
+
+===== source: k2b/out/H1-folder-itself-check-removed.txt =====
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli
+
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply leaves a symlinked spec.md and its outside target untouched 70ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply leaves a symlinked tasks.md with an empty trigger list untouched 75ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --anchor-repair --apply leaves a symlinked spec.md and its outside target untouched 59ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --lane-modes --apply leaves a symlinked spec.md and its outside target untouched 80ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply replaces a spec.md that becomes a link after it is read, and leaves the outside target untouched 55ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply reports a dangling spec.md link as refused and does not create its target 59ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply changes no bytes on a plain packet with nothing left to heal 97ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --anchor-repair --apply refuses a dangling spec.md and does not create its target 51ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --lane-modes --apply refuses a dangling spec.md and does not create its target 79ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > default run --apply refuses a linked --folder and leaves the packet behind the link untouched 53ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --anchor-repair --apply refuses a linked --folder and leaves the packet behind the link untouched 48ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --lane-modes --apply refuses a linked --folder and leaves the packet behind the link untouched 51ms
+ × |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > default run --apply refuses a dangling --folder and creates nothing at its target 47ms
+   → expected 'refused /private/var/folders/3c/zfqcq…' to contain 'refused /private/var/folders/3c/zfqcq…'
+ × |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --anchor-repair --apply refuses a dangling --folder and creates nothing at its target 50ms
+   → expected 'refused /private/var/folders/3c/zfqcq…' to contain 'refused /private/var/folders/3c/zfqcq…'
+ × |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --lane-modes --apply refuses a dangling --folder and creates nothing at its target 42ms
+   → expected 'refused /private/var/folders/3c/zfqcq…' to contain 'refused /private/var/folders/3c/zfqcq…'
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > refuses a --folder reached through a linked component inside the specs root 99ms
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 13 passed (16)
+   Start at  12:38:14
+   Duration  1.17s (transform 32ms, setup 15ms, import 33ms, tests 1.01s, environment 0ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > default run --apply refuses a dangling --folder and creates nothing at its target
+AssertionError: expected 'refused /private/var/folders/3c/zfqcq…' to contain 'refused /private/var/folders/3c/zfqcq…'
+
+- Expected
++ Received
+
+- refused /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/heal-symlink-DF0oCE/specs/staging/020-dangling-packet: symbolic link, not followed (the folder itself is a link)
++ refused /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/heal-symlink-DF0oCE/specs/staging/020-dangling-packet: symbolic link, not followed (staging/020-dangling-packet is a link on the path to the folder)
++
+
+ ❯ tests/heal-symlink-containment.vitest.ts:358:27
+    356|     // The reason names the folder itself as the link, the check that …
+    357|     // for a link at the end of the path.
+    358|     expect(result.stdout).toContain(`refused ${linked}: symbolic link,…
+       |                           ^
+    359|     expect(fs.existsSync(missing)).toBe(false);
+    360|     expect(fs.lstatSync(linked).isSymbolicLink()).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --anchor-repair --apply refuses a dangling --folder and creates nothing at its target
+AssertionError: expected 'refused /private/var/folders/3c/zfqcq…' to contain 'refused /private/var/folders/3c/zfqcq…'
+
+- Expected
++ Received
+
+- refused /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/heal-symlink-2LXw9S/specs/staging/020-dangling-packet: symbolic link, not followed (the folder itself is a link)
++ refused /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/heal-symlink-2LXw9S/specs/staging/020-dangling-packet: symbolic link, not followed (staging/020-dangling-packet is a link on the path to the folder)
++
+
+ ❯ tests/heal-symlink-containment.vitest.ts:358:27
+    356|     // The reason names the folder itself as the link, the check that …
+    357|     // for a link at the end of the path.
+    358|     expect(result.stdout).toContain(`refused ${linked}: symbolic link,…
+       |                           ^
+    359|     expect(fs.existsSync(missing)).toBe(false);
+    360|     expect(fs.lstatSync(linked).isSymbolicLink()).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --lane-modes --apply refuses a dangling --folder and creates nothing at its target
+AssertionError: expected 'refused /private/var/folders/3c/zfqcq…' to contain 'refused /private/var/folders/3c/zfqcq…'
+
+- Expected
++ Received
+
+- refused /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/heal-symlink-8gigki/specs/staging/020-dangling-packet: symbolic link, not followed (the folder itself is a link)
++ refused /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/heal-symlink-8gigki/specs/staging/020-dangling-packet: symbolic link, not followed (staging/020-dangling-packet is a link on the path to the folder)
++
+
+ ❯ tests/heal-symlink-containment.vitest.ts:358:27
+    356|     // The reason names the folder itself as the link, the check that …
+    357|     // for a link at the end of the path.
+    358|     expect(result.stdout).toContain(`refused ${linked}: symbolic link,…
+       |                           ^
+    359|     expect(fs.existsSync(missing)).toBe(false);
+    360|     expect(fs.lstatSync(linked).isSymbolicLink()).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+===== source: k2b/out/H2-unchanged-doc-not-skipped.txt =====
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli
+
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply leaves a symlinked spec.md and its outside target untouched 76ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply leaves a symlinked tasks.md with an empty trigger list untouched 92ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --anchor-repair --apply leaves a symlinked spec.md and its outside target untouched 122ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --lane-modes --apply leaves a symlinked spec.md and its outside target untouched 82ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply replaces a spec.md that becomes a link after it is read, and leaves the outside target untouched 71ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply reports a dangling spec.md link as refused and does not create its target 51ms
+ × |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply changes no bytes on a plain packet with nothing left to heal 107ms
+   → expected 'healed /private/var/folders/3c/zfqcqs…' to contain 'documents healed=0'
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --anchor-repair --apply refuses a dangling spec.md and does not create its target 56ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --lane-modes --apply refuses a dangling spec.md and does not create its target 88ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > default run --apply refuses a linked --folder and leaves the packet behind the link untouched 57ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --anchor-repair --apply refuses a linked --folder and leaves the packet behind the link untouched 44ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --lane-modes --apply refuses a linked --folder and leaves the packet behind the link untouched 49ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > default run --apply refuses a dangling --folder and creates nothing at its target 47ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --anchor-repair --apply refuses a dangling --folder and creates nothing at its target 122ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --lane-modes --apply refuses a dangling --folder and creates nothing at its target 43ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > refuses a --folder reached through a linked component inside the specs root 107ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 15 passed (16)
+   Start at  12:38:15
+   Duration  1.34s (transform 35ms, setup 20ms, import 32ms, tests 1.21s, environment 0ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply changes no bytes on a plain packet with nothing left to heal
+AssertionError: expected 'healed /private/var/folders/3c/zfqcqs…' to contain 'documents healed=0'
+
+- Expected
++ Received
+
+- documents healed=0
++ healed /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/heal-symlink-idsBdl/specs/heal-link/001-healed-plain/spec.md
++
++ packets=1 documents healed=1 packets touched=1 refused=0
++
+
+ ❯ tests/heal-symlink-containment.vitest.ts:264:26
+    262|     const rerun = apply();
+    263|     expect(rerun.status, rerun.stdout + rerun.stderr).toBe(0);
+    264|     expect(rerun.stdout).toContain('documents healed=0');
+       |                          ^
+    265|     expect(digest(path.join(control, 'spec.md'))).toBe(healed);
+    266|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+===== source: k2b/out/H3-anchor-link-refusal-removed.txt =====
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli
+
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply leaves a symlinked spec.md and its outside target untouched 220ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply leaves a symlinked tasks.md with an empty trigger list untouched 184ms
+ × |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --anchor-repair --apply leaves a symlinked spec.md and its outside target untouched 103ms
+   → expected false to be true // Object.is equality
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --lane-modes --apply leaves a symlinked spec.md and its outside target untouched 83ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply replaces a spec.md that becomes a link after it is read, and leaves the outside target untouched 61ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply reports a dangling spec.md link as refused and does not create its target 57ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply changes no bytes on a plain packet with nothing left to heal 103ms
+ × |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --anchor-repair --apply refuses a dangling spec.md and does not create its target 47ms
+   → node:fs:621
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/heal-symlink-ZsNqDz/specs/heal-link/001-dangling-spec/spec.md'
+    at Object.readFileSync (node:fs:621:20)
+    at repairAnchorFile (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:651:23)
+    at runAnchorRepair (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:669:20)
+    at main (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1510:5)
+    at Object.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1568:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10)
+    at Module.load (node:internal/modules/cjs/loader:1656:32)
+    at Module._load (node:internal/modules/cjs/loader:1448:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/heal-symlink-ZsNqDz/specs/heal-link/001-dangling-spec/spec.md'
+}
+
+Node.js v26.8.2
+: expected 1 to be +0 // Object.is equality
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --lane-modes --apply refuses a dangling spec.md and does not create its target 84ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > default run --apply refuses a linked --folder and leaves the packet behind the link untouched 56ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --anchor-repair --apply refuses a linked --folder and leaves the packet behind the link untouched 49ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --lane-modes --apply refuses a linked --folder and leaves the packet behind the link untouched 47ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > default run --apply refuses a dangling --folder and creates nothing at its target 52ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --anchor-repair --apply refuses a dangling --folder and creates nothing at its target 38ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --lane-modes --apply refuses a dangling --folder and creates nothing at its target 41ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > refuses a --folder reached through a linked component inside the specs root 96ms
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 14 passed (16)
+   Start at  12:38:17
+   Duration  1.47s (transform 39ms, setup 20ms, import 58ms, tests 1.32s, environment 0ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --anchor-repair --apply leaves a symlinked spec.md and its outside target untouched
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/heal-symlink-containment.vitest.ts:164:73
+    162|     // The rename-based atomic write would replace the link with a reg…
+    163|     // so the link surviving is part of the containment result.
+    164|     expect(fs.lstatSync(path.join(packet, 'spec.md')).isSymbolicLink()…
+       |                                                                         ^
+    165|     expect(result.stdout).toContain(`left unchanged ${path.join(packet…
+    166|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --anchor-repair --apply refuses a dangling spec.md and does not create its target
+AssertionError: node:fs:621
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/heal-symlink-ZsNqDz/specs/heal-link/001-dangling-spec/spec.md'
+    at Object.readFileSync (node:fs:621:20)
+    at repairAnchorFile (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:651:23)
+    at runAnchorRepair (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:669:20)
+    at main (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1510:5)
+    at Object.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1568:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10)
+    at Module.load (node:internal/modules/cjs/loader:1656:32)
+    at Module._load (node:internal/modules/cjs/loader:1448:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/heal-symlink-ZsNqDz/specs/heal-link/001-dangling-spec/spec.md'
+}
+
+Node.js v26.8.2
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ repairAnchorFile spec/heal-spec-docs.cjs:651:23
+ ❯ runAnchorRepair spec/heal-spec-docs.cjs:669:20
+ ❯ main spec/heal-spec-docs.cjs:1510:5
+ ❯ Object.<anonymous> spec/heal-spec-docs.cjs:1568:30
+ ❯ tests/heal-symlink-containment.vitest.ts:281:58
+    279|     });
+    280|
+    281|     expect(result.status, result.stdout + result.stderr).toBe(0);
+       |                                                          ^
+    282|     // The control proves this mode acts on the same content, so the r…
+    283|     // is the link's doing and not an absence of work.
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+===== source: k2b/out/H4-lane-link-refusal-removed.txt =====
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli
+
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply leaves a symlinked spec.md and its outside target untouched 165ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply leaves a symlinked tasks.md with an empty trigger list untouched 229ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --anchor-repair --apply leaves a symlinked spec.md and its outside target untouched 59ms
+ × |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --lane-modes --apply leaves a symlinked spec.md and its outside target untouched 196ms
+   → expected false to be true // Object.is equality
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply replaces a spec.md that becomes a link after it is read, and leaves the outside target untouched 70ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply reports a dangling spec.md link as refused and does not create its target 63ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > default healer --apply changes no bytes on a plain packet with nothing left to heal 100ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --anchor-repair --apply refuses a dangling spec.md and does not create its target 61ms
+ × |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --lane-modes --apply refuses a dangling spec.md and does not create its target 56ms
+   → node:fs:621
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/heal-symlink-HdgvKf/specs/heal-link/001-dangling-spec/spec.md'
+    at Object.readFileSync (node:fs:621:20)
+    at runLaneModes (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1474:25)
+    at runLaneModesCli (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1495:20)
+    at main (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1513:5)
+    at Object.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1567:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10)
+    at Module.load (node:internal/modules/cjs/loader:1656:32)
+    at Module._load (node:internal/modules/cjs/loader:1448:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/heal-symlink-HdgvKf/specs/heal-link/001-dangling-spec/spec.md'
+}
+
+Node.js v26.8.2
+: expected 1 to be +0 // Object.is equality
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > default run --apply refuses a linked --folder and leaves the packet behind the link untouched 47ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --anchor-repair --apply refuses a linked --folder and leaves the packet behind the link untouched 43ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --lane-modes --apply refuses a linked --folder and leaves the packet behind the link untouched 46ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > default run --apply refuses a dangling --folder and creates nothing at its target 39ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --anchor-repair --apply refuses a dangling --folder and creates nothing at its target 46ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > --lane-modes --apply refuses a dangling --folder and creates nothing at its target 60ms
+ ✓ |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs folder containment > refuses a --folder reached through a linked component inside the specs root 117ms
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 14 passed (16)
+   Start at  12:38:19
+   Duration  1.74s (transform 72ms, setup 30ms, import 94ms, tests 1.40s, environment 0ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --lane-modes --apply leaves a symlinked spec.md and its outside target untouched
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/heal-symlink-containment.vitest.ts:182:73
+    180|     expect(result.stdout).toContain(`applied header-add ${path.join(co…
+    181|     expect(digest(outside)).toBe(before);
+    182|     expect(fs.lstatSync(path.join(packet, 'spec.md')).isSymbolicLink()…
+       |                                                                         ^
+    183|     expect(result.stdout).toContain(`refused containment ${path.join(p…
+    184|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |cli| tests/heal-symlink-containment.vitest.ts > heal-spec-docs symbolic link containment > --lane-modes --apply refuses a dangling spec.md and does not create its target
+AssertionError: node:fs:621
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/heal-symlink-HdgvKf/specs/heal-link/001-dangling-spec/spec.md'
+    at Object.readFileSync (node:fs:621:20)
+    at runLaneModes (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1474:25)
+    at runLaneModesCli (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1495:20)
+    at main (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1513:5)
+    at Object.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/healer/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1567:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10)
+    at Module.load (node:internal/modules/cjs/loader:1656:32)
+    at Module._load (node:internal/modules/cjs/loader:1448:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/heal-symlink-HdgvKf/specs/heal-link/001-dangling-spec/spec.md'
+}
+
+Node.js v26.8.2
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ runLaneModes spec/heal-spec-docs.cjs:1474:25
+ ❯ runLaneModesCli spec/heal-spec-docs.cjs:1495:20
+ ❯ main spec/heal-spec-docs.cjs:1513:5
+ ❯ Object.<anonymous> spec/heal-spec-docs.cjs:1567:30
+ ❯ tests/heal-symlink-containment.vitest.ts:281:58
+    279|     });
+    280|
+    281|     expect(result.status, result.stdout + result.stderr).toBe(0);
+       |                                                          ^
+    282|     // The control proves this mode acts on the same content, so the r…
+    283|     // is the link's doing and not an absence of work.
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+===== source: k2b/out/L1-manifest-link-refusal-removed.txt =====
+leaf-manifest.json written (543a4ef189cdaa2adf3346014fdb63af82453d78b0c1a72cdc03fffd4e6d4e73)
+node:internal/assert/utils:146
+  throw error;
+  ^
+
+AssertionError [ERR_ASSERTION]: Missing expected exception.
+    at testLinkedManifestWriteIsRefused (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/leaf/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs:327:10)
+    at Object.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/leaf/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs:426:3)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10)
+    at Module.load (node:internal/modules/cjs/loader:1656:32)
+    at Module._load (node:internal/modules/cjs/loader:1448:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: undefined,
+  expected: [Function (anonymous)],
+  operator: 'throws',
+  diff: 'simple'
+}
+
+Node.js v26.8.2
+✖ sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs (100.854584ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 104.232459
+
+✖ failing tests:
+
+test at sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs:1:1
+✖ sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs (100.854584ms)
+  'test failed'
+
+===== source: k2b/out/L2-check-inverted.txt =====
+node:internal/assert/utils:146
+  throw error;
+  ^
+
+AssertionError [ERR_ASSERTION]: generate-leaf-manifest: leaf-manifest.json is stale under /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/leaf-scopes-CnvhCs/check-unchanged-3entZw
+  committed: 543a4ef189cdaa2adf3346014fdb63af82453d78b0c1a72cdc03fffd4e6d4e73
+  fresh:     543a4ef189cdaa2adf3346014fdb63af82453d78b0c1a72cdc03fffd4e6d4e73
+Re-run with --write to regenerate.
+
+
+1 !== 0
+
+    at testCheckOnUnchangedSkillIsNoOp (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/leaf/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs:370:10)
+    at Object.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/leaf/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs:429:3)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10)
+    at Module.load (node:internal/modules/cjs/loader:1656:32)
+    at Module._load (node:internal/modules/cjs/loader:1448:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.8.2
+✖ sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs (151.228458ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 154.540292
+
+✖ failing tests:
+
+test at sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs:1:1
+✖ sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs (151.228458ms)
+  'test failed'
+
+===== source: k2b/out/isolated-L1-mutant.txt =====
+leaf-manifest.json written (543a4ef189cdaa2adf3346014fdb63af82453d78b0c1a72cdc03fffd4e6d4e73)
+node:internal/assert/utils:146
+  throw error;
+  ^
+
+AssertionError [ERR_ASSERTION]: Missing expected exception.
+    at testDanglingManifestWriteIsRefused (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/leaf/sk-doc/sk-create-skill/scripts/tests/isolated-dangling-manifest.test.cjs:354:10)
+    at Object.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/leaf/sk-doc/sk-create-skill/scripts/tests/isolated-dangling-manifest.test.cjs:412:3)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10)
+    at Module.load (node:internal/modules/cjs/loader:1656:32)
+    at Module._load (node:internal/modules/cjs/loader:1448:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: undefined,
+  expected: [Function (anonymous)],
+  operator: 'throws',
+  diff: 'simple'
+}
+
+Node.js v26.8.2
+✖ /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/leaf/sk-doc/sk-create-skill/scripts/tests/isolated-dangling-manifest.test.cjs (43.504125ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48.221584
+
+✖ failing tests:
+
+test at sk-create-skill/scripts/tests/isolated-dangling-manifest.test.cjs:1:1
+✖ /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/leaf/sk-doc/sk-create-skill/scripts/tests/isolated-dangling-manifest.test.cjs (43.504125ms)
+  'test failed'
+
+===== source: k2b/out/R1-graph-link-rederive-allowed.txt =====
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/repair/.skilled/skills/system-spec-kit/runtime/cli
+
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a target outside the packet tree 67ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses an unknown argument and a flag with no value 66ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a bare path rather than treating it as an unscoped run 32ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > accepts a repeated --folder and inspects each packet once 1770ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > counts a folder given twice as one target 1115ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > still refuses a bad --roots when a --folder is present 33ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > rewrites a stale recorded location from the packet path on disk 1311ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > walks into an archive and rewrites an archived packet's recorded paths 2471ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > leaves a packet alone when nothing derived is wrong 1008ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports repairable=0 and writes nothing for a clean packet in a dry run 898ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports without writing unless application is requested 992ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the re-derive in the plan whenever it edits a document 1462ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > leaves a packet pointer outside the frontmatter alone 1447ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports a repair it could not make and exits 2 1562ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > changes nothing on a second run over the same packet 3009ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > passes a packet it would otherwise repair when validation is switched off 129ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > does not write through a link planted at the predictable repair temp name 1227ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a rewrite target that is a symbolic link and leaves its target untouched 1300ms
+ × |cli| tests/repair-derived.vitest.ts > repair-derived > does not re-derive over a linked graph-metadata.json, in the dry run or with --apply 1208ms
+   → expected 'left unchanged specs/.repair-fixture-…' not to contain 're-derive graph metadata'
+ × |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a dangling graph-metadata.json link in the dry run and with --apply, and creates nothing at its target 1110ms
+   → expected 'left unchanged specs/.repair-fixture-…' not to contain 're-derive graph metadata'
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > treats a dangling description.json link as absent and creates nothing at its target 3330ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the validator stderr when validate.sh exits 3, and exits non-zero 88ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the exit code and the stderr tail when the validator exits with no report 142ms
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 21 passed (23)
+   Start at  12:40:25
+   Duration  25.95s (transform 29ms, setup 21ms, import 22ms, tests 25.79s, environment 0ms)
+
+refusing a target outside the packet tree: .skilled/skills
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: ../elsewhere
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unknown argument: --bogus
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+--folder needs a path
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unexpected argument: specs/sk-git (paths need --folder or --roots)
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: /etc
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/repair-derived.vitest.ts > repair-derived > does not re-derive over a linked graph-metadata.json, in the dry run or with --apply
+AssertionError: expected 'left unchanged specs/.repair-fixture-…' not to contain 're-derive graph metadata'
+
+- Expected
++ Received
+
+- re-derive graph metadata
++ left unchanged specs/.repair-fixture-linked/001-linked-graph/graph-metadata.json: symbolic link, not followed
++ would repair specs/.repair-fixture-linked/001-linked-graph
++     spec folder -> 001-linked-graph
++     packet pointer -> .repair-fixture-linked/001-linked-graph
++     re-derive graph metadata
++
++ inspected=1 repairable=1 failed=0
++
++ Not repairable here — these record work someone did, and only they can write them:
++       1  ANCHORS_VALID
++       1  COMPLEXITY_MATCH
++       1  FILE_EXISTS
++       1  FRONTMATTER_MEMORY_BLOCK
++       1  FRONTMATTER_VALID
++       1  LEVEL_MATCH
++       1  TEMPLATE_SOURCE
++
++ To apply these repairs:
++   node ../../../../../../tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/repair/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/.repair-fixture-linked/001-linked-graph --apply
++
+
+ ❯ tests/repair-derived.vitest.ts:422:31
+    420|     const dryRun = runIn(workspace, ['--folder', dir]);
+    421|     expect(dryRun.stdout).toContain(`left unchanged ${path.join(dir, '…
+    422|     expect(dryRun.stdout).not.toContain('re-derive graph metadata');
+       |                               ^
+    423|
+    424|     const applied = runIn(workspace, ['--folder', dir, '--apply']);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a dangling graph-metadata.json link in the dry run and with --apply, and creates nothing at its target
+AssertionError: expected 'left unchanged specs/.repair-fixture-…' not to contain 're-derive graph metadata'
+
+- Expected
++ Received
+
+- re-derive graph metadata
++ left unchanged specs/.repair-fixture-dangling/001-dangling-graph/graph-metadata.json: symbolic link, not followed
++ would repair specs/.repair-fixture-dangling/001-dangling-graph
++     spec folder -> 001-dangling-graph
++     packet pointer -> .repair-fixture-dangling/001-dangling-graph
++     re-derive graph metadata
++
++ inspected=1 repairable=1 failed=0
++
++ Not repairable here — these record work someone did, and only they can write them:
++       1  ANCHORS_VALID
++       1  COMPLEXITY_MATCH
++       1  FILE_EXISTS
++       1  FRONTMATTER_MEMORY_BLOCK
++       1  FRONTMATTER_VALID
++       1  GRAPH_METADATA_PRESENT
++       1  LEVEL_MATCH
++       1  TEMPLATE_SOURCE
++
++ To apply these repairs:
++   node ../../../../../../tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/repair/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/.repair-fixture-dangling/001-dangling-graph --apply
++
+
+ ❯ tests/repair-derived.vitest.ts:455:31
+    453|     const dryRun = runIn(workspace, ['--folder', dir]);
+    454|     expect(dryRun.stdout).toContain(`left unchanged ${path.join(dir, '…
+    455|     expect(dryRun.stdout).not.toContain('re-derive graph metadata');
+       |                               ^
+    456|     expect(fs.lstatSync(link).isSymbolicLink()).toBe(true);
+    457|     expect(fs.existsSync(missing)).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+===== source: k2b/out/R2-link-report-removed.txt =====
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/repair/.skilled/skills/system-spec-kit/runtime/cli
+
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a target outside the packet tree 58ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses an unknown argument and a flag with no value 57ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a bare path rather than treating it as an unscoped run 30ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > accepts a repeated --folder and inspects each packet once 1184ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > counts a folder given twice as one target 998ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > still refuses a bad --roots when a --folder is present 35ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > rewrites a stale recorded location from the packet path on disk 1128ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > walks into an archive and rewrites an archived packet's recorded paths 1681ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > leaves a packet alone when nothing derived is wrong 2029ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports repairable=0 and writes nothing for a clean packet in a dry run 1189ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports without writing unless application is requested 1038ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the re-derive in the plan whenever it edits a document 1152ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > leaves a packet pointer outside the frontmatter alone 1050ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports a repair it could not make and exits 2 1373ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > changes nothing on a second run over the same packet 2178ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > passes a packet it would otherwise repair when validation is switched off 73ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > does not write through a link planted at the predictable repair temp name 1309ms
+ × |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a rewrite target that is a symbolic link and leaves its target untouched 1603ms
+   → expected 'FAILED specs/.repair-fixture-N9aeMN/0…' to contain 'left unchanged'
+ × |cli| tests/repair-derived.vitest.ts > repair-derived > does not re-derive over a linked graph-metadata.json, in the dry run or with --apply 2242ms
+   → expected 'would repair specs/.repair-fixture-li…' to contain 'left unchanged specs/.repair-fixture-…'
+ × |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a dangling graph-metadata.json link in the dry run and with --apply, and creates nothing at its target 1200ms
+   → expected 'would repair specs/.repair-fixture-da…' to contain 'left unchanged specs/.repair-fixture-…'
+ × |cli| tests/repair-derived.vitest.ts > repair-derived > treats a dangling description.json link as absent and creates nothing at its target 1158ms
+   → expected 'FAILED specs/.repair-fixture-0Ulhz8/d…' to contain 'left unchanged specs/.repair-fixture-…'
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the validator stderr when validate.sh exits 3, and exits non-zero 38ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the exit code and the stderr tail when the validator exits with no report 38ms
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 19 passed (23)
+   Start at  12:40:51
+   Duration  22.97s (transform 25ms, setup 16ms, import 20ms, tests 22.84s, environment 0ms)
+
+refusing a target outside the packet tree: .skilled/skills
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: ../elsewhere
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unknown argument: --bogus
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+--folder needs a path
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unexpected argument: specs/sk-git (paths need --folder or --roots)
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: /etc
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a rewrite target that is a symbolic link and leaves its target untouched
+AssertionError: expected 'FAILED specs/.repair-fixture-N9aeMN/0…' to contain 'left unchanged'
+
+- Expected
++ Received
+
+- left unchanged
++ FAILED specs/.repair-fixture-N9aeMN/001-linked-doc-ZJ3XIs — re-derive: exit 1
++     re-derive graph metadata
++
++ inspected=1 repaired=0 failed=1
++
++ Not repairable here — these record work someone did, and only they can write them:
++       1  ANCHORS_VALID
++       1  COMPLEXITY_MATCH
++       1  FILE_EXISTS
++       1  FOLDER_NAMING
++       1  FRONTMATTER_VALID
++       1  GRAPH_METADATA_PRESENT
++       1  GREP_CONVENTION
++       1  LEVEL_MATCH
++       1  TEMPLATE_SOURCE
++
+
+ ❯ tests/repair-derived.vitest.ts:386:27
+    384|     const result = run(['--folder', dir, '--apply']);
+    385|
+    386|     expect(result.stdout).toContain('left unchanged');
+       |                           ^
+    387|     expect(result.stdout).toContain('symbolic link, not followed');
+    388|     expect(fs.readFileSync(outside, 'utf8')).toBe(original);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  |cli| tests/repair-derived.vitest.ts > repair-derived > does not re-derive over a linked graph-metadata.json, in the dry run or with --apply
+AssertionError: expected 'would repair specs/.repair-fixture-li…' to contain 'left unchanged specs/.repair-fixture-…'
+
+- Expected
++ Received
+
+- left unchanged specs/.repair-fixture-linked/001-linked-graph/graph-metadata.json: symbolic link, not followed
++ would repair specs/.repair-fixture-linked/001-linked-graph
++     spec folder -> 001-linked-graph
++     packet pointer -> .repair-fixture-linked/001-linked-graph
++
++ inspected=1 repairable=1 failed=0
++
++ Not repairable here — these record work someone did, and only they can write them:
++       1  ANCHORS_VALID
++       1  COMPLEXITY_MATCH
++       1  FILE_EXISTS
++       1  FRONTMATTER_MEMORY_BLOCK
++       1  FRONTMATTER_VALID
++       1  LEVEL_MATCH
++       1  TEMPLATE_SOURCE
++
++ To apply these repairs:
++   node ../../../../../../tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/repair/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/.repair-fixture-linked/001-linked-graph --apply
++
+
+ ❯ tests/repair-derived.vitest.ts:421:27
+    419|
+    420|     const dryRun = runIn(workspace, ['--folder', dir]);
+    421|     expect(dryRun.stdout).toContain(`left unchanged ${path.join(dir, '…
+       |                           ^
+    422|     expect(dryRun.stdout).not.toContain('re-derive graph metadata');
+    423|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a dangling graph-metadata.json link in the dry run and with --apply, and creates nothing at its target
+AssertionError: expected 'would repair specs/.repair-fixture-da…' to contain 'left unchanged specs/.repair-fixture-…'
+
+- Expected
++ Received
+
+- left unchanged specs/.repair-fixture-dangling/001-dangling-graph/graph-metadata.json: symbolic link, not followed
++ would repair specs/.repair-fixture-dangling/001-dangling-graph
++     spec folder -> 001-dangling-graph
++     packet pointer -> .repair-fixture-dangling/001-dangling-graph
++
++ inspected=1 repairable=1 failed=0
++
++ Not repairable here — these record work someone did, and only they can write them:
++       1  ANCHORS_VALID
++       1  COMPLEXITY_MATCH
++       1  FILE_EXISTS
++       1  FRONTMATTER_MEMORY_BLOCK
++       1  FRONTMATTER_VALID
++       1  GRAPH_METADATA_PRESENT
++       1  LEVEL_MATCH
++       1  TEMPLATE_SOURCE
++
++ To apply these repairs:
++   node ../../../../../../tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/repair/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/.repair-fixture-dangling/001-dangling-graph --apply
++
+
+ ❯ tests/repair-derived.vitest.ts:454:27
+    452|
+    453|     const dryRun = runIn(workspace, ['--folder', dir]);
+    454|     expect(dryRun.stdout).toContain(`left unchanged ${path.join(dir, '…
+       |                           ^
+    455|     expect(dryRun.stdout).not.toContain('re-derive graph metadata');
+    456|     expect(fs.lstatSync(link).isSymbolicLink()).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  |cli| tests/repair-derived.vitest.ts > repair-derived > treats a dangling description.json link as absent and creates nothing at its target
+AssertionError: expected 'FAILED specs/.repair-fixture-0Ulhz8/d…' to contain 'left unchanged specs/.repair-fixture-…'
+
+- Expected
++ Received
+
+- left unchanged specs/.repair-fixture-0Ulhz8/dangling-description-blAXnd/description.json: symbolic link, not followed
++ FAILED specs/.repair-fixture-0Ulhz8/dangling-description-blAXnd — re-derive: exit 1: backfill-graph-metadata: target is not a spec folder (folder name is not NNN-slug and there is no spec.md): /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/repair-derived-qOuGYr/specs/.repair-fixture-0Ulhz8/dangling-description-blAXnd
++     spec folder -> dangling-description-blAXnd
++     packet pointer -> .repair-fixture-0Ulhz8/dangling-description-blAXnd
++     re-derive graph metadata
++
++ inspected=1 repaired=0 failed=1
++
++ Not repairable here — these record work someone did, and only they can write them:
++       1  ANCHORS_VALID
++       1  FILE_EXISTS
++       1  FOLDER_NAMING
++       1  FRONTMATTER_MEMORY_BLOCK
++       1  FRONTMATTER_VALID
++       1  GRAPH_METADATA_PRESENT
++       1  LEVEL_MATCH
++       1  TEMPLATE_SOURCE
++
+
+ ❯ tests/repair-derived.vitest.ts:483:27
+    481|     const result = run(['--folder', dir, '--apply']);
+    482|
+    483|     expect(result.stdout).toContain(`left unchanged ${path.join(dir, '…
+       |                           ^
+    484|     expect(fs.existsSync(missing)).toBe(false);
+    485|     expect(fs.lstatSync(link).isSymbolicLink()).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+===== source: k2b/out/R2b-readIfPresent-link-guard-removed.txt =====
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/repair/.skilled/skills/system-spec-kit/runtime/cli
+
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a target outside the packet tree 60ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses an unknown argument and a flag with no value 56ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a bare path rather than treating it as an unscoped run 28ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > accepts a repeated --folder and inspects each packet once 1162ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > counts a folder given twice as one target 839ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > still refuses a bad --roots when a --folder is present 29ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > rewrites a stale recorded location from the packet path on disk 1278ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > walks into an archive and rewrites an archived packet's recorded paths 1547ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > leaves a packet alone when nothing derived is wrong 1254ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports repairable=0 and writes nothing for a clean packet in a dry run 1224ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports without writing unless application is requested 1282ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the re-derive in the plan whenever it edits a document 1034ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > leaves a packet pointer outside the frontmatter alone 1154ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports a repair it could not make and exits 2 1016ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > changes nothing on a second run over the same packet 2266ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > passes a packet it would otherwise repair when validation is switched off 71ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > does not write through a link planted at the predictable repair temp name 1417ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a rewrite target that is a symbolic link and leaves its target untouched 1512ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > does not re-derive over a linked graph-metadata.json, in the dry run or with --apply 2969ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a dangling graph-metadata.json link in the dry run and with --apply, and creates nothing at its target 2663ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > treats a dangling description.json link as absent and creates nothing at its target 1336ms
+ × |cli| tests/repair-derived.vitest.ts > repair-derived > treats a live plan.md link as absent: its outside level reaches no plan, output or written file 2558ms
+   → expected 'would repair specs/.repair-fixture-q5…' to be 'would repair specs/.repair-fixture-q5…' // Object.is equality
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the validator stderr when validate.sh exits 3, and exits non-zero 40ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the exit code and the stderr tail when the validator exits with no report 36ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 23 passed (24)
+   Start at  12:47:47
+   Duration  26.96s (transform 27ms, setup 17ms, import 22ms, tests 26.83s, environment 0ms)
+
+refusing a target outside the packet tree: .skilled/skills
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: ../elsewhere
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unknown argument: --bogus
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+--folder needs a path
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unexpected argument: specs/sk-git (paths need --folder or --roots)
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: /etc
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/repair-derived.vitest.ts > repair-derived > treats a live plan.md link as absent: its outside level reaches no plan, output or written file
+AssertionError: expected 'would repair specs/.repair-fixture-q5…' to be 'would repair specs/.repair-fixture-q5…' // Object.is equality
+
+- Expected
++ Received
+
+@@ -1,6 +1,7 @@
+  would repair specs/.repair-fixture-q5mo9F/live-plan-link-bp9XEi
++     description level corrected from 1 -> 3
+      spec folder -> live-plan-link-bp9XEi
+      packet pointer -> .repair-fixture-q5mo9F/live-plan-link-bp9XEi
+      re-derive graph metadata
+
+  inspected=1 repairable=1 failed=0
+
+ ❯ tests/repair-derived.vitest.ts:516:92
+    514|     expect(linked.stdout).toContain(refusal);
+    515|     expect(linked.status).toBe(absent.status);
+    516|     expect(linked.stdout.split('\n').filter((line) => !line.includes(r…
+       |                                                                                            ^
+    517|     expect(linked.stdout).not.toContain('description level');
+    518|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+===== source: k2b/out/R3b-clean-packet-replans-rederive.txt =====
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/repair/.skilled/skills/system-spec-kit/runtime/cli
+
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a target outside the packet tree 75ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses an unknown argument and a flag with no value 58ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a bare path rather than treating it as an unscoped run 29ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > accepts a repeated --folder and inspects each packet once 1623ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > counts a folder given twice as one target 1202ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > still refuses a bad --roots when a --folder is present 36ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > rewrites a stale recorded location from the packet path on disk 1251ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > walks into an archive and rewrites an archived packet's recorded paths 1522ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > leaves a packet alone when nothing derived is wrong 1473ms
+ × |cli| tests/repair-derived.vitest.ts > repair-derived > reports repairable=0 and writes nothing for a clean packet in a dry run 1041ms
+   → expected 'would repair specs/.repair-fixture-f0…' to contain 'inspected=1 repairable=0 failed=0'
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports without writing unless application is requested 974ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the re-derive in the plan whenever it edits a document 1393ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > leaves a packet pointer outside the frontmatter alone 1085ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports a repair it could not make and exits 2 1030ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > changes nothing on a second run over the same packet 2666ms
+ × |cli| tests/repair-derived.vitest.ts > repair-derived > passes a packet it would otherwise repair when validation is switched off 221ms
+   → expected 2 to be +0 // Object.is equality
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > does not write through a link planted at the predictable repair temp name 1348ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a rewrite target that is a symbolic link and leaves its target untouched 1581ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > does not re-derive over a linked graph-metadata.json, in the dry run or with --apply 2828ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a dangling graph-metadata.json link in the dry run and with --apply, and creates nothing at its target 2703ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > treats a dangling description.json link as absent and creates nothing at its target 1337ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the validator stderr when validate.sh exits 3, and exits non-zero 36ms
+ ✓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the exit code and the stderr tail when the validator exits with no report 35ms
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 21 passed (23)
+   Start at  12:42:23
+   Duration  25.69s (transform 31ms, setup 21ms, import 23ms, tests 25.55s, environment 0ms)
+
+refusing a target outside the packet tree: .skilled/skills
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: ../elsewhere
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unknown argument: --bogus
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+--folder needs a path
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unexpected argument: specs/sk-git (paths need --folder or --roots)
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: /etc
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/repair-derived.vitest.ts > repair-derived > reports repairable=0 and writes nothing for a clean packet in a dry run
+AssertionError: expected 'would repair specs/.repair-fixture-f0…' to contain 'inspected=1 repairable=0 failed=0'
+
+- Expected
++ Received
+
+- inspected=1 repairable=0 failed=0
++ would repair specs/.repair-fixture-f0PrX0/clean-dryrun-qXRSFW
++     re-derive graph metadata
++
++ inspected=1 repairable=1 failed=0
++
++ Not repairable here — these record work someone did, and only they can write them:
++       1  ANCHORS_VALID
++       1  FILE_EXISTS
++       1  FOLDER_NAMING
++       1  FRONTMATTER_MEMORY_BLOCK
++       1  FRONTMATTER_VALID
++       1  GRAPH_METADATA_PRESENT
++       1  LEVEL_MATCH
++       1  TEMPLATE_SOURCE
++
++ To apply these repairs:
++   node ../../../../../../tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/repair/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/.repair-fixture-f0PrX0/clean-dryrun-qXRSFW --apply
++
+
+ ❯ tests/repair-derived.vitest.ts:227:27
+    225|     const result = run(['--folder', dir]);
+    226|
+    227|     expect(result.stdout).toContain('inspected=1 repairable=0 failed=0…
+       |                           ^
+    228|     expect(result.stdout).not.toContain('would repair');
+    229|     expect(fs.readFileSync(file, 'utf8')).toBe(correct);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |cli| tests/repair-derived.vitest.ts > repair-derived > passes a packet it would otherwise repair when validation is switched off
+AssertionError: expected 2 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 2
+
+ ❯ tests/repair-derived.vitest.ts:335:27
+    333|     const result = run(['--folder', dir, '--apply'], { SPECKIT_SKIP_VA…
+    334|
+    335|     expect(result.status).toBe(0);
+       |                           ^
+    336|     expect(result.stdout).not.toContain('UNREADABLE');
+    337|     expect(result.stdout).toContain('inspected=1 repaired=0 failed=0');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+===== source: k2b/out/variant-R2b-writes.txt =====
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2b/red/repair/.skilled/skills/system-spec-kit/runtime/cli
+
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a target outside the packet tree
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses an unknown argument and a flag with no value
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a bare path rather than treating it as an unscoped run
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > accepts a repeated --folder and inspects each packet once
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > counts a folder given twice as one target
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > still refuses a bad --roots when a --folder is present
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > rewrites a stale recorded location from the packet path on disk
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > walks into an archive and rewrites an archived packet's recorded paths
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > leaves a packet alone when nothing derived is wrong
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports repairable=0 and writes nothing for a clean packet in a dry run
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports without writing unless application is requested
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the re-derive in the plan whenever it edits a document
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > leaves a packet pointer outside the frontmatter alone
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > reports a repair it could not make and exits 2
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > changes nothing on a second run over the same packet
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > passes a packet it would otherwise repair when validation is switched off
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > does not write through a link planted at the predictable repair temp name
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a rewrite target that is a symbolic link and leaves its target untouched
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > does not re-derive over a linked graph-metadata.json, in the dry run or with --apply
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > refuses a dangling graph-metadata.json link in the dry run and with --apply, and creates nothing at its target
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > treats a dangling description.json link as absent and creates nothing at its target
+ × |cli| tests/repair-derived.vitest.ts > repair-derived > treats a live plan.md link as absent: its outside level reaches no plan, output or written file 4897ms
+   → expected '{\n  "level": "3",\n  "title": "Fixtu…' to be '{\n  "level": 1,\n  "title": "Fixture…' // Object.is equality
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the validator stderr when validate.sh exits 3, and exits non-zero
+ ↓ |cli| tests/repair-derived.vitest.ts > repair-derived > names the exit code and the stderr tail when the validator exits with no report
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 23 skipped (24)
+   Start at  12:48:43
+   Duration  5.05s (transform 32ms, setup 21ms, import 27ms, tests 4.90s, environment 0ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/repair-derived.vitest.ts > repair-derived > treats a live plan.md link as absent: its outside level reaches no plan, output or written file
+AssertionError: expected '{\n  "level": "3",\n  "title": "Fixtu…' to be '{\n  "level": 1,\n  "title": "Fixture…' // Object.is equality
+
+- Expected
++ Received
+
+  {
+-   "level": 1,
++   "level": "3",
+    "title": "Fixture"
+  }
+
+
+ ❯ tests/repair-derived.vitest.ts:519:76
+    517|     const applied = run(['--folder', dir, '--apply']);
+    518|     expect(applied.stdout).toContain(refusal);
+    519|     expect(fs.readFileSync(path.join(packet, 'description.json'), 'utf…
+       |                                                                            ^
+    520|     expect(fs.readFileSync(outside, 'utf8')).toBe(outsideBefore);
+    521|     expect(fs.lstatSync(link).isSymbolicLink()).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

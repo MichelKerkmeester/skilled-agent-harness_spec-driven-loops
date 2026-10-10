@@ -1,0 +1,39 @@
+Command: TRIGGER_INDEX_REBUILD_WORKFLOW_PATH=<scratch>/mutant-c-no-nonff-branch.yml npx vitest run --config ../../vitest.config.ts --project cli tests/trigger-index-rebuild-workflow.vitest.ts
+bash: GNU bash, version 3.2.57(1)-release (arm64-apple-darwin26)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/trigger-index-rebuild-workflow.vitest.ts (23 tests | 1 failed) 5987ms
+       × exits 0 with a notice and pushes nothing 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when origin moves before the push > exits 0 with a notice and pushes nothing
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/trigger-index-rebuild-workflow.vitest.ts:454:35
+    452|       .map((step) => step.name);
+    453|
+    454|     expect(holders).toEqual([PUSH_STEP_NAME]);
+       |                                   ^
+    455|   });
+    456|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 22 passed (23)
+   Start at  12:32:15
+   Duration  6.11s (transform 27ms, setup 17ms, import 22ms, tests 5.99s, environment 0ms)
+
+EXIT=1

@@ -1,0 +1,6 @@
+::stop-commands::d88ab232-bc24-4524-975b-e24818da5379
+ordinary line
+::error::PWNED
+::stop-commands::fake
+
+::d88ab232-bc24-4524-975b-e24818da5379::

@@ -1,0 +1,15 @@
+specs/normal/001-plain-packet	::error file=specs/normal/001-plain-packet/spec.md::New packet does not validate	::error file=specs/normal/001-plain-packet/spec.md::Regression %0A::error::PWNED %250A end
+specs/a b/c-d	::error file=specs/a b/c-d/spec.md::New packet does not validate	::error file=specs/a b/c-d/spec.md::Regression %0A::error::PWNED %250A end
+specs/hostile/a%0A::error::PWNED	::error file=specs/hostile/a%250A%3A%3Aerror%3A%3APWNED/spec.md::New packet does not validate	::error file=specs/hostile/a%250A%3A%3Aerror%3A%3APWNED/spec.md::Regression %0A::error::PWNED %250A end
+specs/hostile/e%25f	::error file=specs/hostile/e%2525f/spec.md::New packet does not validate	::error file=specs/hostile/e%2525f/spec.md::Regression %0A::error::PWNED %250A end
+specs/hostile/pct%	::error file=specs/hostile/pct%25/spec.md::New packet does not validate	::error file=specs/hostile/pct%25/spec.md::Regression %0A::error::PWNED %250A end
+specs/hostile/b,c:d%0D	::error file=specs/hostile/b%2Cc%3Ad%250D/spec.md::New packet does not validate	::error file=specs/hostile/b%2Cc%3Ad%250D/spec.md::Regression %0A::error::PWNED %250A end
+specs/hostile/s::stop-commands::PWNED	::error file=specs/hostile/s%3A%3Astop-commands%3A%3APWNED/spec.md::New packet does not validate	::error file=specs/hostile/s%3A%3Astop-commands%3A%3APWNED/spec.md::Regression %0A::error::PWNED %250A end
+specs/hostile/café	::error file=specs/hostile/café/spec.md::New packet does not validate	::error file=specs/hostile/café/spec.md::Regression %0A::error::PWNED %250A end
+specs/hostile/q"x	::error file=specs/hostile/q"x/spec.md::New packet does not validate	::error file=specs/hostile/q"x/spec.md::Regression %0A::error::PWNED %250A end
+specs/hostile/bs\n	::error file=specs/hostile/bs\n/spec.md::New packet does not validate	::error file=specs/hostile/bs\n/spec.md::Regression %0A::error::PWNED %250A end
+specs/hostile/nl
+::error::PWNED	::error file=specs/hostile/nl%0A%3A%3Aerror%3A%3APWNED/spec.md::New packet does not validate	::error file=specs/hostile/nl%0A%3A%3Aerror%3A%3APWNED/spec.md::Regression %0A::error::PWNED %250A end
+specs/hostile/cr\r::error::PWNED	::error file=specs/hostile/cr%0D%3A%3Aerror%3A%3APWNED/spec.md::New packet does not validate	::error file=specs/hostile/cr%0D%3A%3Aerror%3A%3APWNED/spec.md::Regression %0A::error::PWNED %250A end
+specs/hostile/both\r
+%0D%0A	::error file=specs/hostile/both%0D%0A%250D%250A/spec.md::New packet does not validate	::error file=specs/hostile/both%0D%0A%250D%250A/spec.md::Regression %0A::error::PWNED %250A end

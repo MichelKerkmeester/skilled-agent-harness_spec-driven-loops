@@ -1,0 +1,51 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/repair-derived.vitest.ts (20 tests | 1 failed | 19 skipped) 2509ms
+     × does not re-derive over a linked graph-metadata.json, in the dry run or with --apply 2507ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/repair-derived.vitest.ts > repair-derived > does not re-derive over a linked graph-metadata.json, in the dry run or with --apply
+AssertionError: expected 'repaired specs/.repair-fixture-linked…' to contain 'left unchanged specs/.repair-fixture-…'
+
+- Expected
++ Received
+
+- left unchanged specs/.repair-fixture-linked/001-linked-graph/graph-metadata.json: symbolic link, not followed
++ repaired specs/.repair-fixture-linked/001-linked-graph
++     spec folder -> 001-linked-graph
++     packet pointer -> .repair-fixture-linked/001-linked-graph
++     re-derive graph metadata
++
++ inspected=1 repaired=1 failed=0
++
++ Not repairable here — these record work someone did, and only they can write them:
++       1  ANCHORS_VALID
++       1  COMPLEXITY_MATCH
++       1  FILE_EXISTS
++       1  FRONTMATTER_MEMORY_BLOCK
++       1  FRONTMATTER_VALID
++       1  LEVEL_MATCH
++       1  TEMPLATE_SOURCE
++
+
+ ❯ tests/repair-derived.vitest.ts:411:28
+    409|
+    410|     const applied = runIn(workspace, ['--folder', dir, '--apply']);
+    411|     expect(applied.stdout).toContain(`left unchanged ${path.join(dir, …
+       |                            ^
+    412|     expect(fs.lstatSync(link).isSymbolicLink()).toBe(true);
+    413|     expect(fs.readFileSync(outside, 'utf8')).toBe(original);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 19 skipped (20)
+   Start at  11:54:26
+   Duration  2.60s (transform 19ms, setup 12ms, import 15ms, tests 2.51s, environment 0ms)
+

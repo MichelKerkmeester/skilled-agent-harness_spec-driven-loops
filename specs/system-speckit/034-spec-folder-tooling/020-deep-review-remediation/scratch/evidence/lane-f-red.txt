@@ -1,0 +1,178 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/upgrade-legacy.vitest.ts (45 tests | 4 failed | 38 skipped) 31851ms
+     × refuses a packet whose document is a link out of the packet and leaves the link target as it was 5792ms
+     × does not copy a file read through a link into the reversibility manifest 8131ms
+     × writes the baseline under a fresh temporary name so a link planted at a guessable name is not written through 333ms
+     × plans no step through a .opencode link that leaves the repository 21ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/upgrade-legacy.vitest.ts > upgrade-legacy link containment > refuses a packet whose document is a link out of the packet and leaves the link target as it was
+AssertionError: expected '---\ntitle: "Outside target [link-con…' to be '# Outside target\n\nNo frontmatter he…' // Object.is equality
+
+- Expected
++ Received
+
++ ---
++ title: "Outside target [link-containment/001-packet/spec]"
++ description: "No frontmatter here."
++ importance_tier: "normal"
++ contextType: "general"
++ ---
+  # Outside target
+
+  No frontmatter here.
+
+
+ ❯ tests/upgrade-legacy.vitest.ts:1639:52
+    1637|       const result = runUpgrade(['--apply', '--roots', folder]);
+    1638|       const output = result.stdout + result.stderr;
+    1639|       expect(fs.readFileSync(outsideFile, 'utf8')).toBe(outsideText);
+       |                                                    ^
+    1640|       expect(fs.lstatSync(specFile).isSymbolicLink()).toBe(true);
+    1641|       expect(output).toContain(`refused ${folder}`);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  |cli| tests/upgrade-legacy.vitest.ts > upgrade-legacy link containment > does not copy a file read through a link into the reversibility manifest
+AssertionError: expected '{\n  "schema": 1,\n  "repoRoot": "/pr…' not to contain 'b3V0c2lkZSBub3RlIGJ5dGVzCg=='
+
+- Expected
++ Received
+
+- b3V0c2lkZSBub3RlIGJ5dGVzCg==
++ {
++   "schema": 1,
++   "repoRoot": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/upgrade-legacy-vjI8xx",
++   "headSha": "1d63f2a7482db2c4443aeee8e1008adc307db2aa",
++   "recordedAt": "2026-10-10T05:38:50.812Z",
++   "status": "complete",
++   "baselineMap": {
++     "specs/link-containment/002-packet": null
++   },
++   "recordedBaselineMap": {
++     "specs/link-containment/002-packet": [
++       {
++         "rule": "ANCHORS_VALID",
++         "detail": "plan.md: no anchors found"
++       },
++       {
++         "rule": "ANCHORS_VALID",
++         "detail": "spec.md: no anchors found"
++       },
++       {
++         "rule": "ANCHORS_VALID",
++         "detail": "tasks.md: no anchors found"
++       },
++       {
++         "rule": "FRONTMATTER_VALID",
++         "detail": "plan.md: Empty required frontmatter field: trigger_phrases"
++       },
++       {
++         "rule": "FRONTMATTER_VALID",
++         "detail": "spec.md: Empty required frontmatter field: trigger_phrases"
++       },
++       {
++         "rule": "FRONTMATTER_VALID",
++         "detail": "tasks.md: Empty required frontmatter field: trigger_phrases"
++       },
++       {
++         "rule": "TEMPLATE_SOURCE",
++         "detail": "plan.md"
++       },
++       {
++         "rule": "TEMPLATE_SOURCE",
++         "detail": "spec.md"
++       },
++       {
++         "rule": "TEMPLATE_SOURCE",
++         "detail": "tasks.md"
++       }
++     ]
++   },
++   "scopeHashes": {
++     "specs/link-containment/002-packet": "c2008c18a56c5bb23006cb98a88c2936084d596ea3b1a936584aec4797ecb6cb"
++   },
++   "beforeImages": [
++     {
++       "path": "specs/link-containment/002-packet/nested/deeper/notes.md",
++       "beforeImage": {
++         "kind": "file-bytes",
++         "encoding": "base64",
++         "content": "b3V0c2lkZSBub3RlIGJ5dGVzCg==",
++         "mode": 420
++       }
++     }
++   ],
++   "completedAt": "2026-10-10T05:38:56.047Z"
++ }
++
+
+ ❯ tests/upgrade-legacy.vitest.ts:1666:28
+    1664|       const result = runUpgrade(['--apply', '--roots', folder]);
+    1665|       const manifest = fs.existsSync(upgradeManifestPath()) ? fs.readF…
+    1666|       expect(manifest).not.toContain(Buffer.from(secret).toString('bas…
+       |                            ^
+    1667|       expect(fs.readFileSync(outsideNote, 'utf8')).toBe(secret);
+    1668|       expect(result.status, result.stdout + result.stderr).toBe(2);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  |cli| tests/upgrade-legacy.vitest.ts > upgrade-legacy link containment > writes the baseline under a fresh temporary name so a link planted at a guessable name is not written through
+AssertionError: expected '{\n  "schema": 1,\n  "recordedBy": "u…' to be 'outside bytes\n' // Object.is equality
+
+- Expected
++ Received
+
+- outside bytes
++ {
++   "schema": 1,
++   "recordedBy": "upgrade-legacy",
++   "recordedAt": "2026-10-10T05:38:56.362Z",
++   "findings": [
++     {
++       "rule": "SAMPLE_RULE",
++       "detail": "sample detail"
++     }
++   ]
++ }
+
+
+ ❯ tests/upgrade-legacy.vitest.ts:1687:52
+    1685|     try {
+    1686|       recordFindings(folder, [finding], [fs.realpathSync(path.join(san…
+    1687|       expect(fs.readFileSync(outsideFile, 'utf8')).toBe('outside bytes…
+       |                                                    ^
+    1688|       expect(JSON.parse(fs.readFileSync(path.join(folder, 'upgrade-bas…
+    1689|     } finally {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  |cli| tests/upgrade-legacy.vitest.ts > upgrade-legacy layout links > plans no step through a .opencode link that leaves the repository
+AssertionError: expected '65144a49fb0776c57090412e3a0586a522c4d…' to be 'f1484d33e3a5715fc81b65dc87d9a1370b4f0…' // Object.is equality
+
+Expected: "f1484d33e3a5715fc81b65dc87d9a1370b4f0494a067aa7e15220a6964b75924"
+Received: "65144a49fb0776c57090412e3a0586a522c4d57b2948978d0356194c206cc306"
+
+ ❯ tests/upgrade-legacy.vitest.ts:1729:40
+    1727|       }
+    1728|
+    1729|       expect(treeFingerprint(outside)).toBe(before);
+       |                                        ^
+    1730|       expect(planned.steps).toEqual([]);
+    1731|       expect(planned.collisions).toEqual([{ from: '.opencode/specs', t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 3 passed | 38 skipped (45)
+   Start at  07:38:32
+   Duration  32.08s (transform 79ms, setup 16ms, import 110ms, tests 31.85s, environment 0ms)
+
+EXIT=1

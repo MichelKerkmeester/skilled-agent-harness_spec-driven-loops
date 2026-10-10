@@ -1,0 +1,1184 @@
+CLOSURE EVIDENCE: 020 CHK-FIX-005, test matrix for the path lanes
+==================================================================
+Question: on which axes were the path lanes tested, and for each row, which test file and case name covers it.
+Axes: target kind (plain, link inside, link outside, dangling link, dot segment, linked parent dir,
+linked folder argument, linked output file) x mode (dry run, apply) x tool.
+
+Method. No test was run here, so a COVERED row means a case with that target kind and mode exists in the
+suite, not that it passes. The suite run is T029, outside this file.
+  1. Every link setup in each suite is enumerated (rg of symlinkSync, ln -s, symlink() with line numbers).
+     Heal suites create links through a helper (linkedPacket), so its calls are enumerated too.
+  2. Each link setup is mapped to its enclosing case by scratchpad/classify.awk (outside the repository).
+     The case starts at the nearest it, it.each, test, describe or function test line.
+     A run call inside a link case is labelled APPLY when its own line carries the apply marker, otherwise DRY.
+     The label reads the call's line only: a multi-line call is not labelled from later lines, so each label
+     below was checked against the source line it names.
+     In the leaf suite the APPLY marker is runWrite (the write path); a DRY label there is a read or a
+     generate-without-write call. In the backfill suite the call is a write-path function, not the CLI, and
+     carries no mode marker.
+  3. Each COVERED row is backed by an rg -F receipt of its case name. A missing name prints nothing and exits 1.
+  4. Each MISSING row is backed by a search over its file and, where the search could have matched, a positive
+     control: the same search on a place where the pattern is known to match.
+Nothing in the repository was edited by this file's writer; the only write is this evidence file.
+
+== 0. Snapshot
+
+$ date -u +%Y-%m-%dT%H:%M:%SZ; git rev-parse --short HEAD
+2026-10-10T10:53:49Z
+4669db6522
+[exit=0]
+
+$ git status --short -- .skilled/skills/system-spec-kit/runtime/cli/tests .skilled/skills/system-spec-kit/runtime/tests .skilled/skills/sk-doc/sk-create-skill/scripts/tests; echo '(lines above are uncommitted working-tree changes at read time, made by other lanes; the receipts below were generated against this working tree)'
+ M .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/ci-rule-set-comparison.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-backfill.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/migrate-generated-json.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/tests/folder-discovery.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/tests/upgrade-baseline.vitest.ts
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/frontmatter-template-literals.vitest.ts
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/heal-target-parity.vitest.ts
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-provenance.vitest.ts
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts
+(lines above are uncommitted working-tree changes at read time, made by other lanes; the receipts below were generated against this working tree)
+[exit=0]
+
+$ shasum -a 256 .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts .skilled/skills/system-spec-kit/runtime/cli/tests/heal-target-parity.vitest.ts .skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts .skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup.vitest.ts .skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-provenance.vitest.ts .skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-backfill.vitest.ts .skilled/skills/system-spec-kit/runtime/tests/folder-discovery.vitest.ts .skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts .skilled/skills/system-spec-kit/runtime/tests/upgrade-baseline.vitest.ts .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs | cut -c1-16,67-
+05c4dd34486821f4.skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+e443be0e83f92e10.skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+11ee359bc21f64f3.skilled/skills/system-spec-kit/runtime/cli/tests/heal-target-parity.vitest.ts
+51b5c53903e97ff1.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts
+b16a6a30029517b9.skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+7a7c5cee9702e479.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+3064d73c35d45d7a.skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup.vitest.ts
+a9c6dfa254872b65.skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-provenance.vitest.ts
+c554dd4e311da5f7.skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-backfill.vitest.ts
+5bdacf218b8733a4.skilled/skills/system-spec-kit/runtime/tests/folder-discovery.vitest.ts
+b5cc3e7252065347.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts
+c04eac0e0cd187b2.skilled/skills/system-spec-kit/runtime/tests/upgrade-baseline.vitest.ts
+375689efadde070d.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+[exit=0]
+
+== 1. Complete enumeration of link setups per suite
+
+$ rg -n 'symlinkSync|ln -s|symlink[(]' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+80:  fs.symlinkSync(path.resolve(CLI_DIR, '..', '..'), path.join(repo, '.skilled', 'skills', 'system-spec-kit'), 'dir');
+140:      fs.symlinkSync(elsewhere, path.join(specs, 'linked'));
+142:      fs.symlinkSync(elsewhere, path.join(specs, 'tools', '002-linked'));
+464:      fs.symlinkSync(outside, path.join(specs, 'z_archive'), 'dir');
+481:    fs.symlinkSync(path.join(specs, '005-root', 'sub'), path.join(specs, 'z_archive'), 'dir');
+495:    fs.symlinkSync(notHome, path.join(specs, 'z_archive'), 'dir');
+510:    fs.symlinkSync(otherHome, path.join(specs, 'z_archive'), 'dir');
+525:      fs.symlinkSync(outside, path.join(specs, 'tools', 'z_archive'), 'dir');
+544:      fs.symlinkSync(outside, path.join(specs, 'tools', '001-a', 'z_archive'), 'dir');
+564:      fs.symlinkSync(outsideArchive, path.join(specs, 'z_archive'), 'dir');
+582:    fs.symlinkSync(notHome, path.join(specs, 'z_archive'), 'dir');
+597:    fs.symlinkSync(otherHome, path.join(specs, 'z_archive'), 'dir');
+613:      fs.symlinkSync(path.join(outside, 'missing'), path.join(specs, '005-root'));
+633:    fs.symlinkSync(otherHome, path.join(specs, 'z_archive'), 'dir');
+648:    fs.symlinkSync(otherHome, path.join(specs, 'z_archive'), 'dir');
+709:    fs.symlinkSync(missing, path.join(repo, link), 'dir');
+721:    fs.symlinkSync(missing, path.join(specs, 'z_archive'), 'dir');
+783:    fs.symlinkSync(missing, specs, 'dir');
+[exit=0]
+
+$ rg -n 'symlinkSync|linkedPacket[(]' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+81:function linkedPacket(root: string, name: string, docName: string, target: string): string {
+84:  fs.symlinkSync(target, path.join(packet, docName));
+93:    const packet = linkedPacket(root, '001-linked-spec', 'spec.md', outside);
+114:    const packet = linkedPacket(root, '001-linked-tasks', 'tasks.md', outside);
+152:    const packet = linkedPacket(root, '001-linked-anchor', 'spec.md', outside);
+172:    const packet = linkedPacket(root, '001-linked-lane', 'spec.md', outside);
+207:      '    fs.symlinkSync(process.env.HEAL_SWAP_OUTSIDE, file);',
+234:    const packet = linkedPacket(root, '001-dangling-spec', 'spec.md', missingTarget);
+274:    const packet = linkedPacket(root, '001-dangling-spec', 'spec.md', missingTarget);
+331:    fs.symlinkSync(outsidePacket, linked, 'dir');
+349:    fs.symlinkSync(missing, linked, 'dir');
+371:    fs.symlinkSync(path.join(specs, 'real-track'), path.join(specs, 'alias-track'), 'dir');
+[exit=0]
+
+$ rg -n 'symlinkSync|ln -s|symlink[(]' .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+34:  fs.symlinkSync(path.join(TOOL_TREE, '.skilled'), path.join(ROOT, '.skilled'), 'dir');
+358:      fs.symlinkSync(outside, path.join(packet, `.implementation-summary.md.repair-${pinnedPid}-${seq}.tmp`));
+382:    fs.symlinkSync(outside, link);
+405:    fs.symlinkSync(path.join(TOOL_TREE, '.skilled'), path.join(workspace, '.skilled'), 'dir');
+418:    fs.symlinkSync(outside, link);
+440:    fs.symlinkSync(path.join(TOOL_TREE, '.skilled'), path.join(workspace, '.skilled'), 'dir');
+451:    fs.symlinkSync(missing, link);
+479:    fs.symlinkSync(missing, link);
+506:    fs.symlinkSync(outside, link);
+511:    fs.symlinkSync(outside, link);
+547:      fs.symlinkSync(path.join(TOOL_TREE, TOOL), toolLink);
+[exit=0]
+
+$ rg -n 'symlinkSync|ln -s|symlink[(]' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+193:    if (fs.existsSync(source)) fs.symlinkSync(source, path.join(copy, relative), 'dir');
+283:    fs.symlinkSync(outsideTarget, specFile);
+840:      fs.symlinkSync('.opencode/specs', path.join(sandbox, 'specs'));
+1414:      fs.symlinkSync('../specs', path.join(current, '.opencode/specs'));
+1449:      fs.symlinkSync('.opencode/specs', path.join(linked, 'specs'));
+1547:      fs.symlinkSync('../elsewhere', path.join(elsewhere, '.opencode/specs'));
+1601:    fs.symlinkSync(path.join(copy, 'runtime/cli/spec/upgrade-legacy.mjs'), link);
+1634:    fs.symlinkSync(outsideFile, specFile);
+1662:    fs.symlinkSync(outsideDir, nested);
+1683:    fs.symlinkSync(outsideFile, path.join(folder, `upgrade-baseline.json.${process.pid}.tmp`));
+1703:    fs.symlinkSync(path.join('sources', 'plan-source.md'), path.join(packetFolder, 'plan.md'));
+1719:    fs.symlinkSync(outsideBaseline, baseline);
+1745:    fs.symlinkSync('spec-source.txt', path.join(packetFolder, 'spec.md'));
+1764:    fs.symlinkSync(outsideBaseline, baseline);
+1793:    fs.symlinkSync(missing, path.join(packetFolder, 'plan.md'));
+1824:    fs.symlinkSync(path.join('..', '010-sibling', 'plan.md'), path.join(packetFolder, 'plan.md'));
+1849:    fs.symlinkSync(path.join('sources', 'plan.md'), path.join(packetFolder, 'plan.md'));
+1873:      fs.symlinkSync(path.join(outside, 'opencode'), path.join(root, '.opencode'));
+[exit=0]
+
+$ rg -n 'symlinkSync|ln -s|symlink[(]' .skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-backfill.vitest.ts .skilled/skills/system-spec-kit/runtime/tests/folder-discovery.vitest.ts .skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts .skilled/skills/system-spec-kit/runtime/tests/upgrade-baseline.vitest.ts
+.skilled/skills/system-spec-kit/runtime/tests/folder-discovery.vitest.ts:1324:    fs.symlinkSync(outside, path.join(specDir, 'description.json'));
+.skilled/skills/system-spec-kit/runtime/tests/folder-discovery.vitest.ts:1379:    fs.symlinkSync(outside, cachePath);
+.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts:920:      if (layout === 'whole-link') fs.symlinkSync('.skilled', path.join(root, '.opencode'));
+.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts:965:    fs.symlinkSync(outside, path.join(specFolder, 'graph-metadata.json'));
+.skilled/skills/system-spec-kit/runtime/tests/upgrade-baseline.vitest.ts:211:    fs.symlinkSync(target, path.join(folder, 'upgrade-baseline.json'));
+.skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-backfill.vitest.ts:305:    fs.symlinkSync(outside, report);
+[exit=0]
+
+$ rg -n 'symlinkSync|ln -s|symlink[(]' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+260:  fs.symlinkSync(outside, path.join(skillDir, 'packet-a', 'references'), 'dir');
+283:  fs.symlinkSync(outside, path.join(skillDir, 'packet-a', 'references', 'ext'), 'dir');
+294:  fs.symlinkSync(path.join(outside, 'secret.md'), path.join(skillDir, 'packet-a', 'references', 'linked.md'));
+311:  fs.symlinkSync(path.join(skillDir, 'packet-a', 'shared-real'), path.join(skillDir, 'packet-a', 'references'), 'dir');
+326:  fs.symlinkSync(outsideFile, manifest);
+340:  fs.symlinkSync(outsideFile, path.join(skillDir, 'leaf-manifest.json'));
+353:  fs.symlinkSync(missing, manifest);
+391:      fs.symlinkSync(outsideFile, manifest);
+[exit=0]
+-- suites with no filesystem link setup: the link-vocabulary search returns nothing (exit 1); the same search on upgrade-legacy returns lines (positive control)
+
+$ rg -c -i -e 'symlink' -e 'lstat' -e 'readlink' -e 'isSymbolicLink' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-target-parity.vitest.ts .skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts .skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup.vitest.ts .skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-provenance.vitest.ts
+[exit=1]
+
+$ rg -c -i -e 'symlink' -e 'lstat' -e 'readlink' -e 'isSymbolicLink' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+34
+[exit=0]
+
+== 2. Link setups mapped to their enclosing case, with run calls labelled APPLY or DRY
+
+$ rg -n -i -e 'dry' -e '--apply' .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh; echo '(no line above = archive.sh has no dry-run or --apply flag; the lines above are its refresh and repair calls, not a mode)'
+182:        log_warning "${track}/graph-metadata.json was not refreshed: $refresh_script is missing. Restore it, then run refresh-track-roots.mjs --track ${track} --apply."
+185:    if ! node "$refresh_script" --specs "$specs_root" --track "$track" --apply; then
+186:        log_warning "${track}/graph-metadata.json was not refreshed. Rerun refresh-track-roots.mjs --track ${track} --apply."
+200:        log_warning "Recorded paths under $destination were not re-derived: $repair_script is missing. Restore it, then run repair-derived.cjs --roots $destination --apply."
+203:    if ! node "$repair_script" --roots "$destination" --apply >/dev/null; then
+204:        log_warning "Recorded paths under $destination may still name the old folder. Rerun repair-derived.cjs --roots $destination --apply and read its report."
+(no line above = archive.sh has no dry-run or --apply flag; the lines above are its refresh and repair calls, not a mode)
+[exit=0]
+
+$ rg -c -e '--list' .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh
+5
+[exit=0]
+
+$ awk -f /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/classify.awk -v runre='NOMATCH_RUN' -v applyre='NOMATCH_APPLY' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+case L0 ((before the first case, or a helper))
+    link lines: 80 | apply-marker lines in case: 0
+case L136 (it('leaves a symlinked track out of the list, since its packets cannot be moved from here', () => {)
+    link lines: 140 142 | apply-marker lines in case: 0
+case L458 (it('refuses a root packet whose z_archive links outside specs, and changes neither side', () => {)
+    link lines: 464 | apply-marker lines in case: 0
+case L476 (it('refuses a z_archive that links into the packet being archived, and leaves the packet whole', () => {)
+    link lines: 481 | apply-marker lines in case: 0
+case L489 (it('refuses a z_archive that links to a folder that is not a packet home, and leaves the packet whole', () => {)
+    link lines: 495 | apply-marker lines in case: 0
+case L504 (it('refuses a z_archive that links into another packet home, and leaves the packet whole', () => {)
+    link lines: 510 | apply-marker lines in case: 0
+case L519 (it('refuses a track packet whose track z_archive links outside specs, and leaves the track list alone', () => {)
+    link lines: 525 | apply-marker lines in case: 0
+case L538 (it('refuses a phase whose parent z_archive links outside specs', () => {)
+    link lines: 544 | apply-marker lines in case: 0
+case L558 (it('refuses to restore a folder that is reachable only through a link outside specs', () => {)
+    link lines: 564 | apply-marker lines in case: 0
+case L577 (it('refuses to restore through a z_archive that links to a folder that is not a packet home', () => {)
+    link lines: 582 | apply-marker lines in case: 0
+case L592 (it('refuses to restore through a z_archive that links into another packet home', () => {)
+    link lines: 597 | apply-marker lines in case: 0
+case L607 (it('refuses to restore onto a link at the target, and moves nothing', () => {)
+    link lines: 613 | apply-marker lines in case: 0
+case L628 (it('refuses a restore path with a . segment that reaches a folder through a linked z_archive', () => {)
+    link lines: 633 | apply-marker lines in case: 0
+case L643 (it('refuses a restore path with a .. segment, and moves nothing', () => {)
+    link lines: 648 | apply-marker lines in case: 0
+case L684 (it.each([)
+    link lines: 709 | apply-marker lines in case: 0
+case L719 (it('refuses a restore through a dangling z_archive, follows nothing and creates no link target', () => {)
+    link lines: 721 | apply-marker lines in case: 0
+case L780 (it('refuses when the specs root is a dangling link, and creates nothing through it', () => {)
+    link lines: 783 | apply-marker lines in case: 0
+[exit=0]
+
+$ awk -f /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/classify.awk -v runre='HEAL_SPEC_DOCS' -v applyre='--apply' -v linkre='symlinkSync|linkedPacket[(]' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+case L0 ((before the first case, or a helper))
+    link lines: 81 84 | apply-marker lines in case: 0
+
+      run L15 DRY: const HEAL_SPEC_DOCS = path.join(CLI_DIR, 'spec', 'heal-spec-docs.cjs');
+case L89 (it('default healer --apply leaves a symlinked spec.md and its outside target untouched', () => {)
+    link lines: 93 | apply-marker lines in case: 2
+
+      run L96 APPLY:     const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--roots', path.join(root, 'specs'), '--apply'], {
+case L109 (it('default healer --apply leaves a symlinked tasks.md with an empty trigger list untouched', () => {)
+    link lines: 114 | apply-marker lines in case: 2
+
+      run L119 APPLY:     const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--roots', path.join(root, 'specs'), '--apply'], {
+case L132 (it('--anchor-repair --apply leaves a symlinked spec.md and its outside target untouched', () => {)
+    link lines: 152 | apply-marker lines in case: 2
+
+      run L155 APPLY:     const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--anchor-repair', '--roots', path.join(root, 'specs'), '--apply'], {
+case L168 (it('--lane-modes --apply leaves a symlinked spec.md and its outside target untouched', () => {)
+    link lines: 172 | apply-marker lines in case: 2
+
+      run L175 APPLY:     const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--lane-modes', '--roots', path.join(root, 'specs'), '--apply'], {
+case L186 (it('default healer --apply replaces a spec.md that becomes a link after it is read, and leaves the outside target untouc)
+    link lines: 207 | apply-marker lines in case: 2
+
+      run L216 APPLY:       ['-r', preload, HEAL_SPEC_DOCS, '--roots', path.join(root, 'specs'), '--apply'],
+case L231 (it('default healer --apply reports a dangling spec.md link as refused and does not create its target', () => {)
+    link lines: 234 | apply-marker lines in case: 2
+
+      run L237 APPLY:     const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--roots', path.join(root, 'specs'), '--apply'], {
+case L268 (it.each<[string, () => string, string, string]>([)
+    link lines: 274 | apply-marker lines in case: 2
+
+      run L277 APPLY:     const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, flag, '--roots', path.join(root, 'specs'), '--apply'], {
+case L321 (it.each(modes)('%s --apply refuses a linked --folder and leaves the packet behind the link untouched', (_label, flags, s)
+    link lines: 331 | apply-marker lines in case: 2
+
+      run L333 APPLY:     const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, ...flags, '--folder', linked, '--roots', specs, '--apply'], {
+case L343 (it.each(modes)('%s --apply refuses a dangling --folder and creates nothing at its target', (_label, flags) => {)
+    link lines: 349 | apply-marker lines in case: 2
+
+      run L351 APPLY:     const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, ...flags, '--folder', linked, '--roots', specs, '--apply'], {
+case L363 (it('refuses a --folder reached through a linked component inside the specs root', () => {)
+    link lines: 371 | apply-marker lines in case: 2
+
+      run L373 APPLY:     const aliased = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--folder', path.join(specs, 'alias-track', '020-packet'), '--roots', specs, '--apply
+      run L383 APPLY:     const direct = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--folder', real, '--roots', specs, '--apply'], {
+[exit=0]
+
+$ awk -f /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/classify.awk -v runre='runEntrypoint[(]' -v applyre='--apply' -v linkre='NOMATCH_LINK' -v showall=1 .skilled/skills/system-spec-kit/runtime/cli/tests/heal-target-parity.vitest.ts
+case L0 ((before the first case, or a helper))
+
+      run L75 DRY: function runEntrypoint(entry: { flags: string[] }, args: string[], cwd?: string) {
+case L93 (it('each entrypoint discovers the same packets under --roots', () => {)
+
+      run L98 DRY:       const result = runEntrypoint(entry, ['--roots', specs]);
+case L104 (it('each entrypoint defaults the specs root to the working directory', () => {)
+
+      run L110 DRY:       const result = runEntrypoint(entry, [], root);
+case L116 (it('each entrypoint narrows to the one packet named by --folder, with or without --roots', () => {)
+
+      run L120 DRY:       const alone = runEntrypoint(entry, ['--folder', packetA]);
+      run L124 DRY:       const withRoots = runEntrypoint(entry, ['--folder', packetA, '--roots', specs]);
+case L130 (it('the default and anchor-repair summaries count the same packets', () => {)
+
+      run L133 DRY:     const defaults = runEntrypoint(ENTRYPOINTS[0], ['--roots', specs]);
+      run L134 DRY:     const anchors = runEntrypoint(ENTRYPOINTS[1], ['--roots', specs]);
+[exit=0]
+
+$ awk -f /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/classify.awk -v runre='NOMATCH_RUN' -v applyre='NOMATCH_APPLY' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts; echo '(no case above = no filesystem link in heal-lane-modes)'
+(no case above = no filesystem link in heal-lane-modes)
+[exit=0]
+
+$ awk -f /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/classify.awk -v runre='run[(][[]|runIn[(]' -v applyre='--apply' .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+case L0 ((before the first case, or a helper))
+    link lines: 34 | apply-marker lines in case: 0
+
+      run L69 DRY: function runIn(cwd: string, args: string[]): { status: number; stdout: string } {
+case L345 (it('does not write through a link planted at the predictable repair temp name', () => {)
+    link lines: 358 | apply-marker lines in case: 1
+
+      run L361 APPLY:     run(['--folder', dir, '--apply'], undefined, ['--import', pathToFileURL(pinPidPreload(pinnedPid)).href]);
+case L371 (it('refuses a rewrite target that is a symbolic link and leaves its target untouched', () => {)
+    link lines: 382 | apply-marker lines in case: 1
+
+      run L384 APPLY:     const result = run(['--folder', dir, '--apply']);
+case L396 (it('does not re-derive over a linked graph-metadata.json, in the dry run or with --apply', () => {)
+    link lines: 405 418 | apply-marker lines in case: 2
+
+      run L420 DRY:     const dryRun = runIn(workspace, ['--folder', dir]);
+      run L424 APPLY:     const applied = runIn(workspace, ['--folder', dir, '--apply']);
+case L435 (it('refuses a dangling graph-metadata.json link in the dry run and with --apply, and creates nothing at its target', () )
+    link lines: 440 451 | apply-marker lines in case: 2
+
+      run L453 DRY:     const dryRun = runIn(workspace, ['--folder', dir]);
+      run L459 APPLY:     const applied = runIn(workspace, ['--folder', dir, '--apply']);
+case L470 (it('treats a dangling description.json link as absent and creates nothing at its target', () => {)
+    link lines: 479 | apply-marker lines in case: 1
+
+      run L481 APPLY:     const result = run(['--folder', dir, '--apply']);
+case L492 (it('treats a live plan.md link as absent: its outside level reaches no plan, output or written file', () => {)
+    link lines: 506 511 547 | apply-marker lines in case: 1
+
+      run L508 DRY:     const linked = run(['--folder', dir]);
+      run L510 DRY:     const absent = run(['--folder', dir]);
+      run L519 APPLY:     const applied = run(['--folder', dir, '--apply']);
+[exit=0]
+
+$ awk -f /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/classify.awk -v runre='runUpgrade[(]' -v applyre='--apply' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+case L0 ((before the first case, or a helper))
+    link lines: 193 | apply-marker lines in case: 1
+
+      run L28 DRY: function runUpgrade(args: string[], env: Record<string, string | undefined> = {}) {
+      run L156 APPLY:   const applied = runUpgrade(['--apply', '--roots', 'specs/system-spec-kit']);
+case L273 (it('dry run repairs a symlinked packet document only inside the preview', () => {)
+    link lines: 283 | apply-marker lines in case: 0
+
+      run L286 DRY:       const result = runUpgrade(['--roots', folder]);
+case L831 (it('asks for the v4 layout, and the move it prints works on a v3 checkout', () => {)
+    link lines: 840 | apply-marker lines in case: 2
+
+      run L843 APPLY:       const refused = runUpgrade(['--apply']);
+      run L849 APPLY:       const upgraded = runUpgrade(['--apply']);
+case L1395 (it('reports none without roots and v4 with a current root', () => {)
+    link lines: 1414 | apply-marker lines in case: 0
+case L1423 (it('plans the v3 move with and without the specs symlink, and the steps leave v4', () => {)
+    link lines: 1449 | apply-marker lines in case: 0
+case L1500 (it('lists one collision per reason with from and to, and plans no steps', () => {)
+    link lines: 1547 | apply-marker lines in case: 0
+case L1590 (it('serves --layout-map over the CLI and stays quiet when imported', () => {)
+    link lines: 1601 | apply-marker lines in case: 1
+
+      run L1591 DRY:     const mapped = runUpgrade(['--layout-map']);
+      run L1597 APPLY:     const rejected = runUpgrade(['--layout-map', '--apply']);
+case L1625 (it('refuses a packet whose document is a link out of the packet and leaves the link target as it was', () => {)
+    link lines: 1634 | apply-marker lines in case: 1
+
+      run L1637 APPLY:       const result = runUpgrade(['--apply', '--roots', folder]);
+case L1650 (it('does not copy a file read through a link into the reversibility manifest', () => {)
+    link lines: 1662 | apply-marker lines in case: 1
+
+      run L1665 APPLY:       const result = runUpgrade(['--apply', '--roots', folder]);
+case L1676 (it('writes the baseline under a fresh temporary name so a link planted at a guessable name is not written through', () =)
+    link lines: 1683 | apply-marker lines in case: 0
+case L1696 (it('still repairs a link whose target stays inside the packet', () => {)
+    link lines: 1703 | apply-marker lines in case: 1
+
+      run L1705 APPLY:     const result = runUpgrade(['--apply', '--roots', folder]);
+case L1711 (it('does not read findings from a baseline that is a link out of the packet', () => {)
+    link lines: 1719 | apply-marker lines in case: 0
+
+      run L1722 DRY:       const result = runUpgrade(['--roots', folder]);
+case L1737 (it('leaves an archived spec.md that links to a file in the same packet, and that file, unchanged', () => {)
+    link lines: 1745 | apply-marker lines in case: 1
+
+      run L1747 APPLY:     const result = runUpgrade(['--apply', '--include-archive', '--roots', 'specs/z_archive']);
+case L1755 (it('leaves findings read through a linked baseline out of the apply census', () => {)
+    link lines: 1764 | apply-marker lines in case: 1
+
+      run L1767 APPLY:       const result = runUpgrade(['--apply', '--roots', folder]);
+case L1780 (it.each([)
+    link lines: 1793 | apply-marker lines in case: 1
+
+      run L1798 DRY:       const dryRun = runUpgrade(['--roots', folder]);
+      run L1802 APPLY:       const result = runUpgrade(['--apply', '--roots', folder]);
+case L1817 (it('refuses a document that links to a sibling packet, and leaves the sibling as it was', () => {)
+    link lines: 1824 | apply-marker lines in case: 1
+
+      run L1828 APPLY:     const result = runUpgrade(['--apply', '--roots', folder]);
+case L1838 (it('writes nothing for a passing packet that links inside itself, and keeps its baseline', () => {)
+    link lines: 1849 | apply-marker lines in case: 2
+
+      run L1843 APPLY:     const settled = runUpgrade(['--apply', '--roots', folder]);
+      run L1853 APPLY:     const result = runUpgrade(['--apply', '--roots', folder]);
+case L1864 (it('plans no step through a .opencode link that leaves the repository', () => {)
+    link lines: 1873 | apply-marker lines in case: 0
+[exit=0]
+
+$ awk -f /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/classify.awk -v runre='buildManifestBytes[(]|runWrite[(]|readManifest[(]' -v applyre='runWrite[(]' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+case L252 (function testLinkedDefaultRootOutsideSkillFails() {)
+    link lines: 260 | apply-marker lines in case: 0
+
+      run L262 DRY:     () => generator.buildManifestBytes(skillDir),
+case L280 (function testLinkedDeclaredScopeOutsideSkillFails() {)
+    link lines: 283 | apply-marker lines in case: 0
+
+      run L286 DRY:     () => generator.buildManifestBytes(skillDir),
+case L291 (function testLinkedFileScopeOutsideSkillFails() {)
+    link lines: 294 | apply-marker lines in case: 0
+
+      run L297 DRY:     () => generator.buildManifestBytes(skillDir),
+case L304 (function testLinkedRootInsideSkillStillWalks() {)
+    link lines: 311 | apply-marker lines in case: 0
+
+      run L312 DRY:   assert.deepEqual(readManifest(skillDir).modes[0].leaves, ['references/x.md']);
+case L321 (function testLinkedManifestWriteIsRefused() {)
+    link lines: 326 | apply-marker lines in case: 1
+
+      run L328 APPLY:     () => generator.runWrite(skillDir),
+case L336 (function testLinkedManifestWriteExitsNonZero() {)
+    link lines: 340 | apply-marker lines in case: 0
+case L349 (function testDanglingManifestWriteIsRefused() {)
+    link lines: 353 | apply-marker lines in case: 1
+
+      run L355 APPLY:     () => generator.runWrite(skillDir),
+case L379 (function testManifestSwappedToLinkDuringBuildKeepsOutsideFile() {)
+    link lines: 391 | apply-marker lines in case: 1
+
+      run L396 APPLY:     generator.runWrite(skillDir);
+      run L404 DRY:   assert.ok(fs.readFileSync(manifest).equals(generator.buildManifestBytes(skillDir)));
+[exit=0]
+
+$ awk -f /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/classify.awk -v runre='writePruneReportArtifact[(]' -v applyre='NOMATCH_APPLY' .skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-backfill.vitest.ts
+case L296 (it('refuses a destination that is a symbolic link and leaves the link target untouched', () => {)
+    link lines: 305 | apply-marker lines in case: 0
+
+      run L307 DRY:     expect(() => writePruneReportArtifact(report, createPruneReportArtifact('specs', []))).toThrow('symbolic link, not followed');
+[exit=0]
+
+$ awk -f /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/classify.awk -v runre='NOMATCH_RUN' -v applyre='NOMATCH_APPLY' .skilled/skills/system-spec-kit/runtime/tests/folder-discovery.vitest.ts .skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts .skilled/skills/system-spec-kit/runtime/tests/upgrade-baseline.vitest.ts
+case L1301 (describe('description.json symbolic link is not followed', () => {)
+    link lines: 1324 | apply-marker lines in case: 0
+case L1363 (it('upserts over a linked descriptions.json without carrying the outside rows in', () => {)
+    link lines: 1379 | apply-marker lines in case: 0
+case L2307 (it(`${layout}: resolves a repository-relative key file for a packet under the canonical specs root`, () => {)
+    link lines: 2315 | apply-marker lines in case: 0
+case L2342 (describe('graph metadata symbolic link is not followed', () => {)
+    link lines: 2360 | apply-marker lines in case: 0
+case L2593 (it('refuses a baseline that is a link to a file outside the packet, and says so', () => {)
+    link lines: 2599 | apply-marker lines in case: 0
+[exit=0]
+
+== 3. Receipts for COVERED rows (each name is found in its file; exit 1 with no line would mean the name is wrong)
+-- archive (archive-track.vitest.ts; archive.sh has no mode, every call applies)
+
+$ rg -n -F -- 'archives a track packet into its own track and drops it from the list' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+93:  it('archives a track packet into its own track and drops it from the list', () => {
+[exit=0]
+
+$ rg -n -F -- 'restores a track packet to its track and lists it again' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+104:  it('restores a track packet to its track and lists it again', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a root packet whose z_archive links outside specs, and changes neither side' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+458:  it('refuses a root packet whose z_archive links outside specs, and changes neither side', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a z_archive that links into the packet being archived, and leaves the packet whole' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+476:  it('refuses a z_archive that links into the packet being archived, and leaves the packet whole', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a z_archive that links to a folder that is not a packet home, and leaves the packet whole' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+489:  it('refuses a z_archive that links to a folder that is not a packet home, and leaves the packet whole', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a z_archive that links into another packet home, and leaves the packet whole' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+504:  it('refuses a z_archive that links into another packet home, and leaves the packet whole', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a track packet whose track z_archive links outside specs, and leaves the track list alone' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+519:  it('refuses a track packet whose track z_archive links outside specs, and leaves the track list alone', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a phase whose parent z_archive links outside specs' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+538:  it('refuses a phase whose parent z_archive links outside specs', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a dangling z_archive under $label, moves nothing and creates no link target' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+706:  ])('refuses a dangling z_archive under $label, moves nothing and creates no link target', ({ link, folder, setup }) => {
+[exit=0]
+
+$ rg -n -F -- 'refuses to restore onto a link at the target, and moves nothing' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+607:  it('refuses to restore onto a link at the target, and moves nothing', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a restore through a dangling z_archive, follows nothing and creates no link target' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+719:  it('refuses a restore through a dangling z_archive, follows nothing and creates no link target', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses to restore a folder that is reachable only through a link outside specs' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+558:  it('refuses to restore a folder that is reachable only through a link outside specs', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses to restore through a z_archive that links to a folder that is not a packet home' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+577:  it('refuses to restore through a z_archive that links to a folder that is not a packet home', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses to restore through a z_archive that links into another packet home' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+592:  it('refuses to restore through a z_archive that links into another packet home', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses an archive path with a . segment, and moves nothing' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+658:  it('refuses an archive path with a . segment, and moves nothing', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses an archive path with a .. segment, and moves nothing' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+669:  it('refuses an archive path with a .. segment, and moves nothing', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a restore path with a . segment that reaches a folder through a linked z_archive' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+628:  it('refuses a restore path with a . segment that reaches a folder through a linked z_archive', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a restore path with a .. segment, and moves nothing' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+643:  it('refuses a restore path with a .. segment, and moves nothing', () => {
+[exit=0]
+
+$ rg -n -F -- 'leaves a symlinked track out of the list' .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts
+136:  it('leaves a symlinked track out of the list, since its packets cannot be moved from here', () => {
+[exit=0]
+-- heal (heal-symlink-containment, heal-target-parity, heal-lane-modes)
+
+$ rg -n -F -- 'default healer --apply leaves a symlinked spec.md and its outside target untouched' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+89:  it('default healer --apply leaves a symlinked spec.md and its outside target untouched', () => {
+[exit=0]
+
+$ rg -n -F -- 'default healer --apply leaves a symlinked tasks.md with an empty trigger list untouched' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+109:  it('default healer --apply leaves a symlinked tasks.md with an empty trigger list untouched', () => {
+[exit=0]
+
+$ rg -n -F -- '--anchor-repair --apply leaves a symlinked spec.md and its outside target untouched' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+132:  it('--anchor-repair --apply leaves a symlinked spec.md and its outside target untouched', () => {
+[exit=0]
+
+$ rg -n -F -- '--lane-modes --apply leaves a symlinked spec.md and its outside target untouched' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+168:  it('--lane-modes --apply leaves a symlinked spec.md and its outside target untouched', () => {
+[exit=0]
+
+$ rg -n -F -- 'default healer --apply replaces a spec.md that becomes a link after it is read, and leaves the outside target untouched' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+186:  it('default healer --apply replaces a spec.md that becomes a link after it is read, and leaves the outside target untouched', () => {
+[exit=0]
+
+$ rg -n -F -- 'default healer --apply reports a dangling spec.md link as refused and does not create its target' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+231:  it('default healer --apply reports a dangling spec.md link as refused and does not create its target', () => {
+[exit=0]
+
+$ rg -n -F -- '%s --apply refuses a dangling spec.md and does not create its target' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+271:  ])('%s --apply refuses a dangling spec.md and does not create its target', (flag, spec, healedVerb, refusedVerb) => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a --folder reached through a linked component inside the specs root' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+363:  it('refuses a --folder reached through a linked component inside the specs root', () => {
+[exit=0]
+
+$ rg -n -F -- '%s --apply refuses a linked --folder and leaves the packet behind the link untouched' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+321:  it.each(modes)('%s --apply refuses a linked --folder and leaves the packet behind the link untouched', (_label, flags, spec) => {
+[exit=0]
+
+$ rg -n -F -- '%s --apply refuses a dangling --folder and creates nothing at its target' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+343:  it.each(modes)('%s --apply refuses a dangling --folder and creates nothing at its target', (_label, flags) => {
+[exit=0]
+
+$ rg -n -F -- 'default healer --apply changes no bytes on a plain packet with nothing left to heal' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+250:  it('default healer --apply changes no bytes on a plain packet with nothing left to heal', () => {
+[exit=0]
+
+$ rg -n -F -- 'each entrypoint narrows to the one packet named by --folder, with or without --roots' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-target-parity.vitest.ts
+116:  it('each entrypoint narrows to the one packet named by --folder, with or without --roots', () => {
+[exit=0]
+
+$ rg -n -F -- 'lane-modes-cli-dry-run' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts
+665:  it('lane-modes-cli-dry-run', () => {
+[exit=0]
+-- heal-lane-modes: dot segments in relative paths read by the archive classifier (table entries; the it.each opens at line 1149)
+
+$ sed -n '1149,1149p;1169,1177p' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts | cut -c1-150
+  it.each([
+    {
+      name: '.. segments resolving into z_archive read as archived',
+      relative: 'specs/t/001-x/../z_archive/001-x/implementation-summary.md',
+      archived: true,
+    },
+    {
+      name: '.. segments resolving out of z_archive read as live',
+      relative: 'specs/t/z_archive/001-x/../../001-live/implementation-summary.md',
+      archived: false,
+[exit=0]
+
+$ rg -n -F -- '.. segments resolving into z_archive read as archived' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts
+1170:      name: '.. segments resolving into z_archive read as archived',
+[exit=0]
+-- leaf manifest (generate-leaf-manifest-scopes.test.cjs; cases are functions run from the runner)
+
+$ rg -n -F -- 'function testDistinctPacketsGenerateWithoutScopes' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+94:function testDistinctPacketsGenerateWithoutScopes() {
+[exit=0]
+
+$ rg -n -F -- 'function testCheckOnUnchangedSkillIsNoOp' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+364:function testCheckOnUnchangedSkillIsNoOp() {
+[exit=0]
+
+$ rg -n -F -- 'function testLinkedRootInsideSkillStillWalks' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+304:function testLinkedRootInsideSkillStillWalks() {
+[exit=0]
+
+$ rg -n -F -- 'function testLinkedDefaultRootOutsideSkillFails' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+252:function testLinkedDefaultRootOutsideSkillFails() {
+[exit=0]
+
+$ rg -n -F -- 'function testLinkedDeclaredScopeOutsideSkillFails' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+280:function testLinkedDeclaredScopeOutsideSkillFails() {
+[exit=0]
+
+$ rg -n -F -- 'function testLinkedFileScopeOutsideSkillFails' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+291:function testLinkedFileScopeOutsideSkillFails() {
+[exit=0]
+
+$ rg -n -F -- 'function testLinkedManifestWriteIsRefused' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+321:function testLinkedManifestWriteIsRefused() {
+[exit=0]
+
+$ rg -n -F -- 'function testLinkedManifestWriteExitsNonZero' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+336:function testLinkedManifestWriteExitsNonZero() {
+[exit=0]
+
+$ rg -n -F -- 'function testDanglingManifestWriteIsRefused' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+349:function testDanglingManifestWriteIsRefused() {
+[exit=0]
+
+$ rg -n -F -- 'function testManifestSwappedToLinkDuringBuildKeepsOutsideFile' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+379:function testManifestSwappedToLinkDuringBuildKeepsOutsideFile() {
+[exit=0]
+
+$ rg -n -F -- 'function testScopeEscapingPacketOrRootFails' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+186:function testScopeEscapingPacketOrRootFails() {
+[exit=0]
+
+$ rg -n -F -- 'function testDotNamedDirectoryDoesNotChangeManifest' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+220:function testDotNamedDirectoryDoesNotChangeManifest() {
+[exit=0]
+-- repair-derived
+
+$ rg -n -F -- 'reports repairable=0 and writes nothing for a clean packet in a dry run' .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+219:  it('reports repairable=0 and writes nothing for a clean packet in a dry run', () => {
+[exit=0]
+
+$ rg -n -F -- 'reports without writing unless application is requested' .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+232:  it('reports without writing unless application is requested', () => {
+[exit=0]
+
+$ rg -n -F -- 'rewrites a stale recorded location from the packet path on disk' .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+168:  it('rewrites a stale recorded location from the packet path on disk', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a rewrite target that is a symbolic link and leaves its target untouched' .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+371:  it('refuses a rewrite target that is a symbolic link and leaves its target untouched', () => {
+[exit=0]
+
+$ rg -n -F -- 'treats a live plan.md link as absent: its outside level reaches no plan, output or written file' .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+492:  it('treats a live plan.md link as absent: its outside level reaches no plan, output or written file', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a dangling graph-metadata.json link in the dry run and with --apply, and creates nothing at its target' .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+435:  it('refuses a dangling graph-metadata.json link in the dry run and with --apply, and creates nothing at its target', () => {
+[exit=0]
+
+$ rg -n -F -- 'does not re-derive over a linked graph-metadata.json, in the dry run or with --apply' .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+396:  it('does not re-derive over a linked graph-metadata.json, in the dry run or with --apply', () => {
+[exit=0]
+
+$ rg -n -F -- 'treats a dangling description.json link as absent and creates nothing at its target' .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+470:  it('treats a dangling description.json link as absent and creates nothing at its target', () => {
+[exit=0]
+
+$ rg -n -F -- 'does not write through a link planted at the predictable repair temp name' .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+345:  it('does not write through a link planted at the predictable repair temp name', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a target outside the packet tree' .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+125:  it('refuses a target outside the packet tree', () => {
+[exit=0]
+
+$ sed -n '125,130p' .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts | cut -c1-150
+  it('refuses a target outside the packet tree', () => {
+    const outside = run(['--folder', '.skilled/skills']);
+    expect(outside.status).toBe(2);
+    const traversal = run(['--folder', '../elsewhere']);
+    expect(traversal.status).toBe(2);
+  });
+[exit=0]
+-- upgrade-legacy and upgrade-baseline
+
+$ rg -n -F -- 'reports a failing legacy packet on a dry run and writes nothing' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+262:  it('reports a failing legacy packet on a dry run and writes nothing', () => {
+[exit=0]
+
+$ rg -n -F -- 'repairs with --apply, records what remains and leaves the packet passing' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+333:  it('repairs with --apply, records what remains and leaves the packet passing', () => {
+[exit=0]
+
+$ rg -n -F -- 'still repairs a link whose target stays inside the packet' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+1696:  it('still repairs a link whose target stays inside the packet', () => {
+[exit=0]
+
+$ rg -n -F -- 'writes nothing for a passing packet that links inside itself, and keeps its baseline' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+1838:  it('writes nothing for a passing packet that links inside itself, and keeps its baseline', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a packet whose document is a link out of the packet and leaves the link target as it was' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+1625:  it('refuses a packet whose document is a link out of the packet and leaves the link target as it was', () => {
+[exit=0]
+
+$ rg -n -F -- 'dry run repairs a symlinked packet document only inside the preview' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+273:  it('dry run repairs a symlinked packet document only inside the preview', () => {
+[exit=0]
+
+$ rg -n -F -- 'does not copy a file read through a link into the reversibility manifest' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+1650:  it('does not copy a file read through a link into the reversibility manifest', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a packet whose document is a dangling link to a file $label, and writes nothing' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+1783:  ])('refuses a packet whose document is a dangling link to a file $label, and writes nothing', ({ outside }) => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a document that links to a sibling packet, and leaves the sibling as it was' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+1817:  it('refuses a document that links to a sibling packet, and leaves the sibling as it was', () => {
+[exit=0]
+
+$ rg -n -F -- 'writes the baseline under a fresh temporary name so a link planted at a guessable name is not written through' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+1676:  it('writes the baseline under a fresh temporary name so a link planted at a guessable name is not written through', () => {
+[exit=0]
+
+$ rg -n -F -- 'leaves findings read through a linked baseline out of the apply census' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+1755:  it('leaves findings read through a linked baseline out of the apply census', () => {
+[exit=0]
+
+$ rg -n -F -- 'does not read findings from a baseline that is a link out of the packet' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+1711:  it('does not read findings from a baseline that is a link out of the packet', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a baseline that is a link to a file outside the packet, and says so' .skilled/skills/system-spec-kit/runtime/tests/upgrade-baseline.vitest.ts
+205:  it('refuses a baseline that is a link to a file outside the packet, and says so', () => {
+[exit=0]
+
+$ rg -n -F -- 'leaves an archived spec.md that links to a file in the same packet, and that file, unchanged' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+1737:  it('leaves an archived spec.md that links to a file in the same packet, and that file, unchanged', () => {
+[exit=0]
+
+$ rg -n -F -- 'plans no step through a .opencode link that leaves the repository' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+1864:  it('plans no step through a .opencode link that leaves the repository', () => {
+[exit=0]
+
+$ rg -n -F -- 'asks for the v4 layout, and the move it prints works on a v3 checkout' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+831:  it('asks for the v4 layout, and the move it prints works on a v3 checkout', () => {
+[exit=0]
+-- phrase cleanup, backfill prune report, read paths
+
+$ rg -n -F -- 'keeps dry runs byte-identical and skips archived packets by default' .skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup.vitest.ts
+240:  it('keeps dry runs byte-identical and skips archived packets by default', () => {
+[exit=0]
+
+$ rg -n -F -- 'replaces only the template blocks, preserves author phrases and reports file hashes' .skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup.vitest.ts
+263:  it('replaces only the template blocks, preserves author phrases and reports file hashes', () => {
+[exit=0]
+
+$ rg -n -F -- 'trims only the seeded phrase and leaves an authored eight-word phrase with the same shape' .skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-provenance.vitest.ts
+73:  it('trims only the seeded phrase and leaves an authored eight-word phrase with the same shape', () => {
+[exit=0]
+
+$ rg -n -F -- 'refuses a destination that is a symbolic link and leaves the link target untouched' .skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-backfill.vitest.ts
+296:  it('refuses a destination that is a symbolic link and leaves the link target untouched', () => {
+[exit=0]
+
+$ rg -n -F -- 'loads a linked description.json as missing and records why' .skilled/skills/system-spec-kit/runtime/tests/folder-discovery.vitest.ts
+1328:  it('loads a linked description.json as missing and records why', () => {
+[exit=0]
+
+$ rg -n -F -- 'saves over a linked description.json without copying the outside content in' .skilled/skills/system-spec-kit/runtime/tests/folder-discovery.vitest.ts
+1339:  it('saves over a linked description.json without copying the outside content in', () => {
+[exit=0]
+
+$ rg -n -F -- 'upserts over a linked descriptions.json without carrying the outside rows in' .skilled/skills/system-spec-kit/runtime/tests/folder-discovery.vitest.ts
+1363:  it('upserts over a linked descriptions.json without carrying the outside rows in', () => {
+[exit=0]
+
+$ rg -n -F -- 'loads a linked graph-metadata.json as absent' .skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts
+969:  it('loads a linked graph-metadata.json as absent', () => {
+[exit=0]
+
+$ rg -n -F -- 'refreshes over a linked graph-metadata.json without copying its relationships in' .skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts
+976:  it('refreshes over a linked graph-metadata.json without copying its relationships in', () => {
+[exit=0]
+
+== 4. MISSING rows: the search, and the positive control for the same search
+-- B-03 and B-04 link inside the packet (heal): every linkedPacket target is outside the packet (definitions below)
+
+$ rg -n 'const outside = |const missingTarget = |const outsidePacket = |function outsideFile|function outsideDirectory' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts
+69:function outsideDirectory(): string {
+75:function outsideFile(name: string, content: string): string {
+91:    const outside = outsideFile('spec.md', provableSpec());
+112:    const outside = outsideFile('tasks.md', tasks);
+150:    const outside = outsideFile('spec.md', duplicate);
+170:    const outside = outsideFile('spec.md', provableSpec());
+191:    const outside = outsideFile('spec.md', provableSpec());
+233:    const missingTarget = path.join(outsideDirectory(), 'spec.md');
+273:    const missingTarget = path.join(outsideDirectory(), 'spec.md');
+324:    const outsidePacket = path.join(outsideDirectory(), '020-linked-packet');
+[exit=0]
+-- B-09 dot segment in a --folder argument (heal): search over the heal suites; positive control on repair-derived, whose --folder runs '../elsewhere' and '.skilled/skills'
+
+$ rg -n -e "'--folder'.*[.][.]" .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts .skilled/skills/system-spec-kit/runtime/cli/tests/heal-target-parity.vitest.ts .skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts; echo '(no line above = no --folder argument with a dot segment in the heal suites)'
+(no line above = no --folder argument with a dot segment in the heal suites)
+[exit=0]
+
+$ rg -n -e "'--folder'.*[.][.]" .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+128:    const traversal = run(['--folder', '../elsewhere']);
+[exit=0]
+-- B-06, B-08, B-13, B-15 healer dry runs over a link: the classifier output in section 2 shows every link case APPLY-only; control: the same classifier labels DRY on heal-target-parity
+
+$ rg -c 'HEAL_SPEC_DOCS' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts; rg -c -e '--apply' .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts; echo '(first count = HEAL_SPEC_DOCS mentions; second = lines carrying the apply marker)'
+13
+22
+(first count = HEAL_SPEC_DOCS mentions; second = lines carrying the apply marker)
+[exit=0]
+-- B-11 linked parent outside the default roots (heal): every link setup is listed in section 1; each outside-link folder is passed with an explicit --roots
+
+$ rg -n "'--roots'" .skilled/skills/system-spec-kit/runtime/cli/tests/heal-symlink-containment.vitest.ts | cut -c1-150
+96:    const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--roots', path.join(root, 'specs'), '--apply'], {
+119:    const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--roots', path.join(root, 'specs'), '--apply'], {
+155:    const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--anchor-repair', '--roots', path.join(root, 'specs'), '--apply'], {
+175:    const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--lane-modes', '--roots', path.join(root, 'specs'), '--apply'], {
+216:      ['-r', preload, HEAL_SPEC_DOCS, '--roots', path.join(root, 'specs'), '--apply'],
+237:    const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--roots', path.join(root, 'specs'), '--apply'], {
+253:    const apply = () => spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--roots', path.join(root, 'specs'), '--apply'], {
+277:    const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, flag, '--roots', path.join(root, 'specs'), '--apply'], {
+333:    const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, ...flags, '--folder', linked, '--roots', specs, '--apply'], {
+351:    const result = spawnSync(process.execPath, [HEAL_SPEC_DOCS, ...flags, '--folder', linked, '--roots', specs, '--apply'], {
+373:    const aliased = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--folder', path.join(specs, 'alias-track', '020-packet'), '--roots', specs, '--a
+383:    const direct = spawnSync(process.execPath, [HEAL_SPEC_DOCS, '--folder', real, '--roots', specs, '--apply'], {
+[exit=0]
+-- C-10 dangling leaf link inside the walk: BROKEN_LEAF_SYMLINK named nowhere in the test; control: named in the generator
+
+$ rg -c 'BROKEN_LEAF' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs; echo '(no count above = the test file never names BROKEN_LEAF)'
+(no count above = the test file never names BROKEN_LEAF)
+[exit=0]
+
+$ rg -n 'BROKEN_LEAF_SYMLINK' .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs
+143:        throw new contract.ContractError('BROKEN_LEAF_SYMLINK', `leaf symlink is broken: ${label} -> ${target}`);
+[exit=0]
+-- C-13 packet folder is itself a link, C-14 skillDir argument is a link: every leaf link path is under packet-a/references or is a manifest; control: the search form matches the links that exist
+
+$ rg -n "'packet-a', 'references'" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+260:  fs.symlinkSync(outside, path.join(skillDir, 'packet-a', 'references'), 'dir');
+283:  fs.symlinkSync(outside, path.join(skillDir, 'packet-a', 'references', 'ext'), 'dir');
+294:  fs.symlinkSync(path.join(outside, 'secret.md'), path.join(skillDir, 'packet-a', 'references', 'linked.md'));
+311:  fs.symlinkSync(path.join(skillDir, 'packet-a', 'shared-real'), path.join(skillDir, 'packet-a', 'references'), 'dir');
+[exit=0]
+
+$ rg -n "symlinkSync\(.*'packet-a'\)|symlinkSync\(.*path.join\(skillDir, 'packet-a'\), " .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs; echo '(no line above = no link whose link path is the packet folder)'
+(no line above = no link whose link path is the packet folder)
+[exit=0]
+-- C-15 linked manifest with --check (read mode): the one check case is plain; control: runWrite cases exist
+
+$ rg -n -e 'runCheck' -e '--check' -e 'testCheck' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+362:// A committed manifest that already matches its regeneration passes --check with exit 0
+364:function testCheckOnUnchangedSkillIsNoOp() {
+369:  const result = childProcess.spawnSync(process.execPath, [GENERATOR, '--check', skillDir], { encoding: 'utf8' });
+429:  testCheckOnUnchangedSkillIsNoOp();
+[exit=0]
+
+$ rg -c 'runWrite' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+3
+[exit=0]
+-- D-03, D-11, D-12 (repair-derived): link variables defined in the tests; each names a file inside the packet only as a link name, never a link target inside it
+
+$ rg -n 'const link = |const missing = |const toolLink = |const missingDir = ' .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts
+381:    const link = path.join(ROOT, dir, 'description.json');
+417:    const link = path.join(packet, 'graph-metadata.json');
+447:    const missingDir = fs.mkdtempSync(path.join(os.tmpdir(), 'repair-outside-'));
+449:    const missing = path.join(missingDir, 'graph-metadata.json');
+450:    const link = path.join(packet, 'graph-metadata.json');
+475:    const missingDir = fs.mkdtempSync(path.join(os.tmpdir(), 'repair-outside-'));
+477:    const missing = path.join(missingDir, 'description.json');
+478:    const link = path.join(packet, 'description.json');
+504:    const link = path.join(packet, 'plan.md');
+536:    const toolLink = path.join(stubRoot, TOOL);
+[exit=0]
+-- U-16 linked --roots argument, U-17 dot segment in --roots, U-18 linked manifest (upgrade-legacy)
+
+$ rg -n -e 'roots.*[.][.]' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts; echo '(no line above = no --roots argument with a dot segment)'
+(no line above = no --roots argument with a dot segment)
+[exit=0]
+
+$ rg -c -e '[.][.]' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts
+22
+[exit=0]
+
+$ rg -n -i -e 'symlink.*manifest' -e 'manifest.*symlink' .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts; echo '(no line above = no test links a manifest in upgrade-legacy)'
+(no line above = no test links a manifest in upgrade-legacy)
+[exit=0]
+
+$ rg -n -i -e 'symlink.*manifest' -e 'manifest.*symlink' .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs
+326:  fs.symlinkSync(outsideFile, manifest);
+340:  fs.symlinkSync(outsideFile, path.join(skillDir, 'leaf-manifest.json'));
+353:  fs.symlinkSync(missing, manifest);
+391:      fs.symlinkSync(outsideFile, manifest);
+[exit=0]
+-- P-04 to P-08 phrase cleanup link axes: no filesystem link vocabulary (section 1, exit 1); positive control on upgrade-legacy (section 1)
+-- K-01 plain report write, K-03 to K-06 backfill link axes
+
+$ rg -n 'writePruneReportArtifact[(]' .skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-backfill.vitest.ts
+307:    expect(() => writePruneReportArtifact(report, createPruneReportArtifact('specs', []))).toThrow('symbolic link, not followed');
+[exit=0]
+
+$ rg -n -i 'prune' .skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-backfill.vitest.ts | cut -c1-140
+18:  createPruneReportArtifact,
+20:  writePruneReportArtifact,
+293:describe('prune report destination', () => {
+297:    const reportRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'prune-report-root-'));
+299:    const outsideDir = fs.mkdtempSync(path.join(os.tmpdir(), 'prune-report-outside-'));
+304:    const report = path.join(reportRoot, '.backfill-graph-metadata-prune-report.json');
+307:    expect(() => writePruneReportArtifact(report, createPruneReportArtifact('specs', []))).toThrow('symbolic link, not followed');
+[exit=0]
+
+$ rg -n 'symlinkSync' .skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-backfill.vitest.ts
+305:    fs.symlinkSync(outside, report);
+[exit=0]
+-- A-03 link inside the archived argument, A-05 linked archive argument, A-12 linked destination name (archive): every link setup is in section 1; none links the archived folder argument or its destination name
+
+$ rg -n "path.join\(specs, '[^']*'\), 'dir'\)|path.join\(repo, link\)|path.join\(specs, 'z_archive'\)" .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts | cut -c1-150
+99:    expect(fs.existsSync(path.join(specs, 'z_archive'))).toBe(false);
+247:    expect(fs.existsSync(path.join(specs, 'z_archive'))).toBe(false);
+265:    expect(fs.existsSync(path.join(specs, 'z_archive'))).toBe(false);
+464:      fs.symlinkSync(outside, path.join(specs, 'z_archive'), 'dir');
+481:    fs.symlinkSync(path.join(specs, '005-root', 'sub'), path.join(specs, 'z_archive'), 'dir');
+495:    fs.symlinkSync(notHome, path.join(specs, 'z_archive'), 'dir');
+510:    fs.symlinkSync(otherHome, path.join(specs, 'z_archive'), 'dir');
+564:      fs.symlinkSync(outsideArchive, path.join(specs, 'z_archive'), 'dir');
+582:    fs.symlinkSync(notHome, path.join(specs, 'z_archive'), 'dir');
+597:    fs.symlinkSync(otherHome, path.join(specs, 'z_archive'), 'dir');
+633:    fs.symlinkSync(otherHome, path.join(specs, 'z_archive'), 'dir');
+648:    fs.symlinkSync(otherHome, path.join(specs, 'z_archive'), 'dir');
+677:    expect(fs.existsSync(path.join(specs, 'z_archive'))).toBe(false);
+709:    fs.symlinkSync(missing, path.join(repo, link), 'dir');
+721:    fs.symlinkSync(missing, path.join(specs, 'z_archive'), 'dir');
+775:    expect(fs.existsSync(path.join(specs, 'z_archive'))).toBe(false);
+[exit=0]
+
+==================================================================
+5. THE MATRIX
+==================================================================
+Format: ID | axis | mode | STATUS | test file | case name, or the section above that shows the gap.
+COVERED = a case with that axis and mode exists and its name is receipted in section 3.
+PARTIAL = a case covers some modes or some targets of the axis, and the gap is named.
+MISSING = no case; the search or enumeration in section 4 (or section 1) is the evidence.
+Mode words: apply = --apply on the run (or the write function); dry = run without --apply; read = read path; plan = layout planner.
+The archive tool has no mode flag; its rows are apply, except the list row.
+
+--- archive.sh (archive-track.vitest.ts)
+A-01 | plain packet | archive | COVERED | archive-track.vitest.ts | archives a track packet into its own track and drops it from the list
+A-02 | plain packet | restore | COVERED | archive-track.vitest.ts | restores a track packet to its track and lists it again
+A-03 | link inside, archived folder argument | archive | MISSING | section 1 | no link setup targets the archived folder; the in-specs links are z_archive links (A-11)
+A-04 | link outside (z_archive) | archive | COVERED | archive-track.vitest.ts | refuses a root packet whose z_archive links outside specs, and changes neither side
+A-05 | linked folder argument (the archived folder is a link) | archive | MISSING | section 1 | no link is the archived folder or a parent of it
+A-06 | dangling link at the restore target | restore | COVERED | archive-track.vitest.ts | refuses to restore onto a link at the target, and moves nothing
+A-07 | dangling z_archive (specs root, a track, a phase parent) | archive | COVERED | archive-track.vitest.ts | refuses a dangling z_archive under $label, moves nothing and creates no link target
+A-08 | dangling z_archive | restore | COVERED | archive-track.vitest.ts | refuses a restore through a dangling z_archive, follows nothing and creates no link target
+A-09 | dot segment in the archive argument | archive | COVERED | archive-track.vitest.ts | refuses an archive path with a . segment, and moves nothing; refuses an archive path with a .. segment, and moves nothing
+A-10 | dot segment in the restore argument | restore | COVERED | archive-track.vitest.ts | refuses a restore path with a . segment that reaches a folder through a linked z_archive; refuses a restore path with a .. segment, and moves nothing
+A-11 | linked parent dir (z_archive to a non-home, to another home, or into the packet itself, which is refused) | archive | COVERED | archive-track.vitest.ts | refuses a z_archive that links to a folder that is not a packet home, and leaves the packet whole; refuses a z_archive that links into another packet home, and leaves the packet whole; refuses a z_archive that links into the packet being archived, and leaves the packet whole
+A-12 | linked parent dir | restore | COVERED | archive-track.vitest.ts | refuses to restore through a z_archive that links to a folder that is not a packet home; refuses to restore through a z_archive that links into another packet home
+A-13 | linked folder argument | restore | COVERED | archive-track.vitest.ts | refuses to restore a folder that is reachable only through a link outside specs
+A-14 | linked output file (the destination name is a link) | archive | MISSING | section 1 | no link sits at a destination name
+A-15 | extra: symlinked track left out of the list | list (read-only) | COVERED | archive-track.vitest.ts | leaves a symlinked track out of the list, since its packets cannot be moved from here
+
+--- heal-spec-docs.cjs (heal-symlink-containment.vitest.ts, heal-target-parity.vitest.ts, heal-lane-modes.vitest.ts)
+B-01 | plain packet | apply | COVERED | heal-symlink-containment.vitest.ts | default healer --apply changes no bytes on a plain packet with nothing left to heal
+B-02 | plain packet | dry | COVERED | heal-target-parity.vitest.ts | each entrypoint narrows to the one packet named by --folder, with or without --roots (run without --apply, as section 2 shows); heal-lane-modes.vitest.ts | lane-modes-cli-dry-run
+B-03 | link inside the packet | apply | MISSING | section 4 | all six linkedPacket targets are outside the packet (outsideFile, missingTarget); the direct links at 331, 349, 371 target an outside packet, a missing path and an alias inside specs
+B-04 | link inside the packet | dry | MISSING | section 2 | no dry run in any link case
+B-05 | link outside (spec.md, tasks.md) | apply | COVERED | heal-symlink-containment.vitest.ts | default healer --apply leaves a symlinked spec.md and its outside target untouched; default healer --apply leaves a symlinked tasks.md with an empty trigger list untouched; --anchor-repair --apply leaves a symlinked spec.md and its outside target untouched; --lane-modes --apply leaves a symlinked spec.md and its outside target untouched
+B-06 | link outside | dry | MISSING | section 2 | all ten link cases are APPLY-only; the DRY label is confirmed on heal-target-parity runs (section 2 control)
+B-07 | dangling spec.md | apply | COVERED | heal-symlink-containment.vitest.ts | default healer --apply reports a dangling spec.md link as refused and does not create its target; %s --apply refuses a dangling spec.md and does not create its target (--anchor-repair, --lane-modes)
+B-08 | dangling spec.md | dry | MISSING | section 2 | the two dangling cases are APPLY-only
+B-09 | dot segment in a --folder argument | apply or dry | MISSING | section 4 | no --folder argument in the three heal suites contains '..'; control: repair-derived's --folder '../elsewhere' matches the same search
+B-10 | linked parent dir inside the specs root | apply | COVERED | heal-symlink-containment.vitest.ts | refuses a --folder reached through a linked component inside the specs root
+B-11 | linked parent dir outside the default roots | apply or dry | MISSING | section 4 | every --folder call passes --roots explicitly; no test puts a link parent outside the given roots
+B-12 | linked folder argument | apply | COVERED | heal-symlink-containment.vitest.ts | %s --apply refuses a linked --folder and leaves the packet behind the link untouched (default run, --anchor-repair, --lane-modes)
+B-13 | linked folder argument | dry | MISSING | section 2 | the it.each rows are APPLY-only
+B-14 | dangling folder argument | apply | COVERED | heal-symlink-containment.vitest.ts | %s --apply refuses a dangling --folder and creates nothing at its target
+B-15 | dangling folder argument | dry | MISSING | section 2 | APPLY-only
+B-16 | linked output file (the healer writes spec.md in place) | apply | COVERED | heal-symlink-containment.vitest.ts | default healer --apply leaves a symlinked spec.md and its outside target untouched (the write target is the link, and it is refused)
+B-17 | document swapped to a link after the read | apply | COVERED | heal-symlink-containment.vitest.ts | default healer --apply replaces a spec.md that becomes a link after it is read, and leaves the outside target untouched
+B-18 | dot segment in a relative path read by the archive classifier (not a filesystem link) | read | COVERED | heal-lane-modes.vitest.ts | '.. segments resolving into z_archive read as archived'; '.. segments resolving out of z_archive read as live' (the it.each table at line 1149)
+
+--- generate-leaf-manifest.cjs (generate-leaf-manifest-scopes.test.cjs; generate = buildManifestBytes, write = runWrite, check = --check)
+C-01 | plain | generate | COVERED | generate-leaf-manifest-scopes.test.cjs | testDistinctPacketsGenerateWithoutScopes
+C-02 | plain | check | COVERED | generate-leaf-manifest-scopes.test.cjs | testCheckOnUnchangedSkillIsNoOp
+C-03 | link inside the skill (linked references into a sibling directory) | generate | COVERED | generate-leaf-manifest-scopes.test.cjs | testLinkedRootInsideSkillStillWalks
+C-04 | link outside, default root (references) | generate | COVERED | generate-leaf-manifest-scopes.test.cjs | testLinkedDefaultRootOutsideSkillFails
+C-05 | link outside, declared scope | generate | COVERED | generate-leaf-manifest-scopes.test.cjs | testLinkedDeclaredScopeOutsideSkillFails
+C-06 | link outside, file scope | generate | COVERED | generate-leaf-manifest-scopes.test.cjs | testLinkedFileScopeOutsideSkillFails
+C-07 | linked manifest (to an outside file) | write | COVERED | generate-leaf-manifest-scopes.test.cjs | testLinkedManifestWriteIsRefused; testLinkedManifestWriteExitsNonZero (exit status)
+C-08 | dangling manifest | write | COVERED | generate-leaf-manifest-scopes.test.cjs | testDanglingManifestWriteIsRefused
+C-09 | manifest swapped to a link during the build | write | COVERED | generate-leaf-manifest-scopes.test.cjs | testManifestSwappedToLinkDuringBuildKeepsOutsideFile
+C-10 | dangling leaf link inside the walk | generate | MISSING | section 4 | BROKEN_LEAF named 0 times in the test; the generator throws it at its line 143
+C-11 | dot segment in a scope path | generate | COVERED | generate-leaf-manifest-scopes.test.cjs | testScopeEscapingPacketOrRootFails (references/../../outside is refused as LEAF_SCOPE_TRAVERSAL)
+C-12 | dot-named directory (not a traversal) | generate | COVERED | generate-leaf-manifest-scopes.test.cjs | testDotNamedDirectoryDoesNotChangeManifest
+C-13 | linked packet folder (the packet itself is a link) | generate or check | MISSING | section 4 | every leaf link path is under packet-a/references or is a manifest; packet-a itself is never a link
+C-14 | linked skillDir argument | check or write | MISSING | section 1 | no link path is skillDir
+C-15 | linked manifest | check (read) | MISSING | section 4 | the only --check case is plain (line 369)
+
+--- repair-derived.cjs (repair-derived.vitest.ts)
+D-01 | plain packet | dry | COVERED | repair-derived.vitest.ts | reports repairable=0 and writes nothing for a clean packet in a dry run; reports without writing unless application is requested
+D-02 | plain packet | apply | COVERED | repair-derived.vitest.ts | rewrites a stale recorded location from the packet path on disk
+D-03 | link inside the packet (rewrite target links to an in-packet file) | apply | MISSING | section 1 | every link target is outside the packet, outside a temp dir, or the tool tree
+D-04 | link outside, rewrite target (description.json) | apply | COVERED | repair-derived.vitest.ts | refuses a rewrite target that is a symbolic link and leaves its target untouched
+D-05 | link outside | dry | PARTIAL | repair-derived.vitest.ts | COVERED for graph-metadata.json (D-07) and for plan.md (treats a live plan.md link as absent: its outside level reaches no plan, output or written file; dry runs at lines 508 and 510); MISSING for description.json and spec.md as rewrite targets (section 2: the only description.json link case is APPLY-only)
+D-06 | dangling graph-metadata.json | dry and apply | COVERED | repair-derived.vitest.ts | refuses a dangling graph-metadata.json link in the dry run and with --apply, and creates nothing at its target
+D-07 | linked graph-metadata.json | dry and apply | COVERED | repair-derived.vitest.ts | does not re-derive over a linked graph-metadata.json, in the dry run or with --apply
+D-08a | dangling description.json | apply | COVERED | repair-derived.vitest.ts | treats a dangling description.json link as absent and creates nothing at its target
+D-08b | dangling description.json | dry | MISSING | section 2 | the same case is APPLY-only
+D-09 | linked output file (planted temp name) | apply | COVERED | repair-derived.vitest.ts | does not write through a link planted at the predictable repair temp name
+D-10 | dot segment in --folder (outside the packet tree) | dry | COVERED | repair-derived.vitest.ts | refuses a target outside the packet tree (run without --apply, status 2 asserted at lines 126-129)
+D-11 | linked folder argument | apply or dry | MISSING | section 4 | the packet folder is never a link in this suite
+D-12 | linked parent dir above the packet | apply or dry | MISSING | section 1 | the directory links (lines 34, 405, 440, 547) link tool-tree paths, not an ancestor of a packet
+
+--- upgrade-legacy.mjs (upgrade-legacy.vitest.ts; upgrade-baseline.vitest.ts for the read path)
+U-01 | plain packet | dry | COVERED | upgrade-legacy.vitest.ts | reports a failing legacy packet on a dry run and writes nothing
+U-02 | plain packet | apply | COVERED | upgrade-legacy.vitest.ts | repairs with --apply, records what remains and leaves the packet passing
+U-03 | link inside the packet | apply | COVERED | upgrade-legacy.vitest.ts | still repairs a link whose target stays inside the packet
+U-04 | link inside itself (passing packet) | apply | COVERED | upgrade-legacy.vitest.ts | writes nothing for a passing packet that links inside itself, and keeps its baseline
+U-05 | link outside (document) | apply | COVERED | upgrade-legacy.vitest.ts | refuses a packet whose document is a link out of the packet and leaves the link target as it was
+U-06 | link outside (document) | dry | COVERED | upgrade-legacy.vitest.ts | dry run repairs a symlinked packet document only inside the preview
+U-07 | link outside (nested directory read into the manifest) | apply | COVERED | upgrade-legacy.vitest.ts | does not copy a file read through a link into the reversibility manifest
+U-08 | dangling document, inside and outside the packet | dry and apply | COVERED | upgrade-legacy.vitest.ts | refuses a packet whose document is a dangling link to a file $label, and writes nothing (it.each: inside, outside)
+U-09 | dot segment in a link target (sibling packet via '..') | apply | COVERED | upgrade-legacy.vitest.ts | refuses a document that links to a sibling packet, and leaves the sibling as it was
+U-10 | linked output file (planted temp name) | apply | COVERED | upgrade-legacy.vitest.ts | writes the baseline under a fresh temporary name so a link planted at a guessable name is not written through
+U-11 | linked baseline read into the apply census | apply | COVERED | upgrade-legacy.vitest.ts | leaves findings read through a linked baseline out of the apply census
+U-12 | linked baseline | dry | COVERED | upgrade-legacy.vitest.ts | does not read findings from a baseline that is a link out of the packet
+U-13 | linked baseline, read path | read | COVERED | upgrade-baseline.vitest.ts | refuses a baseline that is a link to a file outside the packet, and says so
+U-14 | archived spec.md link inside the packet | apply (--include-archive) | COVERED | upgrade-legacy.vitest.ts | leaves an archived spec.md that links to a file in the same packet, and that file, unchanged
+U-15 | layout: link to .opencode that leaves the repository | plan | COVERED | upgrade-legacy.vitest.ts | plans no step through a .opencode link that leaves the repository (describe 'upgrade-legacy layout links')
+U-16 | linked --roots argument | apply | MISSING | section 3 and 4 | no case passes a link as --roots; the layout case asks for the v4 layout... (apply refused, exit 2, with a linked default specs root) is the nearest, and it is not a --roots argument
+U-17 | dot segment in --roots | apply or dry | MISSING | section 4 | no --roots argument with a dot segment; the file has 22 '..' occurrences (control), none on a --roots line
+U-18 | linked manifest | apply | MISSING | section 4 | no upgrade-legacy test links a manifest; the leaf suite's manifest links (326, 340, 353, 391) test a different tool
+U-09b | dot segment in a link target | dry | MISSING | section 2 | the case runs APPLY-only
+
+--- template-phrase-cleanup.mjs (template-phrase-cleanup.vitest.ts, template-phrase-provenance.vitest.ts)
+P-01 | plain document | dry | COVERED | template-phrase-cleanup.vitest.ts | keeps dry runs byte-identical and skips archived packets by default
+P-02 | plain document | apply | COVERED | template-phrase-cleanup.vitest.ts | replaces only the template blocks, preserves author phrases and reports file hashes
+P-03 | authored phrase with the same shape (provenance) | apply | COVERED | template-phrase-provenance.vitest.ts | trims only the seeded phrase and leaves an authored eight-word phrase with the same shape
+P-04 | link inside (document) | dry and apply | MISSING | section 1 | no filesystem link vocabulary in the suite (exit 1); the same search finds 34 lines in upgrade-legacy
+P-05 | link outside (document) | dry and apply | MISSING | section 1 | as P-04
+P-06 | dangling document | dry and apply | MISSING | section 1 | as P-04
+P-07 | dot segment in --root | dry | MISSING | section 4 | every --root argument is a variable (specsRoot or missingRoot); no literal dot segment in the suite's paths
+P-08 | linked parent dir or linked root | dry and apply | MISSING | section 1 | as P-04
+
+--- graph-metadata-backfill prune report (graph-metadata-backfill.vitest.ts; a write function called directly, not the CLI)
+K-01 | plain report write | apply | MISSING | section 4 | the only writePruneReportArtifact call (line 307) is the refusal; no plain write case
+K-02 | link at the report name (final) | apply | COVERED | graph-metadata-backfill.vitest.ts | refuses a destination that is a symbolic link and leaves the link target untouched
+K-03 | linked parent (--root parent) | apply | MISSING | section 1 | the report root is a fresh mkdtemp directory (line 297)
+K-04 | dangling report name | apply | MISSING | section 1 | the link target exists (victim.json, written before the link)
+K-05 | dot segment in --root | apply | MISSING | section 4 | no dot segment in the suite's paths
+K-06 | linked root | apply | MISSING | section 1 | as K-03
+
+--- read paths (no write unless noted)
+V-01 | linked description.json | read | COVERED | folder-discovery.vitest.ts | loads a linked description.json as missing and records why
+V-02 | linked description.json | save | COVERED | folder-discovery.vitest.ts | saves over a linked description.json without copying the outside content in
+V-03 | linked descriptions.json | upsert | COVERED | folder-discovery.vitest.ts | upserts over a linked descriptions.json without carrying the outside rows in
+V-04 | linked graph-metadata.json | read | COVERED | graph-metadata-schema.vitest.ts | loads a linked graph-metadata.json as absent
+V-05 | linked graph-metadata.json | refresh write | COVERED | graph-metadata-schema.vitest.ts | refreshes over a linked graph-metadata.json without copying its relationships in
+V-06 | linked baseline | read | COVERED | upgrade-baseline.vitest.ts | refuses a baseline that is a link to a file outside the packet, and says so (same case as U-13)
+
+==================================================================
+6. COUNTS (computed from section 5 rows)
+==================================================================
+
+Counts, from the status field of each row in section 5 (grep -c over this file):
+COVERED rows: 66
+PARTIAL rows: 1
+MISSING rows: 33
+
+==================================================================
+7. NAME CHECK FOR EVERY COVERED ROW
+==================================================================
+Each case name cited on a COVERED row is split at '; ' and cut at its parenthetical description,
+then searched as a fixed string across the twelve suites (rg -F -q, over the files named in section 0).
+OK = found in a suite. MISS = not found, which would make that row wrong.
+
+Names checked: 81   OK: 81   MISS: 0
+
+OK    A-01  archives a track packet into its own track and drops it from the list
+OK    A-02  restores a track packet to its track and lists it again
+OK    A-04  refuses a root packet whose z_archive links outside specs, and changes neither side
+OK    A-06  refuses to restore onto a link at the target, and moves nothing
+OK    A-07  refuses a dangling z_archive under $label, moves nothing and creates no link target
+OK    A-08  refuses a restore through a dangling z_archive, follows nothing and creates no link target
+OK    A-09  refuses an archive path with a . segment, and moves nothing
+OK    A-09  refuses an archive path with a .. segment, and moves nothing
+OK    A-10  refuses a restore path with a . segment that reaches a folder through a linked z_archive
+OK    A-10  refuses a restore path with a .. segment, and moves nothing
+OK    A-11  refuses a z_archive that links to a folder that is not a packet home, and leaves the packet whole
+OK    A-11  refuses a z_archive that links into another packet home, and leaves the packet whole
+OK    A-11  refuses a z_archive that links into the packet being archived, and leaves the packet whole
+OK    A-12  refuses to restore through a z_archive that links to a folder that is not a packet home
+OK    A-12  refuses to restore through a z_archive that links into another packet home
+OK    A-13  refuses to restore a folder that is reachable only through a link outside specs
+OK    A-15  leaves a symlinked track out of the list, since its packets cannot be moved from here
+OK    B-01  default healer --apply changes no bytes on a plain packet with nothing left to heal
+OK    B-02  each entrypoint narrows to the one packet named by --folder, with or without --roots
+OK    B-02  lane-modes-cli-dry-run
+OK    B-05  default healer --apply leaves a symlinked spec.md and its outside target untouched
+OK    B-05  default healer --apply leaves a symlinked tasks.md with an empty trigger list untouched
+OK    B-05  --anchor-repair --apply leaves a symlinked spec.md and its outside target untouched
+OK    B-05  --lane-modes --apply leaves a symlinked spec.md and its outside target untouched
+OK    B-07  default healer --apply reports a dangling spec.md link as refused and does not create its target
+OK    B-07  %s --apply refuses a dangling spec.md and does not create its target
+OK    B-10  refuses a --folder reached through a linked component inside the specs root
+OK    B-12  %s --apply refuses a linked --folder and leaves the packet behind the link untouched
+OK    B-14  %s --apply refuses a dangling --folder and creates nothing at its target
+OK    B-16  default healer --apply leaves a symlinked spec.md and its outside target untouched
+OK    B-17  default healer --apply replaces a spec.md that becomes a link after it is read, and leaves the outside target untouched
+OK    B-18  '.. segments resolving into z_archive read as archived'
+OK    B-18  '.. segments resolving out of z_archive read as live'
+OK    C-01  testDistinctPacketsGenerateWithoutScopes
+OK    C-02  testCheckOnUnchangedSkillIsNoOp
+OK    C-03  testLinkedRootInsideSkillStillWalks
+OK    C-04  testLinkedDefaultRootOutsideSkillFails
+OK    C-05  testLinkedDeclaredScopeOutsideSkillFails
+OK    C-06  testLinkedFileScopeOutsideSkillFails
+OK    C-07  testLinkedManifestWriteIsRefused
+OK    C-07  testLinkedManifestWriteExitsNonZero
+OK    C-08  testDanglingManifestWriteIsRefused
+OK    C-09  testManifestSwappedToLinkDuringBuildKeepsOutsideFile
+OK    C-11  testScopeEscapingPacketOrRootFails
+OK    C-12  testDotNamedDirectoryDoesNotChangeManifest
+OK    D-01  reports repairable=0 and writes nothing for a clean packet in a dry run
+OK    D-01  reports without writing unless application is requested
+OK    D-02  rewrites a stale recorded location from the packet path on disk
+OK    D-04  refuses a rewrite target that is a symbolic link and leaves its target untouched
+OK    D-06  refuses a dangling graph-metadata.json link in the dry run and with --apply, and creates nothing at its target
+OK    D-07  does not re-derive over a linked graph-metadata.json, in the dry run or with --apply
+OK    D-08a  treats a dangling description.json link as absent and creates nothing at its target
+OK    D-09  does not write through a link planted at the predictable repair temp name
+OK    D-10  refuses a target outside the packet tree
+OK    U-01  reports a failing legacy packet on a dry run and writes nothing
+OK    U-02  repairs with --apply, records what remains and leaves the packet passing
+OK    U-03  still repairs a link whose target stays inside the packet
+OK    U-04  writes nothing for a passing packet that links inside itself, and keeps its baseline
+OK    U-05  refuses a packet whose document is a link out of the packet and leaves the link target as it was
+OK    U-06  dry run repairs a symlinked packet document only inside the preview
+OK    U-07  does not copy a file read through a link into the reversibility manifest
+OK    U-08  refuses a packet whose document is a dangling link to a file $label, and writes nothing
+OK    U-09  refuses a document that links to a sibling packet, and leaves the sibling as it was
+OK    U-10  writes the baseline under a fresh temporary name so a link planted at a guessable name is not written through
+OK    U-11  leaves findings read through a linked baseline out of the apply census
+OK    U-12  does not read findings from a baseline that is a link out of the packet
+OK    U-13  refuses a baseline that is a link to a file outside the packet, and says so
+OK    U-14  leaves an archived spec.md that links to a file in the same packet, and that file, unchanged
+OK    U-15  plans no step through a .opencode link that leaves the repository
+OK    P-01  keeps dry runs byte-identical and skips archived packets by default
+OK    P-02  replaces only the template blocks, preserves author phrases and reports file hashes
+OK    P-03  trims only the seeded phrase and leaves an authored eight-word phrase with the same shape
+OK    K-02  refuses a destination that is a symbolic link and leaves the link target untouched
+OK    V-01  loads a linked description.json as missing and records why
+OK    V-02  saves over a linked description.json without copying the outside content in
+OK    V-03  upserts over a linked descriptions.json without carrying the outside rows in
+OK    V-04  loads a linked graph-metadata.json as absent
+OK    V-05  refreshes over a linked graph-metadata.json without copying its relationships in
+OK    V-06  refuses a baseline that is a link to a file outside the packet, and says so
+OK    B-18  .. segments resolving into z_archive read as archived
+OK    B-18  .. segments resolving out of z_archive read as live

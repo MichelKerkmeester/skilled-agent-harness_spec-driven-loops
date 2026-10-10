@@ -1,0 +1,80 @@
+CLOSURE EVIDENCE: the two child-dispatch findings recorded under CHK-FIX-003, checked against the code at HEAD 4669db6522 and in the working tree
+Why: the consumer inventory (closure-consumer-inventory.txt, verdicts C4, C7 and C10) states both findings. This file re-reads the lines so each claim has a receipt from the source.
+
+== Finding (a): which environment variables the gate core and the Hermes plugin read as a child marker
+
+$ sed -n 100,106p .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs
+export const CHILD_SESSION_ENV = 'AI_SESSION_CHILD';
+
+/** True only when CHILD_SESSION_ENV is exactly '1'; every other value is interactive. */
+export function isChildSession(env) {
+  const environment = env && typeof env === 'object' ? env : {};
+  return environment[CHILD_SESSION_ENV] === '1';
+}
+[exit=0]
+
+$ grep -n ENFORCE_ENV .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs
+80:export const ENFORCE_ENV = 'SYSTEM_SPEC_GATE_ENFORCE';
+1785:    const enforceOn = environment[ENFORCE_ENV] === '1';
+[exit=0]
+
+$ grep -n "environment[ENFORCE_ENV]\|ENFORCE_ENV\] === " .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs
+1785:    const enforceOn = environment[ENFORCE_ENV] === '1';
+[exit=0]
+
+$ sed -n 78,81p .hermes/plugins/repo-guards/__init__.py
+# that still wants its briefs, and the spec gate refuses a child session on its own, so the
+# pair is the whole signal this bridge needs.
+ORCHESTRATED_LEAF_ENVS = ("SYSTEM_SPEC_GATE_DISABLED", "AI_SESSION_CHILD")
+
+[exit=0]
+
+$ sed -n 571,573p .hermes/plugins/repo-guards/__init__.py
+def _orchestrated_leaf() -> bool:
+    """Whether this session is a dispatched child, which gets no prompt-time briefs."""
+    return all(os.environ.get(name, "").strip() == "1" for name in ORCHESTRATED_LEAF_ENVS)
+[exit=0]
+
+$ grep -n _orchestrated_leaf .hermes/plugins/repo-guards/__init__.py
+571:def _orchestrated_leaf() -> bool:
+696:    if not session_id or _spec_gate_enforced() or _orchestrated_leaf():
+705:    if not session_id or _orchestrated_leaf():
+739:        if not _orchestrated_leaf():
+[exit=0]
+
+Reading (a): the core reads only AI_SESSION_CHILD, and only the exact value 1 counts. It does not read SYSTEM_SPEC_GATE_ENFORCE=0 as a child marker, so the operator's wording that ENFORCE=0 marks a child is not what the core does. The Hermes plugin does not count AI_SESSION_CHILD=1 by itself either. Its orchestrated-leaf check is all() over SYSTEM_SPEC_GATE_DISABLED and AI_SESSION_CHILD, so a Hermes worker needs both set to 1. The operator's wording said the Hermes plugin counts AI_SESSION_CHILD=1 only. That part is corrected here: the Hermes check needs the pair, and it never reads ENFORCE=0.
+
+== Finding (b): the top-level session that worktree-session.sh launches
+
+$ grep -n AI_SESSION_CHILD .skilled/bin/worktree-session.sh
+19:#   1. AI_SESSION_CHILD=1 in the environment (set at dispatch sites for orchestrated children).
+163:  # non-child sessions via AI_SESSION_CHILD.
+177:if [ "${AI_SESSION_CHILD:-}" = "1" ]; then
+178:  exec_in_place "AI_SESSION_CHILD=1" "$@"
+458:export AI_SESSION_CHILD=1
+[exit=0]
+
+$ sed -n 456,458p .skilled/bin/worktree-session.sh
+
+# Mark descendants of THIS session as children so they do not re-nest.
+export AI_SESSION_CHILD=1
+[exit=0]
+
+$ sed -n 483,485p .skilled/bin/worktree-session.sh
+log "entering $WT_REL with isolated DBs; launching $RUNTIME_EXEC"
+cd "$WT_ABS"
+exec "$RUNTIME_EXEC" "$@"
+[exit=0]
+
+$ git diff --quiet 4669db6522 -- .skilled/bin/worktree-session.sh
+[exit=0]  (0 means the file is unchanged from 4669db6522)
+
+$ git show 4669db6522:.skilled/bin/worktree-session.sh | grep -n "AI_SESSION_CHILD=1\|^exec \"\$RUNTIME_EXEC\""
+458:export AI_SESSION_CHILD=1
+485:exec "$RUNTIME_EXEC" "$@"
+[exit=0]
+
+Reading (b): line 458 exports AI_SESSION_CHILD=1 for the whole launch, and line 485 execs the runtime in the same process, so the environment the operator launches carries the marker. The file matches 4669db6522, so the defect is pre-existing and not part of this phase's diff. The live effect on a real launch is INFERRED from the code, because no wrapper launch was run for this record.
+
+== Operator-stated, not checked here
+The operator states that the orchestrating interactive session runs with SYSTEM_SPEC_GATE_ENFORCE=0 and AI_SESSION_CHILD unset. This repository does not show that environment. The launcher exports ENFORCE=0 only on its child branch (worktree-session.sh line 164), so the operator's own launch method is the source for this statement.

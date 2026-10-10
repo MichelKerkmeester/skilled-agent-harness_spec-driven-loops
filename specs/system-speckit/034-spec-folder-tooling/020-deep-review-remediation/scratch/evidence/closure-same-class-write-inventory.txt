@@ -1,0 +1,578 @@
+CLOSURE EVIDENCE: 020 CHK-FIX-002 and T010, same-class write inventory
+==========================================================================
+Bug class: a path confined by name, then a symbolic link followed on write, read or move.
+Packet: specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation
+Reader rerun: every block below starts with the exact command ($ line), then its output,
+then [exit=N]. Commands run from the worktree root. Nothing was edited or fixed.
+
+== 0. Snapshot
+
+$ date -u +%Y-%m-%dT%H:%M:%SZ; git rev-parse HEAD; git rev-parse --abbrev-ref HEAD
+2026-10-10T10:41:40Z
+4669db65226d82625f6105073fc8891229bcc22b
+worktrees/091-consolidate-small-packets
+[exit=0]
+
+$ git status --short -- .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs .skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs
+ M .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs
+ M .skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh
+ M .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs
+ M .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs
+ M .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs
+ M .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs
+ M .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+[exit=0]
+
+$ shasum -a 256 .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs .skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs | cut -c1-20,65-
+33629affb72220565976  .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh
+816085d5e4f1093962b6  .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs
+3bf81869ab72b0097b44  .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs
+706b83ddb65bbaf6b29a  .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs
+ebb032567bda4b697c57  .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs
+44f454fbe4ab8c55112d  .skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts
+776e4b172ae27c7a2701  .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+340a8ccddff0e52a4011  .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs
+[exit=0]
+
+$ wc -l .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs .skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs
+     556 .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh
+    1585 .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs
+     736 .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs
+    1756 .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs
+     666 .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs
+     819 .skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts
+    1355 .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+     530 .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs
+    8003 total
+[exit=0]
+
+== 1. Write, rename, copy, move, mkdir and unlink call sites (JS, CJS, MJS, TS)
+
+$ rg -n 'writeFileSync|writeFile\(|appendFileSync|renameSync|\.rename\(|copyFileSync|cpSync|rmSync|unlinkSync|\.unlink\(|rmdirSync|mkdirSync|\.mkdir\(|openSync|createWriteStream|symlinkSync|fs\.promises|fsp\.|utimesSync|chmodSync|fchmodSync|fs\.write' .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs .skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:421:      descriptor = fs.openSync(file, 'wx', 0o600);
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:423:      fs.writeFileSync(descriptor, content, 'utf8');
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:432:        try { fs.unlinkSync(file); } catch { /* A failed create must not leave a partial manifest. */ }
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:441:    fs.writeFileSync(temporary, content, { encoding: 'utf8', flag: 'wx', mode: 0o600 });
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:442:    fs.renameSync(temporary, file);
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:444:    try { fs.unlinkSync(temporary); } catch { /* Keep the original write failure. */ }
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:868:        if (next !== original) fs.writeFileSync(file, next, 'utf8');
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1086:    fs.mkdirSync(targetDirectory, { recursive: true });
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1089:      fs.cpSync(path.join(ancestor, entry.name), path.join(targetDirectory, entry.name), {
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1098:// cpSync's dereference option does not reach symlinks nested inside a
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1108:      fs.unlinkSync(target);
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1109:      fs.cpSync(resolved, target, { recursive: true, dereference: true });
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1121:    fs.mkdirSync(path.dirname(skillRoot), { recursive: true });
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1122:    fs.cpSync(SKILL_ROOT, skillRoot, {
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1131:      fs.mkdirSync(path.dirname(target), { recursive: true });
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1132:      fs.symlinkSync(source, target, 'dir');
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1135:    if (!fs.existsSync(runtimeModules)) fs.mkdirSync(runtimeModules, { recursive: true });
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1143:          fs.utimesSync(target, now, now);
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1157:      fs.mkdirSync(path.dirname(folder), { recursive: true });
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1158:      fs.cpSync(packet.folder, folder, { recursive: true, dereference: true });
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1168:    fs.rmSync(previewRoot, { recursive: true, force: true });
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1208:    fs.rmSync(preview.previewRoot, { recursive: true, force: true });
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1278:  fs.writeFileSync(tmp, `${JSON.stringify(body, null, 2)}\n`, { encoding: 'utf8', flag: 'wx' });
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1280:    fs.renameSync(tmp, file);
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1282:    try { fs.unlinkSync(tmp); } catch { /* The rename failure is the useful one. */ }
+.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:277:    descriptor = fs.openSync(temp, 'wx');
+.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:279:    fs.writeFileSync(descriptor, text, 'utf8');
+.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:283:      fs.chmodSync(temp, fs.statSync(file).mode & 0o777);
+.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:287:    fs.renameSync(temp, file);
+.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:294:      try { fs.rmSync(temporary, { force: true }); } catch { /* The original write error is more useful. */ }
+.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs:267:    descriptor = fs.openSync(temporaryFile, 'wx', mode);
+.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs:269:    fs.fchmodSync(descriptor, mode);
+.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs:270:    fs.writeFileSync(descriptor, content, 'utf8');
+.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs:273:    fs.renameSync(temporaryFile, file);
+.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs:287:        fs.unlinkSync(temporaryFile);
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:447:    descriptor = fs.openSync(temporary, 'wx');
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:448:    fs.writeFileSync(descriptor, bytes);
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:449:    if (mode !== null) fs.fchmodSync(descriptor, mode);
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:453:    fs.renameSync(temporary, file);
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:458:    try { fs.rmSync(temporary, { force: true }); } catch { /* The original write error is more useful. */ }
+.skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:203:    descriptor = fs.openSync(tempPath, 'wx');
+.skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:205:    fs.writeFileSync(descriptor, content, 'utf-8');
+.skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:208:    fs.renameSync(temporary, reportPath);
+.skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:215:      try { fs.rmSync(temporary, { force: true }); } catch { /* The original write error is more useful. */ }
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:612:    descriptor = fs.openSync(candidate, 'wx', mode);
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:614:    fs.writeFileSync(descriptor, text, 'utf8');
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:615:    // openSync applies the process umask, so restore the existing file's bits.
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:616:    fs.fchmodSync(descriptor, mode);
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:620:    fs.renameSync(temporary, file);
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:627:      try { fs.unlinkSync(temporary); } catch { /* The original write error is more useful. */ }
+[exit=0]
+
+== 2. Shell write, move, copy, remove and link commands (archive.sh)
+
+$ rg -n '(^|[^a-zA-Z_./-])(mv|cp|rm|ln|mkdir|rmdir|tee|touch)( |$)' .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh
+246:    if ! mkdir -p "$archive_root"; then
+336:    rm -rf "$archive_root"/.tmp_*_"$basename" 2>/dev/null || true
+339:    if ! cp -R "$resolved_spec" "$temp_target"; then
+340:        rm -rf "$temp_target" 2>/dev/null || true
+345:    # Atomic rename (mv within same filesystem is atomic)
+346:    if ! mv "$temp_target" "$archive_root/$basename"; then
+347:        rm -rf "$temp_target" 2>/dev/null || true
+353:    rm -rf "$resolved_spec"
+485:    mv "$resolved_archived" "$destination"
+[exit=0]
+
+$ rg -n '>>?' .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh | rg -v '^[0-9]+:\s*#' | head -20
+21:if git rev-parse --show-toplevel >/dev/null 2>&1; then
+27:    echo "Warning: Not in a git repo, using relative path for PROJECT_ROOT" >&2
+56:    archive-spec.sh <spec-folder>
+58:    archive-spec.sh --restore <archived-folder>
+80:      specs root, specs/<track>/z_archive/ in a track, <parent>/z_archive/
+95:log_error() { echo -e "${RED}ERROR:${NC} $1" >&2; }
+115:    (cd "$dir_path" >/dev/null 2>&1 && pwd -P)
+203:    if ! node "$repair_script" --roots "$destination" --apply >/dev/null; then
+222:    json_output=$("$COMPLETENESS_SCRIPT" --json "$spec_folder" 2>/dev/null || echo '{}')
+255:        log_error "Archive directory resolves outside the specs root $specs_root: $archive_root -> $resolved"
+336:    rm -rf "$archive_root"/.tmp_*_"$basename" 2>/dev/null || true
+340:        rm -rf "$temp_target" 2>/dev/null || true
+347:        rm -rf "$temp_target" 2>/dev/null || true
+355:    log_success "Archived: $resolved_spec -> $archive_root/$basename"
+363:        log_info "Left specs/${parent#"$specs_root"/}/graph-metadata.json as it is: a phase leaves children_ids only through a reviewed prune, backfill-graph-metadata.js specs/${parent#"$specs_root"/} --prune-report, then --prune --prune-confirm <hash>."
+419:        date=$(stat -f "%Sm" -t "%Y-%m-%d" "$entry" 2>/dev/null || stat -c "%y" "$entry" 2>/dev/null | cut -d' ' -f1)
+424:    echo "To restore: archive-spec.sh --restore <path above>"
+487:    log_success "Restored: $resolved_archived -> $destination"
+[exit=0]
+
+== 3. Subprocess writers (a child process may write on the caller's behalf)
+
+$ rg -n 'spawnSync|execFile|execSync|run\(.node.|node \"\$|node \"|repair_script|refresh_script' .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts .skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts
+.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:27:const { execFile } = require('node:child_process');
+.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:34:const run = promisify(execFile);
+.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:438:    await run('node', ['--import', TSX_LOADER, BACKFILL, folder], CHILD);
+.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:179:    local refresh_script="$SCRIPT_DIR/refresh-track-roots.mjs"
+.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:181:    if [[ ! -f "$refresh_script" ]]; then
+.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:182:        log_warning "${track}/graph-metadata.json was not refreshed: $refresh_script is missing. Restore it, then run refresh-track-roots.mjs --track ${track} --apply."
+.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:185:    if ! node "$refresh_script" --specs "$specs_root" --track "$track" --apply; then
+.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:198:    local repair_script="$SCRIPT_DIR/repair-derived.cjs"
+.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:199:    if [[ ! -f "$repair_script" ]]; then
+.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:200:        log_warning "Recorded paths under $destination were not re-derived: $repair_script is missing. Restore it, then run repair-derived.cjs --roots $destination --apply."
+.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:203:    if ! node "$repair_script" --roots "$destination" --apply >/dev/null; then
+.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:11:import { spawnSync } from 'node:child_process';
+.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:315:function registryExecutionErrorDetails(result: ReturnType<typeof spawnSync>): string[] {
+.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:325:  const result = spawnSync('node', [
+.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:372:  const result = spawnSync('bash', [
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:36:import { execFile } from 'node:child_process';
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:46:const run = promisify(execFile);
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:687:  const { stdout } = await run('node', ['--import', TSX_LOADER, '--input-type=module', '-e', LIST_SCRIPT, root, GRAPH_BACKFILL], VALIDATE_CHILD);
+.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:792:    const result = await run('node', ['--import', TSX_LOADER, ...args], options);
+[exit=0]
+
+== 4. Guard functions and their call sites (lstat, realpath, link refusal, containment)
+
+$ rg -n 'lstat|realpath|isSymbolicLink|not followed|isWithinPath|contained\(|is_path_within|resolve_existing_dir|\-L "|readlinkSync' .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs
+634:const SYMLINK_REFUSAL = 'symbolic link, not followed';
+637:function isSymbolicLink(file) {
+638:  try { return fs.lstatSync(file).isSymbolicLink(); } catch { return false; }
+651:  if (isSymbolicLink(file)) {
+670:    if (!fs.existsSync(file) && !isSymbolicLink(file)) continue;
+788:function isWithinPath(candidate, base) {
+810:  if (isSymbolicLink(target)) return 'the folder itself is a link';
+815:  const root = roots.find((candidate) => isWithinPath(target, candidate));
+823:    if (isSymbolicLink(current)) return `${path.relative(root, current)} is a link on the path to the folder`;
+827:    const real = fs.realpathSync(target);
+828:    if (!isWithinPath(real, fs.realpathSync(root))) return `it resolves to ${real}, outside the specs root`;
+1473:    if (!fs.existsSync(file) && !isSymbolicLink(file)) continue;
+1474:    if (isSymbolicLink(file)) {
+1531:      if (!fs.existsSync(file) && !isSymbolicLink(file)) continue;
+1532:      if (isSymbolicLink(file)) {
+[exit=0]
+
+$ rg -n 'lstat|realpath|isSymbolicLink|not followed|isWithinPath|contained\(|is_path_within|resolve_existing_dir|\-L "|readlinkSync' .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs
+233:const SYMLINK_REFUSAL = 'symbolic link, not followed';
+236:function isSymbolicLink(file) {
+237:  try { return fs.lstatSync(file).isSymbolicLink(); } catch { return false; }
+245:  return REWRITE_TARGETS.map((name) => path.join(folder, name)).filter(isSymbolicLink);
+250:  if (isSymbolicLink(file)) return null;
+272:  if (isSymbolicLink(file)) throw new Error(SYMLINK_REFUSAL);
+467:  const graphIsLink = isSymbolicLink(path.join(folder, 'graph-metadata.json'));
+569:function contained(target, root) {
+591:  if (!roots.some((root) => contained(absoluteTarget, root))) return false;
+593:    const realTarget = fs.realpathSync(absoluteTarget);
+596:        return contained(realTarget, fs.realpathSync(root));
+[exit=0]
+
+$ rg -n 'lstat|realpath|isSymbolicLink|not followed|isWithinPath|contained\(|is_path_within|resolve_existing_dir|\-L "|readlinkSync' .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs
+160:function contained(target, root) {
+174:  if (!contained(target, REPO)) throw new Error(`repository path escapes REPO: ${relative}`);
+180:    return fs.realpathSync(target);
+188:    return fs.lstatSync(target).isSymbolicLink();
+202:      stat = fs.lstatSync(current);
+206:    if (stat.isSymbolicLink()) return true;
+227:    if (real === null || !contained(real, realFolder)) {
+228:      return `${name} is a symbolic link, not followed, and does not resolve inside the packet`;
+233:    if (contained(target, folder) && reachedThroughLink(target, folder)) {
+234:      return `${relative} is reached through a symbolic link, not followed`;
+310:      stat = fs.lstatSync(target);
+320:    if (stat.isSymbolicLink()) {
+321:      hash.update(`symlink\0${fs.readlinkSync(target)}\0`);
+380:    if (!packets.some((packet) => contained(target, packet.folder))) continue;
+384:      stat = fs.lstatSync(target);
+393:    if (stat.isSymbolicLink()) {
+394:      images.push({ path: relative, beforeImage: { kind: 'symlink-target', target: fs.readlinkSync(target) } });
+599:      process.stdout.write(`  refused ${relative}: ${BASELINE_FILE} is a symbolic link, not followed, so its findings are not read\n`);
+660:    const real = fs.realpathSync(candidate);
+674:    if (!contained(real, REPO)) {
+1027:        if (!silent) process.stdout.write(`left unchanged ${repoRelative(spec)}: symbolic link, not followed\n`);
+1088:      if (!entry.isFile() && !entry.isSymbolicLink()) continue;
+1106:    if (entry.isSymbolicLink()) {
+1107:      const resolved = fs.realpathSync(target);
+1156:      if (!contained(folder, previewRoot)) throw new Error(`packet path escapes preview root: ${relative}`);
+1252:  const parent = fs.realpathSync(path.dirname(file));
+1253:  if (!roots.some((root) => contained(parent, root))) {
+1297:// by realpath: the two roots point at each other once the layout is complete,
+1307:// lstat only, so a symlink stays a link rather than becoming its target; a
+1312:    stat = fs.lstatSync(target);
+1317:  if (stat.isSymbolicLink()) {
+1320:      real = fs.realpathSync(target);
+1332:  const stat = fs.lstatSync(target);
+1333:  if (stat.isSymbolicLink()) return 'symlink';
+1454:  if (current.kind === 'directory' && (legacy.kind === 'absent' || isAliasOf(legacy, fs.realpathSync(currentPath)))) {
+1457:  if (legacy.kind === 'directory' && (current.kind === 'absent' || isAliasOf(current, fs.realpathSync(legacyPath)))) {
+1730:// by realpath: invoking the script through a linked path still starts the CLI,
+1734:    return fs.realpathSync(process.argv[1]) === fs.realpathSync(fileURLToPath(import.meta.url));
+[exit=0]
+
+$ rg -n 'lstat|realpath|isSymbolicLink|not followed|isWithinPath|contained\(|is_path_within|resolve_existing_dir|\-L "|readlinkSync' .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh
+110:resolve_existing_dir() {
+119:is_path_within() {
+242:    if [[ -L "$archive_root" ]]; then
+243:        log_error "Archive directory is a symbolic link, not followed, and is refused: $archive_root"
+250:    if ! resolved="$(resolve_existing_dir "$archive_root")"; then
+254:    if ! is_path_within "$resolved" "$specs_root"; then
+268:    if ! specs_root="$(resolve_existing_dir "$PROJECT_ROOT/specs")"; then
+273:    if ! resolved_spec="$(resolve_existing_dir "$spec_folder")"; then
+278:    if ! is_path_within "$resolved_spec" "$specs_root"; then
+321:    if is_path_within "$archive_root" "$resolved_spec"; then
+326:    if [[ -e "$archive_root/$basename" || -L "$archive_root/$basename" ]]; then
+368:# it. Links are not followed, and nothing inside an archive is visited: a packet
+373:    if [[ -d "$dir/z_archive" && ! -L "$dir/z_archive" ]]; then
+378:        [[ -d "$child" && ! -L "$child" ]] || continue
+393:        if [[ -L "$track" || "$name" =~ ^[0-9]{3} || "$name" == "z_archive" ]]; then
+437:    if [[ -L "$archive_named" ]]; then
+438:        log_error "Archive directory is a symbolic link, not followed, and is refused: $archive_named"
+442:    if ! specs_root="$(resolve_existing_dir "$PROJECT_ROOT/specs")"; then
+447:    if ! resolved_archived="$(resolve_existing_dir "$archived_folder")"; then
+475:    if ! is_path_within "$(resolve_existing_dir "$home")" "$specs_root"; then
+480:    if [[ -e "$destination" || -L "$destination" ]]; then
+[exit=0]
+
+$ rg -n 'lstat|realpath|isSymbolicLink|not followed|isWithinPath|contained\(|is_path_within|resolve_existing_dir|\-L "|readlinkSync' .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs .skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:59:function isSymbolicLink(file) {
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:60:  try { return fs.lstatSync(file).isSymbolicLink(); } catch { return false; }
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:87:    return fs.readlinkSync(linkPath);
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:99:  const skillRoot = fs.realpathSync(skillDir);
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:100:  const resolved = fs.realpathSync(full);
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:120:  const skillRoot = fs.realpathSync(skillDir);
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:136:      if (!entry.isSymbolicLink()) continue;
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:141:        resolved = fs.realpathSync(full);
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:443:  try { existing = fs.lstatSync(file); } catch { existing = null; }
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:475:  if (isSymbolicLink(manifestPath)) {
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:476:    throw new Error(`leaf-manifest.json is a symbolic link, not followed: ${manifestPath}; remove the link and write the manifest again`);
+.skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:171:function isSymbolicLink(file: string): boolean {
+.skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:173:    return fs.lstatSync(file).isSymbolicLink();
+.skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:192:  if (isSymbolicLink(reportPath)) {
+.skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:193:    throw new Error(`prune report destination is a symbolic link, not followed: ${reportPath}`);
+.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:1109:    return fs.lstatSync(path.join(folder, UPGRADE_BASELINE_FILE)).isSymbolicLink();
+[exit=0]
+
+$ rg -n 'isDirectory\(\)|isFile\(\)|withFileTypes' .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs
+.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs:319:    const entries = fs.readdirSync(directory, { withFileTypes: true })
+.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs:324:      if (entry.isDirectory()) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs:327:      } else if (entry.isFile() && SUPPORTED_DOCUMENT_NAMES.has(entry.name)) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs:535:  if (!fs.existsSync(root) || !fs.statSync(root).isDirectory()) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:756:    try { entries = fs.readdirSync(dir, { withFileTypes: true }); } catch { continue; }
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:759:      if (e.isDirectory()) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1044:  try { return fs.statSync(candidate).isFile(); } catch { return false; }
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1077:    try { entries = fs.readdirSync(dir, { withFileTypes: true }); } catch { continue; }
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1080:      if (entry.isDirectory()) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1084:      if (!entry.isFile() || !entry.name.endsWith('.md')) continue;
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1187:    try { entries = fs.readdirSync(dir, { withFileTypes: true }); } catch { continue; }
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1189:      if (entry.isDirectory()) {
+.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1193:      if (!entry.isFile()) continue;
+[exit=0]
+
+== 5. Exact text of the key guard and write lines (sed of the cited lines)
+
+$ awk 'NR==242||NR==246||NR==250||NR==254||NR==319||NR==326||NR==336||NR==339||NR==346||NR==353||NR==437||NR==447||NR==456||NR==475||NR==480||NR==485 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh
+242:     if [[ -L "$archive_root" ]]; then
+246:     if ! mkdir -p "$archive_root"; then
+250:     if ! resolved="$(resolve_existing_dir "$archive_root")"; then
+254:     if ! is_path_within "$resolved" "$specs_root"; then
+319:     archive_root="$(resolve_archive_root "$parent/z_archive" "$specs_root")" || exit 1
+326:     if [[ -e "$archive_root/$basename" || -L "$archive_root/$basename" ]]; then
+336:     rm -rf "$archive_root"/.tmp_*_"$basename" 2>/dev/null || true
+339:     if ! cp -R "$resolved_spec" "$temp_target"; then
+346:     if ! mv "$temp_target" "$archive_root/$basename"; then
+353:     rm -rf "$resolved_spec"
+437:     if [[ -L "$archive_named" ]]; then
+447:     if ! resolved_archived="$(resolve_existing_dir "$archived_folder")"; then
+456:     if [[ "$(basename "$archive_dir")" != "z_archive" ]] || ! is_packet_home "$(dirname "$archive_dir")" "$specs_root"; then
+475:     if ! is_path_within "$(resolve_existing_dir "$home")" "$specs_root"; then
+480:     if [[ -e "$destination" || -L "$destination" ]]; then
+485:     mv "$resolved_archived" "$destination"
+[exit=0]
+
+$ awk 'NR==612||NR==620||NR==627||NR==651||NR==657||NR==810||NR==815||NR==817||NR==1474||NR==1488||NR==1511||NR==1531||NR==1547 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs | cut -c1-200
+612:     descriptor = fs.openSync(candidate, 'wx', mode);
+620:     fs.renameSync(temporary, file);
+627:       try { fs.unlinkSync(temporary); } catch { /* The original write error is more useful. */ }
+651:   if (isSymbolicLink(file)) {
+657:   if (apply && result.changed) writeFileAtomic(file, result.text);
+810:   if (isSymbolicLink(target)) return 'the folder itself is a link';
+815:   const root = roots.find((candidate) => isWithinPath(target, candidate));
+817:     return rootArg !== undefined ? 'it resolves outside the specs root' : null;
+1474:     if (isSymbolicLink(file)) {
+1488:     if (apply) writeFileAtomic(file, out);
+1511:   if (refuseFolderArgument(argv)) return;
+1531:       if (!fs.existsSync(file) && !isSymbolicLink(file)) continue;
+1547:       if (apply) writeFileAtomic(file, r.text);
+[exit=0]
+
+$ awk 'NR==250||NR==272||NR==277||NR==287||NR==294||NR==467||NR==468||NR==477 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs | cut -c1-200
+250:   if (isSymbolicLink(file)) return null;
+272:   if (isSymbolicLink(file)) throw new Error(SYMLINK_REFUSAL);
+277:     descriptor = fs.openSync(temp, 'wx');
+287:     fs.renameSync(temp, file);
+294:       try { fs.rmSync(temporary, { force: true }); } catch { /* The original write error is more useful. */ }
+467:   const graphIsLink = isSymbolicLink(path.join(folder, 'graph-metadata.json'));
+468:   const rederiveNeeded = !graphIsLink && (edits.length > 0 || staleMetadata);
+477:   if (!apply || planned.length === 0) return { folder, planned, authored, beyond };
+[exit=0]
+
+$ awk 'NR==421||NR==441||NR==442||NR==868||NR==1026||NR==1033||NR==1252||NR==1253||NR==1258||NR==1278||NR==1280||NR==1546||NR==1565||NR==1591 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs | cut -c1-200
+421:       descriptor = fs.openSync(file, 'wx', 0o600);
+441:     fs.writeFileSync(temporary, content, { encoding: 'utf8', flag: 'wx', mode: 0o600 });
+442:     fs.renameSync(temporary, file);
+868:         if (next !== original) fs.writeFileSync(file, next, 'utf8');
+1026:       if (linkAt(spec)) {
+1033:         healerFor(context).writeFileAtomic(spec, result.text);
+1252:   const parent = fs.realpathSync(path.dirname(file));
+1253:   if (!roots.some((root) => contained(parent, root))) {
+1258:   if (!baselineIsLink(folder)) {
+1278:   fs.writeFileSync(tmp, `${JSON.stringify(body, null, 2)}\n`, { encoding: 'utf8', flag: 'wx' });
+1280:     fs.renameSync(tmp, file);
+1546:     const linked = refuseLinkedPackets(failing, gitState.dirtyPaths);
+1565:     const failures = await repairPackets(
+1591:         outcome = recordFindings(packet.folder, findings, roots, refusals);
+[exit=0]
+
+$ awk 'NR==203||NR==205||NR==208||NR==192||NR==193||NR==433||NR==166||NR==167 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts | cut -c1-200
+166: export function pruneReportPath(root: string, fileName = BACKFILL_PRUNE_REPORT_FILE): string {
+167:   return path.join(path.resolve(root), fileName);
+192:   if (isSymbolicLink(reportPath)) {
+193:     throw new Error(`prune report destination is a symbolic link, not followed: ${reportPath}`);
+203:     descriptor = fs.openSync(tempPath, 'wx');
+205:     fs.writeFileSync(descriptor, content, 'utf-8');
+208:     fs.renameSync(temporary, reportPath);
+433:       root = path.resolve(value);
+[exit=0]
+
+$ awk 'NR==267||NR==270||NR==273||NR==504||NR==511||NR==550||NR==650||NR==651 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs | cut -c1-200
+267:     descriptor = fs.openSync(temporaryFile, 'wx', mode);
+270:     fs.writeFileSync(descriptor, content, 'utf8');
+273:     fs.renameSync(temporaryFile, file);
+504:   for (const file of walkDocuments(root)) {
+511:       content = fs.readFileSync(file, 'utf8');
+550:       writeFileAtomically(file, plan.updated);
+650:   const root = path.resolve(process.cwd(), options.root);
+651:   if (!fs.existsSync(root) || !fs.statSync(root).isDirectory()) {
+[exit=0]
+
+$ awk 'NR==327 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs
+327:       } else if (entry.isFile() && SUPPORTED_DOCUMENT_NAMES.has(entry.name)) {
+[exit=0]
+
+$ awk 'NR==447||NR==453||NR==475||NR==477||NR==479 {printf "%d: %s\n", NR, $0}' .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs | cut -c1-200
+447:     descriptor = fs.openSync(temporary, 'wx');
+453:     fs.renameSync(temporary, file);
+475:   if (isSymbolicLink(manifestPath)) {
+477:   }
+479:   writeFileAtomic(manifestPath, bytes);
+[exit=0]
+
+$ awk 'NR==1831||NR==1837||NR==1846||NR==1852||NR==1855||NR==1856 {printf "%d: %s\n", NR, $0}' .skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts | cut -c1-200
+1831:     canonicalParentDir = fs.realpathSync(parentDir);
+1837:   if (!canClassifyAsGraphMetadataPath(canonicalFilePath)) {
+1846:   if (!isWithinConfiguredSpecsRoot(resolvedFilePath)) {
+1852:   const tempPath = `${canonicalFilePath}.tmp-${process.pid}-${tempCounter++}-${crypto.randomBytes(4).toString('hex')}`;
+1855:   fs.writeFileSync(tempPath, content, 'utf-8');
+1856:   fs.renameSync(tempPath, canonicalFilePath);
+[exit=0]
+
+$ rg -n 'writeGraphMetadataFile\(' .skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts
+1826:export function writeGraphMetadataFile(filePath: string, metadata: GraphMetadata): void {
+1907:  writeGraphMetadataFile(filePath, merged);
+[exit=0]
+
+$ rg -n '\.steps\b' .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs; echo "(no .steps reader in upgrade-legacy.mjs above is the expected result)"
+(no .steps reader in upgrade-legacy.mjs above is the expected result)
+[exit=0]
+
+$ rg -n 'routed' .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs | head -8
+500:  const routed = [];
+520:        routed.push(noFrontmatterRoute(file, root, kind));
+566:    routed,
+620:  for (const route of report.routed) {
+621:    lines.push(`${route.path}: routed to ${route.fixer}; run: ${route.command}`);
+[exit=0]
+
+==========================================================================
+A. CLASSIFICATION (written from the reads above; line numbers as shown)
+==========================================================================
+Status key:
+  GUARDED           a check or structure at this site, or in the function that owns it, stops a link.
+  GUARDED-BY-CALLER the write has no check of its own; the caller checks before reaching it.
+  PARTIAL           part of the path is not checked. The reason is stated. Not the same as no guard.
+  PREVIEW-ONLY      the write lands in a temporary copy, never the real tree.
+  NO-WRITE          the file has no write site of this kind.
+  DELEGATE          a child process or another module writes; the guard lives outside the named list.
+  UNGUARDED         no check on a user-reachable path. NONE found at a write site in the named list.
+                    Two sites have no check at the write itself and rely on an earlier step. Those are
+                    E1 and U3 below. They are marked by their caller or discovery guard, not UNGUARDED.
+
+"User-reachable" means a path that a command-line argument or a discovered folder can supply.
+
+--- heal-spec-docs.cjs (lane B) ---------------------------------------------
+H1  :612,:614,:617,:620,:627  writeFileAtomic (def :601-630): openSync 'wx' temp, write, fsync, rename over file, unlink temp.
+    Target: the packet document named by the caller. Guard in the function: the temp name is random and exclusive (:608-612).
+    There is no link check inside writeFileAtomic. Callers check (H2-H4). Status: GUARDED-BY-CALLER.
+H2  :657  repairAnchorFile -> writeFileAtomic. Target: <packet>/spec.md from --folder, --roots or discover.
+    Guard :651-653 isSymbolicLink(file) before the read at :654. Status: GUARDED.
+H3  :1488 runLaneModes -> writeFileAtomic. Target: a packet document. Guard :1473-1477 (link refused per document).
+    Called by runLaneModesCli (:1496-1499) and by upgrade-legacy.mjs:972 with discovered packets. Status: GUARDED.
+H4  :1547 main() default --apply path. Targets from resolveTargets (:1522): --folder, or discover (:750-766).
+    --folder is checked first by refuseFolderArgument (:1511, :836-846) with folderRefusal (:808-831).
+    Guard :1531-1536 refuses a linked document before healDoc. Status: GUARDED.
+H5  PARTIAL: --folder outside the default roots when no --roots is given. folderRefusal returns null at :815-818
+    (no root found and no --roots), so a link above the final component is not checked. Only the final component
+    is checked (:810). The code comment at :800-802 states this choice ("judged only as a link"). This is a
+    documented design, but it is the one place where a user argument reaches a write through an unchecked parent.
+    Confirmation step (not run; it needs a fixture): --folder <linked-parent>/<packet> with no --roots, then
+    --apply, expecting a write through the link. INFERRED.
+H6  Guard, not a write: discover() :750-766 uses Dirent.isDirectory() at :759, so a linked packet folder is never
+    descended. Default --apply therefore cannot reach a linked packet folder by discovery.
+
+--- repair-derived.cjs (lane B shared helper neighbour; used by archive and upgrade) ---
+R1  :277 openSync(temp,'wx') :279 writeFileSync :283 chmodSync(temp) :287 renameSync(temp,file) :294 rmSync(temp)
+    (writeAtomic :271-297). Targets: description.json, graph-metadata.json and DOCS names in a packet.
+    Packet from --folder (checked by insideSpecs :588-605 at :624) or from discover(rootsArg) (:514).
+    Guard :272 isSymbolicLink(file) throws before any write. Status: GUARDED.
+R2  writeAtomic callers: :336 (fixDescriptionLevel), :358, :381, :408 (graph parent), :429 (DOCS pointer), all inside
+    plan/apply closures. Each file is first read with readIfPresent (:250 refuses a link), so no plan names a link.
+    Status: GUARDED-BY-CALLER and also GUARDED by :272.
+R3  READ, not a write: apply closures re-read files at :405 and :424 with fs.readFileSync, which follows a link. A link
+    planted after the plan and before the write is read, then writeAtomic refuses at :272. Read-through-link window only.
+R4  :438 rederive() runs node BACKFILL on the folder (subprocess that writes graph-metadata). Called from :495 only when
+    apply is set (:477 returns first). Guard :467-468 graphIsLink, an lstat check, skips the re-derive for a linked
+    graph file (comment :463-466 gives the reason). Folder validated by insideSpecs. Status: DELEGATE, GUARDED here.
+
+--- upgrade-legacy.mjs (lane F) ---------------------------------------------
+U1  :421 openSync(file,'wx',0o600) :423 writeFileSync :432 unlinkSync (writeManifestFile exclusive branch :417-437).
+    Target: <git-dir>/upgrade-legacy.manifest.json (manifestPathFor :410-412). The git dir comes from
+    git rev-parse --absolute-git-dir (:273-276), not from packet content. Exclusive create fails on any existing
+    entry, including a link (O_EXCL does not follow). Create only when !existsSync (:566). Status: GUARDED (structural).
+U2  :441 writeFileSync(temporary,'wx') :442 renameSync(temporary,file) (non-exclusive branch :439-446, used by
+    completeManifest :581 and by prepareManifest when the file exists). Random exclusive temp; rename replaces a link
+    itself and writes nothing through it. Status: GUARDED (structural).
+U3  :868 writeFileSync(file,next) inside FILL_SCRIPT (fillMissingFrontmatter :825-876, run through runStep at :906-912).
+    Target: a top-level name of a packet folder (:830-836). No link check inside the function. statSync at :838 follows
+    links. The guard is the caller: packetLinkProblem (:214-230) refuses a top-level link that does not realpath inside
+    the packet, and a dangling link. It runs on every failing packet at main :1546-1548, before repairPackets (:1565).
+    Status: GUARDED-BY-CALLER. Caveat: no check at the write itself.
+U4  :1033 writeFileAtomic(spec) in repairArchived (:1014-1060). Guard :1026-1029 linkAt(spec). Also covered by :1546.
+    Status: GUARDED.
+U5  Preview workspace (createPreviewWorkspace :1117-1171; copyPreviewAncestorFiles :1080-1096; materializeSymlinks
+    :1102-1115): mkdirSync :1086 :1121 :1131 :1135 :1157, cpSync :1089 :1109 :1122 :1158, symlinkSync :1132,
+    utimesSync :1143, unlinkSync :1108, rmSync :1168 :1208. Targets are under mkdtemp(os.tmpdir()) at :1118.
+    Status: PREVIEW-ONLY. Reads through links happen at :1089 and :1158 (dereference: true) and are copied into the
+    preview, not the real tree. :1143 touches only real files (withFileTypes skips links). Dry run and apply both
+    take this path (predictDowngradeFindings :1189).
+U6  :1278 writeFileSync(tmp,'wx') :1280 renameSync(tmp,file) :1282 unlinkSync(tmp) (recordFindings :1250-1286).
+    Target: <packet>/upgrade-baseline.json (:1251). Guard :1252-1255 realpath of the parent must sit under a root.
+    Guard :1258 baselineIsLink skips reading a link. Exclusive random temp (:1277-1278). Rename replaces the link.
+    Caller: :1591 in main, for packets not refused (:1578 skips linked). Status: GUARDED.
+U7  NOT A WRITE IN THIS FILE: planLayoutMove steps (:1404-1409, :1461-1463) are argv arrays (mv, git mv, rm -f, find
+    -delete, rmdir, ln -s). The file prints them only under --layout-map (:1741-1745). Nothing in this file executes
+    them (the .steps grep above). Tests execute them (doctor-update-compat.test.cjs:494), and the doctor flow runs them
+    (outside the named list). linkedLegacyParentRefusal (:1421-1430) refuses a linked .opencode before any step is emitted.
+
+--- archive.sh (lane A) -----------------------------------------------------
+A1  :185 node refresh-track-roots.mjs --specs --track --apply (refresh_track_root). DELEGATE. The script is not in the
+    named list, so its guard is not inventoried (UNKNOWN here). Track name comes from track_of (:138-149).
+A2  :203 node repair-derived.cjs --roots "$destination" --apply (rederive_moved). DELEGATE. Guard: insideSpecs (repair-derived
+    :588-605) on the --roots argument at :623-626. Status: GUARDED (by the delegate).
+A3  :246 mkdir -p "$archive_root". archive_root = "$parent/z_archive" (:314-319); parent is pwd -P of the packet (:273, :313),
+    so it has no link component. Guard :242-245 (-L on the z_archive name, before mkdir), then :250-257 resolve and
+    is_path_within specs. Status: GUARDED.
+A4  :336 rm -rf "$archive_root"/.tmp_*_"$basename". archive_root is the resolved path (:319 from :258). basename is
+    checked by validate_spec_folder_name (:308, NNN-name pattern). Status: GUARDED.
+A5  :339 cp -R "$resolved_spec" "$temp_target". Temp = archive_root/.tmp_$$_basename (:333), a PID name, not exclusive.
+    Stale temps of that name are removed first (:336). Contained by :250-257. Status: GUARDED (non-exclusive temp in a
+    contained directory). Nested links: cp -R does not follow them (man cp: with -R, symbolic links are not followed by
+    default). Recorded from the man page text, not run. INFERRED for this macOS build.
+A6  :340, :347 rm -rf "$temp_target". Same containment. Status: GUARDED.
+A7  :346 mv "$temp_target" "$archive_root/$basename". Target existence and link check at :326 (-e or -L refused) runs
+    before the copy at :339, so check and move are separate steps. Window between :326 and :346 is INFERRED, not tested.
+    Status: GUARDED (TOCTOU window noted).
+A8  :353 rm -rf "$resolved_spec". Resolved source (:273, pwd -P). Containment in specs :278-282. Status: GUARDED.
+A9  :485 mv "$resolved_archived" "$destination". Checks: :437 (-L on the archive directory named in the argument), :447
+    (resolve), :456 (packet home), :475-478 (resolved home inside specs), :480 (-e or -L on destination).
+    Status: GUARDED.
+
+--- template-phrase-cleanup.mjs (lane E) -------------------------------------
+E1  :267 openSync(temp,'wx') :270 writeFileSync :273 renameSync(temp,file) :287 unlinkSync (writeFileAtomically :256-292).
+    Target: a document from walkDocuments(root) (:504). Enumeration filter: template-phrase-census.mjs:327
+    entry.isFile() on a Dirent, which is false for a link, so links are never enumerated. The write itself has no link
+    check. The read at :511 follows links. Status: PARTIAL, guarded at enumeration only. A document replaced by a link
+    after enumeration would be read at :511 and renamed over at :273. INFERRED, no test covers it. Strictly read,
+    this is a site with no guard at the write. It is not marked UNGUARDED here because the discovery filter is a
+    deliberate guard on the same path.
+E2  :650-654 root from --root (:589-592) through path.resolve and statSync (statSync follows a link). Operator argument.
+    No containment check. Status: PARTIAL (operator-chosen root). See K1 for the same shape.
+
+--- backfill-graph-metadata.ts (lane E-adjacent; listed) ---------------------
+K1  :203 openSync(tempPath,'wx') :205 writeFileSync :208 renameSync(temporary,reportPath) :215 rmSync (writePruneReportArtifact
+    :188-218). Target: pruneReportPath(options.root) (:166-168), called at :759 and :763. Guard :192-194 refuses a link at the
+    report name. Temp is exclusive (:196-203). Rename replaces a link. Status: PARTIAL. --root (:428-433) accepts any
+    directory, and planBackfill (:381-500) never checks it against a specs root. The comment at :182 says the report
+    sits "under the specs root", which the code does not enforce. Parent components of the root are not checked.
+K2  DELEGATE: executeBackfill -> runBackfillCore (:618, call at :749 and :780) -> refreshGraphMetadataForSpecFolder
+    (:687) -> writeGraphMetadataFile (graph-metadata-parser.ts:1826-1857). Guard: realpath of the parent (:1831), the
+    graph classifier (:1837-1839) and configured-root membership (:1846-1848). Status: GUARDED (by the delegate).
+    Gap: the temp name at :1852 is written with writeFileSync and no 'wx' flag (:1855). Its suffix is pid, counter and
+    4 random bytes. INFERRED low risk. Not in the named list, so reported, not fixed.
+
+--- orchestrator.ts (listed) -----------------------------------------------
+O1  NO-WRITE. The rg above finds no fs write, rename, copy, remove, mkdir or unlink call. The fs use is reads and
+    existence checks (for example :197, :240, :526, :894 readdirSync withFileTypes, :1069 read, :1109 lstat).
+    Subprocesses: spawnSync('node', [scriptPath, '--folder', folder, ...(strict ? ['--strict'] : [])]) at :325-334 and
+    spawnSync('bash', ['-c', REGISTRY_SHELL_RULE_WRAPPER, ...]) at :372. Neither passes --apply. Writes that a rule
+    script makes are outside this list.
+
+--- generate-leaf-manifest.cjs (lane C) -------------------------------------
+L1  :447 openSync(temporary,'wx') :448 writeFileSync :449 fchmodSync :453 renameSync(temporary,file) :458 rmSync (writeFileAtomic
+    :435-461). Target: <skillDir>/leaf-manifest.json (:474) from the <skillDir> CLI argument (:517-524). Guard :475-477
+    refuses a link at the manifest name before the write at :479. Exclusive temp. Rename replaces a link. Status: PARTIAL.
+    The skillDir argument itself and its parent components are not checked (operator argument, the same shape as H5).
+L2  :443 lstatSync only reads the mode. No write.
+L3  READ guards for the walker, listed for completeness: assertStartInsideSkill (:98-105, realpath containment) runs
+    before readdirSync (:119, :125). Directories are pushed only by Dirent.isDirectory() (:127). Link targets are
+    realpath-checked (:141-147). Status: GUARDED.
+
+==========================================================================
+B. FINDINGS (for the orchestrator; nothing was fixed here)
+==========================================================================
+- No site in the named list is UNGUARDED at its write call with a fully unchecked user-reachable path.
+- PARTIAL sites, each a parent-component or root gap rather than a missing link check on the final name:
+    H5 (heal --folder outside default roots, no --roots; documented in code),
+    K1 (backfill --root unconfined; the comment says "under the specs root"),
+    L1 (leaf skillDir parent unchecked; final name guarded),
+    E1 (phrase cleanup write has no link check; enumeration filter only; TOCTOU),
+    E2 (phrase cleanup --root unconfined; same shape as K1).
+- Delegate gap outside the named list: K2 temp name in writeGraphMetadataFile is not exclusive (graph-metadata-parser.ts:1852-1855).
+- Confirmation not run: H5 and K1 would need a fixture (a linked parent folder) and an apply run. No fixture was created
+  because this worker may write only the evidence .txt files. Both stay INFERRED until a test runs them.

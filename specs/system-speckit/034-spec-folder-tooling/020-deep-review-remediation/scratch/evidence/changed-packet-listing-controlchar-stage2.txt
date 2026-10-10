@@ -1,0 +1,15 @@
+Packets to validate:
+  specs/hostile/c\r::error::PWNED
+  specs/hostile/café
+  specs/hostile/n\n::error::PWNED
+  specs/hostile/q"x
+
+4 changed packet(s) do not validate; checking which are regressions.
+::error file=specs/hostile/c%0D%3A%3Aerror%3A%3APWNED/spec.md::New packet does not validate
+::error file=specs/hostile/café/spec.md::New packet does not validate
+::error file=specs/hostile/n%0A%3A%3Aerror%3A%3APWNED/spec.md::New packet does not validate
+::error file=specs/hostile/q"x/spec.md::New packet does not validate
+
+BLOCKED: 4 packet(s) regressed in this PR.
+Run: bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet> --strict
+exit=1

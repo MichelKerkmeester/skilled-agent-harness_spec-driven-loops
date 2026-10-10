@@ -1,0 +1,7 @@
+Command: python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-spec-kit/changelog/v2.7.1.0.md
+
+
+✅ VALID: .skilled/skills/system-spec-kit/changelog/v2.7.1.0.md
+Document type: changelog
+Total issues: 0
+EXIT=0

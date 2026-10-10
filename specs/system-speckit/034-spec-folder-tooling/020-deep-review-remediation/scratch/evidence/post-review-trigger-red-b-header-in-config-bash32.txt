@@ -1,0 +1,97 @@
+Command: TRIGGER_INDEX_REBUILD_WORKFLOW_PATH=<scratch>/mutant-b-header-in-config.yml npx vitest run --config ../../vitest.config.ts --project cli tests/trigger-index-rebuild-workflow.vitest.ts
+bash: GNU bash, version 3.2.57(1)-release (arm64-apple-darwin26)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/trigger-index-rebuild-workflow.vitest.ts (23 tests | 2 failed) 4779ms
+       × keeps the token and its header out of every step output, the output file and the repository config 4ms
+       × keeps the token and its header out of every step output, the output file and the repository config 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin moves before the push > keeps the token and its header out of every step output, the output file and the repository config
+AssertionError: expected '[core]\n\trepositoryformatversion = 0…' not to contain 'eC1hY2Nlc3MtdG9rZW46ZHVtbXktdG9rZW4tZ…'
+
+- Expected
++ Received
+
+- eC1hY2Nlc3MtdG9rZW46ZHVtbXktdG9rZW4tZm9yLXdvcmtmbG93LXRlc3Qtb25seQ==
++ [core]
++ 	repositoryformatversion = 0
++ 	filemode = true
++ 	bare = false
++ 	logallrefupdates = true
++ 	ignorecase = true
++ 	precomposeunicode = true
++ 	hooksPath = /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/trigger-index-rebuild-6hfZt0/hooks
++ [remote "origin"]
++ 	url = /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/trigger-index-rebuild-6hfZt0/origin.git
++ 	fetch = +refs/heads/*:refs/remotes/origin/*
++ [branch "main"]
++ 	remote = origin
++ 	merge = refs/heads/main
++ [user]
++ 	name = github-actions[bot]
++ 	email = 41898282+github-actions[bot]@users.noreply.github.com
++ [http "https://github.com/"]
++ 	extraheader = AUTHORIZATION: basic eC1hY2Nlc3MtdG9rZW46ZHVtbXktdG9rZW4tZm9yLXdvcmtmbG93LXRlc3Qtb25seQ==
++
+
+ ❯ tests/trigger-index-rebuild-workflow.vitest.ts:517:28
+    515|       for (const marker of SECRET_MARKERS) {
+    516|         for (const text of texts) {
+    517|           expect(text).not.toContain(marker);
+       |                            ^
+    518|         }
+    519|       }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin does not move > keeps the token and its header out of every step output, the output file and the repository config
+AssertionError: expected '[core]\n\trepositoryformatversion = 0…' not to contain 'eC1hY2Nlc3MtdG9rZW46ZHVtbXktdG9rZW4tZ…'
+
+- Expected
++ Received
+
+- eC1hY2Nlc3MtdG9rZW46ZHVtbXktdG9rZW4tZm9yLXdvcmtmbG93LXRlc3Qtb25seQ==
++ [core]
++ 	repositoryformatversion = 0
++ 	filemode = true
++ 	bare = false
++ 	logallrefupdates = true
++ 	ignorecase = true
++ 	precomposeunicode = true
++ 	hooksPath = /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/trigger-index-rebuild-Lom1ID/hooks
++ [remote "origin"]
++ 	url = /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/trigger-index-rebuild-Lom1ID/origin.git
++ 	fetch = +refs/heads/*:refs/remotes/origin/*
++ [branch "main"]
++ 	remote = origin
++ 	merge = refs/heads/main
++ [user]
++ 	name = github-actions[bot]
++ 	email = 41898282+github-actions[bot]@users.noreply.github.com
++ [http "https://github.com/"]
++ 	extraheader = AUTHORIZATION: basic eC1hY2Nlc3MtdG9rZW46ZHVtbXktdG9rZW4tZm9yLXdvcmtmbG93LXRlc3Qtb25seQ==
++
+
+ ❯ tests/trigger-index-rebuild-workflow.vitest.ts:517:28
+    515|       for (const marker of SECRET_MARKERS) {
+    516|         for (const text of texts) {
+    517|           expect(text).not.toContain(marker);
+       |                            ^
+    518|         }
+    519|       }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 21 passed (23)
+   Start at  12:31:59
+   Duration  4.89s (transform 23ms, setup 18ms, import 21ms, tests 4.78s, environment 0ms)
+
+EXIT=1

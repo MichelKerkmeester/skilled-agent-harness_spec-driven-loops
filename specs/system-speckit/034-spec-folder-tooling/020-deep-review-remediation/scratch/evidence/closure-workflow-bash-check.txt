@@ -1,0 +1,21 @@
+CLOSURE EVIDENCE: which bash binaries exist on this machine, and which bash ran the trigger-index workflow suite
+Taken by the orchestrator while closing CHK items. Commands run from the worktree root, output copied as printed.
+
+$ command -v bash && bash --version | head -1
+/bin/bash
+GNU bash, version 3.2.57(1)-release (arm64-apple-darwin26)
+
+$ ls -la /Applications/Pritunl.app/Contents/Resources/bash
+-rwxr-xr-x  1 root  wheel  3460224 Sep  5  2025 /Applications/Pritunl.app/Contents/Resources/bash
+
+$ /Applications/Pritunl.app/Contents/Resources/bash --version | head -1
+GNU bash, version 5.2.0(1)-release (aarch64-apple-darwin24.0.0)
+
+$ ls -la /opt/homebrew/bin/bash /usr/local/bin/bash ~/.local/bin/bash ~/bin/bash /usr/local/Cellar/bash
+ls: /opt/homebrew/bin/bash: No such file or directory
+ls: /Users/michelkerkmeester/.local/bin/bash: No such file or directory
+ls: /Users/michelkerkmeester/bin/bash: No such file or directory
+ls: /usr/local/bin/bash: No such file or directory
+ls: /usr/local/Cellar/bash: No such file or directory
+
+Reading: two bash binaries exist here. The default bash on PATH is GNU bash 3.2.57 at /bin/bash. GNU bash 5.2.0 is the Pritunl-bundled binary the post-review evidence names. Neither the k2c green-default nor the k2c green-bash52 log prints the binary it used. The re-runs that print the version beside the result are closure-workflow-bash32-recheck.txt (3.2.57, 37 passed, 1 skipped, EXIT 0) and closure-workflow-bash52-recheck.txt (5.2.0, 37 passed, 1 skipped, EXIT 0).

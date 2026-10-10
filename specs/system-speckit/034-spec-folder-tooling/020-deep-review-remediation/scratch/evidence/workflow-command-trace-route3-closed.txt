@@ -1,0 +1,27 @@
+Workflow command trace, SL-006-010, route 3 (changed-packet-validation.yml): result
+
+This file closes the route 3 verdict in workflow-command-trace.txt. That file is unchanged. It recorded route 3 as UNKNOWN for the percent-decoding case, because no run had exercised it.
+
+Harness: the old and new run blocks were replayed over six case repositories (hostile, controlchar, normal, regression, stderr, normalreg) by annot/all.sh. The copies in this folder are prefixed route3-. The harness is a text replay. It shows what the workflow prints. It does not run the GitHub runner, so the decoding rules below are GitHub's documented workflow-command rules, not an observed Actions run.
+
+Route 3 annotation injection: closed.
+
+Before the fix, each per-packet annotation printed the raw packet name in its file property. A folder name holding a percent-encoded line feed followed by "::error::" therefore reached the runner's property decoding, which turns %0A into a line break. The hostile case uses the folder name a%0A::error::PWNED. The old block prints this line (route3-hostile-old.log):
+
+  ::error file=specs/hostile/a%0A::error::PWNED/spec.md::New packet does not validate
+
+After the fix, the property and the message are escaped with the workflow-command rules: % becomes %25, CR becomes %0D, LF becomes %0A, and in properties : becomes %3A and , becomes %2C. The same folder name now prints (route3-hostile-new.log):
+
+  ::error file=specs/hostile/a%250A%3A%3Aerror%3A%3APWNED/spec.md::New packet does not validate
+
+The escaped text decodes back to the literal folder name, so it cannot begin a new command. The regression, normal and stderr cases print escaped annotations with the new block (route3-regression-new.log, route3-normal-new.log, route3-stderr-new.log). The unit-level annotation pairs, old and new, are in route3-unit-annotations.tsv.
+
+Validator output replay: closed. Validator stderr is written between ::stop-commands::<token> and ::<token>::, where the token is a random UUID per run. route3-replay-1.txt and route3-replay-2.txt replay text that contains a fake ::stop-commands::fake and a ::error::PWNED line. Both stay inside the block under two different tokens, and the replayed text is not read as commands.
+
+Packet listing: fixed in the working tree, not yet shown by a run.
+
+The listing now uses git diff -z with a NUL-delimited read (changed-packet-validation.yml, line 78), so git's path quoting cannot hide a packet. Before this change, the controlchar case printed "No spec packets changed by this PR." in both the old and the new block (route3-controlchar-old.log and route3-controlchar-new.log). That is a silent skip, not an injection. Those two logs predate the -z change, so they do not show the post-fix result. The controlchar case needs a rerun of the harness against the final block before the listing fix is claimed as observed.
+
+Verdict for SL-006-010: closed for route 1 and route 2 (the freshness report, by stop-commands), and closed for route 3 (the annotations, by escaping, and the validator replay, by stop-commands). The percent-decoding case that was UNKNOWN is now tested by the hostile case. The packet-listing fix is a separate correctness change that is not yet shown by a run.
+
+Live receipt: the Actions run on push is the orchestrator's to read. This file does not claim it.

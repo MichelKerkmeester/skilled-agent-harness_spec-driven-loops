@@ -1,0 +1,39 @@
+Command: TRIGGER_INDEX_REBUILD_WORKFLOW_PATH=<scratch>/mutant-a-generator-in-push.yml npx vitest run --config ../../vitest.config.ts --project cli tests/trigger-index-rebuild-workflow.vitest.ts
+bash: GNU bash, version 3.2.57(1)-release (arm64-apple-darwin26)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/trigger-index-rebuild-workflow.vitest.ts (23 tests | 1 failed) 6006ms
+     × runs no node, npm or generator command in the push step 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > runs no node, npm or generator command in the push step
+AssertionError: expected 'node .skilled/skills/system-spec-kit/…' not to match /\b(node|npm|npx)\b|generate-trigger-i…/
+
+- Expected:
+/\b(node|npm|npx)\b|generate-trigger-index/
+
++ Received:
+"node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check >/dev/null 2>&1 || true"
+
+ ❯ tests/trigger-index-rebuild-workflow.vitest.ts:437:24
+    435|
+    436|     for (const line of commands) {
+    437|       expect(line).not.toMatch(/\b(node|npm|npx)\b|generate-trigger-in…
+       |                        ^
+    438|     }
+    439|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 22 passed (23)
+   Start at  12:31:46
+   Duration  6.14s (transform 27ms, setup 17ms, import 25ms, tests 6.01s, environment 0ms)
+
+EXIT=1

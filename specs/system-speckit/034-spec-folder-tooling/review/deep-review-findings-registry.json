@@ -1,0 +1,3738 @@
+{
+  "sessionId": "2026-10-09T20:38:08.524Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Default healer writes through symlinked packet documents",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+      "line": 1415,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Default healer writes through symlinked packet documents",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+      "line": 1415,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "1d52b86eba49825dd0e1d7ff6dd75bbdc5c7e64c67053e8ef6f027927ea46874",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-002",
+      "severity": "P1",
+      "title": "Leaf walker follows a symlinked scope root outside the skill",
+      "file": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      "line": 97,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-002",
+      "severity": "P1",
+      "title": "Leaf walker follows a symlinked scope root outside the skill",
+      "file": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      "line": 97,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "1b3135c1c2d53202ddafebd76cb831fdddcf40ddab892fc1a6ab94f169ce6cc9",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-003",
+      "severity": "P1",
+      "title": "Archive destination symlink can move packets outside specs",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+      "line": 276,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-003",
+      "severity": "P1",
+      "title": "Archive destination symlink can move packets outside specs",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+      "line": 276,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "e612e18df084fcfdfbad6707f5b4e2ff8f968aba9a3a77a8080c9dde858ea30c",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-004",
+      "severity": "P1",
+      "title": "Write token is available to dependency installation scripts",
+      "file": ".github/workflows/trigger-index-rebuild.yml",
+      "line": 34,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-004",
+      "severity": "P1",
+      "title": "Write token is available to dependency installation scripts",
+      "file": ".github/workflows/trigger-index-rebuild.yml",
+      "line": 34,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "c05a798e4f43696f18d10e410fc405d524b54cd904c3e56e928386cdd3c08f2b",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "Completed phase transitions still have TBD handoff criteria",
+      "file": "specs/system-speckit/034-spec-folder-tooling/spec.md",
+      "line": 160,
+      "description": "The parent marks phases 18 and 19 complete while their handoff criteria and verification remain TBD.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "Compared the parent phase map and handoff table directly. The same table has populated criteria and verification for prior transitions, while the two completed transitions retain placeholders.",
+      "affectedSurfaceHints": [
+        "parent phase map",
+        "phase handoff table"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "Completed phase transitions still have TBD handoff criteria",
+      "file": "specs/system-speckit/034-spec-folder-tooling/spec.md",
+      "line": 160,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "5af62c008129850779db51401d3d476094964c2ff1c0e689057764b06016cc0b",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-002",
+      "severity": "P1",
+      "title": "Phase 019 is complete while its post-push CI criterion is unverified",
+      "file": "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/spec.md",
+      "line": 120,
+      "description": "Phase 019 is marked Complete although its stated success criterion for green main CI after the push is explicitly not checked.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "Compared the phase success criterion, its acceptance evidence and the parent completion status. The cited acceptance row proves the receipt was committed, not that post-push CI was green.",
+      "affectedSurfaceHints": [
+        "phase 019 success criteria",
+        "phase 019 acceptance evidence",
+        "parent phase map"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-002",
+      "severity": "P1",
+      "title": "Phase 019 is complete while its post-push CI criterion is unverified",
+      "file": "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/spec.md",
+      "line": 120,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "fe830f7cce0452d3f5b43753024990cd30d34c5bafd87360c0e77975e5f5a93e",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P1-001",
+      "severity": "P1",
+      "title": "Phrase cleanup can rewrite authored eight-token spec triggers",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+      "line": 300,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P1-001",
+      "severity": "P1",
+      "title": "Phrase cleanup can rewrite authored eight-token spec triggers",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+      "line": 300,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "9f45cf09033142dff8615b4081f7c10c9b31d85ae902815bd6910bf5e8772e31",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P1-001",
+      "severity": "P1",
+      "title": "Child-dispatch Gate 3 exception is missing from the skill and implementation command",
+      "file": ".skilled/skills/system-spec-kit/SKILL.md",
+      "line": 499,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P1-001",
+      "severity": "P1",
+      "title": "Child-dispatch Gate 3 exception is missing from the skill and implementation command",
+      "file": ".skilled/skills/system-spec-kit/SKILL.md",
+      "line": 499,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "e0f0f5e2395cc3219684ad17f61a912382100b40a73e4f940413c45654668097",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P1-001",
+      "severity": "P1",
+      "title": "Retry ignores a failed generator before its index-only check",
+      "file": ".github/workflows/trigger-index-rebuild.yml",
+      "line": 138,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P1-001",
+      "severity": "P1",
+      "title": "Retry ignores a failed generator before its index-only check",
+      "file": ".github/workflows/trigger-index-rebuild.yml",
+      "line": 138,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "2321838b62a2760c194198e1b3d5bba0185b38e3ce1cbd9d9a2f9e21d40aed15",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-005",
+      "severity": "P1",
+      "title": "Summary P1 finding 5",
+      "file": null,
+      "line": null,
+      "description": "security (broadened second pass)",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-006",
+      "severity": "P1",
+      "title": "Summary P1 finding 6",
+      "file": null,
+      "line": null,
+      "description": "security (broadened second pass)",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-007",
+      "severity": "P1",
+      "title": "Summary P1 finding 7",
+      "file": null,
+      "line": null,
+      "description": "security (broadened second pass)",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Healer CLI target selection is duplicated across three entrypoints",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+      "line": 643,
+      "description": "Three healer CLI entrypoints copy the same folder/root target-selection rule, creating three maintenance points for future selection changes.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "Directly compared all three target-selection blocks in heal-spec-docs.cjs and searched upgrade-legacy.mjs for the fold-in calls. The three wrappers repeat target selection, while the fold-in uses the exported repair helpers.",
+      "affectedSurfaceHints": [
+        "anchor-repair CLI",
+        "lane-modes CLI",
+        "default healer CLI"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Healer CLI target selection is duplicated across three entrypoints",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+      "line": 643,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "c4b8e9f2a73bf22d4f529ad79337f72b704692fcea9b100b8503586e320a2e18",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P2-001",
+      "severity": "P2",
+      "title": "Repository-era catalog overstates the no-specs case",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/repo-era-report.md",
+      "line": 28,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P2-001",
+      "severity": "P2",
+      "title": "Repository-era catalog overstates the no-specs case",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/repo-era-report.md",
+      "line": 28,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "28605f0b70b935d64cc068f98bf6debf5ecb5e758a732067d9e646ab883fcc41",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-001",
+      "severity": "P2",
+      "title": "Summary P2 finding 1",
+      "file": null,
+      "line": null,
+      "description": "security (broadened second pass)",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Default healer writes through symlinked packet documents",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+      "line": 1415,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-002",
+      "severity": "P1",
+      "title": "Leaf walker follows a symlinked scope root outside the skill",
+      "file": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      "line": 97,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-003",
+      "severity": "P1",
+      "title": "Archive destination symlink can move packets outside specs",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+      "line": 276,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-004",
+      "severity": "P1",
+      "title": "Write token is available to dependency installation scripts",
+      "file": ".github/workflows/trigger-index-rebuild.yml",
+      "line": 34,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Default healer writes through symlinked packet documents",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+      "line": 1415,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-002",
+      "severity": "P1",
+      "title": "Leaf walker follows a symlinked scope root outside the skill",
+      "file": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      "line": 97,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-003",
+      "severity": "P1",
+      "title": "Archive destination symlink can move packets outside specs",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+      "line": 276,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-004",
+      "severity": "P1",
+      "title": "Write token is available to dependency installation scripts",
+      "file": ".github/workflows/trigger-index-rebuild.yml",
+      "line": 34,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 21,
+    "P2": 5
+  },
+  "openFindingsCount": 26,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0.917,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "count": 11,
+      "description": "Dimension coverage (67%) is below threshold (80%). 11 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "severity": "blocking",
+      "type": "uncovered_dimensions"
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 0.6666666666666666,
+    "evidenceDensity": 1,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.917
+  },
+  "candidateCoverage": {
+    "covered": [
+      "archive_destination_escape",
+      "archive_destination_symlink",
+      "authored_trigger_phrase_rewrite",
+      "cli_argument_and_path_boundary",
+      "comment_hygiene_ephemeral_labels",
+      "completed_phase_handoff_evidence",
+      "credential_exposure_during_install",
+      "duplicated_heal_cli_target_resolution",
+      "feature_catalog_code_drift",
+      "gate3_child_dispatch_contract",
+      "git_hook_gate_inventory_drift",
+      "healer_cli_documentation_drift",
+      "healer_symlink_write",
+      "healer_target_selection_duplication",
+      "hook_trust_boundary",
+      "leaf_scope_root_symlink",
+      "literal_secret_exposure",
+      "manifest_scope_symlink_escape",
+      "parent_handoff_gap",
+      "phase_completion_evidence_gap",
+      "phase_completion_unverified_ci",
+      "planned_surface_or_evidence_pointer_gap",
+      "repo_era_catalog_overstatement",
+      "repo_era_no_roots_documentation",
+      "skill_agent_gate_exemption_mismatch",
+      "skill_agent_policy_mismatch",
+      "spec_code_claim_drift",
+      "symlink_scope_root_escape",
+      "symlink_write_escape",
+      "symlink_write_through",
+      "test_fixture_isolation",
+      "transform_data_preservation",
+      "trigger_retry_generation_failure",
+      "workflow_credential_exposure",
+      "workflow_install_credential_exposure",
+      "workflow_shell_injection"
+    ],
+    "ruledOut": [
+      "agent_cross_runtime_drift",
+      "anchor_boundary",
+      "anchor_integrity_catalog_drift",
+      "anchor_nesting_and_duplicate_closer_contract",
+      "anchor_repair_catalog_drift",
+      "archive_path_rederivation",
+      "ci_rule_set_baseline_comparison",
+      "clone_controlled_hook_execution",
+      "comment_hygiene_ephemeral_labels",
+      "common_literal_secret_exposure",
+      "compat_action_approval_and_failure_handling",
+      "compat_approval_and_recovery",
+      "compat_command_injection",
+      "compat_failed_step_field_consumers",
+      "doctor_update_argument_injection",
+      "gate_and_leaf_scope",
+      "gate3_menu_parity",
+      "git_hook_gate_command_injection",
+      "git_hook_gate_inventory_drift",
+      "healer_cli_documentation_drift",
+      "hook_trust_boundary",
+      "lane_mode_invariance",
+      "lane_modes_catalog_drift",
+      "lane_order_and_dry_run",
+      "literal_secret_exposure",
+      "manifest_scope_drift",
+      "phase_graph_metadata_backfill",
+      "phrase_seed_consistency",
+      "planned_surface_or_evidence_pointer_gap",
+      "playbook_capability_mismatch",
+      "provenance_stamp_evidence",
+      "refusal_order_regression",
+      "release_claim_mismatch",
+      "removed_lane_mode_flag_callers",
+      "report_aggregation",
+      "selected_release_claim_mismatch",
+      "spec_code_claim_drift",
+      "template_anchor_pairing",
+      "test_fixture_isolation",
+      "upgrade_reversibility",
+      "workflow_gate_coverage",
+      "workflow_shell_injection",
+      "workflow_shell_interpolation"
+    ],
+    "deferred": [
+      "checklist_evidence",
+      "individual_lane_transform_edge_cases",
+      "runtime_test_execution",
+      "spec_code",
+      "upgrade_apply_symlink_containment",
+      "workflow_command_log_injection"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "manifest_scope_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "lane_order_and_dry_run": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "upgrade_reversibility": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "compat_approval_and_recovery": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "gate_and_leaf_scope": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "workflow_gate_coverage": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "individual_lane_transform_edge_cases": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "cli_argument_and_path_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "symlink_write_escape": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "manifest_scope_symlink_escape": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "archive_destination_escape": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          6
+        ]
+      },
+      "workflow_credential_exposure": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "workflow_shell_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "hook_trust_boundary": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "literal_secret_exposure": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "upgrade_apply_symlink_containment": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "common_literal_secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "clone_controlled_hook_execution": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "spec_code_claim_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "planned_surface_or_evidence_pointer_gap": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "parent_handoff_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "phase_completion_evidence_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "duplicated_heal_cli_target_resolution": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "test_fixture_isolation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "healer_cli_documentation_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "comment_hygiene_ephemeral_labels": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "git_hook_gate_inventory_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "transform_data_preservation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "anchor_boundary": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "lane_mode_invariance": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "report_aggregation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "runtime_test_execution": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "symlink_write_through": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "symlink_scope_root_escape": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "credential_exposure_during_install": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "doctor_update_argument_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "compat_command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "git_hook_gate_command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "workflow_shell_interpolation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "workflow_command_log_injection": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "feature_catalog_code_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "skill_agent_policy_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "anchor_integrity_catalog_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "anchor_repair_catalog_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "lane_modes_catalog_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "playbook_capability_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "agent_cross_runtime_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "selected_release_claim_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "spec_code": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "checklist_evidence": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "repo_era_catalog_overstatement": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "skill_agent_gate_exemption_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "release_claim_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "trigger_retry_generation_failure": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8,
+          10
+        ]
+      },
+      "template_anchor_pairing": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "phase_graph_metadata_backfill": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "archive_path_rederivation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "phrase_seed_consistency": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "provenance_stamp_evidence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "ci_rule_set_baseline_comparison": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "compat_action_approval_and_failure_handling": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "anchor_nesting_and_duplicate_closer_contract": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "gate3_menu_parity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "refusal_order_regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "removed_lane_mode_flag_callers": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "compat_failed_step_field_consumers": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "healer_symlink_write": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "leaf_scope_root_symlink": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "archive_destination_symlink": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "workflow_install_credential_exposure": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "completed_phase_handoff_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "phase_completion_unverified_ci": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "authored_trigger_phrase_rewrite": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "gate3_child_dispatch_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "healer_target_selection_duplication": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "repo_era_no_roots_documentation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs"
+      ],
+      "bugClass": "individual_lane_transform_edge_cases",
+      "disposition": "deferred",
+      "rationale": "This pass was bounded to inventory and executable state transitions.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:155"
+      ],
+      "reason": "Review individual transform boundary behavior in a later correctness pass."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
+      ],
+      "bugClass": "upgrade_apply_symlink_containment",
+      "disposition": "deferred",
+      "rationale": "The path guards were inspected, but the complete apply transaction was not traced.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:167",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:230"
+      ],
+      "reason": "Continue the upgrade apply/move symlink boundary in a later security pass before treating it as closed."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/repo-era.vitest.ts"
+      ],
+      "bugClass": "runtime_test_execution",
+      "disposition": "deferred",
+      "rationale": "Runtime test execution was not part of this read-only review iteration.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts:381",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:911"
+      ],
+      "reason": "Tests were inspected for claimed coverage but not run."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/strict-pass-freshness-report.yml"
+      ],
+      "bugClass": "workflow_command_log_injection",
+      "disposition": "deferred",
+      "rationale": "This log-parsing boundary is separate from shell interpolation and needs producer tracing before severity can be assigned.",
+      "evidenceRefs": [
+        ".github/workflows/strict-pass-freshness-report.yml:149",
+        ".github/workflows/strict-pass-freshness-report.yml:150"
+      ],
+      "reason": "Trace the report producer and determine whether packet-controlled newlines can reach Actions workflow-command parsing."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/spec.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh"
+      ],
+      "bugClass": "spec_code",
+      "disposition": "deferred",
+      "rationale": "The request focuses this iteration on overlay protocols.",
+      "evidenceRefs": [],
+      "reason": "Core spec-to-code remains pending for a later traceability pass."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/tasks.md",
+        "specs/system-speckit/034-spec-folder-tooling/acceptance-criteria.md"
+      ],
+      "bugClass": "checklist_evidence",
+      "disposition": "deferred",
+      "rationale": "The request focuses this iteration on overlay protocols.",
+      "evidenceRefs": [],
+      "reason": "Checklist evidence remains pending for a later traceability pass."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "goal-file-manifest.txt"
+      ],
+      "bugClass": "manifest_scope_drift",
+      "disposition": "ruled_out",
+      "rationale": "Inventory paths matched.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/review/iterations/iteration-001.md:9"
+      ],
+      "reason": "No missing or extra paths."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs"
+      ],
+      "bugClass": "lane_order_and_dry_run",
+      "disposition": "ruled_out",
+      "rationale": "Selected dispatcher path is consistent.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:153",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1332"
+      ],
+      "reason": "No ordering or dry-run write defect found in the inspected path."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
+      ],
+      "bugClass": "upgrade_reversibility",
+      "disposition": "ruled_out",
+      "rationale": "The inspected apply transition preserves recovery data.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:364",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:461",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1420"
+      ],
+      "reason": "Before-images precede repair execution."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml"
+      ],
+      "bugClass": "compat_approval_and_recovery",
+      "disposition": "ruled_out",
+      "rationale": "The inspected phase contract is ordered.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml:112",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml:125"
+      ],
+      "reason": "No approval-order or terminal-log defect found."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/lib/gates.tsv",
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs"
+      ],
+      "bugClass": "gate_and_leaf_scope",
+      "disposition": "ruled_out",
+      "rationale": "Selected boundary checks align.",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/lib/gates.tsv:1",
+        ".skilled/scripts/git-hooks/pre-commit:1",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:70",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs:184"
+      ],
+      "reason": "No gate-selection or path-scope defect appeared in inspected excerpts."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".github/workflows/changed-packet-validation.yml",
+        ".github/workflows/spec-kit-check.yml",
+        ".github/workflows/strict-pass-freshness-report.yml",
+        ".github/workflows/trigger-index-rebuild.yml"
+      ],
+      "bugClass": "workflow_gate_coverage",
+      "disposition": "ruled_out",
+      "rationale": "Reviewed workflow gates preserve error and write boundaries.",
+      "evidenceRefs": [
+        ".github/workflows/changed-packet-validation.yml:41",
+        ".github/workflows/spec-kit-check.yml:92",
+        ".github/workflows/trigger-index-rebuild.yml:83"
+      ],
+      "reason": "No silent skip found in inspected ranges."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".env.example",
+        "specs/system-speckit/034-spec-folder-tooling/review/deep-review-config.json"
+      ],
+      "bugClass": "common_literal_secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "The configured common credential signatures were absent from the full scope scan.",
+      "evidenceRefs": [
+        ".env.example:1",
+        "specs/system-speckit/034-spec-folder-tooling/review/deep-review-config.json:1"
+      ],
+      "reason": "No common literal credential signatures or populated .env.example values were found; this does not rule out unknown formats."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/changed-packet-validation.yml",
+        ".github/workflows/strict-pass-freshness-report.yml"
+      ],
+      "bugClass": "workflow_shell_injection",
+      "disposition": "ruled_out",
+      "rationale": "No free-form branch name, title or body is interpolated into the reviewed shell block.",
+      "evidenceRefs": [
+        ".github/workflows/changed-packet-validation.yml:9",
+        ".github/workflows/changed-packet-validation.yml:45"
+      ],
+      "reason": "The reviewed workflow interpolates SHA/event identifiers and has read-only contents permission."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/lib/gates.tsv",
+        ".skilled/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "clone_controlled_hook_execution",
+      "disposition": "ruled_out",
+      "rationale": "The trust gate rejects ordinary cloned repositories, and reviewed command arguments remain array elements.",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:28",
+        ".skilled/scripts/git-hooks/pre-commit:43",
+        ".skilled/scripts/git-hooks/pre-commit:636"
+      ],
+      "reason": "The reviewed hook does not execute clone-controlled gates without a same-common-dir or explicit local trust condition."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TRACE-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/plan.md"
+      ],
+      "bugClass": "spec_code_claim_drift",
+      "disposition": "ruled_out",
+      "rationale": "The sampled implementation and test anchors agree with the planned surfaces; the two confirmed gaps concern closure evidence, not code behavior.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-golden-snapshots.vitest.ts:49",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1937",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:181",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1360",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml:126"
+      ],
+      "reason": "No additional implementation mismatch was observed in the required child set."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TRACE-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/implementation-summary.md"
+      ],
+      "bugClass": "planned_surface_or_evidence_pointer_gap",
+      "disposition": "ruled_out",
+      "rationale": "No additional current-source pointer defect was confirmed; an unverified success criterion is handled separately below.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh:39",
+        ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs:47",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs:1"
+      ],
+      "reason": "The resolved source/test anchors exist and the explicit unverified CI criterion remains a separate completion-evidence finding."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs"
+      ],
+      "bugClass": "test_fixture_isolation",
+      "disposition": "ruled_out",
+      "rationale": "The inspected setup/teardown paths use OS temporary directories, per-test cleanup, or a temporary repository.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:46",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts:29",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:105",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs:101"
+      ],
+      "reason": "heal-lane-modes and repair-derived create temporary roots; doctor compatibility suites create temporary repositories and remove them in test teardown."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-lane-modes.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md"
+      ],
+      "bugClass": "healer_cli_documentation_drift",
+      "disposition": "ruled_out",
+      "rationale": "The selected references describe current folder/root/apply flags, current lane order, default dry-run, and the ignored legacy flags consistently with the code.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md:38",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-lane-modes.md:81",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md:116",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1360"
+      ],
+      "reason": "Directly compared the selected catalog, playbook, CLI README, and changelog text against runLaneModesCli and main."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts"
+      ],
+      "bugClass": "comment_hygiene_ephemeral_labels",
+      "disposition": "ruled_out",
+      "rationale": "A targeted comment-token scan returned no ephemeral identifiers or packet paths in the selected code and test files; a positive control found ordinary module comments in the same corpus.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:2",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts:2"
+      ],
+      "reason": "No matching code-comment pattern was found in the selected source/test files."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/lib/gates.tsv",
+        ".skilled/scripts/git-hooks/README.md",
+        ".skilled/commands/doctor/scripts/tests/git-hook-gates.test.cjs"
+      ],
+      "bugClass": "git_hook_gate_inventory_drift",
+      "disposition": "ruled_out",
+      "rationale": "The table has 13 configurable rows, the doctor listing test asserts 13 gates, and the README distinguishes the eight blocking pre-commit checks from the switchable subset.",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/lib/gates.tsv:7",
+        ".skilled/commands/doctor/scripts/tests/git-hook-gates.test.cjs:47",
+        ".skilled/scripts/git-hooks/README.md:20"
+      ],
+      "reason": "The apparent 8-versus-13 count differs by scope: README counts all blocking pre-commit checks; the table and test count configurable gates across hooks."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/anchor-contract.vitest.ts"
+      ],
+      "bugClass": "anchor_boundary",
+      "disposition": "ruled_out",
+      "rationale": "Direct inspection found fail-closed handling for the selected ambiguity cases; tests were inspected but not run.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:372",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:417",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:495",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts:531",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/anchor-contract.vitest.ts:97"
+      ],
+      "reason": "No additional anchor repair or nesting defect was confirmed in the reviewed paths."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts"
+      ],
+      "bugClass": "lane_mode_invariance",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed transforms guard ambiguity and preserve the relevant content boundaries.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:998",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1180",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1295",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:579",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:834",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:1149"
+      ],
+      "reason": "No additional lane-mode defect was confirmed in the selected branch and tests."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts"
+      ],
+      "bugClass": "upgrade_reversibility",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed fold-in order is explicit and the suite's manifest cases cover the reversibility edge under consideration.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:810",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:835",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:881",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:959",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:979",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1006",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1090"
+      ],
+      "reason": "No additional upgrade reversibility failure was confirmed in the reviewed path."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/repo-era.vitest.ts"
+      ],
+      "bugClass": "report_aggregation",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed aggregate paths are checked against their packet/document tallies by focused tests.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs:343",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs:378",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs:418",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/repo-era.vitest.ts:101",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/repo-era.vitest.ts:217",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/repo-era.vitest.ts:346"
+      ],
+      "reason": "No additional report-total or era-classification defect was confirmed in the reviewed branches."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml"
+      ],
+      "bugClass": "doctor_update_argument_injection",
+      "disposition": "ruled_out",
+      "rationale": "The inspected path does not invoke a shell and rejects option-shaped remotes.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/release-update.cjs:281",
+        ".skilled/commands/doctor/scripts/release-update.cjs:445",
+        ".skilled/commands/doctor/scripts/release-update.cjs:2507",
+        ".skilled/commands/doctor/scripts/release-update.cjs:2510"
+      ],
+      "reason": "Argument arrays and explicit remote/release validation prevent the tested injection paths."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs"
+      ],
+      "bugClass": "compat_command_injection",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed command boundaries use argument arrays rather than shell interpolation.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs:35",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs:209",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:929"
+      ],
+      "reason": "No data-derived shell command was found in the compatibility invocation paths reviewed."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".skilled/scripts/git-hooks/lib/gates.tsv",
+        ".skilled/scripts/git-hooks/lib/gate-config.sh"
+      ],
+      "bugClass": "git_hook_gate_command_injection",
+      "disposition": "ruled_out",
+      "rationale": "No eval or dynamic command column is used for gates.tsv; staged paths are quoted.",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/lib/gates.tsv:7",
+        ".skilled/scripts/git-hooks/lib/gate-config.sh:24",
+        ".skilled/scripts/git-hooks/lib/gate-config.sh:34",
+        ".skilled/scripts/git-hooks/pre-commit:109",
+        ".skilled/scripts/git-hooks/pre-commit:118"
+      ],
+      "reason": "The inspected code does not execute gate metadata or interpolate staged names as shell source."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/changed-packet-validation.yml",
+        ".github/workflows/spec-kit-check.yml"
+      ],
+      "bugClass": "workflow_shell_interpolation",
+      "disposition": "ruled_out",
+      "rationale": "Inspected values are fixed-format commit hashes or quoted paths; no shell evaluation or write token was found.",
+      "evidenceRefs": [
+        ".github/workflows/changed-packet-validation.yml:9",
+        ".github/workflows/changed-packet-validation.yml:45",
+        ".github/workflows/changed-packet-validation.yml:117",
+        ".github/workflows/changed-packet-validation.yml:121",
+        ".github/workflows/spec-kit-check.yml:55"
+      ],
+      "reason": "No direct shell interpolation of attacker-controlled names or writable token was found in these workflows."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/strict-pass-freshness-report.yml"
+      ],
+      "bugClass": "workflow_shell_interpolation",
+      "disposition": "ruled_out",
+      "rationale": "No shell command interpolation of packet names or report fields was found.",
+      "evidenceRefs": [
+        ".github/workflows/strict-pass-freshness-report.yml:18",
+        ".github/workflows/strict-pass-freshness-report.yml:65",
+        ".github/workflows/strict-pass-freshness-report.yml:80",
+        ".github/workflows/strict-pass-freshness-report.yml:149",
+        ".github/workflows/strict-pass-freshness-report.yml:150"
+      ],
+      "reason": "Workflow data is quoted or printed to logs; it is not evaluated as shell source."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/anchor-integrity-and-nesting-check.md",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json"
+      ],
+      "bugClass": "anchor_integrity_catalog_drift",
+      "disposition": "ruled_out",
+      "rationale": "The catalog claim set matches the validator and registry on the inspected behavior.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/anchor-integrity-and-nesting-check.md:28",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:796",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:839",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:109"
+      ],
+      "reason": "No catalog-to-code mismatch was found for anchor integrity."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs"
+      ],
+      "bugClass": "anchor_repair_catalog_drift",
+      "disposition": "ruled_out",
+      "rationale": "The inspected repair and apply claims match the shipped implementation.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md:32",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:417",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:597",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:616"
+      ],
+      "reason": "No unsupported anchor-repair behavior was found."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs"
+      ],
+      "bugClass": "lane_modes_catalog_drift",
+      "disposition": "ruled_out",
+      "rationale": "The selected mode and CLI contract matches the implementation.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md:28",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md:38",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1332",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1341",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1354",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1360"
+      ],
+      "reason": "No lane-mode catalog mismatch was found."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-check.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-compat.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-anchor-repair-dry-run.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-anchor-repair-apply.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-lane-modes.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml"
+      ],
+      "bugClass": "playbook_capability_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "The described command actions are present in the assets; playbook scenarios were not run.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-check.md:14",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-compat.md:14",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml:16",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml:5"
+      ],
+      "reason": "Static contract comparison found no unsupported playbook capability."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".codex/agents/deep-review.toml",
+        ".claude/agents/deep-review.md",
+        ".hermes/agents/deep-review.md",
+        ".opencode/agents/deep-review.md",
+        ".pi/agents/deep-review.md"
+      ],
+      "bugClass": "agent_cross_runtime_drift",
+      "disposition": "ruled_out",
+      "rationale": "No material runtime behavior drift was found in the compared agent definitions.",
+      "evidenceRefs": [
+        ".codex/agents/deep-review.toml:15",
+        ".claude/agents/deep-review.md:11",
+        ".hermes/agents/deep-review.md:24",
+        ".opencode/agents/deep-review.md:24",
+        ".pi/agents/deep-review.md:18"
+      ],
+      "reason": "Differences are adapter-specific metadata and path references."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md",
+        ".skilled/changelog/skilled/v4.0.0.4.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts"
+      ],
+      "bugClass": "release_claim_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "No mismatch was found in the selected system-spec-kit release-note claims reviewed for this overlay pass.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md:47",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md:65",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md:81",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md:85",
+        ".skilled/changelog/skilled/v4.0.0.4.md:49",
+        ".skilled/changelog/skilled/v4.0.0.4.md:67",
+        ".skilled/changelog/skilled/v4.0.0.4.md:83",
+        ".skilled/changelog/skilled/v4.0.0.4.md:87"
+      ],
+      "reason": "Static source comparison supported the selected claims."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting/spec.md",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-golden-snapshots.vitest.ts"
+      ],
+      "bugClass": "template_anchor_pairing",
+      "disposition": "ruled_out",
+      "rationale": "The changed template and static render assertions cover the relevant level variants; no additional anchor-placement defect was confirmed.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:302",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-golden-snapshots.vitest.ts:49"
+      ],
+      "reason": "Per-level openers and snapshot assertions check pairing and nesting for the rendered variants."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata/spec.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts"
+      ],
+      "bugClass": "phase_graph_metadata_backfill",
+      "disposition": "ruled_out",
+      "rationale": "No empty-path or missing-tool defect was confirmed in the helper; the configured missing-tool branch warns and the regular phase path backfills the parent and children.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:197",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1002",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts:98"
+      ],
+      "reason": "The non-positive count is rejected, blank folder arguments are skipped, and missing optional inputs have warning paths."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/spec.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts"
+      ],
+      "bugClass": "archive_path_rederivation",
+      "disposition": "ruled_out",
+      "rationale": "The static source and tests cover the requested nested and archived move paths; no additional correctness defect was confirmed.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:181",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:312",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts:342",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts:380",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts:411"
+      ],
+      "reason": "The selected archive and restore cases update derived paths for nested packets and phases, with explicit failure recovery behavior."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/spec.md"
+      ],
+      "bugClass": "phrase_seed_consistency",
+      "disposition": "ruled_out",
+      "rationale": "The repair and its equality check share the deterministic seeder; no contrary phrase source was found.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/spec.md:89",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:717",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-integration.vitest.ts:99",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:1089"
+      ],
+      "reason": "The repair and its equality check share the deterministic seeder; no contrary phrase source was found."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/spec.md"
+      ],
+      "bugClass": "provenance_stamp_evidence",
+      "disposition": "ruled_out",
+      "rationale": "The selected implementation and test entry point align with evidence-gated stamping; no mismatch was confirmed in this static pass.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/spec.md:86",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:42",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-provenance.vitest.ts:145"
+      ],
+      "reason": "The selected implementation and test entry point align with evidence-gated stamping; no mismatch was confirmed in this static pass."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/spec.md"
+      ],
+      "bugClass": "ci_rule_set_baseline_comparison",
+      "disposition": "ruled_out",
+      "rationale": "The PR comparison is rule-oriented and the scheduled sweep test exercises the baseline argument path.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/spec.md:98",
+        ".github/workflows/changed-packet-validation.yml:98",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/ci-rule-set-comparison.vitest.ts:323"
+      ],
+      "reason": "The PR comparison is rule-oriented and the scheduled sweep test exercises the baseline argument path."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md"
+      ],
+      "bugClass": "compat_action_approval_and_failure_handling",
+      "disposition": "ruled_out",
+      "rationale": "The checked workflow keeps preview, explicit approval, move execution, and fail-stop handling in the specified order.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md:110",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml:114",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml:126"
+      ],
+      "reason": "The checked workflow keeps preview, explicit approval, move execution, and fail-stop handling in the specified order."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md"
+      ],
+      "bugClass": "anchor_nesting_and_duplicate_closer_contract",
+      "disposition": "ruled_out",
+      "rationale": "The validator and focused contract test are present at the spec-linked surface; no discrepancy was established in this pass.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md:105",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:784",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/anchor-contract.vitest.ts:43"
+      ],
+      "reason": "The validator and focused contract test are present at the spec-linked surface; no discrepancy was established in this pass."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/spec.md"
+      ],
+      "bugClass": "gate3_menu_parity",
+      "disposition": "ruled_out",
+      "rationale": "The parity assertion checks the rendered menu line against the canonical constant for every listed file.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/spec.md:131",
+        ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs:20",
+        ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs:46"
+      ],
+      "reason": "The parity assertion checks the rendered menu line against the canonical constant for every listed file."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/spec.md"
+      ],
+      "bugClass": "refusal_order_regression",
+      "disposition": "ruled_out",
+      "rationale": "The direct test pins the required deterministic refusal order.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/spec.md:108",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1293",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1320"
+      ],
+      "reason": "The direct test pins the required deterministic refusal order."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/spec.md"
+      ],
+      "bugClass": "removed_lane_mode_flag_callers",
+      "disposition": "ruled_out",
+      "rationale": "The only removed-flag mention found is a changelog warning, and no repository caller or usage line supplies either flag.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/spec.md:109",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1360",
+        ".skilled/changelog/skilled/v4.0.0.4.md:122"
+      ],
+      "reason": "The only removed-flag mention found is a changelog warning, and no repository caller or usage line supplies either flag."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-009",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/spec.md"
+      ],
+      "bugClass": "compat_failed_step_field_consumers",
+      "disposition": "ruled_out",
+      "rationale": "The old field name appears only in a negative assertion that proves its removal; consumers use the merged field.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/spec.md:111",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml:126",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:954"
+      ],
+      "reason": "The old field name appears only in a negative assertion that proves its removal; consumers use the merged field."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "goal-file-manifest.txt"
+      ],
+      "bugClass": "manifest_scope_drift",
+      "disposition": "ruled_out",
+      "rationale": "Inventory paths matched.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/review/iterations/iteration-001.md:9"
+      ],
+      "proof": "No missing or extra paths."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs"
+      ],
+      "bugClass": "lane_order_and_dry_run",
+      "disposition": "ruled_out",
+      "rationale": "Selected dispatcher path is consistent.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:153",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1332"
+      ],
+      "proof": "No ordering or dry-run write defect found in the inspected path."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
+      ],
+      "bugClass": "upgrade_reversibility",
+      "disposition": "ruled_out",
+      "rationale": "The inspected apply transition preserves recovery data.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:364",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:461",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1420"
+      ],
+      "proof": "Before-images precede repair execution."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml"
+      ],
+      "bugClass": "compat_approval_and_recovery",
+      "disposition": "ruled_out",
+      "rationale": "The inspected phase contract is ordered.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml:112",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml:125"
+      ],
+      "proof": "No approval-order or terminal-log defect found."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/lib/gates.tsv",
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs"
+      ],
+      "bugClass": "gate_and_leaf_scope",
+      "disposition": "ruled_out",
+      "rationale": "Selected boundary checks align.",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/lib/gates.tsv:1",
+        ".skilled/scripts/git-hooks/pre-commit:1",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:70",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs:184"
+      ],
+      "proof": "No gate-selection or path-scope defect appeared in inspected excerpts."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".github/workflows/changed-packet-validation.yml",
+        ".github/workflows/spec-kit-check.yml",
+        ".github/workflows/strict-pass-freshness-report.yml",
+        ".github/workflows/trigger-index-rebuild.yml"
+      ],
+      "bugClass": "workflow_gate_coverage",
+      "disposition": "ruled_out",
+      "rationale": "Reviewed workflow gates preserve error and write boundaries.",
+      "evidenceRefs": [
+        ".github/workflows/changed-packet-validation.yml:41",
+        ".github/workflows/spec-kit-check.yml:92",
+        ".github/workflows/trigger-index-rebuild.yml:83"
+      ],
+      "proof": "No silent skip found in inspected ranges."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".env.example",
+        "specs/system-speckit/034-spec-folder-tooling/review/deep-review-config.json"
+      ],
+      "bugClass": "common_literal_secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "The configured common credential signatures were absent from the full scope scan.",
+      "evidenceRefs": [
+        ".env.example:1",
+        "specs/system-speckit/034-spec-folder-tooling/review/deep-review-config.json:1"
+      ],
+      "proof": "No common literal credential signatures or populated .env.example values were found; this does not rule out unknown formats."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/changed-packet-validation.yml",
+        ".github/workflows/strict-pass-freshness-report.yml"
+      ],
+      "bugClass": "workflow_shell_injection",
+      "disposition": "ruled_out",
+      "rationale": "No free-form branch name, title or body is interpolated into the reviewed shell block.",
+      "evidenceRefs": [
+        ".github/workflows/changed-packet-validation.yml:9",
+        ".github/workflows/changed-packet-validation.yml:45"
+      ],
+      "proof": "The reviewed workflow interpolates SHA/event identifiers and has read-only contents permission."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/lib/gates.tsv",
+        ".skilled/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "clone_controlled_hook_execution",
+      "disposition": "ruled_out",
+      "rationale": "The trust gate rejects ordinary cloned repositories, and reviewed command arguments remain array elements.",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:28",
+        ".skilled/scripts/git-hooks/pre-commit:43",
+        ".skilled/scripts/git-hooks/pre-commit:636"
+      ],
+      "proof": "The reviewed hook does not execute clone-controlled gates without a same-common-dir or explicit local trust condition."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TRACE-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/plan.md",
+        "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/spec.md",
+        "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/plan.md"
+      ],
+      "bugClass": "spec_code_claim_drift",
+      "disposition": "ruled_out",
+      "rationale": "The sampled implementation and test anchors agree with the planned surfaces; the two confirmed gaps concern closure evidence, not code behavior.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-golden-snapshots.vitest.ts:49",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1937",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:181",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1360",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml:126"
+      ],
+      "proof": "No additional implementation mismatch was observed in the required child set."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-TRACE-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/implementation-summary.md",
+        "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/acceptance-criteria.md",
+        "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/implementation-summary.md"
+      ],
+      "bugClass": "planned_surface_or_evidence_pointer_gap",
+      "disposition": "ruled_out",
+      "rationale": "No additional current-source pointer defect was confirmed; an unverified success criterion is handled separately below.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh:39",
+        ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs:47",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs:1"
+      ],
+      "proof": "The resolved source/test anchors exist and the explicit unverified CI criterion remains a separate completion-evidence finding."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs"
+      ],
+      "bugClass": "test_fixture_isolation",
+      "disposition": "ruled_out",
+      "rationale": "The inspected setup/teardown paths use OS temporary directories, per-test cleanup, or a temporary repository.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:46",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts:29",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:105",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs:101"
+      ],
+      "proof": "heal-lane-modes and repair-derived create temporary roots; doctor compatibility suites create temporary repositories and remove them in test teardown."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-lane-modes.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md"
+      ],
+      "bugClass": "healer_cli_documentation_drift",
+      "disposition": "ruled_out",
+      "rationale": "The selected references describe current folder/root/apply flags, current lane order, default dry-run, and the ignored legacy flags consistently with the code.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md:38",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-lane-modes.md:81",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md:116",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1360"
+      ],
+      "proof": "Directly compared the selected catalog, playbook, CLI README, and changelog text against runLaneModesCli and main."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts"
+      ],
+      "bugClass": "comment_hygiene_ephemeral_labels",
+      "disposition": "ruled_out",
+      "rationale": "A targeted comment-token scan returned no ephemeral identifiers or packet paths in the selected code and test files; a positive control found ordinary module comments in the same corpus.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:2",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts:2"
+      ],
+      "proof": "No matching code-comment pattern was found in the selected source/test files."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/lib/gates.tsv",
+        ".skilled/scripts/git-hooks/README.md",
+        ".skilled/commands/doctor/scripts/tests/git-hook-gates.test.cjs"
+      ],
+      "bugClass": "git_hook_gate_inventory_drift",
+      "disposition": "ruled_out",
+      "rationale": "The table has 13 configurable rows, the doctor listing test asserts 13 gates, and the README distinguishes the eight blocking pre-commit checks from the switchable subset.",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/lib/gates.tsv:7",
+        ".skilled/commands/doctor/scripts/tests/git-hook-gates.test.cjs:47",
+        ".skilled/scripts/git-hooks/README.md:20"
+      ],
+      "proof": "The apparent 8-versus-13 count differs by scope: README counts all blocking pre-commit checks; the table and test count configurable gates across hooks."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/anchor-contract.vitest.ts"
+      ],
+      "bugClass": "anchor_boundary",
+      "disposition": "ruled_out",
+      "rationale": "Direct inspection found fail-closed handling for the selected ambiguity cases; tests were inspected but not run.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:372",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:417",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:495",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts:531",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/anchor-contract.vitest.ts:97"
+      ],
+      "proof": "No additional anchor repair or nesting defect was confirmed in the reviewed paths."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts"
+      ],
+      "bugClass": "lane_mode_invariance",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed transforms guard ambiguity and preserve the relevant content boundaries.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:998",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1180",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1295",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:579",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:834",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts:1149"
+      ],
+      "proof": "No additional lane-mode defect was confirmed in the selected branch and tests."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts"
+      ],
+      "bugClass": "upgrade_reversibility",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed fold-in order is explicit and the suite's manifest cases cover the reversibility edge under consideration.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:810",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:835",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:881",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:959",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:979",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1006",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1090"
+      ],
+      "proof": "No additional upgrade reversibility failure was confirmed in the reviewed path."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/repo-era.vitest.ts"
+      ],
+      "bugClass": "report_aggregation",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed aggregate paths are checked against their packet/document tallies by focused tests.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs:343",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs:378",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs:418",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/repo-era.vitest.ts:101",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/repo-era.vitest.ts:217",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/repo-era.vitest.ts:346"
+      ],
+      "proof": "No additional report-total or era-classification defect was confirmed in the reviewed branches."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml"
+      ],
+      "bugClass": "doctor_update_argument_injection",
+      "disposition": "ruled_out",
+      "rationale": "The inspected path does not invoke a shell and rejects option-shaped remotes.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/release-update.cjs:281",
+        ".skilled/commands/doctor/scripts/release-update.cjs:445",
+        ".skilled/commands/doctor/scripts/release-update.cjs:2507",
+        ".skilled/commands/doctor/scripts/release-update.cjs:2510"
+      ],
+      "proof": "Argument arrays and explicit remote/release validation prevent the tested injection paths."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs"
+      ],
+      "bugClass": "compat_command_injection",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed command boundaries use argument arrays rather than shell interpolation.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs:35",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs:209",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:929"
+      ],
+      "proof": "No data-derived shell command was found in the compatibility invocation paths reviewed."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".skilled/scripts/git-hooks/lib/gates.tsv",
+        ".skilled/scripts/git-hooks/lib/gate-config.sh"
+      ],
+      "bugClass": "git_hook_gate_command_injection",
+      "disposition": "ruled_out",
+      "rationale": "No eval or dynamic command column is used for gates.tsv; staged paths are quoted.",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/lib/gates.tsv:7",
+        ".skilled/scripts/git-hooks/lib/gate-config.sh:24",
+        ".skilled/scripts/git-hooks/lib/gate-config.sh:34",
+        ".skilled/scripts/git-hooks/pre-commit:109",
+        ".skilled/scripts/git-hooks/pre-commit:118"
+      ],
+      "proof": "The inspected code does not execute gate metadata or interpolate staged names as shell source."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/changed-packet-validation.yml",
+        ".github/workflows/spec-kit-check.yml"
+      ],
+      "bugClass": "workflow_shell_interpolation",
+      "disposition": "ruled_out",
+      "rationale": "Inspected values are fixed-format commit hashes or quoted paths; no shell evaluation or write token was found.",
+      "evidenceRefs": [
+        ".github/workflows/changed-packet-validation.yml:9",
+        ".github/workflows/changed-packet-validation.yml:45",
+        ".github/workflows/changed-packet-validation.yml:117",
+        ".github/workflows/changed-packet-validation.yml:121",
+        ".github/workflows/spec-kit-check.yml:55"
+      ],
+      "proof": "No direct shell interpolation of attacker-controlled names or writable token was found in these workflows."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/strict-pass-freshness-report.yml"
+      ],
+      "bugClass": "workflow_shell_interpolation",
+      "disposition": "ruled_out",
+      "rationale": "No shell command interpolation of packet names or report fields was found.",
+      "evidenceRefs": [
+        ".github/workflows/strict-pass-freshness-report.yml:18",
+        ".github/workflows/strict-pass-freshness-report.yml:65",
+        ".github/workflows/strict-pass-freshness-report.yml:80",
+        ".github/workflows/strict-pass-freshness-report.yml:149",
+        ".github/workflows/strict-pass-freshness-report.yml:150"
+      ],
+      "proof": "Workflow data is quoted or printed to logs; it is not evaluated as shell source."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/anchor-integrity-and-nesting-check.md",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json"
+      ],
+      "bugClass": "anchor_integrity_catalog_drift",
+      "disposition": "ruled_out",
+      "rationale": "The catalog claim set matches the validator and registry on the inspected behavior.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/anchor-integrity-and-nesting-check.md:28",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:796",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:839",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:109"
+      ],
+      "proof": "No catalog-to-code mismatch was found for anchor integrity."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs"
+      ],
+      "bugClass": "anchor_repair_catalog_drift",
+      "disposition": "ruled_out",
+      "rationale": "The inspected repair and apply claims match the shipped implementation.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md:32",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:417",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:597",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:616"
+      ],
+      "proof": "No unsupported anchor-repair behavior was found."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs"
+      ],
+      "bugClass": "lane_modes_catalog_drift",
+      "disposition": "ruled_out",
+      "rationale": "The selected mode and CLI contract matches the implementation.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md:28",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md:38",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1332",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1341",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1354",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1360"
+      ],
+      "proof": "No lane-mode catalog mismatch was found."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-check.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-compat.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-anchor-repair-dry-run.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-anchor-repair-apply.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-lane-modes.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml"
+      ],
+      "bugClass": "playbook_capability_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "The described command actions are present in the assets; playbook scenarios were not run.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-check.md:14",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-compat.md:14",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml:16",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml:5"
+      ],
+      "proof": "Static contract comparison found no unsupported playbook capability."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".codex/agents/deep-review.toml",
+        ".claude/agents/deep-review.md",
+        ".hermes/agents/deep-review.md",
+        ".opencode/agents/deep-review.md",
+        ".pi/agents/deep-review.md"
+      ],
+      "bugClass": "agent_cross_runtime_drift",
+      "disposition": "ruled_out",
+      "rationale": "No material runtime behavior drift was found in the compared agent definitions.",
+      "evidenceRefs": [
+        ".codex/agents/deep-review.toml:15",
+        ".claude/agents/deep-review.md:11",
+        ".hermes/agents/deep-review.md:24",
+        ".opencode/agents/deep-review.md:24",
+        ".pi/agents/deep-review.md:18"
+      ],
+      "proof": "Differences are adapter-specific metadata and path references."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md",
+        ".skilled/changelog/skilled/v4.0.0.4.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repo-era.mjs",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts"
+      ],
+      "bugClass": "release_claim_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "No mismatch was found in the selected system-spec-kit release-note claims reviewed for this overlay pass.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md:47",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md:65",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md:81",
+        ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md:85",
+        ".skilled/changelog/skilled/v4.0.0.4.md:49",
+        ".skilled/changelog/skilled/v4.0.0.4.md:67",
+        ".skilled/changelog/skilled/v4.0.0.4.md:83",
+        ".skilled/changelog/skilled/v4.0.0.4.md:87"
+      ],
+      "proof": "Static source comparison supported the selected claims."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting/spec.md",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-golden-snapshots.vitest.ts"
+      ],
+      "bugClass": "template_anchor_pairing",
+      "disposition": "ruled_out",
+      "rationale": "The changed template and static render assertions cover the relevant level variants; no additional anchor-placement defect was confirmed.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:302",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-golden-snapshots.vitest.ts:49"
+      ],
+      "proof": "Per-level openers and snapshot assertions check pairing and nesting for the rendered variants."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata/spec.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts"
+      ],
+      "bugClass": "phase_graph_metadata_backfill",
+      "disposition": "ruled_out",
+      "rationale": "No empty-path or missing-tool defect was confirmed in the helper; the configured missing-tool branch warns and the regular phase path backfills the parent and children.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:197",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1002",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts:98"
+      ],
+      "proof": "The non-positive count is rejected, blank folder arguments are skipped, and missing optional inputs have warning paths."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/spec.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts"
+      ],
+      "bugClass": "archive_path_rederivation",
+      "disposition": "ruled_out",
+      "rationale": "The static source and tests cover the requested nested and archived move paths; no additional correctness defect was confirmed.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:181",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:312",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts:342",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts:380",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts:411"
+      ],
+      "proof": "The selected archive and restore cases update derived paths for nested packets and phases, with explicit failure recovery behavior."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/spec.md"
+      ],
+      "bugClass": "phrase_seed_consistency",
+      "disposition": "ruled_out",
+      "rationale": "The repair and its equality check share the deterministic seeder; no contrary phrase source was found.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding/spec.md:89",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:717",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-integration.vitest.ts:99",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:1089"
+      ],
+      "proof": "The repair and its equality check share the deterministic seeder; no contrary phrase source was found."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/spec.md"
+      ],
+      "bugClass": "provenance_stamp_evidence",
+      "disposition": "ruled_out",
+      "rationale": "The selected implementation and test entry point align with evidence-gated stamping; no mismatch was confirmed in this static pass.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/spec.md:86",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:42",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-provenance.vitest.ts:145"
+      ],
+      "proof": "The selected implementation and test entry point align with evidence-gated stamping; no mismatch was confirmed in this static pass."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/spec.md"
+      ],
+      "bugClass": "ci_rule_set_baseline_comparison",
+      "disposition": "ruled_out",
+      "rationale": "The PR comparison is rule-oriented and the scheduled sweep test exercises the baseline argument path.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison/spec.md:98",
+        ".github/workflows/changed-packet-validation.yml:98",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/ci-rule-set-comparison.vitest.ts:323"
+      ],
+      "proof": "The PR comparison is rule-oriented and the scheduled sweep test exercises the baseline argument path."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md"
+      ],
+      "bugClass": "compat_action_approval_and_failure_handling",
+      "disposition": "ruled_out",
+      "rationale": "The checked workflow keeps preview, explicit approval, move execution, and fail-stop handling in the specified order.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility/spec.md:110",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml:114",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml:126"
+      ],
+      "proof": "The checked workflow keeps preview, explicit approval, move execution, and fail-stop handling in the specified order."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md"
+      ],
+      "bugClass": "anchor_nesting_and_duplicate_closer_contract",
+      "disposition": "ruled_out",
+      "rationale": "The validator and focused contract test are present at the spec-linked surface; no discrepancy was established in this pass.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/spec.md:105",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:784",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/anchor-contract.vitest.ts:43"
+      ],
+      "proof": "The validator and focused contract test are present at the spec-linked surface; no discrepancy was established in this pass."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/spec.md"
+      ],
+      "bugClass": "gate3_menu_parity",
+      "disposition": "ruled_out",
+      "rationale": "The parity assertion checks the rendered menu line against the canonical constant for every listed file.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/spec.md:131",
+        ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs:20",
+        ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs:46"
+      ],
+      "proof": "The parity assertion checks the rendered menu line against the canonical constant for every listed file."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/spec.md"
+      ],
+      "bugClass": "refusal_order_regression",
+      "disposition": "ruled_out",
+      "rationale": "The direct test pins the required deterministic refusal order.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/spec.md:108",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1293",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1320"
+      ],
+      "proof": "The direct test pins the required deterministic refusal order."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/spec.md"
+      ],
+      "bugClass": "removed_lane_mode_flag_callers",
+      "disposition": "ruled_out",
+      "rationale": "The only removed-flag mention found is a changelog warning, and no repository caller or usage line supplies either flag.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/spec.md:109",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1360",
+        ".skilled/changelog/skilled/v4.0.0.4.md:122"
+      ],
+      "proof": "The only removed-flag mention found is a changelog warning, and no repository caller or usage line supplies either flag."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-009",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/spec.md"
+      ],
+      "bugClass": "compat_failed_step_field_consumers",
+      "disposition": "ruled_out",
+      "rationale": "The old field name appears only in a negative assertion that proves its removal; consumers use the merged field.",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/spec.md:111",
+        ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml:126",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs:954"
+      ],
+      "proof": "The old field name appears only in a negative assertion that proves its removal; consumers use the merged field."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "healer_symlink_write",
+      "leaf_scope_root_symlink",
+      "archive_destination_symlink",
+      "workflow_install_credential_exposure",
+      "completed_phase_handoff_evidence",
+      "phase_completion_unverified_ci",
+      "authored_trigger_phrase_rewrite",
+      "gate3_child_dispatch_contract",
+      "trigger_retry_generation_failure",
+      "healer_target_selection_duplication",
+      "repo_era_no_roots_documentation"
+    ],
+    "covered": [
+      "healer_symlink_write",
+      "leaf_scope_root_symlink",
+      "archive_destination_symlink",
+      "workflow_install_credential_exposure",
+      "completed_phase_handoff_evidence",
+      "phase_completion_unverified_ci",
+      "authored_trigger_phrase_rewrite",
+      "gate3_child_dispatch_contract",
+      "trigger_retry_generation_failure",
+      "healer_target_selection_duplication",
+      "repo_era_no_roots_documentation"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

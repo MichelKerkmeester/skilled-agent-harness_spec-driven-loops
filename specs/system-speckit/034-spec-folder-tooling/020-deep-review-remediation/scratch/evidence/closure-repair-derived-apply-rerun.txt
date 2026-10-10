@@ -1,0 +1,7 @@
+CLOSURE EVIDENCE: repair-derived apply on phase 020, the last run of the closure pass, after the preview in closure-repair-derived-preview-rerun.txt
+$ node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation --apply
+repaired specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation
+    re-derive graph metadata
+
+inspected=1 repaired=1 failed=0
+EXIT=0

@@ -1,0 +1,21 @@
+CLOSURE EVIDENCE: final-state timing for the gate run (T029, T030, AC-016)
+Purpose. A suite is final-state evidence only when no tested file changed after the run started. This file records the times and the changed-file set.
+
+Timeline (local time, 2026-10-10):
+  12:55 all 17 gate jobs start together (pids.txt)
+  12:55:53 CLI suite (j01) starts (vitest 'Start at')
+  13:05 hostile run, first pass (j17) exits 1: heal-target-parity.vitest.ts, 2 failed of 294
+  13:16:22 CLI suite (j01) exit file written, exit 0
+  13:24:01 heal-target-parity.vitest.ts edited (packetsNamed fix)
+  13:33:52 hostile rerun (j17b) of 13 files exits 0
+  13:38:49 full-suite final-state rerun (r01) starts
+
+Worktree files modified after 12:55 (excluding node_modules and .git):       65
+Of those, the source and test files outside the 020 docs and evidence folder are:
+  .skilled/skills/system-spec-kit/runtime/cli/tests/heal-target-parity.vitest.ts
+
+Reading the list. Only one source or test file changed after the CLI run started: .skilled/skills/system-spec-kit/runtime/cli/tests/heal-target-parity.vitest.ts (untracked, new in this phase, modified 13:24:01). The other entries are generated runtime files (dist freshness records, skill-advisor and deep-loop databases, state files) or the 020 docs and evidence written in this pass. The five deep-loop legacy-projections .ts files were rewritten by a test run after 12:55, and git status lists none of them, so their content is unchanged from HEAD.
+
+Git status snapshot taken at the start of the gate run (snap-before-status.txt) and after it (snap-after-status.txt): diff lines =        0 (0 means identical).
+
+Consequence. The first CLI run did not test heal-target-parity.vitest.ts in its final state. The fixed version was tested in the hostile rerun (13 files, 292 passed, 2 skipped, closure-gate-hostile-env.txt) and in the isolated default and hostile runs (S/hp/green-default-after.log, S/hp/green-hostile-after.log, 4 of 4 each). A full-suite run from the final state is recorded in closure-gate-rerun-final.txt.

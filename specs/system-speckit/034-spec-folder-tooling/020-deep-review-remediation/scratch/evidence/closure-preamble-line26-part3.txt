@@ -1,0 +1,33 @@
+# child-dispatch-preamble.md, Part 3 (2026-10-10)
+# Operator decision: fix line 26 now. Lines 52-53 keep both variables.
+
+## 1. git diff (working tree vs HEAD)
+diff --git a/.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md b/.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md
+index bab0eac40df..d15afe11d85 100644
+--- a/.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md
++++ b/.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md
+@@ -23,7 +23,7 @@ dispatch ends having written nothing.
+ ## 1. WHY SETTING THE ENVIRONMENT VARIABLE IS NOT ENOUGH
+ 
+ `AGENTS.md` waives that gate for a dispatched child, and conditions the waiver on
+-`AI_SESSION_CHILD=1` or `SYSTEM_SPEC_GATE_ENFORCE=0` being set in the environment.
++`AI_SESSION_CHILD=1` being set in the environment.
+ 
+ Setting the variable makes the waiver **true**. It does not make it **observable**. The reader
+ being waived is a language model, and a model cannot see an environment variable. It sees the
+
+## 2. lines 25-26 and 52-53 now
+$ sed -n '25,26p;52,53p' .skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md
+`AGENTS.md` waives that gate for a dispatched child, and conditions the waiver on
+`AI_SESSION_CHILD=1` being set in the environment.
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+
+## 3. SYSTEM_SPEC_GATE_ENFORCE mentions now
+53:`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+EXIT=0
+
+## 4. Lane W diff stat log
+ .../shared/references/child-dispatch-preamble.md                        | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+EXIT=0

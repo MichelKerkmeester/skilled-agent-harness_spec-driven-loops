@@ -1,0 +1,4 @@
+repaired specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation
+    re-derive graph metadata
+
+inspected=1 repaired=1 failed=0

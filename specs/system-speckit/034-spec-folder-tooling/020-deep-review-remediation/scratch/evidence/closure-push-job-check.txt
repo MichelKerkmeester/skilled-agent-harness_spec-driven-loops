@@ -1,0 +1,25 @@
+CLOSURE EVIDENCE: push-job split of the trigger index rebuild, checked against the workflow file and the test logs
+
+File. .github/workflows/trigger-index-rebuild.yml. SHA-256 f955fd3f81a5c8ba901a695fea05bb25eadea0a9cd234ec377281f0cd91e1b65, from shasum -a 256 in this pass.
+
+Job structure, from grep in this pass (absolute line numbers):
+- rebuild job at line 26. Its permissions are contents: read (line 39). It checks out with persist-credentials false (line 49). It runs npm --prefix ... ci --ignore-scripts (line 62) and the generator (line 68). It uploads the rebuild bundle with actions/upload-artifact pinned to 043fb46d1a93c77aae656e7c1c64a875d1fc6a0a, v7.0.1 (line 171).
+- push job at line 178, with needs: rebuild at line 185. Its permissions are contents: write (line 192), and a comment at line 189 says actions: read lets gh list and fetch the run's artifact. It checks out with persist-credentials false (line 199). Its download step sets GH_TOKEN to github.token (line 205) and runs gh run download (line 209).
+- PUSH_TOKEN is set to secrets.TRIGGER_INDEX_PUSH_TOKEN or, when that secret is absent, github.token (line 274). The secrets. reference appears only on line 274, so the rebuild job names no secret.
+- The push job has no install step and no generator step. The only generator-related match after line 178 is a path string in the changed-path check at about line 252.
+- The push runs with GIT_CONFIG_NOSYSTEM=1 and GIT_CONFIG_GLOBAL=/dev/null (line 295), protocol.allow=never with an allow for the explicit HTTPS protocol (line 301), and the rejection test at line 317.
+- The race grep at line 317 is anchored to git's rejection line, and the notice at line 318 explains the exit 0.
+
+Tests. trigger-index-rebuild-workflow.vitest.ts is untracked and new in this phase (git status ??). Race classification order at line 847. Race cases at lines 860 and 869. The non-race rejection cases at lines 935, 941 and 947. The push URL and protocol cases at lines 905 to 926.
+- r2/run-default-2.log (bash 3.2.57, the bash on PATH on this machine): Tests 74 passed | 1 skipped (75).
+- r2/run-bash52.log (bash 5.2.0 from the shim directory r2/bash52): Tests 74 passed | 1 skipped (75).
+- Red mutants, r2/mut-m1 to mut-m5, each run on 60 tests with 1 skipped: m1 race on every failure, 5 failed. m2 auth branch removed, 2 failed. m3 URL replaced by origin, 3 failed. m4 protocol never removed, 2 failed. m5 race pattern unanchored, 2 failed.
+Scratchpad paths are in the session scratchpad, outside the repository.
+
+actionlint. Rerun in this pass with -no-color on the current file, output and exit status saved at the session scratchpad r3-actionlint/actionlint-current.out. The output is empty and the exit status is 0. The earlier r2/actionlint-trigger.out is 0 bytes with no exit status recorded, so it is not relied on.
+
+Findings, flagged and not fixed.
+(a) The statement that the push step is the only token holder is not accurate. The push job holds contents: write (line 192), and its download step passes github.token to gh (line 205). The write credential reaches git only in the push step (line 301), but the download step runs with the write scope.
+(b) If TRIGGER_INDEX_PUSH_TOKEN is absent, the push uses the default token (line 274). A push made with the default GITHUB_TOKEN starts no workflow run. This is GitHub's documented behavior and is not tested here.
+(c) The branch ruleset that governs the push was not read from GitHub in this pass. The push is tested against a local bare origin only.
+(d) The Linux /proc path of the parent-environment check is proven only by a real Actions run. On macOS bash 3.2 the parent environment reads unreadable, and the test accepts that, so the local proof of that check is the bash 5.2 run.

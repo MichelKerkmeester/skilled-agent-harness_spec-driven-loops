@@ -1,0 +1,23 @@
+CLOSURE EVIDENCE: the two release changelog entries, "The Trigger Index Job Gets Less Access", rewritten for the two-job design
+
+Edited files.
+- .skilled/changelog/skilled/v4.0.0.4.md, paragraph at line 150 (title at line 148).
+- .skilled/skills/system-spec-kit/changelog/v2.7.1.0.md, paragraph at line 144 (title at line 142).
+The title is unchanged. The paragraph is the same in both files, and both were rewritten to the same text.
+
+Old text, both files: "The trigger index rebuild checks out the repository without saved credentials, and generation and verification run with no write token. The token reaches only the push step, which runs git and nothing else. Its dependency install skips package lifecycle scripts, and git hooks stay off for every git command after checkout." followed by the generator-exit, commit and rejected-push sentences. The generator-exit and rejected-push sentences are kept, and the commit sentence is reworded to describe the bundle hand-off. The old text put the install in the push step, which the workflow does not do.
+
+New text, both files: "The trigger index rebuild runs as two jobs. The rebuild job checks out the repository without saved credentials, holds only read access to the repository contents, and holds no secret. It installs dependencies with package lifecycle scripts skipped, regenerates the index and verifies it. A nonzero generator exit fails the job before any commit. When the four generated outputs match a fresh generation, the job commits them and passes that one commit to the push job as a bundle. The push job is the only job with write access. It downloads the bundle with the GitHub CLI and checks that the bundle holds exactly one commit on the checked-out base and changes only the four generated paths. It then pushes that commit with git to an explicit HTTPS URL. Git hooks stay off for every git command in both jobs. A push rejected because the branch moved exits 0 with a notice, since the run for the newer commit rebuilds the index on its tip, so the job does not retry."
+
+Checks against the workflow, in this pass.
+- Two jobs, rebuild at line 26 and push at line 178, with needs: rebuild at line 185.
+- rebuild contents read (line 39). push contents write (line 192).
+- The secrets. reference appears only at line 274, in the push job.
+- npm ci --ignore-scripts at line 62, in the rebuild job.
+- A nonzero generator exit fails the job before any commit: the generator call at line 68 and the exit handling, unchanged from the earlier review.
+- The bundle checks and the explicit HTTPS push at lines 228 to 301.
+- The rejected-push notice at line 318.
+
+Validation. python3 .skilled/skills/sk-doc/scripts/validate_document.py on each file. Outputs in the session scratchpad r3-changelog/validate-v4.0.0.4.txt and validate-v2.7.1.0.txt. Both read "VALID" with "Total issues: 0" and exit 0.
+
+Punctuation. The new paragraph in each file has 0 semicolons and 0 em dashes, counted with grep in this pass (r3-changelog/para-*.txt).

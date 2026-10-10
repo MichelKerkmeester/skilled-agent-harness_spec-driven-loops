@@ -1,0 +1,119 @@
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)

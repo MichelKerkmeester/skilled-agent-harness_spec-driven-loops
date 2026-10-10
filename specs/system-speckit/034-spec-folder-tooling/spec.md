@@ -12,17 +12,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling"
-    last_updated_at: "2026-10-06T19:00:00Z"
+    last_updated_at: "2026-10-10T09:53:50Z"
     last_updated_by: "claude"
-    recent_action: "Group the 5 packets under one phase parent"
-    next_safe_action: "Plan or resume a child phase folder"
+    recent_action: "Completion 95 by the status classifier (19 of 20 children complete). 016 is Complete and 020 is the only In Progress child"
+    next_safe_action: "Close 020 after the post-push CI run"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -49,7 +49,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-09-23 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -119,7 +119,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 7 | `007-series-parent-review-and-hardening-research/` | Review Phase 6 and research how to harden it | Complete |
 | 8 | `008-series-parent-review-fixes/` | Fix the Phase 7 review findings | Complete |
 | 9 | `009-gate-3-menu-series-parent/` | Name the series parent in the Gate 3 menu | Complete |
-| 10 | `010-trigger-index-ci-rebuild/` | Rebuild the trigger index in CI after a push | In Progress |
+| 10 | `010-trigger-index-ci-rebuild/` | Rebuild the trigger index in CI after a push | Complete |
 | 11 | `011-template-phrase-census-and-cleanup/` | Report and clean the spec and acceptance criteria template phrases | Complete |
 | 12 | `012-template-phrase-cleanup-round-two/` | Clean the remaining templates' phrases, partial lists and cut-off phrases | Complete |
 | 13 | `013-corpus-wide-validation-repair/` | Repair every live and archived packet until the corpus passes strict validation | Complete |
@@ -129,6 +129,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 17 | `017-heal-cli-and-compat-yaml-simplification/` | Apply the phase 16 overengineering research: pin the refusal order, drop the lane-mode CLI's `--mode` and `--json`, merge the compat action's failed-step fields | Complete |
 | 18 | 018-epic-docs-alignment/ | Bring the playbooks, feature catalogs, READMEs, doctor docs and release changelogs in line with the epic's tooling | Complete |
 | 19 | 019-epic-follow-up-fixes/ | Close the eleven follow-ups the epic left: the env reference, the compat workflow contract, Gate 3 parity coverage, CLI test isolation and the leaf manifest generator | Complete |
+| 20 | `020-deep-review-remediation/` | Remediate the eleven deep review findings against phases 016 to 019, the open search debt and the Hermes mirror byte diff, and settle the phase 010 status. Eight lanes, each with a red run before its fix | In Progress |
 
 ### Phase Transition Rules
 
@@ -157,8 +158,9 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | `014-spec-auto-healing-research` | `015-archive-current-location-and-ignored-files` | Phase 14 recommends the archive fix and the operator picks current-location semantics | `validate.sh --strict` passes on each child |
 | `015-archive-current-location-and-ignored-files` | `016-research-recommendations` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
 | `016-research-recommendations` | `017-heal-cli-and-compat-yaml-simplification` | Phase 16 is shipped and its research names the four changes | `validate.sh --strict` passes on each child |
-| 017-heal-cli-and-compat-yaml-simplification | 018-epic-docs-alignment | [Criteria TBD] | [Verification TBD] |
-| 018-epic-docs-alignment | 019-epic-follow-up-fixes | [Criteria TBD] | [Verification TBD] |
+| `017-heal-cli-and-compat-yaml-simplification` | `018-epic-docs-alignment` | 017 is Complete. Its acceptance rows AC-001 to AC-007 are all Met, and its strict validate prints RESULT: PASSED. 018 names 017 as its predecessor and brings the playbooks, catalogs and READMEs in line with the tooling that 017 and the earlier phases shipped | 017 `acceptance-criteria.md` (seven rows Met), 017 `implementation-summary.md` Verification row (`validate.sh --strict` RESULT: PASSED, Errors: 0, Warnings: 0), 018 `spec.md` Predecessor row |
+| `018-epic-docs-alignment` | `019-epic-follow-up-fixes` | 018 is Complete. Its acceptance rows AC-001 to AC-005 are all Met, and its strict validates print RESULT: PASSED on the packet and on this parent. 018 reached `main` at `f3f8583579`, and 019 starts from that shipped state | 018 `acceptance-criteria.md` (AC-001 to AC-005 Met), 018 `scratch/evidence/validate-packet.txt` and `validate-034.txt` (RESULT: PASSED), 018 `scratch/evidence/push.txt` (`9dbfe3a046..f3f8583579 HEAD -> main`) |
+| `019-epic-follow-up-fixes` | `020-deep-review-remediation` | 019 is Complete. Its acceptance rows AC-001 to AC-015 are all Met, SC-002 included, and its strict validate prints RESULT: PASSED on the packet and on this parent. Main CI is green on its push commit `079e9c34d2`, and 020 starts from that commit | 019 `acceptance-criteria.md` (AC-015 for SC-002), 019 `scratch/evidence/post-push-ci.txt` (14 of 14 checks succeeded on `079e9c34d2`), 020 `scratch/evidence/validate-019-closeout.txt` and `validate-034-closeout.txt` |
 <!-- /ANCHOR:phase-map -->
 
 ---

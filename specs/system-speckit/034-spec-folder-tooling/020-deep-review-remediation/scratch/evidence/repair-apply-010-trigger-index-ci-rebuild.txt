@@ -1,0 +1,4 @@
+repaired specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild
+    re-derive graph metadata
+
+inspected=1 repaired=1 failed=0

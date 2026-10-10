@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-spec-folder-tooling/020-deep-review-remediation",
+  "spec_folder": "system-speckit/034-spec-folder-tooling/020-deep-review-remediation",
+  "parent_id": "system-speckit/034-spec-folder-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep review remediation",
+      "phase 20 deep review remediation",
+      "spec folder tooling deep review findings",
+      "deep review remediation plan",
+      "deep review remediation tasks",
+      "deep review remediation acceptance criteria",
+      "deep review remediation implementation summary"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "remediation",
+      "phase",
+      "spec",
+      "folder",
+      "tooling",
+      "findings",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts",
+      "scratch/evidence/changed-packet-listing-controlchar-stage2.txt",
+      "scratch/evidence/changed-packet-listing-controlchar-orig.txt",
+      "scratch/evidence/workflow-command-trace-route3-closed.txt",
+      "runtime/cli/lib/status-classifier.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts",
+      ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      ".skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts",
+      ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index-rebuild-workflow.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "changed-packet-listing-controlchar-stage2.txt",
+        "kind": "file",
+        "path": "scratch/evidence/changed-packet-listing-controlchar-stage2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "changed-packet-listing-controlchar-orig.txt",
+        "kind": "file",
+        "path": "scratch/evidence/changed-packet-listing-controlchar-orig.txt",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-command-trace-route3-closed.txt",
+        "kind": "file",
+        "path": "scratch/evidence/workflow-command-trace-route3-closed.txt",
+        "source": "derived"
+      },
+      {
+        "name": "status-classifier.sh",
+        "kind": "script",
+        "path": "runtime/cli/lib/status-classifier.sh",
+        "source": "derived"
+      },
+      {
+        "name": "archive.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        "source": "derived"
+      },
+      {
+        "name": "heal-spec-docs.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "template-phrase-cleanup.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep review of phases 016 to 019 found three default paths that check a name, then follow a symlink at the step that writes, reads or moves a file: the default healer, the leaf walker and the archive destination",
+    "created_at": "2026-10-10T05:30:19Z",
+    "last_save_at": "2026-10-10T15:04:38.712Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6c9311cd1f8e4c4c8d940974a77584154dedd258c86648c67349172647cb162a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "739fb56790eb7e1bd9bed4c8d60bd7884caaf3286d4b4343010468fda4fb1288",
+      "plan.md": "a63717c7e3e019494e253d49e1c8946602ac588d669350f7021f6ebc0ac2254a",
+      "tasks.md": "d2476343aeb1da4cedd87cf1d10a3d128d0d2c0447f9fb236d565ea671842b75",
+      "implementation-summary.md": "b7f981627d1ecf0118d1a1eff6d593440e6222098d3f32dea303bfaf63bfe0af"
+    },
+    "last_active_at": null
+  }
+}

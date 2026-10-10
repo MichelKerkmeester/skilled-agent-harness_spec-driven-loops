@@ -1,0 +1,17 @@
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/001-spec-template-anchor-nesting
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/002-phase-scaffold-graph-metadata
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes
+rc=0 [check-goal] packet=specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening

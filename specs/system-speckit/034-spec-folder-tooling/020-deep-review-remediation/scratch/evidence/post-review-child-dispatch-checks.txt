@@ -1,0 +1,25 @@
+Post-review item 2 checks, fresh runs. Each block lists the command, then its output and exit status.
+
+## Hermes sync check
+Command: node runtime/cli/hermes/sync-skills-hermes.cjs --check
+PASS: 70 Hermes skill copies in sync
+EXIT=0
+
+## Command YAML strict parse (js-yaml, duplicate keys rejected)
+Command: node <scratch>/yaml-strict.cjs .skilled/commands
+files: 73, failed: 0
+EXIT=0
+
+## test-phase-command-workflows
+Command: node tests/test-phase-command-workflows.js (from runtime/cli)
+
+Result: passed=148 failed=0
+EXIT=0
+
+## gate-3-menu-parity
+Command: node --test runtime/tests/hooks/gate-3-menu-parity.test.mjs
+ℹ tests 17
+ℹ pass 17
+ℹ fail 0
+ℹ skipped 0
+EXIT=0

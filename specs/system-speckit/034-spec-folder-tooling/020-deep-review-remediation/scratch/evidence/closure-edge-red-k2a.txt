@@ -1,0 +1,537 @@
+CLOSURE EVIDENCE copy: nine red runs for the archive and upgrade-legacy edge cases (lanes A and F)
+Each block below is one copied log from scratchpad k2a/red-A.txt to red-I.txt, unedited. Each mutant is a deliberate removal of one guard, and each log shows the failing case names.
+The logs carry no EXIT line; the FAIL and count lines are the observed result.
+
+===== source: k2a/red-A.txt =====
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2a/red/runtime/cli
+
+ ❯ |cli| tests/archive-track.vitest.ts (45 tests | 3 failed | 42 skipped) 275ms
+     × refuses a dangling z_archive under 'the specs root', moves nothing and creates no link target 93ms
+     × refuses a dangling z_archive under 'a track', moves nothing and creates no link target 92ms
+     × refuses a dangling z_archive under 'a phase parent', moves nothing and creates no link target 90ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a dangling z_archive under 'the specs root', moves nothing and creates no link target
+AssertionError: expected 'mkdir: /private/var/folders/3c/zfqcqs…' to contain 'symbolic link, not followed'
+
+- Expected
++ Received
+
+- symbolic link, not followed
++ mkdir: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-Ve3cUr/specs/z_archive: No such file or directory
++ ERROR: Archive directory not accessible: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-Ve3cUr/specs/z_archive
++
+
+ ❯ tests/archive-track.vitest.ts:714:27
+    712|     const result = archive(['--force', folder]);
+    713|     expect(result.status, result.stdout + result.stderr).toBe(1);
+    714|     expect(result.stderr).toContain('symbolic link, not followed');
+       |                           ^
+    715|     expect(snapshot(path.join(repo, folder))).toEqual(before);
+    716|     expect(fs.existsSync(missing)).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a dangling z_archive under 'a track', moves nothing and creates no link target
+AssertionError: expected 'mkdir: /private/var/folders/3c/zfqcqs…' to contain 'symbolic link, not followed'
+
+- Expected
++ Received
+
+- symbolic link, not followed
++ mkdir: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-HHZBkY/specs/tools/z_archive: No such file or directory
++ ERROR: Archive directory not accessible: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-HHZBkY/specs/tools/z_archive
++
+
+ ❯ tests/archive-track.vitest.ts:714:27
+    712|     const result = archive(['--force', folder]);
+    713|     expect(result.status, result.stdout + result.stderr).toBe(1);
+    714|     expect(result.stderr).toContain('symbolic link, not followed');
+       |                           ^
+    715|     expect(snapshot(path.join(repo, folder))).toEqual(before);
+    716|     expect(fs.existsSync(missing)).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a dangling z_archive under 'a phase parent', moves nothing and creates no link target
+AssertionError: expected 'mkdir: /private/var/folders/3c/zfqcqs…' to contain 'symbolic link, not followed'
+
+- Expected
++ Received
+
+- symbolic link, not followed
++ mkdir: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-kZ5dfa/specs/tools/001-a/z_archive: No such file or directory
++ ERROR: Archive directory not accessible: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-kZ5dfa/specs/tools/001-a/z_archive
++
+
+ ❯ tests/archive-track.vitest.ts:714:27
+    712|     const result = archive(['--force', folder]);
+    713|     expect(result.status, result.stdout + result.stderr).toBe(1);
+    714|     expect(result.stderr).toContain('symbolic link, not followed');
+       |                           ^
+    715|     expect(snapshot(path.join(repo, folder))).toEqual(before);
+    716|     expect(fs.existsSync(missing)).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 42 skipped (45)
+   Start at  12:44:38
+   Duration  397ms (transform 27ms, setup 14ms, import 23ms, tests 275ms, environment 0ms)
+
+
+===== source: k2a/red-B.txt =====
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2a/red/runtime/cli
+
+ ❯ |cli| tests/archive-track.vitest.ts (45 tests | 1 failed | 44 skipped) 75ms
+     × refuses a restore through a dangling z_archive, follows nothing and creates no link target 75ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a restore through a dangling z_archive, follows nothing and creates no link target
+AssertionError: expected 'ERROR: Archived folder not found: spe…' to contain 'symbolic link, not followed'
+
+- Expected
++ Received
+
+- symbolic link, not followed
++ ERROR: Archived folder not found: specs/z_archive/005-root
++
+
+ ❯ tests/archive-track.vitest.ts:725:27
+    723|     const result = archive(['--restore', 'specs/z_archive/005-root']);
+    724|     expect(result.status, result.stdout + result.stderr).toBe(1);
+    725|     expect(result.stderr).toContain('symbolic link, not followed');
+       |                           ^
+    726|     expect(fs.existsSync(missing)).toBe(false);
+    727|     expect(fs.existsSync(path.join(specs, '005-root'))).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 44 skipped (45)
+   Start at  12:44:39
+   Duration  178ms (transform 25ms, setup 13ms, import 22ms, tests 75ms, environment 0ms)
+
+
+===== source: k2a/red-C.txt =====
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2a/red/runtime/cli
+
+ ❯ |cli| tests/archive-track.vitest.ts (45 tests | 1 failed | 44 skipped) 115ms
+     × refuses an archive whose target already holds a folder of that name, and changes neither side 114ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses an archive whose target already holds a folder of that name, and changes neither side
+AssertionError: SUCCESS: Archived: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-zuINfd/specs/005-root -> /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-zuINfd/specs/z_archive/005-root
+WARNING: Recorded paths under /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-zuINfd/specs/z_archive/005-root were not re-derived: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-zuINfd/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs is missing. Restore it, then run repair-derived.cjs --roots /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-zuINfd/specs/z_archive/005-root --apply.
+: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/archive-track.vitest.ts:739:58
+    737|
+    738|     const result = archive(['--force', 'specs/005-root']);
+    739|     expect(result.status, result.stdout + result.stderr).toBe(1);
+       |                                                          ^
+    740|     expect(result.stderr).toContain('Archive target already exists');
+    741|     expect(snapshot(path.join(specs, '005-root'))).toEqual(live);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 44 skipped (45)
+   Start at  12:44:40
+   Duration  224ms (transform 28ms, setup 14ms, import 26ms, tests 115ms, environment 0ms)
+
+
+===== source: k2a/red-D.txt =====
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2a/red/runtime/cli
+
+ ❯ |cli| tests/archive-track.vitest.ts (45 tests | 1 failed | 44 skipped) 172ms
+     × refuses a restore whose destination already holds a folder, and changes neither side 171ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses a restore whose destination already holds a folder, and changes neither side
+AssertionError: SUCCESS: Restored: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-BsN27G/specs/z_archive/005-root -> /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-BsN27G/specs/005-root
+WARNING: Recorded paths under /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-BsN27G/specs/005-root were not re-derived: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-BsN27G/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs is missing. Restore it, then run repair-derived.cjs --roots /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-BsN27G/specs/005-root --apply.
+: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/archive-track.vitest.ts:754:58
+    752|
+    753|     const result = archive(['--restore', 'specs/z_archive/005-root']);
+    754|     expect(result.status, result.stdout + result.stderr).toBe(1);
+       |                                                          ^
+    755|     expect(result.stderr).toContain('Restore target already exists');
+    756|     expect(snapshot(path.join(specs, 'z_archive', '005-root'))).toEqua…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 44 skipped (45)
+   Start at  12:44:41
+   Duration  280ms (transform 27ms, setup 14ms, import 25ms, tests 172ms, environment 0ms)
+
+
+===== source: k2a/red-E.txt =====
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2a/red/runtime/cli
+
+ ❯ |cli| tests/archive-track.vitest.ts (45 tests | 1 failed | 44 skipped) 176ms
+     × a declined archive prompt exits 0, says it was cancelled and moves nothing 175ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > a declined archive prompt exits 0, says it was cancelled and moves nothing
+AssertionError: expected 'WARNING: Spec is only 40% complete (m…' to contain 'Archive cancelled.'
+
+- Expected
++ Received
+
+- Archive cancelled.
++ WARNING: Spec is only 40% complete (minimum: 90%)
++ Archive anyway? (y/n): SUCCESS: Archived: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-mSnfVa/specs/005-root -> /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-mSnfVa/specs/z_archive/005-root
++ WARNING: Recorded paths under /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-mSnfVa/specs/z_archive/005-root were not re-derived: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-mSnfVa/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs is missing. Restore it, then run repair-derived.cjs --roots /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/archive-track-mSnfVa/specs/z_archive/005-root --apply.
++
+
+ ❯ tests/archive-track.vitest.ts:773:43
+    771|     const result = spawnSync('bash', [archiveScript, 'specs/005-root']…
+    772|     expect(result.status, result.stdout + result.stderr).toBe(0);
+    773|     expect(result.stdout + result.stderr).toContain('Archive cancelled…
+       |                                           ^
+    774|     expect(snapshot(path.join(specs, '005-root'))).toEqual(before);
+    775|     expect(fs.existsSync(path.join(specs, 'z_archive'))).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 44 skipped (45)
+   Start at  12:44:41
+   Duration  297ms (transform 38ms, setup 20ms, import 32ms, tests 176ms, environment 0ms)
+
+
+===== source: k2a/red-F.txt =====
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2a/red/runtime/cli
+
+ ❯ |cli| tests/archive-track.vitest.ts (45 tests | 2 failed | 43 skipped) 134ms
+     × refuses when the specs root is a dangling link, and creates nothing through it 74ms
+     × refuses in a copy outside any repository whose derived root has no specs folder 58ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses when the specs root is a dangling link, and creates nothing through it
+AssertionError: expected 'ERROR: Spec folder not found: specs/0…' to contain 'Specs directory not found'
+
+- Expected
++ Received
+
+- Specs directory not found
++ ERROR: Spec folder not found: specs/005-root
++
+
+ ❯ tests/archive-track.vitest.ts:787:27
+    785|     const result = archive(['--force', 'specs/005-root']);
+    786|     expect(result.status, result.stdout + result.stderr).toBe(1);
+    787|     expect(result.stderr).toContain('Specs directory not found');
+       |                           ^
+    788|     expect(fs.existsSync(missing)).toBe(false);
+    789|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |cli| tests/archive-track.vitest.ts > archive.sh keeps every write under the specs root > refuses in a copy outside any repository whose derived root has no specs folder
+AssertionError: expected 'Warning: Not in a git repo, using rel…' to contain 'Specs directory not found'
+
+- Expected
++ Received
+
+- Specs directory not found
++ Warning: Not in a git repo, using relative path for PROJECT_ROOT
++ ERROR: Spec folder not found: specs/005-root
++
+
+ ❯ tests/archive-track.vitest.ts:802:29
+    800|       const result = spawnSync('bash', [path.join(copiedSpec, 'archive…
+    801|       expect(result.status, result.stdout + result.stderr).toBe(1);
+    802|       expect(result.stderr).toContain('Specs directory not found');
+       |                             ^
+    803|       expect(fs.readdirSync(root)).toEqual(['.skilled']);
+    804|     } finally {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 43 skipped (45)
+   Start at  12:44:50
+   Duration  239ms (transform 26ms, setup 13ms, import 24ms, tests 134ms, environment 0ms)
+
+
+===== source: k2a/red-G.txt =====
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2a/red/runtime/cli
+
+ ❯ |cli| tests/upgrade-legacy.vitest.ts (52 tests | 2 failed | 50 skipped) 18579ms
+     × refuses a packet whose document is a dangling link to a file 'inside the packet', and writes nothing 5092ms
+     × refuses a packet whose document is a dangling link to a file 'outside the repository', and writes nothing 5618ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/upgrade-legacy.vitest.ts > upgrade-legacy link containment > refuses a packet whose document is a dangling link to a file 'inside the packet', and writes nothing
+AssertionError: expected 'failing specs/link-containment/008-da…' to contain 'would refuse specs/link-containment/0…'
+
+- Expected
++ Received
+
+- would refuse specs/link-containment/008-dangling: plan.md is a symbolic link, not followed, and does not resolve inside the packet
++ failing specs/link-containment/008-dangling: ANCHORS_VALID, FILE_EXISTS, FRONTMATTER_VALID, GREP_CONVENTION, LEVEL_MATCH, TEMPLATE_SOURCE
++ grouped detail:
++ ### specs/link-containment/008-dangling / x ANCHORS_VALID (2)
++     - spec.md: no anchors found
++     - tasks.md: no anchors found
++ ### specs/link-containment/008-dangling / x FILE_EXISTS (1)
++     - plan.md
++ ### specs/link-containment/008-dangling / x FRONTMATTER_VALID (3)
++     - spec.md: Empty required frontmatter field: importance_tier
++     - spec.md: Empty required frontmatter field: contextType
++     - spec.md: Empty required frontmatter field: trigger_phrases
++ ### specs/link-containment/008-dangling / x GREP_CONVENTION (1)
++     - path=tasks.md line=0 category=missing severity=error rawKey=- reason=Document has no frontmatter block, so it carries no retrievable trigger phrases
++ ### specs/link-containment/008-dangling / x LEVEL_MATCH (2)
++     - Required file missing for Level 1: plan.md
++     - spec.md does not declare a level (expected Level 1)
++ ### specs/link-containment/008-dangling / x TEMPLATE_SOURCE (2)
++     - spec.md
++     - tasks.md
++ upgrade-legacy: could not predict Downgrades: ENOENT: no such file or directory, stat '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/upgrade-legacy-preview-W1Fgq0/specs/link-containment/008-dangling/plan.md'
++
+
+ ❯ tests/upgrade-legacy.vitest.ts:1799:45
+    1797|       const before = treeFingerprint(packetFolder);
+    1798|       const dryRun = runUpgrade(['--roots', folder]);
+    1799|       expect(dryRun.stdout + dryRun.stderr).toContain(`would refuse ${…
+       |                                             ^
+    1800|       expect(dryRun.status, dryRun.stdout + dryRun.stderr).toBe(1);
+    1801|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |cli| tests/upgrade-legacy.vitest.ts > upgrade-legacy link containment > refuses a packet whose document is a dangling link to a file 'outside the repository', and writes nothing
+AssertionError: expected 'failing specs/link-containment/008-da…' to contain 'would refuse specs/link-containment/0…'
+
+- Expected
++ Received
+
+- would refuse specs/link-containment/008-dangling: plan.md is a symbolic link, not followed, and does not resolve inside the packet
++ failing specs/link-containment/008-dangling: ANCHORS_VALID, FILE_EXISTS, FRONTMATTER_VALID, GREP_CONVENTION, LEVEL_MATCH, TEMPLATE_SOURCE
++ grouped detail:
++ ### specs/link-containment/008-dangling / x ANCHORS_VALID (2)
++     - spec.md: no anchors found
++     - tasks.md: no anchors found
++ ### specs/link-containment/008-dangling / x FILE_EXISTS (1)
++     - plan.md
++ ### specs/link-containment/008-dangling / x FRONTMATTER_VALID (3)
++     - spec.md: Empty required frontmatter field: importance_tier
++     - spec.md: Empty required frontmatter field: contextType
++     - spec.md: Empty required frontmatter field: trigger_phrases
++ ### specs/link-containment/008-dangling / x GREP_CONVENTION (1)
++     - path=tasks.md line=0 category=missing severity=error rawKey=- reason=Document has no frontmatter block, so it carries no retrievable trigger phrases
++ ### specs/link-containment/008-dangling / x LEVEL_MATCH (2)
++     - Required file missing for Level 1: plan.md
++     - spec.md does not declare a level (expected Level 1)
++ ### specs/link-containment/008-dangling / x TEMPLATE_SOURCE (2)
++     - spec.md
++     - tasks.md
++ upgrade-legacy: could not predict Downgrades: ENOENT: no such file or directory, stat '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/upgrade-legacy-preview-Qfsqf2/specs/link-containment/008-dangling/plan.md'
++
+
+ ❯ tests/upgrade-legacy.vitest.ts:1799:45
+    1797|       const before = treeFingerprint(packetFolder);
+    1798|       const dryRun = runUpgrade(['--roots', folder]);
+    1799|       expect(dryRun.stdout + dryRun.stderr).toContain(`would refuse ${…
+       |                                             ^
+    1800|       expect(dryRun.status, dryRun.stdout + dryRun.stderr).toBe(1);
+    1801|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 50 skipped (52)
+   Start at  12:44:59
+   Duration  18.80s (transform 93ms, setup 17ms, import 134ms, tests 18.58s, environment 0ms)
+
+
+===== source: k2a/red-H.txt =====
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2a/red/runtime/cli
+
+ ❯ |cli| tests/upgrade-legacy.vitest.ts (52 tests | 1 failed | 51 skipped) 14746ms
+     × refuses a document that links to a sibling packet, and leaves the sibling as it was 7051ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/upgrade-legacy.vitest.ts > upgrade-legacy link containment > refuses a document that links to a sibling packet, and leaves the sibling as it was
+AssertionError: expected 'plan changes=1\nstep fill-frontmatter…' to contain 'refused specs/link-containment/009-li…'
+
+- Expected
++ Received
+
+- refused specs/link-containment/009-linker: plan.md is a symbolic link, not followed, and does not resolve inside the packet
++ plan changes=1
++ step fill-frontmatter: ok
++ step anchor-repair: ok (1 packets, 0 changed)
++ step heal-spec-docs: ok (1 packets)
++ step lane-modes: ok (1 packets, 4 refusals)
++ step repair-derived: ok
++ step migrate-generated-json: ok
++ recorded specs/link-containment/009-linker (9 findings, 4 refusals)
++
++ Downgrades:
++   specs/link-containment/009-linker | ANCHORS_VALID | error -> warning | plan.md: no anchors found
++   specs/link-containment/009-linker | ANCHORS_VALID | error -> warning | spec.md: no anchors found
++   specs/link-containment/009-linker | ANCHORS_VALID | error -> warning | tasks.md: no anchors found
++   specs/link-containment/009-linker | FRONTMATTER_VALID | error -> warning | plan.md: Empty required frontmatter field: trigger_phrases
++   specs/link-containment/009-linker | FRONTMATTER_VALID | error -> warning | spec.md: Empty required frontmatter field: trigger_phrases
++   specs/link-containment/009-linker | FRONTMATTER_VALID | error -> warning | tasks.md: Empty required frontmatter field: trigger_phrases
++   specs/link-containment/009-linker | TEMPLATE_SOURCE | error -> warning | plan.md
++   specs/link-containment/009-linker | TEMPLATE_SOURCE | error -> warning | spec.md
++   specs/link-containment/009-linker | TEMPLATE_SOURCE | error -> warning | tasks.md
++
++ inspected=1 active=1 archived=0
++ passing before=0/1 after=1/1
++ recorded findings by rule:
++   ANCHORS_VALID: 3
++   FRONTMATTER_VALID: 3
++   TEMPLATE_SOURCE: 3
++ grouped detail:
++   none
++
+
+ ❯ tests/upgrade-legacy.vitest.ts:1830:20
+    1828|     const result = runUpgrade(['--apply', '--roots', folder]);
+    1829|     const output = result.stdout + result.stderr;
+    1830|     expect(output).toContain(`refused ${folder}: plan.md is a symbolic…
+       |                    ^
+    1831|     expect(result.status, output).toBe(2);
+    1832|     expect(manifest(sibling)).toBe(siblingBefore);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 51 skipped (52)
+   Start at  12:45:19
+   Duration  14.99s (transform 96ms, setup 18ms, import 126ms, tests 14.75s, environment 0ms)
+
+
+===== source: k2a/red-I.txt =====
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/k2a/red/runtime/cli
+
+ ❯ |cli| tests/upgrade-legacy.vitest.ts (52 tests | 1 failed | 51 skipped) 17923ms
+     × writes nothing for a passing packet that links inside itself, and keeps its baseline 12498ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/upgrade-legacy.vitest.ts > upgrade-legacy link containment > writes nothing for a passing packet that links inside itself, and keeps its baseline
+AssertionError: expected 'plan changes=1\nstep fill-frontmatter…' to contain 'plan changes=0'
+
+- Expected
++ Received
+
+- plan changes=0
++ plan changes=1
++ step fill-frontmatter: ok
++ step anchor-repair: ok (1 packets, 0 changed)
++ step heal-spec-docs: ok (1 packets)
++ step lane-modes: ok (1 packets, 4 refusals)
++ step repair-derived: ok
++ step migrate-generated-json: ok
++
++ Downgrades:
++   specs/link-containment/011-inside | ANCHORS_VALID | error -> warning | plan.md: no anchors found
++   specs/link-containment/011-inside | ANCHORS_VALID | error -> warning | spec.md: no anchors found
++   specs/link-containment/011-inside | ANCHORS_VALID | error -> warning | tasks.md: no anchors found
++   specs/link-containment/011-inside | FRONTMATTER_VALID | error -> warning | plan.md: Empty required frontmatter field: trigger_phrases
++   specs/link-containment/011-inside | FRONTMATTER_VALID | error -> warning | spec.md: Empty required frontmatter field: trigger_phrases
++   specs/link-containment/011-inside | FRONTMATTER_VALID | error -> warning | tasks.md: Empty required frontmatter field: trigger_phrases
++   specs/link-containment/011-inside | TEMPLATE_SOURCE | error -> warning | plan.md
++   specs/link-containment/011-inside | TEMPLATE_SOURCE | error -> warning | spec.md
++   specs/link-containment/011-inside | TEMPLATE_SOURCE | error -> warning | tasks.md
++
++ inspected=1 active=1 archived=0
++ passing before=1/1 after=1/1
++ recorded findings by rule:
++   ANCHORS_VALID: 3
++   FRONTMATTER_VALID: 3
++   TEMPLATE_SOURCE: 3
++ grouped detail:
++   none
++
+
+ ❯ tests/upgrade-legacy.vitest.ts:1856:20
+    1854|     const output = result.stdout + result.stderr;
+    1855|     expect(output).toContain('passing before=1/1');
+    1856|     expect(output).toContain('plan changes=0');
+       |                    ^
+    1857|     expect(result.status, output).toBe(0);
+    1858|     expect(treeFingerprint(packetFolder)).toBe(linkedBefore);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 51 skipped (52)
+   Start at  12:45:35
+   Duration  18.13s (transform 74ms, setup 14ms, import 97ms, tests 17.92s, environment 0ms)
+

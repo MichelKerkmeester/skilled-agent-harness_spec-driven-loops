@@ -1,0 +1,37 @@
+# T046-26 benchmark evidence (Part 3 review, 2026-10-10)
+# Source: scratchpad lane-p (driver.mjs, cold-raw.jsonl, warm-raw.jsonl, stats.py, lstat-bench.mjs). Re-read here from the raw files.
+# Caveat: fresh-process first calls, not calls inside a loaded vitest worker.
+
+## 1. Cold, fresh processes, 40 per version, alternating (stats.py output, verbatim)
+$ python3 stats.py cold-raw.jsonl
+current  n=40 min=1.258 median=1.677 p90=2.115 max=2.773 over5ms=0 ok_all=True mean=1.763
+  values: 1.40 1.26 1.54 1.58 1.70 1.59 1.26 1.57 1.70 1.41 1.31 1.82 2.09 2.77 1.73 1.98 1.48 1.82 1.61 2.00 1.99 1.55 2.51 1.63 2.09 1.44 1.67 1.79 2.32 2.08 2.65 1.46 1.64 1.69 1.98 1.61 1.81 1.93 1.50 1.57
+head     n=40 min=1.312 median=1.601 p90=2.014 max=2.782 over5ms=0 ok_all=True mean=1.686
+  values: 1.32 1.34 1.43 1.31 1.72 1.35 1.37 1.48 1.37 1.76 1.60 1.53 1.72 1.83 1.95 1.57 1.47 1.78 1.50 2.44 1.63 1.60 1.98 1.80 1.33 1.38 1.74 2.78 1.98 2.00 1.82 1.60 1.51 1.36 1.67 1.58 1.40 2.34 2.17 1.92
+
+## 2. Cold load average during the run (1-minute, from the rows)
+n 80 min 11.34 median 12.22 max 15.22 rows at or above 13: 36
+
+## 3. Warm, 2000 calls per process after 200 warm-up calls, 3 alternating pairs
+current-1  sha=fa5fa38758fe5f5d median=51.2 us p10=37.8 us p90=94.8 us max=0.48 ms n=2000 ok=True
+head-1     sha=e2167188684cab06 median=42.0 us p10=32.7 us p90=82.2 us max=34.62 ms n=2000 ok=True
+current-2  sha=fa5fa38758fe5f5d median=40.2 us p10=31.6 us p90=57.9 us max=0.42 ms n=2000 ok=True
+head-2     sha=e2167188684cab06 median=57.3 us p10=38.4 us p90=228.3 us max=38.31 ms n=2000 ok=True
+current-3  sha=fa5fa38758fe5f5d median=66.0 us p10=41.4 us p90=116.0 us max=0.44 ms n=2000 ok=True
+head-3     sha=e2167188684cab06 median=42.2 us p10=34.3 us p90=72.1 us max=0.20 ms n=2000 ok=True
+
+## 4. Cost of the added fs.lstatSync (lstat-bench.mjs, rerun now, three runs, output JSON in ms)
+$ node lstat-bench.mjs
+{"median_ms":0.0011669999999988079,"p90_ms":0.0015420000000005984,"min_ms":0.0009160000000001389}
+$ node lstat-bench.mjs
+{"median_ms":0.00304100000000318,"p90_ms":0.006540999999998576,"min_ms":0.0011660000000048854}
+$ node lstat-bench.mjs
+{"median_ms":0.0016250000000006537,"p90_ms":0.003166000000000224,"min_ms":0.0009580000000006805}
+
+## 5. Reading
+- Cold medians: current 1.677 ms, HEAD 1.601 ms, a difference of 0.076 ms. Minimums: current 1.258 ms, HEAD 1.312 ms. Maxima: 2.773 ms and 2.782 ms. No run of either version went over 5 ms.
+- Warm medians (section 3): the sign of the difference flips between pairs. Current is slower in pairs 1 and 3 and faster in pair 2. The HEAD runs carry two outliers near 35 to 38 ms in their maxima.
+- The lstat probe (section 4) has medians of 1.2, 3.0 and 1.6 us across three runs, and p90 of 1.5, 6.5 and 3.2 us. The lane note's 1.3 to 3.5 us range is consistent in scale with the medians. The saved data does not contain it, so this file does not claim the upper figure.
+- The lane note's load average (13 to 14) is not what the rows show. Section 2 gives 11.3 to 15.2 with a median of 12.2.
+- Conclusion: the added call costs about 1 to 3 us, against warm medians of about 40 to 66 us per load. The cold difference is inside the spread of both versions. On this measurement the change adds no measurable time to the check.
+- Caveat: fresh-process first calls only. Calls inside a loaded vitest worker were not measured.

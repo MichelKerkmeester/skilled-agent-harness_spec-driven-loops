@@ -1,0 +1,88 @@
+CLOSURE EVIDENCE: final-state gate G3 for phase 020, all jobs, read and rechecked in the closure pass
+
+Scope. Code state: HEAD 4669db6522 plus the working tree. The gate ran 18 jobs (j01 to j18) from the scratchpad directory final-gates3. The job logs are .log files, which git ignores, so this file quotes the key lines. The small files are copied next to it: closure-gate-final3-j03-fanout-isolated.txt.
+
+How to read the results. Each job script runs its steps through a run helper (lib.sh). The helper writes one line per step to steps-jNN.txt, with the step name and its exit status (rc). The jNN.exit file holds only the status of the last command in the job script, so it reads 0 even when an earlier step failed. This is why j03 and j18 show 0 in their exit files. The steps files are the authority for every job, and this file cites them.
+
+1. JOB STEPS (steps files, each rc read from its file)
+
+j01 CLI suite (steps-j01-cli-suite.txt): cli-npm-test 0.
+j02 root project (steps-j02-root-project.txt): root-vitest-project 0.
+j03 deep-loop (steps-j03-deep-loop.txt): deep-loop-npm-test 1. Not a CLI suite. See section 3.
+j04 hooks (steps-j04-hooks.txt): hook-tests 0.
+j05 doctor (steps-j05-doctor.txt): doctor-run-all 0.
+j06 skdoc cjs (steps-j06-skdoc-cjs.txt): 16 test files, each 0.
+j07 skdoc CI runner (steps-j07-skdoc-ci-runner.txt): skdoc-ci-runner 0.
+j08 speckit CI (steps-j08-speckit-ci.txt): 14 steps, each 0 (cli check, typecheck, shared test, legacy, validation, 9 mirror checks).
+j09 playbook (steps-j09-playbook.txt): 8 steps, each 0.
+j10 catalog links (steps-j10-catalog-links.txt): 21 steps, each 0.
+j11 gate inputs (steps-j11-gate-inputs.txt): 12 steps, each 0.
+j12 message contract (steps-j12-message-contract.txt): 4 steps, each 0.
+j13 tree canary (steps-j13-tree-canary.txt): command-tree-parity 0, rule-canary 0.
+j14 routing drift (steps-j14-routing-drift.txt): 14 steps, each 0.
+j15 golden (steps-j15-golden.txt): 4 steps, each 0.
+j16 actionlint phase (steps-j16-actionlint-phase.txt): phase-command-workflows 0, actionlint-no-args 0.
+j17 hostile env (steps-j17-hostile-env.txt): 5 steps, each 0.
+j18 lint (steps-j18-lint.txt): eslint-changed-ts 1, node-check-changed-js 0, shellcheck-archive 0, format-tool-probe 0.
+
+2. COUNTS (grep -a on the logs, read by hand)
+
+j01 CLI suite, cli-npm-test. The log contains binary bytes, so grep -a is used.
+  " Test Files 176 passed | 3 skipped (179)"
+  " Tests 1953 passed | 20 skipped (1973)"
+  No vitest line reports a failure. The two " FAIL " matches are a test name ("Sections Present Tests (should FAIL on missing)"), not failures.
+  Legacy suite: "Result: passed=51 failed=0", "Result: passed=27 failed=0", "Results: 12 passed, 0 failed", "Results: 2 passed, 0 failed", "Results: 12 passed, 0 failed (of 12)".
+  Baseline from the 019 record: 1776 passed, 19 skipped, 0 failed.
+
+j02 root project. " Test Files 107 passed | 3 skipped (110)", " Tests 1307 passed | 13 skipped (1320)". Zero FAIL lines.
+
+j04 hooks. "ℹ tests 189", "ℹ pass 186", "ℹ fail 0", "ℹ skipped 3".
+
+j05 doctor. "[run-all] 7 suite(s) passed, 0 failed".
+
+j08 speckit CI. The j08 log contains "RESULT: PASSED".
+
+j16 actionlint phase. Both steps rc 0.
+
+j17 hostile env. TMPDIR is "/private/tmp/claude-501/.../final-gates3/hostile tmp dïr". The name holds a space and a non-ASCII letter, which the G2 run did not have (G2 used "hostile tmp dir"). Other variables: LANG=C, LC_ALL=C, TZ=Pacific/Kiritimati, umask 077, AI_SESSION_CHILD=1, SYSTEM_SPEC_GATE_ENFORCE=0.
+  CLI, 13 files: " Test Files 13 passed (13)", " Tests 345 passed | 2 skipped (347)", rc 0.
+  Root, 3 files: " Test Files 3 passed (3)", " Tests 159 passed (159)", rc 0.
+  Doctor compat (node --test): "ℹ tests 30", "ℹ pass 30", "ℹ fail 0", rc 0.
+  Leaf scopes (node --test): "ℹ tests 1", "ℹ pass 1", "ℹ fail 0", rc 0.
+  Phase workflows: "Result: passed=148 failed=0", rc 0.
+
+j18 lint.
+  "✖ 6 problems (6 errors, 0 warnings)" from ESLint over the changed .ts files, rc 1. The six errors are no-unused-vars in two files: frontmatter-migration.ts (one error, line 1361) and orchestrator.ts (five errors, lines 95, 101, 102, 103 and 657). All six are identical at HEAD (closure-eslint-head-baseline.txt). The phase introduced none.
+  node --check over the changed JS files: rc 0.
+  shellcheck -S warning on archive.sh: rc 0.
+  Format tool probe: no prettier, biome or dprint config in the repository ("no format tool configured in the repository").
+
+3. J03 DEEP-LOOP, NOT A CLI SUITE
+
+Log j03-deep-loop.log:
+  " Test Files  1 failed | 173 passed (174)"
+  " Tests  1 failed | 2878 passed | 8 skipped (2887)"
+  The failing case: tests/unit/fanout-run.vitest.ts, "fanout-run.cjs: containment mode is an explicit opt-in > lets the --containment-mode flag override the fan-out config value, and rejects an unknown value". Error: "Test timed out in 30000ms."
+  The timeout happened under the load of 18 parallel jobs.
+
+Isolated rerun, closure-gate-final3-j03-fanout-isolated.txt (a copy of the scratchpad file): " Test Files  1 passed (1)", " Tests  167 passed (167)", EXIT=0.
+
+Neither file is in the phase diff. git status on the fanout-run files is empty (see section 4), so they are unmodified against HEAD. The deep-loop suite is not in the scope of T029, AC-016 or CHK-010. The failure is recorded here and is not counted as a pass for any of those rows.
+
+4. SNAPSHOT (taken before the gate, rechecked now)
+
+git status --porcelain now matches the snapshot file snap-before-status.txt line for line (113 lines).
+HEAD is 4669db65226d82625f6105073fc8891229bcc22b.
+shasum -a 256 -c check of snap-before-hashes.txt (516 files): 516 OK, 0 failed.
+The rechecks ran from the repository root in this closure pass.
+
+5. CHK-011 WARNING CLASSES, FINAL CLI LOG
+
+Run of warn-classes.sh on j01-cli-suite.log:
+  graphskip=21 fallback=3 ERROR=2 Error=3 console.error=0 console.warn=0 Warning_colon=28 Warning_all=36
+HEAD values (closure-warnings-baseline.txt): graph skip 21, fallback 3, ERROR 2, Error 3, console.error 0, console.warn 0, Warning 28, Warning (all) 36.
+The counts are identical, so no class rises.
+
+6. NOT CLAIMED BY THIS GATE
+
+The post-push CI run (AC-005 and AC-006) and CHK-020 and CHK-FIX-007 are outside this gate. They wait for the post-push follow-up.

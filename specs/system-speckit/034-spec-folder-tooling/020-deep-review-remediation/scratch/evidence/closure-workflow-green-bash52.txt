@@ -1,0 +1,53 @@
+CLOSURE EVIDENCE copy: green run of trigger-index-rebuild-workflow.vitest.ts, labelled bash 5.2 by the lane
+Source: scratchpad k2c/green-bash52.txt, unedited. Result: 37 passed, 1 skipped, of 38. The log does not print the bash binary. closure-workflow-bash52-recheck.txt re-runs the file under GNU bash 5.2.0 with the version printed.
+
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/.skilled/skills/system-spec-kit/runtime/cli
+
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hands the token to the push step alone 1ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > runs no node, npm or generator command in the push step 1ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > reads the token from a readable parent as yes, so the clean parent results are not vacuous 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > gates the push step on the committed output of the commit step 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > checks out without persisting the credential 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > names the push token secret in the push step env 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > keeps secret references out of the with block and run text of every other step 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when origin moves before the push > exits 0 with a notice and pushes nothing 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when origin moves before the push > leaves origin on the race commit, with the rebuild unpushed 69ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when origin does not move > pushes the rebuild on top of the base and exits 0 18ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when origin does not move > ends the rebuild commit with the loop-guard trailer as its last line 18ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when origin does not move > publishes all four generated files rebuilt from the current corpus 72ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when the generator exits nonzero after writing (regenerate-partial) > fails the regenerate step 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when the generator exits nonzero after writing (regenerate-partial) > makes no commit 32ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when the generator exits nonzero after writing (regenerate-partial) > pushes nothing to origin 16ms
+ ↓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when the generator exits nonzero after writing (regenerate-partial) > stops on the exit check before the content check runs
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when the generator exits nonzero after writing (fresh-partial) > fails the commit step 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when the generator exits nonzero after writing (fresh-partial) > makes no commit 18ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when the generator exits nonzero after writing (fresh-partial) > pushes nothing to origin 16ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when the generator exits nonzero after writing (fresh-partial) > stops on the exit check before the content check runs 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when the generator exits nonzero after writing (fresh-complete) > fails the commit step 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when the generator exits nonzero after writing (fresh-complete) > makes no commit 21ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when the generator exits nonzero after writing (fresh-complete) > pushes nothing to origin 17ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > when the generator exits nonzero after writing (fresh-complete) > stops on the exit check before the content check runs 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin moves before the push > keeps the token and its header out of every step output, the output file and the repository config 1ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin moves before the push > keeps the token out of the generator environment 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin moves before the push > keeps the token out of the generator's parent process 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin moves before the push > never runs a hook during the workflow steps, which keep hooks off for every git command 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin moves before the push > runs the planted pre-commit hook on a control commit, so the hook records are live 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin moves before the push > keeps the token and its header out of every hook environment 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin moves before the push > never runs the pre-push hook 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin does not move > keeps the token and its header out of every step output, the output file and the repository config 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin does not move > keeps the token out of the generator environment 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin does not move > keeps the token out of the generator's parent process 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin does not move > never runs a hook during the workflow steps, which keep hooks off for every git command 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin does not move > runs the planted pre-commit hook on a control commit, so the hook records are live 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin does not move > keeps the token and its header out of every hook environment 0ms
+ ✓ |cli| tests/trigger-index-rebuild-workflow.vitest.ts > trigger-index rebuild workflow > hygiene when origin does not move > never runs the pre-push hook 0ms
+
+ Test Files  1 passed (1)
+      Tests  37 passed | 1 skipped (38)
+   Start at  12:34:24
+   Duration  9.37s (transform 34ms, setup 26ms, import 25ms, tests 9.22s, environment 0ms)
+
