@@ -74,6 +74,8 @@ Each entry is a packet's first commit. The outcome names what the packet left be
 **2026-10-09:** `019-epic-follow-up-fixes` started. 1 commit, first `079e9c34d2` and last `079e9c34d2` on 2026-10-09. Outcome: closes the follow-ups the epic left, covering the env reference, the compat workflow contract, Gate 3 parity coverage, CLI test isolation and the leaf manifest generator. Its post-push CI on main is recorded in its scratch evidence.
 
 **2026-10-10:** `020-deep-review-remediation` started. 0 commits, because its work is still in the working tree. Outcome: pending. The packet remediates the deep review findings against phases 016 to 019, and it closes only after its final gates pass.
+
+**2026-10-10:** `020-deep-review-remediation` pushed as `bb2006123f` (13 commits from `4669db6522`), and main CI ran 15 of 15 workflows green on it. The Trigger Index Rebuild bot commit `b5436f97a6` followed, and its own rebuild run skipped both jobs, so the loop guard holds live. 020 closes Complete on that evidence, with the `T046-26` timing check moved to follow-up 034/021. Outcome: Complete.
 <!-- /ANCHOR:timeline -->
 
 ---
@@ -81,7 +83,7 @@ Each entry is a packet's first commit. The outcome names what the packet left be
 <!-- ANCHOR:milestones -->
 ## 3. MILESTONES
 
-**All children closed:** target 2026-09-24. Status: Open. Phase 020 is the only child still In Progress.
+**All children closed:** target 2026-09-24. Status: Met on 2026-10-10. All 20 children are Complete.
 <!-- /ANCHOR:milestones -->
 
 ---

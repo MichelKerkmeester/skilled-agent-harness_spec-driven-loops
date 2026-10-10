@@ -34,7 +34,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -185,12 +185,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -201,11 +195,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep review of phases 016 to 019 found three default paths that check a name, then follow a symlink at the step that writes, reads or moves a file: the default healer, the leaf walker and the archive destination",
     "created_at": "2026-10-10T05:30:19Z",
-    "last_save_at": "2026-10-10T15:04:38.712Z",
+    "last_save_at": "2026-10-10T15:29:58.818Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6c9311cd1f8e4c4c8d940974a77584154dedd258c86648c67349172647cb162a",
+    "source_fingerprint": "sha256:96842f02955c3e00478ac3654ce6edaeebf38a608d604932455c9f7ef6d5f96a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "739fb56790eb7e1bd9bed4c8d60bd7884caaf3286d4b4343010468fda4fb1288",
+      "spec.md": "f7850c7e9c78726e562f2f1ff6180992448f02a7837bdb6aee6edb7da3e83979",
       "plan.md": "a63717c7e3e019494e253d49e1c8946602ac588d669350f7021f6ebc0ac2254a",
-      "tasks.md": "d2476343aeb1da4cedd87cf1d10a3d128d0d2c0447f9fb236d565ea671842b75",
-      "implementation-summary.md": "b7f981627d1ecf0118d1a1eff6d593440e6222098d3f32dea303bfaf63bfe0af"
+      "tasks.md": "80b0ae0730edc38290c812f5aea0b5d31b34ce301e084283844c92eaae7c30d0",
+      "implementation-summary.md": "b9abc99f8db87fc22f55b040a15dd4f8e39a8d60c6fa20d2a068e40a2636c9b6"
     },
     "last_active_at": null
   }

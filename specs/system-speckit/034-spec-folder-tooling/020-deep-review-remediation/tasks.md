@@ -93,7 +93,7 @@ Each code lane records a red run on the unfixed code and a green run after the f
 - [x] T029 [H] Run the full CLI suite with `SPECKIT_TEST_RUN_TIMEOUT_MS=3600000` from the final state. Compare with the 019 baseline of 1776 passed, 19 skipped, 0 failed. Done on the G4 final-state gate (`scratch/evidence/closure-gate-final4.txt`, job j01, steps `cli-npm-test 0`): 176 test files passed and 3 skipped, and 1953 tests passed and 20 skipped, with 0 failed (1973 in all). The legacy suites report passed=51, passed=27, 12, 2 and 12, each with 0 failed.
 - [x] T030 [H] Run `bash .skilled/commands/doctor/scripts/tests/run-all.sh` and `node --test .skilled/skills/system-spec-kit/runtime/tests/hooks/*.test.mjs`, each with its exit code. Done in the closure pass: the doctor run-all exited 0 with 7 suites passed and 0 failed, and the hooks run exited 0 with 186 passed, 0 failed and 3 skipped (`scratch/evidence/closure-gate-rerun-final.txt`). The first run matched (`closure-gate-doctor-hooks.txt`)
 - [x] T031 [H] Strict validates on 010, 020, the 034 parent and 016 (`scratch/evidence/validate-010-final.txt`, `scratch/evidence/validate-020-final.txt`, `scratch/evidence/validate-034-final.txt`, `scratch/evidence/validate-016-final.txt`). The final-state rerun belongs to the orchestrator
-- [x] T032 [H] Every acceptance row in `acceptance-criteria.md` is marked with the evidence path that shows it. AC-005 and AC-006 stay Unmet
+- [x] T032 [H] Every acceptance row in `acceptance-criteria.md` is marked with the evidence path that shows it. AC-005 and AC-006 are Met on the live run 38062364636 (`scratch/evidence/post-push-ci.txt`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -102,14 +102,14 @@ Each code lane records a red run on the unfixed code and a green run after the f
 ## Completion Criteria
 
 - [x] All tasks marked `[x]`. T029 closed on the G4 final-state gate (`scratch/evidence/closure-gate-final4.txt`). T010, T013, T014 and T030 closed in the closure pass
-- [ ] No `[B]` blocked tasks remaining. None are blocked now
-- [ ] Every acceptance row Met. AC-005 and AC-006 are Unmet, as CI rows that need the post-push run
+- [x] No `[B]` blocked tasks remaining. None are blocked now
+- [x] Every acceptance row Met. AC-005 and AC-006 are Met on the live run 38062364636 (`scratch/evidence/post-push-ci.txt`)
 
 ### Verification Summary
 
 - Tasks: 32 of 32 checked. Open: none.
-- Checklist: 19 of 21 checked. Open: CHK-020 and CHK-FIX-007.
-- Acceptance rows: 14 of 16 Met. Open: AC-005 and AC-006 (CI rows after the push).
+- Checklist: 21 of 21 checked. Open: none.
+- Acceptance rows: 16 of 16 Met. Open: none.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -163,7 +163,7 @@ Each code lane records a red run on the unfixed code and a green run after the f
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met (see `acceptance-criteria.md`). Three rows are Unmet
+- [x] CHK-020 [P0] All acceptance criteria met (see `acceptance-criteria.md`). All 16 rows are Met. AC-005 and AC-006 are Met on the live run 38062364636 (`scratch/evidence/post-push-ci.txt`), and the other 14 are Met on the gate and lane evidence named in their Verification cells.
 - [x] CHK-021 [P0] Manual testing: not applicable to this phase. The findings are covered by automated tests, and the DOC-381 manual run stays with phase 019
 - [x] CHK-022 [P1] Edge cases tested: outside-root, inside-root, dangling and plain-packet cases for each path lane. Evidence: `scratch/evidence/closure-chk022-lane-map.txt`, which names one case per category per lane and checks each name with rg. Lane A's inside-root case is A-11, a z_archive link inside specs that the archive refuses. Lane B's inside-root case is B-10, a linked folder component inside specs that the healer refuses. Both refusals are the code's behaviour under the 2026-10-10 decision recorded in the spec.md line 193 amendment. The document-level case for an in-specs link (matrix B-03) is still MISSING and is not counted here.
 - [x] CHK-023 [P1] Error scenarios validated: the nonzero retry (harness R1 and R2, historical since the 2026-10-10 restructure removed the retry. The exit-checked regenerate step now fails the job before any commit), the stale sidecar (harness S and F, which the verify step now covers) and the refused archive destination (`scratch/evidence/lane-a-green.txt`)
@@ -180,7 +180,7 @@ Each code lane records a red run on the unfixed code and a green run after the f
 - [x] CHK-FIX-004 [P0] Path fixes (lanes A, B, C, F) carry adversarial table tests for outside-root, no-op, dangling and fallback cases. Outside-root, no-op and dangling cases exist for each of the four lanes (`closure-edge-green-k2a-final.txt` with 97 of 97, `closure-edge-green-k2b-vitest.txt` with 40 of 40, and `closure-edge-green-k2b-leaf.txt`). Fallback is defined in `scratch/evidence/closure-fallback-map.txt` as a path taken when a primary resolution is absent or fails. Lane A (the archive specs-root fallback) and lane C (the default root) have an adversarial fallback case. Lane B now meets it through the no-`--roots` containment cases that the healer identity fix added, as `scratch/evidence/closure-fallback-remap.txt` records. Lane F meets it through the default-root fallback case at `upgrade-legacy.vitest.ts` line 1864, "refuses a default specs root that is a link to a directory outside the repository, with no --roots". That case fails under mutants gE-A and gE-B (2 of 53 each, `scratch/evidence/closure-guard-final-gE.txt`) and passes at the control (53 of 53). A dangling default root has no separate case, because `existsSync` filters it out and the run skips it with nothing written. One k2b mutant, R3, passed all 23 cases and is not counted as a red run (`closure-edge-k2b-R3-not-red.txt`).
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Evidence: `scratch/evidence/closure-test-matrix.txt` lists the axes in its header (target kind, mode and tool) and 100 rows in section 5 (66 COVERED, 1 PARTIAL, 33 MISSING). This ticks the listing only. `scratch/evidence/closure-test-matrix-rationale.txt` sorts the 34 rows that are not COVERED. 14 fit the stated rationale (7 dry-run variants and 7 accepted root gaps), 5 are unchanged link handling in a changed file, 10 sit on changed guards with no case, and 4 are ambiguous. The PARTIAL row D-05 is mostly a dry-run gap. The last two groups are resolved in `scratch/evidence/closure-guard-final-summary.txt`. Every class 4 and class 5 row is RED-PROVEN, or unchanged link handling with a diff proof, except one changed guard: the healer `--roots` realpath check at `heal-spec-docs.cjs` 923 to 925, which no case kills (mutant gB-realp passes 35 of 35). The backfill prune report is not an unchanged tool, as the operator's example said, because its report write changed in this phase
 - [x] CHK-FIX-006 [P1] Hostile env or global-state variant run when a lane's tests read process-wide state. Done on the G4 final-state gate (`scratch/evidence/closure-gate-final4.txt`, job j17). TMPDIR is `hostile tmp dïr`, which holds a space and a non-ASCII letter, with LANG=C, LC_ALL=C, TZ=Pacific/Kiritimati, umask 077 and AI_SESSION_CHILD=1. The run covers the 13 lane CLI files (345 passed, 2 skipped), the three root project files (159 passed), the doctor compat test (30 passed), the leaf scope test (1 passed) and the phase workflow test (passed=148, failed=0), and every step exits 0. The earlier hostile runs used the ASCII name `hostile tmp dir`, so the non-ASCII claim in `scratch/evidence/closure-gate-hostile-env.txt` was wrong for them, and this item relies only on the G4 run. That earlier run failed 2 of 294 in `heal-target-parity.vitest.ts`, because the helper split packet paths on whitespace, and the fix matches each output line instead. The fix is recorded under Files Changed and Post-review fixes in `implementation-summary.md`.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or an explicit diff range, not a moving branch-relative range. Pending the commit, since the fixes are uncommitted
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or an explicit diff range, not a moving branch-relative range. The pinned range is `4669db6522..bb2006123f` (13 commits, pushed), and the bot commit that followed is `b5436f97a6`, whose parent is `bb2006123f`. The CI receipts are in `scratch/evidence/post-push-ci.txt`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---

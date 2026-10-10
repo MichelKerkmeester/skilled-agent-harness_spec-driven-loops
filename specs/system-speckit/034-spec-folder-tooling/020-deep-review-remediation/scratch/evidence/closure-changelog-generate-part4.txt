@@ -1,0 +1,85 @@
+---
+title: "Changelog: Phase 20: deep-review-remediation [034-spec-folder-tooling/020-deep-review-remediation]"
+description: "Chronological changelog for the Phase 20: deep-review-remediation phase."
+trigger_phrases:
+  - "spec folder tooling deep review remediation changelog"
+importance_tier: "normal"
+contextType: "implementation"
+---
+# Changelog
+
+<!-- SPECKIT_TEMPLATE_SOURCE: changelog/phase.md | v1.0 -->
+
+## 2026-10-10
+
+> Spec folder: `specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation` (Level 2)
+> Parent packet: `specs/system-speckit/034-spec-folder-tooling`
+
+### Summary
+
+The deep review of phases 016 to 019 returned CONDITIONAL with 0 P0, 9 P1 and 2 P2 findings after deduplication. Each finding has a fix in the working tree, a test or check that shows it, and an acceptance row. The rows and their evidence are in acceptance-criteria.md, and the lane tasks are in tasks.md.
+
+### Added
+
+- Scaffold this folder with create.sh --phase --parent in append mode, Level 2, and record the output (scratch/evidence/create-020.txt)
+- [P] Check phase 010 against its own record and against main CI. Its tasks.md now marks T009 and T011 closed, and main shows a live Trigger Index Rebuild success on 079e9c34d2 (scratch/evidence/phase-010-status.txt)
+- [A] Red: a z_archive symlink to a directory outside specs makes archive copy into it. Cases added to runtime/cli/tests/archive-track.vitest.ts. 9 of 32 fail on the red run (scratch/evidence/lane-a-red.txt)
+- [C] Red: a default root and a declared scope symlinked outside the skill. Cases in sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs, failing with "Missing expected exception" (scratch/evidence/lane-c-red.txt)
+- [C] Green: each start scope is resolved and confined before readdirSync in generate-leaf-manifest.cjs (scratch/evidence/lane-c-green.txt, scratch/evidence/lane-c-final.txt)
+- [D] Red: a parse test on trigger-index-rebuild.yml that fails while checkout keeps credentials. Evidence: runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts loads the workflow with js-yaml and asserts that checkout sets persist-credentials: false (test checks out without persisting the credential). The mutant with persist-credentials: true goes red, 1 failed of 38 (scratch/evidence/closure-workflow-red-mutants.txt, block persist-true). Green runs: 37 passed and 1 skipped under GNU bash 3.2.57 (scratch/evidence/closure-workflow-bash32-recheck.txt) and under GNU bash 5.2.0 (scratch/evidence/closure-workflow-bash52-recheck.txt). The actionlint gate still runs (scratch/evidence/actionlint-final.txt)
+
+### Changed
+
+- Read review/review-report.md sections 1 to 6 and 8 to 9, and the phase 019 layout the packet follows (review/review-report.md)
+- Record the starting strict validates before any edit: phase 019 and the 034 parent both print RESULT: PASSED with rc=0 (scratch/evidence/validate-019-baseline.txt, scratch/evidence/validate-034-baseline.txt)
+- [A] Green: archive_root is confined below specs before any copy, rename or source removal, and ./.. segments are refused in runtime/cli/spec/archive.sh (scratch/evidence/lane-a-green.txt, scratch/evidence/lane-a-dotseg-red.txt, scratch/evidence/lane-a-dotseg-green.txt)
+- [B] Red: default --apply through a symlinked spec.md and tasks.md changes the outside target. Cases in runtime/cli/tests/heal-symlink-containment.vitest.ts. 4 of 4 fail on the red run (scratch/evidence/lane-b-red.txt)
+- [B] [P] Parity: the three entrypoints resolve one target set through resolveTargets. Before and after dry-run selections match (scratch/evidence/lane-b-parity.txt), and the parity test fails on a mutated selection (scratch/evidence/lane-b-parity-red.txt)
+- [D] Green: persist-credentials: false, the write token only in the push step (line 157), the four-output content check, and the stop-commands wrapper (scratch/evidence/lane-d-harness.txt, scratch/evidence/actionlint-final.txt, scratch/evidence/post-review-trigger-green-bash32.txt, scratch/evidence/post-review-trigger-green-bash52.txt). The retry failure named here was removed by the 2026-10-10 restructure, so its harness evidence is historical. Live proof waits for the post-push run
+
+### Fixed
+
+- [B] Green: symlinked documents are refused before any read or write in runtime/cli/spec/heal-spec-docs.cjs, and the fence, code-span, continuity and delimiter fixes pass their cases (scratch/evidence/lane-b-green.txt, scratch/evidence/lane-b-final-vitest.txt)
+- [B] Same-class producer grep for writes reached from a user-derived path in the healer and upgrade-legacy.mjs. Evidence: scratch/evidence/closure-same-class-write-inventory.txt. Its section 1 is the saved grep, and its H1 to H6 and U1 to U7 entries classify each write. No site is marked UNGUARDED. Two sites, E1 and U3, have no check at the write and rely on a caller or discovery guard. The operator accepts these PARTIAL sites, because each sits behind a root the operator names explicitly and the bug class is following a link, not naming a real path: the healer --folder outside the default roots with no --roots (H5), the backfill --root (K1), the phrase-cleanup --root (E2) and the leaf skillDir parent (L1). The orchestrator's decision of 2026-10-10 also accepts site E1, the phrase-cleanup write with no check at the write, on the same basis. The two non-exclusive temp names (graph-metadata-parser.ts:1852 and :1855, archive.sh:333-339) are low-risk temps inside contained directories and are not changed here
+- [D] Red: a stub generator that exits nonzero after writing a partial sidecar. No red run on the unfixed workflow was captured. The harness ran the fixed workflow blocks against the same failure (cases R1, R2, S and F in scratch/evidence/lane-d-harness.txt). Superseded in part by the operator's restructure of 2026-10-10, which removed the retry, so R1 and R2 are historical. The exit-checked regenerate step and the verify step now cover that path (see the AC-006 note in acceptance-criteria.md). Closed in this pass: the three generator-fault cases in runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts (fresh-partial, fresh-complete and regenerate-partial) each assert no commit and no push. The red runs are two mutants of the restructured workflow that remove the exit check, regen-exit-removed (1 failed of 38) and fresh-exit-removed (5 failed of 38), in scratch/evidence/closure-workflow-red-mutants.txt. No red run exists on the removed retry, as the note above already states. The bash re-runs are scratch/evidence/closure-workflow-bash32-recheck.txt and scratch/evidence/closure-workflow-bash52-recheck.txt
+- [D] Trace the report producer for SL-006-010. Route 1 (freshness sweep) reproduced red and green, route 2 (repair output) shares its wrapper, and route 3 (changed-packet annotations) cannot receive a raw newline (scratch/evidence/workflow-command-trace.txt, scratch/evidence/lane-d-freshness-stop-commands-red.txt, scratch/evidence/lane-d-freshness-stop-commands-green.txt)
+- [H] Phase 019 SC-002 is recorded as met, with 019-epic-follow-up-fixes/scratch/evidence/post-push-ci.txt as the receipt
+- CHK-010 Code passes lint and format checks for every lane's files. The gate's lint step passes. The cli package's lint script is tsc --noEmit, which exits 0 in the speckit CI job, and actionlint exits 0 on the workflows (scratch/evidence/closure-gate-speckit-ci-actionlint.txt). The gate has no ESLint or format step. A manual ESLint run over the changed .ts files in G4 job j18 (scratch/evidence/closure-gate-final4.txt, sections 1 and 7) reports 0 problems over all 21 changed .ts files. Before the dead-code removal, the same run reported 6 errors in 2 files, all identical at HEAD (scratch/evidence/closure-eslint-head-baseline.txt). Decision of 2026-10-10: remove the dead code now. Lane L deleted seven unused symbols (frontmatterForContextTemplate, VALID_LEVELS, CHECKLIST_H1_PREFIX, OPTIONAL_TEMPLATE_HEADER_RE, OPTIONAL_TEMPLATE_ANCHORS, h2Headers and normalizeHeader) in runtime/cli/lib/frontmatter-migration.ts and runtime/lib/validation/orchestrator.ts. Removing h2Headers left normalizeHeader with no reference. Both packages typecheck with exit 0, and the targeted vitest runs pass (9 of 9 in the CLI, 84 of 84 at the root) (scratch/evidence/closure-lane-l-dead-code.txt). The repository has no format tool, so no format check exists to run. The format half is recorded as not checkable, not as passed. The 95 typecheck:tests errors sit in 36 files. runtime/tests/graph-metadata-schema.vitest.ts is in this phase's diff, and its two TS2339 errors are at HEAD too, moved down one line (scratch/evidence/closure-tsc-trigger-test-finding.txt).
+
+### Verification
+
+- Targeted vitest, 13 suites the lanes touched (archive, healer containment and parity and lane modes, repair-derived, upgrade-legacy, phrase cleanup and provenance, graph-metadata backfill, migrate generated JSON, folder discovery, graph-metadata schema, upgrade baseline) - 13 files passed, 369 tests passed, 1 skipped, exit 0 (final-targeted-vitest.txt)
+- Phase command workflows test - 148 passed, 0 failed, exit 0 (phase-command-workflows-final.txt)
+- Leaf manifest scope test - Exit 0 (lane-c-final.txt)
+- Red and green pairs for each code lane - Recorded in the lane evidence files named in acceptance-criteria.md
+- actionlint over every workflow - Exit 0, no output. A negative control reports an unknown key with exit 1 (actionlint-final.txt)
+- YAML parse of the changed YAML files - All nine parse, and the duplicate-key negative control is reported (yaml-parse-check.txt)
+- Hermes sync check - PASS, 70 copies in sync, exit 0 (lane-g-sync-check.txt)
+- Child-dispatch grep, HEAD against now - 0 at HEAD, 7, 7 and 1 now (closure-child-marker-part3.txt, section 3), in the two SKILL.md copies and the implement YAML (child-dispatch-check.txt)
+
+### Files Changed
+
+| File | Action | What changed |
+|---|---|---|
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh` | Modified | Lane A containment |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs` | Modified | Lane B refusals, shared helper, atomic write, transform fixes (Deviation 7) |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs` | Modified | Lane F guards and baseline handling, and the Lane B helper reuse. recordFindings (line 1250) carries an export that only the upgrade-legacy test imports, and the module also calls it at line 1591 |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs` | Modified | Link refusal, exclusive temporary names, UNREADABLE reasons |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs` | Modified | Lane E provenance |
+| `.skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts` | Modified | Prune report link refusal and exclusive write |
+| `.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts` | Modified, Deviation | Linked baseline not applied, UPGRADE_BASELINE_LINK warning. Unused symbols removed (CHK-010, Deviation 12) |
+| `.skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts` | Modified | Link refusal in the description loaders and cache |
+| `.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts` | Modified | Link refusal in the graph metadata loader |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` | Modified | Lane C start-scope confinement |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs` | Modified | Lane C case: a root and a declared scope symlinked outside the skill |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts, heal-lane-modes.vitest.ts, repair-derived.vitest.ts, template-phrase-cleanup.vitest.ts, upgrade-legacy.vitest.ts, migrate-generated-json.vitest.ts, graph-metadata-backfill.vitest.ts` | Modified | New cases for the lane that touches each suite |
+
+### Follow-Ups
+
+- Search debt is not all closed. The brief said every search-debt item is fixed. The review's search ledger and this packet's own scope disagree on three items:
+- SL-SEC-008 (upgrade apply symlink containment) is closed by lane F.
+- SL-006-010 (workflow command log injection) is closed for both workflows. The freshness report routes are closed by stop-commands. The changed-packet annotations are closed by escaping each property and message, and by replaying validator output inside a stop-commands block. The percent-decoding case is tested and closed. The hostile replay (scratch/evidence/route3-hostile-old.txt and route3-hostile-new.txt) names packets such as a%0A::error::PWNED. The new block prints one ::error line per packet, with % escaped to %25 first, then : and , escaped in properties. A reviewer's rerun with ::add-mask::, CR and LF also gave exactly one ::error line. The replay is a text replay of the run block, not a GitHub runner run. The verdict is in scratch/evidence/workflow-command-trace-route3-closed.txt, and workflow-command-trace.txt is unchanged. The git diff -z listing change is a separate fix for silently skipped names. The stage-two harness run on the final block lists and grades the control-character, quote and non-ASCII names (scratch/evidence/changed-packet-listing-controlchar-stage2.txt), and the harness block matches the workflow's run block, apart from surrounding whitespace (scratch/evidence/changed-packet-listing-block-match.txt).
+- SL-005-006 (runtime test execution) is closed for the touched suites only. The full CLI suite is the orchestrator's.
+- SL-007 (individual lane transform edge cases) is covered for the transforms that changed. A review of every transform is not claimed.
+- SL-007-009 (spec-code traceability) and SL-007-010 (checklist evidence) stay open. The spec puts them out of scope, and no lane addresses them. Deep-review iterations 8 to 10 exercised both rows, but the reducer keeps them open because no later row closes them by id (review/review-report.md section 9).
+EXIT=0
