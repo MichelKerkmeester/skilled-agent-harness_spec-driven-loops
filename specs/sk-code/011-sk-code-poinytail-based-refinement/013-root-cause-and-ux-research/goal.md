@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research"
-    last_updated_at: "2026-10-10T18:45:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-10-10T19:30:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Widened the goal to the fix phases"
+    next_safe_action: "Build the phases in order"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-013-root-cause-and-ux-research"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Produce a checked synthesis in research/research.md of the root causes behind the process errors and open product issues of the sk-code Ponytail refinement epic, and of what would make this framework work for external users who adopt it in their own repositories, ending in small implementation phases ranked by external-user impact against cost.
+**Objective:** Trace the refinement epic's errors to their root causes in research/research.md and ship the ranked fixes this track owns, so an adopter's compiled-route rebuild, tests, canaries, Pi denial text, Node floor and hook stdin coverage hold on a clean checkout.
 
 ### Decisions
 
@@ -44,13 +44,36 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | One /deep:research lineage runs ten iterations on DeepSeek V4.1 Flash at max effort through cli-pi on the llmgateway route, with stop policy max-iterations. If that route fails, the cline-pass route replaces it. |
-| D2 | This phase is research only. No product file changes; every write stays in this packet folder and the one phase-map row in the parent spec.md. |
-| D3 | Every load-bearing claim in the synthesis is marked VERIFIED, after the orchestrator read the cited line or ran the command, or INFERRED. |
-| D4 | Every proposed fix passes .skilled/repo-rules/prevent-overengineering.md. An idea that fails it is listed as rejected, with the reason. |
-| D5 | Each proposed phase names the one file it changes and the command that proves it. |
+| D1 | Research and builds run on DeepSeek V4.1 Flash through cli-pi on llmgateway at max effort; cline-pass replaces it when DevPass is limited. |
+| D2 | Each phase owns disjoint files. Git hooks, generators, the advisor runtime and the changelog workflow belong to the skill-authoring track; a fix needing them becomes a recorded handoff. |
+| D3 | A builder's report is a claim. The orchestrator reruns every check, and every new test gets one failing-before run. |
+| D4 | Every change passes .skilled/repo-rules/prevent-overengineering.md. |
 
 <!-- /ANCHOR:directive -->
+
+---
+
+<!-- ANCHOR:binding -->
+## 2. BINDING
+
+**Read the child goal before working a phase.** Each is authoritative for its
+phase and binds as if written here.
+
+| Phase | Goal document |
+|-------|---------------|
+| 001-compiled-route-manifest-suite | `001-compiled-route-manifest-suite/goal.md` |
+| 002-admission-corpus-pin | `002-admission-corpus-pin/goal.md` |
+| 003-stale-jev-canary | `003-stale-jev-canary/goal.md` |
+| 004-pi-ambiguous-denial | `004-pi-ambiguous-denial/goal.md` |
+| 005-readme-node-floor | `005-readme-node-floor/goal.md` |
+| 006-hook-late-write-test | `006-hook-late-write-test/goal.md` |
+
+**Precedence.** Decisions above outrank child detail. Child detail outranks any
+summary of it. Name a conflict rather than resolving it silently.
+
+**Stop.** Only the criteria below decide done. An evaluator sees the objective
+string, not these files.
+<!-- /ANCHOR:binding -->
 
 ---
 
@@ -60,9 +83,9 @@ Frozen choices. Changing one is an amendment.
 - [ ] `grep -c '"type":"iteration"' specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/research/lineages/dsflash-llmgw/deep-research-state.jsonl`, run from the repository root, prints 10.
 - [ ] `grep -cE '^## [0-9]+\. (Proposed Implementation Phases|Rejected Ideas)$' specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/research/research.md`, run from the repository root, prints 2.
 - [ ] `grep -cE '\[(VERIFIED|INFERRED)\]' specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/research/research.md`, run from the repository root, prints 10 or more.
-- [ ] `grep -o '\[SOURCE: [^]]*\]' specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/research/research.md | sed -E 's/\[SOURCE: (.*):([0-9]+)\]/\1 \2/' | sort -u | while read f l; do [ -f "$f" ] && [ "$(wc -l < "$f")" -ge "$l" ] || echo "BAD $f:$l"; done`, run from the repository root, prints no BAD line.
-- [ ] `git diff --name-only 5d9c970447 HEAD -- . ':!specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research' ':!specs/sk-code/011-sk-code-poinytail-based-refinement/spec.md' ':!specs/sk-code/011-sk-code-poinytail-based-refinement/graph-metadata.json'`, run from the repository root, prints nothing.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research --strict`, run from the repository root, prints RESULT: PASSED.
+- [ ] `node .skilled/bin/compiled-route-sync.cjs --check >/dev/null 2>&1; echo $?`, run from the repository root, prints 0.
+- [ ] `node specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/003-hub-surface-precedence/scratch/all-canaries.cjs | tail -1`, run from the repository root, prints `all hubs failures 0`.
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research --strict --recursive`, run from the repository root, prints RESULT: PASSED.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -95,4 +118,5 @@ and findings belong here.
 | Strict warning left in place | SOURCE_TAGS warns on one tag in the lineage's write-once iteration-001.md: heal-spec-docs.cjs sits under runtime/cli/spec/, not runtime/cli/. The orchestrator synthesis does not repeat the bad path |
 | Close-out event not appended | synthesis-closeout.cjs produced a synthesis_complete event scoped to the lineage run, which the lineage already recorded; the fan-out root has no run of its own |
 | Criterion 5 amended 2026-10-10 | The commit's spec-remint gate re-derived the parent graph-metadata.json to list this child, which is derived metadata of the phase-map row, not a product file. The criterion now excludes that one file as well. Sibling tracks adding 012 and 014 will touch the same children list, so the merge needs a re-derive |
+| Scope widened 2026-10-10 | The operator added fixes 1, 2, 3, 6, 7, 8 and 9 as phase children. The product-file criterion is replaced by the fixes' own outcome checks and a recursive strict validation. Fixes 4 and 5 went to the skill-authoring track |
 <!-- /ANCHOR:log -->

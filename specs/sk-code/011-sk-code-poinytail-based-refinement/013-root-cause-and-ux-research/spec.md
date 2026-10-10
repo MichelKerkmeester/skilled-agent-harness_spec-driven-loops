@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-10-10 |
 | **Branch** | `worktrees/094-root-cause-ux-research` |
 | **Parent Spec** | ../spec.md |
@@ -146,3 +146,35 @@ One ten-iteration lineage on DeepSeek V4.1 Flash (cli-pi, llmgateway, max effort
 <!-- /ANCHOR:questions -->
 
 ---
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, verification, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-compiled-route-manifest-suite/ | Delete the stale cli-deem entry from the authored classifier harness; make the manifest test's hub count follow HUBS | Pending |
+| 2 | 002-admission-corpus-pin/ | Re-pin the admission test's live corpus size to the live count | Pending |
+| 3 | 003-stale-jev-canary/ | Remove the stale jev-transport-single canary case from the live fixture and its archive copy | Pending |
+| 4 | 004-pi-ambiguous-denial/ | Name what the Pi guard accepts in its ambiguous-command denial | Pending |
+| 5 | 005-readme-node-floor/ | State the Node floor the documented install actually needs in the README | Pending |
+| 6 | 006-hook-late-write-test/ | Pin a short-deadline hook's late-written payload with one test | Pending |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-compiled-route-manifest-suite | 002-admission-corpus-pin | Previous phase committed | Its goal criteria rerun by the orchestrator |
+| 002-admission-corpus-pin | 003-stale-jev-canary | Previous phase committed | Its goal criteria rerun by the orchestrator |
+| 003-stale-jev-canary | 004-pi-ambiguous-denial | Previous phase committed | Its goal criteria rerun by the orchestrator |
+| 004-pi-ambiguous-denial | 005-readme-node-floor | Previous phase committed | Its goal criteria rerun by the orchestrator |
+| 005-readme-node-floor | 006-hook-late-write-test | Previous phase committed | Its goal criteria rerun by the orchestrator |
+<!-- /ANCHOR:phase-map -->

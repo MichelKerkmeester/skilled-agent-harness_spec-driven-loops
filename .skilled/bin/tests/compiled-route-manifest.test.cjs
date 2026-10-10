@@ -46,6 +46,7 @@ const TEMP_ROOT = fs.mkdtempSync(path.join(os.tmpdir(), 'compiled-route-manifest
 const PRIMARY_HUB = `manifest-test-${process.pid}`;
 const RACE_HUB = `manifest-race-${process.pid}`;
 const FIXED_HUBS = Object.keys(engine.HUB_CHILD).sort();
+const HUB_COUNT = sync.HUBS.length;
 const ROUTER_INPUTS = ['SKILL.md', 'mode-registry.json', 'hub-router.json'];
 const GENERATED_HUBS = new Set([PRIMARY_HUB, RACE_HUB]);
 
@@ -159,7 +160,7 @@ function buildFreshRuntime(runtimeRoot) {
   assert.equal(first.rollbackRoot, null, 'fresh build has no prior closure');
   assert.match(
     sync.verifyRoot(runtimeRoot, { emit: false }).message,
-    /all 6 hubs resolve; 0 reads under \.opencode\/specs/,
+    new RegExp(`all ${HUB_COUNT} hubs resolve; 0 reads under \\.opencode\\/specs`),
   );
 }
 
@@ -458,7 +459,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
     });
     assert.equal(check.status, 0, check.stderr);
     assert.match(check.stdout, /^[1-9]\d* closure files under authored root/m);
-    assert.match(check.stdout, /all 6 hubs resolve/);
+    assert.match(check.stdout, new RegExp(`all ${HUB_COUNT} hubs resolve`));
     const verify = spawnSync(process.execPath, [SYNC_PATH, '--verify'], {
       cwd: REPO_ROOT,
       encoding: 'utf8',
@@ -471,7 +472,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
     assert.match(
       staleHubs.length === 0 ? verify.stdout : verify.stderr,
       staleHubs.length === 0
-        ? /all 6 hubs resolve; 0 reads under \.opencode\/specs/
+        ? new RegExp(`all ${HUB_COUNT} hubs resolve; 0 reads under \\.opencode\\/specs`)
         : /cli-external-orchestration/,
     );
   });
@@ -502,7 +503,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
       assert.ok(sandboxEntries.some((e) => e.startsWith('compiled-routing.rollback-')), 'rollback sibling retained');
       assert.match(
         sync.verifyRoot(runtimeRoot, { emit: false }).message,
-        /all 6 hubs resolve; 0 reads under \.opencode\/specs/,
+        new RegExp(`all ${HUB_COUNT} hubs resolve; 0 reads under \\.opencode\\/specs`),
       );
       // finalize removes the rollback sibling after reconciling external state.
       const finalized = sync.finalize(rollbackRoot, runtimeRoot);
@@ -648,7 +649,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
       // The restored prior closure is a real coherent closure and still verifies.
       assert.match(
         sync.verifyRoot(runtimeRoot, { emit: false }).message,
-        /all 6 hubs resolve; 0 reads under \.opencode\/specs/,
+        new RegExp(`all ${HUB_COUNT} hubs resolve; 0 reads under \\.opencode\\/specs`),
       );
     } finally {
       fs.rmSync(sandbox, { recursive: true, force: true });
@@ -878,7 +879,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
         /both roots remain on disk/,
       );
       assert.equal(fs.existsSync(runtimeRoot), true);
-      assert.match(sync.verifyRoot(runtimeRoot, { emit: false }).message, /all 6 hubs resolve/);
+      assert.match(sync.verifyRoot(runtimeRoot, { emit: false }).message, new RegExp(`all ${HUB_COUNT} hubs resolve`));
       const entries = fs.readdirSync(sandbox).map((entry) => path.join(sandbox, entry));
       assert.ok(entries.find((entry) => entry.startsWith(`${runtimeRoot}.staging-`)), 'staging retained');
       assert.equal(fs.existsSync(runtimeLayout.publicationLockPathFor(runtimeRoot)), true);
@@ -896,7 +897,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
         /the displaced root is retained as/,
       );
       assert.equal(fs.existsSync(postPublishRuntime), true);
-      assert.match(sync.verifyRoot(postPublishRuntime, { emit: false }).message, /all 6 hubs resolve/);
+      assert.match(sync.verifyRoot(postPublishRuntime, { emit: false }).message, new RegExp(`all ${HUB_COUNT} hubs resolve`));
 
       // revert keeps its own single-attempt recovery.
       const revertRuntime = path.join(sandbox, 'revert-runtime');
@@ -1124,7 +1125,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
 
   test('keeps fixed routing maps unchanged and reports only authorized pre-publication drift', () => {
     delete process.env.SPECKIT_COMPILED_ROUTING;
-    assert.equal(resolver.DEFAULT_ON_HUBS.size, 6);
+    assert.equal(resolver.DEFAULT_ON_HUBS.size, HUB_COUNT);
     assert.equal(Object.prototype.hasOwnProperty.call(engine.HUB_CHILD, PRIMARY_HUB), false);
     assert.equal(resolver.resolveRoute(PRIMARY_HUB, 'quality review'), null);
     const records = status.computeAllStatus({ probeEngine: false });
