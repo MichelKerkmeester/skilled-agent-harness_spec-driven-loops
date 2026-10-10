@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1610f301272edc8789120026bbde0addcdfd7b15a7ba52c659f9c729669c8616",
+  "manifestHash": "8c37ea7d80ce2638123c0f9c3132c2bd423d0a63e8ba13e28bb08c4a25fcb5d5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -95483,6 +95483,9 @@
     ],
     "spec folder tooling deep review findings": [
       "spec folder tooling deep review findings"
+    ],
+    "spec folder tooling deep review remediation changelog": [
+      "spec folder tooling deep review remediation changelog"
     ],
     "spec folder tooling epic docs alignment changelog": [
       "spec folder tooling epic docs alignment changelog"

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2cc9dda5262995c877d9958b5093de6159903d9e1d53112a1d8832e636d7e693",
+  "corpusHash": "92576101dfbe0531bc623f02a1d3bca5d4a9d154f958a316184c4892964b314f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24066,
+  "includedPathCount": 24067,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23666,6 +23666,7 @@
     "specs/system-speckit/034-spec-folder-tooling/changelog/changelog-034-017-heal-cli-and-compat-yaml-simplification.md",
     "specs/system-speckit/034-spec-folder-tooling/changelog/changelog-034-018-epic-docs-alignment.md",
     "specs/system-speckit/034-spec-folder-tooling/changelog/changelog-034-019-epic-follow-up-fixes.md",
+    "specs/system-speckit/034-spec-folder-tooling/changelog/changelog-034-020-deep-review-remediation.md",
     "specs/system-speckit/034-spec-folder-tooling/review/deep-review-dashboard.md",
     "specs/system-speckit/034-spec-folder-tooling/review/deep-review-strategy.md",
     "specs/system-speckit/034-spec-folder-tooling/review/iterations/iteration-001.md",
@@ -24097,7 +24098,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1610f301272edc8789120026bbde0addcdfd7b15a7ba52c659f9c729669c8616",
+  "manifestHash": "8c37ea7d80ce2638123c0f9c3132c2bd423d0a63e8ba13e28bb08c4a25fcb5d5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
