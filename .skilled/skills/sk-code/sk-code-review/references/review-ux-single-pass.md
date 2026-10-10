@@ -61,7 +61,7 @@ If no diff is present, report:
 Choose the lightest presentation that fits the request:
 
 - Findings-only: list the issues with evidence and stop after the next-step prompt.
-- Findings + gate recommendation: include `APPROVE`, `REQUEST_CHANGES`, or `COMMENT` after the findings.
+- Findings + gate recommendation: include `APPROVED`, `REQUESTED_CHANGES` or `COMMENTED` after the findings, the same tokens the final `Review status:` line uses.
 - Findings + fix follow-up options: present the review, then offer concrete remediation choices without starting implementation automatically.
 
 Presentation rules:

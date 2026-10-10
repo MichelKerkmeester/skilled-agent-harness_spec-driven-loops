@@ -17,6 +17,8 @@ version: 1.5.0.11
 
 Shared doctrine consumed by both `@review` and `@deep-review`.
 
+**Ownership.** This file owns the severity ids and their meanings (section 2), the evidence rules (section 3) and the finding schema (section 7). The deep-review contract, [`review-mode-contract.yaml`](../../../system-deep-loop/deep-review/assets/review-mode-contract.yaml), is an external consumer: it owns the deep-review loop (dimensions, verdicts, severity weights, convergence and quality gates) and reuses the severity ids defined here. When the two disagree on a severity id or its meaning, this file wins and the YAML is corrected by its owner, `deep-review`. The YAML may be stricter for its own loop, as when it requires `file:line` evidence on `P2`, but never looser.
+
 ---
 
 ## 1. OVERVIEW
@@ -63,7 +65,7 @@ Numeric scores are advisory context, not the gate. A reviewer may add an optiona
 
 Apply this skill as the baseline first, then pair it with `sk-code` surface evidence when available:
 
-- Detected code surface -> `sk-code:code-webflow` or `sk-code:code-opencode`; unsupported or unclear surfaces -> `sk-code:unknown`
+- Detected code surface -> `OPENCODE`, `OBSIDIAN` or `WEBFLOW`, each paired with its `sk-code` evidence packet (`sk-code-opencode`, `sk-code-obsidian`, `sk-code-webflow`); unsupported or unclear surfaces -> `UNKNOWN`. Detection follows the shared contract, [`stack-detection.md`](../../shared/references/stack-detection.md) section 2.
 - Unclear surfaces -> baseline-only plus explicit uncertainty
 
 Precedence rules:

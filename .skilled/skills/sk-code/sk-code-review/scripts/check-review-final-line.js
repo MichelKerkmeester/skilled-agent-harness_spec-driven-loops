@@ -78,7 +78,8 @@ function checkReviewOutput(text) {
     } else if (blankCount > 1) {
       failures.push('more than one blank line above the status line');
     }
-    if (precedingIndex < 0 || !/^Not checked: \S/.test(lines[precedingIndex])) {
+    // Only the status line is machine-parsed, so extra spaces after the colon are accepted.
+    if (precedingIndex < 0 || !/^Not checked: +\S/.test(lines[precedingIndex])) {
       failures.push('no "Not checked:" line above the status line');
     }
     const notCheckedCount = lines.filter((line) => line.startsWith('Not checked:')).length;

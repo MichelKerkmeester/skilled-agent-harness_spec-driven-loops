@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review mode",
+      "phase 2 review mode",
+      "review mode plan",
+      "review mode tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "review mode implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "mode",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-review/README.md",
+      ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+      ".skilled/skills/sk-code/sk-code-review/references/quick-reference.md",
+      ".skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md",
+      ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md",
+      ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md",
+      ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-review/changelog/v1.7.0.0.md",
+      "scratch/fix-units-applied.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-core.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/references/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-ux-single-pass.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md",
+        "source": "derived"
+      },
+      {
+        "name": "pr-state-dedup.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md",
+        "source": "derived"
+      },
+      {
+        "name": "removal-plan.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-review-findings.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js",
+        "source": "derived"
+      },
+      {
+        "name": "check-review-final-line.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-copies.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-copies.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "v1.7.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/changelog/v1.7.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "fix-units-applied.json",
+        "kind": "config",
+        "path": "scratch/fix-units-applied.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The review mode's `detectsurfaceevidence` (`sk-code-review/SKILL.md:220-230`) returns Webflow for any changed path containing `package.json` or `src/`, while the shared contract says generic Node stays UNKNOWN, and it has no Obsidian branch, so an Obsidian plugin review gets `sk-code:unknown`",
+    "created_at": "2026-10-10T10:07:18Z",
+    "last_save_at": "2026-10-10T11:49:36.092Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c466d5df75c66730f0e7fccfd0c99d84047914ac848be6c6b02b5ffb397173ef",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a5b4ddb3afbc35ab7daac699ee13364a6b202ec99f6096b3aa897fe7ff22442e",
+      "plan.md": "dbea5f3c1676249c2b35b4fcc11077e5f033c7bacad11c0f2f04aaf2a415d72c",
+      "tasks.md": "a81d2e8e0ca66437c70a249947750c17cba3a1ca708f275b5700a1a67c341129",
+      "implementation-summary.md": "ce74bb69fa6db2d8ff7f4e1254348a172540de49fb1f4745dd8edcff29883ef5"
+    },
+    "last_active_at": null
+  }
+}

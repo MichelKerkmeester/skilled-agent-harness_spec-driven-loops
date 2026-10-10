@@ -1,5 +1,5 @@
 ---
-title: "code-review mode"
+title: "sk-code-review mode"
 description: "sk-code family review mode: stack-agnostic findings-first code review baseline that enforces security and correctness minimums, classifies every finding by blocking severity and ends with a machine-parsable approval status."
 trigger_phrases:
   - "code review"
@@ -8,10 +8,10 @@ trigger_phrases:
   - "pull request"
   - "security review"
   - "code-review"
-version: 1.6.0.0
+version: 1.7.0.0
 ---
 
-# code-review mode
+# sk-code-review mode
 
 > A stack-agnostic findings-first code review that catches what an ad-hoc pass misses, ranks every finding by blocking severity with file:line evidence and closes with one exact status line a gate can parse.
 
@@ -34,11 +34,11 @@ version: 1.6.0.0
 
 An ad-hoc review reads the diff once and reports whatever the reviewer happened to notice. Security gaps slip through. Correctness bugs get a mention but no evidence. A single generic checklist cannot capture a specific stack's idioms and its build and test commands, but a per-stack reviewer would need rebuilding for every language. Without a fixed output shape, downstream automation cannot tell an approval from a request for changes.
 
-The `code-review` mode of the sk-code family fixes this. It pairs a stack-agnostic baseline that always enforces security and correctness minimums with surface-specific standards loaded through sk-code. Every review ends with one exact status line a gate can parse.
+The `sk-code-review` mode of the sk-code family fixes this. It pairs a stack-agnostic baseline that always enforces security and correctness minimums with surface-specific standards loaded through sk-code. Every review ends with one exact status line a gate can parse.
 
 ### What It Does
 
-The `code-review` mode is the single-pass review baseline for the `@review` agent. It classifies every finding by blocking severity with file:line evidence on P0 and P1 findings, orders the report by severity and closes with one exact status line. It is read-only on the target: it reports findings and never edits the code under review.
+The `sk-code-review` mode is the single-pass review baseline for the `@review` agent. It classifies every finding by blocking severity with file:line evidence on P0 and P1 findings, orders the report by severity and closes with one exact status line. It is read-only on the target: it reports findings and never edits the code under review.
 
 It is not the multi-iteration loop. `deep-review` owns iterative passes with JSONL state and tracked convergence. `sk-code` supplies the surface style and build and test standards that pair with the baseline. The boundary is single-pass versus iterative: use this mode when you want one report. Use deep-review when the scope demands multiple passes.
 
@@ -70,8 +70,8 @@ The advisor prints the recommended skill route when confidence lands at or above
 ## Code Review Summary
 **Files reviewed**: 3 files, 127 lines changed
 **Overall assessment**: REQUESTED_CHANGES
-**Baseline used**: sk-code (code-review)
-**Surface evidence used**: sk-code:code-opencode
+**Baseline used**: sk-code (sk-code-review)
+**Surface evidence used**: OPENCODE
 
 ## Findings
 
@@ -126,7 +126,7 @@ Findings-first means the review runs security and correctness checks before anyt
 
 ### Baseline Plus Surface
 
-The baseline minimums from the `code-review` mode are always enforced and never relaxed by surface guidance. Security and correctness checks are non-negotiable. When a code surface is detected, sk-code supplies the surface style and build and test standards that override the baseline's generic guidance on those topics. When the surface is unknown, the review runs baseline-only and discloses the uncertainty. When baseline and surface guidance conflict in a way that cannot be resolved, the reviewer escalates instead of guessing.
+The baseline minimums from the `sk-code-review` mode are always enforced and never relaxed by surface guidance. Security and correctness checks are non-negotiable. When a code surface is detected, sk-code supplies the surface style and build and test standards that override the baseline's generic guidance on those topics. When the surface is unknown, the review runs baseline-only and discloses the uncertainty. When baseline and surface guidance conflict in a way that cannot be resolved, the reviewer escalates instead of guessing.
 
 ### Single Pass
 
@@ -134,7 +134,7 @@ All findings publish in one message with a next-action prompt. Findings never dr
 
 ### PR-State Efficiency
 
-Two optional gates reduce redundant work. The content-hash dedup gate skips a re-review when the diff has not changed since the last one, writing a signature into `.skilled/.code-review-cache/`. The minimum-evidence gate skips full review for trivially small diffs when enabled through `SK_CODE_REVIEW_MIN_CHANGED_LINES`, but it never skips diffs that touch auth, config, persistence, dependencies, sandboxing or public-facing response paths. Both gates are opt-in and never change the baseline findings.
+Two optional gates reduce redundant work. The content-hash dedup gate skips a re-review when the diff has not changed since the last one, writing a signature into `${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/` in your user cache directory, never into the reviewed repository. The minimum-evidence gate skips full review for trivially small diffs when enabled through `SK_CODE_REVIEW_MIN_CHANGED_LINES`, but it never skips diffs that touch auth, config, persistence, dependencies, sandboxing or public-facing response paths. Both gates are opt-in and never change the baseline findings.
 
 The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists this routing for a session. `ultra` biases toward the deep-dive reference set. `lite` maps to the conservative skip. Neither relaxes the security and correctness floor.
 
@@ -144,14 +144,14 @@ The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists thi
 
 ### When To Use This Mode
 
-Reach for the `code-review` mode when you want severity-ranked findings with file:line evidence before merging, when a gate workflow dispatches `@review` for pre-commit validation or when you need a read-only security and correctness pass with a machine-readable verdict. Skip it for feature implementation without review intent, for pure documentation edits or for git-only tasks that carry no code-quality evaluation.
+Reach for the `sk-code-review` mode when you want severity-ranked findings with file:line evidence before merging, when a gate workflow dispatches `@review` for pre-commit validation or when you need a read-only security and correctness pass with a machine-readable verdict. Skip it for feature implementation without review intent, for pure documentation edits or for git-only tasks that carry no code quality evaluation.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `code-webflow` / `code-opencode` | Surface skills that apply fixes after review findings are accepted and own the implement → debug → verify workflow doctrine |
-| `code-quality` | Runs author-side quality gates before review |
+| `sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian` | Surface evidence packets that carry the implement → debug → verify workflow doctrine the acting agent applies after review findings are accepted |
+| `sk-code-quality` | Runs author-side quality gates before review |
 | `deep-review` | The multi-iteration review loop with JSONL state, deltas and convergence, built on the same severity taxonomy and evidence rules from `references/review-core.md` |
 
 ---
@@ -161,7 +161,7 @@ Reach for the `code-review` mode when you want severity-ranked findings with fil
 | What you see | Why | Fix |
 |---|---|---|
 | Findings missing severity labels | The reviewer skipped classification | Every finding must carry a severity level from `references/review-core.md` |
-| Security minimums not enforced | The security checklist was skipped or downgraded | The security and code-quality checklists are non-negotiable. Rerun with them loaded. |
+| Security minimums not enforced | The security checklist was skipped or downgraded | The security and code quality checklists are non-negotiable. Rerun with them loaded. |
 | Findings arrive across multiple messages | The reviewer broke the single-pass contract | Collect all findings and emit in one message. Single-pass is the rule. |
 | Surface evidence claimed without source | sk-code returned UNKNOWN or was not loaded | Fall back to baseline-only and disclose that the surface was not detected |
 | Baseline and surface guidance conflict | Precedence is ambiguous | Escalate and ask. Do not guess which rule wins. |
@@ -181,11 +181,11 @@ A: Baseline-only when sk-code cannot detect the code surface or returns UNKNOWN.
 
 **Q: How does this differ from deep-review?**
 
-A: The `code-review` mode is the single-pass baseline. One report, one status line, next action decided by a human. deep-review adds iterative passes, JSONL state tracking, deltas between iterations and autonomous convergence. Both use the same severity taxonomy and evidence rules from `references/review-core.md`.
+A: The `sk-code-review` mode is the single-pass baseline. One report, one status line, next action decided by a human. deep-review adds iterative passes, JSONL state tracking, deltas between iterations and autonomous convergence. Both use the same severity taxonomy and evidence rules from `references/review-core.md`.
 
 **Q: How does this differ from sibling sk-code modes?**
 
-A: The surface skills (`code-webflow` / `code-opencode`) apply fixes and own the implement → debug → verify workflow doctrine. `code-quality` owns author-side gates. The `code-review` mode consumes surface evidence as the review layer. It owns the review workflow and the output contract, with severity classification at the core.
+A: The surface packets (`sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings. `sk-code-quality` owns author-side gates. The `sk-code-review` mode consumes surface evidence as the review layer. It owns the review workflow and the output contract, with severity classification at the core.
 
 **Q: Why the mandatory status line?**
 
@@ -198,9 +198,9 @@ A: Downstream automation reads the final line by exact string match to decide wh
 | Check | How to run it |
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-review/README.md --type readme` reports zero issues |
-| Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md` |
+| Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py --type playbook .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md` reports zero issues under the playbook rule set |
 | Rule invariants | `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` exits 0 (canary locking the `Review status:` verdict triplet and the cross-doc Iron Law wording) |
-| Behavior | Run the playbook scenarios under `manual-testing-playbook/<NN>--<topic>/` in a live session |
+| Behavior | Run the playbook scenarios under `manual-testing-playbook/<topic>/<scenario>.md` (bare descriptive slugs, no numeric prefix) in a live session |
 
 ---
 

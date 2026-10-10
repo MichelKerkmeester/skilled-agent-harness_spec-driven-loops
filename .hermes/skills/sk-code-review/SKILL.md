@@ -2,7 +2,7 @@
 name: sk-code-review
 description: "Stack-agnostic code-review for sk-code: findings-first severity, security/correctness minimums, and surface evidence."
 allowed-tools: [Read, Bash, Grep, Glob, Write]
-version: 1.6.0.0
+version: 1.7.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -15,7 +15,7 @@ metadata:
 
 <!-- Keywords: code-review, review, findings-first, pull-request, security-review, quality-gate, stack-agnostic, baseline-surface, sk-code -->
 
-# code-review Mode - Stack-Agnostic Findings-First Review
+# sk-code-review Mode - Stack-Agnostic Findings-First Review
 
 Universal findings-first review baseline paired with `sk-code` surface standards evidence for the detected code surface.
 
@@ -23,7 +23,7 @@ Universal findings-first review baseline paired with `sk-code` surface standards
 
 ### Activation Triggers
 
-Use the `code-review` mode (of the sk-code family) when:
+Use the `sk-code-review` mode (of the sk-code family) when:
 - A user asks for code review, PR review, quality gate, or merge readiness.
 - A workflow dispatches `@review` for pre-commit or gate validation.
 - A user requests security/correctness risk analysis before merge.
@@ -41,11 +41,11 @@ Use the `code-review` mode (of the sk-code family) when:
 
 ### When NOT to Use
 
-- Feature implementation without review intent; use the surface skill (`code-webflow` / `code-opencode`).
+- Feature implementation without review intent; load the surface packet (`sk-code-webflow`, `sk-code-opencode` or `sk-code-obsidian`) that carries the implement doctrine.
 - Pure documentation editing where code behavior is not being assessed.
-- Git-only workflow tasks (branching, rebasing, commit hygiene) without code-quality evaluation intent.
-- Applying review fixes after findings are accepted; use the surface skill (`code-webflow` / `code-opencode`).
-- Author-side quality gates before review; use `code-quality`.
+- Git-only workflow tasks (branching, rebasing, commit hygiene) without code quality evaluation intent.
+- Applying review fixes after findings are accepted; load the surface packet (`sk-code-webflow`, `sk-code-opencode` or `sk-code-obsidian`) that carries the implement doctrine.
+- Author-side quality gates before review; use `sk-code-quality`.
 - Root-cause debugging; use the surface's `workflow-debug.md` doctrine.
 - Verification evidence collection; use the surface's `workflow-verify.md` doctrine.
 
@@ -58,8 +58,9 @@ Use the `code-review` mode (of the sk-code family) when:
 
 Review behavior follows a baseline+surface-evidence model:
 
-- Baseline (always): the `code-review` mode (of the sk-code family) findings-first doctrine.
+- Baseline (always): the `sk-code-review` mode (of the sk-code family) findings-first doctrine.
 - Surface standards evidence (when available): `sk-code` detected surface resources.
+- Surface detection: the markers and the precedence (OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN) come from the shared detection contract, [`stack-detection.md`](../../../.skilled/skills/sk-code/shared/references/stack-detection.md) section 2. `detect_surface_evidence` below restates that contract and keeps no rules of its own, so it changes only when the contract does.
 - Unknown surfaces: review against baseline security/correctness only and disclose uncertainty.
 
 ### Phase Detection
@@ -67,7 +68,7 @@ Review behavior follows a baseline+surface-evidence model:
 ```text
 TASK CONTEXT
     |
-    +- STEP 0: Load the `code-review` mode baseline + `sk-code` surface evidence. The dispatcher / agent assembling the code-review prompt MUST prepend `CODE-REVIEW\n\n` as the first two lines of the rendered prompt before the reviewer LLM sees it. Reference resources stay unchanged.
+    +- STEP 0: Load the `sk-code-review` mode baseline + `sk-code` surface evidence. The dispatcher / agent assembling the code review prompt MUST prepend `CODE-REVIEW\n\n` as the first two lines of the rendered prompt before the reviewer LLM sees it. Reference resources stay unchanged.
     +- STEP 1: Score intents (top-2 when ambiguity delta <= 1.0)
     +- Phase 1: Scope and baseline checks
     +- Phase 2: Overlay alignment
@@ -109,7 +110,7 @@ assets/removal-plan.md
 
 | Rule Type | Source of Truth | Behavior |
 | --- | --- | --- |
-| Security/correctness minimums | `code-review` mode baseline | Always enforced; never relaxed by surface guidance |
+| Security/correctness minimums | `sk-code-review` mode baseline | Always enforced; never relaxed by surface guidance |
 | Surface style/process conventions | `sk-code` detected surface | Surface guidance overrides baseline generic style/process advice |
 | Verification/build/test commands | `sk-code` detected surface | Surface commands are authoritative for the detected surface |
 | Ambiguous conflicts | Escalation | Ask for clarification; do not guess |
@@ -222,19 +223,54 @@ def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_i
         selected.append(ranked[1][0])
     return selected[:max_intents]
 
-def detect_surface_evidence(task, workspace_files=None, changed_files=None) -> str:
+# Surface markers restate the shared detection contract,
+# ../shared/references/stack-detection.md section 2, which owns them. Change them only when it changes.
+OPENCODE_PATH_MARKER = ".skilled/"
+OBSIDIAN_FILE_MARKERS = ("esbuild.config.mjs",)
+OBSIDIAN_CONTENT_MARKERS = {"manifest.json": '"minAppVersion"', "styles.css": ".db-"}
+OBSIDIAN_SOURCE_IMPORT = 'from "obsidian"'
+# The hub router's OBSIDIAN_PLUGIN keywords, so a prompt that names the plugin bundles the surface.
+OBSIDIAN_PROMPT_TERMS = ["obsidian plugin", "note database plugin"]
+WEBFLOW_PATH_MARKERS = ("src/2_javascript/", ".webflow.js", "wrangler.toml")
+WEBFLOW_CONTENT_MARKERS = ("Webflow.push", "--vw-", "window.Motion", "window.gsap", "gsap.to", "gsap.from", "gsap.set", "gsap.timeline", "gsap.registerPlugin", "new Lenis", "new Hls", "new Swiper", "FilePond")
+NON_WEBFLOW_TERMS = ["not webflow", "no webflow designer", "without webflow", "non-webflow", "vanilla html/css/js only", "stack-agnostic"]
+
+def detect_surface_evidence(task, workspace_files=None, changed_files=None, read_text=None) -> str:
+    """Return OPENCODE, OBSIDIAN, WEBFLOW or UNKNOWN, in the shared contract's precedence.
+
+    Paths are repository-relative and already resolved through symlinks, as the
+    contract's symlink guard requires. read_text(path) returns a file's text, or "".
+    """
     text = _task_text(task)
-    files = " ".join((workspace_files or []) + (changed_files or [])).lower()
+    paths = [path.replace("\\", "/") for path in (workspace_files or []) + (changed_files or [])]
+    read = read_text or (lambda path: "")
 
-    if ".skilled/" in files or ".opencode/" in files or keyword_present("jsonc", text) or keyword_present("mcp", text):
-        return "sk-code:code-opencode"
-    if any(keyword_present(term, text) for term in ["frontend", "web", "css", "dom", "browser"]) or any(
-        marker in files for marker in ["next.config", "vite.config", "package.json", "src/"]
+    def name(path: str) -> str:
+        return path.rsplit("/", 1)[-1]
+
+    def in_src(path: str) -> bool:
+        return path.startswith("src/") or "/src/" in path
+
+    if any(path.startswith(OPENCODE_PATH_MARKER) or "/" + OPENCODE_PATH_MARKER in path for path in paths):
+        return "OPENCODE"
+    if (
+        any(name(path) in OBSIDIAN_FILE_MARKERS for path in paths)
+        or any(name(path) in OBSIDIAN_CONTENT_MARKERS and OBSIDIAN_CONTENT_MARKERS[name(path)] in read(path) for path in paths)
+        or any(in_src(path) and OBSIDIAN_SOURCE_IMPORT in read(path) for path in paths)
+        or any(keyword_present(term, text) for term in OBSIDIAN_PROMPT_TERMS)
     ):
-        return "sk-code:code-webflow"
-    return "sk-code:unknown"
+        return "OBSIDIAN"
+    # Explicit non-Webflow wording wins before any Webflow marker.
+    if any(keyword_present(term, text) for term in NON_WEBFLOW_TERMS):
+        return "UNKNOWN"
+    if any(marker in path for path in paths for marker in WEBFLOW_PATH_MARKERS) or any(
+        marker in read(path) for path in paths for marker in WEBFLOW_CONTENT_MARKERS
+    ):
+        return "WEBFLOW"
+    # Generic Node (a package.json or src/ alone) is not owned by any surface.
+    return "UNKNOWN"
 
-def route_review_resources(task, workspace_files=None, changed_files=None):
+def route_review_resources(task, workspace_files=None, changed_files=None, read_text=None):
     inventory = discover_markdown_resources()
     text = _task_text(task)
     scores = score_intents(task)
@@ -258,7 +294,7 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
             "intents": ["QUALITY"],
             "needs_disambiguation": True,
             "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
-            "surface_evidence": detect_surface_evidence(task, workspace_files, changed_files),
+            "surface_evidence": detect_surface_evidence(task, workspace_files, changed_files, read_text),
             "resources": loaded,
         }
 
@@ -271,7 +307,7 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
             for relative_path in paths:
                 load_if_available(relative_path)
 
-    surface_evidence = detect_surface_evidence(task, workspace_files, changed_files)
+    surface_evidence = detect_surface_evidence(task, workspace_files, changed_files, read_text)
 
     precedence = {
         "baseline_minimums": ["security", "correctness"],
@@ -295,7 +331,7 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
 ### Phase 1: Scope and Baseline
 
 1. Inspect the review target (`git diff`, staged diff, file list, or commit range).
-2. Load baseline standards from the `code-review` mode (of the sk-code family).
+2. Load baseline standards from the `sk-code-review` mode (of the sk-code family).
 3. Load `sk-code` surface standards evidence when a surface is detected.
 4. Read the connected code: the callers of each changed function, the functions each changed function calls, the tests that cover it, and the README or docs that describe it. Anything you could not read goes on the `Not checked:` line.
 
@@ -339,9 +375,9 @@ Required output contract:
 ## Code Review Summary
 
 **Files reviewed**: X files, Y lines changed
-**Overall assessment**: [APPROVE / REQUEST_CHANGES / COMMENT]
-**Baseline used**: [sk-code (`code-review`)]
-**Surface evidence used**: [sk-code:code-webflow | sk-code:code-opencode | sk-code:unknown]
+**Overall assessment**: [APPROVED / REQUESTED_CHANGES / COMMENTED]
+**Baseline used**: [sk-code (`sk-code-review`)]
+**Surface evidence used**: [OPENCODE | OBSIDIAN | WEBFLOW | UNKNOWN]
 
 ## Findings
 
@@ -455,7 +491,7 @@ Downstream automation parses this final line via exact string match — do not v
 ## 6. SUCCESS CRITERIA
 
 - Review output is findings-first and severity-ordered.
-- `code-review` mode baseline + `sk-code` surface evidence contract is explicit in report context.
+- `sk-code-review` mode baseline + `sk-code` surface evidence contract is explicit in report context.
 - Security/correctness minimums are always covered.
 - Recommended fixes are actionable and scope-proportional.
 
@@ -465,7 +501,7 @@ Downstream automation parses this final line via exact string match — do not v
 
 - Primary review baseline for `@review` agents in `.skilled/agents/review.md`.
 - Referenced by review-dispatch steps in `spec_kit` and `create` command YAML workflows.
-- Complements, but does not replace, sibling ownership: the surface skills (`code-webflow` / `code-opencode`) apply fixes and own the implement → debug → verify workflow doctrine, and `code-quality` owns author-side gates.
+- Complements, but does not replace, sibling ownership: the surface packets (`sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings, and `sk-code-quality` owns author-side gates.
 
 ---
 
@@ -475,7 +511,7 @@ Start with `references/quick-reference.md`, then load task-specific doctrine, as
 
 ### Manual Testing Playbook
 
-Manual testing scenarios for the `code-review` mode (of the sk-code family) live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus per-feature sub-files under `manual-testing-playbook/<topic>/<scenario>.md` (both the category folder and the scenario file use bare descriptive slugs, no numeric prefix). Run scenarios via `bash .skilled/skills/sk-doc/scripts/validate_document.py manual-testing-playbook/manual-testing-playbook.md` for structural validation; execute scenarios in opencode/Claude/OpenCode sessions for behavioral verification.
+Manual testing scenarios for the `sk-code-review` mode (of the sk-code family) live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus per-feature sub-files under `manual-testing-playbook/<topic>/<scenario>.md` (both the category folder and the scenario file use bare descriptive slugs, no numeric prefix). Validate the root index with `python3 .skilled/skills/sk-doc/scripts/validate_document.py --type playbook .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md`, which applies the playbook rule set. Execute scenarios in Claude Code or OpenCode sessions for behavioral verification.
 
 ---
 
@@ -493,7 +529,7 @@ signature         = sha256(commit_subject + "\u001f" + diff_content_hash)
 Where `commit_subject` is the first line of `git log <base-ref>...HEAD --format=%s` (latest commit subject).
 
 **Cache storage:**
-- Path: `.skilled/.code-review-cache/<repo-ref>.jsonl`
+- Path: `${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/<repo-ref>.jsonl`, in the reviewing user's cache directory. The gate never writes into the reviewed repository. Its one side effect is this file, and deleting it resets the gate.
 - `<repo-ref>` is computed as `sha256(git remote get-url origin).slice(0, 12)`
 - Each line is a JSON object: `{"signature": "<sha256-hex>", "timestamp": "<ISO-8601>", "prev_sha": "<commit-sha>"}`
 - Retention: keep last **100 entries** per repo-ref, prune older entries on write

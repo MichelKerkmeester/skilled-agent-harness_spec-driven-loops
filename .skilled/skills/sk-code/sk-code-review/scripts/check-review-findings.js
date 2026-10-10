@@ -16,8 +16,11 @@ import { pathToFileURL } from 'node:url';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const FINDINGS_HEADING = '## Findings';
+// Two documented shapes: the SKILL.md template numbers list items, and the
+// review-core.md schema puts the number in a level-three heading.
 const NUMBERED_FINDING = /^(\d+)\. \S/;
-const CASE_LINE = /^\s+- Case: \S/;
+const HEADING_FINDING = /^### (\d+) \[P[0-2]\] \S/;
+const CASE_LINE = /^\s*- Case: \S/;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. FINDINGS CHECKER
@@ -44,7 +47,7 @@ function parseFindings(text) {
     if (line.startsWith('## ')) {
       break;
     }
-    const numbered = NUMBERED_FINDING.exec(line);
+    const numbered = NUMBERED_FINDING.exec(line) || HEADING_FINDING.exec(line);
     if (numbered) {
       findings.push({ number: Number(numbered[1]), hasCase: false });
     } else if (findings.length > 0 && CASE_LINE.test(line)) {

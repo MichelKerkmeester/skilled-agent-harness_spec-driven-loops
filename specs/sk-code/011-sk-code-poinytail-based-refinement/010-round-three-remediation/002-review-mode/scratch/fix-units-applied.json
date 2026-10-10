@@ -1,0 +1,52 @@
+[
+  {
+    "task": "F001",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/README.md, replace the exact text <<<OLD\nits pointer to `../shared/references/stack-detection.md`, that\nOLD>>> with <<<NEW\nits pointer to the shared detection contract, that\nNEW>>>",
+    "check": "node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs --checks paths 2>&1 | grep -c 'sk-code-review'",
+    "expect": "0"
+  },
+  {
+    "task": "F002",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\nWEBFLOW_CONTENT_MARKERS = (\"Webflow.push\", \"--vw-\", \"window.Motion\", \"window.gsap\", \"new Lenis\", \"new Hls\", \"new Swiper\", \"FilePond\")\nOLD>>> with <<<NEW\nWEBFLOW_CONTENT_MARKERS = (\"Webflow.push\", \"--vw-\", \"window.Motion\", \"window.gsap\", \"gsap.to\", \"gsap.from\", \"gsap.set\", \"gsap.timeline\", \"gsap.registerPlugin\", \"new Lenis\", \"new Hls\", \"new Swiper\", \"FilePond\")\nNEW>>>",
+    "check": "python3 -I specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode/scratch/gsap-probe.py",
+    "expect": "gsap-call: WEBFLOW"
+  },
+  {
+    "task": "F003",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\ndef route_review_resources(task, workspace_files=None, changed_files=None):\nOLD>>> with <<<NEW\ndef route_review_resources(task, workspace_files=None, changed_files=None, read_text=None):\nNEW>>>",
+    "check": "grep -cF -- 'def route_review_resources(task, workspace_files=None, changed_files=None, read_text=None):' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "F004",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n            \"surface_evidence\": detect_surface_evidence(task, workspace_files, changed_files),\nOLD>>> with <<<NEW\n            \"surface_evidence\": detect_surface_evidence(task, workspace_files, changed_files, read_text),\nNEW>>>",
+    "check": "grep -cF -- '\"surface_evidence\": detect_surface_evidence(task, workspace_files, changed_files, read_text),' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "F005",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n    surface_evidence = detect_surface_evidence(task, workspace_files, changed_files)\nOLD>>> with <<<NEW\n    surface_evidence = detect_surface_evidence(task, workspace_files, changed_files, read_text)\nNEW>>>",
+    "check": "python3 -I specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode/scratch/route-probe.py",
+    "expect": "route-obsidian-manifest: OBSIDIAN"
+  }
+]

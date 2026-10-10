@@ -58,6 +58,6 @@ Surface portability: apply this baseline with `sk-code` surface evidence.
 ## 4. RELATED RESOURCES
 
 - [SKILL.md](../SKILL.md) - Parent skill definition with activation triggers and resource loading rules
-- [review-mode-contract.yaml](../../../system-deep-loop/deep-review/assets/review-mode-contract.yaml) - Canonical review-mode contract manifest (source of truth for deep review taxonomy)
+- [review-mode-contract.yaml](../../../system-deep-loop/deep-review/assets/review-mode-contract.yaml) - Deep-review contract manifest. It owns the deep-review loop and consumes the severity ids that [review-core.md](./review-core.md) owns. review-core.md wins when the two disagree on a severity id or its meaning
 
 ---

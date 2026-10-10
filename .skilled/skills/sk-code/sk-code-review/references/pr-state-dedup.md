@@ -38,7 +38,9 @@ SIGNATURE=$(echo -n "$SUBJECT"$'\x1f'"$DIFF_HASH" | sha256sum | awk '{print $1}'
 
 ## Cache Format
 
-**Path:** `.skilled/.code-review-cache/<repo-ref>.jsonl`
+**Path:** `${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/<repo-ref>.jsonl`
+
+The cache lives in the reviewing user's cache directory, outside every reviewed repository. Its one side effect is this file. The gate never creates a file or folder in the repository it reviews.
 
 - `<repo-ref>` = `sha256(git remote get-url origin).slice(0, 12)`
 - One JSON object per line (JSONL format)
@@ -75,6 +77,6 @@ After every **full review** that reaches the final status line, write the curren
 
 ## Cache Location Rationale
 
-- `.opencode/` is gitignored by convention in OpenCode projects
+- The user cache directory sits outside every reviewed repository, so reviewing a foreign repository leaves no folder in it, and deleting the cache folder resets the gate
 - `<repo-ref>` deduplication supports multiple remotes / forks without collision
 - JSONL format allows line-level append and simple head/tail operations for retention

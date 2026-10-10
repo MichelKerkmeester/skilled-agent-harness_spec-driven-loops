@@ -26,6 +26,7 @@ TARGETS=(
   ".skilled/skills/sk-code/sk-code-review/README.md"
   ".skilled/skills/sk-code/sk-code-review/changelog/v1.3.0.0.md"
   ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md"
+  ".skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md"
   ".skilled/skills/sk-code/shared/references/workflow-verify.md"
   "AGENTS.md"
   ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md"
@@ -223,6 +224,31 @@ expect_output 'finding numbers restart or skip: expected 2, found 1' "findings_r
 FINDINGS_NONE="$TMP_DIR/findings_no_findings.md"
 printf '## Findings\n\n### P0 - Critical\nNo findings.\n\nNot checked: nothing material\n' > "$FINDINGS_NONE"
 run_case 0 "findings_no_findings" node "$FINDINGS_CHECKER" "$FINDINGS_NONE"
+
+FINAL_LINE_NOT_CHECKED_SPACES="$TMP_DIR/final_line_not_checked_two_spaces.md"
+printf 'Findings\n\nNot checked:  two spaces after the colon\n\nReview status: APPROVED\n' > "$FINAL_LINE_NOT_CHECKED_SPACES"
+run_case 0 "final_line_not_checked_two_spaces" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_NOT_CHECKED_SPACES"
+
+# Both documented finding shapes run through both checkers, so neither shape can pass unchecked.
+SHAPE_DIR="$SCRIPT_DIR/review-output-fixture"
+for shape in list-shape-valid heading-shape-valid heading-shape-missing-case heading-shape-restart; do
+  run_case 0 "shape_final_line_$shape" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/$shape.md"
+done
+run_case 0 "shape_findings_list_valid" node "$FINDINGS_CHECKER" "$SHAPE_DIR/list-shape-valid.md"
+run_case 0 "shape_findings_heading_valid" node "$FINDINGS_CHECKER" "$SHAPE_DIR/heading-shape-valid.md"
+expect_output 'OK: findings are numbered once and each carries a Case line' "shape_findings_heading_valid_output" node "$FINDINGS_CHECKER" "$SHAPE_DIR/heading-shape-valid.md"
+run_case 1 "shape_findings_heading_missing_case" node "$FINDINGS_CHECKER" "$SHAPE_DIR/heading-shape-missing-case.md"
+expect_output 'finding 2 has no Case: line' "shape_findings_heading_missing_case_output" node "$FINDINGS_CHECKER" "$SHAPE_DIR/heading-shape-missing-case.md"
+run_case 1 "shape_findings_heading_restart" node "$FINDINGS_CHECKER" "$SHAPE_DIR/heading-shape-restart.md"
+expect_output 'finding numbers restart or skip: expected 2, found 1' "shape_findings_heading_restart_output" node "$FINDINGS_CHECKER" "$SHAPE_DIR/heading-shape-restart.md"
+
+# FAIL: the gate-recommendation tokens in the single-pass reference drift from the status-line vocabulary.
+CASE_UX_VOCABULARY="$TMP_DIR/ux_vocabulary"
+seed_tree "$CASE_UX_VOCABULARY"
+node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.readFileSync(f,"utf8").replace("`REQUESTED_CHANGES`","`REQUEST_CHANGES`"));' \
+  "$CASE_UX_VOCABULARY/.skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md"
+run_case 1 "ux_vocabulary_drift" node "$CHECKER" --root "$CASE_UX_VOCABULARY"
+expect_output 'review-ux-single-pass.md: missing exact invariant string' "ux_vocabulary_drift_output" node "$CHECKER" --root "$CASE_UX_VOCABULARY"
 
 # Seeded examples ensure the canary rejects content after status and missing context.
 CASE_EXAMPLE_TEXT_AFTER="$TMP_DIR/example_text_after_status"

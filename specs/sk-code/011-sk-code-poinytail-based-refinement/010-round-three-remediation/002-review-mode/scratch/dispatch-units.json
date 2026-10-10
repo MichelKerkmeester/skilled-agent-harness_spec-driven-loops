@@ -1,0 +1,692 @@
+[
+  {
+    "task": "T014",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\nversion: 1.6.0.0\nOLD>>> with <<<NEW\nversion: 1.7.0.0\nNEW>>>",
+    "check": "grep -cF -- 'version: 1.7.0.0' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T015",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n# code-review Mode - Stack-Agnostic Findings-First Review\nOLD>>> with <<<NEW\n# sk-code-review Mode - Stack-Agnostic Findings-First Review\nNEW>>>",
+    "check": "grep -cF -- '# sk-code-review Mode - Stack-Agnostic Findings-First Review' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T016",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\nUse the `code-review` mode (of the sk-code family) when:\nOLD>>> with <<<NEW\nUse the `sk-code-review` mode (of the sk-code family) when:\nNEW>>>",
+    "check": "grep -cF -- 'Use the `sk-code-review` mode (of the sk-code family) when:' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T017",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n- Feature implementation without review intent; use the surface skill (`code-webflow` / `code-opencode`).\nOLD>>> with <<<NEW\n- Feature implementation without review intent; load the surface packet (`sk-code-webflow`, `sk-code-opencode` or `sk-code-obsidian`) that carries the implement doctrine.\nNEW>>>",
+    "check": "grep -cF -- '- Feature implementation without review intent; load the surface packet (`sk-code-webflow`, `sk-code-opencode` or `sk-code-obsidian`) that carries the implement doctrine.' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T018",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n- Git-only workflow tasks (branching, rebasing, commit hygiene) without code-quality evaluation intent.\nOLD>>> with <<<NEW\n- Git-only workflow tasks (branching, rebasing, commit hygiene) without code quality evaluation intent.\nNEW>>>",
+    "check": "grep -cF -- '- Git-only workflow tasks (branching, rebasing, commit hygiene) without code quality evaluation intent.' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T019",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n- Applying review fixes after findings are accepted; use the surface skill (`code-webflow` / `code-opencode`).\nOLD>>> with <<<NEW\n- Applying review fixes after findings are accepted; load the surface packet (`sk-code-webflow`, `sk-code-opencode` or `sk-code-obsidian`) that carries the implement doctrine.\nNEW>>>",
+    "check": "grep -cF -- '- Applying review fixes after findings are accepted; load the surface packet (`sk-code-webflow`, `sk-code-opencode` or `sk-code-obsidian`) that carries the implement doctrine.' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T020",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n- Author-side quality gates before review; use `code-quality`.\nOLD>>> with <<<NEW\n- Author-side quality gates before review; use `sk-code-quality`.\nNEW>>>",
+    "check": "grep -cF -- '- Author-side quality gates before review; use `sk-code-quality`.' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T021",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n- Baseline (always): the `code-review` mode (of the sk-code family) findings-first doctrine.\nOLD>>> with <<<NEW\n- Baseline (always): the `sk-code-review` mode (of the sk-code family) findings-first doctrine.\nNEW>>>",
+    "check": "grep -cF -- '- Baseline (always): the `sk-code-review` mode (of the sk-code family) findings-first doctrine.' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T022",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n- Surface standards evidence (when available): `sk-code` detected surface resources.\nOLD>>> with <<<NEW\n- Surface standards evidence (when available): `sk-code` detected surface resources.\n- Surface detection: the markers and the precedence (OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN) come from the shared detection contract, [`stack-detection.md`](../shared/references/stack-detection.md) section 2. `detect_surface_evidence` below restates that contract and keeps no rules of its own, so it changes only when the contract does.\nNEW>>>",
+    "check": "grep -cF -- ' section 2. `detect_surface_evidence` below restates that contract and keeps no rules of its own, so it changes only when the contract does.' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T023",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n+- STEP 0: Load the `code-review` mode baseline + `sk-code` surface evidence. The dispatcher / agent assembling the code-review prompt MUST\nOLD>>> with <<<NEW\n+- STEP 0: Load the `sk-code-review` mode baseline + `sk-code` surface evidence. The dispatcher / agent assembling the code review prompt MUST\nNEW>>>",
+    "check": "grep -cF -- '+- STEP 0: Load the `sk-code-review` mode baseline + `sk-code` surface evidence. The dispatcher / agent assembling the code review prompt MUST' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T024",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n| Security/correctness minimums | `code-review` mode baseline |\nOLD>>> with <<<NEW\n| Security/correctness minimums | `sk-code-review` mode baseline |\nNEW>>>",
+    "check": "grep -cF -- '| Security/correctness minimums | `sk-code-review` mode baseline |' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T025",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\ndef detect_surface_evidence(task, workspace_files=None, changed_files=None) -> str:\n    text = _task_text(task)\n    files = \" \".join((workspace_files or []) + (changed_files or [])).lower()\n\n    if \".skilled/\" in files or \".opencode/\" in files or keyword_present(\"jsonc\", text) or keyword_present(\"mcp\", text):\n        return \"sk-code:code-opencode\"\n    if any(keyword_present(term, text) for term in [\"frontend\", \"web\", \"css\", \"dom\", \"browser\"]) or any(\n        marker in files for marker in [\"next.config\", \"vite.config\", \"package.json\", \"src/\"]\n    ):\n        return \"sk-code:code-webflow\"\n    return \"sk-code:unknown\"\n\nOLD>>> with <<<NEW\n# Surface markers restate the shared detection contract,\n# ../shared/references/stack-detection.md section 2, which owns them. Change them only when it changes.\nOPENCODE_PATH_MARKER = \".skilled/\"\nOBSIDIAN_FILE_MARKERS = (\"esbuild.config.mjs\",)\nOBSIDIAN_CONTENT_MARKERS = {\"manifest.json\": '\"minAppVersion\"', \"styles.css\": \".db-\"}\nOBSIDIAN_SOURCE_IMPORT = 'from \"obsidian\"'\n# The hub router's OBSIDIAN_PLUGIN keywords, so a prompt that names the plugin bundles the surface.\nOBSIDIAN_PROMPT_TERMS = [\"obsidian plugin\", \"note database plugin\"]\nWEBFLOW_PATH_MARKERS = (\"src/2_javascript/\", \".webflow.js\", \"wrangler.toml\")\nWEBFLOW_CONTENT_MARKERS = (\"Webflow.push\", \"--vw-\", \"window.Motion\", \"window.gsap\", \"new Lenis\", \"new Hls\", \"new Swiper\", \"FilePond\")\nNON_WEBFLOW_TERMS = [\"not webflow\", \"no webflow designer\", \"without webflow\", \"non-webflow\", \"vanilla html/css/js only\", \"stack-agnostic\"]\n\ndef detect_surface_evidence(task, workspace_files=None, changed_files=None, read_text=None) -> str:\n    \"\"\"Return OPENCODE, OBSIDIAN, WEBFLOW or UNKNOWN, in the shared contract's precedence.\n\n    Paths are repository-relative and already resolved through symlinks, as the\n    contract's symlink guard requires. read_text(path) returns a file's text, or \"\".\n    \"\"\"\n    text = _task_text(task)\n    paths = [path.replace(\"\\\\\", \"/\") for path in (workspace_files or []) + (changed_files or [])]\n    read = read_text or (lambda path: \"\")\n\n    def name(path: str) -> str:\n        return path.rsplit(\"/\", 1)[-1]\n\n    def in_src(path: str) -> bool:\n        return path.startswith(\"src/\") or \"/src/\" in path\n\n    if any(path.startswith(OPENCODE_PATH_MARKER) or \"/\" + OPENCODE_PATH_MARKER in path for path in paths):\n        return \"OPENCODE\"\n    if (\n        any(name(path) in OBSIDIAN_FILE_MARKERS for path in paths)\n        or any(name(path) in OBSIDIAN_CONTENT_MARKERS and OBSIDIAN_CONTENT_MARKERS[name(path)] in read(path) for path in paths)\n        or any(in_src(path) and OBSIDIAN_SOURCE_IMPORT in read(path) for path in paths)\n        or any(keyword_present(term, text) for term in OBSIDIAN_PROMPT_TERMS)\n    ):\n        return \"OBSIDIAN\"\n    # Explicit non-Webflow wording wins before any Webflow marker.\n    if any(keyword_present(term, text) for term in NON_WEBFLOW_TERMS):\n        return \"UNKNOWN\"\n    if any(marker in path for path in paths for marker in WEBFLOW_PATH_MARKERS) or any(\n        marker in read(path) for path in paths for marker in WEBFLOW_CONTENT_MARKERS\n    ):\n        return \"WEBFLOW\"\n    # Generic Node (a package.json or src/ alone) is not owned by any surface.\n    return \"UNKNOWN\"\n\nNEW>>>",
+    "check": "python3 -I specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode/scratch/detect-probe.py",
+    "expect": "generic-node-src: UNKNOWN"
+  },
+  {
+    "task": "T026",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n2. Load baseline standards from the `code-review` mode (of the sk-code family).\nOLD>>> with <<<NEW\n2. Load baseline standards from the `sk-code-review` mode (of the sk-code family).\nNEW>>>",
+    "check": "grep -cF -- '2. Load baseline standards from the `sk-code-review` mode (of the sk-code family).' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T027",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n**Overall assessment**: [APPROVE / REQUEST_CHANGES / COMMENT]\nOLD>>> with <<<NEW\n**Overall assessment**: [APPROVED / REQUESTED_CHANGES / COMMENTED]\nNEW>>>",
+    "check": "grep -cF -- '**Overall assessment**: [APPROVED / REQUESTED_CHANGES / COMMENTED]' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T028",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n**Baseline used**: [sk-code (`code-review`)]\nOLD>>> with <<<NEW\n**Baseline used**: [sk-code (`sk-code-review`)]\nNEW>>>",
+    "check": "grep -cF -- '**Baseline used**: [sk-code (`sk-code-review`)]' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T029",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n**Surface evidence used**: [sk-code:code-webflow | sk-code:code-opencode | sk-code:unknown]\nOLD>>> with <<<NEW\n**Surface evidence used**: [OPENCODE | OBSIDIAN | WEBFLOW | UNKNOWN]\nNEW>>>",
+    "check": "grep -cF -- '**Surface evidence used**: [OPENCODE | OBSIDIAN | WEBFLOW | UNKNOWN]' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T030",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n- `code-review` mode baseline + `sk-code` surface evidence contract is explicit in report context.\nOLD>>> with <<<NEW\n- `sk-code-review` mode baseline + `sk-code` surface evidence contract is explicit in report context.\nNEW>>>",
+    "check": "grep -cF -- '- `sk-code-review` mode baseline + `sk-code` surface evidence contract is explicit in report context.' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T031",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n- Complements, but does not replace, sibling ownership: the surface skills (`code-webflow` / `code-opencode`) apply fixes and own the implement → debug → verify workflow doctrine, and `code-quality` owns author-side gates.\nOLD>>> with <<<NEW\n- Complements, but does not replace, sibling ownership: the surface packets (`sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings, and `sk-code-quality` owns author-side gates.\nNEW>>>",
+    "check": "grep -cF -- '- Complements, but does not replace, sibling ownership: the surface packets (`sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings, and `sk-code-quality` owns author-side gates.' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T032",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\nManual testing scenarios for the `code-review` mode (of the sk-code family) live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus per-feature sub-files under `manual-testing-playbook/<topic>/<scenario>.md` (both the category folder and the scenario file use bare descriptive slugs, no numeric prefix). Run scenarios via `bash .skilled/skills/sk-doc/scripts/validate_document.py manual-testing-playbook/manual-testing-playbook.md` for structural validation; execute scenarios in opencode/Claude/OpenCode sessions for behavioral verification.\nOLD>>> with <<<NEW\nManual testing scenarios for the `sk-code-review` mode (of the sk-code family) live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus per-feature sub-files under `manual-testing-playbook/<topic>/<scenario>.md` (both the category folder and the scenario file use bare descriptive slugs, no numeric prefix). Validate the root index with `python3 .skilled/skills/sk-doc/scripts/validate_document.py --type playbook .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md`, which applies the playbook rule set. Execute scenarios in Claude Code or OpenCode sessions for behavioral verification.\nNEW>>>",
+    "check": "grep -cF -- 'Manual testing scenarios for the `sk-code-review` mode (of the sk-code family) live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus per-feature sub-files under `manual-testing-playbook/<topic>/<scenario>.md` (both the category folder and the scenario file use bare descriptive slugs, no numeric prefix). Validate the root index with `python3 .skilled/skills/sk-doc/scripts/validate_document.py --type playbook .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md`, which applies the playbook rule set. Execute scenarios in Claude Code or OpenCode sessions for behavioral verification.' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T033",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\n- Path: `.skilled/.code-review-cache/<repo-ref>.jsonl`\nOLD>>> with <<<NEW\n- Path: `${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/<repo-ref>.jsonl`, in the reviewing user's cache directory. The gate never writes into the reviewed repository. Its one side effect is this file, and deleting it resets the gate.\nNEW>>>",
+    "check": "grep -cF -- '- Path: `${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/<repo-ref>.jsonl`, in the reviewing user'\\''s cache directory. The gate never writes into the reviewed repository. Its one side effect is this file, and deleting it resets the gate.' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T034",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\nversion: 1.6.0.0\nOLD>>> with <<<NEW\nversion: 1.7.0.0\nNEW>>>",
+    "check": "grep -cF -- 'version: 1.7.0.0' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T035",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\ntitle: \"code-review mode\"\nOLD>>> with <<<NEW\ntitle: \"sk-code-review mode\"\nNEW>>>",
+    "check": "grep -cF -- 'title: \"sk-code-review mode\"' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T036",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\n# code-review mode\nOLD>>> with <<<NEW\n# sk-code-review mode\nNEW>>>",
+    "check": "grep -cF -- '# sk-code-review mode' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T037",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\nThe `code-review` mode of the sk-code family fixes this.\nOLD>>> with <<<NEW\nThe `sk-code-review` mode of the sk-code family fixes this.\nNEW>>>",
+    "check": "grep -cF -- 'The `sk-code-review` mode of the sk-code family fixes this.' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T038",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\nThe `code-review` mode is the single-pass review baseline\nOLD>>> with <<<NEW\nThe `sk-code-review` mode is the single-pass review baseline\nNEW>>>",
+    "check": "grep -cF -- 'The `sk-code-review` mode is the single-pass review baseline' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T039",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\n**Baseline used**: sk-code (code-review)\nOLD>>> with <<<NEW\n**Baseline used**: sk-code (sk-code-review)\nNEW>>>",
+    "check": "grep -cF -- '**Baseline used**: sk-code (sk-code-review)' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T040",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\n**Surface evidence used**: sk-code:code-opencode\nOLD>>> with <<<NEW\n**Surface evidence used**: OPENCODE\nNEW>>>",
+    "check": "grep -cF -- '**Surface evidence used**: OPENCODE' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T041",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\nThe baseline minimums from the `code-review` mode are always enforced\nOLD>>> with <<<NEW\nThe baseline minimums from the `sk-code-review` mode are always enforced\nNEW>>>",
+    "check": "grep -cF -- 'The baseline minimums from the `sk-code-review` mode are always enforced' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T042",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\nwriting a signature into `.skilled/.code-review-cache/`.\nOLD>>> with <<<NEW\nwriting a signature into `${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/` in your user cache directory, never into the reviewed repository.\nNEW>>>",
+    "check": "grep -cF -- 'writing a signature into `${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/` in your user cache directory, never into the reviewed repository.' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T043",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\nReach for the `code-review` mode when\nOLD>>> with <<<NEW\nReach for the `sk-code-review` mode when\nNEW>>>",
+    "check": "grep -cF -- 'Reach for the `sk-code-review` mode when' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T044",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\nor for git-only tasks that carry no code-quality evaluation.\nOLD>>> with <<<NEW\nor for git-only tasks that carry no code quality evaluation.\nNEW>>>",
+    "check": "grep -cF -- 'or for git-only tasks that carry no code quality evaluation.' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T045",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\n| `code-webflow` / `code-opencode` | Surface skills that apply fixes after review findings are accepted and own the implement → debug → verify workflow doctrine |\nOLD>>> with <<<NEW\n| `sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian` | Surface evidence packets that carry the implement → debug → verify workflow doctrine the acting agent applies after review findings are accepted |\nNEW>>>",
+    "check": "grep -cF -- '| `sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian` | Surface evidence packets that carry the implement → debug → verify workflow doctrine the acting agent applies after review findings are accepted |' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T046",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\n| `code-quality` | Runs author-side quality gates before review |\nOLD>>> with <<<NEW\n| `sk-code-quality` | Runs author-side quality gates before review |\nNEW>>>",
+    "check": "grep -cF -- '| `sk-code-quality` | Runs author-side quality gates before review |' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T047",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\nThe security and code-quality checklists are non-negotiable.\nOLD>>> with <<<NEW\nThe security and code quality checklists are non-negotiable.\nNEW>>>",
+    "check": "grep -cF -- 'The security and code quality checklists are non-negotiable.' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T048",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\nA: The `code-review` mode is the single-pass baseline.\nOLD>>> with <<<NEW\nA: The `sk-code-review` mode is the single-pass baseline.\nNEW>>>",
+    "check": "grep -cF -- 'A: The `sk-code-review` mode is the single-pass baseline.' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T049",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\nA: The surface skills (`code-webflow` / `code-opencode`) apply fixes and own the implement → debug → verify workflow doctrine. `code-quality` owns author-side gates. The `code-review` mode consumes surface evidence\nOLD>>> with <<<NEW\nA: The surface packets (`sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings. `sk-code-quality` owns author-side gates. The `sk-code-review` mode consumes surface evidence\nNEW>>>",
+    "check": "grep -cF -- 'A: The surface packets (`sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings. `sk-code-quality` owns author-side gates. The `sk-code-review` mode consumes surface evidence' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T050",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\n| Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md` |\nOLD>>> with <<<NEW\n| Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py --type playbook .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md` reports zero issues under the playbook rule set |\nNEW>>>",
+    "check": "grep -cF -- '| Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py --type playbook .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md` reports zero issues under the playbook rule set |' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T051",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\n| Behavior | Run the playbook scenarios under `manual-testing-playbook/<NN>--<topic>/` in a live session |\nOLD>>> with <<<NEW\n| Behavior | Run the playbook scenarios under `manual-testing-playbook/<topic>/<scenario>.md` (bare descriptive slugs, no numeric prefix) in a live session |\nNEW>>>",
+    "check": "grep -cF -- '| Behavior | Run the playbook scenarios under `manual-testing-playbook/<topic>/<scenario>.md` (bare descriptive slugs, no numeric prefix) in a live session |' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T052",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/references/review-core.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/references/review-core.md, replace the exact text <<<OLD\nShared doctrine consumed by both `@review` and `@deep-review`.\nOLD>>> with <<<NEW\nShared doctrine consumed by both `@review` and `@deep-review`.\n\n**Ownership.** This file owns the severity ids and their meanings (section 2), the evidence rules (section 3) and the finding schema (section 7). The deep-review contract, [`review-mode-contract.yaml`](../../../system-deep-loop/deep-review/assets/review-mode-contract.yaml), is an external consumer: it owns the deep-review loop (dimensions, verdicts, severity weights, convergence and quality gates) and reuses the severity ids defined here. When the two disagree on a severity id or its meaning, this file wins and the YAML is corrected by its owner, `deep-review`. The YAML may be stricter for its own loop, as when it requires `file:line` evidence on `P2`, but never looser.\nNEW>>>",
+    "check": "grep -cF -- ' and reuses the severity ids defined here. When the two disagree on a severity id or its meaning, this file wins and the YAML is corrected by its owner, `deep-review`. The YAML may be stricter for its own loop, as when it requires `file:line` evidence on `P2`, but never looser.' .skilled/skills/sk-code/sk-code-review/references/review-core.md",
+    "expect": "1"
+  },
+  {
+    "task": "T053",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/references/review-core.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/references/review-core.md, replace the exact text <<<OLD\n- Detected code surface -> `sk-code:code-webflow` or `sk-code:code-opencode`; unsupported or unclear surfaces -> `sk-code:unknown`\nOLD>>> with <<<NEW\n- Detected code surface -> `OPENCODE`, `OBSIDIAN` or `WEBFLOW`, each paired with its `sk-code` evidence packet (`sk-code-opencode`, `sk-code-obsidian`, `sk-code-webflow`); unsupported or unclear surfaces -> `UNKNOWN`. Detection follows the shared contract, [`stack-detection.md`](../../shared/references/stack-detection.md) section 2.\nNEW>>>",
+    "check": "grep -cF -- '- Detected code surface -> `OPENCODE`, `OBSIDIAN` or `WEBFLOW`, each paired with its `sk-code` evidence packet (`sk-code-opencode`, `sk-code-obsidian`, `sk-code-webflow`' .skilled/skills/sk-code/sk-code-review/references/review-core.md",
+    "expect": "1"
+  },
+  {
+    "task": "T054",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/references/quick-reference.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/references/quick-reference.md, replace the exact text <<<OLD\n- [review-mode-contract.yaml](../../../system-deep-loop/deep-review/assets/review-mode-contract.yaml) - Canonical review-mode contract manifest (source of truth for deep review taxonomy)\nOLD>>> with <<<NEW\n- [review-mode-contract.yaml](../../../system-deep-loop/deep-review/assets/review-mode-contract.yaml) - Deep-review contract manifest. It owns the deep-review loop and consumes the severity ids that [review-core.md](./review-core.md) owns. review-core.md wins when the two disagree on a severity id or its meaning\nNEW>>>",
+    "check": "grep -cF -- ' - Deep-review contract manifest. It owns the deep-review loop and consumes the severity ids that ' .skilled/skills/sk-code/sk-code-review/references/quick-reference.md",
+    "expect": "1"
+  },
+  {
+    "task": "T055",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md, replace the exact text <<<OLD\n- Findings + gate recommendation: include `APPROVE`, `REQUEST_CHANGES`, or `COMMENT` after the findings.\nOLD>>> with <<<NEW\n- Findings + gate recommendation: include `APPROVED`, `REQUESTED_CHANGES` or `COMMENTED` after the findings, the same tokens the final `Review status:` line uses.\nNEW>>>",
+    "check": "grep -cF -- '- Findings + gate recommendation: include `APPROVED`, `REQUESTED_CHANGES` or `COMMENTED` after the findings, the same tokens the final `Review status:` line uses.' .skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md",
+    "expect": "1"
+  },
+  {
+    "task": "T056",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md, replace the exact text <<<OLD\n**Path:** `.skilled/.code-review-cache/<repo-ref>.jsonl`\nOLD>>> with <<<NEW\n**Path:** `${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/<repo-ref>.jsonl`\n\nThe cache lives in the reviewing user's cache directory, outside every reviewed repository. Its one side effect is this file. The gate never creates a file or folder in the repository it reviews.\nNEW>>>",
+    "check": "grep -cF -- 'The cache lives in the reviewing user'\\''s cache directory, outside every reviewed repository. Its one side effect is this file. The gate never creates a file or folder in the repository it reviews.' .skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md",
+    "expect": "1"
+  },
+  {
+    "task": "T057",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md, replace the exact text <<<OLD\n- `.opencode/` is gitignored by convention in OpenCode projects\nOLD>>> with <<<NEW\n- The user cache directory sits outside every reviewed repository, so reviewing a foreign repository leaves no folder in it, and deleting the cache folder resets the gate\nNEW>>>",
+    "check": "grep -cF -- '- The user cache directory sits outside every reviewed repository, so reviewing a foreign repository leaves no folder in it, and deleting the cache folder resets the gate' .skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md",
+    "expect": "1"
+  },
+  {
+    "task": "T058",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/assets/removal-plan.md, replace the exact text <<<OLD\n- **P2**: Defer with migration plan and owner.\nOLD>>> with <<<NEW\n- **P2**: Defer with migration plan and owner.\n\nThese labels rank removal urgency only. They are not the finding severities of [`review-core.md`](../references/review-core.md) section 2: a removal item keeps its finding's own severity, and a report that carries both writes the urgency as `removal P0`, `removal P1` or `removal P2`.\nNEW>>>",
+    "check": "grep -cF -- ' section 2: a removal item keeps its finding'\\''s own severity, and a report that carries both writes the urgency as `removal P0`, `removal P1` or `removal P2`.' .skilled/skills/sk-code/sk-code-review/assets/removal-plan.md",
+    "expect": "1"
+  },
+  {
+    "task": "T059",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md, replace the exact text <<<OLD\n| Scenario ID | Yes | One of CR-001..CR-024 or CR-R01..CR-R07 |\nOLD>>> with <<<NEW\n| Scenario ID | Yes | One of CR-001..CR-018, CR-020..CR-024 or CR-R01..CR-R07 (CR-019 is not assigned) |\nNEW>>>",
+    "check": "grep -cF -- '| Scenario ID | Yes | One of CR-001..CR-018, CR-020..CR-024 or CR-R01..CR-R07 (CR-019 is not assigned) |' .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md",
+    "expect": "1"
+  },
+  {
+    "task": "T060",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js, replace the exact text <<<OLD\nconst NUMBERED_FINDING = /^(\\d+)\\. \\S/;\nconst CASE_LINE = /^\\s+- Case: \\S/;\nOLD>>> with <<<NEW\n// Two documented shapes: the SKILL.md template numbers list items, and the\n// review-core.md schema puts the number in a level-three heading.\nconst NUMBERED_FINDING = /^(\\d+)\\. \\S/;\nconst HEADING_FINDING = /^### (\\d+) \\[P[0-2]\\] \\S/;\nconst CASE_LINE = /^\\s*- Case: \\S/;\nNEW>>>",
+    "check": "grep -cF -- '// Two documented shapes: the SKILL.md template numbers list items, and the' .skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js",
+    "expect": "1"
+  },
+  {
+    "task": "T061",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js, replace the exact text <<<OLD\n    const numbered = NUMBERED_FINDING.exec(line);\nOLD>>> with <<<NEW\n    const numbered = NUMBERED_FINDING.exec(line) || HEADING_FINDING.exec(line);\nNEW>>>",
+    "check": "grep -cF -- '    const numbered = NUMBERED_FINDING.exec(line) || HEADING_FINDING.exec(line);' .skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js",
+    "expect": "1"
+  },
+  {
+    "task": "T062",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js, replace the exact text <<<OLD\n    if (precedingIndex < 0 || !/^Not checked: \\S/.test(lines[precedingIndex])) {\nOLD>>> with <<<NEW\n    // Only the status line is machine-parsed, so extra spaces after the colon are accepted.\n    if (precedingIndex < 0 || !/^Not checked: +\\S/.test(lines[precedingIndex])) {\nNEW>>>",
+    "check": "grep -cF -- '    // Only the status line is machine-parsed, so extra spaces after the colon are accepted.' .skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js",
+    "expect": "1"
+  },
+  {
+    "task": "T063",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js, replace the exact text <<<OLD\n// It checks that documented example outputs end on the exact status line, because string presence cannot prove a line is last.\nOLD>>> with <<<NEW\n// It checks that documented example outputs end on the exact status line, because string presence cannot prove a line is last.\n// It pins the assessment tokens to the status-line vocabulary and the pointer to the shared detection contract, so neither can drift back.\nNEW>>>",
+    "check": "grep -cF -- '// It pins the assessment tokens to the status-line vocabulary and the pointer to the shared detection contract, so neither can drift back.' .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+    "expect": "1"
+  },
+  {
+    "task": "T064",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js, replace the exact text <<<OLD\n      'Review status: COMMENTED',\n    ],\n  },\n  {\n    file: '.skilled/skills/sk-code/sk-code-review/README.md',\nOLD>>> with <<<NEW\n      'Review status: COMMENTED',\n      '**Overall assessment**: [APPROVED / REQUESTED_CHANGES / COMMENTED]',\n      '../shared/references/stack-detection.md',\n    ],\n  },\n  {\n    file: '.skilled/skills/sk-code/sk-code-review/README.md',\nNEW>>>",
+    "check": "grep -cF -- '      '\\''**Overall assessment**: [APPROVED / REQUESTED_CHANGES / COMMENTED]'\\'',' .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+    "expect": "1"
+  },
+  {
+    "task": "T065",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js, replace the exact text <<<OLD\n    file: '.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md',\n    strings: ['Review status: COMMENTED'],\n  },\nOLD>>> with <<<NEW\n    file: '.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md',\n    strings: ['Review status: COMMENTED'],\n  },\n  {\n    file: '.skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md',\n    strings: ['`APPROVED`, `REQUESTED_CHANGES` or `COMMENTED`'],\n  },\nNEW>>>",
+    "check": "grep -cF -- '    file: '\\''.skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md'\\'',' .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+    "expect": "1"
+  },
+  {
+    "task": "T066",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh, replace the exact text <<<OLD\n  \".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md\"\n\nOLD>>> with <<<NEW\n  \".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md\"\n  \".skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md\"\n\nNEW>>>",
+    "check": "grep -cF -- '  \".skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md\"' .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
+    "expect": "1"
+  },
+  {
+    "task": "T067",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh, replace the exact text <<<OLD\n# Seeded examples ensure the canary rejects content after status and missing context.\n\nOLD>>> with <<<NEW\nFINAL_LINE_NOT_CHECKED_SPACES=\"$TMP_DIR/final_line_not_checked_two_spaces.md\"\nprintf 'Findings\\n\\nNot checked:  two spaces after the colon\\n\\nReview status: APPROVED\\n' > \"$FINAL_LINE_NOT_CHECKED_SPACES\"\nrun_case 0 \"final_line_not_checked_two_spaces\" node \"$FINAL_LINE_CHECKER\" \"$FINAL_LINE_NOT_CHECKED_SPACES\"\n\n# Seeded examples ensure the canary rejects content after status and missing context.\n\nNEW>>>",
+    "check": "grep -cF -- 'printf '\\''Findings\\n\\nNot checked:  two spaces after the colon\\n\\nReview status: APPROVED\\n'\\'' > \"$FINAL_LINE_NOT_CHECKED_SPACES\"' .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
+    "expect": "1"
+  },
+  {
+    "task": "T068",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh, replace the exact text <<<OLD\n# Seeded examples ensure the canary rejects content after status and missing context.\n\nOLD>>> with <<<NEW\n# Both documented finding shapes run through both checkers, so neither shape can pass unchecked.\nSHAPE_DIR=\"$SCRIPT_DIR/review-output-fixture\"\nfor shape in list-shape-valid heading-shape-valid heading-shape-missing-case heading-shape-restart; do\n  run_case 0 \"shape_final_line_$shape\" node \"$FINAL_LINE_CHECKER\" \"$SHAPE_DIR/$shape.md\"\ndone\nrun_case 0 \"shape_findings_list_valid\" node \"$FINDINGS_CHECKER\" \"$SHAPE_DIR/list-shape-valid.md\"\nrun_case 0 \"shape_findings_heading_valid\" node \"$FINDINGS_CHECKER\" \"$SHAPE_DIR/heading-shape-valid.md\"\nexpect_output 'OK: findings are numbered once and each carries a Case line' \"shape_findings_heading_valid_output\" node \"$FINDINGS_CHECKER\" \"$SHAPE_DIR/heading-shape-valid.md\"\nrun_case 1 \"shape_findings_heading_missing_case\" node \"$FINDINGS_CHECKER\" \"$SHAPE_DIR/heading-shape-missing-case.md\"\nexpect_output 'finding 2 has no Case: line' \"shape_findings_heading_missing_case_output\" node \"$FINDINGS_CHECKER\" \"$SHAPE_DIR/heading-shape-missing-case.md\"\nrun_case 1 \"shape_findings_heading_restart\" node \"$FINDINGS_CHECKER\" \"$SHAPE_DIR/heading-shape-restart.md\"\nexpect_output 'finding numbers restart or skip: expected 2, found 1' \"shape_findings_heading_restart_output\" node \"$FINDINGS_CHECKER\" \"$SHAPE_DIR/heading-shape-restart.md\"\n\n# Seeded examples ensure the canary rejects content after status and missing context.\n\nNEW>>>",
+    "check": "grep -cF -- 'expect_output '\\''OK: findings are numbered once and each carries a Case line'\\'' \"shape_findings_heading_valid_output\" node \"$FINDINGS_CHECKER\" \"$SHAPE_DIR/heading-shape-valid.md\"' .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
+    "expect": "1"
+  },
+  {
+    "task": "T069",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh, replace the exact text <<<OLD\n# Seeded examples ensure the canary rejects content after status and missing context.\n\nOLD>>> with <<<NEW\n# FAIL: the gate-recommendation tokens in the single-pass reference drift from the status-line vocabulary.\nCASE_UX_VOCABULARY=\"$TMP_DIR/ux_vocabulary\"\nseed_tree \"$CASE_UX_VOCABULARY\"\nnode -e 'const fs=require(\"fs\");const f=process.argv[1];fs.writeFileSync(f, fs.readFileSync(f,\"utf8\").replace(\"`REQUESTED_CHANGES`\",\"`REQUEST_CHANGES`\"));' \\\n  \"$CASE_UX_VOCABULARY/.skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md\"\nrun_case 1 \"ux_vocabulary_drift\" node \"$CHECKER\" --root \"$CASE_UX_VOCABULARY\"\nexpect_output 'review-ux-single-pass.md: missing exact invariant string' \"ux_vocabulary_drift_output\" node \"$CHECKER\" --root \"$CASE_UX_VOCABULARY\"\n\n# Seeded examples ensure the canary rejects content after status and missing context.\n\nNEW>>>",
+    "check": "grep -cF -- 'node -e '\\''const fs=require(\"fs\");const f=process.argv[1];fs.writeFileSync(f, fs.readFileSync(f,\"utf8\").replace(\"`REQUESTED_CHANGES`\",\"`REQUEST_CHANGES`\"));'\\'' \\' .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
+    "expect": "1"
+  },
+  {
+    "task": "T070",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/list-shape-valid.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/list-shape-valid.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode/scratch/units/list-shape-valid.md",
+    "check": "cmp specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode/scratch/units/list-shape-valid.md .skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/list-shape-valid.md; echo exit=$?",
+    "expect": "exit=0"
+  },
+  {
+    "task": "T071",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-valid.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-valid.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode/scratch/units/heading-shape-valid.md",
+    "check": "cmp specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode/scratch/units/heading-shape-valid.md .skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-valid.md; echo exit=$?",
+    "expect": "exit=0"
+  },
+  {
+    "task": "T072",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-missing-case.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-missing-case.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode/scratch/units/heading-shape-missing-case.md",
+    "check": "cmp specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode/scratch/units/heading-shape-missing-case.md .skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-missing-case.md; echo exit=$?",
+    "expect": "exit=0"
+  },
+  {
+    "task": "T073",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-restart.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-restart.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode/scratch/units/heading-shape-restart.md",
+    "check": "cmp specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode/scratch/units/heading-shape-restart.md .skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-restart.md; echo exit=$?",
+    "expect": "exit=0"
+  },
+  {
+    "task": "T074",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/README.md, replace the exact text <<<OLD\n`scripts/` holds the `code-review` skill's rule-copy canary.\nOLD>>> with <<<NEW\n`scripts/` holds the `sk-code-review` mode's rule-copy canary.\nNEW>>>",
+    "check": "grep -cF -- '`scripts/` holds the `sk-code-review` mode'\\''s rule-copy canary.' .skilled/skills/sk-code/sk-code-review/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T075",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/README.md, replace the exact text <<<OLD\nthe line above that blank line must start with `Not checked:` followed by text.\nOLD>>> with <<<NEW\nthe line above that blank line must start with `Not checked:`, then one or more spaces, then text.\nNEW>>>",
+    "check": "grep -cF -- 'the line above that blank line must start with `Not checked:`, then one or more spaces, then text.' .skilled/skills/sk-code/sk-code-review/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T076",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/README.md, replace the exact text <<<OLD\n| `check-review-findings.js` | Checks each numbered finding under `## Findings` in a review output. Fails when\nOLD>>> with <<<NEW\n| `check-review-findings.js` | Checks each numbered finding under `## Findings` in a review output, in both documented shapes: a numbered list item (`1. path:line Title`, the SKILL.md template) and a level-three heading (`### 2 [P1] Title`, the `review-core.md` schema). Fails when\nNEW>>>",
+    "check": "grep -cF -- '| `check-review-findings.js` | Checks each numbered finding under `## Findings` in a review output, in both documented shapes: a numbered list item (`1. path:line Title`, the SKILL.md template) and a level-three heading (`### 2 [P1] Title`, the `review-core.md` schema). Fails when' .skilled/skills/sk-code/sk-code-review/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T077",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/README.md, replace the exact text <<<OLD\nappear verbatim in `sk-code-review/SKILL.md` and `sk-code-review/README.md`,\nOLD>>> with <<<NEW\nappear verbatim in `sk-code-review/SKILL.md` and `sk-code-review/README.md`, that SKILL.md keeps the `APPROVED / REQUESTED_CHANGES / COMMENTED` assessment tokens and its pointer to `../shared/references/stack-detection.md`, that `review-ux-single-pass.md` names the same three tokens,\nNEW>>>",
+    "check": "grep -cF -- 'appear verbatim in `sk-code-review/SKILL.md` and `sk-code-review/README.md`, that SKILL.md keeps the `APPROVED / REQUESTED_CHANGES / COMMENTED` assessment tokens and its pointer to `../shared/references/stack-detection.md`, that `review-ux-single-pass.md` names the same three tokens,' .skilled/skills/sk-code/sk-code-review/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T078",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/README.md, replace the exact text <<<OLD\nand the four findings-checker cases |\nOLD>>> with <<<NEW\nthe four findings-checker cases, a `Not checked:` line with two spaces after the colon (expects pass), both finding shapes in `review-output-fixture/` through both checkers, and a drifted gate-recommendation token in `review-ux-single-pass.md` |\n| `review-output-fixture/` | Four complete review outputs that `check-rule-copies.test.sh` runs: `list-shape-valid.md` and `heading-shape-valid.md` pass both checkers, while `heading-shape-missing-case.md` and `heading-shape-restart.md` pass the final-line checker and fail the findings checker |\nNEW>>>",
+    "check": "grep -cF -- '| `review-output-fixture/` | Four complete review outputs that `check-rule-copies.test.sh` runs: `list-shape-valid.md` and `heading-shape-valid.md` pass both checkers, while `heading-shape-missing-case.md` and `heading-shape-restart.md` pass the final-line checker and fail the findings checker |' .skilled/skills/sk-code/sk-code-review/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T079",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/README.md, replace the exact text <<<OLD\nExpected: `OK: all rule invariants present (5 exact-string file(s)\nOLD>>> with <<<NEW\nExpected: `OK: all rule invariants present (6 exact-string file(s)\nNEW>>>",
+    "check": "grep -cF -- 'Expected: `OK: all rule invariants present (6 exact-string file(s)' .skilled/skills/sk-code/sk-code-review/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T080",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/README.md, replace the exact text <<<OLD\n- [`code-review SKILL.md`](../SKILL.md)\nOLD>>> with <<<NEW\n- [`sk-code-review SKILL.md`](../SKILL.md)\nNEW>>>",
+    "check": "grep -cF -- '`sk-code-review SKILL.md`' .skilled/skills/sk-code/sk-code-review/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T081",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/README.md, replace the exact text <<<OLD\n- [`code-review README.md`](../README.md)\nOLD>>> with <<<NEW\n- [`sk-code-review README.md`](../README.md)\nNEW>>>",
+    "check": "grep -cF -- '`sk-code-review README.md`' .skilled/skills/sk-code/sk-code-review/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T082",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/changelog/v1.7.0.0.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/sk-code/sk-code-review/changelog/v1.7.0.0.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode/scratch/units/changelog-v1.7.0.0.md",
+    "check": "cmp specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode/scratch/units/changelog-v1.7.0.0.md .skilled/skills/sk-code/sk-code-review/changelog/v1.7.0.0.md; echo exit=$?",
+    "expect": "exit=0"
+  }
+]

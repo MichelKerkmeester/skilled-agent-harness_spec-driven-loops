@@ -37,6 +37,8 @@ Recommend deletion only when usage evidence, verification steps, and rollback pl
 - **P1**: Remove in current sprint/release window.
 - **P2**: Defer with migration plan and owner.
 
+These labels rank removal urgency only. They are not the finding severities of [`review-core.md`](../references/review-core.md) section 2: a removal item keeps its finding's own severity, and a report that carries both writes the urgency as `removal P0`, `removal P1` or `removal P2`.
+
 ---
 
 ## 2. SAFE TO REMOVE NOW

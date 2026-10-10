@@ -149,7 +149,7 @@ Use this compact ledger when reporting wave results back to an orchestrator.
 
 | Field | Required | Notes |
 |---|---|---|
-| Scenario ID | Yes | One of CR-001..CR-024 or CR-R01..CR-R07 |
+| Scenario ID | Yes | One of CR-001..CR-018, CR-020..CR-024 or CR-R01..CR-R07 (CR-019 is not assigned) |
 | Feature file | Yes | Relative path under this playbook root |
 | Runtime | Yes | Native, @review, cli-opencode, cli-claude-code, or skipped surface |
 | Scope source | Yes | Diff range, staged diff, explicit file list, or fixture path |

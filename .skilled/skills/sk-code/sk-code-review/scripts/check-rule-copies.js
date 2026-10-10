@@ -13,6 +13,7 @@
 // It also guards WHERE the binding clauses sit in AGENTS.md, because a clause a
 // runtime truncates away is a copy that silently does not exist there.
 // It checks that documented example outputs end on the exact status line, because string presence cannot prove a line is last.
+// It pins the assessment tokens to the status-line vocabulary and the pointer to the shared detection contract, so neither can drift back.
 //
 // It is a canary, not a generator: it asserts the load-bearing substrings still
 // exist; it never rewrites anything. It locks wording, not file paths — pass
@@ -42,6 +43,8 @@ const EXACT_INVARIANTS = [
       'Review status: APPROVED',
       'Review status: REQUESTED_CHANGES',
       'Review status: COMMENTED',
+      '**Overall assessment**: [APPROVED / REQUESTED_CHANGES / COMMENTED]',
+      '../shared/references/stack-detection.md',
     ],
   },
   {
@@ -59,6 +62,10 @@ const EXACT_INVARIANTS = [
   {
     file: '.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md',
     strings: ['Review status: COMMENTED'],
+  },
+  {
+    file: '.skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md',
+    strings: ['`APPROVED`, `REQUESTED_CHANGES` or `COMMENTED`'],
   },
   {
     file: '.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md',
