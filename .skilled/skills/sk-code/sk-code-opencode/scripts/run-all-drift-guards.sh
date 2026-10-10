@@ -9,7 +9,8 @@
 # playbook routing). Each was runnable only on its own. This is the single entry
 # point that runs them in sequence, prints a PASS/FAIL line per guard and exits
 # non-zero if any fails, so a completion gate never has to remember separate
-# commands. The note after the router-sync guard records the leg it does not run.
+# commands. The note after the router-sync guard records what it covers and what
+# stays in CI.
 #
 # Offline and deterministic: no network, no model dispatch, no state carried
 # between runs. Paths resolve from this script's own location, so it runs from
@@ -48,15 +49,15 @@ run_guard "alignment-drift  (verify_alignment_drift.py --check-router)" \
 run_guard "stack-folders    (verify_stack_folders.py)" \
   python3 "${STACK_VERIFIER}"
 
-run_guard "router-sync      (verify_router_sync.cjs --checks 1a,2,3,4)" \
-  node "${ROUTER_SYNC}" --checks 1a,2,3,4
+run_guard "router-sync      (verify_router_sync.cjs --checks 1a,1b,2,3,4)" \
+  node "${ROUTER_SYNC}" --checks 1a,1b,2,3,4
 
 # Router-sync guard (verify_router_sync.cjs): restores the four checks of the router-sync
-# suite that was deleted with the skill-benchmark lane. This run covers checks 1a, 2, 3
-# and 4. Check 1b (every reference or asset doc is routed) exists in the guard but is not
-# wired here until its nine orphan docs are routed (owner: sk-code); the reason is recorded
-# in references/shared/alignment-verification-automation.md. Dead paths in check 1 are
-# covered by the alignment-drift guard above (--check-router). The CI workflow
+# suite that was deleted with the skill-benchmark lane. This run covers every leg: 1a and 1b
+# (router paths exist, and every reference or asset doc is routed), 2, 3 and 4. Check 1b
+# allowlists only the shared workflow docs that each surface reaches through a symlink, with
+# the reason beside the list in the guard. Dead paths in check 1 are also covered by the
+# alignment-drift guard above (--check-router). The CI workflow
 # .github/workflows/routing-registry-drift.yml still covers the compiled side of checks 3
 # and 4 in warn-only mode.
 

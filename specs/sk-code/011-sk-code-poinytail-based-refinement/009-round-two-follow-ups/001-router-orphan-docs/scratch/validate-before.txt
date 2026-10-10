@@ -1,0 +1,24 @@
+== .skilled/skills/sk-code/sk-code-obsidian/SKILL.md
+✅ VALID: .skilled/skills/sk-code/sk-code-obsidian/SKILL.md
+Total issues: 0
+== .skilled/skills/sk-code/sk-code-opencode/SKILL.md
+✅ VALID: .skilled/skills/sk-code/sk-code-opencode/SKILL.md
+Total issues: 0
+== .skilled/skills/sk-code/sk-code-opencode/scripts/README.md
+✅ VALID: .skilled/skills/sk-code/sk-code-opencode/scripts/README.md
+Total issues: 0
+== .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md
+✅ VALID: .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md
+Total issues: 0
+== .skilled/skills/sk-code/benchmark/README.md
+✅ VALID: .skilled/skills/sk-code/benchmark/README.md
+Total issues: 0
+== .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/accessibility-independent.md
+✅ VALID: .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/accessibility-independent.md
+Total issues: 0
+== .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md
+✅ VALID: .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md
+Total issues: 0
+== .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md
+❌ INVALID: .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md
+Total issues: 2

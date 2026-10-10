@@ -19,7 +19,17 @@ const ROUTE_GOLD_CANDIDATES = [
   path.join(REPO_ROOT, ROUTE_GOLD_REL),
 ];
 
-const NON_ROUTED_ALLOWLIST = new Set(['ROUTER.md', 'references/stack-detection.md', 'references/phase-detection.md']);
+// The hub SKILL.md tells the acting agent to read the implement, debug and verify doctrine
+// from the active surface's symlinked copy, so no router names the canonical shared path or
+// the symlink. Exact paths, not a folder, keep any other unrouted doc under shared/ reported.
+const NON_ROUTED_ALLOWLIST = new Set([
+  'ROUTER.md',
+  'references/stack-detection.md',
+  'references/phase-detection.md',
+  'shared/references/workflow-implement.md',
+  'shared/references/workflow-debug.md',
+  'shared/references/workflow-verify.md',
+]);
 const SURFACES = ['sk-code-webflow', 'sk-code-opencode'];
 const SURFACE_PACKETS = new Set([...SURFACES, 'sk-code-obsidian']);
 const PARENT_TIER_ALLOWLIST = new Set([
@@ -273,13 +283,9 @@ const LEGS = [
   ['4', 'playbook expected_resource is emitted by the router', legScenarios],
 ];
 
-// The orphan leg still finds docs that no router names, so a bare run would
-// always fail; it runs only when named with --checks until those docs are routed.
-const OPT_IN_LEGS = new Set(['1b']);
-
 function parseChecks(argv) {
   const idx = argv.indexOf('--checks');
-  if (idx === -1) return LEGS.map((l) => l[0]).filter((id) => !OPT_IN_LEGS.has(id));
+  if (idx === -1) return LEGS.map((l) => l[0]);
   const ids = (argv[idx + 1] || '').split(',').filter(Boolean);
   const known = new Set(LEGS.map((l) => l[0]));
   const unknown = ids.filter((id) => !known.has(id));

@@ -1,0 +1,5 @@
+PASS check 1a: machine-router paths exist and the prose maps are routed
+PASS check 2: surface RESOURCE_MAP equals the children union plus the parent tier
+PASS check 3: compiled destinations, leaf-manifest and code-opencode RESOURCE_MAP agree
+PASS check 4: playbook expected_resource is emitted by the router
+router-sync: 4/4 checks passed

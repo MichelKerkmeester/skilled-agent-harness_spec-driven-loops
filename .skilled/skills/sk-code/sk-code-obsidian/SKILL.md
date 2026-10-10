@@ -2,7 +2,7 @@
 name: sk-code-obsidian
 description: "Read-only Obsidian-plugin design-system and source-convention evidence for the Note Database plugin."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 0.1.1.0
+version: 0.1.2.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -83,10 +83,10 @@ DEFAULT_RESOURCE = [
 
 INTENT_SIGNALS = {
     "IMPLEMENTATION":  {"weight": 1, "keywords": ["view renderer", "add renderer", "table renderer", "database view", "implement", "build", "new column type", "row pipeline", "screenshot scenario", "modal"]},
-    "CODE_QUALITY":    {"weight": 1, "keywords": ["module banner", "section banner", "folder docs", "folder-doc", "code.md", "naming", "rename", "fixture", "quality gate", "lint", "kebab-case", "comment grammar"]},
+    "CODE_QUALITY":    {"weight": 1, "keywords": ["module banner", "section banner", "folder docs", "folder-doc", "code.md", "naming", "rename", "fixture", "quality gate", "lint", "kebab-case", "comment grammar", "dqi"]},
     "DEBUGGING":       {"weight": 1, "keywords": ["debug", "broken", "regression", "wrong render", "empty state bug", "pipeline diagnostics"]},
-    "VERIFICATION":    {"weight": 1, "keywords": ["verify", "tsc --noEmit", "vitest", "screenshots:verify", "completion claim", "gate baseline"]},
-    "STACK_STANDARDS": {"weight": 1, "keywords": ["obsidian api", "itemview", "fileview", "workspaceleaf", "manifest.json", "esbuild", ".db-", "styles.css", "single stylesheet", "isdesktoponly"]},
+    "VERIFICATION":    {"weight": 1, "keywords": ["verify", "tsc --noEmit", "vitest", "screenshots:verify", "completion claim", "gate baseline", "plugin setup", "install the plugin", "settings migration", "reference integrity"]},
+    "STACK_STANDARDS": {"weight": 1, "keywords": ["obsidian api", "itemview", "fileview", "workspaceleaf", "manifest.json", "esbuild", ".db-", "styles.css", "single stylesheet", "isdesktoponly", "accessibility", "theme variable"]},
 }
 
 RESOURCE_MAP = {
@@ -106,6 +106,7 @@ RESOURCE_MAP = {
         "references/db-class-naming.md",
         "references/stylesheet-ownership.md",
         "references/standards/code-standards.md",
+        "references/quality/doc-quality-gate.md",
         "assets/comment-banner-checklist.md",
         "assets/folder-docs-checklist.md",
         "assets/db-class-rename-checklist.md",
@@ -120,6 +121,9 @@ RESOURCE_MAP = {
         "references/verification.md",
         "references/screenshot-harness.md",
         "references/release/release-verification.md",
+        "references/setup/setup.md",
+        "references/operations/operations.md",
+        "references/skill-reference-integrity.md",
         "assets/verification-checklist.md",
     ],
     "STACK_STANDARDS": [
@@ -128,6 +132,8 @@ RESOURCE_MAP = {
         "references/db-class-naming.md",
         "references/screenshot-harness.md",
         "references/standards/platform-support.md",
+        "references/accessibility.md",
+        "references/theme-variables.md",
     ],
 }
 ```

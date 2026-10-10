@@ -32,8 +32,8 @@ This document captures the routing-recall contract, execution process, source an
 
 This scenario validates the token-cost ceiling for `OB-019`. It focuses on confirming that a
 deliberately broad, all-domains pre-release audit request resolves the packet's near-complete
-evidence set — thirteen reference files spanning every intent this surface declares plus
-`accessibility.md`, a reference not wired to any `INTENT_SIGNALS` group at all — establishing the
+evidence set. It resolves thirteen reference files spanning every intent this surface declares,
+including `accessibility.md`, which the `STACK_STANDARDS` group carries. That establishes the
 top tier above `OB-017`'s one-resource floor and `OB-018`'s three-resource median.
 
 ### Why This Matters
@@ -50,7 +50,8 @@ keeps a full-audit request from either under-delivering or hallucinating a refer
 Operators confirm the exact prompt for `OB-019` resolves all thirteen `expected_resources` paths.
 
 - Objective: confirm the exact prompt routes to surface `OBSIDIAN` and resolves every path in
-  `expected_resources`, spanning all five declared intents plus the accessibility reference.
+  `expected_resources`, spanning all five declared intents, with the accessibility reference
+  loaded through `STACK_STANDARDS`.
 - Real user request: `Give me a full pre-release audit of this plugin — architecture, the .db-* grammar, folder docs, comment grammar, mobile behavior, the verification gate, accessibility, and the Obsidian API boundary — everything I need before I sign off on shipping.`
 - Prompt: `Give me a full pre-release audit of this plugin — architecture, the .db-* grammar, folder docs, comment grammar, mobile behavior, the verification gate, accessibility, and the Obsidian API boundary — everything I need before I sign off on shipping.`
 
@@ -61,9 +62,9 @@ Give me a full pre-release audit of this plugin — architecture, the .db-* gram
 
 - Expected execution process: the hub detects `OBSIDIAN`, the prompt's breadth touches keywords from
   every declared `INTENT_SIGNALS` group at once, and all thirteen paths this scenario lists under
-  `expected_resources` resolve under the skill root — including `references/accessibility.md`, which
-  `SKILL.md` §2b's `INTENT_SIGNALS`/`RESOURCE_MAP` block does not wire to any intent group, surfaced
-  here on the strength of the explicit "accessibility" mention rather than a declared keyword match.
+  `expected_resources` resolve under the skill root, including `references/accessibility.md`, which
+  `SKILL.md` §2b wires into `STACK_STANDARDS` and the prompt's explicit "accessibility" mention
+  selects.
 - Expected signals: every path in `expected_resources` exists under `sk-code-obsidian/`, and the
   count (thirteen) is materially larger than `OB-018`'s median (three).
 - Desired user-visible outcome: the bundled workflow produces a structured, section-by-section

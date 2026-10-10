@@ -1,0 +1,5 @@
+Skill: .skilled/skills/sk-code
+Detected kind: parent
+- package_skill.py --check: PASS (exit 0)
+- compiled routing readiness: compiled-ready: PASS (exit 0)
+- parent-skill-check.cjs: PASS (exit 0)

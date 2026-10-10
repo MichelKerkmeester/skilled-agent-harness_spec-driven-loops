@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Build and independently verify phases 002 to 008 so sk-code, its agents, checkers and rules carry the Ponytail 5 research's changes and follow-ups.
+**Objective:** Build and independently verify phases 002 to 009 and research round three so sk-code, its agents, checkers and rules carry the Ponytail 5 research's changes and follow-ups.
 
 ### Decisions
 
@@ -44,13 +44,13 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | cli-codex (gpt-6-luna, max, fast) builds 002 to 006; haiku xhigh agents build the children of 007 and 008 |
-| D2 | An executor report is a claim: the orchestrator reruns every criterion in the phase's `goal.md` itself |
-| D3 | Work in one numbered worktree made through sk-git, never raw git; edit only its copy of this packet |
-| D4 | Commit in folder order: 002 to 006, then the children of 007 and 008 |
-| D5 | Phase done means: all its goal criteria pass, its summary is filled, `repair-derived.cjs --apply` ran and `validate.sh --strict` prints `RESULT: PASSED` |
-| D6 | One conventional commit per phase or child in the worktree; never push |
-| D7 | Three failed repairs on one phase stop the run; report the command and its output |
+| D1 | cli-codex (gpt-6-luna, max, fast) builds 002 to 006; haiku xhigh agents build 007 and 008's children, Sonnet 5.5 xhigh 009's |
+| D2 | An executor's report is a claim; the orchestrator reruns each goal's criteria |
+| D3 | Work in one sk-git numbered worktree, never raw git; edit only its packet copy |
+| D4 | Commit in folder order: 002 to 006, then 007, 008 and 009's children |
+| D5 | A phase is done when its goal criteria pass, its summary is filled, and `repair-derived.cjs --apply` then strict validation pass |
+| D6 | One conventional commit per phase, child or research round; never push |
+| D7 | Three failed repairs on a phase stop the run; report command and output |
 
 <!-- /ANCHOR:directive -->
 
@@ -72,6 +72,7 @@ phase and binds as if written here.
 | 006-guard-retirement-notes | `006-guard-retirement-notes/goal.md` |
 | 007-follow-up-fixes | `007-follow-up-fixes/goal.md` |
 | 008-round-two-recommendations | `008-round-two-recommendations/goal.md` |
+| 009-round-two-follow-ups | `009-round-two-follow-ups/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -85,9 +86,9 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] In the worktree, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 9 times and `RESULT: FAILED` 0 times
-- [ ] In the worktree, `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 15
-- [ ] In the worktree, `git rev-list --count main..HEAD` prints 16, `git log --format='%(trailers:key=Spec,valueonly)' main..HEAD` prints 16 `Spec:` values, one per phase or child, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
+- [ ] In the worktree, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 10 times and `RESULT: FAILED` 0 times
+- [ ] In the worktree, `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 20
+- [ ] In the worktree, `git rev-list --count main..HEAD` prints 22, `git log --format='%(trailers:key=Spec,valueonly)' main..HEAD` prints 22 `Spec:` values, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
 - [ ] In the worktree, `node .skilled/bin/compiled-route-guard.cjs` exits 0 listing sk-code `fresh`, and `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints JSON with `"action":"route"` and no `servingAuthority` key
 - [ ] In the worktree, `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` and `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` both exit 0, and `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` prints `PASS: stack-folders`
 - [ ] In the worktree, `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` both exit 0
@@ -113,6 +114,9 @@ and findings belong here.
 | 005 review output additions | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed |
 | 007 follow-up fixes | Done | Five children planned and built by haiku xhigh agents, each rerun by the orchestrator and committed |
 | 006 guard retirement notes | Done | All seven child criteria rerun by the orchestrator and passed; strict validation passed |
+| 008 round-two recommendations | Done | Five children planned and built by haiku xhigh agents, each rerun by the orchestrator and committed |
+| 009 round-two follow-ups | In progress | Five children, planned and built by Sonnet 5.5 xhigh agents |
+| 001 research round three | In progress | Twenty DeepSeek V4.1 Flash iterations, orchestrated by Opus 5.5 high |
 
 ### Deviations and findings
 
@@ -123,5 +127,6 @@ and findings belong here.
 | Criterion 1 count corrected to 8 | `--recursive` validates one level: the parent and its seven direct children. 007's own goal covers its five children (6 PASSED) |
 | Research round two 2026-10-10 | Ten more 001 iterations on DeepSeek V4.1 Flash (cli-pi, max), orchestrated by Opus 5.5 high; committed as one more 001 commit, so criterion 3 counts 11 |
 | 007 added 2026-10-10 | The operator chose to fix the follow-ups as child 007 with haiku xhigh agents; criteria 1 to 3 counts, D1, D4 and D6 amended to cover it |
+| 009 and round three added 2026-10-10 | The operator chose child 009 for the five round-two follow-ups, built by Sonnet 5.5, and a third 001 research round run beside it; criteria 1 to 3 counts, the objective, D1 and D4 amended |
 | Handed off, not built here | D2 Codex mirror gap (deep-improvement and git hooks) and D4 stdin deadline (hooks); recorded in the parent spec |
 <!-- /ANCHOR:log -->

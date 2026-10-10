@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [
+    "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/001-router-orphan-docs",
+    "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/002-quality-report-listing",
+    "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/003-deep-review-case-rule",
+    "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/004-agents-md-pointers",
+    "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "round two follow-ups",
+      "router orphan docs",
+      "agents md pointers",
+      "hook stdin deadlines",
+      "deep-review case rule",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "round",
+      "two",
+      "follow-ups",
+      "router",
+      "orphan",
+      "docs",
+      "agents",
+      "pointers",
+      "hook",
+      "stdin",
+      "deadlines",
+      "deep-review"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      ".skilled/agents/deep-review.md",
+      "001-router-orphan-docs/goal.md",
+      "002-quality-report-listing/goal.md",
+      "003-deep-review-case-rule/goal.md",
+      "004-agents-md-pointers/goal.md",
+      "005-hook-stdin-deadlines/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Obsidian",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "check",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "two",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The round-two build recorded five follow-ups it did not close",
+    "created_at": "2026-10-10T08:16:16Z",
+    "last_save_at": "2026-10-10T09:25:02.703Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:3176e1509a80e52b1e04d205ba0fff28703de7822fed550afb79eb67ca9d2649",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "75dbd00bed8297a1e43520bc30854daec206e94b394b1f593ce51e52325ad0b0"
+    },
+    "last_active_at": null
+  }
+}

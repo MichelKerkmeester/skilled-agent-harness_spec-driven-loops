@@ -1,0 +1,89 @@
+✖ a canonical workflow doc reached through a surface symlink is not reported (92.4725ms)
+✖ an unrouted doc is still reported, in the shared tier and in a packet (85.54025ms)
+✖ a run without --checks includes leg 1b (95.62525ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 335.253583
+
+✖ failing tests:
+
+test at .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs:57:1
+✖ a canonical workflow doc reached through a surface symlink is not reported (92.4725ms)
+  AssertionError [ERR_ASSERTION]: FAIL check 1b: every routable reference or asset doc is routed (1 problem(s))
+    - orphan (routable doc no router names): shared/references/workflow-debug.md
+  router-sync: 0/1 checks passed
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs:60:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs:65:1
+✖ an unrouted doc is still reported, in the shared tier and in a packet (85.54025ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /workflow-debug/. Input:
+  
+  'FAIL check 1b: every routable reference or asset doc is routed (3 problem(s))\n' +
+    '  - orphan (routable doc no router names): shared/references/stray.md\n' +
+    '  - orphan (routable doc no router names): shared/references/workflow-debug.md\n' +
+    '  - orphan (routable doc no router names): sk-code-demo/references/stray-local.md\n' +
+    'router-sync: 0/1 checks passed\n'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs:74:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'FAIL check 1b: every routable reference or asset doc is routed (3 problem(s))\n  - orphan (routable doc no router names): shared/references/stray.md\n  - orphan (routable doc no router names): shared/references/workflow-debug.md\n  - orphan (routable doc no router names): sk-code-demo/references/stray-local.md\nrouter-sync: 0/1 checks passed\n',
+    expected: /workflow-debug/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs:77:1
+✖ a run without --checks includes leg 1b (95.62525ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /check 1b:/. Input:
+  
+  'FAIL check 1a: machine-router paths exist and the prose maps are routed (1 problem(s))\n' +
+    "  - threw: ENOENT: no such file or directory, open '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/router-sync-IxGFA3/skills/sk-code/ROUTER.md'\n" +
+    'FAIL check 2: surface RESOURCE_MAP equals the children union plus the parent tier (1 problem(s))\n' +
+    "  - threw: ENOENT: no such file or directory, open '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/router-sync-IxGFA3/skills/sk-code/sk-code-webflow/SKILL.md'\n" +
+    'FAIL check 3: compiled destinations, leaf-manifest and code-opencode RESOURCE_MAP agree (1 problem(s))\n' +
+    "  - threw: ENOENT: no such file or directory, open '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/router-sync-IxGFA3/skills/sk-code/leaf-manifest.json'\n" +
+    'FAIL check 4: playbook expected_resource is emitted by the router (1 problem(s))\n' +
+    '  - no routing scenarios found, so the check would be vacuous\n' +
+    'router-sync: 0/4 checks passed\n'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs:80:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "FAIL check 1a: machine-router paths exist and the prose maps are routed (1 problem(s))\n  - threw: ENOENT: no such file or directory, open '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/router-sync-IxGFA3/skills/sk-code/ROUTER.md'\nFAIL check 2: surface RESOURCE_MAP equals the children union plus the parent tier (1 problem(s))\n  - threw: ENOENT: no such file or directory, open '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/router-sync-IxGFA3/skills/sk-code/sk-code-webflow/SKILL.md'\nFAIL check 3: compiled destinations, leaf-manifest and code-opencode RESOURCE_MAP agree (1 problem(s))\n  - threw: ENOENT: no such file or directory, open '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/router-sync-IxGFA3/skills/sk-code/leaf-manifest.json'\nFAIL check 4: playbook expected_resource is emitted by the router (1 problem(s))\n  - no routing scenarios found, so the check would be vacuous\nrouter-sync: 0/4 checks passed\n",
+    expected: /check 1b:/,
+    operator: 'match',
+    diff: 'simple'
+  }

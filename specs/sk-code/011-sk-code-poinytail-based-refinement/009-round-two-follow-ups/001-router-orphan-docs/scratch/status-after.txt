@@ -1,0 +1,13 @@
+ M .skilled/skills/sk-code/benchmark/README.md
+ M .skilled/skills/sk-code/sk-code-obsidian/SKILL.md
+ M .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/accessibility-independent.md
+ M .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md
+ M .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md
+ M .skilled/skills/sk-code/sk-code-opencode/SKILL.md
+ M .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs
+ M .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md
+ M .skilled/skills/sk-code/sk-code-opencode/scripts/README.md
+ M .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+?? .skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.2.0.md
+?? .skilled/skills/sk-code/sk-code-opencode/changelog/v1.1.1.0.md
+?? .skilled/skills/sk-code/sk-code-opencode/scripts/tests/

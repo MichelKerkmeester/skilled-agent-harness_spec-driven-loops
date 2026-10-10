@@ -1,0 +1,11 @@
+FAIL check 1b: every routable reference or asset doc is routed (9 problem(s))
+  - orphan (routable doc no router names): shared/references/workflow-debug.md
+  - orphan (routable doc no router names): shared/references/workflow-implement.md
+  - orphan (routable doc no router names): shared/references/workflow-verify.md
+  - orphan (routable doc no router names): sk-code-obsidian/references/accessibility.md
+  - orphan (routable doc no router names): sk-code-obsidian/references/operations/operations.md
+  - orphan (routable doc no router names): sk-code-obsidian/references/quality/doc-quality-gate.md
+  - orphan (routable doc no router names): sk-code-obsidian/references/setup/setup.md
+  - orphan (routable doc no router names): sk-code-obsidian/references/skill-reference-integrity.md
+  - orphan (routable doc no router names): sk-code-obsidian/references/theme-variables.md
+router-sync: 0/1 checks passed

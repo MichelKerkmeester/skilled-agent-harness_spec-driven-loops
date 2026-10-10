@@ -30,9 +30,9 @@ category directory owns grouping, not display order.
 | 2 | Resource Loading | `resource-loading/` | OB-008 .. OB-010 | Isolation: references-only (`STACK_STANDARDS`), assets-only (`VERIFICATION` checklist alone), and a deliberate references+assets mixed load (`CODE_QUALITY`). |
 | 3 | Unknown Fallback | `unknown-fallback/` | OB-011 .. OB-013 | A literal-keyword multi-intent collision, a zero-keyword prompt resolving `DEFAULT_RESOURCE`, and a two-unrelated-tasks scope collision requiring an explicit split. |
 | 4 | Cross-CLI Dispatch | `cross-cli-dispatch/` | OB-014 .. OB-016 | Short-prompt baseline across CLI runtimes, a long scene-setting prompt stress-testing keyword extraction, and a three-turn same-session dispatch checked for stale resource carryover. |
-| 5 | Token Cost Baseline | `token-cost-baseline/` | OB-017 .. OB-019 | Cost normalization: floor (1 reference), median (3 references), ceiling (13 references spanning every declared intent plus one unmapped reference). |
+| 5 | Token Cost Baseline | `token-cost-baseline/` | OB-017 .. OB-019 | Cost normalization: floor (1 reference), median (3 references), ceiling (13 references spanning every declared intent, including `accessibility.md`). |
 | 6 | Agent Dispatch | `agent-dispatch/` (waived) | — | Waived: this packet is read-only, advisor-invisible (`routingClass: metadata`), and never routes as a primary per `SKILL.md` §1/§5; its evidenced work (`src/`, `styles.css`, `tools/screenshots/`) lives in a separate Obsidian plugin repository outside this monorepo, so a real dispatch that executes work is outside this playbook's write boundary. |
-| 7 | Holdout | `holdout/` | OB-H01 .. OB-H06 | Natural-phrasing rewrites of all five fitted intents (OB-H01..H05) plus one independent, keyword-blind probe (OB-H06) for a reference `SKILL.md` §2b never wires to any declared intent. |
+| 7 | Holdout | `holdout/` | OB-H01 .. OB-H06 | Natural-phrasing rewrites of all five fitted intents (OB-H01..H05) plus one independent, keyword-blind probe (OB-H06) for `accessibility.md`, which `SKILL.md` §2b wires to `STACK_STANDARDS` under a keyword the probe avoids. |
 | 8 | Surface Detection | `surface-detection/` | OB-020, OB-021 | Positive control confirming the three `OBSIDIAN` markers and precedence order; negative control confirming a target that resolves no surface pulls in none of this packet's evidence. |
 
 ---
@@ -66,7 +66,7 @@ category directory owns grouping, not display order.
 ### 05 — Token Cost Baseline
 - **OB-017** — [token-cost-baseline/floor-single-resource.md](token-cost-baseline/floor-single-resource.md) — floor: exactly one reference for a narrow `isDesktopOnly` question.
 - **OB-018** — [token-cost-baseline/median-load.md](token-cost-baseline/median-load.md) — median: exactly three references for a typical folder-doc-plus-banner question about `src/data/`.
-- **OB-019** — [token-cost-baseline/ceiling-load-all.md](token-cost-baseline/ceiling-load-all.md) — ceiling: thirteen references for a full pre-release audit spanning every declared intent plus `accessibility.md`.
+- **OB-019** — [token-cost-baseline/ceiling-load-all.md](token-cost-baseline/ceiling-load-all.md) — ceiling: thirteen references for a full pre-release audit spanning every declared intent, with `accessibility.md` loaded through `STACK_STANDARDS`.
 
 ### 06 — Agent Dispatch (waived)
 No scenarios. See the Categories table above for the one-sentence waiver reason.
@@ -81,7 +81,7 @@ keyword vocabulary):
 - **OB-H05** — [holdout/stack-standards-natural.md](holdout/stack-standards-natural.md) — STACK_STANDARDS via natural phrasing (decontaminates `OB-007`).
 
 Independent probe — authored against no fitted scenario, keyword-blind and `INTENT_SIGNALS`-blind:
-- **OB-H06** — [holdout/accessibility-independent.md](holdout/accessibility-independent.md) — tests whether [../references/accessibility.md](../references/accessibility.md), a real file `SKILL.md` §2b wires to no declared intent group, still surfaces for a plainly relevant question.
+- **OB-H06** — [holdout/accessibility-independent.md](holdout/accessibility-independent.md) — tests whether [../references/accessibility.md](../references/accessibility.md), which `SKILL.md` §2b wires to `STACK_STANDARDS` under the keyword `accessibility`, still surfaces for a plainly relevant question that avoids that word.
 
 All six carry a routing-recall contract scored the same way this package's other operator scenarios
 are: by frontmatter/path agreement, not by the `expected_workflow_mode`/`expected_leaf_resources`
@@ -108,7 +108,7 @@ note below).
 5. Token-cost baselines (`OB-017` → `OB-018` → `OB-019`) MUST run in order on the same CLI to keep the
    floor/median/ceiling comparable.
 6. Holdout scenarios (`OB-H01`..`OB-H06`) are excluded from any fitted-routing aggregate; they score
-   only the fitted-vs-held-out generalization gap and, for `OB-H06`, the unmapped-reference
+   only the fitted-vs-held-out generalization gap and, for `OB-H06`, the keyword-blind
    reachability question.
 
 ---
@@ -173,12 +173,16 @@ tree — the real files are `references/stylesheet-ownership.md`, `references/sc
 `references/obsidian-plugin-api.md`, and the seven checklists actually present under `assets/`
 (`comment-banner-checklist.md`, `db-class-rename-checklist.md`, `fixture-authoring-checklist.md`,
 `folder-docs-checklist.md`, `modal-coverage-checklist.md`, `screenshot-coverage-checklist.md`,
-`verification-checklist.md`). `OB-H06` documents a second, distinct kind of drift beyond stale
+`verification-checklist.md`). `OB-H06` once recorded a second, distinct kind of drift beyond stale
 filenames: `references/accessibility.md`, `references/theme-variables.md`,
 `references/operations/operations.md`, `references/setup/setup.md`,
-`references/quality/doc-quality-gate.md`, and `references/skill-reference-integrity.md` are all real,
-shipped files that `SKILL.md` §2b's `INTENT_SIGNALS`/`RESOURCE_MAP` block wires to no declared intent
-group at all — not renamed, simply unmapped. Every `expected_resources` path in every scenario in
+`references/quality/doc-quality-gate.md`, and `references/skill-reference-integrity.md` were real,
+shipped files that no intent group in `SKILL.md` §2b carried. §2b now carries all six:
+`accessibility.md` and `theme-variables.md` under `STACK_STANDARDS`, `setup/setup.md`,
+`operations/operations.md` and `skill-reference-integrity.md` under `VERIFICATION`, and
+`quality/doc-quality-gate.md` under `CODE_QUALITY`. Check 1b of `verify_router_sync.cjs` runs by
+default and fails when a reference or asset doc is left unrouted again.
+Every `expected_resources` path in every scenario in
 this package was checked against the live packet directory with `test -e`, never against `SKILL.md`'s
 map alone; per this packet's own smart-router note, each scenario's curated set is a core subset and
 is not required to mirror `RESOURCE_MAP` exactly.

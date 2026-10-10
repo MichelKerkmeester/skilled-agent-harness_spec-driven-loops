@@ -86,15 +86,16 @@ lane. `verify_router_sync.cjs` restores its four checks. The suite checked four 
 | Check | Coverage now |
 |---|---|
 | 1, dead paths | Leg 1a of `verify_router_sync.cjs` and `verify_alignment_drift.py --check-router`, both run by `scripts/run-all-drift-guards.sh` |
-| 1, orphans and prose paths | Leg 1a covers prose paths. Leg 1b covers orphans and is not run by the umbrella until its nine docs are routed |
+| 1, orphans and prose paths | Leg 1a covers prose paths. Leg 1b covers orphans, allowlists only the three shared workflow docs that each surface reaches through a symlink, and is run by the umbrella |
 | 2 | Leg 2 of `verify_router_sync.cjs`, run by the umbrella |
 | 3, compiled side | Leg 3 of `verify_router_sync.cjs`, run by the umbrella, and `.github/workflows/routing-registry-drift.yml`, CI only: the compiled-serving admission step (`--warn-only`, never fails the job) and the leaf-manifest freshness step |
 | 3, RESOURCE_MAP to manifest | Leg 3 of `verify_router_sync.cjs`, run by the umbrella; no workflow step reads RESOURCE_MAP |
 | 4, compiled side | Leg 4 of `verify_router_sync.cjs`, run by the umbrella, and the CI admission step, scoring compiled decisions against playbook routing gold, `--warn-only` |
 | 4, surface router | Leg 4 of `verify_router_sync.cjs`, run by the umbrella |
 
-The one remaining gap is leg 1b (nine docs with no router naming them). It stays
-out of the umbrella until those docs are routed. Owner: sk-code.
+The umbrella runs every leg. Leg 1b reports a reference or asset doc that no router names.
+The three shared workflow docs are the only exception, because each surface carries a symlink
+to them and no router lists either path.
 
 ### Severity model
 
@@ -138,7 +139,7 @@ Notes:
 - [code_organization.md](code-organization/overview-and-module-organization.md)
 - [universal_patterns.md](universal-patterns/naming-and-commenting.md)
 - [hooks.md](./hooks.md)
-- Drift-guard entry point: `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` — runs this verifier, `verify_stack_folders.py` and `verify_router_sync.cjs` (legs 1a, 2, 3 and 4) together as one gate.
+- Drift-guard entry point: `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` — runs this verifier, `verify_stack_folders.py` and `verify_router_sync.cjs` (every leg: 1a, 1b, 2, 3 and 4) together as one gate.
 
 ---
 

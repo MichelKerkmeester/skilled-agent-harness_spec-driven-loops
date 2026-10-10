@@ -1,0 +1,11 @@
+✔ a canonical workflow doc reached through a surface symlink is not reported (38.710959ms)
+✔ an unrouted doc is still reported, in the shared tier and in a packet (37.017708ms)
+✔ a run without --checks includes leg 1b (36.13675ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 149.99875
