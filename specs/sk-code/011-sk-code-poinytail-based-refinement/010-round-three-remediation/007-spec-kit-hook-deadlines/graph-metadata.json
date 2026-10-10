@@ -43,6 +43,7 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "changelog/v2.7.2.0.md",
       "runtime/hooks/lib/hook-adapter-shared.mjs",
       "runtime/hooks/shared-stdin.ts",
       "runtime/hooks/lib/hook-stdin-deadline.test.mjs",
@@ -56,8 +57,7 @@
       ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md",
       "scratch/dispatch-units.json",
       "hooks/README.md",
-      "changelog/v2.7.1.0.md",
-      "scratch/fix-units-applied.json"
+      "changelog/v2.7.1.0.md"
     ],
     "entities": [
       {
@@ -88,6 +88,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.7.2.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.7.2.0.md",
         "source": "derived"
       },
       {
@@ -157,12 +163,6 @@
         "source": "derived"
       },
       {
-        "name": "fix-units-applied.json",
-        "kind": "config",
-        "path": "scratch/fix-units-applied.json",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Fifteen stdin readers under `.skilled/skills/system-spec-kit/runtime/hooks/` loop `for await (const chunk of process.stdin)` or call `readFileSync(0)` with no deadline, and the eight spec-gate adapters reach the same unbounded loop through `lib/hook-adapter-shared.mjs`",
     "created_at": "2026-10-10T10:07:23Z",
-    "last_save_at": "2026-10-10T11:50:39.038Z",
+    "last_save_at": "2026-10-10T18:02:14.105Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6bd1b5a689931867f9bd88d4433d25a71d9d1ee15ee3c6f47cc494c6d7649eeb",
+    "source_fingerprint": "sha256:ca09c43e49389b0b556bc91294d8591e1f136bfc15d49d03642565e189d8c0b1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7b342a9fd2531884b39d8d973e8130c3aba7215f16fd910309840fbb7c86c3ac",
       "plan.md": "9878ec6d72ebf59d63db10751053180307d4cdb671e8d3fa42f97175bd3b262c",
       "tasks.md": "0f16b56887c15fd6f2f865308b207f85000db36f8d71953f1690e2c294f1e97a",
-      "implementation-summary.md": "fcb0e2cea8554ac765152a280885f8532b76ccbd0dc27a66c7319c1999bbf561"
+      "implementation-summary.md": "3b57ff0393415648d0a7cffc336db15310d51af26a3f17666baccf72a80ce4ff"
     },
     "last_active_at": null
   }

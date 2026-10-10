@@ -54,7 +54,7 @@ A spec-kit hook no longer waits forever on a host that never closes stdin. Every
 
 Two shared readers carry the deadline. `lib/hook-adapter-shared.mjs` serves the plain `.mjs` and `.cjs` hooks: `readStdin({ timeoutMs = 3000 })` settles on the end of the stream or the deadline, then removes its listeners, clears its timer and pauses stdin so the process can exit. The new `shared-stdin.ts` serves the compiled hooks: `readHookStdin({ timeoutMs, maxBytes })` does the same and also resolves `null` once more than `maxBytes` arrive, so the four `shared.ts` readers keep their 1 MB cap. The `.mjs` file is not part of the TypeScript build and is absent from `dist/`, which is why there are two. The four `.cjs` hooks load the ESM reader with a dynamic import inside their existing `try`, and every hook keeps its own `JSON.parse` and fail-open branch.
 
-A new table-driven test holds stdin open on all 32 hook entries (16 plain, 16 compiled) and checks that each exits on its own with its recorded exit code and stdout, plus four payload tests. The 15 readers were routed, the READMEs describe them, and the skill moved to 2.7.1.0 with a changelog entry.
+A new table-driven test holds stdin open on all 32 hook entries (16 plain, 16 compiled) and checks that each exits on its own with its recorded exit code and stdout, plus four payload tests. The 15 readers were routed, the READMEs describe them, and the skill moved to 2.7.1.0 with a changelog entry. When the branch merged into main, main already held a different 2.7.1.0, so this entry now ships inside `changelog/v2.7.2.0.md` together with the round-four deadline work.
 
 ### Files Changed
 
