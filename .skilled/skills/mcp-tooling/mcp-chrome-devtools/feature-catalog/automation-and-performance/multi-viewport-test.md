@@ -37,7 +37,7 @@ Viewports are driven by `bdg cdp Emulation.setDeviceMetricsOverride` with `mobil
 
 | File | Type | Role |
 |------|------|------|
-| `examples/README.md` §3.3, §4 | Manual | Viewport list, outputs, visual-diff workflow |
+| `examples/README.md` §3.3, §4 | Manual playbook | Viewport list, outputs, visual-diff workflow |
 
 ---
 

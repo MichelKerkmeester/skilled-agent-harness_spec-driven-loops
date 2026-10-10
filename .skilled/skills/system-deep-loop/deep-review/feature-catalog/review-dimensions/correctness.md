@@ -43,9 +43,9 @@ Correctness also feeds the severity system directly. Findings in this dimension 
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/initialization-and-state-setup/scope-discovery-and-dimension-ordering.md` | Manual scenario | Verifies dimension ordering starts with correctness. |
-| `manual-testing-playbook/iteration-execution-and-state-discipline/review-iteration-writes-findings-jsonl-and-strategy-update.md` | Manual scenario | Exercises dimension coverage updates during iterations. |
-| `manual-testing-playbook/convergence-and-recovery/dimension-coverage-convergence-signal.md` | Manual scenario | Verifies correctness participates in the full-dimension stop signal. |
+| `manual-testing-playbook/initialization-and-state-setup/scope-discovery-and-dimension-ordering.md` | Manual playbook | Verifies dimension ordering starts with correctness. |
+| `manual-testing-playbook/iteration-execution-and-state-discipline/review-iteration-writes-findings-jsonl-and-strategy-update.md` | Manual playbook | Exercises dimension coverage updates during iterations. |
+| `manual-testing-playbook/convergence-and-recovery/dimension-coverage-convergence-signal.md` | Manual playbook | Verifies correctness participates in the full-dimension stop signal. |
 
 ---
 

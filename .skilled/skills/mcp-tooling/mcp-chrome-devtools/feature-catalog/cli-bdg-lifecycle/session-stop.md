@@ -37,7 +37,7 @@ In shell scripts, register cleanup with `trap "bdg stop 2>&1" EXIT INT TERM` so 
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/cli-bdg-lifecycle/session-stop.md` | Manual | BDG-004 scenario contract |
+| `manual-testing-playbook/cli-bdg-lifecycle/session-stop.md` | Manual playbook | BDG-004 scenario contract |
 
 ---
 

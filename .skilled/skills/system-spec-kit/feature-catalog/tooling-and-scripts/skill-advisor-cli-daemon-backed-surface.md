@@ -45,7 +45,7 @@ Hook and plugin integrations use `--warm-only` so no prompt-time cold spawn occu
 | `.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-parity.vitest.ts` | Automated test | CLI/MCP parity coverage |
 | `.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-job-semantics.vitest.ts` | Automated test | Job and trusted mutation semantics |
 | `.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-dual-client.vitest.ts` | Automated test | MCP and CLI concurrent client coverage |
-| `.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-advisor-cli.md` | Catalog | Owning system-skill-advisor feature entry |
+| `.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-advisor-cli.md` | Reference | Owning system-skill-advisor feature entry |
 
 ---
 

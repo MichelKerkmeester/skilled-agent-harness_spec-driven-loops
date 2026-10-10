@@ -1,6 +1,6 @@
 ---
 title: "Graph convergence event"
-description: "First-class deep-review-state.jsonl event that records the graph-assisted STOP decision (STOP_ALLOWED / STOP_BLOCKED / CONTINUE) and the signals behind it before the inline vote can finalize STOP."
+description: "A first-class `deep-review-state.jsonl` event recording the graph-assisted STOP decision before the inline vote can finalize STOP."
 trigger_phrases:
   - "graph convergence event"
   - "graph_convergence"
@@ -42,8 +42,8 @@ The combined-stop rule is strict: final STOP is legal only when the inline revie
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/convergence-and-recovery/graph-convergence-review.md` | Manual scenario | Verifies the graph convergence event gates the STOP decision. |
-| `manual-testing-playbook/iteration-execution-and-state-discipline/graph-events-review.md` | Manual scenario | Verifies graph events are emitted and consumed for review-aware coverage. |
+| `manual-testing-playbook/convergence-and-recovery/graph-convergence-review.md` | Manual playbook | Verifies the graph convergence event gates the STOP decision. |
+| `manual-testing-playbook/iteration-execution-and-state-discipline/graph-events-review.md` | Manual playbook | Verifies graph events are emitted and consumed for review-aware coverage. |
 
 ---
 

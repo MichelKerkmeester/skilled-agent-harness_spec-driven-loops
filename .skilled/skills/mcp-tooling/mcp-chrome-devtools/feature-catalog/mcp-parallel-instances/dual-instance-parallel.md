@@ -38,7 +38,7 @@ Each instance is launched with `--isolated=true` so there are no session conflic
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-parallel-instances/dual-instance-parallel.md` | Manual | BDG-015 scenario contract |
+| `manual-testing-playbook/mcp-parallel-instances/dual-instance-parallel.md` | Manual playbook | BDG-015 scenario contract |
 
 ---
 

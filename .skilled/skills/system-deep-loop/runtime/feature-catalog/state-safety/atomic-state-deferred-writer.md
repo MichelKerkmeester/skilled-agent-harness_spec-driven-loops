@@ -41,7 +41,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/atomic-state.vitest.ts` | Test | Primary regression coverage for Atomic-state deferred writer. |
+| `tests/unit/atomic-state.vitest.ts` | Automated test | Primary regression coverage for Atomic-state deferred writer. |
 
 ---
 
@@ -49,9 +49,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: State safety
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F030
 - Feature file path: `state-safety/atomic-state-deferred-writer.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//003-atomic-state-deferred-writer`
 - Primary sources: `lib/deep-loop/atomic-state.ts`, `tests/unit/atomic-state.vitest.ts`
 Related references:
 - [state safety](../../feature-catalog/state-safety) — State safety category

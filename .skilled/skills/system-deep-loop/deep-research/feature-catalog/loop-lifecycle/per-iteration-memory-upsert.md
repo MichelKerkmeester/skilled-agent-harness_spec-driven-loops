@@ -1,6 +1,6 @@
 ---
 title: "Per-iteration lineage context refresh"
-description: "Refreshes the next prompt's context line from the lineage-local state the reducer just rewrote."
+description: "Refreshes the next prompt's context line from lineage-local state."
 trigger_phrases:
   - "per-iteration lineage context refresh"
   - "step_refresh_lineage_context"

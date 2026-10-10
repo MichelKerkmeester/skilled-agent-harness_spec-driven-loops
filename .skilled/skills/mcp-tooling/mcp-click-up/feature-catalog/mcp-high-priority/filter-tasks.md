@@ -64,7 +64,7 @@ Values inside one filter combine with OR, and different filters combine with AND
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-task-crud/filter-tasks.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-task-crud/filter-tasks.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

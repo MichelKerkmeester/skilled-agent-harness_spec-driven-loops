@@ -63,8 +63,8 @@ The Orca packet left this hub for the standalone `cli-orca` skill, so the former
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/mcp-tooling/manual-testing-playbook/` | Manual gold | Records source-router outcomes and compiled availability. |
-| `.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Automated gate | Checks the generated leaf manifest and root metadata class. |
+| `.skilled/skills/mcp-tooling/manual-testing-playbook/` | Manual playbook | Records source-router outcomes and compiled availability. |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Automated test | Checks the generated leaf manifest and root metadata class. |
 
 ---
 

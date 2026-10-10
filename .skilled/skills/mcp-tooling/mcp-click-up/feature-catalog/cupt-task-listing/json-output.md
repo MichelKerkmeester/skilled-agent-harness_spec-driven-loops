@@ -38,7 +38,7 @@ Never parse human-readable cupt output in agent code. Always use `--json`. Empty
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

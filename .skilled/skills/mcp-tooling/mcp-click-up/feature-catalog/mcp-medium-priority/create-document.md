@@ -51,7 +51,7 @@ All four of `name`, `parent`, `visibility` and `create_page` are required. `pare
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-documents/create-document.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-documents/create-document.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

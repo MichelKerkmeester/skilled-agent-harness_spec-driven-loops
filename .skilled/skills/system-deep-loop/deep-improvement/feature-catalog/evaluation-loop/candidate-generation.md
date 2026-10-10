@@ -1,6 +1,6 @@
 ---
 title: "Candidate generation"
-description: "Generates one bounded packet-local candidate through the proposal-only deep-improvement subagent."
+description: "Writes one bounded packet-local candidate without mutating the canonical target."
 trigger_phrases:
   - "candidate generation"
   - "deep-improvement.md"
@@ -44,7 +44,7 @@ The YAML workflows own when candidate generation happens. Autonomous mode runs t
 | File | Type | Role |
 |---|---|---|
 | `.skilled/skills/system-deep-loop/deep-improvement/references/shared/loop-protocol.md` | Reference | Documents the proposal-first sequence and runtime-only candidate path. |
-| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/promotion-rules.md` | Safety reference | Stops the loop when mutator and scorer boundaries blur or scope broadens. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/promotion-rules.md` | Reference | Stops the loop when mutator and scorer boundaries blur or scope broadens. |
 
 ---
 

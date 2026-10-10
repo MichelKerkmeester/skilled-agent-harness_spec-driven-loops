@@ -38,7 +38,7 @@ Explicit equivalent of the default self-assigned scope. Does NOT override `--all
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Explicit-pair comparison"
-description: "Compares two explicit files with no stored state — the fallback for arbitrary versions or a missing baseline."
+description: "Compares two explicit files with no stored state, the fallback when no baseline exists or when comparing two arbitrary versions."
 trigger_phrases:
   - "Explicit-pair comparison"
   - "compare two files directly"

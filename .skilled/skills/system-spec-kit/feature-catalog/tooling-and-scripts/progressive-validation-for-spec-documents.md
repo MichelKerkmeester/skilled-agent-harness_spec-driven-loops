@@ -1,6 +1,6 @@
 ---
 title: "Progressive validation for spec documents"
-description: "Progressive validation runs a 4-level pipeline (detect, auto-fix, suggest, report) on top of `validate.sh` for spec documents."
+description: "A 4-level pipeline, detect, auto-fix, suggest, report, layered on top of `validate.sh`."
 trigger_phrases:
   - progressive validation
   - progressive-validate.sh

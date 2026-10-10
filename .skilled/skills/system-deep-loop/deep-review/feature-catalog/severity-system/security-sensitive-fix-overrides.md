@@ -1,6 +1,6 @@
 ---
 title: "Security-sensitive fix overrides"
-description: "Spec-only contract describing tighter convergence thresholds and closed-gate replay requirements for review reruns after security-sensitive fixes. Not yet runtime-enforced."
+description: "A spec-only contract for tighter convergence thresholds and closed-gate replay on review reruns after security-sensitive fixes."
 trigger_phrases:
   - "security-sensitive fix overrides"
   - "closed-gate replay"
@@ -41,7 +41,7 @@ The target contract applies to reruns after fixes involving security, path discl
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/convergence-and-recovery/review-quality-guards-block-premature-stop.md` | Manual scenario | Covers the quality-guard layer the override contract would tighten. |
+| `manual-testing-playbook/convergence-and-recovery/review-quality-guards-block-premature-stop.md` | Manual playbook | Covers the quality-guard layer the override contract would tighten. |
 
 ---
 

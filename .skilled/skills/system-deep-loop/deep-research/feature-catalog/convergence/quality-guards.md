@@ -1,6 +1,6 @@
 ---
 title: "Quality guards"
-description: "Blocks premature stops until source diversity, focus alignment, and weak-source checks all pass."
+description: "Blocks weak or incomplete STOP decisions even after convergence math votes to stop."
 trigger_phrases:
   - "quality guards"
   - "premature stop prevention"

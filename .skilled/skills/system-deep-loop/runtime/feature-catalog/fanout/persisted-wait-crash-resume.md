@@ -42,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/fanout-run.vitest.ts` | Test | Primary regression coverage for Persisted-wait crash resume. |
+| `tests/unit/fanout-run.vitest.ts` | Automated test | Primary regression coverage for Persisted-wait crash resume. |
 
 ---
 
@@ -50,9 +50,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Fan-out
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F045
 - Feature file path: `fanout/persisted-wait-crash-resume.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//018-persisted-wait-crash-resume`
 - Primary sources: `scripts/fanout-run.cjs`, `.skilled/commands/deep/assets/deep-research-auto.yaml`, `tests/unit/fanout-run.vitest.ts`
 Related references:
 - [fanout](../fanout/) — Fan-out category

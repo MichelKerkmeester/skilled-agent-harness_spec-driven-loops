@@ -1,6 +1,6 @@
 ---
 title: "Post-dispatch validate"
-description: "Validates iteration artifacts after dispatch: checks iteration file existence, state-log growth, required JSONL fields, optional code-verification pass (compile/execute/test/lint), and appends degraded verification events when optional checks fail."
+description: "Validates iteration artifacts after dispatch and appends degraded verification events when optional checks fail."
 trigger_phrases:
   - "post-dispatch validate"
   - "post-dispatch-validate.ts"
@@ -42,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/post-dispatch-validate.vitest.ts` | Test | Primary regression coverage for Post-dispatch validate. |
+| `tests/unit/post-dispatch-validate.vitest.ts` | Automated test | Primary regression coverage for Post-dispatch validate. |
 | `tests/integration/review-depth-validator.vitest.ts` | Integration | Review-depth validator enforcement coverage. |
 | `tests/unit/dispatch-failure.vitest.ts` | Unit | Dispatch-failure validation coverage. |
 
@@ -52,6 +52,5 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Validation
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F005
 - Feature file path: `validation/post-dispatch-validate.md`
 - Primary sources: `lib/deep-loop/post-dispatch-validate.ts`, `tests/unit/post-dispatch-validate.vitest.ts`

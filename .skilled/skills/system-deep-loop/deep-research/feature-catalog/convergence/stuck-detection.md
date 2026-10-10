@@ -1,6 +1,6 @@
 ---
 title: "Stuck detection"
-description: "Detects consecutive no-progress runs and routes the loop into targeted recovery instead of blind repetition."
+description: "Detects consecutive no-progress runs and switches the loop into recovery mode."
 trigger_phrases:
   - "stuck detection"
   - "detect stuck loop"

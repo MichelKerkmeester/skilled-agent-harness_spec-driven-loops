@@ -38,7 +38,7 @@ Stored in `~/.cupt/config.yaml`. All commands that need a workspace use this val
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

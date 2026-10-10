@@ -1,6 +1,6 @@
 ---
 title: "Convergence check"
-description: "Determines whether the review loop continues, enters recovery, or stops legally."
+description: "Determines whether the loop continues, recovers, or stops."
 trigger_phrases:
   - "convergence check"
   - "check review convergence"
@@ -43,11 +43,11 @@ Even when the weighted vote requests STOP, the loop still has to pass the review
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/convergence-and-recovery/stop-on-max-iterations.md` | Manual scenario | Verifies the hard iteration ceiling. |
-| `manual-testing-playbook/convergence-and-recovery/composite-review-convergence-stop-behavior.md` | Manual scenario | Exercises the weighted stop vote. |
-| `manual-testing-playbook/convergence-and-recovery/stuck-recovery-widens-dimension-focus.md` | Manual scenario | Verifies least-covered-dimension recovery behavior. |
-| `manual-testing-playbook/convergence-and-recovery/graph-convergence-review.md` | Manual scenario | Verifies graph-assisted convergence and blockers. |
-| `manual-testing-playbook/convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual scenario | Confirms blocked-stop events surface into reducer-owned state. |
+| `manual-testing-playbook/convergence-and-recovery/stop-on-max-iterations.md` | Manual playbook | Verifies the hard iteration ceiling. |
+| `manual-testing-playbook/convergence-and-recovery/composite-review-convergence-stop-behavior.md` | Manual playbook | Exercises the weighted stop vote. |
+| `manual-testing-playbook/convergence-and-recovery/stuck-recovery-widens-dimension-focus.md` | Manual playbook | Verifies least-covered-dimension recovery behavior. |
+| `manual-testing-playbook/convergence-and-recovery/graph-convergence-review.md` | Manual playbook | Verifies graph-assisted convergence and blockers. |
+| `manual-testing-playbook/convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual playbook | Confirms blocked-stop events surface into reducer-owned state. |
 
 ---
 

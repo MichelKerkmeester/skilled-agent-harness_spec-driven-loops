@@ -1,6 +1,6 @@
 ---
-title: "Cross-Mode Anti-Convergence Contract"
-description: "Documents the shipped antiConvergence floor, fail-closed stop policy, runtime capability validation, and optimizer invariant locks as consumed by deep-review."
+title: "Cross-mode anti-convergence contract"
+description: "Applies the shared minimum-iteration floor, fail-closed stop policy, runtime capability validation, and optimizer invariant locks to review mode."
 trigger_phrases:
   - "cross-mode anti-convergence"
   - "antiConvergence"
@@ -46,7 +46,7 @@ The optimizer manifest carries an invariant group for the same contract: `antiCo
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/convergence-and-recovery/cross-mode-anti-convergence-contract.md` | Manual scenario | Verifies the review-facing config, runtime matrix, resolver, and optimizer invariant anchors. |
+| `manual-testing-playbook/convergence-and-recovery/cross-mode-anti-convergence-contract.md` | Manual playbook | Verifies the review-facing config, runtime matrix, resolver, and optimizer invariant anchors. |
 
 ---
 

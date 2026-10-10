@@ -1,6 +1,6 @@
 ---
-title: "deep-research: Divergent convergence mode"
-description: "Current-state catalog entry for eligible research STOP translation into a bounded native Council pivot."
+title: "Divergent convergence mode"
+description: "Turns an eligible, legally converged research direction into a bounded scope-expansion pivot instead of immediate synthesis."
 trigger_phrases:
   - "research divergent convergence"
   - "research pivot council"

@@ -47,13 +47,12 @@ The user-visible contract is concrete: council convergence still requires the tw
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/convergence-and-rollback/cross-mode-anti-convergence-contract.md` | Manual scenario | Verifies council config, runtime matrix, runtime resolver, and optimizer anchors. |
+| `manual-testing-playbook/convergence-and-rollback/cross-mode-anti-convergence-contract.md` | Manual playbook | Verifies council config, runtime matrix, runtime resolver, and optimizer anchors. |
 
 ---
 
 ## 4. SOURCE METADATA
 - Group: Convergence And Rollback
-- Feature ID: DAC-033
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/convergence-and-rollback/cross-mode-anti-convergence-contract.md`
 - Playbook scenario: `manual-testing-playbook/convergence-and-rollback/cross-mode-anti-convergence-contract.md`

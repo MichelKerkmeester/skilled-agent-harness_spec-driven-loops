@@ -1,6 +1,6 @@
 ---
 title: "Three-signal model"
-description: "Combines rolling novelty, MAD noise floor, and question coverage into the live deep-research stop vote."
+description: "Uses statistical novelty and question coverage signals to nominate STOP or CONTINUE."
 trigger_phrases:
   - "three-signal model"
   - "rolling novelty MAD"

@@ -1,6 +1,6 @@
 ---
 title: "Dynamic profiling"
-description: "Builds a target-specific scoring profile from the agent file being evaluated."
+description: "Generates a target-specific evaluation profile directly from the agent being scored."
 trigger_phrases:
   - "dynamic profiling"
   - "generate-profile.cjs"
@@ -43,8 +43,8 @@ The current release ships only this dynamic path. `target-manifest.jsonc` enable
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/agents/deep-improvement.md` | Consumed target example | Shows the section, rules, capability scan, and related-resource patterns that the generator is designed to parse. |
-| `.skilled/skills/system-deep-loop/deep-improvement/README.md` | Package reference | Documents that no static profiles ship in the current release. |
+| `.skilled/agents/deep-improvement.md` | Reference | Shows the section, rules, capability scan, and related-resource patterns that the generator is designed to parse. |
+| `.skilled/skills/system-deep-loop/deep-improvement/README.md` | Reference | Documents that no static profiles ship in the current release. |
 
 ---
 

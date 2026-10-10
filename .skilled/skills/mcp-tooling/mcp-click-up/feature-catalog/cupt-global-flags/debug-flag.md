@@ -38,7 +38,7 @@ Use when diagnosing auth failures, slow responses, or unexpected empty results. 
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

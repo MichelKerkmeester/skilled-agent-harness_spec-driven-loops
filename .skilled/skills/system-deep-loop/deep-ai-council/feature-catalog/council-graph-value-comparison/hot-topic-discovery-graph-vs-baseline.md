@@ -53,7 +53,6 @@ The user-visible contract is concrete: Demonstrate hot_nodes mode surfaces high-
 
 ## 4. SOURCE METADATA
 - Group: Council Graph Value Comparison
-- Feature ID: DAC-031
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-graph-value-comparison/hot-topic-discovery-graph-vs-baseline.md`
 - Playbook scenario: `manual-testing-playbook/council-graph-value-comparison/hot-topic-discovery-graph-vs-baseline.md`

@@ -1,6 +1,6 @@
 ---
 title: "Ideas backlog lifecycle"
-description: "Separates one-off idea observations from reducer-promoted backlog candidates and durable rejection state."
+description: "Promotes recurring ideas through reducer-owned threshold and ranking rules."
 trigger_phrases:
   - "ideas backlog lifecycle"
   - "idea_observed"

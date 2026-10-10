@@ -38,7 +38,7 @@ Use as cleanup verification after `cupt time stop`. Pattern: always check `cupt 
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

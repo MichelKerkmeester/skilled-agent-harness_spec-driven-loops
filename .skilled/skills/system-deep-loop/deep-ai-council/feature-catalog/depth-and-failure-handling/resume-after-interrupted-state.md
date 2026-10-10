@@ -51,7 +51,6 @@ The user-visible contract is concrete: Verify an interrupted council run can res
 
 ## 4. SOURCE METADATA
 - Group: Depth And Failure Handling
-- Feature ID: DAC-018
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/depth-and-failure-handling/resume-after-interrupted-state.md`
 - Playbook scenario: `manual-testing-playbook/depth-and-failure-handling/resume-after-interrupted-state.md`

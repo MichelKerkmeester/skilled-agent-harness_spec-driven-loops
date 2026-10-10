@@ -38,7 +38,7 @@ Exit 0 on success, non-zero on 401/network error. Pattern: `cupt status && cupt 
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

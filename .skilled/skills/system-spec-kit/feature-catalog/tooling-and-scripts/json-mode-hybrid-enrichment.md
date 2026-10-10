@@ -1,6 +1,6 @@
 ---
 title: "JSON mode structured summary hardening"
-description: "Structured JSON summary support for generate-context.js, including toolCalls/exchanges fields, file-backed JSON authority, and Wave 2 hardening for decision confidence, truncated titles, git_changed_file_count stability, and template count preservation."
+description: "Structured JSON summary support for `generate-context`, including `toolCalls`/`exchanges` fields and file-backed JSON authority."
 trigger_phrases:
   - json mode structured summary hardening
   - generate-context.js json mode

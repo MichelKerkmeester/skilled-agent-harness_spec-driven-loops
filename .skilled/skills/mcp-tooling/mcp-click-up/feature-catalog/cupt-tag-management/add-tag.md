@@ -38,7 +38,7 @@ Used in agent queue management: add tags like `needs_review`, `processed`, or `b
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

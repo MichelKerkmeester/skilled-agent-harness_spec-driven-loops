@@ -61,29 +61,10 @@ SK_DOC_NAME = 'sk-doc'
 # packages absent from this list (including any newly created catalog) fail closed from
 # their first validation.
 WARN_PACKAGE_IDS = frozenset({
-    'cli-external-orchestration',
-    'mcp-tooling',
-    'mcp-tooling/mcp-aside-devtools',
-    'mcp-tooling/mcp-chrome-devtools',
-    'mcp-tooling/mcp-click-up',
     'mcp-tooling/mcp-figma',
-    'mcp-tooling/mcp-mobbin',
-    'mcp-tooling/mcp-refero',
-    'sk-code',
-    'sk-design',
-    'sk-design/sk-design-interface',
     'sk-design/sk-design-md-generator',
-    'sk-doc',
-    'sk-doc/sk-create-diff',
-    'sk-git',
-    'sk-prompt',
-    'system-deep-loop',
-    'system-deep-loop/deep-ai-council',
-    'system-deep-loop/deep-improvement',
     'system-deep-loop/deep-research',
-    'system-deep-loop/deep-review',
     'system-deep-loop/runtime',
-    'system-skill-advisor',
     'system-spec-kit',
 })
 

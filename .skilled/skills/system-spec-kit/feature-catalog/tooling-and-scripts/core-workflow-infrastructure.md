@@ -1,6 +1,6 @@
 ---
-title: "Core Workflow Infrastructure"
-description: "Shared workflow modules that load configuration, gate indexing, score memory quality, build titles and topics, edit frontmatter, review post-save output, and persist indexed memories."
+title: "Core workflow infrastructure"
+description: "Shared workflow modules that load configuration, build titles and topics, edit frontmatter, review post-save output and persist packet continuity."
 trigger_phrases:
   - "core workflow infrastructure"
   - "memory-indexer"
@@ -26,7 +26,7 @@ Instead of being one runtime entry point, this group is a set of internal buildi
 
 ### Configuration
 
-`config.ts` is the central configuration loader. It discovers the scripts root by walking upward until it finds `package.json`, loads `config.jsonc`, strips JSONC comments before parsing, validates every merged field against safe defaults, auto-converts legacy `qualityAbortThreshold` values on a `1-100` scale into canonical `0.0-1.0`, freezes the static config surface, and exports helpers for locating active `specs/` and `.opencode/specs/` directories without duplicating real-path aliases.
+`config.ts` is the central configuration loader. It discovers the scripts root by walking upward until it finds `package.json`, loads `config.jsonc`, strips JSONC comments before parsing, validates every merged field against safe defaults, auto-converts legacy `qualityAbortThreshold` values on a `1-100` scale into canonical `0.0-1.0`, freezes the static config surface, and exports helpers for locating the active `specs/` directory and its legacy `.opencode/specs/` alias without duplicating real-path aliases.
 
 ### Core Behavior
 

@@ -1,6 +1,6 @@
 ---
 title: "Legacy projection"
-description: "Projects the append-only ledger into the legacy state file that existing readers consume; the append-gateway projection refresh is wired for deep-research only."
+description: "Projects the append-only ledger into the legacy state file that existing readers consume; the append-gateway refresh is wired for deep-research only."
 trigger_phrases:
   - "legacy projection"
   - "legacy-projection"
@@ -48,8 +48,8 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/legacy-projections.test.ts` | Test | Primary regression coverage for Legacy projection. |
-| `tests/unit/transactional-projections.vitest.ts` | Test | Transactional projection refresh coverage. |
+| `tests/unit/legacy-projections.test.ts` | Automated test | Primary regression coverage for Legacy projection. |
+| `tests/unit/transactional-projections.vitest.ts` | Automated test | Transactional projection refresh coverage. |
 
 ---
 
@@ -57,7 +57,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: State safety
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F053
 - Feature file path: `state-safety/legacy-projection.md`
 - Primary sources: `lib/legacy-projections/legacy-projection-engine.ts`, `tests/unit/legacy-projections.test.ts`
 Related references:

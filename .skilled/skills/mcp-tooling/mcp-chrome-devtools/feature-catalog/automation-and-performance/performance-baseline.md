@@ -37,7 +37,7 @@ Built on `bdg cdp Performance.enable` / `Performance.getMetrics` plus HAR export
 
 | File | Type | Role |
 |------|------|------|
-| `examples/README.md` §3.1 | Manual | Usage, captured outputs, and use cases |
+| `examples/README.md` §3.1 | Manual playbook | Usage, captured outputs, and use cases |
 
 ---
 

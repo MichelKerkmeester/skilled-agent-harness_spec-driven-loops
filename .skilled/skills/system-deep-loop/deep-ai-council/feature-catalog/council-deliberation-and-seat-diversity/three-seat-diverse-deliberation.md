@@ -51,7 +51,6 @@ The user-visible contract is concrete: Verify three distinct seat lenses are req
 
 ## 4. SOURCE METADATA
 - Group: Council Deliberation And Seat Diversity
-- Feature ID: DAC-003
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-deliberation-and-seat-diversity/three-seat-diverse-deliberation.md`
 - Playbook scenario: `manual-testing-playbook/council-deliberation-and-seat-diversity/three-seat-diverse-deliberation.md`

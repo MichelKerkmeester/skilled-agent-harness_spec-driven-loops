@@ -54,7 +54,6 @@ The user-visible contract is concrete: Demonstrate runtime status CLI returns st
 
 ## 4. SOURCE METADATA
 - Group: Council Graph Value Comparison
-- Feature ID: DAC-032
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-graph-value-comparison/mid-run-interruption-recovery-graph-vs-baseline.md`
 - Playbook scenario: `manual-testing-playbook/council-graph-value-comparison/mid-run-interruption-recovery-graph-vs-baseline.md`

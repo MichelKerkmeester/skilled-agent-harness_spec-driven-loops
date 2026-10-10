@@ -1,6 +1,6 @@
 ---
 title: "Fallback router"
-description: "Resolves the fallback route when a model exhausts its quota pool. Returns fallback (to a configured target in a different pool) or fail-fast based on the model registry."
+description: "Chooses whether a failed model should fall back to a configured target or fail fast."
 trigger_phrases:
   - "fallback router"
   - "fallback-router.ts"
@@ -42,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/fallback-router.vitest.ts` | Test | Primary regression coverage for Fallback router. |
+| `tests/unit/fallback-router.vitest.ts` | Automated test | Primary regression coverage for Fallback router. |
 
 ---
 
@@ -50,7 +50,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Executor
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F003
 - Feature file path: `executor/fallback-router.md`
 - Primary sources: `lib/deep-loop/fallback-router.ts`, `tests/unit/fallback-router.vitest.ts`
 Related references:

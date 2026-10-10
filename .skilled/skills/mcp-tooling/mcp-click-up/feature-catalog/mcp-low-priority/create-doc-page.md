@@ -52,7 +52,7 @@ Create a new page in a ClickUp document.
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-documents/document-pages.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-documents/document-pages.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

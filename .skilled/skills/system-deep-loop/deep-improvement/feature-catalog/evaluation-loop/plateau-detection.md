@@ -1,6 +1,6 @@
 ---
 title: "Plateau detection"
-description: "Stops further iterations when the loop has run out of meaningful movement or stable evidence."
+description: "Stops the loop when repeated runs no longer produce useful movement."
 trigger_phrases:
   - "plateau detection"
   - "reduce-state.cjs"

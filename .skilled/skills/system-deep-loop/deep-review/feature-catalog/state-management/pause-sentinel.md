@@ -1,6 +1,6 @@
 ---
 title: "Pause sentinel"
-description: "File-based graceful suspension mechanism that halts the autonomous review loop between iterations and emits a normalized userPaused stop event."
+description: "File-based graceful suspension that halts the autonomous loop between iterations and emits a normalized `userPaused` event."
 trigger_phrases:
   - "pause sentinel"
   - ".deep-review-pause"
@@ -41,8 +41,8 @@ A normalization rule governs the event name: if the runtime first observes a raw
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/pause-resume-and-fault-tolerance/pause-sentinel-halts-between-review-iterations.md` | Manual scenario | Verifies the sentinel halts the loop between iterations. |
-| `manual-testing-playbook/pause-resume-and-fault-tolerance/resume-after-pause-sentinel-removal.md` | Manual scenario | Verifies removing the sentinel resumes from persisted state, not iteration 1. |
+| `manual-testing-playbook/pause-resume-and-fault-tolerance/pause-sentinel-halts-between-review-iterations.md` | Manual playbook | Verifies the sentinel halts the loop between iterations. |
+| `manual-testing-playbook/pause-resume-and-fault-tolerance/resume-after-pause-sentinel-removal.md` | Manual playbook | Verifies removing the sentinel resumes from persisted state, not iteration 1. |
 
 ---
 

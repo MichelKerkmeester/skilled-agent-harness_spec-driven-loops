@@ -1,6 +1,6 @@
 ---
 title: "Rejected-pattern cache"
-description: "Builds a bounded reducer-owned cache that suppresses rejected candidates before they re-enter focus selection."
+description: "Suppresses rejected candidates before they re-enter next-focus or recovery selection."
 trigger_phrases:
   - "rejected-pattern cache"
   - "idea_rejected suppression"

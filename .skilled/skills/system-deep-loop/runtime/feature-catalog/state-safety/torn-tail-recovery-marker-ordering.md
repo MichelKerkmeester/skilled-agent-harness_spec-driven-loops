@@ -45,7 +45,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/authorized-ledger.vitest.ts` | Test | Primary regression coverage for Torn-tail recovery marker ordering. |
+| `tests/unit/authorized-ledger.vitest.ts` | Automated test | Primary regression coverage for Torn-tail recovery marker ordering. |
 
 ---
 
@@ -53,9 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: State safety
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F052
 - Feature file path: `state-safety/torn-tail-recovery-marker-ordering.md`
-- Source phase: `.opencode/specs/system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/004-durable-write-boundaries`
 - Primary sources: `lib/authorized-ledger/immutable-frame-store.ts`, `tests/unit/authorized-ledger.vitest.ts`
 Related references:
 - [state safety](../../feature-catalog/state-safety) — State safety category

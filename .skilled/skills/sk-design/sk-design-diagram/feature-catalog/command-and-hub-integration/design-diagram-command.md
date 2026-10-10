@@ -24,7 +24,7 @@ The command is a thin router, not the workflow itself. It separates execution ro
 
 ### Router contract
 
-The router owns three assets: the presentation contract (`create-diagram-presentation.txt`), the auto workflow (`create-diagram-auto.yaml`), and the confirm workflow (`create-diagram-confirm.yaml`). If any referenced asset is missing, the router stops and reports the missing path. It reads the presentation contract, runs its Phase 0 verification and setup resolution, resolves the execution mode from `$ARGUMENTS` or the setup answer (`:auto` or `:confirm`), loads the workflow YAML bound to that mode, and executes it step by step.
+The router owns three assets: the presentation contract (`diagram-presentation.txt`), the auto workflow (`diagram-auto.yaml`), and the confirm workflow (`diagram-confirm.yaml`). If any referenced asset is missing, the router stops and reports the missing path. It reads the presentation contract, runs its Phase 0 verification and setup resolution, resolves the execution mode from `$ARGUMENTS` or the setup answer (`:auto` or `:confirm`), loads the workflow YAML bound to that mode, and executes it step by step.
 
 ### Modes and workflow
 
@@ -32,7 +32,7 @@ The router owns three assets: the presentation contract (`create-diagram-present
 
 ### Presentation boundary
 
-User-facing wording — startup questions, Phase 0 verification, the setup dashboard, confirmation prompts, status display, completion display, and next-step text — lives only in `create-diagram-presentation.txt`. The router never invents visible wording for those surfaces; it only selects the workflow YAML and execution mode. The command's metadata registers the same choreography in `command-metadata.json`: load the `sk-design` hub routing table, load the `sk-design-diagram` mode contract, then load the presentation contract before resolving setup and execution mode.
+User-facing wording — startup questions, Phase 0 verification, the setup dashboard, confirmation prompts, status display, completion display, and next-step text — lives only in `diagram-presentation.txt`. The router never invents visible wording for those surfaces; it only selects the workflow YAML and execution mode. The command's metadata registers the same choreography in `command-metadata.json`: load the `sk-design` hub routing table, load the `sk-design-diagram` mode contract, then load the presentation contract before resolving setup and execution mode.
 
 ---
 
@@ -42,10 +42,10 @@ User-facing wording — startup questions, Phase 0 verification, the setup dashb
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/commands/create/diagram.md` | Handler | The `/design:diagram` router contract: owned assets, mode routing, execution targets, and the presentation boundary |
-| `.skilled/commands/create/assets/create-diagram-auto.yaml` | Shared | The bound workflow executed in `:auto` mode |
-| `.skilled/commands/create/assets/create-diagram-confirm.yaml` | Shared | The bound workflow executed in `:confirm` mode (also the default when mode is omitted) |
-| `.skilled/commands/create/assets/create-diagram-presentation.txt` | Shared | The presentation contract that owns all user-facing wording |
+| `.skilled/commands/design/diagram.md` | Handler | The `/design:diagram` router contract: owned assets, mode routing, execution targets, and the presentation boundary |
+| `.skilled/commands/design/assets/diagram-auto.yaml` | Shared | The bound workflow executed in `:auto` mode |
+| `.skilled/commands/design/assets/diagram-confirm.yaml` | Shared | The bound workflow executed in `:confirm` mode (also the default when mode is omitted) |
+| `.skilled/commands/design/assets/diagram-presentation.txt` | Shared | The presentation contract that owns all user-facing wording |
 
 ### Validation And Tests
 

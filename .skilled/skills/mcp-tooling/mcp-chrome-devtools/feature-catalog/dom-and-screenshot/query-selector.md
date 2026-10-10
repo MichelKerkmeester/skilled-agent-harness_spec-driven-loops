@@ -37,7 +37,7 @@ Requires an active session. For node-level operations (outer HTML, attributes) d
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/dom-and-screenshot/query-selector.md` | Manual | BDG-008 scenario contract |
+| `manual-testing-playbook/dom-and-screenshot/query-selector.md` | Manual playbook | BDG-008 scenario contract |
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Iteration dispatch"
-description: "Dispatches one fresh-context deep-research iteration and syncs reducer-owned packet state afterward."
+description: "Runs one fresh-context research cycle through the LEAF agent and reducer sync path."
 trigger_phrases:
   - "iteration dispatch"
   - "dispatch research iteration"

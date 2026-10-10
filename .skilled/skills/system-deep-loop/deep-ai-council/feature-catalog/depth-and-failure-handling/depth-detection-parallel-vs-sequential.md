@@ -51,7 +51,6 @@ The user-visible contract is concrete: Verify Depth 0 versus Depth 1 dispatch de
 
 ## 4. SOURCE METADATA
 - Group: Depth And Failure Handling
-- Feature ID: DAC-014
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/depth-and-failure-handling/depth-detection-parallel-vs-sequential.md`
 - Playbook scenario: `manual-testing-playbook/depth-and-failure-handling/depth-detection-parallel-vs-sequential.md`

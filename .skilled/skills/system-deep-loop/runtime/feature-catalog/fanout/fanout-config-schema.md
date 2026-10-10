@@ -1,6 +1,6 @@
 ---
 title: "Fan-out config schema"
-description: "Multi-executor fan-out config layer: lineageExecutorSchema, fanoutConfigSchema, parseFanoutConfig, expandLineages — sits on top of the existing single-executor config without modifying it."
+description: "Adds `lineageExecutorSchema`, `fanoutConfigSchema`, `parseFanoutConfig`, and `expandLineages` on top of the existing single-executor config without modifying it."
 trigger_phrases:
   - "fan-out config schema"
   - "parseFanoutConfig"
@@ -62,7 +62,6 @@ conditionally spread so records are byte-identical when absent (parity guarantee
 ## 4. SOURCE METADATA
 
 - Group: Fan-Out
-- Feature ID: F023
 - Catalog source: `feature-catalog/fanout/fanout-config-schema.md`
 - Primary source files: `lib/deep-loop/executor-config.ts`, `lib/deep-loop/executor-audit.ts`
 Related references:

@@ -38,7 +38,7 @@ Exit 0 on success with a confirmation message. Exit non-zero if no closed status
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

@@ -3,7 +3,7 @@ name: mcp-refero
 description: "Refero MCP transport: read-only UI reference search via Code Mode, paired with sk-design-md-generator for a Style Reference."
 compatibility: Requires a Refero Pro plan (Free has no MCP access), the npx mcp-remote bridge, and Node.js >=18; this project's Code Mode currently runs on Node 24.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.1.2.0
+version: 1.1.3.0
 user-invocable: true
 ---
 

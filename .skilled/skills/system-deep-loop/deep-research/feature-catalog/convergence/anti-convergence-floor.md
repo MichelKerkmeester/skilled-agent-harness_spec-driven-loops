@@ -1,6 +1,6 @@
 ---
 title: "Anti-convergence floor"
-description: "Prevents convergence STOP before the configured minimum iteration floor while preserving hard stops and pause behavior."
+description: "Blocks convergence STOP until the configured minimum iteration floor clears."
 trigger_phrases:
   - "anti-convergence floor"
   - "minIterations convergence"

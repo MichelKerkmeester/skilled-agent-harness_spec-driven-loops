@@ -53,7 +53,7 @@ The router resolves to `single` for one dominant signal, `orderedBundle` for mul
 | File | Type | Role |
 |---|---|---|
 | `.skilled/commands/doctor/scripts/parent-skill-check.cjs` | Automated test | Structural hub conformance and registry/router consistency. |
-| `.skilled/skills/mcp-tooling/manual-testing-playbook/` | Manual gold | Positive, negative, ambiguous, and holdout routing scenarios. |
+| `.skilled/skills/mcp-tooling/manual-testing-playbook/` | Manual playbook | Positive, negative, ambiguous, and holdout routing scenarios. |
 
 ---
 

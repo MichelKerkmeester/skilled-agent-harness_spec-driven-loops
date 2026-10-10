@@ -1,6 +1,6 @@
 ---
 title: "Config management"
-description: "Defines the immutable review-packet contract for the current lineage."
+description: "Defines the immutable packet contract for the current review lineage."
 trigger_phrases:
   - "config management"
   - "deep-review-config.json"
@@ -43,9 +43,9 @@ The same document also declares reducer IO names and metric names, which makes i
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/initialization-and-state-setup/fresh-review-initialization-creates-canonical-state-files.md` | Manual scenario | Verifies config creation on a fresh run. |
-| `manual-testing-playbook/initialization-and-state-setup/resume-classification-from-valid-prior-review-state.md` | Manual scenario | Checks lineage and resume behavior against an existing config. |
-| `manual-testing-playbook/initialization-and-state-setup/invalid-or-contradictory-review-state-halts-for-repair.md` | Manual scenario | Confirms config disagreement blocks resume. |
+| `manual-testing-playbook/initialization-and-state-setup/fresh-review-initialization-creates-canonical-state-files.md` | Manual playbook | Verifies config creation on a fresh run. |
+| `manual-testing-playbook/initialization-and-state-setup/resume-classification-from-valid-prior-review-state.md` | Manual playbook | Checks lineage and resume behavior against an existing config. |
+| `manual-testing-playbook/initialization-and-state-setup/invalid-or-contradictory-review-state-halts-for-repair.md` | Manual playbook | Confirms config disagreement blocks resume. |
 
 ---
 

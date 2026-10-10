@@ -1,6 +1,6 @@
 ---
 title: "Baseline snapshot and compare"
-description: "Captures a baseline copy before an edit, then compares the edited file against it — the capture-before-edit invariant."
+description: "Captures a baseline copy of a document before an edit, then compares the edited file against that baseline, the capture-before-edit invariant."
 trigger_phrases:
   - "Baseline snapshot and compare"
   - "capture baseline before editing"

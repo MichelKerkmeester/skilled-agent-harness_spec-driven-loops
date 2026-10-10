@@ -8,7 +8,7 @@ trigger_phrases:
   - "magicpath search components"
   - "magicpath themes"
   - "magicpath design system"
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # mcp-magicpath

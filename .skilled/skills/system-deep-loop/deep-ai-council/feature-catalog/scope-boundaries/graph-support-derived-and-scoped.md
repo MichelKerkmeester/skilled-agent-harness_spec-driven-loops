@@ -50,7 +50,6 @@ The user-visible contract is concrete: Verify graph support is derived and scope
 
 ## 4. SOURCE METADATA
 - Group: Scope Boundaries
-- Feature ID: DAC-011
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/scope-boundaries/graph-support-derived-and-scoped.md`
 - Playbook scenario: `manual-testing-playbook/scope-boundaries/graph-support-derived-and-scoped.md`

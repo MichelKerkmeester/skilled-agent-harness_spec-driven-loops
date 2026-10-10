@@ -1,6 +1,6 @@
 ---
 title: "Report safety validation"
-description: "Asserts a generated report is safe and self-contained before hand-off, inspecting real markup only."
+description: "Asserts a generated report is safe and self-contained before it is handed off."
 trigger_phrases:
   - "Report safety validation"
   - "validate diff report safety"

@@ -54,7 +54,6 @@ The user-visible contract is concrete: Demonstrate measurable effort reduction b
 
 ## 4. SOURCE METADATA
 - Group: Council Graph Value Comparison
-- Feature ID: DAC-027
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-graph-value-comparison/unresolved-disagreement-triage-graph-vs-baseline.md`
 - Playbook scenario: `manual-testing-playbook/council-graph-value-comparison/unresolved-disagreement-triage-graph-vs-baseline.md`

@@ -52,7 +52,7 @@ This is the connection smoke test for the MCP route, because it needs no IDs. Mo
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-task-crud/get-workspace-hierarchy.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-task-crud/get-workspace-hierarchy.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

@@ -37,8 +37,8 @@ Open two pages, close the first, select the second, and verify a subsequent `tak
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-parallel-instances/close-and-select-page.md` | Manual | BDG-016 scenario contract |
-| `manual-testing-playbook/mcp-parallel-instances/multi-tab-same-instance.md` | Manual | BDG-017 scenario contract |
+| `manual-testing-playbook/mcp-parallel-instances/close-and-select-page.md` | Manual playbook | BDG-016 scenario contract |
+| `manual-testing-playbook/mcp-parallel-instances/multi-tab-same-instance.md` | Manual playbook | BDG-017 scenario contract |
 
 ---
 

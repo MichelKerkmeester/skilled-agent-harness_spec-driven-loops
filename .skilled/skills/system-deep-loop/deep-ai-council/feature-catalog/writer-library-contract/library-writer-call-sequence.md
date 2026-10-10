@@ -51,7 +51,6 @@ The user-visible contract is concrete: Verify lib/persist-artifacts.cjs exports 
 
 ## 4. SOURCE METADATA
 - Group: Writer Library Contract
-- Feature ID: DAC-013
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/writer-library-contract/library-writer-call-sequence.md`
 - Playbook scenario: `manual-testing-playbook/writer-library-contract/library-writer-call-sequence.md`

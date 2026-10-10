@@ -43,7 +43,7 @@ Expose the scorer projection data the advisor needs, including the generated dee
 | `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | Handler | Publishes workflowMode and includes projection hash in cache signature |
 | `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` | Schema | Optional workflowMode response field |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Compatibility script | Emits the routing projection and Python parity constants |
-| `.skilled/commands/create/assets/create_parent_skill_auto.yaml` | Command asset | Requires projection emission for lexical/alias-fold parent-skill modes |
+| `.skilled/commands/create/assets/create-skill-parent-auto.yaml` | Command asset | Requires projection emission for lexical/alias-fold parent-skill modes |
 
 ### Validation And Tests
 

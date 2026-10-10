@@ -68,7 +68,7 @@ Bring up and maintain the link between the terminal and Figma Desktop. Safe plug
 | Daemon diagnose | Diagnoses daemon/token issues (e.g. "Unauthorized") | READ-ONLY | `figma-ds-cli daemon diagnose` |
 | Daemon start / stop / restart | Brings the local daemon up, down, or recycles it | MUTATING (app-level) | `figma-ds-cli daemon start [--force] \| stop \| restart` |
 | Daemon reconnect | Re-establishes the Desktop link without a full restart | MUTATING (app-level) | `figma-ds-cli daemon reconnect` |
-| init-agent (off by default) | Writes `AGENTS.md` + `.cursor/rules/figma-cli.mdc` into the repo; never run by default | MUTATING (app-level) | `figma-ds-cli init-agent [--tool claude\|cursor\|both] [--force]` |
+| init-agent (off by default) | Writes [`AGENTS.md`](../../../../../AGENTS.md) + `.cursor/rules/figma-cli.mdc` into the repo; never run by default | MUTATING (app-level) | `figma-ds-cli init-agent [--tool claude\|cursor\|both] [--force]` |
 
 See [`connect-and-daemon/connect-and-daemon.md`](../feature-catalog/connect-and-daemon/connect-and-daemon.md) for the safe-vs-yolo gate, the daemon model, and the token-handling rules.
 
@@ -204,14 +204,14 @@ Each capability area maps to exactly one per-feature file in its category folder
 
 | Section | Area | Commands listed | Per-feature file |
 |---|---|---|---|
-| 2 | Connect and daemon | 10 | `connect-and-daemon/connect-and-daemon.md` |
-| 3 | Inspect | 10 | `inspect/inspect.md` |
-| 4 | Design-system extract and import | 2 | `design-system-extract-and-import/design-system-extract-and-import.md` |
-| 5 | Render and create | 14 | `render-and-create/render-and-create.md` |
-| 6 | Tokens and variables | 9 | `tokens-and-variables/tokens-and-variables.md` |
-| 7 | Export | 5 | `export/export.md` |
-| 8 | A11y and analysis | 5 | `a11y-and-analysis/a11y-and-analysis.md` |
-| 9 | Optional MCP context | 2 | `optional-mcp/optional-mcp-context.md` |
+| 2 | Connect and daemon | 10 | [`connect-and-daemon/connect-and-daemon.md`](connect-and-daemon/connect-and-daemon.md) |
+| 3 | Inspect | 10 | [`inspect/inspect.md`](inspect/inspect.md) |
+| 4 | Design-system extract and import | 2 | [`design-system-extract-and-import/design-system-extract-and-import.md`](design-system-extract-and-import/design-system-extract-and-import.md) |
+| 5 | Render and create | 14 | [`render-and-create/render-and-create.md`](render-and-create/render-and-create.md) |
+| 6 | Tokens and variables | 9 | [`tokens-and-variables/tokens-and-variables.md`](tokens-and-variables/tokens-and-variables.md) |
+| 7 | Export | 5 | [`export/export.md`](export/export.md) |
+| 8 | A11y and analysis | 5 | [`a11y-and-analysis/a11y-and-analysis.md`](a11y-and-analysis/a11y-and-analysis.md) |
+| 9 | Optional MCP context | 2 | [`optional-mcp/optional-mcp-context.md`](optional-mcp/optional-mcp-context.md) |
 | **Total** | **8 capability areas** | **57 command rows** | **8 per-feature files** |
 
 > Counts cover the decision-relevant commands digested in the figma-cli capability research; the full per-command flag surface (≈130 rows) lives in the research raw output and is not reproduced here. The per-feature file count MUST equal the 8 capability areas; keep them in sync as areas are added or revised. Verify any command, flag, or class against `figma-ds-cli --help` before relying on it.

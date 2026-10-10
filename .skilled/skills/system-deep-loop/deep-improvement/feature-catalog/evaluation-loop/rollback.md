@@ -1,6 +1,6 @@
 ---
 title: "Rollback"
-description: "Restores the archived canonical target after a guarded deep-improvement promotion."
+description: "Restores the archived canonical target after a guarded promotion has already happened."
 trigger_phrases:
   - "rollback"
   - "rollback-candidate.cjs"
@@ -42,8 +42,8 @@ The rollback helper is deliberately narrow. It does not emit journal rows, re-ru
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-deep-loop/deep-improvement/references/agent-improvement/mirror-drift-policy.md` | Policy reference | Separates rollback from later mirror-review work. |
-| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/promotion-rules.md` | Policy reference | Defines when rollback-ready evidence must exist before promotion proceeds. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/agent-improvement/mirror-drift-policy.md` | Reference | Separates rollback from later mirror-review work. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/promotion-rules.md` | Reference | Defines when rollback-ready evidence must exist before promotion proceeds. |
 
 ---
 

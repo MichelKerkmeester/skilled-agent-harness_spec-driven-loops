@@ -49,7 +49,7 @@ Fetch replies with `clickup_get_threaded_comments` when `reply_count` is above z
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-task-crud/task-comments.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-task-crud/task-comments.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

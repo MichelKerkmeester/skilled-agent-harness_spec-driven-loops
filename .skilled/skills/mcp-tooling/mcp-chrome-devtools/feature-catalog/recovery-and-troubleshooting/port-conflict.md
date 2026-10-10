@@ -37,7 +37,7 @@ Port 9222 grants full browser control, so it must stay localhost-bound (`--remot
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/recovery-and-failure/dead-session.md` | Manual | Restart path exercised in BDG-021 |
+| `manual-testing-playbook/recovery-and-failure/dead-session.md` | Manual playbook | Restart path exercised in BDG-021 |
 
 ---
 

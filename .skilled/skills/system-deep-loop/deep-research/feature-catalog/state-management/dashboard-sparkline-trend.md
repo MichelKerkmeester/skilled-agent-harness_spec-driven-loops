@@ -1,6 +1,6 @@
 ---
 title: "Dashboard sparkline trend"
-description: "Renders new-information and score history as dashboard sparklines with a flatline advisory signal."
+description: "Renders dashboard sparklines for novelty and score history."
 trigger_phrases:
   - "dashboard sparkline trend"
   - "renderSparkline"

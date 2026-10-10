@@ -1,6 +1,6 @@
 ---
 title: "CLI Executor Two-Axis Dispatch Routing"
-description: "How the cli-external-orchestration hub scores and dispatches one of seven CLI-executor workflow packets, after the Jev transport and its transport-axis left for a hub of its own, and with no surface or runtime-loop axis."
+description: "`mode-registry.json` and `hub-router.json` jointly resolve a request to a single executor, an ordered bundle, or a deferred disambiguation across the hub's seven modes."
 trigger_phrases:
   - "cli executor two-axis dispatch routing"
   - "cli-external-orchestration hub-router scoring"

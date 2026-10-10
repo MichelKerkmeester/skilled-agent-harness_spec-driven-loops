@@ -41,7 +41,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/coverage-graph-signals.vitest.ts` | Test | Primary regression coverage for Coverage-graph time decay. |
+| `tests/unit/coverage-graph-signals.vitest.ts` | Automated test | Primary regression coverage for Coverage-graph time decay. |
 
 ---
 
@@ -49,9 +49,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Coverage graph
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F040
 - Feature file path: `coverage-graph/coverage-graph-time-decay.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//013-coverage-graph-time-decay`
 - Primary sources: `lib/coverage-graph/coverage-graph-signals.ts`, `tests/unit/coverage-graph-signals.vitest.ts`
 Related references:
 - [coverage graph](../../feature-catalog/coverage-graph) — Coverage graph category

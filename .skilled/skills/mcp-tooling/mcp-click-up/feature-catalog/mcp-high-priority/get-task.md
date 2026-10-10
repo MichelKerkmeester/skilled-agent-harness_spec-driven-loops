@@ -50,7 +50,7 @@ The default response is a compact summary, and large sections appear only as cou
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-task-crud/get-task.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-task-crud/get-task.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

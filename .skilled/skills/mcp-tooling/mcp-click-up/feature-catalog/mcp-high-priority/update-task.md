@@ -59,7 +59,7 @@ Pass `task_id` and at least one field. Use `markdown_description` for markdown, 
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-task-crud/update-task.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-task-crud/update-task.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

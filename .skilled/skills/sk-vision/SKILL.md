@@ -2,7 +2,7 @@
 name: sk-vision
 description: "Local vision for text-only models: OCR, inspect, detect and pixel analysis on screenshots via a private Moondream runtime."
 allowed-tools: [Read, Bash]
-version: 0.3.3.0
+version: 0.3.4.0
 ---
 
 <!-- Keywords: screenshot OCR, attached image, mockup, error.png, local vision, moondream, grounded evidence, sk_vision_ocr, sk_vision_inspect, cursor cli, devin hook, sk-vision -->

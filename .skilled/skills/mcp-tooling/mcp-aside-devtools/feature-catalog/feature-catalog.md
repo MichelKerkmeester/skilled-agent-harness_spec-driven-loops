@@ -104,7 +104,7 @@ Failure classification and recovery: distinguishing binding, auth, transport, an
 
 | Feature | One-line description | Class | Canonical entry point |
 |---|---|---|---|
-| Error taxonomy + recovery | PROFILE_UNBOUND vs signed-out vs dead child vs daemon outage | READ-ONLY | `references/troubleshooting.md` |
+| Error taxonomy + recovery | PROFILE_UNBOUND vs signed-out vs dead child vs daemon outage | READ-ONLY | [`references/troubleshooting.md`](../references/troubleshooting.md) |
 | Guarded capability probes | Console/network capture probes that fail closed (no verified contract) | READ-ONLY (probe) | Playbook ASD-012 / ASD-013 |
 
 See [`troubleshoot/troubleshooting-recipes.md`](troubleshoot/troubleshooting-recipes.md) for the recovery sequences and the open UNKNOWN items.
@@ -132,21 +132,21 @@ Maps each DevTools capability domain to its Aside repl pattern and confidence st
 
 | DevTools capability | Aside repl pattern | New file(s) | Status |
 |---|---|---|---|
-| DOM query / Elements panel | `page.$` / `page.$$` / `page.$eval` / `snapshot(page)` | `devtools-parity/dom-inspection.md` · ASD-016 | confirmed / skip-valid |
-| Console eval | `page.evaluate(() => ...)` | `devtools-parity/dom-inspection.md` · ASD-016 | confirmed / skip-valid |
-| Screenshot (full/clip/element) | `page.screenshot` / `locator.screenshot` | `devtools-parity/screenshots-and-pdf.md` · ASD-017 | confirmed |
-| Print to PDF | `page.pdf({ format })` | `devtools-parity/screenshots-and-pdf.md` · ASD-017 | confirmed |
-| Console capture | `page.on('console', ...)` | `devtools-parity/console-and-network-capture.md` · ASD-018 | skip-valid (needs bound session) |
-| Network capture | `page.on('request'\|'response'\|'requestfinished', ...)` | `devtools-parity/console-and-network-capture.md` · ASD-018 | skip-valid (needs bound session) |
-| HAR export | assemble HAR-equivalent from events | `devtools-parity/console-and-network-capture.md` | **gap — no native HAR** |
-| Cookies (read/inject) | `page.context().cookies()` / `addCookies()` | `devtools-parity/cookies-and-storage.md` · ASD-019 | confirmed / skip-valid |
-| Web storage | `page.evaluate(() => localStorage/sessionStorage)` | `devtools-parity/cookies-and-storage.md` · ASD-019 | confirmed / skip-valid |
-| Performance timing | `page.evaluate(performance.getEntriesByType(...))` | `devtools-parity/performance-timing.md` · ASD-020 | confirmed / skip-valid |
-| Lighthouse audit | none — external tooling required | `devtools-parity/performance-timing.md` | **gap — no Lighthouse** |
-| Navigate / page lifecycle | `page.goto` / `page.waitForLoadState` | `devtools-parity/navigation-and-tabs.md` · ASD-021 | confirmed / skip-valid |
-| Multi-tab (single session) | `openTab` / `attachBrowserTab` / `tabs` | `devtools-parity/navigation-and-tabs.md` · ASD-021 | confirmed / skip-valid |
-| Parallel isolated instances | none — single manual, single writer | `devtools-parity/navigation-and-tabs.md` | **gap — no isolation** |
-| Viewport emulation | `page.setViewportSize(...)` | `devtools-parity/navigation-and-tabs.md` | confirmed (inferred) |
+| DOM query / Elements panel | `page.$` / `page.$$` / `page.$eval` / `snapshot(page)` | [`devtools-parity/dom-inspection.md`](devtools-parity/dom-inspection.md) · ASD-016 | confirmed / skip-valid |
+| Console eval | `page.evaluate(() => ...)` | [`devtools-parity/dom-inspection.md`](devtools-parity/dom-inspection.md) · ASD-016 | confirmed / skip-valid |
+| Screenshot (full/clip/element) | `page.screenshot` / `locator.screenshot` | [`devtools-parity/screenshots-and-pdf.md`](devtools-parity/screenshots-and-pdf.md) · ASD-017 | confirmed |
+| Print to PDF | `page.pdf({ format })` | [`devtools-parity/screenshots-and-pdf.md`](devtools-parity/screenshots-and-pdf.md) · ASD-017 | confirmed |
+| Console capture | `page.on('console', ...)` | [`devtools-parity/console-and-network-capture.md`](devtools-parity/console-and-network-capture.md) · ASD-018 | skip-valid (needs bound session) |
+| Network capture | `page.on('request'\|'response'\|'requestfinished', ...)` | [`devtools-parity/console-and-network-capture.md`](devtools-parity/console-and-network-capture.md) · ASD-018 | skip-valid (needs bound session) |
+| HAR export | assemble HAR-equivalent from events | [`devtools-parity/console-and-network-capture.md`](devtools-parity/console-and-network-capture.md) | **gap — no native HAR** |
+| Cookies (read/inject) | `page.context().cookies()` / `addCookies()` | [`devtools-parity/cookies-and-storage.md`](devtools-parity/cookies-and-storage.md) · ASD-019 | confirmed / skip-valid |
+| Web storage | `page.evaluate(() => localStorage/sessionStorage)` | [`devtools-parity/cookies-and-storage.md`](devtools-parity/cookies-and-storage.md) · ASD-019 | confirmed / skip-valid |
+| Performance timing | `page.evaluate(performance.getEntriesByType(...))` | [`devtools-parity/performance-timing.md`](devtools-parity/performance-timing.md) · ASD-020 | confirmed / skip-valid |
+| Lighthouse audit | none — external tooling required | [`devtools-parity/performance-timing.md`](devtools-parity/performance-timing.md) | **gap — no Lighthouse** |
+| Navigate / page lifecycle | `page.goto` / `page.waitForLoadState` | [`devtools-parity/navigation-and-tabs.md`](devtools-parity/navigation-and-tabs.md) · ASD-021 | confirmed / skip-valid |
+| Multi-tab (single session) | `openTab` / `attachBrowserTab` / `tabs` | [`devtools-parity/navigation-and-tabs.md`](devtools-parity/navigation-and-tabs.md) · ASD-021 | confirmed / skip-valid |
+| Parallel isolated instances | none — single manual, single writer | [`devtools-parity/navigation-and-tabs.md`](devtools-parity/navigation-and-tabs.md) | **gap — no isolation** |
+| Viewport emulation | `page.setViewportSize(...)` | [`devtools-parity/navigation-and-tabs.md`](devtools-parity/navigation-and-tabs.md) | confirmed (inferred) |
 | Raw CDP domain access | none — Playwright API only, no CDP passthrough | — | **gap — no CDP parity** |
 
 ---
@@ -157,11 +157,11 @@ The five intent domains each map to one per-feature file; the DevTools-parity fa
 
 | Section | Area | Capabilities | Per-feature file(s) |
 |---|---|---|---|
-| 2 | Task | 4 | `task/agent-tasks.md` |
-| 3 | Repl | 2 | `repl/repl-evidence-capture.md` |
-| 4 | Mcp | 2 | `mcp/mcp-transport-and-code-mode.md` |
-| 5 | Install | 2 | `install/install-and-doctor.md` |
-| 6 | Troubleshoot | 2 | `troubleshoot/troubleshooting-recipes.md` |
+| 2 | Task | 4 | [`task/agent-tasks.md`](task/agent-tasks.md) |
+| 3 | Repl | 2 | [`repl/repl-evidence-capture.md`](repl/repl-evidence-capture.md) |
+| 4 | Mcp | 2 | [`mcp/mcp-transport-and-code-mode.md`](mcp/mcp-transport-and-code-mode.md) |
+| 5 | Install | 2 | [`install/install-and-doctor.md`](install/install-and-doctor.md) |
+| 6 | Troubleshoot | 2 | [`troubleshoot/troubleshooting-recipes.md`](troubleshoot/troubleshooting-recipes.md) |
 | 7 | DevTools Parity | 6 | `devtools-parity/` (6 leaves) |
 | **Total** | **5 intents + parity** | **18 capabilities** | **11 per-feature files** |
 

@@ -1,6 +1,6 @@
 ---
 title: "Deterministic scoring"
-description: "Produces repeatable score and benchmark outputs from the dynamic scorer and fixture runner."
+description: "Produces the score and benchmark evidence that later gates consume."
 trigger_phrases:
   - "deterministic scoring"
   - "run-benchmark.cjs"
@@ -44,7 +44,7 @@ This feature covers the JSON outputs that later gates, dashboards, and manual de
 | File | Type | Role |
 |---|---|---|
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/tests/benchmark-stability.vitest.ts` | Automated test | Verifies the replay-stability helper that sits beside benchmark verdicts. |
-| `.skilled/skills/system-deep-loop/deep-improvement/README.md` | Package reference | Mirrors the current weighted-score threshold and benchmark expectations for operators. |
+| `.skilled/skills/system-deep-loop/deep-improvement/README.md` | Reference | Mirrors the current weighted-score threshold and benchmark expectations for operators. |
 
 ---
 

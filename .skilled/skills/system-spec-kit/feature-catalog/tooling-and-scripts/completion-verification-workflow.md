@@ -1,6 +1,6 @@
 ---
-title: "Completion Verification Workflow"
-description: "Checklist completion verifier for spec folders that enforces P0/P1 completion, evidence markers, priority tagging, optional strict P2 enforcement, and JSON or human-readable status reporting."
+title: "Completion verification workflow"
+description: "Checklist completion verifier that enforces P0/P1 completion, evidence markers and priority tagging, with JSON or human-readable status output."
 trigger_phrases:
   - completion verification workflow
   - check-completion.sh

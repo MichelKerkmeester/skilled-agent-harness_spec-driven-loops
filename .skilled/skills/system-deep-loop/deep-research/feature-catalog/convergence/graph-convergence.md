@@ -1,6 +1,6 @@
 ---
 title: "Graph convergence"
-description: "Adds coverage-graph evidence and blockers to the deep-research legal-stop path when graph events exist."
+description: "Adds coverage-graph evidence to the stop decision when iterations emit graph events."
 trigger_phrases:
   - "graph convergence"
   - "coverage-graph stop"

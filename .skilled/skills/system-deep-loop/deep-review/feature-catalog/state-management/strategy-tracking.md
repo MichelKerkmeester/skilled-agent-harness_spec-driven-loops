@@ -1,6 +1,6 @@
 ---
 title: "Strategy tracking"
-description: "Maintains the mutable review brain across fresh-context agent dispatches."
+description: "Maintains the mutable review brain across fresh agent dispatches."
 trigger_phrases:
   - "strategy tracking"
   - "deep-review-strategy.md"
@@ -43,9 +43,9 @@ The reducer also depends on machine-owned anchors in this file. Missing anchors 
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/iteration-execution-and-state-discipline/strategy-next-focus-and-dimension-rotation.md` | Manual scenario | Verifies next-focus selection and dimension rotation. |
-| `manual-testing-playbook/iteration-execution-and-state-discipline/review-iteration-writes-findings-jsonl-and-strategy-update.md` | Manual scenario | Checks that strategy updates accompany the iteration output. |
-| `manual-testing-playbook/convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual scenario | Verifies blocked-stop state can override next focus in reducer-driven summaries. |
+| `manual-testing-playbook/iteration-execution-and-state-discipline/strategy-next-focus-and-dimension-rotation.md` | Manual playbook | Verifies next-focus selection and dimension rotation. |
+| `manual-testing-playbook/iteration-execution-and-state-discipline/review-iteration-writes-findings-jsonl-and-strategy-update.md` | Manual playbook | Checks that strategy updates accompany the iteration output. |
+| `manual-testing-playbook/convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual playbook | Verifies blocked-stop state can override next focus in reducer-driven summaries. |
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Injection screen measurement"
-description: "Tests offline whether a Jev noul spots text that tries to instruct an AI agent better than flag-nothing and a fixed lexical screen."
+description: "Tests offline whether Jev's `noul` spots text that tries to instruct an AI agent better than flag-nothing and a fixed lexical screen."
 trigger_phrases:
   - "injection screen measurement"
   - "fetched text injection screen"

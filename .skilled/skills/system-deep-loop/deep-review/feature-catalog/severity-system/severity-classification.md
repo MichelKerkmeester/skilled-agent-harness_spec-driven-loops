@@ -1,6 +1,6 @@
 ---
 title: "Severity classification"
-description: "Assigns P0 or P1 or P2 meaning and severity weight to each review finding."
+description: "Assigns P0 or P1 or P2 meaning and severity weight to each finding."
 trigger_phrases:
   - "severity classification"
   - "P0 P1 P2 severity"
@@ -43,8 +43,8 @@ The semantic meaning of each level is stable across the skill. P0 covers correct
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/iteration-execution-and-state-discipline/severity-classification-in-jsonl.md` | Manual scenario | Verifies severities and counts are recorded correctly in iteration state. |
-| `manual-testing-playbook/convergence-and-recovery/p0-override-blocks-convergence.md` | Manual scenario | Confirms the blocker override path in convergence logic. |
+| `manual-testing-playbook/iteration-execution-and-state-discipline/severity-classification-in-jsonl.md` | Manual playbook | Verifies severities and counts are recorded correctly in iteration state. |
+| `manual-testing-playbook/convergence-and-recovery/p0-override-blocks-convergence.md` | Manual playbook | Confirms the blocker override path in convergence logic. |
 
 ---
 

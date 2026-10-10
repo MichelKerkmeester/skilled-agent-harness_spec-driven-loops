@@ -46,9 +46,9 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/per-mode-authority-flip.vitest.ts` | Test | Primary regression coverage for Ledger authority. |
-| `tests/unit/mode-append-gateway.vitest.ts` | Test | Append-gateway authorization coverage. |
-| `tests/unit/deep-research-authority-composition.vitest.ts` | Test | Deep-research authority composition coverage. |
+| `tests/unit/per-mode-authority-flip.vitest.ts` | Automated test | Primary regression coverage for Ledger authority. |
+| `tests/unit/mode-append-gateway.vitest.ts` | Automated test | Append-gateway authorization coverage. |
+| `tests/unit/deep-research-authority-composition.vitest.ts` | Automated test | Deep-research authority composition coverage. |
 
 ---
 
@@ -56,7 +56,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: State safety
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F054
 - Feature file path: `state-safety/ledger-authority.md`
 - Primary sources: `lib/per-mode-authority-flip/authority-registry.ts`, `tests/unit/per-mode-authority-flip.vitest.ts`
 Related references:

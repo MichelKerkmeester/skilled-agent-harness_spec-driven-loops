@@ -42,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/council/session-state-hierarchy.vitest.ts` | Test | Primary regression coverage for Session state hierarchy. |
+| `tests/council/session-state-hierarchy.vitest.ts` | Automated test | Primary regression coverage for Session state hierarchy. |
 
 ---
 
@@ -50,7 +50,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Council
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F022
 - Feature file path: `council/session-state-hierarchy.md`
 - Primary sources: `lib/council/session-state-hierarchy.cjs`, `tests/council/session-state-hierarchy.vitest.ts`
 Related references:

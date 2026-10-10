@@ -37,7 +37,7 @@ Prevention is trap-based cleanup (`trap cleanup EXIT INT TERM` around `bdg stop`
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/recovery-and-failure/cleanup-leak.md` | Manual | BDG-022 scenario contract (destructive) |
+| `manual-testing-playbook/recovery-and-failure/cleanup-leak.md` | Manual playbook | BDG-022 scenario contract (destructive) |
 
 ---
 

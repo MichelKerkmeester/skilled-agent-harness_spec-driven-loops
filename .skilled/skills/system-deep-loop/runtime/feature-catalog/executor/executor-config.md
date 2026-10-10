@@ -42,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/executor-config.vitest.ts` | Test | Primary regression coverage for Executor config. |
+| `tests/unit/executor-config.vitest.ts` | Automated test | Primary regression coverage for Executor config. |
 
 ---
 
@@ -50,7 +50,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Executor
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F001
 - Feature file path: `executor/executor-config.md`
 - Primary sources: `lib/deep-loop/executor-config.ts`, `tests/unit/executor-config.vitest.ts`
 Related references:

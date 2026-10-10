@@ -38,7 +38,7 @@ Runs client-side. Combine with server-side `--tag` to narrow before filtering: `
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

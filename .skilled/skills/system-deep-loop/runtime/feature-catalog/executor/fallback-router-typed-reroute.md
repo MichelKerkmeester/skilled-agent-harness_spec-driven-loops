@@ -41,7 +41,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/fallback-router.vitest.ts` | Test | Primary regression coverage for Fallback-router typed reroute. |
+| `tests/unit/fallback-router.vitest.ts` | Automated test | Primary regression coverage for Fallback-router typed reroute. |
 
 ---
 
@@ -49,9 +49,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Executor
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F042
 - Feature file path: `executor/fallback-router-typed-reroute.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//015-fallback-router-typed-reroute`
 - Primary sources: `lib/deep-loop/fallback-router.ts`, `tests/unit/fallback-router.vitest.ts`
 Related references:
 - [executor](../executor/) — Executor category

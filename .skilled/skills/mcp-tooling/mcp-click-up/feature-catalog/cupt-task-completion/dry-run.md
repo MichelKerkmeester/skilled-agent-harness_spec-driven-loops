@@ -38,7 +38,7 @@ REQUIRED before any batch completion loop. Cost: one API read (status discovery)
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

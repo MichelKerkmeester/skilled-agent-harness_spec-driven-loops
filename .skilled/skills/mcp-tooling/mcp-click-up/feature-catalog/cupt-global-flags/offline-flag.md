@@ -22,7 +22,7 @@ Directs `cupt list` and `cupt show` to return data from the local cache without 
 
 ## 2. HOW IT WORKS
 
-Stale risk: data may be minutes to hours old. Check cache age with `cupt config --show`. Not available on write commands (done, note, time, tag).
+Stale risk: data may be minutes to hours old. Check cache age with `cupt config --show`. The write commands (`done`, `note`, `time`, `tag`) do not accept it.
 
 ---
 
@@ -38,7 +38,7 @@ Stale risk: data may be minutes to hours old. Check cache age with `cupt config 
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

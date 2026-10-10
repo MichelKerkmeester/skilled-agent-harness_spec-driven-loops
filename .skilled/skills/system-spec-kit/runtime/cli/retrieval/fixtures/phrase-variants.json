@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bd44ebf60cecd4fc8768136b1f5a5601f72ae8ca00f55ed6e6bcdbd75dd2e930",
+  "manifestHash": "a05abbc04a4d911e7c03be724bf54f1786e336f830a9ce609401e77fb72548f4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -30792,6 +30792,9 @@
     "deep ai council 1 8 4 0": [
       "deep-ai-council 1.8.4.0"
     ],
+    "deep ai council 1 8 5 0": [
+      "deep-ai-council 1.8.5.0"
+    ],
     "deep ai council anti patterns": [
       "deep-ai-council anti-patterns"
     ],
@@ -31145,6 +31148,9 @@
     ],
     "deep ai council v1 8 4 0": [
       "deep-ai-council v1.8.4.0"
+    ],
+    "deep ai council v1 8 5 0": [
+      "deep-ai-council v1.8.5.0"
     ],
     "deep ai council verified sealed reads": [
       "deep ai council verified sealed reads"
@@ -31557,6 +31563,9 @@
     "deep improvement 1 19 3 0": [
       "deep-improvement 1.19.3.0"
     ],
+    "deep improvement 1 19 4 0": [
+      "deep-improvement 1.19.4.0"
+    ],
     "deep improvement 1 2 0 0": [
       "deep-improvement 1.2.0.0"
     ],
@@ -31919,6 +31928,9 @@
     ],
     "deep improvement v1 19 3 0": [
       "deep-improvement v1.19.3.0"
+    ],
+    "deep improvement v1 19 4 0": [
+      "deep-improvement v1.19.4.0"
     ],
     "deep improvement v1 2 0 0": [
       "deep-improvement v1.2.0.0"
@@ -32637,6 +32649,9 @@
     "deep loop runtime 1 9 5 0": [
       "deep-loop-runtime 1.9.5.0"
     ],
+    "deep loop runtime 1 9 6 0": [
+      "deep-loop-runtime 1.9.6.0"
+    ],
     "deep loop runtime alignment": [
       "deep loop runtime alignment"
     ],
@@ -32729,6 +32744,9 @@
     ],
     "deep loop runtime v1 9 5 0": [
       "deep-loop-runtime v1.9.5.0"
+    ],
+    "deep loop runtime v1 9 6 0": [
+      "deep-loop-runtime v1.9.6.0"
     ],
     "deep loop safe now gated split": [
       "deep-loop safe-now gated split"
@@ -33041,6 +33059,9 @@
     ],
     "deep research 1 15 4 0": [
       "deep-research 1.15.4.0"
+    ],
+    "deep research 1 15 5 0": [
+      "deep-research 1.15.5.0"
     ],
     "deep research 1 2 0 0": [
       "deep-research 1.2.0.0"
@@ -33710,6 +33731,9 @@
     "deep research v1 15 4 0": [
       "deep-research v1.15.4.0"
     ],
+    "deep research v1 15 5 0": [
+      "deep-research v1.15.5.0"
+    ],
     "deep research v1 2 0 0": [
       "deep-research v1.2.0.0"
     ],
@@ -33803,6 +33827,9 @@
     ],
     "deep review 1 11 6 0": [
       "deep-review 1.11.6.0"
+    ],
+    "deep review 1 11 7 0": [
+      "deep-review 1.11.7.0"
     ],
     "deep review 1 2 0 0": [
       "deep-review 1.2.0.0"
@@ -34478,6 +34505,9 @@
     ],
     "deep review v1 11 6 0": [
       "deep-review v1.11.6.0"
+    ],
+    "deep review v1 11 7 0": [
+      "deep-review v1.11.7.0"
     ],
     "deep review v1 2 0 0": [
       "deep-review v1.2.0.0"
@@ -58633,6 +58663,9 @@
     "mcp aside devtools 1 1 1 0": [
       "mcp-aside-devtools 1.1.1.0"
     ],
+    "mcp aside devtools 1 1 2 0": [
+      "mcp-aside-devtools 1.1.2.0"
+    ],
     "mcp aside devtools v1 0 0 0": [
       "mcp-aside-devtools v1.0.0.0"
     ],
@@ -58641,6 +58674,9 @@
     ],
     "mcp aside devtools v1 1 1 0": [
       "mcp-aside-devtools v1.1.1.0"
+    ],
+    "mcp aside devtools v1 1 2 0": [
+      "mcp-aside-devtools v1.1.2.0"
     ],
     "mcp aside devtools workflow mode": [
       "mcp-aside-devtools workflow mode"
@@ -58677,6 +58713,9 @@
     ],
     "mcp chrome devtools 1 0 13 0": [
       "mcp-chrome-devtools 1.0.13.0"
+    ],
+    "mcp chrome devtools 1 0 14 0": [
+      "mcp-chrome-devtools 1.0.14.0"
     ],
     "mcp chrome devtools 1 0 2 0": [
       "mcp-chrome-devtools 1.0.2.0"
@@ -58719,6 +58758,9 @@
     ],
     "mcp chrome devtools v1 0 13 0": [
       "mcp-chrome-devtools v1.0.13.0"
+    ],
+    "mcp chrome devtools v1 0 14 0": [
+      "mcp-chrome-devtools v1.0.14.0"
     ],
     "mcp chrome devtools v1 0 2 0": [
       "mcp-chrome-devtools v1.0.2.0"
@@ -58771,6 +58813,9 @@
     "mcp click up 1 2 1 0": [
       "mcp-click-up 1.2.1.0"
     ],
+    "mcp click up 1 2 2 0": [
+      "mcp-click-up 1.2.2.0"
+    ],
     "mcp click up frontmatter alignment": [
       "mcp-click-up frontmatter alignment"
     ],
@@ -58800,6 +58845,9 @@
     ],
     "mcp click up v1 2 1 0": [
       "mcp-click-up v1.2.1.0"
+    ],
+    "mcp click up v1 2 2 0": [
+      "mcp-click-up v1.2.2.0"
     ],
     "mcp client reconnect": [
       "mcp client reconnect"
@@ -59184,6 +59232,9 @@
     "mcp figma 1 1 1 0": [
       "mcp-figma 1.1.1.0"
     ],
+    "mcp figma 1 1 2 0": [
+      "mcp-figma 1.1.2.0"
+    ],
     "mcp figma v1 0 0 0": [
       "mcp-figma v1.0.0.0"
     ],
@@ -59195,6 +59246,9 @@
     ],
     "mcp figma v1 1 1 0": [
       "mcp-figma v1.1.1.0"
+    ],
+    "mcp figma v1 1 2 0": [
+      "mcp-figma v1.1.2.0"
     ],
     "mcp front proxy": [
       "mcp front proxy"
@@ -59292,6 +59346,9 @@
     "mcp magicpath 1 1 2 0": [
       "mcp-magicpath 1.1.2.0"
     ],
+    "mcp magicpath 1 1 3 0": [
+      "mcp-magicpath 1.1.3.0"
+    ],
     "mcp magicpath cli manual": [
       "mcp-magicpath cli manual"
     ],
@@ -59310,6 +59367,9 @@
     "mcp magicpath v1 1 2 0": [
       "mcp-magicpath v1.1.2.0"
     ],
+    "mcp magicpath v1 1 3 0": [
+      "mcp-magicpath v1.1.3.0"
+    ],
     "mcp mobbin 1 0 0 0": [
       "mcp-mobbin 1.0.0.0"
     ],
@@ -59321,6 +59381,9 @@
     ],
     "mcp mobbin 1 1 2 0": [
       "mcp-mobbin 1.1.2.0"
+    ],
+    "mcp mobbin 1 1 3 0": [
+      "mcp-mobbin 1.1.3.0"
     ],
     "mcp mobbin delivered outcome pitch": [
       "mcp-mobbin delivered-outcome pitch"
@@ -59342,6 +59405,9 @@
     ],
     "mcp mobbin v1 1 2 0": [
       "mcp-mobbin v1.1.2.0"
+    ],
+    "mcp mobbin v1 1 3 0": [
+      "mcp-mobbin v1.1.3.0"
     ],
     "mcp mutation regex blind": [
       "mcp mutation regex blind"
@@ -59568,6 +59634,9 @@
     "mcp refero 1 1 2 0": [
       "mcp-refero 1.1.2.0"
     ],
+    "mcp refero 1 1 3 0": [
+      "mcp-refero 1.1.3.0"
+    ],
     "mcp refero design transport": [
       "mcp-refero design transport"
     ],
@@ -59582,6 +59651,9 @@
     ],
     "mcp refero v1 1 2 0": [
       "mcp-refero v1.1.2.0"
+    ],
+    "mcp refero v1 1 3 0": [
+      "mcp-refero v1.1.3.0"
     ],
     "mcp remote mobbin": [
       "mcp-remote mobbin"
@@ -91426,6 +91498,9 @@
     "sk create diff 1 1 3 0": [
       "sk-create-diff 1.1.3.0"
     ],
+    "sk create diff 1 1 4 0": [
+      "sk-create-diff 1.1.4.0"
+    ],
     "sk create diff v1 0 0 0": [
       "sk-create-diff v1.0.0.0"
     ],
@@ -91440,6 +91515,9 @@
     ],
     "sk create diff v1 1 3 0": [
       "sk-create-diff v1.1.3.0"
+    ],
+    "sk create diff v1 1 4 0": [
+      "sk-create-diff v1.1.4.0"
     ],
     "sk create feature catalog 1 0 0 0": [
       "sk-create-feature-catalog 1.0.0.0"
@@ -91458,6 +91536,9 @@
     ],
     "sk create feature catalog 1 0 3 0": [
       "sk-create-feature-catalog 1.0.3.0"
+    ],
+    "sk create feature catalog 1 0 4 0": [
+      "sk-create-feature-catalog 1.0.4.0"
     ],
     "sk create feature catalog playbook": [
       "sk-create-feature-catalog playbook"
@@ -91479,6 +91560,9 @@
     ],
     "sk create feature catalog v1 0 3 0": [
       "sk-create-feature-catalog v1.0.3.0"
+    ],
+    "sk create feature catalog v1 0 4 0": [
+      "sk-create-feature-catalog v1.0.4.0"
     ],
     "sk create frontmatter 1 0 0 0": [
       "sk-create-frontmatter 1.0.0.0"
@@ -92005,6 +92089,9 @@
     "sk design diagram 1 2 1 0": [
       "sk-design-diagram 1.2.1.0"
     ],
+    "sk design diagram 1 2 2 0": [
+      "sk-design-diagram 1.2.2.0"
+    ],
     "sk design diagram review verdict": [
       "sk-design-diagram review verdict"
     ],
@@ -92022,6 +92109,9 @@
     ],
     "sk design diagram v1 2 1 0": [
       "sk-design-diagram v1.2.1.0"
+    ],
+    "sk design diagram v1 2 2 0": [
+      "sk-design-diagram v1.2.2.0"
     ],
     "sk design doc and routing check acceptance criteria": [
       "sk design doc and routing check acceptance criteria"
@@ -92062,6 +92152,9 @@
     "sk design md generator 1 1 1 0": [
       "sk-design-md-generator 1.1.1.0"
     ],
+    "sk design md generator 1 1 2 0": [
+      "sk-design-md-generator 1.1.2.0"
+    ],
     "sk design md generator v1 0 0 0": [
       "sk-design-md-generator v1.0.0.0"
     ],
@@ -92070,6 +92163,9 @@
     ],
     "sk design md generator v1 1 1 0": [
       "sk-design-md-generator v1.1.1.0"
+    ],
+    "sk design md generator v1 1 2 0": [
+      "sk-design-md-generator v1.1.2.0"
     ],
     "sk design mode rename": [
       "sk-design mode rename"
@@ -92566,6 +92662,9 @@
     "sk git 1 8 2 0": [
       "sk-git 1.8.2.0"
     ],
+    "sk git 1 8 3 0": [
+      "sk-git 1.8.3.0"
+    ],
     "sk git benchmark": [
       "sk-git benchmark"
     ],
@@ -92712,6 +92811,9 @@
     ],
     "sk git v1 8 2 0": [
       "sk-git v1.8.2.0"
+    ],
+    "sk git v1 8 3 0": [
+      "sk-git v1.8.3.0"
     ],
     "sk git workflow support": [
       "sk-git workflow support"
@@ -93075,6 +93177,9 @@
     ],
     "sk vision 0 3 3 0": [
       "sk-vision 0.3.3.0"
+    ],
+    "sk vision 0 3 4 0": [
+      "sk-vision 0.3.4.0"
     ],
     "sk vision 006 001 summary": [
       "sk-vision 006-001 summary"
@@ -93642,6 +93747,9 @@
     ],
     "sk vision v0 3 3 0": [
       "sk-vision v0.3.3.0"
+    ],
+    "sk vision v0 3 4 0": [
+      "sk-vision v0.3.4.0"
     ],
     "sk vision venv cleanup": [
       "sk-vision venv cleanup"
@@ -101234,6 +101342,9 @@
     "system skill advisor 0 14 6 0": [
       "system-skill-advisor 0.14.6.0"
     ],
+    "system skill advisor 0 14 7 0": [
+      "system-skill-advisor 0.14.7.0"
+    ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
     ],
@@ -101374,6 +101485,9 @@
     ],
     "system skill advisor v0 14 6 0": [
       "system-skill-advisor v0.14.6.0"
+    ],
+    "system skill advisor v0 14 7 0": [
+      "system-skill-advisor v0.14.7.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -101647,6 +101761,9 @@
     ],
     "system spec kit 2 7 5 0": [
       "system-spec-kit 2.7.5.0"
+    ],
+    "system spec kit 2 7 6 0": [
+      "system-spec-kit 2.7.6.0"
     ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
@@ -102034,6 +102151,9 @@
     ],
     "system spec kit v2 7 5 0": [
       "system-spec-kit v2.7.5.0"
+    ],
+    "system spec kit v2 7 6 0": [
+      "system-spec-kit v2.7.6.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"

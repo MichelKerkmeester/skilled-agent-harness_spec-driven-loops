@@ -1,6 +1,6 @@
 ---
 title: "Dist-freshness enforcement"
-description: "Shared source-vs-dist staleness detection for local TypeScript build outputs, consumed by the daemon-backed CLI shims, validate.sh's hard backstop, a Claude Code hook, and an OpenCode plugin."
+description: "Shared source-vs-dist staleness detection for local TypeScript build outputs."
 trigger_phrases:
   - "dist freshness enforcement"
   - "dist-freshness.cjs"

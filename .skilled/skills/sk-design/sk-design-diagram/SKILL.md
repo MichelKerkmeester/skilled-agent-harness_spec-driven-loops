@@ -2,7 +2,7 @@
 name: sk-design-diagram
 description: Creates self-contained HTML/SVG diagrams across 27 types with a skinnable editorial design system.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Create Diagram

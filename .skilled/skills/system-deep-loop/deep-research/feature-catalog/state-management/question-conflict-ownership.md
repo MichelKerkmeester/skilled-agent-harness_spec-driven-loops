@@ -1,6 +1,6 @@
 ---
 title: "Question conflict ownership"
-description: "Makes the registry the canonical question owner and records inbox disagreements as explicit conflict events."
+description: "Records inbox and registry question disagreements as explicit conflict events."
 trigger_phrases:
   - "question conflict ownership"
   - "question_conflict event"

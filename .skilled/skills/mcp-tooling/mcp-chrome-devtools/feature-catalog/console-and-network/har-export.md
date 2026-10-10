@@ -38,7 +38,7 @@ Enable network tracking first (`bdg cdp Network.enable`), let the page load (`sl
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/console-and-network/har-export.md` | Manual | BDG-013 scenario contract |
+| `manual-testing-playbook/console-and-network/har-export.md` | Manual playbook | BDG-013 scenario contract |
 
 ---
 

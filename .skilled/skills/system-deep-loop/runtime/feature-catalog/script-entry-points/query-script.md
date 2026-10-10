@@ -42,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/integration/query-script.vitest.ts` | Test | Primary regression coverage for query.cjs. |
+| `tests/integration/query-script.vitest.ts` | Automated test | Primary regression coverage for query.cjs. |
 
 ---
 
@@ -50,7 +50,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Script entry points
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F016
 - Feature file path: `script-entry-points/query-script.md`
 - Primary sources: `scripts/query.cjs`, `tests/integration/query-script.vitest.ts`
 Related references:

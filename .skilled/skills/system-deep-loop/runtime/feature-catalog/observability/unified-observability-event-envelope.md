@@ -46,8 +46,8 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/observability-events.vitest.ts` | Test | Primary regression coverage for Unified observability event envelope. |
-| `tests/integration/status-script.vitest.ts` | Test | Primary regression coverage for Unified observability event envelope. |
+| `tests/unit/observability-events.vitest.ts` | Automated test | Primary regression coverage for Unified observability event envelope. |
+| `tests/integration/status-script.vitest.ts` | Automated test | Primary regression coverage for Unified observability event envelope. |
 
 ---
 
@@ -55,9 +55,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Observability
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F047
 - Feature file path: `observability/unified-observability-event-envelope.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/006-ux-observability-automation/003-unified-observability-event-envelope`
 - Primary sources: `lib/deep-loop/observability-events.cjs`, `lib/council/round-state-jsonl.cjs`, `scripts/convergence.cjs`, `scripts/fanout-run.cjs`, `scripts/status.cjs`, `.skilled/commands/deep/assets/deep-research-auto.yaml`, `tests/unit/observability-events.vitest.ts`, `tests/integration/status-script.vitest.ts`
 Related references:
 - [observability](../observability/) — Observability category

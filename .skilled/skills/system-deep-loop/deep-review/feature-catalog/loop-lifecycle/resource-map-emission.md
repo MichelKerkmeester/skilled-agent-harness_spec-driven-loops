@@ -1,5 +1,5 @@
 ---
-title: "Resource Map Emission"
+title: "Resource map emission"
 description: "Emits a convergence-time resource-map.md from review delta evidence with a clean opt-out path."
 trigger_phrases:
   - "resource map emission"

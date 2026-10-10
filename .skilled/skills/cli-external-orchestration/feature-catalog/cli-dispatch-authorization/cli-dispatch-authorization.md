@@ -1,6 +1,6 @@
 ---
-title: "CLI Dispatch Authorization And Inspection"
-description: "How the shared dispatch inspector classifies a shell command as direct/ambiguous/none — including quote-safe executor normalization — and how the Pi preflight gate turns that classification into an allow/deny authorization decision."
+title: "Shared Dispatch Inspector And Pi Authorization Gate"
+description: "One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous`, or `none`, and the Pi preflight gate turns that classification into an allow/deny authorization decision. The inspector is shared across the Claude, Codex, Devin, and Pi dispatch hooks and feeds both the observational audit trail and the Pi gate. It recognizes all seven executors plus the `cli-jev` judgment shapes, including the print-flagless `cli-hermes` forms."
 trigger_phrases:
   - "cli dispatch authorization"
   - "dispatch inspector classification"

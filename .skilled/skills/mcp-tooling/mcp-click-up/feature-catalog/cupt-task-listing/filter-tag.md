@@ -38,7 +38,7 @@ Tag filtering combines a fast server-side OR prefetch with client-side AND enfor
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

@@ -30,13 +30,13 @@ The capability surface has one hard prerequisite and four phases. Everything dep
 
 | Capability area | What it does | Per-feature file |
 |---|---|---|
-| Extract | Crawls a live URL across 5 viewports, collects computed CSS, emits tokens.json | `extract/extract.md` |
-| Cluster and classify | OKLCH color clustering and L1-L4 stability classification on extracted tokens | `cluster-classify/cluster-classify.md` |
-| Write DESIGN.md | Composes the v3 Style Reference DESIGN.md, pasting deterministic value sections (formatters-v3.ts) and writing prose only | `write-design-md/write-design-md.md` |
-| Validate | Checks hex accuracy against tokens.json, v3 section completeness, and Quick-Start fidelity | `validate/validate.md` |
-| Report and preview | Generates HTML report, visual preview, and proof artifacts | `report-preview/report-preview.md` |
-| Feature extractors | Per-feature detection: accessibility, dark mode, framework, icons, motion, design boundary | `feature-extractors/feature-extractors.md` |
-| Interaction capture | Records hover/focus/active/disabled component states (`--with-interaction`) for the v3 Components section | `interaction-capture/interaction-capture.md` |
+| Extract | Crawls a live URL across 5 viewports, collects computed CSS, emits tokens.json | [`extract/extract.md`](extract/extract.md) |
+| Cluster and classify | OKLCH color clustering and L1-L4 stability classification on extracted tokens | [`cluster-classify/cluster-classify.md`](cluster-classify/cluster-classify.md) |
+| Write DESIGN.md | Composes the v3 Style Reference DESIGN.md, pasting deterministic value sections (formatters-v3.ts) and writing prose only | [`write-design-md/write-design-md.md`](write-design-md/write-design-md.md) |
+| Validate | Checks hex accuracy against tokens.json, v3 section completeness, and Quick-Start fidelity | [`validate/validate.md`](validate/validate.md) |
+| Report and preview | Generates HTML report, visual preview, and proof artifacts | [`report-preview/report-preview.md`](report-preview/report-preview.md) |
+| Feature extractors | Per-feature detection: accessibility, dark mode, framework, icons, motion, design boundary | [`feature-extractors/feature-extractors.md`](feature-extractors/feature-extractors.md) |
+| Interaction capture | Records hover/focus/active/disabled component states (`--with-interaction`) for the v3 Components section | [`interaction-capture/interaction-capture.md`](interaction-capture/interaction-capture.md) |
 
 ---
 

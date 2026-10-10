@@ -42,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/executor-audit.vitest.ts` | Test | Primary regression coverage for Executor audit. |
+| `tests/unit/executor-audit.vitest.ts` | Automated test | Primary regression coverage for Executor audit. |
 | `tests/unit/executor-audit-process-group.vitest.ts` | Unit | Async process-group audit coverage. |
 | `tests/unit/dispatch-failure.vitest.ts` | Unit | Dispatch-failure event coverage. |
 
@@ -52,7 +52,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Executor
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F002
 - Feature file path: `executor/executor-audit.md`
 - Primary sources: `lib/deep-loop/executor-audit.ts`, `tests/unit/executor-audit.vitest.ts`
 Related references:

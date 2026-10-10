@@ -1,6 +1,6 @@
 ---
 title: "Convergence check"
-description: "Applies the statistical stop vote, legal-stop gates, and blocked-stop handling before research can end."
+description: "Chooses whether the loop continues, enters stuck recovery, or reaches a legal stop."
 trigger_phrases:
   - "convergence check"
   - "check convergence"

@@ -1,6 +1,6 @@
 ---
-title: "Session Capturing Pipeline Quality"
-description: "Session capturing pipeline quality is the current reality-alignment feature for the session-capturing workstream. It covers the shipped JSON-primary save path for `generate-context.js`, continued positional JSON file support on the same structured path, and the associated quality gates, sufficiency enforcement, and template-contract validation."
+title: "Session capturing pipeline quality"
+description: "The shipped JSON-primary save path for `generate-context`, its quality gates, sufficiency enforcement and template-contract validation."
 trigger_phrases:
   - session capturing pipeline quality
   - generate-context.js quality
@@ -228,7 +228,7 @@ The closure feature consists of these distinct shipped behaviors:
 - `cd .skilled/skills/system-spec-kit/runtime && npm run lint`
 - `cd .skilled/skills/system-spec-kit/runtime && npm run build`
 - `cd .skilled/skills/system-spec-kit/runtime && npm run test`
-- `python3 .skilled/skills/sk-code/sk-code-quality/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/cli`
+- `python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/cli`
 
 ### Latest verification snapshot
 

@@ -1,6 +1,6 @@
 ---
-title: "Phase-System Knowledge Node"
-description: "Knowledge node and supporting command/script surface for decomposing complex Spec Kit work into parent-child phase folders with scoring, lifecycle guidance, and recursive validation."
+title: "Phase-system knowledge node"
+description: "Knowledge node and supporting command/script surface for decomposing complex work into parent-child phase folders with scoring, lifecycle guidance and recursive validation."
 trigger_phrases:
   - phase system knowledge node
   - phase decomposition workflow

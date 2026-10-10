@@ -48,7 +48,7 @@ Use it to find page IDs before `clickup_get_document_pages`. In a ClickUp doc UR
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-documents/read-document-pages.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-documents/read-document-pages.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

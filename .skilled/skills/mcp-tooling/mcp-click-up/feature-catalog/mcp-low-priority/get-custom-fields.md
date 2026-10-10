@@ -50,7 +50,7 @@ Use it to find field IDs and dropdown options. Then set values with `custom_fiel
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-structure/custom-field.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-structure/custom-field.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

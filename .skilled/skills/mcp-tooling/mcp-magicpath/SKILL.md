@@ -3,7 +3,7 @@ name: mcp-magicpath
 description: "MagicPath CLI transport for read-only component, project and design-system lookup via the magicpath-ai CLI, paired with sk-design."
 compatibility: Requires the magicpath-ai Node CLI (installed version 2.6.1) on PATH and a credential (magicpath-ai login or MAGICPATH_TOKEN); this project's Code Mode currently runs on Node 24.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.1.2.0
+version: 1.1.3.0
 user-invocable: true
 ---
 

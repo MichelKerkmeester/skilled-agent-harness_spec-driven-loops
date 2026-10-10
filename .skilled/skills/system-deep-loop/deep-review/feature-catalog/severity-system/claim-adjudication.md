@@ -1,6 +1,6 @@
 ---
 title: "Claim adjudication"
-description: "Turns new P0 and P1 findings into typed, review-visible claims with evidence and downgrade rules."
+description: "Turns new P0 and P1 findings into typed, review-visible claims."
 trigger_phrases:
   - "claim adjudication"
   - "adjudicate finding claim"
@@ -43,9 +43,9 @@ Missing packets or missing required fields fail the adjudication step and trip `
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/iteration-execution-and-state-discipline/adversarial-self-check-runs-on-p0-findings.md` | Manual scenario | Covers the severe-finding validation path that precedes adjudication. |
-| `manual-testing-playbook/convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual scenario | Verifies failed stop attempts surface through blocked-stop state. |
-| `manual-testing-playbook/synthesis-save-and-guardrails/finding-deduplication-and-registry.md` | Manual scenario | Verifies adjudicated severities survive into synthesis and registry output. |
+| `manual-testing-playbook/iteration-execution-and-state-discipline/adversarial-self-check-runs-on-p0-findings.md` | Manual playbook | Covers the severe-finding validation path that precedes adjudication. |
+| `manual-testing-playbook/convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual playbook | Verifies failed stop attempts surface through blocked-stop state. |
+| `manual-testing-playbook/synthesis-save-and-guardrails/finding-deduplication-and-registry.md` | Manual playbook | Verifies adjudicated severities survive into synthesis and registry output. |
 
 ---
 

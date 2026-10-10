@@ -47,7 +47,7 @@ This cannot be undone from the MCP. Confirm the task ID with the user before the
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-task-crud/delete-task.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-task-crud/delete-task.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

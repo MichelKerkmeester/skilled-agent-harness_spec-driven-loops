@@ -1,6 +1,6 @@
 ---
 title: "Memory save"
-description: "Refreshes the deep research continuity artifact through the supported generate-context.js save path."
+description: "Preserves the finished packet through the supported continuity save boundary."
 trigger_phrases:
   - "memory save"
   - "save research context"

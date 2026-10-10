@@ -37,7 +37,7 @@ Search is the shortcut when you know the capability but not the domain. Combine 
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/protocol-discovery/search-cdp-method.md` | Manual | BDG-007 scenario contract |
+| `manual-testing-playbook/protocol-discovery/search-cdp-method.md` | Manual playbook | BDG-007 scenario contract |
 
 ---
 

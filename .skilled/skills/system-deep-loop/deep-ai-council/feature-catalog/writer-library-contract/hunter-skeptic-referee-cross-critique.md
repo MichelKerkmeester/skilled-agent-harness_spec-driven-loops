@@ -51,7 +51,6 @@ The user-visible contract is concrete: Verify Hunter, Skeptic, and Referee roles
 
 ## 4. SOURCE METADATA
 - Group: Writer Library Contract
-- Feature ID: DAC-016
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/writer-library-contract/hunter-skeptic-referee-cross-critique.md`
 - Playbook scenario: `manual-testing-playbook/writer-library-contract/hunter-skeptic-referee-cross-critique.md`

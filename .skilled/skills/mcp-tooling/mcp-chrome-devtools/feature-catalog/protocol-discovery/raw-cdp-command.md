@@ -38,7 +38,7 @@ Requires an active session and a discovered method name (never assume names with
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/protocol-discovery/describe-page-domain.md` | Manual | Discovery precondition (BDG-006) |
+| `manual-testing-playbook/protocol-discovery/describe-page-domain.md` | Manual playbook | Discovery precondition (BDG-006) |
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Iteration dispatch"
-description: "Runs one fresh-context review cycle against the current focus dimension and file set."
+description: "Runs one fresh-context review cycle against the current focus."
 trigger_phrases:
   - "iteration dispatch"
   - "dispatch review iteration"
@@ -45,10 +45,10 @@ Before each dispatch, the loop reads `deep-review-state.jsonl`, `deep-review-fin
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/iteration-execution-and-state-discipline/review-iteration-reads-state-before-review.md` | Manual scenario | Verifies that each iteration reads state before auditing. |
-| `manual-testing-playbook/iteration-execution-and-state-discipline/review-iteration-writes-findings-jsonl-and-strategy-update.md` | Manual scenario | Confirms iteration output, JSONL append, and strategy mutation happen together. |
-| `manual-testing-playbook/iteration-execution-and-state-discipline/cross-reference-verification-detects-misalignment.md` | Manual scenario | Exercises the traceability-protocol execution path during review. |
-| `manual-testing-playbook/iteration-execution-and-state-discipline/graph-events-review.md` | Manual scenario | Verifies graph event emission from review iterations. |
+| `manual-testing-playbook/iteration-execution-and-state-discipline/review-iteration-reads-state-before-review.md` | Manual playbook | Verifies that each iteration reads state before auditing. |
+| `manual-testing-playbook/iteration-execution-and-state-discipline/review-iteration-writes-findings-jsonl-and-strategy-update.md` | Manual playbook | Confirms iteration output, JSONL append, and strategy mutation happen together. |
+| `manual-testing-playbook/iteration-execution-and-state-discipline/cross-reference-verification-detects-misalignment.md` | Manual playbook | Exercises the traceability-protocol execution path during review. |
+| `manual-testing-playbook/iteration-execution-and-state-discipline/graph-events-review.md` | Manual playbook | Verifies graph event emission from review iterations. |
 
 ---
 

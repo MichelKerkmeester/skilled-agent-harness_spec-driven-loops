@@ -1,6 +1,6 @@
 ---
 title: "Verdicts"
-description: "Maps active findings and gate status into FAIL or CONDITIONAL or PASS."
+description: "Maps active finding state into FAIL or CONDITIONAL or PASS."
 trigger_phrases:
   - "verdicts"
   - "FAIL CONDITIONAL PASS"
@@ -43,8 +43,8 @@ Verdicts also carry workflow routing. FAIL and CONDITIONAL both point to `/speck
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/synthesis-save-and-guardrails/review-verdict-determines-post-review-workflow.md` | Manual scenario | Verifies verdict routing after synthesis. |
-| `manual-testing-playbook/synthesis-save-and-guardrails/review-report-synthesis-has-all-9-sections.md` | Manual scenario | Confirms verdict data appears in the report contract. |
+| `manual-testing-playbook/synthesis-save-and-guardrails/review-verdict-determines-post-review-workflow.md` | Manual playbook | Verifies verdict routing after synthesis. |
+| `manual-testing-playbook/synthesis-save-and-guardrails/review-report-synthesis-has-all-9-sections.md` | Manual playbook | Confirms verdict data appears in the report contract. |
 
 ---
 

@@ -52,7 +52,7 @@ Use this for text matching across content types. It is also the quickest way to 
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-task-crud/search.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-task-crud/search.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

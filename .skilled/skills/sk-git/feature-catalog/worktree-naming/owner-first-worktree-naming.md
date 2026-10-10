@@ -1,6 +1,6 @@
 ---
 title: "Numbered worktree/branch naming grammar and allocator"
-description: "Per-namespace numbered allocator and validators that give every managed branch and worktree directory a legible, collision-free numbered name."
+description: "Two flat per-namespace counters plus a set of grammar validators give every AI-created branch one numbered shape, `worktrees/NNN-slug` (with the directory `.worktrees/NNN-slug`) or `branches/NNN-slug` (a dedicated branch with no worktree)."
 trigger_phrases:
   - "numbered worktree naming grammar and allocator"
   - "worktree naming allocator"

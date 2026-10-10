@@ -1,6 +1,6 @@
 ---
 title: "Negative knowledge"
-description: "Carries ruled-out approaches and dead ends through iteration files, reducer sync, and final synthesis."
+description: "Treats failed paths and ruled-out approaches as first-class research output."
 trigger_phrases:
   - "negative knowledge"
   - "ruled-out approaches"

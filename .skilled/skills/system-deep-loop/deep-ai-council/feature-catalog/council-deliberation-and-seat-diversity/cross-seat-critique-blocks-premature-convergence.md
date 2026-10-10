@@ -51,7 +51,6 @@ The user-visible contract is concrete: Verify cross-seat critique is required be
 
 ## 4. SOURCE METADATA
 - Group: Council Deliberation And Seat Diversity
-- Feature ID: DAC-004
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-deliberation-and-seat-diversity/cross-seat-critique-blocks-premature-convergence.md`
 - Playbook scenario: `manual-testing-playbook/council-deliberation-and-seat-diversity/cross-seat-critique-blocks-premature-convergence.md`

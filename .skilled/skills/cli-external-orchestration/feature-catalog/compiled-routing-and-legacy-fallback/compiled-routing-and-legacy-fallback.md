@@ -1,6 +1,6 @@
 ---
 title: "Compiled Routing And Legacy Fallback"
-description: "How cli-external-orchestration resolves the compiled per-hub router contract ahead of its own registry-driven routing, and the explicit `SPECKIT_COMPILED_ROUTING=0` kill-switch that falls back to legacy."
+description: "A default-on, flag-gated directive in `cli-external-orchestration`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to registry-driven dispatch."
 trigger_phrases:
   - "compiled routing and legacy fallback"
   - "SPECKIT_COMPILED_ROUTING"

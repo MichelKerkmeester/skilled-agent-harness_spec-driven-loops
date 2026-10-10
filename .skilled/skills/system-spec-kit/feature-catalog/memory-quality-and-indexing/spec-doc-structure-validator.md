@@ -1,6 +1,6 @@
 ---
 title: "Spec-doc structure validator"
-description: "Spec-doc structure validator fail-closes malformed frontmatter continuity blocks, merge legality, sufficiency, contamination and post-save fingerprint checks before a spec doc is accepted."
+description: "Fail-closes malformed frontmatter continuity blocks, merge legality, sufficiency, contamination and post-save fingerprint checks before a spec doc is accepted."
 trigger_phrases:
   - "spec-doc structure validator"
   - "spec-doc-structure.ts"

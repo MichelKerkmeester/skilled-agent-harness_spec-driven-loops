@@ -1,6 +1,6 @@
 ---
 title: "Resource Map Coverage Gate"
-description: "Synthesis-time report that compares the review's touched implementation paths against the spec folder's resource-map.md, surfacing untouched entries and uncovered paths."
+description: "Reports how well the review covered the artifacts declared in the spec folder's `resource-map.md` before a verdict is finalized."
 trigger_phrases:
   - "resource map coverage gate"
   - "coverage gate"
@@ -43,8 +43,8 @@ When no resource map was present at init, the section is omitted entirely and th
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/command-flow-stress-tests/resource-map-coverage-gate.md` | Manual scenario | Verifies the coverage gate section appears only when a resource map is present. |
-| `manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md` | Manual scenario | Verifies resource-map coverage data is emitted during synthesis. |
+| `manual-testing-playbook/command-flow-stress-tests/resource-map-coverage-gate.md` | Manual playbook | Verifies the coverage gate section appears only when a resource map is present. |
+| `manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md` | Manual playbook | Verifies resource-map coverage data is emitted during synthesis. |
 
 ---
 

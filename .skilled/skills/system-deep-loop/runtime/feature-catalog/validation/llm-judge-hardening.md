@@ -41,7 +41,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/post-dispatch-validate.vitest.ts` | Test | Primary regression coverage for LLM-judge hardening. |
+| `tests/unit/post-dispatch-validate.vitest.ts` | Automated test | Primary regression coverage for LLM-judge hardening. |
 
 ---
 
@@ -49,9 +49,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Validation
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F043
 - Feature file path: `validation/llm-judge-hardening.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//016-llm-judge-hardening`
 - Primary sources: `lib/deep-loop/post-dispatch-validate.ts`, `tests/unit/post-dispatch-validate.vitest.ts`
 Related references:
 - [validation](../validation/) — Validation category

@@ -1,6 +1,6 @@
 ---
 title: "Source-dist alignment enforcement"
-description: "Source-dist alignment enforcement validates that every .js file in runtime/dist/lib/ has a corresponding .ts source file, detecting orphaned build artifacts."
+description: "Validates that every `.js` file under a compiled `dist/lib/` has a corresponding `.ts` source file, detecting orphaned build artifacts."
 trigger_phrases:
   - source-dist alignment enforcement
   - check-source-dist-alignment

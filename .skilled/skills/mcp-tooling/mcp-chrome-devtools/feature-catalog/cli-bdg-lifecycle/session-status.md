@@ -37,7 +37,7 @@ Verify session status before every CDP command (SKILL.md ALWAYS rule 3). The sta
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/cli-bdg-lifecycle/status-json.md` | Manual | BDG-003 scenario contract |
+| `manual-testing-playbook/cli-bdg-lifecycle/status-json.md` | Manual playbook | BDG-003 scenario contract |
 
 ---
 

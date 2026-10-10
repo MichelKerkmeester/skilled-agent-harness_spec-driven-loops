@@ -1,6 +1,6 @@
 ---
 title: "Progressive synthesis"
-description: "Keeps research/research.md current during the loop while preserving workflow ownership of the final synthesis pass."
+description: "Keeps `research/research.md` live during the loop and reconciles it at the end."
 trigger_phrases:
   - "progressive synthesis"
   - "research.md live update"

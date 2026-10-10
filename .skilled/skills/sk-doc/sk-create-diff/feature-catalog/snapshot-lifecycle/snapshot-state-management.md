@@ -1,6 +1,6 @@
 ---
 title: "Snapshot state management"
-description: "Lists and prunes stored baselines so the local snapshot store stays bounded and safe to delete."
+description: "Lists and prunes stored baselines so local snapshot state stays bounded."
 trigger_phrases:
   - "Snapshot state management"
   - "list stored baselines"

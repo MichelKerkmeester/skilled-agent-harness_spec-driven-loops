@@ -42,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/permissions-gate.vitest.ts` | Test | Primary regression coverage for Permissions gate. |
+| `tests/unit/permissions-gate.vitest.ts` | Automated test | Primary regression coverage for Permissions gate. |
 
 ---
 
@@ -50,7 +50,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: State safety
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F009
 - Feature file path: `state-safety/permissions-gate.md`
 - Primary sources: `lib/deep-loop/permissions-gate.ts`, `tests/unit/permissions-gate.vitest.ts`
 Related references:

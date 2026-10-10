@@ -44,7 +44,7 @@ Mode resolution is closed-set. `VALID_MODES` holds the two-mode split (`agent-im
 | File | Type | Role |
 |---|---|---|
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/loop-host.vitest.ts` | Automated test | Verifies `parseArgs`, `resolveMode`, the closed `VALID_MODES` set, the two-step model-benchmark plan, and the unknown-mode stderr fallback. |
-| `.skilled/skills/system-deep-loop/deep-improvement/SKILL.md` | Skill contract | Documents Lane B entry-point routing and the unknown-mode fallback as the source of truth. |
+| `.skilled/skills/system-deep-loop/deep-improvement/SKILL.md` | Reference | Documents Lane B entry-point routing and the unknown-mode fallback as the source of truth. |
 
 ---
 

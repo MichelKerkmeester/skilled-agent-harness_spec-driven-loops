@@ -42,8 +42,8 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/integration/status-script.vitest.ts` | Test | Primary regression coverage for status.cjs. |
-| `tests/lifecycle/db-open-close.vitest.ts` | Lifecycle | DB close behavior after script calls. |
+| `tests/integration/status-script.vitest.ts` | Automated test | Primary regression coverage for status.cjs. |
+| `tests/lifecycle/db-open-close.vitest.ts` | Reference | DB close behavior after script calls. |
 
 ---
 
@@ -51,7 +51,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Script entry points
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F017
 - Feature file path: `script-entry-points/status-script.md`
 - Primary sources: `scripts/status.cjs`, `tests/integration/status-script.vitest.ts`
 Related references:

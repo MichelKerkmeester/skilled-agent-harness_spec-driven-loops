@@ -38,7 +38,7 @@ Enable the Runtime domain first (`bdg cdp Runtime.enable`) for full coverage, th
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/console-and-network/console-list.md` | Manual | BDG-011 scenario contract |
+| `manual-testing-playbook/console-and-network/console-list.md` | Manual playbook | BDG-011 scenario contract |
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Markdown link integrity guard"
-description: "check-markdown-links.cjs resolves every relative markdown link across the skills, commands, and agents doc trees and fails CI when a target no longer exists, catching breakage from deleted or moved files that survives in unchanged referrers."
+description: "`check-markdown-links.cjs` resolves every relative markdown link across the skills, commands and agents doc trees and fails when a target no longer exists."
 trigger_phrases:
   - markdown link integrity
   - check-markdown-links

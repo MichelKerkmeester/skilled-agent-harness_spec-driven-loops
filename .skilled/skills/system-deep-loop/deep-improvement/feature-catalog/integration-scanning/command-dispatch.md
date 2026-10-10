@@ -1,6 +1,6 @@
 ---
 title: "Command dispatch"
-description: "Routes deep-improvement execution from the slash command into the auto and confirm workflow assets."
+description: "Owns the command-driven orchestration path that turns the deep-improvement skill into a runnable loop."
 trigger_phrases:
   - "command dispatch"
   - "agent-improvement.md"
@@ -43,8 +43,8 @@ The real dispatch authority lives in the YAML assets. Both workflow files rescan
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/loop-protocol.md` | Workflow reference | Documents the expected propose, score, benchmark, reduce, and promote sequence. |
-| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/quick-reference.md` | Operator reference | Provides the shortest command surface and runtime-path reminder for the loop. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/loop-protocol.md` | Reference | Documents the expected propose, score, benchmark, reduce, and promote sequence. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/quick-reference.md` | Reference | Provides the shortest command surface and runtime-path reminder for the loop. |
 
 ---
 

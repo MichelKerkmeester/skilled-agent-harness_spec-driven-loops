@@ -25,7 +25,7 @@ Create folder in ClickUp space. Use space_id (preferred) or space_name + folder 
 |-----------|------|----------|--------------------|
 | `name` | string | yes | Name of the folder. |
 | `space_id` | string | no | ID of the space to create the folder in (preferred). Provide this instead of space_name if you already have it. |
-| `space_name` | string | no | Name of the space to create the folder in. Use this when space_id is not available. |
+| `space_name` | string | no | Name of the space to create the folder in. Use this when you do not have the space_id. |
 | `override_statuses` | boolean | no | Whether to override space statuses with folder-specific statuses. |
 | `workspace_id` | string | no | Workspace ID (digits only). Only needed when you have multiple workspaces. |
 
@@ -49,7 +49,7 @@ Then add lists with `clickup_create_list_in_folder`. The server has no delete-fo
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | No dedicated scenario. Confirm the call with `tool_info()` before first use |
+| `manual-testing-playbook/` | Manual playbook | No dedicated scenario. Confirm the call with `tool_info()` before first use |
 
 ---
 

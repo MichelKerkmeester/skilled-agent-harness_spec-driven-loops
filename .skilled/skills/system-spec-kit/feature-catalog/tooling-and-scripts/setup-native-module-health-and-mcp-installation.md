@@ -1,5 +1,5 @@
 ---
-title: "Setup, Native Module Health, and MCP Installation"
+title: "Setup, native module health and prerequisite validation"
 description: "Spec-folder prerequisite validation, native module diagnostics and rebuild, and Node ABI marker recording."
 trigger_phrases:
   - "setup native module health"

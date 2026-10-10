@@ -38,7 +38,7 @@ The scripts use configurable thresholds for automated validation and timestamped
 
 | File | Type | Role |
 |------|------|------|
-| `examples/README.md` §3 | Manual | Per-script exit-code contracts |
+| `examples/README.md` §3 | Manual playbook | Per-script exit-code contracts |
 
 ---
 

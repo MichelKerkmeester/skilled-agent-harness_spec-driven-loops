@@ -62,7 +62,7 @@ cupt has no create command, so task creation always goes through this tool. Ask 
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-task-crud/create-task.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-task-crud/create-task.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

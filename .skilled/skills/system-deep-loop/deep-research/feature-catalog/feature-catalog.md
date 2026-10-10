@@ -16,9 +16,9 @@ Use this catalog as the canonical inventory for the live `deep-research` feature
 
 | Category | Coverage | Primary Runtime Surface |
 |---|---:|---|
-| Loop lifecycle | 9 features | `.skilled/commands/deep/research.md`, auto and confirm YAML workflows, fan-out runtime primitives, operator controls |
+| Loop lifecycle | 10 features | [`.skilled/commands/deep/research.md`](../../../../commands/deep/research.md), auto and confirm YAML workflows, fan-out runtime primitives, operator controls |
 | State management | 8 features | `research/deep-research-*.json`, `research/findings-registry.json`, reducer-owned strategy and dashboard surfaces |
-| Convergence | 6 features | `references/convergence/convergence.md`, workflow legal-stop gates, graph convergence hooks, minimum-iteration floor, divergent pivots |
+| Convergence | 6 features | [`references/convergence/convergence.md`](../references/convergence/convergence.md), workflow legal-stop gates, graph convergence hooks, minimum-iteration floor, divergent pivots |
 | Research output | 2 features | `research/research.md`, iteration files, reducer-backed negative knowledge surfaces |
 
 ---
@@ -176,6 +176,22 @@ Previews confirm-mode work while halting before mutation boundaries.
 #### Source Files
 
 See [`loop-lifecycle/loop-wide-dry-run.md`](../feature-catalog/loop-lifecycle/loop-wide-dry-run.md) for full implementation and validation file listings.
+
+---
+
+### Resource Map Emission
+
+#### Description
+
+Emits a convergence-time `resource-map.md` from research delta evidence with a clean opt-out path.
+
+#### How It Works
+
+Synthesis turns citation evidence from converged delta files into a template-shaped `resource-map.md`, grouped by category and annotated with per-file citation counts. The emitter is enabled by default through `config.resource_map.emit = true`, and the `--no-resource-map` flag disables the write cleanly for a run.
+
+#### Source Files
+
+See [`loop-lifecycle/resource-map-emission.md`](../feature-catalog/loop-lifecycle/resource-map-emission.md) for full implementation and validation file listings.
 
 ---
 

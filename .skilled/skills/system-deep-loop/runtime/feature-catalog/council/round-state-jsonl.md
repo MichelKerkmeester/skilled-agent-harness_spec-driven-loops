@@ -42,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/council/round-state-jsonl.vitest.ts` | Test | Primary regression coverage for Round-state JSONL. |
+| `tests/council/round-state-jsonl.vitest.ts` | Automated test | Primary regression coverage for Round-state JSONL. |
 
 ---
 
@@ -50,7 +50,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Council
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F019
 - Feature file path: `council/round-state-jsonl.md`
 - Primary sources: `lib/council/round-state-jsonl.cjs`, `tests/council/round-state-jsonl.vitest.ts`
 Related references:

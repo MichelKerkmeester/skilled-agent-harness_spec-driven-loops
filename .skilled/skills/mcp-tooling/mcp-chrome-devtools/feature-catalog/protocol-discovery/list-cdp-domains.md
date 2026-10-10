@@ -38,7 +38,7 @@ Because the list comes from the live protocol catalog, it is always current — 
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/protocol-discovery/list-cdp-domains.md` | Manual | BDG-005 scenario contract |
+| `manual-testing-playbook/protocol-discovery/list-cdp-domains.md` | Manual playbook | BDG-005 scenario contract |
 
 ---
 

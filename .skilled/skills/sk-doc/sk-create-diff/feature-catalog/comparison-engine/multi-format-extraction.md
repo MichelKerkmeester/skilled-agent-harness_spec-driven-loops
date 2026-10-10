@@ -1,6 +1,6 @@
 ---
 title: "Multi-format extraction"
-description: "Extracts comparable text from text, Markdown, HTML, DOCX, and text-layer PDF, each tagged with an explicit fidelity tier."
+description: "Extracts comparable text from plain text, Markdown, HTML, DOCX, and text-layer PDF, each with an explicit fidelity tier so a comparison is never trusted beyond what the extractor can see."
 trigger_phrases:
   - "Multi-format extraction"
   - "extract comparable text from documents"

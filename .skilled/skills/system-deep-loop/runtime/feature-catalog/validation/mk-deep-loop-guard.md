@@ -1,6 +1,6 @@
 ---
 title: "system-deep-loop-guard"
-description: "Detection-layer OpenCode plugin with two checks: flags/blocks a Task dispatch whose declared Deep Route mode disagrees with mode-registry.json's entry for the resolved target agent, and flags/blocks a session-scoped loop-like repeated orchestrate-to-command-owned-loop-executor dispatch. Also sweeps/archives/prunes its own per-session state so its directory does not grow unbounded."
+description: "Detection-layer OpenCode plugin with two checks: flags/blocks a Task dispatch whose declared Deep Route mode disagrees with `mode-registry.json`'s entry for the resolved target agent, and flags/blocks a session-scoped loop-like repeated `orchestrate`-to-command-owned-loop-executor dispatch."
 trigger_phrases:
   - "system-deep-loop-guard"
   - "deep route guard plugin"
@@ -80,7 +80,6 @@ Live-verified against a real `opencode` session during development: hook registr
 
 - Group: Validation
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F050
 - Feature file path: `validation/mk-deep-loop-guard.md`
 - Primary sources: `.skilled/plugins/system-deep-loop-guard.js`, `.skilled/plugins/tests/system-deep-loop-guard.test.cjs`
 

@@ -1,6 +1,6 @@
 ---
 title: "Run-now control"
-description: "Adds a consume-once `.deep-research-run-now` sentinel for out-of-cadence iteration dispatch."
+description: "Consumes a one-shot sentinel to force the next auto-mode iteration out of cadence."
 trigger_phrases:
   - "run-now control"
   - "deep-research-run-now"

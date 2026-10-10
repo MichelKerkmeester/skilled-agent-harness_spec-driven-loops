@@ -38,7 +38,7 @@ Used in agent handoff patterns: `cupt done $id --note 'Processed by AI agent. Re
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

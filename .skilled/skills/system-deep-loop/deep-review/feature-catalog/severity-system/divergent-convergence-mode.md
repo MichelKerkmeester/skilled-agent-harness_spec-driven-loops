@@ -1,6 +1,6 @@
 ---
-title: "deep-review: Divergent convergence mode"
-description: "Current-state catalog entry for eligible clean review STOP translation into a bounded read-only Council pivot."
+title: "Divergent convergence mode"
+description: "Turns an eligible clean review STOP into a bounded read-only pivot toward a new in-target review direction."
 trigger_phrases:
   - "review divergent convergence"
   - "all_dimensions_clean pivot"

@@ -1,6 +1,6 @@
 ---
 title: "JSONL state log"
-description: "Provides the append-only deep-research ledger for config, iteration, and event records."
+description: "Acts as the append-only ledger for config, iteration, and lifecycle events."
 trigger_phrases:
   - "jsonl state log"
   - "deep-research-state.jsonl"

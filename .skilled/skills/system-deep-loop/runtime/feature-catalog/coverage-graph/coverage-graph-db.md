@@ -42,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/lifecycle/db-open-close.vitest.ts` | Test | Primary regression coverage for Coverage graph DB. |
+| `tests/lifecycle/db-open-close.vitest.ts` | Automated test | Primary regression coverage for Coverage graph DB. |
 | `tests/integration/upsert-script.vitest.ts` | Integration | Storage behavior through public script. |
 | `tests/integration/review-depth-graph.vitest.ts` | Integration | Review graph fixture coverage. |
 
@@ -52,7 +52,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Coverage graph
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F011
 - Feature file path: `coverage-graph/coverage-graph-db.md`
 - Primary sources: `lib/coverage-graph/coverage-graph-db.ts`, `tests/lifecycle/db-open-close.vitest.ts`
 Related references:

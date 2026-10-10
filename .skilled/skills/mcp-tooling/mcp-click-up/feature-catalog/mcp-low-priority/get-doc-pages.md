@@ -49,7 +49,7 @@ Pass `document_id` and `page_ids`, and set `content_format: "text/md"` for markd
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-documents/read-document-pages.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-documents/read-document-pages.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

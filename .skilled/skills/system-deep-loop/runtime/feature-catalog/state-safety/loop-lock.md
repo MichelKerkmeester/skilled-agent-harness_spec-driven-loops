@@ -42,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/loop-lock.vitest.ts` | Test | Primary regression coverage for Loop lock. |
+| `tests/unit/loop-lock.vitest.ts` | Automated test | Primary regression coverage for Loop lock. |
 
 ---
 
@@ -50,7 +50,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: State safety
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F008
 - Feature file path: `state-safety/loop-lock.md`
 - Primary sources: `lib/deep-loop/loop-lock.ts`, `tests/unit/loop-lock.vitest.ts`
 Related references:

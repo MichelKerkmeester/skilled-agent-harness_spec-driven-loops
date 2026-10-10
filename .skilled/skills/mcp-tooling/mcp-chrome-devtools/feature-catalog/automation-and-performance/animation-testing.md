@@ -37,7 +37,7 @@ Thresholds are configurable in the script (`MAX_LAYOUT_COUNT`, `MAX_RECALC_COUNT
 
 | File | Type | Role |
 |------|------|------|
-| `examples/README.md` §3.2, §5 | Manual | Usage, thresholds, exit codes, customization |
+| `examples/README.md` §3.2, §5 | Manual playbook | Usage, thresholds, exit codes, customization |
 
 ---
 

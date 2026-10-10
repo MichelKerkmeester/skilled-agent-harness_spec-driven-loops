@@ -1,6 +1,6 @@
 ---
 title: "Template-driven message contract"
-description: "One validator holds every commit message, PR description and new branch name to the rules block a repository's own sk-git templates declare, at four gates with no bypass."
+description: "One validator holds every commit message, PR description and new branch name to the \"Enforced rules\" block in the repository's own sk-git templates, at four gates with no bypass."
 trigger_phrases:
   - "message contract enforcement"
   - "enforced rules block"

@@ -1,6 +1,6 @@
 ---
 title: "Adversarial self-check"
-description: "Re-reads blocker evidence before a P0 can become a confirmed review conclusion."
+description: "Re-reads blocker evidence before a P0 can shape the verdict."
 trigger_phrases:
   - "adversarial self-check"
   - "re-read blocker evidence"
@@ -42,8 +42,8 @@ The adversarial re-check is separate from the typed claim-adjudication packet. S
 
 | File | Type | Role |
 |---|---|---|
-| `manual-testing-playbook/iteration-execution-and-state-discipline/adversarial-self-check-runs-on-p0-findings.md` | Manual scenario | Verifies the blocker re-check path is executed. |
-| `manual-testing-playbook/convergence-and-recovery/p0-override-blocks-convergence.md` | Manual scenario | Confirms confirmed P0 findings still block stop after the self-check path. |
+| `manual-testing-playbook/iteration-execution-and-state-discipline/adversarial-self-check-runs-on-p0-findings.md` | Manual playbook | Verifies the blocker re-check path is executed. |
+| `manual-testing-playbook/convergence-and-recovery/p0-override-blocks-convergence.md` | Manual playbook | Confirms confirmed P0 findings still block stop after the self-check path. |
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Spec folder literal naming: AI-derived slugs"
-description: "Workflow YAMLs and SKILL.md rule 20 require AI agents to propose phase and remediation slugs with a specific subject token, so AI-derived spec folders never default to generic placeholders."
+description: "Workflow YAMLs and the SKILL.md naming rule require agents to propose phase and remediation slugs carrying a specific subject token."
 trigger_phrases:
   - "spec folder literal naming ai-derived slugs"
   - "remediation packet naming"

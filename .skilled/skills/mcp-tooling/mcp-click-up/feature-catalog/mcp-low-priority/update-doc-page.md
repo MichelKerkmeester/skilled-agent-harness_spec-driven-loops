@@ -54,7 +54,7 @@ The default `content_edit_mode` is `replace`, which overwrites the whole page. R
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-documents/update-document-page.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-documents/update-document-page.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 

@@ -51,7 +51,6 @@ The user-visible contract is concrete: Verify active runtime mirrors use deep-ai
 
 ## 4. SOURCE METADATA
 - Group: Runtime Routing And Rename
-- Feature ID: DAC-001
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md`
 - Playbook scenario: `manual-testing-playbook/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md`

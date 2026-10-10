@@ -79,7 +79,6 @@ codes: 0=ok, 3=input validation error.
 ## 4. SOURCE METADATA
 
 - Group: Fan-Out
-- Feature ID: F027
 - Catalog source: `feature-catalog/fanout/fanout-merge.md`
 - Primary source files: `scripts/fanout-merge.cjs`
 Related references:

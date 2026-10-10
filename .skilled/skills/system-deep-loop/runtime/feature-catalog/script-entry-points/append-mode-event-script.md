@@ -42,8 +42,8 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/mode-append-gateway.vitest.ts` | Test | Primary regression coverage for append-mode-event.cjs (11 tests; its fixture pins authority at `legacy_authoritative` and asserts the legacy projection is refreshed). |
-| `scripts/check-protocol-append-sites.cjs` | Conformance | Fails any workflow asset whose appends are undeclared or uncounted. |
+| `tests/unit/mode-append-gateway.vitest.ts` | Automated test | Primary regression coverage for append-mode-event.cjs (11 tests; its fixture pins authority at `legacy_authoritative` and asserts the legacy projection is refreshed). |
+| `scripts/check-protocol-append-sites.cjs` | Automated test | Fails any workflow asset whose appends are undeclared or uncounted. |
 
 ---
 
@@ -51,6 +51,5 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Script entry points
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F055
 - Feature file path: `script-entry-points/append-mode-event-script.md`
 - Primary sources: `scripts/append-mode-event.cjs`, `tests/unit/mode-append-gateway.vitest.ts`

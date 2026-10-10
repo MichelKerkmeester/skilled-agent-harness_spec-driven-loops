@@ -53,7 +53,6 @@ The user-visible contract is concrete: Verify runtime query CLI redacts arbitrar
 
 ## 4. SOURCE METADATA
 - Group: Council Graph Integration
-- Feature ID: DAC-021
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/council-graph-integration/council-graph-query-hostile-metadata-redaction.md`
 - Playbook scenario: `manual-testing-playbook/council-graph-integration/council-graph-query-hostile-metadata-redaction.md`

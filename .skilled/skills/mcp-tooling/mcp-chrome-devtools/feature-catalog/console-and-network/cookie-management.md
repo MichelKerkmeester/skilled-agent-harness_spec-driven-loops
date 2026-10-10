@@ -37,7 +37,7 @@ Enable the Network domain first (`bdg cdp Network.enable`). The cookie-session w
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/console-and-network/cookies-retrieval.md` | Manual | BDG-012 scenario contract |
+| `manual-testing-playbook/console-and-network/cookies-retrieval.md` | Manual playbook | BDG-012 scenario contract |
 
 ---
 

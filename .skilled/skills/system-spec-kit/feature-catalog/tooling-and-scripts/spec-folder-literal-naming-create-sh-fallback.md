@@ -1,6 +1,6 @@
 ---
 title: "Spec folder literal naming: create.sh fallback"
-description: "create.sh emits PROVIDE-DESCRIPTIVE-SLUG placeholders and one stderr warning per child when --phase-names is omitted, so generic phase-N names never reach the spec tree."
+description: "`create.sh` emits `PROVIDE-DESCRIPTIVE-SLUG` placeholders and one stderr warning per child when `--phase-names` is omitted."
 trigger_phrases:
   - "spec folder literal naming create.sh fallback"
   - "PROVIDE-DESCRIPTIVE-SLUG"

@@ -38,7 +38,7 @@ Useful for sprint planning and weekly triage. Combine with `--tag` for focused t
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

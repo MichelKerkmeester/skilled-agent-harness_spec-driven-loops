@@ -39,7 +39,7 @@ The SKILL.md ALWAYS rule "Check CLI availability first" makes this the entry gat
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/cli-bdg-lifecycle/install-version.md` | Manual | BDG-001 scenario contract |
+| `manual-testing-playbook/cli-bdg-lifecycle/install-version.md` | Manual playbook | BDG-001 scenario contract |
 
 ---
 

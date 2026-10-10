@@ -16,13 +16,13 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Uses Apple Intelligence (via `apple-fm-sdk`, requires a supported macOS system with Apple Intelligence enabled) to draft a suggested completion note from the task description and recent comments, then prompts to accept, edit, or skip it — the note is not appended automatically. No other local AI backend is implemented today; Windows Copilot+ and Ollama are listed in the source as future, not-yet-implemented providers.
+Uses Apple Intelligence (via `apple-fm-sdk`, requires a supported macOS system with Apple Intelligence enabled) to draft a suggested completion note from the task description and recent comments, then prompts to accept, edit, or skip it — the note is not appended automatically. Apple Intelligence is the only local AI backend implemented today. Windows Copilot+ and Ollama are listed in the source as future providers.
 
 ---
 
 ## 2. HOW IT WORKS
 
-Requires local AI configuration (see cupt docs). Falls back to no note if AI is unavailable. Not available in all cupt installations — check `cupt --version` and local AI setup.
+Requires local AI configuration (see cupt docs). Falls back to no note if AI is unavailable. Availability depends on the installed cupt version and the local AI setup. Check `cupt --version` and the local AI configuration.
 
 ---
 
@@ -38,7 +38,7 @@ Requires local AI configuration (see cupt docs). Falls back to no note if AI is 
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+| `manual-testing-playbook/` | Manual playbook | Per-scenario playbook files for this feature |
 
 ---
 

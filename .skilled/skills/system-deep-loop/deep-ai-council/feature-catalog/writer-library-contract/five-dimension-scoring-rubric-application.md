@@ -51,7 +51,6 @@ The user-visible contract is concrete: Verify the 5-dimension rubric is document
 
 ## 4. SOURCE METADATA
 - Group: Writer Library Contract
-- Feature ID: DAC-015
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-catalog/writer-library-contract/five-dimension-scoring-rubric-application.md`
 - Playbook scenario: `manual-testing-playbook/writer-library-contract/five-dimension-scoring-rubric-application.md`

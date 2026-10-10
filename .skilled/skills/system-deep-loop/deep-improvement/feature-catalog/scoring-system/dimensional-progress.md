@@ -1,6 +1,6 @@
 ---
 title: "Dimensional progress"
-description: "Reduces run records into per-dimension trends, best-known state, and operator-facing stop guidance."
+description: "Reduces raw run records into trends, best-known state, and operator-facing stop guidance."
 trigger_phrases:
   - "dimensional progress"
   - "reduce-state.cjs"

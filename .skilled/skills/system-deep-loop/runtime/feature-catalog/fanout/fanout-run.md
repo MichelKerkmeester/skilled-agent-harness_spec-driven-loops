@@ -1,6 +1,6 @@
 ---
 title: "Fan-out CLI lineage driver"
-description: "CLI lineage pool driver: TSX-bootstrapped entry point that spawns N headless CLI subprocesses (claude-code, opencode, cursor, codex, devin, pi, hermes), each running the full loop in its own lineages/{label}/ sub-packet of the shared checkout, with per-kind state-dir isolation and a post-subprocess salvage sweep."
+description: "TSX-bootstrapped entry point that spawns N headless CLI subprocesses (opencode, claude, opencode), each running the full loop in an isolated `lineages/{label}/` sub-packet, with per-kind state-dir isolation and a post-subprocess salvage sweep."
 trigger_phrases:
   - "fan-out cli lineage driver"
   - "fanout-run.cjs"
@@ -81,7 +81,6 @@ failure look impossible on a single-lineage run.
 ## 4. SOURCE METADATA
 
 - Group: Fan-Out
-- Feature ID: F025
 - Catalog source: `feature-catalog/fanout/fanout-run.md`
 - Primary source files: `scripts/fanout-run.cjs`
 Related references:

@@ -1,6 +1,6 @@
 ---
 title: "Config management"
-description: "Defines the immutable deep-research loop contract, file protections, and runtime capability pointers."
+description: "Defines the immutable loop contract, tunable thresholds, and runtime capability pointers."
 trigger_phrases:
   - "config management"
   - "deep-research-config.json"

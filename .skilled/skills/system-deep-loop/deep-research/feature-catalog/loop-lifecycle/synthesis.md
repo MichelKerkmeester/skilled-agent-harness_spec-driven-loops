@@ -1,6 +1,6 @@
 ---
 title: "Synthesis"
-description: "Compiles iteration findings into the canonical research output and closes the loop state."
+description: "Consolidates the iteration trail into the canonical research document."
 trigger_phrases:
   - "synthesis"
   - "compile research output"

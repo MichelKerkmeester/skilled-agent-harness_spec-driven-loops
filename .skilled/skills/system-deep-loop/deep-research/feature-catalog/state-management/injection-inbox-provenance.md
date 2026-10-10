@@ -1,6 +1,6 @@
 ---
 title: "Injection inbox provenance"
-description: "Adds `research/inbox.jsonl` as the canonical late-question injection surface with reducer-carried provenance."
+description: "Adds `research/inbox.jsonl` as the canonical late-question injection surface."
 trigger_phrases:
   - "injection inbox provenance"
   - "research inbox.jsonl"

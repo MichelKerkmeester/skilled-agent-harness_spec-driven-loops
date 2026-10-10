@@ -38,7 +38,7 @@ Zombie debugging processes can block restart; find them with `ps aux | grep -i c
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/recovery-and-failure/dead-session.md` | Manual | BDG-021 scenario contract (destructive, throwaway sessions only) |
+| `manual-testing-playbook/recovery-and-failure/dead-session.md` | Manual playbook | BDG-021 scenario contract (destructive, throwaway sessions only) |
 
 ---
 

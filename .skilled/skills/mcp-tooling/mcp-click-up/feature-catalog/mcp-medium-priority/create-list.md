@@ -54,7 +54,7 @@ Pass `name` and `space_id` or `space_name`. For a list inside a folder, use `cli
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/mcp-structure/create-list.md` | Manual | Scenario that exercises this tool |
+| `manual-testing-playbook/mcp-structure/create-list.md` | Manual playbook | Scenario that exercises this tool |
 
 ---
 
