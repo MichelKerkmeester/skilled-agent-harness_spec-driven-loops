@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 14: skill-authoring-ux-research"
+title: "Implementation Plan: Phase 1: authoring-ux-research"
 description: "Run a ten-iteration deep-research lineage on DeepSeek V4.1 Flash through cli-pi over sk-create-skill and system-skill-advisor, verify its load-bearing claims by hand, and synthesize ranked authoring-time fixes."
 trigger_phrases:
   - "skill authoring ux research plan"
@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 14: skill-authoring-ux-research
+# Implementation Plan: Phase 1: authoring-ux-research
 
 <!-- SPECKIT_LEVEL: 1 -->
 

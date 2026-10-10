@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/009-advisor-vocabulary-freshness",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/009-advisor-vocabulary-freshness",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor vocabulary freshness",
+      "phase 9 advisor vocabulary freshness",
+      "advisor vocabulary freshness plan",
+      "advisor vocabulary freshness tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "advisor vocabulary freshness implementation summary"
+    ],
+    "key_topics": [
+      "advisor",
+      "vocabulary",
+      "freshness",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-classifier/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+      ".github/workflows/routing-registry-drift.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-classifier/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-freshness.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Both",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Brief",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "generate-router-intent-signals --check fails today: cli-classifier is missing 23 declared phrases",
+    "created_at": "2026-10-10T19:22:23Z",
+    "last_save_at": "2026-10-10T19:30:18.605Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7d5f3cca2b2100e184e3a19d9d14ef6fc2a11abb12d296543ab70207755f1aab",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9ea445b074e781cff44878519cc5d9206dfea4f90718ac815b72b9e2ef6954ab",
+      "plan.md": "66394dc12284384d385dc95d0f9b3afff3edca3a6da50075463f5815526b03df",
+      "tasks.md": "06b996a9ec9350bbfbb12585cfaa8163bb0277d6573f731c5a90275b2caadde6",
+      "implementation-summary.md": "e3d64dbaa2f1d10f2f0b669df736bb4950a7601811ff08631bf90d4942af61d6"
+    },
+    "last_active_at": null
+  }
+}

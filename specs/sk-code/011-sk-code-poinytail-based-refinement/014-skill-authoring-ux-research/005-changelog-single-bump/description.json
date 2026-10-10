@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/005-changelog-single-bump",
+  "description": "Phase 5: changelog-single-bump",
+  "keywords": [
+    "phase",
+    "changelog-single-bump"
+  ],
+  "lastUpdated": "2026-10-10T19:22:14.310Z",
+  "specId": "005",
+  "folderSlug": "changelog-single-bump",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "014-skill-authoring-ux-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

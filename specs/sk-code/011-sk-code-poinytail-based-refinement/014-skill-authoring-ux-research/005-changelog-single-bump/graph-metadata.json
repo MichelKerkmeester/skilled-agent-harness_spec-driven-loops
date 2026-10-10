@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/005-changelog-single-bump",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/005-changelog-single-bump",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "changelog single bump",
+      "phase 5 changelog single bump",
+      "changelog single bump plan",
+      "changelog single bump tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "changelog single bump implementation summary"
+    ],
+    "key_topics": [
+      "changelog",
+      "single",
+      "bump",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/create/assets/create-changelog-auto.yaml",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      ".skilled/commands/create/assets/create-changelog-confirm.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-changelog-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-changelog-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-changelog-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-changelog-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Brief",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The changelog workflow picks the next version from the local checkout only, so two branches from one base mint the same number, as system-spec-kit 2.7.1.0 did",
+    "created_at": "2026-10-10T19:22:11Z",
+    "last_save_at": "2026-10-10T19:30:18.605Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cda8ec9cf4262e036991a928acd864a320dcdb7e42546500bd90cd14e91714ec",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a1a89305ea0f7179f2deaa138d70c331de85841e7cd78a315dd40ab0771f7d74",
+      "plan.md": "5891408b403d24051fdf9873ab240c8af0f1a5c814ab33653e5d58f82f6a78b0",
+      "tasks.md": "6fb9b98a159c2c0d93b578a41b473757eac4b3d7eb4623fdf29f3dbb9b77edec",
+      "implementation-summary.md": "f0b635558692a1ed1b765ed5c4fb9adb8a0a73a1f307d8df9d9ff468a0c9a85a"
+    },
+    "last_active_at": null
+  }
+}

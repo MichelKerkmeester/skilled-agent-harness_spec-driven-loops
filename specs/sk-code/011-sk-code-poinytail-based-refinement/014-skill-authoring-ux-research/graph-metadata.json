@@ -3,7 +3,17 @@
   "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research",
   "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research",
   "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
-  "children_ids": [],
+  "children_ids": [
+    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/001-authoring-ux-research",
+    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/002-parent-goal-budget",
+    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/003-unread-version-fields",
+    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/004-commit-hook-checks",
+    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/005-changelog-single-bump",
+    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/006-create-skill-guidance",
+    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/007-advisor-name-mention-scoring",
+    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/008-advisor-surface-hint",
+    "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/009-advisor-vocabulary-freshness"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -12,47 +22,42 @@
   "derived": {
     "trigger_phrases": [
       "skill authoring ux research",
-      "phase 14 skill authoring ux research",
+      "skill authoring remediation",
       "sk-create-skill authoring errors",
       "skill advisor routing ux",
-      "skill authoring ux research plan",
-      "skill authoring ux research tasks",
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding",
-      "skill authoring ux research implementation summary"
+      "goal binding"
     ],
     "key_topics": [
       "skill",
       "authoring",
       "research",
-      "phase",
+      "remediation",
       "sk-create-skill",
       "errors",
       "advisor",
       "routing",
-      "plan",
-      "tasks",
       "packet",
-      "goal"
+      "goal",
+      "durable",
+      "directive"
     ],
-    "importance_tier": "normal",
-    "status": "complete",
+    "importance_tier": "important",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
       "goal.md",
-      "implementation-summary.md",
-      "research/research.md",
-      "research/deep-research-config.json",
-      ".skilled/repo-rules/prevent-overengineering.md",
-      ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
-      ".skilled/commands/create/assets/create-changelog-auto.yaml",
-      ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
-      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
-      ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts"
+      "001-authoring-ux-research/goal.md",
+      "002-parent-goal-budget/goal.md",
+      "003-unread-version-fields/goal.md",
+      "004-commit-hook-checks/goal.md",
+      "005-changelog-single-bump/goal.md",
+      "006-create-skill-guidance/goal.md",
+      "007-advisor-name-mention-scoring/goal.md",
+      "008-advisor-surface-hint/goal.md",
+      "009-advisor-vocabulary-freshness/goal.md"
     ],
     "entities": [
       {
@@ -62,79 +67,19 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-config.json",
-        "kind": "config",
-        "path": "research/deep-research-config.json",
-        "source": "derived"
-      },
-      {
-        "name": "prevent-overengineering.md",
-        "kind": "doc",
-        "path": ".skilled/repo-rules/prevent-overengineering.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "create-changelog-auto.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/create/assets/create-changelog-auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "parent-hub-router-schema.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
-        "source": "derived"
-      },
-      {
-        "name": "explicit.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-tool-schemas.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -146,81 +91,73 @@
         "source": "derived"
       },
       {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "Decisions Frozen",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement During",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Overview One",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Fan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "3. COMPLETION CRITERIA",
+        "kind": "heading",
+        "path": "goal.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "During the 092 epic, authors repeatedly shipped generated artifacts that had drifted from their sources (leaf-manifest.json, hub-router.json, mode-registry.json, compiled-route manifests, Hermes skill copies, the trigger index) and had to re-mint them by hand",
+    "causal_summary": "The sk-code refinement epic kept hitting the same skill-authoring errors: generated artifacts drifting from their sources, a hub version carried in six files with a changelog number that collided at merge, advisor routes pulled off course by named files and generic words, a surface hint the advisor never passes, and doctor checks that fire only after a change lands",
     "created_at": "2026-10-10T18:39:32Z",
-    "last_save_at": "2026-10-10T19:07:37.291Z",
+    "last_save_at": "2026-10-10T19:30:18.607Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "goal.md",
-      "implementation-summary.md",
-      "research/research.md"
+      "goal.md"
     ],
-    "source_fingerprint": "sha256:372d6c901a82b7f18e864a4e39f220f79f61ad3f2e139e286a8a8e5dfb779f4b",
+    "source_fingerprint": "sha256:7e606ef1a52f74d9c92cfeb521ce8b71420e8a1eeb6ec3085ea38d1d7398ff02",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3c5611b80905779b7248ffe9e104123add6c6597b1b5f3c3a79f01d2b964e9fb",
-      "plan.md": "452f5ab9dc8eaa1a27e8f348847e00beb95dcb48a5650490930be3ef1856b84e",
-      "tasks.md": "f352369700f96db2a456dab777e9f94b0670e90ac2246d47a7ceed913586e6d9",
-      "implementation-summary.md": "3915b01891f2512cf7cee4ab9f2a5aaffda0672aba94a2eb99c3a97b06677edb",
-      "research/research.md": "3edb46dfbe9af2840434a148bd356dff6ec6968a66b6ffb6267b20b5c822b304"
+      "spec.md": "36fea71fae71a0cad20c7e022a48266bf1376a8e07a0eca351026fbed98c6009"
     },
     "last_active_at": null
   }

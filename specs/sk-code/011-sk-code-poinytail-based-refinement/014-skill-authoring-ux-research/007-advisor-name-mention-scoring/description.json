@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/007-advisor-name-mention-scoring",
+  "description": "Phase 7: advisor-name-mention-scoring",
+  "keywords": [
+    "phase",
+    "advisor-name-mention-scoring"
+  ],
+  "lastUpdated": "2026-10-10T19:22:20.100Z",
+  "specId": "007",
+  "folderSlug": "advisor-name-mention-scoring",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "014-skill-authoring-ux-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

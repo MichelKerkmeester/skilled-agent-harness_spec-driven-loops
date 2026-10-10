@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/003-unread-version-fields",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/003-unread-version-fields",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "unread version fields",
+      "phase 3 unread version fields",
+      "unread version fields plan",
+      "unread version fields tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "unread version fields implementation summary"
+    ],
+    "key_topics": [
+      "unread",
+      "version",
+      "fields",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-hub-router-schema.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "init_skill.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-hub-router-template.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Cut",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Brief",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A hub version is carried in six files that must move together",
+    "created_at": "2026-10-10T19:22:04Z",
+    "last_save_at": "2026-10-10T19:30:18.601Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:21bea33dab515e751417f01d0475e0f49e1a6829a9ced0dc3ed07eefd9039d52",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b3297190102dc42bfa1c79f52aebed854fdd7954ae7d9b12cf352669e67fed42",
+      "plan.md": "0bfa7243aa5febf63e861e846fd04a975ac8b2fa65437f60ffc9f1f3f8556126",
+      "tasks.md": "f06ca9698448e221dd3202f55642b213e4420880f8e27e776882294fc99690f1",
+      "implementation-summary.md": "a7c3ac7f9ff615d2631299877d17c5c0af47d3cdbab7b7e5ccea86aec01c349d"
+    },
+    "last_active_at": null
+  }
+}

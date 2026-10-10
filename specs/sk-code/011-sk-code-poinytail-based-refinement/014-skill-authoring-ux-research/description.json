@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research",
   "description": "During the 092 epic, authors repeatedly shipped generated artifacts that had drifted from their sources (leaf-manifest.json, hub-router.json,",
   "keywords": [

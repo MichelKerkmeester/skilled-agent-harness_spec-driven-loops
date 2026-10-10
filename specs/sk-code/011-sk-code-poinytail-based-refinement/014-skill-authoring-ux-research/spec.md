@@ -1,57 +1,52 @@
 ---
-title: "Feature Specification: Phase 14: skill-authoring-ux-research"
-description: "The 092 epic kept hitting the same authoring errors: generated skill artifacts that drift from their sources, a hub version spread over six files, advisor routes pulled off course by file paths and generic words, and doctor checks that catch drift only after it lands. This phase researches how sk-create-skill and system-skill-advisor could make those errors near impossible at authoring time."
+title: "Feature Specification: Skill authoring UX research and remediation"
+description: "Phase parent that researches why the 092 skill-authoring errors happen inside sk-create-skill and system-skill-advisor, then remediates every finding with small changes that stop the errors where the author works."
 trigger_phrases:
   - "skill authoring ux research"
-  - "phase 14 skill authoring ux research"
+  - "skill authoring remediation"
   - "sk-create-skill authoring errors"
   - "skill advisor routing ux"
-importance_tier: "normal"
-contextType: "research"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research"
+    last_updated_at: "2026-10-10T20:00:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Made the research packet a phase parent and planned the remediation phases"
+    next_safe_action: "Build phase 002, then each later phase in order"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "t3-014-phase-parent"
+      parent_session_id: null
+    completion_pct: 10
+    open_questions: []
+    answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 14: skill-authoring-ux-research
 
-<!-- SPECKIT_LEVEL: 1 -->
----
+<!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-spec | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Feature Specification: Skill authoring UX research and remediation
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-10-10 |
 | **Branch** | `worktrees/095-skill-authoring-ux-research` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 14 of 14 |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | sk-code/011-sk-code-poinytail-based-refinement |
 | **Predecessor** | 011-round-four-remediation |
 | **Successor** | None |
-| **Handoff Criteria** | research/research.md ends with ranked implementation phases, each naming the file it changes and the check that proves it |
+| **Handoff Criteria** | Every child goal's criteria pass and recursive strict validation passes |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 14** of the sk-code Ponytail 5 refinement. It runs in parallel with phases 12 and 13, which live in other worktrees.
-
-**Scope Boundary**: Research only. The run writes under this phase's `research/` folder and the packet docs. No product file under `.skilled/` changes.
-
-**Dependencies**:
-- The 092 children 001 to 011 under `../`, read for the errors they recorded.
-- The cli-pi executor with DeepSeek V4.1 Flash at max effort through the LLM Gateway route.
-
-**Deliverables**:
-- A ten-iteration `/deep:research` lineage under `research/lineages/`.
-- `research/research.md`, with root causes, verified or inferred labels, rejected ideas and ranked implementation phases.
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
 
 ---
 
@@ -59,10 +54,12 @@ This is **Phase 14** of the sk-code Ponytail 5 refinement. It runs in parallel w
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-During the 092 epic, authors repeatedly shipped generated artifacts that had drifted from their sources (leaf-manifest.json, hub-router.json, mode-registry.json, compiled-route manifests, Hermes skill copies, the trigger index) and had to re-mint them by hand. A hub version lives in six files plus a changelog whose number collided at merge, and the advisor routed 13 of 17 positive battery prompts and let 2 of 5 negatives through. Doctor and router-sync checks report this drift only after it is committed.
+The sk-code refinement epic kept hitting the same skill-authoring errors: generated artifacts drifting from their sources, a hub version carried in six files with a changelog number that collided at merge, advisor routes pulled off course by named files and generic words, a surface hint the advisor never passes, and doctor checks that fire only after a change lands. Phase 001 traced each error to a root cause inside sk-create-skill, system-skill-advisor and the hooks and workflows around them.
 
 ### Purpose
-Find the root cause of each error class inside sk-create-skill and system-skill-advisor, and rank the smallest authoring-time changes that would stop it, for repository maintainers and for external users who write their own skills.
+Fix every finding from phase 001 with the smallest change that stops the error where the author already works, so maintainers and external skill authors can no longer make the 092 class of errors by accident.
+
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -71,73 +68,80 @@ Find the root cause of each error class inside sk-create-skill and system-skill-
 ## 3. SCOPE
 
 ### In Scope
-- `.skilled/skills/sk-doc/sk-create-skill/`: its scripts, templates, references and generators.
-- `.skilled/skills/system-skill-advisor/`: its runtime, scorer, compiled-route front door, doctor checks and leaf manifest.
-- The errors recorded in the Known Limitations, Deviations and goal logs of `../001-ponytail-deep-research/` to `../011-round-four-remediation/`.
+- The research in phase 001 and its seven ranked recommendations.
+- The live defects phase 001 found: the failing router intent-signal check, the stale compiled skill graph and the failing advisor battery.
+- The 011 parent goal, which this packet pushed over its 4,000-character budget.
 
 ### Out of Scope
-- Changing any product file. This phase recommends; a later phase builds.
-- The post-merge review (phase 12) and the general root-cause research (phase 13), which run in parallel.
-- Advisor model training or new dependencies.
+- Document content owned by the parallel feature-catalog track: feature catalog docs, leftover template comments and package-validator findings on existing docs and changelogs. Needed edits there are handed off, not made.
+- Pushing or merging the branch.
 
 ### Files to Change
 
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| `research/` | Create | Deep-research config, lineage state, iterations and the synthesis |
-| `spec.md`, `plan.md`, `tasks.md`, `goal.md`, `implementation-summary.md` | Modify | Packet docs for this phase |
-| `../spec.md`, `../goal.md` | Modify | One phase-map row and one binding row for this phase |
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| `../goal.md` | Modify | 002-parent-goal-budget | Cut the 011 parent goal under its budget |
+| Seven hubs' `hub-router.json` and `mode-registry.json`, the router schema, two templates, `init_skill.py` | Modify | 003-unread-version-fields | Stop storing a hub version nothing reads |
+| `.skilled/scripts/git-hooks/pre-commit` and its test | Modify | 004-commit-hook-checks | Run the leaf, doctor and intent-signal checks for a staged hub |
+| `.skilled/commands/create/assets/create-changelog-*.yaml` | Modify | 005-changelog-single-bump | One command numbers against upstream and moves every version copy |
+| sk-create-skill `SKILL.md`, a maintenance reference, two scripts, its changelog | Modify | 006-create-skill-guidance | Correct the routing-field sentence and sharpen generator messages |
+| Advisor `explicit.ts`, `executor-delegation.ts` and tests | Modify | 007-advisor-name-mention-scoring | Stop a named file or path from pulling the route |
+| Advisor schema, recommend handler, test, `SKILL.md`, changelog | Modify | 008-advisor-surface-hint | Pass the surface hint to the compiled-route front door |
+| cli-classifier graph metadata, compiled skill graph, freshness panel, routing CI job | Modify | 009-advisor-vocabulary-freshness | Clear the two live drifts and make the panel able to fail |
 <!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
 
-### P0 - Blockers (MUST complete)
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Run `/deep:research` in `:auto` mode on DeepSeek V4.1 Flash at max effort through cli-pi, up to ten iterations | The lineage state log holds one iteration record per completed iteration, at most ten |
-| REQ-002 | Name a root cause inside sk-create-skill or system-skill-advisor for each 092 error class | `research/research.md` has a root-cause entry per class with a path:line citation |
-| REQ-003 | Mark each load-bearing claim verified or inferred, verified only when the orchestrator ran the command or read the cited line | Each root-cause entry carries a Verified or Inferred label |
-| REQ-004 | End the synthesis with implementation phases ranked by errors prevented per unit of cost | Each phase names the file it changes and the check that proves it |
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-authoring-ux-research/ | Ten-iteration research into the 092 authoring errors, verified and ranked | Complete |
+| 2 | 002-parent-goal-budget/ | Cut the 011 parent goal under its 4,000-character budget without dropping a criterion | Planned |
+| 3 | 003-unread-version-fields/ | Stop storing the hub version in hub-router.json and mode-registry.json, which nothing reads | Planned |
+| 4 | 004-commit-hook-checks/ | Run the leaf-manifest, doctor and intent-signal checks for a staged skill at commit, and say when gates are skipped | Planned |
+| 5 | 005-changelog-single-bump/ | Make the changelog workflow the one bump command: number against upstream and move every version copy | Planned |
+| 6 | 006-create-skill-guidance/ | Correct the routing-field sentence, name every version carrier, and sharpen two generator messages | Planned |
+| 7 | 007-advisor-name-mention-scoring/ | Stop a named file, path or generic word from pulling the advisor route | Planned |
+| 8 | 008-advisor-surface-hint/ | Let advisor_recommend pass a surface hint to the compiled-route front door | Planned |
+| 9 | 009-advisor-vocabulary-freshness/ | Clear the failing intent-signal carry and the stale compiled graph, and let the freshness panel fail in CI | Planned |
 
-### P1 - Required (complete OR user-approved deferral)
+### Phase Transition Rules
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-005 | Test each recommendation against `.skilled/repo-rules/prevent-overengineering.md` | `research/research.md` lists rejected ideas with the reason |
-| REQ-006 | Cover both repository maintainers and external skill authors | The synthesis names which audience each phase helps |
-<!-- /ANCHOR:requirements -->
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
 
----
+### Phase Handoff Criteria
 
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
-
-- **SC-001**: Every ranked phase names one file and one command whose output proves the change.
-- **SC-002**: Strict validation of this packet prints `RESULT: PASSED`.
-<!-- /ANCHOR:success-criteria -->
-
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | LLM Gateway route for DeepSeek V4.1 Flash | The lineage cannot start | Fall back to `cline-pass/deepseek-v4.1-flash`, which the runner pins at xhigh |
-| Risk | A model finding is a hypothesis | High | The orchestrator reruns the command or reads the line before marking a claim verified |
-| Risk | Recommendations that grow the tooling | Med | Each one passes the reversal-cost order in prevent-overengineering.md, and rejected ideas are recorded |
-<!-- /ANCHOR:risks -->
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-authoring-ux-research | 002-parent-goal-budget | Research committed with ranked phases | `validate.sh --strict` on 001 |
+| 002-parent-goal-budget | 003-unread-version-fields | 002-parent-goal-budget committed with its goal criteria passing | `validate.sh --strict` on 002-parent-goal-budget |
+| 003-unread-version-fields | 004-commit-hook-checks | 003-unread-version-fields committed with its goal criteria passing | `validate.sh --strict` on 003-unread-version-fields |
+| 004-commit-hook-checks | 005-changelog-single-bump | 004-commit-hook-checks committed with its goal criteria passing | `validate.sh --strict` on 004-commit-hook-checks |
+| 005-changelog-single-bump | 006-create-skill-guidance | 005-changelog-single-bump committed with its goal criteria passing | `validate.sh --strict` on 005-changelog-single-bump |
+| 006-create-skill-guidance | 007-advisor-name-mention-scoring | 006-create-skill-guidance committed with its goal criteria passing | `validate.sh --strict` on 006-create-skill-guidance |
+| 007-advisor-name-mention-scoring | 008-advisor-surface-hint | 007-advisor-name-mention-scoring committed with its goal criteria passing | `validate.sh --strict` on 007-advisor-name-mention-scoring |
+| 008-advisor-surface-hint | 009-advisor-vocabulary-freshness | 008-advisor-surface-hint committed with its goal criteria passing | `validate.sh --strict` on 008-advisor-surface-hint |
+<!-- /ANCHOR:phase-map -->
 
 ---
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 4. OPEN QUESTIONS
 
-- None at start. Questions the research raises are recorded in `research/research.md`.
+- None. Questions a phase raises are recorded in that phase.
 <!-- /ANCHOR:questions -->
 
 ---
+
+## RELATED DOCUMENTS
+
+- **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
+- **Parent Spec**: See `../spec.md`
+- **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

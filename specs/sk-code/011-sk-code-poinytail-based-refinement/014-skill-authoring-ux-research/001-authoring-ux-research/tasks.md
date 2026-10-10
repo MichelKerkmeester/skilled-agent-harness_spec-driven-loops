@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 14: skill-authoring-ux-research"
+title: "Tasks: Phase 1: authoring-ux-research"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "skill authoring ux research tasks"
@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 14: skill-authoring-ux-research
+# Tasks: Phase 1: authoring-ux-research
 
 <!-- SPECKIT_LEVEL: 1 -->
 

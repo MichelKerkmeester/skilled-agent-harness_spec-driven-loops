@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/001-authoring-ux-research",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/001-authoring-ux-research",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill authoring ux research",
+      "phase 14 skill authoring ux research",
+      "sk-create-skill authoring errors",
+      "skill advisor routing ux",
+      "skill authoring ux research plan",
+      "skill authoring ux research tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "skill authoring ux research implementation summary"
+    ],
+    "key_topics": [
+      "skill",
+      "authoring",
+      "research",
+      "phase",
+      "sk-create-skill",
+      "errors",
+      "advisor",
+      "routing",
+      "plan",
+      "tasks",
+      "packet",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/deep-research-config.json",
+      ".skilled/repo-rules/prevent-overengineering.md",
+      ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+      ".skilled/commands/create/assets/create-changelog-auto.yaml",
+      ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+      ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "prevent-overengineering.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-changelog-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-changelog-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "parent-hub-router-schema.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-tool-schemas.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement During",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "During the 092 epic, authors repeatedly shipped generated artifacts that had drifted from their sources (leaf-manifest.json, hub-router.json, mode-registry.json, compiled-route manifests, Hermes skill copies, the trigger index) and had to re-mint them by hand",
+    "created_at": "2026-10-10T18:39:32Z",
+    "last_save_at": "2026-10-10T19:30:20.468Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:8fbc10f5f18fd59d29e3771ee322046c5f46ce062ddbe43b5f4560a2c7f946a9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "46ed70664caccb225a9ed274d9772888204ebe291ee77df3ccc35d02829e80a8",
+      "plan.md": "3c66459edb152797def381e2e9b02b6c3d6232d53a55345f1c87e721c067d39e",
+      "tasks.md": "fab46f1f0527da64789e56e5ca2f99385f5cd2b79fcc9f174866f54467e1274b",
+      "implementation-summary.md": "f982ba7d16f6fc47c2e7d592dd7844888d233c686fae24db82265dec19702e3e",
+      "research/research.md": "3edb46dfbe9af2840434a148bd356dff6ec6968a66b6ffb6267b20b5c822b304"
+    },
+    "last_active_at": null
+  }
+}

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research"
+    packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/001-authoring-ux-research"
     last_updated_at: "2026-10-10T19:30:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Wrote the verified synthesis and ranked implementation phases"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 014-skill-authoring-ux-research |
+| **Spec Folder** | 001-authoring-ux-research |
 | **Completed** | 2026-10-10 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
