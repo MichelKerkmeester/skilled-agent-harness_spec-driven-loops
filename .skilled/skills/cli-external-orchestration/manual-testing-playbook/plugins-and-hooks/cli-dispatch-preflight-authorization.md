@@ -17,8 +17,6 @@ version: 1.4.0.1
 
 # CLI Dispatch Preflight Authorization
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation that skill_advisor.py reads exactly one prompt from stdin, routes through native-first compatibility and returns the legacy JSON-array shape.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

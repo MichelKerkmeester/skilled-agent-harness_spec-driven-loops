@@ -21,8 +21,6 @@ expected_leaf_resources:
 Prompt: Manual validation that the 5-lane fusion produces weighted scores using the canonical weights: explicit_author 0.42, lexical 0.28, graph_causal 0.13, derived_generated 0.12, semantic_shadow 0.05.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

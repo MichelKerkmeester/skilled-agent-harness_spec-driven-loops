@@ -16,8 +16,6 @@ version: 1.4.0.15
 
 # Codex Hook/Plugin Parity
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

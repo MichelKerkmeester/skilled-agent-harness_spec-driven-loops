@@ -21,8 +21,6 @@ expected_leaf_resources:
 Prompt: Manual validation of advisor_status freshness transitions and status fields.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation that advisor_recommend writes a durable shadow-delta record only when the opt-in flag or path is set, and never echoes raw prompt text into the sink.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

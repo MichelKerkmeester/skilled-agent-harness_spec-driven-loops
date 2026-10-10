@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Skill Advisor Scripts: CLI And Regression Utilities
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

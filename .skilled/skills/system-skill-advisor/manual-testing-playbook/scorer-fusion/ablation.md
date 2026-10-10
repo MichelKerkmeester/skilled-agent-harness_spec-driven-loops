@@ -21,8 +21,6 @@ expected_leaf_resources:
 Prompt: Manual validation that lib/scorer/ablation.ts supports lane-by-lane disable so operators can measure each lane's contribution without mutating the live weights.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

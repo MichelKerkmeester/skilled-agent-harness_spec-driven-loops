@@ -14,8 +14,6 @@ expected_leaf_resources: []
 
 # Dist Freshness Guard
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

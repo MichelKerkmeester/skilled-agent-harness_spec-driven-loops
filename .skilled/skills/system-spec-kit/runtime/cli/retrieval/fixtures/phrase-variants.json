@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d28a0179b8b0d6fe91ea4cf39ee2cfbf26f55521ffe7b606915aa42a9bf29c6d",
+  "manifestHash": "ebea1fad87e84f858bb61d83baeba7666bf7f48a7e4d86076b357dc43e419491",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -18996,6 +18996,9 @@
     "cli codex 1 9 5 0": [
       "cli-codex 1.9.5.0"
     ],
+    "cli codex 1 9 6 0": [
+      "cli-codex 1.9.6.0"
+    ],
     "cli codex adapter": [
       "cli-codex adapter"
     ],
@@ -19161,6 +19164,9 @@
     "cli codex v1 9 5 0": [
       "cli-codex v1.9.5.0"
     ],
+    "cli codex v1 9 6 0": [
+      "cli-codex v1.9.6.0"
+    ],
     "cli command aliases snake kebab camel": [
       "cli command aliases snake kebab camel"
     ],
@@ -19236,6 +19242,9 @@
     "cli cursor 1 5 0 0": [
       "cli-cursor 1.5.0.0"
     ],
+    "cli cursor 1 5 1 0": [
+      "cli-cursor 1.5.1.0"
+    ],
     "cli cursor benchmark": [
       "cli-cursor benchmark"
     ],
@@ -19289,6 +19298,9 @@
     ],
     "cli cursor v1 5 0 0": [
       "cli-cursor v1.5.0.0"
+    ],
+    "cli cursor v1 5 1 0": [
+      "cli-cursor v1.5.1.0"
     ],
     "cli decommission orphan removal": [
       "cli decommission orphan removal"
@@ -58855,6 +58867,9 @@
     "mcp code mode 1 0 8 0": [
       "mcp-code-mode 1.0.8.0"
     ],
+    "mcp code mode 1 0 9 0": [
+      "mcp-code-mode 1.0.9.0"
+    ],
     "mcp code mode changelog retrofit": [
       "mcp-code-mode changelog retrofit"
     ],
@@ -58917,6 +58932,9 @@
     ],
     "mcp code mode v1 0 8 0": [
       "mcp-code-mode v1.0.8.0"
+    ],
+    "mcp code mode v1 0 9 0": [
+      "mcp-code-mode v1.0.9.0"
     ],
     "mcp config 1 1 aligned": [
       "mcp config 1:1 aligned"
@@ -101159,6 +101177,9 @@
     "system skill advisor 0 14 5 0": [
       "system-skill-advisor 0.14.5.0"
     ],
+    "system skill advisor 0 14 6 0": [
+      "system-skill-advisor 0.14.6.0"
+    ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
     ],
@@ -101296,6 +101317,9 @@
     ],
     "system skill advisor v0 14 5 0": [
       "system-skill-advisor v0.14.5.0"
+    ],
+    "system skill advisor v0 14 6 0": [
+      "system-skill-advisor v0.14.6.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -101566,6 +101590,9 @@
     ],
     "system spec kit 2 7 4 0": [
       "system-spec-kit 2.7.4.0"
+    ],
+    "system spec kit 2 7 5 0": [
+      "system-spec-kit 2.7.5.0"
     ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
@@ -101950,6 +101977,9 @@
     ],
     "system spec kit v2 7 4 0": [
       "system-spec-kit v2.7.4.0"
+    ],
+    "system spec kit v2 7 5 0": [
+      "system-spec-kit v2.7.5.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -105755,6 +105785,9 @@
     ],
     "unused mcp response type removed": [
       "unused mcp response type removed"
+    ],
+    "unused template name comments removed": [
+      "unused template-name comments removed"
     ],
     "upcast fork migrate cutover": [
       "upcast fork migrate cutover"

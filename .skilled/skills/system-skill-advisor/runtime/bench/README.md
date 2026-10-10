@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Skill Advisor Benchmarks: Latency And Calibration
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

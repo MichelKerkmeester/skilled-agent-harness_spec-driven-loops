@@ -21,8 +21,6 @@ expected_leaf_resources:
 Prompt: Manual validation of top-two ambiguity rendering when two passing recommendations are within 0.05 on either score or confidence.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

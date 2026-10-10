@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation for the pre-027 Python shim stdin regression path.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

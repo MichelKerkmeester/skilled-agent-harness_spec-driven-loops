@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation for Python shim native/local routing controls.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

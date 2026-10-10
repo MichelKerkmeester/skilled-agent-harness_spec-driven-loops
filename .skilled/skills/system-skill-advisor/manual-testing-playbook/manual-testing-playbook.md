@@ -6,8 +6,6 @@ version: 0.8.0.16
 
 # Skill Advisor: Manual Testing Playbook
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 This document combines the canonical manual-validation contract for the `skill_advisor` package into a single reference. The root playbook acts as the operator directory, review protocol and orchestration guide while the per-feature files carry scenario-specific execution truth.
 
 ---

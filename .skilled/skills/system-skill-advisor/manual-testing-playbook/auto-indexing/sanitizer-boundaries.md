@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation that the A7 sanitizer in lib/derived/sanitizer.ts runs at every write boundary (SQLite, graph-metadata derived, envelope, diagnostics) and rejects unsafe labels.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

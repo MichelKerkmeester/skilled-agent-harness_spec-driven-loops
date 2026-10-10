@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Skill Advisor Skill-Graph Tests
 
-<!-- sk-doc-template: code_folder_readme -->
-
 ---
 
 ## 1. OVERVIEW

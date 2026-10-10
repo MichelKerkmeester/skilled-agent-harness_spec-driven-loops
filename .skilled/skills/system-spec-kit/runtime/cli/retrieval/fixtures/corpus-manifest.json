@@ -1,5 +1,5 @@
 {
-  "corpusHash": "90c79a5b3ec5b5eab00bc8b360a0522d58a0998e2164cee53c935bb836769aa7",
+  "corpusHash": "5748f2c29d3af57ca1f2b64fd90c6fd03b4010a6c3e3e05bea32bb967b8ec589",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24369,
+  "includedPathCount": 24374,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -572,6 +572,7 @@
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.5.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.6.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/context-profile.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/debug-profile.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/multi-ai-council-profile.md",
@@ -800,6 +801,7 @@
     ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.4.1.0.md",
     ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.4.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.5.0.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.5.1.0.md",
     ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/agents-skills-rules/agent-mirror-integrity.md",
     ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/agents-skills-rules/agent-roster-enumeration.md",
     ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/agents-skills-rules/command-roster-invocation.md",
@@ -1790,6 +1792,7 @@
     ".skilled/skills/mcp-code-mode/changelog/v1.0.5.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.7.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.8.0.md",
+    ".skilled/skills/mcp-code-mode/changelog/v1.0.9.0.md",
     ".skilled/skills/mcp-code-mode/manual-testing-playbook/clickup-and-chrome-via-cm/chrome-navigate-screenshot.md",
     ".skilled/skills/mcp-code-mode/manual-testing-playbook/clickup-and-chrome-via-cm/clickup-create-read-delete.md",
     ".skilled/skills/mcp-code-mode/manual-testing-playbook/clickup-and-chrome-via-cm/sibling-pair-handover.md",
@@ -7680,6 +7683,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.14.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.14.4.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.14.5.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.14.6.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.2.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.4.0.0.md",
@@ -8099,6 +8103,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.4.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.7.5.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
@@ -24400,7 +24405,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d28a0179b8b0d6fe91ea4cf39ee2cfbf26f55521ffe7b606915aa42a9bf29c6d",
+  "manifestHash": "ebea1fad87e84f858bb61d83baeba7666bf7f48a7e4d86076b357dc43e419491",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

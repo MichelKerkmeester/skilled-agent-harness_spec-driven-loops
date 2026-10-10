@@ -21,8 +21,6 @@ expected_leaf_resources:
 Prompt: Manual validation that when the top two candidates are within 0.05 confidence, the advisor returns an ambiguous brief rather than a single top-1 recommendation.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

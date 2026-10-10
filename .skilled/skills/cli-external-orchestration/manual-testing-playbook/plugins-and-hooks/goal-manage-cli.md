@@ -16,8 +16,6 @@ version: 1.5.0.0
 
 # Goal Manage CLI: Session Isolation And Legacy Cutover
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ## 1. OVERVIEW
 
 This scenario validates the runtime-neutral goal core without touching operator state. It proves that two sessions keep different goals, missing identity never writes or injects, aggregate diagnostics do not reveal raw session ids, legacy state requires explicit ownership, malformed legacy data can only be archived, and rollback disables injection while preserving every state layout.

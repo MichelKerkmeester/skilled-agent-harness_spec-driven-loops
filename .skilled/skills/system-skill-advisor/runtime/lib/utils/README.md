@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Advisor Utilities: Retry, JSON And Path Helpers
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

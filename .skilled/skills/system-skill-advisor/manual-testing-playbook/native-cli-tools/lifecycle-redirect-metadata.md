@@ -21,8 +21,6 @@ expected_leaf_resources:
 Prompt: Manual validation that superseded, archived, future and rolled-back lifecycle metadata surfaces through advisor_recommend.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

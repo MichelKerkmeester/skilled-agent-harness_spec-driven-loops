@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Compatibility Library: Advisor Status And Redirect Probes
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

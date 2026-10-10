@@ -21,8 +21,6 @@ expected_leaf_resources:
 Prompt: Manual validation for the Claude Code prompt-time skill advisor hook.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

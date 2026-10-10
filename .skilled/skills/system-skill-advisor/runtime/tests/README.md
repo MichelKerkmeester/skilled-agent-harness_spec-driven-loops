@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Skill Advisor Tests: Regression And Contract Coverage
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

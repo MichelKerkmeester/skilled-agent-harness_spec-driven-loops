@@ -2,7 +2,7 @@
 name: system-skill-advisor
 description: Routes non-trivial requests to matching skills through the daemon-backed advisor CLI and stable advisor command ids.
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 0.14.5.0
+version: 0.14.6.0
 trigger_phrases:
   - "skill advisor"
   - "gate 2 routing"
@@ -34,8 +34,6 @@ intent_signals:
 <!-- Keywords: system-skill-advisor, skill-advisor, advisor_recommend, advisor_status, advisor_rebuild, advisor_validate, skill_graph_scan, skill_graph_query, skill_graph_status, skill_graph_validate, skill_graph_propagate_enhances, cross-skill-edges, gate-2-routing, cli-front-door, daemon-cli, legacy-tool-bridge, skill-graph -->
 
 # System Skill Advisor
-
-<!-- sk-doc-template: skill_md -->
 
 Routes non-trivial user requests to the right skill through the standalone Skill Advisor package and its CLI front door.
 

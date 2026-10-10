@@ -9,8 +9,6 @@ trigger_phrases:
 
 # Scorer Library: Skill Advisor Ranking
 
-<!-- sk-doc-template: skill_readme -->
-
 ---
 
 ## 1. OVERVIEW

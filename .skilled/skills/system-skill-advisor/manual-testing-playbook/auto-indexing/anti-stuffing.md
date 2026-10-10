@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation that derived lane anti-stuffing enforces cardinality caps, demotes repetition-dense tokens and rejects adversarial fixtures.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

@@ -19,8 +19,6 @@ expected_leaf_resources: []
 Prompt: Manual validation that scripts/skill_advisor_bench.py runs the performance bench and emits latency measurements within documented limits.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW
@@ -91,7 +89,7 @@ python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_bench
 
 ---
 
-## 6. Evidence
+## 6. EVIDENCE
 
 Command run from repo root:
 
@@ -222,6 +220,6 @@ No runtime warning about native unavailability appeared in stdout; stdout began 
 
 ---
 
-## 7. Pass/Fail
+## 7. PASS/FAIL
 
 FAIL: Bench produced a JSON report and `throughput_multiplier` passed, but `gates.warm_p95` was `false` with in-process warm p95 `70.0421` ms, above the expected `<= 50` ms envelope, and `overall_pass` was `false`.

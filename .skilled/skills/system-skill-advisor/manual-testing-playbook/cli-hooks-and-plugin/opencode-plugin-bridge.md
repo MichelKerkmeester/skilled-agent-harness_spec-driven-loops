@@ -21,8 +21,6 @@ expected_leaf_resources:
 Prompt: Manual validation for the OpenCode system-skill-advisor plugin that spawns the advisor CLI.
 
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

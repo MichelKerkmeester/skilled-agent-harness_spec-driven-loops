@@ -14,8 +14,6 @@ version: 1.4.0.1
 
 # Cursor CLI Shared Editor Config Surface
 
-<!-- sk-doc-template: skill_reference -->
-
 ---
 
 ## 1. OVERVIEW

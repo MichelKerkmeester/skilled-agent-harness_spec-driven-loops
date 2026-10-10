@@ -16,8 +16,6 @@ expected_leaf_resources: []
 
 # Spec Mutation Gate Enforce
 
-<!-- sk-doc-template: manual_testing_playbook -->
-
 ---
 
 ## 1. OVERVIEW

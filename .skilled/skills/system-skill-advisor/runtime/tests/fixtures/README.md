@@ -8,8 +8,6 @@ trigger_phrases:
 
 # Skill Advisor Test Fixtures
 
-<!-- sk-doc-template: skill_readme -->
-
 > Shared fixtures for the skill advisor test suites.
 
 ---
