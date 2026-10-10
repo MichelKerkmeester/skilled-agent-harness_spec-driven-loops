@@ -1,0 +1,22 @@
+[
+  {
+    "task": "X",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md, replace the exact text <<<OLD\n[animation_workflows.md Section 7](../../implementation/animation-workflows/overview-decision-tree-and-css.md#7-🐛-common-issues-and-solutions)\nOLD>>> with <<<NEW\n[testing-and-common-issues.md Section 3](../../implementation/animation-workflows/testing-and-common-issues.md#3-common-issues-and-solutions)\nNEW>>>",
+    "check": "sed -n '33p' .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md",
+    "expect": "[testing-and-common-issues.md Section 3](../../implementation/animation-workflows/testing-and-common-issues.md#3-common-issues-and-solutions)"
+  },
+  {
+    "task": "X",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md, replace the exact text <<<OLD\n[webflow_patterns.md Section 3](../../implementation/webflow-patterns/overview-limits-and-collection-lists.md#3-📚-collection-list-patterns)\nOLD>>> with <<<NEW\n[overview-limits-and-collection-lists.md Section 3](../../implementation/webflow-patterns/overview-limits-and-collection-lists.md#3-collection-list-patterns)\nNEW>>>",
+    "check": "sed -n '34p' .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md",
+    "expect": "[overview-limits-and-collection-lists.md Section 3](../../implementation/webflow-patterns/overview-limits-and-collection-lists.md#3-collection-list-patterns)"
+  }
+]

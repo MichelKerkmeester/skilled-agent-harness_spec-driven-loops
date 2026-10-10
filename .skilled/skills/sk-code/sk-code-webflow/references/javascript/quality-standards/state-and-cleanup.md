@@ -61,8 +61,8 @@ Need animation?
 ### Complete Animation Guide
 
 **For implementation, debugging, and testing:**
-- **Decision tree and patterns:** [animation_workflows.md](../../implementation/animation-workflows/overview-decision-tree-and-css.md)
-- **Complete reference:** [animation_workflows.md](../../implementation/animation-workflows/overview-decision-tree-and-css.md) contains all animation policy, rationale, and implementation details
+- **Decision tree and patterns:** [`../../implementation/animation-workflows/overview-decision-tree-and-css.md`](../../implementation/animation-workflows/overview-decision-tree-and-css.md)
+- **Complete reference:** [`../../implementation/animation-workflows/overview-decision-tree-and-css.md`](../../implementation/animation-workflows/overview-decision-tree-and-css.md) contains all animation policy, rationale, and implementation details
 
 ---
 

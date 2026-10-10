@@ -335,8 +335,8 @@ open(id, reason) {
 ## 7. RELATED RESOURCES
 
 ### Reference Files
-- [implementation_workflows.md](../implementation-workflows/condition-based-waiting.md) - Defense-in-depth validation
-- [verification_workflows.md](../../verification/verification-workflows/gate-and-automated-options.md) - Security testing
+- [`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md) - Defense-in-depth validation
+- [`../../verification/verification-workflows/gate-and-automated-options.md`](../../verification/verification-workflows/gate-and-automated-options.md) - Security testing
 - See `mcp-chrome-devtools` skill for DevTools security audits
 
 ### External Resources

@@ -274,8 +274,8 @@ window.cleanupFilepondInstances();
 
 - [`../../css/quality-standards/patterns-and-naming-enforcement.md`](../../css/quality-standards/patterns-and-naming-enforcement.md) - CSS quality patterns relevant to form-field state styling (BEM enforcement, custom property prefixes, attribute selector i flag)
 
-- **[implementation_workflows.md](../implementation-workflows/condition-based-waiting.md)** — Condition-based waiting, validation patterns used by the upload connector
-- **[security_patterns.md](../security-patterns/overview-and-checklist.md)** — XSS prevention relevant to file upload handling
+- **[`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md)** — Condition-based waiting, validation patterns used by the upload connector
+- **[`../security-patterns/overview-and-checklist.md`](../security-patterns/overview-and-checklist.md)** — XSS prevention relevant to file upload handling
 - **[code-quality-standards.md](../../javascript/quality-standards/init-dom-error-and-async.md)** — Naming conventions and initialization patterns
 - **CDN Deployment**: See [cdn-deployment.md](../../deployment/cdn-deployment.md) for R2 upload workflow
-- **Minification**: See [minification_guide.md](../../deployment/minification-guide/overview-terser-and-patterns.md) for terser configuration
+- **Minification**: See [`../../deployment/minification-guide/overview-terser-and-patterns.md`](../../deployment/minification-guide/overview-terser-and-patterns.md) for terser configuration

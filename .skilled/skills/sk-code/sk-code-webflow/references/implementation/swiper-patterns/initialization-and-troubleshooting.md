@@ -227,10 +227,10 @@ clone.setAttribute("aria-hidden", "true");
 ## 5. RELATED RESOURCES
 
 ### Reference Files
-- [observer_patterns.md](../observer-patterns/mutation-and-intersection.md) - IntersectionObserver deep dive
-- [performance_patterns.md](../performance-patterns/overview-and-checklist.md) - CPU optimization patterns
-- [webflow_patterns.md](../webflow-patterns/overview-limits-and-collection-lists.md) - Webflow class conventions
-- [animation_workflows.md](../animation-workflows/overview-decision-tree-and-css.md) - Scroll-triggered animations
+- [`../observer-patterns/mutation-and-intersection.md`](../observer-patterns/mutation-and-intersection.md) - IntersectionObserver deep dive
+- [`../performance-patterns/overview-and-checklist.md`](../performance-patterns/overview-and-checklist.md) - CPU optimization patterns
+- [`../webflow-patterns/overview-limits-and-collection-lists.md`](../webflow-patterns/overview-limits-and-collection-lists.md) - Webflow class conventions
+- [`../animation-workflows/overview-decision-tree-and-css.md`](../animation-workflows/overview-decision-tree-and-css.md) - Scroll-triggered animations
 - [`../../css/quality-standards/patterns-and-naming-enforcement.md`](../../css/quality-standards/patterns-and-naming-enforcement.md) - CSS quality patterns relevant to Swiper class styling (BEM, animation properties, custom properties)
 
 ### Source Files

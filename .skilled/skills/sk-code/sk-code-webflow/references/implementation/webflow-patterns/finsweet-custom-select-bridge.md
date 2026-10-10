@@ -349,10 +349,10 @@ document.querySelectorAll('.fs-sort-select--hidden').forEach(sel => {
 
 ### Reference Files
 - [`../../css/patterns/tokens-state-machine-and-triggers.md`](../../css/patterns/tokens-state-machine-and-triggers.md) — CSS-specific Webflow patterns (token system, state machines, BEM hover/focus, form validation, accessibility, mobile)
-- [implementation_workflows.md](../implementation-workflows/condition-based-waiting.md) - Condition-based waiting patterns complement async rendering solutions
+- [`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md) - Condition-based waiting patterns complement async rendering solutions
 - [code-quality-standards.md](../../javascript/quality-standards/init-dom-error-and-async.md) - CDN-safe initialization pattern for Webflow platform
 - [`../../css/quality-standards/patterns-and-naming-enforcement.md`](../../css/quality-standards/patterns-and-naming-enforcement.md) - CSS quality patterns for Webflow Designer styling layer + 4 CSS enforcement subsections
-- [performance_patterns.md](../performance-patterns/overview-and-checklist.md) - Performance optimization for collection lists with many items
+- [`../performance-patterns/overview-and-checklist.md`](../performance-patterns/overview-and-checklist.md) - Performance optimization for collection lists with many items
 
 ### Source Files (Evidence)
 - `src/javascript/form/input_select.js` - Base CustomSelect implementation with ARIA support

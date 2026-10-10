@@ -27,8 +27,8 @@ Phase-1 implementation workflow for condition-based waiting — polling for DOM 
 Follow code quality standards for all implementations:
 - **Naming:** Use `snake_case` for functions/variables, semantic prefixes (`is_`, `has_`, `get_`, etc.)
 - **Initialization:** Use CDN-safe pattern with guard flags and delays
-- **Animation:** CSS first, Motion.dev for complexity - see [animation_workflows.md](../animation-workflows/overview-decision-tree-and-css.md)
-- **Webflow:** Collection list patterns, async rendering - see [webflow_patterns.md](../webflow-patterns/overview-limits-and-collection-lists.md)
+- **Animation:** CSS first, Motion.dev for complexity - see [`../animation-workflows/overview-decision-tree-and-css.md`](../animation-workflows/overview-decision-tree-and-css.md)
+- **Webflow:** Collection list patterns, async rendering - see [`../webflow-patterns/overview-limits-and-collection-lists.md`](../webflow-patterns/overview-limits-and-collection-lists.md)
 - See [code-quality-standards.md](../../javascript/quality-standards/init-dom-error-and-async.md) for complete standards
 
 > **Cross-stack motion.dev reference**: For Motion API and integration guidance that is not Webflow-specific, see [`../../animation/quick-start.md`](../../animation/quick-start.md) and [`../../animation/integration-patterns.md`](../../animation/integration-patterns.md). Webflow lifecycle, CDN timing, and Designer constraints remain covered by the Webflow implementation guides linked here.
@@ -183,7 +183,7 @@ await wait_for_transition_end(element, 'opacity');
 element.remove(); // Animation guaranteed complete
 ```
 
-**See also:** [animation_workflows.md](../animation-workflows/overview-decision-tree-and-css.md) - Complete animation implementation guide including CSS patterns, Motion.dev integration, and performance optimization.
+**See also:** [`../animation-workflows/overview-decision-tree-and-css.md`](../animation-workflows/overview-decision-tree-and-css.md) - Complete animation implementation guide including CSS patterns, Motion.dev integration, and performance optimization.
 
 #### Pattern 5: DOM Content Ready
 

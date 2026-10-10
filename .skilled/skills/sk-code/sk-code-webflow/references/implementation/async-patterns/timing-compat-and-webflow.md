@@ -211,8 +211,8 @@ window.Webflow.push(function() {
 
 ### Internal References
 
-- [implementation_workflows.md](../implementation-workflows/condition-based-waiting.md) - Condition-based waiting patterns
-- [performance_patterns.md](../performance-patterns/overview-and-checklist.md) - Throttle/debounce and performance optimization
+- [`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md) - Condition-based waiting patterns
+- [`../performance-patterns/overview-and-checklist.md`](../performance-patterns/overview-and-checklist.md) - Throttle/debounce and performance optimization
 - [../../performance/third-party.md](../../performance/third-party.md) - Third-party script loading optimization
 
 ### External References

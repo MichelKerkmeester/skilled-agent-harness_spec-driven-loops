@@ -319,16 +319,16 @@ EVIDENCE:
 ## 9. RELATED RESOURCES
 
 ### Reference Files
-- [implementation_workflows.md](../../implementation/implementation-workflows/condition-based-waiting.md) - Verify implementations work correctly
-- [debugging_workflows.md](../../debugging/debugging-workflows/systematic-four-phases.md) - Verify fixes work after debugging
-- [dev_workflow.md](../../shared/dev-workflow/overview-nav-and-logging.md) - Use standard DevTools verification patterns
+- [`../../implementation/implementation-workflows/condition-based-waiting.md`](../../implementation/implementation-workflows/condition-based-waiting.md) - Verify implementations work correctly
+- [`../../debugging/debugging-workflows/systematic-four-phases.md`](../../debugging/debugging-workflows/systematic-four-phases.md) - Verify fixes work after debugging
+- [`../../shared/dev-workflow/overview-nav-and-logging.md`](../../shared/dev-workflow/overview-nav-and-logging.md) - Use standard DevTools verification patterns
 
 ### Templates
-- [verification_checklist.md](../../../assets/webflow-verification-checklist.md) - Printable verification checklist
+- [`../../../assets/webflow-verification-checklist.md`](../../../assets/webflow-verification-checklist.md) - Printable verification checklist
 
 ### Related Skills
 - `mcp-chrome-devtools` - CLI-based browser automation via browser-debugger-cli (bdg)
 
 ---
 
-**See also:** [verification_checklist.md](../../../assets/webflow-verification-checklist.md) for printable checklist
+**See also:** [`../../../assets/webflow-verification-checklist.md`](../../../assets/webflow-verification-checklist.md) for printable checklist

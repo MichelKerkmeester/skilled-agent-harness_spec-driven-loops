@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/002-webflow-labels-and-playbook",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/002-webflow-labels-and-playbook",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "webflow labels and playbook",
+      "phase 2 webflow labels and playbook",
+      "webflow labels and playbook plan",
+      "webflow labels and playbook tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "webflow labels and playbook implementation summary"
+    ],
+    "key_topics": [
+      "webflow",
+      "labels",
+      "playbook",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md",
+      ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-code/sk-code-webflow/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.2.0.md",
+      ".skilled/skills/sk-code/sk-code-webflow/assets/webflow-debugging-checklist.md",
+      ".skilled/skills/sk-code/sk-code-webflow/assets/webflow-verification-checklist.md",
+      ".skilled/skills/sk-code/sk-code-webflow/references/css/patterns/quick-reference-and-related.md",
+      ".skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/rules-and-root-cause.md",
+      ".skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md",
+      ".skilled/skills/sk-code/sk-code-webflow/references/deployment/cdn-deployment.md",
+      ".skilled/skills/sk-code/sk-code-webflow/references/deployment/minification-guide/batch-rules-and-related.md",
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/motion-dev-advanced.md",
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/async-patterns/timing-compat-and-webflow.md",
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/focus-management/restoration-touch-and-anti-patterns.md",
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/form-upload-workflows/mime-troubleshooting-and-deployment.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "systematic-four-phases.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.2.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "webflow-debugging-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/assets/webflow-debugging-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "webflow-verification-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/assets/webflow-verification-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference-and-related.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/references/css/patterns/quick-reference-and-related.md",
+        "source": "derived"
+      },
+      {
+        "name": "rules-and-root-cause.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/rules-and-root-cause.md",
+        "source": "derived"
+      },
+      {
+        "name": "scroll-interceptor-and-related.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md",
+        "source": "derived"
+      },
+      {
+        "name": "cdn-deployment.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/references/deployment/cdn-deployment.md",
+        "source": "derived"
+      },
+      {
+        "name": "batch-rules-and-related.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/references/deployment/minification-guide/batch-rules-and-related.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion-dev-advanced.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/motion-dev-advanced.md",
+        "source": "derived"
+      },
+      {
+        "name": "timing-compat-and-webflow.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/references/implementation/async-patterns/timing-compat-and-webflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "restoration-touch-and-anti-patterns.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/references/implementation/focus-management/restoration-touch-and-anti-patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "mime-troubleshooting-and-deployment.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/references/implementation/form-upload-workflows/mime-troubleshooting-and-deployment.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`rg -n '\\[[a-z]+[a-z]+\\.md\\]' .skilled/skills/sk-code/sk-code-webflow --glob '!/changelog/'` lists 59 rows in 23 files",
+    "created_at": "2026-10-10T14:44:42Z",
+    "last_save_at": "2026-10-10T16:47:13.938Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:74721ece35a2ee438b06e02d20aa51d6c7fd79a837208bfd9cdae538ba7b11bd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f84a96fbb3bd9c27166304dd15248f695555be4cedc4d0a8718638a089afa3e5",
+      "plan.md": "e1cebde8bfe348685df2843e2a44e383395aba13dbdf53136d08fae6403cc443",
+      "tasks.md": "9039648077e32e4472338b48b73a298c52f658ff981279bafae93d6e6d8710ff",
+      "implementation-summary.md": "fcd0aa3f0cc6e4702689c080cae39e06ff82db030960e7e4f35fb71a0caaf3be"
+    },
+    "last_active_at": null
+  }
+}

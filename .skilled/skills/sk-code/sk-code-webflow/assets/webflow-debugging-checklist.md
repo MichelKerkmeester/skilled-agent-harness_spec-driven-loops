@@ -225,5 +225,5 @@ Use when errors occur deep in call stack:
 
 ## 10. RELATED RESOURCES
 
-- [debugging_workflows.md](../references/debugging/debugging-workflows/systematic-four-phases.md) - Full debugging guide
+- [`../references/debugging/debugging-workflows/systematic-four-phases.md`](../references/debugging/debugging-workflows/systematic-four-phases.md) - Full debugging guide
 - See `mcp-chrome-devtools` skill for DevTools reference

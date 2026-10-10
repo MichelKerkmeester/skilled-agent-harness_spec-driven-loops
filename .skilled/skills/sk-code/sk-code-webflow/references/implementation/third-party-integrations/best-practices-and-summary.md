@@ -179,5 +179,5 @@ function destroy_player(player) {
 
 ### Reference Files
 - [code-quality-standards.md](../../javascript/quality-standards/init-dom-error-and-async.md) - CDN-safe initialization pattern for all library integrations
-- [implementation_workflows.md](../implementation-workflows/condition-based-waiting.md) - Condition-based waiting patterns for library loading
-- [performance_patterns.md](../performance-patterns/overview-and-checklist.md) - Lazy loading and code splitting strategies
+- [`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md) - Condition-based waiting patterns for library loading
+- [`../performance-patterns/overview-and-checklist.md`](../performance-patterns/overview-and-checklist.md) - Lazy loading and code splitting strategies

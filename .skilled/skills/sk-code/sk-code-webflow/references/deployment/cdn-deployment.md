@@ -311,9 +311,9 @@ grep -r "script_name.js?v=" src/0_html/
 
 ### Reference Files
 
-- [minification_guide.md](minification-guide/overview-terser-and-patterns.md) - Safe minification workflow with verification
-- [implementation_workflows.md](../implementation/implementation-workflows/condition-based-waiting.md) - General implementation patterns
-- [verification_workflows.md](../verification/verification-workflows/gate-and-automated-options.md) - Browser verification workflows
+- [`minification-guide/overview-terser-and-patterns.md`](minification-guide/overview-terser-and-patterns.md) - Safe minification workflow with verification
+- [`../implementation/implementation-workflows/condition-based-waiting.md`](../implementation/implementation-workflows/condition-based-waiting.md) - General implementation patterns
+- [`../verification/verification-workflows/gate-and-automated-options.md`](../verification/verification-workflows/gate-and-automated-options.md) - Browser verification workflows
 
 ### Scripts
 

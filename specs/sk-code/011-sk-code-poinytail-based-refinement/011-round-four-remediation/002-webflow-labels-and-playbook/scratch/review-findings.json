@@ -1,0 +1,12 @@
+[
+  {
+    "task": "R01",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.2.0.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.2.0.md, replace the exact text <<<OLD\nEvery link in the Webflow references and checklists now shows the path it opens instead of a file name from before the reference split, and the testing playbook root passes the document validator.\nOLD>>> with <<<NEW\nEvery Webflow link label that showed a file name from before the reference split now shows the path it opens, and the testing playbook root passes the document validator.\nNEW>>>",
+    "check": "grep -c 'Every Webflow link label that showed a file name from before the reference split' .skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.2.0.md",
+    "expect": "1"
+  }
+]

@@ -48,7 +48,7 @@ Provides the detailed systematic debugging rules & root cause tracing guidance f
 - Proceed with 4th fix without questioning approach
 - Skip Network tab inspection
 
-**See also:** [debugging_checklist.md](../../../assets/webflow-debugging-checklist.md) for systematic debugging checklist
+**See also:** [`../../../assets/webflow-debugging-checklist.md`](../../../assets/webflow-debugging-checklist.md) for systematic debugging checklist
 
 ---
 
@@ -288,6 +288,6 @@ observer.observe(document.body, {
 - Leave production console.log statements
 - Stop at first function in stack (keep tracing up)
 
-**See also:** [debugging_checklist.md](../../../assets/webflow-debugging-checklist.md) for tracing checklist
+**See also:** [`../../../assets/webflow-debugging-checklist.md`](../../../assets/webflow-debugging-checklist.md) for tracing checklist
 
 ---

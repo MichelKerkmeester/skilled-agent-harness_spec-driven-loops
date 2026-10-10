@@ -107,9 +107,9 @@ body.using-keyboard .element:focus { outline: 4px solid var(--state--focused); }
 
 ### Reference Files
 
-- [animation_workflows.md](../../implementation/animation-workflows/overview-decision-tree-and-css.md) - Animation implementation patterns
+- [`../../implementation/animation-workflows/overview-decision-tree-and-css.md`](../../implementation/animation-workflows/overview-decision-tree-and-css.md) - Animation implementation patterns
 - [quality-standards.md](../quality-standards/patterns-and-naming-enforcement.md) - General coding standards
-- [webflow_patterns.md](../../implementation/webflow-patterns/overview-limits-and-collection-lists.md) - Webflow platform constraints
+- [`../../implementation/webflow-patterns/overview-limits-and-collection-lists.md`](../../implementation/webflow-patterns/overview-limits-and-collection-lists.md) - Webflow platform constraints
 
 ### Source Files
 

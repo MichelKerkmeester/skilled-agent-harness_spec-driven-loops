@@ -1,0 +1,7 @@
+DRIFT sk-code
+DRIFT sk-code-opencode
+DRIFT sk-code-quality
+DRIFT sk-code-review
+DRIFT sk-code-webflow
+DRIFT system-spec-kit
+FAIL: 6 drifted, 0 stale; run without --check to regenerate

@@ -223,10 +223,10 @@ This file is the high-level checklist + budgets + anti-patterns index. For deep-
 - [`../../performance/webflow-constraints.md`](../../performance/webflow-constraints.md) — Typekit / jQuery / Webflow.js / CSS generation / custom code injection constraints (what Webflow controls vs what you can change)
 
 ### Reference Files (sibling implementation patterns)
-- [debugging_workflows.md](../../debugging/debugging-workflows/systematic-four-phases.md) - Performance debugging workflows for identifying bottlenecks
-- [verification_workflows.md](../../verification/verification-workflows/gate-and-automated-options.md) - Browser testing and verification workflows
-- [animation_workflows.md](../animation-workflows/overview-decision-tree-and-css.md) - Animation performance patterns for GPU-accelerated properties
-- [webflow_patterns.md](../webflow-patterns/overview-limits-and-collection-lists.md) - Webflow-specific performance considerations for collection lists
+- [`../../debugging/debugging-workflows/systematic-four-phases.md`](../../debugging/debugging-workflows/systematic-four-phases.md) - Performance debugging workflows for identifying bottlenecks
+- [`../../verification/verification-workflows/gate-and-automated-options.md`](../../verification/verification-workflows/gate-and-automated-options.md) - Browser testing and verification workflows
+- [`../animation-workflows/overview-decision-tree-and-css.md`](../animation-workflows/overview-decision-tree-and-css.md) - Animation performance patterns for GPU-accelerated properties
+- [`../webflow-patterns/overview-limits-and-collection-lists.md`](../webflow-patterns/overview-limits-and-collection-lists.md) - Webflow-specific performance considerations for collection lists
 
 ### Per-language quality patterns
 - [`../../javascript/quality-standards/init-dom-error-and-async.md`](../../javascript/quality-standards/init-dom-error-and-async.md) — JS-side performance patterns (RequestAnimationFrame, GPU acceleration hints, debounced resize, event delegation)

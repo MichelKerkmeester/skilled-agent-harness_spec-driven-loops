@@ -37,7 +37,7 @@ Single source of truth for understanding, maintaining, and extending the file up
 
 ### Prerequisites
 
-- **[implementation_workflows.md](../implementation-workflows/condition-based-waiting.md)**: Condition-based waiting, validation patterns
+- **[`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md)**: Condition-based waiting, validation patterns
 - **[code-quality-standards.md](../../javascript/quality-standards/init-dom-error-and-async.md)**: Naming conventions, initialization patterns
 - **FilePond CDN**: `unpkg.com/filepond` (CSS + JS + plugins — check HTML source for current version)
 - **Cloudflare Worker**: `worker--upload-form.lorenzo-89a.workers.dev`

@@ -237,9 +237,9 @@ animate(element, {
 
 ### Reference Files
 - [`../../css/patterns/tokens-state-machine-and-triggers.md`](../../css/patterns/tokens-state-machine-and-triggers.md) — CSS animation-relevant patterns (state machine pattern, color-mix interpolation, GPU-accelerated state triggers)
-- [implementation_workflows.md](../implementation-workflows/condition-based-waiting.md) - Implementation phase guidance
-- [debugging_workflows.md](../../debugging/debugging-workflows/systematic-four-phases.md) - Animation debugging techniques
-- [verification_workflows.md](../../verification/verification-workflows/gate-and-automated-options.md) - Animation verification procedures
+- [`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md) - Implementation phase guidance
+- [`../../debugging/debugging-workflows/systematic-four-phases.md`](../../debugging/debugging-workflows/systematic-four-phases.md) - Animation debugging techniques
+- [`../../verification/verification-workflows/gate-and-automated-options.md`](../../verification/verification-workflows/gate-and-automated-options.md) - Animation verification procedures
 - [code-quality-standards.md](../../javascript/quality-standards/init-dom-error-and-async.md) - CDN-safe initialization patterns
 - [`../../css/quality-standards/patterns-and-naming-enforcement.md`](../../css/quality-standards/patterns-and-naming-enforcement.md) - CSS animation quality patterns (will-change management, GPU-accelerated properties, easing standards aligned with Motion.dev, fluid typography)
 

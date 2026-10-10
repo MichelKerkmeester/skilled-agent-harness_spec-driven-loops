@@ -398,9 +398,9 @@ FOCUS MANAGEMENT CHECKLIST:
 ### Reference Files
 
 - [`../../css/quality-standards/patterns-and-naming-enforcement.md`](../../css/quality-standards/patterns-and-naming-enforcement.md) - CSS quality patterns relevant to focus styling (custom property prefixes, attribute selector i flag, BEM)
-- [webflow_patterns.md](../webflow-patterns/overview-limits-and-collection-lists.md) - Modal component patterns
-- [animation_workflows.md](../animation-workflows/overview-decision-tree-and-css.md) - Focus during transitions
-- [security_patterns.md](../security-patterns/overview-and-checklist.md) - Input validation for forms
+- [`../webflow-patterns/overview-limits-and-collection-lists.md`](../webflow-patterns/overview-limits-and-collection-lists.md) - Modal component patterns
+- [`../animation-workflows/overview-decision-tree-and-css.md`](../animation-workflows/overview-decision-tree-and-css.md) - Focus during transitions
+- [`../security-patterns/overview-and-checklist.md`](../security-patterns/overview-and-checklist.md) - Input validation for forms
 
 ### Source Files
 

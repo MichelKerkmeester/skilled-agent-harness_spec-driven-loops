@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/002-webflow-labels-and-playbook",
+  "description": "Phase 2: webflow-labels-and-playbook",
+  "keywords": [
+    "phase",
+    "webflow-labels-and-playbook"
+  ],
+  "lastUpdated": "2026-10-10T14:44:42.879Z",
+  "specId": "002",
+  "folderSlug": "webflow-labels-and-playbook",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "011-round-four-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

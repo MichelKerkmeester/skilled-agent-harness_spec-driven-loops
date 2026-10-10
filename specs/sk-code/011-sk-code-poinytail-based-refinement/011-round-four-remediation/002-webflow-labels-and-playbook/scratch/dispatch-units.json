@@ -1,0 +1,622 @@
+[
+  {
+    "task": "T013",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/assets/webflow-debugging-checklist.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/assets/webflow-debugging-checklist.md, replace the exact text <<<OLD\n[debugging_workflows.md](../references/debugging/debugging-workflows/systematic-four-phases.md)\nOLD>>> with <<<NEW\n[`../references/debugging/debugging-workflows/systematic-four-phases.md`](../references/debugging/debugging-workflows/systematic-four-phases.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '228p' .skilled/skills/sk-code/sk-code-webflow/assets/webflow-debugging-checklist.md | grep -cF -- '[`../references/debugging/debugging-workflows/systematic-four-phases.md`](../references/debugging/debugging-workflows/systematic-four-phases.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T014",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/assets/webflow-verification-checklist.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/assets/webflow-verification-checklist.md, replace the exact text <<<OLD\n[verification_workflows.md](../references/verification/verification-workflows/gate-and-automated-options.md)\nOLD>>> with <<<NEW\n[`../references/verification/verification-workflows/gate-and-automated-options.md`](../references/verification/verification-workflows/gate-and-automated-options.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '264p' .skilled/skills/sk-code/sk-code-webflow/assets/webflow-verification-checklist.md | grep -cF -- '[`../references/verification/verification-workflows/gate-and-automated-options.md`](../references/verification/verification-workflows/gate-and-automated-options.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T015",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/css/patterns/quick-reference-and-related.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/css/patterns/quick-reference-and-related.md, replace the exact text <<<OLD\n[animation_workflows.md](../../implementation/animation-workflows/overview-decision-tree-and-css.md)\nOLD>>> with <<<NEW\n[`../../implementation/animation-workflows/overview-decision-tree-and-css.md`](../../implementation/animation-workflows/overview-decision-tree-and-css.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '110p' .skilled/skills/sk-code/sk-code-webflow/references/css/patterns/quick-reference-and-related.md | grep -cF -- '[`../../implementation/animation-workflows/overview-decision-tree-and-css.md`](../../implementation/animation-workflows/overview-decision-tree-and-css.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T016",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/css/patterns/quick-reference-and-related.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/css/patterns/quick-reference-and-related.md, replace the exact text <<<OLD\n[webflow_patterns.md](../../implementation/webflow-patterns/overview-limits-and-collection-lists.md)\nOLD>>> with <<<NEW\n[`../../implementation/webflow-patterns/overview-limits-and-collection-lists.md`](../../implementation/webflow-patterns/overview-limits-and-collection-lists.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '112p' .skilled/skills/sk-code/sk-code-webflow/references/css/patterns/quick-reference-and-related.md | grep -cF -- '[`../../implementation/webflow-patterns/overview-limits-and-collection-lists.md`](../../implementation/webflow-patterns/overview-limits-and-collection-lists.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T017",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/rules-and-root-cause.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/rules-and-root-cause.md, replace the exact text <<<OLD\n**See also:** [debugging_checklist.md](../../../assets/webflow-debugging-checklist.md) for systematic debugging checklist\nOLD>>> with <<<NEW\n**See also:** [`../../../assets/webflow-debugging-checklist.md`](../../../assets/webflow-debugging-checklist.md) for systematic debugging checklist\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '51p' .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/rules-and-root-cause.md | grep -cF -- '[`../../../assets/webflow-debugging-checklist.md`](../../../assets/webflow-debugging-checklist.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T018",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/rules-and-root-cause.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/rules-and-root-cause.md, replace the exact text <<<OLD\n**See also:** [debugging_checklist.md](../../../assets/webflow-debugging-checklist.md) for tracing checklist\nOLD>>> with <<<NEW\n**See also:** [`../../../assets/webflow-debugging-checklist.md`](../../../assets/webflow-debugging-checklist.md) for tracing checklist\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '291p' .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/rules-and-root-cause.md | grep -cF -- '[`../../../assets/webflow-debugging-checklist.md`](../../../assets/webflow-debugging-checklist.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T019",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md, replace the exact text <<<OLD\n[implementation_workflows.md](../../implementation/implementation-workflows/condition-based-waiting.md)\nOLD>>> with <<<NEW\n[`../../implementation/implementation-workflows/condition-based-waiting.md`](../../implementation/implementation-workflows/condition-based-waiting.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '359p' .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md | grep -cF -- '[`../../implementation/implementation-workflows/condition-based-waiting.md`](../../implementation/implementation-workflows/condition-based-waiting.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T020",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md, replace the exact text <<<OLD\n[verification_workflows.md](../../verification/verification-workflows/gate-and-automated-options.md)\nOLD>>> with <<<NEW\n[`../../verification/verification-workflows/gate-and-automated-options.md`](../../verification/verification-workflows/gate-and-automated-options.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '360p' .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md | grep -cF -- '[`../../verification/verification-workflows/gate-and-automated-options.md`](../../verification/verification-workflows/gate-and-automated-options.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T021",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md, replace the exact text <<<OLD\n[dev_workflow.md](../../shared/dev-workflow/overview-nav-and-logging.md)\nOLD>>> with <<<NEW\n[`../../shared/dev-workflow/overview-nav-and-logging.md`](../../shared/dev-workflow/overview-nav-and-logging.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '361p' .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md | grep -cF -- '[`../../shared/dev-workflow/overview-nav-and-logging.md`](../../shared/dev-workflow/overview-nav-and-logging.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T022",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md, replace the exact text <<<OLD\n- [lenis-patterns.js](../../../assets/integrations/lenis-patterns.js) - Complete Lenis smooth scroll integration patterns\n- [debugging_checklist.md](../../../assets/webflow-debugging-checklist.md) - Systematic debugging checklist\nOLD>>> with <<<NEW\n- [lenis-patterns.js](../../../assets/integrations/lenis-patterns.js) - Complete Lenis smooth scroll integration patterns\n- [`../../../assets/webflow-debugging-checklist.md`](../../../assets/webflow-debugging-checklist.md) - Systematic debugging checklist\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '365p' .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md | grep -cF -- '[`../../../assets/webflow-debugging-checklist.md`](../../../assets/webflow-debugging-checklist.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T023",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md, replace the exact text <<<OLD\n**For complete checklists:**\n- [debugging_checklist.md](../../../assets/webflow-debugging-checklist.md) - Systematic debugging checklist\nOLD>>> with <<<NEW\n**For complete checklists:**\n- [`../../../assets/webflow-debugging-checklist.md`](../../../assets/webflow-debugging-checklist.md) - Systematic debugging checklist\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '386p' .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md | grep -cF -- '[`../../../assets/webflow-debugging-checklist.md`](../../../assets/webflow-debugging-checklist.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T024",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/deployment/cdn-deployment.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/deployment/cdn-deployment.md, replace the exact text <<<OLD\n[minification_guide.md](minification-guide/overview-terser-and-patterns.md)\nOLD>>> with <<<NEW\n[`minification-guide/overview-terser-and-patterns.md`](minification-guide/overview-terser-and-patterns.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '314p' .skilled/skills/sk-code/sk-code-webflow/references/deployment/cdn-deployment.md | grep -cF -- '[`minification-guide/overview-terser-and-patterns.md`](minification-guide/overview-terser-and-patterns.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T025",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/deployment/cdn-deployment.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/deployment/cdn-deployment.md, replace the exact text <<<OLD\n[implementation_workflows.md](../implementation/implementation-workflows/condition-based-waiting.md)\nOLD>>> with <<<NEW\n[`../implementation/implementation-workflows/condition-based-waiting.md`](../implementation/implementation-workflows/condition-based-waiting.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '315p' .skilled/skills/sk-code/sk-code-webflow/references/deployment/cdn-deployment.md | grep -cF -- '[`../implementation/implementation-workflows/condition-based-waiting.md`](../implementation/implementation-workflows/condition-based-waiting.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T026",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/deployment/cdn-deployment.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/deployment/cdn-deployment.md, replace the exact text <<<OLD\n[verification_workflows.md](../verification/verification-workflows/gate-and-automated-options.md)\nOLD>>> with <<<NEW\n[`../verification/verification-workflows/gate-and-automated-options.md`](../verification/verification-workflows/gate-and-automated-options.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '316p' .skilled/skills/sk-code/sk-code-webflow/references/deployment/cdn-deployment.md | grep -cF -- '[`../verification/verification-workflows/gate-and-automated-options.md`](../verification/verification-workflows/gate-and-automated-options.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T027",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/deployment/minification-guide/batch-rules-and-related.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/deployment/minification-guide/batch-rules-and-related.md, replace the exact text <<<OLD\n[implementation_workflows.md](../../implementation/implementation-workflows/condition-based-waiting.md)\nOLD>>> with <<<NEW\n[`../../implementation/implementation-workflows/condition-based-waiting.md`](../../implementation/implementation-workflows/condition-based-waiting.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '107p' .skilled/skills/sk-code/sk-code-webflow/references/deployment/minification-guide/batch-rules-and-related.md | grep -cF -- '[`../../implementation/implementation-workflows/condition-based-waiting.md`](../../implementation/implementation-workflows/condition-based-waiting.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T028",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/deployment/minification-guide/batch-rules-and-related.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/deployment/minification-guide/batch-rules-and-related.md, replace the exact text <<<OLD\n[debugging_workflows.md](../../debugging/debugging-workflows/systematic-four-phases.md)\nOLD>>> with <<<NEW\n[`../../debugging/debugging-workflows/systematic-four-phases.md`](../../debugging/debugging-workflows/systematic-four-phases.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '108p' .skilled/skills/sk-code/sk-code-webflow/references/deployment/minification-guide/batch-rules-and-related.md | grep -cF -- '[`../../debugging/debugging-workflows/systematic-four-phases.md`](../../debugging/debugging-workflows/systematic-four-phases.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T029",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/motion-dev-advanced.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/motion-dev-advanced.md, replace the exact text <<<OLD\n[implementation_workflows.md](../implementation-workflows/condition-based-waiting.md)\nOLD>>> with <<<NEW\n[`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '240p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/motion-dev-advanced.md | grep -cF -- '[`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T030",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/motion-dev-advanced.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/motion-dev-advanced.md, replace the exact text <<<OLD\n[debugging_workflows.md](../../debugging/debugging-workflows/systematic-four-phases.md)\nOLD>>> with <<<NEW\n[`../../debugging/debugging-workflows/systematic-four-phases.md`](../../debugging/debugging-workflows/systematic-four-phases.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '241p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/motion-dev-advanced.md | grep -cF -- '[`../../debugging/debugging-workflows/systematic-four-phases.md`](../../debugging/debugging-workflows/systematic-four-phases.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T031",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/motion-dev-advanced.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/motion-dev-advanced.md, replace the exact text <<<OLD\n[verification_workflows.md](../../verification/verification-workflows/gate-and-automated-options.md)\nOLD>>> with <<<NEW\n[`../../verification/verification-workflows/gate-and-automated-options.md`](../../verification/verification-workflows/gate-and-automated-options.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '242p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/motion-dev-advanced.md | grep -cF -- '[`../../verification/verification-workflows/gate-and-automated-options.md`](../../verification/verification-workflows/gate-and-automated-options.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T032",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/async-patterns/timing-compat-and-webflow.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/async-patterns/timing-compat-and-webflow.md, replace the exact text <<<OLD\n[implementation_workflows.md](../implementation-workflows/condition-based-waiting.md)\nOLD>>> with <<<NEW\n[`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '214p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/async-patterns/timing-compat-and-webflow.md | grep -cF -- '[`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T033",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/async-patterns/timing-compat-and-webflow.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/async-patterns/timing-compat-and-webflow.md, replace the exact text <<<OLD\n[performance_patterns.md](../performance-patterns/overview-and-checklist.md)\nOLD>>> with <<<NEW\n[`../performance-patterns/overview-and-checklist.md`](../performance-patterns/overview-and-checklist.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '215p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/async-patterns/timing-compat-and-webflow.md | grep -cF -- '[`../performance-patterns/overview-and-checklist.md`](../performance-patterns/overview-and-checklist.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T034",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/focus-management/restoration-touch-and-anti-patterns.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/focus-management/restoration-touch-and-anti-patterns.md, replace the exact text <<<OLD\n[webflow_patterns.md](../webflow-patterns/overview-limits-and-collection-lists.md)\nOLD>>> with <<<NEW\n[`../webflow-patterns/overview-limits-and-collection-lists.md`](../webflow-patterns/overview-limits-and-collection-lists.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '401p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/focus-management/restoration-touch-and-anti-patterns.md | grep -cF -- '[`../webflow-patterns/overview-limits-and-collection-lists.md`](../webflow-patterns/overview-limits-and-collection-lists.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T035",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/focus-management/restoration-touch-and-anti-patterns.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/focus-management/restoration-touch-and-anti-patterns.md, replace the exact text <<<OLD\n[animation_workflows.md](../animation-workflows/overview-decision-tree-and-css.md)\nOLD>>> with <<<NEW\n[`../animation-workflows/overview-decision-tree-and-css.md`](../animation-workflows/overview-decision-tree-and-css.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '402p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/focus-management/restoration-touch-and-anti-patterns.md | grep -cF -- '[`../animation-workflows/overview-decision-tree-and-css.md`](../animation-workflows/overview-decision-tree-and-css.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T036",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/focus-management/restoration-touch-and-anti-patterns.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/focus-management/restoration-touch-and-anti-patterns.md, replace the exact text <<<OLD\n[security_patterns.md](../security-patterns/overview-and-checklist.md)\nOLD>>> with <<<NEW\n[`../security-patterns/overview-and-checklist.md`](../security-patterns/overview-and-checklist.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '403p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/focus-management/restoration-touch-and-anti-patterns.md | grep -cF -- '[`../security-patterns/overview-and-checklist.md`](../security-patterns/overview-and-checklist.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T037",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/form-upload-workflows/mime-troubleshooting-and-deployment.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/form-upload-workflows/mime-troubleshooting-and-deployment.md, replace the exact text <<<OLD\n[implementation_workflows.md](../implementation-workflows/condition-based-waiting.md)\nOLD>>> with <<<NEW\n[`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '277p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/form-upload-workflows/mime-troubleshooting-and-deployment.md | grep -cF -- '[`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T038",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/form-upload-workflows/mime-troubleshooting-and-deployment.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/form-upload-workflows/mime-troubleshooting-and-deployment.md, replace the exact text <<<OLD\n[security_patterns.md](../security-patterns/overview-and-checklist.md)\nOLD>>> with <<<NEW\n[`../security-patterns/overview-and-checklist.md`](../security-patterns/overview-and-checklist.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '278p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/form-upload-workflows/mime-troubleshooting-and-deployment.md | grep -cF -- '[`../security-patterns/overview-and-checklist.md`](../security-patterns/overview-and-checklist.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T039",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/form-upload-workflows/mime-troubleshooting-and-deployment.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/form-upload-workflows/mime-troubleshooting-and-deployment.md, replace the exact text <<<OLD\n[minification_guide.md](../../deployment/minification-guide/overview-terser-and-patterns.md)\nOLD>>> with <<<NEW\n[`../../deployment/minification-guide/overview-terser-and-patterns.md`](../../deployment/minification-guide/overview-terser-and-patterns.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '281p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/form-upload-workflows/mime-troubleshooting-and-deployment.md | grep -cF -- '[`../../deployment/minification-guide/overview-terser-and-patterns.md`](../../deployment/minification-guide/overview-terser-and-patterns.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T040",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/form-upload-workflows/overview-architecture-and-filepond.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/form-upload-workflows/overview-architecture-and-filepond.md, replace the exact text <<<OLD\n[implementation_workflows.md](../implementation-workflows/condition-based-waiting.md)\nOLD>>> with <<<NEW\n[`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '40p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/form-upload-workflows/overview-architecture-and-filepond.md | grep -cF -- '[`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T041",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/condition-based-waiting.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/condition-based-waiting.md, replace the exact text <<<OLD\n- **Animation:** CSS first, Motion.dev for complexity - see [animation_workflows.md](../animation-workflows/overview-decision-tree-and-css.md)\nOLD>>> with <<<NEW\n- **Animation:** CSS first, Motion.dev for complexity - see [`../animation-workflows/overview-decision-tree-and-css.md`](../animation-workflows/overview-decision-tree-and-css.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '30p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/condition-based-waiting.md | grep -cF -- '[`../animation-workflows/overview-decision-tree-and-css.md`](../animation-workflows/overview-decision-tree-and-css.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T042",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/condition-based-waiting.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/condition-based-waiting.md, replace the exact text <<<OLD\n[webflow_patterns.md](../webflow-patterns/overview-limits-and-collection-lists.md)\nOLD>>> with <<<NEW\n[`../webflow-patterns/overview-limits-and-collection-lists.md`](../webflow-patterns/overview-limits-and-collection-lists.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '31p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/condition-based-waiting.md | grep -cF -- '[`../webflow-patterns/overview-limits-and-collection-lists.md`](../webflow-patterns/overview-limits-and-collection-lists.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T043",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/condition-based-waiting.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/condition-based-waiting.md, replace the exact text <<<OLD\n**See also:** [animation_workflows.md](../animation-workflows/overview-decision-tree-and-css.md) - Complete animation implementation guide including CSS patterns, Motion.dev integration, and performance optimization.\nOLD>>> with <<<NEW\n**See also:** [`../animation-workflows/overview-decision-tree-and-css.md`](../animation-workflows/overview-decision-tree-and-css.md) - Complete animation implementation guide including CSS patterns, Motion.dev integration, and performance optimization.\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '186p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/condition-based-waiting.md | grep -cF -- '[`../animation-workflows/overview-decision-tree-and-css.md`](../animation-workflows/overview-decision-tree-and-css.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T044",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/validation-minification-and-cdn.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/validation-minification-and-cdn.md, replace the exact text <<<OLD\n[minification_guide.md](../../deployment/minification-guide/overview-terser-and-patterns.md)\nOLD>>> with <<<NEW\n[`../../deployment/minification-guide/overview-terser-and-patterns.md`](../../deployment/minification-guide/overview-terser-and-patterns.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '235p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/validation-minification-and-cdn.md | grep -cF -- '[`../../deployment/minification-guide/overview-terser-and-patterns.md`](../../deployment/minification-guide/overview-terser-and-patterns.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T045",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/validation-minification-and-cdn.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/validation-minification-and-cdn.md, replace the exact text <<<OLD\n[debugging_workflows.md](../../debugging/debugging-workflows/systematic-four-phases.md)\nOLD>>> with <<<NEW\n[`../../debugging/debugging-workflows/systematic-four-phases.md`](../../debugging/debugging-workflows/systematic-four-phases.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '313p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/validation-minification-and-cdn.md | grep -cF -- '[`../../debugging/debugging-workflows/systematic-four-phases.md`](../../debugging/debugging-workflows/systematic-four-phases.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T046",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/validation-minification-and-cdn.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/validation-minification-and-cdn.md, replace the exact text <<<OLD\n[verification_workflows.md](../../verification/verification-workflows/gate-and-automated-options.md)\nOLD>>> with <<<NEW\n[`../../verification/verification-workflows/gate-and-automated-options.md`](../../verification/verification-workflows/gate-and-automated-options.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '314p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/validation-minification-and-cdn.md | grep -cF -- '[`../../verification/verification-workflows/gate-and-automated-options.md`](../../verification/verification-workflows/gate-and-automated-options.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T047",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/validation-minification-and-cdn.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/validation-minification-and-cdn.md, replace the exact text <<<OLD\n[dev_workflow.md](../../shared/dev-workflow/overview-nav-and-logging.md)\nOLD>>> with <<<NEW\n[`../../shared/dev-workflow/overview-nav-and-logging.md`](../../shared/dev-workflow/overview-nav-and-logging.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '315p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/validation-minification-and-cdn.md | grep -cF -- '[`../../shared/dev-workflow/overview-nav-and-logging.md`](../../shared/dev-workflow/overview-nav-and-logging.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T048",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/validation-minification-and-cdn.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/validation-minification-and-cdn.md, replace the exact text <<<OLD\n[animation_workflows.md](../animation-workflows/overview-decision-tree-and-css.md)\nOLD>>> with <<<NEW\n[`../animation-workflows/overview-decision-tree-and-css.md`](../animation-workflows/overview-decision-tree-and-css.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '316p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/validation-minification-and-cdn.md | grep -cF -- '[`../animation-workflows/overview-decision-tree-and-css.md`](../animation-workflows/overview-decision-tree-and-css.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T049",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/performance-patterns/budgets-and-anti-patterns.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/performance-patterns/budgets-and-anti-patterns.md, replace the exact text <<<OLD\n[debugging_workflows.md](../../debugging/debugging-workflows/systematic-four-phases.md)\nOLD>>> with <<<NEW\n[`../../debugging/debugging-workflows/systematic-four-phases.md`](../../debugging/debugging-workflows/systematic-four-phases.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '226p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/performance-patterns/budgets-and-anti-patterns.md | grep -cF -- '[`../../debugging/debugging-workflows/systematic-four-phases.md`](../../debugging/debugging-workflows/systematic-four-phases.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T050",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/performance-patterns/budgets-and-anti-patterns.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/performance-patterns/budgets-and-anti-patterns.md, replace the exact text <<<OLD\n[verification_workflows.md](../../verification/verification-workflows/gate-and-automated-options.md)\nOLD>>> with <<<NEW\n[`../../verification/verification-workflows/gate-and-automated-options.md`](../../verification/verification-workflows/gate-and-automated-options.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '227p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/performance-patterns/budgets-and-anti-patterns.md | grep -cF -- '[`../../verification/verification-workflows/gate-and-automated-options.md`](../../verification/verification-workflows/gate-and-automated-options.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T051",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/performance-patterns/budgets-and-anti-patterns.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/performance-patterns/budgets-and-anti-patterns.md, replace the exact text <<<OLD\n[animation_workflows.md](../animation-workflows/overview-decision-tree-and-css.md)\nOLD>>> with <<<NEW\n[`../animation-workflows/overview-decision-tree-and-css.md`](../animation-workflows/overview-decision-tree-and-css.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '228p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/performance-patterns/budgets-and-anti-patterns.md | grep -cF -- '[`../animation-workflows/overview-decision-tree-and-css.md`](../animation-workflows/overview-decision-tree-and-css.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T052",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/performance-patterns/budgets-and-anti-patterns.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/performance-patterns/budgets-and-anti-patterns.md, replace the exact text <<<OLD\n[webflow_patterns.md](../webflow-patterns/overview-limits-and-collection-lists.md)\nOLD>>> with <<<NEW\n[`../webflow-patterns/overview-limits-and-collection-lists.md`](../webflow-patterns/overview-limits-and-collection-lists.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '229p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/performance-patterns/budgets-and-anti-patterns.md | grep -cF -- '[`../webflow-patterns/overview-limits-and-collection-lists.md`](../webflow-patterns/overview-limits-and-collection-lists.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T053",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/security-patterns/owasp-prototype-and-safe-access.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/security-patterns/owasp-prototype-and-safe-access.md, replace the exact text <<<OLD\n[implementation_workflows.md](../implementation-workflows/condition-based-waiting.md)\nOLD>>> with <<<NEW\n[`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '338p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/security-patterns/owasp-prototype-and-safe-access.md | grep -cF -- '[`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T054",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/security-patterns/owasp-prototype-and-safe-access.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/security-patterns/owasp-prototype-and-safe-access.md, replace the exact text <<<OLD\n[verification_workflows.md](../../verification/verification-workflows/gate-and-automated-options.md)\nOLD>>> with <<<NEW\n[`../../verification/verification-workflows/gate-and-automated-options.md`](../../verification/verification-workflows/gate-and-automated-options.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '339p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/security-patterns/owasp-prototype-and-safe-access.md | grep -cF -- '[`../../verification/verification-workflows/gate-and-automated-options.md`](../../verification/verification-workflows/gate-and-automated-options.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T055",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/swiper-patterns/initialization-and-troubleshooting.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/swiper-patterns/initialization-and-troubleshooting.md, replace the exact text <<<OLD\n[observer_patterns.md](../observer-patterns/mutation-and-intersection.md)\nOLD>>> with <<<NEW\n[`../observer-patterns/mutation-and-intersection.md`](../observer-patterns/mutation-and-intersection.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '230p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/swiper-patterns/initialization-and-troubleshooting.md | grep -cF -- '[`../observer-patterns/mutation-and-intersection.md`](../observer-patterns/mutation-and-intersection.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T056",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/swiper-patterns/initialization-and-troubleshooting.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/swiper-patterns/initialization-and-troubleshooting.md, replace the exact text <<<OLD\n[performance_patterns.md](../performance-patterns/overview-and-checklist.md)\nOLD>>> with <<<NEW\n[`../performance-patterns/overview-and-checklist.md`](../performance-patterns/overview-and-checklist.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '231p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/swiper-patterns/initialization-and-troubleshooting.md | grep -cF -- '[`../performance-patterns/overview-and-checklist.md`](../performance-patterns/overview-and-checklist.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T057",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/swiper-patterns/initialization-and-troubleshooting.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/swiper-patterns/initialization-and-troubleshooting.md, replace the exact text <<<OLD\n[webflow_patterns.md](../webflow-patterns/overview-limits-and-collection-lists.md)\nOLD>>> with <<<NEW\n[`../webflow-patterns/overview-limits-and-collection-lists.md`](../webflow-patterns/overview-limits-and-collection-lists.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '232p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/swiper-patterns/initialization-and-troubleshooting.md | grep -cF -- '[`../webflow-patterns/overview-limits-and-collection-lists.md`](../webflow-patterns/overview-limits-and-collection-lists.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T058",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/swiper-patterns/initialization-and-troubleshooting.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/swiper-patterns/initialization-and-troubleshooting.md, replace the exact text <<<OLD\n[animation_workflows.md](../animation-workflows/overview-decision-tree-and-css.md)\nOLD>>> with <<<NEW\n[`../animation-workflows/overview-decision-tree-and-css.md`](../animation-workflows/overview-decision-tree-and-css.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '233p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/swiper-patterns/initialization-and-troubleshooting.md | grep -cF -- '[`../animation-workflows/overview-decision-tree-and-css.md`](../animation-workflows/overview-decision-tree-and-css.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T059",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/third-party-integrations/best-practices-and-summary.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/third-party-integrations/best-practices-and-summary.md, replace the exact text <<<OLD\n[implementation_workflows.md](../implementation-workflows/condition-based-waiting.md)\nOLD>>> with <<<NEW\n[`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '182p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/third-party-integrations/best-practices-and-summary.md | grep -cF -- '[`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T060",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/third-party-integrations/best-practices-and-summary.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/third-party-integrations/best-practices-and-summary.md, replace the exact text <<<OLD\n[performance_patterns.md](../performance-patterns/overview-and-checklist.md)\nOLD>>> with <<<NEW\n[`../performance-patterns/overview-and-checklist.md`](../performance-patterns/overview-and-checklist.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '183p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/third-party-integrations/best-practices-and-summary.md | grep -cF -- '[`../performance-patterns/overview-and-checklist.md`](../performance-patterns/overview-and-checklist.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T061",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/third-party-integrations/filepond.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/third-party-integrations/filepond.md, replace the exact text <<<OLD\n[form_upload_workflows.md](../form-upload-workflows/overview-architecture-and-filepond.md)\nOLD>>> with <<<NEW\n[`../form-upload-workflows/overview-architecture-and-filepond.md`](../form-upload-workflows/overview-architecture-and-filepond.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '370p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/third-party-integrations/filepond.md | grep -cF -- '[`../form-upload-workflows/overview-architecture-and-filepond.md`](../form-upload-workflows/overview-architecture-and-filepond.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T062",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/webflow-patterns/finsweet-custom-select-bridge.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/webflow-patterns/finsweet-custom-select-bridge.md, replace the exact text <<<OLD\n[implementation_workflows.md](../implementation-workflows/condition-based-waiting.md)\nOLD>>> with <<<NEW\n[`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '352p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/webflow-patterns/finsweet-custom-select-bridge.md | grep -cF -- '[`../implementation-workflows/condition-based-waiting.md`](../implementation-workflows/condition-based-waiting.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T063",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/webflow-patterns/finsweet-custom-select-bridge.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/webflow-patterns/finsweet-custom-select-bridge.md, replace the exact text <<<OLD\n[performance_patterns.md](../performance-patterns/overview-and-checklist.md)\nOLD>>> with <<<NEW\n[`../performance-patterns/overview-and-checklist.md`](../performance-patterns/overview-and-checklist.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '355p' .skilled/skills/sk-code/sk-code-webflow/references/implementation/webflow-patterns/finsweet-custom-select-bridge.md | grep -cF -- '[`../performance-patterns/overview-and-checklist.md`](../performance-patterns/overview-and-checklist.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T064",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md, replace the exact text <<<OLD\n[animation_workflows.md](../../implementation/animation-workflows/overview-decision-tree-and-css.md)\nOLD>>> with <<<NEW\n[`../../implementation/animation-workflows/overview-decision-tree-and-css.md`](../../implementation/animation-workflows/overview-decision-tree-and-css.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '37p' .skilled/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md | grep -cF -- '[`../../implementation/animation-workflows/overview-decision-tree-and-css.md`](../../implementation/animation-workflows/overview-decision-tree-and-css.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T065",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/state-and-cleanup.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/state-and-cleanup.md, replace the exact text <<<OLD\n- **Decision tree and patterns:** [animation_workflows.md](../../implementation/animation-workflows/overview-decision-tree-and-css.md)\nOLD>>> with <<<NEW\n- **Decision tree and patterns:** [`../../implementation/animation-workflows/overview-decision-tree-and-css.md`](../../implementation/animation-workflows/overview-decision-tree-and-css.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '64p' .skilled/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/state-and-cleanup.md | grep -cF -- '[`../../implementation/animation-workflows/overview-decision-tree-and-css.md`](../../implementation/animation-workflows/overview-decision-tree-and-css.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T066",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/state-and-cleanup.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/state-and-cleanup.md, replace the exact text <<<OLD\n- **Complete reference:** [animation_workflows.md](../../implementation/animation-workflows/overview-decision-tree-and-css.md) contains all animation policy, rationale, and implementation details\nOLD>>> with <<<NEW\n- **Complete reference:** [`../../implementation/animation-workflows/overview-decision-tree-and-css.md`](../../implementation/animation-workflows/overview-decision-tree-and-css.md) contains all animation policy, rationale, and implementation details\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '65p' .skilled/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/state-and-cleanup.md | grep -cF -- '[`../../implementation/animation-workflows/overview-decision-tree-and-css.md`](../../implementation/animation-workflows/overview-decision-tree-and-css.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T067",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md, replace the exact text <<<OLD\n[implementation_workflows.md](../../implementation/implementation-workflows/condition-based-waiting.md)\nOLD>>> with <<<NEW\n[`../../implementation/implementation-workflows/condition-based-waiting.md`](../../implementation/implementation-workflows/condition-based-waiting.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '322p' .skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md | grep -cF -- '[`../../implementation/implementation-workflows/condition-based-waiting.md`](../../implementation/implementation-workflows/condition-based-waiting.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T068",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md, replace the exact text <<<OLD\n[debugging_workflows.md](../../debugging/debugging-workflows/systematic-four-phases.md)\nOLD>>> with <<<NEW\n[`../../debugging/debugging-workflows/systematic-four-phases.md`](../../debugging/debugging-workflows/systematic-four-phases.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '323p' .skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md | grep -cF -- '[`../../debugging/debugging-workflows/systematic-four-phases.md`](../../debugging/debugging-workflows/systematic-four-phases.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T069",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md, replace the exact text <<<OLD\n[dev_workflow.md](../../shared/dev-workflow/overview-nav-and-logging.md)\nOLD>>> with <<<NEW\n[`../../shared/dev-workflow/overview-nav-and-logging.md`](../../shared/dev-workflow/overview-nav-and-logging.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '324p' .skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md | grep -cF -- '[`../../shared/dev-workflow/overview-nav-and-logging.md`](../../shared/dev-workflow/overview-nav-and-logging.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T070",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md, replace the exact text <<<OLD\n- [verification_checklist.md](../../../assets/webflow-verification-checklist.md) - Printable verification checklist\nOLD>>> with <<<NEW\n- [`../../../assets/webflow-verification-checklist.md`](../../../assets/webflow-verification-checklist.md) - Printable verification checklist\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '327p' .skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md | grep -cF -- '[`../../../assets/webflow-verification-checklist.md`](../../../assets/webflow-verification-checklist.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T071",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md, replace the exact text <<<OLD\n**See also:** [verification_checklist.md](../../../assets/webflow-verification-checklist.md) for printable checklist\nOLD>>> with <<<NEW\n**See also:** [`../../../assets/webflow-verification-checklist.md`](../../../assets/webflow-verification-checklist.md) for printable checklist\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "sed -n '334p' .skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md | grep -cF -- '[`../../../assets/webflow-verification-checklist.md`](../../../assets/webflow-verification-checklist.md)'",
+    "expect": "1"
+  },
+  {
+    "task": "T072",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/manual-testing-playbook.md, replace the exact text <<<OLD\n# sk-code-webflow: Manual Testing Playbook\n\nRouting-recall corpus for\nOLD>>> with <<<NEW\n# sk-code-webflow: Manual Testing Playbook\n\n## 1. OVERVIEW\n\nRouting-recall corpus for\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -n '^## 1. OVERVIEW' .skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/manual-testing-playbook.md",
+    "expect": "3:## 1. OVERVIEW"
+  },
+  {
+    "task": "T073",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/SKILL.md, replace the exact text <<<OLD\nversion: 1.1.1.0\nOLD>>> with <<<NEW\nversion: 1.1.2.0\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -n '^version:' .skilled/skills/sk-code/sk-code-webflow/SKILL.md",
+    "expect": "5:version: 1.1.2.0"
+  },
+  {
+    "task": "T074",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.2.0.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.2.0.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/002-webflow-labels-and-playbook/scratch/units/webflow-changelog-v1.1.2.0.md. Copy it byte for byte, for example with: cp specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/002-webflow-labels-and-playbook/scratch/units/webflow-changelog-v1.1.2.0.md .skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.2.0.md",
+    "check": "cmp specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/002-webflow-labels-and-playbook/scratch/units/webflow-changelog-v1.1.2.0.md .skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.2.0.md && echo same",
+    "expect": "same"
+  }
+]

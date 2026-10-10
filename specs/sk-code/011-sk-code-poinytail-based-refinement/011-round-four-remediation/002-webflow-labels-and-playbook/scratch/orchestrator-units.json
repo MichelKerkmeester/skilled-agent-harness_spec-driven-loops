@@ -1,0 +1,12 @@
+[
+  {
+    "task": "O01",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.2.0.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.2.0.md, replace the exact text <<<OLD\n- **No label names a retired file.** Every link that showed an underscore file name now shows its target path. Every target still opens.\nOLD>>> with <<<NEW\n- **No label names a retired file.** Every link that showed an underscore file name now shows its target path. Every target still opens.\n- **Two dead anchors open again.** `systematic-four-phases.md` linked two sections by headings the reference split had renamed. Both links now open the section they name.\nNEW>>>",
+    "check": "grep -c 'Two dead anchors open again' .skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.2.0.md",
+    "expect": "1"
+  }
+]
