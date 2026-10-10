@@ -56,9 +56,9 @@ checklists and, by default, does not scan markdown. The opt-in `--check-router`
 flag adds one narrow exception: it checks that every RESOURCE_MAP/DEFAULT_RESOURCE
 leaf a `SKILL.md` router names exists on disk (a dead-route guard, scoped to the
 router block only). It still never inspects markdown prose. RESOURCE_MAP
-parent-child *equality* is not checked by this script either; leg 2 of
-`verify_router_sync.cjs` checks it, as the section "Router-sync guard" below
-records. These remain manual review gates:
+parent-child *equality* is not checked by this script either; "Retired
+router-sync suite" below records the suite that checked it and what covers its
+checks now. These remain manual review gates:
 
 - exact visual header shape beyond the marker-level checks above;
 - naming conventions;
@@ -68,10 +68,10 @@ records. These remain manual review gates:
 - TypeScript package-boundary decisions such as NodeNext ESM versus root
   CommonJS defaults.
 
-### Router-sync guard
+### Retired router-sync suite
 
 The `sk-code-router-sync.vitest.ts` suite was deleted with the skill-benchmark
-lane. `verify_router_sync.cjs` restores its four checks. The suite checked four things:
+lane. It checked four things:
 
 1. Every path in the machine-readable router exists on disk, every routable
    reference or asset doc is routed, and every full path the prose maps name
@@ -85,16 +85,15 @@ lane. `verify_router_sync.cjs` restores its four checks. The suite checked four 
 
 | Check | Coverage now |
 |---|---|
-| 1, dead paths | Leg 1a of `verify_router_sync.cjs` and `verify_alignment_drift.py --check-router`, both run by `scripts/run-all-drift-guards.sh` |
-| 1, orphans and prose paths | Leg 1a covers prose paths. Leg 1b covers orphans and is not run by the umbrella until its nine docs are routed |
-| 2 | Leg 2 of `verify_router_sync.cjs`, run by the umbrella |
-| 3, compiled side | Leg 3 of `verify_router_sync.cjs`, run by the umbrella, and `.github/workflows/routing-registry-drift.yml`, CI only: the compiled-serving admission step (`--warn-only`, never fails the job) and the leaf-manifest freshness step |
-| 3, RESOURCE_MAP to manifest | Leg 3 of `verify_router_sync.cjs`, run by the umbrella; no workflow step reads RESOURCE_MAP |
-| 4, compiled side | Leg 4 of `verify_router_sync.cjs`, run by the umbrella, and the CI admission step, scoring compiled decisions against playbook routing gold, `--warn-only` |
-| 4, surface router | Leg 4 of `verify_router_sync.cjs`, run by the umbrella |
+| 1, dead paths | `verify_alignment_drift.py --check-router`, run by `scripts/run-all-drift-guards.sh` |
+| 1, orphans and prose paths | None |
+| 2 | None |
+| 3, compiled side | `.github/workflows/routing-registry-drift.yml`, CI only: the compiled-serving admission step (`--warn-only`, never fails the job) and the leaf-manifest freshness step |
+| 3, RESOURCE_MAP to manifest | None; no workflow step reads RESOURCE_MAP |
+| 4, compiled side | The same admission step, scoring compiled decisions against playbook routing gold, `--warn-only` |
+| 4, surface router | None |
 
-The one remaining gap is leg 1b (nine docs with no router naming them). It stays
-out of the umbrella until those docs are routed. Owner: sk-code.
+Owner of every gap marked None: sk-code.
 
 ### Severity model
 
@@ -138,7 +137,7 @@ Notes:
 - [code_organization.md](code-organization/overview-and-module-organization.md)
 - [universal_patterns.md](universal-patterns/naming-and-commenting.md)
 - [hooks.md](./hooks.md)
-- Drift-guard entry point: `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` — runs this verifier, `verify_stack_folders.py` and `verify_router_sync.cjs` (legs 1a, 2, 3 and 4) together as one gate.
+- Drift-guard entry point: `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` — runs this verifier and `verify_stack_folders.py` together as one gate.
 
 ---
 
@@ -150,9 +149,9 @@ re-derive a second RESOURCE_MAP parser or a local eligibility map.
 
 1. **Doc pointer.** This file plus the code-opencode `SKILL.md` SMART ROUTING
    block, which record that the `sk-code-router-sync.vitest.ts` suite was
-   retired, that `verify_router_sync.cjs` restores its checks, and what covers
-   each (section 3, "Router-sync guard"). The markdown-blind
-   `verify_alignment_drift.py` is not that authority.
+   deleted, that nothing checks RESOURCE_MAP equality now, and what partly
+   covers its other checks (section 3, "Retired router-sync suite"). The
+   markdown-blind `verify_alignment_drift.py` is not that authority.
 2. **Bijection module.** `qualifiedIdToLeaf` in
    `.skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs`
    is the one bridge from a compiled router destination id
@@ -160,7 +159,7 @@ re-derive a second RESOURCE_MAP parser or a local eligibility map.
    `sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs` tests the
    module, and `.skilled/bin/lib/compiled-route-admission.cjs` uses it.
 3. **Orchestrator.** `scripts/run-all-drift-guards.sh` is the single command that
-   runs all three drift guards and exits non-zero if any fails.
+   runs both live drift guards and exits non-zero if either fails.
 
 Any new check that needs code-opencode RESOURCE_MAP alignment extends this
 interface; it must not stand up a competing parser or eligibility map.

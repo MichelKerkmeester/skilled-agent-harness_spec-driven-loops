@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/sk-code/benchmark/README.md
+Document type: readme
+Total issues: 0

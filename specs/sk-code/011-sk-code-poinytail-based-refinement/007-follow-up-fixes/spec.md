@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-10 |
 | **Branch** | `worktrees/092-sk-code-ponytail-refinement` |
 | **Parent Spec** | `../spec.md` |
@@ -110,7 +110,7 @@ Close each gap in its own child phase, built by haiku agents and verified by the
 | 2 | 002-leaf-generator-ignores/ | Leaf manifests ignore files git ignores | Complete |
 | 3 | 003-codex-mirror-gate/ | Codex-only agent changes reach the mirror checker | Complete |
 | 4 | 004-hook-stdin-deadline/ | One stdin deadline for every CommonJS hook adapter | Complete |
-| 5 | 005-router-sync-guard/ | Restore the router-sync checks as a drift guard | In Progress |
+| 5 | 005-router-sync-guard/ | Restore the router-sync checks as a drift guard | Complete |
 
 ### Phase Transition Rules
 

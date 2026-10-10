@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/005-router-sync-guard",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/005-router-sync-guard",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "router sync guard",
+      "phase 5 router sync guard",
+      "router sync guard plan",
+      "router sync guard tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "router sync guard implementation summary"
+    ],
+    "key_topics": [
+      "router",
+      "sync",
+      "guard",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/router_replay_lib.cjs",
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+      ".skilled/skills/sk-code/benchmark/README.md",
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md",
+      ".hermes/skills/sk-code-opencode/SKILL.md",
+      ".skilled/skills/sk-code/leaf-manifest.json",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/005-router-sync-guard/implementation-summary.md",
+      "scratch/prototype/negative-controls.sh",
+      "scratch/before/leaf-manifest.json",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/route-gold.typed.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/005-router-sync-guard/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify_router_sync.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "router_replay_lib.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/router_replay_lib.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-all-drift-guards.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "alignment-verification-automation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-resource-contract.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "negative-controls.sh",
+        "kind": "script",
+        "path": "scratch/prototype/negative-controls.sh",
+        "source": "derived"
+      },
+      {
+        "name": "route-gold.typed.json",
+        "kind": "config",
+        "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/route-gold.typed.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Commit `b45ea54cea3` deleted the sk-code router-sync suite with the skill-benchmark lane",
+    "created_at": "2026-10-10T05:26:28Z",
+    "last_save_at": "2026-10-10T06:17:27.712Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:79f50afdf59a4d221e1c9c1298945cbc93af1f80dddf71c5b3e5530e06b860d8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e46d8374fe281e37e07390377bd6a646a65be552a4692af7e3a5d831e3b8adec",
+      "plan.md": "f180ca109965858ef56e5fc824802b2e5cbc0de64d89e68bf36581179bc02fc1",
+      "tasks.md": "9ca15897ac8fd9bd37e0dcf8c450c467ccb8655ae2752d9ccb0332962b0004a9",
+      "implementation-summary.md": "4eba0ab29efcaf5f0a5a334fa1756e7d92d2f9677c6a439307203a1e51da966e"
+    },
+    "last_active_at": null
+  }
+}

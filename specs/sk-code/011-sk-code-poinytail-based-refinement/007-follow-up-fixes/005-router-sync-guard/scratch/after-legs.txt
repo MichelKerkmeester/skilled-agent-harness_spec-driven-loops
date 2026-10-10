@@ -1,0 +1,16 @@
+PASS check 1a: machine-router paths exist and the prose maps are routed
+FAIL check 1b: every routable reference or asset doc is routed (9 problem(s))
+  - orphan (routable doc no router names): shared/references/workflow-debug.md
+  - orphan (routable doc no router names): shared/references/workflow-implement.md
+  - orphan (routable doc no router names): shared/references/workflow-verify.md
+  - orphan (routable doc no router names): sk-code-obsidian/references/accessibility.md
+  - orphan (routable doc no router names): sk-code-obsidian/references/operations/operations.md
+  - orphan (routable doc no router names): sk-code-obsidian/references/quality/doc-quality-gate.md
+  - orphan (routable doc no router names): sk-code-obsidian/references/setup/setup.md
+  - orphan (routable doc no router names): sk-code-obsidian/references/skill-reference-integrity.md
+  - orphan (routable doc no router names): sk-code-obsidian/references/theme-variables.md
+PASS check 2: surface RESOURCE_MAP equals the children union plus the parent tier
+PASS check 3: compiled destinations, leaf-manifest and code-opencode RESOURCE_MAP agree
+PASS check 4: playbook expected_resource is emitted by the router
+router-sync: 4/5 checks passed
+exit=1

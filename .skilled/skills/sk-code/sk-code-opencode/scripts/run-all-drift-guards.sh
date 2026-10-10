@@ -3,13 +3,13 @@
 # Run all sk-code drift guards as one gate.
 # ───────────────────────────────────────────────────────────────
 #
-# sk-code's two live drift guards are disjoint and were runnable only one at a
-# time: the alignment-drift verifier (language integrity + dead-route check) and
-# the stack-folder verifier (language reference folders resolve). This is the
-# single entry point that runs both in sequence, prints a PASS/FAIL line per
-# guard and exits non-zero if either fails, so a completion gate never has to
-# remember separate commands. A third guard, the router-sync suite, is retired,
-# and the note after the guard calls records what it checked.
+# sk-code has three drift guards: alignment-drift (language integrity and the
+# dead-route check), stack-folder (language reference folders resolve) and
+# router-sync (the sk-code router's paths, surface map, compiled agreement and
+# playbook routing). Each was runnable only on its own. This is the single entry
+# point that runs them in sequence, prints a PASS/FAIL line per guard and exits
+# non-zero if any fails, so a completion gate never has to remember separate
+# commands. The note after the router-sync guard records the leg it does not run.
 #
 # Offline and deterministic: no network, no model dispatch, no state carried
 # between runs. Paths resolve from this script's own location, so it runs from
@@ -25,6 +25,7 @@ REPO_ROOT="$(cd "${SKILLS_DIR}/../.." && pwd)"
 
 DRIFT_VERIFIER="${CODE_OPENCODE_DIR}/assets/scripts/verify_alignment_drift.py"
 STACK_VERIFIER="${CODE_OPENCODE_DIR}/assets/scripts/verify_stack_folders.py"
+ROUTER_SYNC="${CODE_OPENCODE_DIR}/assets/scripts/verify_router_sync.cjs"
 
 failures=0
 
@@ -47,29 +48,22 @@ run_guard "alignment-drift  (verify_alignment_drift.py --check-router)" \
 run_guard "stack-folders    (verify_stack_folders.py)" \
   python3 "${STACK_VERIFIER}"
 
-# Retired guard: the router-sync suite (sk-code-router-sync.vitest.ts), deleted with the
-# skill-benchmark lane that hosted it. It checked four things:
-#   1. every path in the machine-readable router exists on disk, every routable
-#      reference or asset doc is routed, and every full path the prose maps name is routed;
-#   2. the parent surface RESOURCE_MAP equals the union of the surface children's maps
-#      plus the parent tier;
-#   3. compiled route-gold destinations, leaf-manifest.json and the code-opencode
-#      RESOURCE_MAP agree through qualifiedIdToLeaf;
-#   4. every playbook routing scenario's expected_resource is emitted by the router.
-# Successor, partial: the dead-path part of check 1 is the alignment-drift guard above
-# (--check-router). .github/workflows/routing-registry-drift.yml covers the compiled side
-# of checks 3 and 4, in CI only: its compiled-serving admission step scores compiled
-# decisions against playbook routing gold through qualifiedIdToLeaf but runs --warn-only,
-# and its leaf-manifest freshness step byte-checks every leaf-manifest.json. No step
-# reads RESOURCE_MAP.
-# Gap: orphan and prose-path coverage (check 1), parent-equals-union (check 2),
-# RESOURCE_MAP-to-manifest agreement (check 3) and the surface-router side of check 4
-# have no guard. Owner: sk-code.
+run_guard "router-sync      (verify_router_sync.cjs --checks 1a,2,3,4)" \
+  node "${ROUTER_SYNC}" --checks 1a,2,3,4
+
+# Router-sync guard (verify_router_sync.cjs): restores the four checks of the router-sync
+# suite that was deleted with the skill-benchmark lane. This run covers checks 1a, 2, 3
+# and 4. Check 1b (every reference or asset doc is routed) exists in the guard but is not
+# wired here until its nine orphan docs are routed (owner: sk-code); the reason is recorded
+# in references/shared/alignment-verification-automation.md. Dead paths in check 1 are
+# covered by the alignment-drift guard above (--check-router). The CI workflow
+# .github/workflows/routing-registry-drift.yml still covers the compiled side of checks 3
+# and 4 in warn-only mode.
 
 if [ "${failures}" -ne 0 ]; then
   echo "run-all-drift-guards: ${failures} guard(s) FAILED"
   exit 1
 fi
 
-echo "run-all-drift-guards: all 2 guards PASSED"
+echo "run-all-drift-guards: all 3 guards PASSED"
 exit 0

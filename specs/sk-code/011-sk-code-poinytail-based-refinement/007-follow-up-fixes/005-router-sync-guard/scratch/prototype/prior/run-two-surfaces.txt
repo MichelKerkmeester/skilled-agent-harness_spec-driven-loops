@@ -1,0 +1,8 @@
+  info: machine router paths=176 routerSource=hub-router.json
+PASS check 1 machine-router paths: parse, dead routes, orphans, prose paths
+PASS check 2 surface RESOURCE_MAP equals children union plus parent tier
+  info: route-gold read from specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/route-gold.typed.json
+PASS check 3 qualifiedIdToLeaf bijection: manifest, route-gold, code-opencode RESOURCE_MAP
+  info: scenarios=37
+PASS check 4 playbook expected_resource is emitted by the router
+router-sync: 4/4 checks passed

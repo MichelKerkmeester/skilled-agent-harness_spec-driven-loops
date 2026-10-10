@@ -42,7 +42,7 @@
       "stdin"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -137,12 +137,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -162,6 +156,12 @@
       },
       {
         "name": "Problem Statement Building",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -195,21 +195,27 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Building phases 002 to 006 surfaced five gaps that were out of scope at the time",
     "created_at": "2026-10-10T05:26:19Z",
-    "last_save_at": "2026-10-10T05:58:45.035Z",
+    "last_save_at": "2026-10-10T06:17:29.076Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:f0c1c942988fd09ec967efad31cbdf4acf529625f62d7fb9cf1aa32234d0e072",
+    "source_fingerprint": "sha256:f9ad8856a451009131bd3264712bd937e2110fb27efe91e6f499321347273cd7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b60f99c5fa58d2d7f3346550e93d2b959b17a63eaf27890e5b36fa16785564c2"
+      "spec.md": "dcfbda2ea96bb64c2c1693eab7602098dc56db9c90eb9984118352b24d7767e5"
     },
     "last_active_at": null
   }

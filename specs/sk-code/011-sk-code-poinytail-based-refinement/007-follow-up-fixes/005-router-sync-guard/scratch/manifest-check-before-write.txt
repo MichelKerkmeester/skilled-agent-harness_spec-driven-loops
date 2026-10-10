@@ -1,0 +1,4 @@
+generate-leaf-manifest: leaf-manifest.json is stale under .skilled/skills/sk-code
+  committed: 5aefbf48419df106c2e3ff855b6e1e12dab1aa0ddb46e41c21713bf90b0ed6ce
+  fresh:     fab6eb8691aa05ea57ffda56837e50fa191f3eb35275f8167202f24fe0b9cfb5
+Re-run with --write to regenerate.

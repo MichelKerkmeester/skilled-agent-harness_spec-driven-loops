@@ -30,7 +30,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 6 |
+| Code files | 4 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -70,11 +70,9 @@ Run individual scripts from the repository root with the documented arguments.
 
 | Path | Purpose |
 |---|---|
-| `router_replay_lib.cjs` | Replays the sk-code router (intent signals, resource maps, default resources) for the router-sync guard. Library only, no CLI. |
 | `test_verify_alignment_drift.py` | Unit-style coverage for alignment drift file discovery, language checks, severity behavior, and CLI exit codes. |
 | `test_verify_stack_folders.py` | Builds a temporary references tree and proves `verify_stack_folders.py` exits 1 on an orphan folder and 0 on a clean tree. |
 | `verify_alignment_drift.py` | Recurring read-only alignment verifier for TypeScript, JavaScript, Python, shell, JSON, and JSONC files. |
-| `verify_router_sync.cjs` | Restored router-sync drift guard: four checks over the sk-code router, one PASS or FAIL line per leg. Usage: `node verify_router_sync.cjs [--checks 1a,1b,2,3,4]`. |
 | `verify_stack_folders.py` | Verifies code-opencode language reference folders match the known language set and flags missing or orphan folders. |
 
 ---

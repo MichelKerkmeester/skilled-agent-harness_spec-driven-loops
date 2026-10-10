@@ -1,0 +1,7 @@
+ok      C0 clean tree, checks 1a 2 3 4: exit=0, found: router-sync: 4/4 checks passed
+ok      C1 dead route in the machine router: exit=1, found: dead route: shared/references/universal/error-recovery.md
+ok      C2 orphan reference doc: exit=1, found: orphan (routable doc no router names): sk-code-webflow/references/zz-orphan-probe.md
+ok      C3 leaf dropped from the manifest: exit=1, found: is not a manifest leaf
+ok      C4 playbook expects an unrouted doc: exit=1, found: expects references/shared/does-not-exist.md, which the router does not emit
+ok      C5 route-gold missing: exit=1, found: route-gold not found
+negative controls: 6/6 behaved as expected

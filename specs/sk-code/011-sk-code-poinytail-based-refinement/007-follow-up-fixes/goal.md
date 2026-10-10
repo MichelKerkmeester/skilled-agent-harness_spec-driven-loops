@@ -102,7 +102,7 @@ and findings belong here.
 | 002 leaf generator ignores | Done | Six criteria rerun; freshness 14/14 with a `__pycache__` probe present |
 | 003 codex mirror gate | Done | Six criteria rerun; Codex path now checks one agent |
 | 004 hook stdin deadline | Done | Five criteria rerun; live adapter exits at 3032 ms with stdin held open |
-| 005 router sync guard | In Progress | Building checks 1a, 2, 3 and 4 into the umbrella |
+| 005 router sync guard | Done | Six criteria rerun; umbrella prints all 3 guards PASSED; leg 1b opt-in, reports nine orphan docs on request |
 
 ### Deviations and findings
 
