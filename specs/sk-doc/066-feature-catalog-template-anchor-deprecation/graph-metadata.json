@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-feature-catalog-template-anchor-deprecation",
+  "spec_folder": "sk-doc/066-feature-catalog-template-anchor-deprecation",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/066-feature-catalog-template-anchor-deprecation/001-source-deprecation",
+    "sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature catalog template anchor deprecation phase parent spec",
+      "sk-doc-template skill_asset_feature_catalog",
+      "feature catalog template marker removal",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "feature",
+      "catalog",
+      "template",
+      "anchor",
+      "deprecation",
+      "phase",
+      "parent",
+      "spec",
+      "sk-doc-template",
+      "marker",
+      "removal",
+      "packet"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-source-deprecation/goal.md",
+      "002-retroactive-removal/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "each",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every feature catalog document opens with a template-name HTML comment under its H1, `<!-- sk-doc-template: skillassetfeaturecatalog -->`, and 19 older files carry a hyphenated spelling of it",
+    "created_at": "2026-10-10T18:42:45Z",
+    "last_save_at": "2026-10-10T18:55:17.101Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:e73626125c978f07e811ac43115bf2973a81af423f20c217b938c1a2f191a35e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "16cdeb47121ccc1ce63b819aa54369474f3ac12f2a09763aa9ab59a0acdc1e8f"
+    },
+    "last_active_at": null
+  }
+}

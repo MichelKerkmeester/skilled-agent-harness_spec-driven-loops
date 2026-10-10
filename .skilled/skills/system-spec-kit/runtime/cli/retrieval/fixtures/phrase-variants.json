@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2c221fb6808d48a4906ae219c06a182cfec669352a1a7153815ba39d86ae8485",
+  "manifestHash": "f0989cac12cbea6c791ab046b318c2c233137833e80fe0256eb6f362e2f0b0df",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -43436,6 +43436,18 @@
     "feature catalog template": [
       "feature catalog template"
     ],
+    "feature catalog template anchor deprecation phase parent spec": [
+      "feature catalog template anchor deprecation phase parent spec"
+    ],
+    "feature catalog template marker removal": [
+      "feature catalog template marker removal"
+    ],
+    "feature catalog template marker removed": [
+      "feature catalog template marker removed"
+    ],
+    "feature catalog template marker source": [
+      "feature catalog template marker source"
+    ],
     "feature catalog trio": [
       "feature catalog trio"
     ],
@@ -70919,6 +70931,9 @@
     "phase 1 shared and hub docs": [
       "phase 1 shared and hub docs"
     ],
+    "phase 1 source deprecation": [
+      "phase 1 source deprecation"
+    ],
     "phase 1 spec template anchor nesting": [
       "phase 1 spec template anchor nesting"
     ],
@@ -71095,6 +71110,9 @@
     ],
     "phase 2 rerank bench refinement": [
       "phase 2 rerank bench refinement"
+    ],
+    "phase 2 retroactive removal": [
+      "phase 2 retroactive removal"
     ],
     "phase 2 review contract": [
       "phase 2 review contract"
@@ -82341,6 +82359,24 @@
     "retroactive phase parent tasks": [
       "retroactive phase parent tasks"
     ],
+    "retroactive removal": [
+      "retroactive removal"
+    ],
+    "retroactive removal acceptance criteria": [
+      "retroactive removal acceptance criteria"
+    ],
+    "retroactive removal goal": [
+      "retroactive removal goal"
+    ],
+    "retroactive removal implementation summary": [
+      "retroactive removal implementation summary"
+    ],
+    "retroactive removal plan": [
+      "retroactive removal plan"
+    ],
+    "retroactive removal tasks": [
+      "retroactive removal tasks"
+    ],
     "retroactive time log": [
       "retroactive time log"
     ],
@@ -91114,6 +91150,9 @@
     "sk create feature catalog 1 0 1 2": [
       "sk-create-feature-catalog 1.0.1.2"
     ],
+    "sk create feature catalog 1 0 2 0": [
+      "sk-create-feature-catalog 1.0.2.0"
+    ],
     "sk create feature catalog playbook": [
       "sk-create-feature-catalog playbook"
     ],
@@ -91128,6 +91167,9 @@
     ],
     "sk create feature catalog v1 0 1 2": [
       "sk-create-feature-catalog v1.0.1.2"
+    ],
+    "sk create feature catalog v1 0 2 0": [
+      "sk-create-feature-catalog v1.0.2.0"
     ],
     "sk create frontmatter 1 0 0 0": [
       "sk-create-frontmatter 1.0.0.0"
@@ -92035,8 +92077,14 @@
     "sk doc template alignment skill advisor": [
       "sk-doc template alignment skill-advisor"
     ],
+    "sk doc template comment removal": [
+      "sk-doc-template comment removal"
+    ],
     "sk doc template governance": [
       "sk-doc template governance"
+    ],
+    "sk doc template skill asset feature catalog": [
+      "sk-doc-template skill_asset_feature_catalog"
     ],
     "sk doc template traces advisor": [
       "sk-doc template traces advisor"
@@ -95527,6 +95575,24 @@
     ],
     "source citation check": [
       "source citation check"
+    ],
+    "source deprecation": [
+      "source deprecation"
+    ],
+    "source deprecation acceptance criteria": [
+      "source deprecation acceptance criteria"
+    ],
+    "source deprecation goal": [
+      "source deprecation goal"
+    ],
+    "source deprecation implementation summary": [
+      "source deprecation implementation summary"
+    ],
+    "source deprecation plan": [
+      "source deprecation plan"
+    ],
+    "source deprecation tasks": [
+      "source deprecation tasks"
     ],
     "source directory readme": [
       "source directory readme"
@@ -102201,6 +102267,9 @@
     ],
     "template moving target": [
       "template moving target"
+    ],
+    "template name anchor retired": [
+      "template-name anchor retired"
     ],
     "template optimization": [
       "template optimization"

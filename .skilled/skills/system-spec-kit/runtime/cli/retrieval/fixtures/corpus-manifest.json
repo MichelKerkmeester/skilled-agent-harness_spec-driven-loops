@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e7dfc215851aec59098bd69d0e7522cfe1b3dc43ebae9b433acb1f638a057c6c",
+  "corpusHash": "79a3efcd4b84c9535258b5aab566a67ef757e7c11072a3697fa8ace9a8d779dd",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24287,
+  "includedPathCount": 24302,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6240,6 +6240,7 @@
     ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.1.0.md",
     ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.1.1.md",
     ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.1.2.md",
+    ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.2.0.md",
     ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/catalog-structure/create-root-catalog-package.md",
     ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/catalog-structure/preserve-root-leaf-bijection.md",
     ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md",
@@ -11957,6 +11958,20 @@
     "specs/sk-doc/065-changelog-section-spacing/plan.md",
     "specs/sk-doc/065-changelog-section-spacing/spec.md",
     "specs/sk-doc/065-changelog-section-spacing/tasks.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/001-source-deprecation/acceptance-criteria.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/001-source-deprecation/goal.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/001-source-deprecation/implementation-summary.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/001-source-deprecation/plan.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/001-source-deprecation/spec.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/001-source-deprecation/tasks.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/acceptance-criteria.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/goal.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/implementation-summary.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/plan.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/spec.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/tasks.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/goal.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/spec.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -24318,7 +24333,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "2c221fb6808d48a4906ae219c06a182cfec669352a1a7153815ba39d86ae8485",
+  "manifestHash": "f0989cac12cbea6c791ab046b318c2c233137833e80fe0256eb6f362e2f0b0df",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26978,6 +26993,14 @@
     },
     {
       "path": "specs/sk-doc/065-changelog-section-spacing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/001-source-deprecation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/scratch",
       "reason": "excluded directory"
     },
     {

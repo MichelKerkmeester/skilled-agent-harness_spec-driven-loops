@@ -190,8 +190,6 @@ version: 1.0.0.0
 
 # {FEATURE_NAME} ({tool_name_or_command})
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 {OVERVIEW_ONE_LINE}

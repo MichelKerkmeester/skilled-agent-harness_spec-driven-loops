@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 56,
     "missing-frontmatter": 6847,
-    "ok": 13875,
+    "ok": 13890,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 24287,
+  "documentsScanned": 24302,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "2c221fb6808d48a4906ae219c06a182cfec669352a1a7153815ba39d86ae8485",
+  "manifestHash": "f0989cac12cbea6c791ab046b318c2c233137833e80fe0256eb6f362e2f0b0df",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36205,
+      "ok": 36228,
       "prose-sentence": 19,
       "single-token": 164,
       "stop-word-only": 1,
@@ -68742,6 +68742,14 @@
     },
     {
       "path": "specs/sk-doc/065-changelog-section-spacing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/001-source-deprecation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/scratch",
       "reason": "excluded directory"
     },
     {

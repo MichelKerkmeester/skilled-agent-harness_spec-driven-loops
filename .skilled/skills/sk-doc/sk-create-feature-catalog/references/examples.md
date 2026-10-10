@@ -55,12 +55,10 @@ One wrinkle worth copying only if you have the same reason: the directory layout
 
 ## 3. ROOT CATALOG ANATOMY
 
-The root `feature-catalog.md` opens with frontmatter carrying `title`, `description`, `trigger_phrases` and a 4-part `version`, then the H1, the catalog template marker, and a short intro naming what the system does today and where its source of truth lives:
+The root `feature-catalog.md` opens with frontmatter carrying `title`, `description`, `trigger_phrases` and a 4-part `version`, then the H1 and a short intro naming what the system does today and where its source of truth lives:
 
 ```markdown
 # Skill Advisor: Feature Catalog
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 This catalog is the current inventory for the skill advisor. The package source
 of truth is `.skilled/skills/system-skill-advisor/runtime/`, with adjacent
@@ -104,12 +102,10 @@ trigger_phrases:
   - "compiledRoute enrichment"
 ```
 
-**H1 and template marker** — the H1 names the tool, immediately followed by the catalog template marker:
+**H1**: the H1 names the tool, and `## 1. OVERVIEW` follows it directly:
 
 ```markdown
 # advisor_recommend Command
-
-<!-- sk-doc-template: skill_asset_feature_catalog -->
 ```
 
 **`## 1. OVERVIEW`** is one sentence: expose the native scoring pipeline as a command that any runtime can call through the CLI front door, with prompt-safe attribution and lifecycle-aware redirects. Written from the caller's side, not the implementation's. One sentence is enough when the sentence is the right one.
