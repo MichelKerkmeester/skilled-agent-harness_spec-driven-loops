@@ -33,7 +33,7 @@ trigger_phrases:
   - "resume condition"
 importance_tier: important
 contextType: reference
-version: 1.6.0.5
+version: 1.6.0.4
 ---
 
 # Rule: Communication handoff
@@ -61,19 +61,8 @@ action that does not happen.
 
 ## 1. THE HANDBACK IS A SEPARATE THING FROM THE STATUS
 
-Every substantive turn ends with an honest status, a read-only turn included. `AGENTS.md` §10
-requires it and this section lists what it holds. Say each part briefly:
-
-1. **What ran or was read, and what it returned**, with the receipts from
-   [`evidence-and-proof.md`](evidence-and-proof.md) §1.
-2. **What is inferred** rather than observed.
-3. **What only the operator can verify.**
-4. **The state of the work:** edited / committed / pushed / dirty, and which branch.
-5. **Known residual risk.** Any risk the operator must weigh before relying on the work, such as an untested path or a state that could not be checked. Write "none known" when there is none.
-
-What was not done belongs in the status as well, and [`evidence-and-proof.md`](evidence-and-proof.md) §10
-says how to report it. The status reports what happened. The handback reports what happens next,
-and it is a different document.
+The status `AGENTS.md` §10 and [`evidence-and-proof.md`](evidence-and-proof.md) §10 require
+reports what happened. The handback reports what happens next, and it is a different document.
 
 **Restate the state when the reader must re-orient.** It fires when the direction of the
 work changes, when two attempts at the same fix have failed or when the work resumes after
@@ -197,7 +186,6 @@ operator unable to tell whether anything is happening or whether it is their mov
 
 ## 8. SELF-CHECK
 
-- [ ] The status names what ran, what is inferred, what only the operator can verify, the state of the work and any known residual risk. It says "none known" when there is none.
 - [ ] The turn ends by naming what is the operator's to do, or by saying nothing is.
 - [ ] Every item on that list is theirs, not mine reframed.
 - [ ] The handback is last, and survives a reader who stops halfway.

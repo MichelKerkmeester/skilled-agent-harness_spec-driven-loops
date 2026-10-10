@@ -26,7 +26,7 @@ trigger_phrases:
   - "verify before claiming done"
 importance_tier: important
 contextType: reference
-version: 1.1.1.4
+version: 1.1.1.3
 ---
 
 # Rule: Evidence and proof
@@ -184,8 +184,13 @@ Before any completion claim:
 
 ## 10. CLOSE-OUT
 
-Every substantive turn ends with an honest status. What it holds is listed once, in
-[`communication-handoff.md`](communication-handoff.md) §1.
+Every substantive turn ends with an honest status. Five things, briefly:
+
+1. **What ran or was read, and what it returned**, with the receipts from §1.
+2. **What is inferred** rather than observed.
+3. **What only the operator can verify.**
+4. **The state of the work:** edited / committed / pushed / dirty, and which branch.
+5. **Known residual risk.** Any risk the operator must weigh before relying on the work, such as an untested path or a state that could not be checked. Write "none known" when there is none.
 
 And plainly: **what is not done.** If tests fail, say so and show the output. If a step
 was skipped, say it was skipped. If scope was left out, name it and why. Work that is

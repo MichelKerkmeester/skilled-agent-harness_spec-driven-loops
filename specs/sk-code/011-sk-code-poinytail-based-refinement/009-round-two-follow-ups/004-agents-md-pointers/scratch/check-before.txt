@@ -1,0 +1,12 @@
+[repo-rules-check] 1/11 PASS count parity        - files=13 triggerRows=13 indexRows=13
+[repo-rules-check] 2/11 PASS row coverage        - files=13 triggerRows=13 indexRows=13 all links resolve
+[repo-rules-check] 3/11 PASS phrase uniqueness   - phrases=276 collisions=0
+[repo-rules-check] 4/11 PASS line ceiling        - max=238 limit=250
+[repo-rules-check] 5/11 PASS frontmatter keys    - files=13 keys=6
+[repo-rules-check] 6/11 PASS divider parity      - files=13
+[repo-rules-check] 7/11 PASS rule links          - files=13 links=46 all resolve
+[repo-rules-check] 8/11 PASS fires-when sections - files=13 all declare firing conditions
+[repo-rules-check] 9/11 PASS index summaries     - indexRows=13 every summary matches its rule's description
+[repo-rules-check] 10/11 PASS fires-when coverage - bullets=62 every bullet has a router counterpart (threshold 0.3)
+[repo-rules-check] 11/11 PASS card sync           - no cards directory
+[repo-rules-check] RESULT: PASSED (11/11 checks)

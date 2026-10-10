@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/004-agents-md-pointers",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/004-agents-md-pointers",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agents md pointers",
+      "phase 4 agents md pointers",
+      "agents md pointers plan",
+      "agents md pointers tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "agents md pointers implementation summary"
+    ],
+    "key_topics": [
+      "agents",
+      "pointers",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/repo-rules/communication-handoff.md",
+      ".skilled/repo-rules/evidence-and-proof.md",
+      "scratch/rule-copies-before.txt",
+      "scratch/validate-after.txt",
+      ".devin/SYNC.md",
+      ".cursor/rules/skill-routing.md",
+      "scratch/apply-dryrun.py",
+      ".skilled/skills/sk-doc/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+      ".skilled/repo-rules/communication-prose.md",
+      ".skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication-handoff.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/communication-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-and-proof.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/evidence-and-proof.md",
+        "source": "derived"
+      },
+      {
+        "name": "rule-copies-before.txt",
+        "kind": "file",
+        "path": "scratch/rule-copies-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-after.txt",
+        "kind": "file",
+        "path": "scratch/validate-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".devin/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-routing.md",
+        "kind": "doc",
+        "path": ".cursor/rules/skill-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "apply-dryrun.py",
+        "kind": "file",
+        "path": "scratch/apply-dryrun.py",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication-prose.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/communication-prose.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-gate1-pointers.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "AGENTS.md section 10 (line 296) lists four close-out items",
+    "created_at": "2026-10-10T08:16:21Z",
+    "last_save_at": "2026-10-10T09:04:29.388Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ca873cd9c488d2c40e806716ac43abc8c153e51607f37fccd16d4e6674c79b56",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cae240f449dd7a67a71064a094f88047aec4bb8569677bec895650a675b55b0e",
+      "plan.md": "475e5d5568802944954145f683547109189a84c01034b97b1a7892339dc8a848",
+      "tasks.md": "89368bd6d7bef76c3d0462faa3f0d2fc69704ed3fd14fba7f06d3d3ac91ade70",
+      "implementation-summary.md": "85222b50e1bddf2bd41b1ec4d32007f9e18468e45931cc0edc3e119f6bdbde08"
+    },
+    "last_active_at": null
+  }
+}
