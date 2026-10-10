@@ -21,6 +21,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const router = require('../lib/post-edit-router.cjs');
 const { isHookEnabled } = require('../../shared/hook-flags.cjs');
+const { readStdin } = require('../../shared/hook-adapter-shared.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -32,12 +33,6 @@ const DEVIN_EDIT_TOOLS = new Set(['edit', 'write']);
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
-
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
-}
 
 function remainingMs(startedAt, budgetMs) {
   return budgetMs - (Date.now() - startedAt);

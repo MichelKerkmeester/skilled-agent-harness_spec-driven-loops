@@ -1,0 +1,34 @@
+[mcp-route-guard] 16/16 assertions passed
+✔ .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs (136.191458ms)
+✔ write payload reaches post-edit quality (54.310375ms)
+✔ edit payload reaches post-edit quality (54.173666ms)
+✔ read payload is not an edit event (30.998708ms)
+✔ enabled by default when no flag is set (0.463959ms)
+✔ master switch disables every concern (0.05475ms)
+✔ canonical per-concern switch disables only that concern (0.046125ms)
+✔ concernFlag derives the canonical env name (0.052125ms)
+✔ legacy aliases still disable their concern (0.073084ms)
+✔ truthy parsing is case/space-insensitive and strict about falsey (0.056875ms)
+✔ .mjs and .ts facades re-export identical behavior (19.832083ms)
+✔ config file disables a concern (master, canonical, and aliases) (0.068ms)
+✔ environment overrides the config file both ways (0.052916ms)
+✔ explicit env without a config arg ignores the config file (test isolation) (0.064375ms)
+✔ loadConfigFile parses KEY=value, ignoring comments/blanks/quotes/malformed (0.991667ms)
+✔ a missing config file is fail-open (empty object, no throw) (0.348833ms)
+✔ live file path resolves via HOOK_FLAGS_CONFIG and env still wins (0.891334ms)
+✔ the shell mirror reads the config file of whichever source root the checkout carries (72.145208ms)
+✔ isFlagOn reads a named switch with the kill-switch precedence (0.116125ms)
+✔ hook_flag_on reads a named switch from the environment first, then the config file (56.573458ms)
+✔ a '#' after a space or tab ends a value in every reader of the file (136.778291ms)
+✔ a byte order mark before the first line hides nothing from any reader (95.162917ms)
+✔ every reader trims only a value's edges and lets any set environment value answer (540.006375ms)
+✔ an example line uncommented as-is, trailing comment and all, disables its hook (29.181917ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 997.141208
+exit=0

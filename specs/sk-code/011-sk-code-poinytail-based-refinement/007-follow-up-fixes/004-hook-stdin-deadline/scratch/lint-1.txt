@@ -1,0 +1,12 @@
+goals_scanned=1
+scratch_excluded=0
+criteria=6
+scored=6
+rule4_violations=1
+rule5_violations=0
+both_violations=0
+placeholder=0
+lexical_unscored=0
+no_input=0
+errors=0
+rule4 specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/004-hook-stdin-deadline/goal.md:59: The never-closed | the bytes | The complete-input

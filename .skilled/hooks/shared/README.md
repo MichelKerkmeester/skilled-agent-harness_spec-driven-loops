@@ -26,7 +26,7 @@ Flags resolve from two sources: the live environment, and an optional operator c
 
 At load, `hook-flags.cjs` calls `env-aliases.cjs.applyEnvAliases()`, which copies every legacy `MK_*` env value forward onto its new name (only when the new name is unset: a value set explicitly under the new name always wins). This bridges the rename from the opaque `MK_` prefix to self-describing prefixes that name the owning skill or surface.
 
-**Adapter plumbing.** `hook-adapter-shared.cjs` provides `readStdin()` (bounded stdin collection via async iterator) and `parseJsonFailOpen(raw)` (JSON parsing that resolves to `null` instead of throwing). Twenty-eight lines, byte-identical behavior for every consumer.
+**Adapter plumbing.** `hook-adapter-shared.cjs` provides `readStdin({ timeoutMs })` (stdin collection that resolves at a 3000 ms deadline with the bytes read so far, and rejects on a stream error) and `parseJsonFailOpen(raw)` (JSON parsing that resolves to `null` instead of throwing). Byte-identical behavior for every consumer.
 
 **POSIX mirror.** `hook-flags.sh` exposes `hook_enabled <concern>` for shell entrypoints. It resolves the config file at source time (explicit `HOOK_FLAGS_CONFIG`, then `__hf_root`, then `git rev-parse --show-toplevel`). It checks the master switch and the default-shape `SYSTEM_<CONCERN>_DISABLED` only: it does not carry the `CONCERN_CANONICAL` overrides or `LEGACY_ALIASES`, so shell entrypoints that need those must use the Node resolver instead. `hook_flag_on <name>` checks one named switch with the same precedence, and refuses any name that is not a plain variable name before the resolver's `eval` sees it.
 
@@ -42,7 +42,7 @@ This concern has no per-runtime adapters: it is consumed by every other concern'
 | ESM | `hook-flags.mjs` | Cursor, Pi (via `.ts`), ESM adapters | `createRequire` facade over `.cjs`, zero drift. |
 | TypeScript | `hook-flags.ts` | Pi, Claude `.ts` adapters | Typed `createRequire` facade over `.cjs`. |
 | POSIX sh | `hook-flags.sh` | Shell entrypoints (dist-freshness, git hooks, `validate.sh`) | `source` + `hook_enabled <concern>` or `hook_flag_on <name>`. Default-shape flags only. |
-| CommonJS | `hook-adapter-shared.cjs` | `mcp-route-guard/{claude,codex,devin}`, `task-dispatch/{claude,devin}` | `require()`; `readStdin()` + `parseJsonFailOpen()`. |
+| CommonJS | `hook-adapter-shared.cjs` | `mcp-route-guard/{claude,codex,devin}`, `task-dispatch/{claude,devin}`, `post-edit-quality/{claude,codex,devin}` | `require()`; `readStdin()` + `parseJsonFailOpen()`. |
 
 The resolver family currently gates 21 concerns: `skill-advisor`, `spec-gate`, `completion`, `codex-watchdog`, `permission-policy`, `directive-lifecycle`, `dispatch`, `post-edit-quality`, `task-dispatch`, `mcp-route-guard`, `goal`, `git-preflight`, `session-lifecycle`, `git-worktree-guard`, `git-hooks-check`, `dist-freshness`, `session-cleanup`, `hook-install`, `git-commit-hooks`, `live-sync`, and `live-follow`. Pi's bundled SessionStart adapter calls `isHookEnabled()` separately for each of its five advisory concerns.
 
@@ -71,8 +71,9 @@ shared/
 | `hook-flags.mjs` / `hook-flags.ts` | ESM/TS facades re-exporting `hook-flags.cjs` via `createRequire` (zero drift). |
 | `hook-flags.sh` | POSIX sh mirror. `hook_enabled <concern>` returns 0 (enabled) unless the master or default-shape per-concern switch is truthy, and `hook_flag_on <name>` returns 0 when one named switch is truthy. Resolves config file at source time. Does not carry canonical-name overrides or legacy aliases. |
 | `env-aliases.cjs` | Back-compat bridge. `applyEnvAliases(env?)` copies every legacy `MK_*` value forward to its new name when the new name is unset. `PREFIX_RULES` maps specific prefixes (`MK_GOAL_` → `OPENCODE_GOAL_`, `MK_CLI_DISPATCH_AUDIT_` → `CLI_DISPATCH_AUDIT_`, etc.); the catch-all `MK_` → `SYSTEM_` rule handles the rest. |
-| `hook-adapter-shared.cjs` | `readStdin()` + `parseJsonFailOpen()`. Byte-identical behavior for every CommonJS consumer. |
+| `hook-adapter-shared.cjs` | `readStdin({ timeoutMs })` + `parseJsonFailOpen()`. The reader resolves at a 3000 ms deadline with the bytes read so far, and the JSON parser returns `null` on bad JSON. Byte-identical behavior for every CommonJS consumer. |
 | `hook-flags.test.cjs` | `node --test` suite: default-on, master switch, per-concern switch, `concernFlag` derivation, config-file merge, legacy-alias parity, named-switch precedence in both resolvers, trailing comments in all four readers of the file. |
+| `hook-adapter-shared.test.cjs` | `node --test` suite: a never-closed stdin resolves at the deadline and its process exits; complete input comes back whole. |
 
 ---
 

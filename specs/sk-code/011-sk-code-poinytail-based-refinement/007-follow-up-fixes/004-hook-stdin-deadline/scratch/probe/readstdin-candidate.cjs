@@ -1,14 +1,3 @@
-// ───────────────────────────────────────────────────────────────────
-// MODULE: Shared CommonJS Hook Adapter Helpers
-// ───────────────────────────────────────────────────────────────────
-// Keeps stdin collection and fail-open JSON parsing byte-identical across
-// every CommonJS runtime hook adapter under .skilled/hooks/. A
-// second, independent ESM sibling lives at
-// system-spec-kit/runtime/hooks/lib/hook-adapter-shared.mjs for that
-// skill's own spec-gate-enforce.mjs adapters, which are not part of the
-// fully-portable set -- keeping this copy local means every adapter under
-// hooks/ has zero dependency outside this tree.
-
 'use strict';
 
 // A host that never closes stdin would otherwise hold the hook until the host's
@@ -48,12 +37,4 @@ function readStdin({ timeoutMs = 3000 } = {}) {
   });
 }
 
-function parseJsonFailOpen(raw) {
-  try {
-    return JSON.parse(raw);
-  } catch {
-    return null;
-  }
-}
-
-module.exports = { readStdin, parseJsonFailOpen };
+module.exports = { readStdin };

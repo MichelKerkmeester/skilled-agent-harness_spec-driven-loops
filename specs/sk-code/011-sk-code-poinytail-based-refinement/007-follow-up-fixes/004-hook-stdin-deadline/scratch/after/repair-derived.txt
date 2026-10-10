@@ -1,0 +1,4 @@
+repaired specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/004-hook-stdin-deadline
+    re-derive graph metadata
+
+inspected=1 repaired=1 failed=0

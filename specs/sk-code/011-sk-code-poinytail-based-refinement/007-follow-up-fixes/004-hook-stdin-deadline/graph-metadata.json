@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/004-hook-stdin-deadline",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/004-hook-stdin-deadline",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook stdin deadline",
+      "phase 4 hook stdin deadline",
+      "hook stdin deadline plan",
+      "hook stdin deadline tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "hook stdin deadline implementation summary"
+    ],
+    "key_topics": [
+      "hook",
+      "stdin",
+      "deadline",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/shared/hook-adapter-shared.cjs",
+      ".skilled/hooks/shared/hook-adapter-shared.test.cjs",
+      ".skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs",
+      ".skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs",
+      ".skilled/hooks/post-edit-quality/devin/post-edit-quality.cjs",
+      ".skilled/hooks/shared/README.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-adapter-shared.mjs",
+      "scratch/probe/readstdin-candidate.cjs",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/004-hook-stdin-deadline/scratch/baseline/combined.txt",
+      ".skilled/plugins/tests/sk-code-post-edit-quality.test.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.test.sh",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/004-hook-stdin-deadline/spec.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/004-hook-stdin-deadline/plan.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/004-hook-stdin-deadline/implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/004-hook-stdin-deadline/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/004-hook-stdin-deadline/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/004-hook-stdin-deadline/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-adapter-shared.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-adapter-shared.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-adapter-shared.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-adapter-shared.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "claude-posttooluse.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-quality.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-adapter-shared.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-adapter-shared.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "readstdin-candidate.cjs",
+        "kind": "file",
+        "path": "scratch/probe/readstdin-candidate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "combined.txt",
+        "kind": "file",
+        "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/004-hook-stdin-deadline/scratch/baseline/combined.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-post-edit-quality.test.cjs",
+        "kind": "file",
+        "path": ".skilled/plugins/tests/sk-code-post-edit-quality.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "claude-posttooluse.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`readStdin` in `.skilled/hooks/shared/hook-adapter-shared.cjs` reads with `for await` until the stream closes, and it has no deadline (lines 14-18)",
+    "created_at": "2026-10-10T05:26:28Z",
+    "last_save_at": "2026-10-10T05:58:43.476Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:08274622554e1cde084ee8ace3729cd1141d6ac750c1bf498340e0ae7de699e5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "55a597c625898b02b7adacc9b5051630f6e5a60de40a948eb3dba08bda8cd982",
+      "plan.md": "993173461b6da70f09cbf5a865211242fcca1de1e8a855508b0ba3a584706fce",
+      "tasks.md": "0056ce1233a127ab29f850d2d72d146104bd9f5d0a6cb7ca3f6b294304959904",
+      "implementation-summary.md": "488f84b83b76d5dcbd66d5af7bf641eaff600f4855db1d911b3d29e7cfb17524"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,2 @@
+Post-edit adapter parse regression fixture passed
+exit=0

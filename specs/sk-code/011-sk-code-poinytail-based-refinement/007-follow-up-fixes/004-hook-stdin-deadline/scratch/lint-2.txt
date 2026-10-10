@@ -1,0 +1,11 @@
+goals_scanned=1
+scratch_excluded=0
+criteria=6
+scored=6
+rule4_violations=0
+rule5_violations=0
+both_violations=0
+placeholder=0
+lexical_unscored=0
+no_input=0
+errors=0
