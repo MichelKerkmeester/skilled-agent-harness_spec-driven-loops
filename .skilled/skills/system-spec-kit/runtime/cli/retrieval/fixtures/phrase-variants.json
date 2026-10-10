@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5ce6b1d35454c577deb2b0d66b65d0deb4bc168db98cde0277be3edff8ed2622",
+  "manifestHash": "1610f301272edc8789120026bbde0addcdfd7b15a7ba52c659f9c729669c8616",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -33971,9 +33971,15 @@
     "deep review remediation 010 007": [
       "deep review remediation 010/007"
     ],
+    "deep review remediation acceptance criteria": [
+      "deep review remediation acceptance criteria"
+    ],
     "deep review remediation adr": [
       "deep review remediation ADR",
       "deep review remediation adr"
+    ],
+    "deep review remediation implementation summary": [
+      "deep review remediation implementation summary"
     ],
     "deep review remediation phase parent": [
       "deep review remediation phase parent"
@@ -70798,6 +70804,9 @@
     "phase 20 closure gate": [
       "phase 20 closure gate"
     ],
+    "phase 20 deep review remediation": [
+      "phase 20 deep review remediation"
+    ],
     "phase 20 implementation summary": [
       "phase 20 implementation summary"
     ],
@@ -95472,8 +95481,23 @@
     "spec folder tooling": [
       "spec folder tooling"
     ],
+    "spec folder tooling deep review findings": [
+      "spec folder tooling deep review findings"
+    ],
+    "spec folder tooling epic docs alignment changelog": [
+      "spec folder tooling epic docs alignment changelog"
+    ],
+    "spec folder tooling epic follow up fixes changelog": [
+      "spec folder tooling epic follow up fixes changelog"
+    ],
+    "spec folder tooling heal cli and compat yaml simplification changelog": [
+      "spec folder tooling heal cli and compat yaml simplification changelog"
+    ],
     "spec folder tooling timeline": [
       "spec folder tooling timeline"
+    ],
+    "spec folder tooling trigger index ci rebuild changelog": [
+      "spec folder tooling trigger index ci rebuild changelog"
     ],
     "spec folder upgrades": [
       "spec folder upgrades"

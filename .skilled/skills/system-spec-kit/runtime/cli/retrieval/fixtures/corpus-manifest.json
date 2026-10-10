@@ -1,5 +1,5 @@
 {
-  "corpusHash": "77b078e25d5b29a9189745295be6f9ce981c2723cfa985e62b8f57fe27042438",
+  "corpusHash": "2cc9dda5262995c877d9958b5093de6159903d9e1d53112a1d8832e636d7e693",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24033,
+  "includedPathCount": 24066,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23657,6 +23657,39 @@
     "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/plan.md",
     "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/changelog/changelog-034-010-trigger-index-ci-rebuild.md",
+    "specs/system-speckit/034-spec-folder-tooling/changelog/changelog-034-017-heal-cli-and-compat-yaml-simplification.md",
+    "specs/system-speckit/034-spec-folder-tooling/changelog/changelog-034-018-epic-docs-alignment.md",
+    "specs/system-speckit/034-spec-folder-tooling/changelog/changelog-034-019-epic-follow-up-fixes.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/deep-review-dashboard.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/deep-review-strategy.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/iterations/iteration-001.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/iterations/iteration-002.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/iterations/iteration-003.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/iterations/iteration-004.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/iterations/iteration-005.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/iterations/iteration-006.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/iterations/iteration-007.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/iterations/iteration-008.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/iterations/iteration-009.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/iterations/iteration-010.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/prompts/iteration-1.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/prompts/iteration-10.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/prompts/iteration-2.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/prompts/iteration-3.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/prompts/iteration-4.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/prompts/iteration-5.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/prompts/iteration-6.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/prompts/iteration-7.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/prompts/iteration-8.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/prompts/iteration-9.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/resource-map.md",
+    "specs/system-speckit/034-spec-folder-tooling/review/review-report.md",
     "specs/system-speckit/034-spec-folder-tooling/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/timeline.md",
     "specs/system-speckit/035-retire-memory-era-tests/implementation-summary.md",
@@ -24064,7 +24097,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5ce6b1d35454c577deb2b0d66b65d0deb4bc168db98cde0277be3edff8ed2622",
+  "manifestHash": "1610f301272edc8789120026bbde0addcdfd7b15a7ba52c659f9c729669c8616",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29639,6 +29672,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification/scratch",
       "reason": "excluded directory"
     },
@@ -29648,6 +29685,10 @@
     },
     {
       "path": "specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {
