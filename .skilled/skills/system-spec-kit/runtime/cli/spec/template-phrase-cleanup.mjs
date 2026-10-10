@@ -139,6 +139,38 @@ function packetDescription(file, kind, frontmatter) {
   return description || readDescriptionJson(packetDirectory);
 }
 
+/**
+ * Description texts a spec packet records for itself: the identity file the
+ * scaffold writes from the feature description, and the frontmatter field once
+ * it holds a real description rather than a template placeholder.
+ * @param {string} file Absolute spec document path.
+ * @param {ReturnType<typeof parseFrontmatter>} frontmatter Parsed frontmatter.
+ * @returns {string[]} Usable description texts, frontmatter first.
+ */
+function recordedDescriptions(file, frontmatter) {
+  return [
+    usableDescription(frontmatter.data.description),
+    readDescriptionJson(path.dirname(file)),
+  ].filter(Boolean);
+}
+
+/**
+ * Normalized keys of the verbatim eight-word cut of each description. The
+ * earlier seed wrote that cut unchanged, so an entry that matches one of these
+ * has a provenance the trim can prove. An authored entry with the same shape
+ * matches none of them and keeps its words.
+ * @param {string[]} descriptions Usable description texts.
+ * @returns {Set<string>} Normalized eight-word keys.
+ */
+function legacyDescriptionPhraseKeys(descriptions) {
+  const keys = new Set();
+  for (const description of descriptions) {
+    const key = normalizedWords(description).slice(0, 8).join(' ');
+    if (key) keys.add(key);
+  }
+  return keys;
+}
+
 export function seededPhrases(file, kind, description) {
   let packetDirectory = path.dirname(file);
   for (let depth = NESTED_DOCUMENT_DIRECTORY_DEPTHS[kind] ?? 0; depth > 0; depth -= 1) {
@@ -290,20 +322,24 @@ function reportIssue(issues, file, root, reason) {
 // ───────────────────────────────────────────────────────────────────
 
 /**
- * Rewrites each trigger phrase that exists only because an earlier seed kept
- * eight description words verbatim. A phrase that still ends on a stop word
- * gets the same trim a fresh seed gets, and is dropped when the trim empties it
- * or lands on a phrase the list already carries.
+ * Rewrites each trigger phrase that is the verbatim eight-word cut of one of
+ * the packet's own descriptions and still ends on a stop word. That cut is what
+ * an earlier seed wrote. The phrase gets the same trim a fresh seed gets, and is
+ * dropped when the trim empties it or lands on a phrase the list already
+ * carries. An authored phrase with the same shape has no such provenance and is
+ * left as written.
  * @param {Array<{ phrase: unknown, line: string, startOffset: number, contentEnd: number, deleteEnd: number }>} entries Mapped trigger phrase rows.
+ * @param {Set<string>} legacyPhraseKeys Normalized eight-word cuts of the packet's descriptions.
  * @returns {Array<{ startOffset: number, endOffset: number, replacement: string, oldLine: string, newLine: string }>} Entry edits in document order.
  */
-function descriptionStopWordEdits(entries) {
+function descriptionStopWordEdits(entries, legacyPhraseKeys) {
   const keys = new Set(entries.map((entry) => normalizeTriggerText(entry.phrase)).filter(Boolean));
   const edits = [];
 
   for (const entry of entries) {
     const words = normalizedWords(entry.phrase);
     if (words.length !== 8 || !DESCRIPTION_STOP_WORD_SET.has(words[words.length - 1])) continue;
+    if (!legacyPhraseKeys.has(words.join(' '))) continue;
 
     const trimmed = trimTrailingStopWords(words).join(' ');
     const key = normalizeTriggerText(trimmed);
@@ -336,15 +372,16 @@ function descriptionStopWordEdits(entries) {
  * Plans the description stop-word trim for one spec list. Only spec.md carries
  * a description-derived phrase, so other kinds keep their plan untouched.
  * @param {string} content Markdown content.
+ * @param {Set<string>} legacyPhraseKeys Normalized eight-word cuts of the packet's descriptions.
  * @returns {{ updated: string, oldBlocks: string[], newBlocks: string[] } | null} Planned change, or null when no entry needs the trim.
  */
-function planDescriptionStopWordTrim(content) {
+function planDescriptionStopWordTrim(content, legacyPhraseKeys) {
   const frontmatter = parseFrontmatter(content);
   if (!frontmatter.ok) return null;
   const entries = findTriggerPhraseEntries(frontmatter);
   if (entries === null) return null;
 
-  const edits = descriptionStopWordEdits(entries);
+  const edits = descriptionStopWordEdits(entries, legacyPhraseKeys);
   if (edits.length === 0) return null;
 
   let updated = content;
@@ -376,7 +413,11 @@ function planDocumentChange(file, kind, content, frontmatter, template) {
   if (kind !== 'spec') return basePlan;
 
   const reseededContent = basePlan === null ? content : basePlan.updated;
-  const trimPlan = planDescriptionStopWordTrim(reseededContent);
+  // No template block is required. A list that was already reseeded has lost
+  // its default block, and this pass is the only one that reaches a phrase an
+  // earlier seed wrote, so the provenance check is the gate instead.
+  const legacyPhraseKeys = legacyDescriptionPhraseKeys(recordedDescriptions(file, frontmatter));
+  const trimPlan = planDescriptionStopWordTrim(reseededContent, legacyPhraseKeys);
   if (trimPlan === null) return basePlan;
   if (basePlan === null) return trimPlan;
 

@@ -466,16 +466,29 @@ export function validateGraphMetadataContent(content: string): GraphMetadataVali
   }
 }
 
+/** True when the path itself is a symbolic link, judged without following it. */
+function isSymbolicLink(filePath: string): boolean {
+  try {
+    return fs.lstatSync(filePath).isSymbolicLink();
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Load and validate a graph-metadata file from disk.
  *
+ * A symbolic link is treated as absent rather than followed. The refresh merges
+ * the loaded manual relationships and derived fields into the packet's own file,
+ * so reading through a link would copy content from outside the packet into it.
+ *
  * @param filePath - Absolute path to the graph-metadata file
- * @returns Parsed metadata, or `null` when the file does not exist
+ * @returns Parsed metadata, or `null` when the file does not exist or is a symbolic link
  * @throws Error when the file exists but fails schema validation
  */
 export function loadGraphMetadata(filePath: string): GraphMetadata | null {
   const resolvedPath = path.resolve(filePath);
-  if (!fs.existsSync(resolvedPath)) {
+  if (!fs.existsSync(resolvedPath) || isSymbolicLink(resolvedPath)) {
     return null;
   }
 

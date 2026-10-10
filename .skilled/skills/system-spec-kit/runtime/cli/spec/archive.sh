@@ -80,6 +80,9 @@ NOTES:
       specs root, specs/<track>/z_archive/ in a track, <parent>/z_archive/
       for a phase
     - Restore returns a spec to the folder its z_archive/ belongs to
+    - A z_archive/ that is a symlink is refused on archive and on restore
+    - An archive or restore path with a . or .. segment is refused, since a
+      segment can reach a linked z_archive/ that the literal path does not show
     - A track's graph-metadata.json list is refreshed after both moves
     - A phase parent's graph-metadata.json is left as it is: its writer drops
       a child only through a reviewed prune
@@ -90,6 +93,18 @@ log_info() { echo -e "${BLUE}INFO:${NC} $1"; }
 log_success() { echo -e "${GREEN}SUCCESS:${NC} $1"; }
 log_warning() { echo -e "${YELLOW}WARNING:${NC} $1"; }
 log_error() { echo -e "${RED}ERROR:${NC} $1" >&2; }
+
+# Refused before anything resolves the path. A "." or ".." segment can carry the
+# path through a linked z_archive while the literal parent looks like a plain folder.
+reject_dot_segments() {
+    local path="$1"
+    case "/$path/" in
+        */./*|*/../*)
+            log_error "Path must not contain . or .. segments: $path"
+            exit 1
+            ;;
+    esac
+}
 
 # Resolve an existing directory to a canonical physical path.
 resolve_existing_dir() {
@@ -215,6 +230,34 @@ get_completeness() {
     echo "$completeness"
 }
 
+# The archive beside a packet home. A symlink is refused before anything is created
+# through it, since a link can point anywhere and a packet belongs only in a real
+# archive folder. The resolved path and the containment check are a second guard,
+# and every write uses the returned path. The path is the only thing written to
+# stdout, so the caller can capture it.
+resolve_archive_root() {
+    local archive_root="$1"
+    local specs_root="$2"
+    local resolved
+    if [[ -L "$archive_root" ]]; then
+        log_error "Archive directory is a symbolic link, not followed, and is refused: $archive_root"
+        return 1
+    fi
+    if ! mkdir -p "$archive_root"; then
+        log_error "Archive directory not accessible: $archive_root"
+        return 1
+    fi
+    if ! resolved="$(resolve_existing_dir "$archive_root")"; then
+        log_error "Archive directory is not a directory: $archive_root"
+        return 1
+    fi
+    if ! is_path_within "$resolved" "$specs_root"; then
+        log_error "Archive directory resolves outside the specs root $specs_root: $archive_root -> $resolved"
+        return 1
+    fi
+    printf '%s\n' "$resolved"
+}
+
 archive_spec() {
     local spec_folder="$1"
     local force="${2:-false}"
@@ -273,13 +316,14 @@ archive_spec() {
         exit 1
     fi
     track="$(track_of "$resolved_spec" "$specs_root")"
-    archive_root="$parent/z_archive"
-    if ! mkdir -p "$archive_root"; then
-        log_error "Archive directory not accessible: $archive_root"
+    archive_root="$(resolve_archive_root "$parent/z_archive" "$specs_root")" || exit 1
+    # The source is removed after the copy, so an archive inside it would be removed too.
+    if is_path_within "$archive_root" "$resolved_spec"; then
+        log_error "Archive directory is inside the folder being archived: $archive_root"
         exit 1
     fi
 
-    if [[ -d "$archive_root/$basename" ]]; then
+    if [[ -e "$archive_root/$basename" || -L "$archive_root/$basename" ]]; then
         log_error "Archive target already exists: $archive_root/$basename"
         exit 1
     fi
@@ -386,6 +430,15 @@ restore_spec() {
 
     archived_folder="${archived_folder%/}"
 
+    # A link named as the archive folder is refused before the folder is resolved,
+    # since resolving would follow the link to wherever it points.
+    local archive_named
+    archive_named="$(dirname "$archived_folder")"
+    if [[ -L "$archive_named" ]]; then
+        log_error "Archive directory is a symbolic link, not followed, and is refused: $archive_named"
+        exit 1
+    fi
+
     if ! specs_root="$(resolve_existing_dir "$PROJECT_ROOT/specs")"; then
         log_error "Specs directory not found: $PROJECT_ROOT/specs"
         exit 1
@@ -410,11 +463,21 @@ restore_spec() {
     basename=$(basename "$resolved_archived")
     validate_spec_folder_name "$basename" "Archived"
 
-    local destination
-    destination="$(dirname "$archive_dir")/$basename"
+    local destination home
+    home="$(dirname "$archive_dir")"
+    destination="$home/$basename"
     track="$(track_of "$destination" "$specs_root")"
 
-    if [[ -d "$destination" ]]; then
+    # The home comes from the physical archive path and was checked as a packet
+    # home above. Checking the resolved home again keeps the move inside the specs
+    # root if that derivation ever changes, and a link at the target is refused
+    # rather than followed.
+    if ! is_path_within "$(resolve_existing_dir "$home")" "$specs_root"; then
+        log_error "Restore destination resolves outside the specs root $specs_root: $destination"
+        exit 1
+    fi
+
+    if [[ -e "$destination" || -L "$destination" ]]; then
         log_error "Restore target already exists: $destination"
         exit 1
     fi
@@ -466,6 +529,7 @@ main() {
                 show_help
                 exit 1
             fi
+            reject_dot_segments "$target"
             restore_spec "$target"
             ;;
         archive)
@@ -474,6 +538,7 @@ main() {
                 show_help
                 exit 1
             fi
+            reject_dot_segments "$target"
             archive_spec "$target" "$force"
             ;;
         *)

@@ -126,7 +126,9 @@ const FENCE_RE = /^\s*(?:`{3}|~~~)/;
 const TEMPLATE_SOURCE_RE = /<!--\s*SPECKIT_TEMPLATE_SOURCE:\s*([^>]*?)\s*-->/;
 
 const HEADER_RE = /<!--\s*SPECKIT_TEMPLATE_SOURCE:/;
-const FRONTMATTER_RE = /^---\r?\n([\s\S]*?)\r?\n---/;
+// The closing delimiter is a bare rule line: trailing spaces or tabs are allowed,
+// and any other text after the dashes means the line is not the delimiter.
+const FRONTMATTER_RE = /^---\r?\n([\s\S]*?)\r?\n---[ \t]*(?=\r?\n|$)/;
 const ANCHOR_LINE_RE = /^\s*<!--\s*(\/?)ANCHOR:([a-z0-9-]+)\s*-->\s*$/;
 const ANCHOR_NAME_RE = /(<!--\s*\/?ANCHOR:)[a-z0-9-]+(\s*-->)/;
 // Only the section-level OPEN QUESTIONS heading counts: the template renders it
@@ -349,19 +351,21 @@ function lineBody(line) {
   return line.replace(/\r?\n$/, '');
 }
 
+// Any leading whitespace opens and closes a fence, because a fence inside a list
+// item sits deeper than three spaces.
 function fencedLines(lines) {
   let fence = null;
   return lines.map((line) => {
     const body = lineBody(line);
     if (fence) {
-      const close = body.match(/^ {0,3}(`+|~+)[ \t]*$/);
+      const close = body.match(/^[ \t]*(`+|~+)[ \t]*$/);
       if (close && close[1][0] === fence.character && close[1].length >= fence.length) {
         fence = null;
       }
       return true;
     }
 
-    const open = body.match(/^ {0,3}(`{3,}|~{3,})(.*)$/);
+    const open = body.match(/^[ \t]*(`{3,}|~{3,})(.*)$/);
     if (!open) return false;
     fence = { character: open[1][0], length: open[1].length };
     return true;
@@ -625,14 +629,28 @@ function writeFileAtomic(file, text) {
   }
 }
 
+// A symbolic link is refused rather than followed: a write through it changes a
+// file outside the packet, and a rename over it replaces the link itself.
+const SYMLINK_REFUSAL = 'symbolic link, not followed';
+
+/** True when the path itself is a symbolic link, judged without following it. */
+function isSymbolicLink(file) {
+  try { return fs.lstatSync(file).isSymbolicLink(); } catch { return false; }
+}
+
 /**
- * Repair one file and atomically replace it when apply is enabled.
+ * Repair one file and atomically replace it when apply is enabled. A symbolic
+ * link is refused before it is read.
  *
  * @param {string} file - Markdown file to inspect.
  * @param {{apply?: boolean}} [options] - Whether to write a changed document.
- * @returns {{file: string, text: string, changed: boolean, applied: boolean, actions: string[], refusals: string[]}}
+ * @returns {{file: string, text: string|null, changed: boolean, applied: boolean, actions: string[], refusals: string[]}}
+ *   `text` is null when the file is refused before it is read.
  */
 function repairAnchorFile(file, options = {}) {
+  if (isSymbolicLink(file)) {
+    return { file, text: null, changed: false, applied: false, actions: [], refusals: [SYMLINK_REFUSAL] };
+  }
   const original = fs.readFileSync(file, 'utf8');
   const result = repairAnchors(original);
   const apply = options.apply === true;
@@ -642,18 +660,14 @@ function repairAnchorFile(file, options = {}) {
 
 function runAnchorRepair(argv) {
   const apply = argv.includes('--apply');
-  const folderAt = argv.indexOf('--folder');
-  const rootsAt = argv.indexOf('--roots');
-  const targets = folderAt !== -1
-    ? [argv[folderAt + 1]]
-    : discover(rootsAt !== -1 ? argv[rootsAt + 1] : 'specs');
+  const targets = resolveTargets(argv);
 
   let inspected = 0;
   let changed = 0;
   let findings = 0;
   for (const packet of targets) {
     const file = path.join(packet, 'spec.md');
-    if (!fs.existsSync(file)) continue;
+    if (!fs.existsSync(file) && !isSymbolicLink(file)) continue;
     inspected += 1;
     const result = repairAnchorFile(file, { apply });
     if (result.changed) changed += 1;
@@ -749,6 +763,209 @@ function discover(root) {
     if (isPacket && PACKET_NAME_RE.test(path.basename(dir))) packets.push(dir);
   }
   return packets.sort();
+}
+
+/**
+ * The packet folders one CLI run covers. --folder names a single packet and
+ * takes precedence; otherwise every packet under --roots is discovered, and the
+ * specs root is relative to the working directory when --roots is absent.
+ *
+ * @param {string[]} argv - Command-line arguments after the script path.
+ * @returns {string[]} The named packet, or the discovered packets sorted.
+ */
+function resolveTargets(argv) {
+  const folderAt = argv.indexOf('--folder');
+  const rootsAt = argv.indexOf('--roots');
+  return folderAt !== -1
+    ? [argv[folderAt + 1]]
+    : discover(rootsAt !== -1 ? argv[rootsAt + 1] : 'specs');
+}
+
+// The specs roots a --folder is checked against when --roots is absent: the
+// working-directory specs tree and the .opencode/specs alias of it.
+const DEFAULT_SPEC_ROOTS = ['specs', path.join('.opencode', 'specs')];
+
+function isWithinPath(candidate, base) {
+  const rel = path.relative(base, candidate);
+  return rel === '' || (rel !== '..' && !rel.startsWith(`..${path.sep}`) && !path.isAbsolute(rel));
+}
+
+// Identity is what a path names on disk. Two spellings of one directory, through
+// a link, a case variant or a relative path, share it; two different directories
+// never do. Root membership is judged by it, because path text cannot tell them apart.
+function directoryIdentity(file) {
+  try {
+    const stat = fs.statSync(file);
+    return `${stat.dev}:${stat.ino}`;
+  } catch {
+    return null;
+  }
+}
+
+/** The directory holding a .git entry, found by walking up from `from`, or null outside a repository. */
+function repositoryTop(from) {
+  for (let dir = from; ; dir = path.dirname(dir)) {
+    if (fs.existsSync(path.join(dir, '.git'))) return dir;
+    if (path.dirname(dir) === dir) return null;
+  }
+}
+
+/** Each prefix of a resolved path, from its first component down to the path itself. */
+function pathPrefixes(target) {
+  const { root: fsRoot } = path.parse(target);
+  const prefixes = [];
+  let prefix = fsRoot;
+  for (const part of path.relative(fsRoot, target).split(path.sep).filter(Boolean)) {
+    prefix = path.join(prefix, part);
+    prefixes.push(prefix);
+  }
+  return prefixes;
+}
+
+/** The real location of a path, or null when it does not exist. */
+function realLocation(file) {
+  try {
+    return fs.realpathSync(file);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * The real location of each existing prefix of a path. A prefix that does not
+ * exist holds nothing to find, so it is skipped.
+ */
+function physicalLocations(target) {
+  return pathPrefixes(target).map(realLocation).filter((real) => real !== null);
+}
+
+/**
+ * True when a real location is one of the roots or lies under one. Each ancestor
+ * is checked by identity, so case variants and aliases cannot slip past a text
+ * comparison.
+ */
+function reachesRoot(real, roots) {
+  if (real === null) return false;
+  for (let dir = real; ; dir = path.dirname(dir)) {
+    if (roots.has(directoryIdentity(dir))) return true;
+    if (path.dirname(dir) === dir) return false;
+  }
+}
+
+/**
+ * The identities a --folder is judged against. A --roots value is the only root
+ * when given. Without one, the default roots that exist under the working
+ * directory count, and so does each repository the folder can be reached
+ * through: the working directory's, the folder's own location's, and each real
+ * location along the folder's path. A repository contributes its top and its
+ * specs directory, so a spelling that reaches the specs tree by another route is
+ * caught.
+ *
+ * @param {string} target - The resolved --folder path.
+ * @param {string|undefined} rootArg - The --roots argument, when one was given.
+ * @returns {Set<string>} Identities of the root directories that exist.
+ */
+function rootIdentities(target, rootArg) {
+  if (rootArg !== undefined) {
+    return new Set([directoryIdentity(path.resolve(rootArg))].filter((id) => id !== null));
+  }
+  const candidates = DEFAULT_SPEC_ROOTS.map((root) => path.resolve(root));
+  const starts = [process.cwd(), path.dirname(target), ...physicalLocations(target)];
+  for (const start of starts) {
+    const top = repositoryTop(start);
+    if (top !== null) candidates.push(top, path.join(top, 'specs'));
+  }
+  return new Set(candidates.map(directoryIdentity).filter((id) => id !== null));
+}
+
+/**
+ * Why a named --folder must not be written into, or null when it may be.
+ *
+ * The folder itself must not be a link. The anchor is the first prefix of the path
+ * whose real location lies under a root, judged by identity up the real location's
+ * ancestors. The anchor and every component below it must not be a link, because a
+ * write through one lands in a packet the root does not own. Only the links above
+ * the anchor are not judged, so system links such as those under /var and /tmp keep
+ * working. Without --roots, the roots are the
+ * default roots under the working directory and each repository the path
+ * physically passes through; a folder that no root reaches is allowed, because the
+ * operator approved that default, which leaves a link on a path that no repository
+ * holds unjudged.
+ *
+ * With --roots, the anchor is the root's own prefix, and the folder must also
+ * resolve inside that root's real path.
+ *
+ * @param {string} folder - The --folder argument.
+ * @param {string|undefined} rootArg - The --roots argument, when one was given.
+ * @returns {string|null} The reason in parentheses, or null when the folder is allowed.
+ */
+function folderRefusal(folder, rootArg) {
+  const target = path.resolve(folder);
+  if (isSymbolicLink(target)) return 'the folder itself is a link';
+
+  const roots = rootIdentities(target, rootArg);
+  const prefixes = pathPrefixes(target);
+  // With --roots, the anchor is the root's own prefix, as it always was. Otherwise
+  // it is the first prefix whose real location lies under a root.
+  const anchorAt = prefixes.findIndex((prefix) => (rootArg !== undefined
+    ? roots.has(directoryIdentity(prefix))
+    : reachesRoot(realLocation(prefix), roots)));
+  if (anchorAt === -1) {
+    return rootArg !== undefined ? 'it resolves outside the specs root' : null;
+  }
+
+  const anchor = prefixes[anchorAt];
+  if (isSymbolicLink(anchor)) return `${path.basename(anchor)} is a link on the path to the folder`;
+  for (const prefix of prefixes.slice(anchorAt + 1)) {
+    if (isSymbolicLink(prefix)) return `${path.relative(anchor, prefix)} is a link on the path to the folder`;
+  }
+
+  if (rootArg !== undefined && fs.existsSync(target)) {
+    const real = fs.realpathSync(target);
+    if (!isWithinPath(real, fs.realpathSync(path.resolve(rootArg)))) {
+      return `it resolves to ${real}, outside the specs root`;
+    }
+  }
+  return null;
+}
+
+// The usage text from the header comment, printed with a rejected argument.
+const USAGE = [
+  'Usage:',
+  '  heal-spec-docs.cjs [--roots <dir>] [--folder <packet>] [--apply]',
+  '  heal-spec-docs.cjs --anchor-repair [--roots <dir>] [--folder <packet>] [--apply]',
+  '  heal-spec-docs.cjs --lane-modes [--roots <dir>] [--folder <packet>] [--apply]',
+].join('\n');
+
+// A value flag with no value, or one followed by another flag, names nothing. It
+// is a usage error on stderr, not a folder or root to judge, so nothing is read or
+// written.
+function rejectMissingFlagValue(argv) {
+  for (const flag of ['--folder', '--roots']) {
+    const at = argv.indexOf(flag);
+    if (at === -1) continue;
+    const value = argv[at + 1];
+    if (value !== undefined && !value.startsWith('--')) continue;
+    console.error(`${flag} requires a value\n${USAGE}`);
+    process.exitCode = 2;
+    return true;
+  }
+  return false;
+}
+
+// A refused --folder is named on stdout, like the other refusals, and writes
+// nothing. The exit status marks the whole run as refused, since no document
+// was reached at all.
+function refuseFolderArgument(argv) {
+  const folderAt = argv.indexOf('--folder');
+  if (folderAt === -1) return false;
+  const folder = argv[folderAt + 1];
+  const rootsAt = argv.indexOf('--roots');
+  const reason = folderRefusal(folder, rootsAt !== -1 ? argv[rootsAt + 1] : undefined);
+  if (reason === null) return false;
+  console.log(`refused ${folder}: ${SYMLINK_REFUSAL} (${reason})`);
+  process.exitCode = 2;
+  return true;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -895,7 +1112,29 @@ function anchorWrap(text, file) {
 // The rule blanks inline code spans before parsing; blanking with spaces of
 // the same width keeps every later link offset true to the original line.
 function blankCodeSpans(line) {
-  return line.replace(/`[^`]*`/g, (span) => ' '.repeat(span.length));
+  let blanked = line;
+  for (const span of inlineCodeSpans(line)) {
+    blanked = blanked.slice(0, span.start) + ' '.repeat(span.end - span.start) + blanked.slice(span.end);
+  }
+  return blanked;
+}
+
+/**
+ * Offsets of every inline code span on a line. A backtick run opens a span and
+ * the next run of exactly the same length closes it; a run with no partner is
+ * literal text, as CommonMark reads it.
+ */
+function inlineCodeSpans(line) {
+  const runs = [...line.matchAll(/`+/g)];
+  const spans = [];
+  for (let open = 0; open < runs.length; open += 1) {
+    const length = runs[open][0].length;
+    const close = runs.findIndex((run, at) => at > open && run[0].length === length);
+    if (close === -1) continue;
+    spans.push({ start: runs[open].index, end: runs[close].index + length });
+    open = close;
+  }
+  return spans;
 }
 
 /** The reference definition target on a line, or null when it has none. */
@@ -1000,19 +1239,14 @@ function linkRepoint(text, file, options = {}) {
   const repoRoot = laneRepoRoot(file, options);
   const index = markdownIndex(repoRoot);
   const lines = splitLinesPreserveEndings(text);
+  const fenced = fencedLines(lines);
   const out = [...lines];
   const actions = [];
   const refusals = [];
-  let inFence = false;
 
   for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
+    if (fenced[lineIndex]) continue;
     const body = lineBody(lines[lineIndex]);
-    if (FENCE_RE.test(body)) {
-      inFence = !inFence;
-      continue;
-    }
-    if (inFence) continue;
-
     const blanked = blankCodeSpans(body);
 
     const reference = referenceDefinitionTarget(blanked);
@@ -1146,10 +1380,22 @@ function continuityFieldLines(text) {
         indent: body.match(/^[ \t]*/)[0],
         raw: field[2],
         ending: lines[index].slice(body.length),
+        // A deeper-indented line below the key is the key's block value. Replacing
+        // the key line would orphan that value and leave the frontmatter unparseable.
+        continued: nextContentIndent(lines, index) > indent,
       });
     }
   }
   return continuityIndent === null ? null : fields;
+}
+
+/** Indent width of the first non-blank line after `index`, or -1 when none follows. */
+function nextContentIndent(lines, index) {
+  for (let next = index + 1; next < lines.length; next += 1) {
+    const body = lineBody(lines[next]);
+    if (body.trim() !== '') return body.match(/^[ \t]*/)[0].length;
+  }
+  return -1;
 }
 
 // A document is archived by its place below the `specs` root, never by a
@@ -1189,6 +1435,12 @@ function continuityPlaceholders(text, file) {
     return {
       ...unchanged,
       refusals: ['continuity block is half scaffolded, so it is an edit in progress; left unchanged'],
+    };
+  }
+  if (fields.get('recent_action').continued || fields.get('next_safe_action').continued) {
+    return {
+      ...unchanged,
+      refusals: ['continuity value continues on the next line; left unchanged'],
     };
   }
 
@@ -1270,7 +1522,8 @@ function levelFromSpec(text, file) {
     return { ...unchanged, refusals: ['no frontmatter block to write the level into; left unchanged'] };
   }
 
-  const closing = frontmatter.index + frontmatter[0].length - 3;
+  // The delimiter's dashes are the last ones in the match, since only spaces or tabs can follow them.
+  const closing = frontmatter.index + frontmatter[0].lastIndexOf('---');
   const before = text.slice(0, closing);
   const ending = before.endsWith('\r\n') ? '\r\n' : '\n';
   const updated = `${before}level: ${values[0]}${ending}${text.slice(closing)}`;
@@ -1340,7 +1593,11 @@ function runLaneModes(packetDir, options = {}) {
 
   for (const document of LANE_DOCUMENTS) {
     const file = path.join(packetDir, document);
-    if (!fs.existsSync(file)) continue;
+    if (!fs.existsSync(file) && !isSymbolicLink(file)) continue;
+    if (isSymbolicLink(file)) {
+      refusals.push({ mode: 'containment', document, reason: SYMLINK_REFUSAL });
+      continue;
+    }
     const original = fs.readFileSync(file, 'utf8');
     let out = original;
     for (const mode of selected) {
@@ -1359,11 +1616,7 @@ function runLaneModes(packetDir, options = {}) {
 
 function runLaneModesCli(argv) {
   const apply = argv.includes('--apply');
-  const folderAt = argv.indexOf('--folder');
-  const rootsAt = argv.indexOf('--roots');
-  const targets = folderAt !== -1
-    ? [argv[folderAt + 1]]
-    : discover(rootsAt !== -1 ? argv[rootsAt + 1] : 'specs');
+  const targets = resolveTargets(argv);
 
   for (const packet of targets) {
     const result = runLaneModes(packet, { apply });
@@ -1378,6 +1631,8 @@ function runLaneModesCli(argv) {
 
 function main() {
   const argv = process.argv.slice(2);
+  if (rejectMissingFlagValue(argv)) return;
+  if (refuseFolderArgument(argv)) return;
   if (argv.includes('--anchor-repair')) {
     runAnchorRepair(argv);
     return;
@@ -1388,11 +1643,7 @@ function main() {
   }
 
   const apply = argv.includes('--apply');
-  const folderAt = argv.indexOf('--folder');
-  const rootsAt = argv.indexOf('--roots');
-  const targets = folderAt !== -1
-    ? [argv[folderAt + 1]]
-    : discover(rootsAt !== -1 ? argv[rootsAt + 1] : 'specs');
+  const targets = resolveTargets(argv);
 
   let healedDocs = 0; let healedPackets = 0; let refusedDocs = 0;
   const refusalReasons = new Map();
@@ -1401,7 +1652,12 @@ function main() {
     let touched = false;
     for (const name of ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md']) {
       const file = path.join(pkt, name);
-      if (!fs.existsSync(file)) continue;
+      if (!fs.existsSync(file) && !isSymbolicLink(file)) continue;
+      if (isSymbolicLink(file)) {
+        refusedDocs += 1;
+        console.log(`refused ${file}: ${SYMLINK_REFUSAL}`);
+        continue;
+      }
       const r = healDoc(file);
       for (const why of r.refusals) {
         refusedDocs += 1;
@@ -1412,7 +1668,7 @@ function main() {
       healedDocs += 1; touched = true;
       console.log(`${apply ? 'healed' : 'would heal'} ${path.join(pkt, name)}`);
       for (const a of r.actions) console.log(`    ${a}`);
-      if (apply) fs.writeFileSync(file, r.text);
+      if (apply) writeFileAtomic(file, r.text);
     }
     if (touched) healedPackets += 1;
   }
