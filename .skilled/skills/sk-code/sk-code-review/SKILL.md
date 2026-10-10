@@ -292,6 +292,7 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
 1. Inspect the review target (`git diff`, staged diff, file list, or commit range).
 2. Load baseline standards from the `code-review` mode (of the sk-code family).
 3. Load `sk-code` surface standards evidence when a surface is detected.
+4. Read the connected code: the callers of each changed function, the functions each changed function calls, the tests that cover it, and the README or docs that describe it. Anything you could not read goes on the `Not checked:` line.
 
 ### Phase 2: Surface Alignment
 
@@ -307,7 +308,7 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
 2. Analyze quality/performance, test adequacy, contract safety, and architecture concerns.
 3. Analyze KISS/DRY and SOLID violations (SRP/OCP/LSP/ISP/DIP) with evidence.
 4. Analyze removal opportunities with safe-now vs deferred classification.
-5. Produce findings ordered by severity (`P0`, `P1`, `P2`).
+5. Produce findings ordered by severity (`P0`, `P1`, `P2`), numbered once across all three groups so the first `P1` finding continues after the last `P0` finding. A finding with no case is not reported.
 6. For every actionable finding, classify fix scope as `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. If unknown, default to class/cross-consumer until a producer/consumer inventory proves instance-only.
 
 #### Numeric Severity Calibration
@@ -341,6 +342,7 @@ Required output contract:
 
 ### P0 - Critical
 1. [path:line] Title
+   - Case: [the input or situation that produces the wrong result. A finding with no case is not reported]
    - Risk (for a performance finding, name the workload it assumes, such as row count, request rate or payload size)
    - User impact: what users or callers bear if this fix is deferred
    - Finding class: [instance-only | class-of-bug | cross-consumer | algorithmic | matrix/evidence | test-isolation]
@@ -350,7 +352,8 @@ Required output contract:
    - Recommended fix
 
 ### P1 - High
-...
+2. [path:line] Title
+   ...
 
 ## Removal/Iteration Plan
 

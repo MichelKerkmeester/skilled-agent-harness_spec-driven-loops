@@ -91,9 +91,10 @@ Each finding should provide:
 
 | Field | Requirement |
 | --- | --- |
-| `id` | Stable label within the review report, such as `P1-001` |
+| `id` | The finding's number in the Findings list, counted once across severity groups, such as `2` |
 | `severity` | One of `P0`, `P1`, `P2` |
 | `title` | Short, risk-oriented summary |
+| `case` | The input or situation that produces the wrong result. A finding with no case is not reported |
 | `file` | Primary `path:line` location |
 | `evidence` | Plain-language explanation tied to observed code; for a performance finding, name the workload it assumes, such as row count, request rate or payload size |
 | `userImpact` | What users or callers bear if this fix is deferred |
@@ -106,7 +107,8 @@ Each finding should provide:
 Suggested shape:
 
 ```markdown
-### P1-001 [P1] Missing authorization check
+### 2 [P1] Missing authorization check
+- Case: a request with no session token reaches the write handler and changes a user record
 - File: path/to/file.ts:42
 - Evidence: Request handling reaches the write path before role validation.
 - User impact: Until this is fixed, any caller can write records without a role check.

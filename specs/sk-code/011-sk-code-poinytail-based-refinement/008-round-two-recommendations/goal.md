@@ -100,7 +100,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | 001 restraint routing | Done | Six criteria rerun by the orchestrator; canary 11 cases 0 failures; parity check 5k passes on sk-code and warns only on drift other hubs already had |
-| 002 review contract | Pending | Not started |
+| 002 review contract | Done | Six criteria rerun by the orchestrator after one run of each mirror generator; harness 54 PASS; five mirror checks exit 0 |
 | 003 agent disclosure | Pending | Not started |
 | 004 debt report and Hermes gate | Pending | Not started |
 | 005 rule amendments | Pending | Not started |
@@ -110,7 +110,8 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Research rows dropped before planning | Rows 8 and 26: the agent copies are symlinks to one directory. Row 28: agent and rule docs hold one `path:line` reference to lint. Rows 14, 24 and 25: already done |
-| Build order | 001, 004 and 005 build in parallel, then 002, then 003. 002 and 003 both regenerate every agent mirror, and 001 and 002 both re-mint the compiled sk-code manifest; commits still land in folder order |
+| Build order | 001, 004 and 005 built in parallel. After 001 was committed (its re-mint shares the compiled manifest with 002), 002 and 003 built in parallel at the operator's request to maximize parallel work. Both skip the Codex, Pi and Hermes generators, which rewrite every agent's mirror; the orchestrator runs each once after both builds. Commits land in folder order |
 | Plan decisions taken by the orchestrator | 002 keeps its section 7 defaults. 003 makes `not_checked` a required RETURN field. 004 anchors the marker at the start of a comment, with no version bump and no SKILL.md edit. 005 adds no firing bullet |
 | Move-or-merge rule placed in prevent-overengineering.md | The research suggested `scope-discipline.md` section 2, which defines what is in scope; a restraint on how moves behave fits section 4 of `prevent-overengineering.md` |
+| Mirror-parity gate bypassed for the review-contract commit | The gate flagged nine unstaged code, debug and orchestrate mirrors from the agent-disclosure child built in parallel. Their sources were unstaged too, so HEAD kept each source and mirror in step; every mirror check passed on the working tree, and that child committed next. Bypass: `SPECKIT_SKIP_MIRROR_PARITY=1` |
 <!-- /ANCHOR:log -->

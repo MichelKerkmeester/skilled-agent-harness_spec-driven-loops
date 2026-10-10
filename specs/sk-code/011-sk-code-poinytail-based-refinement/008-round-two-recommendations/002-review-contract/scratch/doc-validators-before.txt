@@ -1,0 +1,39 @@
+== .skilled/skills/sk-code/sk-code-review/SKILL.md
+
+✅ VALID: .skilled/skills/sk-code/sk-code-review/SKILL.md
+Document type: skill
+Total issues: 0
+exit=0
+== .skilled/skills/sk-code/sk-code-review/README.md
+
+✅ VALID: .skilled/skills/sk-code/sk-code-review/README.md
+Document type: readme
+Total issues: 0
+exit=0
+== .skilled/skills/sk-code/sk-code-review/references/review-core.md
+
+✅ VALID: .skilled/skills/sk-code/sk-code-review/references/review-core.md
+Document type: reference
+Total issues: 0
+exit=0
+== .skilled/skills/sk-code/sk-code-review/scripts/README.md
+
+✅ VALID: .skilled/skills/sk-code/sk-code-review/scripts/README.md
+Document type: readme
+Total issues: 0
+exit=0
+== .skilled/agents/review.md
+
+✅ VALID: .skilled/agents/review.md
+Document type: agent
+Total issues: 1
+exit=0
+== shared agent
+
+✅ VALID: .skilled/agents/review.md
+Document type: agent
+Total issues: 1
+
+⚠️ Warnings (1):
+  - [non_sequential_numbering] Non-sequential section number: expected 1, found 0
+exit=0

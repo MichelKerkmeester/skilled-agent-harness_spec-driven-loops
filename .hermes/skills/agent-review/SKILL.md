@@ -60,6 +60,8 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 Before every non-diff `Read`, state the specific reason for that read in one sentence. Do not re-read a new or full-content file; use the evidence already captured, a focused line-range read, or exact-search anchors for follow-up. If a repeat read is unavoidable to verify a blocker, narrow it to the smallest range and say why before reading.
 
+The connected-code reads named in the mode's Phase 1 are planned reads. Their stated reason is "connected code", and they do not count as repeat reads.
+
 ---
 
 ## 3. ROUTING SCAN
@@ -260,6 +262,8 @@ When reviewer consistently scores agent output < 50:
 
 ## 8. OUTPUT FORMAT
 
+**Report order.** Every review, in any format in this section, runs in this order: the summary, the findings numbered once across the P0, P1 and P2 groups, the removal or iteration plan, the next steps, the optional `AGENT_IO_RESULT` block, the `Not checked:` line, one blank line, and last the `Review status:` line as the absolute final line.
+
 All reports follow structured markdown. Key sections per format:
 
 ### PR Review Report
@@ -348,9 +352,11 @@ Map `failure_type` from existing severity vocabulary only: any P0 blocker -> `p0
 
 | Severity | Evidence Required                          |
 | -------- | ------------------------------------------ |
-| **P0**   | File:line + code snippet + impact analysis |
-| **P1**   | File:line + pattern reference              |
-| **P2**   | File:line + suggestion                     |
+| **P0**   | Reproducing case + file:line + code snippet + impact analysis |
+| **P1**   | Reproducing case + file:line + pattern reference |
+| **P2**   | Reproducing case + file:line + suggestion |
+
+The reproducing case is the input or situation that produces the wrong result. A finding with no reproducing case is not reported.
 
 ### Self-Validation Protocol
 

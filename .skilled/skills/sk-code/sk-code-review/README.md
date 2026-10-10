@@ -77,6 +77,7 @@ The advisor prints the recommended skill route when confidence lands at or above
 
 ### P0 - Critical
 1. src/auth.ts:42 Missing authorization check
+   - Case: a request with no session token reaches the write path and changes a user record
    - Risk: Unauthenticated write path
    - User impact: Until this is fixed, any caller can mutate user records
    - Finding class: cross-consumer

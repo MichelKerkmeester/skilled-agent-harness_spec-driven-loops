@@ -1,0 +1,10 @@
+repaired specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/002-review-contract
+    re-derive graph metadata
+
+inspected=1 repaired=1 failed=0
+
+Not repairable here — these record work someone did, and only they can write them:
+      1  ANCHORS_VALID
+      1  FRONTMATTER_MEMORY_BLOCK
+      1  GREP_CONVENTION
+      1  SPEC_DOC_SUFFICIENCY

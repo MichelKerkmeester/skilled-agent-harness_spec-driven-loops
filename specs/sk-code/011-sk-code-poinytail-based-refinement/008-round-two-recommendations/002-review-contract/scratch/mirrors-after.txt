@@ -1,0 +1,34 @@
+== agent-mirror-sync
+DRIFT  code [codex] missing=["**not","exports","listed","mattered","not_checked.","nothing","reach","reason."] unexpected=[]
+DRIFT  debug [codex] missing=["**not","build","config","cover","exercise","existed","harness","kept"] unexpected=[]
+DRIFT  orchestrate [codex] missing=["callers","config","exports","fixtures"] unexpected=[]
+DRIFT  review [codex] missing=["**report","blank","connected","connected-code","groups","iteration","last","line."] unexpected=[]
+
+BLOCKED: 4 agent(s) have out-of-sync runtime mirrors: code, debug, orchestrate, review
+Fix: re-sync the .opencode / .claude copies so each agent body matches.
+exit=1
+== codex
+[codex-agent-sync] Drift detected:
+[codex-agent-sync] STALE .codex/agents/code.toml
+[codex-agent-sync] STALE .codex/agents/debug.toml
+[codex-agent-sync] STALE .codex/agents/orchestrate.toml
+[codex-agent-sync] STALE .codex/agents/review.toml
+exit=1
+== pi
+[pi-agent-sync] Drift detected:
+[pi-agent-sync] STALE .pi/agents/code.md
+[pi-agent-sync] STALE .pi/agents/debug.md
+[pi-agent-sync] STALE .pi/agents/orchestrate.md
+[pi-agent-sync] STALE .pi/agents/review.md
+exit=1
+== hermes
+DRIFT sk-code-review
+DRIFT agent-code
+DRIFT agent-debug
+DRIFT agent-orchestrate
+DRIFT agent-review
+FAIL: 5 drifted, 0 stale; run without --check to regenerate
+exit=1
+== runtime-mirrors
+[runtime-mirror-sync] PASS: 187 mirrors across 8 trees are in sync.
+exit=0

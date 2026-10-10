@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/002-review-contract",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/002-review-contract",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review contract",
+      "phase 2 review contract",
+      "review finding case",
+      "review contract plan",
+      "review contract tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "review contract implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "contract",
+      "phase",
+      "finding",
+      "case",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-review/README.md",
+      ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md",
+      ".skilled/agents/review.md",
+      ".claude/agents/review.md",
+      ".skilled/skills/sk-code/leaf-manifest.json",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json",
+      ".codex/agents/review.toml",
+      ".pi/agents/review.md",
+      ".hermes/skills/agent-review/SKILL.md",
+      ".hermes/skills/sk-code-review/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-core.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-review-findings.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-copies.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".skilled/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "review.toml",
+        "kind": "file",
+        "path": ".codex/agents/review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Ponytail",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A review finding needs no reproducing case, so a reader cannot tell a proven defect from a worry",
+    "created_at": "2026-10-10T06:56:29Z",
+    "last_save_at": "2026-10-10T07:55:51.887Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bd241d55c8a2063e825d872b69aa1580a3725c42e0b113feef431edd51e0127b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c719ee64ad53e3b6d5b0788ac6862b477d8e31e1d3b2fd119296e47ee5bf0a0d",
+      "plan.md": "2acc506cc3c8fd9ddd1f1358384588733ff04c529f152369348f758700b793d9",
+      "tasks.md": "880a40143bfdfccdabd692e59794f0c7b5d618de9a8cdf02a6be66cf1e089098",
+      "implementation-summary.md": "c98549e4a6c7ee26d1ec46eeffdf5a9690721a6cd4df9fdbf5b00458ca7312d5"
+    },
+    "last_active_at": null
+  }
+}

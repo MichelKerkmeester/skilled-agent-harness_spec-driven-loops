@@ -1,0 +1,15 @@
+== agent-mirror-sync
+agent-mirror-sync: 12 agent(s) checked — all mirrors in sync — OK
+exit=0
+== codex
+[codex-agent-sync] PASS: 12 agents are in sync.
+exit=0
+== pi
+[pi-agent-sync] PASS: 12 agents are in sync.
+exit=0
+== hermes
+PASS: 70 Hermes skill copies in sync
+exit=0
+== runtime-mirrors
+[runtime-mirror-sync] PASS: 187 mirrors across 8 trees are in sync.
+exit=0

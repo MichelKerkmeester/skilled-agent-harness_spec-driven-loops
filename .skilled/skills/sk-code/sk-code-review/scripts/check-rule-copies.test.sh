@@ -6,6 +6,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CHECKER="$SCRIPT_DIR/check-rule-copies.js"
 FINAL_LINE_CHECKER="$SCRIPT_DIR/check-review-final-line.js"
+FINDINGS_CHECKER="$SCRIPT_DIR/check-review-findings.js"
 # scripts -> review -> sk-code -> skills -> .skilled -> repo root
 REPO_ROOT="$(cd "$SCRIPT_DIR/../../../../.." && pwd)"
 TMP_DIR="$(mktemp -d)"
@@ -203,6 +204,25 @@ expect_output 'more than one "Not checked:" line in the output' "final_line_two_
 FINAL_LINE_UNREADABLE="$TMP_DIR/no-such-file.md"
 run_case 2 "final_line_unreadable_file" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_UNREADABLE"
 expect_output "cannot read $FINAL_LINE_UNREADABLE: " "final_line_unreadable_file_output" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_UNREADABLE"
+
+# The findings checker keeps one numbering across the severity groups and needs a Case line on each finding.
+FINDINGS_VALID="$TMP_DIR/findings_valid.md"
+printf '## Findings\n\n### P0 - Critical\n1. src/a.ts:1 Title\n   - Case: x\n   - Risk: y\n\n### P1 - High\n2. src/b.ts:2 Title\n   - Case: z\n   - Risk: w\n\n## Removal/Iteration Plan\n' > "$FINDINGS_VALID"
+run_case 0 "findings_valid" node "$FINDINGS_CHECKER" "$FINDINGS_VALID"
+
+FINDINGS_MISSING_CASE="$TMP_DIR/findings_missing_case.md"
+printf '## Findings\n\n### P0 - Critical\n1. src/a.ts:1 Title\n   - Case: x\n   - Risk: y\n\n### P1 - High\n2. src/b.ts:2 Title\n   - Risk: w\n\n## Removal/Iteration Plan\n' > "$FINDINGS_MISSING_CASE"
+run_case 1 "findings_missing_case" node "$FINDINGS_CHECKER" "$FINDINGS_MISSING_CASE"
+expect_output 'finding 2 has no Case: line' "findings_missing_case_output" node "$FINDINGS_CHECKER" "$FINDINGS_MISSING_CASE"
+
+FINDINGS_RESTART_NUMBERING="$TMP_DIR/findings_restart_numbering.md"
+printf '## Findings\n\n### P0 - Critical\n1. src/a.ts:1 Title\n   - Case: x\n\n### P1 - High\n1. src/b.ts:2 Title\n   - Case: z\n\n## Removal/Iteration Plan\n' > "$FINDINGS_RESTART_NUMBERING"
+run_case 1 "findings_restart_numbering" node "$FINDINGS_CHECKER" "$FINDINGS_RESTART_NUMBERING"
+expect_output 'finding numbers restart or skip: expected 2, found 1' "findings_restart_numbering_output" node "$FINDINGS_CHECKER" "$FINDINGS_RESTART_NUMBERING"
+
+FINDINGS_NONE="$TMP_DIR/findings_no_findings.md"
+printf '## Findings\n\n### P0 - Critical\nNo findings.\n\nNot checked: nothing material\n' > "$FINDINGS_NONE"
+run_case 0 "findings_no_findings" node "$FINDINGS_CHECKER" "$FINDINGS_NONE"
 
 # Seeded examples ensure the canary rejects content after status and missing context.
 CASE_EXAMPLE_TEXT_AFTER="$TMP_DIR/example_text_after_status"
