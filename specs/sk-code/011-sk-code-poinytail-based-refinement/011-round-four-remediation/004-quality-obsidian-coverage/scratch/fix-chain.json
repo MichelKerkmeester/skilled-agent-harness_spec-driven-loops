@@ -1,0 +1,12 @@
+[
+  {
+    "task": "T063",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md, replace the exact text <<<OLD\n- [code_style_enforcement.md](\nOLD>>> with <<<NEW\n- [enforcement.md](\nNEW>>>",
+    "check": "sed -n '130p' .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md",
+    "expect": "- [enforcement.md](../../../sk-code-webflow/references/shared/enforcement.md)"
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "task": "T057",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md, replace the exact text <<<OLD\n[javascript/style-guide.md](\nOLD>>> with <<<NEW\n[javascript/style-guide/overview-naming-and-structure.md](\nNEW>>>",
+    "check": "sed -n '51p' .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md",
+    "expect": "- [javascript/style-guide/overview-naming-and-structure.md]("
+  },
+  {
+    "task": "T058",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md, replace the exact text <<<OLD\n[javascript/quality-standards.md](\nOLD>>> with <<<NEW\n[javascript/quality-standards/init-dom-error-and-async.md](\nNEW>>>",
+    "check": "sed -n '52p' .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md",
+    "expect": "- [javascript/quality-standards/init-dom-error-and-async.md]("
+  },
+  {
+    "task": "T059",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md, replace the exact text <<<OLD\n[css/quality-standards.md](\nOLD>>> with <<<NEW\n[css/quality-standards/patterns-and-naming-enforcement.md](\nNEW>>>",
+    "check": "sed -n '54p' .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md",
+    "expect": "- [css/quality-standards/patterns-and-naming-enforcement.md]("
+  },
+  {
+    "task": "T060",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md, replace the exact text <<<OLD\n[javascript/style-guide.md](\nOLD>>> with <<<NEW\n[javascript/style-guide/overview-naming-and-structure.md](\nNEW>>>",
+    "check": "sed -n '123p' .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md",
+    "expect": "- [javascript/style-guide/overview-naming-and-structure.md]("
+  },
+  {
+    "task": "T061",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md, replace the exact text <<<OLD\n[javascript/quality-standards.md](\nOLD>>> with <<<NEW\n[javascript/quality-standards/init-dom-error-and-async.md](\nNEW>>>",
+    "check": "sed -n '124p' .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md",
+    "expect": "- [javascript/quality-standards/init-dom-error-and-async.md]("
+  },
+  {
+    "task": "T062",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md, replace the exact text <<<OLD\n[css/quality-standards.md](\nOLD>>> with <<<NEW\n[css/quality-standards/patterns-and-naming-enforcement.md](\nNEW>>>",
+    "check": "sed -n '126p' .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md",
+    "expect": "- [css/quality-standards/patterns-and-naming-enforcement.md]("
+  }
+]

@@ -1,0 +1,10 @@
+  cli-classifier              fresh
+  cli-external-orchestration  fresh
+  mcp-tooling                 fresh
+  sk-code                     stale-manifest
+  sk-design                   fresh
+  sk-doc                      fresh
+  system-deep-loop            fresh
+
+1 hub(s) need attention.
+Re-mint: sk-code

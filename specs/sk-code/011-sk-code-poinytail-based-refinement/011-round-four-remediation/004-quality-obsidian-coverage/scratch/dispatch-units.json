@@ -1,0 +1,252 @@
+[
+  {
+    "task": "T010",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\nversion: 1.1.1.0\nOLD>>> with <<<NEW\nversion: 1.2.0.0\nNEW>>>",
+    "check": "grep -cF -- 'version: 1.2.0.0' .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T011",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- Applying Webflow/frontend quality standards after implementation and before runtime verification.\nOLD>>> with <<<NEW\n- Applying Webflow/frontend quality standards after implementation and before runtime verification.\n- Applying the Obsidian plugin quality checklists from `sk-code-obsidian` after implementation, when the surface resolves to OBSIDIAN.\nNEW>>>",
+    "check": "grep -cF -- '- Applying the Obsidian plugin quality checklists from `sk-code-obsidian` after implementation, when the surface resolves to OBSIDIAN.' .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T012",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n    +- OPENCODE target    -> ../sk-code-opencode/assets/checklists/<target-checklist>.md\nOLD>>> with <<<NEW\n    +- OPENCODE target    -> ../sk-code-opencode/assets/checklists/<target-checklist>.md\n    +- OBSIDIAN target    -> ../sk-code-obsidian/assets/<target-checklist>.md\nNEW>>>",
+    "check": "grep -cF -- '    +- OBSIDIAN target    -> ../sk-code-obsidian/assets/<target-checklist>.md' .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T013",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- `../sk-code-opencode/assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.\nOLD>>> with <<<NEW\n- `../sk-code-opencode/assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.\n- `../sk-code-obsidian/assets/` holds the Obsidian plugin checklists this gate loads when `../shared/references/stack-detection.md` section 2 resolves the surface to OBSIDIAN: comment banners, folder docs, `.db-*` class renames and screenshot fixtures. Its verification checklist belongs to the verification hand-off, not to this gate.\nNEW>>>",
+    "check": "grep -cF -- '- `../sk-code-obsidian/assets/` holds the Obsidian plugin checklists this gate loads when `../shared/references/stack-detection.md` section 2 resolves the surface to OBSIDIAN: comment banners, folder docs, `.db-*` class renames and screenshot fixtures. Its verification checklist belongs to the verification hand-off, not to this gate.' .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T014",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n| CONDITIONAL | Generated distribution artifacts or mirrored outputs changed | `scripts/check-dist-staleness.sh` |\nOLD>>> with <<<NEW\n| CONDITIONAL | Obsidian plugin target (surface OBSIDIAN) | `../sk-code-obsidian/assets/comment-banner-checklist.md`, `../sk-code-obsidian/assets/folder-docs-checklist.md`, `../sk-code-obsidian/assets/db-class-rename-checklist.md`, `../sk-code-obsidian/assets/fixture-authoring-checklist.md` as applicable |\n| CONDITIONAL | Generated distribution artifacts or mirrored outputs changed | `scripts/check-dist-staleness.sh` |\nNEW>>>",
+    "check": "grep -cF -- '| CONDITIONAL | Obsidian plugin target (surface OBSIDIAN) | `../sk-code-obsidian/assets/comment-banner-checklist.md`, `../sk-code-obsidian/assets/folder-docs-checklist.md`, `../sk-code-obsidian/assets/db-class-rename-checklist.md`, `../sk-code-obsidian/assets/fixture-authoring-checklist.md` as applicable |' .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T015",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n| Webflow/frontend files | `assets/code-quality-checklist/overview-header-and-comments.md` | Check frontend style, maintainability, headers, comments, and platform expectations. |\nOLD>>> with <<<NEW\n| Webflow/frontend files | `assets/code-quality-checklist/overview-header-and-comments.md` | Check frontend style, maintainability, headers, comments, and platform expectations. |\n| Obsidian plugin source under `src/` or `tools/` | `../sk-code-obsidian/assets/comment-banner-checklist.md` | Check that a `MODULE:` banner or numbered section rule follows the target grammar where a file adopts it, and that no comment carries a spec, requirement, task or checklist id. |\n| Obsidian plugin folder under `src/` or `tools/` that gains or loses source files | `../sk-code-obsidian/assets/folder-docs-checklist.md` | Check the paired `README.md` and `CODE.md` threshold in both directions. |\n| Obsidian plugin `.db-*` class rename in `styles.css` or `src/` | `../sk-code-obsidian/assets/db-class-rename-checklist.md` | Check the rename map, the static and dynamic class sites, fixture parity and the render proof. |\n| Obsidian plugin screenshot fixture under `tools/screenshots/scenarios/` | `../sk-code-obsidian/assets/fixture-authoring-checklist.md` | Check that the fixture names only real `.db-*` classes and passes the fixture guard test. |\nNEW>>>",
+    "check": "grep -cF -- '| Obsidian plugin source under `src/` or `tools/` | `../sk-code-obsidian/assets/comment-banner-checklist.md` | Check that a `MODULE:` banner or numbered section rule follows the target grammar where a file adopts it, and that no comment carries a spec, requirement, task or checklist id. |' .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T016",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n3. Load `assets/code-quality-checklist/overview-header-and-comments.md` before any completion claim, then load the target-path checklist from `../sk-code-opencode/assets/checklists/` when the target is OpenCode-owned.\nOLD>>> with <<<NEW\n3. Load `assets/code-quality-checklist/overview-header-and-comments.md` before any completion claim, then load the target-path checklist from `../sk-code-opencode/assets/checklists/` when the target is OpenCode-owned, or from `../sk-code-obsidian/assets/` when the surface is OBSIDIAN.\nNEW>>>",
+    "check": "grep -cF -- '3. Load `assets/code-quality-checklist/overview-header-and-comments.md` before any completion claim, then load the target-path checklist from `../sk-code-opencode/assets/checklists/` when the target is OpenCode-owned, or from `../sk-code-obsidian/assets/` when the surface is OBSIDIAN.' .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T017",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\nresolved_surface: <webflow | opencode | unknown>\nOLD>>> with <<<NEW\nresolved_surface: <webflow | opencode | obsidian | unknown>\nNEW>>>",
+    "check": "grep -cF -- 'resolved_surface: <webflow | opencode | obsidian | unknown>' .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T018",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- The correct `../sk-code-opencode/assets/checklists/*` authoring checklist was loaded for OpenCode targets.\nOLD>>> with <<<NEW\n- The correct `../sk-code-opencode/assets/checklists/*` authoring checklist was loaded for OpenCode targets.\n- The matching `../sk-code-obsidian/assets/*` checklist was loaded for Obsidian plugin targets.\nNEW>>>",
+    "check": "grep -cF -- '- The matching `../sk-code-obsidian/assets/*` checklist was loaded for Obsidian plugin targets.' .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T019",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- [`assets/checklists/config-checklist.md`](../sk-code-opencode/assets/checklists/config-checklist.md) - JSON and JSONC config checklist.\nOLD>>> with <<<NEW\n- [`assets/checklists/config-checklist.md`](../sk-code-opencode/assets/checklists/config-checklist.md) - JSON and JSONC config checklist.\n- [`comment-banner-checklist.md`](../sk-code-obsidian/assets/comment-banner-checklist.md) - Obsidian plugin MODULE banner and section-comment checklist.\n- [`folder-docs-checklist.md`](../sk-code-obsidian/assets/folder-docs-checklist.md) - Obsidian plugin folder-docs pairing checklist.\n- [`db-class-rename-checklist.md`](../sk-code-obsidian/assets/db-class-rename-checklist.md) - Obsidian plugin `.db-*` class-rename checklist.\n- [`fixture-authoring-checklist.md`](../sk-code-obsidian/assets/fixture-authoring-checklist.md) - Obsidian plugin screenshot fixture authoring checklist.\nNEW>>>",
+    "check": "grep -cF -- '- [`comment-banner-checklist.md`](../sk-code-obsidian/assets/comment-banner-checklist.md) - Obsidian plugin MODULE banner and section-comment checklist.' .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T020",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-webflow` / `sk-code-opencode`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.\nOLD>>> with <<<NEW\n`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.\nNEW>>>",
+    "check": "grep -cF -- '`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`) implements changes and before the surface' .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T021",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode`) and its implementation workflow.\nOLD>>> with <<<NEW\n- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`) and its implementation workflow.\nNEW>>>",
+    "check": "grep -cF -- '- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`) and its implementation workflow.' .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T022",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- The surface skill (`sk-code-webflow` / `sk-code-opencode`) immediately before this gate, because implementation writes the files this mode checks.\nOLD>>> with <<<NEW\n- The surface skill (`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`) immediately before this gate, because implementation writes the files this mode checks.\nNEW>>>",
+    "check": "grep -cF -- '- The surface skill (`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`) immediately before this gate, because implementation writes the files this mode checks.' .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T023",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode`) unless the user explicitly asked for a standalone quality audit.\nOLD>>> with <<<NEW\n1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`) unless the user explicitly asked for a standalone quality audit.\nNEW>>>",
+    "check": "grep -cF -- '1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`) unless the user explicitly asked for a standalone quality audit.' .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T024",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-webflow` / `sk-code-opencode`).\nOLD>>> with <<<NEW\n7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`).\nNEW>>>",
+    "check": "grep -cF -- '7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`).' .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T025",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- `sk-code-webflow` / `sk-code-opencode` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.\nOLD>>> with <<<NEW\n- `sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.\nNEW>>>",
+    "check": "grep -cF -- '- `sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.' .skilled/skills/sk-code/sk-code-quality/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T026",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/changelog/v1.2.0.0.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/sk-code/sk-code-quality/changelog/v1.2.0.0.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/004-quality-obsidian-coverage/scratch/units/v1.2.0.0.md.txt",
+    "check": "cmp specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/004-quality-obsidian-coverage/scratch/units/v1.2.0.0.md.txt .skilled/skills/sk-code/sk-code-quality/changelog/v1.2.0.0.md",
+    "expect": "exit 0"
+  },
+  {
+    "task": "T027",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\nversion: 1.1.1.0\nOLD>>> with <<<NEW\nversion: 1.2.0.0\nNEW>>>",
+    "check": "grep -cF -- 'version: 1.2.0.0' .skilled/skills/sk-code/sk-code-quality/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T028",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\n| **Works on** | Webflow frontend files and OpenCode skills, agents, commands, specs, MCP servers, scripts, config and language files |\nOLD>>> with <<<NEW\n| **Works on** | Webflow frontend files, Obsidian plugin source and screenshot fixtures, and OpenCode skills, agents, commands, specs, MCP servers, scripts, config and language files |\nNEW>>>",
+    "check": "grep -cF -- '| **Works on** | Webflow frontend files, Obsidian plugin source and screenshot fixtures, and OpenCode skills, agents, commands, specs, MCP servers, scripts, config and language files |' .skilled/skills/sk-code/sk-code-quality/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T029",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\n| **Language files and config** | applies the language-specific and config checklists |\nOLD>>> with <<<NEW\n| **Language files and config** | applies the language-specific and config checklists |\n| **Obsidian plugin files** | routes to the comment-banner, folder-docs, `.db-*` class-rename and fixture-authoring checklists that `sk-code-obsidian` owns |\nNEW>>>",
+    "check": "grep -cF -- '| **Obsidian plugin files** | routes to the comment-banner, folder-docs, `.db-*` class-rename and fixture-authoring checklists that `sk-code-obsidian` owns |' .skilled/skills/sk-code/sk-code-quality/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T030",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\n**Step 2: Load the right checklist.** The mode always loads [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md). For `.skilled/` targets it also loads the matching checklist under [`../sk-code-opencode/assets/checklists/`](../sk-code-opencode/assets/checklists/).\nOLD>>> with <<<NEW\n**Step 2: Load the right checklist.** The mode always loads [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md). For `.skilled/` targets it also loads the matching checklist under [`../sk-code-opencode/assets/checklists/`](../sk-code-opencode/assets/checklists/). For Obsidian plugin targets it loads the matching checklist under [`../sk-code-obsidian/assets/`](../sk-code-obsidian/assets/).\nNEW>>>",
+    "check": "grep -cF -- '**Step 2: Load the right checklist.** The mode always loads [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md). For `.skilled/` targets it also loads the matching checklist under [`../sk-code-opencode/assets/checklists/`](../sk-code-opencode/assets/checklists/). For Obsidian plugin targets it loads the matching checklist under [`../sk-code-obsidian/assets/`](../sk-code-obsidian/assets/).' .skilled/skills/sk-code/sk-code-quality/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T031",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\nOpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-opencode`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards.\nOLD>>> with <<<NEW\nOpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-opencode`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards. Obsidian plugin targets route to the four quality checklists under `sk-code-obsidian`, for comment banners, folder docs, `.db-*` class renames and screenshot fixtures.\nNEW>>>",
+    "check": "grep -cF -- 'OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-opencode`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards. Obsidian plugin targets route to the four quality checklists under `sk-code-obsidian`, for comment banners, folder docs, `.db-*` class renames and screenshot fixtures.' .skilled/skills/sk-code/sk-code-quality/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T032",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\n| [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |\nOLD>>> with <<<NEW\n| [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |\n| [`../sk-code-obsidian/assets/`](../sk-code-obsidian/assets/) | Obsidian plugin quality checklists for comment banners, folder docs, `.db-*` class renames and screenshot fixtures |\nNEW>>>",
+    "check": "grep -cF -- '| [`../sk-code-obsidian/assets/`](../sk-code-obsidian/assets/) | Obsidian plugin quality checklists for comment banners, folder docs, `.db-*` class renames and screenshot fixtures |' .skilled/skills/sk-code/sk-code-quality/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T033",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\n**Step 1: Route after implementation.** Use this mode after the surface skill (`sk-code-webflow` or `sk-code-opencode`) has changed files and before the surface verification workflow (`workflow-verify.md`) collects final evidence.\nOLD>>> with <<<NEW\n**Step 1: Route after implementation.** Use this mode after the surface skill (`sk-code-webflow`, `sk-code-opencode` or `sk-code-obsidian`) has changed files and before the surface verification workflow (`workflow-verify.md`) collects final evidence.\nNEW>>>",
+    "check": "grep -cF -- '**Step 1: Route after implementation.** Use this mode after the surface skill (`sk-code-webflow`, `sk-code-opencode` or `sk-code-obsidian`) has changed files and before the surface verification workflow (`workflow-verify.md`) collects final evidence.' .skilled/skills/sk-code/sk-code-quality/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T034",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-quality/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\n| `sk-code-webflow` / `sk-code-opencode` | Surface skills that implement and change files, own root-cause debugging and gather verification evidence through the implement → debug → verify workflow doctrine |\nOLD>>> with <<<NEW\n| `sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian` | Surface skills that implement and change files, own root-cause debugging and gather verification evidence through the implement → debug → verify workflow doctrine |\nNEW>>>",
+    "check": "grep -cF -- '| `sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian` | Surface skills that implement and change files, own root-cause debugging and gather verification evidence through the implement → debug → verify workflow doctrine |' .skilled/skills/sk-code/sk-code-quality/README.md",
+    "expect": "1"
+  }
+]

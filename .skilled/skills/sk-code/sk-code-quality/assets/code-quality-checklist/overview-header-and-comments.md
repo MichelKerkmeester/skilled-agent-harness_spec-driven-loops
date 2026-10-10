@@ -48,10 +48,10 @@ For formal findings-first review output, run `sk-code`'s code-review mode as the
 ### Source Standards (per-language tree)
 
 - [shared/cross-language-rules.md](../../../sk-code-webflow/references/shared/cross-language-rules.md) - Cross-language rules (file naming, comment WHY-not-WHAT, banner format, platform prefixes)
-- [javascript/style-guide.md](../../../sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md) - JS naming (`snake_case`), file structure, formatting, JSDoc, debug logging
-- [javascript/quality-standards.md](../../../sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md) - JS defensive patterns + JS naming/init enforcement
+- [javascript/style-guide/overview-naming-and-structure.md](../../../sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md) - JS naming (`snake_case`), file structure, formatting, JSDoc, debug logging
+- [javascript/quality-standards/init-dom-error-and-async.md](../../../sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md) - JS defensive patterns + JS naming/init enforcement
 - [css/style-guide.md](../../../sk-code-webflow/references/css/style-guide.md) - CSS naming (BEM), custom properties, attribute selectors, animation CSS, file org
-- [css/quality-standards.md](../../../sk-code-webflow/references/css/quality-standards/patterns-and-naming-enforcement.md) - CSS quality patterns + CSS enforcement subsections
+- [css/quality-standards/patterns-and-naming-enforcement.md](../../../sk-code-webflow/references/css/quality-standards/patterns-and-naming-enforcement.md) - CSS quality patterns + CSS enforcement subsections
 
 ---
 

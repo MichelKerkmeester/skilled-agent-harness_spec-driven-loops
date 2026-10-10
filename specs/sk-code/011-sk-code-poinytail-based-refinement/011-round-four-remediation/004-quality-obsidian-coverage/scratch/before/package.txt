@@ -1,0 +1,8 @@
+🔍 Validating skill: sk-code-quality
+(strict mode)
+==================================================
+
+✅ Skill is valid!
+
+==================================================
+Result: PASS

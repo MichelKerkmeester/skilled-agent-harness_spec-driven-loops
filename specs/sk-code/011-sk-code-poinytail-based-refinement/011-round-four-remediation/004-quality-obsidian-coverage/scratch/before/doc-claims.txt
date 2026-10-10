@@ -1,0 +1,5 @@
+PASS check paths: path references in the hub docs resolve on disk
+PASS check names: no retired packet names remain
+PASS check surfaces: no two-surface wording remains
+PASS check tiers: ROUTER.md load-tier claims match DEFAULT_RESOURCE
+doc-claims: 4/4 checks passed

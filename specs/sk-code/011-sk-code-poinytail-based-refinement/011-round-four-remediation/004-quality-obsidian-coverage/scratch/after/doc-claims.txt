@@ -1,0 +1,7 @@
+FAIL check paths: path references in the hub docs resolve on disk (2 problem(s))
+  - sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md:33: link anchor does not resolve: ../../implementation/animation-workflows/overview-decision-tree-and-css.md#7-🐛-common-issues-and-solutions
+  - sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md:34: link anchor does not resolve: ../../implementation/webflow-patterns/overview-limits-and-collection-lists.md#3-📚-collection-list-patterns
+PASS check names: no retired packet names remain
+PASS check surfaces: no two-surface wording remains
+PASS check tiers: ROUTER.md load-tier claims match DEFAULT_RESOURCE
+doc-claims: 3/4 checks passed

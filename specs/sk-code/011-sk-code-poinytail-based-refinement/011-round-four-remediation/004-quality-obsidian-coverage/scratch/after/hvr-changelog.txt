@@ -1,0 +1,7 @@
+HVR SCAN: .skilled/skills/sk-code/sk-code-quality/changelog/v1.2.0.0.md
+  no mechanical findings
+
+  hard blockers:          0
+  mechanical deductions:  -0
+  mechanical ceiling:     100/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality

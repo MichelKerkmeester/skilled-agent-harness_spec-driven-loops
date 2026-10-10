@@ -1,0 +1,11 @@
+🔍 Validating skill: sk-code-quality
+(strict mode)
+==================================================
+
+✅ Skill is valid!
+
+⚠️  1 warning(s):
+   • SKILL.md has 3024 words (recommended max: 3000)
+
+==================================================
+Result: PASS

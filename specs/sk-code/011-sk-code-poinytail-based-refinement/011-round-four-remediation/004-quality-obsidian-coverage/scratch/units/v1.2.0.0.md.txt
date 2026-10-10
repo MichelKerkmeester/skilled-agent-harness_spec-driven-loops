@@ -1,0 +1,33 @@
+---
+title: "sk-code-quality v1.2.0.0, The Quality Gate Covers Obsidian Plugin Work"
+description: "The quality mode now routes Obsidian plugin targets to the four sk-code-obsidian quality checklists and names sk-code-obsidian wherever it lists the surfaces it serves."
+trigger_phrases:
+  - "sk-code-quality v1.2.0.0"
+  - "sk-code-quality 1.2.0.0"
+  - "obsidian plugin quality checklists"
+  - "quality gate obsidian coverage"
+importance_tier: "normal"
+contextType: "general"
+version: 1.2.0.0
+---
+
+# v1.2.0.0, The Quality Gate Covers Obsidian Plugin Work
+
+The hub detects three code surfaces, but the quality mode only mapped checklists for Webflow and OpenCode work. An Obsidian plugin change reached the gate with nothing to load. This release maps Obsidian plugin targets to the checklists `sk-code-obsidian` already ships, then names that surface wherever the mode lists the surfaces it serves.
+
+> Spec folder: `specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/004-quality-obsidian-coverage` (Level 1)
+
+&nbsp;
+
+## What's New at a Glance
+
+- **Obsidian targets have checklists.** The target-path map sends plugin source to the comment-banner checklist, a folder that crosses the source-file threshold to the folder-docs checklist, a `.db-*` class rename to the class-rename checklist and a screenshot fixture to the fixture-authoring checklist.
+- **The surface lists name all three surfaces.** `SKILL.md` and the README now list `sk-code-obsidian` beside `sk-code-webflow` and `sk-code-opencode`.
+- **The evidence envelope can report Obsidian.** Its `resolved_surface` field now accepts `obsidian`.
+- **Checklist links name their targets.** Six related-resource links in two code-quality checklists showed retired file names. Each label now names the file it opens.
+
+&nbsp;
+
+## Upgrade
+
+No migration required.
