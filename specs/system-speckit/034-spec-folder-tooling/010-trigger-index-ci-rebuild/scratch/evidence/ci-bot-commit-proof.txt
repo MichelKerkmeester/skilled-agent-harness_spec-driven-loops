@@ -1,0 +1,105 @@
+T011 and SC-001, SC-002, REQ-002 receipt: CI proof that the rebuild job commits the index and that its own commits do not loop
+Source: git on origin/main and the GitHub Actions run history, read on 2026-10-10.
+origin/main tip at recording time: 4669db6522. Local main is 29 commits behind origin/main, ends at 2a1554bc4a, and does not contain 4669db6522.
+
+1. Bot commits on origin/main
+command: git log --format='%h %an %s' --author='github-actions' -5
+4669db6522 github-actions[bot] chore(system-spec-kit): rebuild the trigger index
+1206f55238 github-actions[bot] chore(system-spec-kit): rebuild the trigger index
+9dbfe3a046 github-actions[bot] chore(system-spec-kit): rebuild the trigger index
+d5b79c87d5 github-actions[bot] chore(system-spec-kit): rebuild the trigger index
+36102e7f69 github-actions[bot] chore(system-spec-kit): rebuild the trigger index
+count of github-actions commits on origin/main: 17
+
+2. Own run of each bot commit (the trailer guard should skip it)
+command: gh run list --workflow 'Trigger Index Rebuild' --branch main --limit 100 (filtered by headSha)
+  2d2c8fcd55e  chore(system-spec-kit): rebuild the trigger index  own rebuild run: skipped
+  ac0a3ac2ae8  chore(system-spec-kit): rebuild the trigger index  own rebuild run: skipped
+  4f659bdd4c4  chore(system-spec-kit): rebuild the trigger index  own rebuild run: skipped
+  08af7d089e1  chore(system-spec-kit): rebuild the trigger index  own rebuild run: skipped
+  a0409d8022f  chore(system-spec-kit): rebuild the trigger index  own rebuild run: skipped
+  591f859f70e  chore(system-spec-kit): rebuild the trigger index  own rebuild run: skipped
+  be0f482f190  chore(system-spec-kit): rebuild the trigger index  own rebuild run: skipped
+  40f29743e6f  chore(system-spec-kit): rebuild the trigger index  own rebuild run: skipped
+  27e7a1a2320  chore(system-spec-kit): rebuild the trigger index  own rebuild run: skipped
+  2a1554bc4ae  chore(system-spec-kit): rebuild the trigger index  own rebuild run: skipped
+  4d16754ad34  chore(system-spec-kit): rebuild the trigger index  own rebuild run: skipped
+  d933985159d  chore(system-spec-kit): rebuild the trigger index  own rebuild run: skipped
+  36102e7f69f  chore(system-spec-kit): rebuild the trigger index  own rebuild run: skipped
+  d5b79c87d58  chore(system-spec-kit): rebuild the trigger index  own rebuild run: skipped
+  9dbfe3a046b  chore(system-spec-kit): rebuild the trigger index  own rebuild run: skipped
+  1206f55238b  chore(system-spec-kit): rebuild the trigger index  own rebuild run: skipped
+  4669db65226  chore(system-spec-kit): rebuild the trigger index  own rebuild run: skipped
+
+3. Runs on the current head 4669db6522 (gh run list --branch main --limit 60, filtered by headSha)
+command: gh run list --branch main --limit 60 --json headSha,conclusion,name,status,event,workflowName,databaseId,createdAt,displayTitle
+  skipped   Trigger Index Rebuild (run 37986486440)
+  success   Dispatch Enforcement Guard (run 37986486382)
+  success   Advisory Checks (run 37986486330)
+  success   Markdown Link Integrity (run 37986486377)
+  success   Playbook Operator Contract (run 37986486321)
+  success   Rule Canary Sync (run 37986486272)
+  success   Command Tree Parity (run 37986486298)
+  success   Gate Inputs (run 37986486418)
+  success   Message Contract (run 37986486336)
+  success   Changed Packet Validation (run 37986486376)
+  success   sk-doc Script Tests (run 37986486331)
+  success   Spec-Kit Check (run 37986486360)
+  Spec-Kit Check on 4669db6522: ('success', 37986486360)
+
+4. Head commit rebuild, run 37986342243 (on 079e9c34d2, pushed 4669db652)
+command: gh run view 37986342243 --log  (job 114009162927)
+trigger index published
+  documents scanned : 24033
+[main 4669db652] chore(system-spec-kit): rebuild the trigger index
+trigger index matches the corpus
+  documents scanned : 24033
+  stale documents   : 0 (0 missing from the index)
+  obsolete paths    : 0
+remote: Bypassed rule violations for refs/heads/main:        
+   079e9c34d..4669db652  main -> main
+
+5. First run that committed, run 37704306595 (on abb53ecc69, pushed 2d2c8fcd5)
+command: gh run view 37704306595 --log  (job 113074912266)
+trigger index published
+[main 2d2c8fcd5] chore(system-spec-kit): rebuild the trigger index
+   abb53ecc6..2d2c8fcd5  main -> main
+  note: this workflow version has no in-job --check step. The step was added by f0ea65aeef, so this commit's --check result is not in CI logs.
+
+6. Non-fast-forward recovery, run 37761007246 (on 73be1380b6)
+command: gh run view 37761007246 --log
+trigger index published
+[main ba602dd5a] chore(system-spec-kit): rebuild the trigger index
+trigger index matches the corpus
+ ! [rejected]            main -> main (fetch first)
+##[warning]Push rejected as non-fast-forward; fetching the new tip, resetting to it, regenerating the index and retrying once.
+trigger index published
+trigger index matches the corpus
+[main 08af7d089] chore(system-spec-kit): rebuild the trigger index
+   c65147fca..08af7d089  main -> main
+  note: the first commit ba602dd5a was rejected and dropped, so it is not on main. The retry produced 08af7d089.
+
+7. Pushes that left the index current (SC-002: no bot commit)
+command: gh run view <id> --log, grep for 'Trigger index is current; nothing to commit.'
+  run 37724916387 on 1f38923888: MATCH  Trigger index is current; nothing to commit.
+  run 37739969434 on ff9d5fb584: MATCH  Trigger index is current; nothing to commit.
+  run 37968501330 on dd6f9316a3: MATCH  Trigger index is current; nothing to commit.
+
+8. History of the failing first live run, run 37702181751 (ed922eabe9)
+command: gh run view 37702181751 --log
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@spec-kit/shared' imported from /home/runner/work/skilled-agent-harness_spec-driven-loops/skilled-agent-harness_spec-driven-loops/.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/frontmatter.mjs
+##[error]Process completed with exit code 1.
+
+9. Token secret (names and update time only, no value)
+command: gh secret list
+TRIGGER_INDEX_PUSH_TOKEN	2026-10-07T17:35:14Z
+
+  1f38923888 is a human commit that carried its own regenerated index. ff9d5fb584 is a human commit
+  'regenerate the trigger index for phase 016' that also carried its own index. Both left the index current.
+  dd6f9316a3 changed two files (a Hermes SKILL.md copy and workflow-invariance.vitest.ts), and the job found
+  the index current, so no bot commit followed. It matches the no-change case that SC-002 describes.
+
+10. Summary of the run history on main, 20 successful rebuild runs
+  17 runs pushed a bot commit, 3 runs found the index current (1f38923888, ff9d5fb584, dd6f9316a3).
+  Every bot commit's own run was skipped by the guard, 17 of 17.
+  The --check line 'trigger index matches the corpus' appears in every pushed run from 73be1380b6 (2026-10-08 10:04 UTC) onward.
