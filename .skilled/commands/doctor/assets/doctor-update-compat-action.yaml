@@ -147,11 +147,11 @@ workflow:
     commands:
       upgrade_apply: "node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --apply"
     logging: "When this run has appended no line yet, append run-started first. Then append upgrade-started, then upgrade-done on exit 0 or upgrade-failed otherwise. The upgrade manifest and baseline writes belong to upgrade-legacy itself."
-    exit_policy: "Exit 0 means every packet passes: STATUS=UPGRADED. A non-zero exit reports the still-failing packets and finishes with STATUS=PARTIAL when repairs were written, or STATUS=FAILED when nothing was written. Every non-zero exit appends run-complete after its upgrade-failed line."
+    exit_policy: "Exit 0 means every packet passes: STATUS=UPGRADED. A non-zero exit reports the still-failing packets. It finishes with STATUS=PARTIAL when repairs were written, meaning the apply printed plan changes=N with N of at least 1 and then still fails. It finishes with STATUS=FAILED when nothing was written: the stderr 'could not be validated, so nothing was written' refusal, a manifest refusal, or plan changes=0. Every non-zero exit appends run-complete after its upgrade-failed line."
     result_parsing:
       prefixes: ["still failing ", "unreadable ", "passing before="]
     on_failure:
-      still_failing: "On exit 2 with still-failing or unreadable lines: append upgrade-failed, then run-complete, end with STATUS=PARTIAL, show each packet with the presentation's Failed packets template, and name the rerun, the --include-archive route for archived packets and manual review."
+      still_failing: "On exit 2 with still-failing or unreadable lines: append upgrade-failed, then run-complete, end with the status exit_policy names for this run (STATUS=PARTIAL when repairs were written, STATUS=FAILED when nothing was written), show each packet with the presentation's Failed packets template, and name the rerun, the --include-archive route for archived packets and manual review."
       manifest_refusal: "On exit 2 with a 'could not write reversibility manifest' or '--apply refuses' line on stderr: show the presentation's manifest refusal with the stderr verbatim, append run-complete, end with STATUS=FAILED, and say that no packet changed."
       exit_0: "On exit 0: append upgrade-done."
 

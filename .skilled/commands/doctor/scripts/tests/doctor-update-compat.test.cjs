@@ -981,11 +981,24 @@ test('failed packets are parsed from the lines upgrade-legacy prints', () => {
   }
 
   const onFailure = COMPAT_ACTION.workflow.phase_7_upgrade.on_failure;
-  assert.ok(onFailure.still_failing.includes('STATUS=PARTIAL'), 'a partial repair must end as partial');
   assert.ok(onFailure.manifest_refusal.includes('STATUS=FAILED'), 'a manifest refusal must end as failed');
   assert.ok(
     sectionBody(PRESENTATION, '### Failed packets').includes('--include-archive'),
     'the failed-packet route must name the archive rerun',
+  );
+});
+
+test('the exit policy and the still-failing rule name the same partial and failed conditions', () => {
+  const phase = COMPAT_ACTION.workflow.phase_7_upgrade;
+  const partial = 'STATUS=PARTIAL when repairs were written';
+  const failed = 'STATUS=FAILED when nothing was written';
+  for (const rule of [phase.exit_policy, phase.on_failure.still_failing]) {
+    assert.ok(rule.includes(partial), `the rule must name "${partial}"`);
+    assert.ok(rule.includes(failed), `the rule must name "${failed}"`);
+  }
+  assert.ok(
+    !/end with STATUS=PARTIAL,/.test(phase.on_failure.still_failing),
+    'the still-failing rule must not end as partial unconditionally',
   );
 });
 
