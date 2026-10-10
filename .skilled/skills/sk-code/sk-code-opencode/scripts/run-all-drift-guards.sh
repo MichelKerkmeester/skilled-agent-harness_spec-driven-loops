@@ -31,17 +31,28 @@ ROUTER_SYNC="${CODE_OPENCODE_DIR}/assets/scripts/verify_router_sync.cjs"
 DOC_CLAIMS="${CODE_OPENCODE_DIR}/assets/scripts/verify_doc_claims.cjs"
 
 failures=0
+warnings=0
 
 run_guard() {
   local name="$1"
+  local out warn_count
   shift
+  out="$(mktemp)"
   echo "── ${name}"
-  if "$@"; then
-    echo "PASS: ${name}"
+  if "$@" | tee "${out}"; then
+    # Warnings never fail the gate, so the summary has to show them.
+    warn_count="$(grep -c '\[WARN\]' "${out}" || true)"
+    warnings=$((warnings + warn_count))
+    if [ "${warn_count}" -gt 0 ]; then
+      echo "PASS: ${name} (${warn_count} warnings)"
+    else
+      echo "PASS: ${name}"
+    fi
   else
     echo "FAIL: ${name}"
     failures=$((failures + 1))
   fi
+  rm -f "${out}"
   echo ""
 }
 
@@ -71,5 +82,9 @@ if [ "${failures}" -ne 0 ]; then
   exit 1
 fi
 
-echo "run-all-drift-guards: all 4 guards PASSED"
+if [ "${warnings}" -gt 0 ]; then
+  echo "run-all-drift-guards: all 4 guards PASSED, ${warnings} non-blocking warning(s)"
+else
+  echo "run-all-drift-guards: all 4 guards PASSED"
+fi
 exit 0

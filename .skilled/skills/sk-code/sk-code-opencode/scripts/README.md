@@ -17,7 +17,7 @@ description: "Single entry point that runs all sk-code drift guards as one compl
 
 | File | Purpose |
 |------|---------|
-| `run-all-drift-guards.sh` | Runs `verify_alignment_drift.py --check-router`, `verify_stack_folders.py`, `verify_router_sync.cjs --checks 1a,1b,2,3,4` and `verify_doc_claims.cjs` in order, printing a PASS/FAIL line per guard; a comment after the router-sync guard records what it covers and what stays in CI |
+| `run-all-drift-guards.sh` | Runs `verify_alignment_drift.py --check-router`, `verify_stack_folders.py`, `verify_router_sync.cjs --checks 1a,1b,2,3,4` and `verify_doc_claims.cjs` in order, printing a PASS/FAIL line per guard; a comment after the router-sync guard records what it covers and what stays in CI. The script counts each guard's `[WARN]` lines and shows the total in the summary without failing the gate |
 | `tests/verify_router_sync.test.cjs` | Builds a throwaway hub and proves router check 1b stays quiet for a doc reached through a surface symlink, reports an unrouted doc, runs without `--checks` and proves check 2 reads the `ROUTER.md` shared-controls block. Run it with `node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs`. |
 | `tests/verify_doc_claims.test.cjs` | Builds a throwaway hub and proves each check of `verify_doc_claims.cjs` passes on a clean tree and fails on its own known-bad input, and that an allowlisted line stays quiet. Run it with `node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs`. |
 
@@ -31,7 +31,7 @@ Run from any working directory, the script resolves its own paths:
 bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
 ```
 
-Expected: a `PASS: router-sync` line, a `PASS: doc-claims` line, `run-all-drift-guards: all 4 guards PASSED` and exit code 0.
+Expected: a `PASS: router-sync` line, a `PASS: doc-claims` line, an output ending with `run-all-drift-guards: all 4 guards PASSED` followed by `, N non-blocking warning(s)` when any guard printed `[WARN]` lines, and exit code 0.
 
 ---
 
