@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-014-005-changelog-single-bump"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -76,10 +76,14 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Done | spec.md, plan.md, tasks.md and this goal written by the orchestrator |
+| Auto workflow | Done | p005a |
+| Confirm workflow | Done | p005b |
+| SKILL.md steps | Done | p005c |
+| Version bump, changelog, Hermes copy | Done | orchestrator |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | Recorded here as the phase runs |
+| README.md left out of the version copies | The plan listed it; a read of four skills showed its version is the document's own |
 <!-- /ANCHOR:log -->

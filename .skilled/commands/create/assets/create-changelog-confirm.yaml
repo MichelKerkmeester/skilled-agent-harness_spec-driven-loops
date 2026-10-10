@@ -477,7 +477,19 @@ workflow:
           Skip version calculation. Nested packet changelogs use deterministic packet-local filenames.
       - "List every version entry of the target component: the v*.md files at its top level and in its generation folders (v1+/, v2+/ and so on), never in a mode folder:"
       - "  Run: { find -L .skilled/changelog/{primary_component} -maxdepth 1 -name 'v*.md'; find -L .skilled/changelog/{primary_component} -mindepth 2 -maxdepth 2 -path '*+/v*.md'; } | sed 's#.*/##' | sort -V"
-      - "Parse the latest version file, the last line of that list: extract MAJOR.MINOR.PATCH.BUILD"
+      - |
+        IF changelog_mode = global:
+          LIST UPSTREAM VERSION ENTRIES so both checkouts number from one sequence:
+            CHANGELOG_DIR is the real directory of .skilled/changelog/{primary_component}, relative to the repository root. Entries there are often symlinks into a skill packet, so resolve it with:
+              CHANGELOG_DIR=$(cd .skilled/changelog/{primary_component} && pwd -P)
+              CHANGELOG_DIR=${CHANGELOG_DIR#"$(git rev-parse --show-toplevel)"/}
+            UPSTREAM is git rev-parse --abbrev-ref --symbolic-full-name @{u} when that succeeds, else origin/main
+            IF git rev-parse --verify --quiet "$UPSTREAM" fails:
+              Skip the upstream listing and say so in the report; local-only numbering, as before
+            ELSE:
+              Run: git ls-tree -r --name-only "$UPSTREAM" -- "$CHANGELOG_DIR/" | grep -E '/(v[^/]*\.md|[^/]*\+/v[^/]*\.md)$' | sed 's#.*/##' | sort -V
+          Why: two branches that each number from their own checkout pick the same next version and collide at merge
+      - "Parse the latest version file, the highest of the local and upstream lists (the local list alone when upstream was skipped): extract MAJOR.MINOR.PATCH.BUILD"
       - |
         Determine bump type:
           IF version_bump != "auto" -> use user-specified bump type
@@ -486,7 +498,7 @@ workflow:
             Check work_context.summary for trigger keywords
             Default to "patch" if no clear signal
       - "Calculate next version using version_bump_rules.calculation"
-      - "Verify no collision with existing files"
+      - "Verify no collision with existing files, locally or in the upstream listing"
     outputs:
       - next_version: "Calculated version string (e.g., v2.1.0.0)"
       - bump_type_used: "major/minor/patch/build"
@@ -575,9 +587,29 @@ workflow:
       - "Construct output path: .skilled/changelog/{primary_component}/v{next_version}.md"
       - "Write changelog_content to output path using Write tool"
       - "Verify file was created by reading first 5 lines"
+      - |
+        IF changelog_mode = global:
+          MOVE EVERY VERSION COPY to next_version, without its leading v:
+            Resolve SKILL_ROOT for the component:
+              plain component -> .skilled/skills/{component}
+              {hub}/parent -> .skilled/skills/{hub}
+              {hub}/{link} -> the packet folder the link's changelog sits in, the parent directory of CHANGELOG_DIR
+            IF SKILL_ROOT has no SKILL.md (for example the skilled component): skip this activity
+            ELSE in SKILL_ROOT, set the version to next_version in each of these files that ALREADY carries a version, and never add a field that is absent:
+              SKILL.md frontmatter version:
+              ROUTER.md frontmatter version:
+              description.json "version"
+              hub-router.json "version"
+              mode-registry.json "version"
+            README.md is not a version carrier: its version is the document's own
+            IF SKILL_ROOT has mode-registry.json (a hub):
+              Run: node .skilled/commands/doctor/scripts/parent-skill-check.cjs SKILL_ROOT
+              On a non-zero exit: STOP and report its output; the 13a-version lines name any copy still behind
+            Store: version_files_updated = the files whose version was set, empty when this activity was skipped
     outputs:
       - output_path: "Full path to created changelog file"
       - file_verified: "true/false"
+      - version_files_updated: "Version carriers set to next_version in SKILL_ROOT, or empty when the activity was skipped"
     validation: file_written
     checkpoint:
       question: "Changelog written to {output_path}. File verified: {file_verified}. Proceed to completion?"
