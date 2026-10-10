@@ -3,10 +3,10 @@
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 
-// Drives leg 1b of verify_router_sync.cjs against a throwaway hub, so the orphan check can be
+// Drives leg 1b of verify-router-sync.cjs against a throwaway hub, so the orphan check can be
 // made to pass and to fail without touching the live tree.
 // Run from the repository root:
-//   node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs
+//   node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -34,7 +34,7 @@ function buildHub(t) {
   const hub = path.join(skills, 'sk-code');
   const scripts = path.join(hub, 'sk-code-opencode', 'assets', 'scripts');
   fs.mkdirSync(scripts, { recursive: true });
-  for (const name of ['verify_router_sync.cjs', 'router_replay_lib.cjs']) {
+  for (const name of ['verify-router-sync.cjs', 'router-replay-lib.cjs']) {
     fs.copyFileSync(path.join(SCRIPTS, name), path.join(scripts, name));
   }
   write(path.join(skills, CONTRACT), fs.readFileSync(path.join(LIVE_SKILLS, CONTRACT), 'utf8'));
@@ -46,7 +46,7 @@ function buildHub(t) {
     path.join('..', '..', 'shared', 'references', 'workflow-debug.md'),
     path.join(hub, 'sk-code-demo', 'references', 'workflow-debug.md'),
   );
-  return { hub, guard: path.join(scripts, 'verify_router_sync.cjs') };
+  return { hub, guard: path.join(scripts, 'verify-router-sync.cjs') };
 }
 
 function runGuard(guard, args) {

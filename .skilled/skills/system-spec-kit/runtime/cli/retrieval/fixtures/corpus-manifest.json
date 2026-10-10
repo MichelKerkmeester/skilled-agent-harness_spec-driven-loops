@@ -1,5 +1,5 @@
 {
-  "corpusHash": "bd57508ccf5c744cfa5eca51a0d993fccd05d10c66e334a9bdb115d882c36b25",
+  "corpusHash": "ecb1115ae04c0dd416ab25a4bfd332cca9baa303dee79e7d0c286b57cd746843",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24380,
+  "includedPathCount": 24382,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2713,6 +2713,7 @@
     ".skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.1.0.md",
     ".skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.2.0.md",
     ".skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.3.0.md",
+    ".skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.4.0.md",
     ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/cross-cli-dispatch/large-prompt-stress.md",
     ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/cross-cli-dispatch/multi-step-dispatch.md",
     ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/cross-cli-dispatch/short-prompt-baseline.md",
@@ -2795,6 +2796,7 @@
     ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.1.1.0.md",
     ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.1.0.md",
+    ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.2.0.md",
     ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -24411,7 +24413,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "35d93c64e7ece4e5c9924ce4981b0890ce71a9b653af20c947b2ad23fa335bb3",
+  "manifestHash": "bd44ebf60cecd4fc8768136b1f5a5601f72ae8ca00f55ed6e6bcdbd75dd2e930",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

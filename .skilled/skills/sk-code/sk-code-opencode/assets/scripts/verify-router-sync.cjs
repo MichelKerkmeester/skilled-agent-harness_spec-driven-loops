@@ -6,7 +6,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
-const lib = require('./router_replay_lib.cjs');
+const lib = require('./router-replay-lib.cjs');
 
 const SKCODE = path.resolve(__dirname, '..', '..', '..');
 const SKILLS_ROOT = path.resolve(__dirname, '..', '..', '..', '..');
@@ -313,7 +313,7 @@ function parseChecks(argv) {
   const known = new Set(LEGS.map((l) => l[0]));
   const unknown = ids.filter((id) => !known.has(id));
   if (ids.length === 0 || unknown.length) {
-    console.error(`usage: verify_router_sync [--checks ${[...known].join(',')}] (unknown: ${unknown.join(',') || 'none given'})`);
+    console.error(`usage: verify-router-sync [--checks ${[...known].join(',')}] (unknown: ${unknown.join(',') || 'none given'})`);
     process.exit(2);
   }
   return ids;

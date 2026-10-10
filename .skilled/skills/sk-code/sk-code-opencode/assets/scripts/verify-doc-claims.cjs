@@ -9,7 +9,7 @@
 // and their anchors must resolve, retired packet names must be gone, the surface count must
 // match the hub, and the ROUTER.md load-tier claims must match the machine map. It reports
 // and never rewrites.
-// Run: node verify_doc_claims.cjs [--root <hub dir>] [--checks paths,names,surfaces,tiers]
+// Run: node verify-doc-claims.cjs [--root <hub dir>] [--checks paths,names,surfaces,tiers]
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -69,7 +69,7 @@ const ALLOWED = [
 
 function parseArgs(argv) {
   const known = CHECKS.map((c) => c[0]);
-  const usage = `usage: verify_doc_claims [--root <hub dir>] [--checks ${known.join(',')}]`;
+  const usage = `usage: verify-doc-claims [--root <hub dir>] [--checks ${known.join(',')}]`;
   const rootIdx = argv.indexOf('--root');
   if (rootIdx !== -1 && !argv[rootIdx + 1]) {
     console.error(`${usage} (--root needs a directory)`);

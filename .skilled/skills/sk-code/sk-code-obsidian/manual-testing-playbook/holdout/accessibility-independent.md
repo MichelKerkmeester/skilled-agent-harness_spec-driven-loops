@@ -110,7 +110,7 @@ showing whether `accessibility.md` was cited.
 
 1. Re-run step 2 and confirm whether `accessibility.md` was renamed or removed under `references/`.
 2. If step 3 prints `0`, the file has dropped out of the `STACK_STANDARDS` list in `SKILL.md` §2b.
-   Restore the entry. Router check 1b of `verify_router_sync.cjs` fails for the same reason.
+   Restore the entry. Router check 1b of `verify-router-sync.cjs` fails for the same reason.
 3. If step 4 no longer prints `0`, a keyword now matches the prompt and the probe has stopped being
    keyword-blind. Write a new keyword-blind prompt, and move this one into `intent-detection/` under
    `STACK_STANDARDS`.

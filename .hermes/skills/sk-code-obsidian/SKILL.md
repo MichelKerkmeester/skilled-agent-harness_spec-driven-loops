@@ -2,7 +2,7 @@
 name: sk-code-obsidian
 description: "Read-only Obsidian-plugin design-system and source-convention evidence for the Note Database plugin."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 0.1.3.0
+version: 0.1.4.0
 metadata:
   author: OpenCode
   family: sk-code

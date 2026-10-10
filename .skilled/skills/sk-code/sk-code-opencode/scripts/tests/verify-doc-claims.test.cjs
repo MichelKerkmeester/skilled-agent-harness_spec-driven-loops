@@ -3,10 +3,10 @@
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 
-// Drives verify_doc_claims.cjs against a throwaway hub, so each check can be made to pass and to
+// Drives verify-doc-claims.cjs against a throwaway hub, so each check can be made to pass and to
 // fail without touching the live tree. The known-bad inputs live in this file, one per check.
 // Run from the repository root:
-//   node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs
+//   node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -15,7 +15,7 @@ const os = require('node:os');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
-const CHECKER = path.resolve(__dirname, '..', '..', 'assets', 'scripts', 'verify_doc_claims.cjs');
+const CHECKER = path.resolve(__dirname, '..', '..', 'assets', 'scripts', 'verify-doc-claims.cjs');
 
 function write(file, text) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
@@ -121,7 +121,7 @@ test('a missing --root directory prints one usage line and exits 2', () => {
   const missing = path.join(os.tmpdir(), 'doc-claims-root-that-does-not-exist');
   const result = spawnSync(process.execPath, [CHECKER, '--root', missing], { encoding: 'utf8' });
   assert.equal(result.status, 2, result.stderr);
-  assert.match(result.stderr, /^usage: verify_doc_claims .*--root is not a directory/);
+  assert.match(result.stderr, /^usage: verify-doc-claims .*--root is not a directory/);
   assert.equal(result.stderr.trim().split('\n').length, 1, result.stderr);
 });
 
@@ -210,7 +210,7 @@ test('known-good paths: code-span link examples, elided labels, nested fences, s
 test('a --root with no value prints a usage line and exits 2', () => {
   const result = spawnSync(process.execPath, [CHECKER, '--root'], { encoding: 'utf8' });
   assert.equal(result.status, 2, result.stderr);
-  assert.match(result.stderr, /^usage: verify_doc_claims .*--root needs a directory/);
+  assert.match(result.stderr, /^usage: verify-doc-claims .*--root needs a directory/);
 });
 
 test('known-bad tiers: a file the prose says always loads but DEFAULT_RESOURCE omits is reported', (t) => {

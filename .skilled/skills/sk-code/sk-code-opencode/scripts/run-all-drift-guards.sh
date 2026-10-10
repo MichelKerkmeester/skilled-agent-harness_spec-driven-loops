@@ -27,8 +27,8 @@ REPO_ROOT="$(cd "${SKILLS_DIR}/../.." && pwd)"
 
 DRIFT_VERIFIER="${CODE_OPENCODE_DIR}/assets/scripts/verify_alignment_drift.py"
 STACK_VERIFIER="${CODE_OPENCODE_DIR}/assets/scripts/verify_stack_folders.py"
-ROUTER_SYNC="${CODE_OPENCODE_DIR}/assets/scripts/verify_router_sync.cjs"
-DOC_CLAIMS="${CODE_OPENCODE_DIR}/assets/scripts/verify_doc_claims.cjs"
+ROUTER_SYNC="${CODE_OPENCODE_DIR}/assets/scripts/verify-router-sync.cjs"
+DOC_CLAIMS="${CODE_OPENCODE_DIR}/assets/scripts/verify-doc-claims.cjs"
 
 failures=0
 
@@ -51,10 +51,10 @@ run_guard "alignment-drift  (verify_alignment_drift.py --check-router)" \
 run_guard "stack-folders    (verify_stack_folders.py)" \
   python3 "${STACK_VERIFIER}"
 
-run_guard "router-sync      (verify_router_sync.cjs --checks 1a,1b,2,3,4)" \
+run_guard "router-sync      (verify-router-sync.cjs --checks 1a,1b,2,3,4)" \
   node "${ROUTER_SYNC}" --checks 1a,1b,2,3,4
 
-# Router-sync guard (verify_router_sync.cjs): restores the four checks of the router-sync
+# Router-sync guard (verify-router-sync.cjs): restores the four checks of the router-sync
 # suite that was deleted with the skill-benchmark lane. This run covers every leg: 1a and 1b
 # (router paths exist, and every reference or asset doc is routed), 2, 3 and 4. Check 1b
 # allowlists only the shared workflow docs that each surface reaches through a symlink, with
@@ -63,7 +63,7 @@ run_guard "router-sync      (verify_router_sync.cjs --checks 1a,1b,2,3,4)" \
 # .github/workflows/routing-registry-drift.yml still covers the compiled side of checks 3
 # and 4 in warn-only mode.
 
-run_guard "doc-claims       (verify_doc_claims.cjs)" \
+run_guard "doc-claims       (verify-doc-claims.cjs)" \
   node "${DOC_CLAIMS}"
 
 if [ "${failures}" -ne 0 ]; then
