@@ -12,8 +12,6 @@ version: 1.11.0.7
 
 # Findings registry
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Holds the reducer-owned view of active, resolved, repeated, and blocked findings.

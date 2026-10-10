@@ -12,8 +12,6 @@ version: 1.0.0.4
 
 # Primitive variants
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Four on-demand primitives loaded only on explicit request: annotation callouts, the sketchy filter, the terminal skin, and the monochrome icon library.

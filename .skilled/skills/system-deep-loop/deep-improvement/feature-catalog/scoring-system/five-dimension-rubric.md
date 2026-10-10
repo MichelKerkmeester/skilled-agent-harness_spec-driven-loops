@@ -12,8 +12,6 @@ version: 1.17.0.13
 
 # Five-dimension rubric
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Scores candidates across structural integrity, rule coherence, integration consistency, output quality, and system fitness.

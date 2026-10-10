@@ -11,8 +11,6 @@ version: 2.0.0.0
 
 # Track-root children lists
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 A track root is a folder directly under `specs/`, such as `specs/sk-doc/`, that

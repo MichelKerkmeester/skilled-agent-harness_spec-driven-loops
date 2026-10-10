@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Heal spec docs lane modes (heal-spec-docs.cjs --lane-modes)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Lane modes restore the scaffold values that a packet's documents lost. Each mode repairs one defect whose correct value can be derived from evidence in the packet, the shipped template or the spec. A defect without that evidence is refused and left alone. Lane modes are the document edits that upgrade-legacy runs after the healer and before the derivation tools.

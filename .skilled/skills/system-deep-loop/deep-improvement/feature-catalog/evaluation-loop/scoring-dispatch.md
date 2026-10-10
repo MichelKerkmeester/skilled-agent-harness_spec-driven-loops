@@ -12,8 +12,6 @@ version: 1.17.0.2
 
 # Scoring dispatch
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Dispatches a candidate through scoring, evidence capture, and reducer refresh steps.

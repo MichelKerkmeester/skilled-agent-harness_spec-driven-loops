@@ -12,8 +12,6 @@ version: 1.4.0.4
 
 # JSONL repair
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW

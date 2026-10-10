@@ -12,8 +12,6 @@ version: 1.14.0.13
 
 # Ideas backlog lifecycle
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Separates one-off idea observations from reducer-promoted backlog candidates and durable rejection state.

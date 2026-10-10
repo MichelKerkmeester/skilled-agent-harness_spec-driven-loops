@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 `sk-code`'s `SKILL.md` carries a default-on, flag-gated, additive directive that asks the compiled per-hub router contract to resolve the mode before falling through to the two-axis registry-driven routing described in [`two-axis-registry-driven-routing.md`](../two-axis-registry-driven-routing/two-axis-registry-driven-routing.md).

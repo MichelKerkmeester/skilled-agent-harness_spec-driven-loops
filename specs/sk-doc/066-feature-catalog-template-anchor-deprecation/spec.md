@@ -12,15 +12,15 @@ _memory:
     packet_pointer: "sk-doc/066-feature-catalog-template-anchor-deprecation"
     last_updated_at: "2026-10-10T19:30:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Closed phase 1, the source deprecation"
-    next_safe_action: "Run phase 2, the retroactive sweep"
+    recent_action: "Closed both phases"
+    next_safe_action: "None, the packet is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "t4-feature-catalog-anchor"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-10 |
 | **Branch** | `worktrees/096-feature-catalog-anchor-deprecation` |
 | **Parent Spec** | None |
@@ -92,7 +92,7 @@ Remove the comment at its producer so new catalogs never get it, then remove eve
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-source-deprecation/ | Stop the mode from emitting the comment | Complete |
-| 2 | 002-retroactive-removal/ | Remove every existing copy and version the owning skills | In Progress |
+| 2 | 002-retroactive-removal/ | Remove every existing copy and version the owning skills | Complete |
 
 ### Phase Transition Rules
 

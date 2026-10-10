@@ -11,8 +11,6 @@ version: 1.4.0.1
 
 # CLI Dispatch Authorization And Inspection (cli-external-orchestration)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The dispatch hooks share one runtime-neutral inspector that decides whether a Bash command is an external-CLI dispatch, and — under Pi — whether that dispatch is authorized. The inspector (`inspectDispatch` in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs`) tokenizes a bounded command without evaluating it and returns exactly one classification:

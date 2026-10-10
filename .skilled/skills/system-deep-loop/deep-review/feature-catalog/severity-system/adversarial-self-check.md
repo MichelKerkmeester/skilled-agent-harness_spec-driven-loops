@@ -12,8 +12,6 @@ version: 1.11.0.6
 
 # Adversarial self-check
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Re-reads blocker evidence before a P0 can become a confirmed review conclusion.

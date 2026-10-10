@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Vision CLI (vision-cli.js)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The command entry for a host that can run a process but cannot load an adapter or receive injected context. Cursor is that host.

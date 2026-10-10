@@ -11,8 +11,6 @@ version: 1.6.0.5
 
 # Research metadata backfill
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The implementation added a research-tree backfill script that creates missing `description.json` and `graph-metadata.json` files under research iteration folders without rewriting complete folders.

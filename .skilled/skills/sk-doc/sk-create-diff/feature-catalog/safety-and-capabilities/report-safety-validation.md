@@ -11,8 +11,6 @@ version: 1.1.0.3
 
 # Report safety validation (validate_report.py)
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Asserts a generated report is safe and self-contained before it is handed off.

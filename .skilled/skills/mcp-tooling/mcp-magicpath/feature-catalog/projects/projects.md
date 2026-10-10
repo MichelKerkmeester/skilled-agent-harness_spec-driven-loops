@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Projects (list_projects / active_project / share_link)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Carries project inventory and sharing. `list_projects` lists projects across the personal workspace and every team the user belongs to. `active_project` reads the projects the user currently has open in the MagicPath web app and is lighter than a `selection` lookup when only the project context is needed. `share_link` prints a shareable URL for a component or project on stdout without opening a browser.

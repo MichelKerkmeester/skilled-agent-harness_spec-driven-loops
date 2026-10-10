@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # Max rounds without convergence emits non-converged
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify non-converged completion behavior.

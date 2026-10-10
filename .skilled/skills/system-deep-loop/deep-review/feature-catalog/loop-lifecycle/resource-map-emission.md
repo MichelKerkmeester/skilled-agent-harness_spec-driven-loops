@@ -12,8 +12,6 @@ version: 1.11.0.8
 
 # Resource Map Emission
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Emits a convergence-time `resource-map.md` from review delta evidence with a clean opt-out path.

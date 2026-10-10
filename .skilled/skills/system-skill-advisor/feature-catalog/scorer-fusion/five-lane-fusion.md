@@ -11,8 +11,6 @@ version: 0.8.0.16
 
 # Five-Lane Analytical Fusion
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Combine evidence from five independent lanes into a single routing score with documented, auditable weights.

@@ -12,8 +12,6 @@ version: 1.17.0.9
 
 # Candidate generation
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Generates one bounded packet-local candidate through the proposal-only deep-improvement subagent.

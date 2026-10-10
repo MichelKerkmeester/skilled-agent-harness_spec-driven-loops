@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # Depth detection parallel vs sequential
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify Depth 0 versus Depth 1 dispatch detection and confirm sequential_thinking inline mode is selected for an explicit Depth: 1 marker.

@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Color analysis (sk_vision_colors)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Deterministic, model-free color analysis: dominant palette, luminance buckets, and average RGB for an image or region.

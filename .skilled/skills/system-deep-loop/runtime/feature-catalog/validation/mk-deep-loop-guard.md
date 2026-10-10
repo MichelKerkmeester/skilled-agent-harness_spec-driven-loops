@@ -14,8 +14,6 @@ version: 1.2.0.0
 
 # system-deep-loop-guard (tool.execute.before plugin)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW

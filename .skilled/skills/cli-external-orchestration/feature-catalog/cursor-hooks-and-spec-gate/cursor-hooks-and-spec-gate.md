@@ -11,8 +11,6 @@ version: 1.4.0.11
 
 # Cursor CLI Hooks And Spec-Gate Integration (cli-cursor)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 `cli-cursor` uses one hook/spec-gate surface for session lifecycle events and tool-call policy. Confirmed event paths normalize Cursor payloads, delegate shared work to existing adapters, and return Cursor-native permission responses where the event supports them.

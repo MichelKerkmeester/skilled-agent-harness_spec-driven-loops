@@ -12,8 +12,6 @@ version: 1.1.0.0
 
 # Numbered worktree/branch naming grammar and allocator (worktree-naming.sh)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Every AI-created branch follows one numbered grammar: `worktrees/NNN-slug` (with the directory `.worktrees/NNN-slug`) for a worktree-backed branch, or `branches/NNN-slug` for a dedicated branch with no worktree. Two flat spec-style namespaces keep the Git-UI branch tree legible as a few clean folders instead of a per-skill pile.

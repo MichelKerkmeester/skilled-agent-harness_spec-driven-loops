@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # Unresolved disagreement triage: graph vs baseline
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Demonstrate measurable effort reduction between no-graph baseline and graph-driven workflow for finding unresolved critical disagreements.

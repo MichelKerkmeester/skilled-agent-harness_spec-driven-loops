@@ -11,8 +11,6 @@ version: 1.1.0.3
 
 # Deterministic diffing
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Produces a deterministic line-level diff with inline word-level highlighting and a cheap move heuristic, after canonicalizing both sides (Unicode NFC, newline, trailing-whitespace normalization).

@@ -11,8 +11,6 @@ version: 1.6.0.1
 
 # CLI hook fallbacks and plugin bridges
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 A CLI nobody's runtime calls does not close the transport-down incident class, so every 028 CLI workstream shipped paired runtime integrations. Prompt-time hooks for Claude Code and OpenCode gained a shared CLI fallback helper per system: the hook runs the casual-prompt gate first and passes the rest to a CLI that owns daemon startup. On a cold socket the CLI starts the launcher and waits for the daemon within a bounded cold-start window of at most 5 seconds, then falls back to the local Python scorer with a degraded answer when the daemon does not respond in that window. The hook fails open rather than blocking the prompt when its own budget ends first or the CLI fails.

@@ -12,8 +12,6 @@ version: 1.11.0.6
 
 # JSONL state log
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Stores the append-only execution history for the deep-review lineage.

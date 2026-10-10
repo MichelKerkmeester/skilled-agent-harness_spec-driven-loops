@@ -12,8 +12,6 @@ version: 1.6.0.16
 
 # JSON mode structured summary hardening
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The structured JSON summary path added support to the session capturing pipeline. The shipped implementation accepts richer caller-authored session data via `--json` and `--stdin` inputs, including fields like `toolCalls` and `exchanges`. It also preserves file-backed JSON authority and ships Wave 2 hardening fixes for decision confidence, truncated outcome titles, `git_changed_file_count` stability, and template count preservation.

@@ -11,8 +11,6 @@ version: 0.8.0.13
 
 # Python Regression Dataset
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Guarantee the Python compatibility surface does not regress on hand-curated P0 cases that have been stable since pre-027.

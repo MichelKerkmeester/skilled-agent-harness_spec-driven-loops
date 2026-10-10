@@ -12,8 +12,6 @@ version: 0.8.0.15
 
 # advisor_status Command
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Give operators and runtimes a single diagnostic read that summarizes whether advisor state is healthy enough to trust for routing.

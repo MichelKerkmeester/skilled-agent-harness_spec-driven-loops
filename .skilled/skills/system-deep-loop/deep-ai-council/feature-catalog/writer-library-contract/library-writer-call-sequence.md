@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # Library writer call sequence
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify lib/persist-artifacts.cjs exports the 7 named writers and that they emit artifact_written events.

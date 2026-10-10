@@ -12,8 +12,6 @@ version: 1.0.0.0
 
 # Mutation and ownership boundaries (cli-orca)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Separates read-only discovery from state-changing Orca operations and keeps sibling owners in charge of the surfaces cli-orca does not own.

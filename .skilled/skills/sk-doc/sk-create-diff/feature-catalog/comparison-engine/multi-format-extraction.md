@@ -11,8 +11,6 @@ version: 1.1.0.3
 
 # Multi-format extraction
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Extracts comparable text from plain text, Markdown, HTML, DOCX, and text-layer PDF, each with an explicit fidelity tier so a comparison is never trusted beyond what the extractor can see.

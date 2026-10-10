@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # Stalled-council blocker ranking: graph vs baseline
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Demonstrate the graph produces a prioritized blocker list; the baseline produces an unranked dump.

@@ -12,8 +12,6 @@ version: 1.14.0.13
 
 # Rejected-pattern cache
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Builds a bounded reducer-owned cache that suppresses rejected candidates before they re-enter focus selection.

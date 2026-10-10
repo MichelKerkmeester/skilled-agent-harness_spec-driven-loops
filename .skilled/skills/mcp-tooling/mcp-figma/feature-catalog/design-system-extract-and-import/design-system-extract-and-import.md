@@ -12,8 +12,6 @@ version: 1.0.0.2
 
 # Design-system extract and import (figma-ds-cli extract / import)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Moves a design system out of Figma read-only, or into Figma behind a gate. Extract feeds a measured Style Reference (extracted design tokens) via `sk-design-md-generator`; import changes the document and is gated. A typical caller extracts a `DESIGN.md` to ground later work, or imports an existing token source to populate Figma collections.

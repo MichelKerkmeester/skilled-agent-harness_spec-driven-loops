@@ -12,8 +12,6 @@ version: 1.0.0.0
 
 # Template-driven message contract (validate-message.mjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The rules a commit message, a PR description and a new branch name must meet live in the templates themselves. Each of `commit-message-template.md`, `pr-template.md` and `worktree-checklist.md` carries an "Enforced rules" section: a table of rule ids for the reader and a fenced `json` block the gates read. Edit the block and every gate follows it. Nothing else in the code names a rule.

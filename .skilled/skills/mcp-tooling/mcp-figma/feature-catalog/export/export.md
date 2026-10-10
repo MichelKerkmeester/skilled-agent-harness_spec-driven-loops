@@ -12,8 +12,6 @@ version: 1.0.0.2
 
 # Export (figma-ds-cli export / export-jsx / export-storybook)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Writes assets and code out of the document: PNG/SVG, CSS, Tailwind, JSX, and Storybook. Export is read-only with respect to the Figma document but writes local files, so it always requires an explicit output path and must never silently overwrite an existing file.

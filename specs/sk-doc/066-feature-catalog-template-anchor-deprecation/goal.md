@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "t4-feature-catalog-anchor"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -75,11 +75,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `git grep -E 'sk-doc-template: skill_asset_feature[_-]catalog' -- .skilled .hermes` prints no match
-- [ ] `validate_catalog_package.py --repo-root .` reports the same 761 violations (42 fail, 719 warn) it reported before the sweep
-- [ ] sk-create-feature-catalog reads version 1.0.2.0, and every other skill or mode whose catalog changed has a bumped `SKILL.md` version and a matching new changelog entry
-- [ ] `sync-skills-hermes.cjs --check` and the trigger index check both pass
-- [ ] `validate.sh --recursive --strict` on this packet prints RESULT: PASSED for the parent and both children
+- [x] `git grep -E 'sk-doc-template: skill_asset_feature[_-]catalog' -- .skilled .hermes ':!**/changelog/**'` prints no match
+- [x] `validate_catalog_package.py --repo-root .` reports the same 761 violations (42 fail, 719 warn) it reported before the sweep
+- [x] sk-create-feature-catalog reads version 1.0.2.0, and every other skill or mode whose catalog changed has a bumped `SKILL.md` version and a matching new changelog entry
+- [x] `sync-skills-hermes.cjs --check` and the trigger index check both pass
+- [x] `validate.sh --recursive --strict` on this packet prints RESULT: PASSED for the parent and both children
 <!-- /ANCHOR:completion -->
 
 ---
@@ -96,11 +96,12 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | 001-source-deprecation | Done | Mode grep exits 1, mode at 1.0.2.0 |
-| 002-retroactive-removal | In Progress | |
+| 002-retroactive-removal | Done | 548 files swept, 27 units bumped |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Origin | Commit `7d7650471d` added the comment to the template and 588 snippets in one sweep. |
+| Criterion 1 scope | Changelog entries name the removed comment, so the grep excludes `changelog/` paths. |
 <!-- /ANCHOR:log -->

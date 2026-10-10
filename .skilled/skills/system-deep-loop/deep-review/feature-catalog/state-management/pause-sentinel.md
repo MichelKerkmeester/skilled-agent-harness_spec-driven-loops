@@ -12,8 +12,6 @@ version: 1.11.0.5
 
 # Pause sentinel
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Lets an operator pause an autonomous review loop between iterations by creating a sentinel file, without killing the process or losing prior state.

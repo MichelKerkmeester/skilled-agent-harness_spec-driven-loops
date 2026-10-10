@@ -11,8 +11,6 @@ version: 1.1.0.0
 
 # Numbered worktree workflows
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Git worktrees create isolated working directories sharing one repository database, letting an AI work on multiple features in parallel without stash chaos or context switching. sk-git wraps raw `git worktree` usage in a seven-step workflow — gather inputs, verify safety, create, install dependencies, verify a clean baseline, and report — built around the numbered naming grammar.

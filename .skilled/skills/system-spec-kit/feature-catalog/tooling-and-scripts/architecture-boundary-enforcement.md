@@ -12,8 +12,6 @@ version: 1.6.0.16
 
 # Architecture boundary enforcement
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Architecture boundary enforcement automates two rules: `shared/` must not import from `runtime/` or `runtime/cli/`, and `runtime/scripts/` must contain only thin wrappers.

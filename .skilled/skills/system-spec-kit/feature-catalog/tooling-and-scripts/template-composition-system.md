@@ -12,8 +12,6 @@ version: 1.6.0.9
 
 # Template Composition System
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The Template Composition System is the current Spec Kit document-generation path. It resolves a public Level value, selects the required packet documents, renders inline Level gates, and writes the resulting `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, and any Level-specific verification or decision files directly into a target spec folder.

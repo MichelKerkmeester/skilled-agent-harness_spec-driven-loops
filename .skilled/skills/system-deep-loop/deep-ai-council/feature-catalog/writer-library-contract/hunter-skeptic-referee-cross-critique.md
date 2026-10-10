@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # Hunter Skeptic Referee cross-critique
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify Hunter, Skeptic, and Referee roles are documented with the score adjustment rule and comparison-table treatment.

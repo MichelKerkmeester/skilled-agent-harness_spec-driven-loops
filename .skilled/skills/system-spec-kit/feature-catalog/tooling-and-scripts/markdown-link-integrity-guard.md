@@ -12,8 +12,6 @@ version: 1.6.0.1
 
 # Markdown link integrity guard
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 `check-markdown-links.cjs` is a repo-wide guard that verifies every relative markdown link and `[id]:` reference definition across the active skills, commands, and agents documentation resolves to a file on disk. It fails a pull request when any link points at a missing target.

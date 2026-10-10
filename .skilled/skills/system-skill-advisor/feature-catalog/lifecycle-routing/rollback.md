@@ -11,8 +11,6 @@ version: 0.8.0.14
 
 # Atomic Lifecycle Rollback
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Keep lifecycle mutations reversible so operators can experiment with supersession, archival and schema changes without fear of leaving the routing surface in a half-applied state.

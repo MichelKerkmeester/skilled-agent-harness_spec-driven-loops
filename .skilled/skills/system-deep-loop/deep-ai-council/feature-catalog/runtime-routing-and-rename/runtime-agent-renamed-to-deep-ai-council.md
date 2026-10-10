@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # Runtime agent renamed to deep-ai-council
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify active runtime mirrors use deep-ai-council.

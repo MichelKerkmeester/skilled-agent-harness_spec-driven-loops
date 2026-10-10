@@ -11,8 +11,6 @@ version: 0.3.0.0
 
 # Injection screen measurement (score-injection-screen.mjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Tests offline whether a Jev noul spots text that tries to instruct an AI agent better than flag-nothing and a fixed lexical screen.

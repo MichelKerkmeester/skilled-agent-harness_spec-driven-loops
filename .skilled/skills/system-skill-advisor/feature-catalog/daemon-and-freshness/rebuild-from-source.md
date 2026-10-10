@@ -11,8 +11,6 @@ version: 0.8.0.13
 
 # Rebuild From Source on Corrupt SQLite
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Ensure the advisor never gets stuck in an unrecoverable state when SQLite storage is corrupted. The rebuild-from-source path reconstructs routable state from the authoritative source files without user intervention.

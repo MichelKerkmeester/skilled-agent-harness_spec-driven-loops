@@ -12,8 +12,6 @@ version: 1.11.0.6
 
 # Config management
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Defines the immutable review-packet contract for the current lineage.

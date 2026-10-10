@@ -12,8 +12,6 @@ version: 1.11.0.5
 
 # Resource Map Coverage Gate
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Reports how well the review covered the artifacts declared in the spec folder's `resource-map.md`, so a reviewer can see which expected surfaces went untouched before a verdict is finalized.

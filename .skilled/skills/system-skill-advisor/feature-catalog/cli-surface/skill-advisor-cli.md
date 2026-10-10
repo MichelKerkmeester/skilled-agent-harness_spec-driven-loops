@@ -11,8 +11,6 @@ version: 0.8.0.2
 
 # Daemon-backed skill-advisor CLI
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The CLI front door `node .skilled/bin/skill-advisor.cjs` is the only surface over the advisor daemon contract. The CLI exposes 9 commands through a hand-maintained manifest whose schemas are held byte-identical to the server `TOOL_DEFINITIONS` by a dedicated parity suite (`tests/skill-advisor-cli-manifest-parity.vitest.ts`) — drift between the two registries fails tests rather than shipping. `skill-advisor list-tools --format json` returns `{ status: "ok", data: { count: 9 } }` as the runtime parity check. The Python facade `skill_advisor.py` stayed untouched, and the OpenCode plugin plus the Claude/OpenCode prompt-submit hooks shell out to the CLI.

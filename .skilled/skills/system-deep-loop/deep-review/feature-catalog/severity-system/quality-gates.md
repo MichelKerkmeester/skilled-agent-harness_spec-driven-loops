@@ -12,8 +12,6 @@ version: 1.11.0.9
 
 # Quality gates
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Prevents the review loop from stopping or passing on weak evidence, missing coverage, or unresolved blockers.

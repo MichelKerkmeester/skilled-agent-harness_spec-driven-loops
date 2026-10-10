@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # runtime query CLI hostile metadata redaction
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify runtime query CLI redacts arbitrary metadata keys and bounds string lengths in its response.

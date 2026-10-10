@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Elements (element-intent queries over search_screens)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Carries component-level research: how real apps handle a specific UI element in a specific context or state — bottom sheets, inline validation, confirmation dialogs, tab bars. There is **no `search_elements` or element-detail tool** — element research is a query intent over the single documented `search_screens` tool, analyzed within the returned screens.

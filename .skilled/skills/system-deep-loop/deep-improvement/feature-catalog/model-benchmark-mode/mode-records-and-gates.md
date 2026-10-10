@@ -12,8 +12,6 @@ version: 1.17.0.8
 
 # Mode records and hardening gates
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Stamps a mode field on every state record and exposes two env gates that harden the 5-dim scorer.

@@ -11,8 +11,6 @@ version: 1.1.0.3
 
 # Capability and fidelity reporting (capabilities)
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Reports which formats are supported, at what fidelity tier, and which optional PDF extractor is present, so limited-fidelity results are never presented as complete.

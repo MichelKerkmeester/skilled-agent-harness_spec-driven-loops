@@ -11,8 +11,6 @@ version: 1.6.0.1
 
 # Daemon-backed skill-advisor CLI surface
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The skill-advisor daemon ships a CLI front door at `node .skilled/bin/skill-advisor.cjs` over the same daemon/IPC transport used by MCP.

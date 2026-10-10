@@ -12,8 +12,6 @@ version: 1.6.0.7
 
 # Completion Verification Workflow
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Completion Verification Workflow is the spec-kit completion gate that decides whether a spec folder is ready to be claimed as finished. It audits the verification checklist inside a target spec folder's `tasks.md`, counts checkbox items by priority, reads the acceptance-criteria table when that document exists, and blocks completion when critical or required work is missing or a criterion is not closed.

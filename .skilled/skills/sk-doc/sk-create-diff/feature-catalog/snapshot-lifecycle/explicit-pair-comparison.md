@@ -11,8 +11,6 @@ version: 1.1.0.4
 
 # Explicit-pair comparison (compare-pair)
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Compares two explicit files with no stored state — the fallback when no baseline exists or when comparing two arbitrary versions.

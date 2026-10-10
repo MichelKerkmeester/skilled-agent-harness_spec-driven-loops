@@ -11,8 +11,6 @@ version: 0.8.0.14
 
 # Graph-Metadata Derived Sync
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Persist derived extraction so the scorer and rebuild-from-source pipeline can both consume it, while keeping the source-of-truth SKILL.md untouched.

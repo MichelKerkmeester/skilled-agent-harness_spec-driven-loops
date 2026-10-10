@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Executable resolution and versioned preflight (cli-orca)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The cli-orca skill resolves exactly one Orca executable per session in a fixed order and keeps it for the whole task, then captures version evidence before relying on any flag. The order exists because on Linux outside an Orca-managed terminal the bare name `orca` normally resolves to the GNOME Orca screen reader, so the runtime picks a more specific candidate first.

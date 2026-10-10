@@ -11,8 +11,6 @@ version: 0.11.0.26
 
 # Claude Code user-prompt-submit Hook
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Surface skill recommendations in Claude Code sessions at prompt time, without blocking the prompt when the advisor is degraded.

@@ -12,8 +12,6 @@ version: 2.1.0.26
 
 # Progressive validation for spec documents
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Progressive validation runs a 4-level pipeline (detect, auto-fix, suggest, report) on top of `validate.sh` for spec documents.

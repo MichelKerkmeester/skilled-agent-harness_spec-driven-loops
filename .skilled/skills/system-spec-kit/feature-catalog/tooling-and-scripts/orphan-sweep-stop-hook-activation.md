@@ -12,8 +12,6 @@ version: 1.6.0.2
 
 # Orphan sweep stop-hook activation
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The Stop hook runs `session-cleanup.sh`, which cleans up a session's descendants from `CLAUDE_SESSION_PID`. The harness never sets that variable, and guessing the session pid from PPID is deliberately refused because a wrong guess could kill another live session. So in practice the no-session-pid branch did nothing, and orphaned MCP daemons from prior sessions could pile up.

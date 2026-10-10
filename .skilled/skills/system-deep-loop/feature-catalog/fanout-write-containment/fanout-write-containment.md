@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Fan-Out Write Containment (system-deep-loop)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 A dispatched leaf is told to write only inside its lineage directory, but that boundary is carried

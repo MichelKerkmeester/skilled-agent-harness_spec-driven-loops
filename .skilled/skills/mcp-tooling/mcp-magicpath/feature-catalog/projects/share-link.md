@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # share_link
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Shareable-URL production. READ-ONLY. Canonical callable: `magicpath.share_link({ identifier })` (confirm via `tool_info` first).

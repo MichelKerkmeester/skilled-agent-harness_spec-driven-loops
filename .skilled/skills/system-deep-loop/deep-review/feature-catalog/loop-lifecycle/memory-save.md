@@ -12,8 +12,6 @@ version: 1.11.0.6
 
 # Memory save
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Preserves the completed review packet for future recovery without making it part of the verdict path.

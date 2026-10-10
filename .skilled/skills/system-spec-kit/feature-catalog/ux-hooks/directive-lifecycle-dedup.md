@@ -12,8 +12,6 @@ version: 1.7.0.3
 
 # Cross-runtime directive-lifecycle dedup
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The skill-advisor brief carries a dynamic `Advisor:` route line followed by constant policy. Model-context runtimes send the complete block on the first proven turn and after lifecycle or transcript boundaries, then may retain only the route line on a proven repeat. When no brief exists the advisor hooks emit a fallback that opens with one status line above the directives block: `Advisor: outage (<label>); route by hand: ...`, `Advisor: no skill matched.` or `Advisor: prompt skipped.` Dedup treats that fallback like a brief, so a known, confirmed session gets the whole text on the first no-route turn and the status line alone on later turns, while unknown sessions, the kill switch and thrown errors always get the whole text. Pi's visible input transform instead suppresses its complete advisor-and-dispatch contribution on a proven repeat so the raw user turn remains byte-identical.

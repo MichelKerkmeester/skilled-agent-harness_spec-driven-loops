@@ -11,8 +11,6 @@ version: 1.11.0.1
 
 # Divergent convergence mode
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 `divergent` is an opt-in convergence-mode modifier. It preserves review's convergence math, legal-stop gates, security locks, read-only authority, and final verdict mapping.

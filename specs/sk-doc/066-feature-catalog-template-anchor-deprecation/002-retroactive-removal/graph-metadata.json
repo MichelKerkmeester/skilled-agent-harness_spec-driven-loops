@@ -13,6 +13,7 @@
     "trigger_phrases": [
       "retroactive removal",
       "phase 2 retroactive removal",
+      "feature catalog template comment sweep",
       "retroactive removal plan",
       "retroactive removal tasks",
       "retroactive removal acceptance criteria",
@@ -23,25 +24,28 @@
       "retroactive",
       "removal",
       "phase",
+      "feature",
+      "catalog",
+      "template",
+      "comment",
+      "sweep",
       "plan",
       "tasks",
       "acceptance",
-      "criteria",
-      "goal",
-      "implementation",
-      "summary",
-      "broken",
-      "missing"
+      "criteria"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/remove_template_anchor.py",
+      "scratch/remove-template-anchor-report.json",
+      ".skilled/skills/cli-classifier/README.md"
     ],
     "entities": [
       {
@@ -78,6 +82,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "remove_template_anchor.py",
+        "kind": "file",
+        "path": "scratch/remove_template_anchor.py",
+        "source": "derived"
+      },
+      {
+        "name": "remove-template-anchor-report.json",
+        "kind": "config",
+        "path": "scratch/remove-template-anchor-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/README.md",
         "source": "derived"
       },
       {
@@ -129,7 +151,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Take",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -141,13 +169,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Census",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -165,33 +187,15 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
+        "name": "Regenerate Hermes",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "A census before the sweep found 548 feature catalog files holding the comment: 529 with `skillassetfeaturecatalog` and 19 in `mcp-aside-devtools` with the hyphenated `skillassetfeature-catalog`",
     "created_at": "2026-10-10T18:42:47Z",
-    "last_save_at": "2026-10-10T18:42:50.523Z",
+    "last_save_at": "2026-10-10T19:06:45.939Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b7e664e3990421f9308b4e48b42e733d8fc6c496e45b57b2c298a7f0f37e958",
+    "source_fingerprint": "sha256:cc791b2df68cf5c426e06222cb9efe0f71b788028d718a526578b52155b047a2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2d267972f4cd823c99bbcac2216087638d28a607f39ea9397ed233715fe5dee9",
-      "plan.md": "cd54b1a1d75447e1b7f79ce73ede346a83689f7bf52ced47347d9a3d640b0324",
-      "tasks.md": "0118c52e2a1650f1419763125937c19f4c119d7e2953a151cd64c352cc91fa06",
-      "implementation-summary.md": "2b45a6209e9a9c3d49df72b0524cbbccd2a7c38c8072be5e2f1ef67366149062"
+      "spec.md": "925d3d886403c8d5154c12979ae4157570dcbe31018ef9b9b02b9060e66caba6",
+      "plan.md": "699bbc4ac49cbcebd7855a95cdd808ce515fdb800053a89d2a2c6c32daa050bc",
+      "tasks.md": "a5261130ca448b982fad04d76ab41d6481804510484e6db9b830b9ce52c6b9f1",
+      "implementation-summary.md": "616dc36b6a1aeb4400bf9120b9495cd33f9ba70f9ddc11fde67b20f0aaa0fa52"
     },
     "last_active_at": null
   }

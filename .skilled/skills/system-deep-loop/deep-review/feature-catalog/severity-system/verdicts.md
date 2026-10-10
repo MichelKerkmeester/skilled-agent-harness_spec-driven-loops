@@ -12,8 +12,6 @@ version: 1.11.0.7
 
 # Verdicts
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Maps active findings and gate status into FAIL or CONDITIONAL or PASS.

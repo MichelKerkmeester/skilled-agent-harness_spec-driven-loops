@@ -12,8 +12,6 @@ version: 1.11.0.9
 
 # Iteration dispatch
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Runs one fresh-context review cycle against the current focus dimension and file set.

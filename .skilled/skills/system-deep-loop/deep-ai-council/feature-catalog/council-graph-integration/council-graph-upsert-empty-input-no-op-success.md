@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # runtime upsert CLI empty input no-op success
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify runtime upsert CLI returns explicit no-op success on empty input.

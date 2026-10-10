@@ -12,8 +12,6 @@ version: 1.17.0.15
 
 # Runtime mirrors
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Measures whether the runtime-specific agent mirrors still reflect the canonical agent body.

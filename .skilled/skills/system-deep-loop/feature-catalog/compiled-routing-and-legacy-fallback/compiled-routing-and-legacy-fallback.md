@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 `system-deep-loop`'s `SKILL.md` carries a default-on, flag-gated, additive directive that asks the compiled per-hub router contract to resolve the mode before falling through to the mode-registry-driven routing described in [`deep-loop-mode-classification.md`](../deep-loop-mode-classification/deep-loop-mode-classification.md).

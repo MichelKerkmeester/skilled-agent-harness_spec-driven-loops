@@ -11,8 +11,6 @@ version: 2.1.0.5
 
 # Packet-Authored, Registry-Projected Routing (sk-doc)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 `sk-doc` routing is registry-driven at runtime and packet-authored at source. Each of its fourteen nested packets owns a single `Keyword triggers:` line that is the source of truth for that packet's routing vocabulary; `mode-registry.json` and `hub-router.json` are synchronized projections the hub reads without re-deriving the mapping during a request.

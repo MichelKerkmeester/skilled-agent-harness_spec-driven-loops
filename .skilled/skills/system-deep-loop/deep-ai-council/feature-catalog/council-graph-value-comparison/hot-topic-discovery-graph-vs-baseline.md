@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # Hot-topic discovery: graph vs baseline
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Demonstrate hot_nodes mode surfaces high-degree contested topics; baseline requires manual cross-reference tallying.

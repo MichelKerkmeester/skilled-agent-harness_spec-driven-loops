@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # active_project
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Open-project context from the web app. READ-ONLY. Canonical callable: `magicpath.active_project({})` (confirm via `tool_info` first).

@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # State JSONL records council_complete event
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify final state includes council_complete.

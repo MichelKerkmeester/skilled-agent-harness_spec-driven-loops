@@ -12,8 +12,6 @@ version: 1.6.0.8
 
 # Spec folder literal naming: AI-derived slugs
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW

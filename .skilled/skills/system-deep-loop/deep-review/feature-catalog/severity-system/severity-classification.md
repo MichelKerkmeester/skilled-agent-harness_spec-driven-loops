@@ -12,8 +12,6 @@ version: 1.11.0.6
 
 # Severity classification
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Assigns P0 or P1 or P2 meaning and severity weight to each review finding.

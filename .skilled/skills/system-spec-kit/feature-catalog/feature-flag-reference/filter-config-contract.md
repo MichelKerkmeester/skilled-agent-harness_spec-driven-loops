@@ -11,8 +11,6 @@ version: 1.6.0.8
 
 # Filter Config Contract
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 This document captures the implemented behavior, source references, and remediation metadata for the content-filter configuration contract centered on `config/filters.jsonc`.
 
 ## 1. OVERVIEW

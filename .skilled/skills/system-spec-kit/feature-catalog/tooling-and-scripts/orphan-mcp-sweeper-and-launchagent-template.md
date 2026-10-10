@@ -12,8 +12,6 @@ version: 1.6.0.9
 
 # Orphan MCP Sweeper and LaunchAgent Template
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 This feature turns manual orphan MCP cleanup into a documented operator workflow. It gives humans and AI agents one place to find the dry-run command, preservation rules, log behavior, and the boundary between repo-reviewed automation and system-level launchd activation.

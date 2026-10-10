@@ -12,8 +12,6 @@ version: 1.17.0.9
 
 # Command dispatch
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Routes deep-improvement execution from the slash command into the auto and confirm workflow assets.

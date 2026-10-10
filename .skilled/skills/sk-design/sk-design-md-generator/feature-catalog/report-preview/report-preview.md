@@ -13,8 +13,6 @@ version: 1.0.0.7
 
 # Report and preview (report-gen.ts / preview-gen.ts / proof.ts)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Renders visual artifacts from a validated DESIGN.md + tokens.json pair. Three scripts cover distinct review needs: a token-to-section HTML report for provenance auditing, a CSS visual preview that renders the design system as styled HTML, and a fidelity proof that compares live extraction against the token set. These outputs serve human review, team handoff, and stakeholder sign-off. All three scripts take `tokens.json` as their first argument and write to an output directory.

@@ -12,8 +12,6 @@ version: 1.17.0.2
 
 # Initialization
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Initializes a fresh deep-improvement runtime packet with copied control artifacts and baseline state.

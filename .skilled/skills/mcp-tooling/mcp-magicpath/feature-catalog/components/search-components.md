@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # search_components
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Component name search across personal and team projects. READ-ONLY. Canonical callable: `magicpath.search_components({ query, limit?, team? })` (confirm via `tool_info` first).

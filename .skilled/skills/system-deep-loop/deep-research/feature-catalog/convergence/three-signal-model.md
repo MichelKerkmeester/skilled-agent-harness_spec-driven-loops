@@ -12,8 +12,6 @@ version: 1.14.0.10
 
 # Three-signal model
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Combines rolling novelty, MAD noise floor, and question coverage into the live deep-research stop vote.

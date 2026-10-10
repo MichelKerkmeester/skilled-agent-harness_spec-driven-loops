@@ -12,8 +12,6 @@ version: 1.17.0.11
 
 # Dimensional progress
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Reduces run records into per-dimension trends, best-known state, and operator-facing stop guidance.

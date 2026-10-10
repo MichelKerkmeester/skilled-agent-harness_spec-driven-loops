@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Md-Generator Procedure Card Inventory
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 `design-md-generator` has one private procedure card selected after the public mode is chosen: `design-system-extraction.md`.

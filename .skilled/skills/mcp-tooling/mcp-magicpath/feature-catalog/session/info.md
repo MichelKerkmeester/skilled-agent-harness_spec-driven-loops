@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # info
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The session entry point and the cheapest reachability check. READ-ONLY. Canonical callable: `magicpath.info({})` (confirm via `tool_info` first).

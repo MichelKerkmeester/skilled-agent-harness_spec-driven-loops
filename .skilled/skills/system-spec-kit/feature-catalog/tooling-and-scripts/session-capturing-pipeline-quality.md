@@ -12,8 +12,6 @@ version: 1.6.0.30
 
 # Session Capturing Pipeline Quality
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Session capturing pipeline quality is the current reality-alignment feature for the session-capturing workstream. It covers the full shipped session-capture path for `generate-context.js`:

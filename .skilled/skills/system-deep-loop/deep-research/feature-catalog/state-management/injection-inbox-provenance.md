@@ -12,8 +12,6 @@ version: 1.14.0.13
 
 # Injection inbox provenance
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Adds `research/inbox.jsonl` as the canonical late-question injection surface with reducer-carried provenance.

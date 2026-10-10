@@ -12,8 +12,6 @@ version: 1.17.0.9
 
 # Mode switch
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Routes loop-host between the agent-improvement scorer and the model-benchmark materialize-then-run pipeline.

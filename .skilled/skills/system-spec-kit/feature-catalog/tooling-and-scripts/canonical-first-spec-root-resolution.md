@@ -12,8 +12,6 @@ version: 1.0.0.0
 
 # Canonical-first spec-root resolution
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Canonical-first spec-root resolution gives unqualified packet names a stable canonical winner under `.opencode/specs`, preserves explicit paths, retains a legacy-only read fallback, and blocks writes when two physical roots contain divergent copies of the same packet.

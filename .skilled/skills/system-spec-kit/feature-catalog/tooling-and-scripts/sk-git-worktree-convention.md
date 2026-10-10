@@ -12,8 +12,6 @@ version: 1.6.0.2
 
 # sk-git numbered worktree convention (wt/{NNNN}-{name})
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Spec-folder work and CLI-dispatched code work often run inside a Git worktree so the live tree is never edited directly. The `sk-git` skill owns all git/version-control intent, including the naming convention for those worktrees. This catalog entry records the convention so it is discoverable from the feature inventory and cross-references the `sk-git` skill, which owns the full create/restructure mechanics. The convention is referenced by the orchestrator dispatch contracts (for example, the checkpoint-v2 packet's per-phase cli-opencode dispatch ran inside a fresh worktree).

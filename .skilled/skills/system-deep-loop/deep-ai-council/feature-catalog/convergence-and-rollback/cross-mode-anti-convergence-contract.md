@@ -12,8 +12,6 @@ version: 1.7.0.1
 
 # Cross-mode anti-convergence contract
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify the council slice of the cross-mode anti-convergence contract.

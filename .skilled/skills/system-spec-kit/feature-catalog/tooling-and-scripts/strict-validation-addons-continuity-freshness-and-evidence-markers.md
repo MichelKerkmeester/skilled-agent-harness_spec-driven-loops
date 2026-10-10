@@ -12,8 +12,6 @@ version: 1.6.0.5
 
 # Strict validation add-ons: continuity freshness and evidence markers
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The implementation extended `validate.sh --strict` with continuity-freshness, evidence-marker lint, the bracket-depth audit tooling, and the normalizer lint guardrail.

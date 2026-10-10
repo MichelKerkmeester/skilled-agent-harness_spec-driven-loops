@@ -12,8 +12,6 @@ version: 1.17.0.1
 
 # Score-delta benchmark gates
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Lane B benchmark reports now carry quality-delta evidence, not only pass/fail status. `run-benchmark.cjs` compares each fixture's after score with the fixture baseline, emits `fixtureDeltas[]`, computes an aggregate `outcomeScoreDelta`, and writes the same fields to the benchmark ledger. `reduce-state.cjs` summarizes the helped, hurt, unchanged, and missing-baseline counts, while `promote-candidate.cjs` blocks benchmark promotion when the outcome delta is negative, missing without explicit review, or contains hurt fixtures without `--allow-hurt-fixtures`.

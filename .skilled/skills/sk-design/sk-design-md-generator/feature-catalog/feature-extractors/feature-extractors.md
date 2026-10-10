@@ -14,8 +14,6 @@ version: 1.0.0.5
 
 # Feature extractors (six detectors)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Six per-feature detectors that run inline during the extraction phase, each targeting a specific design-system dimension. They enrich the extraction output with structured metadata that the write and validate phases consume. Each detector writes into its own field of the output schema and reports findings even when none are found: a detector that captures no data records the absence rather than fabricating values. Five detectors write into `tokens.json` (`a11yTokens`, `darkMode`, `meta.framework`, `iconSystem`, `motionSystem`); the design-boundary detector writes into the sibling `extraction-report.json` (`designBoundary`) and feeds the L3/L4 stability classification. The detectors are the source of truth for the v3 Style Reference sections that depend on conditional data: dark mode, accessibility, icons, motion, and the framework markers in the file header.

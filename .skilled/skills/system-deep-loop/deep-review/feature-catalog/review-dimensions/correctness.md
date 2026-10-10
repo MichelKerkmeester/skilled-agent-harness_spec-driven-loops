@@ -12,8 +12,6 @@ version: 1.11.0.6
 
 # Correctness
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Audits logic, invariants, and behavior against observable intent.

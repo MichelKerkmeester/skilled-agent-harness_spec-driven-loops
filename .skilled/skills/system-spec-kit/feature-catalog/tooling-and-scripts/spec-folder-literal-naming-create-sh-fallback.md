@@ -11,8 +11,6 @@ version: 1.6.0.6
 
 # Spec folder literal naming: create.sh fallback
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW

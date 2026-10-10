@@ -12,8 +12,6 @@ version: 1.14.0.11
 
 # JSONL state log
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Provides the append-only deep-research ledger for config, iteration, and event records.

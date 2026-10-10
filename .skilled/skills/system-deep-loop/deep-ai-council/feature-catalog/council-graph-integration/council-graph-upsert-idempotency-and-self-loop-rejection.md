@@ -12,8 +12,6 @@ version: 1.7.0.7
 
 # runtime upsert CLI idempotency and self-loop rejection
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify runtime upsert CLI is idempotent and rejects self-loop edges.

@@ -11,8 +11,6 @@ version: 1.4.0.15
 
 # Torn-tail recovery marker ordering
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW

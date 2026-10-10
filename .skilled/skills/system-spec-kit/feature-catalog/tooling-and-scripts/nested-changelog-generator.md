@@ -11,8 +11,6 @@ version: 2.1.0.0
 
 # Nested changelog generator (nested-changelog.js)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Renders a packet-local changelog for a spec root or phase from the packet's own documents, with a search phrase that names the packet and frontmatter that stays valid for any title.

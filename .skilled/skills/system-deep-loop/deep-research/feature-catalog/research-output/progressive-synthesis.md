@@ -12,8 +12,6 @@ version: 1.14.0.11
 
 # Progressive synthesis
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Keeps `research/research.md` current during the loop while preserving workflow ownership of the final synthesis pass.

@@ -12,8 +12,6 @@ version: 1.6.0.8
 
 # Session Extraction and Enrichment
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Session Extraction and Enrichment is the extractor-surface slice that turns raw session telemetry into higher-value structures the save pipeline can render and rank.

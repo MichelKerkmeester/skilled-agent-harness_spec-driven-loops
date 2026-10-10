@@ -12,8 +12,6 @@ version: 1.7.0.8
 
 # Advisor routes council prompts to skill
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify scorer coverage for deep-ai-council.

@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # runtime query CLI five modes return prompt-safe context
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify all 5 documented runtime query CLI modes return prompt-safe bounded context.

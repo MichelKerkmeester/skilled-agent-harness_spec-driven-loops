@@ -12,8 +12,6 @@ version: 1.17.0.12
 
 # Surface discovery
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Discovers the repo surfaces that define an agent beyond its canonical markdown file.

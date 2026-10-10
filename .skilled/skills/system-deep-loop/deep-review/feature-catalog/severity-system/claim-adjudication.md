@@ -12,8 +12,6 @@ version: 1.11.0.7
 
 # Claim adjudication
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Turns new P0 and P1 findings into typed, review-visible claims with evidence and downgrade rules.

@@ -12,8 +12,6 @@ version: 1.11.0.7
 
 # Dashboard
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Publishes the current review status as a machine-owned summary surface.

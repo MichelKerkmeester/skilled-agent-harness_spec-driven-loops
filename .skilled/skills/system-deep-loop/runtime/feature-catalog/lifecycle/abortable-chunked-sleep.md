@@ -11,8 +11,6 @@ version: 1.4.0.15
 
 # Abortable chunked sleep
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW

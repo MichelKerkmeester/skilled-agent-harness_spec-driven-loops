@@ -12,8 +12,6 @@ version: 1.17.0.14
 
 # Dynamic profiling
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Builds a target-specific scoring profile from the agent file being evaluated.

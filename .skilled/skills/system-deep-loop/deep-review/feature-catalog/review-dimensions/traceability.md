@@ -12,8 +12,6 @@ version: 1.11.0.6
 
 # Traceability
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Audits whether claims and linked artifacts line up with shipped behavior.

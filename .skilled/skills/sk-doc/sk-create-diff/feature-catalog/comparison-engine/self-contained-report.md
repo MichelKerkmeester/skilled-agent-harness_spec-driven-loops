@@ -11,8 +11,6 @@ version: 1.1.0.4
 
 # Self-contained report
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Renders the diff as a single self-contained HTML file — inlined CSS, zero JavaScript, a restrictive Content-Security-Policy, escaped source content, and accessibility affordances — in unified or side-by-side views.

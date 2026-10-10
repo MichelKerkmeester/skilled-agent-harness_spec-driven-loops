@@ -12,8 +12,6 @@ version: 1.11.0.7
 
 # Strategy tracking
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Maintains the mutable review brain across fresh-context agent dispatches.

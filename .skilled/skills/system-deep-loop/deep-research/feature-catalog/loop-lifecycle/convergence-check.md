@@ -12,8 +12,6 @@ version: 1.14.0.11
 
 # Convergence check
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Applies the statistical stop vote, legal-stop gates, and blocked-stop handling before research can end.

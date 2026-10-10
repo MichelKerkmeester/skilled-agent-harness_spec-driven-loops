@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Registry-Driven Deep-Loop Mode Classification (system-deep-loop)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 `system-deep-loop` is a registry-driven, invokable hub. `mode-registry.json` is the single source of truth for its five `workflowMode` packets; the hub classifies a request, resolves the mode through the registry, and loads `registry[mode].packet` without re-deriving the mapping or holding per-mode logic itself.

@@ -12,8 +12,6 @@ version: 1.6.0.13
 
 # Setup, Native Module Health, and MCP Installation
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 This setup surface combines two neighboring but distinct responsibilities inside `runtime/cli/setup/`: prerequisite validation for spec-driven implementation workflows, and native-module health for the Spec Kit workspace.

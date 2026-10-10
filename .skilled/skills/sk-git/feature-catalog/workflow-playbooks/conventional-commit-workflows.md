@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Conventional commit workflows
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 sk-git gives an AI a deterministic procedure for turning a set of changes into one or more well-formed commits: analyze and categorize changed files, filter out internal artifacts, decide single-versus-multiple commits, write a Conventional-Commits-shaped message, and verify readiness before committing.

@@ -12,8 +12,6 @@ version: 1.11.0.6
 
 # Maintainability
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Audits codebase clarity and the safety of follow-on change.

@@ -12,8 +12,6 @@ version: 1.0.0.0
 
 # Dist-freshness enforcement
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Dist-freshness enforcement is a shared source-vs-dist staleness check for local TypeScript build outputs: it compares the newest mtime among a package's watched source files against its compiled dist entry and reports whether the dist output is stale, without ever attempting to rebuild it itself.

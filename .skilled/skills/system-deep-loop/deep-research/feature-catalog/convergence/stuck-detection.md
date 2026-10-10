@@ -12,8 +12,6 @@ version: 1.14.0.10
 
 # Stuck detection
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Detects consecutive no-progress runs and routes the loop into targeted recovery instead of blind repetition.

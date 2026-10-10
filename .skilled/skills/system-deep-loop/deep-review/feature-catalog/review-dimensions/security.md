@@ -12,8 +12,6 @@ version: 1.11.0.6
 
 # Security
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Audits trust boundaries, exploit paths, and exposure risk.

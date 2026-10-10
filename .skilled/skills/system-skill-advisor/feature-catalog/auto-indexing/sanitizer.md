@@ -11,8 +11,6 @@ version: 0.8.0.13
 
 # A7 Sanitizer at Every Write Boundary
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Keep malformed or malicious skill labels out of every surface that touches trust: SQLite rows, graph-metadata derived writes, response envelopes and adapter diagnostics. A single sanitizer, applied at every boundary, is the routing surface's anti-injection line.

@@ -12,8 +12,6 @@ version: 1.14.0.8
 
 # Memory save
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Refreshes the deep research continuity artifact through the supported `generate-context.js` save path.

@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Continuous integration autosync (git-sync.sh / post-commit hook)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Launch-wrapper isolation keeps concurrent sessions safe, but it also hides each session's work from the operator's IDE, which stays open on the primary checkout. Continuous-integration autosync resolves that tension without reintroducing shared-tree corruption: sessions keep isolated worktrees for writes, and publish committed work to one shared **live branch** — whatever branch the primary checkout is on — that the IDE follows.

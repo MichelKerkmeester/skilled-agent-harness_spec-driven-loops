@@ -12,8 +12,6 @@ version: 1.0.0.2
 
 # Optional MCP context (Code Mode figma.figma_<tool>)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The skill works fully with the CLI alone. When the agent must pull design context FROM Figma as model input, this opt-in path uses the community Framelink `figma-developer-mcp` manual, already registered as `figma` in this repo's Code Mode (`.utcp_config.json`, stdio). The CLI is the primary surface, and the MCP is opt-in.

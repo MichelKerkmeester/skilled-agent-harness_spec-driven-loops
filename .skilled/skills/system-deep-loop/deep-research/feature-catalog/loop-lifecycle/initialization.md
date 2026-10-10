@@ -12,8 +12,6 @@ version: 1.14.0.8
 
 # Initialization
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Sets up the deep research packet, canonical state files, and lineage mode before the loop begins.

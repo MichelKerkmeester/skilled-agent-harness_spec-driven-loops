@@ -11,8 +11,6 @@ version: 0.8.0.11
 
 # advisor_rebuild Command
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Give operators an explicit repair path for stale, absent or unavailable advisor state without hiding rebuild side effects inside `advisor_status`.

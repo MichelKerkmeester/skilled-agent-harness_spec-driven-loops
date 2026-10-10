@@ -12,8 +12,6 @@ version: 1.0.0.3
 
 # Start Timer
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW

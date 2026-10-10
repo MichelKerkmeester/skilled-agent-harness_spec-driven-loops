@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Finish and integration workflows
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 sk-git's finish workflow is how completed work gets integrated: verify tests pass, determine the base branch, present exactly four structured integration choices, execute the chosen one safely, and clean up the worktree when appropriate.

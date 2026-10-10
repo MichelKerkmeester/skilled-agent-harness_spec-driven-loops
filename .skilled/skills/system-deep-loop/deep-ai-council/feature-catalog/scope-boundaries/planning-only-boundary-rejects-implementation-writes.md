@@ -12,8 +12,6 @@ version: 1.7.0.8
 
 # Planning-only boundary rejects implementation writes
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify the council writes only packet-local ai-council/** artifacts.

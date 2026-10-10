@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # Search CDP Methods
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW

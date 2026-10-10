@@ -12,8 +12,6 @@ version: 1.7.0.8
 
 # Graph support stays derived and scoped
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify graph support is derived and scoped.

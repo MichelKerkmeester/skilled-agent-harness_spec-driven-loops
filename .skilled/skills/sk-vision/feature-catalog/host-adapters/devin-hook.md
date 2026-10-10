@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Devin prompt-time injection hook (sk-vision.mjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Analyzes an image named in a Devin prompt and injects the evidence into the same turn, without the model asking for it.

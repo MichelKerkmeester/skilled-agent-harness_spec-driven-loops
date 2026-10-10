@@ -12,8 +12,6 @@ version: 1.17.0.13
 
 # Promotion gates
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Applies the narrow policy and helper checks that decide whether canonical promotion is even allowed.

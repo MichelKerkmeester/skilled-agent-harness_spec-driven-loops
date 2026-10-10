@@ -12,8 +12,6 @@ version: 1.14.0.10
 
 # Negative knowledge
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Carries ruled-out approaches and dead ends through iteration files, reducer sync, and final synthesis.

@@ -12,8 +12,6 @@ version: 1.17.0.13
 
 # Plateau detection
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Stops further iterations when the loop has run out of meaningful movement or stable evidence.

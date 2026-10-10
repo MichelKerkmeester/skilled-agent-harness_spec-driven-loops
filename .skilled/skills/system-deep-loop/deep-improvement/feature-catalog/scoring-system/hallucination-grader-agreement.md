@@ -11,8 +11,6 @@ version: 1.18.0.0
 
 # Hallucination grader agreement (score-d4-agreement.cjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Measures offline how well the deterministic hallucination check and a Jev grader agree with operator labels on benchmark outputs.

@@ -12,8 +12,6 @@ version: 1.6.0.7
 
 # Spec Lifecycle Automation
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Spec Lifecycle Automation is the shell-script toolchain that moves Spec Kit work through its operational lifecycle instead of treating spec folders as static templates.

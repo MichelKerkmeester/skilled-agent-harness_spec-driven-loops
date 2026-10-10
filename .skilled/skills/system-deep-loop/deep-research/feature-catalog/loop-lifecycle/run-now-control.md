@@ -12,8 +12,6 @@ version: 1.14.0.13
 
 # Run-now control
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Adds a consume-once `.deep-research-run-now` sentinel for out-of-cadence iteration dispatch.

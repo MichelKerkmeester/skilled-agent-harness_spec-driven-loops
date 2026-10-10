@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # runtime convergence CLI three-state decision matrix
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify runtime convergence CLI returns the correct bucket for each of three documented signal configurations.

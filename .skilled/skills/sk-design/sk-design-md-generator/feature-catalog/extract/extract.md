@@ -13,8 +13,6 @@ version: 1.0.0.6
 
 # Extract (extract.ts / crawl.ts)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Crawls a live URL across five responsive viewports, collects every computed CSS value the page actually renders, and writes `tokens.json`. This is the entry point of the three-phase pipeline: everything downstream depends on a clean, full extraction. The extractor runs Playwright with Chromium, reads `getComputedStyle` on sampled elements, and tags each token with its source viewport, DOM selector path, and pixel context. Six per-feature detectors run inline during the crawl to enrich the token set with accessibility data, dark-mode information, framework markers, icon-system signatures, motion tokens, and design-boundary classifications.

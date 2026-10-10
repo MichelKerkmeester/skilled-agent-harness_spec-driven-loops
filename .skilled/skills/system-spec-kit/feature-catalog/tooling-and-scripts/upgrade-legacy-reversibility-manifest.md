@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Upgrade-legacy reversibility manifest and refusals (upgrade-legacy.mjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Upgrade-legacy repairs a spec tree in place, so a run that stops halfway must leave a record of what it touched. Before it repairs a dirty tree, the command writes a reversibility manifest into the git directory of the repository. The manifest lists the packets in scope, a hash of each packet tree and the bytes of every uncommitted file inside those packets. An apply that cannot write that record stops before it changes anything.

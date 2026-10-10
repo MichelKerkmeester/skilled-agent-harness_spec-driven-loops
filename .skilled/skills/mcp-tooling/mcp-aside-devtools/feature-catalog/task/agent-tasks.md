@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Task (agent-task lane over the aside CLI)
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Carries goal-driven, multi-step browser work: "sign in and download", "compare and book", "fill the form" — jobs where the outcome matters more than the steps. The lane is the primary surface of the skill: `aside "<task>"` starts a natural-language browser-agent task under the signed-in account, `aside exec` adds explicit provider/model controls, `--session <id>` continues prior account-scoped task state, and `--account <id>` selects the account for a direct task.

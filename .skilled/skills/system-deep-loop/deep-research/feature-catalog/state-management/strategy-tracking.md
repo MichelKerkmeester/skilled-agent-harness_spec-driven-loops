@@ -12,8 +12,6 @@ version: 1.14.0.10
 
 # Strategy tracking
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Keeps the strategy file, findings registry, and dashboard aligned with the latest deep-research iteration data.

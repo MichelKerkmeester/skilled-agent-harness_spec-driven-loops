@@ -12,8 +12,6 @@ version: 1.14.0.11
 
 # Config management
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Defines the immutable deep-research loop contract, file protections, and runtime capability pointers.

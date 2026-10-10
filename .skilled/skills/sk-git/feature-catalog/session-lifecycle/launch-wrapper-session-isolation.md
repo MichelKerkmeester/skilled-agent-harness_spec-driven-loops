@@ -12,8 +12,6 @@ version: 1.0.0.0
 
 # Launch-wrapper session isolation (worktree-session.sh)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 An operator opts into per-session isolation at the shell, not inside a running AI session — for example by aliasing `claude='bash .skilled/bin/worktree-session.sh claude'`. Because the wrapper acts before the AI session starts, at operator opt-in, it does not violate the in-session rule that an AI must never autonomously create a worktree; the operator made that choice by aliasing the launch.

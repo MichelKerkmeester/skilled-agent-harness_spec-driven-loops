@@ -12,8 +12,6 @@ version: 1.0.0.4
 
 # Type selection and routing (/design:diagram)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Classifies each request into GENERATE, IMPORT, or EXPORT, then selects one of the 27 supported diagram types and loads the matching `references/types/type-*.md` convention before drawing.

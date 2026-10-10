@@ -11,8 +11,6 @@ version: 1.4.0.2
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 `cli-external-orchestration`'s `SKILL.md` carries a default-on, flag-gated, additive directive that asks the compiled per-hub router contract to resolve the mode before falling through to the mode-registry-driven routing described in [`cli-executor-dispatch-routing.md`](../cli-executor-dispatch-routing/cli-executor-dispatch-routing.md).

@@ -12,8 +12,6 @@ version: 1.4.0.4
 
 # Fan-out CLI lineage driver
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW

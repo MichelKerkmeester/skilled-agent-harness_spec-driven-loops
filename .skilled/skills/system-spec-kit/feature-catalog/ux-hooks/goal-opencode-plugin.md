@@ -15,8 +15,6 @@ version: 1.9.0.0
 
 This catalog entry maps the current `/goal-opencode` OpenCode plugin behavior to its implementation files, validation tests, and operator reference.
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The goal plugin gives OpenCode a session-level completion objective. Users call `/goal-opencode bind <packet-path>` to make a packet's `goal.md` the directive, or `/goal-opencode set <objective>` for a text goal, and the plugin persists the per-session record, injects an active-goal block on each turn (rendered from the packet file when bound, frontmatter never included, the packet's completion criteria carried as their own `criteria:` lines in both the full and compact block), and exposes tool-backed status, history, doctor/health, resume, resent, packet read and mutation operations.

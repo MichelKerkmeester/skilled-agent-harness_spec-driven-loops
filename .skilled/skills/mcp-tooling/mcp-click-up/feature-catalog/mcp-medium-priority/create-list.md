@@ -16,8 +16,6 @@ Create a list directly in a space.
 
 > **Live name (2026-10-08).** Call it as `clickup_official.clickup_official_clickup_create_list` in Code Mode. The parameter table comes from the server's own schema, captured when the hosted server registered 61 tools on that date.
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW

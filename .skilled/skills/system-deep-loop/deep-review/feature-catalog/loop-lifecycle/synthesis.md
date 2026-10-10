@@ -12,8 +12,6 @@ version: 1.11.0.7
 
 # Synthesis
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Compiles iteration output into the final review report, verdict, and terminal state.

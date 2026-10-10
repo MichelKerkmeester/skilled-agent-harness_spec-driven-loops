@@ -11,8 +11,6 @@ version: 1.1.0.0
 
 # Workflow-Vs-Transport Two-Axis Routing (mcp-tooling)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 `mcp-tooling` is registry-driven: `mode-registry.json` lists ten packets in one `modes[]` array, and `hub-router.json` decides whether a request resolves to a single mode, an ordered bundle, or deferred disambiguation.

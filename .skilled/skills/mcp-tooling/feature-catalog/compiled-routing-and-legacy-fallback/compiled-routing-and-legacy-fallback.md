@@ -11,8 +11,6 @@ version: 1.1.0.0
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 `mcp-tooling` exposes a compiled-route front door, but compiled serving is conditional. The resolver may serve only when the tri-state runtime flag permits it and the promoted activation manifest is fresh and authorizes compiled serving. Otherwise the legacy registry-driven `hub-router.json` and `mode-registry.json` contract remains authoritative.

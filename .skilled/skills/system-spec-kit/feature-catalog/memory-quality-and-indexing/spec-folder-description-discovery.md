@@ -12,8 +12,6 @@ version: 1.6.0.20
 
 # Spec folder description discovery
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Spec folder description discovery generates per-folder `description.json` metadata: an identity card read directly by the tools that need a packet's identity and folded into the trigger index by the trigger-index generator.

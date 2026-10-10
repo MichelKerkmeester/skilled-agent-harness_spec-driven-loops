@@ -12,8 +12,6 @@ version: 1.6.0.13
 
 # Post-save quality review
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The post-save quality review runs after canonical packet continuity is written and after the retired index step is skipped (Step 11.75 in the save workflow). It compares the saved frontmatter and continuity metadata against the original JSON payload to detect propagation failures and field-level quality issues.

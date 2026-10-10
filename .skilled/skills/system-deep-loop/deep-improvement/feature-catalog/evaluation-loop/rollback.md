@@ -12,8 +12,6 @@ version: 1.17.0.14
 
 # Rollback
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Restores the archived canonical target after a guarded deep-improvement promotion.

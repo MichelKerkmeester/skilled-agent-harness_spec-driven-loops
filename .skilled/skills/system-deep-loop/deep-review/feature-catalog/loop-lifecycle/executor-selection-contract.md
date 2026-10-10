@@ -12,8 +12,6 @@ version: 1.11.0.6
 
 # Executor Selection Contract
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Decides whether a review iteration runs on the native `@deep-review` agent or is dispatched to an external CLI, and guarantees the chosen executor only receives flags it actually supports.

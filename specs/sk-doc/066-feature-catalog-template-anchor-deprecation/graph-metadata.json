@@ -64,12 +64,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -89,6 +83,12 @@
       },
       {
         "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remove",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -122,21 +122,27 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Every feature catalog document opens with a template-name HTML comment under its H1, `<!-- sk-doc-template: skillassetfeaturecatalog -->`, and 19 older files carry a hyphenated spelling of it",
     "created_at": "2026-10-10T18:42:45Z",
-    "last_save_at": "2026-10-10T18:55:17.101Z",
+    "last_save_at": "2026-10-10T19:06:45.936Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:e73626125c978f07e811ac43115bf2973a81af423f20c217b938c1a2f191a35e",
+    "source_fingerprint": "sha256:e18473bd2a9986d56dce842946c3e210f3b3c160fd6b4416221c5ec8b3ef898a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "16cdeb47121ccc1ce63b819aa54369474f3ac12f2a09763aa9ab59a0acdc1e8f"
+      "spec.md": "7b996667b7259e16fbd4546c21d3e2e201c02cf59158f5bd3fd294eb69167367"
     },
     "last_active_at": null
   }

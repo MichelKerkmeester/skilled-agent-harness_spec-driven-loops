@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Hermes Runtime Folder And Prompt Sync (sync-prompts-hermes.cjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The repository's `.hermes/` folder carries an agents link, one generated markdown-only SKILL.md copy per canonical skill and per shared agent, generated command-prompt stubs, one project plugin and a sync manifest, and nothing that pretends to configure Hermes.

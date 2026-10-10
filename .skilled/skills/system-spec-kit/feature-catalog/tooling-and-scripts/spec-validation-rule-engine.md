@@ -12,8 +12,6 @@ version: 2.1.0.30
 
 # Spec Validation Rule Engine
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Spec Validation Rule Engine is the executable validation surface behind Spec Kit's documentation quality gates.

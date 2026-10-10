@@ -12,8 +12,6 @@ version: 1.0.0.0
 
 # Worktree reaper (worktree-reaper.sh)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The reaper is the cleanup companion to launch-wrapper session isolation: it keeps `.worktrees/` bounded over time without ever removing a worktree it cannot prove is both finished and inactive.

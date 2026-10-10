@@ -12,8 +12,6 @@ version: 1.7.0.11
 
 # Council graph MCP surface retired
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify council graph operations consume no MCP tool slots anywhere and remain available through `runtime/ --loop-type council`.

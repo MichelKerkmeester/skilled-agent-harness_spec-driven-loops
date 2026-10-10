@@ -12,8 +12,6 @@ version: 1.6.0.8
 
 # Resource map template
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 `resource-map.md` is the cross-cutting, any-level packet document for recording the file footprint of a packet in one flat, review-friendly place. It complements `implementation-summary.md` by focusing on paths instead of narrative, so reviewers can scan what was analyzed, created, updated, or removed without reconstructing that ledger from prose or git history.

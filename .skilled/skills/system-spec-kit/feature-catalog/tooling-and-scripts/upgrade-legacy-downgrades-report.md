@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Upgrade-legacy Downgrades and grouped detail (upgrade-legacy.mjs)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 A legacy packet that fails validation can often be repaired without losing its meaning, but some findings can only be recorded. Upgrade-legacy writes those findings into `upgrade-baseline.json` beside the packet, and the validator reads a recorded finding as a warning rather than an error. The report makes that trade visible before anyone approves an apply.

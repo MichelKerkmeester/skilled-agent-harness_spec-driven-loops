@@ -12,8 +12,6 @@ version: 1.11.0.6
 
 # Cross-Mode Anti-Convergence Contract
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Documents the cross-mode `antiConvergence` contract as it applies to `deep-review`: a minimum iteration floor, a locked convergence mode, a fail-closed stop policy, runtime capability validation, and optimizer invariants that prevent invalid floor/max-iteration combinations.

@@ -11,8 +11,6 @@ version: 1.1.0.4
 
 # Snapshot state management (status / cleanup)
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Lists and prunes stored baselines so local snapshot state stays bounded.

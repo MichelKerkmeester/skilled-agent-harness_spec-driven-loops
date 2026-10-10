@@ -11,8 +11,6 @@ version: 1.0.0.1
 
 # Two-Axis Registry-Driven Routing (sk-code)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The skill advisor routes every code-related prompt to the single identity `sk-code`; the hub itself then resolves which packet(s) actually run. Resolution reads `mode-registry.json` as the single source of truth rather than re-deriving the mapping in prose.

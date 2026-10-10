@@ -12,8 +12,6 @@ version: 1.4.0.3
 
 # Fan-out cross-lineage merge
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW

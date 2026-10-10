@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # Session Start
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW

@@ -12,8 +12,6 @@ version: 1.6.0.7
 
 # Core Workflow Infrastructure
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Core Workflow Infrastructure is the shared execution layer that turns captured session data into governed memory files and searchable index rows.

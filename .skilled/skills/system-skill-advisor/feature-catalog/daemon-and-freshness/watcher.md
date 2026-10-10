@@ -11,8 +11,6 @@ version: 0.8.0.13
 
 # Chokidar Narrow-Scope Watcher
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Keep the advisor graph fresh without incurring the cost of watching the whole workspace. The narrow-scope watcher subscribes only to files that can affect routing: each skill's `SKILL.md`, its `graph-metadata.json` and any path declared under `derived.key_files`.

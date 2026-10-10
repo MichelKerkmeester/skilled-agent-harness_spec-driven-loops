@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Closed Seven-Model Gateway Roster (HERMES_SUPPORTED_MODELS)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Dispatch is fenced to the seven model ids reachable through the operator's `llmgateway` provider block, and the lineage builder rejects any other id before a process is spawned.

@@ -12,8 +12,6 @@ version: 1.14.0.13
 
 # Dashboard sparkline trend
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Renders new-information and score history as dashboard sparklines with a flatline advisory signal.

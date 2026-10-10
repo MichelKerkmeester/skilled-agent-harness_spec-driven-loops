@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # Output schema strict required sections fail closed
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify missing required report sections exit 1.

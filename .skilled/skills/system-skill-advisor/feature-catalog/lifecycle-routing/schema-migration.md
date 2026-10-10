@@ -11,8 +11,6 @@ version: 0.8.0.14
 
 # Schema v1 to v2 Additive Backfill
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Evolve graph metadata without breaking existing snapshots. Additive-only migration means v1 fields are preserved and rollback to v1 is safe.

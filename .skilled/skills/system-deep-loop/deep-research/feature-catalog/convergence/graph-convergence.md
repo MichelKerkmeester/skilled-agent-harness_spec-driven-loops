@@ -12,8 +12,6 @@ version: 1.14.0.11
 
 # Graph convergence
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Adds coverage-graph evidence and blockers to the deep-research legal-stop path when graph events exist.

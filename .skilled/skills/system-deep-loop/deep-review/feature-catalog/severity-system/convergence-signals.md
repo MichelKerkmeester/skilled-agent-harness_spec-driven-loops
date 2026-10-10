@@ -12,8 +12,6 @@ version: 1.11.0.5
 
 # Semantic convergence signals
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Measures whether a review iteration is still uncovering genuinely new defect patterns and whether the finding set has stabilized, independent of severity weighting.

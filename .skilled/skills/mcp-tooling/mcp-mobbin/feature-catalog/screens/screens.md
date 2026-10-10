@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Screens (search_screens, the documented tool)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Carries concrete UI-pattern research from real shipped apps: screen types, states, and jobs ("iOS subscription cancellation confirmation", "web empty-state dashboard"), for both `ios` and `web` platforms. This is the home domain of the **single documented tool** — every other intent (apps, flows, elements) is a query design over it.

@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # Decision provenance audit: graph vs baseline
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Demonstrate measurable audit-quality improvement between no-graph baseline and graph-driven provenance trace for a council decision.

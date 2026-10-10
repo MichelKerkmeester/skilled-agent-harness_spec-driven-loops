@@ -12,8 +12,6 @@ version: 1.6.0.6
 
 # Source-dist alignment enforcement
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Source-dist alignment enforcement validates that every `.js` file in `runtime/dist/lib/` has a corresponding `.ts` source file in `runtime/lib/`, detecting orphaned build artifacts that persist after source files are deleted or refactored.

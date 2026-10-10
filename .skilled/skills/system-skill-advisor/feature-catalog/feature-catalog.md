@@ -11,8 +11,6 @@ version: 0.8.0.12
 
 # Skill Advisor: Feature Catalog
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 This catalog is the current inventory for the skill advisor. The package source of truth is `.skilled/skills/system-skill-advisor/runtime/`, with adjacent OpenCode plugin docs included where the same hook/plugin ownership model applies. Each group links to per-feature files that cite the real implementation and test anchors.
 
 ---

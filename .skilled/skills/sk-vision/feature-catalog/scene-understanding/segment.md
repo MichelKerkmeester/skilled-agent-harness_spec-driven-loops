@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Object segmentation (sk_vision_segment)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Cut a target object or UI element out of an image and return a saved mask plus bounding box.

@@ -12,8 +12,6 @@ version: 2.0.0.0
 
 # Session recovery via /speckit:resume
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 When a session is interrupted by a crash, context compaction, timeout, or an ordinary handoff between sessions, `/speckit:resume` reconstructs the most likely previous state and routes the user to the best next step. Session recovery is owned by the spec-folder resume workflow, where the canonical continuity ladder is `handover.md -> _memory.continuity -> spec docs` and the wrapper exposes helper access only when the packet is still thin.

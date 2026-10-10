@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # GitKraken MCP integration (gitkraken.gitkraken_*)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 GitKraken MCP exposes GitLens AI workflows and cross-platform issue/PR/repository management across GitHub, GitLab, Azure DevOps, Bitbucket, and Jira through Code Mode's `call_tool_chain`. It is the tool to reach for when a repository lives on a non-GitHub provider, or when a task benefits from GitLens' AI-assisted workflows — commit composition, PR review triage, launchpad prioritization.

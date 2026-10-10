@@ -12,8 +12,6 @@ version: 1.6.0.4
 
 # Spec-doc structure validator
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Spec-doc structure validator fail-closes malformed frontmatter continuity blocks, merge legality, sufficiency, contamination and post-save fingerprint checks before a spec doc is accepted.

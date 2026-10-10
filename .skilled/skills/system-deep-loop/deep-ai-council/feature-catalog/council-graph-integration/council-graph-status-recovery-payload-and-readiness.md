@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # runtime status CLI recovery payload and readiness
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify runtime status CLI returns readiness + counts + schema version + signals + namespace-scoped recovery payload, with no false-safe empty success.

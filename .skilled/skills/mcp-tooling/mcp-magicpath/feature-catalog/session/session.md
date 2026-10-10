@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Session (info / whoami)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Carries reachability and identity. `info` is the entry point of any session: it answers without credentials and reports authentication state, the signed-in user, their teams and projects, and the CLI version, so it is the cheapest way to check whether MagicPath is reachable and set up. `whoami` returns the currently authenticated user and fails when no credential is present.

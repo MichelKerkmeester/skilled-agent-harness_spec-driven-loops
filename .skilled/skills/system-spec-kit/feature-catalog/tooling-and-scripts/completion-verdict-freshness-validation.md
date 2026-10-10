@@ -11,8 +11,6 @@ version: 1.6.0.1
 
 # Completion-verdict freshness validation
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Completion freshness validation detects when a previously green completion claim becomes stale after packet-local edits.

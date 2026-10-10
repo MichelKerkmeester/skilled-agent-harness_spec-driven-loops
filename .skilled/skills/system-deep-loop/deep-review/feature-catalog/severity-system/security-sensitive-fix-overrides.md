@@ -12,8 +12,6 @@ version: 1.11.0.5
 
 # Security-sensitive fix overrides
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Describes the tighter stop contract a review should apply when re-reviewing a fix that touched a security-sensitive surface, so a rerun cannot stop without replaying the previously closed gates.

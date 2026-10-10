@@ -12,8 +12,6 @@ version: 1.6.0.7
 
 # Spec-Folder Detection and Description Metadata
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Spec-Folder Detection and Description Metadata is the script surface that decides which spec folder a session belongs to, validates that choice against conversation content, prepares the target spec-doc record directory, and maintains the per-folder description metadata used elsewhere in the system.

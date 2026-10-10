@@ -12,8 +12,6 @@ version: 1.17.0.9
 
 # Opt-in 5-dimension scorer
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Selects the pattern matcher by default or the opt-in five-dimension scorer for model-benchmark outputs.

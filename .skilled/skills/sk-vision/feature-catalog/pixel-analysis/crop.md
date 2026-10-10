@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Region cropping (sk_vision_crop)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Crop a normalized bounding-box region of an image to a saved file.

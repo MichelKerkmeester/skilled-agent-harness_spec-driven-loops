@@ -12,8 +12,6 @@ version: 1.14.0.11
 
 # Synthesis
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Compiles iteration findings into the canonical research output and closes the loop state.

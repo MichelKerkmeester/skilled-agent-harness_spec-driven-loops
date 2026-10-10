@@ -12,8 +12,6 @@ version: 1.6.0.11
 
 # Phase-System Knowledge Node
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Phase-System Knowledge Node is the condensed reference layer for Spec Kit's phase decomposition workflow.

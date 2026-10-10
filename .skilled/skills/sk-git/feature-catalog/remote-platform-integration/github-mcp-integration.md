@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # GitHub MCP integration (github.github_*)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 GitHub MCP provides full CRUD access to GitHub's remote operations — pull requests, issues, and repository reads — from within sk-git's finish workflow, reached through Code Mode's `call_tool_chain`. It requires a Personal Access Token configured in `.utcp_config.json` with the appropriate scopes.

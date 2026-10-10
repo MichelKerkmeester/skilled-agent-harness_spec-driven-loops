@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # list_teams
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Team inventory with role. READ-ONLY. Canonical callable: `magicpath.list_teams({})` (confirm via `tool_info` first).

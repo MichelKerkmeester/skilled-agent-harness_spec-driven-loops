@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # get_theme
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Design-system detail for brand matching. READ-ONLY. Canonical callable: `magicpath.get_theme({ theme, team? })` (confirm via `tool_info` first).

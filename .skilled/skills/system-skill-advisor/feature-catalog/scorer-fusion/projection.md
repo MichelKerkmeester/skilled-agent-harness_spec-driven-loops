@@ -13,8 +13,6 @@ version: 0.8.0.12
 
 # Registry Projection Drift Guard and workflowMode Publication
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Expose the scorer projection data the advisor needs, including the generated deep-loop routing aliases and the resolved `workflowMode` field callers need for downstream routing.

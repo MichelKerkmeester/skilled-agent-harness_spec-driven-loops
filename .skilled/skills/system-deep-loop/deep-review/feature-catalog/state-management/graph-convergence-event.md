@@ -12,8 +12,6 @@ version: 1.11.0.5
 
 # Graph convergence event
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Records the graph-assisted convergence verdict for a review lineage as a persisted event, so the final STOP decision combines the inline 3-signal vote with an independent graph-derived decision.

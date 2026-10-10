@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # Five-dimension scoring rubric application
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify the 5-dimension rubric is documented with weights matching agent 6 and can be applied to a hypothetical seat output.

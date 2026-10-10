@@ -11,8 +11,6 @@ version: 0.8.0.13
 
 # Asymmetric Supersession Routing
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Let the advisor forward queries from a superseded skill to its successor without silently losing traceability or creating routing loops.

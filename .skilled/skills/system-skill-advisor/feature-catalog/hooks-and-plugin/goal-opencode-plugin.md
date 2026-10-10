@@ -12,8 +12,6 @@ version: 0.8.1.0
 
 # Goal OpenCode Plugin
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The `/goal` OpenCode plugin binds a session to a packet `goal.md` (or holds a text objective) and injects a compact active-goal block into the system context, rendered from the packet file on every turn, so long-running work stays oriented toward the same completion condition.

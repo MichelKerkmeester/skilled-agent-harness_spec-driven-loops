@@ -12,8 +12,6 @@ version: 1.7.0.0
 
 # Doctor commands
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Category covering the doctor routers split by owner: `/doctor:speckit` for spec-kit retrieval, `/doctor:skill-advisor <target>` with six targets, `/doctor:deep-loop` and `/doctor:runtime-mirrors`, plus standalone `/doctor:update`, `/doctor:mcp install|debug`, `/doctor:env` and `/doctor:git <hooks|standards>` commands.

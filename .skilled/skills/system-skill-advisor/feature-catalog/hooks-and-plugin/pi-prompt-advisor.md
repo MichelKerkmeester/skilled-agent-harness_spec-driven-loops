@@ -11,8 +11,6 @@ version: 0.1.0.0
 
 # Pi Prompt Advisor Extension
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 A Pi extension that surfaces the skill advisor's brief at prompt time in-process, without spawning the advisor as a subprocess.

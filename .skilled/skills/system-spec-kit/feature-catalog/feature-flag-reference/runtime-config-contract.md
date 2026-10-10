@@ -11,8 +11,6 @@ version: 1.6.0.12
 
 # Runtime Config Contract
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 This document captures the implemented behavior, source references, and remediation metadata for the runtime configuration contract centered on `config/config.jsonc`.
 
 ## 1. OVERVIEW

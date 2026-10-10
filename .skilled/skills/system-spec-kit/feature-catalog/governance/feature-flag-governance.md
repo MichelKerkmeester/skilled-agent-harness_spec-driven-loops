@@ -12,8 +12,6 @@ version: 2.0.0.0
 
 # Feature flag governance
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Feature flag governance defines operational targets for keeping the active flag surface small with explicit sunset windows and periodic audits, and it owns the `SPECKIT_COMPILED_ROUTING` tri-state gate that decides whether a hub is served by its compiled router or its prose smart-router.

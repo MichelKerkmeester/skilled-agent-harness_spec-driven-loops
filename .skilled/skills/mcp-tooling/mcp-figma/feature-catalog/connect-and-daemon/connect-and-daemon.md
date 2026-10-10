@@ -13,8 +13,6 @@ version: 1.0.0.2
 
 # Connect and daemon (figma-ds-cli connect / daemon)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Brings up and maintains the link between the terminal and Figma Desktop. Safe plugin mode is the default and applies no patch; the yolo patch that edits Figma's `app.asar` is gated behind explicit consent and a stated rollback. This is the foundation every other capability depends on.

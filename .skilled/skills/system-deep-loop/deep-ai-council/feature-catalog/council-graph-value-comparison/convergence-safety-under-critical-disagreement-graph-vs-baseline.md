@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # Convergence safety under critical disagreement
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Demonstrate the graph provides a safety guarantee (block on unresolved critical) that the two-of-three baseline does not.

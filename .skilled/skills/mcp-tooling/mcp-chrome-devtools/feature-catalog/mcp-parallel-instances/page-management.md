@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # Page Management
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ---
 
 ## 1. OVERVIEW

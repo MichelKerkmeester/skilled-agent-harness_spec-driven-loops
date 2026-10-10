@@ -12,8 +12,6 @@ version: 1.7.0.10
 
 # Mid-run interruption recovery: graph vs baseline
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Demonstrate runtime status CLI returns structured recovery context where the baseline requires manual JSONL parsing.

@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # Resume after interrupted state
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify an interrupted council run can resume from the last completed JSONL event and continue toward council_complete.

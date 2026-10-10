@@ -12,8 +12,6 @@ version: 1.11.0.7
 
 # Convergence check
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Determines whether the review loop continues, enters recovery, or stops legally.

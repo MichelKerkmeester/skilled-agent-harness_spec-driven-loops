@@ -12,8 +12,6 @@ version: 1.6.0.99
 
 # Speckit autopilot lifecycle
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Documents the branch-preserved `:autopilot`, `:unattended` and `--unattended` command envelope for `/speckit:plan`, `/speckit:implement` and `/speckit:complete`.

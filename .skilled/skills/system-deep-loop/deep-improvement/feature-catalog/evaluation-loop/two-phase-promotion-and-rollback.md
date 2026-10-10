@@ -12,8 +12,6 @@ version: 1.17.0.1
 
 # Two-phase promotion and rollback
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Promotion now separates candidate acceptance from canonical shipping. The accept phase verifies gates, snapshots the canonical preimage, snapshots the candidate, records preserved-branch metadata, and does not mutate the canonical target. The ship phase reloads that accepted-state file, verifies the canonical target still matches the accepted preimage, and only then writes the accepted candidate snapshot. `rollback-candidate.cjs` restores the pre-acceptance backup while leaving preserved branch evidence available for review.

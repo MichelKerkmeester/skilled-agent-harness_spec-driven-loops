@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # OUT_OF_SCOPE_WRITE rejection
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify writes outside ai-council/** are rejected with OUT_OF_SCOPE_WRITE before filesystem touch.

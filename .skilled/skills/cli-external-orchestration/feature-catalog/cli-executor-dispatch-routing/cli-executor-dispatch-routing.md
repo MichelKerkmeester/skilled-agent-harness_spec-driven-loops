@@ -11,8 +11,6 @@ version: 1.6.0.0
 
 # CLI Executor Two-Axis Dispatch Routing (cli-external-orchestration)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 `cli-external-orchestration` is registry-driven: `mode-registry.json` lists all seven modes in one `modes[]` array, and `hub-router.json` decides whether a request resolves to a single mode, an ordered bundle, or a deferred disambiguation.

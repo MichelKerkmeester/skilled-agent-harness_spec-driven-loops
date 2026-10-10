@@ -12,8 +12,6 @@ version: 1.0.0.4
 
 # create-diagram command (/design:diagram)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 The `/design:diagram` router — a thin router that loads a presentation contract, resolves `:auto` or `:confirm` mode, and executes the bound workflow YAML.

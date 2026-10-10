@@ -12,8 +12,6 @@ version: 1.14.0.14
 
 # Per-iteration lineage context refresh
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Refreshes the next prompt's context line from the lineage-local state the reducer just rewrote.

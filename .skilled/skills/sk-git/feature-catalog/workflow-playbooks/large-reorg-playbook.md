@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # Large reorg playbook
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 A rename/renumber/reorg touching dozens or more paths — a folder restructure, a phase consolidation, a mass renumber — has failure modes a handful of ordinary renames does not. This playbook is a step-ordered runbook for exactly that case: it does file/rename operations in a worktree only, then runs the spec-kit toolchain and the global memory/vector database reindex on `main` after merge, never inside the worktree.

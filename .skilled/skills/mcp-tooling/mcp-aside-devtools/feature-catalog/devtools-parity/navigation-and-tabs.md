@@ -12,8 +12,6 @@ version: 1.0.0.0
 
 # Navigation and Multi-Tab Management (DevTools parity)
 
-<!-- sk-doc-template: skill_asset_feature-catalog -->
-
 ## 1. OVERVIEW
 
 Chrome DevTools MCP's `new_page` / `select_page` / `navigate_page` / `list_pages` map onto Aside's fixture-named tab helpers plus the Playwright navigation API: `openTab(url)`, `tabs` (`Page[]`), `attachBrowserTab(targetId)`, `attachActiveBrowserTab()`, `getTabByTargetId(targetId)`, `closeTab(tab)`, and on `page` itself `page.goto()` and `page.waitForLoadState()`. `listBrowserTabs()` enumerates open Aside Browser tabs without attaching.

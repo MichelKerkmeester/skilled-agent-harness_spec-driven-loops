@@ -13,8 +13,6 @@ version: 1.0.0.6
 
 # Interaction Capture (interaction-capture.ts)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Records per-element interaction states that the extractor would otherwise miss in a static crawl. The module discovers interactive elements on the page, reads their default computed styles, then simulates hover, focus (click), focus-visible (Tab), active (mouse-down), and disabled states. It computes a style diff for every state and also detects loading, empty, and error states through class-name patterns, ARIA attributes, and text-content heuristics. The resulting `InteractionData` is matched to components during clustering and folded into the `tokens.json` component variants (as the per-variant `hoverChanges`, `focusVisibleChanges`, `focusChanges`, `activeChanges`, and `disabledStyle` fields) — it is not written as a standalone interaction block — and the v3 writer turns those variant fields into the hover/focus/active states described inside the named Components. Interaction capture runs by default: `extract.ts` sets `noInteraction = false`, so the capture runs unless you opt out with `--fast-no-interaction` or `--no-interaction`.

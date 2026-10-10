@@ -12,8 +12,6 @@ version: 1.6.0.12
 
 # Doctor router and manifest-driven dispatch
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Four routers share the per-subsystem maintenance diagnostics in the spec-kit ecosystem, and each owns the routes of one subsystem. They dispatch to nine subsystem YAML workflows by reading the canonical route manifest `.skilled/commands/doctor/_routes.yaml`, where every route names its owning command:

@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # Persist-artifacts helper writes packet-local tree
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify helper-created artifact layout.

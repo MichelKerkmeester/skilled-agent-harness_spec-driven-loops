@@ -11,8 +11,6 @@ version: 1.0.0.0
 
 # OpenCode plugin adapter (sk-vision.js)
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Loads the vision runtime and handles `/vision` in OpenCode. The default plugin does not register the 13 tools and does not inspect attached images.

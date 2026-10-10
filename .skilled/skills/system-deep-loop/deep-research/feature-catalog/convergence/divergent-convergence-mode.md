@@ -11,8 +11,6 @@ version: 1.14.0.1
 
 # Divergent convergence mode
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 `divergent` is an opt-in convergence-mode modifier. It keeps the normal research convergence and legal-stop checks, then changes only the handling of an eligible legal STOP.

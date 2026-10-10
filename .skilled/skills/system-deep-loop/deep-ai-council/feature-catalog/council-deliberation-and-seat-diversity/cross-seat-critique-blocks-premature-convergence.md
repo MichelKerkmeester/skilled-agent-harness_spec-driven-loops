@@ -12,8 +12,6 @@ version: 1.7.0.9
 
 # Cross-seat critique blocks premature convergence
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Verify cross-seat critique is required before convergence.

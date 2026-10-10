@@ -12,8 +12,6 @@ version: 1.17.0.14
 
 # Deterministic scoring
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Produces repeatable score and benchmark outputs from the dynamic scorer and fixture runner.

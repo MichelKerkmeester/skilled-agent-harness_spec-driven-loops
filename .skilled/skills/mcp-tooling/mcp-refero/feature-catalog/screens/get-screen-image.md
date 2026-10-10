@@ -10,8 +10,6 @@ version: 1.0.0.0
 
 # refero_get_screen_image
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Raw screenshot retrieval — the funnel's last resort, requested only when text metadata cannot answer. READ-ONLY. Canonical callable: `refero.refero_refero_get_screen_image({ screen_id, image_size? })` (doubled prefix; confirm via `tool_info` first).

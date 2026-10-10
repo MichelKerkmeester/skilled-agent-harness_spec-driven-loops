@@ -12,8 +12,6 @@ version: 1.6.0.24
 
 # Code standards alignment
 
-<!-- sk-doc-template: skill_asset_feature_catalog -->
-
 ## 1. OVERVIEW
 
 Code standards alignment brought comments, MODULE/COMPONENT headers, import ordering, and constant naming into line with sk-code OPENCODE route standards.
