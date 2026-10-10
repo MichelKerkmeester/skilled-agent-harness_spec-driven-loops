@@ -1,0 +1,8 @@
+OK   claude/compact-inject.js: exit=0 signal=null median=1914ms max=1919ms stdout_bytes=0
+OK   claude/session-prime.js: exit=0 signal=null median=1899ms max=1899ms stdout_bytes=0
+LATE claude/user-prompt-submit.js: exit=null signal=SIGKILL median=12003ms max=12004ms stdout_bytes=0
+LATE claude/spec-gate-classify.mjs: exit=0 signal=null median=3043ms max=3046ms stdout_bytes=0
+LATE codex/session-start.js: exit=0 signal=null median=3140ms max=3148ms stdout_bytes=390
+LATE codex/user-prompt-submit.js: exit=0 signal=null median=3233ms max=3339ms stdout_bytes=369
+LATE codex/spec-gate-classify.mjs: exit=0 signal=null median=3047ms max=3058ms stdout_bytes=0
+entries=7 late=5 margin_ms=1000 runs=3

@@ -3,14 +3,16 @@
 // MODULE: Spec Gate Prompt Classifier
 // ───────────────────────────────────────────────────────────────────
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
-import { parseJsonFailOpen, readStdin } from '../lib/hook-adapter-shared.mjs';
+import { parseJsonFailOpen, readStdin, SHORT_HOST_STDIN_TIMEOUT_MS } from '../lib/hook-adapter-shared.mjs';
 
 function approve() {
   process.exit(0);
 }
 
 async function main() {
-  const payload = parseJsonFailOpen(await readStdin());
+  // The host kills UserPromptSubmit hooks after 3 seconds, so the read ends
+  // early enough to leave that budget to the gate after it.
+  const payload = parseJsonFailOpen(await readStdin({ timeoutMs: SHORT_HOST_STDIN_TIMEOUT_MS }));
   if (payload === null) return approve(); // no/invalid payload -> fail open
   const prompt = typeof payload?.prompt === 'string' ? payload.prompt : '';
   const sessionID = payload?.session_id;

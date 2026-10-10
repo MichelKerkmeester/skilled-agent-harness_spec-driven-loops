@@ -31,7 +31,7 @@ import {
 import { refreshAuthoredContinuitySnapshot } from '../../lib/continuity/authored-continuity-snapshot.js';
 import { notifyDirectiveLifecycleBoundary } from './directive-lifecycle-boundary.js';
 import { isMainModule } from '../../lib/esm-entry.js';
-import { readHookStdin } from '../shared-stdin.js';
+import { readHookStdin, SHORT_HOST_STDIN_TIMEOUT_MS } from '../shared-stdin.js';
 
 const require = createRequire(import.meta.url);
 
@@ -495,7 +495,9 @@ async function main(): Promise<void> {
   const deadline = performance.now() + HOOK_TIMEOUT_MS;
   ensureStateDir();
 
-  const input = await withTimeout(parseHookStdin(), remainingMs(deadline), null);
+  // Claude kills PreCompact hooks after 3 seconds, so the read ends early
+  // enough to leave the merge and the snapshot most of the budget.
+  const input = await withTimeout(parseHookStdin(SHORT_HOST_STDIN_TIMEOUT_MS), remainingMs(deadline), null);
   if (!input) {
     notifyDirectiveLifecycleBoundary({ sessionId: null, boundary: 'compact' });
     hookLog('warn', 'compact-inject', 'No stdin input received');

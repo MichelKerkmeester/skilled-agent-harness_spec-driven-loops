@@ -1,0 +1,17 @@
+ M .skilled/skills/system-spec-kit/SKILL.md
+ M .skilled/skills/system-spec-kit/runtime/hooks/README.md
+ M .skilled/skills/system-spec-kit/runtime/hooks/claude/README.md
+ M .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts
+ M .skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts
+ M .skilled/skills/system-spec-kit/runtime/hooks/claude/shared.ts
+ M .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs
+ M .skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts
+ M .skilled/skills/system-spec-kit/runtime/hooks/codex/session-start.ts
+ M .skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts
+ M .skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs
+ M .skilled/skills/system-spec-kit/runtime/hooks/codex/user-prompt-submit.ts
+ M .skilled/skills/system-spec-kit/runtime/hooks/lib/README.md
+ M .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-adapter-shared.mjs
+ M .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs
+ M .skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts
+?? .skilled/skills/system-spec-kit/changelog/v2.7.2.0.md

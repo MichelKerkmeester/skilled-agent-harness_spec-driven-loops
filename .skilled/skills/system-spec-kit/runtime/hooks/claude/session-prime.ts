@@ -24,6 +24,7 @@ import {
 } from './hook-state.js';
 import { notifyDirectiveLifecycleBoundary } from './directive-lifecycle-boundary.js';
 import { isMainModule } from '../../lib/esm-entry.js';
+import { SHORT_HOST_STDIN_TIMEOUT_MS } from '../shared-stdin.js';
 
 const require = createRequire(import.meta.url);
 
@@ -210,7 +211,9 @@ async function main(): Promise<void> {
   if (!sessionLifecycleHookEnabled()) return;
   ensureStateDir();
 
-  const input = await withTimeout(parseHookStdin(), HOOK_TIMEOUT_MS, null);
+  // Claude kills SessionStart hooks after 3 seconds, so the read ends early
+  // enough to leave that budget to the work after it.
+  const input = await withTimeout(parseHookStdin(SHORT_HOST_STDIN_TIMEOUT_MS), HOOK_TIMEOUT_MS, null);
   if (!input) {
     notifyDirectiveLifecycleBoundary({ sessionId: null, boundary: 'startup' });
     hookLog('warn', 'session-prime', 'No stdin input received');

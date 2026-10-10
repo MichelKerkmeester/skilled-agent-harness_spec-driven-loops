@@ -20,7 +20,7 @@ Current state:
 - `spec-gate/` is the Gate-3 policy core: `classifyIntent()` and `evaluateMutation()`, plus gate-state persistence, the warning log and the stale-state sweep.
 - `workspace/` resolves the repository root that `spec-gate-core.mjs` anchors its state directory to.
 - `completion-evidence-sentinel.cjs` is the completion-evidence policy core. When a turn ends with a completion claim it checks recorded artifacts only, through `check-completion.sh --json` or an `implementation-summary.md` stat, and returns an advisory decision. It never runs a test, a build or `validate.sh`, never writes stdout or stderr itself, keeps the dedup state every adapter shares, and fails open.
-- `hook-adapter-shared.mjs` is a small stdin-and-JSON helper pair. Its `readStdin()` settles when stdin ends or after 3000 ms, whichever comes first, so a host that never closes stdin cannot hold a hook open. Every plain `.mjs` and `.cjs` adapter in this skill reads stdin through it. The compiled TypeScript adapters use `../shared-stdin.ts`, which keeps the same deadline.
+- `hook-adapter-shared.mjs` is a small stdin-and-JSON helper pair. Its `readStdin()` settles when stdin ends or after 3000 ms, whichever comes first, so a host that never closes stdin cannot hold a hook open. Every plain `.mjs` and `.cjs` adapter in this skill reads stdin through it. The compiled TypeScript adapters use `../shared-stdin.ts`, which keeps the same deadline. The Claude and Codex `spec-gate-classify.mjs` adapters, whose host kills them after 3 seconds, pass `SHORT_HOST_STDIN_TIMEOUT_MS`, 500 ms, instead.
 - Everything here is direct-run `.mjs` with no build step; only the `claude/`, `codex/`, `cursor/`, `devin/` and `pi/` adapters that call in are TypeScript compiled to `dist/`.
 
 ---

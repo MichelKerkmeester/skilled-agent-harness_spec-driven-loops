@@ -1,0 +1,171 @@
+▶ every hook entry gives up at the stdin deadline when its host never closes stdin
+  ✔ hooks/claude/completion-evidence-stop.cjs (0.467417ms)
+  ✔ hooks/codex/completion-evidence-stop.cjs (0.05575ms)
+  ✔ hooks/devin/completion-evidence-stop.cjs (0.042167ms)
+  ✔ hooks/devin/post-compaction.cjs (0.054334ms)
+  ✔ hooks/devin/permission-request-policy.mjs (0.057167ms)
+  ✔ hooks/cursor/post-tool-use.mjs (0.035666ms)
+  ✔ hooks/cursor/spec-gate-prebind.mjs (0.03ms)
+  ✔ hooks/cursor/completion-evidence-response.mjs (0.05525ms)
+  ✔ hooks/claude/spec-gate-enforce.mjs (0.05025ms)
+  ✔ hooks/codex/spec-gate-enforce.mjs (0.065417ms)
+  ✔ hooks/cursor/spec-gate-enforce.mjs (0.049917ms)
+  ✔ hooks/devin/spec-gate-enforce.mjs (0.028833ms)
+  ✖ hooks/claude/spec-gate-classify.mjs (0.397542ms)
+  ✖ hooks/codex/spec-gate-classify.mjs (0.06575ms)
+  ✔ hooks/cursor/spec-gate-classify.mjs (0.024125ms)
+  ✔ hooks/devin/spec-gate-classify.mjs (0.020375ms)
+  ✔ dist/hooks/claude/compact-inject.js (0.025875ms)
+  ✔ dist/hooks/claude/compact-inject.js --authored-snapshot-worker (0.035542ms)
+  ✔ dist/hooks/claude/session-prime.js (0.014708ms)
+  ✔ dist/hooks/claude/session-stop.js (0.023ms)
+  ✔ dist/hooks/claude/directive-lifecycle-boundary.js (0.015542ms)
+  ✖ dist/hooks/claude/user-prompt-submit.js (0.228334ms)
+  ✖ dist/hooks/codex/session-start.js (0.041917ms)
+  ✔ dist/hooks/codex/session-stop.js (0.0195ms)
+  ✖ dist/hooks/codex/user-prompt-submit.js (0.043291ms)
+  ✔ dist/hooks/codex/compact-inject.js (0.015417ms)
+  ✔ dist/hooks/cursor/session-start.js (0.017292ms)
+  ✔ dist/hooks/cursor/session-end.js (0.015458ms)
+  ✔ dist/hooks/cursor/user-prompt-submit.js (0.021ms)
+  ✔ dist/hooks/cursor/precompact.js (0.016417ms)
+  ✔ dist/hooks/devin/session-start.js (0.01375ms)
+  ✔ dist/hooks/devin/session-stop.js (0.015833ms)
+  ✔ dist/hooks/devin/user-prompt-submit.js (0.029666ms)
+✖ every hook entry gives up at the stdin deadline when its host never closes stdin (15019.823125ms)
+✔ the Cursor post-tool-use hook still routes a Write payload to its chained hook (63.521541ms)
+✔ the directive lifecycle boundary still forwards a valid payload (57.419917ms)
+✔ the Codex, Cursor and Devin session-start adapters still answer a valid payload (135.330709ms)
+✔ the compiled reader still drops a payload past its byte cap without waiting for the deadline (72.886916ms)
+✖ the short-deadline entries still act on a payload their host writes but never closes (15004.921083ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 32
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 30398.485708
+
+✖ failing tests:
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:135:13
+✖ hooks/claude/spec-gate-classify.mjs (0.397542ms)
+  AssertionError [ERR_ASSERTION]: exited after 3088 ms, past the deadline plus margin
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins/scratch/proto/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:143:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins/scratch/proto/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:135:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:135:13
+✖ hooks/codex/spec-gate-classify.mjs (0.06575ms)
+  AssertionError [ERR_ASSERTION]: exited after 3087 ms, past the deadline plus margin
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins/scratch/proto/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:143:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins/scratch/proto/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:135:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:135:13
+✖ dist/hooks/claude/user-prompt-submit.js (0.228334ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins/scratch/proto/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:139:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins/scratch/proto/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:135:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:135:13
+✖ dist/hooks/codex/session-start.js (0.041917ms)
+  AssertionError [ERR_ASSERTION]: exited after 3084 ms, past the deadline plus margin
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins/scratch/proto/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:143:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins/scratch/proto/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:135:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:135:13
+✖ dist/hooks/codex/user-prompt-submit.js (0.043291ms)
+  AssertionError [ERR_ASSERTION]: exited after 3063 ms, past the deadline plus margin
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins/scratch/proto/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:143:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins/scratch/proto/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:135:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:225:1
+✖ the short-deadline entries still act on a payload their host writes but never closes (15004.921083ms)
+  AssertionError [ERR_ASSERTION]: shim must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins/scratch/proto/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:253:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

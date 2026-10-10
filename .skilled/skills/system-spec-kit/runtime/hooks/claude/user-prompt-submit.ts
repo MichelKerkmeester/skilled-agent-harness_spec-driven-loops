@@ -5,12 +5,10 @@
 // Thin process-boundary shim. The advisor implementation lives in
 // system-skill-advisor; this path stays for existing runtime settings.
 
-import { readSync, existsSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, statSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dirname, isAbsolute, join } from 'node:path';
-import { tmpdir } from 'node:os';
-import { createHash } from 'node:crypto';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -22,7 +20,11 @@ const MAX_STDIO_BYTES = 1024 * 1024;
 const CHILD_TIMEOUT_MS = 2500;
 // Reserve fallback time after advisor CLI; 300 ms covers measured startup overhead with headroom.
 const CHILD_START_MARGIN_MS = 300;
-const READ_CHUNK_BYTES = 64 * 1024;
+// The host kills this hook after 3 seconds and the advisor child needs most of
+// that, so a host that never closes stdin must not hold the read for long. The
+// value matches SHORT_HOST_STDIN_TIMEOUT_MS in ../shared-stdin.ts, which this
+// file cannot import because its tests run the source directly.
+const STDIN_DEADLINE_MS = 500;
 const MAX_ROOT_WALK_DEPTH = 14;
 
 // ───────────────────────────────────────────────────────────────────
@@ -78,23 +80,62 @@ function emitDiagnostic(code: string): void {
   process.stderr.write(`[speckit-hook:user-prompt-submit] ${code}\n`);
 }
 
-function readBoundedStdin(): Buffer {
-  const chunks: Buffer[] = [];
-  let totalBytes = 0;
-  while (true) {
-    const buffer = Buffer.alloc(Math.min(READ_CHUNK_BYTES, MAX_STDIN_BYTES + 1 - totalBytes));
-    const bytesRead = readSync(0, buffer, 0, buffer.length, null);
-    if (bytesRead === 0) break;
-    totalBytes += bytesRead;
-    if (totalBytes > MAX_STDIN_BYTES) {
-      throw new Error('INPUT_OVERFLOW');
+// Collect stdin until it ends or the deadline passes, then release it so the
+// process can exit. More than MAX_STDIN_BYTES rejects with INPUT_OVERFLOW and
+// destroys stdin, so a runaway payload is never buffered whole.
+function readBoundedStdin(): Promise<Buffer> {
+  return new Promise((resolve, reject) => {
+    const stdin = process.stdin;
+    const chunks: Buffer[] = [];
+    let totalBytes = 0;
+    let settled = false;
+
+    const release = (): void => {
+      clearTimeout(timer);
+      stdin.removeListener('data', onData);
+      stdin.removeListener('end', onEnd);
+      stdin.removeListener('error', onError);
+      stdin.pause();
+    };
+
+    function onEnd(): void {
+      if (settled) return;
+      settled = true;
+      release();
+      resolve(Buffer.concat(chunks, totalBytes));
     }
-    chunks.push(buffer.subarray(0, bytesRead));
-  }
-  return Buffer.concat(chunks, totalBytes);
+
+    function onError(error: Error): void {
+      if (settled) return;
+      settled = true;
+      release();
+      reject(error);
+    }
+
+    function onData(chunk: Buffer | string): void {
+      if (settled) return;
+      const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+      totalBytes += buffer.length;
+      if (totalBytes > MAX_STDIN_BYTES) {
+        settled = true;
+        release();
+        stdin.destroy();
+        reject(new Error('INPUT_OVERFLOW'));
+        return;
+      }
+      chunks.push(buffer);
+    }
+
+    // Listeners go on before the timer, so a stdin that cannot take listeners
+    // rejects at once and leaves no timer behind.
+    stdin.on('data', onData);
+    stdin.on('end', onEnd);
+    stdin.on('error', onError);
+    const timer = setTimeout(onEnd, STDIN_DEADLINE_MS);
+  });
 }
 
-function runShim(): string {
+async function runShim(): Promise<string> {
   const target = resolveTarget();
   if (!target) {
     emitDiagnostic('TARGET_UNRESOLVED');
@@ -110,9 +151,10 @@ function runShim(): string {
         ? Math.min(operatorBudgetMs, childBudgetCeilingMs)
         : childBudgetCeilingMs,
     );
+    const input = await readBoundedStdin();
     const result = spawnSync(process.execPath, [target, ...process.argv.slice(2)], {
       cwd: process.cwd(),
-      input: readBoundedStdin(),
+      input,
       encoding: 'utf8',
       env: childEnv,
       timeout: CHILD_TIMEOUT_MS,
@@ -154,7 +196,7 @@ function runShim(): string {
 // ───────────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
-  const advisorJson = runShim();
+  const advisorJson = await runShim();
   process.stdout.write(`${advisorJson}\n`);
   process.exit(0);
 }

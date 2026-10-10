@@ -10,6 +10,12 @@
 // this skill's hooks stay self-contained, and the reader in
 // .skilled/hooks/shared/hook-adapter-shared.cjs is an independent sibling.
 
+// Stdin deadline for adapters whose host kills them after 3 seconds. The read
+// has to end early enough that the work after it still finishes inside the
+// host timeout. ../shared-stdin.ts carries the same value for the compiled
+// adapters.
+export const SHORT_HOST_STDIN_TIMEOUT_MS = 500;
+
 // A host that never closes stdin would otherwise hold the hook until the host's
 // own timeout kills it, so the read settles on whichever comes first: the end of
 // the stream, or the deadline with whatever has arrived by then.

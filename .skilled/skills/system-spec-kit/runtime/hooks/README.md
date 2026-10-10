@@ -85,7 +85,7 @@ runtime/hooks/
 | `lib/hook-adapter-shared.mjs` | Deadline stdin reader and fail-open JSON parser for every plain `.mjs` and `.cjs` adapter. See [`lib/README.md`](./lib/README.md). |
 | `lib/workspace/repo-root.mjs` | Repository-root resolution used by the spec-gate core. |
 | `shared-provenance.ts` | Sanitizes recovered compact payloads, stripping adversarial system/developer/assistant/user prefixes, and wraps them with explicit provenance markers so downstream hooks can tell cached context from a first-class turn. Consumed by `claude/shared.ts` and `claude/hook-state.ts`. |
-| `shared-stdin.ts` | `readHookStdin()` reads a compiled adapter's stdin until the stream ends or 3000 ms pass, and returns `null` when the payload passes the caller's byte cap. Consumed by the four `shared.ts` readers, `claude/compact-inject.ts` and `claude/directive-lifecycle-boundary.ts`. |
+| `shared-stdin.ts` | `readHookStdin()` reads a compiled adapter's stdin until the stream ends or the deadline passes, and returns `null` when the payload passes the caller's byte cap. The deadline is 3000 ms by default and `SHORT_HOST_STDIN_TIMEOUT_MS`, 500 ms, for the entries whose host kills them after 3 seconds. Consumed by the four `shared.ts` readers, `claude/compact-inject.ts` and `claude/directive-lifecycle-boundary.ts`. |
 
 The completion-evidence policy each runtime's Stop-equivalent adapter calls lives in `lib/completion-evidence-sentinel.cjs`.
 

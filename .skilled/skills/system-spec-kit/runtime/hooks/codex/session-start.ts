@@ -14,6 +14,7 @@ import {
   runCodexHook,
 } from './shared.js';
 import { notifyDirectiveLifecycleBoundary } from '../claude/directive-lifecycle-boundary.js';
+import { SHORT_HOST_STDIN_TIMEOUT_MS } from '../shared-stdin.js';
 
 const require = createRequire(import.meta.url);
 
@@ -30,7 +31,9 @@ function sessionLifecycleHookEnabled(): boolean {
 
 async function main(): Promise<void> {
   if (!sessionLifecycleHookEnabled()) return;
-  const input = await readCodexHookInput('SessionStart', ['session_id']);
+  // Codex kills SessionStart hooks after 3 seconds, so the read ends early
+  // enough to leave that budget to the session-prime call after it.
+  const input = await readCodexHookInput('SessionStart', ['session_id'], SHORT_HOST_STDIN_TIMEOUT_MS);
   if (!input) {
     notifyDirectiveLifecycleBoundary({ sessionId: null, boundary: 'startup' });
     return;

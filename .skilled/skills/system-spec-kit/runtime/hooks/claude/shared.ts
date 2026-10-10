@@ -4,7 +4,7 @@
 // Copilot imports these helpers straight from ../shared-provenance.js, so
 // drift in any one runtime silently forks the recovered-payload contract.
 
-import { readHookStdin } from '../shared-stdin.js';
+import { HOOK_STDIN_TIMEOUT_MS, readHookStdin } from '../shared-stdin.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS & TYPES
@@ -49,10 +49,13 @@ export function getRequiredSessionId(sessionId: unknown, surface: string): strin
   return normalized;
 }
 
-/** Read and parse JSON from stdin. Returns null on failure. */
-export async function parseHookStdin(): Promise<HookInput | null> {
+/**
+ * Read and parse JSON from stdin. Returns null on failure. Entries whose host
+ * allows them only a short time pass a shorter stdin deadline.
+ */
+export async function parseHookStdin(timeoutMs = HOOK_STDIN_TIMEOUT_MS): Promise<HookInput | null> {
   try {
-    const text = await readHookStdin({ maxBytes: MAX_HOOK_STDIN_BYTES });
+    const text = await readHookStdin({ timeoutMs, maxBytes: MAX_HOOK_STDIN_BYTES });
     if (text === null) {
       hookLog('warn', 'stdin', `Hook stdin exceeded ${MAX_HOOK_STDIN_BYTES} bytes`);
       return null;

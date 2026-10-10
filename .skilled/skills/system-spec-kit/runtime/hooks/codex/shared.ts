@@ -7,7 +7,7 @@
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { isMainModule } from '../../lib/esm-entry.js';
-import { readHookStdin } from '../shared-stdin.js';
+import { HOOK_STDIN_TIMEOUT_MS, readHookStdin } from '../shared-stdin.js';
 
 const MAX_STDIN_BYTES = 1024 * 1024;
 const MAX_STDIO_BYTES = 1024 * 1024;
@@ -49,13 +49,17 @@ function hasNonEmptyString(input: CodexHookInput, field: string): boolean {
   return typeof value === 'string' && value.trim().length > 0;
 }
 
-/** Parse and validate one bounded Codex hook payload from stdin. */
+/**
+ * Parse and validate one bounded Codex hook payload from stdin. Entries whose
+ * host allows them only a short time pass a shorter stdin deadline.
+ */
 export async function readCodexHookInput(
   event: CodexHookEvent,
   requiredFields: readonly string[],
+  timeoutMs = HOOK_STDIN_TIMEOUT_MS,
 ): Promise<CodexHookInput | null> {
   try {
-    const text = await readHookStdin({ maxBytes: MAX_STDIN_BYTES });
+    const text = await readHookStdin({ timeoutMs, maxBytes: MAX_STDIN_BYTES });
     if (text === null) return null;
 
     const raw = text.trim();

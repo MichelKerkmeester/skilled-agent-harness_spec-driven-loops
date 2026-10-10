@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bdfca76dd79d0bc4fc8e61d8d685cba92d03d47ef14d09180a2e494abc8c0563",
+  "manifestHash": "1b4f083b326b001729076aeb62f6dea6479663cdd2b2a33ba33b24775cd5b15a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17928,6 +17928,9 @@
     "claim based omission floor": [
       "claim based omission floor"
     ],
+    "claim checker anchors": [
+      "claim checker anchors"
+    ],
     "claim continuity": [
       "claim continuity"
     ],
@@ -17942,6 +17945,9 @@
     ],
     "claim continuity verification": [
       "claim continuity verification"
+    ],
+    "claim guard anchors": [
+      "claim guard anchors"
     ],
     "claim relationship event tasks": [
       "claim relationship event tasks"
@@ -32097,6 +32103,18 @@
     "deep loop fencing verification": [
       "deep-loop fencing verification"
     ],
+    "deep loop findings parser": [
+      "deep loop findings parser"
+    ],
+    "deep loop findings parser implementation summary": [
+      "deep loop findings parser implementation summary"
+    ],
+    "deep loop findings parser plan": [
+      "deep loop findings parser plan"
+    ],
+    "deep loop findings parser tasks": [
+      "deep loop findings parser tasks"
+    ],
     "deep loop fingerprint history tasks": [
       "deep-loop fingerprint history tasks"
     ],
@@ -32493,6 +32511,9 @@
     "deep loop runtime 1 9 3 0": [
       "deep-loop-runtime 1.9.3.0"
     ],
+    "deep loop runtime 1 9 4 0": [
+      "deep-loop-runtime 1.9.4.0"
+    ],
     "deep loop runtime alignment": [
       "deep loop runtime alignment"
     ],
@@ -32579,6 +32600,9 @@
     ],
     "deep loop runtime v1 9 3 0": [
       "deep-loop-runtime v1.9.3.0"
+    ],
+    "deep loop runtime v1 9 4 0": [
+      "deep-loop-runtime v1.9.4.0"
     ],
     "deep loop safe now gated split": [
       "deep-loop safe-now gated split"
@@ -36971,6 +36995,18 @@
     ],
     "doc claim checker": [
       "doc claim checker"
+    ],
+    "doc claims hardening": [
+      "doc claims hardening"
+    ],
+    "doc claims hardening implementation summary": [
+      "doc claims hardening implementation summary"
+    ],
+    "doc claims hardening plan": [
+      "doc claims hardening plan"
+    ],
+    "doc claims hardening tasks": [
+      "doc claims hardening tasks"
     ],
     "doc cleanup": [
       "doc cleanup"
@@ -50859,6 +50895,18 @@
     "hook daemon docs alignment": [
       "hook daemon docs alignment"
     ],
+    "hook deadline margins": [
+      "hook deadline margins"
+    ],
+    "hook deadline margins implementation summary": [
+      "hook deadline margins implementation summary"
+    ],
+    "hook deadline margins plan": [
+      "hook deadline margins plan"
+    ],
+    "hook deadline margins tasks": [
+      "hook deadline margins tasks"
+    ],
     "hook deadline plan": [
       "hook deadline plan"
     ],
@@ -51443,6 +51491,18 @@
     ],
     "hub smart routing contract": [
       "hub smart-routing contract"
+    ],
+    "hub surface precedence": [
+      "hub surface precedence"
+    ],
+    "hub surface precedence implementation summary": [
+      "hub surface precedence implementation summary"
+    ],
+    "hub surface precedence plan": [
+      "hub surface precedence plan"
+    ],
+    "hub surface precedence tasks": [
+      "hub surface precedence tasks"
     ],
     "hub surface truth": [
       "hub surface truth"
@@ -53402,6 +53462,9 @@
     ],
     "iteration evidence persistence": [
       "iteration evidence persistence"
+    ],
+    "iteration findings parser": [
+      "iteration findings parser"
     ],
     "iteration graph event file": [
       "iteration graph event file"
@@ -66158,6 +66221,9 @@
     "obsidian plugin platform support": [
       "obsidian plugin platform support"
     ],
+    "obsidian plugin quality checklists": [
+      "obsidian plugin quality checklists"
+    ],
     "obsidian plugin release workflow": [
       "obsidian plugin release workflow"
     ],
@@ -70721,6 +70787,9 @@
     "phase 1 restraint routing": [
       "phase 1 restraint routing"
     ],
+    "phase 1 review canary pins": [
+      "phase 1 review canary pins"
+    ],
     "phase 1 review checker gaps": [
       "phase 1 review checker gaps"
     ],
@@ -70919,6 +70988,9 @@
     "phase 2 verification checklist": [
       "phase 2 verification checklist"
     ],
+    "phase 2 webflow labels and playbook": [
+      "phase 2 webflow labels and playbook"
+    ],
     "phase 20 closure gate": [
       "phase 20 closure gate"
     ],
@@ -70997,6 +71069,9 @@
     "phase 3 goal exemplars": [
       "phase 3 goal exemplars"
     ],
+    "phase 3 hub surface precedence": [
+      "phase 3 hub surface precedence"
+    ],
     "phase 3 quality mode": [
       "phase 3 quality mode"
     ],
@@ -71012,6 +71087,9 @@
     "phase 4 hook stdin deadline": [
       "phase 4 hook stdin deadline"
     ],
+    "phase 4 quality obsidian coverage": [
+      "phase 4 quality obsidian coverage"
+    ],
     "phase 4 trigger index rebuild hardening": [
       "phase 4 trigger index rebuild hardening"
     ],
@@ -71023,6 +71101,9 @@
     ],
     "phase 5 completed diagnostics governance": [
       "phase 5 completed diagnostics governance"
+    ],
+    "phase 5 doc claims hardening": [
+      "phase 5 doc claims hardening"
     ],
     "phase 5 healer phrase seeding": [
       "phase 5 healer phrase seeding"
@@ -71054,6 +71135,9 @@
     "phase 6 continuity refactor gates": [
       "phase 6 continuity refactor gates"
     ],
+    "phase 6 deep loop findings parser": [
+      "phase 6 deep loop findings parser"
+    ],
     "phase 6 deep loop follow ups": [
       "phase 6 deep loop follow ups"
     ],
@@ -71081,6 +71165,9 @@
     "phase 7 ci rule set comparison": [
       "phase 7 ci rule set comparison"
     ],
+    "phase 7 hook deadline margins": [
+      "phase 7 hook deadline margins"
+    ],
     "phase 7 series parent review and hardening research": [
       "phase 7 series parent review and hardening research"
     ],
@@ -71092,6 +71179,9 @@
     ],
     "phase 8 series parent review fixes": [
       "phase 8 series parent review fixes"
+    ],
+    "phase 8 session aware tie break": [
+      "phase 8 session aware tie break"
     ],
     "phase 9 doctor update compatibility": [
       "phase 9 doctor update compatibility"
@@ -73775,6 +73865,9 @@
     "pr state dedup gate": [
       "pr state dedup gate"
     ],
+    "pr state dedup overview": [
+      "pr state dedup overview"
+    ],
     "pr status checks via mcp": [
       "pr status checks via mcp"
     ],
@@ -75517,6 +75610,9 @@
     "quality gate": [
       "quality gate"
     ],
+    "quality gate obsidian coverage": [
+      "quality gate obsidian coverage"
+    ],
     "quality gate resources": [
       "quality gate resources"
     ],
@@ -75555,6 +75651,18 @@
     ],
     "quality mode tasks": [
       "quality mode tasks"
+    ],
+    "quality obsidian coverage": [
+      "quality obsidian coverage"
+    ],
+    "quality obsidian coverage implementation summary": [
+      "quality obsidian coverage implementation summary"
+    ],
+    "quality obsidian coverage plan": [
+      "quality obsidian coverage plan"
+    ],
+    "quality obsidian coverage tasks": [
+      "quality obsidian coverage tasks"
     ],
     "quality report listing": [
       "quality report listing"
@@ -82287,6 +82395,21 @@
     "review blocked stop": [
       "review blocked stop"
     ],
+    "review canary evidence floors": [
+      "review canary evidence floors"
+    ],
+    "review canary pins": [
+      "review canary pins"
+    ],
+    "review canary pins implementation summary": [
+      "review canary pins implementation summary"
+    ],
+    "review canary pins plan": [
+      "review canary pins plan"
+    ],
+    "review canary pins tasks": [
+      "review canary pins tasks"
+    ],
     "review charter setup": [
       "review charter setup"
     ],
@@ -83478,6 +83601,9 @@
     ],
     "round 5 tasks": [
       "round 5 tasks"
+    ],
+    "round four remediation": [
+      "round four remediation"
     ],
     "round state jsonl": [
       "round-state jsonl"
@@ -87504,6 +87630,18 @@
     "session affinity tasks": [
       "session affinity tasks"
     ],
+    "session aware tie break": [
+      "session aware tie break"
+    ],
+    "session aware tie break implementation summary": [
+      "session aware tie break implementation summary"
+    ],
+    "session aware tie break plan": [
+      "session aware tie break plan"
+    ],
+    "session aware tie break tasks": [
+      "session aware tie break tasks"
+    ],
     "session bootstrap codex startup": [
       "session bootstrap codex startup"
     ],
@@ -88750,6 +88888,9 @@
     "short circuit vector search": [
       "short-circuit vector search"
     ],
+    "short host stdin deadline": [
+      "short host stdin deadline"
+    ],
     "short low signal query escalation": [
       "short low-signal query escalation"
     ],
@@ -89458,6 +89599,9 @@
     "sk code 2 2 5 0": [
       "sk-code 2.2.5.0"
     ],
+    "sk code 2 2 6 0": [
+      "sk-code 2.2.6.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -89992,6 +90136,9 @@
     "sk code opencode 1 2 0 0": [
       "sk-code-opencode 1.2.0.0"
     ],
+    "sk code opencode 1 2 1 0": [
+      "sk-code-opencode 1.2.1.0"
+    ],
     "sk code opencode alignment": [
       "sk-code opencode alignment"
     ],
@@ -90045,6 +90192,9 @@
     ],
     "sk code opencode v1 2 0 0": [
       "sk-code-opencode v1.2.0.0"
+    ],
+    "sk code opencode v1 2 1 0": [
+      "sk-code-opencode v1.2.1.0"
     ],
     "sk code overlay hardcoded replacement": [
       "sk-code overlay hardcoded replacement"
@@ -90112,6 +90262,9 @@
     "sk code quality 1 1 1 0": [
       "sk-code-quality 1.1.1.0"
     ],
+    "sk code quality 1 2 0 0": [
+      "sk-code-quality 1.2.0.0"
+    ],
     "sk code quality v1 0 0 0": [
       "sk-code-quality v1.0.0.0"
     ],
@@ -90126,6 +90279,9 @@
     ],
     "sk code quality v1 1 1 0": [
       "sk-code-quality v1.1.1.0"
+    ],
+    "sk code quality v1 2 0 0": [
+      "sk-code-quality v1.2.0.0"
     ],
     "sk code reference file hygiene": [
       "sk-code reference file hygiene"
@@ -90211,6 +90367,9 @@
     "sk code review 1 7 0 0": [
       "sk-code-review 1.7.0.0"
     ],
+    "sk code review 1 7 1 0": [
+      "sk-code-review 1.7.1.0"
+    ],
     "sk code review advisor merge": [
       "sk-code-review advisor merge"
     ],
@@ -90267,6 +90426,9 @@
     ],
     "sk code review v1 7 0 0": [
       "sk-code-review v1.7.0.0"
+    ],
+    "sk code review v1 7 1 0": [
+      "sk-code-review v1.7.1.0"
     ],
     "sk code review workflow": [
       "sk code review workflow"
@@ -90409,6 +90571,9 @@
     "sk code v2 2 5 0": [
       "sk-code v2.2.5.0"
     ],
+    "sk code v2 2 6 0": [
+      "sk-code v2.2.6.0"
+    ],
     "sk code verification workflow": [
       "sk-code verification workflow"
     ],
@@ -90421,6 +90586,9 @@
     "sk code webflow 1 1 1 0": [
       "sk-code-webflow 1.1.1.0"
     ],
+    "sk code webflow 1 1 2 0": [
+      "sk-code-webflow 1.1.2.0"
+    ],
     "sk code webflow v1 0 0 0": [
       "sk-code-webflow v1.0.0.0"
     ],
@@ -90429,6 +90597,9 @@
     ],
     "sk code webflow v1 1 1 0": [
       "sk-code-webflow v1.1.1.0"
+    ],
+    "sk code webflow v1 1 2 0": [
+      "sk-code-webflow v1.1.2.0"
     ],
     "sk code workflow and surface axis": [
       "sk-code workflow and surface axis"
@@ -99770,6 +99941,9 @@
     "surface bundle outcome": [
       "surface bundle outcome"
     ],
+    "surface bundle precedence": [
+      "surface bundle precedence"
+    ],
     "surface cites a dead path": [
       "surface cites a dead path"
     ],
@@ -99826,6 +100000,9 @@
     ],
     "surface parity command direct conversation": [
       "surface parity command direct conversation"
+    ],
+    "surface precedence obsidian webflow": [
+      "surface precedence obsidian webflow"
     ],
     "surface projection composition": [
       "surface projection composition"
@@ -100808,6 +100985,9 @@
     "system spec kit 2 7 1 0": [
       "system-spec-kit 2.7.1.0"
     ],
+    "system spec kit 2 7 2 0": [
+      "system-spec-kit 2.7.2.0"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -101182,6 +101362,9 @@
     ],
     "system spec kit v2 7 1 0": [
       "system-spec-kit v2.7.1.0"
+    ],
+    "system spec kit v2 7 2 0": [
+      "system-spec-kit v2.7.2.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -106669,6 +106852,9 @@
     "verify doc claims": [
       "verify doc claims"
     ],
+    "verify doc claims labels": [
+      "verify doc claims labels"
+    ],
     "verify findings at source": [
       "verify findings at source"
     ],
@@ -107694,8 +107880,23 @@
     "webflow jsdoc usage": [
       "webflow jsdoc usage"
     ],
+    "webflow labels and playbook": [
+      "webflow labels and playbook"
+    ],
+    "webflow labels and playbook implementation summary": [
+      "webflow labels and playbook implementation summary"
+    ],
+    "webflow labels and playbook plan": [
+      "webflow labels and playbook plan"
+    ],
+    "webflow labels and playbook tasks": [
+      "webflow labels and playbook tasks"
+    ],
     "webflow language specific references": [
       "webflow language-specific references"
+    ],
+    "webflow link labels": [
+      "webflow link labels"
     ],
     "webflow maintenance scripts": [
       "webflow maintenance scripts"
@@ -107795,6 +107996,9 @@
     ],
     "webflow third party libraries": [
       "webflow third party libraries"
+    ],
+    "webflow underscore labels": [
+      "webflow underscore labels"
     ],
     "webflow verification checklist": [
       "webflow verification checklist"

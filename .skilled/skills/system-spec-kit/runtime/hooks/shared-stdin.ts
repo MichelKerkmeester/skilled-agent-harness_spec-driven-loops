@@ -14,6 +14,14 @@
 /** Default stdin deadline, the same value lib/hook-adapter-shared.mjs uses. */
 export const HOOK_STDIN_TIMEOUT_MS = 3000;
 
+/**
+ * Stdin deadline for entries whose host kills them after 3 seconds. The read
+ * has to end early enough that the work after it still finishes inside the
+ * host timeout. lib/hook-adapter-shared.mjs and claude/user-prompt-submit.ts
+ * carry the same value.
+ */
+export const SHORT_HOST_STDIN_TIMEOUT_MS = 500;
+
 /** Options for one bounded stdin read. */
 export interface ReadHookStdinOptions {
   readonly timeoutMs?: number;
