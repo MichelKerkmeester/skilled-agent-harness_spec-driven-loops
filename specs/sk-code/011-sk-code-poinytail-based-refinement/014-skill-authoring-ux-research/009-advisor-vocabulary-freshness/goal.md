@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-014-009-advisor-vocabulary-freshness"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -75,10 +75,13 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Done | spec.md, plan.md, tasks.md and this goal written by the orchestrator |
+| Generators in write mode | Done | orchestrator |
+| Panel --strict and tests | Done | t3-p009a |
+| CI steps | Done | t3-p009b |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | Recorded here as the phase runs |
+| One existing panel test literal changed | It spelled the old stale-line tail that this phase replaces |
 <!-- /ANCHOR:log -->

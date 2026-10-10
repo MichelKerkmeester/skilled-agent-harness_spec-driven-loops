@@ -31,7 +31,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Record both baselines (RESULT: FAILED, missing 23; STALE COMPILED)
+- [x] T001 Record both baselines (RESULT: FAILED, missing 23; STALE COMPILED)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -39,9 +39,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Dispatch the --strict flag and named command; prove it exits 1 on today's stale graph
-- [ ] T003 Run the intent-signal generator in write mode, then the compiler
-- [ ] T004 Dispatch the two CI steps
+- [x] T002 Dispatch the --strict flag and named command; prove it exits 1 on today's stale graph
+- [x] T003 Run the intent-signal generator in write mode, then the compiler
+- [x] T004 Dispatch the two CI steps
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -49,7 +49,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Rerun the checks, validate and commit
+- [x] T005 Rerun the checks, validate and commit
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -57,9 +57,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every goal.md criterion passes on the orchestrator's rerun
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every goal.md criterion passes on the orchestrator's rerun
 <!-- /ANCHOR:completion -->
 
 ---

@@ -36,7 +36,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -46,6 +46,7 @@
       ".skilled/skills/cli-classifier/graph-metadata.json",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
       ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/doctor/skill-graph-freshness-panel.vitest.ts",
       ".github/workflows/routing-registry-drift.yml"
     ],
     "entities": [
@@ -95,6 +96,12 @@
         "name": "skill-graph-freshness.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-freshness-panel.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/doctor/skill-graph-freshness-panel.vitest.ts",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "generate-router-intent-signals --check fails today: cli-classifier is missing 23 declared phrases",
     "created_at": "2026-10-10T19:22:23Z",
-    "last_save_at": "2026-10-10T19:30:18.605Z",
+    "last_save_at": "2026-10-10T21:25:22.975Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d5f3cca2b2100e184e3a19d9d14ef6fc2a11abb12d296543ab70207755f1aab",
+    "source_fingerprint": "sha256:e15270265dee28fe157e357f2a8dc81b12e7fb9436693746a26f09c10c9285cb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9ea445b074e781cff44878519cc5d9206dfea4f90718ac815b72b9e2ef6954ab",
-      "plan.md": "66394dc12284384d385dc95d0f9b3afff3edca3a6da50075463f5815526b03df",
-      "tasks.md": "06b996a9ec9350bbfbb12585cfaa8163bb0277d6573f731c5a90275b2caadde6",
-      "implementation-summary.md": "e3d64dbaa2f1d10f2f0b669df736bb4950a7601811ff08631bf90d4942af61d6"
+      "spec.md": "1909354184c5cb6de8412a5e4ea0f0c5635d5b9d110e28e1a8aeafb2b41984b5",
+      "plan.md": "f7687a58c1cc845e0bf8898e258c1aaf3f35c00290f9b5f3e500c159796e10cc",
+      "tasks.md": "97cdf3c918019bff0b2e4f34833ab6649e0e8a3dcf0e40fd7588004f15dc2e7b",
+      "implementation-summary.md": "e66cbd2105341556eaacfde90ae67e93f3e350c1dfbaecf060d333d1aab974b2"
     },
     "last_active_at": null
   }

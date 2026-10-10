@@ -7,7 +7,7 @@
 // silently break the panel while every run still exited 0. This harness builds
 // throwaway repo-shaped roots (a skills tree, an optional SQLite graph) and
 // drives the panel through spawnSync against them, asserting the exact report
-// lines and that the scan stays depth-1.
+// lines, that the scan stays depth-1, and the --strict exit codes.
 
 import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
@@ -75,14 +75,16 @@ function writeDb(dbDir: string, rows: ReadonlyArray<readonly [string, string]>):
 interface PanelRun {
   readonly status: number | null;
   readonly output: string;
+  readonly stdout: string;
 }
 
-function runPanel(root: string, dbDir: string): PanelRun {
-  const result = spawnSync(process.execPath, [SCRIPT_PATH], {
+function runPanel(root: string, dbDir: string, args: readonly string[] = []): PanelRun {
+  const result = spawnSync(process.execPath, [SCRIPT_PATH, ...args], {
     encoding: 'utf8',
     env: { ...process.env, SKILL_GRAPH_FRESHNESS_ROOT: root, SYSTEM_SKILL_ADVISOR_DB_DIR: dbDir },
   });
-  return { status: result.status, output: `${result.stdout ?? ''}${result.stderr ?? ''}` };
+  const stdout = result.stdout ?? '';
+  return { status: result.status, output: `${stdout}${result.stderr ?? ''}`, stdout };
 }
 
 afterEach(() => {
@@ -124,7 +126,7 @@ describe('skill-graph freshness panel', () => {
 
     expect(status, output).toBe(0);
     expect(output).toContain(
-      `  STALE COMPILED: skill-graph.json generated_at ${OLD_STAMP} is older than the newest source stamp ${NEW_STAMP} (alpha); regenerate the compiled graph`,
+      `  STALE COMPILED: skill-graph.json generated_at ${OLD_STAMP} is older than the newest source stamp ${NEW_STAMP} (alpha); regenerate it with: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py --export-json`,
     );
   });
 
@@ -274,5 +276,44 @@ describe('skill-graph freshness panel', () => {
     expect(output).toMatch(/UNREADABLE graph-metadata: broken \(/);
     expect(output).toContain('GHOST (in compiled json, not on disk): none');
     expect(output).toContain('ZOMBIE (in SQLite, not on disk): none');
+  });
+
+  it('stale compiled fixture stays exit 0 by default but fails --strict and names the compiler', () => {
+    const root = tempRoot();
+    const dbDir = join(root, 'db');
+    writeSkill(root, 'alpha', 'hub', { last_updated_at: NEW_STAMP });
+    writeSkill(root, 'beta', 'hub', { last_updated_at: OLD_STAMP });
+    writeCompiled(root, OLD_STAMP, { hub: ['alpha', 'beta'] });
+    writeDb(dbDir, [['alpha', 'hub'], ['beta', 'hub']]);
+
+    const relaxed = runPanel(root, dbDir);
+    expect(relaxed.status, relaxed.output).toBe(0);
+
+    const strict = runPanel(root, dbDir, ['--strict']);
+    expect(strict.status, strict.output).toBe(1);
+    expect(strict.stdout).toContain('skill_graph_compiler.py');
+  });
+
+  it('fresh compiled fixture passes --strict even with no SQLite index, as in CI', () => {
+    const root = tempRoot();
+    const emptyDbDir = join(root, 'db-empty');
+    mkdirSync(emptyDbDir, { recursive: true });
+    writeSkill(root, 'alpha', 'hub', { last_updated_at: OLD_STAMP });
+    writeCompiled(root, NEW_STAMP, { hub: ['alpha'] });
+
+    const { status, output } = runPanel(root, emptyDbDir, ['--strict']);
+    expect(status, output).toBe(0);
+  });
+
+  it('SQLite drift alone never fails --strict, because CI has no local SQLite index', () => {
+    const root = tempRoot();
+    const dbDir = join(root, 'db');
+    writeSkill(root, 'alpha', 'hub', { last_updated_at: OLD_STAMP });
+    writeCompiled(root, NEW_STAMP, { hub: ['alpha'] });
+    writeDb(dbDir, [['alpha', 'hub'], ['retired', 'hub']]);
+
+    const { status, output } = runPanel(root, dbDir, ['--strict']);
+    expect(status, output).toBe(0);
+    expect(output).toContain('ZOMBIE (in SQLite, not on disk): retired');
   });
 });
