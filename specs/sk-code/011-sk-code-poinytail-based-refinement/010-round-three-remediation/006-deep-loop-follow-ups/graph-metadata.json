@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/006-deep-loop-follow-ups",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/006-deep-loop-follow-ups",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop follow ups",
+      "phase 6 deep loop follow ups",
+      "deep loop follow ups plan",
+      "deep loop follow ups tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "deep loop follow ups implementation summary"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "follow",
+      "ups",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.3.0.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.14.0.md",
+      ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+      ".skilled/skills/system-deep-loop/deep-review/README.md",
+      ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.4.0.md",
+      "scratch/dispatch-units.json",
+      "scratch/fix-units.json",
+      ".skilled/agents/deep-review.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-state-reducer.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "v1.9.3.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.3.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.5.14.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.14.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-mode-contract.yaml",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.11.4.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.4.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-units.json",
+        "kind": "config",
+        "path": "scratch/dispatch-units.json",
+        "source": "derived"
+      },
+      {
+        "name": "fix-units.json",
+        "kind": "config",
+        "path": "scratch/fix-units.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`parseFindingsBlock` in `reduce-state.cjs` (line 258 when read) keeps only trimmed lines that match `^-\\s+\\\\F\\d+\\\\`, but Step 7 of `.skilled/agents/deep-review.md` tells the agent to write `N",
+    "created_at": "2026-10-10T10:07:22Z",
+    "last_save_at": "2026-10-10T11:49:42.514Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3b4048ce1745e01a49710e5a3b4f43a54231301c72e9c00e0695eee4a34bf871",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d90c17f4628f3cdf98c460920662d88706a3bf2507a774edc8351ec3123fa266",
+      "plan.md": "4d804f6d5d153dc900ada27a2b18e1433f411ac84c0b9daff3a2527a800967e1",
+      "tasks.md": "b7bb576663fd4cc4871859025acf5608f503e145442599f91c3fbc3026dc3acc",
+      "implementation-summary.md": "3a36e007aa2b5b0902b51eabdb916e69e1616a60eeee242b490f4af5df6cba2f"
+    },
+    "last_active_at": null
+  }
+}

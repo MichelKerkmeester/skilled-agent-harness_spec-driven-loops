@@ -1,0 +1,14 @@
+  it('still refuses a cli-pi dispatch already named in the dispatch stack', () => {
+    expect(
+      validateExecutorDispatchAllowed(executorOfKind('cli-pi'), {
+        env: { [CLI_DISPATCH_STACK_ENV]: 'cli-codex:cli-pi' },
+        ancestryCmdlines: [],
+        statePaths: [],
+      }),
+    ).toMatchObject({
+      allowed: false,
+      layer: 'stack',
+      reason: 'recursion-guard-stack',
+    });
+  });
+});

@@ -1,0 +1,2 @@
+  return (EXECUTOR_ENV_PREFIXES_BY_KIND[kind] ?? []).some((prefix) => key.startsWith(prefix));
+}

@@ -176,6 +176,16 @@ const EXECUTOR_ENV_PREFIXES_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   'cli-hermes': ['HERMES_', 'LLMGATEWAY_'],
 };
 
+// Single variables a kind passes through where no prefix fits. Each entry names one
+// variable, because a prefix would also let through any variable that shares it.
+const EXECUTOR_ENV_KEYS_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
+  // pi-blackhole, an operator-global Pi package, auto-compacts a child mid-run and
+  // replaces what it has read with a summary, so a child still reading starts over.
+  // This variable switches the package to passive, and the cli-pi skill tells
+  // dispatchers to set it, so the filter must not drop it on the way to the child.
+  'cli-pi': ['PI_BLACKHOLE_PASSIVE'],
+};
+
 type RunAuditedExecutorCommandInput = {
   command: string;
   args: string[];
@@ -206,6 +216,9 @@ function getExecutorKind(config: ExecutorConfig): ExecutorKind {
 
 function isAllowedExecutorEnvKey(key: string, kind: ExecutorKind): boolean {
   if (EXECUTOR_COMMON_ENV_ALLOWLIST.has(key) || key.startsWith('LC_')) {
+    return true;
+  }
+  if ((EXECUTOR_ENV_KEYS_BY_KIND[kind] ?? []).includes(key)) {
     return true;
   }
   return (EXECUTOR_ENV_PREFIXES_BY_KIND[kind] ?? []).some((prefix) => key.startsWith(prefix));

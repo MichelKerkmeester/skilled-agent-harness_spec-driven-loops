@@ -1,0 +1,3 @@
+# This file is the single source of truth for review-mode taxonomy,
+# convergence settings, cross-reference protocols, downstream render targets,
+# and validation expectations.

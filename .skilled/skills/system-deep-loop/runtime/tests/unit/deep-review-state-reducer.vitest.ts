@@ -245,3 +245,131 @@ describe('reduceReviewState: finding narrative', () => {
     expect(withCase.openFindings.map((f) => f.severity)).toEqual(['P1', 'P2']);
   });
 });
+
+describe('reduceReviewState: numbered finding narrative', () => {
+  // The deep-review agent writes `N. **Title** -- file:line -- Description` with
+  // its evidence lines indented below; older iterations use `- **F###**: ...`.
+  const reduceNarrative = (
+    narrative: string,
+    deltaRows: Record<string, unknown>[] = [],
+    laterRecords: Record<string, unknown>[] = [],
+  ) => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    mkdirSync(join(reviewDir, 'iterations'), { recursive: true });
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({ maxIterations: 5, reviewTarget: 'numbered-shape-proof' }));
+    const stateRecords = [{
+      type: 'iteration',
+      iteration: 1,
+      status: 'complete',
+      focus: 'correctness',
+      newFindingsRatio: 1,
+    }, ...laterRecords];
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${stateRecords.map((record) => JSON.stringify(record)).join('\n')}\n`);
+    writeFileSync(join(reviewDir, 'iterations', 'iteration-001.md'), narrative);
+    if (deltaRows.length > 0) {
+      mkdirSync(join(reviewDir, 'deltas'), { recursive: true });
+      writeFileSync(join(reviewDir, 'deltas', 'iter-001.jsonl'), `${deltaRows.map((row) => JSON.stringify(row)).join('\n')}\n`);
+    }
+    return reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }).registry;
+  };
+  const numberedNarrative = (evidenceLines: string[]) => [
+    '# Iteration 1: Correctness',
+    '',
+    '## Findings - New',
+    '',
+    '### P1 Findings',
+    '',
+    '1. **Guard compares paths lexically** -- `scripts/apply.cjs:12` -- Use a containment test',
+    ...evidenceLines,
+    '',
+    '### P2 Findings',
+    '',
+    '1. **Stale comment** -- scripts/apply.cjs:40 -- Update it',
+    '',
+    '## Traceability Checks',
+    '',
+  ].join('\n');
+  const summarize = (registry: ReturnType<typeof reduceNarrative>) => registry.openFindings
+    .map((f) => [f.findingId, f.severity, f.title, f.file]);
+
+  it('reads numbered findings in the shape the deep-review agent writes', () => {
+    const registry = reduceNarrative(numberedNarrative([]));
+
+    expect(registry.openFindingsCount).toBe(2);
+    expect(summarize(registry)).toEqual([
+      ['R1-P1-001', 'P1', 'Guard compares paths lexically', 'scripts/apply.cjs'],
+      ['R1-P2-001', 'P2', 'Stale comment', 'scripts/apply.cjs'],
+    ]);
+  });
+
+  it('still reads the F### bullet shape', () => {
+    const registry = reduceNarrative([
+      '# Iteration 1: Correctness',
+      '',
+      '## Findings',
+      '',
+      '### P1 Findings',
+      '',
+      '- **F001**: Guard compares paths lexically - `scripts/apply.cjs:12` - Use a containment test',
+      '',
+      '### P2 Findings',
+      '',
+      '- **F002**: Stale comment - `scripts/apply.cjs:40` - Update it',
+      '',
+    ].join('\n'));
+
+    expect(summarize(registry)).toEqual([
+      ['F001', 'P1', 'Guard compares paths lexically', 'scripts/apply.cjs'],
+      ['F002', 'P2', 'Stale comment', 'scripts/apply.cjs'],
+    ]);
+  });
+
+  it('does not count the evidence lines under a numbered finding as findings', () => {
+    const registry = reduceNarrative(numberedNarrative([
+      '   - Finding class: `path-guard`',
+      '   - Scope proof: every caller passes a resolved path',
+      '   - Affected surface hints: [`scripts/apply.cjs`]',
+      '   - Case: a path with a trailing dot-dot segment passes the guard',
+      '   ```json',
+      '   {"type": "traceability", "finalSeverity": "P1"}',
+      '   ```',
+      '   1. **A nested step is not a finding** -- `scripts/apply.cjs:13` -- part of the case',
+      'Finding class: `path-guard`',
+      'Case: an unindented case line is still evidence',
+    ]));
+
+    expect(registry.openFindingsCount).toBe(2);
+    expect(summarize(registry).map((row) => row[0])).toEqual(['R1-P1-001', 'R1-P2-001']);
+  });
+
+  it('gives a numbered finding the delta-row id, so a later resolution closes it', () => {
+    const registry = reduceNarrative(numberedNarrative([]), [], [{
+      type: 'iteration',
+      iteration: 2,
+      status: 'complete',
+      focus: 'correctness',
+      newFindingsRatio: 0,
+      resolvedFindings: ['R1-P1-001'],
+    }]);
+
+    expect(registry.openFindingsCount).toBe(1);
+    expect(summarize(registry).map((row) => row[0])).toEqual(['R1-P2-001']);
+  });
+
+  it('defers to the delta rows of an iteration that recorded them', () => {
+    // The delta row words the title differently from the narrative, as live runs do,
+    // so only skipping the narrative keeps the finding from being counted twice.
+    const registry = reduceNarrative(numberedNarrative([]), [{
+      type: 'finding',
+      id: 'F-007',
+      iteration: 1,
+      severity: 'P1',
+      status: 'active',
+      title: 'Guard compares `paths` lexically',
+      file: 'scripts/apply.cjs:12',
+    }]);
+
+    expect(registry.openFindingsCount).toBe(1);
+    expect(summarize(registry).map((row) => row[0])).toEqual(['F-007']);
+  });
+});

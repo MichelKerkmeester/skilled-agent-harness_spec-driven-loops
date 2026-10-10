@@ -1,0 +1,1 @@
+function parseFindingsBlock(sectionText, severity) {

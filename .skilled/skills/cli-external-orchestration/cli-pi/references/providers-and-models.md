@@ -179,13 +179,14 @@ Confirm the target model actually honors the requested tier before assuming it c
 When dispatching as a non-interactive child (spec-gate-neutralized worker), prefix the shared env and capture streams separately:
 
 ```bash
-SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 pi -p "<prompt>" \
+SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 PI_BLACKHOLE_PASSIVE=true pi -p "<prompt>" \
   --model opencode-go/deepseek-v4.1-flash \
   --thinking max --mode text --offline \
   </dev/null > stdout.log 2> stderr.log
 ```
 
 - `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer.
+- `PI_BLACKHOLE_PASSIVE=true` switches the operator's global pi-blackhole package to passive, so it does not compact the child mid-run and send it back to reading. The deep-loop fan-out passes this variable through to its Pi children.
 - **`--model` carries its provider, and the enforcement guard rejects any dispatch where it does not.** Write `--model opencode-go/deepseek-v4.1-flash`; the split `--provider opencode-go --model deepseek-v4.1-flash` form is refused before the command is launched, whatever Pi itself would have done with it. The rule exists because an unqualified `--model` resolves against Pi's own default provider, which is `google` and unauthenticated here, so the mistake surfaces as a different model answering rather than as an error. Ids that already carry a vendor prefix simply grow a third segment, as `cline-pass/cline-pass/deepseek-v4.1-flash` and `cline-pass/z-ai/glm-5.3-flash` do.
 - **`</dev/null` before the redirects, on every non-interactive run.** Pi reads stdin at startup; without an EOF it waits forever, printing nothing. That is indistinguishable from a slow model, so the cost of omitting it is a hang nobody diagnoses rather than an error anyone sees.
 - `--offline` — pass explicitly for any automated/CI dispatch; `pi --verbose` without `--offline` hung 2+ minutes with no reachable network path in the pinned contract. See [cli-reference.md](./cli-reference.md) §7 and [integration-patterns.md](./integration-patterns.md) §15.

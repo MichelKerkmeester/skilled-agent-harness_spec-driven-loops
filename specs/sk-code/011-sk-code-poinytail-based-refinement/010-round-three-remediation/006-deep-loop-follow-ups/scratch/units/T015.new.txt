@@ -1,0 +1,20 @@
+  // An iteration that recorded delta finding rows or findingDetails already has its
+  // findings in exact form; its numbered narrative would add the same findings again
+  // under titles worded differently enough to escape the dedup key.
+  const structuredRuns = new Set(deltaFindingsByRun.keys());
+  for (const record of [...iterationRecords, ...deltaRecords]) {
+    const run = getIterationRun(record);
+    if (record?.type === 'iteration' && isFiniteNumber(run)
+      && Array.isArray(record.findingDetails) && record.findingDetails.length > 0) {
+      structuredRuns.add(run);
+    }
+  }
+
+  for (const iteration of iterationFiles) {
+    for (const finding of iteration.findings) {
+      if (numberedNarrativeFindings.has(finding) && structuredRuns.has(iteration.run)) {
+        continue;
+      }
+      upsertFinding(finding, iteration.run, iteration, 'Initial discovery', 'Severity adjusted in later iteration');
+    }
+  }

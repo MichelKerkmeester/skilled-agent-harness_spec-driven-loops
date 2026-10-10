@@ -1,0 +1,1 @@
+Set `PI_BLACKHOLE_PASSIVE=true` in the child's environment, which the package documents as switching off its background workers and its auto-compaction. The deep-loop fan-out's cli-pi environment filter passes this one variable through, so a value exported in the shell that runs the fan-out reaches every Pi child, and any variable outside the filter's list is still stripped.

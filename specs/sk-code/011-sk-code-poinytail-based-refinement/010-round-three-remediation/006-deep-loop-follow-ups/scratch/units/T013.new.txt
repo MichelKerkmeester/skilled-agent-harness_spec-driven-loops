@@ -1,0 +1,35 @@
+function parseFindingsBlock(sectionText, severity, run = 0) {
+  if (!sectionText) {
+    return [];
+  }
+
+  const findings = [];
+  let numberedCount = 0;
+  for (const rawLine of sectionText.split('\n')) {
+    const line = rawLine.trim();
+    if (/^-\s+\*\*F\d+\*\*/.test(line)) {
+      const finding = parseFindingLine(line.replace(/^-\s+/, ''), severity);
+      if (finding) {
+        findings.push(finding);
+      }
+      continue;
+    }
+    // The deep-review agent writes each finding as a numbered line at the left
+    // margin. Its evidence lines (Finding class, Scope proof, Affected surface
+    // hints, Case) never open with a number and a period, and nested lists and
+    // adjudication JSON are indented, so only a margin line opens a finding.
+    const marginLine = rawLine.trimEnd();
+    if (/^\d+\.\s+\*\*/.test(marginLine)) {
+      numberedCount += 1;
+      // The id follows the delta-row convention, R<iteration>-<severity>-<NNN>,
+      // so a later iteration can resolve the finding by the id it already uses.
+      const findingId = `R${run}-${severity}-${String(numberedCount).padStart(3, '0')}`;
+      const finding = parseNumberedFindingLine(marginLine, severity, findingId);
+      if (finding) {
+        numberedNarrativeFindings.add(finding);
+        findings.push(finding);
+      }
+    }
+  }
+  return findings;
+}

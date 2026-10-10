@@ -1,0 +1,3 @@
+    expect(withCase.openFindings.map((f) => f.severity)).toEqual(['P1', 'P2']);
+  });
+});

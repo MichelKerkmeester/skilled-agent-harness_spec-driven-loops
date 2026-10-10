@@ -1,0 +1,1 @@
+| Source of truth for this loop's dimensions, verdicts, gates and lifecycle modes, and for loop rules stricter than the review mode's, such as a file:line requirement at every severity. The severity ids and their meanings belong to [`review-core.md`](../../sk-code/sk-code-review/references/review-core.md) |

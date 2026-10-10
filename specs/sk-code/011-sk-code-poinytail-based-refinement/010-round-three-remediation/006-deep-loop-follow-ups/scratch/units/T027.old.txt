@@ -1,0 +1,1 @@
+| Single source of truth for dimensions, severities, verdicts, gates and lifecycle modes |

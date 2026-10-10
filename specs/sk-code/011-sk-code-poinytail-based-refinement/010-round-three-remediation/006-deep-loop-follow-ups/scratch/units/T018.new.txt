@@ -1,0 +1,5 @@
+  if ((EXECUTOR_ENV_KEYS_BY_KIND[kind] ?? []).includes(key)) {
+    return true;
+  }
+  return (EXECUTOR_ENV_PREFIXES_BY_KIND[kind] ?? []).some((prefix) => key.startsWith(prefix));
+}

@@ -1,0 +1,182 @@
+[
+  {
+    "task": "T012",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs, replace the exact text <<<OLD\nfunction parseFindingsBlock(sectionText, severity) {\nOLD>>> with <<<NEW\n// Numbered narrative findings restate the structured rows of their iteration in\n// free wording, so the registry uses them only for an iteration with no such rows.\nconst numberedNarrativeFindings = new WeakSet();\n\n/**\n * Parse a numbered finding line of the form: `N. **Title** -- file:line -- Description`\n *\n * @param {string} line - Raw numbered finding line, starting at the left margin\n * @param {string} severity - P0, P1, or P2 context\n * @param {string} findingId - Id built from the iteration, the severity and the position\n * @returns {Object|null} Structured finding or null when the line is not a finding\n */\nfunction parseNumberedFindingLine(line, severity, findingId) {\n  const match = line.match(/^\\d+\\.\\s+\\*\\*(.+?)\\*\\*(?:\\s+(?:--|\\u2014|-)\\s+`?([^`]+?)`?)?(?:\\s+(?:--|\\u2014|-)\\s+(.+))?$/);\n  if (!match) {\n    return null;\n  }\n\n  const [, title, evidenceRaw, description] = match;\n  let file = null;\n  let lineNumber = null;\n\n  if (evidenceRaw) {\n    const evidenceMatch = evidenceRaw.trim().match(/^(.+?):(\\d+)(?:[:-].*)?$/);\n    if (evidenceMatch) {\n      file = evidenceMatch[1];\n      lineNumber = Number(evidenceMatch[2]);\n    } else {\n      file = evidenceRaw.trim();\n    }\n  }\n\n  return {\n    findingId,\n    severity,\n    title: normalizeText(title),\n    file,\n    line: lineNumber,\n    description: normalizeText(description || ''),\n  };\n}\n\nfunction parseFindingsBlock(sectionText, severity) {\nNEW>>>",
+    "check": "grep -c '^function parseNumberedFindingLine(line, severity, findingId) {$' .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T013",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs, replace the exact text <<<OLD\nfunction parseFindingsBlock(sectionText, severity) {\n  if (!sectionText) {\n    return [];\n  }\n\n  return sectionText\n    .split('\\n')\n    .map((line) => line.trim())\n    .filter((line) => /^-\\s+\\*\\*F\\d+\\*\\*/.test(line))\n    .map((line) => parseFindingLine(line.replace(/^-\\s+/, ''), severity))\n    .filter(Boolean);\n}\nOLD>>> with <<<NEW\nfunction parseFindingsBlock(sectionText, severity, run = 0) {\n  if (!sectionText) {\n    return [];\n  }\n\n  const findings = [];\n  let numberedCount = 0;\n  for (const rawLine of sectionText.split('\\n')) {\n    const line = rawLine.trim();\n    if (/^-\\s+\\*\\*F\\d+\\*\\*/.test(line)) {\n      const finding = parseFindingLine(line.replace(/^-\\s+/, ''), severity);\n      if (finding) {\n        findings.push(finding);\n      }\n      continue;\n    }\n    // The deep-review agent writes each finding as a numbered line at the left\n    // margin. Its evidence lines (Finding class, Scope proof, Affected surface\n    // hints, Case) never open with a number and a period, and nested lists and\n    // adjudication JSON are indented, so only a margin line opens a finding.\n    const marginLine = rawLine.trimEnd();\n    if (/^\\d+\\.\\s+\\*\\*/.test(marginLine)) {\n      numberedCount += 1;\n      // The id follows the delta-row convention, R<iteration>-<severity>-<NNN>,\n      // so a later iteration can resolve the finding by the id it already uses.\n      const findingId = `R${run}-${severity}-${String(numberedCount).padStart(3, '0')}`;\n      const finding = parseNumberedFindingLine(marginLine, severity, findingId);\n      if (finding) {\n        numberedNarrativeFindings.add(finding);\n        findings.push(finding);\n      }\n    }\n  }\n  return findings;\n}\nNEW>>>",
+    "check": "grep -c '^function parseFindingsBlock(sectionText, severity, run = 0) {$' .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T014",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs, replace the exact text <<<OLD\n  const findings = [\n    ...parseFindingsBlock(p0Block, 'P0'),\n    ...parseFindingsBlock(p1Block, 'P1'),\n    ...parseFindingsBlock(p2Block, 'P2'),\n  ];\nOLD>>> with <<<NEW\n  const run = runMatch ? Number(runMatch[1]) : 0;\n  const findings = [\n    ...parseFindingsBlock(p0Block, 'P0', run),\n    ...parseFindingsBlock(p1Block, 'P1', run),\n    ...parseFindingsBlock(p2Block, 'P2', run),\n  ];\nNEW>>>",
+    "check": "grep -cF \"...parseFindingsBlock(p1Block, 'P1', run),\" .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T015",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs, replace the exact text <<<OLD\n  for (const iteration of iterationFiles) {\n    for (const finding of iteration.findings) {\n      upsertFinding(finding, iteration.run, iteration, 'Initial discovery', 'Severity adjusted in later iteration');\n    }\n  }\nOLD>>> with <<<NEW\n  // An iteration that recorded delta finding rows or findingDetails already has its\n  // findings in exact form; its numbered narrative would add the same findings again\n  // under titles worded differently enough to escape the dedup key.\n  const structuredRuns = new Set(deltaFindingsByRun.keys());\n  for (const record of [...iterationRecords, ...deltaRecords]) {\n    const run = getIterationRun(record);\n    if (record?.type === 'iteration' && isFiniteNumber(run)\n      && Array.isArray(record.findingDetails) && record.findingDetails.length > 0) {\n      structuredRuns.add(run);\n    }\n  }\n\n  for (const iteration of iterationFiles) {\n    for (const finding of iteration.findings) {\n      if (numberedNarrativeFindings.has(finding) && structuredRuns.has(iteration.run)) {\n        continue;\n      }\n      upsertFinding(finding, iteration.run, iteration, 'Initial discovery', 'Severity adjusted in later iteration');\n    }\n  }\nNEW>>>",
+    "check": "grep -cF 'if (numberedNarrativeFindings.has(finding) && structuredRuns.has(iteration.run)) {' .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T016",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts, replace the exact text <<<OLD\n    expect(withCase.openFindings.map((f) => f.severity)).toEqual(['P1', 'P2']);\n  });\n});\nOLD>>> with <<<NEW\n    expect(withCase.openFindings.map((f) => f.severity)).toEqual(['P1', 'P2']);\n  });\n});\n\ndescribe('reduceReviewState: numbered finding narrative', () => {\n  // The deep-review agent writes `N. **Title** -- file:line -- Description` with\n  // its evidence lines indented below; older iterations use `- **F###**: ...`.\n  const reduceNarrative = (\n    narrative: string,\n    deltaRows: Record<string, unknown>[] = [],\n    laterRecords: Record<string, unknown>[] = [],\n  ) => {\n    const { specFolder, reviewDir } = makeReviewDir();\n    mkdirSync(join(reviewDir, 'iterations'), { recursive: true });\n    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({ maxIterations: 5, reviewTarget: 'numbered-shape-proof' }));\n    const stateRecords = [{\n      type: 'iteration',\n      iteration: 1,\n      status: 'complete',\n      focus: 'correctness',\n      newFindingsRatio: 1,\n    }, ...laterRecords];\n    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${stateRecords.map((record) => JSON.stringify(record)).join('\\n')}\\n`);\n    writeFileSync(join(reviewDir, 'iterations', 'iteration-001.md'), narrative);\n    if (deltaRows.length > 0) {\n      mkdirSync(join(reviewDir, 'deltas'), { recursive: true });\n      writeFileSync(join(reviewDir, 'deltas', 'iter-001.jsonl'), `${deltaRows.map((row) => JSON.stringify(row)).join('\\n')}\\n`);\n    }\n    return reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }).registry;\n  };\n  const numberedNarrative = (evidenceLines: string[]) => [\n    '# Iteration 1: Correctness',\n    '',\n    '## Findings - New',\n    '',\n    '### P1 Findings',\n    '',\n    '1. **Guard compares paths lexically** -- `scripts/apply.cjs:12` -- Use a containment test',\n    ...evidenceLines,\n    '',\n    '### P2 Findings',\n    '',\n    '1. **Stale comment** -- scripts/apply.cjs:40 -- Update it',\n    '',\n    '## Traceability Checks',\n    '',\n  ].join('\\n');\n  const summarize = (registry: ReturnType<typeof reduceNarrative>) => registry.openFindings\n    .map((f) => [f.findingId, f.severity, f.title, f.file]);\n\n  it('reads numbered findings in the shape the deep-review agent writes', () => {\n    const registry = reduceNarrative(numberedNarrative([]));\n\n    expect(registry.openFindingsCount).toBe(2);\n    expect(summarize(registry)).toEqual([\n      ['R1-P1-001', 'P1', 'Guard compares paths lexically', 'scripts/apply.cjs'],\n      ['R1-P2-001', 'P2', 'Stale comment', 'scripts/apply.cjs'],\n    ]);\n  });\n\n  it('still reads the F### bullet shape', () => {\n    const registry = reduceNarrative([\n      '# Iteration 1: Correctness',\n      '',\n      '## Findings',\n      '',\n      '### P1 Findings',\n      '',\n      '- **F001**: Guard compares paths lexically - `scripts/apply.cjs:12` - Use a containment test',\n      '',\n      '### P2 Findings',\n      '',\n      '- **F002**: Stale comment - `scripts/apply.cjs:40` - Update it',\n      '',\n    ].join('\\n'));\n\n    expect(summarize(registry)).toEqual([\n      ['F001', 'P1', 'Guard compares paths lexically', 'scripts/apply.cjs'],\n      ['F002', 'P2', 'Stale comment', 'scripts/apply.cjs'],\n    ]);\n  });\n\n  it('does not count the evidence lines under a numbered finding as findings', () => {\n    const registry = reduceNarrative(numberedNarrative([\n      '   - Finding class: `path-guard`',\n      '   - Scope proof: every caller passes a resolved path',\n      '   - Affected surface hints: [`scripts/apply.cjs`]',\n      '   - Case: a path with a trailing dot-dot segment passes the guard',\n      '   ```json',\n      '   {\"type\": \"traceability\", \"finalSeverity\": \"P1\"}',\n      '   ```',\n      '   1. **A nested step is not a finding** -- `scripts/apply.cjs:13` -- part of the case',\n      'Finding class: `path-guard`',\n      'Case: an unindented case line is still evidence',\n    ]));\n\n    expect(registry.openFindingsCount).toBe(2);\n    expect(summarize(registry).map((row) => row[0])).toEqual(['R1-P1-001', 'R1-P2-001']);\n  });\n\n  it('gives a numbered finding the delta-row id, so a later resolution closes it', () => {\n    const registry = reduceNarrative(numberedNarrative([]), [], [{\n      type: 'iteration',\n      iteration: 2,\n      status: 'complete',\n      focus: 'correctness',\n      newFindingsRatio: 0,\n      resolvedFindings: ['R1-P1-001'],\n    }]);\n\n    expect(registry.openFindingsCount).toBe(1);\n    expect(summarize(registry).map((row) => row[0])).toEqual(['R1-P2-001']);\n  });\n\n  it('defers to the delta rows of an iteration that recorded them', () => {\n    // The delta row words the title differently from the narrative, as live runs do,\n    // so only skipping the narrative keeps the finding from being counted twice.\n    const registry = reduceNarrative(numberedNarrative([]), [{\n      type: 'finding',\n      id: 'F-007',\n      iteration: 1,\n      severity: 'P1',\n      status: 'active',\n      title: 'Guard compares `paths` lexically',\n      file: 'scripts/apply.cjs:12',\n    }]);\n\n    expect(registry.openFindingsCount).toBe(1);\n    expect(summarize(registry).map((row) => row[0])).toEqual(['F-007']);\n  });\n});\nNEW>>>",
+    "check": "grep -cF \"describe('reduceReviewState: numbered finding narrative'\" .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts",
+    "expect": "1"
+  },
+  {
+    "task": "T017",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts, replace the exact text <<<OLD\n  'cli-hermes': ['HERMES_', 'LLMGATEWAY_'],\n};\nOLD>>> with <<<NEW\n  'cli-hermes': ['HERMES_', 'LLMGATEWAY_'],\n};\n\n// Single variables a kind passes through where no prefix fits. Each entry names one\n// variable, because a prefix would also let through any variable that shares it.\nconst EXECUTOR_ENV_KEYS_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {\n  // pi-blackhole, an operator-global Pi package, auto-compacts a child mid-run and\n  // replaces what it has read with a summary, so a child still reading starts over.\n  // This variable switches the package to passive, and the cli-pi skill tells\n  // dispatchers to set it, so the filter must not drop it on the way to the child.\n  'cli-pi': ['PI_BLACKHOLE_PASSIVE'],\n};\nNEW>>>",
+    "check": "grep -cF \"'cli-pi': ['PI_BLACKHOLE_PASSIVE'],\" .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+    "expect": "1"
+  },
+  {
+    "task": "T018",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts, replace the exact text <<<OLD\n  return (EXECUTOR_ENV_PREFIXES_BY_KIND[kind] ?? []).some((prefix) => key.startsWith(prefix));\n}\nOLD>>> with <<<NEW\n  if ((EXECUTOR_ENV_KEYS_BY_KIND[kind] ?? []).includes(key)) {\n    return true;\n  }\n  return (EXECUTOR_ENV_PREFIXES_BY_KIND[kind] ?? []).some((prefix) => key.startsWith(prefix));\n}\nNEW>>>",
+    "check": "grep -cF 'if ((EXECUTOR_ENV_KEYS_BY_KIND[kind] ?? []).includes(key)) {' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+    "expect": "1"
+  },
+  {
+    "task": "T019",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit.vitest.ts"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit.vitest.ts, replace the exact text <<<OLD\n  it('still refuses a cli-pi dispatch already named in the dispatch stack', () => {\n    expect(\n      validateExecutorDispatchAllowed(executorOfKind('cli-pi'), {\n        env: { [CLI_DISPATCH_STACK_ENV]: 'cli-codex:cli-pi' },\n        ancestryCmdlines: [],\n        statePaths: [],\n      }),\n    ).toMatchObject({\n      allowed: false,\n      layer: 'stack',\n      reason: 'recursion-guard-stack',\n    });\n  });\n});\nOLD>>> with <<<NEW\n  it('still refuses a cli-pi dispatch already named in the dispatch stack', () => {\n    expect(\n      validateExecutorDispatchAllowed(executorOfKind('cli-pi'), {\n        env: { [CLI_DISPATCH_STACK_ENV]: 'cli-codex:cli-pi' },\n        ancestryCmdlines: [],\n        statePaths: [],\n      }),\n    ).toMatchObject({\n      allowed: false,\n      layer: 'stack',\n      reason: 'recursion-guard-stack',\n    });\n  });\n});\n\ndescribe('executor-audit: cli-pi environment filter', () => {\n  function cliPiExecutor(): ExecutorConfig {\n    return {\n      kind: 'cli-pi',\n      model: null,\n      configDir: null,\n      reasoningEffort: null,\n      serviceTier: null,\n      sandboxMode: null,\n      timeoutSeconds: 900,\n    };\n  }\n\n  it('passes PI_BLACKHOLE_PASSIVE to a cli-pi child and still strips an unlisted variable', () => {\n    const nextEnv = buildExecutorDispatchEnv(cliPiExecutor(), {\n      PATH: '/usr/bin',\n      PI_BLACKHOLE_PASSIVE: 'true',\n      LLMGATEWAY_API_KEY: 'gateway-secret',\n      PI_BLACKHOLE_PASSIVE_EXTRA: 'not-listed',\n      UNLISTED_PROBE_VAR: 'should-not-pass',\n    });\n\n    expect(nextEnv).toMatchObject({\n      PATH: '/usr/bin',\n      PI_BLACKHOLE_PASSIVE: 'true',\n      LLMGATEWAY_API_KEY: 'gateway-secret',\n      SPECKIT_CLI_DISPATCH_STACK: 'cli-pi',\n    });\n    expect(nextEnv.PI_BLACKHOLE_PASSIVE_EXTRA).toBeUndefined();\n    expect(nextEnv.UNLISTED_PROBE_VAR).toBeUndefined();\n  });\n\n  it('keeps PI_BLACKHOLE_PASSIVE out of every other executor kind', () => {\n    const nextEnv = buildExecutorDispatchEnv(cliCodexExecutor(), {\n      PATH: '/usr/bin',\n      PI_BLACKHOLE_PASSIVE: 'true',\n    });\n\n    expect(nextEnv.PI_BLACKHOLE_PASSIVE).toBeUndefined();\n  });\n\n  it('delivers PI_BLACKHOLE_PASSIVE to the spawned cli-pi child process', () => {\n    let childEnv: Record<string, unknown> = {};\n    withTempStateLog('{\"type\":\"event\",\"event\":\"start\"}\\n', (stateLogPath) => {\n      const envPath = join(dirname(stateLogPath), 'child-env.json');\n      const exitCode = runAuditedExecutorCommand({\n        command: 'node',\n        args: [\n          '-e',\n          \"require('fs').writeFileSync(process.argv[1], JSON.stringify({ passive: process.env.PI_BLACKHOLE_PASSIVE ?? null, unlisted: process.env.UNLISTED_PROBE_VAR ?? null }))\",\n          envPath,\n        ],\n        cwd: tmpdir(),\n        timeoutSeconds: 30,\n        stateLogPath,\n        executor: cliPiExecutor(),\n        iteration: 1,\n        guardContext: {\n          env: {\n            PATH: process.env.PATH,\n            HOME: process.env.HOME,\n            PI_BLACKHOLE_PASSIVE: 'true',\n            UNLISTED_PROBE_VAR: 'should-not-pass',\n          },\n          ancestryCmdlines: [],\n          statePaths: [],\n        },\n      });\n\n      expect(exitCode).toBe(0);\n      childEnv = JSON.parse(readFileSync(envPath, 'utf8'));\n    });\n\n    expect(childEnv).toEqual({ passive: 'true', unlisted: null });\n  });\n});\nNEW>>>",
+    "check": "grep -cF \"describe('executor-audit: cli-pi environment filter'\" .skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit.vitest.ts",
+    "expect": "1"
+  },
+  {
+    "task": "T020",
+    "files": [
+      ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md, replace the exact text <<<OLD\nSet `PI_BLACKHOLE_PASSIVE=true` in the child's environment, which the package documents as switching off its background workers and its auto-compaction.OLD>>> with <<<NEW\nSet `PI_BLACKHOLE_PASSIVE=true` in the child's environment, which the package documents as switching off its background workers and its auto-compaction. The deep-loop fan-out's cli-pi environment filter passes this one variable through, so a value exported in the shell that runs the fan-out reaches every Pi child, and any variable outside the filter's list is still stripped.NEW>>>",
+    "check": "grep -cF 'cli-pi environment filter passes this one variable through' .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T021",
+    "files": [
+      ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md, replace the exact text <<<OLD\nversion: 1.5.13.0\nOLD>>> with <<<NEW\nversion: 1.5.14.0\nNEW>>>",
+    "check": "grep -c '^version: 1.5.14.0$' .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T022",
+    "files": [
+      ".skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md, replace the exact text <<<OLD\nSYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 pi -p \"<prompt>\" \\\nOLD>>> with <<<NEW\nSYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 PI_BLACKHOLE_PASSIVE=true pi -p \"<prompt>\" \\\nNEW>>>",
+    "check": "grep -cF 'AI_SESSION_CHILD=1 PI_BLACKHOLE_PASSIVE=true pi -p' .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
+    "expect": "1"
+  },
+  {
+    "task": "T023",
+    "files": [
+      ".skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md, replace the exact text <<<OLD\n- **`--model` carries its provider, and the enforcement guard rejects any dispatch where it does not.**OLD>>> with <<<NEW\n- `PI_BLACKHOLE_PASSIVE=true` switches the operator's global pi-blackhole package to passive, so it does not compact the child mid-run and send it back to reading. The deep-loop fan-out passes this variable through to its Pi children.\n- **`--model` carries its provider, and the enforcement guard rejects any dispatch where it does not.**NEW>>>",
+    "check": "grep -cF \"switches the operator's global pi-blackhole package to passive\" .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
+    "expect": "1"
+  },
+  {
+    "task": "T024",
+    "files": [
+      ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.14.0.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.14.0.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/006-deep-loop-follow-ups/scratch/units/T024.cli-pi-v1.5.14.0.md",
+    "check": "cmp specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/006-deep-loop-follow-ups/scratch/units/T024.cli-pi-v1.5.14.0.md .skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.14.0.md && echo identical",
+    "expect": "identical"
+  },
+  {
+    "task": "T025",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.3.0.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/system-deep-loop/runtime/changelog/v1.9.3.0.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/006-deep-loop-follow-ups/scratch/units/T025.runtime-v1.9.3.0.md",
+    "check": "cmp specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/006-deep-loop-follow-ups/scratch/units/T025.runtime-v1.9.3.0.md .skilled/skills/system-deep-loop/runtime/changelog/v1.9.3.0.md && echo identical",
+    "expect": "identical"
+  },
+  {
+    "task": "T026",
+    "files": [
+      ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml, replace the exact text <<<OLD\n# This file is the single source of truth for review-mode taxonomy,\n# convergence settings, cross-reference protocols, downstream render targets,\n# and validation expectations.\nOLD>>> with <<<NEW\n# This file is the single source of truth for this loop's review-mode taxonomy,\n# convergence settings, cross-reference protocols, downstream render targets,\n# and validation expectations. The severity ids P0, P1 and P2 and what each one\n# means are owned by .skilled/skills/sk-code/sk-code-review/references/review-core.md.\n# The severities block below adds this loop's own rules on top of those\n# definitions, such as its weights and a file:line requirement at every tier,\n# P2 included.\nNEW>>>",
+    "check": "grep -cF 'are owned by .skilled/skills/sk-code/sk-code-review/references/review-core.md.' .skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+    "expect": "1"
+  },
+  {
+    "task": "T027",
+    "files": [
+      ".skilled/skills/system-deep-loop/deep-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/deep-review/README.md, replace the exact text <<<OLD\n| Single source of truth for dimensions, severities, verdicts, gates and lifecycle modes |OLD>>> with <<<NEW\n| Source of truth for this loop's dimensions, verdicts, gates and lifecycle modes, and for loop rules stricter than the review mode's, such as a file:line requirement at every severity. The severity ids and their meanings belong to [`review-core.md`](../../sk-code/sk-code-review/references/review-core.md) |NEW>>>",
+    "check": "grep -cF 'The severity ids and their meanings belong to [`review-core.md`](../../sk-code/sk-code-review/references/review-core.md)' .skilled/skills/system-deep-loop/deep-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T028",
+    "files": [
+      ".skilled/skills/system-deep-loop/deep-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/deep-review/SKILL.md, replace the exact text <<<OLD\nversion: 1.11.3.0\nOLD>>> with <<<NEW\nversion: 1.11.4.0\nNEW>>>",
+    "check": "grep -c '^version: 1.11.4.0$' .skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T029",
+    "files": [
+      ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.4.0.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.4.0.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/006-deep-loop-follow-ups/scratch/units/T029.deep-review-v1.11.4.0.md",
+    "check": "cmp specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/006-deep-loop-follow-ups/scratch/units/T029.deep-review-v1.11.4.0.md .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.4.0.md && echo identical",
+    "expect": "identical"
+  }
+]

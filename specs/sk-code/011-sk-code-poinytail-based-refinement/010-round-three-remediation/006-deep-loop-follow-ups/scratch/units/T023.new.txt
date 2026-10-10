@@ -1,0 +1,2 @@
+- `PI_BLACKHOLE_PASSIVE=true` switches the operator's global pi-blackhole package to passive, so it does not compact the child mid-run and send it back to reading. The deep-loop fan-out passes this variable through to its Pi children.
+- **`--model` carries its provider, and the enforcement guard rejects any dispatch where it does not.**

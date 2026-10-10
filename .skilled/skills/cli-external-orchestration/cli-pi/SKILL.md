@@ -2,7 +2,7 @@
 name: cli-pi
 description: "Pi CLI executor for guarded headless coding, JSON/RPC integration, native skills/extensions, and community-package delegation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.5.13.0
+version: 1.5.14.0
 ---
 
 <!-- Keywords: pi cli, pi agent, pi.dev cli, pi coding agent, delegate to pi, cross-ai, headless dispatch, json event stream, rpc mode, native skills, extensions, pi packages -->
@@ -196,7 +196,7 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 - **An invalid `.pi/extensions/*.ts` fails the whole session, not just that extension.** The pinned contract confirmed Pi validates extensions must export a factory function; a broken one blocks the entire dispatch with `Extension does not export a valid factory function` rather than skipping it with a warning.
 - **The default provider is `google`, not Anthropic.** `pi --help` documents `--provider <name> (default: google)`. Do not assume an Anthropic-first default when composing a dispatch that omits `--provider`.
 - **`pi install`/`pi list` require `--approve` to see or modify project-local package config.** Without it, both commands behave as if no packages exist, even when one is installed — the trust gate applies to reads, not only writes.
-- **The operator's global Pi packages load in a dispatched child, and pi-blackhole compacts it mid-run.** pi-blackhole's config (`~/.pi/agent/pi-blackhole/pi-blackhole-config.json`) auto-compacts at `compactAfterTokens`, 272,000 here, with `midRunCompaction: "resume"`. The compaction replaces everything the child has read with a structural summary, so a child still reading when it fires starts reading again and can loop without ever editing. Set `PI_BLACKHOLE_PASSIVE=true` in the child's environment, which the package documents as switching off its background workers and its auto-compaction. Pi's own compaction is off in `.pi/settings.json`, so the child keeps its model's full context window.
+- **The operator's global Pi packages load in a dispatched child, and pi-blackhole compacts it mid-run.** pi-blackhole's config (`~/.pi/agent/pi-blackhole/pi-blackhole-config.json`) auto-compacts at `compactAfterTokens`, 272,000 here, with `midRunCompaction: "resume"`. The compaction replaces everything the child has read with a structural summary, so a child still reading when it fires starts reading again and can loop without ever editing. Set `PI_BLACKHOLE_PASSIVE=true` in the child's environment, which the package documents as switching off its background workers and its auto-compaction. The deep-loop fan-out's cli-pi environment filter passes this one variable through, so a value exported in the shell that runs the fan-out reaches every Pi child, and any variable outside the filter's list is still stripped. Pi's own compaction is off in `.pi/settings.json`, so the child keeps its model's full context window.
 
 ---
 

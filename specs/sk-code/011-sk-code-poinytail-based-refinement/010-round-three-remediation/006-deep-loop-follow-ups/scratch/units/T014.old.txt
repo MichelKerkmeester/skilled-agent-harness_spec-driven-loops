@@ -1,0 +1,5 @@
+  const findings = [
+    ...parseFindingsBlock(p0Block, 'P0'),
+    ...parseFindingsBlock(p1Block, 'P1'),
+    ...parseFindingsBlock(p2Block, 'P2'),
+  ];

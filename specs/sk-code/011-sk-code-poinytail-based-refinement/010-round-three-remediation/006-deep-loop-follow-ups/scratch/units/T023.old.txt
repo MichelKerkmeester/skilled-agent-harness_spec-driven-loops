@@ -1,0 +1,1 @@
+- **`--model` carries its provider, and the enforcement guard rejects any dispatch where it does not.**

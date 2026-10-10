@@ -255,17 +255,82 @@ function parseFindingLine(line, severity) {
   };
 }
 
-function parseFindingsBlock(sectionText, severity) {
+// Numbered narrative findings restate the structured rows of their iteration in
+// free wording, so the registry uses them only for an iteration with no such rows.
+const numberedNarrativeFindings = new WeakSet();
+
+/**
+ * Parse a numbered finding line of the form: `N. **Title** -- file:line -- Description`
+ *
+ * @param {string} line - Raw numbered finding line, starting at the left margin
+ * @param {string} severity - P0, P1, or P2 context
+ * @param {string} findingId - Id built from the iteration, the severity and the position
+ * @returns {Object|null} Structured finding or null when the line is not a finding
+ */
+function parseNumberedFindingLine(line, severity, findingId) {
+  const match = line.match(/^\d+\.\s+\*\*(.+?)\*\*(?:\s+(?:--|\u2014|-)\s+`?([^`]+?)`?)?(?:\s+(?:--|\u2014|-)\s+(.+))?$/);
+  if (!match) {
+    return null;
+  }
+
+  const [, title, evidenceRaw, description] = match;
+  let file = null;
+  let lineNumber = null;
+
+  if (evidenceRaw) {
+    const evidenceMatch = evidenceRaw.trim().match(/^(.+?):(\d+)(?:[:-].*)?$/);
+    if (evidenceMatch) {
+      file = evidenceMatch[1];
+      lineNumber = Number(evidenceMatch[2]);
+    } else {
+      file = evidenceRaw.trim();
+    }
+  }
+
+  return {
+    findingId,
+    severity,
+    title: normalizeText(title),
+    file,
+    line: lineNumber,
+    description: normalizeText(description || ''),
+  };
+}
+
+function parseFindingsBlock(sectionText, severity, run = 0) {
   if (!sectionText) {
     return [];
   }
 
-  return sectionText
-    .split('\n')
-    .map((line) => line.trim())
-    .filter((line) => /^-\s+\*\*F\d+\*\*/.test(line))
-    .map((line) => parseFindingLine(line.replace(/^-\s+/, ''), severity))
-    .filter(Boolean);
+  const findings = [];
+  let numberedCount = 0;
+  for (const rawLine of sectionText.split('\n')) {
+    const line = rawLine.trim();
+    if (/^-\s+\*\*F\d+\*\*/.test(line)) {
+      const finding = parseFindingLine(line.replace(/^-\s+/, ''), severity);
+      if (finding) {
+        findings.push(finding);
+      }
+      continue;
+    }
+    // The deep-review agent writes each finding as a numbered line at the left
+    // margin. Its evidence lines (Finding class, Scope proof, Affected surface
+    // hints, Case) never open with a number and a period, and nested lists and
+    // adjudication JSON are indented, so only a margin line opens a finding.
+    const marginLine = rawLine.trimEnd();
+    if (/^\d+\.\s+\*\*/.test(marginLine)) {
+      numberedCount += 1;
+      // The id follows the delta-row convention, R<iteration>-<severity>-<NNN>,
+      // so a later iteration can resolve the finding by the id it already uses.
+      const findingId = `R${run}-${severity}-${String(numberedCount).padStart(3, '0')}`;
+      const finding = parseNumberedFindingLine(marginLine, severity, findingId);
+      if (finding) {
+        numberedNarrativeFindings.add(finding);
+        findings.push(finding);
+      }
+    }
+  }
+  return findings;
 }
 
 /**
@@ -294,10 +359,11 @@ function parseIterationFile(iterationPath) {
   const p1Block = extractSubsection(findingsSection, 'P1') || extractSubsection(findingsSection, 'P1 Findings');
   const p2Block = extractSubsection(findingsSection, 'P2') || extractSubsection(findingsSection, 'P2 Findings');
 
+  const run = runMatch ? Number(runMatch[1]) : 0;
   const findings = [
-    ...parseFindingsBlock(p0Block, 'P0'),
-    ...parseFindingsBlock(p1Block, 'P1'),
-    ...parseFindingsBlock(p2Block, 'P2'),
+    ...parseFindingsBlock(p0Block, 'P0', run),
+    ...parseFindingsBlock(p1Block, 'P1', run),
+    ...parseFindingsBlock(p2Block, 'P2', run),
   ];
 
   const dimensionsAddressed = (assessmentSection.match(/Dimensions addressed:\s*(.+)/i) || [])[1];
@@ -907,8 +973,23 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
     }
   }
 
+  // An iteration that recorded delta finding rows or findingDetails already has its
+  // findings in exact form; its numbered narrative would add the same findings again
+  // under titles worded differently enough to escape the dedup key.
+  const structuredRuns = new Set(deltaFindingsByRun.keys());
+  for (const record of [...iterationRecords, ...deltaRecords]) {
+    const run = getIterationRun(record);
+    if (record?.type === 'iteration' && isFiniteNumber(run)
+      && Array.isArray(record.findingDetails) && record.findingDetails.length > 0) {
+      structuredRuns.add(run);
+    }
+  }
+
   for (const iteration of iterationFiles) {
     for (const finding of iteration.findings) {
+      if (numberedNarrativeFindings.has(finding) && structuredRuns.has(iteration.run)) {
+        continue;
+      }
       upsertFinding(finding, iteration.run, iteration, 'Initial discovery', 'Severity adjusted in later iteration');
     }
   }

@@ -1,0 +1,13 @@
+✅ VALID: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md
+Total issues: 0
+✅ VALID: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md
+Total issues: 0
+  cli-external-orchestration  stale-manifest
+  system-deep-loop            fresh
+Re-mint: cli-external-orchestration
+leaf-manifest.json OK (9b306e5c1f55fec413db0ea486885144c692e9523e5b37c714f5d826bc73841f)
+leaf-manifest.json OK (6b0e8212d0bdcb9d086bf917d4b033bb69f4ba40bff1d2af065d0803572b61e7)
+FAIL: 7 drifted, 0 stale; run without --check to regenerate
+[runtime-mirror-sync] PASS: 187 mirrors across 8 trees are in sync.
+[render-contract-snapshot] OK: .skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md is up to date.
+      Tests  12 passed (12)

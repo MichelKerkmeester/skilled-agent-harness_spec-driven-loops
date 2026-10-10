@@ -257,7 +257,7 @@ Expected output: zero issues reported.
 | [`references/state/state-jsonl.md`](./references/state/state-jsonl.md) | Config, iteration, event and blocked-stop JSONL record types |
 | [`references/state/state-outputs.md`](./references/state/state-outputs.md) | Strategy, iteration markdown, report, dashboard and resource-map outputs |
 | [`references/state/state-reducer-registry.md`](./references/state/state-reducer-registry.md) | Reducer ownership, findings registry, validation and reconstruction |
-| [`assets/review-mode-contract.yaml`](./assets/review-mode-contract.yaml) | Single source of truth for dimensions, severities, verdicts, gates and lifecycle modes |
+| [`assets/review-mode-contract.yaml`](./assets/review-mode-contract.yaml) | Source of truth for this loop's dimensions, verdicts, gates and lifecycle modes, and for loop rules stricter than the review mode's, such as a file:line requirement at every severity. The severity ids and their meanings belong to [`review-core.md`](../../sk-code/sk-code-review/references/review-core.md) |
 | [`../runtime/scripts/reduce-state.cjs`](../runtime/scripts/reduce-state.cjs) | The single state reducer that updates the findings registry, dashboard and strategy |
 | [`scripts/runtime-capabilities.cjs`](./scripts/runtime-capabilities.cjs) | Machine-readable capability lookup for the active runtime |
 | [`assets/deep-review-config.json`](./assets/deep-review-config.json) | Config template with defaults for max iterations, convergence threshold, anti-convergence floor and executor |

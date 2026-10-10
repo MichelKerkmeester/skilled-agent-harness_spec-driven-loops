@@ -1,0 +1,5 @@
+  for (const iteration of iterationFiles) {
+    for (const finding of iteration.findings) {
+      upsertFinding(finding, iteration.run, iteration, 'Initial discovery', 'Severity adjusted in later iteration');
+    }
+  }

@@ -1,0 +1,12 @@
+function parseFindingsBlock(sectionText, severity) {
+  if (!sectionText) {
+    return [];
+  }
+
+  return sectionText
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => /^-\s+\*\*F\d+\*\*/.test(line))
+    .map((line) => parseFindingLine(line.replace(/^-\s+/, ''), severity))
+    .filter(Boolean);
+}

@@ -1,0 +1,6 @@
+  const run = runMatch ? Number(runMatch[1]) : 0;
+  const findings = [
+    ...parseFindingsBlock(p0Block, 'P0', run),
+    ...parseFindingsBlock(p1Block, 'P1', run),
+    ...parseFindingsBlock(p2Block, 'P2', run),
+  ];

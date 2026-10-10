@@ -1,0 +1,91 @@
+  it('still refuses a cli-pi dispatch already named in the dispatch stack', () => {
+    expect(
+      validateExecutorDispatchAllowed(executorOfKind('cli-pi'), {
+        env: { [CLI_DISPATCH_STACK_ENV]: 'cli-codex:cli-pi' },
+        ancestryCmdlines: [],
+        statePaths: [],
+      }),
+    ).toMatchObject({
+      allowed: false,
+      layer: 'stack',
+      reason: 'recursion-guard-stack',
+    });
+  });
+});
+
+describe('executor-audit: cli-pi environment filter', () => {
+  function cliPiExecutor(): ExecutorConfig {
+    return {
+      kind: 'cli-pi',
+      model: null,
+      configDir: null,
+      reasoningEffort: null,
+      serviceTier: null,
+      sandboxMode: null,
+      timeoutSeconds: 900,
+    };
+  }
+
+  it('passes PI_BLACKHOLE_PASSIVE to a cli-pi child and still strips an unlisted variable', () => {
+    const nextEnv = buildExecutorDispatchEnv(cliPiExecutor(), {
+      PATH: '/usr/bin',
+      PI_BLACKHOLE_PASSIVE: 'true',
+      LLMGATEWAY_API_KEY: 'gateway-secret',
+      PI_BLACKHOLE_PASSIVE_EXTRA: 'not-listed',
+      UNLISTED_PROBE_VAR: 'should-not-pass',
+    });
+
+    expect(nextEnv).toMatchObject({
+      PATH: '/usr/bin',
+      PI_BLACKHOLE_PASSIVE: 'true',
+      LLMGATEWAY_API_KEY: 'gateway-secret',
+      SPECKIT_CLI_DISPATCH_STACK: 'cli-pi',
+    });
+    expect(nextEnv.PI_BLACKHOLE_PASSIVE_EXTRA).toBeUndefined();
+    expect(nextEnv.UNLISTED_PROBE_VAR).toBeUndefined();
+  });
+
+  it('keeps PI_BLACKHOLE_PASSIVE out of every other executor kind', () => {
+    const nextEnv = buildExecutorDispatchEnv(cliCodexExecutor(), {
+      PATH: '/usr/bin',
+      PI_BLACKHOLE_PASSIVE: 'true',
+    });
+
+    expect(nextEnv.PI_BLACKHOLE_PASSIVE).toBeUndefined();
+  });
+
+  it('delivers PI_BLACKHOLE_PASSIVE to the spawned cli-pi child process', () => {
+    let childEnv: Record<string, unknown> = {};
+    withTempStateLog('{"type":"event","event":"start"}\n', (stateLogPath) => {
+      const envPath = join(dirname(stateLogPath), 'child-env.json');
+      const exitCode = runAuditedExecutorCommand({
+        command: 'node',
+        args: [
+          '-e',
+          "require('fs').writeFileSync(process.argv[1], JSON.stringify({ passive: process.env.PI_BLACKHOLE_PASSIVE ?? null, unlisted: process.env.UNLISTED_PROBE_VAR ?? null }))",
+          envPath,
+        ],
+        cwd: tmpdir(),
+        timeoutSeconds: 30,
+        stateLogPath,
+        executor: cliPiExecutor(),
+        iteration: 1,
+        guardContext: {
+          env: {
+            PATH: process.env.PATH,
+            HOME: process.env.HOME,
+            PI_BLACKHOLE_PASSIVE: 'true',
+            UNLISTED_PROBE_VAR: 'should-not-pass',
+          },
+          ancestryCmdlines: [],
+          statePaths: [],
+        },
+      });
+
+      expect(exitCode).toBe(0);
+      childEnv = JSON.parse(readFileSync(envPath, 'utf8'));
+    });
+
+    expect(childEnv).toEqual({ passive: 'true', unlisted: null });
+  });
+});

@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/006-deep-loop-follow-ups",
+  "description": "Phase 6: deep-loop-follow-ups",
+  "keywords": [
+    "phase",
+    "deep-loop-follow-ups"
+  ],
+  "lastUpdated": "2026-10-10T10:07:22.899Z",
+  "specId": "006",
+  "folderSlug": "deep-loop-follow-ups",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "010-round-three-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

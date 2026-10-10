@@ -1,0 +1,7 @@
+# This file is the single source of truth for this loop's review-mode taxonomy,
+# convergence settings, cross-reference protocols, downstream render targets,
+# and validation expectations. The severity ids P0, P1 and P2 and what each one
+# means are owned by .skilled/skills/sk-code/sk-code-review/references/review-core.md.
+# The severities block below adds this loop's own rules on top of those
+# definitions, such as its weights and a file:line requirement at every tier,
+# P2 included.
