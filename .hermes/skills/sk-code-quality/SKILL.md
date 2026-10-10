@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.0.1.0
+version: 1.1.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -95,6 +95,7 @@ Phase 1 Implementation writes or changes files
 - `../sk-code-opencode/assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.
 - `scripts/check-comment-hygiene.sh` is the per-file comment-hygiene gate.
 - `scripts/check-dist-staleness.sh` checks generated/distribution artifact drift when that is part of the target.
+- `scripts/ceiling-report.sh [<file>...]` lists the `ceiling:` and `intentional-limit:` comment markers and tags the ones with no trigger or no measurable signal. Run it for a debt pass, before a release or when a reviewer asks what limits the code knowingly accepts. It reads every tracked code file, or only the files named, prints one `path:line  text  [tags]` line per marker and a closing `markers=N no-trigger=N no-signal=N` line, and exits 0 because it reports and does not gate.
 - `scripts/hooks/claude-posttooluse.sh` is the write-time warning hook for comment hygiene.
 - `../shared/references/universal/code-quality-standards.md` and `../shared/references/universal/code-style-guide.md` define shared standards consumed by this packet.
 
@@ -112,6 +113,7 @@ Phase 1 Implementation writes or changes files
 | CONDITIONAL | MCP server source | `../sk-code-opencode/assets/checklists/mcp-server-authoring.md` |
 | CONDITIONAL | OpenCode JavaScript, TypeScript, Python, Shell, Rust, JSON, or JSONC files | `../sk-code-opencode/assets/checklists/javascript-checklist.md`, `../sk-code-opencode/assets/checklists/typescript-checklist.md`, `../sk-code-opencode/assets/checklists/python-checklist.md`, `../sk-code-opencode/assets/checklists/shell-checklist.md`, `../sk-code-opencode/assets/checklists/rust-checklist/overview-and-p0-parity.md`, `../sk-code-opencode/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`, `../sk-code-opencode/assets/checklists/rust-checklist/p1-required.md`, `../sk-code-opencode/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`, `../sk-code-opencode/assets/checklists/config-checklist.md` as applicable |
 | CONDITIONAL | Generated distribution artifacts or mirrored outputs changed | `scripts/check-dist-staleness.sh` |
+| ON_DEMAND | Debt pass, before a release or a reviewer asks what limits the code knowingly accepts | `scripts/ceiling-report.sh` |
 | ON_DEMAND | Need hook behavior details | `scripts/hooks/claude-posttooluse.sh` |
 
 ### Target-Path Checklist Map
@@ -320,6 +322,8 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 - [`scripts/check-comment-hygiene.sh`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh) - Per-file comment-hygiene checker.
 - [`scripts/check-comment-hygiene.test.sh`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.test.sh) - Comment-hygiene checker tests.
 - [`scripts/check-dist-staleness.sh`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh) - Distribution drift checker.
+- [`scripts/ceiling-report.sh`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh) - Ceiling-marker report. Run it for a debt pass, before a release or when a reviewer asks what limits the code knowingly accepts.
+- [`scripts/ceiling-report.test.sh`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh) - Ceiling-marker report tests.
 - [`scripts/hooks/claude-posttooluse.sh`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh) - Write-time comment-hygiene warning hook.
 
 ### Universal Standards

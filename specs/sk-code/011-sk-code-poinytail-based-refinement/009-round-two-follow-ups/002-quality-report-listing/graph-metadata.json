@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/002-quality-report-listing",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/002-quality-report-listing",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "quality report listing",
+      "phase 2 quality report listing",
+      "quality report listing plan",
+      "quality report listing tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "quality report listing implementation summary"
+    ],
+    "key_topics": [
+      "quality",
+      "report",
+      "listing",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-quality/README.md",
+      ".skilled/skills/sk-code/sk-code-quality/changelog/v1.1.0.0.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+      ".skilled/skills/sk-code/leaf-manifest.json",
+      "scripts/README.md",
+      ".hermes/skills/sk-code-quality/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json",
+      ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+      ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.1.0.0.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/scratch/after/probe.py",
+      "scratch/before/git-status-before.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "examples-and-maintenance.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md",
+        "source": "derived"
+      },
+      {
+        "name": "ceiling-report.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+        "source": "derived"
+      },
+      {
+        "name": "probe.py",
+        "kind": "file",
+        "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/scratch/after/probe.py",
+        "source": "derived"
+      },
+      {
+        "name": "git-status-before.txt",
+        "kind": "file",
+        "path": "scratch/before/git-status-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Hermes",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Domains",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The earlier debt-report child added `ceiling-report.sh` and `ceiling-report.test.sh` to `.skilled/skills/sk-code/sk-code-quality/scripts/` but left them out of `SKILL.md`, because that child held `SKILL.md` out of scope",
+    "created_at": "2026-10-10T08:16:19Z",
+    "last_save_at": "2026-10-10T09:04:23.570Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:856873c2885c9407808172c4fb28a5fa99516f275e4e94e48eb0e5821c5ea326",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ff0b0f6d9c83a83473d31e25d4f3dcc73631e8e9712b04f14c726bb71fe6ab71",
+      "plan.md": "22fc45342128b42a76f39d13687dda7e607da51663d239b476ac839f2ec4ecbd",
+      "tasks.md": "53224f8d0418aa9e2fe163762996324910341dd6eaee4d569a1d9063a240e4b5",
+      "implementation-summary.md": "8ce456e1f11b1bc123508ae49b94d920db3c9b748fe17409ff9e169d67341495"
+    },
+    "last_active_at": null
+  }
+}

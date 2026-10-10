@@ -1,0 +1,9 @@
+PASS measurable
+PASS no_trigger
+PASS no_signal
+PASS prefix
+PASS prose
+PASS missing_path
+PASS unknown_option
+PASS directory_path
+All ceiling report test cases passed

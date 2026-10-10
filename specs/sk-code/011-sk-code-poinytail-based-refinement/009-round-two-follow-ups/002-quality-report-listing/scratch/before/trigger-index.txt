@@ -1,0 +1,30 @@
+trigger index is STALE or the corpus is untrusted
+  index             : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+  documents scanned : 24098
+  stale documents   : 114 (114 missing from the index)
+  obsolete paths    : 0
+  untrusted docs    : 0
+  duration ms       : 18899.7
+  examples (20 of 114):
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/goal.md (added: completion criteria, durable directive, goal binding, packet goal; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/implementation-summary.md (added: ponytail deep research implementation summary; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/plan.md (added: ponytail deep research plan; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md (added: ponytail 5 research synthesis, ponytail sk code findings, sk code ponytail refinement research; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/spec.md (added: phase 1 ponytail deep research, ponytail 5 research, ponytail deep research; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/tasks.md (added: ponytail deep research tasks; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/002-surface-contract-alignment/goal.md (added: completion criteria, durable directive, goal binding, packet goal; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/002-surface-contract-alignment/implementation-summary.md (added: surface contract alignment implementation summary; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/002-surface-contract-alignment/plan.md (added: surface contract alignment plan; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/002-surface-contract-alignment/spec.md (added: phase 2 surface contract alignment, surface contract alignment; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/002-surface-contract-alignment/tasks.md (added: surface contract alignment tasks; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/003-doctrine-pass/goal.md (added: completion criteria, durable directive, goal binding, packet goal; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/003-doctrine-pass/implementation-summary.md (added: doctrine pass implementation summary; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/003-doctrine-pass/plan.md (added: doctrine pass plan; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/003-doctrine-pass/spec.md (added: doctrine pass, phase 3 doctrine pass; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/003-doctrine-pass/tasks.md (added: doctrine pass tasks; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/004-webflow-checker-fix/goal.md (added: completion criteria, durable directive, goal binding, packet goal; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/004-webflow-checker-fix/implementation-summary.md (added: webflow checker fix implementation summary; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/004-webflow-checker-fix/plan.md (added: webflow checker fix plan; removed: none)
+    stale     specs/sk-code/011-sk-code-poinytail-based-refinement/004-webflow-checker-fix/spec.md (added: phase 4 webflow checker fix, webflow checker fix; removed: none)
+  note: manifest hash differs (index fb3b3e3df72bde10c94e067f658e6e4e8e8c65d611bde0b820b1710c82137f8a, corpus d33a4d3e4e4bb136ab366aebea84c44c226cf54e8d196d09ab4378baf86f3a84); no lookup answer depends on it
+  regenerate: node generate-trigger-index.mjs

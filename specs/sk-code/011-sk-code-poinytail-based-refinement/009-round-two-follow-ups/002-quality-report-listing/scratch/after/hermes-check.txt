@@ -1,0 +1,3 @@
+DRIFT sk-code-quality
+DRIFT agent-deep-review
+FAIL: 2 drifted, 0 stale; run without --check to regenerate

@@ -1,0 +1,4 @@
+specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/scratch/after/probe.py:1  # ceiling: global lock  [no-trigger]
+specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/scratch/after/probe.py:2  # ceiling: global lock; switch to per-account locks when the team agrees  [no-signal]
+specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/scratch/after/probe.py:3  # ceiling: global lock; switch to per-account locks if throughput matters  []
+markers=3 no-trigger=1 no-signal=1
