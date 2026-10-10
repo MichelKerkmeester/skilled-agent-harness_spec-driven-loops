@@ -57,7 +57,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `sed -n 160p README.md`, run from the repository root, prints `- Node.js 20.19+ (22.12+ for the spec-kit runtime CLI)`.
 - [x] `grep -c '20\.11' README.md`, run from the repository root, prints 0.
 - [x] `grep -c '"node": ">=20.11.0"' .skilled/skills/system-spec-kit/package.json`, run from the repository root, prints 1.
-- [x] `python3 -I .skilled/skills/sk-doc/shared/scripts/validate_document.py README.md 2>&1 | head -1`, run from the repository root, prints `✅ VALID: README.md`.
+- [x] `python3 -I .skilled/skills/sk-doc/shared/scripts/validate_document.py README.md 2>&1 | grep -c 'VALID: README.md'`, run from the repository root, prints 1.
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/005-readme-node-floor --strict`, run from the repository root, prints RESULT: PASSED.
 <!-- /ANCHOR:completion -->
 
@@ -85,4 +85,5 @@ and findings belong here.
 | Scope narrowed from the research | The research proposed raising `system-spec-kit/package.json` engines. Its lockfile needs only 20.9, so that change would have turned away supported users. Only the README line changed |
 | Handoff | The advisor runtime `package.json` declares no `engines`, so npm never warns at its own install. That file is the skill-authoring track's |
 | No version bump | The root README belongs to no skill |
+| Criterion 4 amended | The validator prints a blank first line when piped, so `head -1` printed nothing; the criterion now counts the VALID line |
 <!-- /ANCHOR:log -->
