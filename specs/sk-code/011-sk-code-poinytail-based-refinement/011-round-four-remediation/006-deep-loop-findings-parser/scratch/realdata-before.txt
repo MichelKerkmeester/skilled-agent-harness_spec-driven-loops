@@ -1,0 +1,3 @@
+specs/sk-prompt/z_archive/002-sk-improve-prompt-rename/review open=9 resolved=0
+specs/system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/review open=173 resolved=0
+mode=before files=8552 same=8074 changed=478 claims=2687 liveMatch=1075 plannedMatch=1087

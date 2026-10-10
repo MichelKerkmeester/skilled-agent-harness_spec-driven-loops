@@ -1,0 +1,14 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-deep-loop/runtime
+
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 1 entries.","aliasKey":"findings","canonicalKey":"keyFindings","coercedCount":1}
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 2 entries.","aliasKey":"findings","canonicalKey":"keyFindings","coercedCount":2}
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 1 entries.","aliasKey":"findings","canonicalKey":"keyFindings","coercedCount":1}
+{"type":"schema_mismatch","severity":"warn","lineage":"a","findingId":"F1","unknownSeverity":"P3","message":"Finding \"F1\" from lineage \"a\" carries severity \"P3\", which is outside the review severity scale (P0|P1|P2). It is unranked, sorts below every P2, and cannot raise the merged verdict; collapse it to P2 where the finding is rated."}
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"openFindings\"; coerced 1 entries.","aliasKey":"findings","canonicalKey":"openFindings","coercedCount":1}
+
+ Test Files  2 passed (2)
+      Tests  65 passed (65)
+   Start at  18:17:40
+   Duration  15.77s (transform 39ms, setup 0ms, import 62ms, tests 15.40s, environment 0ms)
+

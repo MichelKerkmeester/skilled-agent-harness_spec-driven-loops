@@ -1,0 +1,3 @@
+  // An iteration that recorded delta finding rows or findingDetails already has its
+  // findings in exact form; its numbered narrative would add the same findings again
+  // under titles worded differently enough to escape the dedup key.

@@ -1,0 +1,6 @@
+ℹ pass 1
+ℹ fail 0
+ Test Files  3 passed | 1 skipped (4)
+      Tests  22 passed | 4 skipped (26)
+ Test Files  1 passed (1)
+      Tests  1 passed (1)

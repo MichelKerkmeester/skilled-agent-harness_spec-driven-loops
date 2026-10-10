@@ -1,0 +1,3 @@
+    expect(summarize(registry).map((row) => row[0])).toEqual(['F-007']);
+  });
+});

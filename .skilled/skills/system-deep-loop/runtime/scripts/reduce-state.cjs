@@ -255,10 +255,6 @@ function parseFindingLine(line, severity) {
   };
 }
 
-// Numbered narrative findings restate the structured rows of their iteration in
-// free wording, so the registry uses them only for an iteration with no such rows.
-const numberedNarrativeFindings = new WeakSet();
-
 /**
  * Parse a numbered finding line of the form: `N. **Title** -- file:line -- Description`
  *
@@ -325,7 +321,6 @@ function parseFindingsBlock(sectionText, severity, run = 0) {
       const findingId = `R${run}-${severity}-${String(numberedCount).padStart(3, '0')}`;
       const finding = parseNumberedFindingLine(marginLine, severity, findingId);
       if (finding) {
-        numberedNarrativeFindings.add(finding);
         findings.push(finding);
       }
     }
@@ -974,20 +969,39 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
   }
 
   // An iteration that recorded delta finding rows or findingDetails already has its
-  // findings in exact form; its numbered narrative would add the same findings again
-  // under titles worded differently enough to escape the dedup key.
+  // findings in exact form. Its numbered narrative would add the same findings again
+  // under titles worded differently enough to escape the dedup key. An F### narrative
+  // finding yields only to a structured row with the same id, because an iteration can
+  // record fewer rows than it narrates and the rest exist nowhere else.
   const structuredRuns = new Set(deltaFindingsByRun.keys());
+  const structuredIds = new Map();
+  function noteStructuredId(run, id) {
+    if (!id) return;
+    if (!structuredIds.has(run)) structuredIds.set(run, new Set());
+    structuredIds.get(run).add(id);
+  }
+  for (const [run, findings] of deltaFindingsByRun) {
+    for (const finding of findings) noteStructuredId(run, finding.findingId);
+  }
   for (const record of [...iterationRecords, ...deltaRecords]) {
     const run = getIterationRun(record);
     if (record?.type === 'iteration' && isFiniteNumber(run)
       && Array.isArray(record.findingDetails) && record.findingDetails.length > 0) {
       structuredRuns.add(run);
+      // The summary fallback reads findingDetails only for a run with no delta rows.
+      if (!deltaFindingsByRun.has(run)) {
+        for (const detail of record.findingDetails) {
+          noteStructuredId(run, normalizeText(detail?.id || detail?.findingId || ''));
+        }
+      }
     }
   }
 
   for (const iteration of iterationFiles) {
     for (const finding of iteration.findings) {
-      if (numberedNarrativeFindings.has(finding) && structuredRuns.has(iteration.run)) {
+      const yieldsToStructured = structuredRuns.has(iteration.run)
+        && (!/^F\d+$/.test(finding.findingId) || structuredIds.get(iteration.run)?.has(finding.findingId));
+      if (yieldsToStructured) {
         continue;
       }
       upsertFinding(finding, iteration.run, iteration, 'Initial discovery', 'Severity adjusted in later iteration');

@@ -1,0 +1,2 @@
+FAIL: 6 drifted, 0 stale; run without --check to regenerate
+  system-deep-loop            fresh

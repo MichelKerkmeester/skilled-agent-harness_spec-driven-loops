@@ -1,0 +1,30 @@
+// Keep Markdown finding extraction shared so iteration verification and registry
+// reconstruction count the same numbered entries.
+function parseIterationMarkdownFindings(content, run, sourcePath) {
+  const lines = content.split(/\r?\n/);
+  const headingIndex = lines.findIndex((line) => /^##\s+Findings\s*$/i.test(line.trim()));
+  if (headingIndex < 0) return [];
+  const sectionLines = [];
+  for (let index = headingIndex + 1; index < lines.length; index += 1) {
+    const line = lines[index].trim();
+    if (/^##\s+/.test(line)) break;
+    sectionLines.push(line);
+  }
+  const subheadingFindings = sectionLines.flatMap((line) => {
+    const match = line.match(/^###\s+\d+\.\s+(.+)$/);
+    return match ? [match[1]] : [];
+  });
+  const findingTexts = subheadingFindings.length > 0
+    ? subheadingFindings
+    : sectionLines.flatMap((line) => {
+      const match = line.match(/^\d+\.\s+(.+)$/);
+      return match ? [match[1]] : [];
+    });
+  return findingTexts.map((text, index) => ({
+    id: `iteration-${run}-finding-${index + 1}`,
+    title: text,
+    text,
+    addedAtIteration: run,
+    _iteration_source: sourcePath,
+  }));
+}

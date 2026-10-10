@@ -1,27 +1,35 @@
 'use strict';
 
 // Keep Markdown finding extraction shared so iteration verification and registry
-// reconstruction count the same numbered entries.
+// reconstruction count the same entries. A section is read in one shape only, the
+// first one present of numbered subheadings, numbered lines and F### bullets, so a
+// finding restated in a second shape is not counted twice.
 function parseIterationMarkdownFindings(content, run, sourcePath) {
   const lines = content.split(/\r?\n/);
   const headingIndex = lines.findIndex((line) => /^##\s+Findings\s*$/i.test(line.trim()));
   if (headingIndex < 0) return [];
   const sectionLines = [];
   for (let index = headingIndex + 1; index < lines.length; index += 1) {
-    const line = lines[index].trim();
-    if (/^##\s+/.test(line)) break;
+    const line = lines[index].trimEnd();
+    if (/^##\s+/.test(line.trim())) break;
     sectionLines.push(line);
   }
   const subheadingFindings = sectionLines.flatMap((line) => {
-    const match = line.match(/^###\s+\d+\.\s+(.+)$/);
+    const match = line.trim().match(/^###\s+\d+\.\s+(.+)$/);
     return match ? [match[1]] : [];
   });
-  const findingTexts = subheadingFindings.length > 0
-    ? subheadingFindings
-    : sectionLines.flatMap((line) => {
-      const match = line.match(/^\d+\.\s+(.+)$/);
-      return match ? [match[1]] : [];
-    });
+  // Only a line at the left margin opens a finding. An indented numbered line is a
+  // step or a piece of evidence under the finding above it.
+  const numberedFindings = sectionLines.flatMap((line) => {
+    const match = line.match(/^\d+\.\s+(.+)$/);
+    return match ? [match[1]] : [];
+  });
+  const bulletFindings = sectionLines.flatMap((line) => {
+    const match = line.match(/^-\s+\*\*F\d+\*\*:\s*(.+)$/);
+    return match ? [match[1]] : [];
+  });
+  const findingTexts = [subheadingFindings, numberedFindings, bulletFindings]
+    .find((texts) => texts.length > 0) ?? [];
   return findingTexts.map((text, index) => ({
     id: `iteration-${run}-finding-${index + 1}`,
     title: text,

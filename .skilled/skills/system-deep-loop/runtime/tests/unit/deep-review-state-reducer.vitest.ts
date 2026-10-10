@@ -372,4 +372,72 @@ describe('reduceReviewState: numbered finding narrative', () => {
     expect(registry.openFindingsCount).toBe(1);
     expect(summarize(registry).map((row) => row[0])).toEqual(['F-007']);
   });
+
+  it('defers F### bullets to the delta rows of an iteration that recorded them', () => {
+    // Delta rows reuse the bullet ids under reworded titles, which escape the dedup
+    // key, so only skipping the narrative copy counts each finding once.
+    const registry = reduceNarrative([
+      '# Iteration 1: Correctness',
+      '',
+      '## Findings',
+      '',
+      '### P1 Findings',
+      '',
+      '- **F001**: Guard compares paths lexically - `scripts/apply.cjs:12` - Use a containment test',
+      '',
+      '### P2 Findings',
+      '',
+      '- **F002**: Stale comment - `scripts/apply.cjs:40` - Update it',
+      '',
+    ].join('\n'), [{
+      type: 'finding',
+      id: 'F001',
+      iteration: 1,
+      severity: 'P1',
+      status: 'active',
+      title: 'The path guard compares `paths` lexically',
+      file: 'scripts/apply.cjs:12',
+    }, {
+      type: 'finding',
+      id: 'F002',
+      iteration: 1,
+      severity: 'P2',
+      status: 'active',
+      title: 'A stale comment names a removed flag',
+      file: 'scripts/apply.cjs:40',
+    }]);
+
+    expect(registry.openFindingsCount).toBe(2);
+    expect(summarize(registry).map((row) => row[2])).toEqual([
+      'The path guard compares `paths` lexically',
+      'A stale comment names a removed flag',
+    ]);
+  });
+
+  it('keeps an F### bullet that the delta rows of its iteration did not record', () => {
+    // An iteration can record fewer delta rows than it narrates, and the narrated
+    // finding then exists nowhere else, so it must stay in the registry.
+    const registry = reduceNarrative([
+      '# Iteration 1: Correctness',
+      '',
+      '## Findings',
+      '',
+      '### P1 Findings',
+      '',
+      '- **F001**: Guard compares paths lexically - `scripts/apply.cjs:12` - Use a containment test',
+      '- **F002**: Plugin id reaches the vault path unchecked - `scripts/install.sh:30` - Validate it',
+      '',
+    ].join('\n'), [{
+      type: 'finding',
+      id: 'F001',
+      iteration: 1,
+      severity: 'P1',
+      status: 'active',
+      title: 'The path guard compares `paths` lexically',
+      file: 'scripts/apply.cjs:12',
+    }]);
+
+    expect(registry.openFindingsCount).toBe(2);
+    expect(summarize(registry).map((row) => row[0])).toEqual(['F001', 'F002']);
+  });
 });

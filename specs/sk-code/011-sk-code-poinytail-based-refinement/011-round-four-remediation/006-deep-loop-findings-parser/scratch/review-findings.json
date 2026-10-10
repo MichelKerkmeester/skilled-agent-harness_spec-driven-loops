@@ -1,0 +1,32 @@
+[
+  {
+    "task": "R01",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs, replace the exact text <<<OLD\n  // An iteration that recorded delta finding rows or findingDetails already has its\n  // findings in exact form. Its narrative, numbered or F###, would add the same findings\n  // again under titles worded differently enough to escape the dedup key.\n  const structuredRuns = new Set(deltaFindingsByRun.keys());\n  for (const record of [...iterationRecords, ...deltaRecords]) {\n    const run = getIterationRun(record);\n    if (record?.type === 'iteration' && isFiniteNumber(run)\n      && Array.isArray(record.findingDetails) && record.findingDetails.length > 0) {\n      structuredRuns.add(run);\n    }\n  }\n\n  for (const iteration of iterationFiles) {\n    for (const finding of iteration.findings) {\n      if (structuredRuns.has(iteration.run)) {\n        continue;\n      }\nOLD>>> with <<<NEW\n  // An iteration that recorded delta finding rows or findingDetails already has its\n  // findings in exact form. Its numbered narrative would add the same findings again\n  // under titles worded differently enough to escape the dedup key. An F### narrative\n  // finding yields only to a structured row with the same id, because an iteration can\n  // record fewer rows than it narrates and the rest exist nowhere else.\n  const structuredRuns = new Set(deltaFindingsByRun.keys());\n  const structuredIds = new Map();\n  function noteStructuredId(run, id) {\n    if (!id) return;\n    if (!structuredIds.has(run)) structuredIds.set(run, new Set());\n    structuredIds.get(run).add(id);\n  }\n  for (const [run, findings] of deltaFindingsByRun) {\n    for (const finding of findings) noteStructuredId(run, finding.findingId);\n  }\n  for (const record of [...iterationRecords, ...deltaRecords]) {\n    const run = getIterationRun(record);\n    if (record?.type === 'iteration' && isFiniteNumber(run)\n      && Array.isArray(record.findingDetails) && record.findingDetails.length > 0) {\n      structuredRuns.add(run);\n      // The summary fallback reads findingDetails only for a run with no delta rows.\n      if (!deltaFindingsByRun.has(run)) {\n        for (const detail of record.findingDetails) {\n          noteStructuredId(run, normalizeText(detail?.id || detail?.findingId || ''));\n        }\n      }\n    }\n  }\n\n  for (const iteration of iterationFiles) {\n    for (const finding of iteration.findings) {\n      const yieldsToStructured = structuredRuns.has(iteration.run)\n        && (!/^F\\d+$/.test(finding.findingId) || structuredIds.get(iteration.run)?.has(finding.findingId));\n      if (yieldsToStructured) {\n        continue;\n      }\nNEW>>>",
+    "check": "cd .skilled/skills/system-deep-loop/runtime && node -e \"require('./scripts/reduce-state.cjs')\"",
+    "expect": "exit 0"
+  },
+  {
+    "task": "R02",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts, replace the exact text <<<OLD\n      'A stale comment names a removed flag',\n    ]);\n  });\n});\nOLD>>> with <<<NEW\n      'A stale comment names a removed flag',\n    ]);\n  });\n\n  it('keeps an F### bullet that the delta rows of its iteration did not record', () => {\n    // An iteration can record fewer delta rows than it narrates, and the narrated\n    // finding then exists nowhere else, so it must stay in the registry.\n    const registry = reduceNarrative([\n      '# Iteration 1: Correctness',\n      '',\n      '## Findings',\n      '',\n      '### P1 Findings',\n      '',\n      '- **F001**: Guard compares paths lexically - `scripts/apply.cjs:12` - Use a containment test',\n      '- **F002**: Plugin id reaches the vault path unchecked - `scripts/install.sh:30` - Validate it',\n      '',\n    ].join('\\n'), [{\n      type: 'finding',\n      id: 'F001',\n      iteration: 1,\n      severity: 'P1',\n      status: 'active',\n      title: 'The path guard compares `paths` lexically',\n      file: 'scripts/apply.cjs:12',\n    }]);\n\n    expect(registry.openFindingsCount).toBe(2);\n    expect(summarize(registry).map((row) => row[0])).toEqual(['F001', 'F002']);\n  });\n});\nNEW>>>",
+    "check": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run --no-coverage tests/unit/deep-review-state-reducer.vitest.ts 2>&1 | grep -E 'Tests '",
+    "expect": "Tests  13 passed (13)"
+  },
+  {
+    "task": "R03",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.4.0.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/runtime/changelog/v1.9.4.0.md, replace the exact text <<<OLD\n- **Review findings count once.** The review reducer now lets F### bullets yield to the structured rows of their iteration, as numbered findings already did, so a review folder whose narrative restated its structured rows counts each finding once.OLD>>> with <<<NEW\n- **Review findings count once.** The review reducer now lets an F### bullet yield to the structured row of its iteration that carries the same id, as numbered findings already yield to the rows of theirs, so a review folder whose narrative restated its structured rows counts each finding once and a finding only the narrative recorded is kept.NEW>>>",
+    "check": "grep -c 'a finding only the narrative recorded is kept' .skilled/skills/system-deep-loop/runtime/changelog/v1.9.4.0.md",
+    "expect": "1"
+  }
+]

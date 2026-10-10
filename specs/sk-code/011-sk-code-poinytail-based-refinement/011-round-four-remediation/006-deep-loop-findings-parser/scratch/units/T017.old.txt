@@ -1,0 +1,4 @@
+// Numbered narrative findings restate the structured rows of their iteration in
+// free wording, so the registry uses them only for an iteration with no such rows.
+const numberedNarrativeFindings = new WeakSet();
+

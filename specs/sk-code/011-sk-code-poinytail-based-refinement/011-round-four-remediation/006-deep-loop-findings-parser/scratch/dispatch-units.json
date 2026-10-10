@@ -1,0 +1,82 @@
+[
+  {
+    "task": "T012",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/iteration-findings.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/runtime/lib/deep-loop/iteration-findings.cjs, replace the exact text <<<OLD\n// Keep Markdown finding extraction shared so iteration verification and registry\n// reconstruction count the same numbered entries.\nfunction parseIterationMarkdownFindings(content, run, sourcePath) {\n  const lines = content.split(/\\r?\\n/);\n  const headingIndex = lines.findIndex((line) => /^##\\s+Findings\\s*$/i.test(line.trim()));\n  if (headingIndex < 0) return [];\n  const sectionLines = [];\n  for (let index = headingIndex + 1; index < lines.length; index += 1) {\n    const line = lines[index].trim();\n    if (/^##\\s+/.test(line)) break;\n    sectionLines.push(line);\n  }\n  const subheadingFindings = sectionLines.flatMap((line) => {\n    const match = line.match(/^###\\s+\\d+\\.\\s+(.+)$/);\n    return match ? [match[1]] : [];\n  });\n  const findingTexts = subheadingFindings.length > 0\n    ? subheadingFindings\n    : sectionLines.flatMap((line) => {\n      const match = line.match(/^\\d+\\.\\s+(.+)$/);\n      return match ? [match[1]] : [];\n    });\n  return findingTexts.map((text, index) => ({\n    id: `iteration-${run}-finding-${index + 1}`,\n    title: text,\n    text,\n    addedAtIteration: run,\n    _iteration_source: sourcePath,\n  }));\n}\nOLD>>> with <<<NEW\n// Keep Markdown finding extraction shared so iteration verification and registry\n// reconstruction count the same entries. A section is read in one shape only, the\n// first one present of numbered subheadings, numbered lines and F### bullets, so a\n// finding restated in a second shape is not counted twice.\nfunction parseIterationMarkdownFindings(content, run, sourcePath) {\n  const lines = content.split(/\\r?\\n/);\n  const headingIndex = lines.findIndex((line) => /^##\\s+Findings\\s*$/i.test(line.trim()));\n  if (headingIndex < 0) return [];\n  const sectionLines = [];\n  for (let index = headingIndex + 1; index < lines.length; index += 1) {\n    const line = lines[index].trimEnd();\n    if (/^##\\s+/.test(line.trim())) break;\n    sectionLines.push(line);\n  }\n  const subheadingFindings = sectionLines.flatMap((line) => {\n    const match = line.trim().match(/^###\\s+\\d+\\.\\s+(.+)$/);\n    return match ? [match[1]] : [];\n  });\n  // Only a line at the left margin opens a finding. An indented numbered line is a\n  // step or a piece of evidence under the finding above it.\n  const numberedFindings = sectionLines.flatMap((line) => {\n    const match = line.match(/^\\d+\\.\\s+(.+)$/);\n    return match ? [match[1]] : [];\n  });\n  const bulletFindings = sectionLines.flatMap((line) => {\n    const match = line.match(/^-\\s+\\*\\*F\\d+\\*\\*:?\\s*(.+)$/);\n    return match ? [match[1]] : [];\n  });\n  const findingTexts = [subheadingFindings, numberedFindings, bulletFindings]\n    .find((texts) => texts.length > 0) ?? [];\n  return findingTexts.map((text, index) => ({\n    id: `iteration-${run}-finding-${index + 1}`,\n    title: text,\n    text,\n    addedAtIteration: run,\n    _iteration_source: sourcePath,\n  }));\n}\nNEW>>>. The OLD text is lines 3 to 32 of the file (the comment above parseIterationMarkdownFindings and the whole function). The same texts are in specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T012.old.txt and specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T012.new.txt. Change nothing else.",
+    "check": "grep -cF 'const findingTexts = [subheadingFindings, numberedFindings, bulletFindings]' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/iteration-findings.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T013",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/iteration-findings.vitest.ts"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/system-deep-loop/runtime/tests/unit/iteration-findings.vitest.ts with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T013.iteration-findings.vitest.ts: run cp specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T013.iteration-findings.vitest.ts .skilled/skills/system-deep-loop/runtime/tests/unit/iteration-findings.vitest.ts",
+    "check": "cmp specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T013.iteration-findings.vitest.ts .skilled/skills/system-deep-loop/runtime/tests/unit/iteration-findings.vitest.ts && echo identical",
+    "expect": "identical"
+  },
+  {
+    "task": "T014",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs, replace the exact text <<<OLD\n      if (numberedNarrativeFindings.has(finding) && structuredRuns.has(iteration.run)) {\nOLD>>> with <<<NEW\n      if (structuredRuns.has(iteration.run)) {\nNEW>>>. The OLD text is one line, line 990 of the file. The same texts are in specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T014.old.txt and specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T014.new.txt. Change nothing else.",
+    "check": "grep -cF '      if (structuredRuns.has(iteration.run)) {' .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T015",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs, replace the exact text <<<OLD\n  // An iteration that recorded delta finding rows or findingDetails already has its\n  // findings in exact form; its numbered narrative would add the same findings again\n  // under titles worded differently enough to escape the dedup key.\nOLD>>> with <<<NEW\n  // An iteration that recorded delta finding rows or findingDetails already has its\n  // findings in exact form. Its narrative, numbered or F###, would add the same findings\n  // again under titles worded differently enough to escape the dedup key.\nNEW>>>. The OLD text is the three comment lines 976 to 978, directly above const structuredRuns. The same texts are in specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T015.old.txt and specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T015.new.txt. Change nothing else.",
+    "check": "grep -cF 'Its narrative, numbered or F###, would add the same findings' .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T016",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs, replace the exact text <<<OLD\n        numberedNarrativeFindings.add(finding);\nOLD>>> with <<<NEW\nNEW>>>. The OLD text is one line, line 328 of the file. NEW is empty: delete the whole line including its line break. The same texts are in specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T016.old.txt and specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T016.new.txt. Change nothing else.",
+    "check": "grep -c 'numberedNarrativeFindings.add' .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+    "expect": "0"
+  },
+  {
+    "task": "T017",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs, replace the exact text <<<OLD\n// Numbered narrative findings restate the structured rows of their iteration in\n// free wording, so the registry uses them only for an iteration with no such rows.\nconst numberedNarrativeFindings = new WeakSet();\n\nOLD>>> with <<<NEW\nNEW>>>. The OLD text is lines 258 to 261: two comment lines, the WeakSet declaration and the blank line after it. NEW is empty: delete all four lines. The same texts are in specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T017.old.txt and specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T017.new.txt. Change nothing else.",
+    "check": "grep -c 'numberedNarrativeFindings' .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+    "expect": "0"
+  },
+  {
+    "task": "T018",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts, replace the exact text <<<OLD\n    expect(summarize(registry).map((row) => row[0])).toEqual(['F-007']);\n  });\n});\nOLD>>> with <<<NEW\n    expect(summarize(registry).map((row) => row[0])).toEqual(['F-007']);\n  });\n\n  it('defers F### bullets to the delta rows of an iteration that recorded them', () => {\n    // Delta rows reuse the bullet ids under reworded titles, which escape the dedup\n    // key, so only skipping the narrative copy counts each finding once.\n    const registry = reduceNarrative([\n      '# Iteration 1: Correctness',\n      '',\n      '## Findings',\n      '',\n      '### P1 Findings',\n      '',\n      '- **F001**: Guard compares paths lexically - `scripts/apply.cjs:12` - Use a containment test',\n      '',\n      '### P2 Findings',\n      '',\n      '- **F002**: Stale comment - `scripts/apply.cjs:40` - Update it',\n      '',\n    ].join('\\n'), [{\n      type: 'finding',\n      id: 'F001',\n      iteration: 1,\n      severity: 'P1',\n      status: 'active',\n      title: 'The path guard compares `paths` lexically',\n      file: 'scripts/apply.cjs:12',\n    }, {\n      type: 'finding',\n      id: 'F002',\n      iteration: 1,\n      severity: 'P2',\n      status: 'active',\n      title: 'A stale comment names a removed flag',\n      file: 'scripts/apply.cjs:40',\n    }]);\n\n    expect(registry.openFindingsCount).toBe(2);\n    expect(summarize(registry).map((row) => row[2])).toEqual([\n      'The path guard compares `paths` lexically',\n      'A stale comment names a removed flag',\n    ]);\n  });\n});\nNEW>>>. The OLD text is the last three lines of the file. NEW keeps those three lines minus the final line, adds one blank line and one new it() case, then closes the describe block with the same final line. The same texts are in specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T018.old.txt and specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T018.new.txt. Change nothing else.",
+    "check": "grep -cF \"it('defers F### bullets to the delta rows of an iteration that recorded them'\" .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts",
+    "expect": "1"
+  },
+  {
+    "task": "T019",
+    "files": [
+      ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.4.0.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/system-deep-loop/runtime/changelog/v1.9.4.0.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T019.runtime-v1.9.4.0.md: run cp specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T019.runtime-v1.9.4.0.md .skilled/skills/system-deep-loop/runtime/changelog/v1.9.4.0.md",
+    "check": "cmp specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/units/T019.runtime-v1.9.4.0.md .skilled/skills/system-deep-loop/runtime/changelog/v1.9.4.0.md && echo identical",
+    "expect": "identical"
+  }
+]
