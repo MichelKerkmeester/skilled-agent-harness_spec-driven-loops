@@ -157,7 +157,7 @@ From request to documented result:
 
 **Prerequisites**
 
-- Node.js 20.11+ (22.12+ for the spec-kit runtime CLI)
+- Node.js 20.19+ (22.12+ for the spec-kit runtime CLI)
 - `npm`, `git` and a POSIX shell
 - No global TypeScript needed. The builds use the TypeScript the spec-kit workspace installs, and the advisor launcher installs and builds its own runtime on first run
 
