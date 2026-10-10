@@ -1,5 +1,5 @@
 {
-  "manifestHash": "41c48916a49c97f33baf802c4a9773cae81fc18c04e5cc48095b17e03679d0e9",
+  "manifestHash": "de6f793e5b6b818504d20c01e05ad69d6aa3e3d69947af93c66fe76765d4d701",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -71366,6 +71366,9 @@
     "phase 6 plan": [
       "phase 6 plan"
     ],
+    "phase 6 remediation deep review": [
+      "phase 6 remediation deep review"
+    ],
     "phase 6 tasks": [
       "phase 6 tasks"
     ],
@@ -79476,6 +79479,24 @@
     ],
     "remediation cluster task list": [
       "remediation cluster task list"
+    ],
+    "remediation deep review": [
+      "remediation deep review"
+    ],
+    "remediation deep review goal": [
+      "remediation deep review goal"
+    ],
+    "remediation deep review implementation summary": [
+      "remediation deep review implementation summary"
+    ],
+    "remediation deep review plan": [
+      "remediation deep review plan"
+    ],
+    "remediation deep review strategy": [
+      "remediation deep review strategy"
+    ],
+    "remediation deep review tasks": [
+      "remediation deep review tasks"
     ],
     "remediation execution plan": [
       "remediation execution plan"

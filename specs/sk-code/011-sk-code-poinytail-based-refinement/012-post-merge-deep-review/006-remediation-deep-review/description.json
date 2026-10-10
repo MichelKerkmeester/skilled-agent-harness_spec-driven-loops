@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/006-remediation-deep-review",
+  "description": "Phase 6: remediation-deep-review",
+  "keywords": [
+    "phase",
+    "remediation-deep-review"
+  ],
+  "lastUpdated": "2026-10-10T21:17:03.333Z",
+  "specId": "006",
+  "folderSlug": "remediation-deep-review",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "012-post-merge-deep-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

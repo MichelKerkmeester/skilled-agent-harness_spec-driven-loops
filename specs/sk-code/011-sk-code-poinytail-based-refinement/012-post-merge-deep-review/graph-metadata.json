@@ -8,7 +8,8 @@
     "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/002-webflow-runtime-and-references",
     "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/003-drift-guard-warning-count",
     "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/004-hub-doc-pointers",
-    "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/005-claim-corrections"
+    "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/005-claim-corrections",
+    "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/006-remediation-deep-review"
   ],
   "manual": {
     "depends_on": [],
@@ -58,7 +59,9 @@
       "003-drift-guard-warning-count/goal.md",
       "004-hub-doc-pointers/goal.md",
       "005-claim-corrections/goal.md",
-      "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/review-report.md"
+      "006-remediation-deep-review/goal.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/review-report.md",
+      "006-remediation-deep-review/review/review-report.md"
     ],
     "entities": [
       {
@@ -208,7 +211,7 @@
     ],
     "causal_summary": "The 092 epic shipped 37 commits, then a merge brought in 45 upstream commits and resolved eight conflicts by hand",
     "created_at": "2026-10-10T18:38:32Z",
-    "last_save_at": "2026-10-10T20:51:36.401Z",
+    "last_save_at": "2026-10-10T21:56:01.125Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0d2661987f758ef6dddf1d902f82a34c8deec56241fa2d7de819cafef0e5eb7",
+    "source_fingerprint": "sha256:25325091c459e8488c29d6c25289b2aa30950630c1a9542971df2ee548bfdb58",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "68d166483266daf1ec4cc5ab7750d5ef0f04cbcdea35361695bf12f9705ac6e2",
+      "spec.md": "ac33ac23bd9e1ca56b3e74cc35f79df84f6a0d6e812e6813c1108f5adb5936fa",
       "plan.md": "5fe6822c4268e57bb51994379b07540ed57fe5f3707431a49a9093a26ef472cd",
       "tasks.md": "cbfc607a4026f7ecf29527a81521a87be944f70c5ddf466786babe51872bc539",
       "implementation-summary.md": "bc1c009c1d4a1ae334b8884d72c0616d808bc2d1d08a1ecb6696001be661bc44"

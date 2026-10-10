@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Review the 40 commits `ba56b03412..5d9c970447` on main in ten deep-review iterations, confirm the 092 epic's work and its merge resolution are intact, record every confirmed error and open end with a ranked fix, then fix confirmed P2s 1 to 10 except P2 4 in five phase children.
+**Objective:** Review the 40 commits `ba56b03412..5d9c970447` on main in ten deep-review iterations, confirm the 092 epic's work and its merge resolution are intact, record every confirmed error and open end with a ranked fix, then fix confirmed P2s 1 to 10 except P2 4 in five phase children and review those fixes in a sixth.
 
 ### Decisions
 
@@ -68,6 +68,7 @@ phase and binds as if written here.
 | 003-drift-guard-warning-count | `003-drift-guard-warning-count/goal.md` |
 | 004-hub-doc-pointers | `004-hub-doc-pointers/goal.md` |
 | 005-claim-corrections | `005-claim-corrections/goal.md` |
+| 006-remediation-deep-review | `006-remediation-deep-review/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -85,7 +86,7 @@ string, not these files.
 - [ ] `specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/review-report.md` exists and `grep -c 'CONFIRMED' specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/review-report.md` prints at least 1
 - [ ] `grep -c 'generate-leaf-manifest.cjs' specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/review-report.md` prints at least 1, showing the merge resolution was checked
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review --strict` prints `RESULT: PASSED`
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review --recursive --strict` prints `RESULT: PASSED` 6 times and `RESULT: FAILED` 0 times, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review --recursive --strict` prints `RESULT: PASSED` 7 times and `RESULT: FAILED` 0 times, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
 <!-- /ANCHOR:completion -->
 
 ---
@@ -104,6 +105,7 @@ and findings belong here.
 | Packet scaffolded | Done | `create.sh --phase --parent` added row 12 to the parent phase map |
 | Ten review iterations | Done | 10 iteration records, 10 cli-pi completion receipts, all on the DevPass route |
 | Review report | Done | `review/review-report.md`: 0 P0, 0 P1, 12 confirmed epic P2s, known items rerun |
+| Remediation review 006 | Done | Five cli-pi iterations on `1d078f3356..d1741a28f7`, report in `006-remediation-deep-review/review/review-report.md` |
 | Fix phases 001 to 005 | Done | P2s 1 to 10 except P2 4 built by DeepSeek V4.1 Flash at max through cli-pi; phases 001 to 004 committed as `1d078f3356`, `e0b32e5e11`, `75289472d0`, `019b94a403`, and 005 closes the set |
 
 ### Deviations and findings
@@ -111,5 +113,6 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Fix phases added 2026-10-10 | The operator chose to fix confirmed P2s 1 to 10 in phase children; the objective, D2 and criterion 5 amended, D5 and D6 added, binding table added |
+| Phase 006 added 2026-10-10 | A five-iteration review of the remediation commits; binding row added and criterion 5 amended from 6 to 7 passes |
 | Criterion 1 amended 2026-10-10 | The state log is a projection of the ledger and drops the executor field, so the executor kind is counted in the dispatch completion receipts instead |
 <!-- /ANCHOR:log -->
