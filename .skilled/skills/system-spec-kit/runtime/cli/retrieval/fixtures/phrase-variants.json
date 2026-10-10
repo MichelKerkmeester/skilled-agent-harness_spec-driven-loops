@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2c221fb6808d48a4906ae219c06a182cfec669352a1a7153815ba39d86ae8485",
+  "manifestHash": "41c48916a49c97f33baf802c4a9773cae81fc18c04e5cc48095b17e03679d0e9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7097,6 +7097,9 @@
     "066 goal prompt": [
       "066 goal prompt"
     ],
+    "092 epic review on main": [
+      "092 epic review on main"
+    ],
     "10 adherence angles": [
       "10 adherence angles"
     ],
@@ -9950,6 +9953,9 @@
     ],
     "agent mirror alignment": [
       "agent mirror alignment"
+    ],
+    "agent mirror checker banner": [
+      "agent mirror checker banner"
     ],
     "agent mirror crosswalk": [
       "agent mirror crosswalk"
@@ -17954,6 +17960,21 @@
     ],
     "claim continuity verification": [
       "claim continuity verification"
+    ],
+    "claim corrections": [
+      "claim corrections"
+    ],
+    "claim corrections goal": [
+      "claim corrections goal"
+    ],
+    "claim corrections implementation summary": [
+      "claim corrections implementation summary"
+    ],
+    "claim corrections plan": [
+      "claim corrections plan"
+    ],
+    "claim corrections tasks": [
+      "claim corrections tasks"
     ],
     "claim guard anchors": [
       "claim guard anchors"
@@ -31470,6 +31491,9 @@
     "deep improvement 1 19 1 0": [
       "deep-improvement 1.19.1.0"
     ],
+    "deep improvement 1 19 2 0": [
+      "deep-improvement 1.19.2.0"
+    ],
     "deep improvement 1 2 0 0": [
       "deep-improvement 1.2.0.0"
     ],
@@ -31826,6 +31850,9 @@
     ],
     "deep improvement v1 19 1 0": [
       "deep-improvement v1.19.1.0"
+    ],
+    "deep improvement v1 19 2 0": [
+      "deep-improvement v1.19.2.0"
     ],
     "deep improvement v1 2 0 0": [
       "deep-improvement v1.2.0.0"
@@ -36012,6 +36039,9 @@
     "devin handoff command": [
       "devin handoff command"
     ],
+    "devin hook stdin deadline": [
+      "devin hook stdin deadline"
+    ],
     "devin hooks migration": [
       "devin hooks migration"
     ],
@@ -38758,6 +38788,21 @@
     ],
     "drift guard scripts path fixed": [
       "drift guard scripts path fixed"
+    ],
+    "drift guard warning count": [
+      "drift guard warning count"
+    ],
+    "drift guard warning count goal": [
+      "drift guard warning count goal"
+    ],
+    "drift guard warning count implementation summary": [
+      "drift guard warning count implementation summary"
+    ],
+    "drift guard warning count plan": [
+      "drift guard warning count plan"
+    ],
+    "drift guard warning count tasks": [
+      "drift guard warning count tasks"
     ],
     "drift guard wired into ci": [
       "drift guard wired into CI"
@@ -47321,6 +47366,9 @@
     "git hook review residuals": [
       "git hook review residuals"
     ],
+    "git hook stdin deadline": [
+      "git hook stdin deadline"
+    ],
     "git hook verification": [
       "git hook verification"
     ],
@@ -51467,6 +51515,21 @@
     ],
     "hub description trimmed to budget": [
       "hub description trimmed to budget"
+    ],
+    "hub doc pointers": [
+      "hub doc pointers"
+    ],
+    "hub doc pointers goal": [
+      "hub doc pointers goal"
+    ],
+    "hub doc pointers implementation summary": [
+      "hub doc pointers implementation summary"
+    ],
+    "hub doc pointers plan": [
+      "hub doc pointers plan"
+    ],
+    "hub doc pointers tasks": [
+      "hub doc pointers tasks"
     ],
     "hub doc runtime drift": [
       "hub doc runtime drift"
@@ -55905,6 +55968,9 @@
     ],
     "legacy post edit hook": [
       "legacy post edit hook"
+    ],
+    "legacy posttooluse hook pointer": [
+      "legacy posttooluse hook pointer"
     ],
     "legacy profile db migration plan": [
       "legacy profile db migration plan"
@@ -70898,6 +70964,9 @@
     "phase 1 acceptance criteria": [
       "phase 1 acceptance criteria"
     ],
+    "phase 1 hook stdin deadlines": [
+      "phase 1 hook stdin deadlines"
+    ],
     "phase 1 made the preflight enforce but two": [
       "phase 1 made the preflight enforce but two"
     ],
@@ -70951,6 +71020,9 @@
     ],
     "phase 11 template phrase census and cleanup": [
       "phase 11 template phrase census and cleanup"
+    ],
+    "phase 12 post merge deep review": [
+      "phase 12 post merge deep review"
     ],
     "phase 12 review findings": [
       "phase 12 review findings"
@@ -71111,6 +71183,9 @@
     "phase 2 webflow labels and playbook": [
       "phase 2 webflow labels and playbook"
     ],
+    "phase 2 webflow runtime and references": [
+      "phase 2 webflow runtime and references"
+    ],
     "phase 20 closure gate": [
       "phase 20 closure gate"
     ],
@@ -71186,6 +71261,9 @@
     "phase 3 doctrine pass": [
       "phase 3 doctrine pass"
     ],
+    "phase 3 drift guard warning count": [
+      "phase 3 drift guard warning count"
+    ],
     "phase 3 goal criteria": [
       "phase 3 goal criteria"
     ],
@@ -71210,6 +71288,9 @@
     "phase 4 hook stdin deadline": [
       "phase 4 hook stdin deadline"
     ],
+    "phase 4 hub doc pointers": [
+      "phase 4 hub doc pointers"
+    ],
     "phase 4 quality obsidian coverage": [
       "phase 4 quality obsidian coverage"
     ],
@@ -71221,6 +71302,9 @@
     ],
     "phase 4 webflow checker fix": [
       "phase 4 webflow checker fix"
+    ],
+    "phase 5 claim corrections": [
+      "phase 5 claim corrections"
     ],
     "phase 5 completed diagnostics governance": [
       "phase 5 completed diagnostics governance"
@@ -73833,6 +73917,18 @@
     ],
     "post may embedder survey tasks": [
       "post may embedder survey tasks"
+    ],
+    "post merge deep review": [
+      "post merge deep review"
+    ],
+    "post merge deep review implementation summary": [
+      "post merge deep review implementation summary"
+    ],
+    "post merge deep review plan": [
+      "post merge deep review plan"
+    ],
+    "post merge deep review tasks": [
+      "post merge deep review tasks"
     ],
     "post merge hook": [
       "post-merge hook"
@@ -85235,6 +85331,9 @@
     "runtime teardown": [
       "runtime teardown"
     ],
+    "runtime test depth cap warning": [
+      "runtime test depth cap warning"
+    ],
     "runtime test helpers": [
       "runtime test helpers"
     ],
@@ -89755,6 +89854,9 @@
     "sk code 2 2 7 0": [
       "sk-code 2.2.7.0"
     ],
+    "sk code 2 2 8 0": [
+      "sk-code 2.2.8.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -90292,6 +90394,9 @@
     "sk code opencode 1 2 1 0": [
       "sk-code-opencode 1.2.1.0"
     ],
+    "sk code opencode 1 2 2 0": [
+      "sk-code-opencode 1.2.2.0"
+    ],
     "sk code opencode alignment": [
       "sk-code opencode alignment"
     ],
@@ -90348,6 +90453,9 @@
     ],
     "sk code opencode v1 2 1 0": [
       "sk-code-opencode v1.2.1.0"
+    ],
+    "sk code opencode v1 2 2 0": [
+      "sk-code-opencode v1.2.2.0"
     ],
     "sk code overlay hardcoded replacement": [
       "sk-code overlay hardcoded replacement"
@@ -90730,6 +90838,9 @@
     "sk code v2 2 7 0": [
       "sk-code v2.2.7.0"
     ],
+    "sk code v2 2 8 0": [
+      "sk-code v2.2.8.0"
+    ],
     "sk code verification workflow": [
       "sk-code verification workflow"
     ],
@@ -90745,6 +90856,9 @@
     "sk code webflow 1 1 2 0": [
       "sk-code-webflow 1.1.2.0"
     ],
+    "sk code webflow 1 1 3 0": [
+      "sk-code-webflow 1.1.3.0"
+    ],
     "sk code webflow v1 0 0 0": [
       "sk-code-webflow v1.0.0.0"
     ],
@@ -90756,6 +90870,9 @@
     ],
     "sk code webflow v1 1 2 0": [
       "sk-code-webflow v1.1.2.0"
+    ],
+    "sk code webflow v1 1 3 0": [
+      "sk-code-webflow v1.1.3.0"
     ],
     "sk code workflow and surface axis": [
       "sk-code workflow and surface axis"
@@ -92185,6 +92302,9 @@
     "sk git 1 8 0 0": [
       "sk-git 1.8.0.0"
     ],
+    "sk git 1 8 1 0": [
+      "sk-git 1.8.1.0"
+    ],
     "sk git benchmark": [
       "sk-git benchmark"
     ],
@@ -92325,6 +92445,9 @@
     ],
     "sk git v1 8 0 0": [
       "sk-git v1.8.0.0"
+    ],
+    "sk git v1 8 1 0": [
+      "sk-git v1.8.1.0"
     ],
     "sk git workflow support": [
       "sk-git workflow support"
@@ -92679,6 +92802,9 @@
     ],
     "sk vision 0 3 0 0": [
       "sk-vision 0.3.0.0"
+    ],
+    "sk vision 0 3 1 0": [
+      "sk-vision 0.3.1.0"
     ],
     "sk vision 006 001 summary": [
       "sk-vision 006-001 summary"
@@ -93237,6 +93363,9 @@
     ],
     "sk vision v0 3 0 0": [
       "sk-vision v0.3.0.0"
+    ],
+    "sk vision v0 3 1 0": [
+      "sk-vision v0.3.1.0"
     ],
     "sk vision venv cleanup": [
       "sk-vision venv cleanup"
@@ -108188,6 +108317,21 @@
     ],
     "webflow routing removed": [
       "Webflow Routing Removed"
+    ],
+    "webflow runtime and references": [
+      "webflow runtime and references"
+    ],
+    "webflow runtime and references goal": [
+      "webflow runtime and references goal"
+    ],
+    "webflow runtime and references implementation summary": [
+      "webflow runtime and references implementation summary"
+    ],
+    "webflow runtime and references plan": [
+      "webflow runtime and references plan"
+    ],
+    "webflow runtime and references tasks": [
+      "webflow runtime and references tasks"
     ],
     "webflow security patterns": [
       "webflow security patterns"
