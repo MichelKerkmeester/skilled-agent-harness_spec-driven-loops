@@ -1,0 +1,1 @@
+- Surface style guides: `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` and the language folders under `.skilled/skills/sk-code/sk-code-opencode/references/`.

@@ -1,0 +1,1 @@
+- Surface style guides: `references/webflow/javascript/style-guide.md` and `references/opencode/{javascript,typescript,python,shell,config}/`.

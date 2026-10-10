@@ -1,0 +1,1 @@
+- the `shared/` entries the matched intents map (for example `code-style-guide.md` under CODE_QUALITY, `error-recovery.md` under DEBUGGING and `multi-agent-research.md` under IMPLEMENTATION), never the whole `shared/references/universal/` folder, plus

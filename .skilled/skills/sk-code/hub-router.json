@@ -1,6 +1,6 @@
 {
   "skill": "sk-code",
-  "version": "2.2.4.0",
+  "version": "2.2.5.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,

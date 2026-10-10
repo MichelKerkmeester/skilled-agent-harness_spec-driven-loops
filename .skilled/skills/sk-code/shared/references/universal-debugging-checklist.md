@@ -85,8 +85,8 @@ Walk this checklist top-to-bottom on any debugging session that survives more th
 
 ## 5. RELATED RESOURCES
 
-- `.skilled/skills/sk-code/shared/references/phase-detection.md` — Phase 2 Debugging position in the sk-code lifecycle.
-- `.skilled/skills/sk-code/shared/references/universal/error-recovery.md` — universal recover-in-place / rollback / escalate decision tree.
-- `.skilled/skills/sk-code/shared/references/universal-verification-checklist.md` — runs after debugging completes, before any completion claim.
+- [`./phase-detection.md`](./phase-detection.md) — Phase 2 Debugging position in the sk-code lifecycle.
+- [`./universal/error-recovery.md`](./universal/error-recovery.md) — universal recover-in-place / rollback / escalate decision tree.
+- [`./universal-verification-checklist.md`](./universal-verification-checklist.md) — runs after debugging completes, before any completion claim.
 - `.skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md` — WEBFLOW deep-dive (DevTools workflows, network capture, multi-viewport).
 - `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` — OPENCODE alignment diagnostics.

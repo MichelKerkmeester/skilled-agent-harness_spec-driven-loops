@@ -1,0 +1,1 @@
+universal-standards references (plus pattern assets) consumed by every sk-code mode.

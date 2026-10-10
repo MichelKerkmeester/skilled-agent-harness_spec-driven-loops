@@ -1,6 +1,6 @@
 ---
 title: sk-code Surface Router — routing logic and resource maps
-description: First-class surface router document at the sk-code hub root (ROUTER.md). hub-router.json selects the workflow mode; this doc maps a request's code intent to the exact packet-local leaf resources that mode should load, emitting canonical (workflowMode, leafResourceId) pairs. Relocated from shared/references/smart-routing.md (v3.5.0.8) as the ROUTER.md consolidation pattern, with the approved sk-code shared-control delta (router self-reference removed, ten hub-shared paths normalized to shared/..., eight mapped shared controls declared).
+description: First-class surface router document at the sk-code hub root (ROUTER.md). hub-router.json selects the workflow mode; this doc maps a request's code intent to the exact packet-local leaf resources that mode should load, emitting canonical (workflowMode, leafResourceId) pairs. Relocated from shared/references/smart-routing.md (v3.5.0.8) as the ROUTER.md consolidation pattern, with the approved sk-code shared-control delta (router self-reference removed, ten hub-shared paths normalized to shared/..., mapped shared controls declared).
 trigger_phrases:
   - "sk-code smart routing"
   - "surface resource maps"
@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.2.4.0
+version: 2.2.5.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -38,7 +38,7 @@ Routing is a two-stage decision: **surface-first, intent-second**. Surface narro
 
 ### Bundled Evidence Surfaces
 
-Beyond the two code surfaces this router maps by detection, the hub can bundle a read-only **evidence surface** alongside the chosen workflow mode through `hub-router.json`'s `surfaceBundle` outcome. Evidence surfaces are registered in `mode-registry.json`, typed in `leaf-manifest.json`, and — like the Webflow and OpenCode surfaces — folded into the machine `RESOURCE_MAP` projection in §11: each surface's packet-local map is re-prefixed and unioned under the shared intent keys, and a drift guard enforces that the parent projection equals the union of all surface maps plus the parent-owned universal/shared tier.
+Beyond the Webflow and OpenCode prose maps in §4 and §6, the hub can bundle a read-only **evidence surface**, such as `sk-code-obsidian`, alongside the chosen workflow mode through `hub-router.json`'s `surfaceBundle` outcome. Evidence surfaces are registered in `mode-registry.json`, typed in `leaf-manifest.json`, and — like the Webflow and OpenCode surfaces — folded into the machine `RESOURCE_MAP` projection in §11: each surface's packet-local map is re-prefixed and unioned under the shared intent keys, and a drift guard enforces that the parent projection equals the union of all surface maps plus the parent-owned universal/shared tier.
 
 ### Key Sources
 
@@ -108,8 +108,8 @@ Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. 
 
 | Tier | When | Resources |
 | --- | --- | --- |
-| ALWAYS | Every invocation | Universal code quality + error recovery from `.skilled/skills/sk-code/shared/references/universal/` and `.skilled/skills/sk-code/shared/references/phase-detection.md` |
-| SURFACE | After WEBFLOW/OPENCODE detection | Surface-specific shared resources (`sk-code-webflow/references/shared/*` or `sk-code-opencode/references/shared/*`) |
+| ALWAYS | Every invocation | The §11 `DEFAULT_RESOURCE` preamble only: `shared/references/stack-detection.md`, `shared/references/phase-detection.md` and `shared/references/universal/code-quality-standards.md`. The other universal files load with their intent: `code-style-guide.md` with CODE_QUALITY, `error-recovery.md` with DEBUGGING and `multi-agent-research.md` with IMPLEMENTATION |
+| SURFACE | After WEBFLOW, OPENCODE or OBSIDIAN detection | Surface-specific resources (`sk-code-webflow/references/shared/*`, `sk-code-opencode/references/shared/*`, or the `sk-code-obsidian/references/*` leaves its packet router maps) |
 | INTENT | After intent classification | Implementation, debugging, verification, performance, etc. matching the top-1 intent (and top-2 when ambiguous) |
 | LANGUAGE | OPENCODE only | Split JavaScript, TypeScript, Python, Shell, Rust, and Config standards from the matching `sk-code-opencode/references/<lang>/` resources |
 | ON_DEMAND | Explicit deep-dive keywords | Extended checklists and niche references (e.g. `sk-code-webflow/references/css/patterns/tokens-state-machine-and-triggers.md` for advanced CSS patterns) |
@@ -297,8 +297,8 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 ## 10. RELATED RESOURCES
 
-- [`./stack-detection.md`](shared/references/stack-detection.md) — surface detection (OPENCODE/OBSIDIAN/WEBFLOW/UNKNOWN) + OPENCODE language sub-detection
-- [`./phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading
+- [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (OPENCODE/OBSIDIAN/WEBFLOW/UNKNOWN) + OPENCODE language sub-detection
+- [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading
 - `SKILL.md` §2 SMART ROUTING — operator-facing summary of this routing contract
 - Barter equivalent: `barter/.skilled/skills/sk-code/shared/references/smart-routing.md` (different routing key — git-remote project — but same structural pattern)
 
@@ -379,7 +379,6 @@ RESOURCE_MAP = {
         "sk-code-opencode/assets/checklists/command-authoring.md",
         "sk-code-opencode/assets/checklists/skill-authoring.md",
         "sk-code-opencode/assets/checklists/mcp-server-authoring.md",
-        "shared/assets/patterns/README.md",
         "sk-code-webflow/assets/integrations/README.md",
         "sk-code-webflow/assets/patterns/README.md",
         "sk-code-webflow/assets/templates/README.md",
@@ -580,10 +579,13 @@ RESOURCE_MAP = {
     ],
 }
 
-# Hub-shared control documents: normalized contained shared/ paths that resolve
-# on disk and are referenced by RESOURCE_MAP but are exempt from typed-leaf
-# projection (they have no single packet owner). Validated by the root-router
-# contract and never projected as typed leaves.
+# Hub-level shared controls, declared once here. This list holds every
+# contained shared/ path that RESOURCE_MAP references but that is exempt from
+# typed-leaf projection, because it has no single packet owner. The root-router
+# contract validates each entry and requires RESOURCE_MAP to reference it.
+# DEFAULT_RESOURCE above is the other half of the set: its always-loaded
+# preamble paths are hub-level controls too. No other shared/ path is a
+# control, so a guard that needs the control set reads these two lists.
 SHARED_CONTROL_RESOURCES = [
     "shared/references/universal/multi-agent-research.md",
     "shared/references/universal/code-quality-standards.md",
@@ -592,7 +594,6 @@ SHARED_CONTROL_RESOURCES = [
     "shared/references/universal-debugging-checklist.md",
     "shared/references/universal-verification-checklist.md",
     "shared/references/performance-loading-checklist.md",
-    "shared/assets/patterns/README.md",
 ]
 ```
 
@@ -601,11 +602,11 @@ SHARED_CONTROL_RESOURCES = [
 The router does NOT load the whole matched-intent union. After surface detection (§1, `stack-detection.md`), a route loads:
 
 - the always-loaded `DEFAULT_RESOURCE` preamble (stack/phase detection and the universal quality baseline), plus
-- the surface-agnostic `shared/references/universal/*` tier, plus
+- the `shared/` entries the matched intents map (for example `code-style-guide.md` under CODE_QUALITY, `error-recovery.md` under DEBUGGING and `multi-agent-research.md` under IMPLEMENTATION), never the whole `shared/references/universal/` folder, plus
 - only the **detected surface's** slice (`<surface>/references/*`) for the matched intents, plus
 - the Motion.dev overlay (`sk-code-webflow/references/animation/*`) when a `MOTION_DEV` intent fires.
 
-It does not load the other surface's resources, and it defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice. Within OpenCode it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-opencode/references/typescript/*` plus the language-agnostic `sk-code-opencode/references/shared/*`, not the Python, shell, config, or JavaScript folders. Webflow has no language sub-slice — a frontend task legitimately spans CSS, HTML, and JavaScript together. A task that genuinely spans both surfaces (mixed `.skilled/` and Webflow markers) keeps both surface slices; an `UNKNOWN` surface falls back to the preamble plus the universal tier and the Motion overlay only. This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.
+It does not load the other surface's resources, and it defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice. Within OpenCode it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-opencode/references/typescript/*` plus the language-agnostic `sk-code-opencode/references/shared/*`, not the Python, shell, config, or JavaScript folders. Webflow has no language sub-slice — a frontend task legitimately spans CSS, HTML, and JavaScript together. A mixed-marker task (`.skilled/` and Webflow markers together) keeps the slice of each surface it touches; an `UNKNOWN` surface falls back to the preamble plus the shared-tier entries its matched intents map and the Motion overlay only. This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.
 
 ---
 
@@ -613,5 +614,5 @@ It does not load the other surface's resources, and it defers `assets/*` (checkl
 
 - Every code task first loads the always-on preamble (stack + phase detection and the universal quality baseline); routing then narrows to the detected surface's slice for the matched intents.
 - One dominant intent on one surface loads that surface's slice; two near-tied intents (within the router's ambiguity delta) load both intent sets, deduped by canonical pair.
-- A task that genuinely spans both surfaces (mixed markers) keeps both surface slices; a single-surface task never pulls the other surface's resources.
-- No keyword match, or an `UNKNOWN` surface, falls back to the preamble plus the universal tier and the Motion overlay only — confirm the surface and intent before loading more. See §8 (UNKNOWN FALLBACK) and §9 (LOADING DISCIPLINE) for the full rules.
+- A mixed-marker task keeps the slice of each surface it touches; a single-surface task never pulls another surface's resources.
+- No keyword match, or an `UNKNOWN` surface, falls back to the preamble plus the shared-tier entries its matched intents map and the Motion overlay only — confirm the surface and intent before loading more. See §8 (UNKNOWN FALLBACK) and §9 (LOADING DISCIPLINE) for the full rules.

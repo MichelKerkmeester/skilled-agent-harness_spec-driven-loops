@@ -1,0 +1,2 @@
+| `sk-code-opencode` | System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |
+| `sk-code-obsidian` | Obsidian-plugin design-system and source-convention evidence for the Note Database plugin |

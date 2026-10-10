@@ -1,0 +1,1 @@
+`description.json`, `mode-registry.json`, `hub-router.json`, and `ROUTER.md` carry the same value, so every hub-root artifact states the same release.

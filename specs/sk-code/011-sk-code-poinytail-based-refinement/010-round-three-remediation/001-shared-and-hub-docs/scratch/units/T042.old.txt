@@ -1,0 +1,1 @@
+If requested scope looks unnecessary or risky, implement the requirement and raise a scope-amendment recommendation; do not silently cut scope.

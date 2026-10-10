@@ -1,6 +1,6 @@
 ---
 title: "DR-004: Language reference folder validator"
-description: "Verify verify_stack_folders.py confirms every known code-opencode language has an on-disk references folder, allows shared material, flags unknown reference folders, and exits non-zero on a mismatch."
+description: "Verify verify_stack_folders.py confirms every known sk-code-opencode language has an on-disk references folder, allows shared material, flags unknown reference folders, and exits non-zero on a mismatch."
 version: 2.1.0.4
 ---
 
@@ -8,7 +8,7 @@ version: 2.1.0.4
 
 ## 1. OVERVIEW
 
-This scenario verifies the structural guard `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py`. The code-opencode skill documents stack evidence by language, and each known language must resolve to a real `references/<language>/` folder. The `references/shared/` folder is expected cross-language material, not a language folder.
+This scenario verifies the structural guard `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py`. The sk-code-opencode skill documents stack evidence by language, and each known language must resolve to a real `references/<language>/` folder. The `references/shared/` folder is expected cross-language material, not a language folder.
 
 The validator asserts that every known language resolves to an on-disk references folder and that every directory under `references/` is either a known language or `shared/`. It exits non-zero with a per-problem report when the documented language set and the folders disagree.
 
@@ -18,7 +18,7 @@ This is a deterministic command scenario: the contract is exit-code behavior, no
 
 ## 2. SCENARIO CONTRACT
 
-**Realistic user request**: A maintainer wants to confirm the documented code-opencode languages still match the folders on disk, and that a stray language folder is caught.
+**Realistic user request**: A maintainer wants to confirm the documented sk-code-opencode languages still match the folders on disk, and that a stray language folder is caught.
 
 **Exact command intent**:
 ```
@@ -93,7 +93,7 @@ Evidence: the exit code and report text captured from each `verify_stack_folders
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py` — code-opencode language reference folder validator.
+- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py` — sk-code-opencode language reference folder validator.
 - `.skilled/skills/sk-code/sk-code-opencode/references/` — language reference folders and shared cross-language material checked by the validator.
 
 ---

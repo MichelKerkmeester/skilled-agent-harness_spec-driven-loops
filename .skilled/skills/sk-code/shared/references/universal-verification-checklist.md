@@ -68,7 +68,7 @@ Run all of these from the project root. ALL must exit 0 before claiming done.
 - [ ] DevTools console clear at all viewports.
 - [ ] Lighthouse 3× run with median used.
 
-For the full WEBFLOW matrix and Lighthouse details: `references/webflow/verification/verification_workflows.md` and `references/webflow/performance/cwv-remediation.md`.
+For the full WEBFLOW matrix and Lighthouse details: `.skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md` and `.skilled/skills/sk-code/sk-code-webflow/references/performance/cwv-remediation.md`.
 
 ---
 
@@ -115,7 +115,7 @@ Without evidence, "done" is a guess.
 
 ## 8. RELATED RESOURCES
 
-- `references/phase-detection.md` — Phase 3 Verification position in the sk-code lifecycle.
-- `assets/universal/checklists/debugging_checklist.md` — runs before this checklist when bugs surface.
-- `references/webflow/verification/verification_workflows.md` — WEBFLOW deep-dive (browser matrix, Lighthouse, multi-viewport).
-- `references/opencode/shared/alignment-verification-automation.md` — OPENCODE alignment verification.
+- [`./phase-detection.md`](./phase-detection.md) — Phase 3 Verification position in the sk-code lifecycle.
+- [`./universal-debugging-checklist.md`](./universal-debugging-checklist.md) — runs before this checklist when bugs surface.
+- `.skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md` — WEBFLOW deep-dive (browser matrix, Lighthouse, multi-viewport).
+- `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` — OPENCODE alignment verification.

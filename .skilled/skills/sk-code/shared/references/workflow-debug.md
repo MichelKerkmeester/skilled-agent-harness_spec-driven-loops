@@ -56,6 +56,8 @@ Debugging is the controlled experiment phase. It reproduces or tightly character
 8. If the fix changes code, return through quality before final verification.
 9. Hand the fixed state to verification with the reproduction command, before/after result, and residual risk.
 
+The reproduce, trace-to-source and one-cause-at-a-time floors in this loop are owned by `.skilled/repo-rules/root-cause-and-debugging.md` section 1 (THE LOOP). This loop is how sk-code applies them, so a change to a floor goes there first.
+
 ### Four-Phase Checklist Substance
 
 Use the universal debugging checklist as the detailed walk-through, not as content to duplicate wholesale:

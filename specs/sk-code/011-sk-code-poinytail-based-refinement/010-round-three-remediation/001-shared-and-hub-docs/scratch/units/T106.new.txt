@@ -1,0 +1,1 @@
+| **Works on** | The shared surface-detection router for the three surfaces the hub `SKILL.md` lists (WEBFLOW, OPENCODE and OBSIDIAN), plus the Motion.dev animation overlay |

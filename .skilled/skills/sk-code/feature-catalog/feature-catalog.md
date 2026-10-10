@@ -6,13 +6,13 @@ trigger_phrases:
   - "sk-code hub capabilities"
   - "two-axis registry routing"
   - "sk-code compiled routing"
-last_updated: "2026-07-21"
+last_updated: "2026-10-10"
 version: 1.0.0.0
 ---
 
 # sk-code: Feature Catalog
 
-This catalog inventories the live `sk-code` hub surface. The skill advisor routes any code-related prompt to the single identity `sk-code`; the hub resolves a WORKFLOW mode (`quality`, `code-review`) and bundles zero-or-more read-only SURFACE evidence packets (`code-webflow`, `code-opencode`) declaratively from `mode-registry.json`. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
+This catalog inventories the live `sk-code` hub surface. The skill advisor routes any code-related prompt to the single identity `sk-code`; the hub resolves a WORKFLOW mode (`sk-code-quality`, `sk-code-review`) and bundles zero-or-more read-only SURFACE evidence packets (`sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`) declaratively from `mode-registry.json`. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
 
 ---
 
@@ -32,7 +32,7 @@ Use this catalog as the current-state inventory for the `sk-code` hub. The hub d
 
 #### Current Reality
 
-`quality` and `code-review` are WORKFLOW modes that act; `code-webflow` and `code-opencode` are advisor-invisible SURFACE packets bundled alongside a workflow mode via `routerPolicy.outcomes.surfaceBundle`, workflow mode ordered first. The hub carries no root `references/<key>/` resource router — resource slicing lives inside the nested packets.
+`sk-code-quality` and `sk-code-review` are WORKFLOW modes that act; `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` are advisor-invisible SURFACE packets bundled alongside a workflow mode via `routerPolicy.outcomes.surfaceBundle`, workflow mode ordered first. The hub carries no root `references/<key>/` resource router — resource slicing lives inside the nested packets.
 
 #### Source Files
 

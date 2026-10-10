@@ -1,0 +1,1 @@
+Packet-owned resources remain typed through `leaf-manifest.json`; the eight declared `SHARED_CONTROL_RESOURCES` are contained hub-level inputs that resolve on disk but never project as leaves.

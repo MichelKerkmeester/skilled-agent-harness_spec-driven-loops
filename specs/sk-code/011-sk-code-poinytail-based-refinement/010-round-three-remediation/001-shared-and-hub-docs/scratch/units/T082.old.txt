@@ -1,0 +1,1 @@
+- `references/webflow/performance/cwv-remediation.md` and `references/webflow/performance/resource-loading.md`

@@ -45,7 +45,7 @@ Before editing .skilled/skills/sk-doc/scripts/preview-server.ts for a Motion dem
 
 **Expected NOT loaded as authoritative surface guidance**:
 - `sk-code-webflow/references/implementation/webflow-patterns/overview-limits-and-collection-lists.md`
-- `sk-code-webflow/assets/checklists/verification_checklist.md`
+- `sk-code-webflow/assets/webflow-verification-checklist.md`
 
 **Expected agent dispatch**: none.
 

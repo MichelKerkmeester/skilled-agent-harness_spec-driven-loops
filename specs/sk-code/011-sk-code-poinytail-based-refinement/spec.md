@@ -123,6 +123,7 @@ These bind every build phase, 002 to 006.
 | 7 | 007-follow-up-fixes/ | Five follow-up fixes found while building 002 to 006, one child each | Complete |
 | 8 | 008-round-two-recommendations/ | The round-two research recommendations that still hold, one child per group | Complete |
 | 9 | 009-round-two-follow-ups/ | Five follow-ups the round-two build left open, one child each | Complete |
+| 10 | 010-round-three-remediation/ | Every round-three finding and the five 009 follow-ups, one child per file area | Complete |
 
 ### Phase Transition Rules
 
@@ -142,8 +143,8 @@ These bind every build phase, 002 to 006.
 | 005-review-output-additions | 006-guard-retirement-notes | None; 006 is independent | n/a |
 | 006-guard-retirement-notes | 007-follow-up-fixes | 006 committed; drift guards and leaf manifests fresh | Orchestrator rerun of the 011 goal criteria |
 | 007-follow-up-fixes | 008-round-two-recommendations | 007 committed; round-two findings rechecked against the tree | Orchestrator rerun of the 011 goal criteria |
-| 007-follow-up-fixes | 008-round-two-recommendations | [Criteria TBD] | [Verification TBD] |
-| 008-round-two-recommendations | 009-round-two-follow-ups | [Criteria TBD] | [Verification TBD] |
+| 008-round-two-recommendations | 009-round-two-follow-ups | 008 committed; its recorded follow-ups rechecked against the tree | Orchestrator rerun of the 011 goal criteria |
+| 009-round-two-follow-ups | 010-round-three-remediation | 009 committed; round-three findings recorded in the research | Orchestrator rerun of the 011 goal criteria |
 
 ### Handoffs Outside sk-code
 

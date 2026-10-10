@@ -1,0 +1,1 @@
+| **sk-code-obsidian** | Obsidian-plugin design-system and source-convention evidence for the Note Database plugin. Read-only. | `sk-code/sk-code-obsidian/` |

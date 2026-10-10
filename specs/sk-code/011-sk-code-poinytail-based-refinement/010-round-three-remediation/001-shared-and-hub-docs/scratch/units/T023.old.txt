@@ -1,0 +1,1 @@
+- `assets/patterns/`: executable pattern templates shipped with the skill.

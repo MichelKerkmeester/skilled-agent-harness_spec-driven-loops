@@ -1,0 +1,1 @@
+ten hub-shared paths normalized to shared/..., eight mapped shared controls declared).

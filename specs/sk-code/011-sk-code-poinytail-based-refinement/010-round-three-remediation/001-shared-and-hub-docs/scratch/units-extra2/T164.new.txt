@@ -1,0 +1,4 @@
+### OpenCode Verification Reality
+
+OpenCode work: see the verification reality, including the `validate.sh` pointer, in [OpenCode workflow guardrails](../../sk-code-opencode/references/shared/workflow-guardrails.md#3-verification-reality).
+

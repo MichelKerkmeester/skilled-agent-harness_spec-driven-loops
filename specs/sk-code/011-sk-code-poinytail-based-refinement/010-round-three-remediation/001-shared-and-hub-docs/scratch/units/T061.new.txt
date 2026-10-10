@@ -1,0 +1,1 @@
+- Surface quality checklists under `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` (Webflow) and `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/` (OpenCode).

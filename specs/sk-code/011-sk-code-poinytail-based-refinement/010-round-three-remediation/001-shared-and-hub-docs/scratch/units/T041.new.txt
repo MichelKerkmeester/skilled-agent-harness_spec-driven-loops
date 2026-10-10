@@ -1,0 +1,1 @@
+If a test stays green after the guarded behavior is broken, report it as a verification defect and hand back. The negative-control floor is owned by `.skilled/repo-rules/evidence-and-proof.md` section 4 (THE NEGATIVE CONTROL).

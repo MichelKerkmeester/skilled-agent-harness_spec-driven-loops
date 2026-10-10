@@ -1,0 +1,16 @@
+# Hub-level shared controls, declared once here. This list holds every
+# contained shared/ path that RESOURCE_MAP references but that is exempt from
+# typed-leaf projection, because it has no single packet owner. The root-router
+# contract validates each entry and requires RESOURCE_MAP to reference it.
+# DEFAULT_RESOURCE above is the other half of the set: its always-loaded
+# preamble paths are hub-level controls too. No other shared/ path is a
+# control, so a guard that needs the control set reads these two lists.
+SHARED_CONTROL_RESOURCES = [
+    "shared/references/universal/multi-agent-research.md",
+    "shared/references/universal/code-quality-standards.md",
+    "shared/references/universal/code-style-guide.md",
+    "shared/references/universal/error-recovery.md",
+    "shared/references/universal-debugging-checklist.md",
+    "shared/references/universal-verification-checklist.md",
+    "shared/references/performance-loading-checklist.md",
+]

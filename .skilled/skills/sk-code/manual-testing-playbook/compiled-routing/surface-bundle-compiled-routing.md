@@ -30,7 +30,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-Serving-authority focus: sk-code is the one hub whose primary decision is a **surface bundle** — the router first resolves a code surface (`code-webflow` / `code-opencode` / `code-review` / `quality`) and only then assembles that surface's leaves. This scenario proves the compiled engine serves that surface-bundle decision (`servingAuthority: compiled`) and that the compiled decision is byte-equivalent to the legacy one for the same prompt. The distinct rationale versus every other hub: only sk-code varies on a **surface axis**, so it is the sole coverage of a surface-bundle serving decision.
+Serving-authority focus: sk-code is the one hub whose primary decision is a **surface bundle** — the router first resolves a code surface (`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`, bundled behind `sk-code-review` or `sk-code-quality`) and only then assembles that surface's leaves. This scenario proves the compiled engine serves that surface-bundle decision (`servingAuthority: compiled`) and that the compiled decision is byte-equivalent to the legacy one for the same prompt. The distinct rationale versus every other hub: only sk-code varies on a **surface axis**, so it is the sole coverage of a surface-bundle serving decision.
 
 ---
 
@@ -42,7 +42,7 @@ Add a scroll-triggered reveal animation to my Webflow site using GSAP and Inters
 ```
 
 **Expected route**:
-- Mode: `code-webflow` (surface-resolved bundle)
+- Mode: `sk-code-webflow` (surface-resolved bundle)
 - Route shape: `surfaceBundle` — a surface pick precedes leaf assembly.
 
 ---

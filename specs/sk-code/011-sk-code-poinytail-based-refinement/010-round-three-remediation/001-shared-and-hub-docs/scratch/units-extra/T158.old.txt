@@ -1,0 +1,1 @@
+make `code-quality` a deep-loop mode

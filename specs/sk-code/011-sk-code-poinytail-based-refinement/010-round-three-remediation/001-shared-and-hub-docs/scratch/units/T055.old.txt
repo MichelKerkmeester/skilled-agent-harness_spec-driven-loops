@@ -1,0 +1,2 @@
+   - **Write-time** (Claude Code only): `claude-posttooluse.sh` fires on every Write/Edit tool call and warns inline before the next AI turn
+   - **Commit-time**: `.skilled/hooks/git/pre-commit` blocks any commit with violations; bypass with `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit`

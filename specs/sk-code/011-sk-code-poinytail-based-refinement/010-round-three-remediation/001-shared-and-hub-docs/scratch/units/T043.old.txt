@@ -1,0 +1,1 @@
+9. Hand the fixed state to verification with the reproduction command, before/after result, and residual risk.

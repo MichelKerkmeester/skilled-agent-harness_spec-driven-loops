@@ -63,7 +63,7 @@ Before writing, record the cheap facts later phases need:
 | Baseline | Starting command status, known failing checks, warning count, runtime issue, or `UNKNOWN` when no safe baseline is available. |
 | Blast Radius | One phrase such as `low-blast, reversible`, `medium-blast: multi-file behavior`, or `high-blast: touches auth/data/filesystem/config`. |
 
-Apply the Design Restraint Ladder from the universal code quality standards before adding code, in its order: verify the code needs to exist, reuse what this codebase already has (a helper, component, service or pattern), then the standard library, then a native platform or runtime feature, then an already-installed dependency, then one line, and only then write the minimum code that satisfies the stated requirement. It never cuts a P0 item or anything the user asked for. If requested scope looks unnecessary or risky, implement the requirement and raise a scope-amendment recommendation; do not silently cut scope.
+Apply the Design Restraint Ladder from the universal code quality standards before adding code, in its order: verify the code needs to exist, reuse what this codebase already has (a helper, component, service or pattern), then the standard library, then a native platform or runtime feature, then an already-installed dependency, then one line, and only then write the minimum code that satisfies the stated requirement. It never cuts a P0 item or anything the user asked for. If requested scope looks unnecessary or risky, implement the requirement and raise a scope-amendment recommendation; do not silently cut scope. The restraint floor is owned by `.skilled/repo-rules/prevent-overengineering.md` (sections 1 and 2) and the Restraint Signals table in `AGENTS.md` section 3.
 
 ### Write
 
@@ -75,13 +75,9 @@ Apply the Design Restraint Ladder from the universal code quality standards befo
 6. Preserve routing metadata, config shapes, generated metadata ownership, and packet boundaries when authoring system assets.
 7. Prepare the handoff with changed scope, baseline, likely checks, and accepted residual risks.
 
-### OpenCode Surface Only: Implementation Guardrails
+### OpenCode Implementation Guardrails
 
-This subsection applies only to the OpenCode surface. It is present in the shared workflow file because this file is symlinked into multiple surfaces; Webflow readers should ignore this OpenCode-specific implementation guidance.
-
-- Treat `generate-context.js` as the single writer for a packet's continuity metadata, invoked through `/speckit:save`. It keeps atomic same-directory update and lock semantics, so do not hand-edit the generated metadata pair alongside it or run a second writer against the same packet. There is no index or embedding store behind it to mutate separately.
-- For git worktree isolation, defer to `sk-git`. This workflow may note that isolation is needed, but it must not duplicate `sk-git`'s worktree setup, branch, commit, or finish-work contract.
-- Preserve the verification handoff. Implementation should name the package boundary, rebuild requirement, baseline, likely test command, and any env knobs the verifier must pin; final evidence belongs to [Workflow Reference - Verification](./workflow-verify.md), not implementation.
+OpenCode work: see the implementation guardrails in [OpenCode workflow guardrails](../../sk-code-opencode/references/shared/workflow-guardrails.md#2-implementation-guardrails).
 
 ---
 

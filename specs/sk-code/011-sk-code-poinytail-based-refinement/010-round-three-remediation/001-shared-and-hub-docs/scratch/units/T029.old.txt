@@ -1,0 +1,1 @@
+| Verification | `verify_alignment_drift.py --root <changed-scope>` plus targeted tests/spec validation |

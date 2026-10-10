@@ -1,0 +1,1 @@
+Beyond the two code surfaces this router maps by detection, the hub can bundle a read-only **evidence surface** alongside

@@ -1,0 +1,19 @@
+sk-code/
+  SKILL.md               # this routing hub (no per-mode code logic)
+  README.md              # human-facing front page for the hub
+  ROUTER.md              # active stage-two surface router and shared-control declaration
+  mode-registry.json     # the two-axis discriminator + advisorRouting (single source of truth)
+  hub-router.json        # lexical routing signals + surfaceBundle policy for hub-local choice
+  description.json       # hub advisor descriptor
+  graph-metadata.json    # the ONE advisor identity for the whole skill
+  leaf-manifest.json     # typed (workflowMode, leaf) pairs the router guards validate
+  changelog/             # hub release notes, one v<version>.md per hub release
+  feature-catalog/       # current-state inventory of the hub's routing capabilities
+  manual-testing-playbook/  # routing and disambiguation scenarios for the hub
+  benchmark/             # historical routing benchmark inputs and reports
+  sk-code-quality/       # quality mode packet     (workflow)
+  sk-code-review/        # review mode packet      (workflow)
+  sk-code-webflow/       # webflow surface packet  (read-only evidence; carries the workflow doctrine + Motion.dev animation overlay)
+  sk-code-opencode/      # opencode surface packet (read-only evidence; carries the workflow doctrine)
+  sk-code-obsidian/      # obsidian surface packet (read-only evidence)
+  shared/                # shared surface-detection router, cross-mode helpers, and the implement/debug/verify workflow doctrine (references/workflow-*.md)

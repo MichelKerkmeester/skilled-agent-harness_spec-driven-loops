@@ -1,0 +1,1 @@
+| SURFACE | After WEBFLOW/OPENCODE detection | Surface-specific shared resources (`sk-code-webflow/references/shared/*` or `sk-code-opencode/references/shared/*`) |

@@ -1,5 +1,5 @@
 {
-  "count": 1013,
+  "count": 1015,
   "mode": "readme",
   "results": [
     {
@@ -5031,13 +5031,13 @@
       "warnings": []
     },
     {
-      "auto_fixable_count": 0,
+      "auto_fixable_count": null,
       "blocking_errors": [],
-      "document_type": "readme",
+      "document_type": null,
       "file": ".skilled/skills/sk-code/shared/assets/patterns/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
+      "return_code": 2,
+      "total_issues": null,
+      "valid": false,
       "warnings": []
     },
     {
@@ -6741,6 +6741,23 @@
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment-fixture/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
       "warnings": []
     },
     {
@@ -10830,6 +10847,16 @@
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/003-doctrine-pass/scratch/before/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {

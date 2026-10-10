@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared and hub docs",
+      "phase 1 shared and hub docs",
+      "shared and hub docs plan",
+      "shared and hub docs tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "shared and hub docs implementation summary"
+    ],
+    "key_topics": [
+      "shared",
+      "hub",
+      "docs",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/ROUTER.md",
+      ".skilled/skills/sk-code/README.md",
+      ".skilled/skills/sk-code/description.json",
+      ".skilled/skills/sk-code/changelog/v2.2.5.0.md",
+      ".skilled/skills/sk-code/shared/README.md",
+      "scratch/check-unit.cjs",
+      "scratch/fix-units-applied.json",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/skills/sk-code/mode-registry.json",
+      ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
+      ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
+      ".skilled/skills/sk-code/shared/references/phase-detection.md",
+      ".skilled/skills/sk-code/shared/references/stack-detection.md",
+      ".skilled/skills/sk-code/shared/references/workflow-verify.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "v2.2.5.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/changelog/v2.2.5.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-unit.cjs",
+        "kind": "file",
+        "path": "scratch/check-unit.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fix-units-applied.json",
+        "kind": "config",
+        "path": "scratch/fix-units-applied.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "two-axis-registry-driven-routing.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-detection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/phase-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "stack-detection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/stack-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-verify.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/workflow-verify.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shared tier loads on every sk-code route, yet eight of its docs point into `references/webflow/`, `references/opencode/`, `references/motiondev/`, `assets/webflow/` and `assets/universal/` families that no longer exist, and its links to its own files use three forms",
+    "created_at": "2026-10-10T10:07:17Z",
+    "last_save_at": "2026-10-10T11:50:37.371Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ea558a0ea96ffd4e9d9599f4e09691f8477c5f0b8dbbb879b6b187157a06ad94",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6d7b610980d26848b83454d9890a8ec9aa164e9652e4a699a727e5a93ed551a3",
+      "plan.md": "4b4525663ca15b8eacdbded81ff0cf1b311b3782e2e4ed3503dcddbcb0a2d200",
+      "tasks.md": "2a2543a1827e0dc862f7c71b0c4fc8377da32b85a1c1bbf35d10f308fa742225",
+      "implementation-summary.md": "428688f2f415320f0d451eac8b401c0db8ce97a677dddaea80383e9a5872974d"
+    },
+    "last_active_at": null
+  }
+}

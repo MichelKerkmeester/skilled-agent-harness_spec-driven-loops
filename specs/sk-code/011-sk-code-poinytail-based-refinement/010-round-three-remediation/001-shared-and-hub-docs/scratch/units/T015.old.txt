@@ -1,0 +1,14 @@
+# Hub-shared control documents: normalized contained shared/ paths that resolve
+# on disk and are referenced by RESOURCE_MAP but are exempt from typed-leaf
+# projection (they have no single packet owner). Validated by the root-router
+# contract and never projected as typed leaves.
+SHARED_CONTROL_RESOURCES = [
+    "shared/references/universal/multi-agent-research.md",
+    "shared/references/universal/code-quality-standards.md",
+    "shared/references/universal/code-style-guide.md",
+    "shared/references/universal/error-recovery.md",
+    "shared/references/universal-debugging-checklist.md",
+    "shared/references/universal-verification-checklist.md",
+    "shared/references/performance-loading-checklist.md",
+    "shared/assets/patterns/README.md",
+]

@@ -1,0 +1,7 @@
+## 6. ASSETS (`assets/patterns/`)
+
+| Path | What it is |
+|---|---|
+| [`assets/patterns/validation-patterns.js`](./assets/patterns/validation-patterns.js) | Defense-in-depth, multi-layer validation pattern templates (production-ready). |
+| [`assets/patterns/wait-patterns.js`](./assets/patterns/wait-patterns.js) | Observer-based async DOM waiting patterns (MutationObserver / IntersectionObserver) instead of polling. |
+| [`assets/patterns/README.md`](./assets/patterns/README.md) | Code-facing README for the pattern scripts in this folder. |

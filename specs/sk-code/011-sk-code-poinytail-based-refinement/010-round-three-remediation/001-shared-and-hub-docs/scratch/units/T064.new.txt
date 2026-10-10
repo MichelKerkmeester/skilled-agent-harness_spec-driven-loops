@@ -1,0 +1,5 @@
+### Comment density
+
+This guide owns the comment-density rule. A comment earns its place by naming a hidden constraint, an invariant, a workaround's cause or a surprise, never by filling a quota, so no universal count applies. Each surface may set its own numeric budget as that surface's setting, and a surface budget never removes a comment this section requires. The Webflow surface sets five comments per ten lines in `.skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md`, and the OpenCode surface sets three per ten lines in `.skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md`.
+
+### Never comment what the code does

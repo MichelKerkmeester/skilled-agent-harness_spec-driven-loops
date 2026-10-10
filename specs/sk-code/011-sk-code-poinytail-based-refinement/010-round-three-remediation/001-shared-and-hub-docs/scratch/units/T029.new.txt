@@ -1,0 +1,1 @@
+| Verification | `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh`, the three-guard umbrella, plus targeted tests/spec validation |

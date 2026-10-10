@@ -13,7 +13,7 @@ version: 1.5.0.9
 
 # Router Reference - Phase Lifecycle
 
-Both supported surfaces follow the same lifecycle. Surface detection changes which resources and verification evidence apply.
+All three surfaces in the hub `SKILL.md` surface list (WEBFLOW, OPENCODE and OBSIDIAN) follow the same lifecycle. Surface detection changes which resources and verification evidence apply.
 
 ---
 
@@ -25,7 +25,7 @@ Define the shared execution lifecycle for supported code surfaces so research, i
 
 ### When to Use
 
-- When planning work across WEBFLOW or OPENCODE surfaces.
+- When planning work on the WEBFLOW, OPENCODE or OBSIDIAN surface.
 - When deciding which phase-specific references and checklists to load.
 - When a failed quality or verification gate requires a controlled transition back to debugging or implementation.
 - When checking whether completion evidence is sufficient.
@@ -59,7 +59,7 @@ Phase 0 Research (optional for simple work, required for complex/risky work)
 | Phase | Resources / Evidence |
 | --- | --- |
 | Research | Webflow constraints, performance, browser/runtime context |
-| Implementation | `references/webflow/implementation/*`, Webflow patterns/assets; add `references/motion_dev/` when Motion API or decision context is needed |
+| Implementation | `.skilled/skills/sk-code/sk-code-webflow/references/implementation/`, Webflow patterns/assets; add `.skilled/skills/sk-code/sk-code-webflow/references/animation/` when Motion API or decision context is needed |
 | Code Quality | Webflow code quality checklist and standards |
 | Debugging | Webflow debugging resources plus browser console evidence |
 | Verification | Minification scripts and browser checks at relevant desktop/mobile viewports |
@@ -71,20 +71,34 @@ Phase 0 Research (optional for simple work, required for complex/risky work)
 | Phase | Resources / Evidence |
 | --- | --- |
 | Research | Shared OpenCode patterns, affected skill/agent/command context, prior spec memory |
-| Implementation | `references/opencode/shared/*` plus detected language references |
+| Implementation | `.skilled/skills/sk-code/sk-code-opencode/references/shared/` plus detected language references |
 | Code Quality | Universal OpenCode checklist plus language checklist |
 | Debugging | Root-cause analysis, failing command output, language-specific patterns |
-| Verification | `verify_alignment_drift.py --root <changed-scope>` plus targeted tests/spec validation |
+| Verification | `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh`, the three-guard umbrella, plus targeted tests/spec validation |
 
 OPENCODE previously had standards-only behavior. In the merged `sk-code`, it receives the full lifecycle.
 
 ### Cross-Stack Motion.dev Resources
 
-`motion_dev/` can be loaded during research, implementation, code quality, debugging, or verification when Motion-specific API, performance, snippet, or decision guidance is relevant. It does not change the selected surface; it gives the active surface a shared Motion reference package.
+The Motion.dev overlay (`.skilled/skills/sk-code/sk-code-webflow/references/animation/`) can be loaded during research, implementation, code quality, debugging, or verification when Motion-specific API, performance, snippet, or decision guidance is relevant. It does not change the selected surface; it gives the active surface a shared Motion reference package.
 
 ---
 
-## 5. IRON LAWS
+## 5. OBSIDIAN PHASES
+
+| Phase | Resources / Evidence |
+| --- | --- |
+| Research | The read-only `sk-code-obsidian` evidence packet: plugin API, data layer and view-renderer references |
+| Implementation | `.skilled/skills/sk-code/sk-code-obsidian/references/standards/code-standards.md` plus the class-naming and stylesheet-ownership references |
+| Code Quality | `.skilled/skills/sk-code/sk-code-obsidian/references/standards/code-standards.md` and the recorded lint baseline |
+| Debugging | Failing vitest or build output, screenshot diffs and root-cause analysis |
+| Verification | The gate command set in `.skilled/skills/sk-code/sk-code-obsidian/references/verification.md`, run in the plugin repository |
+
+The Obsidian surface is read-only evidence. The bundled workflow mode runs these phases, and the gate commands run in the plugin repository, not in this hub.
+
+---
+
+## 6. IRON LAWS
 
 1. No completion claim without Phase 3 verification evidence.
 2. No Phase 1 completion claim without Phase 1.5 quality gate.
@@ -92,7 +106,7 @@ OPENCODE previously had standards-only behavior. In the merged `sk-code`, it rec
 
 ---
 
-## 6. TRANSITIONS
+## 7. TRANSITIONS
 
 - 0 -> 1: enough context and plan exists, and — for implementation intent — the laziest viable rung of the Design Restraint Ladder (see universal code quality standards) has been selected.
 - 1 -> 1.5: code written or modified.
@@ -104,7 +118,7 @@ OPENCODE previously had standards-only behavior. In the merged `sk-code`, it rec
 
 ---
 
-## 7. RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 - [stack-detection.md](./stack-detection.md) — surface detection and OPENCODE language sub-detection
 - [ROUTER.md](../../ROUTER.md) — intent classification, resource maps, and load tiers

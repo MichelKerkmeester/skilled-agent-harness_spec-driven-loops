@@ -1,0 +1,2 @@
+| Changed `apps/desktop/src/styles/app.css` AND changed `.opencode/agents/code.md` | **OPENCODE** | `.opencode/` target wins when a task also touches a path outside the hub |
+| Obsidian plugin repo-root markers (`manifest.json` with `minAppVersion`, `esbuild.config.mjs`) AND a Webflow library marker (`new Lenis`, `window.gsap`) in the same tree, no `.skilled/` target | **OBSIDIAN** | Precedence OPENCODE > OBSIDIAN > WEBFLOW: the OBSIDIAN branch returns early, so the Webflow marker never overwrites it |

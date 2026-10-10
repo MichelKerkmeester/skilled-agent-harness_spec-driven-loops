@@ -1,0 +1,1 @@
+| Changed `apps/desktop/src/styles/app.css` AND changed `.opencode/agents/code.md` | **OPENCODE** | `.opencode/` target wins when a task also touches a path outside the hub |

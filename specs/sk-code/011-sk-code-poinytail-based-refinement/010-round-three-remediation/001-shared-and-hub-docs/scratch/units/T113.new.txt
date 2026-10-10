@@ -1,0 +1,1 @@
+The WORKFLOW axis is process: `sk-code-quality` (`backendKind: surface-router`) and `sk-code-review` (`backendKind: review-cache`) are modes that act. The SURFACE axis is read-only domain evidence: `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` (each `backendKind: evidence-base`) never act

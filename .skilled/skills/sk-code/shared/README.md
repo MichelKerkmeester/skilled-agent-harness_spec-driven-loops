@@ -1,6 +1,6 @@
 ---
 title: sk-code shared
-description: Shared surface-router and cross-mode reference index for sk-code: navigation over the surface-detection, phase-lifecycle, workflow-doctrine, and universal-standards references (plus pattern assets) consumed by every sk-code mode.
+description: Shared surface-router and cross-mode reference index for sk-code: navigation over the surface-detection, phase-lifecycle, workflow-doctrine, and universal-standards references consumed by every sk-code mode.
 importance_tier: normal
 contextType: general
 version: 1.0.0.1
@@ -8,19 +8,18 @@ version: 1.0.0.1
 
 # sk-code shared
 
-> Cross-mode reference surface for `sk-code`: the surface router, phase lifecycle, shared workflow doctrine, universal standards, and pattern assets that every sk-code mode consumes. This is a navigation index: authoritative content lives in the linked files.
+> Cross-mode reference surface for `sk-code`: the surface router, phase lifecycle, shared workflow doctrine and universal standards that every sk-code mode consumes. This is a navigation index: authoritative content lives in the linked files.
 
 ---
 
 ## 1. OVERVIEW
 
-`shared/` holds the routing and doctrine references common to every sk-code surface packet (`code-webflow`, `code-opencode`) and workflow mode (`code-quality`, `code-review`). Surface detection resolves here first; the surface and workflow modes then load the specific references they need. For example, `code-quality` loads the universal quality standards below for its Phase 1.5 gate.
+`shared/` holds the routing and doctrine references common to every sk-code surface packet (`sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`) and workflow mode (`sk-code-quality`, `sk-code-review`). Surface detection resolves here first; the surface and workflow modes then load the specific references they need. For example, `sk-code-quality` loads the universal quality standards below for its Phase 1.5 gate.
 
 Layout:
 
 - `references/`: routing keys, phase lifecycle, shared workflow doctrine, and stack-agnostic checklists.
 - `references/universal/`: stack-agnostic standards shared across surfaces.
-- `assets/patterns/`: executable pattern templates shipped with the skill.
 
 ---
 
@@ -67,13 +66,9 @@ Surface-agnostic workflow doctrine consumed by every surface packet; none of the
 
 ---
 
-## 6. ASSETS (`assets/patterns/`)
+## 6. PATTERN ASSETS
 
-| Path | What it is |
-|---|---|
-| [`assets/patterns/validation-patterns.js`](./assets/patterns/validation-patterns.js) | Defense-in-depth, multi-layer validation pattern templates (production-ready). |
-| [`assets/patterns/wait-patterns.js`](./assets/patterns/wait-patterns.js) | Observer-based async DOM waiting patterns (MutationObserver / IntersectionObserver) instead of polling. |
-| [`assets/patterns/README.md`](./assets/patterns/README.md) | Code-facing README for the pattern scripts in this folder. |
+The shared tier ships no pattern assets. The validation and wait pattern templates are owned by the Webflow packet, beside its interaction-gate and performance patterns: [`../sk-code-webflow/assets/patterns/README.md`](../sk-code-webflow/assets/patterns/README.md).
 
 ---
 

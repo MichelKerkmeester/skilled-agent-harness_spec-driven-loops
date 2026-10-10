@@ -1,0 +1,1 @@
+the SURFACE axis (sk-code-webflow/sk-code-opencode) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow_*.md

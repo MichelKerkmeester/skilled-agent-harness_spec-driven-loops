@@ -1,0 +1,1 @@
+`description.json`, `mode-registry.json`, `hub-router.json`, `ROUTER.md` and `README.md` carry the same value, so every hub-root artifact states the same release. These hub-root files take the release version rather than the derived child-doc version the frontmatter-versioning standard gives other docs.

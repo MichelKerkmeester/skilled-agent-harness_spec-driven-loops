@@ -1,0 +1,1 @@
+`sk-code-quality` stays the author-side gate

@@ -1,0 +1,1 @@
+every sk-code surface packet (`code-webflow`, `code-opencode`) and workflow mode (`code-quality`, `code-review`). Surface detection resolves here first; the surface and workflow modes then load the specific references they need. For example, `code-quality` loads

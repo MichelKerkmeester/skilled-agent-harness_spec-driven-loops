@@ -1,0 +1,1 @@
+Packet-owned resources remain typed through `leaf-manifest.json`. The hub-level shared controls are declared once, in `ROUTER.md` §11: the `SHARED_CONTROL_RESOURCES` list plus the always-loaded `DEFAULT_RESOURCE` preamble. They resolve on disk but never project as leaves.

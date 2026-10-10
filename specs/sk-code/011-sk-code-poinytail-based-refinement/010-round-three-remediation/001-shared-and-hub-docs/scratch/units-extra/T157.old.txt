@@ -1,0 +1,1 @@
+**What `code-quality` hands forward.** When a `code-quality` pass

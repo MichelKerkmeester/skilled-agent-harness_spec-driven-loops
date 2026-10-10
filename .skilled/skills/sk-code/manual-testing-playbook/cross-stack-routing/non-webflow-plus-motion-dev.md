@@ -42,7 +42,7 @@ Generic-Node guard: WEBFLOW markers are gated to actual Webflow signals (vendor 
 
 **Expected NOT loaded**:
 - `sk-code-webflow/references/implementation/webflow-patterns/overview-limits-and-collection-lists.md`
-- `sk-code-webflow/assets/checklists/code-quality-checklist.md`
+- `sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`
 
 **Expected agent dispatch**: none.
 

@@ -1,0 +1,1 @@
+For the full WEBFLOW matrix and Lighthouse details: `.skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md` and `.skilled/skills/sk-code/sk-code-webflow/references/performance/cwv-remediation.md`.

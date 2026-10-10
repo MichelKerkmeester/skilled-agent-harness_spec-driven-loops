@@ -1,0 +1,1 @@
+If requested scope looks unnecessary or risky, implement the requirement and raise a scope-amendment recommendation; do not silently cut scope. The restraint floor is owned by `.skilled/repo-rules/prevent-overengineering.md` (sections 1 and 2) and the Restraint Signals table in `AGENTS.md` section 3.

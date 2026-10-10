@@ -1,0 +1,1 @@
+dependency from `code-quality` onto the deep-loop runtime

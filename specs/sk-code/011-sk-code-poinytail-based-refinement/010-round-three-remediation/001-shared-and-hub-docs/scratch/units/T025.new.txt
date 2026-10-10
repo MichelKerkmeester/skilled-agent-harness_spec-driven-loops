@@ -1,0 +1,1 @@
+All three surfaces in the hub `SKILL.md` surface list (WEBFLOW, OPENCODE and OBSIDIAN) follow the same lifecycle.

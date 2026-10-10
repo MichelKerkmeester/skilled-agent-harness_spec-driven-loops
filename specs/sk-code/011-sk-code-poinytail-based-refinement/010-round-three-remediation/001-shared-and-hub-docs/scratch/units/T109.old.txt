@@ -1,0 +1,1 @@
+| [`sk-code-opencode/SKILL.md`](./sk-code-opencode/SKILL.md) | OpenCode surface packet |

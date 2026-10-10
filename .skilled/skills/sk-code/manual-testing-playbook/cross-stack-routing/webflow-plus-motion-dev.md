@@ -43,8 +43,8 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 - `sk-code-webflow/references/animation/performance-and-pitfalls.md`
 
 **Expected assets loaded**:
-- `sk-code-webflow/assets/checklists/code-quality-checklist.md`
-- `sk-code-webflow/assets/checklists/verification_checklist.md`
+- `sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`
+- `sk-code-webflow/assets/webflow-verification-checklist.md`
 - `sk-code-webflow/assets/animation/install-card.md`
 - `sk-code-webflow/assets/animation/snippets/in-view-reveal.js`
 - `sk-code-webflow/assets/animation/snippets/cdn-bootstrap.js`

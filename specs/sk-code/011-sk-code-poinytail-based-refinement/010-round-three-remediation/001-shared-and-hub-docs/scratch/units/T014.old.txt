@@ -1,0 +1,2 @@
+        "shared/assets/patterns/README.md",
+        "sk-code-webflow/assets/integrations/README.md",

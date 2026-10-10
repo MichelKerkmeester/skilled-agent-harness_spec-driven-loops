@@ -1,0 +1,4 @@
+### OpenCode Runtime Build Traps
+
+OpenCode work: see the runtime build traps in [OpenCode workflow guardrails](../../sk-code-opencode/references/shared/workflow-guardrails.md#4-runtime-build-traps).
+

@@ -1,0 +1,4 @@
+### OpenCode Implementation Guardrails
+
+OpenCode work: see the implementation guardrails in [OpenCode workflow guardrails](../../sk-code-opencode/references/shared/workflow-guardrails.md#2-implementation-guardrails).
+

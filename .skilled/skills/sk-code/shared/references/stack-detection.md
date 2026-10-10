@@ -30,7 +30,7 @@ Detect **where the work is happening** before deciding which standards apply.
 | OBSIDIAN | The Note Database Obsidian plugin (`manifest.json` with `minAppVersion`, `esbuild.config.mjs`, `from "obsidian"` imports, the single `styles.css` carrying `.db-*` classes) and its worktrees | `.opencode/` hub code reached through the repo's symlinks; Webflow browser artifacts |
 | UNKNOWN | Fallback for unsupported or ambiguous surfaces | No standards applied until clarified |
 
-`motion_dev/` is a peer resource category rather than a surface. Surface detection still chooses OPENCODE, OBSIDIAN, WEBFLOW, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
+Motion.dev (`.skilled/skills/sk-code/sk-code-webflow/references/animation/`) is a peer resource category rather than a surface. Surface detection still chooses OPENCODE, OBSIDIAN, WEBFLOW, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
 
 ---
 
@@ -100,8 +100,8 @@ Expected CS-002 behavior:
 
 | Prompt | Expected Surface | Expected Resource Scope |
 | --- | --- | --- |
-| `I'm building a vanilla HTML/CSS/JS landing page (NOT Webflow no Webflow Designer involved) and want to add motion.dev animations.` | UNKNOWN or N/A | `references/motion_dev/*` exact files only; no `references/webflow/*` |
-| `Show stack-agnostic Motion.dev guidance for animate-on-scroll.` | N/A | `references/motion_dev/quick-start.md`, `references/motion_dev/scroll-and-gestures.md`, exact snippet assets |
+| `I'm building a vanilla HTML/CSS/JS landing page (NOT Webflow no Webflow Designer involved) and want to add motion.dev animations.` | UNKNOWN or N/A | exact files under `.skilled/skills/sk-code/sk-code-webflow/references/animation/` only; nothing else under `.skilled/skills/sk-code/sk-code-webflow/` |
+| `Show stack-agnostic Motion.dev guidance for animate-on-scroll.` | N/A | `.skilled/skills/sk-code/sk-code-webflow/references/animation/quick-start.md`, `.skilled/skills/sk-code/sk-code-webflow/references/animation/scroll-and-gestures.md`, exact snippet assets |
 | `Update Webflow page code that uses window.Motion.` | WEBFLOW | Webflow implementation refs plus Motion.dev peer refs |
 
 ---
@@ -141,6 +141,7 @@ YAML is a live OpenCode config-adjacent genre for command routers, command auto/
 | Literal path string contains `.opencode/` but resolves outside the hub | not OPENCODE | The realpath gate refuses OPENCODE on a string match alone |
 | Root `package.json`, no `manifest.json`, no `.skilled/` target | UNKNOWN | Generic Node is not owned; OBSIDIAN needs its positive markers, not merely the absence of other surfaces |
 | Changed `apps/desktop/src/styles/app.css` AND changed `.opencode/agents/code.md` | **OPENCODE** | `.opencode/` target wins when a task also touches a path outside the hub |
+| Obsidian plugin repo-root markers (`manifest.json` with `minAppVersion`, `esbuild.config.mjs`) AND a Webflow library marker (`new Lenis`, `window.gsap`) in the same tree, no `.skilled/` target | **OBSIDIAN** | Precedence OPENCODE > OBSIDIAN > WEBFLOW: the OBSIDIAN branch returns early, so the Webflow marker never overwrites it |
 | WEBFLOW marker (Lenis, GSAP) AND changed `.skilled/skills/sk-doc/scripts/preview-server.js` | **OPENCODE** | Mixed-marker repo: OPENCODE target/CWD takes precedence over WEBFLOW library marker |
 | Prompt says `NOT Webflow no Webflow Designer` and asks for Motion.dev guidance | **UNKNOWN/N/A** | Explicit non-Webflow guard blocks WEBFLOW promotion |
 | Root `package.json` with no `.skilled/` target | UNKNOWN | Generic Node.js is not owned |
@@ -151,5 +152,5 @@ YAML is a live OpenCode config-adjacent genre for command routers, command auto/
 ## 5. RELATED RESOURCES
 
 - [`../../ROUTER.md`](../../ROUTER.md) — root intent classification, resource maps, declared shared controls, and load tiers
-- `references/phase-detection.md` — Phase 1/2/3 lifecycle and per-phase resource loading
+- [`./phase-detection.md`](./phase-detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading
 - `SKILL.md` section 2 — operator-facing summary of the routing contract

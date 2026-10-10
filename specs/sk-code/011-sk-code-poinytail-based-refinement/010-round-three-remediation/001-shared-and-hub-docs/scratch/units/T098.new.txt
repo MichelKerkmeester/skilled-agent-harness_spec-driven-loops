@@ -1,0 +1,1 @@
+guidance, OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills), and Obsidian plugin code (the Note Database plugin's design system and source conventions). Smart-routing

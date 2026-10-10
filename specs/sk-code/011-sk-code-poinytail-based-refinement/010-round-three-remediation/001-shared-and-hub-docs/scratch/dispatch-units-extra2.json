@@ -1,0 +1,42 @@
+[
+  {
+    "task": "T163",
+    "files": [
+      ".skilled/skills/sk-code/shared/references/workflow-implement.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/shared/references/workflow-implement.md, replace the exact text <<<OLD\n### OpenCode Surface Only: Implementation Guardrails\n\nThis subsection applies only to the OpenCode surface. It is present in the shared workflow file because this file is symlinked into multiple surfaces; Webflow readers should ignore this OpenCode-specific implementation guidance.\n\n- Treat `generate-context.js` as the single writer for a packet's continuity metadata, invoked through `/speckit:save`. It keeps atomic same-directory update and lock semantics, so do not hand-edit the generated metadata pair alongside it or run a second writer against the same packet. There is no index or embedding store behind it to mutate separately.\n- For git worktree isolation, defer to `sk-git`. This workflow may note that isolation is needed, but it must not duplicate `sk-git`'s worktree setup, branch, commit, or finish-work contract.\n- Preserve the verification handoff. Implementation should name the package boundary, rebuild requirement, baseline, likely test command, and any env knobs the verifier must pin; final evidence belongs to [Workflow Reference - Verification](./workflow-verify.md), not implementation.\n\n\nOLD>>> with <<<NEW\n### OpenCode Implementation Guardrails\n\nOpenCode work: see the implementation guardrails in [OpenCode workflow guardrails](../../sk-code-opencode/references/shared/workflow-guardrails.md#2-implementation-guardrails).\n\n\nNEW>>>",
+    "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit-extra2.cjs T163",
+    "expect": "LANDED T163"
+  },
+  {
+    "task": "T164",
+    "files": [
+      ".skilled/skills/sk-code/shared/references/workflow-verify.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/shared/references/workflow-verify.md, replace the exact text <<<OLD\n### OpenCode Surface Only: Verification Reality\n\nThis subsection applies only to the OpenCode surface. It is present in the shared workflow file because this file is symlinked into multiple surfaces; Webflow readers should ignore this OpenCode-specific command chain.\n\nOpenCode verification starts with the real spec validation contract when a spec folder is in scope:\n\n```bash\nbash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict\n```\n\nThe exit-code and warning contract of `validate.sh` is owned by `.skilled/skills/system-spec-kit/references/validation/validation-rules.md` (section 1 for the exit taxonomy, section 14 for the ways a run misleads). Read it there, not from a copy here. The one fact this workflow needs: a completion claim requires the explicit `RESULT: PASSED` line, because a warning never changes the exit code and exit status alone has misled in both directions.\n\nUse the package script for the package you changed. The spec-kit root and project-reference workspaces use `tsc --build`; satellite packages with their own package boundary use `tsc -p tsconfig.build.json`. A satellite typecheck script may add `--noEmit --composite false` over that same overlay. For TypeScript tests, run the package's Vitest-backed script where present, such as `npm test`, `npm run test:core`, or the targeted `vitest run ...` command exposed by that package.\n\nWhen verification discovers missing build output, stale generated runtime files, or a wrong package boundary, hand back to [Workflow Reference - Implementation](./workflow-implement.md) before making any completion claim.\n\n\nOLD>>> with <<<NEW\n### OpenCode Verification Reality\n\nOpenCode work: see the verification reality, including the `validate.sh` pointer, in [OpenCode workflow guardrails](../../sk-code-opencode/references/shared/workflow-guardrails.md#3-verification-reality).\n\n\nNEW>>>",
+    "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit-extra2.cjs T164",
+    "expect": "LANDED T164"
+  },
+  {
+    "task": "T165",
+    "files": [
+      ".skilled/skills/sk-code/shared/references/workflow-verify.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/shared/references/workflow-verify.md, replace the exact text <<<OLD\n### OpenCode Surface Only: Runtime Build Traps\n\nThis subsection applies only to the OpenCode surface.\n\n- MCP servers, daemon-backed CLIs, and runtime hooks execute built `dist/` output. Editing a `.ts` source file has no runtime effect until the owning package rebuilds its `dist/` artifacts.\n- Rebuild before verifying behavior that depends on generated output. For `system-skill-advisor`, the server package names `dist/mcp-server/advisor-server.js` as the compiled backend artifact and `npm run build` as the command that builds TypeScript into `dist/`.\n- Keep env-sensitive tests deterministic: set feature flags, provider choices, database paths, and timeout knobs explicitly in the command or test fixture; record those values with the result; do not rely on inherited shell state when the claim depends on a flag.\n- After a Node version change, run the native rebuild helper from the spec-kit root: `bash scripts/setup/rebuild-native-modules.sh`. It rebuilds native modules including `better-sqlite3` in `runtime/` and shared workspace modules, then records the new Node version marker.\n\n\nOLD>>> with <<<NEW\n### OpenCode Runtime Build Traps\n\nOpenCode work: see the runtime build traps in [OpenCode workflow guardrails](../../sk-code-opencode/references/shared/workflow-guardrails.md#4-runtime-build-traps).\n\n\nNEW>>>",
+    "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit-extra2.cjs T165",
+    "expect": "LANDED T165"
+  },
+  {
+    "task": "T167",
+    "files": [
+      ".skilled/skills/sk-code/mode-registry.json"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/mode-registry.json, replace the exact text <<<OLD\nWrite is scoped to the ephemeral, untracked review cache (.skilled/.code-review-cache/<repo-ref>.jsonl); \nOLD>>> with <<<NEW\nWrite is scoped to the ephemeral review cache in the reviewing user's cache directory (${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/<repo-ref>.jsonl), outside the reviewed repository; \nNEW>>>",
+    "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit-extra2.cjs T167 && node -e 'const s=require(\"fs\").readFileSync(\".skilled/skills/sk-code/mode-registry.json\",\"utf8\");const n=JSON.parse(s).modes.find((m)=>m.backendKind===\"review-cache\");const w=JSON.stringify(n);const ok=w.includes(\"${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/<repo-ref>.jsonl\")&&!s.includes(\"untracked\")&&!s.includes(\".code-review-cache\");console.log(ok?\"T167 OK\":\"T167 BAD\");process.exit(ok?0:1)'",
+    "expect": "LANDED T167\nT167 OK"
+  }
+]

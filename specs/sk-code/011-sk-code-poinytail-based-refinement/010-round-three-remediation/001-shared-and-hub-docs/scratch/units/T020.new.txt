@@ -1,0 +1,1 @@
+universal-standards references consumed by every sk-code mode.

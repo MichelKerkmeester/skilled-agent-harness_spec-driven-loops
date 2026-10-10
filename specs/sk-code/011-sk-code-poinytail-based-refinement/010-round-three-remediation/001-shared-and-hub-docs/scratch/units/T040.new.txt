@@ -1,0 +1,3 @@
+No baseline means no broad no-regressions claim. A narrower claim tied to fresh evidence is still allowed.
+
+The baseline floor is owned by `.skilled/repo-rules/evidence-and-proof.md` section 5 (BASELINES). This table is the sk-code record shape for it.

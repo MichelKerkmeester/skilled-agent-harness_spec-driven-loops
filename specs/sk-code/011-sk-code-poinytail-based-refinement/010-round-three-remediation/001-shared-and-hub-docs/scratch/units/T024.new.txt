@@ -1,0 +1,3 @@
+## 6. PATTERN ASSETS
+
+The shared tier ships no pattern assets. The validation and wait pattern templates are owned by the Webflow packet, beside its interaction-gate and performance patterns: [`../sk-code-webflow/assets/patterns/README.md`](../sk-code-webflow/assets/patterns/README.md).

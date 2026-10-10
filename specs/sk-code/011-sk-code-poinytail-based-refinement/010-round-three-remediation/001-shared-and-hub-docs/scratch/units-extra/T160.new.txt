@@ -1,0 +1,1 @@
+dependency from `sk-code-quality` onto the deep-loop runtime

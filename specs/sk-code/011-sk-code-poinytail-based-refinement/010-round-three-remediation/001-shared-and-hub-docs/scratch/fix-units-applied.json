@@ -1,0 +1,32 @@
+[
+  {
+    "task": "FIX-01",
+    "files": [
+      ".skilled/skills/sk-code/ROUTER.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/ROUTER.md, replace the exact text <<<OLD\n- [`./stack-detection.md`](shared/references/stack-detection.md) — surface detection (OPENCODE/OBSIDIAN/WEBFLOW/UNKNOWN) + OPENCODE language sub-detection\nOLD>>> with <<<NEW\n- [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (OPENCODE/OBSIDIAN/WEBFLOW/UNKNOWN) + OPENCODE language sub-detection\nNEW>>>",
+    "check": "grep -c -F -e '- [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (OPENCODE/OBSIDIAN/WEBFLOW/UNKNOWN) + OPENCODE language sub-detection' .skilled/skills/sk-code/ROUTER.md",
+    "expect": "1"
+  },
+  {
+    "task": "FIX-02",
+    "files": [
+      ".skilled/skills/sk-code/ROUTER.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/ROUTER.md, replace the exact text <<<OLD\n- [`./phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading\nOLD>>> with <<<NEW\n- [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading\nNEW>>>",
+    "check": "grep -c -F -e '- [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading' .skilled/skills/sk-code/ROUTER.md; node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs | grep -c 'ROUTER.md:30[01]'",
+    "expect": "0"
+  },
+  {
+    "task": "FIX-03",
+    "files": [
+      ".skilled/skills/sk-code/changelog/v2.2.5.0.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/changelog/v2.2.5.0.md, replace the exact text <<<OLD\n- **The validate.sh contract has one owner.** `workflow-verify.md` points to `validation-rules.md` and keeps only the rule that a completion claim needs an explicit `RESULT: PASSED`.\nOLD>>> with <<<NEW\n- **The validate.sh contract has one owner.** The copied exit-code contract is gone from the shared workflow docs, and the OpenCode guardrails file (`sk-code-opencode/references/shared/workflow-guardrails.md`) points to `validation-rules.md` and keeps only the rule that a completion claim needs an explicit `RESULT: PASSED`.\nNEW>>>",
+    "check": "grep -c -F -e '- **The validate.sh contract has one owner.** The copied exit-code contract is gone from the shared workflow docs, and the OpenCode guardrails file (`sk-code-opencode/references/shared/workflow-guardrails.md`) points to `validation-rules.md` and keeps only the rule that a completion claim needs an explicit `RESULT: PASSED`.' .skilled/skills/sk-code/changelog/v2.2.5.0.md",
+    "expect": "1"
+  }
+]

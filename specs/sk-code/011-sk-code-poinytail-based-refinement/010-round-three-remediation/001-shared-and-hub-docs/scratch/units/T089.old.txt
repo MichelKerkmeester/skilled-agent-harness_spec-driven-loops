@@ -1,0 +1,1 @@
+- A task that genuinely spans both surfaces (mixed markers) keeps both surface slices; a single-surface task never pulls the other surface's resources.

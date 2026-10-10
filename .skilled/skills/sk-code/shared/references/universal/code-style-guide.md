@@ -21,7 +21,7 @@ Language-agnostic style principles. Naming conventions and stack-specific enforc
 
 ### Purpose
 
-Codifies the style principles that apply regardless of code surface: naming intent, file organization, commenting discipline, formatter use. The actual identifier convention is surface-specific and lives under `references/webflow/standards/` and `references/opencode/`. Use this doc when the project lacks a surface-specific style guide or when a contributor is new to the codebase.
+Codifies the style principles that apply regardless of code surface: naming intent, file organization, commenting discipline, formatter use. The actual identifier convention is surface-specific and lives in each surface packet: `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` and `.skilled/skills/sk-code/sk-code-opencode/references/`. Use this doc when the project lacks a surface-specific style guide or when a contributor is new to the codebase.
 
 ### Core Principle
 
@@ -36,7 +36,7 @@ Names communicate intent. Files express one concept. Comments explain WHY (never
 
 ### Key Sources
 
-- Surface style guides: `references/webflow/javascript/style-guide.md` and `references/opencode/{javascript,typescript,python,shell,config}/`.
+- Surface style guides: `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` and the language folders under `.skilled/skills/sk-code/sk-code-opencode/references/`.
 - Project-level enforcement (banned phrases, voice rules): the project CLAUDE.md / AGENTS.md is authoritative for this user's projects.
 
 ---
@@ -114,6 +114,10 @@ Well-named identifiers and clear structure self-document. Add a comment only whe
 - A non-obvious invariant must be preserved (for example, "must run before init Y").
 - A workaround needs its cause named (for example, "works around an upstream SDK hang on empty payloads") — name the symptom, not a ticket id (see "No ephemeral-artifact pointers" below).
 - Behavior would surprise a reader.
+
+### Comment density
+
+This guide owns the comment-density rule. A comment earns its place by naming a hidden constraint, an invariant, a workaround's cause or a surprise, never by filling a quota, so no universal count applies. Each surface may set its own numeric budget as that surface's setting, and a surface budget never removes a comment this section requires. The Webflow surface sets five comments per ten lines in `.skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md`, and the OpenCode surface sets three per ten lines in `.skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md`.
 
 ### Never comment what the code does
 
@@ -218,14 +222,14 @@ For the rules that ARE language-specific, see:
 
 | Surface  | Reference                                                                                  |
 | -------- | ------------------------------------------------------------------------------------------ |
-| WEBFLOW  | `references/webflow/javascript/style-guide.md` (snake_case JS, semantic CSS prefixes, BEM, GPU animation) |
-| OPENCODE | `references/opencode/` language standards and `assets/opencode/checklists/`               |
+| WEBFLOW  | `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` (snake_case JS, semantic CSS prefixes, BEM, GPU animation) |
+| OPENCODE | `.skilled/skills/sk-code/sk-code-opencode/references/` language standards and `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/`               |
 
 ---
 
 ## 7. RELATED RESOURCES
 
-- `references/universal/code-quality-standards.md` - severity tiers (P0/P1/P2) that wrap per-stack style enforcement.
-- `references/universal/error-recovery.md` - what to do when a style violation can't be auto-fixed.
-- Surface standards under `references/webflow/standards/` and `references/opencode/`.
-- `assets/webflow/checklists/` and `assets/opencode/checklists/` - the surface checklists that operationalize this guide.
+- [`./code-quality-standards.md`](./code-quality-standards.md) - severity tiers (P0/P1/P2) that wrap per-stack style enforcement.
+- [`./error-recovery.md`](./error-recovery.md) - what to do when a style violation can't be auto-fixed.
+- Surface standards under `.skilled/skills/sk-code/sk-code-webflow/references/` and `.skilled/skills/sk-code/sk-code-opencode/references/`.
+- `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` and `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/` - the surface checklists that operationalize this guide.

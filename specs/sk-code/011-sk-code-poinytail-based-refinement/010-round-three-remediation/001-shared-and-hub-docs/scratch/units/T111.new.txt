@@ -1,0 +1,1 @@
+`sk-code-quality` and `sk-code-review` are WORKFLOW modes that act; `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` are advisor-invisible SURFACE packets

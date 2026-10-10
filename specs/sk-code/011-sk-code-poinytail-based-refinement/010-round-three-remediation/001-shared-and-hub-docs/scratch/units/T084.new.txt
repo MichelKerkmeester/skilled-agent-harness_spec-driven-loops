@@ -1,0 +1,1 @@
+Beyond the Webflow and OpenCode prose maps in §4 and §6, the hub can bundle a read-only **evidence surface**, such as `sk-code-obsidian`, alongside

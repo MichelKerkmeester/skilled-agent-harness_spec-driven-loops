@@ -1,0 +1,16 @@
+### OpenCode Surface Only: Verification Reality
+
+This subsection applies only to the OpenCode surface. It is present in the shared workflow file because this file is symlinked into multiple surfaces; Webflow readers should ignore this OpenCode-specific command chain.
+
+OpenCode verification starts with the real spec validation contract when a spec folder is in scope:
+
+```bash
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
+```
+
+The exit-code and warning contract of `validate.sh` is owned by `.skilled/skills/system-spec-kit/references/validation/validation-rules.md` (section 1 for the exit taxonomy, section 14 for the ways a run misleads). Read it there, not from a copy here. The one fact this workflow needs: a completion claim requires the explicit `RESULT: PASSED` line, because a warning never changes the exit code and exit status alone has misled in both directions.
+
+Use the package script for the package you changed. The spec-kit root and project-reference workspaces use `tsc --build`; satellite packages with their own package boundary use `tsc -p tsconfig.build.json`. A satellite typecheck script may add `--noEmit --composite false` over that same overlay. For TypeScript tests, run the package's Vitest-backed script where present, such as `npm test`, `npm run test:core`, or the targeted `vitest run ...` command exposed by that package.
+
+When verification discovers missing build output, stale generated runtime files, or a wrong package boundary, hand back to [Workflow Reference - Implementation](./workflow-implement.md) before making any completion claim.
+

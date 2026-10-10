@@ -25,7 +25,7 @@ Every registry entry carries a discriminator of `workflowMode` (the public mode 
 
 ### Workflow Vs Surface Axis
 
-The WORKFLOW axis is process: `quality` (`backendKind: surface-router`) and `code-review` (`backendKind: review-cache`) are modes that act. The SURFACE axis is read-only domain evidence: `code-webflow` and `code-opencode` (both `backendKind: evidence-base`) never act on their own — they are advisor-invisible (`routingClass: metadata`) and reached only when the hub bundles them alongside a workflow mode via `routerPolicy.outcomes.surfaceBundle`, workflow mode ordered first. A prompt such as "review my webflow animation for jank" resolves to the ordered bundle `[code-review, code-webflow]`.
+The WORKFLOW axis is process: `sk-code-quality` (`backendKind: surface-router`) and `sk-code-review` (`backendKind: review-cache`) are modes that act. The SURFACE axis is read-only domain evidence: `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` (each `backendKind: evidence-base`) never act on their own — they are advisor-invisible (`routingClass: metadata`) and reached only when the hub bundles them alongside a workflow mode via `routerPolicy.outcomes.surfaceBundle`, workflow mode ordered first. A prompt such as "review my webflow animation for jank" resolves to the ordered bundle `[sk-code-review, sk-code-webflow]`.
 
 ### Registry-Driven, Not Keyed-Resource
 

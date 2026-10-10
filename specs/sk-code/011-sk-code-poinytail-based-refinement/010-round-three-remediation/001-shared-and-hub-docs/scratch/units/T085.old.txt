@@ -1,0 +1,1 @@
+| ALWAYS | Every invocation | Universal code quality + error recovery from `.skilled/skills/sk-code/shared/references/universal/` and `.skilled/skills/sk-code/shared/references/phase-detection.md` |

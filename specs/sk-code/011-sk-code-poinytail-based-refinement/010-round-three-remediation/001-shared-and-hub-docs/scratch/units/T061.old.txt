@@ -1,0 +1,1 @@
+- Surface quality checklists under `assets/webflow/checklists/` and `assets/opencode/checklists/`.

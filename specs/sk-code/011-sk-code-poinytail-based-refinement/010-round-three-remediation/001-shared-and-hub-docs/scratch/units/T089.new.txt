@@ -1,0 +1,1 @@
+- A mixed-marker task keeps the slice of each surface it touches; a single-surface task never pulls another surface's resources.

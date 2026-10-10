@@ -46,8 +46,8 @@ Comprehensive coverage through specialization + parallel execution + synthesis p
 
 ### Key Sources
 
-- Phase 0 (Research) entry point in the sk-code lifecycle: `references/phase-detection.md`.
-- Surface performance refs under `references/webflow/performance/` (when available); OPENCODE performance work uses targeted language/runtime evidence from `references/opencode/`.
+- Phase 0 (Research) entry point in the sk-code lifecycle: [`../phase-detection.md`](../phase-detection.md).
+- Surface performance refs under `.skilled/skills/sk-code/sk-code-webflow/references/performance/`. OPENCODE performance work uses targeted language and runtime evidence from `.skilled/skills/sk-code/sk-code-opencode/references/`.
 
 ---
 
@@ -210,7 +210,7 @@ The cross-cutting nature of the finding — visibility gating tied to LCP, anima
 
 ## 8. RELATED RESOURCES
 
-- `references/phase-detection.md` - Phase 0 Research position in the sk-code lifecycle.
-- `references/universal/code-quality-standards.md` - severity tiers for findings reported by agents.
-- `references/universal/error-recovery.md` - decision tree when agent investigation hits a dead end.
-- `references/webflow/performance/cwv-remediation.md` and `references/webflow/performance/resource-loading.md` - Webflow performance refs.
+- [`../phase-detection.md`](../phase-detection.md) - Phase 0 Research position in the sk-code lifecycle.
+- [`./code-quality-standards.md`](./code-quality-standards.md) - severity tiers for findings reported by agents.
+- [`./error-recovery.md`](./error-recovery.md) - decision tree when agent investigation hits a dead end.
+- `.skilled/skills/sk-code/sk-code-webflow/references/performance/cwv-remediation.md` and `.skilled/skills/sk-code/sk-code-webflow/references/performance/resource-loading.md` - Webflow performance refs.

@@ -1,0 +1,3 @@
+9. Hand the fixed state to verification with the reproduction command, before/after result, and residual risk.
+
+The reproduce, trace-to-source and one-cause-at-a-time floors in this loop are owned by `.skilled/repo-rules/root-cause-and-debugging.md` section 1 (THE LOOP). This loop is how sk-code applies them, so a change to a floor goes there first.

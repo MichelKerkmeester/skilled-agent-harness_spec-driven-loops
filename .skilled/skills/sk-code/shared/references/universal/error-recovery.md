@@ -41,7 +41,7 @@ The recovery hierarchy is universal. Specific commands and tools change per stac
 ### Key Sources
 
 - Surface debugging docs: `.skilled/skills/sk-code/sk-code-webflow/references/debugging/error-recovery.md` and `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md`.
-- Universal debugging discipline: `.skilled/skills/sk-code/shared/references/universal-debugging-checklist.md` (4-phase workflow).
+- Universal debugging discipline: [`../universal-debugging-checklist.md`](../universal-debugging-checklist.md) (4-phase workflow).
 
 ---
 
@@ -126,8 +126,8 @@ State: what failed (verbatim), what you tried, what you suspect, and what you pr
 
 ## 5. RELATED RESOURCES
 
-- `.skilled/skills/sk-code/shared/references/universal-debugging-checklist.md` - 4-phase debugging workflow that wraps this recovery flow.
-- `.skilled/skills/sk-code/shared/references/universal-verification-checklist.md` - runs after recovery completes, before any "done" claim.
-- `.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md` - severity contract (recovery failures are typically P0).
-- `.skilled/skills/sk-code/shared/references/phase-detection.md` - Phase 2 Debugging position in the sk-code lifecycle.
-- Surface-specific debugging refs under `references/webflow/` and `references/opencode/`.
+- [`../universal-debugging-checklist.md`](../universal-debugging-checklist.md) - 4-phase debugging workflow that wraps this recovery flow.
+- [`../universal-verification-checklist.md`](../universal-verification-checklist.md) - runs after recovery completes, before any "done" claim.
+- [`./code-quality-standards.md`](./code-quality-standards.md) - severity contract (recovery failures are typically P0).
+- [`../phase-detection.md`](../phase-detection.md) - Phase 2 Debugging position in the sk-code lifecycle.
+- Surface-specific debugging refs under `.skilled/skills/sk-code/sk-code-webflow/references/debugging/` and `.skilled/skills/sk-code/sk-code-opencode/references/shared/`.

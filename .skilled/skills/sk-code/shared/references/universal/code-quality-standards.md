@@ -36,7 +36,7 @@ Severity tiers exist so reviewers and authors agree on what blocks "done". A rul
 
 ### Key Sources
 
-- Surface checklists: `assets/webflow/checklists/code-quality-checklist.md` and `assets/opencode/checklists/`.
+- Surface checklists: `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` (Webflow JavaScript and CSS) and `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/`.
 - Findings-first review baseline: `sk-code`'s code-review mode (severity model and review output contract).
 
 ### Design Restraint Ladder (pre-write)
@@ -115,8 +115,8 @@ Each surface has quality checklists that add surface-specific rules to these uni
 
 | Surface  | Checklist                                          | Notes                                                                |
 | -------- | -------------------------------------------------- | -------------------------------------------------------------------- |
-| WEBFLOW  | `assets/webflow/checklists/code-quality-checklist.md` | LIVE — JS sections (snake_case, file headers, CDN-safe init); CSS sections (semantic prefixes, BEM, GPU-only animation, `i` flag on data-attribute selectors) |
-| OPENCODE | `assets/opencode/checklists/`                     | LIVE — JavaScript/CommonJS, TypeScript, Python, Shell, JSON/JSONC, and shared rules |
+| WEBFLOW  | `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` | LIVE — JS sections (snake_case, file headers, CDN-safe init); CSS sections (semantic prefixes, BEM, GPU-only animation, `i` flag on data-attribute selectors) |
+| OPENCODE | `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/` | LIVE — JavaScript/CommonJS, TypeScript, Python, Shell, JSON/JSONC, and shared rules |
 | UNKNOWN  | n/a                                                | sk-code does not own Go, React/Next.js, generic Node.js, React Native, or Swift; surface a disambiguation prompt |
 
 The surface checklist assigns specific severity (P0/P1/P2) to specific rules. This universal doc is the contract and the surface checklists are the implementations.
@@ -135,8 +135,8 @@ When you reach Phase 1.5 Code Quality Gate:
    Zero violations required. To suppress a specific line that is a known false-positive, append `// hygiene-ok` to that line.
 
    The same check is enforced automatically at three gates — manual invocation here is early feedback, not the only safety net:
-   - **Write-time** (Claude Code only): `claude-posttooluse.sh` fires on every Write/Edit tool call and warns inline before the next AI turn
-   - **Commit-time**: `.skilled/hooks/git/pre-commit` blocks any commit with violations; bypass with `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit`
+   - **Write-time** (Claude Code only): `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`, wired as the `Write|Edit` `PostToolUse` hook in `.claude/settings.json`, fires on every Write/Edit tool call and warns inline before the next AI turn
+   - **Commit-time**: `.skilled/scripts/git-hooks/pre-commit`, installed through `core.hooksPath` by `.skilled/scripts/install-git-hooks.sh`, blocks any commit with violations; bypass with `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit`. The older `.skilled/hooks/git/pre-commit` and `sk-code-quality/scripts/hooks/claude-posttooluse.sh` are direct-test helpers, not live gates
    - **CI**: `.github/workflows/comment-hygiene.yml` re-validates on every PR to main; cannot be bypassed with `--no-verify`
 
 3. Load the matching surface checklist (see §6).
@@ -169,9 +169,9 @@ The two facets compose: `sk-code` surface evidence + its code-review mode baseli
 
 ## 9. RELATED RESOURCES
 
-- `references/universal/code-style-guide.md` - language-agnostic naming, formatting, and structure principles.
-- `references/universal/error-recovery.md` - decision tree when a quality gate failure can't be resolved in-place.
-- `assets/universal/checklists/debugging_checklist.md` - applies after Phase 1.5 fails and you need root-cause analysis.
-- `assets/universal/checklists/verification_checklist.md` - runs after Phase 1.5 clears, before any "done" claim.
-- `references/phase-detection.md` - Phase 1.5 position in the sk-code lifecycle.
-- Surface quality checklists under `assets/webflow/checklists/` and `assets/opencode/checklists/`.
+- [`./code-style-guide.md`](./code-style-guide.md) - language-agnostic naming, formatting, and structure principles.
+- [`./error-recovery.md`](./error-recovery.md) - decision tree when a quality gate failure can't be resolved in-place.
+- [`../universal-debugging-checklist.md`](../universal-debugging-checklist.md) - applies after Phase 1.5 fails and you need root-cause analysis.
+- [`../universal-verification-checklist.md`](../universal-verification-checklist.md) - runs after Phase 1.5 clears, before any "done" claim.
+- [`../phase-detection.md`](../phase-detection.md) - Phase 1.5 position in the sk-code lifecycle.
+- Surface quality checklists under `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` (Webflow) and `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/` (OpenCode).

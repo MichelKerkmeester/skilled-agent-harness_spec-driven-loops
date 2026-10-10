@@ -1,0 +1,1 @@
+- Surface-specific debugging refs under `.skilled/skills/sk-code/sk-code-webflow/references/debugging/` and `.skilled/skills/sk-code/sk-code-opencode/references/shared/`.

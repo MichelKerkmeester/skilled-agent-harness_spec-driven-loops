@@ -1,0 +1,1 @@
+| Implementation | `.skilled/skills/sk-code/sk-code-opencode/references/shared/` plus detected language references |

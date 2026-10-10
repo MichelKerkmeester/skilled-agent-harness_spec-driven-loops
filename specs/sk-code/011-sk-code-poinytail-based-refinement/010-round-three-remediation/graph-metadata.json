@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [
+    "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs",
+    "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode",
+    "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/003-quality-mode",
+    "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/004-webflow-and-obsidian",
+    "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards",
+    "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/006-deep-loop-follow-ups",
+    "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/007-spec-kit-hook-deadlines"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "round three remediation",
+      "shared layer drift",
+      "review mode agnostic",
+      "doc claim checker",
+      "spec-kit hook deadlines",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "round",
+      "three",
+      "remediation",
+      "shared",
+      "layer",
+      "drift",
+      "review",
+      "mode",
+      "agnostic",
+      "doc",
+      "claim",
+      "checker"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/agents/review.md",
+      "001-shared-and-hub-docs/goal.md",
+      "002-review-mode/goal.md",
+      "003-quality-mode/goal.md",
+      "004-webflow-and-obsidian/goal.md",
+      "005-opencode-and-guards/goal.md",
+      "006-deep-loop-follow-ups/goal.md",
+      "007-spec-kit-hook-deadlines/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".skilled/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "pointers",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "archive",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "node_modules",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The third research round (`../001-ponytail-deep-research/research/lineages/r3-dsflash-llmgw/research.md`) recorded 50 new findings, 8 at P1 and the rest at P2, and seven recommended ideas",
+    "created_at": "2026-10-10T10:07:15Z",
+    "last_save_at": "2026-10-10T11:49:45.500Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:6787fbbf23abe86f72a0ce951d8d8ad446e74c6fffebab7cb74925bac533c043",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "257f441d395c75f0eb160cb367a19554ba857eb2354c4babc19e27298d7b6099"
+    },
+    "last_active_at": null
+  }
+}

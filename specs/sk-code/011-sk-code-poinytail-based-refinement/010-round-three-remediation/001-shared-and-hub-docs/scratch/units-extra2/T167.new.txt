@@ -1,0 +1,1 @@
+Write is scoped to the ephemeral review cache in the reviewing user's cache directory (${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/<repo-ref>.jsonl), outside the reviewed repository; 

@@ -1,0 +1,15 @@
+## 5. OBSIDIAN PHASES
+
+| Phase | Resources / Evidence |
+| --- | --- |
+| Research | The read-only `sk-code-obsidian` evidence packet: plugin API, data layer and view-renderer references |
+| Implementation | `.skilled/skills/sk-code/sk-code-obsidian/references/standards/code-standards.md` plus the class-naming and stylesheet-ownership references |
+| Code Quality | `.skilled/skills/sk-code/sk-code-obsidian/references/standards/code-standards.md` and the recorded lint baseline |
+| Debugging | Failing vitest or build output, screenshot diffs and root-cause analysis |
+| Verification | The gate command set in `.skilled/skills/sk-code/sk-code-obsidian/references/verification.md`, run in the plugin repository |
+
+The Obsidian surface is read-only evidence. The bundled workflow mode runs these phases, and the gate commands run in the plugin repository, not in this hub.
+
+---
+
+## 6. IRON LAWS
