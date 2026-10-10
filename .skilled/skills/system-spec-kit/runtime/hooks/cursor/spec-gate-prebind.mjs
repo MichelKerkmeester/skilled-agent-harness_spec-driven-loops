@@ -23,6 +23,7 @@
 
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
 import { validateSpecFolderBinding } from '../../../shared/dist/gate-3-classifier.js';
+import { readStdin } from '../lib/hook-adapter-shared.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -31,12 +32,6 @@ import { validateSpecFolderBinding } from '../../../shared/dist/gate-3-classifie
 function allow() {
   process.stdout.write(JSON.stringify({ permission: 'allow' }));
   process.exit(0);
-}
-
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
 }
 
 // ───────────────────────────────────────────────────────────────────

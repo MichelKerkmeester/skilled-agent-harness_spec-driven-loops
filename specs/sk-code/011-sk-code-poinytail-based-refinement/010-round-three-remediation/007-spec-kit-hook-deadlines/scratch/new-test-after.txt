@@ -1,0 +1,46 @@
+▶ every hook entry gives up at the stdin deadline when its host never closes stdin
+  ✔ hooks/claude/completion-evidence-stop.cjs (0.368792ms)
+  ✔ hooks/codex/completion-evidence-stop.cjs (0.098708ms)
+  ✔ hooks/devin/completion-evidence-stop.cjs (0.037417ms)
+  ✔ hooks/devin/post-compaction.cjs (0.034208ms)
+  ✔ hooks/devin/permission-request-policy.mjs (0.037458ms)
+  ✔ hooks/cursor/post-tool-use.mjs (0.02875ms)
+  ✔ hooks/cursor/spec-gate-prebind.mjs (0.021125ms)
+  ✔ hooks/cursor/completion-evidence-response.mjs (0.022833ms)
+  ✔ hooks/claude/spec-gate-enforce.mjs (0.036083ms)
+  ✔ hooks/codex/spec-gate-enforce.mjs (0.051958ms)
+  ✔ hooks/cursor/spec-gate-enforce.mjs (0.023792ms)
+  ✔ hooks/devin/spec-gate-enforce.mjs (0.027792ms)
+  ✔ hooks/claude/spec-gate-classify.mjs (0.067416ms)
+  ✔ hooks/codex/spec-gate-classify.mjs (0.047292ms)
+  ✔ hooks/cursor/spec-gate-classify.mjs (0.030625ms)
+  ✔ hooks/devin/spec-gate-classify.mjs (0.018625ms)
+  ✔ dist/hooks/claude/compact-inject.js (0.013375ms)
+  ✔ dist/hooks/claude/compact-inject.js --authored-snapshot-worker (0.014375ms)
+  ✔ dist/hooks/claude/session-prime.js (0.013458ms)
+  ✔ dist/hooks/claude/session-stop.js (0.036875ms)
+  ✔ dist/hooks/claude/directive-lifecycle-boundary.js (0.027833ms)
+  ✔ dist/hooks/codex/session-start.js (0.015167ms)
+  ✔ dist/hooks/codex/session-stop.js (0.0125ms)
+  ✔ dist/hooks/codex/user-prompt-submit.js (0.010458ms)
+  ✔ dist/hooks/codex/compact-inject.js (0.011959ms)
+  ✔ dist/hooks/cursor/session-start.js (0.012209ms)
+  ✔ dist/hooks/cursor/session-end.js (0.016416ms)
+  ✔ dist/hooks/cursor/user-prompt-submit.js (0.011334ms)
+  ✔ dist/hooks/cursor/precompact.js (0.010333ms)
+  ✔ dist/hooks/devin/session-start.js (0.012333ms)
+  ✔ dist/hooks/devin/session-stop.js (0.011333ms)
+  ✔ dist/hooks/devin/user-prompt-submit.js (0.011ms)
+✔ every hook entry gives up at the stdin deadline when its host never closes stdin (3190.170583ms)
+✔ the Cursor post-tool-use hook still routes a Write payload to its chained hook (67.947958ms)
+✔ the directive lifecycle boundary still forwards a valid payload (59.142875ms)
+✔ the Codex, Cursor and Devin session-start adapters still answer a valid payload (164.942667ms)
+✔ the compiled reader still drops a payload past its byte cap without waiting for the deadline (184.4205ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3711.375625

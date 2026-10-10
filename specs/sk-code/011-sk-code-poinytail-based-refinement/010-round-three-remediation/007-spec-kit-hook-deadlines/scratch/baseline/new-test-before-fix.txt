@@ -1,0 +1,715 @@
+▶ every hook entry gives up at the stdin deadline when its host never closes stdin
+  ✖ hooks/claude/completion-evidence-stop.cjs (0.637667ms)
+  ✖ hooks/codex/completion-evidence-stop.cjs (0.134792ms)
+  ✖ hooks/devin/completion-evidence-stop.cjs (0.062ms)
+  ✖ hooks/devin/post-compaction.cjs (0.043375ms)
+  ✖ hooks/devin/permission-request-policy.mjs (0.049541ms)
+  ✖ hooks/cursor/post-tool-use.mjs (0.038916ms)
+  ✖ hooks/cursor/spec-gate-prebind.mjs (0.036709ms)
+  ✖ hooks/cursor/completion-evidence-response.mjs (0.038458ms)
+  ✖ hooks/claude/spec-gate-enforce.mjs (0.056917ms)
+  ✖ hooks/codex/spec-gate-enforce.mjs (0.062834ms)
+  ✖ hooks/cursor/spec-gate-enforce.mjs (0.040167ms)
+  ✖ hooks/devin/spec-gate-enforce.mjs (0.046041ms)
+  ✖ hooks/claude/spec-gate-classify.mjs (0.034084ms)
+  ✖ hooks/codex/spec-gate-classify.mjs (0.027541ms)
+  ✖ hooks/cursor/spec-gate-classify.mjs (0.025542ms)
+  ✖ hooks/devin/spec-gate-classify.mjs (0.041541ms)
+  ✔ dist/hooks/claude/compact-inject.js (0.075083ms)
+  ✖ dist/hooks/claude/compact-inject.js --authored-snapshot-worker (0.050875ms)
+  ✔ dist/hooks/claude/session-prime.js (0.024834ms)
+  ✔ dist/hooks/claude/session-stop.js (0.017583ms)
+  ✖ dist/hooks/claude/directive-lifecycle-boundary.js (0.03425ms)
+  ✖ dist/hooks/codex/session-start.js (0.035291ms)
+  ✖ dist/hooks/codex/session-stop.js (0.033875ms)
+  ✖ dist/hooks/codex/user-prompt-submit.js (0.028791ms)
+  ✖ dist/hooks/codex/compact-inject.js (0.029084ms)
+  ✖ dist/hooks/cursor/session-start.js (0.037333ms)
+  ✖ dist/hooks/cursor/session-end.js (0.038167ms)
+  ✖ dist/hooks/cursor/user-prompt-submit.js (0.051791ms)
+  ✖ dist/hooks/cursor/precompact.js (0.031167ms)
+  ✖ dist/hooks/devin/session-start.js (0.037875ms)
+  ✖ dist/hooks/devin/session-stop.js (0.027541ms)
+  ✖ dist/hooks/devin/user-prompt-submit.js (0.027458ms)
+✖ every hook entry gives up at the stdin deadline when its host never closes stdin (15044.734125ms)
+✔ the Cursor post-tool-use hook still routes a Write payload to its chained hook (57.315375ms)
+✔ the directive lifecycle boundary still forwards a valid payload (56.810667ms)
+✔ the Codex, Cursor and Devin session-start adapters still answer a valid payload (133.900209ms)
+✔ the compiled reader still drops a payload past its byte cap without waiting for the deadline (87.041292ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 7
+ℹ fail 30
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15421.663291
+
+✖ failing tests:
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ hooks/claude/completion-evidence-stop.cjs (0.637667ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ hooks/codex/completion-evidence-stop.cjs (0.134792ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ hooks/devin/completion-evidence-stop.cjs (0.062ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ hooks/devin/post-compaction.cjs (0.043375ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ hooks/devin/permission-request-policy.mjs (0.049541ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ hooks/cursor/post-tool-use.mjs (0.038916ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ hooks/cursor/spec-gate-prebind.mjs (0.036709ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ hooks/cursor/completion-evidence-response.mjs (0.038458ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ hooks/claude/spec-gate-enforce.mjs (0.056917ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ hooks/codex/spec-gate-enforce.mjs (0.062834ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ hooks/cursor/spec-gate-enforce.mjs (0.040167ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ hooks/devin/spec-gate-enforce.mjs (0.046041ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ hooks/claude/spec-gate-classify.mjs (0.034084ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ hooks/codex/spec-gate-classify.mjs (0.027541ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ hooks/cursor/spec-gate-classify.mjs (0.025542ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ hooks/devin/spec-gate-classify.mjs (0.041541ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ dist/hooks/claude/compact-inject.js --authored-snapshot-worker (0.050875ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ dist/hooks/claude/directive-lifecycle-boundary.js (0.03425ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ dist/hooks/codex/session-start.js (0.035291ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ dist/hooks/codex/session-stop.js (0.033875ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ dist/hooks/codex/user-prompt-submit.js (0.028791ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ dist/hooks/codex/compact-inject.js (0.029084ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ dist/hooks/cursor/session-start.js (0.037333ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ dist/hooks/cursor/session-end.js (0.038167ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ dist/hooks/cursor/user-prompt-submit.js (0.051791ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ dist/hooks/cursor/precompact.js (0.031167ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ dist/hooks/devin/session-start.js (0.037875ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ dist/hooks/devin/session-stop.js (0.027541ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13
+✖ dist/hooks/devin/user-prompt-submit.js (0.027458ms)
+  AssertionError [ERR_ASSERTION]: the hook must exit on its own, not be killed
+  
+  'SIGKILL' !== null
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:128:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:125:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'SIGKILL',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,50 @@
+[
+ {
+  "task": "FIX-1",
+  "files": [
+   ".skilled/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs"
+  ],
+  "kind": "edit",
+  "old": "}\n\n\n\nfunction runChild(",
+  "new": "}\n\nfunction runChild(",
+  "instruction": "In .skilled/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs, replace the exact text <<<OLD\n}\n\n\n\nfunction runChild(\nOLD>>> with <<<NEW\n}\n\nfunction runChild(\nNEW>>>",
+  "check": "awk 'BEGIN{b=0;m=0} /^$/{b++; if(b>m)m=b; next} {b=0} END{print m}' .skilled/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs",
+  "expect": "1"
+ },
+ {
+  "task": "FIX-2",
+  "files": [
+   ".skilled/skills/system-spec-kit/runtime/hooks/README.md"
+  ],
+  "kind": "edit",
+  "old": "`claude/hook-state.ts`. |\n\n| `shared-stdin.ts` |",
+  "new": "`claude/hook-state.ts`. |\n| `shared-stdin.ts` |",
+  "instruction": "In .skilled/skills/system-spec-kit/runtime/hooks/README.md, replace the exact text <<<OLD\n`claude/hook-state.ts`. |\n\n| `shared-stdin.ts` |\nOLD>>> with <<<NEW\n`claude/hook-state.ts`. |\n| `shared-stdin.ts` |\nNEW>>>",
+  "check": "grep -A1 '^| `shared-provenance.ts` |' .skilled/skills/system-spec-kit/runtime/hooks/README.md | grep -c '^| `shared-stdin.ts` |'",
+  "expect": "1"
+ },
+ {
+  "task": "FIX-3",
+  "files": [
+   ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md"
+  ],
+  "kind": "edit",
+  "old": "description: \"Every spec-kit hook now stops reading stdin after 3000 ms,",
+  "new": "description: \"Every spec-kit hook except the Claude prompt-submit hook now stops reading stdin after 3000 ms,",
+  "instruction": "In .skilled/skills/system-spec-kit/changelog/v2.7.1.0.md, replace the exact text <<<OLD\ndescription: \"Every spec-kit hook now stops reading stdin after 3000 ms,\nOLD>>> with <<<NEW\ndescription: \"Every spec-kit hook except the Claude prompt-submit hook now stops reading stdin after 3000 ms,\nNEW>>>",
+  "check": "grep -c '^description: \"Every spec-kit hook except the Claude prompt-submit hook' .skilled/skills/system-spec-kit/changelog/v2.7.1.0.md",
+  "expect": "1"
+ },
+ {
+  "task": "FIX-4",
+  "files": [
+   ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md"
+  ],
+  "kind": "edit",
+  "old": "Every hook now stops after 3000 ms and takes",
+  "new": "Every hook except `claude/user-prompt-submit.ts`, which still waits and is left for a follow-up, now stops after 3000 ms and takes",
+  "instruction": "In .skilled/skills/system-spec-kit/changelog/v2.7.1.0.md, replace the exact text <<<OLD\nEvery hook now stops after 3000 ms and takes\nOLD>>> with <<<NEW\nEvery hook except `claude/user-prompt-submit.ts`, which still waits and is left for a follow-up, now stops after 3000 ms and takes\nNEW>>>",
+  "check": "grep -c 'Every hook except `claude/user-prompt-submit.ts`' .skilled/skills/system-spec-kit/changelog/v2.7.1.0.md",
+  "expect": "1"
+ }
+]

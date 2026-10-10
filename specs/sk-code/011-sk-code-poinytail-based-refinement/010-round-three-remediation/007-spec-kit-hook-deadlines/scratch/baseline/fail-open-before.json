@@ -1,0 +1,322 @@
+{
+  "empty hooks/claude/completion-evidence-stop.cjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty hooks/codex/completion-evidence-stop.cjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty hooks/devin/completion-evidence-stop.cjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty hooks/devin/post-compaction.cjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty hooks/devin/permission-request-policy.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": "{\"decision\":\"block\",\"reason\":\"Permission denied: request payload is not valid JSON.\",\"hookSpecificOutput\":{\"hookEventName\":\"PermissionRequest\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"Permission denied: request payload is not valid JSON.\"}}"
+  },
+  "empty hooks/cursor/post-tool-use.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": "{\"permission\":\"allow\"}"
+  },
+  "empty hooks/cursor/spec-gate-prebind.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": "{\"permission\":\"allow\"}"
+  },
+  "empty hooks/cursor/completion-evidence-response.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty hooks/claude/spec-gate-enforce.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty hooks/codex/spec-gate-enforce.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty hooks/cursor/spec-gate-enforce.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": "{\"permission\":\"allow\"}"
+  },
+  "empty hooks/devin/spec-gate-enforce.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty hooks/claude/spec-gate-classify.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty hooks/codex/spec-gate-classify.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty hooks/cursor/spec-gate-classify.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": "{\"permission\":\"allow\"}"
+  },
+  "empty hooks/devin/spec-gate-classify.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty dist/hooks/claude/compact-inject.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty dist/hooks/claude/compact-inject.js --authored-snapshot-worker": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty dist/hooks/claude/session-prime.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty dist/hooks/claude/session-stop.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty dist/hooks/claude/directive-lifecycle-boundary.js": {
+    "code": 1,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty dist/hooks/codex/session-start.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty dist/hooks/codex/session-stop.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty dist/hooks/codex/user-prompt-submit.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty dist/hooks/codex/compact-inject.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty dist/hooks/cursor/session-start.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": "{\"permission\":\"allow\"}"
+  },
+  "empty dist/hooks/cursor/session-end.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty dist/hooks/cursor/user-prompt-submit.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": "{\"permission\":\"allow\"}"
+  },
+  "empty dist/hooks/cursor/precompact.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": "{\"permission\":\"allow\"}"
+  },
+  "empty dist/hooks/devin/session-start.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty dist/hooks/devin/session-stop.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "empty dist/hooks/devin/user-prompt-submit.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid hooks/claude/completion-evidence-stop.cjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid hooks/codex/completion-evidence-stop.cjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid hooks/devin/completion-evidence-stop.cjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid hooks/devin/post-compaction.cjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid hooks/devin/permission-request-policy.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": "{\"decision\":\"block\",\"reason\":\"Permission denied: request payload is not valid JSON.\",\"hookSpecificOutput\":{\"hookEventName\":\"PermissionRequest\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"Permission denied: request payload is not valid JSON.\"}}"
+  },
+  "invalid hooks/cursor/post-tool-use.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": "{\"permission\":\"allow\"}"
+  },
+  "invalid hooks/cursor/spec-gate-prebind.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": "{\"permission\":\"allow\"}"
+  },
+  "invalid hooks/cursor/completion-evidence-response.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid hooks/claude/spec-gate-enforce.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid hooks/codex/spec-gate-enforce.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid hooks/cursor/spec-gate-enforce.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": "{\"permission\":\"allow\"}"
+  },
+  "invalid hooks/devin/spec-gate-enforce.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid hooks/claude/spec-gate-classify.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid hooks/codex/spec-gate-classify.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid hooks/cursor/spec-gate-classify.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": "{\"permission\":\"allow\"}"
+  },
+  "invalid hooks/devin/spec-gate-classify.mjs": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid dist/hooks/claude/compact-inject.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid dist/hooks/claude/compact-inject.js --authored-snapshot-worker": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid dist/hooks/claude/session-prime.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid dist/hooks/claude/session-stop.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid dist/hooks/claude/directive-lifecycle-boundary.js": {
+    "code": 1,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid dist/hooks/codex/session-start.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid dist/hooks/codex/session-stop.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid dist/hooks/codex/user-prompt-submit.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid dist/hooks/codex/compact-inject.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid dist/hooks/cursor/session-start.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": "{\"permission\":\"allow\"}"
+  },
+  "invalid dist/hooks/cursor/session-end.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid dist/hooks/cursor/user-prompt-submit.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": "{\"permission\":\"allow\"}"
+  },
+  "invalid dist/hooks/cursor/precompact.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": "{\"permission\":\"allow\"}"
+  },
+  "invalid dist/hooks/devin/session-start.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid dist/hooks/devin/session-stop.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  },
+  "invalid dist/hooks/devin/user-prompt-submit.js": {
+    "code": 0,
+    "signal": null,
+    "stdout": ""
+  }
+}

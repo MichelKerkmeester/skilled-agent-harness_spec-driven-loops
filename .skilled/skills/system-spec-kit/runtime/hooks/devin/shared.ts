@@ -7,6 +7,7 @@
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { isMainModule } from '../../lib/esm-entry.js';
+import { readHookStdin } from '../shared-stdin.js';
 
 const MAX_STDIN_BYTES = 1024 * 1024;
 const MAX_STDIO_BYTES = 1024 * 1024;
@@ -63,20 +64,10 @@ export async function readDevinHookInput(
   requiredFields: readonly string[],
 ): Promise<DevinHookInput | null> {
   try {
-    const chunks: Buffer[] = [];
-    let totalBytes = 0;
+    const text = await readHookStdin({ maxBytes: MAX_STDIN_BYTES });
+    if (text === null) return null;
 
-    for await (const chunk of process.stdin) {
-      const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
-      totalBytes += buffer.length;
-      if (totalBytes > MAX_STDIN_BYTES) {
-        process.stdin.destroy();
-        return null;
-      }
-      chunks.push(buffer);
-    }
-
-    const raw = Buffer.concat(chunks, totalBytes).toString('utf8').trim();
+    const raw = text.trim();
     if (!raw) return null;
 
     const parsed = JSON.parse(raw) as unknown;

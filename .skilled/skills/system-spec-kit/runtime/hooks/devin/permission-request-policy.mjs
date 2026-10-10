@@ -21,6 +21,7 @@ import { createRequire } from 'node:module';
 
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
 import { evaluate, readHardRules } from '../../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs';
+import { readStdin } from '../lib/hook-adapter-shared.mjs';
 
 const require = createRequire(import.meta.url);
 
@@ -148,12 +149,6 @@ function evaluatePermission(payload) {
   if (classification === 'write') return evaluateWrite(payload.tool_input, resolveProjectDir(payload));
   if (classification === 'exec') return evaluateExec(payload.tool_input);
   return deny('Permission denied: tool is not covered by a known policy class.');
-}
-
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
 }
 
 // ───────────────────────────────────────────────────────────────────

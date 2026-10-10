@@ -47,10 +47,11 @@ function hookLog(level, msg) {
   process.stderr.write(`${level.toUpperCase()} [speckit-hook:codex-completion-evidence-stop] ${msg}\n`);
 }
 
+// The shared reader settles at a deadline, so a host that never closes stdin
+// cannot hold this hook open. It is an ES module, so it loads on first use.
 async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
+  const shared = await import('../lib/hook-adapter-shared.mjs');
+  return shared.readStdin();
 }
 
 // The lifecycle prompt/stop hooks persist lastSpecFolder at

@@ -11,6 +11,7 @@ import { dirname, isAbsolute, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import { isMainModule } from '../../lib/esm-entry.js';
+import { readHookStdin } from '../shared-stdin.js';
 
 const __dlRequire = createRequire(import.meta.url);
 
@@ -87,9 +88,7 @@ export function notifyDirectiveLifecycleBoundary(input: HostDirectiveLifecycleBo
 
 async function readInput(): Promise<HostDirectiveLifecycleBoundary | null> {
   try {
-    const chunks: Buffer[] = [];
-    for await (const chunk of process.stdin) chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
-    const parsed = JSON.parse(Buffer.concat(chunks).toString('utf8')) as HostDirectiveLifecycleBoundary;
+    const parsed = JSON.parse((await readHookStdin()) ?? '') as HostDirectiveLifecycleBoundary;
     return parsed && typeof parsed.boundary === 'string' ? parsed : null;
   } catch {
     return null;

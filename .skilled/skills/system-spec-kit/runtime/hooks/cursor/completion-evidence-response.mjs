@@ -11,6 +11,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import sentinelCore from '../lib/completion-evidence-sentinel.cjs';
 import { isHookEnabled } from '../../../../../hooks/shared/hook-flags.mjs';
+import { readStdin } from '../lib/hook-adapter-shared.mjs';
 
 function readLastSpecFolder(projectDir, sessionId) {
   if (!sessionId) return null;
@@ -24,12 +25,6 @@ function readLastSpecFolder(projectDir, sessionId) {
   } catch {
     return null;
   }
-}
-
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
 }
 
 async function main() {

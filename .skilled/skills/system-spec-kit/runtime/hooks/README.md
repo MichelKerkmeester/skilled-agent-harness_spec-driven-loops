@@ -67,6 +67,7 @@ runtime/hooks/
 ├── opencode/                # Browsability symlink -> .skilled/plugins/system-spec-gate.js
 ├── lib/                     # Runtime-neutral spec-gate core, adapter and workspace helpers
 ├── shared-provenance.ts     # Provenance-wrapped transport helpers
+├── shared-stdin.ts          # Deadline stdin reader for the compiled adapters
 └── README.md
 ```
 
@@ -81,9 +82,10 @@ runtime/hooks/
 | `pi/` | Pi extension factories, discovered through relative symlinks at `.pi/extensions/`. Pi resolves their imports against the symlink path, so every import in those files is written for the `.pi/extensions/` base. |
 | `opencode/` | Browsability-only symlink to `.skilled/plugins/system-spec-gate.js`. OpenCode discovers plugins solely from `.opencode/plugins/`, so the real file stays there and nothing loads through this symlink. |
 | `lib/spec-gate/spec-gate-core.mjs` | The Gate-3 policy core. Owns `classifyIntent()` and `evaluateMutation()`, the two orchestration calls every adapter makes (`runClassifyGate()` and `runEnforceGate()`, which build the delivery observation and the warning-log event once), and the persisted once-per-session delivery marker (`shouldDeliverGate3Deferral`, `recordGate3NoticeDelivered`, `bindGate3Answer`, `rearmGate3NoticeDelivery`). An adapter keeps only its payload parsing and its envelope. |
-| `lib/hook-adapter-shared.mjs` | Shared helper for the four `spec-gate-enforce` adapters. |
+| `lib/hook-adapter-shared.mjs` | Deadline stdin reader and fail-open JSON parser for every plain `.mjs` and `.cjs` adapter. See [`lib/README.md`](./lib/README.md). |
 | `lib/workspace/repo-root.mjs` | Repository-root resolution used by the spec-gate core. |
 | `shared-provenance.ts` | Sanitizes recovered compact payloads, stripping adversarial system/developer/assistant/user prefixes, and wraps them with explicit provenance markers so downstream hooks can tell cached context from a first-class turn. Consumed by `claude/shared.ts` and `claude/hook-state.ts`. |
+| `shared-stdin.ts` | `readHookStdin()` reads a compiled adapter's stdin until the stream ends or 3000 ms pass, and returns `null` when the payload passes the caller's byte cap. Consumed by the four `shared.ts` readers, `claude/compact-inject.ts` and `claude/directive-lifecycle-boundary.ts`. |
 
 The completion-evidence policy each runtime's Stop-equivalent adapter calls lives in `lib/completion-evidence-sentinel.cjs`.
 
@@ -167,6 +169,7 @@ npx vitest run tests/hook-*.vitest.ts tests/hooks-*.vitest.ts tests/user-prompt-
 node --test tests/hooks/spec-gate-core.test.mjs
 node --test tests/hooks/spec-gate-claude.test.mjs
 node --test tests/hooks/spec-gate-codex.test.mjs
+node --test hooks/lib/hook-stdin-deadline.test.mjs
 ```
 
 Expected result: every listed Vitest file passes, and each `node --test` spec-gate suite passes. Cursor and Devin carry their own spec-gate suites; see their READMEs.

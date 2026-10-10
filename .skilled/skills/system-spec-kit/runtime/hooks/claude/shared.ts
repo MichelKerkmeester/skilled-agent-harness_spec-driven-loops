@@ -4,6 +4,8 @@
 // Copilot imports these helpers straight from ../shared-provenance.js, so
 // drift in any one runtime silently forks the recovered-payload contract.
 
+import { readHookStdin } from '../shared-stdin.js';
+
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS & TYPES
 // ───────────────────────────────────────────────────────────────────
@@ -50,19 +52,12 @@ export function getRequiredSessionId(sessionId: unknown, surface: string): strin
 /** Read and parse JSON from stdin. Returns null on failure. */
 export async function parseHookStdin(): Promise<HookInput | null> {
   try {
-    const chunks: Buffer[] = [];
-    let totalBytes = 0;
-    for await (const chunk of process.stdin) {
-      const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
-      totalBytes += buffer.length;
-      if (totalBytes > MAX_HOOK_STDIN_BYTES) {
-        process.stdin.destroy();
-        hookLog('warn', 'stdin', `Hook stdin exceeded ${MAX_HOOK_STDIN_BYTES} bytes`);
-        return null;
-      }
-      chunks.push(buffer);
+    const text = await readHookStdin({ maxBytes: MAX_HOOK_STDIN_BYTES });
+    if (text === null) {
+      hookLog('warn', 'stdin', `Hook stdin exceeded ${MAX_HOOK_STDIN_BYTES} bytes`);
+      return null;
     }
-    const raw = Buffer.concat(chunks, totalBytes).toString('utf-8').trim();
+    const raw = text.trim();
     if (!raw) return null;
     return JSON.parse(raw) as HookInput;
   } catch (err: unknown) {

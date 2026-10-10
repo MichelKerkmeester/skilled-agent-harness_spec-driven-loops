@@ -9,7 +9,7 @@
 
 import { spawnSync } from 'node:child_process';
 import { performance } from 'node:perf_hooks';
-import { closeSync, fstatSync, openSync, readFileSync, readSync } from 'node:fs';
+import { closeSync, fstatSync, openSync, readSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import {
@@ -31,6 +31,7 @@ import {
 import { refreshAuthoredContinuitySnapshot } from '../../lib/continuity/authored-continuity-snapshot.js';
 import { notifyDirectiveLifecycleBoundary } from './directive-lifecycle-boundary.js';
 import { isMainModule } from '../../lib/esm-entry.js';
+import { readHookStdin } from '../shared-stdin.js';
 
 const require = createRequire(import.meta.url);
 
@@ -424,8 +425,8 @@ function persistCompactResult(
 // 5. AUTHORED SNAPSHOT
 // ───────────────────────────────────────────────────────────────────
 
-function runAuthoredSnapshotWorker(): void {
-  const input = JSON.parse(readFileSync(0, 'utf-8')) as {
+async function runAuthoredSnapshotWorker(): Promise<void> {
+  const input = JSON.parse((await readHookStdin()) ?? '') as {
     specFolder: string | null;
     sessionId: string;
   };

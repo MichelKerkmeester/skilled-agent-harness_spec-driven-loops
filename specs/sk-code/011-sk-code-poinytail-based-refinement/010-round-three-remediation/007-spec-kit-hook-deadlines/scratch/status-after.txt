@@ -1,0 +1,21 @@
+ M .skilled/skills/system-spec-kit/SKILL.md
+ M .skilled/skills/system-spec-kit/runtime/hooks/README.md
+ M .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts
+ M .skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs
+ M .skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts
+ M .skilled/skills/system-spec-kit/runtime/hooks/claude/shared.ts
+ M .skilled/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs
+ M .skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts
+ M .skilled/skills/system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs
+ M .skilled/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs
+ M .skilled/skills/system-spec-kit/runtime/hooks/cursor/shared.ts
+ M .skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs
+ M .skilled/skills/system-spec-kit/runtime/hooks/devin/completion-evidence-stop.cjs
+ M .skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs
+ M .skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs
+ M .skilled/skills/system-spec-kit/runtime/hooks/devin/shared.ts
+ M .skilled/skills/system-spec-kit/runtime/hooks/lib/README.md
+ M .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-adapter-shared.mjs
+?? .skilled/skills/system-spec-kit/changelog/v2.7.1.0.md
+?? .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs
+?? .skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts

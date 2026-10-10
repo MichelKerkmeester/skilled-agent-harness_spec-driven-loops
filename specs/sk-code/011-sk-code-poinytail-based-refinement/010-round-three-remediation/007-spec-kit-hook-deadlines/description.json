@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/007-spec-kit-hook-deadlines",
+  "description": "Phase 7: spec-kit-hook-deadlines",
+  "keywords": [
+    "phase",
+    "spec-kit-hook-deadlines"
+  ],
+  "lastUpdated": "2026-10-10T10:07:23.867Z",
+  "specId": "007",
+  "folderSlug": "spec-kit-hook-deadlines",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "010-round-three-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

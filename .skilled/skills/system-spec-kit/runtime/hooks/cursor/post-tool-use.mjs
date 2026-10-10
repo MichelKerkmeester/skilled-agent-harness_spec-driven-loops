@@ -32,6 +32,7 @@ import { join } from 'node:path';
 // Repo-root-relative (this file's real home is under system-spec-kit; Node
 // resolves relative imports against the realpath, not the hub symlink).
 import { isHookEnabled } from '../../../../../hooks/shared/hook-flags.mjs';
+import { readStdin } from '../lib/hook-adapter-shared.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -52,12 +53,6 @@ function approve(agentMessage) {
     ...(agentMessage ? { agent_message: agentMessage } : {}),
   }));
   process.exit(0);
-}
-
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
 }
 
 function runChild(scriptAbsolutePath, payload, projectDir) {
