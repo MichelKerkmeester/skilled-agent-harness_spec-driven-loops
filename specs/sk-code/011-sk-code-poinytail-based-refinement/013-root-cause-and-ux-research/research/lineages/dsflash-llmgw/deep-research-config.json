@@ -1,0 +1,52 @@
+{
+  "topic": "Root causes, hardening and external-user experience for the sk-code Ponytail refinement epic (packet specs/sk-code/011-sk-code-poinytail-based-refinement, children 001 to 011). Research only: change no product file. Mine the packet first: every child implementation-summary.md Known Limitations and Deviations, every round goal.md log, and 001-ponytail-deep-research/research/research.md. Part 1, process errors during the epic, trace each to the producing mechanism (file:line) not the symptom: (a) a helper used String.replace with a check string containing the dollar-apostrophe sequence, which JavaScript reads as a replacement pattern, and pasted a tasks.md tail twice; (b) the spec validator tried to resolve link-shaped text (close-bracket open-paren) inside task text as a link; (c) a reviewer wildcard rm deleted scratch helpers; (d) a regenerated scratch tree got committed; (e) claims were made before being verified; (f) generated artifacts drifted and needed orchestrator re-mints: the trigger index, Hermes agent copies, compiled-route manifests, leaf manifests; (g) a changelog version collided at merge because main and the branch both minted system-spec-kit v2.7.1.0. Part 2, open product issues, confirm each by reading code or running the test and name the root cause: the jev-transport-single canary defers; the compiled-route-admission test pins LIVE_CORPUS_SIZE 80 against 86 scenarios; manifest tests report 26 pass and 16 fail; the advisor battery scores 13 of 17 with 2 of 5 false positives where a file path in the prompt pulls routing toward the skill that owns the path; 36 HVR hard blockers in .skilled/skills/sk-code/SKILL.md; a 500 ms hook stdin deadline on hosts with a 3 s hook budget and no late-write test; a reducer change lowered open findings in 146 review folders; the advisor never passes --surface-hint, so keyword ties fall back to a fixed surface order. Part 3, above all, the external-user lens: what breaks or confuses a person who clones or installs this framework into their own repository: setup and install steps, generated artifacts they must regenerate and how they learn that, version numbering and changelog collisions, hook timing on slower hosts, routing surprises, error messages that do not say what to do, and recovery from a half-applied state. For every finding give path:line evidence, mark it CONFIRMED (you ran or read it) or INFERRED, give P0/P1/P2 by external-user impact, and a smallest fix. Apply .skilled/repo-rules/prevent-overengineering.md to every proposed fix: start from build nothing, and reject ideas that add an option, layer or dependency with no caller today, recording why. End with proposed implementation phases ranked by external-user impact against cost, each small, each naming the one file it changes and the command that would prove it.",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {},
+    "note": "The cap governs: convergence ratios are telemetry only, and every iteration widens to a focus no earlier iteration covered instead of synthesizing early."
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 20,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research",
+  "artifact_dir": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/research/lineages/dsflash-llmgw",
+  "fanout_lineage_artifact_dir": "specs/sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/research/lineages/dsflash-llmgw",
+  "loop_type": "research",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-10-10T18:43:43Z",
+  "status": "completed",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": false,
+    "version": "1.0",
+    "note": "Detached fan-out lineage: the lineage executor maintains strategy, registry, dashboard and resource map directly inside the lineage directory; the orchestrator merges afterwards."
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "root cause and ux research",
+      "phase 13 root cause and ux research",
+      "external user experience research",
+      "root cause and ux research plan",
+      "root cause and ux research tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "root cause and ux research implementation summary",
+      "root cause and ux research synthesis",
+      "external user experience framework"
+    ],
+    "key_topics": [
+      "root",
+      "cause",
+      "research",
+      "phase",
+      "external",
+      "user",
+      "experience",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/deep-research-config.json",
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      ".skilled/repo-rules/prevent-overengineering.md",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs",
+      ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+      ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      ".skilled/skills/system-spec-kit/package.json",
+      ".skilled/bin/tests/compiled-route-admission.test.cjs",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/004-cli-external-orchestration/fixtures/canary-cases.v1.json",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "prevent-overengineering.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-artifacts.cjs",
+        "kind": "file",
+        "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-admission.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-admission.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/004-cli-external-orchestration/fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "hook-stdin-deadline.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The epic shipped, but its build hit repeated process errors: a helper's `String.replace` read a dollar-apostrophe sequence as a replacement pattern, the spec validator parsed link-shaped task text, a wildcard `rm` deleted scratch helpers, generated artifacts drifted and needed re-mints, and two branches minted the same changelog version",
+    "created_at": "2026-10-10T18:39:09Z",
+    "last_save_at": "2026-10-10T19:17:32.530Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:2f83ac63cf448c2af51ed058b08bdd7ce9a84c122af43a709599f9866384eedc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "15774f8864688419e982406ac0c574958267951f6f9fe14dd375b92f322bdeee",
+      "plan.md": "66c318ed55d572878a28916935f5d1cba03d0125908378def3d22ce053f84c8c",
+      "tasks.md": "f6bf715ca407a611a7dec9eebcb7bd9bb48ed8721107b9e43bf8eea3308c0318",
+      "implementation-summary.md": "f862a5337b6a70bfc1cd741d9c2c500486f04a2448bb2f97c9b02555439c42d9",
+      "research/research.md": "607095427cacd89a92fbbc8b0112876e838700950eca73fd070098ef7f110deb"
+    },
+    "last_active_at": null
+  }
+}

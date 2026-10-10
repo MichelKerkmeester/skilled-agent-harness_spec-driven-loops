@@ -1,0 +1,40 @@
+{
+  "type": "iteration",
+  "iteration": 5,
+  "run": 5,
+  "runId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "sessionId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "lineageId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.88,
+  "status": "complete",
+  "focus": "The 36 HVR hard blockers in sk-code SKILL.md and the 500 ms hook stdin deadline without a late-write test",
+  "findingsCount": 4,
+  "noveltyJustification": "Four new findings: the exact punctuation inventory behind the 36 blockers, the two deadline constants and six short-budget consumers with their documented-but-unmeasured basis, the missing late-write test proved from the helper's write timing plus the recorded limitation, and the two compounding gaps.",
+  "keyQuestions": [
+    "Q7: Why does .skilled/skills/sk-code/SKILL.md carry 36 HVR hard blockers, and what does the 500 ms hook stdin deadline against a 3 s hook budget risk?"
+  ],
+  "answeredQuestions": [
+    "Q7: Why does .skilled/skills/sk-code/SKILL.md carry 36 HVR hard blockers, and what does the 500 ms hook stdin deadline against a 3 s hook budget risk?"
+  ],
+  "ruledOut": [
+    "Lowering every deadline to the host budget - trades a silent loss for a killed hook with the same unmeasured uncertainty",
+    "A configurable per-host deadline - no host exposes its write latency or budget, so the option would have no input"
+  ],
+  "toolsUsed": ["read", "bash", "rg", "python3"],
+  "sourcesQueried": [
+    "command:python3 hvr_scan.py .skilled/skills/sk-code/SKILL.md -> hard blockers 36 (27 semicolons, 9 em dashes)",
+    ".skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts:23",
+    ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-adapter-shared.mjs:17",
+    ".skilled/skills/system-spec-kit/runtime/hooks/README.md:88",
+    ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs:116",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins/implementation-summary.md:4",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/plan.md:117"
+  ],
+  "edgeCase": "none",
+  "timestamp": "2026-10-10T19:00:10Z",
+  "durationMs": null
+}

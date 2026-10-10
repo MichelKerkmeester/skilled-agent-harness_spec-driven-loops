@@ -1,0 +1,40 @@
+{
+  "type": "iteration",
+  "iteration": 6,
+  "run": 6,
+  "runId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "sessionId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "lineageId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.9,
+  "status": "complete",
+  "focus": "The reducer change that lowered open findings in 146 of 499 review folders",
+  "findingsCount": 4,
+  "noveltyJustification": "Four new findings: the exact 146/0/43 measurement recorded three times, the double-count dedup rule and the parser one-shape rule as the mechanism, the review correction that restored over-dropped findings, and the unexplained 43-folder error residual.",
+  "keyQuestions": [
+    "Q8: What did the reducer change that lowered open findings in 146 review folders, and what is the mechanism?"
+  ],
+  "answeredQuestions": [
+    "Q8: What did the reducer change that lowered open findings in 146 review folders, and what is the mechanism?"
+  ],
+  "ruledOut": [
+    "Re-running the repo-wide probe in this lineage - the saved pre-change reducer copy left the packet, so the probe exits mode=unknown; three recorded outputs carry the full comparison",
+    "A migration step rewriting existing review registries - registries are derived state and the changelog states no migration is required"
+  ],
+  "toolsUsed": ["read", "bash", "rg", "grep"],
+  "sourcesQueried": [
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/reducer-yield-after-review.txt:147",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/reducer-yield-after.txt:2",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/scratch/reducer-yield-before.txt:147",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/goal.md:92",
+    ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1002",
+    ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/iteration-findings.cjs:1",
+    ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.4.0.md"
+  ],
+  "edgeCase": "partial-success",
+  "timestamp": "2026-10-10T19:02:20Z",
+  "durationMs": null
+}

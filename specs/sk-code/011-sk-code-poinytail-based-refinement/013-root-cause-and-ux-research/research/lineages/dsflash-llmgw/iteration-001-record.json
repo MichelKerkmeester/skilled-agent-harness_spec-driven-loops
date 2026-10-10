@@ -1,0 +1,43 @@
+{
+  "type": "iteration",
+  "iteration": 1,
+  "run": 1,
+  "runId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "sessionId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "lineageId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.9,
+  "status": "complete",
+  "focus": "Packet map, process error (a) String.replace dollar-apostrophe, and the link-scan error class (b)",
+  "findingsCount": 6,
+  "noveltyJustification": "Six findings are new to this lineage: the (a) mechanism with its exact trigger string, the repo's existing replacer-function fix, the missing post-insertion shape check, the (b) link-scanner class with its three guards, the in-packet specimen, and the single-notation validator twin.",
+  "keyQuestions": [
+    "Q1: What mechanism produced process error (a), where a helper's String.replace read a dollar-apostrophe sequence as a replacement pattern and pasted a tasks.md tail twice?",
+    "Q2: What mechanisms produced process errors (b) to (e): the validator parsing link-shaped task text, the reviewer wildcard rm, the committed regenerated scratch tree and the claims made before verification?"
+  ],
+  "answeredQuestions": [
+    "Q1: What mechanism produced process error (a), where a helper's String.replace read a dollar-apostrophe sequence as a replacement pattern and pasted a tasks.md tail twice?"
+  ],
+  "ruledOut": [
+    "A new repo-wide linter rejecting String.replace calls whose second argument is not a function - both known sites are already fixed and a scanner would have no failing caller today",
+    "Reproducing the (b) incident on a synthetic tasks.md - proves a class the shipped tests already pin, identifies no incident record"
+  ],
+  "toolsUsed": ["read", "bash", "rg", "grep", "git log"],
+  "sourcesQueried": [
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/goal.md:93",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/tasks.md:79",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/scratch/fix-chain.json:2",
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/002-surface-contract-alignment/tasks.md:65",
+    ".skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs:95",
+    ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:1244",
+    ".skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:601",
+    ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts:569",
+    ".skilled/skills/system-spec-kit/changelog/v2.1.3.0.md:14"
+  ],
+  "edgeCase": "partial-success",
+  "timestamp": "2026-10-10T18:49:19Z",
+  "durationMs": null
+}

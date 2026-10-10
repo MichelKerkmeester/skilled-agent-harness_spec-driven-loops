@@ -1,0 +1,36 @@
+{
+  "type": "iteration",
+  "iteration": 9,
+  "run": 9,
+  "runId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "sessionId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "lineageId": "fanout-dsflash-llmgw-1791657639979-xxbomr",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.7,
+  "status": "complete",
+  "focus": "Known-Limitations sweep across children 002-011: resolved exclusions versus current residuals, plus fresh confirmations",
+  "findingsCount": 5,
+  "noveltyJustification": "Five new findings: two earlier exclusions verified resolved, the remaining F### id-scheme double count, the stale archived route-gold at 9 versus 18 cases, the missing Obsidian scenario in the quality playbook, and the by-decision alias over-capture; this iteration also closes the brief's Known-Limitations mining instruction.",
+  "keyQuestions": [],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Re-raising every residual as a phase - five P2 residuals with no user-blocking failure should not become phases under the restraint rule",
+    "A residual tracker file - the packet's summaries and this synthesis already hold the list; a tracker would drift"
+  ],
+  "toolsUsed": ["read", "bash", "rg", "grep", "python3"],
+  "sourcesQueried": [
+    "specs/sk-code/011-sk-code-poinytail-based-refinement/*/implementation-summary.md Known Limitations (all children)",
+    ".skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:27",
+    ".skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js:20",
+    ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1003",
+    "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/route-gold.typed.json",
+    ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+    ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/"
+  ],
+  "edgeCase": "none",
+  "timestamp": "2026-10-10T19:06:43Z",
+  "durationMs": null
+}
