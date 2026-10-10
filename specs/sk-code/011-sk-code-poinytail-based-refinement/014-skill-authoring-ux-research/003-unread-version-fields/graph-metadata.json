@@ -36,16 +36,14 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py",
-      ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json"
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
     ],
     "entities": [
       {
@@ -79,21 +77,9 @@
         "source": "derived"
       },
       {
-        "name": "parent-hub-router-schema.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
-        "source": "derived"
-      },
-      {
-        "name": "init_skill.py",
+        "name": "parent-skill-check.cjs",
         "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skill-hub-router-template.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
         "source": "derived"
       },
       {
@@ -127,7 +113,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -145,7 +131,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Cut",
+        "name": "Overview Decide",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -191,11 +177,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "A hub version is carried in six files that must move together",
+    "causal_summary": "The research proposed deleting the version from hub-router.json, mode-registry.json and description.json because nothing reads it, but only after a full reader search",
     "created_at": "2026-10-10T19:22:04Z",
-    "last_save_at": "2026-10-10T19:30:18.601Z",
+    "last_save_at": "2026-10-10T19:51:41.605Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +203,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:21bea33dab515e751417f01d0475e0f49e1a6829a9ced0dc3ed07eefd9039d52",
+    "source_fingerprint": "sha256:413c08c4dbb75881c933e1f80fd4e30d51c33ff23baa6d9904c7610289712f01",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b3297190102dc42bfa1c79f52aebed854fdd7954ae7d9b12cf352669e67fed42",
-      "plan.md": "0bfa7243aa5febf63e861e846fd04a975ac8b2fa65437f60ffc9f1f3f8556126",
-      "tasks.md": "f06ca9698448e221dd3202f55642b213e4420880f8e27e776882294fc99690f1",
-      "implementation-summary.md": "a7c3ac7f9ff615d2631299877d17c5c0af47d3cdbab7b7e5ccea86aec01c349d"
+      "spec.md": "4714d7d8a1af36a0a27e0cbe37edb2c47a311f1b7f55d0d59a786dc3cb104a99",
+      "plan.md": "232cd7c05d6f25d9de7ae67cacbae2ca2681733fe0edbd2ef0a8dd125b4fd3fd",
+      "tasks.md": "66b4af68f5bd0f06ddb43366d018d744cc312730f3b99737f154b07e872d562c",
+      "implementation-summary.md": "8665f9ceaa0c8c34c4227564dcffe475390bd1319fb7f4c8b737236324595e35"
     },
     "last_active_at": null
   }

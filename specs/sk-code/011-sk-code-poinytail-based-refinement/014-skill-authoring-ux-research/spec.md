@@ -81,7 +81,7 @@ Fix every finding from phase 001 with the smallest change that stops the error w
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
 | `../goal.md` | Modify | 002-parent-goal-budget | Cut the 011 parent goal under its budget |
-| Seven hubs' `hub-router.json` and `mode-registry.json`, the router schema, two templates, `init_skill.py` | Modify | 003-unread-version-fields | Stop storing a hub version nothing reads |
+| `003-unread-version-fields/` docs only | Modify | 003-unread-version-fields | Reader search and the recorded decision to drop the removal |
 | `.skilled/scripts/git-hooks/pre-commit` and its test | Modify | 004-commit-hook-checks | Run the leaf, doctor and intent-signal checks for a staged hub |
 | `.skilled/commands/create/assets/create-changelog-*.yaml` | Modify | 005-changelog-single-bump | One command numbers against upstream and moves every version copy |
 | sk-create-skill `SKILL.md`, a maintenance reference, two scripts, its changelog | Modify | 006-create-skill-guidance | Correct the routing-field sentence and sharpen generator messages |
@@ -101,7 +101,7 @@ Fix every finding from phase 001 with the smallest change that stops the error w
 |-------|--------|-------|--------|
 | 1 | 001-authoring-ux-research/ | Ten-iteration research into the 092 authoring errors, verified and ranked | Complete |
 | 2 | 002-parent-goal-budget/ | Cut the 011 parent goal under its 4,000-character budget without dropping a criterion | Complete |
-| 3 | 003-unread-version-fields/ | Stop storing the hub version in hub-router.json and mode-registry.json, which nothing reads | Planned |
+| 3 | 003-unread-version-fields/ | Run the full reader search for the hub JSON version copies and record why removing them is dropped | Complete |
 | 4 | 004-commit-hook-checks/ | Run the leaf-manifest, doctor and intent-signal checks for a staged skill at commit, and say when gates are skipped | Planned |
 | 5 | 005-changelog-single-bump/ | Make the changelog workflow the one bump command: number against upstream and move every version copy | Planned |
 | 6 | 006-create-skill-guidance/ | Correct the routing-field sentence, name every version carrier, and sharpen two generator messages | Planned |

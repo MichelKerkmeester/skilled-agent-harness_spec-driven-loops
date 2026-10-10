@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Stop storing the hub version in hub-router.json and mode-registry.json, which nothing reads."
+description: "The reader search found one reader of the hub JSON version copies, the doctor, so removing them is dropped and the drift is stopped by phases 004 and 005 instead."
 trigger_phrases:
   - "unread version fields implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/003-unread-version-fields"
-    last_updated_at: "2026-10-10T20:10:00Z"
+    last_updated_at: "2026-10-10T21:00:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Planned the phase"
-    next_safe_action: "Dispatch the first builder brief"
+    recent_action: "Closed the phase with every goal criterion passing"
+    next_safe_action: "Start the next phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "summary-014-003-unread-version-fields"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-unread-version-fields |
-| **Completed** | Not yet |
+| **Completed** | 2026-10-10 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,17 +45,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This phase is planned and waiting for its first builder brief.
+The reader search found one reader of the hub JSON version copies, the doctor, so removing them is dropped and the drift is stopped by phases 004 and 005 instead.
 
 ### Phase 3: unread-version-fields
 
-Cut the copies a bump must move from six to four by deleting the unread field and stopping new hubs from getting it.
+A repository-wide search of tracked code for readers of the version in hub-router.json, mode-registry.json and description.json. Only `.skilled/commands/doctor/scripts/parent-skill-check.cjs` reads them. Rule 8a at parent-skill-check.cjs:1450 requires `version` in description.json, so that copy cannot go. Rule 13a at parent-skill-check.cjs:1877 compares hub-router.json and mode-registry.json against SKILL.md and skips either when absent, so those two copies could go without a code change. The search also found five hub SKILL.md files (cli-external-orchestration, mcp-tooling, sk-doc, sk-code, system-deep-loop) whose Version authority paragraph names these copies as carriers.
+
+Dropped under prevent-overengineering: removing the two copies would touch fourteen hub JSON files, five hub SKILL.md paragraphs, the router schema, two templates and init_skill.py, re-mint every compiled route manifest and regenerate the Hermes copies. Phase 005 makes the changelog workflow write every copy in one step and phase 004 runs the doctor at commit, so a partial bump is blocked before it lands. Once those exist, removal stops no error the cheaper move does not already stop.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | Planned | See spec.md section 3 |
+| `003-unread-version-fields/implementation-summary.md`, `goal.md`, `spec.md`, `plan.md`, `tasks.md` | Modify | Reader search result and the drop decision |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -63,7 +65,7 @@ Cut the copies a bump must move from six to four by deleting the unread field an
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not yet delivered.
+The orchestrator ran the search itself with `git grep` over tracked `.cjs`, `.js`, `.ts`, `.py` and `.mjs` files that name hub-router.json or mode-registry.json and mention version, then read each hit. No builder was dispatched because the phase changes no product file.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -73,7 +75,8 @@ Not yet delivered.
 
 | Decision | Why |
 |----------|-----|
-| See goal.md decisions | Frozen before the build |
+| Drop removing the hub-router.json and mode-registry.json version | Phases 004 and 005 already stop the drift; removal costs about thirty file edits and a full manifest re-mint for no further error stopped |
+| Keep the description.json version | parent-skill-check.cjs:1450 requires it |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -83,7 +86,9 @@ Not yet delivered.
 
 | Check | Result |
 |-------|--------|
-| goal.md criteria | Not yet run |
+| Reader search | Only parent-skill-check.cjs reads the copies (rules 8a and 13a) |
+| Doctor on every hub | No FAIL line |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -91,7 +96,7 @@ Not yet delivered.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not yet built.** This summary is filled when the phase closes.
+1. The copies stay, so a hand edit that skips the changelog workflow still relies on the commit hook from phase 004 to catch a mismatch.
 <!-- /ANCHOR:limitations -->
 
 ---

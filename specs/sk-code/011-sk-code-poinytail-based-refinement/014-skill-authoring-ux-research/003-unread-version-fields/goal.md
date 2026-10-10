@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-014-003-unread-version-fields"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Remove the version field from every hub-router.json and mode-registry.json and from the scaffolds that create them, with every hub still passing the doctor and every compiled route still fresh.
+**Objective:** Record the full reader search for the hub JSON version copies and the prevent-overengineering decision on removing them, with every hub still passing the doctor.
 
 ### Decisions
 
@@ -44,8 +44,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Keep the version in description.json, because parent-skill-check rule 8 requires the key there. |
-| D2 | Let the commit hook re-mint each compiled manifest whose routing input changed, rather than minting by hand. |
+| D1 | Drop the removal: phase 005 makes the changelog workflow write every copy and phase 004 blocks a partial bump at commit, so the copies can no longer drift, while removal would touch about thirty files across seven hubs, re-mint every compiled manifest and rewrite five release-authority paragraphs. |
 
 <!-- /ANCHOR:directive -->
 
@@ -54,11 +53,9 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `grep -l '"version"' .skilled/skills/*/hub-router.json .skilled/skills/*/mode-registry.json`, run from the repository root, prints nothing.
+- [ ] `grep -c 'Dropped under prevent-overengineering' specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/003-unread-version-fields/implementation-summary.md`, run from the repository root, prints 1 or more.
+- [ ] `grep -c 'parent-skill-check.cjs:1450' specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/003-unread-version-fields/implementation-summary.md`, run from the repository root, prints 1 or more.
 - [ ] `for r in .skilled/skills/*/mode-registry.json; do node .skilled/commands/doctor/scripts/parent-skill-check.cjs "$(dirname "$r")" >/dev/null 2>&1 || echo FAIL "$r"; done`, run from the repository root, prints no FAIL line.
-- [ ] `node .skilled/bin/compiled-route-guard.cjs`, run from the repository root, exits 0.
-- [ ] `grep -c '"version"' .skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json .skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-registry-template.json`, run from the repository root, prints 0 for both files.
-- [ ] `python3 -m pytest -q .skilled/skills/sk-doc/scripts/tests/test_create_skill_contract.py`, run from the repository root, reports 0 failed.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/003-unread-version-fields --strict`, run from the repository root, prints RESULT: PASSED.
 <!-- /ANCHOR:completion -->
 
@@ -76,10 +73,12 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Done | spec.md, plan.md, tasks.md and this goal written by the orchestrator |
+| Reader search | Done | Only the doctor reads the copies |
+| Drop decision recorded | Done | Dropped under prevent-overengineering |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | Recorded here as the phase runs |
+| Planned removal became a recorded drop | The full reader search showed phases 004 and 005 stop the drift at a fraction of the cost; no builder was dispatched because no product file changes |
 <!-- /ANCHOR:log -->

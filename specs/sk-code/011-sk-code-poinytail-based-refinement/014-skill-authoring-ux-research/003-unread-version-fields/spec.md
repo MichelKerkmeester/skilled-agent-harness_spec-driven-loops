@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 3: unread-version-fields"
-description: "Stop storing the hub version in hub-router.json and mode-registry.json, which nothing reads."
+description: "Run the full reader search for the hub JSON version copies and record why removing them is dropped."
 trigger_phrases:
   - "unread version fields"
   - "phase 3 unread version fields"
@@ -20,7 +20,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-10 |
 | **Branch** | `worktrees/095-skill-authoring-ux-research` |
 | **Parent Spec** | ../spec.md |
@@ -44,7 +44,7 @@ This is **Phase 3** of the skill authoring UX phase parent. It remediates findin
 - The DeepSeek V4.1 Flash builder through cli-pi, verified by the orchestrator.
 
 **Deliverables**:
-- Stop storing the hub version in hub-router.json and mode-registry.json, which nothing reads.
+- Run the full reader search for the hub JSON version copies and record why removing them is dropped.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -56,10 +56,10 @@ This is **Phase 3** of the skill authoring UX phase parent. It remediates findin
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-A hub version is carried in six files that must move together. Two of them, hub-router.json and mode-registry.json, have no reader: a full search of repository code found only the doctor parity check 13a, which already skips a file that declares no version. description.json keeps its version because the doctor requires that key.
+The research proposed deleting the version from hub-router.json, mode-registry.json and description.json because nothing reads it, but only after a full reader search. The search finds that the doctor requires the description.json key (rule 8), and that five hub SKILL.md files and the router schema name these copies as carriers of the release version.
 
 ### Purpose
-Cut the copies a bump must move from six to four by deleting the unread field and stopping new hubs from getting it.
+Decide, with the evidence on record, whether removing the copies earns its cost once phases 004 and 005 exist.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -68,22 +68,17 @@ Cut the copies a bump must move from six to four by deleting the unread field an
 ## 3. SCOPE
 
 ### In Scope
-- `version` in the seven hubs' `hub-router.json` and `mode-registry.json`.
-- `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md`, the hub-router and registry templates under `.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/`, and `.skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py`.
-- Tests that assert the field.
+- A repository-wide search for code that reads version from hub-router.json, mode-registry.json or description.json.
+- The decision and its reason, recorded in this phase.
 
 ### Out of Scope
-- `description.json` version, which `parent-skill-check.cjs` requires (doctor rule 8).
-- SKILL.md, ROUTER.md and README.md versions, which documentation frontmatter rules require.
+- Editing any JSON file, schema, template or hub SKILL.md: the decision is to drop the removal.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/*/hub-router.json`, `.skilled/skills/*/mode-registry.json` | Modify | Delete the version key |
-| `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md` | Modify | Drop version from the field table and example |
-| `.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json`, `parent-skill-registry-template.json` | Modify | Delete the version key |
-| `.skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py` | Modify | Stop writing version into the hub-router and registry it scaffolds |
+| `implementation-summary.md`, `goal.md` (this phase) | Modify | Reader search result and drop decision |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -95,8 +90,8 @@ Cut the copies a bump must move from six to four by deleting the unread field an
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | No hub JSON carries version | grep finds no version key in any hub-router.json or mode-registry.json |
-| REQ-002 | Doctor and routing still pass | parent-skill-check exits 0 on all seven hubs and the route guard reports every hub fresh |
+| REQ-001 | Reader search recorded | The summary lists every reader found |
+| REQ-002 | Drop reason recorded under prevent-overengineering | The summary names what fails at the cheaper move |
 
 ### P1 - Required (complete OR user-approved deferral)
 

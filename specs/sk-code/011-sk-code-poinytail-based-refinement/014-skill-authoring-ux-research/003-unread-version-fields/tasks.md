@@ -31,7 +31,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the reader search: only parity check 13a reads these two fields
+- [x] T001 Search all tracked code for readers of the three JSON version fields
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -39,9 +39,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Dispatch the field removal to a DeepSeek builder
-- [ ] T003 Dispatch the schema, template and init_skill.py change
-- [ ] T004 Rerun the doctor on all hubs, the route guard and the tests
+- [x] T002 Search the docs that name the copies as carriers
+- [x] T003 Weigh removal against phases 004 and 005 under prevent-overengineering
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -49,7 +48,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Validate, record and commit
+- [x] T004 Record the decision, validate and commit
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -57,9 +56,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every goal.md criterion passes on the orchestrator's rerun
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every goal.md criterion passes on the orchestrator's rerun
 <!-- /ANCHOR:completion -->
 
 ---

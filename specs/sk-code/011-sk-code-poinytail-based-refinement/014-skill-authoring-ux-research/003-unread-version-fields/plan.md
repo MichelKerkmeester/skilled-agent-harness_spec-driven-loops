@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 3: unread-version-fields"
-description: "Stop storing the hub version in hub-router.json and mode-registry.json, which nothing reads, built by DeepSeek V4.1 Flash through cli-pi and verified by the orchestrator."
+description: "Run the full reader search for the hub JSON version copies and record why removing them is dropped, built by DeepSeek V4.1 Flash through cli-pi and verified by the orchestrator."
 trigger_phrases:
   - "unread version fields plan"
 importance_tier: "normal"
@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Testing** | The checks in goal.md, rerun by the orchestrator |
 
 ### Overview
-Cut the copies a bump must move from six to four by deleting the unread field and stopping new hubs from getting it. The orchestrator writes each brief with one change, dispatches it to DeepSeek V4.1 Flash at max effort through cli-pi, and reruns the named check before the next brief.
+Decide, with the evidence on record, whether removing the copies earns its cost once phases 004 and 005 exist. The orchestrator writes each brief with one change, dispatches it to DeepSeek V4.1 Flash at max effort through cli-pi, and reruns the named check before the next brief.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -40,9 +40,9 @@ Cut the copies a bump must move from six to four by deleting the unread field an
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All goal.md criteria pass on the orchestrator's rerun
-- [ ] Every new test failed once before its change
-- [ ] Strict validation passes
+- [x] All goal.md criteria pass on the orchestrator's rerun
+- [x] Every new test failed once before its change
+- [x] Strict validation passes
 <!-- /ANCHOR:quality-gates -->
 
 ---
