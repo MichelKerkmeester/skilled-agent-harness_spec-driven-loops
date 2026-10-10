@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/005-rule-amendments",
+  "description": "Phase 5: rule-amendments",
+  "keywords": [
+    "phase",
+    "rule-amendments"
+  ],
+  "lastUpdated": "2026-10-10T06:56:32.880Z",
+  "specId": "005",
+  "folderSlug": "rule-amendments",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "008-round-two-recommendations"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

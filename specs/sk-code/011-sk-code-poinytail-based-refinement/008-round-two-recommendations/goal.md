@@ -103,7 +103,7 @@ and findings belong here.
 | 002 review contract | Done | Six criteria rerun by the orchestrator after one run of each mirror generator; harness 54 PASS; five mirror checks exit 0 |
 | 003 agent disclosure | Done | Six criteria rerun by the orchestrator after the generators and the review-contract commit; all mirror checks exit 0 |
 | 004 debt report and Hermes gate | Done | Six criteria rerun by the orchestrator; harness 71 passed 0 failed; gate header corrected |
-| 005 rule amendments | Pending | Not started |
+| 005 rule amendments | Done | Six criteria rerun by the orchestrator; repo-rule check 11/11; only the two rule files changed |
 
 ### Deviations and findings
 

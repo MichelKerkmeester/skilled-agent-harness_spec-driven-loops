@@ -26,7 +26,7 @@ trigger_phrases:
   - "verify before claiming done"
 importance_tier: important
 contextType: reference
-version: 1.1.1.3
+version: 1.1.1.2
 ---
 
 # Rule: Evidence and proof
@@ -184,13 +184,12 @@ Before any completion claim:
 
 ## 10. CLOSE-OUT
 
-Every substantive turn ends with an honest status. Five things, briefly:
+Every substantive turn ends with an honest status. Four things, briefly:
 
 1. **What ran or was read, and what it returned**, with the receipts from §1.
 2. **What is inferred** rather than observed.
 3. **What only the operator can verify.**
 4. **The state of the work:** edited / committed / pushed / dirty, and which branch.
-5. **Known residual risk.** Any risk the operator must weigh before relying on the work, such as an untested path or a state that could not be checked. Write "none known" when there is none.
 
 And plainly: **what is not done.** If tests fail, say so and show the output. If a step
 was skipped, say it was skipped. If scope was left out, name it and why. Work that is
@@ -228,7 +227,6 @@ after you, and is any of it outside the frozen scope.
 - [ ] Checked the green run against the four failure modes in §3.
 - [ ] A before-number exists for every "no regressions" and performance claim.
 - [ ] The close-out says what failed and what is inferred, not only what worked.
-- [ ] The close-out names any known residual risk the operator must weigh. It says "none known" when there is none.
 - [ ] Every claim about behavior came from the code or a command, not from memory or a doc.
 - [ ] Where a document and the code disagreed, I said so rather than trusting the document.
 - [ ] Every receipt I cite could have come out differently if the claim were false, or it is marked inferred.

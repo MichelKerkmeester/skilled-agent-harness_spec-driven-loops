@@ -91,12 +91,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,6 +110,12 @@
       },
       {
         "name": "Problem Statement Ponytail",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Find",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -159,17 +159,17 @@
     ],
     "causal_summary": "Ponytail is an external coding-agent plugin that teaches restraint: write the least code that meets the requirement, and still ship tests for risky logic",
     "created_at": "2026-10-09T13:20:16Z",
-    "last_save_at": "2026-10-10T07:41:00.337Z",
+    "last_save_at": "2026-10-10T08:07:05.875Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d9aa40761083ae20aaaa2cb3d6ea92eba93f56224540fff9ab98545e28d3158a",
+    "source_fingerprint": "sha256:8881bcfb42c0313a103562b5b7ca40d662464797ad043fb534702033f61bdce6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cd5dbf331723600d1893799ea5e7ec2997115de42e35f6f32bec246a1e76749d"
+      "spec.md": "648ffcb0fde6dfc017f199aac2e1af28f6c580f9c784860eb4619c3acde87e5c"
     },
     "last_active_at": null
   }

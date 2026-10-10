@@ -121,12 +121,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -146,6 +140,12 @@
       },
       {
         "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -189,17 +189,17 @@
     ],
     "causal_summary": "The second Ponytail research round ranked 29 recommendations (`../001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/research.md` section 7)",
     "created_at": "2026-10-10T06:56:22Z",
-    "last_save_at": "2026-10-10T07:58:13.523Z",
+    "last_save_at": "2026-10-10T07:58:49.322Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:132979e1bee8435842470518f226847e8ff764fe3e4e72c90011ccfb18d2f16b",
+    "source_fingerprint": "sha256:8a72d665a1eef6fd9d8f13fa28ddc179561f42498dac986946b69b7a6a026332",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "adf0ba5edb5cb9cc069d232b8eb51b60f38c23cc6433c85116c762846fac595f"
+      "spec.md": "7b270976d5e312f8429154a4364ed3f8adc6ee779329f6280a81ae3f5ff383a2"
     },
     "last_active_at": null
   }

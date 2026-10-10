@@ -25,7 +25,7 @@ trigger_phrases:
   - "over-engineering"
 importance_tier: important
 contextType: reference
-version: 1.0.1.3
+version: 1.0.1.2
 ---
 
 # Rule: Prevent overengineering
@@ -83,8 +83,6 @@ by code that exists, and reading first is what reveals it. The sentence, written
 If you cannot write that with a real symbol and a real caller in it, you are reaching
 past the move you can justify.
 
-**A short diff is not a cheaper move when the next reader has to decode it.** A one-liner that packs two decisions into one expression moves the cost to every later reader, who must rebuild the intent before they can check it. When two moves cost the same, the one that handles the edge cases correctly wins.
-
 ---
 
 ## 2. THE PRE-WRITE PASS
@@ -94,10 +92,9 @@ After reading the existing code, before the first edit:
 1. **Does this need to exist?** Walk §1 in order. Answer by naming the move and writing
    its climbing sentence.
 2. **What does it touch?** If the change can break a caller or a shared contract, name
-   the owning module, one real caller (`file:line`) and the contract that must not
-   break. Then list the tests, fixtures, config and exports the change must reach. No
-   real caller means the change is smaller than you think, or the code should not exist
-   either.
+   the owning module, one real caller (`file:line`), and the contract that must not
+   break. No real caller means the change is smaller than you think, or the code
+   should not exist either.
 
 ---
 
@@ -142,8 +139,6 @@ case" is not an environment.
 **Dependencies.** Prefer what the project has. A new one also takes the
 `blast-radius.md` pass, because installing mutates the environment.
 
-**Moves and merges.** Moved or merged code keeps its error handling and validation. Dropping a check during a move is a behavior change that needs its own reason.
-
 ---
 
 ## 5. WHAT THIS RULE IS NOT
@@ -155,20 +150,15 @@ Restraint constrains *how much you build*, never *how much you deliver*.
 - **Not a reason to skip real error handling.** A failure mode that happens is not
   speculative.
 
-- **Not a reason to cut accessibility.** Restraint never cuts accessibility on user-facing UI: interactive elements stay keyboard-operable, carry an accessible name and keep a visible focus state.
-
 ---
 
 ## 6. SELF-CHECK
 
 - [ ] Named the move and wrote the climbing sentence for every move past "build nothing".
-- [ ] When two moves cost the same, I took the one that handles the edge cases correctly. A shorter diff that the next reader must decode did not count as cheaper.
 - [ ] Every new option, abstraction and dependency has a caller that needs it **today**.
 - [ ] Nothing is justified only by a future nobody asked for.
 - [ ] If I judged part of the scope unnecessary, I built it anyway and said so.
 - [ ] Any fallback path I added names the environment that requires it.
-- [ ] Where the change touches a caller or a shared contract, I named the owner, one real caller and the contract before editing. I listed the tests, fixtures, config and exports it must reach.
+- [ ] Where the change touches a caller or a shared contract, I named the owner, one real caller and the contract before editing.
 - [ ] Every catch handles what it catches, and no check re-validates what a type or a caller contract already guarantees.
 - [ ] Every performance claim carries a measurement, and every new dependency names what the project's own tools could not do.
-- [ ] Moved or merged code kept its error handling and validation. Every check dropped during a move has its own stated reason.
-- [ ] Restraint did not cut accessibility on user-facing UI, where interactive elements stay keyboard-operable, carry an accessible name and keep a visible focus state.

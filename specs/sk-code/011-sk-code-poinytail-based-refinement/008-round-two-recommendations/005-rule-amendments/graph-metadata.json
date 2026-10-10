@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/005-rule-amendments",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/005-rule-amendments",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rule amendments",
+      "phase 5 rule amendments",
+      "rule amendments plan",
+      "rule amendments tasks",
+      "rule amendments goal",
+      "rule amendments implementation summary"
+    ],
+    "key_topics": [
+      "rule",
+      "amendments",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "second",
+      "ponytail",
+      "research",
+      "round"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/repo-rules/prevent-overengineering.md",
+      ".skilled/repo-rules/evidence-and-proof.md",
+      "scratch/before/prevent-overengineering.md",
+      "scratch/before/evidence-and-proof.md",
+      "scratch/status-before.txt",
+      "scratch/status-after.txt",
+      "scratch/check-before.txt",
+      "scratch/check-after.txt",
+      "scratch/validate-after.txt",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+      ".skilled/skills/sk-code/shared/references/workflow-implement.md",
+      ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+      ".skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/context/skills/ponytail/SKILL.md",
+      ".skilled/repo-rules/communication-prose.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "prevent-overengineering.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-and-proof.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/evidence-and-proof.md",
+        "source": "derived"
+      },
+      {
+        "name": "status-before.txt",
+        "kind": "file",
+        "path": "scratch/status-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "status-after.txt",
+        "kind": "file",
+        "path": "scratch/status-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "check-before.txt",
+        "kind": "file",
+        "path": "scratch/check-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "check-after.txt",
+        "kind": "file",
+        "path": "scratch/check-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-after.txt",
+        "kind": "file",
+        "path": "scratch/validate-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-implement.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/workflow-implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-quality-standards.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication-prose.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/communication-prose.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Ponytail",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The second Ponytail research round found six gaps in the repo rules",
+    "created_at": "2026-10-10T06:56:32Z",
+    "last_save_at": "2026-10-10T07:25:59.555Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e619868c486b3028450b7b4712398ab578bd27bef8eb0244fbf51e880d2ab565",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "077c31c2d44b72fe879067ef527c1cddfe9ba19c529ff9b5d965320cd800017e",
+      "plan.md": "a23b5b5324350d523b8d6f49460ab6599cc820eb4487374eb7a3a08b4e437e51",
+      "tasks.md": "1de4d0a5a9e3de64e4ceef659fc88838185fd2c81a47c6ba8410417811e7d823",
+      "implementation-summary.md": "cb7ee57c4c391fe17316a900f344ea00d14ee0a2d8108cd08bccf21de865175a"
+    },
+    "last_active_at": null
+  }
+}
