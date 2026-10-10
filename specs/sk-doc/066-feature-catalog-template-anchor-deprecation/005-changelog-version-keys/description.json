@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/066-feature-catalog-template-anchor-deprecation/005-changelog-version-keys",
+  "description": "Phase 5: changelog-version-keys",
+  "keywords": [
+    "phase",
+    "changelog-version-keys"
+  ],
+  "lastUpdated": "2026-10-10T19:23:36.292Z",
+  "specId": "005",
+  "folderSlug": "changelog-version-keys",
+  "parentChain": [
+    "sk-doc",
+    "066-feature-catalog-template-anchor-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

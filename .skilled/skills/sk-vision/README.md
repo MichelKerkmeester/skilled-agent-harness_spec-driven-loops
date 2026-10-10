@@ -7,7 +7,7 @@ trigger_phrases:
   - "mockup"
   - "error.png"
   - "local vision"
-version: 0.3.1.0
+version: 0.3.2.0
 ---
 
 # sk-vision

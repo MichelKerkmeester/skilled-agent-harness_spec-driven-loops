@@ -1,5 +1,5 @@
 {
-  "corpusHash": "cea1c64680b706ea055767fea273691723fb15c32636df2d836feb5a9779c379",
+  "corpusHash": "90c79a5b3ec5b5eab00bc8b360a0522d58a0998e2164cee53c935bb836769aa7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24329,
+  "includedPathCount": 24369,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1748,6 +1748,7 @@
     ".skilled/skills/cli-orca/benchmark/reports/2026-09-20--playbook-post-remediation/report.md",
     ".skilled/skills/cli-orca/changelog/v0.1.0.0.md",
     ".skilled/skills/cli-orca/changelog/v0.1.1.0.md",
+    ".skilled/skills/cli-orca/changelog/v0.1.2.0.md",
     ".skilled/skills/cli-orca/feature-catalog/feature-catalog.md",
     ".skilled/skills/cli-orca/feature-catalog/orca-skills/official-skill-layer.md",
     ".skilled/skills/cli-orca/feature-catalog/routing/orca-qualified-vocabulary.md",
@@ -1968,6 +1969,7 @@
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.10.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.11.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.12.0.md",
+    ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.13.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.7.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.8.0.md",
@@ -6517,6 +6519,7 @@
     ".skilled/skills/sk-git/changelog/v1.7.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.8.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.8.1.0.md",
+    ".skilled/skills/sk-git/changelog/v1.8.2.0.md",
     ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/github-mcp-integration.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/gitkraken-mcp-integration.md",
@@ -6726,6 +6729,7 @@
     ".skilled/skills/sk-vision/changelog/v0.2.0.0.md",
     ".skilled/skills/sk-vision/changelog/v0.3.0.0.md",
     ".skilled/skills/sk-vision/changelog/v0.3.1.0.md",
+    ".skilled/skills/sk-vision/changelog/v0.3.2.0.md",
     ".skilled/skills/sk-vision/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-vision/feature-catalog/host-adapters/devin-hook.md",
     ".skilled/skills/sk-vision/feature-catalog/host-adapters/opencode-plugin.md",
@@ -6841,6 +6845,7 @@
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.1.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.2.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.3.0.md",
+    ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.4.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/feature-catalog/artifact-persistence-and-state-format/output-schema-strict-required-sections-fail-closed.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/feature-catalog/artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/feature-catalog/artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md",
@@ -6976,6 +6981,7 @@
     ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.19.0.0.md",
     ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.19.1.0.md",
     ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.19.2.0.md",
+    ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.19.3.0.md",
     ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.2.0.0.md",
     ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.2.1.0.md",
     ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.2.2.0.md",
@@ -7159,6 +7165,7 @@
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.1.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.2.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.3.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.4.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.0.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.1.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.2.0.md",
@@ -7305,6 +7312,7 @@
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.3.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.4.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.5.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.6.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.2.0.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.3.0.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.3.1.0.md",
@@ -7671,6 +7679,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.14.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.14.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.14.4.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.14.5.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.2.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.4.0.0.md",
@@ -8089,6 +8098,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.7.3.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.7.4.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
@@ -11997,6 +12007,36 @@
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/plan.md",
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/spec.md",
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/tasks.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/acceptance-criteria.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/goal.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/implementation-summary.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/plan.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/spec.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/tasks.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/004-leftover-template-comments/acceptance-criteria.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/004-leftover-template-comments/goal.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/004-leftover-template-comments/implementation-summary.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/004-leftover-template-comments/plan.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/004-leftover-template-comments/spec.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/004-leftover-template-comments/tasks.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/005-changelog-version-keys/acceptance-criteria.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/005-changelog-version-keys/goal.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/005-changelog-version-keys/implementation-summary.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/005-changelog-version-keys/plan.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/005-changelog-version-keys/spec.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/005-changelog-version-keys/tasks.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/006-skill-package-doc-findings/acceptance-criteria.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/006-skill-package-doc-findings/goal.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/006-skill-package-doc-findings/implementation-summary.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/006-skill-package-doc-findings/plan.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/006-skill-package-doc-findings/spec.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/006-skill-package-doc-findings/tasks.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names/acceptance-criteria.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names/goal.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names/implementation-summary.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names/plan.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names/spec.md",
+    "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names/tasks.md",
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/goal.md",
     "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/spec.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
@@ -24360,7 +24400,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4f6155f359cbe0244776ed7e48df7e032655cc35eb068e3d80d7234e4d6b5a55",
+  "manifestHash": "d28a0179b8b0d6fe91ea4cf39ee2cfbf26f55521ffe7b606915aa42a9bf29c6d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27028,6 +27068,30 @@
     },
     {
       "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/004-leftover-template-comments/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/005-changelog-version-keys/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/006-skill-package-doc-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/scratch",
       "reason": "excluded directory"
     },
     {

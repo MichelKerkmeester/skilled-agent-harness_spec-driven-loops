@@ -2,7 +2,7 @@
 name: cli-orca
 description: "Route Orca CLI work: worktrees, terminals, browser, automations, handoffs, artifacts, and the eight official Orca skills."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 0.1.1.0
+version: 0.1.2.0
 user-invocable: true
 ---
 

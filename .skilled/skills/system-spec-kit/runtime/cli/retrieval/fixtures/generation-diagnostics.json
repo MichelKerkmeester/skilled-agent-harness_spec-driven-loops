@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 56,
     "missing-frontmatter": 6847,
-    "ok": 13917,
+    "ok": 13957,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 24329,
+  "documentsScanned": 24369,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "4f6155f359cbe0244776ed7e48df7e032655cc35eb068e3d80d7234e4d6b5a55",
+  "manifestHash": "d28a0179b8b0d6fe91ea4cf39ee2cfbf26f55521ffe7b606915aa42a9bf29c6d",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36284,
+      "ok": 36340,
       "prose-sentence": 19,
       "single-token": 164,
       "stop-word-only": 1,
@@ -68750,6 +68750,30 @@
     },
     {
       "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/004-leftover-template-comments/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/005-changelog-version-keys/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/006-skill-package-doc-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/scratch",
       "reason": "excluded directory"
     },
     {
