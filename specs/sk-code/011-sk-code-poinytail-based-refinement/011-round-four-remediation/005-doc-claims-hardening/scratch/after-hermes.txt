@@ -1,0 +1,5 @@
+DRIFT sk-code
+DRIFT sk-code-opencode
+DRIFT sk-code-quality
+DRIFT sk-code-review
+FAIL: 4 drifted, 0 stale; run without --check to regenerate

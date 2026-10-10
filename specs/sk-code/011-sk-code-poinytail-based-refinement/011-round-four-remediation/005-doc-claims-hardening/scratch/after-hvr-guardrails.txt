@@ -1,0 +1,9 @@
+HVR SCAN: .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md
+  x2    first@28    soft1  soft-deduction         do
+  x6    first@29    review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          0
+  mechanical deductions:  -2
+  mechanical ceiling:     98/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality

@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening",
+  "description": "Phase 5: doc-claims-hardening",
+  "keywords": [
+    "phase",
+    "doc-claims-hardening"
+  ],
+  "lastUpdated": "2026-10-10T14:44:46.458Z",
+  "specId": "005",
+  "folderSlug": "doc-claims-hardening",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "011-round-four-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

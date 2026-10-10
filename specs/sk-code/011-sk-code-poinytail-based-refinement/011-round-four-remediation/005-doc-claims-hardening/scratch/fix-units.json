@@ -1,0 +1,12 @@
+[
+ {
+  "task": "R001",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n// and their anchors must resolve, retired packet names must be gone, the surface count must\n// match the hub, and\n// the ROUTER.md load-tier claims must match the machine map. It reports and never rewrites.\nOLD>>> with <<<NEW\n// and their anchors must resolve, retired packet names must be gone, the surface count must\n// match the hub, and the ROUTER.md load-tier claims must match the machine map. It reports\n// and never rewrites.\nNEW>>> and change nothing else.",
+  "check": "grep -c '^// match the hub, and the ROUTER.md load-tier claims must match the machine map. It reports$' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs; grep -c '^// match the hub, and$' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+  "expect": "1\n0"
+ }
+]

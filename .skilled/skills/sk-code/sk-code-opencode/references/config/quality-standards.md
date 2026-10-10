@@ -107,5 +107,5 @@ rg -n "^// [0-9]+\\. [A-Z0-9 ()/:-]+$" .skilled/skills/sk-code/sk-code-opencode/
 
 - [quick-reference.md](./quick-reference.md)
 - [style-guide.md](./style-guide.md)
-- [code_organization.md](../shared/code-organization/overview-and-module-organization.md)
+- [shared/code-organization/overview-and-module-organization.md](../shared/code-organization/overview-and-module-organization.md)
 - [config-checklist.md](../../assets/checklists/config-checklist.md)

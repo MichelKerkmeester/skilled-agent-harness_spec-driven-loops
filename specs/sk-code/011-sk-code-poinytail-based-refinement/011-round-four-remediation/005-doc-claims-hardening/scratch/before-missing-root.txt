@@ -1,0 +1,22 @@
+node:fs:1954
+  const result = binding.readdir(
+                         ^
+
+Error: ENOENT: no such file or directory, scandir '/nonexistent-dir'
+    at Object.readdirSync (node:fs:1954:26)
+    at collectDocs (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs:95:28)
+    at main (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs:273:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs:290:20)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10)
+    at Module.load (node:internal/modules/cjs/loader:1656:32)
+    at Module._load (node:internal/modules/cjs/loader:1448:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/nonexistent-dir'
+}
+
+Node.js v26.8.2

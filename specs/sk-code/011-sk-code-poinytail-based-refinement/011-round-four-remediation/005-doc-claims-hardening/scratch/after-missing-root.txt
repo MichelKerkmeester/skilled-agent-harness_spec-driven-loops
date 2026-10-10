@@ -1,0 +1,1 @@
+usage: verify_doc_claims [--root <hub dir>] [--checks paths,names,surfaces,tiers] (--root is not a directory: /nonexistent-dir)

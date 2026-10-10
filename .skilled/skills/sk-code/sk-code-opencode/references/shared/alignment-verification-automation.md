@@ -136,8 +136,8 @@ Notes:
 
 ## 5. RELATED RESOURCES
 
-- [code_organization.md](code-organization/overview-and-module-organization.md)
-- [universal_patterns.md](universal-patterns/naming-and-commenting.md)
+- [code-organization/overview-and-module-organization.md](code-organization/overview-and-module-organization.md)
+- [universal-patterns/naming-and-commenting.md](universal-patterns/naming-and-commenting.md)
 - [hooks.md](./hooks.md)
 - Drift-guard entry point: `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` — runs this verifier, `verify_stack_folders.py`, `verify_router_sync.cjs` (every leg: 1a, 1b, 2, 3 and 4) and `verify_doc_claims.cjs` together as one gate.
 

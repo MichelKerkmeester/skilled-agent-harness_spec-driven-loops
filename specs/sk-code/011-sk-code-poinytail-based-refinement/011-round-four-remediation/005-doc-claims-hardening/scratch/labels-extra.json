@@ -1,0 +1,32 @@
+[
+  {
+    "task": "X",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md, replace the exact text <<<OLD\n[code_organization.md](code-organization/overview-and-module-organization.md)\nOLD>>> with <<<NEW\n[code-organization/overview-and-module-organization.md](code-organization/overview-and-module-organization.md)\nNEW>>>",
+    "check": "sed -n '139p' .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+    "expect": "[code-organization/overview-and-module-organization.md](code-organization/overview-and-module-organization.md)"
+  },
+  {
+    "task": "X",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md, replace the exact text <<<OLD\n[universal_patterns.md](universal-patterns/naming-and-commenting.md)\nOLD>>> with <<<NEW\n[universal-patterns/naming-and-commenting.md](universal-patterns/naming-and-commenting.md)\nNEW>>>",
+    "check": "sed -n '140p' .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+    "expect": "[universal-patterns/naming-and-commenting.md](universal-patterns/naming-and-commenting.md)"
+  },
+  {
+    "task": "X",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/config/quality-standards.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/config/quality-standards.md, replace the exact text <<<OLD\n[code_organization.md](../shared/code-organization/overview-and-module-organization.md)\nOLD>>> with <<<NEW\n[shared/code-organization/overview-and-module-organization.md](../shared/code-organization/overview-and-module-organization.md)\nNEW>>>",
+    "check": "sed -n '110p' .skilled/skills/sk-code/sk-code-opencode/references/config/quality-standards.md",
+    "expect": "[shared/code-organization/overview-and-module-organization.md](../shared/code-organization/overview-and-module-organization.md)"
+  }
+]

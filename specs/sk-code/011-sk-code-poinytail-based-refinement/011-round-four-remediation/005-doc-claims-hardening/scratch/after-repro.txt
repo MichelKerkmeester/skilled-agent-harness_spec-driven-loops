@@ -1,0 +1,8 @@
+FAIL check paths: path references in the hub docs resolve on disk (3 problem(s))
+  - sk-code-demo/references/doc.md:3: link label is a path that does not resolve: assets/checklists/gone.md
+  - sk-code-demo/references/doc.md:4: link anchor does not resolve: ./target.md#9-missing-section
+  - sk-code-demo/references/doc.md:5: anchor does not resolve: sk-code-demo/references/target.md#nope
+PASS check names: no retired packet names remain
+PASS check surfaces: no two-surface wording remains
+PASS check tiers: ROUTER.md load-tier claims match DEFAULT_RESOURCE
+doc-claims: 3/4 checks passed

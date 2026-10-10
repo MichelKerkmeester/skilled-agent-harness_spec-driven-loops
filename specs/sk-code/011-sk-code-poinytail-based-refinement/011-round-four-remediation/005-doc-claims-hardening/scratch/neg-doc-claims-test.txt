@@ -1,0 +1,134 @@
+✔ a clean hub passes all four checks, with changelog and benchmark reports left out (49.911542ms)
+✔ known-bad paths: a dead link, a stale path label and a dead backticked path are reported (47.594875ms)
+✔ an allowlisted line only exempts its own file (46.516125ms)
+✔ known-bad names: a retired packet name is reported (45.106333ms)
+✔ known-bad surfaces: two-surface wording is reported (47.06625ms)
+✖ a missing --root directory prints one usage line and exits 2 (32.602125ms)
+✖ known-bad paths: a packet-relative link label that names no real file is reported (52.862458ms)
+✖ known-bad paths: an anchor that names no heading or explicit anchor is reported (48.594875ms)
+✖ a conditional loading bullet that names a glob or a file is not an every-route claim (48.074875ms)
+✔ known-bad tiers: a file the prose says always loads but DEFAULT_RESOURCE omits is reported (43.689625ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 6
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 556.359291
+
+✖ failing tests:
+
+test at .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs:120:1
+✖ a missing --root directory prints one usage line and exits 2 (32.602125ms)
+  AssertionError [ERR_ASSERTION]: node:fs:1954
+    const result = binding.readdir(
+                           ^
+  
+  Error: ENOENT: no such file or directory, scandir '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/doc-claims-root-that-does-not-exist'
+      at Object.readdirSync (node:fs:1954:26)
+      at collectDocs (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs:95:28)
+      at main (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs:273:16)
+      at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs:290:20)
+      at Module._compile (node:internal/modules/cjs/loader:1934:14)
+      at Object..js (node:internal/modules/cjs/loader:2074:10)
+      at Module.load (node:internal/modules/cjs/loader:1656:32)
+      at Module._load (node:internal/modules/cjs/loader:1448:12)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'scandir',
+    path: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/doc-claims-root-that-does-not-exist'
+  }
+  
+  Node.js v26.8.2
+  
+  
+  1 !== 2
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs:123:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs:128:1
+✖ known-bad paths: a packet-relative link label that names no real file is reported (52.862458ms)
+  AssertionError [ERR_ASSERTION]: PASS check paths: path references in the hub docs resolve on disk
+  doc-claims: 1/1 checks passed
+  
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs:139:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs:145:1
+✖ known-bad paths: an anchor that names no heading or explicit anchor is reported (48.594875ms)
+  AssertionError [ERR_ASSERTION]: PASS check paths: path references in the hub docs resolve on disk
+  doc-claims: 1/1 checks passed
+  
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs:164:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs:172:1
+✖ a conditional loading bullet that names a glob or a file is not an every-route claim (48.074875ms)
+  AssertionError [ERR_ASSERTION]: FAIL check tiers: ROUTER.md load-tier claims match DEFAULT_RESOURCE (2 problem(s))
+    - ROUTER.md:16: claims shared/references/extra/gamma.md loads on every route, but DEFAULT_RESOURCE does not list it
+    - ROUTER.md:17: claims shared/references/extra/gamma.md loads on every route, but DEFAULT_RESOURCE does not list it
+  doc-claims: 0/1 checks passed
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs:182:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

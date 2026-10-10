@@ -1,0 +1,212 @@
+[
+ {
+  "task": "T013",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs, replace the exact text <<<OLD\ntest('known-bad tiers: a file the prose says always loads but DEFAULT_RESOURCE omits is reported', (t) => {\nOLD>>> with <<<NEW\ntest('a missing --root directory prints one usage line and exits 2', () => {\n  const missing = path.join(os.tmpdir(), 'doc-claims-root-that-does-not-exist');\n  const result = spawnSync(process.execPath, [CHECKER, '--root', missing], { encoding: 'utf8' });\n  assert.equal(result.status, 2, result.stderr);\n  assert.match(result.stderr, /^usage: verify_doc_claims .*--root is not a directory/);\n  assert.equal(result.stderr.trim().split('\\n').length, 1, result.stderr);\n});\n\ntest('known-bad tiers: a file the prose says always loads but DEFAULT_RESOURCE omits is reported', (t) => {\nNEW>>> and change nothing else.",
+  "check": "grep -c 'a missing --root directory prints one usage line and exits 2' .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs",
+  "expect": "1"
+ },
+ {
+  "task": "T014",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs, replace the exact text <<<OLD\ntest('known-bad tiers: a file the prose says always loads but DEFAULT_RESOURCE omits is reported', (t) => {\nOLD>>> with <<<NEW\ntest('known-bad paths: a packet-relative link label that names no real file is reported', (t) => {\n  const hub = buildHub(t);\n  write(path.join(hub, 'sk-code-demo', 'assets', 'checklists', 'real.md'), '# real\\n');\n  write(path.join(hub, 'sk-code-other', 'assets', 'checklists', 'other.md'), '# other\\n');\n  write(path.join(hub, 'sk-code-demo', 'references', 'bad.md'), [\n    '[`assets/checklists/gone.md`](../../sk-code-other/assets/checklists/other.md)',\n    '[`assets/checklists/other.md`](../../sk-code-other/assets/checklists/other.md)',\n    '[`assets/checklists/real.md`](../assets/checklists/real.md)',\n    '',\n  ].join('\\n'));\n  const { status, out } = run(hub, 'paths');\n  assert.equal(status, 1, out);\n  assert.match(out, /bad\\.md:1: link label is a path that does not resolve: assets\\/checklists\\/gone\\.md/);\n  assert.doesNotMatch(out, /bad\\.md:2:/);\n  assert.doesNotMatch(out, /bad\\.md:3:/);\n});\n\ntest('known-bad tiers: a file the prose says always loads but DEFAULT_RESOURCE omits is reported', (t) => {\nNEW>>> and change nothing else.",
+  "check": "grep -c 'a packet-relative link label that names no real file is reported' .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs",
+  "expect": "1"
+ },
+ {
+  "task": "T015",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs, replace the exact text <<<OLD\ntest('known-bad tiers: a file the prose says always loads but DEFAULT_RESOURCE omits is reported', (t) => {\nOLD>>> with <<<NEW\ntest('known-bad paths: an anchor that names no heading or explicit anchor is reported', (t) => {\n  const hub = buildHub(t);\n  write(path.join(hub, 'sk-code-demo', 'references', 'target.md'), [\n    '# Target',\n    '## 2. IMPLEMENTATION GUARDRAILS',\n    '## 7. 🐛 COMMON ISSUES',\n    '<a id=\"custom-spot\"></a>',\n    '',\n  ].join('\\n'));\n  write(path.join(hub, 'sk-code-demo', 'references', 'bad.md'), [\n    '# Bad doc',\n    '[ok](./target.md#2-implementation-guardrails) [emoji](./target.md#7--common-issues) [explicit](./target.md#custom-spot) [self](#bad-doc)',\n    '[gone](./target.md#9-missing-section)',\n    '`sk-code-demo/references/target.md#2-implementation-guardrails`',\n    '`sk-code-demo/references/target.md#nope`',\n    '[selfgone](#not-here)',\n    '',\n  ].join('\\n'));\n  const { status, out } = run(hub, 'paths');\n  assert.equal(status, 1, out);\n  assert.match(out, /bad\\.md:3: link anchor does not resolve: \\.\\/target\\.md#9-missing-section/);\n  assert.match(out, /bad\\.md:5: anchor does not resolve: sk-code-demo\\/references\\/target\\.md#nope/);\n  assert.match(out, /bad\\.md:6: link anchor does not resolve: #not-here/);\n  assert.doesNotMatch(out, /bad\\.md:2:/);\n  assert.doesNotMatch(out, /bad\\.md:4:/);\n});\n\ntest('known-bad tiers: a file the prose says always loads but DEFAULT_RESOURCE omits is reported', (t) => {\nNEW>>> and change nothing else.",
+  "check": "grep -c 'an anchor that names no heading or explicit anchor is reported' .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs",
+  "expect": "1"
+ },
+ {
+  "task": "T016",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs, replace the exact text <<<OLD\ntest('known-bad tiers: a file the prose says always loads but DEFAULT_RESOURCE omits is reported', (t) => {\nOLD>>> with <<<NEW\ntest('a conditional loading bullet that names a glob or a file is not an every-route claim', (t) => {\n  const hub = buildHub(t);\n  write(path.join(hub, 'shared', 'references', 'extra', 'gamma.md'), '# gamma\\n');\n  write(path.join(hub, 'ROUTER.md'), [\n    ROUTER.trimEnd(),\n    '- the `shared/references/extra/*` checklists when a DEBUGGING intent fires, plus',\n    '- `shared/references/extra/gamma.md` only for the matched intents',\n    '',\n  ].join('\\n'));\n  const { status, out } = run(hub, 'tiers');\n  assert.equal(status, 0, out);\n  assert.match(out, /PASS check tiers/);\n});\n\ntest('known-bad tiers: a file the prose says always loads but DEFAULT_RESOURCE omits is reported', (t) => {\nNEW>>> and change nothing else.",
+  "check": "grep -c 'a conditional loading bullet that names a glob or a file is not an every-route claim' .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs",
+  "expect": "1"
+ },
+ {
+  "task": "T017",
+  "files": [
+   "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/scratch/neg-doc-claims-test.txt"
+  ],
+  "kind": "command",
+  "instruction": "node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs > specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/scratch/neg-doc-claims-test.txt 2>&1; echo \"exit=$?\"",
+  "check": "grep -E '^. (pass|fail) ' specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/scratch/neg-doc-claims-test.txt",
+  "expect": "fail 4"
+ },
+ {
+  "task": "T018",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n// must resolve, retired packet names must be gone, the surface count must match the hub, and\nOLD>>> with <<<NEW\n// and their anchors must resolve, retired packet names must be gone, the surface count must\n// match the hub, and\nNEW>>> and change nothing else.",
+  "check": "grep -c 'and their anchors must resolve' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+  "expect": "1"
+ },
+ {
+  "task": "T019",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\nconst TWO_SURFACE_WORDING = [/\\btwo (?:supported )?surfaces\\b/gi, /\\bboth supported surfaces\\b/gi];\nOLD>>> with <<<NEW\nconst TWO_SURFACE_WORDING = [/\\btwo (?:supported )?surfaces\\b/gi, /\\bboth supported surfaces\\b/gi];\n// A Surface-aware loading bullet that states a condition describes a load that depends on the\n// route, so the files and globs it names are not every-route claims.\nconst CONDITIONAL_WORDING = /\\b(?:when|if|unless|only|matched)\\b/i;\nNEW>>> and change nothing else.",
+  "check": "grep -c 'const CONDITIONAL_WORDING' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+  "expect": "1"
+ },
+ {
+  "task": "T020",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\nfunction parseArgs(argv) {\n  const rootIdx = argv.indexOf('--root');\n  const hub = rootIdx !== -1 && argv[rootIdx + 1] ? path.resolve(argv[rootIdx + 1]) : DEFAULT_HUB;\n  const checksIdx = argv.indexOf('--checks');\n  const known = CHECKS.map((c) => c[0]);\n  if (checksIdx === -1) return { hub, selected: known };\n  const ids = (argv[checksIdx + 1] || '').split(',').filter(Boolean);\n  const unknown = ids.filter((id) => !known.includes(id));\n  if (ids.length === 0 || unknown.length) {\n    console.error(`usage: verify_doc_claims [--root <hub dir>] [--checks ${known.join(',')}] (unknown: ${unknown.join(',') || 'none given'})`);\n    process.exit(2);\n  }\n  return { hub, selected: ids };\n}\nOLD>>> with <<<NEW\nfunction parseArgs(argv) {\n  const known = CHECKS.map((c) => c[0]);\n  const usage = `usage: verify_doc_claims [--root <hub dir>] [--checks ${known.join(',')}]`;\n  const rootIdx = argv.indexOf('--root');\n  const hub = rootIdx !== -1 && argv[rootIdx + 1] ? path.resolve(argv[rootIdx + 1]) : DEFAULT_HUB;\n  // A missing hub would otherwise surface as a raw readdir stack trace from the walk.\n  if (!fs.existsSync(hub) || !fs.statSync(hub).isDirectory()) {\n    console.error(`${usage} (--root is not a directory: ${hub})`);\n    process.exit(2);\n  }\n  const checksIdx = argv.indexOf('--checks');\n  if (checksIdx === -1) return { hub, selected: known };\n  const ids = (argv[checksIdx + 1] || '').split(',').filter(Boolean);\n  const unknown = ids.filter((id) => !known.includes(id));\n  if (ids.length === 0 || unknown.length) {\n    console.error(`${usage} (unknown: ${unknown.join(',') || 'none given'})`);\n    process.exit(2);\n  }\n  return { hub, selected: ids };\n}\nNEW>>> and change nothing else.",
+  "check": "grep -c -- '--root is not a directory' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+  "expect": "1"
+ },
+ {
+  "task": "T021",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\nfunction listMarkdown(dir) {\n  if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) return [];\n  return fs.readdirSync(dir).filter((n) => n.endsWith('.md')).sort();\n}\nOLD>>> with <<<NEW\nfunction listMarkdown(dir) {\n  if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) return [];\n  return fs.readdirSync(dir).filter((n) => n.endsWith('.md')).sort();\n}\n\n// A path-shaped label passes when it names a real file from the doc's packet, the hub or the doc's\n// folder, or when it is the tail of the in-hub target it labels, which is how a short label names a\n// file in another packet. A label over an outside or external target describes what this guard\n// cannot see, so it is left alone.\nfunction labelIsStale(hub, doc, label, target) {\n  const dir = path.dirname(doc.full);\n  if (/^\\.\\.?\\//.test(label)) {\n    const resolved = path.resolve(dir, label);\n    return insideHub(hub, resolved) && !fs.existsSync(resolved);\n  }\n  if (label.startsWith('.skilled/') && !label.startsWith(HUB_PREFIX)) return false;\n  if (!target || /^(?:[a-z][a-z0-9+.-]*:|\\/)/i.test(target)) return false;\n  const resolvedTarget = path.resolve(dir, target);\n  if (!insideHub(hub, resolvedTarget)) return false;\n  if (toPosix(resolvedTarget).endsWith(`/${label}`) && fs.existsSync(resolvedTarget)) return false;\n  const candidates = [...bases(hub, doc, label), path.join(packetRoot(hub, doc.rel), label), path.resolve(dir, label)];\n  return !candidates.some((p) => fs.existsSync(p));\n}\nNEW>>> and change nothing else.",
+  "check": "grep -c '^function labelIsStale(hub, doc, label, target) {' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+  "expect": "1"
+ },
+ {
+  "task": "T022",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\nfunction listMarkdown(dir) {\n  if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) return [];\n  return fs.readdirSync(dir).filter((n) => n.endsWith('.md')).sort();\n}\nOLD>>> with <<<NEW\nfunction listMarkdown(dir) {\n  if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) return [];\n  return fs.readdirSync(dir).filter((n) => n.endsWith('.md')).sort();\n}\n\n// GitHub's heading slug, the rule behind the double-dash TOC anchors validate_document.py requires:\n// lowercase, keep letters, numbers, underscores, spaces and hyphens, then one hyphen per space.\nfunction headingSlug(text) {\n  return text.replace(/\\[([^\\]]*)\\]\\([^)]*\\)/g, '$1').trim().toLowerCase()\n    .replace(/[^\\p{L}\\p{N}_ -]/gu, '').replace(/ /g, '-');\n}\n\nconst anchorCache = new Map();\n\n// Every anchor a Markdown file defines: one slug per heading outside fenced code, with GitHub's\n// -1, -2 suffixes for repeats, plus each explicit <a id> or <a name>.\nfunction anchorsOf(file) {\n  if (anchorCache.has(file)) return anchorCache.get(file);\n  const ids = new Set();\n  const seen = new Map();\n  let inFence = false;\n  for (const text of fs.readFileSync(file, 'utf8').split(/\\r?\\n/)) {\n    if (/^\\s*(?:```|~~~)/.test(text)) {\n      inFence = !inFence;\n      continue;\n    }\n    if (inFence) continue;\n    const heading = /^#{1,6}\\s+(.*?)(?:\\s+#+)?\\s*$/.exec(text);\n    if (heading) {\n      const slug = headingSlug(heading[1]);\n      const n = seen.get(slug) || 0;\n      seen.set(slug, n + 1);\n      ids.add(n === 0 ? slug : `${slug}-${n}`);\n    }\n    for (const m of text.matchAll(/<a\\s[^>]*?\\b(?:id|name)\\s*=\\s*[\"']([^\"']+)[\"']/gi)) ids.add(m[1]);\n  }\n  anchorCache.set(file, ids);\n  return ids;\n}\n\nfunction anchorMissing(file, anchor) {\n  let wanted = anchor;\n  try {\n    wanted = decodeURIComponent(anchor);\n  } catch {\n    // A malformed escape is compared as written.\n  }\n  const ids = anchorsOf(file);\n  return !ids.has(wanted) && !ids.has(wanted.toLowerCase());\n}\nNEW>>> and change nothing else.",
+  "check": "grep -c -E '^function (headingSlug|anchorsOf|anchorMissing)\\(' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+  "expect": "3"
+ },
+ {
+  "task": "T023",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n        const target = m[2].split('#')[0].split('?')[0];\nOLD>>> with <<<NEW\n        const target = m[2].split('#')[0].split('?')[0];\n        const anchor = m[2].includes('#') ? m[2].slice(m[2].indexOf('#') + 1) : '';\nNEW>>> and change nothing else.",
+  "check": "grep -c \"const anchor = m\\[2\\].includes('#')\" .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+  "expect": "1"
+ },
+ {
+  "task": "T024",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n          problems.push(`${where}: link target does not resolve: ${target}`);\n        }\nOLD>>> with <<<NEW\n          problems.push(`${where}: link target does not resolve: ${target}`);\n        }\n        if (anchor && !PLACEHOLDER.test(anchor) && !/^(?:[a-z][a-z0-9+.-]*:|\\/)/i.test(target)) {\n          const file = target ? path.resolve(dir, target) : doc.full;\n          if (file.endsWith('.md') && insideHub(hub, file) && fs.existsSync(file) && anchorMissing(file, anchor)) {\n            problems.push(`${where}: link anchor does not resolve: ${target}#${anchor}`);\n          }\n        }\nNEW>>> and change nothing else.",
+  "check": "grep -c 'link anchor does not resolve' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+  "expect": "1"
+ },
+ {
+  "task": "T025",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n        if (/^\\.\\.?\\//.test(label) && isPathCandidate(label) && label !== target\n          && insideHub(hub, path.resolve(dir, label)) && !fs.existsSync(path.resolve(dir, label))) {\nOLD>>> with <<<NEW\n        if (isPathCandidate(label) && label !== target && labelIsStale(hub, doc, label, target)) {\nNEW>>> and change nothing else.",
+  "check": "grep -c 'labelIsStale(hub, doc, label, target)) {' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+  "expect": "1"
+ },
+ {
+  "task": "T026",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n        const ref = m[1].trim().replace(/:\\d+(?:-\\d+)?$/, '');\n        if (!isPathCandidate(ref)) continue;\n        const candidates = bases(hub, doc, ref);\n        if (candidates.length && !candidates.some((p) => fs.existsSync(p))) problems.push(`${where}: path does not resolve: ${ref}`);\nOLD>>> with <<<NEW\n        const [file, anchor = ''] = m[1].trim().split('#');\n        const ref = file.replace(/:\\d+(?:-\\d+)?$/, '');\n        if (!isPathCandidate(ref)) continue;\n        const candidates = bases(hub, doc, ref);\n        const found = candidates.find((p) => fs.existsSync(p));\n        if (candidates.length && !found) problems.push(`${where}: path does not resolve: ${ref}`);\n        else if (found && anchor && ref.endsWith('.md') && !PLACEHOLDER.test(anchor) && anchorMissing(found, anchor)) {\n          problems.push(`${where}: anchor does not resolve: ${ref}#${anchor}`);\n        }\nNEW>>> and change nothing else.",
+  "check": "grep -c 'anchor does not resolve: ${ref}#${anchor}' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+  "expect": "1"
+ },
+ {
+  "task": "T027",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n    if (isAllowed('tiers', 'ROUTER.md', claim.text)) continue;\nOLD>>> with <<<NEW\n    if (isAllowed('tiers', 'ROUTER.md', claim.text)) continue;\n    if (!claim.always && CONDITIONAL_WORDING.test(claim.text)) continue;\nNEW>>> and change nothing else.",
+  "check": "grep -c 'CONDITIONAL_WORDING.test(claim.text)' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+  "expect": "1"
+ },
+ {
+  "task": "T028",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md, replace the exact text <<<OLD\nany env knobs the verifier must pin; final evidence belongs to\nOLD>>> with <<<NEW\nany env knobs the verifier must pin. Final evidence belongs to\nNEW>>> and change nothing else.",
+  "check": "grep -c 'the verifier must pin. Final evidence belongs to' .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md",
+  "expect": "1"
+ },
+ {
+  "task": "T029",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md, replace the exact text <<<OLD\nworkspaces use `tsc --build`; satellite packages with their own package boundary\nOLD>>> with <<<NEW\nworkspaces use `tsc --build`. Satellite packages with their own package boundary\nNEW>>> and change nothing else.",
+  "check": "grep -c 'use `tsc --build`. Satellite packages' .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md",
+  "expect": "1"
+ },
+ {
+  "task": "T030",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md, replace the exact text <<<OLD\n- Keep env-sensitive tests deterministic: set feature flags, provider choices, database paths, and timeout knobs explicitly in the command or test fixture; record those values with the result; do not rely on inherited shell state when the claim depends on a flag.\nOLD>>> with <<<NEW\n- Keep env-sensitive tests deterministic. Set feature flags, provider choices, database paths, and timeout knobs explicitly in the command or test fixture. Record those values with the result. Do not rely on inherited shell state when the claim depends on a flag.\nNEW>>> and change nothing else.",
+  "check": "grep -c ';' .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md",
+  "expect": "0"
+ },
+ {
+  "task": "T031",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md, replace the exact text <<<OLD\n| `verify_doc_claims.cjs` | Documentation claim guard: path references in the sk-code docs resolve,\nOLD>>> with <<<NEW\n| `verify_doc_claims.cjs` | Documentation claim guard: path references in the sk-code docs resolve, including path-shaped link labels and `#anchor` targets,\nNEW>>> and change nothing else.",
+  "check": "grep -c 'including path-shaped link labels and `#anchor` targets' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md",
+  "expect": "1"
+ },
+ {
+  "task": "T032",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/SKILL.md"
+  ],
+  "kind": "edit",
+  "instruction": "In .skilled/skills/sk-code/sk-code-opencode/SKILL.md, replace the exact text <<<OLD\nversion: 1.2.0.0\nOLD>>> with <<<NEW\nversion: 1.2.1.0\nNEW>>> and change nothing else.",
+  "check": "grep -c '^version: 1.2.1.0$' .skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+  "expect": "1"
+ },
+ {
+  "task": "T033",
+  "files": [
+   ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.1.0.md"
+  ],
+  "kind": "create",
+  "instruction": "Create .skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.1.0.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/scratch/units/v1.2.1.0.md",
+  "check": "python3 -I .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.1.0.md",
+  "expect": "Total issues: 0"
+ }
+]

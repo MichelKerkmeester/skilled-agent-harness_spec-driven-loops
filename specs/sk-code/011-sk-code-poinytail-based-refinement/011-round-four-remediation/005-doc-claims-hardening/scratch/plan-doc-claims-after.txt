@@ -1,0 +1,13 @@
+FAIL check paths: path references in the hub docs resolve on disk (8 problem(s))
+  - sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md:51: link label is a path that does not resolve: javascript/style-guide.md
+  - sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md:52: link label is a path that does not resolve: javascript/quality-standards.md
+  - sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md:54: link label is a path that does not resolve: css/quality-standards.md
+  - sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md:123: link label is a path that does not resolve: javascript/style-guide.md
+  - sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md:124: link label is a path that does not resolve: javascript/quality-standards.md
+  - sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md:126: link label is a path that does not resolve: css/quality-standards.md
+  - sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md:33: link anchor does not resolve: ../../implementation/animation-workflows/overview-decision-tree-and-css.md#7-🐛-common-issues-and-solutions
+  - sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md:34: link anchor does not resolve: ../../implementation/webflow-patterns/overview-limits-and-collection-lists.md#3-📚-collection-list-patterns
+PASS check names: no retired packet names remain
+PASS check surfaces: no two-surface wording remains
+PASS check tiers: ROUTER.md load-tier claims match DEFAULT_RESOURCE
+doc-claims: 3/4 checks passed

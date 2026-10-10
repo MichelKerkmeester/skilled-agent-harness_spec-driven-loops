@@ -1,0 +1,6 @@
+PASS check paths: path references in the hub docs resolve on disk
+PASS check names: no retired packet names remain
+PASS check surfaces: no two-surface wording remains
+FAIL check tiers: ROUTER.md load-tier claims match DEFAULT_RESOURCE (1 problem(s))
+  - ROUTER.md:13: claims shared/references/extra/gamma.md loads on every route, but DEFAULT_RESOURCE does not list it
+doc-claims: 3/4 checks passed

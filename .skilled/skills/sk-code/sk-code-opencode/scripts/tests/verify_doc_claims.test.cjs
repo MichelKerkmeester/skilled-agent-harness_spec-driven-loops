@@ -117,6 +117,102 @@ test('known-bad surfaces: two-surface wording is reported', (t) => {
   assert.match(out, /bad\.md:1: two-surface wording "Both supported surfaces"/);
 });
 
+test('a missing --root directory prints one usage line and exits 2', () => {
+  const missing = path.join(os.tmpdir(), 'doc-claims-root-that-does-not-exist');
+  const result = spawnSync(process.execPath, [CHECKER, '--root', missing], { encoding: 'utf8' });
+  assert.equal(result.status, 2, result.stderr);
+  assert.match(result.stderr, /^usage: verify_doc_claims .*--root is not a directory/);
+  assert.equal(result.stderr.trim().split('\n').length, 1, result.stderr);
+});
+
+test('known-bad paths: a packet-relative link label that names no real file is reported', (t) => {
+  const hub = buildHub(t);
+  write(path.join(hub, 'sk-code-demo', 'assets', 'checklists', 'real.md'), '# real\n');
+  write(path.join(hub, 'sk-code-other', 'assets', 'checklists', 'other.md'), '# other\n');
+  write(path.join(hub, 'sk-code-demo', 'references', 'bad.md'), [
+    '[`assets/checklists/gone.md`](../../sk-code-other/assets/checklists/other.md)',
+    '[`assets/checklists/other.md`](../../sk-code-other/assets/checklists/other.md)',
+    '[`assets/checklists/real.md`](../assets/checklists/real.md)',
+    '',
+  ].join('\n'));
+  const { status, out } = run(hub, 'paths');
+  assert.equal(status, 1, out);
+  assert.match(out, /bad\.md:1: link label is a path that does not resolve: assets\/checklists\/gone\.md/);
+  assert.doesNotMatch(out, /bad\.md:2:/);
+  assert.doesNotMatch(out, /bad\.md:3:/);
+});
+
+test('known-bad paths: an anchor that names no heading or explicit anchor is reported', (t) => {
+  const hub = buildHub(t);
+  write(path.join(hub, 'sk-code-demo', 'references', 'target.md'), [
+    '# Target',
+    '## 2. IMPLEMENTATION GUARDRAILS',
+    '## 7. 🐛 COMMON ISSUES',
+    '<a id="custom-spot"></a>',
+    '',
+  ].join('\n'));
+  write(path.join(hub, 'sk-code-demo', 'references', 'bad.md'), [
+    '# Bad doc',
+    '[ok](./target.md#2-implementation-guardrails) [emoji](./target.md#7--common-issues) [explicit](./target.md#custom-spot) [self](#bad-doc)',
+    '[gone](./target.md#9-missing-section)',
+    '`sk-code-demo/references/target.md#2-implementation-guardrails`',
+    '`sk-code-demo/references/target.md#nope`',
+    '[selfgone](#not-here)',
+    '',
+  ].join('\n'));
+  const { status, out } = run(hub, 'paths');
+  assert.equal(status, 1, out);
+  assert.match(out, /bad\.md:3: link anchor does not resolve: \.\/target\.md#9-missing-section/);
+  assert.match(out, /bad\.md:5: anchor does not resolve: sk-code-demo\/references\/target\.md#nope/);
+  assert.match(out, /bad\.md:6: link anchor does not resolve: #not-here/);
+  assert.doesNotMatch(out, /bad\.md:2:/);
+  assert.doesNotMatch(out, /bad\.md:4:/);
+});
+
+test('a conditional loading bullet that names a glob or a file is not an every-route claim', (t) => {
+  const hub = buildHub(t);
+  write(path.join(hub, 'shared', 'references', 'extra', 'gamma.md'), '# gamma\n');
+  write(path.join(hub, 'ROUTER.md'), [
+    ROUTER.trimEnd(),
+    '- the `shared/references/extra/*` checklists when a DEBUGGING intent fires, plus',
+    '- `shared/references/extra/gamma.md` only for the matched intents',
+    '',
+  ].join('\n'));
+  const { status, out } = run(hub, 'tiers');
+  assert.equal(status, 0, out);
+  assert.match(out, /PASS check tiers/);
+});
+
+test('known-good paths: code-span link examples, elided labels, nested fences, setext headings and emphasis headings are not reported', (t) => {
+  const hub = buildHub(t);
+  write(path.join(hub, 'sk-code-demo', 'references', 'target.md'), [
+    'Setext Title',
+    '============',
+    '## _Emph_ heading',
+    '~~~',
+    '```',
+    '## In a tilde block',
+    '~~~',
+    '## After the tilde block',
+    '',
+  ].join('\n'));
+  write(path.join(hub, 'sk-code-demo', 'references', 'good.md'), [
+    'Write `[Overview](#overview)` as a TOC entry.',
+    '[.../references/target.md](./target.md)',
+    '[a](./target.md#setext-title) [b](./target.md#emph-heading) [c](./target.md#after-the-tilde-block)',
+    '',
+  ].join('\n'));
+  const { status, out } = run(hub, 'paths');
+  assert.equal(status, 0, out);
+  assert.match(out, /PASS check paths/);
+});
+
+test('a --root with no value prints a usage line and exits 2', () => {
+  const result = spawnSync(process.execPath, [CHECKER, '--root'], { encoding: 'utf8' });
+  assert.equal(result.status, 2, result.stderr);
+  assert.match(result.stderr, /^usage: verify_doc_claims .*--root needs a directory/);
+});
+
 test('known-bad tiers: a file the prose says always loads but DEFAULT_RESOURCE omits is reported', (t) => {
   const hub = buildHub(t);
   write(path.join(hub, 'ROUTER.md'), ROUTER.replace('    "shared/references/universal/beta.md",\n', ''));

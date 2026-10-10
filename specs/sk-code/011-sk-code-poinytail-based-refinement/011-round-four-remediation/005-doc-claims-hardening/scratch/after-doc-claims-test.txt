@@ -1,0 +1,18 @@
+✔ a clean hub passes all four checks, with changelog and benchmark reports left out (44.902541ms)
+✔ known-bad paths: a dead link, a stale path label and a dead backticked path are reported (46.945291ms)
+✔ an allowlisted line only exempts its own file (42.911375ms)
+✔ known-bad names: a retired packet name is reported (38.194875ms)
+✔ known-bad surfaces: two-surface wording is reported (36.946083ms)
+✔ a missing --root directory prints one usage line and exits 2 (25.476792ms)
+✔ known-bad paths: a packet-relative link label that names no real file is reported (41.384ms)
+✔ known-bad paths: an anchor that names no heading or explicit anchor is reported (38.168625ms)
+✔ a conditional loading bullet that names a glob or a file is not an every-route claim (38.063917ms)
+✔ known-bad tiers: a file the prose says always loads but DEFAULT_RESOURCE omits is reported (38.523375ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 431.483291

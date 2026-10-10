@@ -1,0 +1,6 @@
+ M .skilled/skills/sk-code/sk-code-opencode/SKILL.md
+ M .skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md
+ M .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs
+ M .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md
+ M .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs
+?? .skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.1.0.md

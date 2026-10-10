@@ -1,0 +1,14 @@
+✔ a clean hub passes all four checks, with changelog and benchmark reports left out (39.855125ms)
+✔ known-bad paths: a dead link, a stale path label and a dead backticked path are reported (39.8485ms)
+✔ an allowlisted line only exempts its own file (76.866042ms)
+✔ known-bad names: a retired packet name is reported (37.717375ms)
+✔ known-bad surfaces: two-surface wording is reported (38.766542ms)
+✔ known-bad tiers: a file the prose says always loads but DEFAULT_RESOURCE omits is reported (37.656958ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 309.650209

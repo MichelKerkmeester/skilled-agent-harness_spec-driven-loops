@@ -1,0 +1,142 @@
+[
+  {
+    "task": "T050",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n// and their anchors must resolve, retired packet names must be gone, the surface count must\n// match the hub, and\n// the ROUTER.md load-tier claims must match the machine map. It reports and never rewrites.\nOLD>>> with <<<NEW\n// and their anchors must resolve, retired packet names must be gone, the surface count must\n// match the hub, and the ROUTER.md load-tier claims must match the machine map. It reports\n// and never rewrites.\nNEW>>> and change nothing else.",
+    "check": "grep -c '^// match the hub, and the ROUTER.md load-tier claims must match the machine map. It reports$' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs; grep -c '^// match the hub, and$' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+    "expect": "1\n0"
+  },
+  {
+    "task": "T051",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n      for (const m of line.text.matchAll(LINK)) {\nOLD>>> with <<<NEW\n      const spans = [...line.text.matchAll(/`[^`]*`/g)].map((s) => [s.index, s.index + s[0].length]);\n      for (const m of line.text.matchAll(LINK)) {\n        // A link written inside a code span is an example of link syntax, not a link.\n        if (spans.some(([a, b]) => m.index > a && m.index < b)) continue;\nNEW>>>",
+    "check": "d=$(mktemp -d); mkdir -p $d/sk-code-x; printf '# T\\n' > $d/sk-code-x/t.md; printf 'Write `[Overview](#overview)` or `[a/b/gone.md](x.md#nope)` here.\\n' > $d/sk-code-x/d.md; node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs --root $d --checks paths; echo exit=$?; rm -rf \"$d\"",
+    "expect": "PASS check paths"
+  },
+  {
+    "task": "T052",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n  if (label.startsWith('.skilled/') && !label.startsWith(HUB_PREFIX)) return false;\nOLD>>> with <<<NEW\n  if (label.startsWith('.skilled/') && !label.startsWith(HUB_PREFIX)) return false;\n  // An elided prefix such as .../x.md abbreviates a path this guard cannot rebuild.\n  if (/^(?:\\.{3}|\\u2026)\\//.test(label)) return false;\nNEW>>>",
+    "check": "d=$(mktemp -d); mkdir -p $d/sk-code-x; printf '# T\\n' > $d/sk-code-x/t.md; printf '[.../sk-code-x/t.md](./t.md)\\n' > $d/sk-code-x/d.md; node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs --root $d --checks paths; echo exit=$?; rm -rf \"$d\"",
+    "expect": "PASS check paths"
+  },
+  {
+    "task": "T053",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\nfunction packetRoot(hub, rel) {\nOLD>>> with <<<NEW\n// A code fence closes only on the same character, at least as long and with nothing after it, so a\n// four-backtick block can hold a three-backtick example and a tilde block can hold backticks.\nfunction nextFence(open, text) {\n  const m = /^\\s*(`{3,}|~{3,})(.*)$/.exec(text);\n  if (!m) return open;\n  if (!open) return m[1];\n  return m[1][0] === open[0] && m[1].length >= open.length && m[2].trim() === '' ? '' : open;\n}\n\nfunction packetRoot(hub, rel) {\nNEW>>>",
+    "check": "grep -c 'function nextFence' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T054",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n  let inFence = false;\n  return lines.map((text, i) => {\n    const fenceLine = isMarkdown && /^\\s*(?:```|~~~)/.test(text);\n    if (fenceLine) inFence = !inFence;\n    return { text, no: i + 1, fenced: isMarkdown && (inFence || fenceLine) };\n  });\nOLD>>> with <<<NEW\n  let fence = '';\n  return lines.map((text, i) => {\n    const before = fence;\n    if (isMarkdown) fence = nextFence(fence, text);\n    return { text, no: i + 1, fenced: isMarkdown && (before !== '' || fence !== '') };\n  });\nNEW>>>",
+    "check": "grep -c 'fence = nextFence(fence, text)' .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T055",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n  let inFence = false;\n  for (const text of fs.readFileSync(file, 'utf8').split(/\\r?\\n/)) {\n    if (/^\\s*(?:```|~~~)/.test(text)) {\n      inFence = !inFence;\n      continue;\n    }\n    if (inFence) continue;\nOLD>>> with <<<NEW\n  let fence = '';\n  for (const text of fs.readFileSync(file, 'utf8').split(/\\r?\\n/)) {\n    const before = fence;\n    fence = nextFence(fence, text);\n    if (before !== '' || fence !== '') continue;\nNEW>>>",
+    "check": "d=$(mktemp -d); mkdir -p $d/sk-code-x; printf '# T\\n\\n~~~\\n```\\n## In\\n~~~\\n## Real\\n' > $d/sk-code-x/t.md; printf '[a](./t.md#real)\\n' > $d/sk-code-x/d.md; node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs --root $d --checks paths; echo exit=$?; rm -rf \"$d\"",
+    "expect": "PASS check paths"
+  },
+  {
+    "task": "T056",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n  const hub = rootIdx !== -1 && argv[rootIdx + 1] ? path.resolve(argv[rootIdx + 1]) : DEFAULT_HUB;\nOLD>>> with <<<NEW\n  if (rootIdx !== -1 && !argv[rootIdx + 1]) {\n    console.error(`${usage} (--root needs a directory)`);\n    process.exit(2);\n  }\n  const hub = rootIdx !== -1 ? path.resolve(argv[rootIdx + 1]) : DEFAULT_HUB;\nNEW>>>",
+    "check": "node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs --root 2>&1; echo exit=$?",
+    "expect": "exit=2"
+  },
+  {
+    "task": "T057",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n  return text.replace(/\\[([^\\]]*)\\]\\([^)]*\\)/g, '$1').trim().toLowerCase()\nOLD>>> with <<<NEW\n  return text.replace(/\\[([^\\]]*)\\]\\([^)]*\\)/g, '$1').replace(/(?<!\\w)_([^_\\s](?:[^_]*[^_\\s])?)_(?!\\w)/g, '$1').trim().toLowerCase()\nNEW>>>",
+    "check": "d=$(mktemp -d); mkdir -p $d/sk-code-x; printf '# T\\n\\n## _Emph_ heading\\n' > $d/sk-code-x/t.md; printf '[a](./t.md#emph-heading)\\n' > $d/sk-code-x/d.md; node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs --root $d --checks paths; echo exit=$?; rm -rf \"$d\"",
+    "expect": "PASS check paths"
+  },
+  {
+    "task": "T058",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n  const seen = new Map();\nOLD>>> with <<<NEW\n  const seen = new Map();\n  let previous = '';\nNEW>>>",
+    "check": "grep -c \"let previous = ''\" .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
+    "expect": "1"
+  },
+  {
+    "task": "T059",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs, replace the exact text <<<OLD\n    const heading = /^#{1,6}\\s+(.*?)(?:\\s+#+)?\\s*$/.exec(text);\nOLD>>> with <<<NEW\n    const heading = /^ {0,3}#{1,6}\\s+(.*?)(?:\\s+#+)?\\s*$/.exec(text)\n      || (/^ {0,3}(?:=+|-+)\\s*$/.test(text) && /^[\\p{L}\\p{N}`]/u.test(previous) ? [text, previous.trim()] : null);\n    previous = text;\nNEW>>>",
+    "check": "d=$(mktemp -d); mkdir -p $d/sk-code-x; printf 'Setext Title\\n============\\n\\n\\n\\n   ## Indented\\n' > $d/sk-code-x/t.md; printf '[a](./t.md#setext-title) [b](./t.md#indented)\\n' > $d/sk-code-x/d.md; node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs --root $d --checks paths; echo exit=$?; rm -rf \"$d\"",
+    "expect": "PASS check paths"
+  },
+  {
+    "task": "T060",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs, replace the exact text <<<OLD\ntest('known-bad tiers: a file the prose says always loads but DEFAULT_RESOURCE omits is reported', (t) => {\nOLD>>> with <<<NEW\ntest('known-good paths: code-span link examples, elided labels, nested fences, setext headings and emphasis headings are not reported', (t) => {\n  const hub = buildHub(t);\n  write(path.join(hub, 'sk-code-demo', 'references', 'target.md'), [\n    'Setext Title',\n    '============',\n    '## _Emph_ heading',\n    '~~~',\n    '```',\n    '## In a tilde block',\n    '~~~',\n    '## After the tilde block',\n    '',\n  ].join('\\n'));\n  write(path.join(hub, 'sk-code-demo', 'references', 'good.md'), [\n    'Write `[Overview](#overview)` as a TOC entry.',\n    '[.../references/target.md](./target.md)',\n    '[a](./target.md#setext-title) [b](./target.md#emph-heading) [c](./target.md#after-the-tilde-block)',\n    '',\n  ].join('\\n'));\n  const { status, out } = run(hub, 'paths');\n  assert.equal(status, 0, out);\n  assert.match(out, /PASS check paths/);\n});\n\ntest('a --root with no value prints a usage line and exits 2', () => {\n  const result = spawnSync(process.execPath, [CHECKER, '--root'], { encoding: 'utf8' });\n  assert.equal(result.status, 2, result.stderr);\n  assert.match(result.stderr, /^usage: verify_doc_claims .*--root needs a directory/);\n});\n\ntest('known-bad tiers: a file the prose says always loads but DEFAULT_RESOURCE omits is reported', (t) => {\nNEW>>>",
+    "check": "node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs 2>&1 | grep -E '^. (pass|fail) '",
+    "expect": "pass 12"
+  },
+  {
+    "task": "T061",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md, replace the exact text <<<OLD\n[code_organization.md](code-organization/overview-and-module-organization.md)\nOLD>>> with <<<NEW\n[code-organization/overview-and-module-organization.md](code-organization/overview-and-module-organization.md)\nNEW>>>",
+    "check": "sed -n '139p' .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+    "expect": "[code-organization/overview-and-module-organization.md](code-organization/overview-and-module-organization.md)"
+  },
+  {
+    "task": "T062",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md, replace the exact text <<<OLD\n[universal_patterns.md](universal-patterns/naming-and-commenting.md)\nOLD>>> with <<<NEW\n[universal-patterns/naming-and-commenting.md](universal-patterns/naming-and-commenting.md)\nNEW>>>",
+    "check": "sed -n '140p' .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+    "expect": "[universal-patterns/naming-and-commenting.md](universal-patterns/naming-and-commenting.md)"
+  },
+  {
+    "task": "T063",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-opencode/references/config/quality-standards.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-opencode/references/config/quality-standards.md, replace the exact text <<<OLD\n[code_organization.md](../shared/code-organization/overview-and-module-organization.md)\nOLD>>> with <<<NEW\n[shared/code-organization/overview-and-module-organization.md](../shared/code-organization/overview-and-module-organization.md)\nNEW>>>",
+    "check": "sed -n '110p' .skilled/skills/sk-code/sk-code-opencode/references/config/quality-standards.md",
+    "expect": "[shared/code-organization/overview-and-module-organization.md](../shared/code-organization/overview-and-module-organization.md)"
+  }
+]
