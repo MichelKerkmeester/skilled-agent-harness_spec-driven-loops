@@ -196,3 +196,52 @@ describe('reduceReviewState — iteration numbering', () => {
     expect(result.dashboard).not.toContain('| undefined |');
   });
 });
+
+describe('reduceReviewState: finding narrative', () => {
+  it('reduces an iteration to the same findings when each finding carries a Case line', () => {
+    // Every finding carries a Case line. The narrative reader must skip it: a Case
+    // line is evidence for its finding, not a finding of its own.
+    const reduceNarrative = (narrative: string) => {
+      const { specFolder, reviewDir } = makeReviewDir();
+      mkdirSync(join(reviewDir, 'iterations'), { recursive: true });
+      writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({ maxIterations: 5, reviewTarget: 'case-line-proof' }));
+      writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${JSON.stringify({
+        type: 'iteration',
+        iteration: 1,
+        status: 'complete',
+        focus: 'correctness',
+        newFindingsRatio: 1,
+        findingsSummary: { P0: 0, P1: 1, P2: 1 },
+      })}\n`);
+      writeFileSync(join(reviewDir, 'iterations', 'iteration-001.md'), narrative);
+      return reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }).registry;
+    };
+    const narrative = (withCase: boolean) => [
+      '# Iteration 1: Correctness',
+      '',
+      '## Findings',
+      '',
+      '### P1 Findings',
+      '',
+      '- **F001**: Guard compares paths lexically - `scripts/apply.cjs:12` - Use a containment test',
+      ...(withCase ? ['  - Case: a path with a trailing dot-dot segment passes the guard'] : []),
+      '',
+      '### P2 Findings',
+      '',
+      '- **F002**: Stale comment - `scripts/apply.cjs:40` - Update it',
+      ...(withCase ? ['  Case: reading the comment next to the call shows the old flag name'] : []),
+      '',
+      'Review verdict: CONDITIONAL',
+      '',
+    ].join('\n');
+
+    const plain = reduceNarrative(narrative(false));
+    const withCase = reduceNarrative(narrative(true));
+
+    expect(plain.openFindingsCount).toBe(2);
+    expect(withCase.openFindingsCount).toBe(plain.openFindingsCount);
+    expect(withCase.openFindings.map((f) => [f.findingId, f.severity, f.title]))
+      .toEqual(plain.openFindings.map((f) => [f.findingId, f.severity, f.title]));
+    expect(withCase.openFindings.map((f) => f.severity)).toEqual(['P1', 'P2']);
+  });
+});

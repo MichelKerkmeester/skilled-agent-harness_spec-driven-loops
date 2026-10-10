@@ -205,6 +205,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 - Inside findings, use `### P0 Findings`, `### P1 Findings`, and `### P2 Findings`.
 - Findings use numbered bullets: `N. **Title** -- file:line -- Description`.
 - Each finding includes three fix-completeness lines: `Finding class: ...`, `Scope proof: ...`, and `Affected surface hints: ...`.
+- Each finding also includes a fourth required line, `Case: ...`, the input or situation that produces the wrong result. A finding with no case is not reported, at any severity. Write the case on one line that does not start with a number and a period, because the iteration finding counter reads a numbered line as another finding.
 - P0/P1 findings include claim-adjudication JSON directly below the finding.
 - `## Next Focus` keeps only these fields: dimension, focus area, reason, rotation status, blocked/productive carry-forward, required evidence, recovery note when applicable.
 - The reducer reads both legacy section names and the live section names above.
