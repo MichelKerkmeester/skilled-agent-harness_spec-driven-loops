@@ -1,0 +1,30 @@
+// Planner simulation: compiles the sk-code policy with a candidate tieBreak in memory and runs the canary cases plus probes. Writes nothing.
+'use strict';
+const fs = require('fs');
+const path = require('path');
+const ROOT = process.cwd();
+const LIB = path.join(ROOT, '.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code');
+const { compileRegistry } = require(path.join(LIB, 'lib/registry-compiler.cjs'));
+const H = require(path.join(LIB, 'harness/build-artifacts.cjs'));
+const SK = path.join(ROOT, '.skilled/skills/sk-code');
+const tie = JSON.parse(process.argv[2]);
+const extra = process.argv.slice(3);
+const src = { 'SKILL.md': fs.readFileSync(path.join(SK, 'SKILL.md')), 'hub-router.json': fs.readFileSync(path.join(SK, 'hub-router.json')), 'mode-registry.json': fs.readFileSync(path.join(SK, 'mode-registry.json')) };
+const OLD_TIE = '"tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-webflow", "sk-code-opencode", "sk-code-obsidian"]';
+const text = src['hub-router.json'].toString('utf8');
+if (!text.includes(OLD_TIE)) throw new Error('current tieBreak line not found');
+src['hub-router.json'] = Buffer.from(text.replace(OLD_TIE, '"tieBreak": ' + JSON.stringify(tie).replace(/,/g, ', ')), 'utf8');
+const hubRouter = JSON.parse(src['hub-router.json'].toString('utf8'));
+const fixture = JSON.parse(fs.readFileSync(path.join(LIB, 'fixtures/canary-cases.v1.json'), 'utf8'));
+const snapshot = compileRegistry({ activationGeneration: fixture.activationGeneration, hubRouter, registry: JSON.parse(src['mode-registry.json']), skillMarkdown: src['SKILL.md'].toString(), sourceBytes: src });
+const cases = fixture.cases.concat(extra.map((p, i) => ({ id: 'probe-' + i + ' ' + JSON.stringify(p), prompt: p, riskSlice: 'actor:mutating:composite', expectedAction: 'route', gold: { expectedIntents: [], expectedResources: [] } })));
+const rows = H.typedGold(snapshot, { ...fixture, cases }).cases;
+let bad = 0;
+cases.forEach((c, i) => {
+  const r = rows[i];
+  const modes = r.targetQualifiedIds.map((q) => q.split('/')[1]);
+  const ok = r.decisionAction === c.expectedAction && (!c.expectedSelectionKind || r.selectionKind === c.expectedSelectionKind) && (!c.expectedModes || JSON.stringify(modes) === JSON.stringify(c.expectedModes));
+  if (!ok) bad++;
+  console.log(ok ? 'OK' : 'FAIL', c.id, r.decisionAction, r.selectionKind || '-', modes.join(','));
+});
+console.log('cases', rows.length, 'failures', bad);

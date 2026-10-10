@@ -1,0 +1,4 @@
+"obsidian plugin webflow implementation" route orderedBundle sk-code-webflow,sk-code-obsidian
+"obsidian opencode" route orderedBundle sk-code-opencode,sk-code-obsidian
+"webflow opencode" route orderedBundle sk-code-webflow,sk-code-opencode
+"opencode webflow obsidian" route orderedBundle sk-code-webflow,sk-code-opencode,sk-code-obsidian

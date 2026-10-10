@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/003-hub-surface-precedence",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/003-hub-surface-precedence",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hub surface precedence",
+      "phase 3 hub surface precedence",
+      "hub surface precedence plan",
+      "hub surface precedence tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "hub surface precedence implementation summary"
+    ],
+    "key_topics": [
+      "hub",
+      "surface",
+      "precedence",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/skills/sk-code/mode-registry.json",
+      ".skilled/skills/sk-code/description.json",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/ROUTER.md",
+      ".skilled/skills/sk-code/README.md",
+      ".skilled/skills/sk-code/changelog/v2.2.6.0.md",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+      ".skilled/skills/sk-code/shared/references/stack-detection.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      "scratch/units/v2.2.6.0.md",
+      "scratch/dispatch-units.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.2.6.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/changelog/v2.2.6.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "stack-detection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/stack-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-units.json",
+        "kind": "config",
+        "path": "scratch/dispatch-units.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The canary router keeps every mode within the ambiguity delta and sorts the kept set by `routerPolicy.tieBreak` (`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs:264`)",
+    "created_at": "2026-10-10T14:44:43Z",
+    "last_save_at": "2026-10-10T16:50:12.155Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4d34ff536b53215c5543b50d65725e1b88cf9246ad0814a474bf78d3bf116ab9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8f9fb819ec3e0c90073bd36ad079fba253b9ffc1079f33431e08762f64cc7072",
+      "plan.md": "1279135eb994ef6c4c14a5ec8896c1afc38acead9836650fd4e653ff07cf217b",
+      "tasks.md": "ea03b4bbc7e400764a4b535e27b445571ab84449c0714852b471354b56c3229c",
+      "implementation-summary.md": "1244e39d1ee603bf5e56d2e4712f386fccd83d62222a7ebeb3eed9b0e54e59c3"
+    },
+    "last_active_at": null
+  }
+}

@@ -2,7 +2,7 @@
 name: sk-code
 description: "Implement, debug and verify code: TypeScript, Python, shell, JSON; quality and review workflow modes with stack surface packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.2.5.0
+version: 2.2.6.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -74,7 +74,7 @@ Root `ROUTER.md` owns the second-stage `INTENT_SIGNALS` / `RESOURCE_MAP`. Packet
 - **`packetKind`** - the axis: `workflow` (a mode that acts) or `surface` (read-only evidence bundled alongside a mode).
 - **`backendKind`** - which backend runs the packet: `surface-router` or `review-cache` for workflow modes, `evidence-base` for surface packets.
 
-Surface packets are advisor-invisible (`routingClass: metadata`, read-only `toolSurface`): the advisor still routes the single identity `sk-code`, and the hub bundles zero-or-more surfaces as evidence via `routerPolicy.outcomes.surfaceBundle` (workflow mode ordered first, surfaces after). "review my webflow animation for jank" → `[sk-code-review, sk-code-webflow]`.
+Surface packets are advisor-invisible (`routingClass: metadata`, read-only `toolSurface`): the advisor still routes the single identity `sk-code`, and the hub bundles zero-or-more surfaces as evidence via `routerPolicy.outcomes.surfaceBundle` (workflow mode ordered first, surfaces after). "review my webflow animation for jank" → `[sk-code-review, sk-code-webflow]`. Bundled surfaces follow the `routerPolicy.tieBreak` order, which is the detection precedence OPENCODE > OBSIDIAN > WEBFLOW, so the higher-precedence evidence packet comes first.
 
 ### Routing rule
 ```python

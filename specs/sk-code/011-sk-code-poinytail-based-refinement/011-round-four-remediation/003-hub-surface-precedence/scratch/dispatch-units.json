@@ -1,0 +1,122 @@
+[
+  {
+    "task": "T012",
+    "files": [
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json, replace the exact text <<<OLD\n      \"expectedModes\": [\"sk-code-review\", \"sk-code-obsidian\"],\n      \"gold\": {\n        \"expectedIntents\": [\"sk-code-review\", \"sk-code-obsidian\"],\n        \"expectedResources\": []\n      }\n    },\n    {\n      \"id\": \"single-quality\",\nOLD>>> with <<<NEW\n      \"expectedModes\": [\"sk-code-review\", \"sk-code-obsidian\"],\n      \"gold\": {\n        \"expectedIntents\": [\"sk-code-review\", \"sk-code-obsidian\"],\n        \"expectedResources\": []\n      }\n    },\n    {\n      \"id\": \"surface-collision-obsidian-over-webflow-implementation\",\n      \"prompt\": \"obsidian plugin webflow implementation\",\n      \"riskSlice\": \"actor:mutating:composite\",\n      \"expectedAction\": \"route\",\n      \"expectedSelectionKind\": \"orderedBundle\",\n      \"expectedModes\": [\"sk-code-obsidian\", \"sk-code-webflow\"],\n      \"gold\": {\n        \"expectedIntents\": [\"sk-code-obsidian\", \"sk-code-webflow\"],\n        \"expectedResources\": []\n      }\n    },\n    {\n      \"id\": \"single-quality\",\nNEW>>>",
+    "check": "grep -c -F -- '\"id\": \"surface-collision-obsidian-over-webflow-implementation\",' .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+    "expect": "1"
+  },
+  {
+    "task": "T013",
+    "files": [
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/003-hub-surface-precedence/scratch/neg-canary.txt"
+    ],
+    "kind": "command",
+    "instruction": "node specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/003-hub-surface-precedence/scratch/canary-assert.cjs > specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/003-hub-surface-precedence/scratch/neg-canary.txt 2>&1; echo \"exit=$?\"",
+    "check": "tail -1 specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/003-hub-surface-precedence/scratch/neg-canary.txt; grep -c -F 'FAIL surface-collision-obsidian-over-webflow-implementation route orderedBundle sk-code-webflow,sk-code-obsidian' specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/003-hub-surface-precedence/scratch/neg-canary.txt",
+    "expect": "cases 13 failures 1"
+  },
+  {
+    "task": "T014",
+    "files": [
+      ".skilled/skills/sk-code/hub-router.json"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/hub-router.json, replace the exact text <<<OLD\n    \"tieBreak\": [\"sk-code-quality\", \"sk-code-review\", \"sk-code-webflow\", \"sk-code-opencode\", \"sk-code-obsidian\"],\nOLD>>> with <<<NEW\n    \"tieBreak\": [\"sk-code-quality\", \"sk-code-review\", \"sk-code-opencode\", \"sk-code-obsidian\", \"sk-code-webflow\"],\nNEW>>>",
+    "check": "grep -c -F -- '\"tieBreak\": [\"sk-code-quality\", \"sk-code-review\", \"sk-code-opencode\", \"sk-code-obsidian\", \"sk-code-webflow\"],' .skilled/skills/sk-code/hub-router.json",
+    "expect": "1"
+  },
+  {
+    "task": "T015",
+    "files": [
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json"
+    ],
+    "kind": "command",
+    "instruction": "cp .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+    "check": "cmp .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json; echo \"cmp=$?\"",
+    "expect": "cmp=0"
+  },
+  {
+    "task": "T016",
+    "files": [
+      ".skilled/skills/sk-code/hub-router.json"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/hub-router.json, replace the exact text <<<OLD\n  \"version\": \"2.2.5.0\",\nOLD>>> with <<<NEW\n  \"version\": \"2.2.6.0\",\nNEW>>>",
+    "check": "grep -c -F -- '\"version\": \"2.2.6.0\",' .skilled/skills/sk-code/hub-router.json",
+    "expect": "1"
+  },
+  {
+    "task": "T017",
+    "files": [
+      ".skilled/skills/sk-code/mode-registry.json"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/mode-registry.json, replace the exact text <<<OLD\n  \"version\": \"2.2.5.0\",\nOLD>>> with <<<NEW\n  \"version\": \"2.2.6.0\",\nNEW>>>",
+    "check": "grep -c -F -- '\"version\": \"2.2.6.0\",' .skilled/skills/sk-code/mode-registry.json",
+    "expect": "1"
+  },
+  {
+    "task": "T018",
+    "files": [
+      ".skilled/skills/sk-code/description.json"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/description.json, replace the exact text <<<OLD\n  \"version\": \"2.2.5.0\",\nOLD>>> with <<<NEW\n  \"version\": \"2.2.6.0\",\nNEW>>>",
+    "check": "grep -c -F -- '\"version\": \"2.2.6.0\",' .skilled/skills/sk-code/description.json",
+    "expect": "1"
+  },
+  {
+    "task": "T019",
+    "files": [
+      ".skilled/skills/sk-code/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/SKILL.md, replace the exact text <<<OLD\nversion: 2.2.5.0\nOLD>>> with <<<NEW\nversion: 2.2.6.0\nNEW>>>",
+    "check": "grep -c -F -- 'version: 2.2.6.0' .skilled/skills/sk-code/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T020",
+    "files": [
+      ".skilled/skills/sk-code/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/SKILL.md, replace the exact text <<<OLD\n\"review my webflow animation for jank\" → `[sk-code-review, sk-code-webflow]`.\nOLD>>> with <<<NEW\n\"review my webflow animation for jank\" → `[sk-code-review, sk-code-webflow]`. Bundled surfaces follow the `routerPolicy.tieBreak` order, which is the detection precedence OPENCODE > OBSIDIAN > WEBFLOW, so the higher-precedence evidence packet comes first.\nNEW>>>",
+    "check": "grep -c -F -- 'Bundled surfaces follow the `routerPolicy.tieBreak` order' .skilled/skills/sk-code/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T021",
+    "files": [
+      ".skilled/skills/sk-code/ROUTER.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/ROUTER.md, replace the exact text <<<OLD\nversion: 2.2.5.0\nOLD>>> with <<<NEW\nversion: 2.2.6.0\nNEW>>>",
+    "check": "grep -c -F -- 'version: 2.2.6.0' .skilled/skills/sk-code/ROUTER.md",
+    "expect": "1"
+  },
+  {
+    "task": "T022",
+    "files": [
+      ".skilled/skills/sk-code/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/README.md, replace the exact text <<<OLD\nversion: 2.2.5.0\nOLD>>> with <<<NEW\nversion: 2.2.6.0\nNEW>>>",
+    "check": "grep -c -F -- 'version: 2.2.6.0' .skilled/skills/sk-code/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T023",
+    "files": [
+      ".skilled/skills/sk-code/changelog/v2.2.6.0.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/sk-code/changelog/v2.2.6.0.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/003-hub-surface-precedence/scratch/units/v2.2.6.0.md",
+    "check": "cmp .skilled/skills/sk-code/changelog/v2.2.6.0.md specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/003-hub-surface-precedence/scratch/units/v2.2.6.0.md; echo \"cmp=$?\"",
+    "expect": "cmp=0"
+  }
+]

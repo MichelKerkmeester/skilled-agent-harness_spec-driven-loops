@@ -1,10 +1,10 @@
 {
   "skill": "sk-code",
-  "version": "2.2.5.0",
+  "version": "2.2.6.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-webflow", "sk-code-opencode", "sk-code-obsidian"],
+    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-opencode", "sk-code-obsidian", "sk-code-webflow"],
     "outcomes": {
       "single": "one dominant code intent routes to one workflow mode",
       "orderedBundle": "clearly separate code intents route to an ordered workflow-mode list",

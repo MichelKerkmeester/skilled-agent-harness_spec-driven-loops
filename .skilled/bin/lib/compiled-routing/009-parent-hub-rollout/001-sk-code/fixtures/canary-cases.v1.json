@@ -102,6 +102,18 @@
       }
     },
     {
+      "id": "surface-collision-obsidian-over-webflow-implementation",
+      "prompt": "obsidian plugin webflow implementation",
+      "riskSlice": "actor:mutating:composite",
+      "expectedAction": "route",
+      "expectedSelectionKind": "orderedBundle",
+      "expectedModes": ["sk-code-obsidian", "sk-code-webflow"],
+      "gold": {
+        "expectedIntents": ["sk-code-obsidian", "sk-code-webflow"],
+        "expectedResources": []
+      }
+    },
+    {
       "id": "single-quality",
       "prompt": "run the quality gate before done",
       "riskSlice": "actor:mutating:single",

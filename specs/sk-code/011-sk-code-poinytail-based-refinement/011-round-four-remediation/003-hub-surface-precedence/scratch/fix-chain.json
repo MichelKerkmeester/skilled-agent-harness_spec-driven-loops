@@ -1,0 +1,12 @@
+[
+  {
+    "task": "T040",
+    "files": [
+      ".skilled/skills/sk-code/changelog/v2.2.6.0.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/changelog/v2.2.6.0.md, replace the exact text <<<OLD\n- **The hub page says why the order reads that way.** `SKILL.md` now states that the router's tie-break list orders surfaces by detection precedence, so a later edit to that list keeps the rule.\nOLD>>> with <<<NEW\n- **The hub page says why the order reads that way.** `SKILL.md` now states that the router's tie-break list orders surfaces by detection precedence, so a later edit to that list keeps the rule.\n- **OpenCode now leads Webflow when both match.** A Webflow prompt that also carries OpenCode vocabulary such as `typescript`, `vitest`, `json` or `config` used to list the Webflow packet first and now lists the OpenCode packet first. Which packets load does not change, only their order.\nNEW>>>",
+    "check": "grep -c 'OpenCode now leads Webflow when both match' .skilled/skills/sk-code/changelog/v2.2.6.0.md && python3 -I .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/changelog/v2.2.6.0.md | grep 'Total issues: 0'",
+    "expect": "Total issues: 0"
+  }
+]
