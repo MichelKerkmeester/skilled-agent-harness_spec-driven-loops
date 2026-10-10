@@ -146,9 +146,15 @@ jobs:
             if (regressions > 0) {
               console.log("");
               console.log(`::warning::${regressions} packet(s) regressed against the stored baseline`);
+              // Folder names come from the tree and can hold line breaks or "::"
+              // text, which the runner would read as workflow commands. Command
+              // parsing stays off until the random token closes the block.
+              const token = require("node:crypto").randomUUID();
+              console.log(`::stop-commands::${token}`);
               for (const x of rows.filter(y => y.status === "regression").slice(0, 25)) {
                 console.log(`  ${x.folder}: ${x.message}`);
               }
+              console.log(`::${token}::`);
             }
           '
 
@@ -159,7 +165,17 @@ jobs:
         continue-on-error: true
         run: |
           set -euo pipefail
-          node .opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --roots specs || true
+          # The report names packet folders, and a folder name can hold a line break
+          # followed by workflow-command text. The output is replayed inside a
+          # stop-commands block that only a random token closes.
+          report="$(mktemp)"
+          node .opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --roots specs > "$report" 2>&1 || true
+          token="$(node -e 'process.stdout.write(require("node:crypto").randomUUID())')"
+          [[ -n "$token" ]] || exit 1
+          printf '::stop-commands::%s\n' "$token"
+          cat "$report"
+          printf '\n::%s::\n' "$token"
+          rm -f "$report"
 
       - name: Publish the report
         if: always()

@@ -1,6 +1,6 @@
 name: Trigger Index Rebuild
 
-# The advisory PR check can only report trigger-index drift. This job repairs it
+# The advisory PR check can only report trigger-index drift. This workflow repairs it
 # on the integration branches after merge, so drift never accumulates silently
 # and local generators stay the source of truth rather than hand-edited output.
 on:
@@ -8,9 +8,16 @@ on:
     branches: [main, 'skilled/**']
   workflow_dispatch:
 
-permissions:
-  contents: write
+# No scope applies to the run as a whole. Each job names the scopes it needs.
+permissions: {}
 
+# The group covers the whole run, so the rebuild and push jobs share one slot. At
+# most one run is in progress and one is pending, and a newer pending run replaces
+# an older one, so the run for the newest push is never dropped. That run starts
+# after this one and rebuilds on the newest tip, which is why a rejected push exits
+# 0 instead of retrying. The one gap: a commit pushed with the default GITHUB_TOKEN
+# starts no workflow run, so a rebuild that loses a race to such a commit leaves the
+# index unrebuilt until the next push to the branch.
 concurrency:
   group: trigger-index-rebuild-${{ github.ref }}
   cancel-in-progress: false
@@ -18,20 +25,28 @@ concurrency:
 jobs:
   rebuild:
     name: Rebuild the trigger index
-    # The rebuild pushes with a personal token, so its own push starts this
+    # The push job pushes the rebuild with a personal token, so its push starts this
     # workflow again under the token owner's name. The trailer the commit step
     # adds must END the message: a commit that merely quotes it in its body
     # still needs its own rebuild. Suffix matching errs toward running, and a
     # fail-open costs at most one run that finds nothing to commit.
     if: "${{ !endsWith(github.event.head_commit.message, 'Trigger-Index-Rebuild: ci') }}"
     runs-on: ubuntu-latest
+    # This job holds no secret and no write scope. It runs the repository's install,
+    # build and generator, so nothing here may be able to reach the push token. The
+    # push job receives the commit as a bundle and nothing else.
+    permissions:
+      contents: read
+    outputs:
+      committed: ${{ steps.commit.outputs.committed }}
+      rebuild_sha: ${{ steps.commit.outputs.rebuild_sha }}
     steps:
-      # The default token cannot pass the required commit-message check on
-      # main; a fine-grained token owned by a ruleset bypass actor can.
+      # The checkout only reads, so it persists no credential into the git
+      # configuration.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 1
-          token: ${{ secrets.TRIGGER_INDEX_PUSH_TOKEN || github.token }}
+          persist-credentials: false
 
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
@@ -43,15 +58,22 @@ jobs:
       - name: Install the workspace and build its shared package
         run: |
           set -euo pipefail
-          npm --prefix .skilled/skills/system-spec-kit ci
+          # Lifecycle scripts stay off; a script could leave a process or hook behind for the commit step.
+          npm --prefix .skilled/skills/system-spec-kit ci --ignore-scripts
           ( cd .skilled/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
 
       - name: Regenerate the trigger index
-        run: node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
+        run: |
+          set -euo pipefail
+          node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
 
-      - name: Commit and push if the index changed
+      - name: Verify and commit the trigger index if it changed
+        id: commit
         run: |
           set -uo pipefail
+          # Hooks stay off for every git command after checkout. The override is
+          # exported so it covers the commit and the git calls around it.
+          export GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.hooksPath GIT_CONFIG_VALUE_0=/dev/null
           # The generator writes the index plus three fixture sidecars; staging
           # the index alone leaves the sidecars stale even though the corpus moved.
           FILES=(
@@ -60,21 +82,67 @@ jobs:
             ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json"
             ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json"
           )
+          GENERATOR=.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
+
+          # The check reads the index alone and ignores the manifest, diagnostics
+          # and variants, so it cannot vouch for the sidecars. The generator is
+          # deterministic, so each output must equal the copy a fresh generation
+          # writes into a scratch directory. A run that wrote nothing, or wrote
+          # only part of the set, fails here.
+          verify_outputs() {
+            local scratch path status=0
+            scratch="$(mktemp -d)" || return 1
+            if ! node "$GENERATOR" --quiet --out "$scratch/trigger-index.json"; then
+              echo "::error::The fresh generation that verifies the outputs exited non-zero; not committing."
+              rm -rf "$scratch"
+              return 1
+            fi
+            for path in "${FILES[@]}"; do
+              if [[ ! -f "$path" ]]; then
+                echo "::error::The generator did not write ${path}; not committing a partial rebuild."
+                status=1
+              elif ! cmp -s "$path" "$scratch/$(basename "$path")"; then
+                echo "::error::${path} does not match a fresh generation; not committing a stale or partial rebuild."
+                status=1
+              fi
+            done
+            rm -rf "$scratch"
+            return "$status"
+          }
+
+          # The check names corpus paths, and a file name can hold a line break
+          # followed by text the runner reads as a workflow command. The report is
+          # replayed inside a stop-commands block that only the random token closes.
+          check_index() {
+            local log token status=0
+            log="$(mktemp)" || return 1
+            node "$GENERATOR" --check >"$log" 2>&1 || status=$?
+            token="$(node -e 'process.stdout.write(require("node:crypto").randomUUID())')"
+            if [[ -z "$token" ]]; then
+              rm -f "$log"
+              return 1
+            fi
+            printf '::stop-commands::%s\n' "$token"
+            cat "$log"
+            printf '\n::%s::\n' "$token"
+            rm -f "$log"
+            return "$status"
+          }
+
+          # Every output is verified before the diff, so a generator that exited
+          # zero without writing the full set cannot pass as "already current".
+          if ! verify_outputs; then
+            exit 1
+          fi
           # Diff against the committed content: unchanged outputs need no commit.
           if git diff --quiet -- "${FILES[@]}"; then
             echo "Trigger index is current; nothing to commit."
+            echo "committed=false" >>"$GITHUB_OUTPUT"
             exit 0
           fi
-          # The generator's --check reads the index alone, so a sidecar it failed to
-          # write would slip past it; a partial rebuild must not be committed.
-          for path in "${FILES[@]}"; do
-            if [[ ! -f "$path" ]]; then
-              echo "::error::The generator did not write ${path}; not committing a partial rebuild."
-              exit 1
-            fi
-          done
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          base_sha="$(git rev-parse --verify HEAD)"
           git add "${FILES[@]}"
           # The guard above matches this trailer to recognize the job's own push.
           git commit -m "chore(system-spec-kit): rebuild the trigger index" \
@@ -82,85 +150,173 @@ jobs:
             -m "Trigger-Index-Rebuild: ci"
           # Re-run the generator's checker against the committed tree so a rebuild
           # that cannot satisfy its own check never reaches the branch.
-          if ! node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check; then
-            echo "::error::The committed trigger index fails its own --check; not pushing the rebuild."
+          if ! check_index; then
+            echo "::error::The committed trigger index fails its own --check; not handing the rebuild to the push job."
             exit 1
           fi
-          # A push can lose a race with another writer, and the remote rejects
-          # the stale tip. Only that rejection is recoverable; authentication
-          # and ruleset failures need the token guidance, and anything else
-          # needs the raw push output. The rejected commit carries nothing but
-          # regenerated output, so the retry drops it with a hard reset and
-          # rebuilds on the new tip; replaying it through a rebase would stop
-          # on a conflict whenever the new tip regenerated the same files.
-          PUSH_OUTPUT=""
-          PUSH_FAILURE=""
-          classify_push_failure() {
-            if grep -Eq 'non-fast-forward|fetch first|\[rejected\]' <<<"$1"; then
-              PUSH_FAILURE="non-fast-forward"
-            elif grep -Eqi 'authentication failed|could not read username|terminal prompts disabled|permission .* denied|error: 403|repository rule violations|GH013|GH006|protected branch' <<<"$1"; then
-              PUSH_FAILURE="authentication"
-            else
-              PUSH_FAILURE="other"
-            fi
-          }
-          report_push_failure() {
-            case "$PUSH_FAILURE" in
-              non-fast-forward)
-                echo "::error::${1} push was rejected as non-fast-forward again after resetting to the new tip; the branch kept moving, so the rebuilt index was not pushed."
-                ;;
-              authentication)
-                echo "::error::${1} push failed with an authentication or branch-ruleset error. The branch ruleset is the likely cause; set the TRIGGER_INDEX_PUSH_TOKEN secret to a fine-grained token with Contents write, owned by a ruleset bypass actor."
+          # The push job fetches exactly this commit. The bundle holds the commit on
+          # top of the checked-out base, and nothing else is reachable from it.
+          if ! git bundle create "$RUNNER_TEMP/rebuild.bundle" "${base_sha}..HEAD"; then
+            echo "::error::The rebuild commit could not be bundled; not handing it to the push job."
+            exit 1
+          fi
+          echo "rebuild_sha=$(git rev-parse --verify HEAD)" >>"$GITHUB_OUTPUT"
+          # The upload and the push job run only when this output is true.
+          echo "committed=true" >>"$GITHUB_OUTPUT"
+
+      # The bundle is the only data that crosses to the push job. Its retention is
+      # one day, since the push job runs straight after this one.
+      - name: Upload the rebuild bundle
+        if: ${{ steps.commit.outputs.committed == 'true' }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: trigger-index-rebuild-bundle
+          path: ${{ runner.temp }}/rebuild.bundle
+          retention-days: 1
+          if-no-files-found: error
+
+  push:
+    name: Push the trigger index rebuild
+    # This job runs on a fresh runner after the rebuild job finishes. Nothing from
+    # the job that ran repository code carries over: no process, environment
+    # variable, GITHUB_ENV or GITHUB_PATH entry, git configuration or workspace
+    # file. Its steps run gh and git only, and the push step is the only one that
+    # sees the token.
+    needs: rebuild
+    if: needs.rebuild.outputs.committed == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      # contents: write is the push. actions: read lets gh list and fetch the run's
+      # artifacts through the Actions API.
+      actions: read
+      contents: write
+    steps:
+      - name: Check out the base commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      # gh is first-party and preinstalled, so this step needs no third-party action.
+      # Its token reads the run's artifacts and nothing in the repository runs here.
+      - name: Download the rebuild bundle
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          gh run download "$GITHUB_RUN_ID" -n trigger-index-rebuild-bundle -D "$RUNNER_TEMP/bundle"
+
+      # The bundle came from the rebuild job, which ran repository code, so it is
+      # checked before anything is pushed. Git reads the bundle as data. The commit
+      # must be the rebuild job's output, sit directly on the checked-out base, be
+      # the only commit added, and change only the trigger index outputs.
+      - name: Verify the rebuild bundle
+        env:
+          REBUILD_SHA: ${{ needs.rebuild.outputs.rebuild_sha }}
+        run: |
+          set -euo pipefail
+          # Hooks stay off for every git call here.
+          export GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.hooksPath GIT_CONFIG_VALUE_0=/dev/null
+          bundle="$RUNNER_TEMP/bundle/rebuild.bundle"
+          if [[ -z "$REBUILD_SHA" || ! -f "$bundle" ]]; then
+            echo "::error::The rebuild bundle or its commit is missing; not pushing."
+            exit 1
+          fi
+          git bundle verify "$bundle" >/dev/null
+          git fetch --quiet --no-tags "$bundle" HEAD
+          fetched="$(git rev-parse --verify --quiet 'FETCH_HEAD^{commit}' || true)"
+          if [[ "$fetched" != "$REBUILD_SHA" ]]; then
+            echo "::error::The bundle does not hold the commit the rebuild job reported; not pushing."
+            exit 1
+          fi
+          base="$(git rev-parse --verify HEAD)"
+          if [[ "$(git rev-parse --verify "${fetched}^")" != "$base" ]]; then
+            echo "::error::The rebuild commit does not sit on the checked-out base; not pushing."
+            exit 1
+          fi
+          if [[ "$(git rev-list --count "${base}..${fetched}")" != "1" ]]; then
+            echo "::error::The bundle holds more than the one rebuild commit; not pushing."
+            exit 1
+          fi
+          changed="$(git diff --name-only --no-renames "$base" "$fetched")"
+          if [[ -z "$changed" ]]; then
+            echo "::error::The rebuild commit changes no path; not pushing."
+            exit 1
+          fi
+          # The same four paths the commit step stages. A path outside them is not
+          # echoed, since a crafted name could carry a workflow command.
+          while IFS= read -r path; do
+            case "$path" in
+              .skilled/skills/system-spec-kit/runtime/data/trigger-index.json | \
+              .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json | \
+              .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json | \
+              .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json)
                 ;;
               *)
-                echo "::error::${1} push failed for a reason other than a non-fast-forward race or an authentication error; see the push output above."
+                echo "::error::The rebuild commit changes a path outside the trigger index outputs; not pushing."
+                exit 1
                 ;;
             esac
-          }
-          if ! PUSH_OUTPUT="$(git push 2>&1)"; then
+          done <<<"$changed"
+          echo "The rebuild commit ${fetched} is one commit on the checked-out base and changes only the trigger index outputs."
+
+      # This is the only step that holds the write token, and it runs git only. The
+      # push names its URL and never a configured remote, so a repository
+      # configuration cannot reroute it. The protocol pin refuses every transport
+      # except the one named here. No step before this one in the push job runs
+      # repository code, so none of them can set the values this step reads.
+      - name: Push the trigger index rebuild
+        env:
+          # The default token cannot pass the branch ruleset's commit-message check;
+          # a fine-grained token owned by a ruleset bypass actor can.
+          PUSH_TOKEN: ${{ secrets.TRIGGER_INDEX_PUSH_TOKEN || github.token }}
+          PUSH_URL: https://github.com/${{ github.repository }}.git
+          PUSH_PROTOCOL: https
+          REBUILD_SHA: ${{ needs.rebuild.outputs.rebuild_sha }}
+        run: |
+          set -uo pipefail
+          # The credential becomes one HTTP header. It reaches the single git push
+          # through that command's own environment and is never written to the
+          # repository configuration. Dropping the raw token keeps it out of the
+          # environment git itself inherits.
+          PUSH_AUTH_HEADER="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$PUSH_TOKEN" | base64 | tr -d '\n')"
+          unset PUSH_TOKEN
+          # The global and system configuration are skipped, and core.hooksPath=/dev/null
+          # keeps every hook from running with the header in its environment.
+          #
+          # Concurrency: the workflow-level group queues runs (cancel-in-progress is
+          # false), so a run for a newer push never cancels this one. At most one run
+          # is in progress and one is pending, and a newer pending run replaces an
+          # older one, so the run for the newest push is never dropped. That run starts
+          # after this one and rebuilds on the newest tip, which is why a rejected
+          # push exits 0 here instead of retrying.
+          if PUSH_OUTPUT="$(GIT_CONFIG_NOSYSTEM=1 GIT_CONFIG_GLOBAL=/dev/null \
+            GIT_CONFIG_COUNT=2 \
+            GIT_CONFIG_KEY_0="http.${GITHUB_SERVER_URL}/.extraheader" \
+            GIT_CONFIG_VALUE_0="$PUSH_AUTH_HEADER" \
+            GIT_CONFIG_KEY_1=core.hooksPath \
+            GIT_CONFIG_VALUE_1=/dev/null \
+            git -c protocol.allow=never -c "protocol.${PUSH_PROTOCOL}.allow=always" \
+              push "$PUSH_URL" "${REBUILD_SHA}:refs/heads/${GITHUB_REF_NAME}" 2>&1)"; then
             printf '%s\n' "$PUSH_OUTPUT"
-            classify_push_failure "$PUSH_OUTPUT"
-            if [[ "$PUSH_FAILURE" != "non-fast-forward" ]]; then
-              report_push_failure "The initial"
-              exit 1
-            fi
-            echo "::warning::Push rejected as non-fast-forward; fetching the new tip, resetting to it, regenerating the index and retrying once."
-            if ! git fetch origin "${GITHUB_REF_NAME}"; then
-              echo "::error::Fetching ${GITHUB_REF_NAME} failed while recovering from the non-fast-forward push."
-              exit 1
-            fi
-            if ! git reset --hard "origin/${GITHUB_REF_NAME}"; then
-              echo "::error::Resetting to the new tip of ${GITHUB_REF_NAME} failed while recovering from the non-fast-forward push."
-              exit 1
-            fi
-            # The tip moved, so the corpus may differ: rebuild the index on the
-            # new tip and refuse to retry a result that fails its own check.
-            node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
-            if ! node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check; then
-              echo "::error::The regenerated trigger index fails its own --check on the new tip; not retrying the push."
-              exit 1
-            fi
-            # The same presence check applies here: --check reads only the index, and
-            # git add stages a missing tracked file as a deletion.
-            for path in "${FILES[@]}"; do
-              if [[ ! -f "$path" ]]; then
-                echo "::error::The generator did not write ${path}; not committing a partial rebuild."
-                exit 1
-              fi
-            done
-            if ! git diff --quiet -- "${FILES[@]}"; then
-              git add "${FILES[@]}"
-              # The loop guard matches this trailer, so the recovery commit
-              # repeats it.
-              git commit -m "chore(system-spec-kit): rebuild the trigger index" \
-                -m "The branch moved while the first rebuild was pushed, so the index was rebuilt on the new tip." \
-                -m "Trigger-Index-Rebuild: ci"
-            fi
-            if ! PUSH_OUTPUT="$(git push 2>&1)"; then
-              printf '%s\n' "$PUSH_OUTPUT"
-              classify_push_failure "$PUSH_OUTPUT"
-              report_push_failure "The retry"
-              exit 1
-            fi
+            exit 0
           fi
           printf '%s\n' "$PUSH_OUTPUT"
+          # Ruleset and authentication rejections are checked first, so they keep
+          # the token guidance and never pass as a race.
+          if grep -Eqi 'authentication failed|could not read username|terminal prompts disabled|permission .* denied|error: 403|repository rule violations|GH013|GH006|protected branch' <<<"$PUSH_OUTPUT"; then
+            echo "::error::The push failed with an authentication or branch-ruleset error. The branch ruleset is the likely cause; set the TRIGGER_INDEX_PUSH_TOKEN secret to a fine-grained token with Contents write, owned by a ruleset bypass actor."
+            exit 1
+          fi
+          # A race is classified only on git's own rejection line. Git writes that line
+          # with a leading space and a bang, and a remote's message always begins with
+          # "remote:", so no remote text can match this anchored pattern. The
+          # server-side "[remote rejected]" line is not git's status line either.
+          if grep -Eq '^ ! \[rejected\] .*\((fetch first|non-fast-forward)\)$' <<<"$PUSH_OUTPUT"; then
+            echo "::notice::The push was rejected because the branch moved to a newer commit. The run for that commit rebuilds the trigger index on its tip, so this rebuild was not pushed."
+            exit 0
+          fi
+          echo "::error::The push failed for a reason other than a non-fast-forward race or an authentication error; see the push output above."
+          exit 1

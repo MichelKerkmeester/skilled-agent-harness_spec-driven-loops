@@ -67,6 +67,8 @@ jobs:
           set -euo pipefail
           PACKET=".opencode/skills/sk-doc/sk-create-manual-testing-playbook"
           node "$PACKET/scripts/validate-playbook-package.cjs" --no-strict --format json > /tmp/fleet.json
+          # The single quotes keep the JavaScript literal, so the shell expands nothing inside it.
+          # shellcheck disable=SC2016
           node -e '
             const fs = require("fs");
             const path = require("path");

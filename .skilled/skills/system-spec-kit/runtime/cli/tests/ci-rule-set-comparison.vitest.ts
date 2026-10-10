@@ -24,11 +24,22 @@ import { afterAll, describe, expect, it } from 'vitest';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../');
-const WORKFLOW_PATH = path.join(WORKSPACE_ROOT, '.github', 'workflows', 'changed-packet-validation.yml');
+// The override lets a copy of the workflow with a guard removed stand in for the
+// real file, so each assertion can be shown failing against the broken variant.
+const WORKFLOW_PATH = process.env.CHANGED_PACKET_WORKFLOW_PATH
+  ?? path.join(WORKSPACE_ROOT, '.github', 'workflows', 'changed-packet-validation.yml');
 const VALIDATION_STEP_NAME = 'Validate the packets this PR changed';
 const WEEKLY_WORKFLOW_PATH = path.join(WORKSPACE_ROOT, '.github', 'workflows', 'strict-pass-freshness-report.yml');
 const BASELINE_STEP_NAME = 'Fetch the previous baseline report';
 const FIXTURE_PACKET = 'specs/demo/001-fixture';
+// Git quotes a non-ASCII path unless the listing is NUL-delimited, and a quoted
+// path matches no document name, so such a packet is dropped rather than graded.
+const SPACED_FIXTURE_PACKET = 'specs/demo/spaced café-fixture';
+// The name carries a percent sequence, a real line break followed by a workflow
+// command prefix, and the delimiters an annotation property must escape. The
+// escaped property is what the runner reads, so it is asserted in full.
+const HOSTILE_FIXTURE_PACKET = 'specs/demo/evil%0A\n::add-mask::x,y:z';
+const HOSTILE_ESCAPED_PROPERTY = 'specs/demo/evil%250A%0A%3A%3Aadd-mask%3A%3Ax%2Cy%3Az/spec.md';
 const BASH = 'bash';
 
 interface WorkflowStep {
@@ -43,6 +54,7 @@ interface WorkflowDocument {
 interface GateScenario {
   headReport: string;
   baseReport: string;
+  packet?: string;
 }
 
 interface GateOutcome {
@@ -167,8 +179,8 @@ const ASSOCIATIVE_ARRAY_PROJECTION: ReadonlyArray<{ from: string; to: string; co
     to: 'head_failing="$rules"\n            head_failing_packet="$packet"',
     count: 1,
   },
-  { from: '${head_failing[$packet]+set}', to: '${head_failing_packet+set}', count: 1 },
-  { from: '"${head_failing[$packet]}"', to: '"$head_failing"', count: 2 },
+  { from: '${head_failing["$packet"]+set}', to: '${head_failing_packet+set}', count: 1 },
+  { from: '"${head_failing["$packet"]}"', to: '"$head_failing"', count: 2 },
 ];
 
 function projectAssociativeArrays(script: string): string {
@@ -202,7 +214,7 @@ function gateScriptFor(fixture: FixtureRepo): string {
   return BASH_SUPPORTS_ASSOCIATIVE_ARRAYS ? rendered : projectAssociativeArrays(rendered);
 }
 
-function createFixtureRepo(): FixtureRepo {
+function createFixtureRepo(packet: string = FIXTURE_PACKET): FixtureRepo {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'ci-rule-set-'));
   createdRoots.push(root);
   const tmpDir = path.join(root, 'gate-tmp');
@@ -231,7 +243,7 @@ function createFixtureRepo(): FixtureRepo {
     writeFile(path.join(binDir, 'paste'), PASTE_SHIM, 0o755);
   }
 
-  const packetSpec = path.join(root, FIXTURE_PACKET, 'spec.md');
+  const packetSpec = path.join(root, packet, 'spec.md');
   writeFile(packetSpec, '# Fixture Packet\n');
   git(root, ['add', '-A']);
   git(root, ['commit', '--quiet', '--no-verify', '-m', 'base']);
@@ -246,7 +258,7 @@ function createFixtureRepo(): FixtureRepo {
 }
 
 function runGate(scenario: GateScenario): GateOutcome {
-  const fixture = createFixtureRepo();
+  const fixture = createFixtureRepo(scenario.packet ?? FIXTURE_PACKET);
   const result = spawnSync(BASH, ['-c', gateScriptFor(fixture)], {
     cwd: fixture.root,
     encoding: 'utf8',
@@ -451,6 +463,49 @@ describe('changed-packet gate rule-set comparison', () => {
 
     expect(outcome.output).toContain('Validator produced no verdict for the base copy; failing closed');
     expect(outcome.exitCode).toBe(1);
+  });
+
+  it('grades a packet whose name holds a space and a non-ASCII letter', () => {
+    const outcome = runGate({
+      headReport: failingReport('rule-alpha'),
+      baseReport: PASSING_REPORT,
+      packet: SPACED_FIXTURE_PACKET,
+    });
+
+    expect(outcome.output).toContain(
+      `::error file=${SPACED_FIXTURE_PACKET}/spec.md::Regression — new failing rule(s): rule-alpha`,
+    );
+    expect(outcome.output).toContain('BLOCKED: 1 packet(s) regressed in this PR.');
+    expect(outcome.exitCode).toBe(1);
+  });
+
+  describe('hostile packet name', () => {
+    const runHostileGate = (): GateOutcome => runGate({
+      headReport: failingReport('rule-alpha'),
+      baseReport: PASSING_REPORT,
+      packet: HOSTILE_FIXTURE_PACKET,
+    });
+
+    it('prints exactly one error annotation for the packet', () => {
+      const outcome = runHostileGate();
+
+      expect(outcome.output.split('\n').filter((line) => line.startsWith('::error'))).toHaveLength(1);
+      expect(outcome.exitCode).toBe(1);
+    });
+
+    it('escapes the percent, colon and comma characters in the annotation file property', () => {
+      const outcome = runHostileGate();
+
+      expect(outcome.output).toContain(
+        `::error file=${HOSTILE_ESCAPED_PROPERTY}::Regression — new failing rule(s): rule-alpha`,
+      );
+    });
+
+    it('keeps the packet name from starting a line the runner reads as a workflow command', () => {
+      const outcome = runHostileGate();
+
+      expect(outcome.output.split('\n').some((line) => line.startsWith('::add-mask::'))).toBe(false);
+    });
   });
 });
 
