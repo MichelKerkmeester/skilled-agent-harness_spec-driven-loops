@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Build and independently verify phases 002 to 010 and research round three so sk-code, its agents, checkers and rules carry the Ponytail 5 research's changes and follow-ups.
+**Objective:** Build and independently verify phases 002 to 011 and research round three so sk-code, its agents, checkers and rules carry the Ponytail 5 research's changes and follow-ups.
 
 ### Decisions
 
@@ -44,10 +44,10 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Builders: cli-codex 002 to 006; haiku 007 and 008; Sonnet 5.5 009; for 010, Opus 5.5 medium plans, DeepSeek V4.1 Flash max builds, Sonnet 5.5 high verifies |
+| D1 | Builders: cli-codex 002-006, haiku 007-008, Sonnet 5.5 009; 010-011: Opus 5.5 medium plans, DeepSeek V4.1 Flash max builds, Sonnet 5.5 high verifies |
 | D2 | An executor's report is a claim; the orchestrator reruns each goal's criteria |
-| D3 | Work and run every criterion in one sk-git worktree, never raw git; edit only its packet copy |
-| D4 | Commit in folder order: 002 to 006, then the children of 007 to 010 |
+| D3 | Work and check in one sk-git worktree, never raw git; edit only its packet copy |
+| D4 | Commit in folder order: 002 to 006, then the children of 007 to 011 |
 | D5 | Done means its goal criteria pass, its summary is filled and strict validation passes |
 | D6 | One conventional commit per phase, child or research round; never push |
 | D7 | Three failed repairs on a phase stop the run; report command and output |
@@ -74,6 +74,7 @@ phase and binds as if written here.
 | 008-round-two-recommendations | `008-round-two-recommendations/goal.md` |
 | 009-round-two-follow-ups | `009-round-two-follow-ups/goal.md` |
 | 010-round-three-remediation | `010-round-three-remediation/goal.md` |
+| 011-round-four-remediation | `011-round-four-remediation/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -87,11 +88,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 11 times and `RESULT: FAILED` 0 times
-- [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 27
-- [ ] `git rev-list --count main..HEAD` prints 29, `git log --format='%(trailers:key=Spec,valueonly)' main..HEAD` prints 29 `Spec:` values, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
-- [ ] `node .skilled/bin/compiled-route-guard.cjs` exits 0 listing sk-code `fresh`, and `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints JSON with `"action":"route"` and no `servingAuthority` key
-- [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` and `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` both exit 0, and `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` prints `PASS: stack-folders`
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement --recursive --strict` prints `RESULT: PASSED` 12 times and `RESULT: FAILED` 0 times
+- [ ] `grep -lr --include=implementation-summary.md 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement | grep -vc /001-ponytail` prints 35
+- [ ] `git rev-list --count main..HEAD` prints 37, `git log --format='%(trailers:key=Spec,valueonly)' main..HEAD` prints 37 `Spec:` values, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
+- [ ] `node .skilled/bin/compiled-route-guard.cjs` exits 0 listing sk-code `fresh`, and `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "code review my obsidian plugin"` prints `"action":"route"` and no `servingAuthority` key
+- [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` and `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` both exit 0, and `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exits 0
 - [ ] `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` both exit 0
 <!-- /ANCHOR:completion -->
 

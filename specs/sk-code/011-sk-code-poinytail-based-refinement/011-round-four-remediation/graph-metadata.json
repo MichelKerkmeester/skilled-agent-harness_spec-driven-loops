@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement",
+  "children_ids": [
+    "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/001-review-canary-pins",
+    "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/002-webflow-labels-and-playbook",
+    "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/003-hub-surface-precedence",
+    "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/004-quality-obsidian-coverage",
+    "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening",
+    "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser",
+    "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins",
+    "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "round four remediation",
+      "review canary pins",
+      "webflow underscore labels",
+      "surface precedence obsidian webflow",
+      "hook deadline margins",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "round",
+      "four",
+      "remediation",
+      "review",
+      "canary",
+      "pins",
+      "webflow",
+      "underscore",
+      "labels",
+      "surface",
+      "precedence",
+      "obsidian"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/iteration-findings.cjs",
+      "001-review-canary-pins/goal.md",
+      "002-webflow-labels-and-playbook/goal.md",
+      "003-hub-surface-precedence/goal.md",
+      "004-quality-obsidian-coverage/goal.md",
+      "005-doc-claims-hardening/goal.md",
+      "006-deep-loop-findings-parser/goal.md",
+      "007-hook-deadline-margins/goal.md",
+      "008-session-aware-tie-break/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-findings.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/iteration-findings.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Round",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "OpenCode",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Round three (`../010-round-three-remediation/`) closed with eleven items still open, each recorded in a child's Known Limitations or plan",
+    "created_at": "2026-10-10T14:44:30Z",
+    "last_save_at": "2026-10-10T16:51:55.324Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:ea78a296cda1f0173c2012b662bff5c82c3683c626e1d9d90d6d9a5a945c292b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ce0c1f7177babbd8161d6cef8e8fbda4ba880218c03a7eaf794fc610d90ad9fb"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/001-review-canary-pins",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/001-review-canary-pins",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review canary pins",
+      "phase 1 review canary pins",
+      "review canary pins plan",
+      "review canary pins tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "review canary pins implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "canary",
+      "pins",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md",
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-review/README.md",
+      ".skilled/skills/sk-code/sk-code-review/changelog/v1.7.1.0.md",
+      "scratch/dispatch-units.json",
+      "scratch/tamper-all.sh",
+      "scratch/fix-units.json",
+      "scripts/README.md",
+      "scratch/units/changelog-v1.7.1.0.md",
+      ".hermes/skills/sk-code-review/SKILL.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/skills/sk-code/leaf-manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-copies.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-copies.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "pr-state-dedup.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.7.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/changelog/v1.7.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-units.json",
+        "kind": "config",
+        "path": "scratch/dispatch-units.json",
+        "source": "derived"
+      },
+      {
+        "name": "tamper-all.sh",
+        "kind": "script",
+        "path": "scratch/tamper-all.sh",
+        "source": "derived"
+      },
+      {
+        "name": "fix-units.json",
+        "kind": "config",
+        "path": "scratch/fix-units.json",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-v1.7.1.0.md",
+        "kind": "doc",
+        "path": "scratch/units/changelog-v1.7.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The review mode applies four `AGENTS.md` evidence floors (state what is inferred, read a command's output and exit status, treat a finding as a claim, and say what a reading alone cannot show), yet its rule canary pins none of their labels, so a renamed floor goes unnoticed",
+    "created_at": "2026-10-10T14:44:40Z",
+    "last_save_at": "2026-10-10T16:50:06.784Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7030eec8b150b3999ef91d1562e0bd2d018fb4b177fbf74b166a67f7e7d7fbce",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3dc3eb0dfd50900ecf5879f4e2bd6df91956878842cb1360663f806aa70c894d",
+      "plan.md": "864a1e76221167c7be993224ff112c20e568ec1833dd13dc1ba85ff5b0d9d04d",
+      "tasks.md": "ef434ae174d3af95024e70e7f861e9c12b01d114fcab5f6b4b567dfd66836654",
+      "implementation-summary.md": "fb75f766040b46f2997aed4ad9014652a3421157f6d0ba9dcc151df3d761eeae"
+    },
+    "last_active_at": null
+  }
+}

@@ -124,6 +124,7 @@ These bind every build phase, 002 to 006.
 | 8 | 008-round-two-recommendations/ | The round-two research recommendations that still hold, one child per group | Complete |
 | 9 | 009-round-two-follow-ups/ | Five follow-ups the round-two build left open, one child each | Complete |
 | 10 | 010-round-three-remediation/ | Every round-three finding and the five 009 follow-ups, one child per file area | Complete |
+| 11 | 011-round-four-remediation/ | The eleven items round three left open, one child per file area | Planned |
 
 ### Phase Transition Rules
 
@@ -145,6 +146,7 @@ These bind every build phase, 002 to 006.
 | 007-follow-up-fixes | 008-round-two-recommendations | 007 committed; round-two findings rechecked against the tree | Orchestrator rerun of the 011 goal criteria |
 | 008-round-two-recommendations | 009-round-two-follow-ups | 008 committed; its recorded follow-ups rechecked against the tree | Orchestrator rerun of the 011 goal criteria |
 | 009-round-two-follow-ups | 010-round-three-remediation | 009 committed; round-three findings recorded in the research | Orchestrator rerun of the 011 goal criteria |
+| 010-round-three-remediation | 011-round-four-remediation | 010 committed; its open items recorded in the children's Known Limitations | Orchestrator rerun of the 011 goal criteria |
 
 ### Handoffs Outside sk-code
 

@@ -1,0 +1,8 @@
+
+❌ INVALID: .skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md
+Document type: reference
+Total issues: 1
+
+🚫 Blocking errors (1):
+  - [missing_required_section] Missing required section: overview
+    Fix: Add section with name containing "overview"

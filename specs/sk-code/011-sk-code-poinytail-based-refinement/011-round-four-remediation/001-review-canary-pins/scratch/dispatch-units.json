@@ -1,0 +1,102 @@
+[
+  {
+    "task": "T010",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js, replace the exact text <<<OLD\n// It pins the assessment tokens to the status-line vocabulary and the pointer to the shared detection contract, so neither can drift back.\nOLD>>> with <<<NEW\n// It pins the assessment tokens to the status-line vocabulary and the pointer to the shared detection contract, so neither can drift back.\n// It pins the AGENTS.md evidence-floor labels the review mode applies, so a renamed or dropped floor fails here instead of going unnoticed.\nNEW>>>",
+    "check": "grep -cF -- 'evidence-floor labels the review mode applies, so a renamed or dropped floor' .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+    "expect": "1"
+  },
+  {
+    "task": "T011",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js, replace the exact text <<<OLD\n  {\n    file: '.skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md',\n    strings: ['`APPROVED`, `REQUESTED_CHANGES` or `COMMENTED`'],\n  },\nOLD>>> with <<<NEW\n  {\n    file: '.skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md',\n    strings: ['`APPROVED`, `REQUESTED_CHANGES` or `COMMENTED`'],\n  },\n  {\n    file: 'AGENTS.md',\n    strings: [\n      '**Confirmed vs inferred**',\n      '**Observed command evidence**',\n      '**Finding = hypothesis**',\n      '**Your own read is also one lens**',\n    ],\n  },\nNEW>>>",
+    "check": "grep -cF -- \"'**Your own read is also one lens**',\" .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+    "expect": "1"
+  },
+  {
+    "task": "T012",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh, replace the exact text <<<OLD\n# Seeded examples ensure the canary rejects content after status and missing context.\nOLD>>> with <<<NEW\n# FAIL: an AGENTS.md evidence-floor label the review mode applies is renamed.\nCASE_REVIEW_FLOOR=\"$TMP_DIR/review_floor_label\"\nseed_tree \"$CASE_REVIEW_FLOOR\"\nnode -e 'const fs=require(\"fs\");const f=process.argv[1];fs.writeFileSync(f, fs.readFileSync(f,\"utf8\").replace(\"**Finding = hypothesis**\",\"**Finding = claim**\"));' \\\n  \"$CASE_REVIEW_FLOOR/AGENTS.md\"\nrun_case 1 \"review_floor_label_drift\" node \"$CHECKER\" --root \"$CASE_REVIEW_FLOOR\"\nexpect_output 'AGENTS.md: missing exact invariant string: \"**Finding = hypothesis**\"' \"review_floor_label_drift_output\" node \"$CHECKER\" --root \"$CASE_REVIEW_FLOOR\"\n\n# Seeded examples ensure the canary rejects content after status and missing context.\nNEW>>>",
+    "check": "grep -cF -- 'review_floor_label_drift_output' .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
+    "expect": "1"
+  },
+  {
+    "task": "T013",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/README.md, replace the exact text <<<OLD\nthat `code-quality-standards.md` keeps the items the restraint ladder may never cut, that at least one Iron Law line\nOLD>>> with <<<NEW\nthat `code-quality-standards.md` keeps the items the restraint ladder may never cut, that `AGENTS.md` keeps the four evidence-floor labels the review mode applies (`Confirmed vs inferred`, `Observed command evidence`, `Finding = hypothesis` and `Your own read is also one lens`), that at least one Iron Law line\nNEW>>> (the OLD and NEW texts are a fragment of one line; the newline before OLD>>> and NEW>>> is not part of them)",
+    "check": "grep -cF -- 'keeps the four evidence-floor labels the review mode applies' .skilled/skills/sk-code/sk-code-review/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T014",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/README.md, replace the exact text <<<OLD\nand a drifted gate-recommendation token in `review-ux-single-pass.md` |\nOLD>>> with <<<NEW\na drifted gate-recommendation token in `review-ux-single-pass.md`, and a renamed evidence-floor label in `AGENTS.md` |\nNEW>>> (the OLD and NEW texts are a fragment of one line; the newline before OLD>>> and NEW>>> is not part of them)",
+    "check": "grep -cF -- 'and a renamed evidence-floor label in' .skilled/skills/sk-code/sk-code-review/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T015",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/README.md, replace the exact text <<<OLD\nExpected: `OK: all rule invariants present (6 exact-string file(s)\nOLD>>> with <<<NEW\nExpected: `OK: all rule invariants present (7 exact-string file(s)\nNEW>>> (the OLD and NEW texts are a fragment of one line; the newline before OLD>>> and NEW>>> is not part of them)",
+    "check": "grep -cF -- '(7 exact-string file(s)' .skilled/skills/sk-code/sk-code-review/scripts/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T016",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md, replace the exact text <<<OLD\nDetailed reference for the M-1 PR-state deduplication gate documented in `../SKILL.md` §9.1.\nOLD>>> with <<<NEW\n## 1. OVERVIEW\n\nDetailed reference for the M-1 PR-state deduplication gate documented in `../SKILL.md` §9.1.\nNEW>>>",
+    "check": "grep -cxF -- '## 1. OVERVIEW' .skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md",
+    "expect": "1"
+  },
+  {
+    "task": "T017",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/SKILL.md, replace the exact text <<<OLD\nversion: 1.7.0.0\nOLD>>> with <<<NEW\nversion: 1.7.1.0\nNEW>>>",
+    "check": "grep -cxF -- 'version: 1.7.1.0' .skilled/skills/sk-code/sk-code-review/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T018",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-review/README.md, replace the exact text <<<OLD\nversion: 1.7.0.0\nOLD>>> with <<<NEW\nversion: 1.7.1.0\nNEW>>>",
+    "check": "grep -cxF -- 'version: 1.7.1.0' .skilled/skills/sk-code/sk-code-review/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T019",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-review/changelog/v1.7.1.0.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/sk-code/sk-code-review/changelog/v1.7.1.0.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/001-review-canary-pins/scratch/units/changelog-v1.7.1.0.md (run: cp specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/001-review-canary-pins/scratch/units/changelog-v1.7.1.0.md .skilled/skills/sk-code/sk-code-review/changelog/v1.7.1.0.md)",
+    "check": "cmp specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/001-review-canary-pins/scratch/units/changelog-v1.7.1.0.md .skilled/skills/sk-code/sk-code-review/changelog/v1.7.1.0.md; echo exit=$?",
+    "expect": "exit=0"
+  }
+]

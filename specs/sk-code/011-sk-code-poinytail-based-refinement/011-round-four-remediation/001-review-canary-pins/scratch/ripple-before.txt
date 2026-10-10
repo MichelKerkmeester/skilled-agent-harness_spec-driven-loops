@@ -1,0 +1,35 @@
+$ node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
+PASS: 70 Hermes skill copies in sync
+exit=0
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs
+OK    cli-classifier  a24927396214ab841312a00a75e03ae22c74b0002f3b1edbd2925288a5002197
+OK    cli-external-orchestration  6b0e8212d0bdcb9d086bf917d4b033bb69f4ba40bff1d2af065d0803572b61e7
+OK    cli-orca  9193b5032798148726de1eaabf59627d5834ecbadb9592eec7f24247818d7600
+OK    mcp-code-mode  e8614e5a111ea5e51370589f56929693242c8a71496af4f9d6914526dfc79b11
+OK    mcp-tooling  a79578496e244358f7fc87a9ed74cbebc468231dec3d4e80b888abbc7dab2fd7
+OK    sk-code  59ea33fd766514d568f793234145be7aa5ae90d9482669cf383eb3c6f237b441
+OK    sk-design  1cdca644379a5ebd716621fd8abb38a6ecdd0af0ae15df1a9bce6da62f78c723
+OK    sk-doc  f9eab003c2a7c73fdf1a2d9fa360442527ec619f2132e158ae4e207c71d85660
+OK    sk-git  aea95ef320e781e9ebe4f7db0218bb2fc3daab23e6b2d3ef5f89897b21ae3c58
+OK    sk-prompt  922a3899ce9d8ff96ed63d41689318e6b802471452a0647c8ab261c0d84bdb71
+OK    sk-vision  c2a9f38562b29504ec620677341da9d12a9a10e9014de337f2d8e9c71bcecaee
+OK    system-deep-loop  9b306e5c1f55fec413db0ea486885144c692e9523e5b37c714f5d826bc73841f
+OK    system-skill-advisor  76b74582d9652c79fcd4f983f7e30f6a6945eaaf5ac04b8d7bc8f3b4ef6dc39a
+OK    system-spec-kit  067a33b375ca0654cd781020a7fe8ed050441f6edff092af5a79910d270ea754
+
+checked=14 fresh=14 failed=0
+exit=0
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check .skilled/skills/sk-code
+leaf-manifest.json OK (59ea33fd766514d568f793234145be7aa5ae90d9482669cf383eb3c6f237b441)
+exit=0
+$ node .skilled/bin/compiled-route-guard.cjs
+  cli-classifier              fresh
+  cli-external-orchestration  fresh
+  mcp-tooling                 fresh
+  sk-code                     fresh
+  sk-design                   fresh
+  sk-doc                      fresh
+  system-deep-loop            fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+exit=0

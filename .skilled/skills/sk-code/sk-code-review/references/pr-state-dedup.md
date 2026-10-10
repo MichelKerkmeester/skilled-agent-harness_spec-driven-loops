@@ -14,6 +14,8 @@ version: 1.5.0.2
 
 # PR-State Content-Hash Dedup (M-1)
 
+## 1. OVERVIEW
+
 Detailed reference for the M-1 PR-state deduplication gate documented in `../SKILL.md` §9.1.
 
 ## Signature Computation

@@ -250,6 +250,14 @@ node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.r
 run_case 1 "ux_vocabulary_drift" node "$CHECKER" --root "$CASE_UX_VOCABULARY"
 expect_output 'review-ux-single-pass.md: missing exact invariant string' "ux_vocabulary_drift_output" node "$CHECKER" --root "$CASE_UX_VOCABULARY"
 
+# FAIL: an AGENTS.md evidence-floor label the review mode applies is renamed.
+CASE_REVIEW_FLOOR="$TMP_DIR/review_floor_label"
+seed_tree "$CASE_REVIEW_FLOOR"
+node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.readFileSync(f,"utf8").replace("**Finding = hypothesis**","**Finding = claim**"));' \
+  "$CASE_REVIEW_FLOOR/AGENTS.md"
+run_case 1 "review_floor_label_drift" node "$CHECKER" --root "$CASE_REVIEW_FLOOR"
+expect_output 'AGENTS.md: missing exact invariant string: "**Finding = hypothesis**"' "review_floor_label_drift_output" node "$CHECKER" --root "$CASE_REVIEW_FLOOR"
+
 # Seeded examples ensure the canary rejects content after status and missing context.
 CASE_EXAMPLE_TEXT_AFTER="$TMP_DIR/example_text_after_status"
 seed_tree "$CASE_EXAMPLE_TEXT_AFTER"

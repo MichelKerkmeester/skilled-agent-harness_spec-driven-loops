@@ -1,0 +1,5 @@
+CAUGHT **Confirmed vs inferred**
+CAUGHT **Observed command evidence**
+CAUGHT **Finding = hypothesis**
+CAUGHT **Your own read is also one lens**
+RESULT: 4 of 4 label renames caught

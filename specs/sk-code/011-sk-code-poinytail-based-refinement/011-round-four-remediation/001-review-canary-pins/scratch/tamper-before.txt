@@ -1,0 +1,5 @@
+MISSED **Confirmed vs inferred** (exit 0)
+MISSED **Observed command evidence** (exit 0)
+MISSED **Finding = hypothesis** (exit 0)
+MISSED **Your own read is also one lens** (exit 0)
+RESULT: 0 of 4 label renames caught
