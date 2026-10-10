@@ -136,3 +136,40 @@ Confirm that the epic's work survived the merge intact, and record every error a
 <!-- /ANCHOR:questions -->
 
 ---
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, verification, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-hook-stdin-deadlines/ | P2 1: a 3000 ms stdin deadline in the sk-git and sk-vision hooks that hosts register directly | Pending |
+| 2 | 002-webflow-runtime-and-references/ | P2 3 and P2 10: report the callback depth cap, drop two dead evidence pointers | Pending |
+| 3 | 003-drift-guard-warning-count/ | P2 5: the drift-guard summary names how many warnings it passed over | Pending |
+| 4 | 004-hub-doc-pointers/ | P2 2 and P2 9: playbooks name the live hook, stack detection names a real file | Pending |
+| 5 | 005-claim-corrections/ | P2 6, 7 and 8: two summary claims and the mirror checker banner | Pending |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-hook-stdin-deadlines | 002-webflow-runtime-and-references | Previous phase committed | Orchestrator rerun of the phase goal criteria |
+| 002-webflow-runtime-and-references | 003-drift-guard-warning-count | Previous phase committed | Orchestrator rerun of the phase goal criteria |
+| 003-drift-guard-warning-count | 004-hub-doc-pointers | Previous phase committed | Orchestrator rerun of the phase goal criteria |
+| 004-hub-doc-pointers | 005-claim-corrections | Previous phase committed | Orchestrator rerun of the phase goal criteria |
+### Findings Not Built
+
+| Finding | Decision |
+|---------|----------|
+| P2 4, parent criterion 3 | The master orchestrator amends it at merge; this packet leaves it alone |
+| P2 11, reducer numbered-finding yield | Build nothing: the asymmetry is deliberate and no folder shows a lost finding |
+| P2 12, rule canary pins four of eight labels | Build nothing: the four pins match the sentence the canary protects and no label has been removed |
+<!-- /ANCHOR:phase-map -->

@@ -37,6 +37,7 @@ import {
   validateCommit,
   validatePrBody,
 } from '../lib/message-contract.mjs';
+import { readStdin } from '../../../../hooks/shared/hook-adapter-shared.cjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -360,12 +361,6 @@ export function evaluateCommand(command, cwd) {
 // ─────────────────────────────────────────────────────────────────────────────
 // 6. ENTRYPOINT
 // ─────────────────────────────────────────────────────────────────────────────
-
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
-}
 
 function deny(payload, reason) {
   // Cursor names its shell tool `Shell` and carries workspace_roots; it takes its own envelope.

@@ -31,6 +31,7 @@ import {
 } from '../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs';
 import { createGitContext } from '../lib/git-context.mjs';
 import { GIT_CHECKS, GIT_SHAPE } from '../lib/git-rule-checks.mjs';
+import { readStdin } from '../../../../hooks/shared/hook-adapter-shared.cjs';
 import { isHookEnabled } from '../../../../hooks/shared/hook-flags.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -50,12 +51,6 @@ const MAX_ADVISORIES = 3;
 
 function approve() {
   process.exit(0);
-}
-
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
 }
 
 /**

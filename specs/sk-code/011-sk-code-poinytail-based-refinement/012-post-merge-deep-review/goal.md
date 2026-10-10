@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Review the 40 commits `ba56b03412..5d9c970447` on main in ten deep-review iterations, confirm the 092 epic's work and its merge resolution are intact, and record every confirmed error and open end with a ranked fix.
+**Objective:** Review the 40 commits `ba56b03412..5d9c970447` on main in ten deep-review iterations, confirm the 092 epic's work and its merge resolution are intact, record every confirmed error and open end with a ranked fix, then fix confirmed P2s 1 to 10 except P2 4 in five phase children.
 
 ### Decisions
 
@@ -45,11 +45,36 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | `/deep:review:auto` with `--max-iterations=10 --stop-policy=max-iterations`, executor cli-pi `deepseek-v4.1-flash` at `max` on the DevPass route; `cline-pass/deepseek-v4.1-flash` only if that route fails |
-| D2 | Review only. No product file changes; fixes are ranked recommendations in `review/review-report.md` |
+| D2 | The review changes no product file; fixes land only through the phase children, which own disjoint files |
+| D5 | Each phase is planned by the orchestrator and built by DeepSeek V4.1 Flash at `max` through cli-pi, one change per brief; the orchestrator verifies every builder report |
+| D6 | P2 4 is the master orchestrator's at merge; P2 11 and P2 12 are build nothing |
 | D3 | A finding stays only when a rerun command or a read line proves it, and it is marked CONFIRMED with that evidence |
 | D4 | Every recommendation kept passes `.skilled/repo-rules/prevent-overengineering.md` |
 
 <!-- /ANCHOR:directive -->
+
+---
+
+<!-- ANCHOR:binding -->
+## 2. BINDING
+
+**Read the child goal before working a phase.** Each is authoritative for its
+phase and binds as if written here.
+
+| Phase | Goal document |
+|-------|---------------|
+| 001-hook-stdin-deadlines | `001-hook-stdin-deadlines/goal.md` |
+| 002-webflow-runtime-and-references | `002-webflow-runtime-and-references/goal.md` |
+| 003-drift-guard-warning-count | `003-drift-guard-warning-count/goal.md` |
+| 004-hub-doc-pointers | `004-hub-doc-pointers/goal.md` |
+| 005-claim-corrections | `005-claim-corrections/goal.md` |
+
+**Precedence.** Decisions above outrank child detail. Child detail outranks any
+summary of it. Name a conflict rather than resolving it silently.
+
+**Stop.** Only the criteria below decide done. An evaluator sees the objective
+string, not these files.
+<!-- /ANCHOR:binding -->
 
 ---
 
@@ -60,7 +85,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] `specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/review-report.md` exists and `grep -c 'CONFIRMED' specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/review-report.md` prints at least 1
 - [ ] `grep -c 'generate-leaf-manifest.cjs' specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/review-report.md` prints at least 1, showing the merge resolution was checked
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review --strict` prints `RESULT: PASSED`
-- [ ] `git diff --name-only 5d9c970447..HEAD | grep -vc '^specs/sk-code/011-sk-code-poinytail-based-refinement/'` prints 0 and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review --recursive --strict` prints `RESULT: PASSED` 6 times and `RESULT: FAILED` 0 times, `git status --short` prints nothing, and `git ls-remote --heads origin "$(git branch --show-current)"` prints nothing
 <!-- /ANCHOR:completion -->
 
 ---
@@ -84,5 +109,6 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
+| Fix phases added 2026-10-10 | The operator chose to fix confirmed P2s 1 to 10 in phase children; the objective, D2 and criterion 5 amended, D5 and D6 added, binding table added |
 | Criterion 1 amended 2026-10-10 | The state log is a projection of the ledger and drops the executor field, so the executor kind is counted in the dispatch completion receipts instead |
 <!-- /ANCHOR:log -->

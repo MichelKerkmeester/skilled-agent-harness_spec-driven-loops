@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/001-hook-stdin-deadlines",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/001-hook-stdin-deadlines",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook stdin deadlines",
+      "phase 1 hook stdin deadlines",
+      "hook stdin deadlines plan",
+      "hook stdin deadlines tasks",
+      "hook stdin deadlines goal",
+      "hook stdin deadlines implementation summary"
+    ],
+    "key_topics": [
+      "hook",
+      "stdin",
+      "deadlines",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "git-message-gate",
+      "mjs",
+      "git-preflight-advisory"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+      ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+      ".skilled/skills/sk-git/scripts/hooks/stdin-deadline.test.mjs",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".skilled/skills/sk-git/README.md",
+      ".skilled/skills/sk-git/changelog/v1.8.1.0.md",
+      ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs",
+      ".skilled/skills/sk-vision/hooks/devin/sk-vision-devin.test.mjs",
+      ".skilled/skills/sk-vision/SKILL.md",
+      ".skilled/skills/sk-vision/README.md",
+      ".skilled/skills/sk-vision/changelog/v0.3.1.0.md",
+      ".hermes/skills/sk-git/SKILL.md",
+      ".hermes/skills/sk-vision/SKILL.md",
+      ".claude/settings.json",
+      ".codex/hooks.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-message-gate.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-preflight-advisory.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "stdin-deadline.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/hooks/stdin-deadline.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.8.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/changelog/v1.8.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-vision/hooks/devin/sk-vision.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision-devin.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-vision/hooks/devin/sk-vision-devin.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "v0.3.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-vision/changelog/v0.3.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`git-message-gate.mjs` and `git-preflight-advisory.mjs` are registered as PreToolUse hooks in Claude (5 s), Codex (5 s), Devin (5 s) and Cursor (10 s), and `sk-vision.mjs` is registered as Devin's UserPromptSubmit hook (60 s)",
+    "created_at": "2026-10-10T20:17:43Z",
+    "last_save_at": "2026-10-10T20:42:34.629Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:96c031d84e421dbe7509cc5bd7cf7f9bbab973e77b3ee55ebbdadca9dbb1d6c8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "824edcde81e70a6b204d05d103a8506873db95499adea1e9891b8e1a048f03ea",
+      "plan.md": "645f386deadfc9e5fd52baa87d2392e2c730d223a81314f6237132ef95a08bf8",
+      "tasks.md": "2ca7f79f8ff9b19127073909bd8654563d45009845a859906ad2cfc3f26fb581",
+      "implementation-summary.md": "263adc7cc696a5e93500b16912dc6eb4ae32002096a75286660f4f2c13746c9f"
+    },
+    "last_active_at": null
+  }
+}
