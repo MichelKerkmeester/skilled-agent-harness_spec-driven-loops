@@ -104,10 +104,9 @@ Command transcript from steps 1-3; the resolved frontmatter block; the
 1. Re-run step 3 for the specific path that failed and confirm whether it was renamed or removed
    under `references/`.
 2. Diff this scenario's `expected_resources` against the step-2 `RESOURCE_MAP["STACK_STANDARDS"]`
-   excerpt — note `SKILL.md` §2b currently names `references/obsidian-api-boundary.md` and
-   `references/screenshot-fixture-harness.md`, neither of which exists; the real filenames are
-   `references/obsidian-plugin-api.md` and `references/screenshot-harness.md`. This scenario's set is
-   a curated core subset built from the live paths, not an exact mirror of the stale map.
+   excerpt. `SKILL.md` §2b names `references/obsidian-plugin-api.md` and
+   `references/screenshot-harness.md`, the filenames the shipped tree carries. This scenario's set is
+   a curated core subset built from the live paths, not an exact mirror of the map.
 
 ---
 

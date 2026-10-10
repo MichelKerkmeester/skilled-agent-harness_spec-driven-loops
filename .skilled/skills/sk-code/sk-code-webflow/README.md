@@ -33,7 +33,7 @@ A task touching Webflow-published pages or CDN-delivered client scripts needs fr
 
 ### What It Carries
 
-This surface holds the Webflow and browser evidence in five domains: language standards, implementation patterns, performance and Core Web Vitals remediation, CDN deployment, browser debugging and verification procedures. Detection markers are `src/2_javascript`, `webflow`, `--vw-` custom properties and CDN-delivered client scripts. Its sibling `code-opencode` carries `.skilled/` system-code evidence instead. The hub picks one surface by detection. The interaction-gated loading and Core Web Vitals gates here are non-negotiable, never a report-only check.
+This surface holds the Webflow and browser evidence in five domains: language standards, implementation patterns, performance and Core Web Vitals remediation, CDN deployment, browser debugging and verification procedures. Detection markers are `src/2_javascript`, `webflow`, `--vw-` custom properties and CDN-delivered client scripts. Its sibling `sk-code-opencode` carries `.skilled/` system-code evidence instead. The hub picks one surface by detection. The interaction-gated loading and Core Web Vitals gates here are non-negotiable, never a report-only check.
 
 ### The Frontend Evidence Layer
 
@@ -84,16 +84,16 @@ The workflow mode pulls the references and assets on demand. The surface stays o
 
 ### When The Hub Bundles This Surface
 
-Use this surface when the task touches Webflow-published pages or CDN-delivered client scripts, when the active workflow phase needs a frontend standard, an implementation pattern, a performance remediation, a deployment step or a browser debugging or verification procedure. Formal findings-first review hands off to `code-review`. Author-side quality gates hand off to `code-quality`.
+Use this surface when the task touches Webflow-published pages or CDN-delivered client scripts, when the active workflow phase needs a frontend standard, an implementation pattern, a performance remediation, a deployment step or a browser debugging or verification procedure. Formal findings-first review hands off to `sk-code-review`. Author-side quality gates hand off to `sk-code-quality`.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
 | `sk-code` | Parent hub that detects the surface and bundles it with the active workflow mode |
-| `code-opencode` | Sibling surface carrying `.skilled/` system-code evidence, picked by the same detection |
-| `code-review` | Owns formal findings-first review after the workflow phases |
-| `code-quality` | Owns author-side quality gates |
+| `sk-code-opencode` | Sibling surface carrying `.skilled/` system-code evidence, picked by the same detection |
+| `sk-code-review` | Owns formal findings-first review after the workflow phases |
+| `sk-code-quality` | Owns author-side quality gates |
 
 ---
 
@@ -105,7 +105,7 @@ A: It is evidence, not a worker. A surface that mutated would blur who owns the 
 
 **Q: What happens when a frontend task does not match this surface's markers?**
 
-A: The hub picks the surface by detection, so `.skilled/` system-code work matches `code-opencode` instead. The workflow mode proceeds with the references the bundled surface carries.
+A: The hub picks the surface by detection, so `.skilled/` system-code work matches `sk-code-opencode` instead. The workflow mode proceeds with the references the bundled surface carries.
 
 ---
 

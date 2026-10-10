@@ -58,7 +58,7 @@ The `:focus` pseudo-class fires for ALL focus events — keyboard tab, mouse cli
 
 ### Why not the body.using-keyboard pattern?
 
-The legacy pattern (in `references/webflow/css/quick-reference.md` §5) uses JS to add `body.using-keyboard` on Tab keypress, then CSS targets `body.using-keyboard :focus`. That pattern predates `:focus-visible` and is now legacy. Reasons to migrate:
+The legacy pattern (in [`../quick-reference.md`](../quick-reference.md) §6) uses JS to add `body.using-keyboard` on Tab keypress, then CSS targets `body.using-keyboard :focus`. That pattern predates `:focus-visible` and is now legacy. Reasons to migrate:
 
 - `:focus-visible` is browser-native heuristic; matches user expectations across all browsers (including future ones)
 - Reduces JS surface area (no Tab/mousedown listeners needed)

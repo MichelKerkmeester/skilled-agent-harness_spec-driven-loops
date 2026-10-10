@@ -1,0 +1,202 @@
+[
+  {
+    "task": "T072",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md, replace the exact text <<<OLD\nProving the ceiling case works — and stays bounded to this packet's real\nfiles rather than silently including a stale `SKILL.md`-mapped path that does not exist — is what\nOLD>>> with <<<NEW\nProving the ceiling case works, and stays bounded to this packet's real\nfiles rather than silently including a path the packet does not ship, is what\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'files rather than silently including a path the packet does not ship, is what' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md",
+    "expect": "1"
+  },
+  {
+    "task": "T073",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md, replace the exact text <<<OLD\nan invented path mirroring `SKILL.md` §2b's stale\n   `RESOURCE_MAP` (a hallucination\nOLD>>> with <<<NEW\nan invented path that `SKILL.md` §2b's\n   `RESOURCE_MAP` does not carry (a hallucination\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'does not carry (a hallucination' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md",
+    "expect": "1"
+  },
+  {
+    "task": "T074",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/performance/interaction-gated-loading.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/performance/interaction-gated-loading.md, replace the exact text <<<OLD\n`../../../assets/webflow/patterns/interaction-gate-patterns.js`\nOLD>>> with <<<NEW\n`../../assets/patterns/interaction-gate-patterns.js`\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '`../../assets/patterns/interaction-gate-patterns.js`' .skilled/skills/sk-code/sk-code-webflow/references/performance/interaction-gated-loading.md",
+    "expect": "1"
+  },
+  {
+    "task": "T075",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-obsidian/references/release/release-verification.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-obsidian/references/release/release-verification.md, replace the exact text <<<OLD\n`../../setup/setup.md` §3\nOLD>>> with <<<NEW\n`../setup/setup.md` §3\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '`../setup/setup.md` §3' .skilled/skills/sk-code/sk-code-obsidian/references/release/release-verification.md",
+    "expect": "1"
+  },
+  {
+    "task": "T076",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/implementation/async-patterns/timing-compat-and-webflow.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/implementation/async-patterns/timing-compat-and-webflow.md, replace the exact text <<<OLD\n[../performance/third-party.md](../../performance/third-party.md)\nOLD>>> with <<<NEW\n[../../performance/third-party.md](../../performance/third-party.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '[../../performance/third-party.md](../../performance/third-party.md)' .skilled/skills/sk-code/sk-code-webflow/references/implementation/async-patterns/timing-compat-and-webflow.md",
+    "expect": "1"
+  },
+  {
+    "task": "T077",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md, replace the exact text <<<OLD\n[./style-guide.md](../style-guide/overview-naming-and-structure.md)\nOLD>>> with <<<NEW\n[../style-guide/overview-naming-and-structure.md](../style-guide/overview-naming-and-structure.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '[../style-guide/overview-naming-and-structure.md](../style-guide/overview-naming-and-structure.md)' .skilled/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md",
+    "expect": "1"
+  },
+  {
+    "task": "T078",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md, replace the exact text <<<OLD\nsee `../../universal/code-style-guide.md` §4\nOLD>>> with <<<NEW\nsee `../../../shared/references/universal/code-style-guide.md` §4\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'see `../../../shared/references/universal/code-style-guide.md` §4' .skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md",
+    "expect": "1"
+  },
+  {
+    "task": "T079",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md, replace the exact text <<<OLD\n[`../../../assets/webflow/templates/component-template.js`](../../assets/templates/component-template.js)\nOLD>>> with <<<NEW\n[`../../assets/templates/component-template.js`](../../assets/templates/component-template.js)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '[`../../assets/templates/component-template.js`](../../assets/templates/component-template.js)' .skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md",
+    "expect": "1"
+  },
+  {
+    "task": "T080",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/performance/interaction-gated-loading.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/performance/interaction-gated-loading.md, replace the exact text <<<OLD\n[../../assets/checklists/performance-loading-checklist.md](../../../shared/references/performance-loading-checklist.md)\nOLD>>> with <<<NEW\n[../../../shared/references/performance-loading-checklist.md](../../../shared/references/performance-loading-checklist.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '[../../../shared/references/performance-loading-checklist.md](../../../shared/references/performance-loading-checklist.md)' .skilled/skills/sk-code/sk-code-webflow/references/performance/interaction-gated-loading.md",
+    "expect": "1"
+  },
+  {
+    "task": "T081",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/manual-testing-playbook.md, replace the exact text <<<OLD\n# code-webflow: Manual Testing Playbook\n\nRouting-recall corpus for the `code-webflow` surface.\nOLD>>> with <<<NEW\n# sk-code-webflow: Manual Testing Playbook\n\nRouting-recall corpus for the `sk-code-webflow` surface.\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'Routing-recall corpus for the `sk-code-webflow` surface.' .skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/manual-testing-playbook.md",
+    "expect": "1"
+  },
+  {
+    "task": "T082",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/README.md, replace the exact text <<<OLD\nIts sibling `code-opencode` carries\nOLD>>> with <<<NEW\nIts sibling `sk-code-opencode` carries\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'Its sibling `sk-code-opencode` carries' .skilled/skills/sk-code/sk-code-webflow/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T083",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/README.md, replace the exact text <<<OLD\nhands off to `code-review`. Author-side quality gates hand off to `code-quality`.\nOLD>>> with <<<NEW\nhands off to `sk-code-review`. Author-side quality gates hand off to `sk-code-quality`.\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'hands off to `sk-code-review`. Author-side quality gates hand off to `sk-code-quality`.' .skilled/skills/sk-code/sk-code-webflow/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T084",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/README.md, replace the exact text <<<OLD\n| `code-opencode` | Sibling surface\nOLD>>> with <<<NEW\n| `sk-code-opencode` | Sibling surface\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '| `sk-code-opencode` | Sibling surface' .skilled/skills/sk-code/sk-code-webflow/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T085",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/README.md, replace the exact text <<<OLD\n| `code-review` | Owns formal\nOLD>>> with <<<NEW\n| `sk-code-review` | Owns formal\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '| `sk-code-review` | Owns formal' .skilled/skills/sk-code/sk-code-webflow/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T086",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/README.md, replace the exact text <<<OLD\n| `code-quality` | Owns author-side\nOLD>>> with <<<NEW\n| `sk-code-quality` | Owns author-side\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '| `sk-code-quality` | Owns author-side' .skilled/skills/sk-code/sk-code-webflow/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T087",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/README.md, replace the exact text <<<OLD\nmatches `code-opencode` instead\nOLD>>> with <<<NEW\nmatches `sk-code-opencode` instead\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'matches `sk-code-opencode` instead' .skilled/skills/sk-code/sk-code-webflow/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T088",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/SKILL.md, replace the exact text <<<OLD\nreview to `code-review` and author-side quality gates to `code-quality`.\nOLD>>> with <<<NEW\nreview to `sk-code-review` and author-side quality gates to `sk-code-quality`.\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'review to `sk-code-review` and author-side quality gates to `sk-code-quality`.' .skilled/skills/sk-code/sk-code-webflow/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T089",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/SKILL.md, replace the exact text <<<OLD\nprojection of code-webflow's own\nOLD>>> with <<<NEW\nprojection of sk-code-webflow's own\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- \"projection of sk-code-webflow's own\" .skilled/skills/sk-code/sk-code-webflow/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T090",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/SKILL.md, replace the exact text <<<OLD\n# code-webflow owns its intent\nOLD>>> with <<<NEW\n# sk-code-webflow owns its intent\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '# sk-code-webflow owns its intent' .skilled/skills/sk-code/sk-code-webflow/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T091",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/SKILL.md, replace the exact text <<<OLD\nthe sibling code-opencode map plus the\nOLD>>> with <<<NEW\nthe sibling sk-code-opencode map plus the\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'the sibling sk-code-opencode map plus the' .skilled/skills/sk-code/sk-code-webflow/SKILL.md",
+    "expect": "1"
+  }
+]

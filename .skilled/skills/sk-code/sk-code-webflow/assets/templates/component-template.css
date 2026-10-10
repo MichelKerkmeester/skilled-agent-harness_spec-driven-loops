@@ -5,7 +5,7 @@
 /*
    COPY-PASTE TEMPLATE for new Webflow CSS files.
 
-   Conventions enforced (see references/webflow/css/style-guide.md):
+   Conventions enforced (see .skilled/skills/sk-code/sk-code-webflow/references/css/style-guide.md):
      - 3-line file header /* ─ × 63 / title / ─ × 63 */, title ALL CAPS
      - Section headers same shape, numbered (1., 2., 3., ...), sub-numbered (1.1) when needed
      - BEM naming: .block, .block--element (double-dash), .block-modifier (single-dash)

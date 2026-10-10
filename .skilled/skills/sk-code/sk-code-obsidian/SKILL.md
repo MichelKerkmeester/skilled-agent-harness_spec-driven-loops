@@ -2,7 +2,7 @@
 name: sk-code-obsidian
 description: "Read-only Obsidian-plugin design-system and source-convention evidence for the Note Database plugin."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 0.1.2.0
+version: 0.1.3.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -235,11 +235,13 @@ adopts — each labeled honestly, because most of them are not shipped yet.
 
 ## 4. ASSETS (on-demand)
 
-- Renderer-implementation pre-flight checklist — `assets/renderer-implementation-checklist.md`
-- Comment-grammar adoption checklist — `assets/comment-grammar-checklist.md`
-- Folder-docs pairing checklist — `assets/folder-docs-checklist.md`
-- Debugging checklist for view/pipeline regressions — `assets/debug-checklist.md`
-- Verification-gate checklist — `assets/verification-checklist.md`
+- MODULE banner and section-comment checklist: `assets/comment-banner-checklist.md`
+- Folder-docs pairing checklist: `assets/folder-docs-checklist.md`
+- `.db-*` class-rename checklist: `assets/db-class-rename-checklist.md`
+- Screenshot fixture authoring checklist: `assets/fixture-authoring-checklist.md`
+- Screenshot coverage checklist: `assets/screenshot-coverage-checklist.md`
+- Modal screenshot-coverage checklist: `assets/modal-coverage-checklist.md`
+- Verification-gate checklist: `assets/verification-checklist.md`
 - Source-gates runner — `scripts/run-source-gates.sh` in this packet's `scripts/` directory wraps the
   plugin repository's naming, comment, and folder-doc scanners as one PASS/FAIL gate; run it from the
   plugin repo root once those scanners exist.

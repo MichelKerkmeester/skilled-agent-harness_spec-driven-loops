@@ -39,8 +39,8 @@ top tier above `OB-017`'s one-resource floor and `OB-018`'s three-resource media
 ### Why This Matters
 
 An operator signing off on a release plausibly asks for everything at once rather than filing five
-separate narrow questions. Proving the ceiling case works — and stays bounded to this packet's real
-files rather than silently including a stale `SKILL.md`-mapped path that does not exist — is what
+separate narrow questions. Proving the ceiling case works, and stays bounded to this packet's real
+files rather than silently including a path the packet does not ship, is what
 keeps a full-audit request from either under-delivering or hallucinating a reference.
 
 ---
@@ -113,8 +113,8 @@ comparison; confirmation that no path outside this list was cited.
 
 1. Re-run step 3 for the specific path that failed and confirm whether it was renamed or removed.
 2. If the response cites a path outside this list, check whether it is a real file this scenario
-   should have included (update the list) or an invented path mirroring `SKILL.md` §2b's stale
-   `RESOURCE_MAP` (a hallucination that must be corrected, not documented as if real).
+   should have included (update the list) or an invented path that `SKILL.md` §2b's
+   `RESOURCE_MAP` does not carry (a hallucination that must be corrected, not documented as if real).
 
 ---
 

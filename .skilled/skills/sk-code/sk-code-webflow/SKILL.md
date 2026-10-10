@@ -2,7 +2,7 @@
 name: sk-code-webflow
 description: "sk-code WEBFLOW surface: frontend evidence (CSS/HTML/JavaScript standards, implementation and performance patterns, CDN deployment, browser debugging and verification) plus shared implement/debug/verify workflow doctrine."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.1.0.0
+version: 1.1.1.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -19,7 +19,7 @@ metadata:
 
 - The task touches Webflow-published pages, CDN-delivered `webflow.js`/client scripts, or `src/2_javascript` sources.
 - The active workflow phase needs frontend standards (CSS/HTML/JS), an implementation pattern, a performance remediation, a deployment step, or a browser debugging/verification procedure.
-- This surface owns edits, tests, and verification through the workflow references; hand off formal findings-first review to `code-review` and author-side quality gates to `code-quality`.
+- This surface owns edits, tests, and verification through the workflow references; hand off formal findings-first review to `sk-code-review` and author-side quality gates to `sk-code-quality`.
 
 ---
 
@@ -56,12 +56,12 @@ Workflow: the implement -> debug -> verify phases are covered by the split imple
 
 ## 2b. SMART ROUTING (machine-readable)
 
-This block is the deterministic projection of code-webflow's own reference/asset routing; keep it in sync with the parent hub union.
+This block is the deterministic projection of sk-code-webflow's own reference/asset routing; keep it in sync with the parent hub union.
 
 ```python
-# code-webflow owns its intent -> reference/asset routing. Paths are relative to
+# sk-code-webflow owns its intent -> reference/asset routing. Paths are relative to
 # this skill root. The parent sk-code hub RESOURCE_MAP is the union of this map
-# (re-prefixed with sk-code-webflow/) and the sibling code-opencode map plus the
+# (re-prefixed with sk-code-webflow/) and the sibling sk-code-opencode map plus the
 # parent-owned universal/shared tier; a drift guard enforces that equality.
 DEFAULT_RESOURCE = [
     "references/shared/dev-workflow/overview-nav-and-logging.md",

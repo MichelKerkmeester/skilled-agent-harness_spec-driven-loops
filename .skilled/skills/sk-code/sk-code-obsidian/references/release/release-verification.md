@@ -106,6 +106,6 @@ Before pushing an annotated release tag:
 ## 6. RELATED REFERENCES
 
 - `../verification.md` — the full local gate this release checklist assumes is already green.
-- `../../setup/setup.md` §3 — the manual-install path consuming the same three artifacts.
+- `../setup/setup.md` §3 — the manual-install path consuming the same three artifacts.
 - `../standards/platform-support.md` — `minAppVersion`'s meaning for Obsidian's own compatibility
   resolution.

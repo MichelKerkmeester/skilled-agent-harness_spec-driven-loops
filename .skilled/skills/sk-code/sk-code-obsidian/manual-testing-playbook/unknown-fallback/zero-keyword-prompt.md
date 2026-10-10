@@ -80,9 +80,8 @@ This plugin lets a vault owner treat a folder of notes like rows in a spreadshee
 ### Expected
 
 Step 1 shows `expected_surface: OBSIDIAN` and `expected_intent: UNKNOWN`. Step 2 shows `SKILL.md`
-§2b's stale `DEFAULT_RESOURCE` block (`references/obsidian-api-boundary.md`,
-`references/comment-grammar.md`); this scenario's own `expected_resources` swaps the first path for
-the real file `references/obsidian-plugin-api.md` per the packet's own honesty note. Step 3 prints
+§2b's `DEFAULT_RESOURCE` block (`references/obsidian-plugin-api.md`,
+`references/comment-grammar.md`), which matches this scenario's own `expected_resources`. Step 3 prints
 `OK` for both real paths.
 
 ### Evidence

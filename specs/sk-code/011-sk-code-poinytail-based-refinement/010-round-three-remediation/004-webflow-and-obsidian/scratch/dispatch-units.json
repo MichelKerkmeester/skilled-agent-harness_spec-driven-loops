@@ -1,0 +1,342 @@
+[
+  {
+    "task": "T014",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/component-template.js"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/assets/templates/component-template.js, replace the exact text <<<OLD\n// Conventions enforced (see `references/webflow/javascript/style-guide.md`):\nOLD>>> with <<<NEW\n// Conventions enforced (see `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/`):\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '// Conventions enforced (see `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/`):' .skilled/skills/sk-code/sk-code-webflow/assets/templates/component-template.js",
+    "expect": "1"
+  },
+  {
+    "task": "T015",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/component-template.css"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/assets/templates/component-template.css, replace the exact text <<<OLD\n   Conventions enforced (see references/webflow/css/style-guide.md):\nOLD>>> with <<<NEW\n   Conventions enforced (see .skilled/skills/sk-code/sk-code-webflow/references/css/style-guide.md):\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'Conventions enforced (see .skilled/skills/sk-code/sk-code-webflow/references/css/style-guide.md):' .skilled/skills/sk-code/sk-code-webflow/assets/templates/component-template.css",
+    "expect": "1"
+  },
+  {
+    "task": "T016",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/embed-template.html"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/assets/templates/embed-template.html, replace the exact text <<<OLD\n   Conventions enforced (see references/webflow/html/style-guide.md):\nOLD>>> with <<<NEW\n   Conventions enforced (see .skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md):\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'Conventions enforced (see .skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md):' .skilled/skills/sk-code/sk-code-webflow/assets/templates/embed-template.html",
+    "expect": "1"
+  },
+  {
+    "task": "T017",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/embed-template.html"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/assets/templates/embed-template.html, replace the exact text <<<OLD\n   See references/webflow/javascript/quality-standards.md §13 Action Routing Pattern.\nOLD>>> with <<<NEW\n   See .skilled/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/shared-listener-and-weakmap.md §2 Action Routing Pattern.\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'See .skilled/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/shared-listener-and-weakmap.md §2 Action Routing Pattern.' .skilled/skills/sk-code/sk-code-webflow/assets/templates/embed-template.html",
+    "expect": "1"
+  },
+  {
+    "task": "T018",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html, replace the exact text <<<OLD\n   Conventions enforced (see references/webflow/html/style-guide.md §3 Data-Attribute Conventions):\nOLD>>> with <<<NEW\n   Conventions enforced (see .skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md §3 Data-Attribute Conventions):\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'Conventions enforced (see .skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md §3 Data-Attribute Conventions):' .skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html",
+    "expect": "1"
+  },
+  {
+    "task": "T019",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html, replace the exact text <<<OLD\n     - references/webflow/html/style-guide.md §3 Form-field state markers\nOLD>>> with <<<NEW\n     - .skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md §3 Form-field state markers\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '- .skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md §3 Form-field state markers' .skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html",
+    "expect": "1"
+  },
+  {
+    "task": "T020",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html, replace the exact text <<<OLD\n     - references/webflow/javascript/quick-reference.md §5 Form Validation Classes\nOLD>>> with <<<NEW\n     - .skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md §5 Form Validation Classes\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '- .skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md §5 Form Validation Classes' .skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html",
+    "expect": "1"
+  },
+  {
+    "task": "T021",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html, replace the exact text <<<OLD\n     - references/webflow/css/quick-reference.md §3 Form Validation Classes\nOLD>>> with <<<NEW\n     - .skilled/skills/sk-code/sk-code-webflow/references/css/quick-reference.md §4 Form Validation Classes\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '- .skilled/skills/sk-code/sk-code-webflow/references/css/quick-reference.md §4 Form Validation Classes' .skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html",
+    "expect": "1"
+  },
+  {
+    "task": "T022",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/head-footer-code-template.html"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/assets/templates/head-footer-code-template.html, replace the exact text <<<OLD\n   Conventions enforced (see references/webflow/html/style-guide.md §7):\nOLD>>> with <<<NEW\n   Conventions enforced (see .skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md §7):\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'Conventions enforced (see .skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md §7):' .skilled/skills/sk-code/sk-code-webflow/assets/templates/head-footer-code-template.html",
+    "expect": "1"
+  },
+  {
+    "task": "T023",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md, replace the exact text <<<OLD\n(see [`../javascript/quality-standards/init-dom-error-and-async.md`](../javascript/quality-standards/init-dom-error-and-async.md) §13 Action Routing Pattern)\nOLD>>> with <<<NEW\n(see [`../javascript/quality-standards/shared-listener-and-weakmap.md`](../javascript/quality-standards/shared-listener-and-weakmap.md) §2 Action Routing Pattern)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '(see [`../javascript/quality-standards/shared-listener-and-weakmap.md`](../javascript/quality-standards/shared-listener-and-weakmap.md) §2 Action Routing Pattern)' .skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md",
+    "expect": "1"
+  },
+  {
+    "task": "T024",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md, replace the exact text <<<OLD\n(see [`../javascript/quick-reference.md`](../javascript/quick-reference.md) §10 Form Validation Classes)\nOLD>>> with <<<NEW\n(see [`../javascript/quick-reference.md`](../javascript/quick-reference.md) §5 Form Validation Classes)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '(see [`../javascript/quick-reference.md`](../javascript/quick-reference.md) §5 Form Validation Classes)' .skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md",
+    "expect": "1"
+  },
+  {
+    "task": "T025",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md, replace the exact text <<<OLD\n[`../javascript/quality-standards/init-dom-error-and-async.md`](../javascript/quality-standards/init-dom-error-and-async.md) §13 handles this\nOLD>>> with <<<NEW\n[`../javascript/quality-standards/shared-listener-and-weakmap.md`](../javascript/quality-standards/shared-listener-and-weakmap.md) §2 handles this\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '[`../javascript/quality-standards/shared-listener-and-weakmap.md`](../javascript/quality-standards/shared-listener-and-weakmap.md) §2 handles this' .skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md",
+    "expect": "1"
+  },
+  {
+    "task": "T026",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md, replace the exact text <<<OLD\n1. **Quantity limit:** Maximum 5 comments per 10 lines of code\nOLD>>> with <<<NEW\n1. **Quantity limit (Webflow setting):** Maximum 5 comments per 10 lines of code. This number is the Webflow surface's own setting. The shared comment rule in [`../../../shared/references/universal/code-style-guide.md`](../../../shared/references/universal/code-style-guide.md) §4 owns comment density and lets each surface set its own budget.\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '1. **Quantity limit (Webflow setting):** Maximum 5 comments per 10 lines of code. This number is the Webflow surface'\\''s own setting. The shared comment rule in [`../../../shared/references/universal/code-style-guide.md`](../../../shared/references/universal/code-style-guide.md) §4 owns comment density and lets each surface set its own budget.' .skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md",
+    "expect": "1"
+  },
+  {
+    "task": "T027",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md, replace the exact text <<<OLD\nis defined once for both surfaces in [`../../universal/code-style-guide.md`](../../../shared/references/universal/code-style-guide.md)\nOLD>>> with <<<NEW\nis defined once for every surface in [`../../../shared/references/universal/code-style-guide.md`](../../../shared/references/universal/code-style-guide.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'is defined once for every surface in [`../../../shared/references/universal/code-style-guide.md`](../../../shared/references/universal/code-style-guide.md)' .skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md",
+    "expect": "1"
+  },
+  {
+    "task": "T028",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md, replace the exact text <<<OLD\n- [ ] Maximum 5 comments per 10 lines\n\nOLD>>> with <<<NEW\n- [ ] Maximum 5 comments per 10 lines. This is the Webflow setting, and the shared comment rule in [`../../../shared/references/universal/code-style-guide.md`](../../../shared/references/universal/code-style-guide.md) §4 owns comment density\n\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '- [ ] Maximum 5 comments per 10 lines. This is the Webflow setting, and the shared comment rule in [`../../../shared/references/universal/code-style-guide.md`](../../../shared/references/universal/code-style-guide.md) §4 owns comment density' .skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md",
+    "expect": "1"
+  },
+  {
+    "task": "T029",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md, replace the exact text <<<OLD\n[`../css/quick-reference.md`](../css/quick-reference.md) §3 Form Validation Classes\nOLD>>> with <<<NEW\n[`../css/quick-reference.md`](../css/quick-reference.md) §4 Form Validation Classes\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '[`../css/quick-reference.md`](../css/quick-reference.md) §4 Form Validation Classes' .skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md",
+    "expect": "1"
+  },
+  {
+    "task": "T030",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/css/quality-standards/focus-has-print-and-quick-reference.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/css/quality-standards/focus-has-print-and-quick-reference.md, replace the exact text <<<OLD\n(in `references/webflow/css/quick-reference.md` §5)\nOLD>>> with <<<NEW\n(in [`../quick-reference.md`](../quick-reference.md) §6)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '(in [`../quick-reference.md`](../quick-reference.md) §6)' .skilled/skills/sk-code/sk-code-webflow/references/css/quality-standards/focus-has-print-and-quick-reference.md",
+    "expect": "1"
+  },
+  {
+    "task": "T031",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/shared/enforcement.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/shared/enforcement.md, replace the exact text <<<OLD\n[`../../../assets/webflow/checklists/code-quality-checklist.md`]\nOLD>>> with <<<NEW\n[`../../../sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`]\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '[`../../../sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`]' .skilled/skills/sk-code/sk-code-webflow/references/shared/enforcement.md",
+    "expect": "1"
+  },
+  {
+    "task": "T032",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/SKILL.md, replace the exact text <<<OLD\nversion: 1.1.0.0\n\nOLD>>> with <<<NEW\nversion: 1.1.1.0\n\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'version: 1.1.1.0' .skilled/skills/sk-code/sk-code-webflow/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T033",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.1.0.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.1.0.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/004-webflow-and-obsidian/scratch/units/webflow-changelog-v1.1.1.0.md. Copy it byte for byte, for example with: cp specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/004-webflow-and-obsidian/scratch/units/webflow-changelog-v1.1.1.0.md .skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.1.0.md",
+    "check": "cmp specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/004-webflow-and-obsidian/scratch/units/webflow-changelog-v1.1.1.0.md .skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.1.0.md && echo same",
+    "expect": "same"
+  },
+  {
+    "task": "T034",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-obsidian/SKILL.md, replace the exact text <<<OLD\n- Renderer-implementation pre-flight checklist — `assets/renderer-implementation-checklist.md`\n- Comment-grammar adoption checklist — `assets/comment-grammar-checklist.md`\n- Folder-docs pairing checklist — `assets/folder-docs-checklist.md`\n- Debugging checklist for view/pipeline regressions — `assets/debug-checklist.md`\n- Verification-gate checklist — `assets/verification-checklist.md`\n\nOLD>>> with <<<NEW\n- MODULE banner and section-comment checklist: `assets/comment-banner-checklist.md`\n- Folder-docs pairing checklist: `assets/folder-docs-checklist.md`\n- `.db-*` class-rename checklist: `assets/db-class-rename-checklist.md`\n- Screenshot fixture authoring checklist: `assets/fixture-authoring-checklist.md`\n- Screenshot coverage checklist: `assets/screenshot-coverage-checklist.md`\n- Modal screenshot-coverage checklist: `assets/modal-coverage-checklist.md`\n- Verification-gate checklist: `assets/verification-checklist.md`\n\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '- MODULE banner and section-comment checklist: `assets/comment-banner-checklist.md`' .skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T035",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-obsidian/SKILL.md, replace the exact text <<<OLD\nversion: 0.1.2.0\n\nOLD>>> with <<<NEW\nversion: 0.1.3.0\n\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'version: 0.1.3.0' .skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
+    "expect": "1"
+  },
+  {
+    "task": "T036",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md, replace the exact text <<<OLD\n# sk-code-obsidian: Manual Testing Playbook\n\nRouting-recall corpus for\nOLD>>> with <<<NEW\n# sk-code-obsidian: Manual Testing Playbook\n\n## 1. OVERVIEW\n\nRouting-recall corpus for\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '## 1. OVERVIEW' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+    "expect": "1"
+  },
+  {
+    "task": "T037",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.3.0.md"
+    ],
+    "kind": "create",
+    "instruction": "Create .skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.3.0.md with exactly the content of specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/004-webflow-and-obsidian/scratch/units/obsidian-changelog-v0.1.3.0.md. Copy it byte for byte, for example with: cp specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/004-webflow-and-obsidian/scratch/units/obsidian-changelog-v0.1.3.0.md .skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.3.0.md",
+    "check": "cmp specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/004-webflow-and-obsidian/scratch/units/obsidian-changelog-v0.1.3.0.md .skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.3.0.md && echo same",
+    "expect": "same"
+  },
+  {
+    "task": "T038",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md, replace the exact text <<<OLD\n## Honesty note: `SKILL.md`'s own map has drifted from the shipped tree\n\n`SKILL.md` §2b's own `RESOURCE_MAP` names a few reference filenames\n(`references/single-stylesheet-ownership.md`, `references/screenshot-fixture-harness.md`,\n`references/obsidian-api-boundary.md`, `assets/renderer-implementation-checklist.md`,\n`assets/comment-grammar-checklist.md`, `assets/debug-checklist.md`) that do not match the shipped\ntree — the real files are `references/stylesheet-ownership.md`, `references/screenshot-harness.md`,\n`references/obsidian-plugin-api.md`, and the seven checklists actually present under `assets/`\n(`comment-banner-checklist.md`, `db-class-rename-checklist.md`, `fixture-authoring-checklist.md`,\n`folder-docs-checklist.md`, `modal-coverage-checklist.md`, `screenshot-coverage-checklist.md`,\n`verification-checklist.md`). `OB-H06` once recorded a second, distinct kind of drift beyond stale\nfilenames:\nOLD>>> with <<<NEW\n## Honesty note: `SKILL.md`'s map matches the shipped tree\n\n`SKILL.md` names only files the packet ships. Its references include\n`references/stylesheet-ownership.md`, `references/screenshot-harness.md` and\n`references/obsidian-plugin-api.md`, and the checklists in its §2b `RESOURCE_MAP` and §4 asset list\nare the seven present under `assets/` (`comment-banner-checklist.md`, `db-class-rename-checklist.md`,\n`fixture-authoring-checklist.md`, `folder-docs-checklist.md`, `modal-coverage-checklist.md`,\n`screenshot-coverage-checklist.md` and `verification-checklist.md`). `OB-H06` once recorded a\ndifferent kind of drift:\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '## Honesty note: `SKILL.md`'\\''s map matches the shipped tree' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+    "expect": "1"
+  },
+  {
+    "task": "T039",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/renderer-feature-routing.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/renderer-feature-routing.md, replace the exact text <<<OLD\n   mirror), and that `SKILL.md` §2b currently names `references/single-stylesheet-ownership.md` and\n   `assets/renderer-implementation-checklist.md`, neither of which exists in the shipped tree; the\n   real filenames are `references/stylesheet-ownership.md` and the checklists under `assets/`.\nOLD>>> with <<<NEW\n   mirror), and that `SKILL.md` §2b names `references/stylesheet-ownership.md` and the checklists\n   under `assets/`, which are the filenames the shipped tree carries.\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'mirror), and that `SKILL.md` §2b names `references/stylesheet-ownership.md` and the checklists' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/renderer-feature-routing.md",
+    "expect": "1"
+  },
+  {
+    "task": "T040",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/debugging-routing.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/debugging-routing.md, replace the exact text <<<OLD\n   an exact mirror), and `SKILL.md` §2b's own `DEBUGGING` entry currently names\n   `assets/debug-checklist.md`, which does not exist in the shipped tree.\nOLD>>> with <<<NEW\n   an exact mirror), and `SKILL.md` §2b's own `DEBUGGING` entry names only shipped files:\n   `references/view-renderer-architecture.md`, `references/mobile-and-touch.md` and\n   `references/verification.md`.\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'an exact mirror), and `SKILL.md` §2b'\\''s own `DEBUGGING` entry names only shipped files:' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/debugging-routing.md",
+    "expect": "1"
+  },
+  {
+    "task": "T041",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/stack-standards-routing.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/stack-standards-routing.md, replace the exact text <<<OLD\n   excerpt — note `SKILL.md` §2b currently names `references/obsidian-api-boundary.md` and\n   `references/screenshot-fixture-harness.md`, neither of which exists; the real filenames are\n   `references/obsidian-plugin-api.md` and `references/screenshot-harness.md`. This scenario's set is\n   a curated core subset built from the live paths, not an exact mirror of the stale map.\nOLD>>> with <<<NEW\n   excerpt. `SKILL.md` §2b names `references/obsidian-plugin-api.md` and\n   `references/screenshot-harness.md`, the filenames the shipped tree carries. This scenario's set is\n   a curated core subset built from the live paths, not an exact mirror of the map.\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'excerpt. `SKILL.md` §2b names `references/obsidian-plugin-api.md` and' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/stack-standards-routing.md",
+    "expect": "1"
+  },
+  {
+    "task": "T042",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/unknown-fallback/zero-keyword-prompt.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/unknown-fallback/zero-keyword-prompt.md, replace the exact text <<<OLD\n§2b's stale `DEFAULT_RESOURCE` block (`references/obsidian-api-boundary.md`,\n`references/comment-grammar.md`); this scenario's own `expected_resources` swaps the first path for\nthe real file `references/obsidian-plugin-api.md` per the packet's own honesty note.\nOLD>>> with <<<NEW\n§2b's `DEFAULT_RESOURCE` block (`references/obsidian-plugin-api.md`,\n`references/comment-grammar.md`), which matches this scenario's own `expected_resources`.\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '§2b'\\''s `DEFAULT_RESOURCE` block (`references/obsidian-plugin-api.md`,' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/unknown-fallback/zero-keyword-prompt.md",
+    "expect": "1"
+  },
+  {
+    "task": "T043",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-obsidian/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-obsidian/README.md, replace the exact text <<<OLD\n1. Read `references/obsidian-api-boundary.md` to confirm\nOLD>>> with <<<NEW\n1. Read `references/obsidian-plugin-api.md` to confirm\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '1. Read `references/obsidian-plugin-api.md` to confirm' .skilled/skills/sk-code/sk-code-obsidian/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T044",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-obsidian/README.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-obsidian/README.md, replace the exact text <<<OLD\nSee `references/screenshot-fixture-harness.md`.\nOLD>>> with <<<NEW\nSee `references/screenshot-harness.md`.\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'See `references/screenshot-harness.md`.' .skilled/skills/sk-code/sk-code-obsidian/README.md",
+    "expect": "1"
+  },
+  {
+    "task": "T045",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/shared/dev-workflow/common-commands.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/shared/dev-workflow/common-commands.md, replace the exact text <<<OLD\nSee: [performance_patterns.md](../../implementation/performance-patterns/overview-and-checklist.md)\nOLD>>> with <<<NEW\nSee: [`../../implementation/performance-patterns/overview-and-checklist.md`](../../implementation/performance-patterns/overview-and-checklist.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'See: [`../../implementation/performance-patterns/overview-and-checklist.md`](../../implementation/performance-patterns/overview-and-checklist.md)' .skilled/skills/sk-code/sk-code-webflow/references/shared/dev-workflow/common-commands.md",
+    "expect": "1"
+  },
+  {
+    "task": "T046",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/shared/dev-workflow/common-commands.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/shared/dev-workflow/common-commands.md, replace the exact text <<<OLD\nSee: [security_patterns.md](../../implementation/security-patterns/overview-and-checklist.md)\nOLD>>> with <<<NEW\nSee: [`../../implementation/security-patterns/overview-and-checklist.md`](../../implementation/security-patterns/overview-and-checklist.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'See: [`../../implementation/security-patterns/overview-and-checklist.md`](../../implementation/security-patterns/overview-and-checklist.md)' .skilled/skills/sk-code/sk-code-webflow/references/shared/dev-workflow/common-commands.md",
+    "expect": "1"
+  },
+  {
+    "task": "T047",
+    "files": [
+      ".skilled/skills/sk-code/sk-code-webflow/references/shared/dev-workflow/common-commands.md"
+    ],
+    "kind": "edit",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/references/shared/dev-workflow/common-commands.md, replace the exact text <<<OLD\nSee: [debugging_workflows.md](../../debugging/debugging-workflows/systematic-four-phases.md)\nOLD>>> with <<<NEW\nSee: [`../../debugging/debugging-workflows/systematic-four-phases.md`](../../debugging/debugging-workflows/systematic-four-phases.md)\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'See: [`../../debugging/debugging-workflows/systematic-four-phases.md`](../../debugging/debugging-workflows/systematic-four-phases.md)' .skilled/skills/sk-code/sk-code-webflow/references/shared/dev-workflow/common-commands.md",
+    "expect": "1"
+  }
+]

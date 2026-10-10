@@ -75,7 +75,7 @@ The `data-action` attribute declares what a clickable element does. Values mirro
 <button data-action="remove">Delete item</button>
 ```
 
-JS routes these via a single delegated event listener that reads `element.dataset.action` and dispatches to the matching handler (see [`../javascript/quality-standards/init-dom-error-and-async.md`](../javascript/quality-standards/init-dom-error-and-async.md) §13 Action Routing Pattern).
+JS routes these via a single delegated event listener that reads `element.dataset.action` and dispatches to the matching handler (see [`../javascript/quality-standards/shared-listener-and-weakmap.md`](../javascript/quality-standards/shared-listener-and-weakmap.md) §2 Action Routing Pattern).
 
 ### Trigger / target patterns
 
@@ -100,7 +100,7 @@ Form validation state flows through `data-form-field` containers and `data-form-
 </div>
 ```
 
-Validation JS toggles `.validation-invalid` / `.validation-valid` classes on the `[data-form-field]` container (see [`../javascript/quick-reference.md`](../javascript/quick-reference.md) §10 Form Validation Classes).
+Validation JS toggles `.validation-invalid` / `.validation-valid` classes on the `[data-form-field]` container (see [`../javascript/quick-reference.md`](../javascript/quick-reference.md) §5 Form Validation Classes).
 
 ### Custom select bridge attributes
 
@@ -188,7 +188,7 @@ When custom JavaScript adds interactive behavior to Webflow markup, sync the ARI
 <div id="accordion-panel-1" role="region" hidden>…</div>
 ```
 
-When the JS toggles the panel, it must update `aria-expanded` and `hidden` together. The action-routing pattern in [`../javascript/quality-standards/init-dom-error-and-async.md`](../javascript/quality-standards/init-dom-error-and-async.md) §13 handles this — the `expand` and `collapse` actions set `aria-expanded` on the target element.
+When the JS toggles the panel, it must update `aria-expanded` and `hidden` together. The action-routing pattern in [`../javascript/quality-standards/shared-listener-and-weakmap.md`](../javascript/quality-standards/shared-listener-and-weakmap.md) §2 handles this — the `expand` and `collapse` actions set `aria-expanded` on the target element.
 
 ---
 

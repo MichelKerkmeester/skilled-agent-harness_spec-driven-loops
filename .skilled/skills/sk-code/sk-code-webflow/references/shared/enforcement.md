@@ -307,7 +307,7 @@ For language-specific enforcement, see:
 - [`./cross-language-rules.md`](./cross-language-rules.md) — cross-language file naming, comment principles, banner format
 
 ### Checklists
-- [`../../../assets/webflow/checklists/code-quality-checklist.md`](../../../sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md) — validation checklist
+- [`../../../sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`](../../../sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md) — validation checklist
 
 ### Production Examples
 

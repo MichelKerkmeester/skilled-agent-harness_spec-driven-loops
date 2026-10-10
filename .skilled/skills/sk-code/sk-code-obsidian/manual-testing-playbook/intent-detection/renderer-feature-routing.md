@@ -105,9 +105,8 @@ excerpt.
 2. Diff this scenario's `expected_resources` against the step-2 `RESOURCE_MAP["IMPLEMENTATION"]`
    excerpt to see whether the drift is a stale scenario file or a stale `SKILL.md` map — note the two
    sets are not required to be identical (`expected_resources` is a curated core subset, not an exact
-   mirror), and that `SKILL.md` §2b currently names `references/single-stylesheet-ownership.md` and
-   `assets/renderer-implementation-checklist.md`, neither of which exists in the shipped tree; the
-   real filenames are `references/stylesheet-ownership.md` and the checklists under `assets/`.
+   mirror), and that `SKILL.md` §2b names `references/stylesheet-ownership.md` and the checklists
+   under `assets/`, which are the filenames the shipped tree carries.
 
 ---
 

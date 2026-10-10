@@ -52,7 +52,7 @@ Production-tested snippets beat ad-hoc inventions for Webflow's CDN-loaded runti
 - [ ] Three-line file header with box-drawing characters
 - [ ] Category and component name in ALL CAPS
 - [ ] No metadata in headers (no dates/authors/tickets)
-- [ ] No ephemeral artifact ids in comments (tickets, spec/phase/packet numbers, ADR ids) — see `../../universal/code-style-guide.md` §4
+- [ ] No ephemeral artifact ids in comments (tickets, spec/phase/packet numbers, ADR ids) — see `../../../shared/references/universal/code-style-guide.md` §4
 - [ ] Numbered section headers for organization
 - [ ] Wrapped in IIFE `(() => { ... })()`
 
@@ -65,7 +65,7 @@ Production-tested snippets beat ad-hoc inventions for Webflow's CDN-loaded runti
 - [ ] Line length under 120 characters
 
 ### Comments
-- [ ] Maximum 5 comments per 10 lines
+- [ ] Maximum 5 comments per 10 lines. This is the Webflow setting, and the shared comment rule in [`../../../shared/references/universal/code-style-guide.md`](../../../shared/references/universal/code-style-guide.md) §4 owns comment density
 - [ ] Focus on WHY, not WHAT
 - [ ] Platform constraints documented (WEBFLOW, MOTION, LENIS)
 - [ ] No commented-out code
@@ -278,7 +278,7 @@ field.classList.remove('validation-invalid');
 field.classList.add('validation-valid');
 ```
 
-CSS counterpart and full pattern reference: [`../css/quick-reference.md`](../css/quick-reference.md) §3 Form Validation Classes.
+CSS counterpart and full pattern reference: [`../css/quick-reference.md`](../css/quick-reference.md) §4 Form Validation Classes.
 
 ---
 
@@ -292,4 +292,4 @@ CSS counterpart and full pattern reference: [`../css/quick-reference.md`](../css
 
 ### Copy-paste template
 
-- [`../../../assets/webflow/templates/component-template.js`](../../assets/templates/component-template.js) — production-style annotated JS template
+- [`../../assets/templates/component-template.js`](../../assets/templates/component-template.js) — production-style annotated JS template

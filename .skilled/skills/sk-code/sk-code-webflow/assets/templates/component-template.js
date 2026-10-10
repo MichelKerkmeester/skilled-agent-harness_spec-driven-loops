@@ -4,7 +4,7 @@
 //
 // COPY-PASTE TEMPLATE for new Webflow JavaScript components.
 //
-// Conventions enforced (see `references/webflow/javascript/style-guide.md`):
+// Conventions enforced (see `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/`):
 //   - 3-line file header banner above (// ─ × 63), ALL CAPS title
 //   - Section headers /* ─ × 60 / 64 ─ glued to */ */, numbered, ALL CAPS title
 //   - snake_case identifiers, UPPER_SNAKE for constants, _underscore for private state

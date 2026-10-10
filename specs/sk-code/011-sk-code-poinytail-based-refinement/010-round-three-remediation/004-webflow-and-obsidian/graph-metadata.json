@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/004-webflow-and-obsidian",
+  "spec_folder": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/004-webflow-and-obsidian",
+  "parent_id": "sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "webflow and obsidian",
+      "phase 4 webflow and obsidian",
+      "webflow and obsidian plan",
+      "webflow and obsidian tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "webflow and obsidian implementation summary"
+    ],
+    "key_topics": [
+      "webflow",
+      "obsidian",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/component-template.js",
+      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/component-template.css",
+      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/embed-template.html",
+      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html",
+      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/head-footer-code-template.html",
+      ".skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md",
+      ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md",
+      ".skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md",
+      ".skilled/skills/sk-code/sk-code-webflow/references/css/quality-standards/focus-has-print-and-quick-reference.md",
+      ".skilled/skills/sk-code/sk-code-webflow/references/shared/enforcement.md",
+      ".skilled/skills/sk-code/sk-code-webflow/references/shared/dev-workflow/common-commands.md",
+      ".skilled/skills/sk-code/sk-code-webflow/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.1.0.md",
+      ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "component-template.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/assets/templates/component-template.js",
+        "source": "derived"
+      },
+      {
+        "name": "component-template.css",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/assets/templates/component-template.css",
+        "source": "derived"
+      },
+      {
+        "name": "embed-template.html",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/assets/templates/embed-template.html",
+        "source": "derived"
+      },
+      {
+        "name": "form-scaffold-template.html",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html",
+        "source": "derived"
+      },
+      {
+        "name": "head-footer-code-template.html",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/assets/templates/head-footer-code-template.html",
+        "source": "derived"
+      },
+      {
+        "name": "style-guide.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "cross-language-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "focus-has-print-and-quick-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/references/css/quality-standards/focus-has-print-and-quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "enforcement.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/references/shared/enforcement.md",
+        "source": "derived"
+      },
+      {
+        "name": "common-commands.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/references/shared/dev-workflow/common-commands.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five copy-paste templates under `sk-code-webflow/assets/templates/` cite `references/webflow/...` in nine places, and that folder does not exist, so the dead pointers travel into every project that copies a template",
+    "created_at": "2026-10-10T10:07:20Z",
+    "last_save_at": "2026-10-10T11:49:39.412Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:956aab780b9b70b025b455c81db56d1a4e189f7f101aed2500420a000a1f0648",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3d5ae5a87e4d6fbff4624456d1f94d591c8f39bd6b01ce4dd726b445f30f84f2",
+      "plan.md": "37dd7bab9f184cb69571743344269bc24f029e7c963665e8bc41745d16ae8027",
+      "tasks.md": "2f7689c436eee3a21fb3bc7fbc0a75985d8e8110b73977aeccdacd914c5e435e",
+      "implementation-summary.md": "74cce669900d765ce72db59d3145b6be79a0e2b38b269e7e3b835f0677e5103e"
+    },
+    "last_active_at": null
+  }
+}

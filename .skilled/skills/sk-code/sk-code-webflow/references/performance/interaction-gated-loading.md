@@ -84,7 +84,7 @@ schedule_idle_fallback(init_feature_once, { timeout: 2500 });
 - Pair interaction/viewport triggers with an idle fallback when warm-up helps.
 - Log trigger source during rollout so traces show why code loaded.
 
-See `../../../assets/webflow/patterns/interaction-gate-patterns.js` for reusable helpers.
+See `../../assets/patterns/interaction-gate-patterns.js` for reusable helpers.
 
 ---
 
@@ -120,4 +120,4 @@ Measure before and after each gating change:
 - [cwv-remediation.md](./cwv-remediation.md) - Metric-specific fixes for Lighthouse/PageSpeed issues
 - [resource-loading.md](./resource-loading.md) - Preconnect, preload, async, and dynamic loading patterns
 - [third-party.md](./third-party.md) - Deferral guidance for non-critical external scripts
-- [../../assets/checklists/performance-loading-checklist.md](../../../shared/references/performance-loading-checklist.md) - Verification checklist for gated loading rollouts
+- [../../../shared/references/performance-loading-checklist.md](../../../shared/references/performance-loading-checklist.md) - Verification checklist for gated loading rollouts

@@ -70,7 +70,7 @@ text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 ### Performance Patterns
 
-See: [performance_patterns.md](../../implementation/performance-patterns/overview-and-checklist.md)
+See: [`../../implementation/performance-patterns/overview-and-checklist.md`](../../implementation/performance-patterns/overview-and-checklist.md)
 
 > **Cross-stack motion.dev reference**: For deeper Motion API, performance, and decision guidance beyond this Webflow quick reference, see [`../../animation/quick-start.md`](../../animation/quick-start.md), [`../../animation/performance-and-pitfalls.md`](../../animation/performance-and-pitfalls.md), and [`../../animation/decision-matrix.md`](../../animation/decision-matrix.md).
 
@@ -100,7 +100,7 @@ const debounce = (func, wait) => {
 
 ### Security Patterns
 
-See: [security_patterns.md](../../implementation/security-patterns/overview-and-checklist.md)
+See: [`../../implementation/security-patterns/overview-and-checklist.md`](../../implementation/security-patterns/overview-and-checklist.md)
 
 ```javascript
 // ✅ Sanitize user input
@@ -120,7 +120,7 @@ if (!email_regex.test(email)) throw new Error('Invalid email');
 
 ### Performance Debugging
 
-See: [debugging_workflows.md](../../debugging/debugging-workflows/systematic-four-phases.md)
+See: [`../../debugging/debugging-workflows/systematic-four-phases.md`](../../debugging/debugging-workflows/systematic-four-phases.md)
 
 ```markdown
 Chrome DevTools → Performance tab

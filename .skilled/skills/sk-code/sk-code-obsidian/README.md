@@ -72,7 +72,7 @@ rather than a literal `.opencode/` path match.
 
 A workflow bundling this surface should, in order:
 
-1. Read `references/obsidian-api-boundary.md` to confirm which Obsidian API a change touches and
+1. Read `references/obsidian-plugin-api.md` to confirm which Obsidian API a change touches and
    whether `manifest.json`'s `minAppVersion`/`isDesktopOnly` contract constrains it.
 2. Read `references/db-class-naming.md` before adding, renaming, or citing any `.db-*` class: never
    invent one; `src/views/screenshot-fixtures.test.ts` fails any class absent from `styles.css` and
@@ -131,7 +131,7 @@ must pass. Never cite or invent a class this surface cannot find in `styles.css`
 
 **Why is a screenshot not proof?** `npm run screenshots:verify` only checks that a capture's sources
 have not changed since it was taken: it does not check what the PNG shows, and the harness renders
-hand-written fixture markup, not the live plugin. See `references/screenshot-fixture-harness.md`.
+hand-written fixture markup, not the live plugin. See `references/screenshot-harness.md`.
 
 **Are the `MODULE:` banners and kebab-case names real yet?** No. §3b of `SKILL.md` states plainly that
 these are target conventions a later phase adopts; the measured tree today is PascalCase-dominant with

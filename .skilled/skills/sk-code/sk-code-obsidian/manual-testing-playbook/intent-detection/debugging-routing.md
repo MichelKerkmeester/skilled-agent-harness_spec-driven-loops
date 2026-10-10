@@ -102,8 +102,9 @@ excerpt.
    under `references/`.
 2. Diff this scenario's `expected_resources` against the step-2 `RESOURCE_MAP["DEBUGGING"]` excerpt —
    the two sets are not required to be identical (`expected_resources` is a curated core subset, not
-   an exact mirror), and `SKILL.md` §2b's own `DEBUGGING` entry currently names
-   `assets/debug-checklist.md`, which does not exist in the shipped tree.
+   an exact mirror), and `SKILL.md` §2b's own `DEBUGGING` entry names only shipped files:
+   `references/view-renderer-architecture.md`, `references/mobile-and-touch.md` and
+   `references/verification.md`.
 
 ---
 

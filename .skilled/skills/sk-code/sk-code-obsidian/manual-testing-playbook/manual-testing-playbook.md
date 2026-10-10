@@ -6,6 +6,8 @@ version: 2.0.0.0
 
 # sk-code-obsidian: Manual Testing Playbook
 
+## 1. OVERVIEW
+
 Routing-recall corpus for the `sk-code-obsidian` surface. These scenarios exercise the
 machine-readable `INTENT_SIGNALS`/`RESOURCE_MAP` in `SKILL.md` §2b, the `OBSIDIAN` surface detection
 in §1 that causes the hub to bundle this packet, and the coverage-breadth categories below —
@@ -163,18 +165,15 @@ directory and every file beneath it. Do not add `expected_workflow_mode` or `exp
 frontmatter fields to any scenario in this package; doing so would reclassify it as `routing-gold`
 and silently drop it from this package's operator-scenario census.
 
-## Honesty note: `SKILL.md`'s own map has drifted from the shipped tree
+## Honesty note: `SKILL.md`'s map matches the shipped tree
 
-`SKILL.md` §2b's own `RESOURCE_MAP` names a few reference filenames
-(`references/single-stylesheet-ownership.md`, `references/screenshot-fixture-harness.md`,
-`references/obsidian-api-boundary.md`, `assets/renderer-implementation-checklist.md`,
-`assets/comment-grammar-checklist.md`, `assets/debug-checklist.md`) that do not match the shipped
-tree — the real files are `references/stylesheet-ownership.md`, `references/screenshot-harness.md`,
-`references/obsidian-plugin-api.md`, and the seven checklists actually present under `assets/`
-(`comment-banner-checklist.md`, `db-class-rename-checklist.md`, `fixture-authoring-checklist.md`,
-`folder-docs-checklist.md`, `modal-coverage-checklist.md`, `screenshot-coverage-checklist.md`,
-`verification-checklist.md`). `OB-H06` once recorded a second, distinct kind of drift beyond stale
-filenames: `references/accessibility.md`, `references/theme-variables.md`,
+`SKILL.md` names only files the packet ships. Its references include
+`references/stylesheet-ownership.md`, `references/screenshot-harness.md` and
+`references/obsidian-plugin-api.md`, and the checklists in its §2b `RESOURCE_MAP` and §4 asset list
+are the seven present under `assets/` (`comment-banner-checklist.md`, `db-class-rename-checklist.md`,
+`fixture-authoring-checklist.md`, `folder-docs-checklist.md`, `modal-coverage-checklist.md`,
+`screenshot-coverage-checklist.md` and `verification-checklist.md`). `OB-H06` once recorded a
+different kind of drift: `references/accessibility.md`, `references/theme-variables.md`,
 `references/operations/operations.md`, `references/setup/setup.md`,
 `references/quality/doc-quality-gate.md`, and `references/skill-reference-integrity.md` were real,
 shipped files that no intent group in `SKILL.md` §2b carried. §2b now carries all six:

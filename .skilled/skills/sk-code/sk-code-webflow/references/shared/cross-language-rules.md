@@ -44,7 +44,7 @@ Cross-language consistency in file naming and commenting reduces cognitive load 
 
 ## 2. CORE PRINCIPLES
 
-1. **Quantity limit:** Maximum 5 comments per 10 lines of code
+1. **Quantity limit (Webflow setting):** Maximum 5 comments per 10 lines of code. This number is the Webflow surface's own setting. The shared comment rule in [`../../../shared/references/universal/code-style-guide.md`](../../../shared/references/universal/code-style-guide.md) §4 owns comment density and lets each surface set its own budget.
 2. **Focus on WHY, not WHAT:** Explain intent, constraints, platform requirements
 3. **No commented-out code:** Delete unused code (git preserves history)
 4. **Platform-specific notes:** Document Webflow, Motion.dev, Lenis constraints
@@ -170,7 +170,7 @@ const needs_hls_library = !video.canPlayType('application/vnd.apple.mpegurl');
 if (window[INIT_FLAG]) return;
 ```
 
-> **Allowed vs. forbidden — see the canonical rule.** The prefixes above (`WEBFLOW:`, `MOTION:`, `LENIS:`, `HLS.JS:`) are allowed because they name a durable platform/library. The flip side — comments must **never** name an ephemeral tracking artifact (a ClickUp/ticket id like `CU-8abc`, a project-spec folder or number, a phase/packet number, or an ADR id) — is defined once for both surfaces in [`../../universal/code-style-guide.md`](../../../shared/references/universal/code-style-guide.md) §4 "No ephemeral-artifact pointers". It extends the existing "no ticket references in file headers" rule to **all** inline comments. Keep the WHY; drop the ephemeral pointer.
+> **Allowed vs. forbidden — see the canonical rule.** The prefixes above (`WEBFLOW:`, `MOTION:`, `LENIS:`, `HLS.JS:`) are allowed because they name a durable platform/library. The flip side — comments must **never** name an ephemeral tracking artifact (a ClickUp/ticket id like `CU-8abc`, a project-spec folder or number, a phase/packet number, or an ADR id) — is defined once for every surface in [`../../../shared/references/universal/code-style-guide.md`](../../../shared/references/universal/code-style-guide.md) §4 "No ephemeral-artifact pointers". It extends the existing "no ticket references in file headers" rule to **all** inline comments. Keep the WHY; drop the ephemeral pointer.
 
 ---
 
