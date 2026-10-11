@@ -59,6 +59,8 @@ describe("session-start-context Pi extension", () => {
     expect(notices).toHaveLength(1);
     expect(notices[0].level).toBe("warning");
     expect(notices[0].message).toContain("npm --prefix .skilled/skills/system-spec-kit run build");
+    // A session started below the repository root also lands here, so the notice says where it looked.
+    expect(notices[0].message).toContain(projectDir);
   });
 
   it("stays quiet when the built adapter runs and prints nothing", async () => {

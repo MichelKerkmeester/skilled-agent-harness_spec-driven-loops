@@ -161,6 +161,21 @@ Orphaned mirror body.
 
     expect(result.status).toBe(3);
     expect(result.stdout).toContain('NOT CHECKABLE');
+    expect(result.stdout).toContain('npm --prefix .skilled/skills/system-spec-kit run build');
+    expect(result.stdout).not.toContain('DRIFT');
+  });
+
+  it('reports a parser that exists but fails to load as not checkable, apart from drift', () => {
+    // A corrupt or partial build fails on load; rebuilding is the fix, not a mirror resync.
+    fs.rmSync(path.join(tmpDir, '.skilled', 'skills', 'system-spec-kit', 'shared'));
+    writeFile('.skilled/skills/system-spec-kit/shared/dist/frontmatter/parse-frontmatter.js', "throw new Error('corrupt build');\n");
+    writeFile(`.claude/agents/${AGENT_NAME}.md`, CANONICAL);
+
+    const result = runChecker(`.skilled/agents/${AGENT_NAME}.md`);
+
+    expect(result.status).toBe(3);
+    expect(result.stdout).toContain('NOT CHECKABLE');
+    expect(result.stdout).toContain('corrupt build');
     expect(result.stdout).not.toContain('DRIFT');
   });
 });

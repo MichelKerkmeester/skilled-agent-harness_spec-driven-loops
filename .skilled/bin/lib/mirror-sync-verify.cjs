@@ -19,15 +19,26 @@ let loadedParseFrontmatter = null;
 
 function parseFrontmatter(content) {
   if (!loadedParseFrontmatter) {
+    let reason = null;
     if (!fs.existsSync(PARSER_PATH)) {
+      reason = 'is missing';
+    } else {
+      try {
+        const loaded = require(PARSER_PATH).parseFrontmatter;
+        if (typeof loaded === 'function') loadedParseFrontmatter = loaded;
+        else reason = 'does not export parseFrontmatter';
+      } catch (loadError) {
+        reason = `failed to load (${loadError && loadError.message ? loadError.message : loadError})`;
+      }
+    }
+    if (reason) {
       const error = new Error(
-        `the built frontmatter parser is missing at ${PARSER_PATH}; ` +
+        `the built frontmatter parser at ${PARSER_PATH} ${reason}; ` +
           'build it with: npm --prefix .skilled/skills/system-spec-kit run build',
       );
       error.code = NOT_CHECKABLE_CODE;
       throw error;
     }
-    loadedParseFrontmatter = require(PARSER_PATH).parseFrontmatter;
   }
   return loadedParseFrontmatter(content);
 }

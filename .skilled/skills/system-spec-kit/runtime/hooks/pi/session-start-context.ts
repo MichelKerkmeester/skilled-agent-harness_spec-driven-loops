@@ -10,8 +10,9 @@ import { runClaudeHookAdapter } from "./lib/claude-hook-adapter.ts";
 
 const TIMEOUT_MS = 2_800;
 const SESSION_PRIME_ADAPTER = ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js";
-const UNBUILT_NOTICE =
-  "Session-start context is off because the spec-kit runtime is not built. Run: npm --prefix .skilled/skills/system-spec-kit run build";
+function unbuiltNotice(cwd: string): string {
+  return `Session-start context is off: no built spec-kit session hook under ${cwd}. Start Pi at the repository root, or build the runtime there: npm --prefix .skilled/skills/system-spec-kit run build`;
+}
 
 function sessionLifecycleHookEnabled(): boolean {
   try {
@@ -45,8 +46,8 @@ export default function sessionStartContext(pi: ExtensionAPI): void {
         TIMEOUT_MS,
       );
       if (!context) {
-        // A missing build is the one cause the user can fix, so name it instead of returning silently.
-        if (!existsSync(join(ctx.cwd, SESSION_PRIME_ADAPTER))) ctx.ui.notify(UNBUILT_NOTICE, "warning");
+        // A missing build, or a session started away from the repository root, is a cause the user can fix, so name it instead of returning silently.
+        if (!existsSync(join(ctx.cwd, SESSION_PRIME_ADAPTER))) ctx.ui.notify(unbuiltNotice(ctx.cwd), "warning");
         return;
       }
 

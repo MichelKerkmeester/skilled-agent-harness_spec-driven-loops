@@ -178,7 +178,7 @@ npm --prefix .skilled/skills/system-skill-advisor/runtime install
 npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 node .skilled/bin/skill-advisor.cjs list-tools --format json
 
-# 5. Let the git hooks run their checks in this clone. Without it, a second clone on the same machine skips every gate
+# 5. Let the git hooks run their checks in this clone. Without it, a second clone on the same machine skips the pre-commit checks
 git config --local skilled.trustRepoHooks true
 ```
 
