@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-10 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
@@ -315,4 +315,8 @@ Settled in the plan from the code and the existing policies, so it was not asked
 - **Decision 30 (REQ-017).** How should the main-branch `create-journey-proof.test.cjs` failure be handled? Answered "Record it, don't fix (Recommended)". Not chosen: "fix it here" or "hold the push". Evidence: scratch/evidence/decision-ledger.txt:72 and scratch/evidence/decision-ledger.txt:75.
 - **Decision 31 (REQ-034).** How should the root scratch residue in two tests be handled? Answered "Fix both the same way (Recommended)". Not chosen: "record only". Evidence: scratch/evidence/decision-ledger.txt:76 and scratch/evidence/lane-27-root-scratch.txt:52.
 - **Decision 32 (REQ-035).** How should the missing lane 5 dangling-manifest case be handled? Answered "Add the test (Recommended)". Not chosen: "record the gap". Evidence: scratch/evidence/decision-ledger.txt:77 and scratch/evidence/lane-28-dangling-manifest.txt:22.
+- **Decision 34 (REQ-026).** How should the sandbox-test repair be committed? Answered "Bypass for that file only (Recommended)". The sandbox-test repair was committed alone with the remint bypass. Evidence: scratch/evidence/decision-ledger.txt:97. Not chosen: "leave sandbox-test out" or "bypass for the whole commit".
+- **Decision 35 (REQ-017).** How should the 15 commits integrate main? Answered "Rebase our 15 (Recommended)". The commits were rebased onto b62e142852 after the fetch moved origin/main. Evidence: scratch/evidence/decision-ledger.txt:99 and :104. Not chosen: "merge origin/main".
+- **Decision 36 (REQ-017).** How should verification run after the rebase? Answered "Full gate again (Recommended)". G8 ran on the rebased commits with 118 steps and 116 rc 0. Evidence: scratch/evidence/decision-ledger.txt:100 and scratch/evidence/lane-30-post-rebase-gate.txt, SUMMARY. Not chosen: "touched suites only" or "push and let CI verify".
+- **Decision 37 (REQ-017).** How should the mass-deletion push be handled? Answered "Authorize this push (Recommended)". The push completed from b62e142852 to 01db8367c3. Evidence: scratch/evidence/decision-ledger.txt:107 and scratch/evidence/post-push-ci.txt, PUSH. Not chosen: "push without the deletion" or "don't push yet".
 <!-- /ANCHOR:questions -->

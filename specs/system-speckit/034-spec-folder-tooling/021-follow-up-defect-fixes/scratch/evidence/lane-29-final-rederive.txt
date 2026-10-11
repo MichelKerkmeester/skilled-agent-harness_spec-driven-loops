@@ -70,3 +70,39 @@ validate specs/system-speckit/034-spec-folder-tooling/016-research-recommendatio
 validate specs/system-speckit/034-spec-folder-tooling --strict: rc=0 RESULT: PASSED=22 RESULT: FAILED=0 last summary: Summary: Errors: 0  Warnings: 0
 
 Trigger index after the docs: generate-trigger-index.mjs exit 0, --check exit 0, obsolete paths 0, untrusted docs 0.
+
+THIRD RUN, at closeout after the push: the closeout status edits, the AC next-action alignment and generate-context.js --full-auto at completion 100 (exit 0). The parent's derived metadata refreshed once for the phase 21 status change.
+RE-DERIVE AND VALIDATE (closeout, after the status edits and the final save), 2026-10-11 14:17:17, HEAD 01db8367c3
+== specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes
+preview rc=1: To apply these repairs:   node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes --apply 
+apply rc=0:  inspected=1 repaired=1 failed=0 
+re-preview rc=0:  inspected=1 repairable=0 failed=0 
+== specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups
+preview rc=0:  inspected=1 repairable=0 failed=0 
+apply rc=0:  inspected=1 repaired=0 failed=0 
+re-preview rc=0:  inspected=1 repairable=0 failed=0 
+== specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility
+preview rc=0:  inspected=1 repairable=0 failed=0 
+apply rc=0:  inspected=1 repaired=0 failed=0 
+re-preview rc=0:  inspected=1 repairable=0 failed=0 
+== specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode
+preview rc=0:  inspected=1 repairable=0 failed=0 
+apply rc=0:  inspected=1 repaired=0 failed=0 
+re-preview rc=0:  inspected=1 repairable=0 failed=0 
+== specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes
+preview rc=0:  inspected=1 repairable=0 failed=0 
+apply rc=0:  inspected=1 repaired=0 failed=0 
+re-preview rc=0:  inspected=1 repairable=0 failed=0 
+== specs/system-speckit/034-spec-folder-tooling/016-research-recommendations
+preview rc=0: Not repairable here — these record work someone did, and only they can write them:       1  SOURCE_TAGS 
+apply rc=0: Not repairable here — these record work someone did, and only they can write them:       1  SOURCE_TAGS 
+re-preview rc=0: Not repairable here — these record work someone did, and only they can write them:       1  SOURCE_TAGS 
+== specs/system-speckit/034-spec-folder-tooling
+preview rc=1: To apply these repairs:   node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/system-speckit/034-spec-folder-tooling --apply 
+apply rc=0:  inspected=1 repaired=1 failed=0 
+re-preview rc=0:  inspected=1 repairable=0 failed=0 
+validate specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes --strict: rc=0 RESULT: PASSED=1 RESULT: FAILED=0 last summary: Summary: Errors: 0  Warnings: 0
+validate specs/system-speckit/034-spec-folder-tooling/016-research-recommendations --strict: rc=0 RESULT: PASSED=17 RESULT: FAILED=0 last summary: Summary: Errors: 0  Warnings: 1
+validate specs/system-speckit/034-spec-folder-tooling --strict: rc=0 RESULT: PASSED=22 RESULT: FAILED=0 last summary: Summary: Errors: 0  Warnings: 0
+
+Trigger index after closeout: generate-trigger-index.mjs exit 0, --check exit 0.

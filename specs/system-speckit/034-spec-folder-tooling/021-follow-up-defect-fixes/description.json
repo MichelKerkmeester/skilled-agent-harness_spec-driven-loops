@@ -6,15 +6,16 @@
     "phase",
     "follow-up-defect-fixes"
   ],
-  "lastUpdated": "2026-10-11T05:53:16.571Z",
+  "lastUpdated": "2026-10-11T12:16:56.590Z",
   "specId": "021",
   "folderSlug": "follow-up-defect-fixes",
   "parentChain": [
     "system-speckit",
     "034-spec-folder-tooling"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "11-10-26_06-53__follow-up-defect-fixes-for-the-spec-folder.md"
+    "11-10-26_06-53__follow-up-defect-fixes-for-the-spec-folder.md",
+    "11-10-26_13-16__follow-up-defect-fixes-closed-15-commits-pushed.md"
   ]
 }

@@ -164,6 +164,8 @@ Defect, then requirement, then lane. Each lane records the evidence available fo
 | Final 19-job gate (lane 24, orchestrator) | Packet metadata, trigger index and suite | Rebuild generated data and run the final gate | Completed with 115 of 117 steps returning rc 0. The two failures are recorded outside this phase. Evidence: scratch/evidence/lane-24-final-gate.txt, sections 4 to 6. |
 | Closeout checks (lane 25, clA2, DeepSeek) | Packet requirements, task evidence and checklists | Verify the baseline, edge cases, inventories and document status | scratch/evidence/lane-25-closeout-checks.txt, Checks 1 to 11 |
 | Closeout metadata and retrieval index | Generated metadata and trigger index are rebuilt before the gate | Completed | Lane 24 records the trigger-index rebuild and G7. Lane 29 records the post-pass re-derive and strict validations. |
+| 30. Post-rebase gate G8 (orchestrator) | REQ-017 | 15 commits rebased onto b62e142852 | Run G8 on the rebased tree and explain each nonzero step | No code mutant. Rerun changed TypeScript lint with the corrected file list | scratch/evidence/lane-30-post-rebase-gate.txt, SUMMARY and EVERY STEP |
+| Post-push CI record (orchestrator) | REQ-017 | Push b62e142852..01db8367c3 to main | Record every workflow and the corpus-pin failure | No code mutant. Compare the pin failure with main's prior run | scratch/evidence/post-push-ci.txt, CI ON and THE ONE FAILURE |
 
 Required inventories:
 - **Same-class producers** (class-of-bug rows, lanes 1 and 6): every read or write in the healer and in `repair-derived.cjs` that takes a path from user input. The 020 inventory (`scratch/evidence/closure-same-class-write-inventory.txt` in phase 020) is the starting list, and each lane rechecks it against the current tree.

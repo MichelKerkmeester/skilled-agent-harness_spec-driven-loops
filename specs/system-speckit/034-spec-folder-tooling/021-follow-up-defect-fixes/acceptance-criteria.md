@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes"
-    last_updated_at: "2026-10-11T05:52:56Z"
+    last_updated_at: "2026-10-11T12:13:52Z"
     last_updated_by: "closeout"
-    recent_action: "All 35 rows Met. AC-017 met on the final gate with two recorded exceptions"
-    next_safe_action: "Commit the work, push to main and record CI"
+    recent_action: "All 35 rows Met. Pushed as 01db8367c3, CI green except main's corpus pin"
+    next_safe_action: "Monitor main CI and reopen only for a new tooling defect"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planner-021-follow-up-defect-fixes"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-10-10
 <!-- /ANCHOR:metadata -->
 
@@ -112,5 +112,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-AC-017 is Met on the recorded G7 evidence and lane-29 validations. Packet status remains In Progress while T040, CHK-FIX-007 and T068 to T070 remain open.
+AC-001 to AC-035 are Met. The packet was pushed as 01db8367c3. Post-push CI passed 13 of 14 workflows. Routing Registry Drift Guard failed because main's pinned corpus changed before this push.
 <!-- /ANCHOR:closure -->

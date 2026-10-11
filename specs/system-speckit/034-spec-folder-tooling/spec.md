@@ -12,9 +12,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling"
-    last_updated_at: "2026-10-10T09:53:50Z"
+    last_updated_at: "2026-10-11T12:13:52Z"
     last_updated_by: "claude"
-    recent_action: "Completion 100 by the status classifier (20 of 20 children complete). 020 closed on the push bb2006123f with main CI green"
+    recent_action: "Completion 100 by the status classifier, 21 of 21 children complete, 021 closed on 01db8367c3"
     next_safe_action: "Create follow-up phase 034/021 for the items moved out of 020"
     blockers: []
     key_files: []
@@ -130,7 +130,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 18 | 018-epic-docs-alignment/ | Bring the playbooks, feature catalogs, READMEs, doctor docs and release changelogs in line with the epic's tooling | Complete |
 | 19 | 019-epic-follow-up-fixes/ | Close the eleven follow-ups the epic left: the env reference, the compat workflow contract, Gate 3 parity coverage, CLI test isolation and the leaf manifest generator | Complete |
 | 20 | `020-deep-review-remediation/` | Remediate the eleven deep review findings against phases 016 to 019, the open search debt and the Hermes mirror byte diff, and settle the phase 010 status. Eight lanes, each with a red run before its fix | Complete |
-| 21 | `021-follow-up-defect-fixes/` | Fix the pre-existing defects that phase 020 found and moved here: link handling in the healer, backfill, archive, leaf manifest check, upgrade-legacy and repair-derived, the changelog row cut and comment leak, the lean parent status, two test hygiene faults and the launcher child marker with the Hermes rule. Ten code lanes, each with a red run, a green run and a mutant | In Progress |
+| 21 | `021-follow-up-defect-fixes/` | Fix the pre-existing defects that phase 020 found and moved here: link handling in the healer, backfill, archive, leaf manifest check, upgrade-legacy and repair-derived, the changelog row cut and comment leak, the lean parent status, two test hygiene faults and the launcher child marker with the Hermes rule. Ten code lanes, each with a red run, a green run and a mutant | Complete |
 
 ### Phase Transition Rules
 

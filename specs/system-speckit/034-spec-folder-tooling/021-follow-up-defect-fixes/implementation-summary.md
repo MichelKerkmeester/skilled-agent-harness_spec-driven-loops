@@ -8,22 +8,22 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes"
-    last_updated_at: "2026-10-11T05:53:16Z"
+    last_updated_at: "2026-10-11T12:16:56Z"
     last_updated_by: "generate-context"
-    recent_action: "Final gate passed 115 of 117 steps, both failures outside this phase"
-    next_safe_action: "Commit the work, push to main and record CI"
+    recent_action: "Closed on push 01db8367c3 with CI green except main's corpus pin"
+    next_safe_action: "Monitor main CI and reopen only for a new tooling defect"
     blockers: []
     key_files:
-      - "specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes/scratch/evidence/lane-24-final-gate.txt"
+      - "specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes/scratch/evidence/post-push-ci.txt"
       - "specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes/scratch/evidence/decision-ledger.txt"
       - ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs"
       - ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts"
       - ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:ee52943b8602c41345ae8fa984697a9ee382fdc688f1fb7642257564553a16a7"
       session_id: "scaffold-021-follow-up-defect-fixes"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,8 +41,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 021-follow-up-defect-fixes |
-| **Completed** | pending: the 021 changelog entry, evidence pinning, continuity save, commit, push and CI remain |
-| **Status** | In Progress |
+| **Completed** | 2026-10-11 |
+| **Status** | Complete |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -51,11 +51,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The recorded fixes address link handling, graph status derivation, changelog generation, launcher behavior and test hygiene. The packet remains In Progress while open evidence and follow-up work stay visible.
+The recorded fixes address link handling, graph status derivation, changelog generation, launcher behavior and test hygiene. The packet closed after its evidence was pinned, the commits were pushed and CI completed.
 
 ### Phase 21: follow-up-defect-fixes
 
-This packet tracks defects found during phase 020 and the decisions that shape their follow-up. The 016 child document pass, the approved 009 compatibility run, the hostile rerun and the 015 T022 corpus run are recorded. G7 ran all 19 jobs with 115 of 117 steps returning rc 0. Its two failed steps are documented as outside this phase. Post-gate work remains open.
+This packet tracks defects found during phase 020. The 016 child audit, approved 009 run, hostile rerun and 015 T022 run are recorded. G7 had 115 of 117 steps at rc 0. G8 had 116 of 118 steps at rc 0. Lane 30 explains both G8 failures. The pushed range is b62e142852..01db8367c3. CI completed with 13 of 14 workflows successful.
 
 ### Files Changed
 
@@ -106,7 +106,7 @@ fixF restored the 009 CHK-023 move-step and manifest-refusal coverage and relabe
 
 fixH fixed description inference and repaired all 40 affected descriptions one line each. The corrected mutant proof passed on the control and failed on both reverted cases. Nineteen packets passed validation before and after and the same two failed before and after. Evidence: scratch/evidence/lane-22-fill-description.txt:73, scratch/evidence/lane-22-fill-description.txt:76 and scratch/evidence/lane-22-fill-description.txt:121.
 
-The 016 child document pass and 015 summary updates are recorded. Lane 24 records the trigger-index rebuild and G7 gate. Lane 29 records the post-pass re-derive and strict validation for 021 and the 034 parent. Evidence pinning, the 021 continuity save, changelog entry, commit, push and CI remain open. The 021 changelog entry will be written at closeout after CI. Evidence: scratch/evidence/lane-24-final-gate.txt, sections 1 and 4, and scratch/evidence/lane-29-final-rederive.txt.
+The 15 commits were rebased onto b62e142852 and pushed as b62e142852..01db8367c3. The sandbox-test repair was committed alone as f179c28be6 with the file-only remint bypass (Decision 34). G8 had 116 of 118 steps at rc 0. The j18 rerun passed six of six steps. The deep-loop suite and create-journey-proof test passed in G8. The mass-deletion push to main succeeded. All 14 CI workflows completed on 01db8367c3. Thirteen succeeded. Routing Registry Drift Guard failed on main's corpus pin. Evidence: scratch/evidence/lane-30-post-rebase-gate.txt and scratch/evidence/post-push-ci.txt. The changelog is ../changelog/changelog-034-021-follow-up-defect-fixes.md.
 
 <!-- /ANCHOR:how-delivered -->
 
@@ -185,9 +185,10 @@ The 016 child document pass and 015 summary updates are recorded. Lane 24 record
 4. The backfill CLI was not run end to end on a fixture and other folder-discovery callers were not assessed further. Evidence: scratch/evidence/lane-8-lean-parent.txt, section 10, folder-discovery finding and Limit.
 5. The 016 child document pass and the 015 T022 corpus apply-twice run are recorded. The dry run inspected 4335 packets, with 4282 passing and 53 failing. 011 goal criterion 3 remains open by design. Evidence: scratch/evidence/lane-17-t022-corpus.txt:13, scratch/evidence/lane-17-t022-corpus.txt:30, scratch/evidence/lane-17-t022-corpus.txt:117 and scratch/evidence/lane-20-016-residual-boxes.txt:40.
 6. The healer parser does not accept --flag=value for existing flags. The removed --mode and --json flags now receive specific messages. Evidence: scratch/evidence/lane-14-removed-flags.txt, parser note and Messages.
-7. G7, the trigger-index rebuild and the lane-29 re-derive and strict validations are recorded. Evidence pinning, the 021 continuity save, the changelog entry, commit, push and CI remain open. The 021 changelog entry will be written at closeout after CI. Evidence: scratch/evidence/lane-24-final-gate.txt, sections 1 and 4, and scratch/evidence/lane-29-final-rederive.txt.
+7. Lane 24 records G7 and the trigger-index rebuild. Lane 29 records pre-push validation. Lane 30 records G8. Post-push CI and the nested changelog are recorded. This summary's continuity block awaits the later save. Evidence: scratch/evidence/lane-24-final-gate.txt, scratch/evidence/lane-29-final-rederive.txt, scratch/evidence/lane-30-post-rebase-gate.txt and scratch/evidence/post-push-ci.txt.
 8. The corpus apply ran in a throwaway clone (D17). In the repository itself, the packets outside this phase that the dry run found failing are unchanged.
 9. 016/011 goal criterion 3 stays open by design. See 011 Known Limitations item 12.
-10. The deep-loop fanout-run test "lets the --containment-mode flag override the fan-out config value, and rejects an unknown value" timed out under full gate load in G5 at 30,253 ms, in G6 at 30,253 ms and in G7 at 30,060 ms against a 30,000 ms limit. After G7, three verbose runs of the single test passed in 21,310 ms, 20,354 ms and 19,779 ms. The whole file passed 167 of 167 twice after G5 and twice after G6. The whole deep-loop job passed alone after G7 with 2,896 passed and 8 skipped. No system-deep-loop file changed in this phase. Evidence: scratch/evidence/lane-24-final-gate.txt, section 6.
-11. The sk-doc `create-journey-proof.test.cjs` failure is on main since `574a3d9d1d`. The fresh parent scaffold fails three doctor invariants, `5k-alias` twice and `5k-packet`. The test passed in G5 and fails alone on main's version. Swapping the leaf generator between main's version and this phase's version produced the same three failures. No CI workflow runs this test. Remote main CI on `5d9c970447` is green. D30 records "Record it, don't fix (Recommended)". This phase did not fix it. Evidence: scratch/evidence/lane-24-final-gate.txt, section 6, and scratch/evidence/decision-ledger.txt:72 and :75.
+10. The deep-loop fanout-run test "lets the --containment-mode flag override the fan-out config value, and rejects an unknown value" timed out under full gate load in G5 at 30,253 ms, in G6 at 30,253 ms and in G7 at 30,060 ms against a 30,000 ms limit. After G7, three verbose runs passed in 21,310 ms, 20,354 ms and 19,779 ms. The whole file passed 167 of 167 twice after G5 and twice after G6. The whole deep-loop job passed alone after G7 with 2,896 passed and 8 skipped. The suite passed in G8 with 2,690 tests and 8 skipped. No system-deep-loop file changed. Evidence: scratch/evidence/lane-24-final-gate.txt, section 6. The G8 result appears in scratch/evidence/lane-30-post-rebase-gate.txt, SUMMARY.
+11. The sk-doc create-journey-proof.test.cjs failure no longer reproduces after main's 4ce75d6fe1 change aligned registry aliases and router keywords. The test passed in G8. Evidence: scratch/evidence/lane-30-post-rebase-gate.txt, SUMMARY.
+12. Main's Routing Registry Drift Guard failed in post-push CI with "CORPUS DRIFTED FROM PIN". Main's holdout-prompts.jsonl changed in e052417268 without a new pin. The 15 pushed commits do not touch .skilled/skills/system-skill-advisor. Main failed the same step before this push. Evidence: scratch/evidence/post-push-ci.txt, THE ONE FAILURE. Lane 30 records the hash comparison in SUMMARY item 2.
 <!-- /ANCHOR:limitations -->
