@@ -42,9 +42,15 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "research/research.md",
       ".skilled/bin/skill-advisor.cjs",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
-      ".skilled/repo-rules/prevent-overengineering.md"
+      ".skilled/repo-rules/prevent-overengineering.md",
+      "research/iterations/iteration-001.md",
+      "research/deep-research-state.jsonl",
+      "research/findings-registry.json",
+      "research/deep-research-dashboard.md",
+      "research/resource-map.md"
     ],
     "entities": [
       {
@@ -78,6 +84,12 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "skill-advisor.cjs",
         "kind": "file",
         "path": ".skilled/bin/skill-advisor.cjs",
@@ -93,6 +105,30 @@
         "name": "prevent-overengineering.md",
         "kind": "doc",
         "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": "research/deep-research-dashboard.md",
         "source": "derived"
       },
       {
@@ -160,57 +196,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The advisor batteries are 17 prompts plus 5 negatives",
     "created_at": "2026-10-11T15:54:55Z",
-    "last_save_at": "2026-10-11T16:01:42.836Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-11T17:39:34.437Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:eac50efb2254dedf6b736010e09665a57a0767d12f7ab3dcd6bf068e07a08096",
+    "source_fingerprint": "sha256:1d5f70a44cd6a47ee4be26a5138e6f88d13d6d9ec9fbadc8fd2f2c0648c3490f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8677b86808a89488b7124b44d539e48a78572665639f1e26b3a7e3efc8e7441e",
+      "spec.md": "4de36f669bac57383876f5aee772d202a4d66a27d6bdd0aee6c96289b3522527",
       "plan.md": "906da6e8c8d9474942bdd71caf77b08e0646e7150014b845a8d5f8a742445c68",
-      "tasks.md": "b12fd3cf6ddcd37d9a3fcef63946b5c69619909adc6b5c48a2a2cde2a370ae3a",
-      "implementation-summary.md": "cfb64b7bf8099df87e01d64ec328f71e7451f856d88bedb6487b69f1b51eb191"
+      "tasks.md": "1ee1c9c19e2656d907862756ff6e1da87199f51657f07f2881e287e5c5ff31c8",
+      "implementation-summary.md": "03670584328fce6655703f4a340e360bdd302ad8d9c4b0b9aa9806ea7f419ee1",
+      "research/research.md": "5820f1ab5b881a53e29553bbf4433acd0d42a85a3a1c116b064d9bee9a69855e"
     },
     "last_active_at": null
   }
